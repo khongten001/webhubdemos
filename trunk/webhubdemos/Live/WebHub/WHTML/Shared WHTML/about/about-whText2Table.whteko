@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTGR=Text to HTML Table
+mcWhDemoCreditIdeaHTGR=Michael Ax
+mcWhDemoCreditFirstDraftHTGR=Ann Lynnworth
+mcWhDemoCreditGraphicsHTGR=Rob Daniels
+mcWhDemoCreditCopyHTGR=Rob Daniels
+mcWhDemoUpdatedHTGR=15-Nov-2006
+mcWhDemoKeywordsHTGR=TwhListGrid,ascii files,table data
+mcWhDemoLiteHTGR=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTGR">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+
+<li> In the application's configuration file, the <code>[WebListGrid.Files]</code> 
+section must 
+be set up with the various grids pointing to valid text files. That section 
+is configured automatically during installation, but if you have any 
+problems seeing the grid, check the paths to make sure they are 
+valid for your setup.</li>
+
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTGR">
+Demonstration of the TwhListGrid component, which 
+can create HTML tables based on information in  
+simple text files.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTGR">
+The listgrid demo requires no custom Delphi code. However 
+it can not run in whLite.exe because it requires two 
+instantiated TwhListGrids, which whLite.dpr does not include.
+
+<h3>Running this demo</h3>
+Use the whText2Table.exe project to serve the pages for this demo:
+<br />
+<b><code>start whText2Table.exe</code></b>
+
+<h3>New Surfer Initialization</h3>
+If you want to use this component in your own projects, note 
+that for the grid to draw, the WebListGrid.Files literal must 
+be defined. There is code in the HOMEPAGE to initialize this 
+variable for each new surfer.  You can do the same thing, 
+using the NOTASSIGNED and SET macros, or you can write some 
+code under the TwhAppBase.OnNewSession event.
+
+<h3>Source to the Web Action Component</h3>
+Full Object Pascal source code to the TwhListGrid component is provided to registered 
+customers.  The source provides an excellent example of how you can inherit the basic save-state 
+mechanism in a custom web action component.
+</whtranslation>
+
+</whteko>

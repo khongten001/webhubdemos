@@ -1,0 +1,2 @@
+inherited DMForWHStopSpam: TDMForWHStopSpam
+end

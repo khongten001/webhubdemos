@@ -1,0 +1,165 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdemoFire"
+  designpage="pgEnterFire">
+
+<whdroplet name="drDemoSpeedbarForfire">
+<!-- speedbar for FIRE demo could appear here -->
+</whdroplet>
+
+<whpage pageid="pgEnterFire" desc="WebHub Firebird SQL Database demo">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Overview of the WebHub Firebird SQL Demo</h1>
+
+<p>This demo shows three ways to use a TwhdbScan component with Interbase Objects to 
+view data from a Firebird SQL database.</p>
+
+<ol>
+<li> (~JUMP|pgReadonly1|using built-in buttons~)</li>
+<li> (~JUMP|pgReadonly2|customizing via XML and macros~)</li>
+<li> (~JUMP|pgReadonly3|customizing via droplet~)</li>
+</ol>
+
+<div align="center" style="padding-top: 2em;">
+<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="(~mcSiteRoot~)demos/whFirebird/FirebirdFoundation.png" alt="Donate to Firebird Foundation" /></a>
+</div>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgReadonly1" desc="View Employee Table Example 1">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>TwhdbScan Example 1</h1>
+<h2>...using the default, built-in buttons</h2>
+<p>ScanEmployee1 has the ButtonsWhere property set to dsbBelow. It has nothing extra configured via XML nor macros.</p>
+
+(~ScanEmployee1.Execute~)
+<whdroplet name="drDisplayEmployeeTable" show="no">
+<table id="employee1" class="whdbScanBase-table">
+<tr>
+  <th>Employee#</th>
+  <th>Full Name</th>
+  <th>Job Country</th>
+  <th>Salary</th>
+</tr>
+<whrow>
+<tr>
+  <td>(~waFIELD.execute|Employee|EMP_NO~)</td>
+  <td>(~waFIELD.execute|Employee|FULL_NAME~)</td>
+  <td>(~waFIELD.execute|Employee|JOB_COUNTRY~)</td>
+  <td>USD (~waMoney.execute|(~waFIELD.execute|Employee|SALARY~)~)</td>
+</tr>
+</whrow>
+</table>
+</whdroplet>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgReadonly2" desc="View Employee Table Example 2">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>TwhdbScan Example #2</h1>
+<h2>Customizing the built-in buttons via configuration and macros</h2>
+<p>See WHAppConfig_fire.xml, ComponentConfig/TwhdbScanBase section to find out how the component links to the macros.</p>
+<p>See the macros below for the actual customized details.</p>
+
+(~ScanEmployee2.Execute~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+
+<whmacros>
+<!--- used for customization of ScanEmployee2 - example #2 -->
+mcEmployee2ButtonSpecsFirst=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.First">FIRST</A>
+mcEmployee2ButtonSpecsPrior=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Prior">PRIOR</A>
+mcEmployee2ButtonSpecsNext=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Next">NEXT</A>
+mcEmployee2ButtonSpecsLast=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Last">LAST</A>
+mcEmployee2CaptionsFirst=FIRST
+mcEmployee2CaptionsPrior=PRIOR
+mcEmployee2CaptionsNext=NEXT
+mcEmployee2CaptionsLast=LAST
+mcPromptsArrangement=<b>Arrangement</b>:
+mcPromptsIndexOrder=<b>Index Order</b>:
+mcPromptsDisplaySet=<b>Display Set</b>:
+mcPromptsFieldSet=<b>Field Set</b>:
+</whmacros>
+
+
+<whpage pageid="pgReadonly3" desc="Example 3">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>TwhdbScan Example 3</h1>
+
+<h2>Fully customized; ButtonsWhere property set to dsbNone</h2>
+<p>If any customization is required, this is the easiest technique. The XML file does not need any entries, and you do not need any special macros.</p>
+<p>You do need to write out the html for each button yourself, as shown in the droplet named <code>drEmployeeButtons</code>.</p>
+
+(~ScanEmployee3.Execute~)
+
+<whdroplet name="drEmployeeButtons" show="yes">
+<div id="ScanEmployee3-buttons" class="whdbScanBase-buttons">
+<ul>
+  <li class="whdbScanBase-firstbutton">(~ScanEmployee3|ButtonFirst|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</A>||<span class="disabled">first</span>~)</li>
+  <li>(~ScanEmployee3|ButtonPrior|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</A>||<span class="disabled">previous</span>~)</li>
+  <li>(~ScanEmployee3|ButtonNext|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</A>||<span class="disabled">next</span>~)</li>
+  <li>(~ScanEmployee3|ButtonLast|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</A>||<span class="disabled">last</span>~)</li>
+</ul>
+</div>
+</whdroplet>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+</whteko>

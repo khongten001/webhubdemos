@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerDSP=Delphi Super Page Search Engine
+mcWhDemoCreditIdeaDSP=Michael Ax
+mcWhDemoCreditFirstDraftDSP=Michael Ax
+mcWhDemoCreditGraphicsDSP=Ran Zhang
+mcWhDemoCreditCopyDSP=Michael J. Kennedy and Ann Lynnworth
+mcWhDemoUpdatedDSP=23-May-2009
+mcWhDemoKeywordsDSP=Rubicon,full text search,search engine
+mcWhDemoLiteDSP=No
+</whmacros>
+
+<whdoc>
+<whpagesettings>
+googlesitemap=include_all_lingvo
+googlechangefreq=yearly
+googlepriority=0.2
+metarobot=index,follow
+metadescription=Credits and Announcements relevant to the Delphi Super Page Search Engine
+metakeywords=Delphi Super Page,Credits,Announcements
+</whpagesettings>
+</whdoc>
+
+<whdroplet name="drDemoSetupDSP">
+<ol>
+<li> Requires: dsp.exe</li>
+<li> You will need a licensed version of Rubicon and webRubi.pas from HREF Tools Corp. in order to compile DSP.EXE with Delphi.</li>
+<li> NB: The database is owned by Robert M. Czerwinski and is not distributed without his permission. (<a href="http://delphi.icm.edu.pl/">contact</a>)</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescDSP">
+The Delphi Super Page Search Engine runs publicly on http://dsp.href.com and enables 
+developers to find programs using full-text searching of keywords and description, with 
+restrictions based on version of Delphi, C++Builder or Kylix, and whether source is required, 
+and whether the file must be free to try.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescDSP">
+<h2>database news</h2>
+<p>The Delphi Super Page database was last updated on (~mcNrAsOf~) and contains (~mcNrFiles~) files.</p>
+<p>We added support for Kylix version 2, C++Builder version 6, and JBuilder 1,2 and 6 on 23-April-2002.<br/>
+We added support for Kylix 3 and Delphi 7 on 13-March-2003.<br/>
+We added support for Delphi 8 and Delphi 2005 on 30-July-2005.</p>
+
+<h2>infrastructure and web application news</h2>
+<p>The web application behind the Delphi Super Page Search Engine 
+was written in Delphi with HREF's WebHub v2.107 and 
+Rubicon v3.0.3.4, and the web page design was done with 
+Dreamweaver MX 2004 with the WebHub Extension.  The site uses no Microsoft ASP, 
+no Visual Basic or javascripts, and does not rely on cookies. </p>
+
+<h2>Source Code to this web application is FREE upon request</h2>
+Please <a target="outbound" href="http://www.href.com/contact">contact techsupport</a> 
+if you would like a copy of the source code.  
+Please allow two business days for a response with a ZIP file of the latest version.
+
+<h2>WebHub? What's the deal</h2>
+<p>(~JUMP|GOTO-_top,webhub.com|<img border="0" height="75" width="72" src="(~mcSiteRoot~)demos/whdsp/whbox.png" alt="WebHub Box" />~)
+WebHub is a programming framework for Borland Delphi. WebHub makes big and little webapps a pleasure to write 
+and a joy to extend. WebHub applications remember what visitors type, intelligently reuse html and can deliver multiple
+personalities or languages without recompiling. That's a big deal. And yes, it's fast, powerful, scalable, proven.
+</p>
+<h2>THANKS for visiting!</h2>
+</whtranslation>
+
+</whteko>

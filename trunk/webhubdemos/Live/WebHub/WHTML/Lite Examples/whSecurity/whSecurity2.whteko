@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcLoginLifeSec=5<!---customize the timeout period-->
+mcHubAccess=whcp:HubAccess
+mcLoginLife=(~mcLoginLifeSec~) seconds ((~mcLoginLifeSec~),000 ms)<!---This formats the display of the timeout period-->
+mcDoShowChecked=_bLoginOk<!---This macro names the literal that indicates whether we're logged-in.-->
+</whmacros>
+
+<whdoc>
+Define the helper macros that the above code jumps to.
+</whdoc>
+<whmacros>
+mcLoginNew="(~DynURL.ToSessionIDWBlankSession~)" Target="(~rand~)"
+<!---
+mcLoginLogOut=(~CLEAR|_bLoginOk~)
+mcLoginLogoutHome=(~mcLoginLogOut~)(~bounce|LoginHome~)
+mcLoginLogoutLogin=(~mcLoginLogOut~)(~bounce|LoginPage~)
+mcLoginSessionTouch2=(~mcLoginLogOut~)(~Session|time|2~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
+mcLoginSessionTouch7=(~mcLoginLogOut~)(~Session|time|7~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
+mcLoginSessionTouch30=(~mcLoginLogOut~)(~Session|time|30~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
+mcLoginSessionDelete=(~Session|delete~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
+-->
+</whmacros>
+
+<whdoc>
+The following macro controls the caption of the Login/Logout jump.
+to logout from the public menu immediately brings up the login-page.
+</whdoc>
+<whmacros>
+mcLoginLogin=(~IF|_bLoginOk|Logout||Login~)
+</whmacros>
+
+<whdroplet name="chTestLiterals">
+user: (~loginuser~)<br />
+pw: (~loginpass~)<br />
+(~BoolVar._bLoginOK~)
+<p>(~chWebLoginProperties~)</p>
+<p>Access Level:  (~WebLogin.UsrAccess~)</p>
+</whdroplet>
+
+<whdroplet name="chWebLoginProperties">
+Component info:<br />
+ID: (~weblogin.usrID~) fullname: (~weblogin.usrFullname~) <br />
+hint: (~weblogin.usrPassPhrase~)
+</whdroplet>
+
+<whdroplet name="chLoginSettings">
+<table border="1" width="100%" cellpadding="2" cellspacing="2">
+<caption>Here are the TwhLogin settings associated with this User name and Password:</caption>
+<tr>
+<td>User Name</td>
+<td>(~WebLogin.UsrID~)</td>
+</tr>
+
+<tr>
+<td>User's full name</td>
+<td>(~WebLogin.UsrFullName~)</td>
+</tr>
+
+<tr>
+<td> The passphrase</td>
+<td>(~WebLogin.UsrPassPhrase~)</td>
+</tr>
+
+<tr>
+<td>User's password</td>
+<td> (~WebLogin.UsrPassword~) </td>
+</tr>
+
+<tr>
+<td>User's activity status</td>
+<td> (~WebLogin.UsrActive~)</td>
+</tr>
+
+<tr>
+<td>Expiration info on user's account</td>
+<td> (~WebLogin.UsrExpires~) </td>
+</tr>
+
+<tr>
+<td>User's allowed level of access</td>
+<td>(~WebLogin.UsrAccess~) </td>
+</tr>
+
+<tr>
+<td> Additional user  information</td>
+<td> (~WebLogin.UsrOther~)</td>
+</tr>
+</table>
+
+</whdroplet>
+
+
+
+<whdoc>
+the log-on mechanism
+</whdoc>
+
+<whmacros>
+mctimeout=2
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForHTSC">
+(~GO|pgAboutBasics|Security Basics~)<br />
+(~GO|pgLogin|Login Page~) <br />
+<!--- Define some conditional extra speedbars for certain sections of the demo. -->
+(~MATCH|(~pagesetting.underlogin~)=yes|(~drSpeedbarUnderLogin~)~)
+(~MATCH|(~pagesetting.underSession~)=yes|(~chSpeedbarUnderSession~)~)
+</whdroplet>
+
+<whdroplet name="drSpeedbarUnderLogin">
+<!--- links to features that are available based on access level-->
+(~MATCH|(~weblogin.UsrAccess~)=1|(~GO|hubvers:pgversion|Access Level 1:  View The Hub~)
+||<span style="color:#666667;">Access Level 1:   View the Hub</span>~)
+ &nbsp;|&nbsp;
+(~MATCH|(~weblogin.UsrAccess~)=2|Access Level 2: (~chLevel2Speedbar~)
+||<span style="color:#666667;">Access Level 2:   About TimeOuts &nbsp;||&nbsp;  About Session Control  &nbsp;||&nbsp;  About Expires</span>~)
+<br />
+</whdroplet>
+
+<whdroplet name="ChLevel2Speedbar">
+(~GO|pgAboutTimeout|About Timeouts~) &nbsp; | &nbsp; (~GO|pgAboutExpires|About Expires~) &nbsp; | &nbsp; (~GO|pgAboutSession|About Session Control~)
+</whdroplet>
+
+<whdroplet name="chSpeedbarUnderSession">
+<!--- extra line between the regular HTSC speedbar and the one for this section -->
+&nbsp;<br />
+<!--- Additional speedbar for the Session section -->
+(~GO|pgAboutSession|About Session~) &nbsp;||&nbsp;(~GO|pgNewSession|New Session~) &nbsp;||&nbsp;(~GO|pgSessionDelete|Delete Session~)  &nbsp;||&nbsp;(~GO|pgTouchSession|Touch Session~)
+<br />
+</whdroplet>
+
+<whdroplet name="chCheckTime">
+<!---(~IfInactiveForSec|5|(~CLEAR|_bLoginOk~)(~PAGE|pgGoodby~)~)-->
+(~IfInactiveForSec|(~mcLoginLifeSec~)|(~CLEAR|_bLoginOk~)~)
+(~REQUIRES|_bLoginOk|pgTimedOut~)
+(~WebLogin.Update~)
+</whdroplet>
+
+</whteko>

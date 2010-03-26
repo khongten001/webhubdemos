@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceUp=pgEnterJoke
+whSequenceFinal=pgEnterJoke
+</whpagesettingslist>
+
+<whpage pageid="pgJoke2a" desc="Joke 2a">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>A thermodynamics professor had written a take home exam for
+his graduate students.  It had one question:</p>
+<p>Is hell exothermic or endothermic?
+Support your answer with a proof.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2b" desc="Joke 2b">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Most of the students wrote proofs of their beliefs using
+Boyle's Law or some variant.  One student, however wrote the
+following:</p>
+<p>First, we postulate that if souls exist, then they must have
+some mass.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2c" desc="Joke 2c">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>If they do, then a mole of souls can also have a mass.  So,
+at what rate are souls moving into hell and at what rate are
+souls leaving?  I think that we can safely assume that once
+a soul gets to hell, it will not leave. Therefore, no souls
+are leaving.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2d" desc="Joke 2d">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>As for souls entering hell, lets look at the different
+religions that exist in the world today. Some of these
+religions state that if you are not a member of their
+religion, you will go to hell. Since there are more than one
+of these religions and people do not belong to more than one
+religion, we can project that all people and all souls go to
+hell.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2e" desc="Joke 2e">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>With birth and death rates as they are, we can expect the
+number of souls in hell to increase exponentially.</p>
+<p>Now, we look at the rate of change in volume in hell.
+Boyle's Law states that in order for the temperature and
+pressure in hell to stay the same, the ratio of the mass of
+souls and volume needs to stay constant.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2f" desc="Joke 2f">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>#1 So, if hell is expanding at a slower rate than the rate
+at which souls enter hell, then the temperature and
+pressure in hell will increase until all hell breaks loose.</p>
+<p>#2 Of course, if hell is expanding at a rate faster than the
+increase of souls in hell, than the temperature and
+pressure will drop until hell freezes over.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke2g" desc="Joke 2g">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>So which is it? If we accept the postulate given me by
+Therese Banyan during Freshman year, and take into account
+the fact that I still have not succeeded in having sexual
+relations with her, then #2 cannot be true, and hell is
+exothermic.</p>
+
+<p>The student got the only A.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+</whteko>

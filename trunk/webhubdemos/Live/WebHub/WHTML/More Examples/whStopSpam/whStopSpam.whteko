@@ -1,0 +1,66 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpage pageid="pgEnterHTUN" desc="Quick Conversion of Standard Characters to Numeric HTML">
+<whprep>
+(~NOTASSIGNED|edit1|(~SET|edit1=info@href.com~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<center>
+<h2>(~PageDesc~)</h2>
+
+<form method="post" action="(~ACTIONR|pgEnterHTUN~)">
+<table>
+<tr>
+ <td>Input</td>
+ <td>(~INPUTTEXT|edit1,30,120~) e.g. info@href.com</td>
+</tr>
+<tr>
+ <td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="Submit" Value="Process Input... Display Output..."/></td>
+</tr>
+<tr>
+ <td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+ <td>Output</td>
+ <td>
+<textarea name="x" rows="4" cols="60" wrap="virtual">
+(~waSlowSpam.execute|(~edit1~)|true~)
+</textarea><br />
+Numeric equivalent for: (~waSlowSpam.execute|(~edit1~)~)
+</td>
+</tr>
+<tr>
+ <td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+ <td>Mailto Link</td>
+ <td>
+<textarea name="x" rows="11" cols="60" wrap="virtual">
+&lt;a href="(~waSlowSpam.execute|mailto:(~edit1~)|true~)"&gt;(~waSlowSpam.execute|(~edit1~)|true~)&lt;/a&gt;
+</textarea><br />
+Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~)</a>|false~)
+ </td>
+</tr>
+</table>
+</form>
+
+</center>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

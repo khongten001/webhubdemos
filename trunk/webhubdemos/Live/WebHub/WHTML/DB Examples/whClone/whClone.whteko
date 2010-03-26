@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTCL">
+<!-- speedbar for HTCL demo could be here -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTCL" desc="Multi-user database scrolling demonstration">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<p>(~mcWhDemoDot~) (~JUMP|DO,scan1|Try the first scan component~) (.dbf file)</p>
+
+<p>(~mcWhDemoDot~) (~JUMP|DO,scan2|Try the second scan component~) (.db file)</p>
+
+<p>(~mcWhDemoDot~) (~JUMP|DO,webdatagrid1|Try the TwhdbGrid component~) (.dbf file)</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="none" mode="scaffold">
+<whdoc>
+these droplets are used by the DO page for each of the scan components
+</whdoc>
+<whdroplet name="drPageHeaderHTCL">
+(~mcdoctypehtml~)
+<html>
+<head>(~SET|pagedesc=DO page~)<!--- set a StringVar to compensate for the fact that there is no TwhPage object behind a DO page, thus no pagedesc property is available.  The pagedesc expression is used inside the drHead droplet. -->
+  (~drHead~)
+  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+  <div align="center">
+</whdroplet>
+
+<whdroplet name="drPageFooterHTCL">
+  </div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>(~CLEAR|pagedesc~)
+</whdroplet>
+</whpage>
+
+</whteko>

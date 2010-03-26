@@ -1,0 +1,102 @@
+<whteko>
+
+<whsketch>
+<!--- http://en.wikipedia.org/wiki/RSS_(file_format) -->
+    <item>
+      <title>Star City</title>
+      <link>http://liftoff.msfc.nasa.gov/news/2003/news-starcity.asp</link>
+      <description>How do Americans get ready to work with Russians aboard the
+        International Space Station? They take a crash course in culture, language
+        and protocol at Russia's Star City.</description>
+      <pubDate>Tue, 03 Jun 2003 09:39:21 GMT</pubDate>
+      <guid>http://liftoff.msfc.nasa.gov/2003/06/03.html#item573</guid>
+    </item>
+</whsketch>
+
+<whdroplet name="drNewsDisplay">
+(~MATCH|(~_newsMode~)=RSS|
+        <item>
+            <title>(~DYN1~)</title>
+            <link>(~DYN7~)</link>
+            <description><![CDATA[(~DYN2~)]]></description>
+            <pubDate>(~DYN3~)</pubDate>
+	        <guid>http://demos.href.com/bw:pgnews::#(~DYN5~)</guid>
+<!---            <author>(~DYN4~)</author>-->
+        </item>
+||
+<a name="(~DYN5~)"><h2></a>(~DYN1~)</h2>
+<blockquote style="background-color:#CCCCCC;margin-right:20%;">
+(~DYN2~)
+<br/><i>-- by (~DYN4~), (~DYN3~)</i>
+<p>(~DYN6~)</p>
+(~NOMATCH|(~DYN7~)!#|<p>url: <a href="(~DYN7~)">(~DYN7~)</a></p>~)
+</blockquote>
+<br/><br/>
+~)
+</whdroplet>
+
+<whdroplet name="drAllNews">
+(~PARAMS|drNewsDisplay,DYN,$|Goodbye BDE$Tips for phasing out the Borland Database Engine$04-Dec-2008$Ann Lynnworth$RSSID003$Knowledgebase article about abandoning the BDE.$http://webhub.com/dynhelp:alias::byebyebde~)
+(~PARAMS|drNewsDisplay,DYN,$|How to Validate WHTEKO and XML Files$Instructions for Dreamweaver users and others$01-Oct-2008$Ann Lynnworth$RSSID003$Knowledgebase article with details about how to validate both WHTEKO and WebHub XML files.$http://webhub.com/dynhelp:alias::syntaxvalidation~)
+(~PARAMS|drNewsDisplay,DYN,$|WebHub Options Demo Revised$Options demo revised to demonstrate an RSS feed$26-Sep-2007$Ann Lynnworth$RSSID002$As of October 2007, the WebHub demo &quot;bw&quot; shows one way to include RSS content in a WebHub application.$(~_newsLink~)#RSSID002~)
+(~PARAMS|drNewsDisplay,DYN,$|WebHub Times$Story about CalJOBS$26-Sep-1997$Ann Lynnworth$RSSID001$Case study about CalJobs, to demonstrate a WebHub feature.$(~_newsLink~)#RSSID001~)
+</whdroplet>
+
+<whpage pageid="pgNewsRSS">
+<whprep>
+(~SET|_newsmode=RSS~)
+(~SET|_newslink=(~DynURL.RawToActiveAuthority~)(~DynURL.ToAppID~):pgNews:(~SessionID~)~)
+(~SETPROLOGUETYPE|application/rss+xml~)
+</whprep>
+(~FLUSH|~)<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="(~mcSiteRoot~)demos/c/whdemorss.xsl" version="1.0"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>WebHub Options Demo: News Feed</title>
+        <link>(~DynURL.ToAppID~):pgNewsRSS</link>
+        <description>sample news from a WebHub demo</description>
+        <language>en-us</language>
+        <pubDate>(~CentralInfo.WebTimeGMT~)</pubDate>
+        <lastBuildDate>05-Dec-2008</lastBuildDate>
+	    <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+    	<generator>WebHub</generator>
+	    <managingEditor>officemgr@href.com</managingEditor>
+	    <webMaster>webmaster@href.com</webMaster>
+        <ttl>60</ttl>
+(~drAllNews~)
+    </channel>
+</rss>(~CLOSE|~)
+</whpage>
+
+<whpage pageid="pgNews" desc="News">
+<whprep>
+(~SET|_newsmode=NORMAL~)
+(~SET|_newslink=(~DynURL.RawToActiveAuthority~)(~DynURL.ToAppID~):pgNews:(~SessionID~)~)
+(~NOTASSIGNED|inSpeed|(~SET|inSpeed=Fast~)~) <!---Default the speed setting to fast.-->
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemorss.css" />
+	<link href="(~ACTION|pgnewsrss~)" rel="alternate" type="application/rss+xml" title="RSS Feed" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>Demonstration headline news as at <span class="changing">(~CentralInfo.WebTimeGMT~)</span>, customized slightly for a (~inSpeed~) bandwidth 
+connection. ((~JUMP|pgEnterBW|change~))
+<br/>
+(~JUMP|pgNewsRSS|<img src="(~mcImgDir~)/rss-20.png" alt="View rss feed" />~)</p>
+
+(~drAllNews~)
+
+<p>(~JUMP|pgnewsrss| onmouseover="window.status='RSS Feed';return true;" onmouseout="window.status='';return true;" |<img src="(~mcImgDir~)/rss-20.png" alt="subscribe rss feed" />~)
+</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>

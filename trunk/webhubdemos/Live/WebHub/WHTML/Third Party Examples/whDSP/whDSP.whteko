@@ -1,0 +1,159 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdsp" designpage="temp">
+
+<whdroplet name="drDemoSpeedbarForDSP">
+(~IF|bAdvSearch|(~JUMPR|pgEnterDSP,Basic|Search~)||(~JUMPR|pgEnterDSP,Advanced|Advanced Search~)~) | 
+(~GO|Mirrors|Mirrors~) |
+(~GO|pgLinkToDSP|Promote DSP~) |
+(~GO|Feedback|Feedback~) | 
+<!---<td align="right">-->
+<!--- use the random session number as a way to prevent caching!! we are passing it as the COMMAND -->
+<!--- <a href="(~DynURL.cgiApp~):welcome::(~SessionNumberEx~)" target="_top">Start Again</a>  -->
+(~HREF|(~mcDSP~)|target="_top"|DSP Home~)
+<!---</td>-->
+</whdroplet>
+
+<whpage pageid="welcome" remap="pgEnterDSP">
+<whpagesettings>
+googlesitemap=exclude-duplicates-homepage
+googlechangefreq=monthly
+googlepriority=1.0
+metarobot=index,nofollow
+metadescription=Search the Delphi Super Page archive for freeware, shareware and utilities for Borland Delphi.  Download from one of many mirror sites.
+metakeywords=Delphi,Borland Delphi,Utilities,Software,Freeware,Shareware,Download
+</whpagesettings>
+(~pgEnterDSP~)
+</whpage>
+
+<whpage pageid="temp" mode="scaffold">
+
+<whdroplet name="drSharedDSPHeadTags" show="no">
+(~ANCHORMODIFY|metatags|
+  <meta name="robots" content="(~pagesetting.metarobot~)" />
+  <meta name="description" content="(~pagesetting.metadescription~)" />
+  <meta name="keywords" content="(~pagesetting.metakeywords~)" />
+~)
+(~ANCHORMODIFY|style|  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />~)
+</whdroplet>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+<whsketch>
+(~HEADER|Content-Type: text/html; charset=iso-8859-1~)
+  <meta name="robots" content="(~pagesetting.metarobot~)" />
+  <meta name="description" content="(~pagesetting.metadescription~)" />
+  <meta name="keywords" content="(~pagesetting.metakeywords~)" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />
+</whsketch>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+<whdroplet name="chDSPPageFooter">
+<div class="whDemoSectionNav" style="border-color: teal;">
+	<span class="techiefooter">
+	<b>Search Technology Partners: <a href="http://www.webhub.com/">WebHub</a> &amp; (~JUMP|GOTO-_top,www.tamaracka.com|Rubicon~). </b>
+	<p><!--- (~HIDE|NEWS:AdInfo-_Top|Advertising~) &nbsp;&nbsp; -->Running (~version~) and Rubicon v2.21.  Web Application Version (~mcAppVersion~)<br />
+Session #(~SessionID~).  Your Browser: (~Request.UserAgent~)<br />
+	</p>
+	</span>(~ISWEBROBOTREQUEST| ||
+	<div id="divcount">
+	human visitor count: <span id="fillin">
+	<object height="1em" id="foo" name="foo" type="text/html" data="http://support.href.com/scripts/runisa.dll?htcount:work::demos-dsp-(~PageID~)"></object></span>
+	</div>~)
+</div>
+</whdroplet>
+</body></html>
+</whpage>
+
+<whmacros>
+mcDSP=http://delphi.icm.edu.pl/
+mcSite=DSP Search Engine
+mcNoMatch=<![CDATA[<tr><td><h1>no match.</h1>]]>
+mcImgSrc=(~mcSiteRoot~)dspimg/
+mcFileDetailsMissing=<b>File Details are missing!</b>
+</whmacros>
+
+<whdoc>
+The design calls for the search edit box size to differ for IE and 
+Firefox.  size 40 for IE and size 35 for Firefox.
+Reset to 35 for both 23-May-2009 Ann.
+</whdoc>
+
+<whdroplet name="chSpacer5">
+<tr>
+<td><img src="(~mcImgSrc~)clear.gif" width="1" height="5" border="0" alt=""/></td>
+</tr>
+</whdroplet>
+
+<whdroplet name="chSpacer10">
+<tr>
+<td><img src="(~mcImgSrc~)clear.gif" width="1" height="10" border="0" alt=""/></td>
+</tr>
+</whdroplet>
+
+<whdroplet name="chHr">
+<![CDATA[<tr>
+<td><hr size="1"/></td>
+</tr>]]>
+</whdroplet>
+
+<whdroplet name="chHr350">
+<![CDATA[<tr>
+<td><hr size="1" width="350"/></td>
+</tr>]]>
+</whdroplet>
+
+
+<whpage pageid="pgBadIP" desc="Bad IP number">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+metadescription=Error: bad ip number
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+The system believes you have a Bad IP#.  (~Request.RemoteAddress~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgBadBrowser" desc="Changed web browser">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+metadescription=Error: changed web browser
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+The system believes you have changed user agent mid-session.
+(~Request.UserAgent~)
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+</whteko>

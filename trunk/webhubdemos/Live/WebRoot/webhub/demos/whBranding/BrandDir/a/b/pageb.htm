@@ -1,0 +1,85 @@
+<HTML><HEAD><CENTER>
+<TABLE WIDTH=80% ALIGN=CENTER>
+<tr><td><Center><A HREF="/scripts/runisa.dll?BRND:BRNDRECAP:(~Session~):">Branding Scenario Recap</A></Center></td></tr>
+<tr><td>
+<CENTER>
+<A HREF="/scripts/runisa.dll?BRND:pgWelcome:(~Session~):"><IMG SRC="(~mcSiteRoot~)demos/img/logos/brnd.jpg" alt="Brand Macro" Border="0"></A></CENTER><p>
+</td></tr></table></center><HTML><HEAD>
+<TITLE>Brand Test Page B</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFF">
+<Center><font size=5>This is page B.</font>
+<p>
+Now on to  <Font color="red">Scenario #4</font>: </Center>
+<p>
+<table border=1 cellpadding=4 cellspacing=0>
+<tr>
+<th align="left">Link From</th>
+<td>
+Static Page, Exported from WebHub, Branded
+</td>
+<td>
+e.g.   BrndPageB
+</td>
+</tr>
+<tr>
+<th align="left">Link To</th>
+<td>
+Plain Static Page
+</td>
+<td>
+e.g.Page C<br />
+ [path and filename = c/pageC.htm]
+</td>
+</tr>
+<tr>
+<th align="left">WebHub Macro</th>
+<td colspan="2">
+JUMP
+</td>
+</tr>
+<tr>
+<th align="left">Macro Syntax</th>
+<td colspan="2">
+<code>JUMP|BRAND,c/pageC.htm|Jump to Page C!</code>
+</td></tr>
+<tr><td>TRY IT!</td>
+<TD colspan="2"><A HREF="/scripts/runisa.dll?BRND:BRAND:(~Session~):c/pageC.htm">Jump to Page C!</A></td></tr>
+</table>
+<p>
+<p>
+<Center>AND ---  <Font color="red">Scenario #7</font>:</Center>
+<p>
+<table border=1 cellpadding=4 cellspacing=0>
+<tr>
+<th align="left">Link From</th>
+<td>
+Static Page, Exported from WebHub, Branded
+</td>
+<td>
+e.g.   BrndPageB
+</td>
+</tr>
+<tr>
+<th align="left">Link To</th>
+<td>
+Dynamic Page
+</td>
+<td>
+e.g. PageID:  BRNDRecap<br />[the Recap Page]
+</td>
+</tr>
+<tr>
+<th align="left">WebHub Macro</th>
+<td colspan="2">
+JUMP
+</td>
+</tr>
+<tr>
+<th align="left">Macro Syntax</th>
+<td colspan="2">
+<code>JUMP|BRNDRecap|Jump to the Recap Page!</code>
+</td></tr>
+<tr><td>TRY IT!</td>
+<TD colspan="2"><A HREF="/scripts/runisa.dll?BRND:BRNDRECAP:(~Session~):">Jump to the Recap Page!</A></td></tr>
+</table>

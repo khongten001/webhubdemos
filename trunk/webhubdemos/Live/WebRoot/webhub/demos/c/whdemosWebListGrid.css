@@ -1,0 +1,14 @@
+/* webListGrid control and button styles */
+
+.webListGrid-table {
+  border: 1px solid black;
+}
+
+.webListGrid-table td {
+  border: 1px solid black;
+  padding: 6px;
+}
+
+.webListGrid-table th, caption {
+  background-color: #CCFF33;
+}

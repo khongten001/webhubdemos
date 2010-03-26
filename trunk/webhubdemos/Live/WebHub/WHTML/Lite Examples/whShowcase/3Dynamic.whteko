@@ -1,0 +1,223 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGDYNAMICLINKS
+whSequenceFinal=PGDYNAMICLINKS
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=DynamicLinks
+htmlFilename=3Dynamic.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo; (~GO|pgDynamicLinks|Dynamic Links Within a Site~) &raquo;
+showcaseBranchText=Easier HTML: Dynamic Links Within a Site:
+</whpagesettingslist>
+
+<whpage pageid="pgJUMP" desc="The JUMP Macro">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The JUMP macro sets up an A HREF link to a page within a WebHub
+site.
+<p>
+<b>Regular HTML:</b>
+<pre>&lt;A HREF="/scripts/runisa.dll?SHOWCASE:PgGo">The GO Macro&lt;/A></pre>
+
+<b>WebHub HTML:</b>
+<pre>(~.JUMP|pgGo|The GO Macro~)</pre>
+
+Using the JUMP macro is better than using an A HREF link because it:
+<ul>
+<li> Saves typing
+<li> Is calculated at run-time to use the current http expression
+<li> Will expand at run-time based on the current runner (runisa.dll in this example).
+<li> Adds the essential functionality of branding in the
+surfer session ID -- something that is impossible on a static .html page.  If the page were
+being generated for surfer 123456, the JUMP above would expand to:
+<pre>&lt;A HREF="/scripts/runisa.dll?SHOWCASE:pgGO:123456">The GO Macro&lt;/A>
+</pre>
+</ul>
+
+<p>
+
+This example of the JUMP macro has links to the current page and the next page in the sequence.
+Study the status bar in your browser to see the URL beneath each link.
+<p>
+| (~JUMP|PGJUMP|JUMP to the same page~) | (~JUMP|PGGO|JUMP to the next page~) |
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgGo" desc="The GO Macro">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The GO macro does the same thing as the JUMP macro, but it adds one feature.
+If the link is back to the current page, WebHub will automatically deactivate it
+and turn it into plain text. For example, you could use the GO macro to define a single speed bar that
+adjusts itself automatically for links to the current page by deactivating those links.
+<p>
+
+<p>
+
+This example of the GO macro has links to the current page and the next page in the sequence.
+Study the status bar in your browser to see the URL beneath each link.
+Notice that the link to the current page is automatically deactivated!
+<p>
+| (~GO|PGGO|GO to the same page~) | (~GO|PGHIDE|GO to the next page~) |
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgHide" desc="The HIDE Macro">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The HIDE macro works like JUMP and GO but adds another feature.
+If the link is to the current page (like in GO) WebHub will remove it completely!
+For example, you could use the HIDE macro to define a single speed bar that
+adjusts itself automatically for links to the current page by making those links disappear
+completely.
+<p>
+<p>
+
+This example of the HIDE macro has links to the current page and the next page in the sequence.
+Study the status bar in your browser to see the URL beneath each link.
+You won't see the link to the current page, but you will see the link to the next page.
+<p>
+| (~HIDE|PGHIDE|HIDE the link to the same page | ~) (~HIDE|PGACTION|Don't HIDE the link to the next page~) |
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgAction" desc="The ACTION Macro">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub makes it easy to link HTML forms to a web application.
+You just choose the page you want to go to, and use a macro.
+You use the ACTION macro to make the form go to a different page.
+<p>
+<b>Regular HTML syntax:</b>
+<pre> &lt;FORM METHOD=POST ACTION=&quot;/scripts/runisa.dll?HubApp:SystemInfo&quot;></pre>
+<p>
+<b>WebHub syntax:</b>
+<pre> &lt;FORM METHOD=POST ACTION=&quot;(~.ACTION|SystemInfo~)&quot;></pre>
+<p>
+<p>
+In this example, you will advance to the next page in the sequence. Note that the form data is sent to the next page.
+<form method="post" action="(~ACTION|Showcase:pgWhere~)">
+Surfer name:(~inputtext|litSurferName~)
+(~inputsubmit|submit,Advance to Next page~)
+</form>
+<p>
+In some advanced cases, it may be necessary to build the URL out of smaller
+pieces.  Programmers can look at
+the (~GO|whproperties|TwhAppBase.Properties~) to
+see how cgiApp, cgiCaller, SessionNumber, RandomSession and
+Where can fit together.  Any of those properties can be put into the
+HTML stream using macro syntax.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgWhere" desc="The CURRENT Macro">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+You use the CURRENT macro to make a form re-run the current page.
+
+<p>
+In this example, the current page will be reloaded with the form data.
+<form method="post" action="(~DynURL.ToSessionIDW~)">
+Surfer name:(~inputtext|litSurferName~)
+(~inputsubmit|submit,Stay Where you are~)
+</form>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgRandom" desc="Reload Macros">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Browser software is likely to cache pages--whether the pages are static or dynamic.
+With dynamic pages, particularly database-driven ones, you may need
+to trick the browser into thinking that a link to the "same" page
+is to a "different" page.
+<p>
+WebHub makes this easy by providing a random number variation on the SessionID.
+Once this random number gets into the URL, the browser is forced to reload.
+
+<p>
+
+<p>
+<b>Your usual session ID: (~sessionID~)<br />
+RandomSession: (~RandomSession~)</b>
+<p>
+A regular GO: (~GO|PGHTML|GO to Easier HTML Main Page~)<br />
+Compare to GoR: (~GOR|PGHTML|Random GO to Easier HTML Main Page~)
+<p>
+You can use JumpR, GoR, HideR and ActionR to get the random
+session number feature.  The CURRENT macro uses it automatically.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgPagealias2" remap="pgPagealias" desc="Page Aliasing Example">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This sentence will never be shown.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgPagealias" desc="Page Aliasing">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub allows you to <i>alias </i> pages, which means that you can redirect a request for one page to
+a request for a totally different page--even a page in a different module or server.
+This saves you time in checking and rearranging links, especially for changes that aren't permanent.
+<p>
+When you create a page in a WHTEKO file,<br />
+<CODE><b>&lt;whage pageid="pgBuy" desc="Order Now!"></CODE></b><br />
+there are several additional attributes which you can customize, namely exportfilename and remap.  <p>
+The remap attribute allows you to set a page alias, i.e.:
+<ul>
+<li>Alias to a single page:<br /><CODE>remap="pgOrder"</CODE></LI>
+<li>Alias through a different AppID:<br /><CODE>remap="ORDERAPP:pgBuy"</CODE></LI>
+<li>Alias through a specific ServerProfile:<br /><CODE>remap="pgBuy(secure)"</CODE></LI>
+<li>Do all three at once:<br /><CODE>remap="ORDERAPP:pgOrder(secure)"</CODE></LI>
+</ul>
+<br />
+For example, a request for a Feedback page might be rerouted
+through the Sendmail program on a mail server:<br />
+<CODE><b>remap="SENDMAIL:Feedback(robserver)"</b></CODE>
+<p>
+The JUMP macro utilizes the PageAlias attribute.  If the page definition for a homepage is defined like this:<br />
+<CODE><b>&lt;whpage pageid="homepage" remap="homepage(ora)"></CODE></b><br />
+then a jump that is written like this:<br />
+<CODE><b>(~.JUMP|homepage|Visit our Homepage~)</b></CODE><br />
+will automatically resolve to the ORA server profile.
+<p>
+The JUMP macro can also be used to redirect requests on the fly. This JUMP<br />
+<CODE><b>(~.JUMP|pgBuy(secure)|Order Now on a Secure Server~)</b></CODE><br />
+will automatically resolve to the secure server, no matter what server is defined in the PageAlias attribute.
+<p>
+Here is a working example of simple PageAliasing:<br />
+(~JUMP|pgPagealias|A JUMP to this page~)<br />
+(~JUMP|pgPagealias2|A JUMP to <code>pgPageAlias2</code> which is aliased to <code>pgPageAlias</code>~)<br />
+<p>
+The file hubapp.txt is included in this application in order to
+set up aliasing to a few pages within the standard HubApp.
+<p>
+ServerProfileIDs can be customized in the App's config file.<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

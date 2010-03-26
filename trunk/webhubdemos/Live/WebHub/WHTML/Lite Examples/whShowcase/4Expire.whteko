@@ -1,0 +1,176 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGEXPIRE
+whSequenceFinal=PGEXPIRE
+bSeqHdr=true
+bReqUL=false
+level=4
+levelKeyword=Expire
+htmlFilename=4Expire.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo; (~GO|pgWHMacros|WebHub Commands~) &raquo; (~GO|pgExpire|The EXPIRES Command~) &raquo;
+showcaseBranchText=Easier HTML: WebHub Commands: The EXPIRES Command:
+</whpagesettingslist>
+
+<whpage pageid="pgENow" desc="Expire Now">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+(~EXPIRES|0~)
+</whprep>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|0~)
+</code>
+
+<h2>Explanation</h2>
+This page expires now.
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgETomorrow" desc="Tomorrow">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+(~EXPIRES|1~)
+</whprep>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|1~)
+</code>
+
+<h2>Explanation</h2>
+This page expires tomorrow. The 1 indicates 1 day in the future.
+
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+<whpage pageid="pgEDefault" desc="Default">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|~)
+</code>
+
+<h2>Explanation</h2>
+This is the default expiration. It is the same
+as sending -1 explicitly.
+
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgEYesterday" desc="Yesterday">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|-1~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|-1~)
+</code>
+
+<h2>Explanation</h2>
+-1 is a special code which results
+in unconditional expiration.
+
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgE2Ago" desc="2 Days Ago">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|-2~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|-2~)
+</code>
+
+<h2>Explanation</h2>
+This page expired 2 days ago.
+
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgE2000" desc="At the Turn of the Century">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|31-12-2099~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|31-12-2099~)
+</code>
+
+<h2>Explanation</h2>
+This page expires at the end of the century.
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgE2PM" desc="At the Turn of the Century at 14:00">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|31-12-2099 14:00~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|31-12-2099 14:00~)
+</code>
+
+<h2>Explanation</h2>
+<p>This page expires 12/31/2099 14:00
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgE215" desc="At the Turn of the Century at 2:15 P.M.">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~EXPIRES|31-12-2099 2:15 PM~)
+(~drShowcaseGlobalHeader~)
+<h2>Syntax</h2>
+<code>
+(~.EXPIRES|31-12-2099 2:15 PM~)
+</code>
+
+<h2>Explanation</h2>
+<p>This page expires 12/31/2099 2:15 PM
+<h2>HEADERS</h2>
+<span class="changing">(~HEADERS~)</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+</whteko>

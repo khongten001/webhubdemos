@@ -1,0 +1,74 @@
+//----------------------------------------------------------------------------------------------------------------
+
+<whdroplet name="chPageHeader">
+//no body tag allowed when a frameset is present!
+(~match|(~PageID~)!pgFrameSet|(~chFrameSet~)(~Close|~)
+||
+<html>
+<head>(~ANCHOR|prebody~)
+<title>(~PageDesc~).(~AsyncState~).(~AsyncDemo~)</title>
+</head>
+<body>~)
+<hr /><!-- *********************************************************************** -->
+
+<whpage pageid="pgFrameSet">
+<h1>You need a frames capable browser to access this site.</h1>
+<whpage pageid="pgFrameLeft">
+<b>LEFT</b>
+<whpage pageid="pgFrameTop">
+<b>TOP</b>
+<whpage pageid="pgFrameBottom">
+<b>BOTTOM</b>
+<hr /><!-- *********************************************************************** -->
+
+<whdroplet name="chFrameSet">
+<frameset cols="160,*">
+<frame src="(~ACTION|pgFrameLeft~)" name="lft" SCROLLING="NO" MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE />
+<frameset rows="40%,*">
+<frame src="(~ACTION|pgFrameTop~)" name="top" SCROLLING="NO" MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE />
+<frame src="(~ACTION|pgFrameBottom~)" name="btm" SCROLLING="NO" MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE />
+</frameset>
+</frameset>
+<hr /><!-- *********************************************************************** -->
+<FRAMESET COLS="100%" ROWS="40,*" framespacing="0" frameborder="0" border="0" resize scrolling="no">
+<FRAMESET COLS="120,*">
+<FRAME NAME="chat_client" SRC="(~Action|index~)" SCROLLING="NO" MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE>
+<FRAME NAME="send_message" SRC="(~Action|index~)" SCROLLING="NO" MARGINHEIGHT=0  MARGINWIDTH=0  NORESIZE>
+</frameset>
+<FRAMESET COLS="100%,*" rows="100%,*">
+<FRAME NAME="client_main" SRC="(~Action|index~)" SCROLLING="AUTO">
+<FRAME NAME="bogus" SRC="">
+</frameset>
+</frameset>
+<hr /><!-- *********************************************************************** -->
+<FRAMESET COLS="100%" ROWS="40,*" framespacing="0" frameborder="0" border="0" resize scrolling="no">
+<FRAMESET COLS="120,*">
+<FRAME NAME="chat_client" SRC="/scripts/runisa.dll?CONFERENCE.590104:CLIENTCHAT_CONTROLPAGE:780938.8345" SCROLLING="NO" MARGINHEIGHT=0 MARGINWIDTH=0 NORESIZE>
+<FRAME NAME="send_message" SRC="/scripts/runisa.dll?CONFERENCE.590104:CLIENTCHAT_MESSAGEPAGE:780938.6831" SCROLLING="NO" MARGINHEIGHT=0  MARGINWIDTH=0  NORESIZE>
+</frameset>
+<FRAMESET COLS="100%,*" rows="100%,*">
+<FRAME NAME="client_main" SRC="/scripts/runisa.dll?CONFERENCE.590104:CLIENTCHAT_MAINPAGE:780938.397" SCROLLING="AUTO">
+<FRAME NAME="bogus" SRC="">
+</frameset>
+</frameset>
+<hr /><!-- *********************************************************************** -->
+
+
+
+//----------------------------------------------------------------------------------------------------------------
+
+
+<whpage pageid="FrameLeft">
+(~PageID~)
+<hr /><!-- *********************************************************************** -->
+
+<whpage pageid="FrameTop">
+(~PageID~)
+<hr /><!-- *********************************************************************** -->
+
+<whpage pageid="FrameBottom">
+(~PageID~)
+<hr /><!-- *********************************************************************** -->
+
+//----------------------------------------------------------------------------------------------------------------
+

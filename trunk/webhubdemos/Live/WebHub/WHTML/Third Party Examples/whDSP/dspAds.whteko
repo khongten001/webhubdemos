@@ -1,0 +1,94 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+
+<whteko designmode="code" designdynsrc="remotedsp">
+<whdroplet name="chHREFRemBootAd">
+<table id="DSPAdvertisement" border="1" cellpadding="6">
+<tr>
+<td bgcolor="gold">
+<strong>Remote Reboot Utility</strong><br />
+RemBoot is THE solution for rebooting remote servers. RemBoot is quick, secure, and 
+ protects 
+data by closing applications gracefully prior to shutdown.  RemBoot runs as 
+a service on Win NT/2000/XP/2003.  Connect to it using your web browser 
+over HTTPS. Price: $9.99 for 3-year license if paid by PayPal. FREE for use in evaluation mode. FREE for non-commercial use.
+<br />&nbsp;<br />
+Product Summary Page:
+<a target="_blank" href="http://www.href.com/rsu">www.href.com/rsu</a> 
+<br />&nbsp;<br />
+Download: 
+<a target="_blank" href="http://www.href.com/RSUDNLOAD">here</a>
+<br />&nbsp;<br />
+</td></tr></table>
+</whdroplet>
+<whdroplet name="chHREFHostingAd">
+<table id="DSPAdvertisement" border="1" cellpadding="6">
+<tr>
+<td bgcolor="lightcyan">
+<strong>Support the DSP Search Engine! Host your web site and email with HREF Tools Corp.</strong><br />
+If you are having any trouble whatsoever with your current web site host, 
+please check with us, we have hosting customers who have stayed since 1995.
+We would love to have your business, and we will try to match any price deals 
+that you are currently enjoying.
+<br />&nbsp;<br />
+List pricing and full details: 
+<a href="http://www.href.com/sitehost" target="_blank">href.com/sitehost</a>
+</td></tr></table>
+</whdroplet>
+
+<whdroplet name="drHREFFuzRegexAd">
+<table id="DSPAdvertisement" border="1" cellpadding="6">
+<tr>
+<td bgcolor="lightsalmon">
+<strong>FuzRegex</strong><br />
+<p>FuzRegex is a shareware <b>search and replace tool</b> which is <b>scriptable</b> and supports <b>regular expressions</b>, written in Delphi of course.</p>
+<p>FREE lite mode allows unlimited searching but no replacing.</p>
+<br />
+Product Summary Page:
+<a target="_blank" href="http://www.fuzregex/">www.fuzregex.com</a> 
+</td></tr></table>
+</whdroplet>
+
+<whdroplet name="chHREFDFMConverterAd">
+<table id="DSPAdvertisement" border="1" cellpadding="6">
+<tr>
+<td bgcolor="darkseagreen">
+<strong>Convert old binary Delphi form files (*.dfm) to plain text</strong><br />
+&nbsp;<br />
+DFMConverter.exe is a standalone program which prompts for a Delphi project (DPR) whose *.dfm files you want converted, or for a path containing *.dfm files. Backups are optional. The wizard-style user interface endeavors to be very clear; operation takes only a few seconds. Once your files are in plain-text format, you can quickly refactor them using standard search &amp; replace tools.   (Release as shareware -- $2.00 -- by donation -- no timeouts.  Source available upon request.)
+<a href="http://www.href.com/pub/sw/DFMConverter.zip">Download DFMConverter.zip</a>
+</td></tr></table>
+</whdroplet>
+
+<whpage pageid="Ad">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+</whpagesettings>
+(~APPENDTOLOG|AppSetting.LogFile~)
+(~BOUNCE|HTTP://(~Command~)~)
+</whpage>
+
+<whpage pageid="Goto">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+</whpagesettings>
+(~APPENDTOLOG|AppSetting.LogFile~)
+(~BOUNCE|HTTP://(~Command~)~)
+</whpage>
+
+<whdroplet name="chAdHomePageTop">
+</whdroplet>
+<whdroplet name="chAdHomePageBottom">
+<whsketch show="no">
+(~AdServer.execute|1~)
+(~AdServer.execute|2~)
+</whsketch>
+</whdroplet>
+
+
+<whmacros>
+mcImgCode=490616+1460203440+1664529128+18683+0+4+123+7+241042077+-1294611128
+</whmacros>
+
+</whteko>

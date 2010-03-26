@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<whQuery2Configuration>
+  <QuerySpec>
+    <Item name="Tablename" value="employee.db" />
+    <Item name="PrimaryKeyField" value="EmpNo" />
+    <Item name="SearchField" value="Lastname" />
+    <Item name="Label1" value="Emp#" />
+    <Item name="Label2" value="Last name" />
+    <Item name="Label3" value="First name" />
+    <Item name="Label4" value="Tel Extension" />
+    <Item name="SQL" value="Select Empno,Lastname,Firstname,PhoneExt from EMPLOYEE" />
+    <Item name="ShareSessions" value="true" />
+    <Item name="ShareByFile" value="true" />
+  </QuerySpec>
+</whQuery2Configuration>

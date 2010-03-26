@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="Param"
+  designmode="code"
+  showdoc="no"
+  showsketch="no"
+  notes="This file provides additional advanced content for the FORM demo.">
+
+<whmacros>
+mcList=a-Table,b-List,c-Text
+</whmacros>
+
+<whpage pageid="Param" desc="Test the INPUT macros">
+<whprep>
+(~NOTASSIGNED|liParam|(~SET|liParam=Text~)~)
+<!--- fill in something so the user doesn't have to type anything. -->
+(~NOTASSIGNED|LineText1|(~SET|LineText1=California~)~)
+(~NOTASSIGNED|LineText2|(~SET|LineText2=Massachusetts~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<form method="post" action="(~DynURL.ToSessionIDW~)ckb">
+
+<table border="1" width="100%">
+<tr>
+	<td colspan="2"><b>Assumptions</b><br />
+	mcList is a macro defined as (~mcList~).
+	</td>
+</tr>
+<tr>
+	<td style="text-align:center">
+(~InputText|LineText1~)<br />
+(~InputText|LineText2~)<br />
+(~InputSubmit|,Submit~)<br />
+	</td>
+	<td>
+(~InputCheckBox|bShowDynChunk~) show 'Dynchunk' demo.<br />
+(~InputCheckBox|bShowParams~) show 'Param' demo.<br />
+(~InputCheckBox|bShowDebug~) show debug chunk..<br />
+	</td>
+</tr>
+</table>
+(~IF|bShowDynChunk|(~chParamDynChunk~)~)
+(~IF|bShowParams|(~chParamDemo~)~)
+</form>
+(~IF|bShowDebug|(~chParamDebug~)~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="chParamDynChunk">
+<p>Here is the data as displayed by (~ChunkID~), i.e. a parameterized dynchunk based 
+on <b>liParam</b>:</p>
+<!--- Here it is, a parameterized dynchunk: "chParam(~liParam~)": -->
+<table border="1" width="100%">
+<tr><td style="text-align:center">
+<table><tr><td style="text-align:center">
+(~IF|bUseSelect|(~InputSelect|liParam,mcList~)~)
+(~IFNOT|bUseSelect|<ul>(~InputSelectRadio|liParam,mcList,<li>,</li>~)</ul>~)
+(~InputCheckBox|bUseSelect~) select as dropdown..<br />
+(~InputSubmit|,Submit~)
+</td></tr></table>
+</td><td style="text-align:center">
+(~DYNCHUNK|chParam,(~liParam~),a|LineText1,LineText2~)
+</td></tr></table>
+</whdroplet>
+
+<whdroplet name="chParamDemo">
+<p>Here is the data as displayed by (~ChunkID~), i.e. using parameterized macros:</p>
+(~match|(~a~)$liparam2|table:~)
+(~match|(~b~)$liparam2|list:~)
+(~match|(~c~)$liparam2|text:~)
+
+<table border="1" width="100%">
+<tr>
+	<td>
+		<table>
+		<tr>
+			<td style="text-align:center">
+(~IF|bUseSelect2|(~InputSelect|liParam2,mcList,,Yes~)~)
+(~IFNOT|bUseSelect2|<ul>(~InputSelectCheckBox|liParam2,mcList,<li>,</li>~)</ul>~)
+(~InputCheckBox|bUseSelect2~) select as multi-select..<br />
+(~InputSubmit|,Submit~)
+			</td>
+		</tr>
+		</table>
+	</td>
+	<td style="text-align:center"><hr style="width:20%;" />
+(~match|(~a~)$liparam2|(~params|chParamA,a|LineText1,LineText2~)<hr style="width:20%;" />~)
+(~match|(~b~)$liparam2|(~params|chParamB,a|LineText1,LineText2~)<hr style="width:20%;" />~)
+(~match|(~c~)$liparam2|(~params|chParamC,a|LineText1,LineText2~)<hr style="width:20%;" />~)
+	</td>
+</tr>
+</table>
+<hr />
+</whdroplet>
+
+<!---Table-->
+<whdroplet name="chParamA">
+<table border="1">
+<tr>
+	<td>(~a1~)</td>
+	<td>(~a2~)</td>
+</tr>
+</table>
+</whdroplet>
+
+<!---List-->
+<whdroplet name="chParamB">
+<ul>
+<li><b>(~a1~)</b></li>
+<li>(~a2~)</li>
+</ul>
+</whdroplet>
+
+<!---Text-->
+<whdroplet name="chParamC">
+<pre>(~a1~)
+(~a2~)</pre>
+</whdroplet>
+
+<whdroplet name="chParamDebug">
+<table id="paramDebug" border="0" cellpadding="3" width="100%">
+<tr>
+	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	FormData:</span><br />(~FormData~)
+	</td>
+	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	StringVars:</span><br />(~StringVars~)
+	</td>
+	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	BoolVars:</span><br />(~BoolVars~)
+	</td>
+	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	BoolVarsPending:</span><br />(~BoolVarsPending~)
+	</td>
+</tr>
+</table>
+</whdroplet>
+
+</whteko>

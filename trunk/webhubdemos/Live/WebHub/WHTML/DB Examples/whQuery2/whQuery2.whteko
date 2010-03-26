@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTQ2">
+<whdoc for="drDemoSpeedbarForHTQ2">
+Note the editCounter.text syntax, which calls a custom Delphi component to display the number of visitors.
+The visitor number increases with each new surfer session--not each new page hit.
+You can start new session with the "Be a New Visitor" link.
+</whdoc>
+(~GO|TestScan|ADO Test~) &nbsp; 
+(~GO|Answer|Browse Answer Table~)<br />
+Visitor Session Counter: (~editCounter.text~) <br />
+</whdroplet>
+
+<whpage pageid="pgEnterHTQ2" desc="Home Page for Demo">
+<whprep>
+(~NOTASSIGNED|findme|(~SET|Findme=S~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>This free sample application demonstrates how one can make
+generic SQL query-and-response pages with WebHub.  More details 
+are on the (~JUMP|pgAbout,HTQ2|(~~About~)~) page.</p>
+
+(~webdatasource1.close~) <!--- Close the prior result set, if any. -->
+
+<h2>Try it!</h2>
+<p>Please enter search criteria (value is defaulted to S to aid
+in testing):</p>
+
+<form method="post" action="(~ACTION|Answer,new~)">
+<p>Employee last name (starts with): (~INPUTTEXT|FINDME,10,10~)</p>
+<p>Hint: try the letter S, F, or B, or leave blank for all names.</p>
+<p>(~INPUTSUBMIT|submit,Try it~)</p>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTQ2">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css" media="screen">
+#grid-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#grid-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#grid-table th {
+ background-color: #FF9933;
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#grid-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#grid-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whpage pageid="Answer" desc="Result of Query">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTQ2~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Result of Query</h1>
+<p>Here is the result of your query, searching for (~findme~):</p>
+(~grid.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="detail" desc="Detail on selected record">
+<whprep>
+(~wdsFull.execute~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<hr />
+Here is further detail on the Employee you selected:
+<hr />
+<table>
+<tr>
+ <th>Employee Number</th><td>(~Field|wdsFull|EmpNo~)</td>
+</tr>
+<tr>
+ <th>First name</th><td>(~Field|wdsFull|firstname~)</td>
+</tr>
+<tr>
+ <th>Last name</th><td>(~Field|wdsFull|lastname~)</td>
+</tr>
+<tr>
+ <th>Phone ext</th><td>(~Field|wdsFull|phoneExt~)</td>
+</tr>
+<tr>
+ <th>Hire date</th><td>(~Field|wdsFull|HireDate~)</td>
+</tr>
+<tr>
+ <th>Salary</th><td>$(~Field|wdsFull|Salary~)</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="testscan" desc="Test Scan component using ADO">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTQ2~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Using WebDataScan instead of WebDataGrid</h1>
+<h2>Uses TADOQuery, ODBC Paradox driver </h2>
+<whdroplet name="drScanner" show="no">
+<table id="something" cellspacing="4">
+<tr><th>Employee Number</th><th>Firstname</th><th>Lastname</th></tr>
+<whrow>data</whrow>
+</table>
+</whdroplet>
+(~webdatascan1.execute|drScanner~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+</whteko>

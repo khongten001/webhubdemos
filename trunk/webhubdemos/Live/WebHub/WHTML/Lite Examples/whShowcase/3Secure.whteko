@@ -1,0 +1,87 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGSECURITY
+whSequenceFinal=PGSECURITY
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Security
+htmlFilename=3Secure.whteko
+showcaseBranch=(~GO|PgWebMaster|WebMaster Topics~) &raquo; (~GO|pgSecurity|Site Security~) &raquo;
+showcaseBranchText=WebMaster Topics: Site Security: 
+</whpagesettingslist>
+
+<whpage pageid="pgFrontDoor" desc="Front Door">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+One problem site designers face is surfers bookmarking a page past the intended entrance.
+If you define a <b>FrontDoor</b> for your site, 
+then new surfers will always be routed there, regardless 
+of what page they have bookmarked.
+<p>
+This Showcase Demo has a FrontDoor setting, defined simply as 
+<pre>
+FrontDoor=pgWelcome
+</pre>
+In other words, the FrontDoor page that new surfers are automatically routed to is
+named "pgWelcome."
+<p>
+<a href="(~DynURL.cgiApp~):(~PageID~)">Try this link</a> to see what happens 
+if you try to link to the current page, <b>(~pagedesc~)</b>, as a new surfer--
+that is, without a session number.
+You will get bounced to the FrontDoor page.  <p>
+Click [back] in your browser to return here!
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgHomepage" desc="HomePage">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Another problem you can solve using WebHub is the problem of surfers not specifying what page they need.
+If you define a <b>Homepage,</b> it will be served to any surfer who leaves out the PageID on the URL.
+<p>
+The application you are now running has a HomePage setting, 
+defined simply as 
+<pre>
+HomePage=pgWelcome
+</pre>
+meaning that the page surfers are automatically routed to is pgWelcome.
+<p>
+<a href="(~DynURL.cgiApp~)::(~SessionID~)">Try this link</a> to see what happens 
+if you try to go to a blank page. <p>
+Click [back] in your browser to return here!
+<p>
+The HomePage is also served when the surfer requests an invalid page 
+-- unless you also set (~GO|pgInvalidPage|InvalidPage~).
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgInvalidPage" desc="Invalid Page">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+If you define an <b>InvalidPage,</b> it will be served when surfers request a page that doesn't exist.
+This allows you to present a custom message rather 
+than the default text sent by the web server on a 404 error.
+<p>
+The application you are now running has a InvalidPage setting, defined simply as:
+<pre>
+InvalidPage=InvalidPage
+</pre>
+meaning that the Page surfers are automatically routed to is named InvalidPage.
+<p>
+<a href="(~DynURL.cgiApp~):junkpage:(~SessionID~)">Try this link</a> to see what happens 
+if you try to go to an invalid page.<p>
+Click [back] in your browser to return here!
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

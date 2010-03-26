@@ -1,0 +1,142 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGBIGPICT
+whSequenceFinal=PGBIGPICT
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=BigPict
+htmlFilename=3BigPict.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo; (~GO|pgBigPict|How and Why WebHub Works~) &raquo;
+showcaseBranchText=Easier HTML: How and Why WebHub Works: 
+</whpagesettingslist>
+
+<whpage pageid="pgSavState" desc="Easier HTML: How and Why WebHub Works: Automatically Saving State">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Most dynamic Web sites quickly trip over a fundamental fact about the Web -- unlike
+ ordinary interactive environments, most requests made to a Web application have no
+ "context." For example, a request received by a Web application at any given moment
+ may be from the same surfer it handled just a second ago, or from a surfer who hasn't
+done anything for over 10 minutes.
+<p>
+For anything other than a trivial application, this is a serious matter. Unless the Web
+ application knows something of surfers' previous interactions, it cannot know what
+ display options they have previously selected, what page they should be served, or
+even whether they are authorized to view a page.
+<p>
+WebHub tracks individual surfers by assigning each of them a special number
+(known as a <b>Session ID</b>) when they first arrive on the site. Developers also
+have the ability to perform additional validation or security handling (such as checking
+ the surfer's IP number) if they wish.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgWHURLs" desc="Easier HTML: How and Why WebHub Works: WebHub URLs">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub uses what we call "fat URLs" to save state while providing almost unlimited
+ flexibility for your application.
+<p>
+WebHub URLs take a special form:
+<pre>path/runner?AppID:PageID:SessionID:OptionalCommand</pre>
+Study the URL for this page in your browser to see how it all fits together.
+<p>
+Your Session ID is preserved by placing it right on the URL, which makes it part of every
+ page request you make within the site. All your information can be saved and made
+available to the Web application, indexed by that number. So long as the Session ID is
+ preserved, your information will never get lost.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgCNR" desc="Easier HTML: How and Why WebHub Works: Server Side Session Data">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Because saving state is such a fundamental problem, other Web development tools
+have implemented a variety of approaches to it. These include <i>cookies</i> (small
+ files which are saved on the surfer's computer, and passed back and forth with
+ each request) and <i>hidden form fields</i> (HTML which contains information about the
+surfer, and which is sent out with each page).
+Both these approaches are subject to major problems . A surfer can refuse to accept
+cookies, or can reach a maximum number of cookies.  Surfers can also alter hidden
+HTML in order to circumvent security.
+<p>
+WebHub avoids these pitfalls by tracking individual surfers via their unique Session IDs.
+The Session ID is assigned as soon as a surfer arrives, and follows the surfer
+ throughout the entire session, anonymously connecting this surfer to their individual
+ data, stored on the web server machine.
+<p>
+This mechanismis superior to cookies and hidden forms in a number of ways.  It is:
+<ul>
+<li> faster
+<li> more secure
+<li> immune to surfers turning off cookies, and
+<li> unlimited in data storage
+</ul>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgDynLink" desc="Easier HTML: How and Why WebHub Works: Dynamic Page Links">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+In any web application, once you leave static pages behind,
+each A HREF link needs to be dynamically calculated to take
+the surfer to the next appropriate place in the application.
+<p>
+With WebHub, this is easy. Each application
+has an Application ID, and each page has a PageID. Based on
+those two facts, you can use simple MACROS to define page links.
+The macros are calculated automatically at run-time, and
+always resolve correctly.
+<p>
+These automatic links work regardless of what web server you
+install on -- IIS, Netscape, O'Reilly, etc.  In fact, you can
+change web servers and your application will run without modifications.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgAutDef" desc="Easier HTML: How and Why WebHub Works: Automatic Defaults on Forms">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+One of the advantages of having an effortless save-state
+mechanism is that all your forms can have defaults based
+on surfer data entry.  Anything the surfer
+enters during a session -- name, e-mail address, preferences --
+can be available as a default on any
+other page.  Surfers won't need to enter data more than
+once, and the information they give can be utilized to personalize pages.
+
+<p>
+<form method="post" action="(~DynURL.ToSessionIDW~)">
+<b>Please enter your name:</b>(~inputtext|litSurferName,40,40~)
+<br /><CENTER><DIV ALIGN=CENTER>
+(~inputsubmit|submit,Post and Notice the Difference~)
+</DIV></CENTER>
+</form>
+<p>
+<b>Confirmation: WebHub remembers (~litSurferName~)'s input</b><br />
+Your name is: <b>(~litSurferName~)</b>
+<p>
+The ability to save state applies not only to text fields, but also radio buttons,
+checkboxes, and multiple select lists. WebHub automatically adjusts your
+HTML on the fly as the page is dynamically generated, so that
+it's always correct for the individual surfer.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+</whteko>

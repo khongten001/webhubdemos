@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200707.xsd">
+  <Application>
+    <AppProperties>
+	  <DynURLConfig>
+        <ServerProfileIDStandard value="shortformat" />
+        <ServerProfileIDStandard value="defprofile" context="ultraann" />
+	  </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <AppSettings>
+      <AppSetting name="DemoGraphic" value="yes"/>
+    </AppSettings>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+    </PageGeneration>
+    <Situations>
+      <Home pageID="pgWelcome"/>
+    </Situations>
+    <TekoFiles>
+      <File id="about" filename="..\..\Shared WHTML\about\about-whcHubApp.whteko"/>
+      <File id="content" filename="whcHubApp.whteko"/>
+      <File id="view" filename="hubview.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whLogin componentName="WebLogin">
+      <ItemList>
+      <User id="guest" fullName="unknown" passPhrase="enter the letter A" password="A" expires="" other="" access="" active="Yes"/>
+      </ItemList>
+    </whLogin>
+  </ComponentConfig>
+</WebHubAppConfiguration>

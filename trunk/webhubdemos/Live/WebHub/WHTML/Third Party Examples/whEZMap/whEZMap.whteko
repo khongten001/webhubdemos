@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpage pageid="pgEnterHTMP" desc="Entrance">
+<!---%=JUMPR|do,webezmap1|Test 1=%<br />
+%=JUMPR|do,webezmap2|Test 2=%<br />
+%=JUMPR|do,webezmap3|Test 3=%<br /> -->
+(~JUMPR|pgMapTest1|Test 1 (Pick Entity)~)<br />
+(~JUMPR|pgMapTest2|Test 2 (Zoom In)~)<br />
+(~JUMPR|pgMapTest3|Test 3 (Zoom Out)~)<br />
+</whpage>
+
+<whpage pageid="pgMapTest1" desc="Pick Entity within the Map">
+%=webezmap1.execute=%
+</whpage>
+
+<whpage pageid="pgMapTest2" desc="Zoom In to the Map">
+%=webezmap2.execute=%
+</whpage>
+
+<whpage pageid="pgMapTest3" desc="Zoom Out of the Map">
+%=webezmap3.execute=%
+</whpage>
+
+</whteko>

@@ -1,0 +1,79 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGTIMESTATS
+whSequenceFinal=PGTIMESTATS
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Timing
+htmlFilename=3Timing.whteko
+showcaseBranch=(~GO|PgWebMaster|WebMaster Topics~) &raquo; (~GO|pgTimeStats|Gathering Time Statistics~) &raquo;
+showcaseBranchText=WebMaster Topics: Gathering Time Statistics: 
+</whpagesettingslist>
+
+<whpage pageid="pgExtendedTiming" desc="Extended Timing Test">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+(~NOTASSIGNED|AnimationDelay|(~set|AnimationDelay=5~)~)
+</whprep>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+This example shows you can get more information than what
+is provided on the SPEED page.  Experiment with the settings
+and checkboxes.
+<p>
+<form method="post" action="(~ACTION|(~PageID~),.ckb~)">
+<CENTER><table BORDER>
+<CAPTION>Page-Info Display Options</CAPTION>
+<th>Variables<th>Animation</th></tr>
+<td>
+(~inputcheckbox|ShowSessionVars~)  Show Session Vars<br />
+<td>
+Timing delay in seconds: (~inputtext|animationdelay,3,3~)
+ <br />
+(~inputcheckbox|Animate~)Enable Animation<br />
+(~inputcheckbox|RepeatStats~)Display Repeat Timing Stats
+<tr>
+<td COLSPAN=2 ALIGN=CENTER>
+(~inputsubmit|submit,Post~)
+</table></CENTER>
+</form>
+
+(~IF|RepeatStats|(~chRepeat_Stats~)~)
+(~IF|ShowSessionVars|(~chSession_Variables~)~)
+<hr />
+(~PageCount~) pages served during this session.
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+
+<whdroplet name="chRepeat_Stats">
+<CENTER>
+<table BORDER>
+<CAPTION>Page Repeat Statistics</CAPTION>
+
+<tr><th>Started<th>Delay<th>Elapsed (sec)<th>Slide Counter<th>Trip Time (sec)<th>Trips/hr<th>Trips/day</th></tr>
+<tr><td>(~SlideStart~)&nbsp;<td>(~AnimationDelay~)&nbsp;<td>(~SlideElapsed~)&nbsp;<td>(~SlideCount~)&nbsp;
+<td>(~SlideTrip~)&nbsp;<td>(~SlidesHr~)&nbsp;<td>(~SlidesDay~)&nbsp;</td></tr>
+</table>
+</CENTER>
+</whdroplet>
+
+<whdroplet name="chSession_Variables">
+<CENTER>
+<table BORDER>
+<CAPTION>Variables for Session (~SessionID~)</CAPTION>
+<th>StringVars<th>BoolVars<th>BoolVarsPending</th></tr>
+<td VALIGN=TOP>(~StringVars~)<br />
+<td VALIGN=TOP>(~BoolVars~)<br />
+<td VALIGN=TOP>(~BoolVarsPending~)<br />
+</table>
+</CENTER>
+</whdroplet>
+
+</whteko>

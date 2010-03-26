@@ -1,0 +1,2 @@
+inherited DMForWHInstantForm: TDMForWHInstantForm
+end

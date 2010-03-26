@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceUp=pgEnterJoke
+whSequenceFinal=pgEnterJoke
+</whpagesettingslist>
+
+<whpage pageid="pgJoke3a" desc="Joke 3a">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<b>TWENTY WORDS THAT SHOULD EXIST</b>
+<p>1. ACCORDIONATED (ah kor' de on ay tid) adj. Being able to drive 
+and refold a road map at the same time.</p>
+<p>2. AQUADEXTROUS (ak wa deks' trus) adj. Possessing the ability 
+to turn the bathtub faucet on and off with your toes.</p>
+<p> 3. AQUALIBRIUM (ak wa lib' re um) n. The point where the stream
+of drinking fountain water is at its perfect height, thus relieving
+the drinker from (a) having to suck the nozzle, or (b) squirting
+her(him)self in the eye (or ear).</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke3b" desc="Joke 3b"> 
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>4. BURGACIDE (burg' uh side) n. When a hamburger can't take any
+more torture and hurls itself through the grill into the coals.</p>
+<p>5. BUZZACKS (buz' aks) n. People in phone marts who walk around
+picking up display phones and listening for dial tones even when they
+know the phones are not connected.</p>
+<p> 6. CARPERPETUATION (kar' pur pet u a shun) n. The act, when
+vacuuming, of running over a string or a piece of lint at least
+a dozen times, reaching over and picking it up, examining it, then
+putting it back down to give the vacuum one more chance.</p>
+<p> 7. DIMP (dimp) n. A person who insults you in a cheap department
+store by asking, "Do you work here?" </p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke3c" desc="Joke 3c">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>8. DISCONFECT (dis kon fekt') v. To sterilize the piece of candy
+you dropped on the floor by blowing on it, somehow assuming this will
+'remove' all the germs.</p>
+<p>9. ECNALUBMA (ek na lub' ma) n. A rescue vehicle which can only
+be seen in the rearview mirror.</p>
+<p> 10. EIFFELITES (eye' ful eyetz) n. Gangly people sitting in
+front of you at the movies who, no matter what direction you lean in,
+follow suit.</p>
+<p> 11. ELBONICS (el bon' iks) n. The actions of two people 
+maneuvering for one armrest in a movie theater.</p>
+<p> 12. ELECELLERATION (el a cel er ay' shun) n. The mistaken notion
+that the more you press an elevator button the faster it will arrive.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+ 
+<whpage pageid="pgJoke3d" desc="Joke 3d">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>13. FRUST (frust) n. The small line of debris that refuses to be
+swept onto the dust pan and keeps backing a person across the room
+until he finally decides to give up and sweep it under the rug.</p>
+<p> 14. LACTOMANGULATION (lak' to man gyu lay' shun) n. Manhandling
+the "open here" spout on a milk container so badly that one has
+to resort to the `illegal' side.</p>
+<p> 15. NEONPHANCY (ne on' fan see) n. A fluorescent light bulb
+struggling to come to life.</p>
+<p> 16. PEPPIER (pehp ee ay') n. The waiter at a fancy restaurant
+whose sole purpose seems to be walking around asking diners if
+they want ground pepper.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+ 
+<whpage pageid="pgJoke3e" desc="Joke 3e">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>17. PETROPHOBIC (pet ro fob' ik) adj. One who is embarrassed to
+undress in front of a household pet.</p>
+<p> 18. PHONESIA (fo nee' zhuh) n. The affliction of dialing a phone
+number and forgetting whom you were calling just as they answer.</p>
+<p> 19. PUPKUS (pup' kus) n. The moist residue left on a window
+after a dog presses its nose to it.</p>
+<p> 20. TELECRASTINATION (tel e kras tin ay' shun) n. The act of
+always letting the phone ring at least twice before you pick it up,
+even when you're only six inches away.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

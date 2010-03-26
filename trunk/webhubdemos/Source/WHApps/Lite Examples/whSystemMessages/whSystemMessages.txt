@@ -1,0 +1,118 @@
+//This application is designed to EXPORT message files that are used to 
+//to report errors involving The Hub or a WebHub Application Server.
+//
+//Two types of files are exported, TXT and HTM.  Depending on whether you 
+//use paths with a \ or a / when you configure the Hub's Options|Messages Panel,
+//you will be using either the TXT or HTM files respectively.
+//
+// As always with exporting, customize ExportDir on the HTML|Defaults panel 
+// before exporting.
+//
+// Note that the APPID and WHERE macros need to be in uppercase for use in
+// system messages.
+//
+// Suggestion: while you may change any of the text around the messages 
+// easily, do not change the structure of the chunks or the page defaults 
+// unless you read the entry on HubMsg Service in the webhub.hlp file.
+//
+// Remember to export before testing.
+//
+//And now, back to our regularly scheduled files...
+
+
+
+// Edit these Macros to fill in your slogan (for keywords) and 
+// optionally a graphical bullet.
+<h1>-Macros</h1>
+mcSiteSlogan=WebHub System Error Message
+mcBullet=*&nbsp;
+mcTrailer=</font></center>
+mcMatch=%=MATCH|PageDefault.type~Text|(%=.APPID=%)=%
+<hr><!-- *********************************************************************** -->
+
+//Edit this chunk to use your URL, Site name, and graphic bullet.
+<h1>-Chunk:chPageHeaderHTML</h1>
+// no meta refresh on the export HTML files.
+// no html head or body tag either, just the page formatting...
+%=DYNCHUNK|chConfig,%=PageID=%=%
+%=chPageHeaderSite=%
+<hr><!-- *********************************************************************** -->
+
+// No changes required here -- unless you want a different page title..
+<h1>-Chunk:chPageHeaderText</h1>
+%=DYNCHUNK|chConfig,%=PageID=%=%
+%=NOMATCH|PageDefault.byrunner~Yes|
+%=chMetaRefresh=%
+<HTML>
+<HEAD><TITLE>%=mcSiteSlogan=% -- %=PageDesc=%</TITLE></HEAD>
+<BODY bgcolor="#FFFFFF">=%
+%=chPageHeaderSite=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chPageHeaderSite</h1>
+<center><table width=80%><tr><td valign=top>
+<font  FACE="Arial">
+<center><b>%=mcSiteSlogan=% -- %=PageDesc=%</B></center><P>
+
+<hr><!-- *********************************************************************** -->
+
+// Edit these chunks to use your graphic, your phrasing and your copyright notice.
+<h1>-Chunk:chReloadInfo</h1>
+<center>
+<br><Font FACE="Arial">%=MATCH|PageDefault.type~Text|This page will re-load in %=nSeconds=% seconds.<br>=%
+<font size=+1><A HREF="%=.WHERE=%">Click here to try the URL again.</A></font></font>
+</center>
+
+<h1>-Chunk:chPageFooter</h1>
+%=ASSIGNED|nSeconds|%=chReloadInfo=%=%
+//%=mcBullet=%
+<p><Font FACE="Arial"><font size=+1><B>Reporting Problems to the Site Administrator</B></font>
+<br> This message is probably being displayed as a result of short-term site changes in progress. Please don't be alarmed. 
+Downtime should be minimal. <p>
+%=MATCH|PageDefault.type~TEXT|If you do suspect a problem with this site, 
+report URL <b>%=.WHERE=%</b> to %=.ADMIN=%.=%  THANKS.</font>
+
+// The following message is for testing purposes, for the benefit of the webmaster -- delete at will
+<hr>
+<font size=-1 color="#666667">
+The text of this message originates in the W-HTML files for the HTSYS 
+project, from PageID "%=PageID=%".  
+<!-- This page was configured to be formatted by the runner: %=PageDefault.byrunner=% -->
+</font>
+
+// You could add a copyright notice here if desired
+
+</td></tr></table></center>
+%=MATCH|PageDefault.type~TEXT|
+%=NOMATCH|PageDefault.byrunner~Yes|</BODY></HTML>=%=%
+
+<hr><!-- *********************************************************************** -->
+
+// No changes required here.
+<h1>-Macros</h1>
+mcPageHeader=%=DYNCHUNK|chPageHeader,%=pageDefault.type=%=%
+<hr><!-- *********************************************************************** -->
+
+// No changes required here.
+<h1>-Chunk:chMetaRefresh</h1>
+%=HEADER|Pragma: No-Cache=%
+%=ASSIGNED|nSeconds|%=mcMetaRefresh=%=%
+<hr><!-- *********************************************************************** -->
+
+//No change here.
+<h1>-Macros</h1>
+mcMetaRefresh=<META HTTP-EQUIV="Refresh" CONTENT="%=nSeconds=%;URL=%=.WHERE=%">
+<hr><!-- *********************************************************************** -->
+
+
+//This application is designed to EXPORT two sets of files: HTM and TXT
+//files which will be used  by either the Hub, the runners, or the EXE to report various errors.
+//You probably only need one set of files but having the extra ones won't hurt anything.
+
+// If you do not have the hubmsg.exe service installed, the files served will be the ones 
+//defined in the Hub's Options|Messages panel.
+//See webhub.hlp for information on installing and running the HubMsg service.
+
+// Customize ExportDir under [twebapp.defaults] in the INI file before exporting.
+//
+// Note that the APPID and WHERE macros need to be in uppercase for use in system messages.

@@ -1,0 +1,75 @@
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+bSeqHdr=false
+bReqUl=false
+htmlFilename=abShow.whteko
+</whpagesettingslist>
+
+<whmacros>
+mcWhDemoOneLinerSHOWCASE=Showcase
+mcWhDemoCreditIdeaSHOWCASE=Michael Ax and Ann Lynnworth
+mcWhDemoCreditFirstDraftSHOWCASE=Ann Lynnworth
+mcWhDemoCreditGraphicsSHOWCASE=Karen Chauss, Rob Daniels and Dan Gabdullin
+mcWhDemoCreditCopySHOWCASE=Karen Chauss, Suzanne Aldrich, Rob Daniels, Martha V. Moore and Dan Gabdullin
+mcWhDemoUpdatedSHOWCASE=2-Dec-2004
+mcWhDemoKeywordsSHOWCASE=W-HTML,examples,variety,ideas,presentation styles,outline
+mcWhDemoLiteSHOWCASE=Lite
+</whmacros>
+
+<whtranslation key="~whDemoShortDescSHOWCASE">
+An intellectual-culinary delight for those who appreciate food for thought!
+True to its name, this demo showcases the features of WebHub HTML macros --
+no Delphi programming required.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescSHOWCASE">
+<h3>Highlights</h3>
+<p>Highlights include a full demonstration of the page navigation macros,
+many of the built-in macros, security features, and automatic sequencing.</p>
+
+<p>Look in any book on CGI programming, and you will see why many people
+struggle with such common, yet complex, tasks as gathering and processing data input
+via HTML forms, tracking surfer information, and designing shopping cart interfaces;
+ tasks that usually require a custom web application.</p>
+ 
+<p>This Interactive Showcase Demo lets you see how WebHub handles  all of  the
+abovementioned  tasks--and much more--all without ANY custom programming!
+Sound intriguing?  Then...</p>
+
+<p>Welcome to chez WebHub, may I offer you a menu?</p>
+</whtranslation>
+
+
+<whdroplet name="drDemoSetupSHOWCASE">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+</ol>
+</whdroplet>
+
+
+<whpage pageid="htInfo" desc="HREF Tools">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h2>Contact Information</h2>
+<b>
+HREF Tools Corp.<br />
+1275 Fourth Street #109<br />
+Santa Rosa, CA 95404<br />
+USA<br />
+</b>
+
+<p>Web: <a href="http://webhub.com">webhub.com</a></p>
+
+<h2>Technical Support</h2>
+<p>We offer free technical support for installation and demos.</p>
+
+<p>Web: <a href="http://www.href.com/techhelp">http://www.href.com/techhelp</a><br />
+E-mail: (~MAILTO|techsupport@href.com||true~)</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

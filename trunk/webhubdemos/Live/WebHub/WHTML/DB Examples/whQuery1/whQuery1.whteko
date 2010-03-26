@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTQ1">
+(~GO|History|title="Find out how this demo was created"|History~)
+</whdroplet>
+
+<whpage pageid="pgEnterHTQ1" desc="Password Query Demo">
+<whprep>
+(~NOTASSIGNED|memberID|(~SET|Session['memberID']=STC~)~)
+(~NOTASSIGNED|pword|(~SET|Session['pword']=STC~)~)
+(~NOTASSIGNED|flagGotData|(~SET|flagGotData=No~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#searchCriteria {
+		width:80%; 
+		vertical-align:top;
+		border: 0;
+		padding: 0;
+	}
+	#searchCriteria td.empty{
+		background-color: #FBB586;
+		width:30%;
+	}
+	#searchCriteria td.prompt{
+		background-color:#E6E6E6;
+		text-align: center;
+	}
+	#searchCriteria td.datainput{
+		background-color:#E6E6E6;
+		text-align: left;
+	}
+	#searchCriteria td.empty2{
+		background-color: #A8DA87;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>
+This demo shows how to do a simple query based
+on user ID and Password.</p>
+<whdroplet name="chSearchCriteria" show="yes">
+<form method="post" action="(~ACTION|Page2~)">
+<table id="searchCriteria" cellspacing="0">
+<tr>
+	<td class="empty">&nbsp;</td>
+	<td class="prompt">Enter your Member ID:</td>
+	<td class="datainput">(~INPUTTEXT|memberID,10,10~)</td>
+	<td class="empty">&nbsp;</td>
+</tr>
+<tr>
+	<td class="empty2">&nbsp;</td>
+	<td class="prompt">Enter your Password:</td>
+	<td class="datainput">(~INPUTTEXT|pword,10,10~)</td>
+	<td class="empty2">&nbsp;</td>
+</tr>
+</table>
+<p><input type="submit" value="Submit Query" /></p>
+</form>
+<p>
+The valid logins are: "STC", "SDS" or "HR" (all caps) for your member ID
+and password.
+Use anything else to see what happens with an incorrect logon.
+</p>
+</whdroplet>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whdroplet name="drStyleHTQ1Result">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css" media="screen">
+#answergrid-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#answergrid-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#answergrid-table th {
+ background-color: #2C42CC; /*#301604;*/
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#answergrid-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#answergrid-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whdroplet name="errMessage">
+<b>You have logged in incorrectly.</b> <br />
+Please try again.
+</whdroplet>
+
+<whpage pageid="Page2" desc="Result page">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTQ1Result~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~JUMPR|pgEnterHTQ1|Back~)
+<h2>Search Result</h2>
+(~answergrid.execute~)
+(~NOMATCH|(~flagGotData~)=Yes|(~errMessage~)~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="History" desc="How this demo was created">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Steps taken to create the HTQ1 demo</h1>
+
+<ol>
+<li> We created a basic WebHub application as described in the User Manual,
+complete with an INI file, WHTEKO file and a Delphi project.  </li>
+
+<li> The INI file had to list several files in order to be able to use the shared
+WebHub demo files.
+
+<ul>
+<li> The about-whQuery1.whteko file had to contain the standard pieces of information for a WebHub demo.</li>
+<li> The whQuery1.whteko file had to contain the pages particular to this demo.  That meant, the entrance page prompting for MemberID and Password, and the result page (Page2) with error message handling.</li>
+
+<li> The AppID had to be set to HTQ2 so that the application-level INI file would be found.
+Because this was a demo, this was done by calling a special routine from the DPR, which
+configures a number of defaults and sets the AppID. </li>
+</ul></li>
+
+<li> For testing purposes, we made sure the Hub was running.  </li>
+
+<li> We ran the application from the Borland Delphi Integrated Development Environment ("IDE")
+so that we could use the debugger.  Once the EXE was running, we checked the HTML > Pages panel
+to make sure that our entrance and results pages were listed.</li>
+
+<li> We tested using a web browser and requesting ...?HTQ2:pgWelcome. </li>
+
+<li> We went back into the Delphi IDE. There, on a starter panel (which could have equally well
+been a datamodule), we added a TQuery, a TDatasource, a TwhdbSource and a TwhdbGrid
+component.  We named the WebDatagrid "answergrid."
+We conntected the TwhdbGrid to the TwhdbSource, and the TwhdbSource to the TDatasource,
+and the TDatasource to the TQuery.
+</li>
+
+<li> We added an Init procedure (called from the PDF) to set the database location using a function
+in the shared whDemoInitialize.pas unit.  The Init procedure also calls RefreshWebActions
+(which is required), and uses the SetCaptions2004 and SetButtonSpecs2004 routines to define
+reasonable, stylable captions and button specifications for the grid.
+</li>
+
+<li> We defined the SQL property of the TQuery to be a SELECT statement, using params.
+    All params start with : in Delphi.  Name them 'www' plus the
+    NAME tag from your HTML input field.  e.g. wwwPWord for the PWORD
+    field.
+</li>
+
+<li> We went to the Params property of the query and set the type of each
+    parameter.  In this case, both were strings.  Note that default values are
+    optional.</li>
+
+<li> The grid opens the query when it gets called from our HTML.  The
+    TwhdbSource takes care of managing multiple instances for
+    multiple surfers, and for re-running the query when the form
+    StringVars change.  (Feature added in WebHub version 0.850.)
+</li>
+
+<li> We set the following TwhdbGrid properties to control the user interface:
+<pre>
+    ButtonsWhere = below
+    ShowRecno = true
+    ShowRecJump = false
+</pre>
+</li>
+
+</ol>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

@@ -1,0 +1,2 @@
+inherited DMForWHDynamicJPEG: TDMForWHDynamicJPEG
+end

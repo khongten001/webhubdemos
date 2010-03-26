@@ -1,0 +1,18 @@
+<DBAdminConfig>
+  <Project>
+    <ProjectCode value="CodeRage" />
+    <PrefixForUnsafeFieldnames value="a" />
+    <UpdatedOnAtFieldname value="UpdatedOnAt" />
+    <UpdateCounterFieldname value="UpdateCounter" />
+  </Project>
+  <DatabaseAccess>
+    <ldiDBHost value="localhost" />
+    <ldiDBHost value="demos.href.com"  context="DEMOS" />
+    <ldiDBAlias value="coderageschedule" />
+    <ldiDBUsername value="SYSDBA" />
+    <ldiDBPassword value="masterkey"/>
+  </DatabaseAccess>
+  <ErrorReporting>
+    <CheckLengthBeforeExecSQLYesNo value="Yes" />
+  </ErrorReporting>
+</DBAdminConfig>

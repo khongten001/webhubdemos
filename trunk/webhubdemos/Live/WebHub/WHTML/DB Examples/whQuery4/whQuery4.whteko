@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTQ4">
+(~GOR|testSearch|Search~)<br />
+</whdroplet>
+
+<whpage pageid="pgEnterHTQ4" desc="Employee Search Query Demo">
+<whprep>
+(~NOTASSIGNED|MinSalary|(~SET|Session['MinSalary']=30000~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chCriteria~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="chCriteria">
+<form method="post" action="(~action|ChangeCriteria~)">
+<table>
+<tr>
+<td align="center">Employee works in which department?</td>
+<td>
+ (~<select name="Dept">
+ (~<option value="Sales"> Sales</option>
+ (~<option value="Admin"> Administration</option>
+ (~<option value="HR"> Human Resources</option>
+ (~<option value="MIS"> MIS</option>
+ (~<option value="Research"> Research</option>
+ (~<option value="Accounting"> Accounting </option>
+ </select>
+</td>
+</tr>
+<tr>
+<td align="center">Employee's salary is more than:</td>
+<td>(~INPUTTEXT|MinSalary,12,12~)</td>
+</tr>
+<tr>
+<td colspan="2" align="center"><input type="submit" value="Search for Employees" /></td>
+</tr>
+</table>
+</form>
+</whdroplet>
+
+<whpage pageid="ChangeCriteria">
+<whprep>
+(~webdatasource1.close~)
+(~webdatasource2.close~)
+(~PAGE|Result~)
+</whprep>
+</whpage>
+
+<whdroplet name="drStyleHTQ4">
+<!--- define extra style elements for this particular demo -->
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css">
+#grid1-table {
+  border: 0;
+  width: 50%;
+}
+#grid1-table th, td {
+  border: 1px solid;
+  padding: 4px;
+  font-size: .9em;
+}
+#grid1-table th {
+  background-color: #CCCC66;
+}
+#grid2-table {
+  border: 0;
+  width: 50%;
+}
+#grid2-table th, td {
+  border: 1px solid;
+  padding: 4px;
+  font-size: .8em;
+}
+#grid2-table th {
+  background-color: #CC9999;
+}
+</style>
+</whdroplet>
+
+<whpage pageid="Result" desc="Result of Employee Search">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTQ4~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pageDesc~)</h1>
+
+<whdoc show="no">
+wds:(~webdatasource1.savestate~)<br />
+grid:(~grid1.savestate~)<br />
+keys: (~webdatasource1.keys~)
+</whdoc>
+
+<h2>Grid1 based on Department</h2>(~grid1.execute~)
+<h2>Grid2 based on Salary</h2>(~grid2.execute~)
+
+<h2>Search Again</h2>
+(~chCriteria~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="Detail" desc="Detail on selected employee">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+(~WebDataSourceEmp.execute~)
+(~webdataform1.execute~)
+<p>(~JUMP|Result|Go back to Result page~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="TestSearch">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chSearchForm~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="SearchResult">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chSearchForm~)
+(~WebDataSourceEmp.execute~)
+(~webdataform1.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="chSearchForm">
+<h1>Search by Key Field</h1>
+<p>Try employee numbers 37, 94 and -1.</p>
+
+<form method="post" action="(~ACTION|SearchResult~)">
+Find: (~INPUTTEXT|webDataSourceEmp.Keys~)
+<p><input type="submit" /></p>
+</form>
+</whdroplet>
+
+</whteko>

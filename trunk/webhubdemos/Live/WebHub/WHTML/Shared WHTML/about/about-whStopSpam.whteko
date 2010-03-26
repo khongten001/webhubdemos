@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTUN=Spam Aversion
+mcWhDemoCreditIdeaHTUN=www.fantomaster.com
+mcWhDemoCreditFirstDraftHTUN=Ann Lynnworth
+mcWhDemoCreditGraphicsHTUN=n/a
+mcWhDemoCreditCopyHTUN=n/a
+mcWhDemoUpdatedHTUN=Jul-2008
+mcWhDemoKeywordsHTUN=obfuscation of email addresses,spam prevention,numeric coding
+mcWhDemoLiteHTUN=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTUN">
+<ol>
+<li> Requires whStopSpam.exe</li>
+<li> Requires AppID 'htun' defined and pointing to the appropriate application-level configuration file. </li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTUN">
+This demo shows the conversion of an email address 
+from plain text to numeric equivalent.  The purpose is to generate 
+mailto links which spiders might not put in spam databases, 
+yet human readers can use easily.
+</whtranslation>
+
+<whmacros>
+mcSoapURLStart=(~Request.URLtoAuthority~)/(~Request.RawVMR~)/(~AppID~)
+</whmacros>
+
+<whtranslation key="~whDemoLongDescHTUN">
+<p>Translating an email address to its numeric equivalent does not prevent 
+all spiders from harvesting the address, it only acts as a deterrent.
+A more serious approach to preventing harvesting is to use a graphical 
+image containing the email address - and to completely avoid "mailto" links.
+The ultimate solution is to use a contact form which is posted to a server-side 
+web application which emails the information to the desired party.  When a contact form is used, there is zero chance of even a super-spider finding out the email address; but there is 
+also zero convenience for a human reader who may just want to send a quick
+free-form email.</p>
+
+<p>Beginner WebHub developers should look at the (~JUMP|htem:pgWelcome|email demo~) for some 
+ideas on setting up contact forms.  If you program in a system other than WebHub, 
+be careful not to create a haven for spammers.  An insecure server-side mail daemon 
+is much more problematic than getting onto a few spam lists.</p>
+
+<p>Technical notes: There is one custom web action component named waSlowSpam in 
+this application. This is implemented on a panel so that it can be added to any WebHub application. 
+See also: MAILTO macro in WebHub v2.014+</p>
+
+<p>The waSlowSpam component's features may be utilized via SOAP.  (The whSlowSpam.exe is the SOAP Host application.)
+WebHub provides automatic documentation for all web action components that have SOAP enabled.  For easier testing, 
+a list of the documentation URLs are provided below:</p>
+<ul>
+<li> <a href="(~mcSoapURLStart~)/">(~mcSoapURLStart~)</a> </li>
+<li> <a href="(~mcSoapURLStart~)/html/waSlowSpam">(~mcSoapURLStart~)/html/waSlowSpam</a></li>
+<li> <a href="(~mcSoapURLStart~)/wsdl/waSlowSpam">(~mcSoapURLStart~)/wsdl/waSlowSpam</a></li>
+<li> <a href="(~mcSoapURLStart~)/inspection.wsil">(~mcSoapURLStart~)/inspection.wsil</a> </li>
+</ul>
+<p>Use the (~JUMP|viewfiles,(~AppID~)|Source~) link to view both Delphi and WHTEKO source for this web application.</p>
+<hr />
+</whtranslation>
+
+</whteko>

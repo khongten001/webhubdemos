@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerJPEG=JPEG Image Streaming
+mcWhDemoCreditIdeaJPEG=Michael Ax
+mcWhDemoCreditFirstDraftJPEG=Michael Ax
+mcWhDemoCreditGraphicsJPEG=Michael Ax
+mcWhDemoCreditCopyJPEG=Ann Lynnworth
+mcWhDemoUpdatedJPEG=02-Jun-2006
+mcWhDemoKeywordsJPEG=JPEG,dynamic,graphics
+mcWhDemoLiteJPEG=No
+</whmacros>
+
+<whdroplet name="drDemoSetupJPEG">
+<ol>
+<li> Requires whDynamicJPEG.exe </li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescJPEG">
+This application demonstrates the creation and streaming 
+of JPEG files on the fly.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescJPEG">
+</whtranslation>
+
+</whteko>

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGWHMACROS
+final.PGWHMACROS
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=WHMacros
+htmlFilename=3Macro.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo; (~GO|pgWHMacros|WebHub Commands~) &raquo;
+showcaseBranchText=Easier HTML: WebHub Commands: 
+</whpagesettingslist>
+
+<whpage pageid="pgIF" desc="The IF, IFNOT Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub also allows you to set up Conditional Page Sections.
+You can set conditions to determine whether certain page sections appear.
+<p>
+The following example demonstrates how the state of a checkbox can be
+used to conditionally display part of a page -- in this case, a chunk with a lightbulb turned "on" or "off."
+Remember, this is done just with WebHub macros -- no custom Pascal or Perl code.
+<hr />
+(~chCond1~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="chCond1">
+These icons mean that:
+(~chlightOn~)
+(~chLightOff~)
+
+<form method="post" action="(~ACTION|Showcase:pgCOND,.CKB~)">
+<p>(~inputcheckbox|v1~) Flick The Light Switch (~inputsubmit|submit,Flick the Switch~) </p>
+</form>
+(~chPending~)
+</whdroplet>
+
+<whdroplet name="chLightOn">
+<img src="(~mcImgShowcaseDir~)sklt-on.jpg" alt="on" /> The Light is <b>ON</b>.
+</whdroplet>
+
+<whdroplet name="chLightOff">
+<img src="(~mcImgShowcaseDir~)sklt-off.jpg" alt="off" /> The Light is <b>Off</b>.
+</whdroplet>
+
+<whdroplet name="chPending">
+<whdoc for="chPending">
+If and when WebHub SORTS the property lists, it should be possible to compare
+the output with Selenium.  14-Jan-2009.
+</whdoc>
+<h4>BoolVarsPending</h4>
+<span class="changing">(~BoolVarsPending~)</span>
+</whdroplet>
+
+
+<whpage pageid="pgCOND" desc="Conditional Processing">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The value of the checkbox named V1 is (~BoolVar.v1~).</p>
+<p>
+<span id="lightstate">
+(~IF|v1|(~chLightOn~)~)
+(~IFNOT|v1|(~chLightOff~)~)
+</span>
+
+<h2>Test again</h2>
+The submit button on this page re-requests the <b>current</b> page.
+<p>
+<form method="post" action="(~ACTION|Showcase:pgCOND,.CKB~)">
+<p>(~inputcheckbox|v1~)The Light Switch (~inputsubmit|submit,See it Work~) </p>
+</form>
+(~chPending~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgCondCheck" desc="WebHub and Checkboxes">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+If you have ever written cgi programs, you know how tricky it is to save the state of checkboxes.
+There are two problems:
+<ol>
+<li>The web server only tells you about 'true' values, so in a
+database-driven grid you can not easily generically identify unchecked items.
+<li>If the surfer clicks [back] in the browser to go to a form with a checkbox, the
+browser will cache the page and the checkmark will not be updated based on the actual
+session data -- so the logic going forward will be wrong!
+</ol>
+
+<p>
+WebHub solves this in two ways.  To deal with #1, it maintains a list named BoolVarsPending containing 'pending' checkboxes as of the moment that the form goes out to the surfer.  When the form is submitted, the checkboxes are generically
+reconciled against the pending list.  You can see the BoolVarsPending list in the page footer
+within this example.  To deal with #2, WebHub automatically expires pages that use
+checkboxes.  That makes the browser re-load them, so the page is recreated dynamically
+with accurate data.
+<p>
+Test this for yourself.  Go through this example again but use the [back] button in
+your browser to try to confuse the system.  Your 'light switch' should continue to have
+whatever setting you gave it, regardless of how you move forward and backward.
+<p>
+(~chCond1~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="chTableYes">
+<center><font face="Arial" size="+2" color="Red">Example of a Table.</font>
+<br /><br />
+<table width="400" border="1" cellspacing="5" cellpadding="5" align="CENTER" bordercolor="Red">
+<tr>
+    <td>1</td>
+    <td>2</td>
+    <td>3</td>
+</tr>
+<tr>
+    <td>4</td>
+    <td>5</td>
+    <td>6</td>
+</tr>
+<tr>
+    <td>7</td>
+    <td>8</td>
+    <td>9</td>
+</tr>
+</table></center>
+</whdroplet>
+
+
+<whpage pageid="pgMatch" desc="The MATCH, NOMATCH Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The MATCH macro is used for conditional processing... when you want to send
+a chunk of HTML only in a certain condition.
+<p>
+It's the same idea as the IF macro, except instead of working with checkboxes,
+it uses StringVars and other webhub properties.
+<p>
+Here's an example. We will display an HTML table only in the case where your
+browser supports table syntax.
+<p>
+Syntax used: <b>(~.MATCH|(~.browser.Tables~)=True|(~.chTableYes~)~)</b>
+<p>
+(~MATCH|(~browser.Tables~)=True|(~chTableYes~)~)
+<h2>Extremely Advanced Example</h2>
+(~centralinfo.webtimelocal~)<br/>
+<p>Set stringvar named abc123 equal to hello.(~SET|abc123=hello~)</p>
+<p>Also set a stringvar named suffix equal to 123. (~SET|suffix=123~)</p>
+<p>Display the stringvar named abc123: (~abc123~)</p>
+<ol>
+<li> Find out whether the stringvar named abc plus the-contents-of-suffix is assigned:
+(~ASSIGNED|(~EXPAND|abc(~suffix~)~)|yes||no~)</li>
+<li> Match that stringvar against hello, and say hello world if it matches.<br/>
+(~MATCH|(~DYNCHUNK|abc,(~suffix~)~)=hello|hello world||sorry no match~). </li>
+<li> Match again, against fooey...<br/>
+(~MATCH|(~DYNCHUNK|abc,(~suffix~)~)=fooey|hello world||sorry no match~). </li>
+</ol>
+<p>Please use the Source link in the page footer in order to see the WHTEKO code 
+behind this example.</p>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgPage" desc="The PAGE Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The PAGE macro is used to automatically move the surfer to a different WebHub page,
+like a GOTO statement might do in another language.  It clears the current page
+contents entirely, and then starts over at the top of the new target page.
+<p>
+See the WebHub Help file for syntax.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgRequires" desc="The REQUIRES Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The REQUIRES macro is used to test whether a literal equals a certain value, or
+is simply non-blank.  This is used in data entry situations where you want to
+make sure certain fields are filled in.
+<p>
+See the WebHub Help file for syntax.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgInclude" desc="The INCLUDE Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>Use the INCLUDE macro to include a separate document, embedded into the current page.
+Any WebHub expressions in the included file will be expanded.
+</p>
+
+<h2>Example</h2>
+(~INCLUDE|d:\projects\WebHub Demos\Live\WebRoot\webhub\demos\whShowcase\to-include.txt~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSendfile" desc="The SENDFILE Command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Use the SENDFILE macro (on ISAPI only) to dynamically send files, of any MIME type.
+<p>
+See the WebHub Help file for syntax.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgExpire" desc="The EXPIRES Command">
+<whpagesettings inherit="a">
+bReqUl=true
+downLink=PGENOW
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The EXPIRES macro lets you control page expiration. This is
+essential for saving state on checkboxes, helpful when working
+with cookies, and something we believe more and more dynamic
+sites will need to use to deal with surfers clicking the [Back]
+link.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barExpire">
+(~GO|PGENOW|Now~)(~mcHeadingSeparator~)
+(~GO|PGETOMORROW|Tomorrow~)(~mcHeadingSeparator~)
+(~GO|PGEYESTERDAY|Yesterday~)(~mcHeadingSeparator~)
+(~GO|PGE2AGO|2 Days Ago~)(~mcHeadingSeparator~)
+(~GO|PGE2000|At the Turn of the Century~)(~mcHeadingSeparator~)
+(~GO|PGE2PM|14:00~)(~mcHeadingSeparator~)
+(~GO|PGE215|2:15 P.M.~)
+</whdroplet>
+
+<whdroplet name="ulPgExpire">
+(~GO|PGENOW|Now~)<br />
+(~GO|PGETOMORROW|Tomorrow~)<br />
+(~GO|PGEYESTERDAY|Yesterday~)<br />
+(~GO|PGE2AGO|2 Days Ago~)<br />
+(~GO|PGE2000|At the Turn of the Century~)<br />
+(~GO|PGE2PM|14:00~)<br />
+(~GO|PGE215|2:15 P.M.~)<br />
+</whdroplet>
+
+
+<whpage pageid="pgSummary" desc="The SUMMARY Command">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Use the SUMMARY macro to add text which will be displayed on the web page AFTER
+the entire page is complete.  Use this for debugging purposes, not for production.
+<p>
+This page should show an extra line at the bottom of the page due to this
+next line:<p>
+(~.SUMMARY|This is a summary~).
+(~SUMMARY|This is a summary~).
+<p>
+</whpage>
+
+</whteko>

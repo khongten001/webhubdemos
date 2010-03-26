@@ -1,0 +1,20 @@
+(~webserver.webtime~)
+
+Dear (~FullName~),
+
+We're so glad to hear you like the color (~aColor~). 
+Your fondness for (~aColor~) probably comes from the artist (~Artist~), 
+who used this color quite skillfully.
+
+We'd like to echo this sentiment you expressed:
+(~txtMessage~)
+
+Thanks for taking the time to write.
+
+Bye for now,
+
+techsupport@href.com
+Technical Support Department
+HREF Tools Corp.
+
+

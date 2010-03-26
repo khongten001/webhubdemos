@@ -1,0 +1,1339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdoc for="macros">
+Dreamweaver MX 2004 has a bad habit of changing ( into ( which then 
+leads to WebHub expanding expressions.  Therefore the following macros link
+to AppSettings which are in the XML file and unlikely to be transformed.
+</whdoc>
+<whmacros>
+mcMacroStart=(~AppSetting.ParentilOn~)~
+mcMacroEnd=~(~AppSetting.ParentilOff~)
+</whmacros>
+
+<whpagesettingslist id="public">
+securitylevel=0
+UnderLogin=no
+undersession=no
+</whpagesettingslist>
+
+<whpagesettingslist id="level2">
+securitylevel=2
+UnderLogin=yes
+</whpagesettingslist>
+
+<whpage pageid="pgEnterHTSC" desc="Entrance for the HTSC Demo">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	(~drHead~)
+	<style type="text/css">
+	ul li {margin-bottom:2em;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<table border="1" cellpadding="4" cellspacing="2">
+<caption><b>Security and Flow Control</b></caption>
+<tr><td colspan="3">
+&nbsp;
+<br />
+These are obviously important issues for websites.  This demo
+includes a look at the basic issues of security and flow control which are
+(~JUMP|pgAboutBasics|implemented automatically by WebHub~),
+and tells you what you as a developer can do to increase security on your site.
+Here is a three step process for a more secure site:
+
+</td>
+</tr>
+
+<tr>
+<th>Planning</th>
+<th>Design</th>
+<th>Implementation:</th>
+</tr>
+
+<tr>
+<td valign="top">
+<br />
+The first step in adding security should be to make a <b>plan!</b> Doing a
+flow chart of your intended pages helps to get a sense of what will be needed.
+We have made a (~JUMP|pgFlowchart|diagram~) showing our plan for the
+security demo.  Such a chart is not only a crucial planning tool, it also provides
+a helpful overview of the site.
+</td>
+
+<td valign="top">
+<br /> It's essential to know which pages (or parts of pages) need to be
+protected, by what type(s) of protection and what the exceptions are.  Exceptions
+are not always obvious, and it can be helpful to think carefully about the
+functionality of the individual pieces, then look at them again as the whole.
+</td>
+
+
+<td>
+&nbsp;
+<br />
+Implement some or all of these features, as your situation dictates:
+<ul>
+<li> <b>Define user access lists and passwords</b>, with differential access levels.
+<!--- That refers to setting up the user list on the TwhLogin component.--></li>
+
+<li> <b>Determine appropriate access for each surfer</b> by using a login
+procedure that requests user name and password.
+<!--- That refers to using having a login form.--></li>
+
+<li> <b>Tag protected pages as such</b>.
+<!--- That refers to using page defaults to indicate the security level for each page. --></li>
+
+<li> <b>Protect one or more pages</b> by checking the "logged in?" flag at the top of each
+protected page.
+<!--- That refers to using a shared chunk to check the _bLoginOk flag. --></li>
+
+<li> <b>Compensate for "accidental" security breaches on the client side</b> by
+expiring pages and requiring a re-login after a set prior of inactivity.
+<!--- That refers to using the EXPIRES and IFINACTIVEFORSEC macros.--></li>
+
+<li> <b>Promote the use of a Log Out procedure</b> whereby surfers can intentionally
+end their session (or do it automatically at a certain point.)
+<!--- That refers to using the SESSION|DELETE macro.--></li>
+</ul>
+</td>
+</tr>
+</table>
+
+<div class="dcenter">
+ (~GO|pgAboutLogin|Next step: find out details about setting up login procedures!~)
+</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgFlowchart" desc="Security Demo Site Map">
+<whpagesettings inherit="public">
+undersession=no
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">(~JUMP|pgEnterHTSC|Back to the Entrance Page~)</div>
+<p>This site map is designed to show which pages are protected with which
+type of security.  "Level 1" and "Level 2" are enforced with the TwhLogin
+component.  The expiring page uses the EXPIRES macro.  The timeout area
+uses the IFINACTIVEFORSEC macro.</p>
+
+<div class="dcenter">
+<img src="(~mcSiteRoot~)demos/whSecurity/HTSC-Map.jpg" alt="Security Demo Site Map" border="2" />
+</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgAboutLogin" desc="About the Login Procedure">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<table border="1" width="100%" cellpadding="4" cellspacing="2">
+<caption><b>How the Login procedure works</b></caption>
+<tr><td>
+<p>A standard HTML <b>form</b> (next page) is used to prompt for the user name and password.
+This form posts to a page which executes the <b>TwhLogin component</b>.  That component
+tests the validity of the user name and password values by matching them
+against  the component's UserList, stored in the app's configuration file, 
+and a variable is set to True or False to let you know what happened.</p>
+
+<p>Once the surfer logs in successfully, the TwhLogin
+component is synchronized up to that particular user entry, and all the
+(~JUMP|pgAboutUserList| extra data fields~) connected with that particular
+user (such as Access Level)  are pulled in and stored in the surfer's session
+object.  The developer can thus use any of these fields as criteria for routing the surfer--
+specifying varying response pages based on the login result.</p>
+</td>
+</tr>
+<tr>
+<td><div class="dcenter">(~JUMP|pgLogin|Next step: log in!~)</div></td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgAboutUserList" desc="About the UserList">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>The following is a summary of  the UserList: <br />
+<b><i>NOTE</i>:  UsrID and UsrPassword are required</b>; the other settings
+are optional.</p>
+
+<table border="1" width="100%" cellpadding="2" cellspacing="2">
+<tr>
+<th>Property:</th>
+<th>Description:</th>
+</tr>
+
+<tr>
+<td>UsrID</td>
+<td>The user's ID (name)</td>
+</tr>
+
+<tr>
+<td>UsrFullName</td>
+<td>The user's full name</td>
+</tr>
+
+<tr>
+<td>UsrPassPhrase</td>
+<td>The user's pass phrase-- a hint to help the user remember their password</td>
+</tr>
+
+<tr>
+<td>UsrPassword </td>
+<td>The user's password</td>
+</tr>
+
+<tr>
+<td> UsrActive</td>
+<td>Tells whether or not the user is active</td>
+</tr>
+
+<tr>
+<td> UsrExpires </td>
+<td>Tells whether/ when the user account expires</td>
+</tr>
+
+<tr>
+<td>UsrAccess </td>
+<td>User's allowed level of access</td>
+</tr>
+
+<tr>
+<td> UsrOther</td>
+<td> Optional other information about the user</td>
+</tr>
+</table>
+
+<div class="dcenter">(~JUMP|pgAboutLogin|Back~) or (~JUMP|pgLogin|On to the Login Page~)</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgLogin" desc="The Log-in Page">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#datainput th.col {
+		background-color:#F0F0F0;
+	}
+	#datainput td.col {
+		background-color:#F0F0F0;
+	}
+	.hintword {color:#FF0000;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~weblogin.execute|LoginUser,LoginPass,_bLoginOK~)
+<p>The log-in mechanism requires a match of a valid Username and it's associated
+password.   If you submit the form using a valid Username and a blank or
+incorrect password, then the pass-phrase feature displays an additional table
+row with a  user-defined prompt "hint" for the password.</p>
+
+<form method="post" action="(~ACTION|pgLoginConfirm~)">
+<table width="100%">
+<tr>
+	<td style="width:33%;">&nbsp;</td>
+	<td style="width:33%;vertical-align:center;">
+<table id="datainput" border="1" width="100%">
+<tr><th class="col" colspan="3" align="center">A Login Form</th></tr>
+<tr><td class="col" colspan="2">&nbsp;</td><th class="col" align="center">Demo - Hints</th></tr>
+<tr><td class="col">Name:</td>
+<td class="col">(~inputtext|LoginUser,20,20~)</td>
+<td class="col" align="center">To access Level 1, type:<br />
+<code><span class="hintword">Surfer</span></code> <br /> To access Level 2, type:<br />
+<code><span class="hintword">Programmer</span></code></td></tr>
+<tr><td class="col">Password:</td>
+<td class="col">(~inputtext|LoginPass,20,20~)</td>
+<td class="col" align="center">For Level 1, use password:<br />
+<code><span class="hintword">ABC</span></code><br />For Level 2:<br />
+<i>Leave blank and see what happens!</i></td></tr>
+
+<![CDATA[(~MATCH|(~WebLogin.UsrPassPhrase~)!*|
+<!---if a passphrase is there, show it in an additional row.-->
+<tr><td class="col"><span style="color:#FF0000;">Pass&nbsp;phrase:</span></td>
+<td class="col"><b>(~WebLogin.UsrPassPhrase~)</b></td>
+<td class="col"></td></tr>
+~)]]>
+
+<tr>
+	<td class="col" colspan="3" align="center">
+	(~inputsubmit|submit,Send Log-in and/or get a hint for the password~)
+	</td>
+</tr>
+</table></td><td style="width:33%;">&nbsp;</td></tr></table>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+<whpage pageid="PgAboutBasics" desc="About WebHub Security">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Web site security is of critical importance for dynamic sites, as well it should be!
+Issues around the confidentiality of their data is a primary factor
+in determining how quickly customers will adopt using web based applications:</p>
+
+<div class="dcenter"><b>SECURITY=ASSURANCE=BUSINESS!</b></div>
+
+<p>One way to think of it is that WebHub acts as both an information filter and a
+censoring agent.  WebHub filters information because it monitors patterns that are not readily
+observable (ie: changing IP numbers during a session), and allows you to
+ program your desired response for each case; and it acts as a censoring agent because
+your HTML code is NOT VIEWABLE to the public--only the final rendered HTML is.
+Here is a list of (~JUMP|PgWHSecBasics|built-in WebHub Security features~)</p>
+
+<div class="dcenter"> (~JUMP|pgEnterHTSC|Back~)</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgWHSecBasics" desc="Basic WebHub Security Features">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#basicfeatures {
+		font-family: Arial; font-size: small; width: 100%; padding: 2px;
+	}
+	#basicfeatures th {text-align:center;font-weight:700;width:18%;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Here is are several of the basic underlying features in WebHub that address security
+and flow control:</p>
+
+<table id="basicfeatures" cellspacing="2" >
+<tr><th>Feature:</th>
+<th>Where/ how<br /> implemented:</th>
+<th>Purpose:</th>
+<th>When introduced:</th>
+<th>Uses:</th>
+</tr>
+
+<tr><td>Monitoring of <br /> browser type</td>
+<td>Component:<br />  TwhRespondingApp <br />
+Event:<br />  OnBadBrowser</td>
+<td>Monitors browser type to alert programmer of changes in browser type
+within a session, which can be evidence of hacking attempts (or could also denote developer testing...).
+Note: MONITORS only-- does not take action, but the programmer can add
+code that gets triggered under specific circumstances</td>
+<td>v. 1.50</td>
+<td>Delphi/Pascal</td>
+</tr>
+
+<tr><td>Monitoring of <br /> IP Number</td>
+<td>Component:<br />TwhRespondingApp<br />Event:<br />OnBadIP event</td>
+<td>Monitors to see if a user's IP address changes during trhe session, which can
+be evidence of an AOL user, or can indicate the use of a clipboarded URL with
+a previously assigned SessionID.  Can also be used to facilitate quick tracking of
+hackers, spammers, perpetrators of internet CC fraud or other Net misuses</td>
+<td>v. 1.50  </td>
+<td>Delphi/Pascal</td></tr>
+
+<tr><td>Session data kept  on the server--no reliance on Cookies or
+Hidden Fields for state management</td>
+<td>Component:<br />  TWhSession
+<br /> built in state engine</td>
+<td>Greater security and validity of data, because the save state mechanism
+is not dependent upon insecure,  inappropriate technologies. <br />
+Here are some links for further discussion on the (~JUMP|PgCookies|Cookie controversy~) </td>
+<td>Since its inception! </td>
+<td>N/A --built in</td></tr>
+
+<tr><td>Automatic Login Timeout</td>
+<td>Macro:<br />
+IfInactiveForSec <br />
+ Sets the inactivity <br />
+timeout length;  you can <br />
+have it trigger any<br />
+ event you wish<br />
+For further details, <br />
+see (~JUMP|pgAboutTimeout|About Timeout~)</td>
+<td>Automatically logs user out after a specific time of inactivity; <br />
+surfer's data is preserved, but surfer is required to log in again.</td>
+<td> v. 1.48</td>
+<td>W-HTML</td></tr>
+
+<tr><td>HTTPS support</td>
+<td>
+External Application: <br />
+Web Server<br />
+ For details on using<br />
+ HTTPS with WebHub, <br />
+go to
+(~JUMP|pgHTTPS|About HTTPS.~)</td>
+<td> N/A</td>
+<td> N/A </td>
+<td>W-HTML</td></tr>
+
+<tr><td>FrontDoor setting</td>
+<td>Application's <br /> default panel</td>
+<td>Defines and enforces a "first screen" for the application, to be shown
+ any surfer coming in without a session ID </td>
+<td>v. 1.0</td>
+<td>W-HTML</td></tr>
+
+<tr><td>HomePage setting</td>
+<td>Application's <br /> default panel</td>
+<td>Defines and enforces which page is displayed if the PageID in the target URL is blank </td>
+<td>v. 1.0</td>
+<td>W-HTML</td></tr>
+
+<tr><td>InvalidPage setting</td>
+<td>Application's <br /> default panel</td>
+<td>Defines and enforces which page is displayed if the PageID in the target URL is invalid </td>
+<td>v. 1.0</td>
+<td>W-HTML</td></tr>
+
+<tr><td>Override for Front Door</td>
+<td>Component:<br />  TwhConnection component <br />Event: <br /> OnFrontDoorTriggered </td>
+<td>Allows one to override the default rules on the FrontDoor setting for specific circumstances</td>
+<td>v. 1.0  </td>
+<td>Delphi/Pascal</td></tr>
+
+<tr><td>Override for Invalid PageID</td>
+<td>Component:<br />  TwhConnection component<br />
+Event:  <br /> OnBadPageID event</td>
+<td>Allows one to override the default rules about the Invalid Page ID for specific circumstances</td>
+<td>v. 1.276</td>
+<td>Delphi/Pascal</td></tr>
+</table>
+
+<div class="dcenter">  (~GO|pgAboutLogin|Check out TwhLogin!~) </div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgCookies" desc="What others have to say about the use of Cookies">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Cookies have been a hot topic with privacy-advocates, and feelings somethimes run high.
+Cookies are quite useful when used for the right purpose, but they are NOT
+the appropriate technology for transmitting sensitive data!   The pitfalls of
+Cookies can be largely avoided by using them only for the purposes for which
+they are best suited--transmission of data that has no need to be protected.</p>
+
+<p>Here are some links to get a broader sense of the "Cookie Controversy":</p>
+
+<h2>General info:</h2>
+<ul>
+<li><a href ="http://casa.colorado.edu/ThisIsCASA/Announcements/cookies.html">http://casa.colorado.edu/ThisIsCASA/Announcements/cookies.html</a></li>
+<li><a href="http://www.symantec.com/avcenter/security/cookies/purpose.html">http://www.symantec.com/avcenter/security/cookies/purpose.html</a></li>
+<li><a href="http://www.nfe.com/online/cookies.htm#Special">http://www.nfe.com/online/cookies.htm#Special</a></li>
+<li><a href="http://www.earthlink.net/internet/security/cookies.html">http://www.earthlink.net/internet/security/cookies.html</a></li>
+<li><a href="http://www.citibank.com/channel/ck_prv.htm">http://www.citibank.com/channel/ck_prv.htm</a></li>
+</ul>
+
+<h2>Pros and Cons:</h2>
+<ul>
+<li>
+<a href="http://www.hotwired.com/webmonkey/webmonkey/geektalk/96/53/index4a.html">http://www.hotwired.com/webmonkey/webmonkey/geektalk/96/53/index4a.html</a></li>
+<li><a href="http://www.wired.com/news/technology/story/2196.html">http://www.wired.com/news/technology/story/2196.html</a></li>
+</ul>
+
+<h2>Disabling and/or removing cookies:</h2>
+<ul>
+<li>
+<a href="http://www.symantec.com/avcenter/security/cookies/removing.html">http://www.symantec.com/avcenter/security/cookies/removing.html</a></li>
+<li><a href="http://www.symantec.com/avcenter/security/cookies/disabling.html">http://www.symantec.com/avcenter/security/cookies/disabling.html</a></li>
+<li><a href="http://www.junkbusters.com/ht/en/cookies.html">http://www.junkbusters.com/ht/en/cookies.html</a></li>
+</ul>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgHTTPS" desc="About HTTPS">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Utilization of HTTPS requires a financial investment;  you need to buy a secure
+certificate and install that into your web server software.  The actual
+implementation of HTTPS is the job of the web server, rather than WebHub itself.
+WebHub works with a variety of  popular web servers on the NT platform, and
+is compatible with their HTTPS modes.</p>
+
+<p>Here is a good synopsis of HTTPS taken from the book WebSite Professional
+Advanced Topics (by Susan B. Peck), the documentation that comes with
+O'Reilly's Website Profesional Request software:</p>
+
+<blockquote>
+Browsers must request SSL documents with the protocol
+HTTPS:// rather than the protocol 
+HTTP:// in the URL.
+When the user requests an SSL-protected link from your web, the browser and
+the web server conduct security handshaking.  During the handshaking, the
+server sends its certificate to the browser, the browser verifies its authenticity,
+and the server and the browser exchange session keys for the bulk encryption
+of data transmissions between the server and the browser.
+This process is transparent to the user, although an SSL browser may notify
+the user that the page requested is secure.
+</blockquote>
+
+<p>Using HTTPS in your  WebHub application requires only that you define
+a ServerID for HTTPS mode, and then tag the pages that you want running on
+HTTPS with the defined ServerID.</p>
+
+<p>For example, if you were running this security demo on HTTPS and wanted this
+prticular page <b>pgHTTPS</b> run as secure, you
+would define your WebHub ServerID as (SECURE)  [or (SSL) or whatever
+you wish], and define the page as follows:</p>
+
+<p><code>Page:pgHTTPS=(SECURE),,,About HTTPS</code></p>
+
+<p>The use of ServerProfileIDs with WebHub is the focus of the (~JUMP|FAST:pgWelcome| FAST demo~),
+and further information on ServerIDs can be found in the webhub.hlp file.</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgLoginConfirm">
+<whpagesettings inherit="level2">
+undersession=no
+</whpagesettings>
+<whprep>
+<!---confirm accuracy of log-in info using  the WebLogin component:-->
+(~WebLogin.execute|LoginUser,LoginPass,_bLoginOk~)
+(~IFNOT|BoolVar._bLoginOk|(~BOUNCE|PgLogin~)~)
+
+(~chTestLiterals~)
+
+<!---clear the user ID (name) & password immediately-->
+(~CLEAR|LoginPass,LoginUser~)
+
+<!---and determine access level: -->
+(~MATCH|(~weblogin.UsrAccess~)=1|(~BOUNCE|PgAccessLevel1~)~)
+(~MATCH|(~weblogin.UsrAccess~)=2|(~BOUNCE|PgAccessLevel2~)~)
+</whprep>
+</whpage>
+
+<whpage pageid="PgAccessLevel1" desc="First Level Access">
+<whpagesettings>
+securitylevel=1
+undersession=no
+UnderLogin=yes
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<table border="1" width="100%" cellpadding="4" cellspacing="2">
+<caption><b>This username and password has  level 1 access.</b></caption>
+<tr><td colspan="2">
+<p>Notice the additional speedbar that came in.  There is an active link and a
+greyed out link--corresponding to the user's assigned access level.
+Links to pages with a different access level will be rendered inactive, and thus, inaccessible.</p>
+
+<p>Your "level 1 access"  level allows you clearance to view an area that
+definitely should have restricted access-- the running Hub!
+This link lets you  view your main Hub panels remotely over the web.
+When you return to the login page, repeat the login process, this time using the
+level 2 username and password.  Note the resulting change in the speedbar!</p>
+</td>
+</tr>
+
+<tr>
+<td><div class="dcenter">(~JUMP|pgBounceHow|OK-But how did I get here??~)
+</div>
+</td>
+
+<td><div class="dcenter">
+(~JUMP|hubvers:pgversion|Access the Hub's Version page~)
+</div>
+</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgBounceHow" desc="How the Login mechanism works">
+<whpagesettings>
+securitylevel=1
+UnderLogin=yes
+</whpagesettings>
+<whprep>
+(~CHECK|_bLoginOk~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<table border="1" width="100%" cellpadding="4" cellspacing="2">
+	<caption><b>How the Login Procedure Works</b></caption>
+	<tr>
+		<td colspan="2" align="center">
+		The form info posts to an intermediary "confirmation" page, which has three main functions:
+		</td>
+	</tr>
+
+	<tr>
+		<th>Function</th>
+		<th>Code</th>
+	</tr>
+
+	<tr>
+		<td>
+		Execute the TwhLogin component to test for the accuracy of the Username/ password combination
+		</td>
+		<th>
+<code>(~mcMacroStart~)WebLogin.execute|LoginUser,LoginPass,_bLoginOk(~mcMacroEnd~)
+<br />
+(~mcMacroStart~)IFNOT|BoolVar._bLoginOk|(~mcMacroStart~)BOUNCE|PgLogin(~mcMacroEnd~)(~mcMacroEnd~)</code>
+		</th>
+	</tr>
+
+	<tr>
+		<td>
+		Clear the user ID (name) &amp; password StringVars immediately  for additional security
+		</td>
+		<th>
+<code>
+(~mcMacroStart~)CLEAR|LoginPass,LoginUser~)
+</code>
+		</th>
+	</tr>
+
+	<tr>
+		<td>
+		Route the surfer according to the assigned access level
+		</td>
+		<th>
+<code>
+(~mcMacroStart~)MATCH|(~weblogin.UsrAccess~)=1|<br />(~mcMacroStart~)BOUNCE|PgAccessLevel1(~mcMacroEnd~)(~mcMacroEnd~)<br />
+(~mcMacroStart~)MATCH|(~weblogin.UsrAccess~)=2|<br />(~mcMacroStart~)BOUNCE|PgAccessLevel2(~mcMacroEnd~)(~mcMacroEnd~)
+</code>
+		</th>
+	</tr>
+
+	<tr>
+		<td colspan="2">
+When you return to the login page, repeat the login process, this time using the
+level 2 username and password.  Note the resulting change in the speedbar!
+<br />
+<div class="dcenter">(~JUMP|PGACCESSLEVEL1|Back to the Level 1 Access page~) &nbsp; (~JUMP|PgLogin|Back to the Login Page~)</div>
+		</td>
+	</tr>
+</table>
+
+(~CLEAR|_bLoginOk~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+<whpage pageid="PgLoginSettings" desc="Display  TwhLogin settings">
+<whpagesettings inherit="level2">
+undersession=no
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Here are all the TwhLogin settings for this user name and password:</h1>
+<p>(~chLoginSettings~)</p>
+<div class="dcenter">
+(~JUMP|pgLogin|Back to the Login Page~)
+</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+<whpage pageid="pgAccessLevel2" desc="Second Level Access">
+<whpagesettings inherit="level2">
+undersession=no
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<table style="border: 1px solid; width:100%; padding:4px;" cellspacing="2">
+<caption><b>This username and password has  level 2 access,</b>
+<br />
+activating the speedbar with links to
+ (~JUMP|pgAboutTimeout|<b>TIMEOUT</b>~),
+(~JUMP|pgAboutExpires|<b>EXPIRES</b>~),
+ and (~JUMP|pgAboutSession|<b>SESSION CONTROL</b>~).
+</caption>
+
+<tr>
+<td>
+&nbsp;
+<br />
+(~chLoginSettings~)
+</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgAboutTimeout" desc="About TIMEOUT ">
+<whpagesettings inherit="level2">
+undersession=no
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+In this demo, we are using a macro to set a TIMEOUT and force an automatic logout if the surfer
+has not requested a page within a set time period ( 5 seconds, in this case).  <div class="dcenter">(~JUMP|pgTimeoutLogout|Here's how we did it...~)</div>
+
+<table border="1" width="100%" cellpadding="2" cellspacing="2">
+<tr>
+<td align="center"><b> Why use TIMEOUT</b></td>
+<td align="center"><b> How TIMEOUT works</b></td>
+</tr>
+
+<tr>
+<td> This type of  timed logout feature would prevent others from accessing your files in the event that you step
+away from your computer while logged on.  There are other uses as well for this
+type of logout--ie: use it  on a pay per minute type of site to prevent people from
+running up excessive charges if they leave the computer without logging out.
+</td>
+
+<td>
+The highlighted feature here is the <b> IfInactiveForSec macro</b>, which
+tracks time elapsed between page requests, and allows you to
+control what happens if the session has been inactive for a certain number of
+seconds.   As in the case of the browser type monitoring and the IP monitoring,
+this feature does not <b>*do*</b> anything on its own; rather,  it gives you the
+option of using this value to trigger conditional actions, based upon the amount
+of elapsed time between page requests.
+</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgTimeoutLogout" desc="Using Timeout to Force a LogOut">
+<whpagesettings inherit="level2">
+undersession=yes
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<div class="dcenter">(~JUMP|pgTimeRunning|Quick Click Option~)</div>
+<p>Here is an example of an automatic logout sequence after a preset period of inactivity:</p>
+
+<table border="1" width="100%" cellpadding="2" cellspacing="2">
+<tr><th> What  to do</th>
+<th>Why do it</th>
+<th>What the code looks like</th>
+</tr>
+<tr>
+<td>Select your timeout length</td>
+<td>To select the length of time that makes the most sense for your
+intended purpose</td>
+<td>Make a macro ie: "mcLoginLifeSec=5"
+<p>
+Note:  you do not HAVE to use a macro here;  you can simply use a number after the first bar</p> </td>
+</tr>
+
+<tr>
+<td> Use the IfInactiveForSec macro
+to force<br /> expiration of the password</td>
+<td>Clears the loginOK checkbox if <br />
+no pages are requested<br />
+ in the allotted time</td>
+<td><code>(~mcMacroStart~)IfInactiveForSec|(~mcMacroStart~)mcLoginLifeSec(~mcMacroEnd~)|(~mcMacroStart~)CLEAR|_bLoginOk(~mcMacroEnd~)(~mcMacroEnd~)</code><br />
+<div class="dcenter"> OR </div><br />
+<code>(~mcMacroStart~)IfInactiveForSec|5|(~mcMacroStart~)CLEAR|_bLoginOk(~mcMacroEnd~)(~mcMacroEnd~)
+</code>
+</td>
+</tr>
+
+<tr>
+<td> Put in a REQUIRES macro</td>
+<td>Checks the status of the LoginOK checkbox:<br />
+if checked, allow access;<br />
+if not checked, bounce <br />
+user to a specific page</td>
+<td><code>(~mcMacroStart~)REQUIRES|_bLoginOk|pgTimedOut(~mcMacroEnd~)</code></td></tr>
+<tr>
+<td>Synchronize the user record</td>
+<td>Keep things synched up!</td>
+<td><code>(~mcMacroStart~)WebLogin.Update(~mcMacroEnd~)</code></td>
+</tr>
+</table>
+<p>If you have been on this page longer than 5 seconds, (~JUMPR|pgTimeRunning|click here~) and see what happens!</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgTimeRunning" desc="No timeout here!">
+<whpagesettings inherit="level2">
+</whpagesettings>
+<whprep>
+(~Check|_bLoginOK~)
+(~chCheckTime~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Fast clicking!  You made it under the timeout allowance!
+<div class="dcenter">(~JUMP|pgAboutExpires|Now take a look at the EXPIRES macro~)</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgTimedOut" desc="Automatic Logout on Timeout">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whprep>
+(~chCheckTime~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Sorry, but you have been logged out due to a security timeout.</p>
+
+<p>If you would like to continue your session, here is your link (~JUMP|pgLogin|back to the Login Page~)
+so you can repeat the sequence--be sure to click the link within 5 seconds of landing on the page!</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+
+<whpage pageid="pgAboutSession" desc="Working with the Session Macro to control the Session Object">
+<whpagesettings inherit="level2">
+undersession=yes
+</whpagesettings>
+<whprep>
+(~SESSION|Delete~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<table border="1" width="100%" cellpadding="4" cellspacing="2">
+<caption> <b>Controlling the Session Object </b></caption>
+<tr>
+<th>The Session Macro </th>
+<th>SESSION|Delete</th>
+<th>Recommendations</th>
+</tr>
+
+<tr>
+<td valign="top">
+The SESSION Macro is used to control what happens to the session
+object  when the session data is saved to disk. There are several parameters available
+for use with this macro, each for a specific purpose. The parameter that is most useful for
+security purposes is Session|Delete.
+<p><small>See the WebHub help file for more on SESSION parameters</small></p>
+</td>
+
+<td valign="top">
+The SESSION|Delete macro enforces security at the session level by deleting
+the session object entirely.  This deletion takes effect as soon as the page
+renders, ensuring that no data is retrievable via the browser.
+</td>
+
+<td valign="top">
+For particularly sensitive sites, we recommend  including "checkpoint" chunks
+on every page after the login page.  For even more thorough security, include
+both a (~JUMP|pgTimeoutLogout| forced logout~) (using the
+IFINACTIVEFORSEC macro) and a (~JUMP|pgSecLogout| voluntary logout page~)...
+</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+
+<whpage pageid="pgSecLogout" desc="The Voluntary Logout page">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<form method="post" action="(~ACTION|HTSC:pgGoodby|post~)">
+<table border="1" width="100%" cellpadding="4" cellspacing="1">
+<caption><b> Voluntary Logout Page</b></caption>
+<tr><th>Macro Used</th>
+<th> Desired Result:</th>
+</tr>
+
+<tr>
+<td>Session|Delete</td>
+<td> Deletes all the transaction data and guarantees that anyone returning
+with the same <br />
+session number, he/she will be treated like a new surfer just arriving
+on the site</td>
+</tr>
+
+<tr>
+<td>CLEAR|_bLoginOk</td>
+<td> Clears the checkbox  that is set in a successful log in<br />
+ (also part of the "Checkpoint chunk")</td>
+</tr>
+
+
+<tr>
+<td colspan="2"><div class="dcenter">(~INPUTSUBMIT|btn@home,Click Here to Log Out~)</div></td>
+</tr>
+
+</table>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgGoodby" desc="Automatic Logout page">
+<whprep>
+(~CLEAR|_bLoginOk~)
+(~Session|Delete~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Your session data has been deleted.   Thanks for joining us!</p>
+
+<div class="dcenter"> (~JUMP|pgLogin| Click here to log in again.~) </div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgNewSession" desc="Creating a New Session Object">
+<whpagesettings inherit="public">
+undersession=yes
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+Assigns a new additional session number,  effectively treating the surfer as if they had just arrived.
+Use this whenever you want to have a "fresh start", but without losing the information of the other, still active, session object.
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgSaveSession" desc="Saving a Session Object">
+<whpagesettings inherit="public">
+undersession=yes
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+ This gives you the option keeping your session data available to you, while not actually having it active.
+The  datetime can be set so that you can determine the "length of storage"--
+by enabling  the Hub's Background Delete feature on the Session Panel,
+then the session file will be deleted once the specified date/time is reached. (v1.46+)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+
+<whpage pageid="pgSessionTouch" desc="Using Touch Session">
+<whpagesettings inherit="public">
+undersession=yes
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Allows you to merely "touch" the session object, altering the date/time stamp, but not actually altering any information
+Touch: This sets the timestamp on the object without saving any data. Any changes to StringVars, checkboxes etc.
+from the most recent page request WILL BE LOST. 
+<whdoc>
+
+----- For HREF to look at -----
+
+1998 NOTE:  Michael says this is NOT true--have him look at this, and see if we can determine a more accurate way of describing this
+
+Get clarification from Michael on the exact nature of TOUCH, and examples for when and where it would be useful.
+</whdoc>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgAboutExpires" desc="Using the Expires Macro">
+<whpagesettings inherit="level2">
+undersession=no
+</whpagesettings>
+<whprep>
+(~EXPIRES|-1~)
+(~HEADER|Cache-Control: no-cache~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<b>First, a look at EXPIRES in action:</b>
+<form method="post" action="(~ACTION|pgDumpData|Post~)">
+<table border="1" width="100%" cellpadding="1" cellspacing="1">
+<tr>
+<td>Please enter your Swiss Bank Account number here:</td>
+<td>(~Inputtext|SwissAcctNum~)</td>
+</tr>
+
+<tr>
+<td> Your data will be deleted immediately after transmittal. </td>
+<td> (~INPUTSUBMIT|,Submit~)</td>
+</tr>
+</table>
+</form>
+
+<p><b>And then the look behind the scenes:</b></p>
+
+<table border="1" width="100%" cellpadding="1" cellspacing="1">
+<tr>
+<th> Expiration Control</th>
+<th>Security at the Page Level</th>
+</tr>
+
+<tr>
+<td valign="top">
+The EXPIRES macro lets you control the time and date of  page expiration by telling
+ the web browser when to invalidate the cached copy of the web page.
+Expiration control is critical in  a number of areas: saving state on checkboxes,
+dealing with cookies, and avoiding all kinds of problems
+created by surfers (~JUMP|pgBackButton| clicking the [Back] link!~)
+</td>
+
+<td>
+The EXPIRES macro (like the SESSIONS macro) has different parameters that can be passed to it.
+A particularly useful one for security purposes is  <code>(~mcMacroStart~)EXPIRES|-1(~mcMacroEnd~)</code>,
+which forces an
+immediate and unconditional expiration of the page.    <br />
+<br />
+This page ((~PageID~)) begins with <code>(~mcMacroStart~)EXPIRES|-1(~mcMacroEnd~)</code>, followed by
+<code>(~mcMacroStart~)HEADER|Cache-Control: no-cache(~mcMacroEnd~) </code>
+to make sure the web browser will not cache data.
+The following page (pgDumpData), uses <code>
+ (~mcMacroStart~)Clear|SwissAcctNum(~mcMacroEnd~) </code> to erase the data.  NB: in a real-world
+web application, the EXE would utilize the data in some way before clearing it.
+
+<p>This combination protects against sensitive data being cached in the browser.
+If a person hits the back button, the page is rerequested and does not show an account number because the
+literal has been cleared.</p>
+</td>
+</tr>
+</table>
+
+<div class="dcenter">(~JUMP|pgAboutSession|Now on to the Session Macro~)</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgDumpData" desc="Data Sent and Deleted">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whprep>
+(~Clear|SwissAcctNum~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Thank you--your account number has been submitted and deleted.  Try hitting the back button, and see what happens!
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgBackButton" desc="Neutralizing the effects of the browser's back button on data state">
+<whpagesettings inherit="level2">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<whdoc>
+Copied from Showcase section on checkboxes
+</whdoc>
+<p>Saving the state of checkboxes in cgi programs is tricky;  here is a
+comparison between CGI and WebHub for handling specific issues
+relating to checkboxes:</p>
+
+<table border="1" width="100%" cellpadding="2" cellspacing="2">
+<tr><th>Situation:</th>
+<th>Standard CGI Situation:</th>
+<th>WebHub solution:</th>
+</tr>
+
+<tr>
+<td>Monitoring unchecked checkboxes</td>
+<td>The web server only tells you about 'true' values, so in a
+database-driven grid you can not easily generically identify unchecked items</td>
+<td>Creates a list of 'pending' checkboxes when the form first displays.  When
+the form is submitted, the checkboxes are generically reconciled against the
+BoolVarsPending list.  </td>
+</tr>
+<tr><td>Surfer clicking the the [BACK] button in the browser when on a page using checkboxes </td>
+<td>The browser will cache the page and the checkmark will not be updated based on
+the actual session data -- so the logic going forward will be wrong!</td>
+<td>  With WebHub, you can use the EXPIRES macro to automatically expire
+ all pages that use checkboxes.  This forces the browser to re-load them, so the
+page is recreated dynamically with accurate data.
+</td></tr>
+</table>
+
+<div class="dcenter">(~JUMP|pgAboutExpires|Back to the Expires page~)</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

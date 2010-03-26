@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="setprefdesign"
+  designmode="code"
+  showdoc="no"
+  showsketch="no"
+  copyright="1995-2004 HREF Tools Corp."
+  notes="This file defines the Options page shared by all WebHub demos.
+
+     To use the SetPref page, make a JUMP or GO
+     link to it.  If you change the value of the OK button,
+     you have to also change the formula for the match macro
+     at the beginning.
+     You also need to define the drPreferences droplet
+     for this to work.
+
+     Overview:
+     1. The match macro says if the literal named BtnPref is
+     equal to 'Return' then send out drReturnFromPref droplet.
+     This would only be the case if the surfer had already
+     come to the page and clicked on Return.
+
+     2. The pushPrior macro saves the prior pageID into the
+     literal named PrePref.
+
+     3. The DynURL.ToSessionIDW macro brings the surfer back to where they
+     are -- the current page.  The ,CKB command is required
+     because we need to save state of checkboxes.  If the
+     surfer uses the Preview button, the current page will
+     just redraw with whatever settings in effect.">
+
+<whmacros>
+mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.jpg-Clouds,palace.jpg-Palace
+</whmacros>
+<whpage pageid="SetPref" desc="Set Silly Preferences to Demonstrate Save-State Feature">
+<whprep>
+(~NOTASSIGNED|BtnPref|(~SET|BtnPref=none~)~)
+(~match|(~BtnPref~)~Return|
+ (~Clear|BtnPref~)
+ (~PopPage|PrePref~)
+~)
+(~nomatch|(~BtnPref~)~Preview|
+  (~pushprior|PrePref~)
+~)
+(~clear|BtnPref~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~~Options~)</h1>
+
+<form method="post" action="(~ACTIONR|setpref,.ckb~)">
+
+<h2>(~~Wallpaper~)</h2>
+<p>(~~SetPrefWallpaperIntro~)</p>
+
+(~INPUTSELECT|litWallpaper,mcSelectWallpaper,1,No~)
+
+<h2>(~~HumanLanguage~)</h2>
+(~~SetPrefLingvo~):
+(~inputselect|guestlingvo,mclingvolist,1,no~)
+
+<h2>(~~Debugging~)</h2>
+(~inputcheckbox|showSystemInfo~) Show System Info
+ (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" border="0" />~)
+<br />
+(~inputsubmit|BtnPref,Preview~)
+(~inputsubmit|BtnPref,Return~)
+(~~SetPrefReturn~)
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="hlpSystemInfo" desc="Help with the System Info feature in WebHub Demos">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2><img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" /> System Info</h2>
+All web applications receive a certain amount of system information from the web
+server when they are called. The WebHub demos all use a shared droplet called
+<i>drSystemInfo</i> which prints out the cgi environment data, form StringVars, checkboxes,
+etc. for the current surfer.  This information is helpful during debugging because it lets you
+quickly see what's going on.  All the demos have a <b>Set Preferences</b> page where
+surfers can toggle this information on and off.  The page footer droplet looks at a setting
+to determine whether or not to display the extra information.  This makes it convenient
+when you need to study it, and easy to hide later.
+<br /><br />(~drJumpBack~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

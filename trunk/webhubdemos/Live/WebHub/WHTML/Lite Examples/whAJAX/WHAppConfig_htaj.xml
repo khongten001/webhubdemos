@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <MenuEnabled value="false" context="DEMOS"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <TrayIconEnabled value="true"/>
+	<Modules>
+		<StandardModules>
+			<GUIOptional>
+				<Module name="email" status="disabled" />
+				<Module name="dreamweaver" status="enabled-gui" />
+				<Module name="dwsecurity" status="enabled-gui" />
+			</GUIOptional>
+			<GUI>
+				<Module name="appin" status="enabled-gui" />
+				<Module name="appout" status="enabled-gui" />
+				<Module name="decode" status="enabled-gui" />
+				<Module name="whteko" status="enabled-gui" />
+			</GUI>
+		</StandardModules>
+	</Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="defprofile"/>
+        <ForceCase value="lower"/>
+        <UseAppID value="true"/>
+        <UseAppProcessID value="false"/>
+        <HideAppProcessID value="false"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <AppSettings>
+      <AppSetting name="DemoGraphic" value="yes"/>
+    </AppSettings>
+    <ErrorAlertFlags>
+      <ErrorAlertFlag name="Summary" value="true"/>
+      <ErrorAlertFlag name="LogToFile" value="true"/>
+    </ErrorAlertFlags>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+      <YesNoString value="Yes,No"/>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+	  <AllowedSessionIDRange value="192.168.1.*;127.0.0.1" />
+	  <RemoteAccessPages>
+	    <Page function="design" pageID="remotedesign" />
+	    <Page function="preview" pageID="remotepreview" />
+	    <Page function="refresh" pageID="remoterefresh" />
+	  </RemoteAccessPages>
+	  <AllowedIPRange value="1800-1900" />
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+	<Security>
+		<AdminSessionNumber value="1001" context="DEMOS" />
+	</Security>
+    <Situations>
+      <ChangedIP pageID="pgBadIP"/>
+      <Home pageID="pgWelcome"/>
+    </Situations>
+    <Static>
+      <AppRoot value="/" context="DEMOS"/>
+      <AppRoot value="http://demos.href.com/"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="about" filename="..\..\Shared WHTML\about\about-whAJAX.whteko"/>
+      <File id="ajax" filename="whAJAX.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whCycle componentName="WebCycle">
+      <ItemList>
+	<Item id="a01" value="(~PARAMS|drBook|Delphi 6 Developer&apos;s Guide (With CD-ROM) by Pacheco Teixeira and Intersimone,$45.49,0672321157~)"/>
+      <Item id="a02" value="(~PARAMS|drBook|Delphi Component Design by Danny Thorpe.,$49.99,0201461366~)"/>
+      <Item id="a03" value="(~PARAMS|drBook|Kylix 2 Development (with CD-ROM),$38.47,1556227744~)"/>
+      <Item id="a04" value="(~PARAMS|drBook|Kylix Developers Guide (With CD-ROM),$41.99,0672320606~)"/>
+      <Item id="a05" value="(~PARAMS|drBook|KYLIX: The Professional Developer&apos;s Guide and Reference,$41.97,1893115895~)"/>
+      <Item id="a06" value="(~PARAMS|drBook|Casual Day Has Gone Too Far : A Dilbert Book.,$9.95,0836228995~)"/>
+      <Item id="a07" value="(~PARAMS|drBook|Dilbert Meeting Book.,$19.95,0768320283~)"/>
+      <Item id="a08" value="(~PARAMS|drBook|Delphi Programming Problem Solver by Neil Rubenking.,$34.99,1568847955~)"/>
+      <Item id="a09" value="(~PARAMS|drBook|Mastering Delphi 7,$41.99,078214201X~)"/>
+      <Item id="a10" value="(~PARAMS|drBook|Mastering Kylix 2,$34.99,0782128734~)"/>
+      <Item id="a11" value="(~PARAMS|drBook|Tomes of Delphi: WIn32 Shell API Windows 2000 Edition,$41.97,1556227493~)"/>
+      <Item id="a12" value="(~PARAMS|drBook|The Tomes of Delphi: Algorithms and Data Structures,$41.97,1556227361~)"/>
+      <Item id="a13" value="(~PARAMS|drBook|The Tomes of Delphi : Basic 32-Bit Communications Programming,$41.97,1556227523~)"/>
+      <Item id="a14" value="(~PARAMS|drBook|The Tomes of Kylix: The Linux API (With CD-ROM),$41.97,1556228236~)"/>
+      <Item id="a15" value="(~PARAMS|drBook|Object Models : Strategies&amp;#44; Patterns and Applications by Peter Coad.,$52.00,0138401179~)"/>
+      <Item id="a16" value="(~PARAMS|drBook|Object-Oriented Analysis (2nd Edition) by Peter Coad.,$64.00,0136299814~)"/>
+      <Item id="a17" value="(~PARAMS|drBook|Delphi in Depth edited by Cary Jensen.,$42.95,0078822114~)"/>
+      <Item id="a18" value="(~PARAMS|drBook|Future Codes : Essays in Advanced Computer Technology and the Law.,$37.00,0890069425~)"/>
+      <Item id="a21" value="(~PARAMS|drBook|HTML 4 for the World Wide Web: Visual QuickStart Guide,$17.95,0201696967~)"/>
+      <Item id="a22" value="(~PARAMS|drBook|The Perennial Philosophy by Aldous Huxley,$22.00,0809590018~)"/>
+      </ItemList>
+    </whCycle>
+  </ComponentConfig>
+</WebHubAppConfiguration>

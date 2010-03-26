@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
+</whmacros>
+
+<whpage pageid="pgEnterJoke" desc="Jokes Main Page">
+<whpagesettings>
+whSequence=off
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Are you in need of a good laugh?<br />
+Then, by all means, proceed!
+<br /><br />
+<img src="(~mcSiteRoot~)demos/whSequence/balloons.JPG" alt="balloons" />
+(~GO|pgJoke1a|The First Joke~)<br />
+<img src="(~mcSiteRoot~)demos/whSequence/balloons.JPG" alt="balloons" />
+(~GO|pgJoke2a|The Second Joke~)<br />
+<img src="(~mcSiteRoot~)demos/whSequence/balloons.JPG" alt="balloons" />
+(~GO|pgJoke3a|The Third Joke~)<br />
+<img src="(~mcSiteRoot~)demos/whSequence/balloons.JPG" alt="balloons" />
+(~GO|pgJoke4a|The Fourth Joke~)<br />
+
+<!---The physical appearance of the sequence buttons is defined in the application configuration file. The underlying functionality (next, back, up) is automatically controlled by WebHub. -->
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="drDemoSpeedbarForJOKE">
+(~MATCH|(~PageSetting.whSequence~)=on|(~Sequencing.ButtonsAll~)~)
+</whdroplet>
+</whteko>

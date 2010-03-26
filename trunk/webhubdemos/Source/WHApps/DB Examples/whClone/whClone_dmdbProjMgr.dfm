@@ -1,0 +1,2 @@
+inherited DMForWHClone: TDMForWHClone
+end

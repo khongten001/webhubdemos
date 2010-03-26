@@ -1,0 +1,46 @@
+﻿<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="deu" designmode="code">
+
+<whmacros>
+mcGerman=Deutsch
+</whmacros>
+
+<whtranslations lingvo="deu">
+~Welcome=Willkommen 
+~Entrance=Eingang
+~Source=Quelle
+~Download=Download
+~Logout=Logout
+~Options=Wahlen
+~About=über
+~Prerequisites=Vorbedingungen
+</whtranslations>
+
+<!--- used in setpref file           -->
+<whtranslations lingvo="deu">
+~SetPrefLingvo=Geben Sie Sprachencode ein
+~Wallpaper=Tapete
+~none=keine
+~HumanLanguage=menschliche Sprache
+~Debugging=Ausprüfen
+~SetPrefReturn=Sie sollten zur (~PrePref~) Seite zurückkommen
+</whtranslations>
+
+<whtranslations>
+~daySunday=Sonntag
+~dayMonday=Montag
+~dayTuesday=Dienstag
+~dayWednesday=Mittwoch
+~dayThursday=Donnerstag
+~dayFriday=Freitag
+~daySaturday=Samstag
+</whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
+Diese Wahl wird, um verwendet nur zu zeigen, daß Einstellungen 
+geändert werden können. Die WebHub Demos waren nicht entworfen, um mit 
+allen Hintergründen sichtlich anziehend zu schauen.
+</whtranslation>
+
+
+</whteko>

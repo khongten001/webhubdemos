@@ -1,0 +1,12 @@
+<whteko designmode="code">
+<whpage pageid="pgWHCPHubRestart" desc="Hub restart">
+<whpagesettings>
+WHCPSecurePage=yes
+</whpagesettings>
+(~chWHCPHeader~)
+Restarting HUB...
+(~waRestartHub.Execute|~)
+Test
+(~chWHCPFooter~)
+</whpage>
+</whteko>

@@ -1,0 +1,17 @@
+<DBAdminConfig>
+  <Project>
+    <ProjectCode value="CodeRage" />
+    <PrefixForUnsafeFieldnames value="a" />
+    <UpdatedOnAtFieldname value="UpdatedOnAt" />
+    <UpdateCounterFieldname value="UpdateCounter" />
+  </Project>
+  <DatabaseAccess>
+    <ldiDBHost value="D:\Projects\WebHub Demos\Live\Database\whSchedule\" />
+    <ldiDBAlias value="coderageschedule" />
+    <ldiDBUsername value="SYSDBA" />
+    <ldiDBPassword value="masterkey" />
+  </DatabaseAccess>
+  <ErrorReporting>
+    <CheckLengthBeforeExecSQLYesNo value="No" />
+  </ErrorReporting>
+</DBAdminConfig>

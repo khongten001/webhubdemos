@@ -1,0 +1,63 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGTOGETHER
+whSequenceFinal=PGTOGETHER
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Together
+htmlFilename=3Togeth.whteko
+showcaseBranch=(~GO|pgForms|Forms with Built-in Save-State~) &raquo; (~GO|pgTogether|Putting it All Together~) &raquo;
+showcaseBranchText=Forms with Built-in Save-State: Putting it All Together: 
+</whpagesettingslist>
+
+<whpage pageid="pgPersonalizing" desc="Personalizing Pages">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The following example will allow you to personalize this Showcase Demo with your name and organization.
+<p>
+<form method="post" action="(~DynURL.ToSessionIDW~)">
+<CENTER><table>
+<tr><td>
+Please enter your name: </td><td>(~inputtext|litSurferName,40,40~)<tr><td>
+Organization: </td><td>(~inputtext|litOrganization,40,40~)</td></tr>
+</table>
+(~inputsubmit|submit,Post and Notice the Difference~)
+</CENTER>
+</form>
+<b>Confirmation: WebHub remembers your input</b><br />
+Your name is: <b>(~litSurferName~)</b><br />
+Your organization is: <b>(~litOrganization~)</b>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSurferPrefs" desc="Setting Surfer Preferences">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The following example will allow you to set your preferences for this Showcase Demo.
+You will be able to select:
+<ul>
+<li>The Wallpaper
+<li>The Font Size
+<li>The SystemInfo Display
+</ul>
+Use the <b>Preview</b> button to test out your settings.  When you are ready to
+continue where you left off, use the <b>Return</b> button to go back.  You will
+return to Page ID (~prePref~).
+<p>
+<b>(~JUMPR|SetPref|Set Your Preferences~)</b>
+<p>
+Several of the WebHub components
+work together to remember your settings as you move from page to page.  This is known
+as <i>saving state</i> because your settings are saved at the end of each page, and
+then restored when you come back.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

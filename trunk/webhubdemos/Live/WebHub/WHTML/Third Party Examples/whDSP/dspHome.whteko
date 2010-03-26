@@ -1,0 +1,97 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdsp">
+
+<whdroplet name="chNewSession">
+(~NOTASSIGNED|SearchLimit|(~SET|SearchLimit=300~)~)
+(~NOTASSIGNED|SearchNear|(~SET|SearchNear=8~)~)
+(~NOTASSIGNED|SearchGroup|(~SET|SearchGroup=0~)~)
+(~NOTASSIGNED|SearchFuzziness|(~SET|SearchFuzziness=0~)~)
+</whdroplet>
+
+<whpage pageid="Data" desc="the data assembly page" mode="design">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+</whpagesettings>
+<!--- this page looks unused to me, Aug 2004, AML; disabled on 22-Aug-2007 AML -->
+(~CMDHAS|results|(~waSearch.execute~)~)
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chDataSearch~)
+(~DYNCHUNK|chData,(~PageSetting.partb~)~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgLinkToDSP" desc="dsp.href.com: Recommended way to link to us">
+<whpagesettings>
+googlesitemap=include_all_lingvo
+googlechangefreq=yearly
+googlepriority=0.1
+metarobot=index,follow
+metadescription=Recommended way to link to the Delphi Super Page Search Engine; Graphics; Helping us to advertise the Delphi Super Page Search Engine
+metakeywords=advertise;graphics;Delphi Super Page
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Link to dsp.href.com</h1>
+<p>We appreciate your assistance in publicizing the Delphi Super Page Search Engine.</p>
+<p>Link to the main site in Poland (<b>(~mcDSP~)</b>) or 
+directly to the search engine
+(<b>http://dsp.href.com</b>).  Either way leads to all features.</p>
+<h2>Use these Graphics</h2>
+<p>Here are some graphics to choose from for your link(s):</p>
+<p><img src="(~mcSiteRoot~)demos/whdsp/DSPSearchBanner-large.gif" alt="I found it at dsp.href.com" /></p>
+<p><img src="(~mcSiteRoot~)demos/whdsp/DSPSearchIcon.gif" alt="DSPSearchIcon" /></p>
+<p><img src="(~mcSiteRoot~)demos/whdsp/DSPSearchIcon2.gif" alt="DSPSearchIcon2" />
+</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="Words" desc="Words used in your search">
+<whpagesettings>
+googlesitemap=exclude
+metarobot=noindex,nofollow
+metadescription=words used in your search on dsp.href.com
+metakeywords=words
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Words used in your search:</h2>
+<p>(both entered by you and created by the system)</p>
+(~txtwords~)
+(~MATCH|(~SearchFuzziness~)=0|<p>The system is in Auto-Fuzzy mode and might have decided to add words to your search. If this seems wrong, please adjust the Fuzziness on the Advanced Search Screen.</p>~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+</whteko>

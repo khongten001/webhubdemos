@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTLS">
+<a title="More details about how the ListServ Assistant works" href="(~ACTION|MoreInfo~)">More Details</a>
+</whdroplet>
+
+<whpage pageid="pgEnterHTLS" desc="Demonstration Page for Listserv Assistant">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Your surfers can subscribe and unsubscribe to a listserv using a WWW interface--they and thus avoid dealing with arcane listserv commands. Experiment with this feature of WebHub by trying out our listserv demonstration.</p>
+
+<p>This is not a real listserv, so don't worry about being subscribed to something you don't want.
+We set the WebMailForm component so that it sends a
+message to info@href.com.</p>
+
+<!---The FORM ACTION determines what happens when the surfer clicks the [Submit] button.
+     When the ACTION macro expands, it determines the AppID and the action taken.
+     You can use this application to manage sign-ups for multiple listservs.
+	 
+	 Be careful: the name of the TwhMailForm configuration entry ("testfake") is CASE SENSITIVE. 
+	 -->
+<form method="post" action="(~ACTIONR|listserv,testfake~)">
+<table>
+<tr>
+<td align="right">Enter your name:</td>
+<td>(~INPUTTEXT|SurferName,30,30~)</td>
+</tr>
+<tr>
+<td align="right">Enter your e-mail address:</td>
+<td>(~INPUTTEXT|SurferEMail,30,30~)</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>(~INPUTSUBMIT|submit,Join Fake List~)</td></tr>
+</table>
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="ListServ" desc="Runs EMail Component">
+<whdoc>
+all this page does is call the webmailform component. Based on
+the command passed in on the URL, the component will find settings from
+the INI file and send mail accordingly.
+</whdoc>
+<whprep>
+(~webmailform.execute~)
+</whprep>
+</whpage>
+
+
+<whpage pageid="Thanks" desc="Thanks for your message!">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pageDesc~)</h1>
+An automatic message has been generated for (~surfername~), with a
+courtesy copy to (~surferemail~).
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="MoreInfo" desc="How the Listserv Assistant Works">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~mcWhDemoFontOn~)
+How it Works
+(~mcWhDemoFontOff~)
+<p>HTLS:HOMEPAGE displays the form prompting for the e-mail address to process.
+The FORM ACTION statement directs processing to the LISTSERV page. That page
+ calls the WEBMAILFORM component, passing a command: TESTFAKE.</p>
+
+<p>The specifics of the messages are configurable through the INI file and by editing the
+ form letters.  If you are at the live web server, look on the WebMail panel.
+You will be able to call up the settings associated with the keyword TESTFAKE.
+Or, you can edit the htlsrv.ini file directly -- look for the [webmailform.testfake] section.
+The <code>template</code> setting defines the name of the file to be sent.
+Open that .txt file to see the sign-up message sent to the listserv majordomo.</p>
+
+(~mcWhDemoFontOn~)
+Use with Static Pages
+(~mcWhDemoFontOff~)
+
+<p>This application can be used with static launch and response pages instead of using
+dynamic WebHub pages. To do that, create a static .html page similar to HOMEPAGE,
+with the full ACTION URL defined.  Then go into the WebMailForm settings and change
+the <code>NextPage</code> setting to specify a complete HTTP URL.
+That page will be served after the e-mail message is sent.</p>
+
+(~mcWhDemoFontOn~)
+More Info on Form Action
+(~mcWhDemoFontOff~)
+<p>The FORM ACTION determines what happens when the surfer clicks the
+[Submit] button. Instead of hard-coding in a section name, or restricting this demo to handle
+only one listserv, the command portion of the URL determines exactly which
+listserv the surfer is dealing with.
+This means that you can use this application to manage sign-ups to multiple listservs.</p>
+<pre>
+&lt;FORM METHOD=POST ACTION="/cgi-win/runwin.exe?HTLS:LISTSERV::MYKEYWORD">
+</pre>
+
+<p>Of course, you would need to adjust the URL to fit your server.</p>
+
+(~mcWhDemoFontOn~)
+Sample INI File Entry
+(~mcWhDemoFontOff~)
+<pre>
+[WebMailForm.TestFake]
+HOST=mail.sonic.net
+Port=25
+FROM=surferemail^
+TO=info@href.com
+SUBJECT=n/a
+Template=..\letters\testfake.txt
+ExcludeLiterals=true
+NextPage=thanks
+LogToFile=false
+</pre>
+
+<p>It is important to set <code>ExcludeLiterals</code> to TRUE so that the message only includes the text in the template file. Otherwise ALL form StringVars will be included in the e-mail message -- that is good for inhouse testing but bad for majordomos.</p>
+
+(~mcWhDemoFontOn~)
+Unsubscribe Command
+(~mcWhDemoFontOff~)
+To add UNSUBSCRIBE, add another section to the WebMailForm settings, and create a parallel form that uses that keyword instead of TESTFAKE.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

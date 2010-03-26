@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTASYNC=Background Processing
+mcWhDemoCreditIdeaHTASYNC=Michael Ax
+mcWhDemoCreditFirstDraftHTASYNC=Michael Ax
+mcWhDemoCreditGraphicsHTASYNC=n/a
+mcWhDemoCreditCopyHTASYNC=Martha V. Moore
+mcWhDemoUpdatedHTASYNC=2-Apr-2003
+mcWhDemoKeywordsHTASYNC=Asynchronous processing,background processing, percent complete, partial completion,TWhAsync
+mcWhDemoLiteHTASYNC=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTASYNC">
+<ol>
+<li> This demo requires WebHub  v1.73+ </li>
+
+<li> The &quot;Keep Connection Open&quot; portions of Demo 2 require a WebHub 
+ISAPI runner dated 7-Jun-1999 or later.</li>
+
+<li>  The second demo requires a JavaScript enabled browser that supports HTML FORMs. </li>
+
+</ol>
+</whdroplet>
+<whtranslation key="~whDemoShortDescHTASYNC">
+This application demonstrates asynchronous coding techniques using WebHub.  There are 3 parts 
+to the demo: explanatory text and diagrams, a simulation involving a slow database query, and 
+a group of examples which showcase the variety of settings and features available to WebHub programmers 
+using these techniques.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTASYNC">
+We recommend these techniques for sites that include slow processes, because they let you provide 
+a quick reply to the surfer, plus optional ongoing status information while the processing goes on in 
+a background thread.
+</whtranslation>
+
+</whteko>

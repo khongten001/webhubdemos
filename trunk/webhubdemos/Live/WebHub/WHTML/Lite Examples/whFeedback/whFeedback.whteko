@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForHTFD">
+(~GO|pgSimpleForm|1. Quick EMailing of Form StringVars~)<br />
+(~GO|pgFeedback|2. Feedback Message~)<br />
+(~GO|pgFormLetter|3. Template/Form Letter~)<br />
+</whdroplet>
+
+<whpage pageid="pgEnterHTFD" desc="Various ways to use the WebHub Mail Panel">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+This demo shows you three different ways to use WebHub's WebMail panel
+to incorporate surfer input into emailed messages.  The three examples are
+all listed in the speedbar that appears on every page:  a simple display of the
+ form StringVars containing the surfer input, a feedback template
+that  incorporates the surfer input in a lightly formatted form, and a
+"mailmerge" example that uses a more highly formatted template.
+<br /><br />
+Try them out!
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgFeedback" desc="Feedback Message using a template and the WebMail Panel">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+ (~drHead~)
+ <style type="text/css">
+ #feedbackmessage td.prompt{
+  vertical-align: top;
+  text-align: right;
+  font-weight:700;
+ }
+ </style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>2. Feedback Message</h1>
+This example uses a template file (feedback.txt) for the email message, which
+ incorporates the StringVars from the following form with a slight amount of formatting.
+
+ <form method="post" action="(~|pgFeedbackResult~)">
+<table id="feedbackmessage" cellspacing="0">
+<tr>
+ <td class="prompt">Your e-mail  (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMail~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your name</td>
+ <td>(~INPUTTEXT|Fullname~)</td>
+</tr>
+<tr>
+ <td class="prompt">Send to (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMailTo~)</td>
+</tr>
+<tr>
+ <td class="prompt">Message</td>
+ <td>(~inputtextarea|txtMessage,5,60~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your phone number</td>
+ <td>(~INPUTTEXT|Telephone~)</td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="submit" value="Send Info" /></td>
+</tr>
+</table>
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgFeedbackResult">
+<whprep>
+(~REQUIRES|Email|STARTOVER~)
+(~REQUIRES|EmailTo|STARTOVER~)
+(~REQUIRES|Subject|STARTOVER~)
+(~webmailform.execute|Feedback~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>2. Feedback Message - Result</h1>
+<b>Thank you for sending us feedback!</b>
+
+<table>
+<tr>
+<td>
+Here is the template used in this example, feedback.txt:
+</td>
+
+<td>
+If you're sitting at your web server machine, you can watch the dialog between
+this application and your web server.
+</td>
+</tr>
+
+<tr>
+<td align="center">
+<table width="60%">
+<tr>
+<td>
+FEEDBACK MESSAGE
+<br />
+From:    (~.EMail~)
+<br />
+Subject: (~.Subject~)
+<br />
+Date:    <span class="changing">(~.CentralInfo.webtimegmt~)</span>
+<br />
+(~.txtMessage~)
+<br />
+###
+</td>
+</tr>
+</table>
+</td>
+
+
+<td>
+<table border="0">
+<tr>
+<td>
+<ul>
+<li> Click to the Mail tab in this web application.</li>
+
+<li> Make sure that View|Toolbar is turned on.</li>
+
+<li> Click the [Show Dialog] button to display the e-mail dialog.</li>
+</ul>
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="STARTOVER" desc="Surfer Must Start Over">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<strong>You have not filled in all the required fields. Please try again.</strong>
+<p>This is what we do have: (~Request.FormData~)</p>
+
+<hr />
+<p>(~pgEnterHTFD~)</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whmacros>
+mcSelectArtist=Picasso-Picasso,Chagall-Chagall,Kandinsky-Kandinsky,Miro-Miro,Rockwell-Rockwell,Monet-Monet,Seurat-Seurat,Other-Other
+</whmacros>
+<whpage pageid="pgFormLetter" desc="Template Letter">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+ (~drHead~)
+ <style type="text/css">
+ #templateletter {
+  border:0;
+  width:100%;
+ }
+ #templateletter td.prompt {
+  vertical-align: top;
+  text-align: right;
+  font-weight:700;
+ }
+ </style>
+</head>
+<body>
+<div id="whdemopagecontent">
+(~drPageBegin~)
+<h1>3. Template / Form Letter</h1>
+<p>This example demonstrates a "mail merge" letter that incorporates surfer input.
+This is essentially the same technique as the feedback example, just
+with more extensive formatting of the template.</p>
+
+<form method="post" action="(~ACTION|pgFormLetterResult,webmailform.FormLetter~)">
+<table id="templateletter">
+<tr>
+ <td class="prompt">Your e-mail  (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMail~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your Full Name:</td>
+ <td>(~INPUTTEXT|FullName,40,40~) </td>
+</tr>
+<tr>
+ <td class="prompt">E-mail Address To:</td>
+ <td>(~INPUTTEXT|EMailTo,20,25~)</td>
+</tr>
+<tr>
+ <td class="prompt">Message subject:</td>
+ <td>(~INPUTTEXT|Subject,40,40~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your Favorite Color:</td>
+ <td>(~INPUTRADIO|Acolor,Red~)Red  (~INPUTRADIO|Acolor,Blue~)Blue (~INPUTRADIO|Acolor,Yellow~)Yellow (~INPUTRADIO|Acolor,Green~)Green</td>
+</tr>
+<tr>
+ <td class="prompt">Your Favorite Artist:</td>
+ <td>(~INPUTSELECT|Artist,mcSelectArtist,1,NO~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your Message:</td>
+ <td>(~inputtextarea|txtMessage,5,40~)</td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="submit" value="Send Form Letter" /></td>
+</tr>
+</table>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+<whpage pageid="pgFormletterResult" desc="Send an EMail">
+<!--- This page calls the webmailform component. Based on
+the command passed in on the URL, the component will find settings from
+the INI file and send mail accordingly.  -->
+<whprep>
+(~REQUIRES|Email|STARTOVER~)
+(~REQUIRES|Subject|STARTOVER~)
+(~REQUIRES|EmailTo|STARTOVER~)
+(~webmailform.execute~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">
+
+<b>We have sent your message...
+here is the template we used for it: </b>
+
+<table width="60%"  border="1">
+<tr>
+<td>
+(~.CentralInfo.webtimegmt~)
+<p>Dear (~.FullName~),</p>
+<p>We're so glad to hear you like the color (~.aColor~).
+Your fondness for (~.aColor~) probably comes from
+the artist (~.Artist~), who used this color quite skillfully.</p>
+<p>We'd like to echo this sentiment you expressed:</p>
+<p>(~.txtMessage~)</p>
+<p>Thanks for taking the time to write.</p>
+
+<p>Bye for now,</p>
+
+techsupport@href.com<br />
+Technical Support Department<br />
+HREF Tools Corp.
+</td></tr>
+</table></div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+
+<whpage pageid="pgSimpleForm" desc="Simple Form for Demo Use">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+ (~drHead~)
+ <style type="text/css">
+ #simple td.prompt {
+   text-align:right;
+   font-weight:700;
+ }
+ </style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>1. Quick EMailing of Form StringVars</h1>
+<p>This method is for situations where you simply want raw data, and the
+format of the resulting email is not important-- it will consist solely
+of all the literal names  and their current values. Email this to yourself and see!
+ To use this method, set up an entry in the Mail Panel
+for the page with the form whose input you are using, then configure
+the mail panel using the literal names from your form.
+Note that this example does not use a template, so there is no path
+listed.</p>
+
+<form method="post" action="(~ACTION|pgSimpleFormResult~)">
+<table id="simple">
+<tr>
+ <td class="prompt">Your e-mail  (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMail~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your name</td>
+ <td>(~INPUTTEXT|Fullname~)</td>
+</tr>
+<tr>
+ <td class="prompt">Send to (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMailTo~)</td>
+</tr>
+<tr>
+ <td class="prompt">Subject (<i>required</i>)</td>
+ <td>(~INPUTTEXT|Subject~)</td>
+</tr>
+<tr>
+ <td class="prompt">Message</td>
+ <td>(~inputtextarea|txtMessage,5,60~)</td>
+</tr>
+<tr>
+ <td class="prompt">Your phone number</td>
+ <td>(~INPUTTEXT|Telephone~)</td>
+</tr>
+<tr>
+ <td>&nbsp;</td>
+ <td><input type="submit" value="Send Info" /></td>
+</tr>
+</table>
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgSimpleFormResult" desc="Result of Posting the Simple Form">
+<whprep>
+(~REQUIRES|Email|STARTOVER~)
+(~REQUIRES|Subject|STARTOVER~)
+(~REQUIRES|EmailTo|STARTOVER~)
+(~webmailform.execute|SimpleForm~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>1. Quick EMailing of Form StringVars - Result</h1>
+A simple message has been sent to (~EmailTo~) with all the "StringVars"
+that you have entered.  While this is extremely quick to set up and quite readable to webmasters
+and programmers, many business situations require more control over message contents.
+You'll find this in the other two examples...
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+</whteko>

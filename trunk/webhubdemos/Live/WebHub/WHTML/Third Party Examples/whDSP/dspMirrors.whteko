@@ -1,0 +1,45 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdsp">
+
+<whpage pageid="Mirrors" desc="dsp.href.com: Mirrors for the Delphi Super Page Files">
+<whpagesettings>
+googlesitemap=include_all_lingvo
+googlechangefreq=monthly
+googlepriority=0.1
+metarobot=index,follow
+metadescription=Mirror sites
+metakeywords=Delphi super page mirror sites
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<form method="post" action="(~actionr|pgEnterDSP~)">
+<h1>Select DSP Mirror that you would like to download from:</h1>
+<table id="mirrors">
+<tr>
+  <td>(~waMirrors.Execute|~)</td>
+</tr>
+</table>
+<p><input type="submit" value="Continue with currently selected DSP mirror" /></p>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+<whmacros>
+<!--- These 2 macros are called from within Delphi as well. -->
+<!--- Actually only the 1st one seems to be used. Not sure yet. Aug 2004 -->
+mcMirrTD=<td>
+mcMirrTH=<th valign="top" bgcolor="#EEEEEE">
+</whmacros>
+
+</whteko>
