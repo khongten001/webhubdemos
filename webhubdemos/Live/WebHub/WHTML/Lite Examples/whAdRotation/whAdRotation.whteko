@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko  
+	defaultlingvo="eng"  
+	designlingvo="eng" 
+	designpage="pgEnterADV"  
+	designdynsrc="adv-live"  
+	designmode="code">
+ 
+<whdroplet name="drDemoSpeedbarForADV">
+[(~GO|Cycle2|Internal Workings~)]<br />
+[(~GO|Cycle2A|Cycle List Navigation Bar~)]<br />
+[(~Go|CycleHow|How to Use it~)]<br />
+</whdroplet>
+
+<whpage pageid="pgEnterADV" desc="Overview of the WebHub Component Named WebCycle">
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" (~ASSIGNED|guestlingvo| lang="(~guestlingvo~)"~)>
+<head>
+	(~drHead~)
+<whdroplet name="drStyleBookAds" show="yes">
+<style type="text/css">
+.booktitle {
+	font-size: 1.5em;
+	color:#D00;
+}
+</style>
+</whdroplet>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Overview of the WebHub Component Named WebCycle</h1>
+
+<p>WebCycle is a component of type TwhCycle 
+that cycles through a list of predefined items.  One use for 
+WebCycle is to display a series of advertisements as surfers move
+through a dynamic web site.  Here is an example:</p>
+
+<!--- Execute the component, to display the next ad in the list. -->
+<p>(~WebCycle.Execute~)</p>
+<!--- Give the surfer something to click on to make this page run again, which
+will show the next ad.  Use the JUMPR macro so the browser can not cache! -->
+<p>(~JUMPR|(~PAGEID~)||Click to Show Next Advertisement~)</p>
+
+<h2>What can be in an advertisement?</h2>
+<p>Each advertisement can be made up of any combination of HTML,
+graphic images, multimedia links, JavaScript, and/or java applet code.
+This means you can support <i>any</i> advertisement code snippet
+that you want, including the so-called &quot;Beyond the Banner&quot;
+ads that combine HTML, JavaScript and graphics. You have control over the
+sequence of the ads presented, and there
+is no limit to the number of droplets you can cycle through.</p>
+
+<h2>How is it that I keep seeing new ads?</h2>
+<p>The component automatically saves-state on a surfer-by-surfer basis.
+As long as your session number stays constant (currently (~sessionID~)), you will keep
+advancing through the list of book advertisements. If you click the Logout link
+in the page footer, you are simulating being a new surfer, and the WebCycle
+component will start over again at the beginning of the list. This means that
+you can prioritize your advertisements by order of appearance, and you can also list
+particular droplets more than once, to give them increased exposure.</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+<whpage pageid="CycleList" desc="Display of ALL items in the WebCycle list">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drStyleBookAds~)
+</head>
+<body> 
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~) (total of (~webcycle.itemcount~) items)</h1>
+(~webcycle.items~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="Cycle2" desc="Displaying the Previous, Current and Next Items">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drStyleBookAds~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>Internally, the WebCycle component stores a list of items, usually droplet names.
+For each surfer, the component starts a counter at zero, and shows the advertisement
+corresponding to the counter number (known as the Index).     With each mouse click,
+ the Index will automatically advance by one until it reaches the
+ end, then it cycles back to zero.  </p>
+
+<p>This is the  typical, default way in which the component works.  However, you can also
+manipulate the index by passing commands to the component via the URL.
+This method is shown (~JUMP|Cycle2a|here~), and is described further in the
+ WebHub Help file.</p>
+
+<p>While you are developing your site, you may find it helpful to display
+more information than you would on a live site.
+This page shows how you can use W-HTML to display at any time the <b>index number and content</b>
+associated with the <b>previous</b> ad, the <b>current</b> ad and the <b>next</b> ad.</p>
+
+<table id="advertisement" border="1" cellspacing="0">
+<tr>
+<td>
+Information about the <b>previous</b> ad:
+<p>Index Number: (~WebCycle.PrevIndex~)</p>
+Content::
+<div class="dcenter">
+(~WebCycle.PrevItem~)
+</div>
+</td></tr>
+<tr>
+<td>
+Information about the <b>current</b> ad:
+<p>Index Number: (~WebCycle.ItemIndex~)</p>
+Content::
+<div class="dcenter">(~WebCycle.Item~)</div>
+</td></tr>
+<tr><td>
+Information about the <b>next</b> ad:
+<p>Index Number: (~WebCycle.NextIndex~)</p>
+Content:
+<div class="dcenter">
+(~WebCycle.NextItem~)
+</div>
+</td></tr>
+</table>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="drCycleNavigation">
+<whdoc>
+Note: The TwhCycle component can take commands to advance or back up its position, as shown below.
+</whdoc> 
+<div class="dcenter">
+(~JUMPR|(~PageID~),WebCycle.First|First~)&nbsp;|&nbsp;
+(~JUMPR|(~PageID~),WebCycle.Prev|Prev~)&nbsp;|&nbsp;
+(~JUMPR|(~PageID~),WebCycle.This|This~)&nbsp;|&nbsp;
+(~JUMPR|(~PageID~),WebCycle.Next|Next~)&nbsp;|&nbsp;
+(~JUMPR|(~PageID~),WebCycle.Last|Last~)&nbsp;|&nbsp;
+(~JUMPR|(~PageID~),WebCycle.Random|Random~)
+</div>
+</whdroplet>
+
+<whpage pageid="Cycle2A" desc="Cycle List Navigation Bar">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drStyleBookAds~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>The cycle index determines which advertisement is displayed.
+It can be altered by the WebHub Command, which is automatically read from the final part
+of the URL (the part following the session number).   If no command is given, the default
+behavior is to advance to the <b>Next</b> advertisement.</p>
+
+<p>The WebCycle component understands six commands: <code>First, Prev, This, Next, Last</code> and <code>Random</code>.
+This page demonstates how each link in a navigation bar can
+send a different command to the WebCycle component via the URL. Click any of the following links
+and watch the URL (and therefore the command) change.</p>
+
+(~drCycleNavigation~)
+
+<p>The WebCycle index number started out at number <b>(~webcycle.ItemIndex~)</b>
+and the WebHub command was: <b>(~htWebApp.Command~)</b>.
+See below to see how the index number changes...</p>
+
+// Execute the component to show an advertisement....
+<div class="dcenter">
+(~webcycle.execute~)
+</div>
+
+<p>At this point, the WebCycle component has executed (that is why you see
+an advertisement above) and the index number is now: <b>(~webcycle.ItemIndex~)</b>.
+Links are repeated for your convenience:</p>
+
+(~drCycleNavigation~)
+
+<h2>Why would I use a navigation bar?</h2>
+<p>Navigation bars can be particularly helpful when proofreading the content of
+your ads.  Make yourself an admin-only page with a navigation bar as shown in this demo.</p>
+
+<p>Another use for such a navigation bar would be on a web site that presents a series of points, and
+you'd like to make it easy for the reader to navigate among the points.</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="drBook">
+<whdoc for="drBook" show="no">
+Usage: required parameters for this droplet
+ dyn1 = book title
+ dyn2 = price
+ dyn3 = isbn number for use in amazon.com link
+</whdoc>
+<div style="border: solid 1px #000;padding:10;text-align:center;width:30em;">
+ <p>Sample advertisement for session #(~SessionID~):</p>
+ <p>Buy this Book !</p>
+ <p><span class="booktitle">(~DYN1~)</span></p>
+ <a href="http://www.amazon.com/exec/obidos/ISBN%3D(~DYN3~)/hreftoolscorpA/">Only <b>(~DYN2~)</b> at Amazon.com</a>
+</div>
+</whdroplet>
+
+<whpage pageid="CycleRefresh">
+(~WebCycle.Refresh~)
+</whpage>
+
+<whpage pageid="CycleHow" desc="How to use the WebCycle Component Yourself">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+There are basically two good approaches, and the decision depends on
+how similar the HTML is for each item in the list.
+<ol>
+<li> The simplest approach is to make a separate WebHub droplet for
+each advertisement, and then itemize the droplet names in a list.
+<!--- Use the menu: Components > WebCycle > Edit Items to do this! -->
+</li>
+<li> Another approach is to make a generic WebHub droplet, and then
+use parameters to fill in the specifics within that droplet.  For example,
+in this demo, we used a single droplet and used the PARAMS
+macro to pass in the book title,
+price and ISBN number.  Those variables were chosen because they
+are the only pieces of information changing from ad to ad.  It may not
+be obvious what else is in the ad, but all the formatting, font coloring,
+table syntax, part of the link to amazon, etc. is part of the generic
+droplet.  Using a generic droplet is especially helpful if you have
+*lots* of ads; in this demo, there are (~webcycle.itemCount~)!
+<br />
+ (~JUMP|CycleList|Click here to see all (~webcycle.itemcount~) ads in this demo.~)
+</li>
+</ol>
+After you have your list defined and your droplets ready, display
+advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="short">
+123
+</whpage>
+
+</whteko>

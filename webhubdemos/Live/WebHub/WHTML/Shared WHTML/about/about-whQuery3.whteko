@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTQ3=SQL - Generic
+mcWhDemoCreditIdeaHTQ3=Ann Lynnworth
+mcWhDemoCreditFirstDraftHTQ3=Ann Lynnworth
+mcWhDemoCreditGraphicsHTQ3=Rob Daniels
+mcWhDemoCreditCopyHTQ3=Rob Daniels
+mcWhDemoUpdatedHTQ3=May-1998
+mcWhDemoKeywordsHTQ3=database,query,sql,dynamic content
+mcWhDemoLiteHTQ3=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTQ3">
+<ul>
+<li> (~mcWhDemoVCLIcon~) Requires whQuery3.exe </li>
+
+<li> The Borland Database Engine is required (incl. with Delphi).</li>
+
+<li> The Database directory is set up through the Pascal code. You can change it. 
+The default is to use the WebHub demos data directory, which contains the Paradox 
+table employee.db used in the example.</li>
+</ul>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTQ3">
+This demo shows how things can work if you count on the surfer knowing SQL syntax.  
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTQ3">
+<h3>Program Flow</h3>
+<ul>
+<li>The surfer requests the homepage.</li>
+<li>The runner calls the hub, which queues the request to the htqry3.exe, and executes the homepage (TwhPage).</li>
+<li>There is no custom processing on homepage, so it is returned in standard fashion, with 3 sections: drHeader, homepage and drFooter.  (See htqry3.ini, [homepage] section for this page definition.)</li>
+<li>The surfer fills in an SQL statement and clicks the submit button, which requests the RESULT page because of the FORM ACTION inside the HTML.</li>
+<li>The request gets to htqry3.exe, and executes the result page.</li>
+<li>A macro on the result page closes any prior query.</li>
+<li>The next macro is (~.webdatagrid1.execute~), which tells that component to execute. <br />
+The TwhdbGrid component requests the DataSet, which is closed.  It is automatically opened, so the query runs</li>
+<li> The TwhdbGrid displays the result of the query in an HTML table, with 'scroll buttons' for next page, etc.</li>
+<li>If the surfer clicks the 'next page' button, another request for the RESULT page is generated with a command.</li>
+<li> The command (e.g. webdatagrid1.next) is sent directly to the webdatagrid1 component, and it 'scrolls' to the next page.</li>
+</ul>
+</whtranslation>
+
+
+</whteko>

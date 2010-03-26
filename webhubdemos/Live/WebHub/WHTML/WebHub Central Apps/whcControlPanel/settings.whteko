@@ -1,0 +1,310 @@
+<whteko designmode="code">
+
+<whpagesettingslist id="settings">
+WHCPSecurePage=yes
+</whpagesettingslist>
+
+<whpage pageid="pgSettings" desc="Settings">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~JUMP|pgWebSetups|AppIDs~)<BR>
+(~JUMP|pgBounceTo|BounceTo~)<BR>
+(~JUMP|pgServerIDs|ServerIDs~)<BR>
+(~JUMP|pgRunners|Runners~)<BR>
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgBounceTo" desc="Bounce-To">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+<P ALIGN=RIGHT>
+(~JUMP|pgGridSettingsAdd,waNewGridSetting.B,waSettingsGridRow.B|<IMG SRC="(~mcWHCPImg~)add.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Add AppID">Add BounceTo~)
+</P>
+<TABLE BORDER="1">
+<tr><td>AppID</td><td>Bar separated list of ServerIDs</td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete"></td>
+</tr>
+(~waSettingsGrid.Execute|B|gs|chGridItemTwoCols~)
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgRunners" desc="Runners">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+<P ALIGN=RIGHT>
+(~JUMP|pgGridSettingsAdd,waNewGridSetting.R,waSettingsGridRow.R|<IMG SRC="(~mcWHCPImg~)add.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Add AppID">Add Runners~)
+</P>
+<TABLE BORDER="1">
+<tr><td>Runnername [name.ext]</td><td>Forces this AppID</td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete"></td>
+</tr>
+(~waSettingsGrid.Execute|R|gs|chGridItemTwoCols~)
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgServerIDs" desc="ServerIDs">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+<P ALIGN=RIGHT>
+(~JUMP|pgGridSettingsAdd,waNewGridSetting.S,waSettingsGridRow.S|<IMG SRC="(~mcWHCPImg~)add.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Add AppID">Add ServerIDs~)
+</P>
+<TABLE BORDER="1">
+<tr><td>ServerID</td><td>HTTP://IP[:port]/</td><td>cgi-path/</td><td>webhub-runner.exe</td><td>uses filter</td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete"></td>
+</tr>
+(~waSettingsGrid.Execute|S|gs|chGridItemFiveCols~)
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chGridItemTwoCols">
+<tr><td>(~gs0~)</td><td>(~gs1~)</td>
+<TD WIDTH="19">(~JUMP|pgGridSettingsEdit,waSettingsGridRow.(~gsGrid~)-(~gs0~)|<IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings">~)</td>
+<TD WIDTH="19">(~JUMP|pgGridSettingsDelete,waSettingsGridRow.(~gsGrid~)-(~gs0~)|<IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete">~)</td>
+</whdroplet>
+
+<whdroplet name="chGridItemFiveCols">
+<tr><td>(~gs0~)</td><td>(~gs1~)</td><td>(~gs2~)</td><td>(~gs3~)</td><td>(~gs4~)</td>
+<TD WIDTH="19">(~JUMP|pgGridSettingsEdit,waSettingsGridRow.(~gsGrid~)-(~gs0~)|<IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings">~)</td>
+<TD WIDTH="19">(~JUMP|pgGridSettingsDelete,waSettingsGridRow.(~gsGrid~)-(~gs0~)|<IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete">~)</td>
+</whdroplet>
+
+<whdroplet name="chGridSettingsForm">
+<TABLE BORDER="1">
+<tr><td>(~gsh0~)</td>
+(~MATCH|(~DYN1~)~E|<td>(~INPUTTEXT|gs0,60~)</td>
+||<td>(~gs0~)(~INPUTHIDDEN|gs0~)</td>~)</tr>
+(~FOR|i,1,gsCount|<tr><td>(~LIT|gsh|i~)</td><td><INPUT TYPE="TEXT" NAME="gs(~i~)" VALUE="(~LIT|gs|i~)" SIZE="60"></td></tr>~)
+
+<tr><TD COLSPAN="2">(~INPUTSUBMIT|aisButton,(~DYN2~)~) (~INPUTSUBMIT|aisButton,Cancel~)</td></tr>
+</table>
+</whdroplet>
+
+<whpage pageid="pgGridSettingsAdd" desc="internal page">
+<whpagesettings inherit="settings">
+</whpagesettings>
+<whprep>
+(~CLEAR|gs*~)
+(~CLEAR|whcpErrorCode~)
+</whprep>
+<whoutput>
+(~chWHCPHeader~)
+(~waSettingsGridRow||gs|~)
+(~chGridSettingsAddBounce~)
+(~chWHCPFooter~)
+</whoutput>
+</whpage>
+
+<whdroplet name="chGridSettingsAddBounce">
+(~BOUNCE|pgGridSettingsAddEdit,(~COMMAND~)~)
+</whdroplet>
+<whpage pageid="pgGridSettingsAddEdit" desc="Add">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~MATCH|(~whcpErrorCode~)=5|<FONT COLOR="RED">(~chSettingsType~) already exists!</FONT>~)
+(~INPUTFORM|pgGridSettingsAddPoster,(~COMMAND~)~)
+(~PARAMS|chGridSettingsForm|E,Add~)
+(~INPUTFORM|close~)
+(~chWHCPFooter~)
+</whpage>
+<whpage pageid="pgGridSettingsAddPoster" desc="internal page">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~MATCH|(~aisButton~)~Cancel|(~chGridSettingsBounce~)~)
+(~waNewGridSetting.Execute||gs~)
+(~MATCH|(~whcpErrorCode~)=5|(~chGridSettingsAddBounce~)||(~chGridSettingsBounce~)~)
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgGridSettingsEdit" desc="Edit">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~waSettingsGridRow.Execute||gs~)
+(~INPUTFORM|pgGridSettingsPoster~)
+(~PARAMS|chGridSettingsForm|,Update~)
+(~INPUTFORM|close~)
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgGridSettingsPoster" desc="internal page">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~NOMATCH|(~aisButton~)~Cancel|(~waUpdateGridSetting.Execute|(~SettingsList~)|gs~)~)
+(~chGridSettingsBounce~)
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chGridSettingsBounce">
+(~MATCH|(~SettingsList~)=B|(~BOUNCE|pgBounceTo~)~)
+(~MATCH|(~SettingsList~)=R|(~BOUNCE|pgRunners~)~)
+(~MATCH|(~SettingsList~)=S|(~BOUNCE|pgServerIDs~)~)
+</whdroplet>
+
+<whpage pageid="pgGridSettingsDelete" desc="Confirm">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~waSettingsGridRow.Execute||gs~)
+<TABLE BORDER="0">
+<tr><TD COLSPAN="3">Are you sure you want to delete the (~chSettingsType~) "(~gs0~)"?</td></tr>
+<tr><td>(~JUMP|pgGridSettingsDeletePoster,waDeleteGridSetting.(~SettingsList~)-(~gs0~)|YES~)</td><TD WIDTH="100">&nbsp;</td>
+<td>(~JUMP|pgGridSettingsDeleteCancel|NO~)</td></tr>
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgGridSettingsDeleteCancel" desc="Internal page">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~waSettingsGridRow.Execute||gs~)
+(~chGridSettingsBounce~)
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgGridSettingsDeletePoster" desc="internal page">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~waDeleteGridSetting.Execute~)
+(~chGridSettingsBounce~)
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chSettingsType">
+(~MATCH|(~SettingsList~)=B|Bounce-To||(~MATCH|(~SettingsList~)=R|Runners||(~MATCH|(~SettingsList~)=S|ServerIDs~)~)~)
+</whdroplet>
+
+<whpage pageid="pgWebSetups" desc="AppIDs">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+<P ALIGN=RIGHT>
+(~JUMP|pgAppIDAdd|<IMG SRC="(~mcWHCPImg~)add.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Add AppID">Add AppID~)
+</P>
+<TABLE BORDER="1" CELLSPACING="0" CELLPADDING="0" WIDTH="550">
+<tr><td>AppID</td><td>AppPath</td><td>AppIni</td><td>AppExe</td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete"></td>
+</tr>
+(~waApps.Execute|AppID|whcp|chWebSetupsAppID~)
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chWebSetupsAppID">
+<tr><td>(~whcpAppID~)</td><td>(~whcpAppPath~)</td><td>(~whcpAppIni~)</td><td>(~whcpAppExe~)</td>
+<TD WIDTH="19">(~JUMP|pgAppIDSettings,waAppInfo.(~whcpAppID~)|<IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Settings">~)</td>
+<TD WIDTH="19">(~JUMP|pgAppIDDelete,waAppInfo.(~whcpAppID~)|<IMG SRC="(~mcWHCPImg~)remove.jpg" HEIGHT="22" WIDTH="19" BORDER="0" ALT="Delete">~)</td>
+</tr>
+</whdroplet>
+
+<whdroplet name="chAppIDSetingsForm">
+<TABLE BORDER="0">
+<tr><td>AppID</td>
+(~MATCH|(~DYN1~)~E|<td>(~INPUTTEXT|whcpAppID,60~)</td>
+||<td>(~whcpAppID~)(~INPUTHIDDEN|whcpAppID~)</td>~)</tr>
+<tr><td>AppPath</td><td>(~INPUTTEXT|whcpAppPath,60~)</td></tr>
+<tr><td>AppIni</td><td>(~INPUTTEXT|whcpAppIni,60~)</td></tr>
+<tr><td>AppExe</td><td>(~INPUTTEXT|whcpAppExe,60~)</td></tr>
+<tr><TD COLSPAN="2">(~INPUTSUBMIT|aisButton,(~DYN2~)~) (~INPUTSUBMIT|aisButton,Cancel~)</td></tr>
+</table>
+</whdroplet>
+
+<whpage pageid="pgAppIDSettings">
+<whprep>
+(~PUSHPRIOR|_AppIDSettingsPrior~)
+(~PAGE|pgAppIDSettings2,(~COMMAND~)~)
+</whprep>
+</whpage>
+
+
+<whdroplet name="chAppIDSettings2Bounce">
+(~BOUNCE|pgAppIDSettings2~)
+</whdroplet>
+
+<whpage pageid="pgAppIDSettings2">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~StringVars~)
+(~SettingsBouncePage~)
+(~waAppInfo.Execute||whcp~)
+(~INPUTFORM|pgAppIDSettingsPoster~)
+(~PARAMS|chAppIDSetingsForm|,Update~)
+(~INPUTFORM|close~)
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgAppIDSettingsPoster">
+(~NOMATCH|(~aisButton~)~Cancel|(~waUpdateAppID|(~whcpAppID~)|whcp~)~)
+(~_AppIDSettingsPrior~)
+(~MATCH|(~_AppIDSettingsPrior~)~pgAppsPoster|(~BOUNCE|pgApps~)||
+(~POPPAGE|_AppIDSettingsPrior~)~)
+</whpage>
+
+<whpage pageid="pgAppIDDelete" desc="Confirm deletion of AppID">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~waAppInfo.Execute||whcp~)
+(~NOMATCH|(~whcpAppCount~)=0|<FONT COLOR="RED">Can't delete an AppID when there are running instances serving that AppID!
+</FONT><BR><BR>
+(~JUMP|pgWebSetups|Go back~)
+||
+<TABLE BORDER="0">
+<tr><TD COLSPAN="3">Are you sure you want to delete the AppID "(~whcpAppID~)"?</td></tr>
+<tr><td>(~JUMP|pgAppIDDeletePoster,(~whcpAppID~)|YES~)</td><TD WIDTH="100">&nbsp;</td>
+<td>(~JUMP|pgWebSetups|NO~)</td></tr>
+</table>
+~)
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgAppIDDeletePoster" desc="internal page">
+(~waDeleteAppID.Execute~)
+(~chWebSetupsBounce~)
+</whpage>
+
+<whpage pageid="pgAppIDAdd" desc="internal page">
+(~CLEAR|whcpAppID~)
+(~CLEAR|whcpAppExe~)
+(~CLEAR|whcpAppIni~)
+(~CLEAR|whcpAppPath~)
+(~CLEAR|whcpErrorCode~)
+(~CLEAR|whcpErrorMsg~)
+(~chAppIDAddEditBounce~)
+</whpage>
+
+<whpage pageid="chAppIDAddEditBounce" desc="internal page">
+(~BOUNCE|pgAppIDAddEdit~)
+</whpage>
+<whpage pageid="pgAppIDAddEdit" desc="Add AppID">
+<whpagesettings inherit="settings">
+</whpagesettings>
+(~chWHCPHeader~)
+(~MATCH|(~whcpErrorCode~)=2|<FONT COLOR="RED">AppID already exists!</FONT>~)
+(~INPUTFORM|pgAppIDAddPoster~)
+(~PARAMS|chAppIDSetingsForm|E,Add~)
+(~INPUTFORM|close~)
+(~chWHCPFooter~)
+</whpage>
+<whpage pageid="pgAppIDAddPoster" desc="Internal page">
+(~MATCH|(~aisButton~)~Cancel|(~chWebSetupsBounce~)~)
+(~waNewAppID.Execute|(~whcpAppID~)|whcp~)
+(~MATCH|(~whcpErrorCode~)=2|(~chAppIDAddEditBounce~)||(~chWebSetupsBounce~)~)
+</whpage>
+</whteko>

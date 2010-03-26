@@ -1,0 +1,2 @@
+inherited DMForWHSendMail: TDMForWHSendMail
+end

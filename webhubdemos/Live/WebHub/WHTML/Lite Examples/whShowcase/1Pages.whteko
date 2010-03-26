@@ -1,0 +1,243 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=pgEnterShowcase
+whSequenceFinal=pgEnterShowcase
+bSeqHdr=true
+bReqUl=true
+level=1
+levelKeyword=Pages
+htmlFilename=1Pages.whteko
+</whpagesettingslist>
+
+<whpage pageid="pgHTML" desc="Easier HTML">
+<whpagesettings inherit="a">
+downLink=PGBIGPICT
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>Web sites are a collection of linked pages, either static or dynamic; that is, generated
+ on the fly by another application.  Pages are usually considered the basic unit of a site,
+ but WebHub breaks pages down one step further,  into modular pieces known as 
+<i>sections</i>.  </p>
+<p>When you define a WebHub page, you give it a particular name, its PageID.
+When a Page ID is invoked, WebHub generates that page dynamically, based on its
+ page section definitions.  There are a number of advantages to such a design.</p>
+
+<p>This <b>Page Publishing Paradigm</b> allows you to build small, complete units that
+can be re-used across multiple projects, saving a great deal of time and effort.   
+The order of the units can be changed quickly and easily, and you can
+also create pages with conditional sections,  which will only appear if certain specified
+conditions are met.</p>
+<p>The use of WebHub macros simplifies page definition even further, 
+allowing you to name and reuse specific pieces of HTML. 
+When you call the names with the macro syntax, it expands into full
+ HTML at run time.</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barHTML">
+(~GO|PGBIGPICT|How and Why~)(~mcHeadingSeparator~)
+(~GO|PGREUSABLE|Reusable HTML~)(~mcHeadingSeparator~)
+(~GO|PGDYNAMICLINKS|Dynamic Links~)(~mcHeadingSeparator~)
+(~GO|PGWHMACROS|Event Macros~)(~mcHeadingSeparator~)
+(~GO|PGFRAMES|Frames~)
+</whdroplet>
+
+<whdroplet name="ulPgHTML">
+(~GO|PGBIGPICT|How and Why WebHub Works~)<br/>
+(~GO|PGREUSABLE|Reusable Pieces of HTML~)<br/>
+(~GO|PGDYNAMICLINKS|Dynamic Links Within a Site~)<br/>
+(~GO|PGWHMACROS|WebHub Commands~)<br/>
+(~GO|PGFRAMES|Frames~)<br/>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgWebMaster" desc="WebMaster Topics">
+<whpagesettings inherit="a">
+downLink=PGSECURITY
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The cost of maintaining your site can be as high or higher than that of developing it. 
+WebHub helps you to build powerful yet easy to maintain sites by providing
+ explicit support for common website maintenance tasks, such as: 
+<ul>
+<li>maintaining site security
+<li>testing the speed of your site 
+<li>cycling requests for large media files
+</ul>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barWebMaster">
+(~GO|PGSECURITY|Security~)(~mcHeadingSeparator~)
+(~GO|PGTIMESTATS|Timing~)(~mcHeadingSeparator~)
+(~GO|PGBUILTINPAGES|WebHub Built-In Pages~)(~mcHeadingSeparator~)
+(~GO|PGSTYLESHEETS|Style Sheets~)(~mcHeadingSeparator~)
+(~GO|PGRTTI|RTTI~)
+</whdroplet>
+
+<whdroplet name="ulPgWebMaster">
+(~GO|PGSECURITY|Site Security~)<br/>
+(~GO|PGTIMESTATS|Timing Statistics~)<br/>
+(~GO|PGBUILTINPAGES|WebHub Built-In Pages~)<br/>
+(~GO|PGSTYLESHEETS|Style Sheets~)<br/>
+(~GO|PGRTTI|RTTI Properties~)<br/>
+</whdroplet>
+
+
+
+<whpage pageid="pgForms" desc="Forms with Built-in Save-State">
+<whpagesettings inherit="a">
+downLink=PGWIDGETS
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+As you may already know, CGI programming is usually required to process an HTML form.  
+WebHub handles all the steps that usually require a custom CGI application, and it makes them simple. 
+<p>
+WebHub takes care of tracking the surfer and his/her data. 
+WebHub also increases the capabilities of HTML authors, letting you use the surfer's data 
+in many ways during dynamic page creation. 
+<p>
+How does it work? WebHub creates a new component for each new surfer 
+(called the <b>TWebSession component</b>) and stores all the data entered by the surfer in just a few arrays.
+As you go through the following examples, click View Source to see the HTML code which underlies these forms. 
+To watch the contents of the of TWebSession component expand as you go through the examples, click Set Preferences and check the SysInfo checkbox. 
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barForms">
+(~GO|PGWIDGETS|UI Widgets~)(~mcHeadingSeparator~)
+(~GO|PGTOGETHER|Together~)
+</whdroplet>
+
+<whdroplet name="ulPgForms">
+(~GO|PGWIDGETS|Standard Interface Widgets~)<br/>
+(~GO|PGTOGETHER|Putting it All Together~)<br/>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgEmail" desc="E-mail">
+<whpagesettings inherit="a">
+downLink=PGFEEDBACK
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub includes an e-mail component called <b>TwhMailForm.</b>
+TwhMailForm gathers up all the information that a surfer types into an HTML form and 
+sends it back to you via e-mail. The settings for the e-mail configuration are specified in an 
+.ini file for easy changes, and no custom programming is required. Thus, 
+even non-programmers can easily add form-to-e-mail capability 
+to their sites.
+<p>
+The following examples cover the sorts of features that WebHub can provide you -- without custom programming.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barEmail">
+(~GO|PGFEEDBACK|Feedback~)(~mcHeadingSeparator~)
+(~GO|PGFORMTOMAIL|Form-to-Mail~)
+</whdroplet>
+
+
+<whdroplet name="ulPgEmail">
+(~GO|PGFEEDBACK|Feedback Page~)<br/>
+(~GO|PGFORMTOMAIL|Form-to-Mail Feature~)<br/>
+</whdroplet>
+
+
+
+<whpage pageid="PgSurferTracking" desc="Surfer Tracking">
+<whpagesettings inherit="a">
+downLink=PGCOOKIES
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+When we say that WebHub can track the surfer, we mean that it remembers 
+information about each surfer between their disconnected page 
+requests.  We call this <b>Saving State.</b> It is shorthand for saying "save and restore
+information about the surfer's data state."
+<p>
+WebHub attaches a unique number to every surfer's visit to your site. 
+One benefit to  this unique surfer number is that WebHub can connect up multiple page requests 
+from the same person.  When a surfer finishes a page, his or 
+her data is stored in a component called TWebSession. When the surfer comes back, the 
+components restore the data from the previous request.  
+The data is stored on your web server machine -- 
+it does not need to travel back and forth between your server and the surfer's machine,
+possibly over insecure lines.  
+<p>
+WebHub makes building shopping cart and other question-response interfaces 
+much easier--and it doesn't require custom cgi programming.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barSurferTracking">
+(~GO|PGCOOKIES|Cookies~)(~mcHeadingSeparator~)
+(~GO|PGCHARGING|Microcharging~)
+</whdroplet>
+
+
+<whdroplet name="ulPgSurferTracking">
+(~GO|PGCOOKIES|Cookies~)<br/>
+(~GO|PGCHARGING|Microcharging Surfers~)<br/>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgJava" desc="Java, JavaScript and XML">
+<whpagesettings inherit="a">
+downLink=PGJAVACL
+showcaseBranch= <!--- empty -->
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub works with other web development tools to provide you with full-featured 
+application design and support. The following examples will show you how easy it is to integrate Java and JavaScript into your WebHub applications. None of these examples require custom programming.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barJava">
+(~GO|PGJAVACL|Clock~)(~mcHeadingSeparator~)
+(~GO|PGMARQUEE1|Tickertape~)(~mcHeadingSeparator~)
+(~GO|PGSIMPLEAJAX|Ajax~)(~mcHeadingSeparator~)
+(~GO|pgAboutXML|XML~)(~mcHeadingSeparator~)
+(~GO|pgAboutCSV|CSV~)
+</whdroplet>
+
+<whdroplet name="ulPgJava">
+(~GO|PGJAVACL|Clock Example~)<br/>
+(~GO|PGMARQUEE1|Tickertape Marquee Example~)<br/>
+(~GO|PGSIMPLEAJAX|Simple Ajax Example~)<br />
+(~GO|pgAboutXML|About XML~)<br />
+(~GO|pgAboutCSV|About CSV~)<br />
+</whdroplet>
+
+
+
+<whpage pageid="pgImagine" desc="Unleash Your Imagination">
+<whpagesettings inherit="a">
+downLink=PGSLIDESHOW
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Let your imagination run free with WebHub. WebHub can expand to perform unexpected tasks on the Web, like automatically advancing slide shows.
+<p>
+By using Delphi in addition to HTML, WebHub can create customized web components to do whatever you can imagine.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barImagine">
+(~GO|PGSLIDESHOW|Slide Shows~)(~mcHeadingSeparator~)
+(~GO|PGCOMPONENTS|Components~)
+</whdroplet>
+
+<whdroplet name="ulPgImagine">
+(~GO|PGSLIDESHOW|Slide Shows~)<br/>
+(~GO|PGCOMPONENTS|WebHub Components for Delphi~)<br/>
+</whdroplet>
+
+</whteko>

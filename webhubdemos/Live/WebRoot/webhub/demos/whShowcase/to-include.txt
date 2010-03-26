@@ -1,0 +1,9 @@
+<h2>to-include.txt</h2>
+
+<p>an example of including some text via INCLUDE command or SendFile method</p>
+
+(~SET|hpsite=UK~)
+<p>
+(~match|(~hpsite~)=NZ|The trip cost shown on this form is for standard arrangements and will be different if you have requested a variation. Once submitted, you will be able to print out a booking summary for reference. You will then be sent a booking confirmation which will include a price breakdown itemising any special arrangements. Some trips may require a larger deposit - if this applies we will contact you ~)
+       (~match|(~hpsite~)=UK|The trip cost shown is for standard land only arrangements and will be different if you have requested a variation, e.g. an extension. If High Places are getting your flights, we will ask you for an additional deposit, or in some cases full payment, in order to secure availability or the best price. We will contact you to confirm the final deposit if it differs from the above. Once this form is submitted, you will be able to print out a booking summary for reference. You will then be sent a booking confirmation which will include a price breakdown including any special arrangements ~)
+</p>

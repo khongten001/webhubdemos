@@ -1,0 +1,72 @@
+<whteko>
+
+<whmacros>
+mcContinue=&nbsp;(~JUMP|sample,webcycle.Next|Next&nbsp;Tip...~)
+</whmacros>
+
+<whdroplet name="chPoint1">
+Welcome to the <b>Interactive Demo of the VCL Form to HTML Converter Component</b>. 
+<br>
+To learn about this component, experiment with the controls within the, or follow along 
+with the tour. The tour includes a total of (~webcycle.itemCount~) steps.
+<b>Ready for the guided tour ? Click here to (~JUMP|sample,webcycle.Next|go!~)</b>
+</whdroplet>
+
+<whdroplet name="chPoint2">
+In the form, find the panel labelled <b>target browser panel</b>. Your browser, 
+as detected by the TWHForm2HTML component, appears in <b>bold</b>.
+Now, change browsers to override the setting, and click on the "Submit Form" button. 
+The component will create different HTML for each browser type, to make your 
+VCL form show up as beautifully as possible! 
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint3">
+Let's talk about the reset buttons.  The "Reset Form" button is a standard HTML Reset button.
+The "Reset Data" button requests a page from the server, which resets the surfer's server-side 
+data back to the defaults. This gives the developer full dynamic control over default values.
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint4">
+To test the border options, select "Titlebar" from the border options list and select "[Same]" from 
+the BGColor drop-down list. Then click on "Submit form"...
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint5">
+At this point, you probably are quite curious to see a screenshot of the original Delphi VCL form, 
+aren't you ?<br>
+(~NOMATCH|(~PAGEID~)~Original|(~JUMP|Original|See Screenshot...~)||(~JUMP|sample|Back to interactive version...~)~)
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint6">
+By default, the TWHForm2HTML component renders the fonts exactly as they are set on the 
+Delphi form. Fonts effect the rendering of labels, check boxes, radio buttons and group boxes.
+To see a non-Delphi font style, click on  the "Browser's font" link....
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint7">
+Did you notice that in the last step, you made a server-side request by using a link 
+instead of clicking a button? That's desirable on forms where you want to make navigation 
+extremely quick.  Anchors like that are supported on labels, check boxes and images.
+To get back to your prior "nice" view of the form, click on "Reset Data". 
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint8">
+In Delphi, edit controls may be marked as read-only. In that case, the TWhForm2HTML component 
+renders their content as normal text. To test this, click on the "Read-only" link...
+(~mcContinue~)
+</whdroplet>
+
+<whdroplet name="chPoint9">
+Your comments, ideas and suggestions would be much appreciated ! 
+(~MAILTO|customerservice@href.com|Feel free to e-mail HREF Customer Service~)
+and then proceed to order your copy of TWhForm2HTML from
+(~HREF|http://www.href.com/hrefshop:detail::0108|the online store~).
+</whdroplet>
+
+</whteko>

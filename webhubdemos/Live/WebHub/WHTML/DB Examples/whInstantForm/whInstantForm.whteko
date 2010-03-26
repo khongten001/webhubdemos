@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcImgInstantFormDir=(~mcSiteRoot~)demos/whInstantForm/
+mcBlackDot=<img src="(~mcImgInstantFormDir~)BLKBULLT.JPG" alt="Edit" />
+mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForHTFM">
+(~JUMP|pgGridOptions|Grid Options~)
+</whdroplet>
+
+<whdroplet name="drStyleHTFM">
+<!--- define extra style elements for this particular demo -->
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css">
+#grid-table {
+  border: 0;
+}
+#grid-table th, td {
+  border: 1px solid;
+  padding: 4px;
+  vertical-align: bottom;
+}
+#grid-table th {
+  background-color: #CCCC66;
+}
+</style>
+</whdroplet>
+
+<whpage pageid="pgEnterHTFM" desc="Parts Database">
+<whprep>
+(~NOTASSIGNED|RadioButtons|(~set|RadioButtons=GRAPHICS~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFM~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<!--- now build the page -->
+<h2> Blue (~mcBlueDot~) to View and Black (~mcBlackDot~) to Edit</h2>
+<p>
+(~MATCH|(~RadioButtons~)=GRAPHICS|(~grid.execute|bOff~)~)
+(~MATCH|(~RadioButtons~)=GRAPHICS|(~chGridImageMap~)~)
+(~MATCH|(~RadioButtons~)=TEXT|(~grid.execute|bOn~)~)
+(~grid.controls~)</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgGridOptions" desc="Grid Options">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Grid Options</h1>
+<form method="post" action="(~ACTION|pgEnterHTFM~)">
+(~INPUTRADIO|RadioButtons,TEXT~)Text Controls
+(~INPUTRADIO|RadioButtons,GRAPHICS~)Graphics Controls
+(~INPUTSUBMIT|submit,Back to Grid~)
+</form>
+<p>
+Note that one may use <b>Client Side Image Maps</b> with WebHub to
+keep track of surfer clicks.  When you choose Graphics Controls, a
+Client Side Image Map is used to control the grid.
+When Text Controls are selected, the buttons are created from a
+combination of text (from the application-level INI file) plus
+any applied Cascading Style Sheet definitions.
+</p>
+(~JUMP|PreferencesRemembered|Save-state of Your Preferences~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="ViewDetail" desc="View Record Detail">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chExplainTWebDataForm~)
+(~chViewAction~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="EditDetail" desc="EditRecord Detail">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chExplainTWebDataForm~)
+<p>The Part Number field is not meant to be edited because
+it is linked to other tables.  You may change the description
+and the list price.</p>
+<p>(~chEditAction~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="chExplainTWebDataForm">
+<h1>Detail on a Site</h1>
+<p>The TwhdbForm component is taking care of displaying the
+information you see below.  The list of fields is based on the current
+displaySet for the grid.  (~JUMP|pgEnterHTFM|Try Again~)</p>
+<p>(~mcBlueDot~) for Viewing<br />
+(~mcBlackDot~) for Editing
+</p>
+</whdroplet>
+
+<whdroplet name="chViewAction">
+(~webdatasource1.activate~)
+(~webdataform1.execute~)
+</whdroplet>
+
+<whdroplet name="chEditAction">
+(~webdatasource1.activate~)
+<form method="post" action="(~ACTION|PostData~)">
+(~webdataform1.execute~)
+(~INPUTSUBMIT|submit,Click to Save Changes~)
+</form>
+</whdroplet>
+
+<whpage pageid="PostData" desc="Post Changes from Edit Page">
+<whprep>
+(~webdatasource1.execute~)
+(~waPost.execute~)
+(~Page|pgEnterHTFM~)
+</whprep>
+</whpage>
+
+<whpage pageid="PreferencesRemembered" desc="Extra: User Preferences">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Preferences Remembered</h1>
+WebHub <b>saves state</b> and remembers the surfer (without requiring the surfer to "log in").  The Delphi programmer can
+easily define unlimited "global" variables that might be used throughout the application, and WebHub takes care of
+remembering these from one page to the next.  (In the demo, the grid preferences are only used on the current page.)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="chGridImagemap">
+<p>
+<img src="(~mcSiteRoot~)demos/whInstantForm/gridbtns.JPG" usemap="#GridButtons" ismap="ismap" border="0" alt="buttons for the grid" />
+<map id="gridImageMap" name="GridButtons">
+<!-- #$-:Image Map file created by Map THIS! -->
+<!-- #$-:Map THIS! free image map editor by Todd C. Wilson -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:1.20 -->
+<!-- #$AUTHOR:unknown -->
+<!-- #$DATE:Thu Dec 19 21:26:22 1996 -->
+<!-- #$JPG:gridbtns.JPG -->
+<area shape="rect" coords="2,0,53,42" href="(~DynURL.ToSessionIDW~)grid.first" alt="first" />
+<area shape="rect" coords="53,2,105,42" href="(~DynURL.ToSessionIDW~)grid.prior" alt="previous" />
+<area shape="rect" coords="104,0,157,42" href="(~DynURL.ToSessionIDW~)grid.next" alt="next" />
+<area shape="rect" coords="157,1,203,42" href="(~DynURL.ToSessionIDW~)grid.last" alt="last" />
+<area shape="default" href="(~DynURL.ToSessionIDW~)grid.first" alt="first" />
+</map></p>
+</whdroplet>
+
+</whteko>

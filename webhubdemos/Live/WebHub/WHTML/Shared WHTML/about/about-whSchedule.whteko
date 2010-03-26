@@ -1,0 +1,41 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko  
+ designmode="code" 
+ defaultlingvo="eng"  
+ designlingvo="eng" >
+
+<whmacros>
+mcWhDemoOneLinerCodeRage=Code Rage 4 Schedule
+mcWhDemoCreditIdeaCodeRage=Ann Lynnworth
+mcWhDemoCreditFirstDraftCodeRage=Ann Lynnworth
+mcWhDemoCreditGraphicsCodeRage=none
+mcWhDemoCreditCopyCodeRage=Ann Lynnworth
+mcWhDemoUpdatedCodeRage=05-Sep-2009
+mcWhDemoKeywordsCoderage=Firebird,SQL,GMT
+mcWhDemoLiteCodeRage=No
+</whmacros>
+
+<whdroplet name="drDemoSetupcoderage">
+<ol>
+<li> Firebird 2.1 </li>
+<li> Schedule table created based on public schedule info</li>
+<li> Firebird ALIAS named "coderageschedule" points to this fdb file.  
+</li>
+</ol>
+
+<div align="center" style="padding-top: 2em;">
+<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="(~mcSiteRoot~)demos/whFirebird/FirebirdFoundation.png" alt="Donate to Firebird Foundation" /></a>
+</div>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDesccoderage">
+View Code Rage 4 Conference schedule with times translated 
+for your location, i.e. time zone adjustments done for you.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescCodeRage">
+text pending...
+</whtranslation>
+
+</whteko>

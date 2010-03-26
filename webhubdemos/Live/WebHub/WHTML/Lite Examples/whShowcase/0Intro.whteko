@@ -1,0 +1,217 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase" designmode="code">
+
+<whpagesettingslist id="a">
+bSeqHdr=false
+bReqUl=false
+level=0
+htmlFilename=0Intro.whteko
+</whpagesettingslist>
+
+<whpage pageid="pgHelp" desc="Help">
+<whpagesettings inherit="a">
+bSeqHdr=false
+</whpagesettings>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+<h2>(~PageDesc~)</h2>
+<table>
+<tr>
+<td valign="top">
+<b>(~ulpgHelp~)</b>
+</td>
+(~mcVerticalLine~)
+<td valign="top"><FONT SIZE="(~theFontSize~)">
+(~tpHelp~)
+</FONT></td></tr></table>
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+<whdroplet name="tpHelp">
+ We HAD hoped that you'd never need to come here... but since you've asked for help,
+here are answers to such burning questions as:   How do I navigate the Showcase
+Demo?  What do the icons mean?  How can I order WebHub?
+<p>For all other questions, please use the contact link.</p>
+</whdroplet>
+
+<whdroplet name="ulPgHelp">
+(~GO|pgNav|Navigating this Demo~)<br/>
+(~GO|pgIcons|Icon Definitions~)<br/>
+(~GO|htInfo|Contact Information~)<br/>
+</whdroplet>
+
+<whpage pageid="pgNav" desc="Navigating this Demo">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h2>(~PageDesc~)</h2>
+<table>
+<tr>
+<td VALIGN=TOP>
+<b>(~ulpgNav~)</b>
+</td>
+(~mcVerticalLine~)
+<td VALIGN=TOP><FONT SIZE=(~theFontSize~)>
+(~tpNav~)
+</FONT></td></tr></table>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="ulPgNav">
+<dl>
+(~GO|pgHTML|<dt><strong>Easier HTML</strong></dt>~)
+
+(~GO|pgBigPict|<dd><em>How and Why WebHub Works</em></dd>~)
+
+(~GO|pgSavState|<dd><font size=1>Automatically saving state</font></dd>~)
+(~GO|pgWHURLS|<dd><font size=1>WebHub URLs</font></dd>~)
+(~GO|pgCNR|<dd><font size=1>Server-side session data</font></dd>~)
+(~GO|pgDynLink|<dd><font size=1>Dynamic page links</font></dd>~)
+(~GO|pgAutDef|<dd><font size=1>Automatic defaults on forms</font></dd>~)
+
+(~GO|pgReusable|<dd><em>Reusable Pieces of HTML</em></dd>~)
+
+(~GO|pgHeadFoot|<dd><font size=1>Page Headers and Footers</font></dd>~)
+(~GO|pgSpeedbars|<dd><font size=1>Speedbars</font></dd>~)
+(~GO|pgTextSub|<dd><font size=1>Text Substitution</font></dd>~)
+(~GO|pgRepubLit|<dd><font size=1>Republishing StringVars</font></dd>~)
+
+(~GO|pgDynamic Links|<dd><em>Dynamic Links Within a Site</em></dd>~)
+
+(~GO|pgJump|<dd><font size=1>The JUMP Macro</font></dd>~)
+(~GO|pgGo|<dd><font size=1>The GO Macro </font></dd>~)
+(~GO|pgHide|<dd><font size=1>The HIDE Macro </font></dd>~)
+(~GO|pgAction|<dd><font size=1>The ACTION Macro</font></dd>~)
+(~GO|pgWhere|<dd><font size=1>The CURRENT macro</font></dd>~)
+(~GO|pgRandom|<dd><font size=1>Reload Macros</font></dd>~)
+(~GO|pgPagealias|<dd><font size=1>Page Aliasing</font></dd>~)
+
+(~GO|pgWHMacros|<dd><em>Webhub Macro Processing</em></dd>~)
+
+(~GO|pgIF|<dd><font size=1>The IF, IFNOT macro</font></dd>~)
+(~GO|pgMatch|<dd><font size=1>The MATCH, NOMATCH macro</font></dd>~)
+(~GO|pgPage|<dd><font size=1>The PAGE macro </font></dd>~)
+(~GO|pgRequires|<dd><font size=1>The REQUIRES macro</font></dd>~)
+(~GO|pgInclude|<dd><font size=1>The INCLUDE macro</font></dd>~)
+(~GO|pgSendfile|<dd><font size=1>The SENDFILE macro</font></dd>~)
+(~GO|pgExpireCookie|<dd><font size=1>The EXPIRES Macro</font></dd>~)
+(~GO|pgSummary|<dd><font size=1>The SUMMARY Macro</font></dd>~)
+
+(~GO|pgFrames|<dd><em>Using Frames</em></dd>~)
+
+(~GO|frameset1|<dd><font size=1>Example</font></dd>~)
+
+(~GO|pgForms|<dt><font size=3><strong>Forms with Built-in Save-State</strong></font></dt>~)
+
+(~GO|pgWidgets|<dd><font size=3><em>Standard Interface Widgets</em></font></dd>~)
+(~GO|pgLists|<dd><font size=1>List Boxes </font></dd>~)
+(~GO|pgMulti|<dd><font size=1>Multiple Select Lists</font></dd>~)
+(~GO|pgRadioButtons|<dd><font size=1>Radio Buttons</font></dd>~)
+(~GO|pgAdvRadio|<dd><font size=1>Advanced Radio Buttons</font></dd>~)
+(~GO|pgCheckboxes|<dd><font size=1>Checkboxes</font></dd>~)
+(~GO|pgTextBox|<dd><font size=1>Text Boxes </font></dd>~)
+(~GO|pgButtons|<dd><font size=1>Buttons</font></dd>~)
+
+(~GO|pgTogether|<dd><font size=3><em>Putting it All Together</em></font></dd>~)
+
+(~GO|pgPersonalizing|<dd><font size=1>Personalizing Pages</font></dd>~)
+(~GO|pgSurferPrefs|<dd><font size=1>Setting Surfer Preferences</font></dd>~)
+
+(~GO|pgWebMaster|<dt><strong>WebMaster Topics</strong></dt>~)
+
+(~GO|pgSecurity|<dd><em>Site Security</em></dd>~)
+
+(~GO|pgFrontDoor|<dd><font size=1>Front Door Page</font></dd>~)
+(~GO|pgHomepage|<dd><font size=1>HomePage</font></dd>~)
+(~GO|pgInvalidPage|<dd><font size=1>Invalid Page</font></dd>~)
+
+(~GO|pgTimeStats|<dd><em>Gathering Time Statistics</em></dd>~)
+
+(~GO|pgExtendedTiming|<dd><font size=1>Extended Example</font></dd>~)
+
+(~GO|pgBuiltInPages|<dd><em>WebHub Built-In Pages</em></dd>~)
+
+(~GO|index|<dd><font size=1>Test the Index Page </font></dd>~)
+(~GO|status|<dd><font size=1>Test the Status Page</font></dd>~)
+(~GO|speed|<dd><font size=1>Test the Speed Page </font></dd>~)
+(~GO|echo|<dd><font size=1>Test the Echo Page </font></dd>~)
+(~GO|setpref|<dd><font size=1>Test the Personal Preferences Page</font></dd>~)
+(~GO|errors|<dd><font size=1>Test the Errors Page</font></dd>~)
+
+
+(~GO|pgStyleSheets|<dd><em>Style Sheets</em></dd>~)
+(~GO|pgRTTI|<dd><em>RTTI Properties </em></dd>~)
+
+(~GO|pgEmail|<dt><strong>E-Mail</strong></dt>~)
+
+(~GO|pgFeedback|<dd><em>Feedback Page</em></dd>~)
+(~GO|pgFormToMail|<dd><em>Form-to-Mail Feature</em></dd>~)
+
+(~GO|SurferTracking|<dt><strong>Surfer Tracking</strong></dt>~)
+(~GO|pgCookies|<dd><em>Cookies</em></dd>~)
+
+(~GO|pgSetCookie|<dd><font size=1>Setting Cookies</font></dd>~)
+(~GO|pgExpireCookie|<dd><font size=1>Expiring Cookies</font></dd>~)
+(~GO|pgDelCookie|<dd><font size=1>Deleting Cookies</font></dd>~)
+
+(~GO|pgCharging|<dd><em>Microcharging Surfers</em></dd>~)
+
+(~GO|pgJava|<dt><strong>Java, JavaScript and XML</strong></dt>~)
+
+(~GO|pgjavacl|<dd><em>Clock Example</em></dd>~)
+(~GO|pgMarquee1|<dd><em>Tickertape Marquee Example</em></dd>~)
+(~GO|pgSimpleAjax|<dd><em>Simple Ajax Example</em></dd>~)
+(~GO|pgAboutXML|<dd><em>About XML</em></dd>~)
+(~GO|pgAboutCSV|<dd><em>About CSV</em></dd>~)
+
+(~GO|Imagine|<dt><strong>Unleash Your Imagination</strong></dt>~)
+(~GO|pgSlideShow|<dd><em>Producing Slide Shows</em></dd>~)
+(~GO|pgComponents|<dd><em>Web Components for Delphi</em></dd>~)
+</dl>
+</whdroplet>
+
+
+<whdroplet name="tpNav">
+The information hierarchy for this demo has three major levels.
+You terribly linear types out there can use the outline at the left to navigate
+if you prefer.
+<p>We've provided <b>Back</b> and <b>Next</b> sequence buttons to make it
+easier for you to navigate this demo. However, you don't need to read
+the pages in order.</p>
+<p>We hope you'll surf around and explore everything that interests you.</p>
+</whdroplet>
+
+
+<whpage pageid="pgIcons" desc="Icon Definitions">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h2>(~PageDesc~)</h2>
+
+<img src="(~mcSeqDir~)btnUp.png" alt="Up" /> <br />This icon takes you <b>up</b> to the prior main page.
+Use this to quickly ascend to your starting point.
+<p>
+<img src="(~mcSeqDir~)btnPrev.png" alt="Previous" /> <br />This icon takes you to the <b>previous</b> page in
+the orchestrated sequence.
+<p><img src="(~mcSeqDir~)btnNext.png" alt="Next" /> <br />This icon takes you to the <b>next</b> page in the sequence.</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgEntryDenied" desc="Error message: sorry, entry denied">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h2>Entry Denied</h2>
+Sorry, you did not get to the secure page.
+<p> (~GOR||Return to the welcome page.~)</p>
+
+<form method="post" action="(~ACTION|Showcase:pgEnterShowcase,.CKB~)">
+(~inputhidden|Null~)
+(~inputcheckbox|ckbAuthorized~) Check to gain entry
+(~inputsubmit|submit, Begin~)
+</form>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

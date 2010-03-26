@@ -1,0 +1,2 @@
+inherited DMForWHFirebird: TDMForWHFirebird
+end

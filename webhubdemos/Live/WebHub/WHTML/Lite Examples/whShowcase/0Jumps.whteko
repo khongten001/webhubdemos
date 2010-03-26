@@ -1,0 +1,94 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase" designmode="code">
+
+<whpagesettingslist id="a">
+bSeqHdr=false
+bReqUl=false
+level=0
+htmlFilename=0Jumps.whteko
+</whpagesettingslist>
+
+<whpage pageid="pgEnterShowcase" desc="Showcase Main Menu">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+(~ANCHORMODIFY|style|
+<style type="text/css">
+h1 {text-align: center; font-size: 1.4em;}
+h2 {text-align: center; font-size: 1.1em; margin: .8em 0 .3em 0;}
+#showcasemainmenu { width: 100%; padding: 1.5em; }
+#showcasemainmenu td { vertical-align: top; padding: 5px; width: 33%; }
+</style>~)
+(~check|ckbAuthorized~)
+<h1>Showcase Main Menu</h1>
+<table id="showcasemainmenu">
+<tr>
+<td>
+<h2>(~GO|pgHTML|Easier HTML~)</h2>
+
+(~GO|PGBIGPICT|(~mcRedCube~)~)&nbsp;How and Why WebHub Works<br />
+(~GO|PGREUSABLE|(~mcRedCube~)~)&nbsp;Reusable Pieces of HTML<br />
+(~GO|PGDYNAMICLINKS|(~mcRedCube~)~)&nbsp;Dynamic Links Within a Site<br />
+(~GO|PGWHMACROS|(~mcRedCube~)~)&nbsp;WebHub Commands<br />
+(~GO|PGFRAMES|(~mcRedCube~)~)&nbsp;Frames<br />
+
+
+<h2>(~GO|pgFORMS|Forms with Built-in Save-State~)</h2>
+
+(~GO|PGWIDGETS|(~mcRedCube~)~)&nbsp;Standard Interface Widgets<br />
+(~GO|PGTOGETHER|(~mcRedCube~)~)&nbsp;Putting it All Together<br />
+
+</td>
+
+<td>
+<h2>(~GO|pgWEBMASTER|WebMaster Topics~)</h2>
+
+(~GO|PGSECURITY|(~mcRedCube~)~)&nbsp;Site Security<br />
+(~GO|PGTIMESTATS|(~mcRedCube~)~)&nbsp;Timing Statistics<br />
+(~GO|PGBUILTINPAGES|(~mcRedCube~)~)&nbsp;WebHub Built-In Pages<br />
+(~GO|pgStyleSheets|(~mcRedCube~)~)&nbsp;Style Sheets<br/>
+(~GO|PGRTTI|(~mcRedCube~)~)&nbsp;RTTI Properties
+
+<h2>(~GO|pgEMAIL|E-Mail~)</h2>
+(~GO|PGFEEDBACK|(~mcRedCube~)~)&nbsp;Feedback Page<br />
+(~GO|PGFORMTOMAIL|(~mcRedCube~)~)&nbsp;Form-to-Mail Feature
+
+<h2>(~GO|pgSURFERTRACKING|Surfer Tracking~)</h2>
+(~GO|PGCOOKIES|(~mcRedCube~)~)&nbsp;Cookies<br />
+(~GO|PGCHARGING|(~mcRedCube~)~)&nbsp;Microcharging Surfers
+
+</td>
+
+<td width="34%">
+
+<h2>(~GO|pgJAVA|Java, JavaScript and XML~)</h2>
+
+(~GO|PGJAVACL|(~mcRedCube~)~)&nbsp;Clock Example<br />
+(~GO|PGMARQUEE1|(~mcRedCube~)~)&nbsp;Tickertape Marquee Example<br />
+(~GO|PGSIMPLEAJAX|(~mcRedCube~)~)&nbsp;Simple Ajax Example<br/>
+(~GO|pgAboutXML|(~mcRedCube~)~)&nbsp;About XML<br/>
+(~GO|pgAboutCSV|(~mcRedCube~)~)&nbsp;About CSV
+
+<h2>(~GO|pgIMAGINE|Unleash your imagination~)</h2>
+
+(~GO|PGSLIDESHOW|(~mcRedCube~)~)&nbsp;Slide Shows<br />
+(~GO|PGCOMPONENTS|(~mcRedCube~)~)&nbsp;Web Components for Delphi
+</td></tr>
+</table>
+
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+<whdroplet name="barPages">
+(~GO|pgHTML|HTML~)(~mcHeadingSeparator~)
+(~GO|pgWEBMASTER|WebMaster~)(~mcHeadingSeparator~)
+(~GO|pgFORMS|Forms~)(~mcHeadingSeparator~)
+(~GO|pgEMAIL|E-Mail~)(~mcHeadingSeparator~)
+(~GO|pgSURFERTRACKING|Tracking~)(~mcHeadingSeparator~)
+(~GO|pgJAVA|JavaScript~)(~mcHeadingSeparator~)
+(~GO|pgIMAGINE|Imagine~)
+</whdroplet>
+
+</whteko>

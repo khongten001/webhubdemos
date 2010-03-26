@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTOB=Web Object Inspector
+mcWhDemoCreditIdeaHTOB=Ronan van Riet
+mcWhDemoCreditFirstDraftHTOB=Ann Lynnworth
+mcWhDemoCreditGraphicsHTOB=Suzanne Aldrich
+mcWhDemoCreditCopyHTOB=Ann Lynnworth 
+mcWhDemoUpdatedHTOB=28-Jan-2004
+mcWhDemoKeywordsHTOB=web object inspector,object inspection,property inspector
+mcWhDemoLiteHTOB=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTOB">
+<ol>
+<li> This demo requires no additional configuration.</li>
+
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTOB">
+The WebObjectInspector component provides an online property inspector.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTOB">
+In this example, the object inspector is connected to a "TMyClass" 
+component which contains two string properties and a boolean property.
+These may be modified through the web application.
+</whtranslation>
+
+</whteko>

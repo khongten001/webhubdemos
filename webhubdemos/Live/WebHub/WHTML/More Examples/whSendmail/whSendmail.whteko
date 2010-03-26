@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code" designpage="pgEnterHTEM">
+
+<whdroplet name="drDemoSpeedbarForhtem">
+[(~GO|testwebmailform1|Additional Test~)]
+</whdroplet>
+
+<whpage pageid="pgEnterHTEM" desc="Automatic Quotation by E-Mail">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>This demo uses some custom Delphi code to  perform calculations on the fly,
+and uses the resulting figures in automated e-mail response letter.</p>
+
+<h3>Price Quote</h3>
+<form method="post" action="(~action|pgThankYou~)">
+
+<table id="htem-table">
+<tr>
+	<td>Enter your name:</td>
+	<td>(~INPUTTEXT|inSurferName,30,30~)</td>
+</tr>
+<tr>
+	<td>Enter your e-mail address:</td>
+	<td>(~INPUTTEXT|inSurferEMail,30,30~)</td>
+</tr>
+<tr>
+	<td colspan="2">&nbsp;</td>
+</tr>
+<tr>
+	<td colspan="2">Enter payment method:</td>
+</tr>
+<tr>
+	<td colspan="2">
+	(~inputradio|inPayMethod,0.97~)<b> Payment with Cash:</b> 3% discount
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+	(~inputradio|inPayMethod,1.00~) <b>Payment by Credit Card: </b> no discount
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+	(~inputradio|inPayMethod,0.98~) <b>P.O. Net 7:</b> 2% discount
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+	(~inputradio|inPayMethod,1.00~) <b>P.O. Net 30:</b> no discount
+	</td>
+</tr>
+<tr>
+	<td colspan="2">
+	(~inputradio|inPayMethod,1.03~) <b>P.O. Net 60:</b> 3% surcharge
+	</td>
+</tr>
+</table>
+
+<table border="1" cellpadding="5" width="50%">
+<tr>
+	<td><b>Quantity</b></td>
+	<td><b>Description</b></td>
+	<td><b>Price</b></td>
+</tr>
+<tr>
+	<td>(~INPUTTEXT|inQty1,3,3~)</td>
+	<td>Bucket of Puppies</td>
+	<td align="right">$10.00</td>
+</tr>
+<tr>
+	<td>(~INPUTTEXT|inQty2,3,3~)</td>
+	<td>Crate of Kittens</td>
+	<td align="right">$100.00</td>
+</tr>
+</table>
+
+<p><input type="submit" value="Click for Price Quote" /></p>
+
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgRequired" desc="Required Data Missing">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Sorry, insufficient data entered. Please enter quantity of puppies AND 
+kittens, and the payment method.
+(~JUMP|pgEnterHTEM|Try Again.~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgThankYou" desc="Thank you for the message!">
+<whprep>
+<!--- Check for required fields. -->
+(~REQUIRES|inQty1|pgRequired~)
+(~REQUIRES|inQty2|pgRequired~)
+(~REQUIRES|inPayMethod|pgRequired~)
+<!--- Run the custom web action component named waQuoteMessage to 
+calculate vListPrice and vAmountDue. -->
+(~waQuoteMessage.execute~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Thank you, (~inSurferName~)</h2>
+<p>The following message has been emailed to <b>(~inSurferName~)</b> 
+at <b>(~inSurferEMail~)</b>.</p>
+
+<blockquote>
+<pre>
+(~chQuote~)
+</pre>
+</blockquote>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="chQuote">
+QUOTATION for (~inSurfername~)
+
+For (~inQty1~) Bucket(s) of Puppies and (~inQty2~) Crate(s) of Kittens.
+
+List price: (~vListPrice~)
+Adjustment factor: (~inPayMethod~)
+Amount due: (~vAmountDue~)
+</whdroplet>
+
+<whpage pageid="testwebmailform1" desc="Test TwhMailForm component">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<form method="post" action="(~ACTIONR|testwebmailform2,safemail~)">
+Your email address: (~INPUTTEXT|inEmail,30,50~)<br>
+Your message:
+<textarea name="txtMessage" rows="12" cols="70">
+(~txtMessage~)
+</textarea>
+<input type="submit" />
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="testwebmailform2" desc="Test TwhMailForm component">
+<whprep>
+(~webmailform.execute|~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>message sent</h2>
+<span class="changing">(~CentralInfo.WebTimeGMT~)</span>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>

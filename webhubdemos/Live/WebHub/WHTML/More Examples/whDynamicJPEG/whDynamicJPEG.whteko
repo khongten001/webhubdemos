@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForjpeg">
+<!-- speedbar for JPEG demo could appear here -->
+</whdroplet>
+
+<whpage pageid="pgEnterJPEG" desc="Main page for dynamic JPEG demo">
+<whprep>
+(~expires|-1~)
+(~waAnimalNav.Execute~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Dynamically modified images from the ANIMALS table</h1>
+
+<h2>Example 1 at 100 percent</h2>
+<img src="(~ACTION|do,waJPEG.100~)" height="(~waJPEG.100|height~)" width="(~waJPEG.100|height~)" alt="example 1" /><br />
+
+<h2>Example 2 at 50 percent</h2>
+<img src="(~ACTION|do,waJPEG.50~)" height="(~waJPEG.50|height~)" width="(~waJPEG.50|height~)" alt="example 2" /><br />
+
+<h2>Example 3 at 20 percent</h2>
+<img src="(~ACTION|do,waJPEG.20~)" height="(~waJPEG.20|height~)" width="(~waJPEG.20|height~)" alt="example 3" />
+<br /><br />(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous Animal~) &nbsp;&nbsp;&nbsp;
+(~JUMPR|(~PageID~)|Next Animal~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>

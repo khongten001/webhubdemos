@@ -1,0 +1,29 @@
+//----------------------------------------------------------------------------------------------------------------
+
+<whpage pageid="pgAbout">
+<ul>
+<li>AsyncState is literal set by customized onexecute logic in AsyncDM.
+<li>whAsyncAction.onexecute:
+<ul>
+<li>surfaces 7 different states and the customized response
+logic expands macros named after the state. 
+<pre>
+AsyncNone
+AsyncPrior
+AsyncStarted
+AsyncBusy
+AsyncAborted
+AsyncFinished
+AsyncFailed
+</pre>
+<li>
+where applicable dyn1 will be set to the object's result otherwise to the %complete
+<li>
+</ul>
+<li>
+<li>
+<li>
+<li>
+<li>
+</ul>
+<hr /><!-- *********************************************************************** -->

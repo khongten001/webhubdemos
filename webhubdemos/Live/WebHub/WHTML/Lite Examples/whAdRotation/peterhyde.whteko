@@ -1,0 +1,43 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200707.xsd">
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDSecure value="ssl"/>
+        <UseAppID value="true"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <PageGeneration>
+      <AutoPageFooter dropletName="chPageFooter" />
+      <AutoPageHeader dropletName="chPageHeader" />
+    </PageGeneration>
+    <Situations>
+      <Home pageID="pgPYHome" />
+      <Invalid pageID="pgPYHome" />
+    </Situations>
+    <Static>
+      <AppRoot value="/"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="C:\AppsData\StreamCatcher\WebSites\MySiteID\Config\SCWebSiteConfig_MySiteId.cfg"/>
+      <WebRobotIniSection value="nzlife.WebHubURLFiltering"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File filename="\sites\asyoulikeittours\aylit.whteko"/>
+      <File filename="\sites\goldenlife\goldenlife.whteko"/>
+      <File filename="\sites\kbbmusic\kbbheadfoot.whteko"/>
+      <File filename="\sites\nzlife\nzlife.whteko"/>
+      <File filename="\sites\nzmedical\nzmedical.whteko"/>
+      <File filename="\sites\peteryoung\pyheadfoot.whteko"/>
+      <File filename="\sites\peteryoung\pypages.whteko"/>
+      <File filename="\sites\RnR\rnrheadfoot.whteko"/>
+      <File filename="\sites\webcentre\scaa.whteko"/>
+      <File filename="content.whteko"/>
+      <File filename="csv.whteko"/>
+    </TekoFiles>
+  </Application>
+</WebHubAppConfiguration>

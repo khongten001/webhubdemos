@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerSTORE000=Shopping Cart Jump Start
+mcWhDemoCreditIdeaSTORE000=Michael Ax
+mcWhDemoCreditFirstDraftSTORE000=Marcel van Oort
+mcWhDemoCreditGraphicsSTORE000=Marcel van Oort
+mcWhDemoCreditCopySTORE000=Ann Lynnworth
+mcWhDemoUpdatedSTORE000=28-Feb-2001
+mcWhDemoKeywordsSTORE000=shopping cart,ecommerce,online store,web store
+mcWhDemoLiteSTORE000=No
+</whmacros>
+
+<whdroplet name="drDemoSetupSTORE000">
+<ol>
+<li> The Shopping Cart Jump Start Project is for sale through HREFShop.</li>
+<li> A database engine is required; Borland Database Engine is used in the code.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescSTORE000">
+The Shopping Cart Jump Start Project gives you the source code to an application server for online, 
+database-driven stores. The store works "out of the box" (after you compile the EXE). You can 
+then modify the database contents, the graphics, the page layout, and so on. If you intend to build 
+a shopping site with WebHub, this product will save you days, if not weeks, of development time.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescSTORE000">
+n/a
+</whtranslation>
+
+</whteko>

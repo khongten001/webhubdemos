@@ -1,0 +1,42 @@
+<whteko>
+
+<whpage pageid="pgProjectViewer" desc="Project Viewer">
+<html><head>
+<title>(~pagedesc~)</title>
+</head>
+<body>
+<h2>File</h2>
+<ul>
+<li> (~JUMP|pgOpenTable|Open Table~) </li>
+</ul>
+</body>
+</html>
+</whpage>
+
+<whpage pageid="pgOpenTable" desc="Open Table">
+<html><head>
+<title>(~pagedesc~)</title>
+</head>
+<body>
+<h1>Open Table</h1>
+<ul>
+<li> (~JUMP|pgOpenTable2,tocoutln|tocoutln~) </li>
+</ul>
+</body>
+</html>
+</whpage>
+
+<whpage pageid="pgOpenTable2" desc="-Open Table">
+<whprep>
+(~SET|_currentTablename=(~command~)~)
+<html><head>
+<title>(~pagedesc~) (~command~)</title>
+</head>
+<body>
+<h1>(~_currentTablename~)</h1>
+(~scanTable.execute|~)
+</body>
+</html>
+</whpage>
+
+</whteko>

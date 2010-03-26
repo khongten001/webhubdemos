@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpage pageid="Demo1Code" desc="Demo 1 Example Code">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pageDesc~)</h1>
+
+<!---Example ThreadOnInit method -->
+<a name="ONINIT">
+<H2>Example Code (Demo 1): <CODE>ThreadOnInit</CODE></H2>
+<table BORDER=0><tr>
+  <td><b>Note: &nbsp; </td>
+  <td>
+  <CODE>TwhAsyncAction</CODE> copies<br />
+  <CODE>.ThreadOnExecute</CODE> to <CODE>OnExecute</CODE><br />
+  <CODE>.ThreadOnDestroy</CODE> to <CODE>OnDestroy</CODE></td></tr>
+</table><br />
+<br />
+<TT>
+<PRE>
+procedure TfmAppSendStr.waaHelloThreadOnInit(Sender: TObject);
+<i>//runs from the main-thread</i>
+begin
+  inherited;
+  <i>//create and initialize the object's extra data-packet.</i>
+  if assigned(Sender)
+  and (Sender is TwhAsyncObject) then
+  with TwhAsyncObject(Sender) do begin
+    <i>//set the resultstring property here to provide input to the object</i>
+    ResultString:=pWebApp.Expand(waaHello.HtmlParam);
+    <i>//if you want to create a data/input object for use by the thread
+    //you'd probably instantiate and initialize it here
+    //Data:=TThreadInput.Create;
+    //TThreadInput(Data).urlstr:=Expand(..);</i>
+    end;
+end;
+
+</PRE>
+</TT>
+
+//Example ThreadOnExecute method
+<A NAME="ONEXECUTE">
+<H2>Example Code (Demo 1): <CODE>ThreadOnExecute</CODE></H2>
+To synchronize the ui with the state of the asyncobject you must assign a <CODE>tNotifyEvent</CODE> 
+to the async object's <CODE>OnSynchronized</CODE> event. 
+This procedure will be subscribed to the background thread which will synchonize itself to the main-thread and call the procedure 
+with a pointer to the async object itself.<br />
+Since this synchronization can take a few cycles, the AsyncObject must monitor its '<CODE>Synchronizing</CODE>' property to avoid 
+assigning the same event twice. The event handler itself can know that it is synchronized by checking the '<CODE>Synchronized</CODE>' 
+property. To see this in action, look at the (~JUMP|Demo2Code,#EXECUTE3|ThreadOnExecute example #3~) on the Demo 2 code page.<br />
+<br />
+<TT>
+<PRE>
+procedure TfmAppSendStr.waaHelloThreadOnExecute(Sender: TObject);
+<i>//runs in its own thread</i>
+var
+  i:integer;
+begin
+  inherited;
+  with TwhAsyncObject(Sender) do begin
+    for i:=0 to 100 do
+      if not Aborted then begin
+        PercentComplete:=i;
+        sleep(50);
+        end;
+    if not Aborted then begin
+      ResultString:= 'YES BABY! you got ['+ResultString+']';
+      Done:= True;
+      end;
+    end;
+end;
+
+</PRE>
+</TT>
+
+//Example ThreadOnDestroy method
+<A NAME="ONDEST">
+<H2>Example Code (Demo 1): <CODE>ThreadOnDestroy</CODE></H2>
+<PRE>
+procedure TfmAppSendStr.waaHelloThreadOnDestroy(Sender: TObject);
+ <i>//runs in its own thread
+ //the worker object is about to be destroyed,
+ //if there were a data object, you would probably free it here.</i>
+ begin
+   inherited;
+   if assigned(Sender)
+   and (Sender is TwhAsyncObject) then
+   with TwhAsyncObject(Sender) do
+     if assigned(Data) then begin
+       Data.Free;
+       Data:=nil;
+       end;
+ end;
+</PRE>
+
+//Example whAsyncAction.OnExecute method
+<A NAME="AONEXECUTE">
+<H2>Example Code (Demo 1): <CODE>whAsyncAction.OnExecute</CODE></H2>
+<PRE>
+procedure TfmAppSendStr.waaHelloExecute(Sender: TObject);
+var
+  i:integer;
+
+  function StartNewThread: Boolean;
+  begin
+    Result:=False;
+    with waaHello do
+      <i>//double check that the session is not already running a thread</i>
+      if FindSession(pWebApp.aSession) then
+        if SurfersObject.Done then
+          SetAsyncState(asPrior)
+        else
+          SetAsyncState(asBusy)
+      else begin
+        <i>//clear whatever last result we might have buffered for this session.</i>
+        if FindResult(pWebApp.aSession,i) then begin
+          SurfersObject.DeleteTask; <i>//remove thread result</i>
+          SurfersObject:=nil;
+          SurfersThread:=nil;
+          end;
+        Result:=True;
+        SetAsyncState(asStarted);
+        NewThread;
+        end;
+  end;
+</PRE>
+
+</whteko>

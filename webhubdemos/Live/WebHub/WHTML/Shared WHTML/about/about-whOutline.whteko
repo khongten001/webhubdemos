@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTOL=TreeView (Outline)
+mcWhDemoCreditIdeaHTOL=Michael Ax (1997) and Ronan van Riet (2002)
+mcWhDemoCreditFirstDraftHTOL=Ann Lynnworth
+mcWhDemoCreditGraphicsHTOL=Various sources over the years, most recently <a target="icons" href="http://as01.ucis.dal.ca/ilo/ilo_files/icons/icons/Formal_icons.htm">here</a>
+mcWhDemoCreditCopyHTOL=<a target="Gwynne" href="http://web.utk.edu/~gwynne/maslow.HTM">Robert Gwynne</a> and Ann Lynnworth
+mcWhDemoUpdatedHTOL=21-May-2003
+mcWhDemoKeywordsHTOL=outline,weboutline,TwhOutline,TTreeView
+mcWhDemoLiteHTOL=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTOL">
+<ol>
+<li> The content of the outline is defined through Delphi. The second "Maslow" outline 
+loads its text from the application-level INI file.</li>
+</ol> 
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescHTOL">
+The TwhOutline component uses a Borland Delphi TTreeView component 
+in order to provide a hierarchical view of site content, plus navigation.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTOL">
+</whtranslation>
+
+</whteko>

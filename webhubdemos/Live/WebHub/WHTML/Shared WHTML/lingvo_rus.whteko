@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="rus" designmode="code">
+
+<whmacros>
+mcRussian=Русский
+</whmacros>
+
+<whtranslations>
+~Welcome=Главная
+~Entrance=Вход
+~Source=Исходный код
+~Download=Загрузка
+~Logout=Выход
+~Options=Настройки
+~About=Авторы
+~Prerequisites=Требования
+</whtranslations>
+
+<whtranslations>
+~SetPrefLingvo=Введите код языка
+~Wallpaper=обои
+~none=никакие
+~HumanLanguage=Язык интерфейса
+~Debugging=Отладка
+~SetPrefReturn=Вы должны вернуться на страницу (~PrePref~).
+~SetPrefWallpaperIntro=Эта опция используется только для того, чтобы показать, что настройки можно изменять. WebHub демо не проектировались для хорошего отображения на всех фоновых рисунках.
+</whtranslations>
+
+<whtranslations>
+~daySunday=Воскресенье
+~dayMonday=Понедельник
+~dayTuesday=Вторник
+~dayWednesday=Среда
+~dayThursday=четверг
+~dayFriday=пятница
+~daySaturday=Суббота
+</whtranslations>
+
+</whteko>
+
+

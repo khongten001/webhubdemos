@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  designdynsrc="localdemoscan"
+  defaultlingvo="eng" 
+  designpage="temp"
+  designmode="code"
+  notes="Macros shared by many WebHub demos."
+  copyright="1995-2004 HREF Tools Corp.">
+
+<whmacros>
+<!--- Directory Macros -->
+mcWhDemoLogoDir=(~mcSiteRoot~)demos/img/logos/
+mcWhDemoMiscDir=(~mcSiteRoot~)demos/img/misc/
+</whmacros>
+
+<whmacros>
+<!--- General Macros -->
+mcWhDemoOneLiner=(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)
+mcEmDash=&#8212;
+</whmacros>
+
+<whmacros>
+<!--- Icons and Graphics -->
+mcWhDemoDot=<span style="color:mediumvioletred;">&#149;</span>
+mcWhDemoVCLIcon=<img src="(~mcWhDemoMiscDir~)vcl.jpg" alt="VCL" />
+</whmacros>
+
+</whteko>

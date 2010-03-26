@@ -1,0 +1,2 @@
+inherited DMForWHConverter: TDMForWHConverter
+end

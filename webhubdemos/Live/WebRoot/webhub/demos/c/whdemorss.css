@@ -1,0 +1,31 @@
+a.opmlbtn {
+	font: bold 10px Verdana, sans-serif;
+	padding: 0px 0.5em 0px 0.5em !important;
+	border: 1px solid;
+	border-color: #FFC8A4 #7D3302 #3F1A01 #FF9A57;
+	background: #DE5050;
+	color: #FFF !important;
+	text-decoration: none;
+	margin: 0px 0.5em 0px 0.5em;
+}
+
+a.rssbtn {
+	font: bold 10px Verdana, sans-serif;
+	padding: 0px 0.5em 0px 0.5em !important;
+	border: 1px solid;
+	border-color: #FFC8A4 #7D3302 #3F1A01 #FF9A57;
+	background: #F60; color: #FFF !important;
+	text-decoration: none;
+	margin: 0px 0.5em 0px 0.5em;
+}
+
+a.atombtn{
+	font: bold 10px Verdana, sans-serif;
+	padding: 0px 0.5em 0px 0.5em !important;
+	border: 1px solid;
+	border-color: #FFC8A4 #7D3302 #3F1A01 #FF9A57;
+	background: #6CF;
+	color: #515151 !important;
+	text-decoration: none;
+	margin: 0px 0.5em 0px 0.5em;
+}

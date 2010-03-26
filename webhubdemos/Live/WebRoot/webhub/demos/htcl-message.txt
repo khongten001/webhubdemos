@@ -1,0 +1,5 @@
+18-Nov-2006 23:30am GMT
+
+The HTCL demo is offline because although the cloning itself works,
+the links for scrolling the database forward and backward are missing 
+the pageid... under investigation...

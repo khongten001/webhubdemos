@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+	<Modules>
+		<StandardModules>
+			<GUIOptional>
+				<Module name="email" status="disabled" />
+				<Module name="dreamweaver" status="enabled-gui" />
+				<Module name="dwsecurity" status="enabled-gui" />
+			</GUIOptional>
+			<GUI>
+				<Module name="appin" status="enabled-gui" />
+				<Module name="appout" status="enabled-gui" />
+				<Module name="decode" status="enabled-gui" />
+				<Module name="googlesitemap" status="disabled" />
+				<Module name="whteko" status="enabled-gui" />
+			</GUI>
+		</StandardModules>
+	</Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile" />
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <ErrorAlertFlags>
+      <ErrorAlertFlag name="Summary" value="false"/>
+      <ErrorAlertFlag name="LogToFile" value="false"/>
+    </ErrorAlertFlags>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+      <YesNoString value="Yes,No"/>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+	  <AllowedSessionIDRange value="192.168.1.*;127.0.0.1" />
+	  <RemoteAccessPages>
+	    <Page function="design" pageID="remotedesign" />
+	    <Page function="preview" pageID="remotepreview" />
+	    <Page function="refresh" pageID="remoterefresh" />
+	  </RemoteAccessPages>
+	  <AllowedIPRange value="1800-1900" />
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+	<Security>
+		<AdminSessionNumber value="1001" context="DEMOS" />
+	</Security>
+    <TekoFiles>
+      <File id="about" filename="..\..\Shared WHTML\about\about-whRubicon.whteko"/>
+      <File id="content" filename="whRubicon.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whdbScan componentName="dgMsgs">
+      <Delimiters macroPrefix="mcdg" />
+      <ButtonSpecs macroPrefix="mcdg" />
+    </whdbScan>
+    <whdbSource componentName="wdsWords">
+      <DisplaySets>
+        <Item id="All" value="*"/>
+        <Item id="Word" value="Word,WordCount"/>
+        <Item id="Detail" value="Word,WordCount,LikeNess,BlobSize"/>
+      </DisplaySets>
+      <IndexOrders>
+        <Item id="Word" value="*"/>
+        <Item id="Likeness" value="Likeness"/>
+      </IndexOrders>
+    </whdbSource>
+    <whdbSource componentName="wdsContents">
+      <DisplaySets>
+        <Item id="List" value="MsgNo:HF,Forum,Section,Topic,From,To,Date"/>
+        <Item id="Message" value="MsgNo:HF,Message"/>
+        <Item id="Edit" value="MsgNo:HF,Forum,Section:ED,Topic:ED,From:ED,To:ED,Date:ED"/>
+        <Item id="EditMsg" value="MsgNo:HF,Message:ED"/>
+      </DisplaySets>
+    </whdbSource>
+  </ComponentConfig>
+</WebHubAppConfiguration>

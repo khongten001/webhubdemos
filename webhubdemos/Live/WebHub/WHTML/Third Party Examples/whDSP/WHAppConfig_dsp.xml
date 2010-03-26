@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <TrayIconEnabled value="true"/>
+	<Modules>
+		<StandardModules>
+			<GUIOptional>
+				<Module name="email" status="disabled" />
+				<Module name="dreamweaver" status="enabled-gui" />
+				<Module name="dwsecurity" status="enabled-gui" />
+				<Module name="shareint" status="disabled" />
+			</GUIOptional>
+			<GUI>
+				<Module name="appin" status="enabled-gui" />
+				<Module name="appout" status="enabled-gui" />
+				<Module name="decode" status="enabled-gui" />
+				<Module name="googlesitemap" status="enabled-gui"  />
+				<Module name="whteko" status="enabled-gui" />
+			</GUI>
+		</StandardModules>
+	</Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile" />
+        <ServerProfileIDStandard value="shortdsp" context="DEMOS"/>
+        <UseAppID value="true" />
+        <UseAppID value="false" context="DEMOS"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <AppSettings>
+      <AppSetting name="GoogleSitemapFile" value="D:\InternetSites\dsp.href.com\Live\googlesitemap.xml"/>
+	  <AppSetting name="GoogleDomainRoot" value="http://dsp.href.com/" />
+      <AppSetting name="DatabaseAlias" value="_DSP"/>
+      <AppSetting name="ErrorLog" value="c:\temp\DSP\DSPerrors.txt"/>
+      <AppSetting name="FeedBackFile" value="c:\temp\DSP\DSPfeedback.txt"/>
+      <AppSetting name="LogFile" value="c:\temp\DSP\DSPlogfile.txt"/>
+      <AppSetting name="RefererLog" value="c:\temp\DSP\DSPreferers.txt"/>
+      <AppSetting name="SearchLog" value="c:\temp\DSP\DSPsearches.txt"/>
+      <AppSetting name="WordsTablePath" value="D:\InternetSites\dsp.href.com\Private\words\" context="DEMOS"/>
+      <AppSetting name="WordsTablePath" value="D:\HREF\apate\drived\InternetSites\dsp.href.com\Private\words\" context="ultraann"/>
+    </AppSettings>
+    <ErrorAlertFlags>
+      <ErrorAlertFlag name="Summary" value="false"/>
+      <ErrorAlertFlag name="Summary" value="true" context="ultraann"/>
+      <ErrorAlertFlag name="LogToFile" value="false"/>
+    </ErrorAlertFlags>
+    <MediaSources>
+      <MediaSource id="a1" value="(~chHREFDFMConverterAd~)"/>
+      <MediaSource id="a2" value="(~chHREFHostingAd~)"/>
+      <MediaSource id="a3" value="(~drHREFFuzRegexAd~)"/>
+    </MediaSources>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+	  <AllowedSessionIDRange value="192.168.1.*;127.0.0.1" />
+	  <RemoteAccessPages>
+	    <Page function="design" pageID="remotedesign" />
+	    <Page function="preview" pageID="remotepreview" />
+	    <Page function="refresh" pageID="remoterefresh" />
+	  </RemoteAccessPages>
+	  <AllowedIPRange value="1800-1900" />
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+	<Security>
+		<AdminSessionNumber value="1001" context="DEMOS" />
+	</Security>
+    <Situations>
+      <ChangedIP pageID="pgBadIP"/>
+      <ChangedUserAgent pageID="pgBadBrowser"/>
+      <Home pageID="pgEnterDSP"/>
+    </Situations>
+    <Static>
+      <AppRoot value="/webhub/demos/whDSP/"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="" />
+      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\wwwDSP\Config\SCWebSiteConfig_wwwDSP.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="wwwDSP.WebHubURLFiltering"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="about" filename="..\..\Shared WHTML\about\about-whDSP.whteko"/>
+      <File id="content" filename="whDSP.whteko"/>
+      <File id="ads" filename="dspAds.whteko"/>
+      <File id="form" filename="dspForm.whteko"/>
+      <File id="home" filename="dspHome.whteko"/>
+      <File id="welcome" filename="dspWelcome.whteko"/>
+      <File id="mirrors" filename="dspMirrors.whteko"/>
+      <File id="feedback" filename="dspFeedback.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whdbScan componentName="waResults"/>
+  </ComponentConfig>
+</WebHubAppConfiguration>

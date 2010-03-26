@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerDEMOS=Overview
+mcWhDemoCreditIdeaDEMOS=Ann Lynnworth
+mcWhDemoCreditFirstDraftDEMOS=Ann Lynnworth and Jim Gleaves
+mcWhDemoCreditGraphicsDEMOS=Rob Daniels
+mcWhDemoCreditCopyDEMOS=Rob Daniels and Martha V. Moore
+mcWhDemoUpdatedDEMOS=7-Sep-1998
+mcWhDemoKeywordsDEMOS=Overview,listing,links,DYNCHUNK,PARAMS
+mcWhDemoLiteDEMOS=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupDEMOS">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+<li> NB: this overview demo links to more than two dozen other WebHub applications.
+Those links are only valid if those applications are available!  They will be available 
+if you are testing this on http://demos.href.com, but they might not be running (yet) on 
+your own test platform. Use the [More] link next to each description to find out the 
+required setup for any application you are interested in.
+</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescDEMOS">
+This web application provides an overview of more than two dozen WebHub demos, 
+developed from 1995 to now.  Over time, various people have added content ideas, 
+explanatory notes, graphics and page layout ideas.
+<p>You may test the WebHub demos on your development machine or 
+on demos.href.com.  Please take your time, 
+and try all the links... there are many hidden goodies.</p>
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescDEMOS">
+<p>The WebHub demos share page layout code (*.whteko and *.ini) as well as 
+Borland Delphi program code (*.pas).
+The benefit of sharing code is that it is easier for the code maintainers 
+to make changes to the overall look and functionality of all demos at once. 
+In this case, that means that HREF Tools Corp. is able to enhance all the demos 
+at once when new ideas come along.  Having been in the internet business since 
+1995, we have seen plenty of idea waves and expect a few more still.</p>
+<p>The drawback to all this code reuse is that each demo seems more complicated 
+than a beginner might like.  There are extra layers of naming conventions, 
+code nesting, and boolean flags to allow for conditional processing.  
+Hopefully you will begin to see the pattern quickly and be able to notice the 
+repeating aspects shared by all the demos, 
+and then more fully experience the unique and fascinating part of each individual demo.</p>
+
+<p>There is one hidden layer of complexity... and that is that the demos are 
+designed to run: (a) on your machine so that you can study every line of code; 
+(b) on demos.href.com on Microsoft IIS; and (c) on demos.href.com on at least 
+one other web server, such as Netscape, Apache or WebSite.  If you look closely, 
+you will discover a few aspects of syntax which are needed for this reason (such as 
+the use of SetupID.)</p>
+
+<p>We hope this drives home the point that WebHub applications are portable across web 
+servers -- without any modifications to the EXE file whatsoever.  
+In fact, on demos.href.com, all calls to a given demo end up served by the 
+<i>same</i> EXE, in real time, with no loading and unloading.  </p>
+</whtranslation>
+</whteko>

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  defaultlingvo="eng"
+  designpage="sysinfoscaffold"
+  designmode="code"
+  notes="dynamic resources that display WebHub system information">
+
+<whpage pageid="sysinfoscaffold" mode="scaffold" desc="-for use in Dreamweaver design mode">
+(~mcdoctypehtml~)
+<html>
+<head>
+</head>
+<body>
+
+<whdroplet name="drLiteralsInfo" show="no">
+<table id="StringVars" class="WHSystemInfo">
+<tr>
+ <th>Current Form StringVars<br />
+ (TwhRequest.FormData)</th>
+ <th>All StringVars<br />(TWhSession.StringVars)</th>
+</tr>
+<tr>
+ <td valign="top">(~Request.FormData~)&nbsp;</td>
+ <td valign="top">(~StringVars~)</td>
+</tr>
+<tr>
+ <th>BoolVars<br />(TWhSession.BoolVars)</th>
+ <th>BoolVarsPending<br />(TWhSession.BoolVarsPending)</th>
+</tr>
+<tr>
+ <td>(~BoolVars~)</td><td>(~BoolVarsPending~)&nbsp;</td>
+</tr>
+</table>
+</whdroplet>
+
+<whdroplet name="drSystemInfo" show="no">
+<h3>Background Data for Surfer #(~SessionID~)</h3>
+(~drLiteralsInfo~)
+<br />
+<table id="SessionData" class="WHSystemInfo">
+<tr>
+ <th>CGI Environment Data<br />(TwhRequest.ServerVariables)</th><th>SystemValues</th>
+</tr>
+<tr>
+ <td><span class="changing">(~Request.ServerVariables~)</span>&nbsp;</td>
+ <td><span class="changing">(~Request.SystemValues~)</span>&nbsp;<hr />
+ <b>Extra Headers</b><br /><span class="changing">(~Request.Headers~)</span>&nbsp;</td>
+</tr>
+<tr>
+ <th colspan="2">dbFields<br />(TwhRequest.dbFields)</th>
+</tr>
+<tr>
+ <td colspan="2">(~Request.dbFields~)&nbsp;</td>
+</tr>
+<tr>
+ <th >Other TwhRequest Properties</th>
+<th>App Properties</th>
+</tr>
+<tr>
+ <td>
+DynURL.RawToActiveAuthorityM = (~DynURL.RawToActiveAuthorityM~)<br />
+DynURL.ToAppID = (~DynURL.ToAppID~)<br />
+Request.RequestProtocol = (~Request.RequestProtocol~)<br />
+Request.Host = (~Request.Host~)<br />
+Request.VirtualPath = (~Request.VirtualPath~)<br/>
+Request.Runner = (~Request.Runner~)<br/>
+Request.RawVMR = (~Request.RawVMR~)<br/>
+Port = (~Port~)<br />
+ </td>
+ <td>AppID: (~AppID~)<br/>
+ PageID: (~PageID~)<br/>
+ SessionID: (~SessionID~)<br/>
+ Command: (~Command~)
+ </td>
+</tr>
+</table>
+</whdroplet>
+
+</body></html>
+</whpage>
+
+</whteko>

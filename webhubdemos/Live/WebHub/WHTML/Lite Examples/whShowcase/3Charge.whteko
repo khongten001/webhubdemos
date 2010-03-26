@@ -1,0 +1,22 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGCHARGING
+bSeqHdr=true
+level=3
+levelKeyword=Charge
+htmlFilename=3Charge.whteko
+</whpagesettingslist>
+
+<whpage pageid="pgTotal" desc="Surfer Tracking: Microcharging Surfers: Micro Charges Total">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h2>The Bill for Your Micro Charges</h2>
+Your Total Session Cost: <b>(~SessionCost~).00 </b>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+</whteko>

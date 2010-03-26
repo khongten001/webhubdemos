@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcWhDemoOneLinerBW=Personal Options
+mcWhDemoCreditIdeaBW=Suzanne Aldrich and AnnLynnworth
+mcWhDemoCreditFirstDraftBW=Suzanne Aldrich
+mcWhDemoCreditGraphicsBW=Suzanne Aldrich
+mcWhDemoCreditCopyBW=Rob Daniels&#44; Karen Chauss and Martha V. Moore
+mcWhDemoUpdatedBW=30-Sep-1998
+mcWhDemoKeywordsBW=bandwidth,options,settings,skins
+mcWhDemoLiteBW=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupBW">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+<li> View the W-HTML source code,  and you'll see that this entire demo is based on
+ one simple idea.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescBW">
+This demo introduces the power of StringVars and WebHub text subsitution 
+macros, and demonstrates how they can be used to solve a hypothetical 
+problem:  how to set up a system to accomodate surfers in both low- and high- bandwidth regions.  It also demonstrates one way to generate a simple RSS feed with WebHub.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescBW">
+In this example, the graphics displayed  come from two different image 
+directories: Fast (containing full color graphics) and Slow (containing black and 
+white images).   The surfer chooses a radio button -- fast or slow-- based on their connection 
+speed, and this selection sets a session variable called "inSpeed".   
+This session variable is part of the macro mcImgDir, defined as follows:
+<pre>
+mcImgDir=(~mcSiteRoot~)demos/whOptions/(~.inSpeed~)/ 
+</pre>
+<p>Thus the actual directory from which the graphics are served is dynamically 
+determined by the value of this session variable.</p>
+<p>This demo also shows one way to create an RSS feed, using the PARAMS command to format the data according to the <a href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS 2.0 specification</a>.</p>
+</whtranslation>
+
+</whteko>

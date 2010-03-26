@@ -1,0 +1,205 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcImgOutlineDir=(~mcSiteRoot~)demos/whOutline/
+OutlineFolderClosed=<img hspace="2" src="(~mcImgOutlineDir~)foldclsdNAV.gif">
+OutlineFolderOpen=<img hspace="2" src="(~mcImgOutlineDir~)foldopenNAV.gif">
+OutlinePage=<img hspace="2" src="(~mcImgOutlineDir~)pagedoc.gif">
+OutlinePointer=&nbsp;<img src="(~mcImgOutlineDir~)eye_lf.gif">
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForhtol">
+<!-- speedbar for HTOL demo -->
+(~JUMP|pgFirstOutline|First Outline~)
+&nbsp;&nbsp;
+(~JUMP|pgMaslow|Second Outline~)
+</whdroplet>
+
+<whdroplet name="chOutlineNavigation">
+Navigation: <br />
+[(~JUMP|(~PageID~),Top|Top (fully compressed)~)] 
+[(~JUMP|(~PageID~),Less|Less~)] 
+[(~JUMP|(~PageID~),More|More~)] 
+[(~JUMP|(~PageID~),All|All (fully expanded)~)] 
+<br />
+[(~JUMP|(~PageID~),Lvl0|Level 0~)] 
+[(~JUMP|(~PageID~),Lvl1|Level 1~)] 
+[(~JUMP|(~PageID~),Lvl2|Level 2~)] 
+</whdroplet>
+
+<whpage pageid="pgEnterHTOL" desc="Web-Based Outline Examples">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+In each of these example, try expanding and collapsing the outline nodes 
+using the icons and the text shortcuts. 
+<p>
+Once you see how the navigation works, open another browser window and 
+simulate the actions of a second surfer.  Convince yourself that the state of the 
+outline is saved on a per-surfer basis, so that each visitor controls his or her 
+own experience.
+<p>
+<center>
+(~JUMP|pgFirstOutline|First Outline Example~)
+<p>
+(~JUMP|pgMaslow|Second Outline Example~)
+</center>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgFirstOutline" desc="First Outline Example">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chOutlineNavigation~)
+<p>
+(~weboutline.execute~)
+<p>
+By the way, the text and code for this example comes from the 
+Delphi Help File, under TTreeView examples.
+<p>
+The navigation text links and the icons are all optional and customizable.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgOkay">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Hi. You probably linked here from an outline.  In a real system, there would be real content at this point...
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgMaslow" desc="Maslow's Hierarchy of Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chOutlineNavigation~)
+<p>
+(~weboutlinemaslow.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgSelfActualize" desc="Self-Actualization Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~PageDesc~)</h2>
+The need for self-actualization is "the desire to become more and more what one is, to become everything that one is capable of becoming." People who have everything can maximize their potential. They can seek knowledge, peace, esthetic experiences, self-fulfillment, oneness with God, etc. It is usually middle-class to upper-class students who take up environmental causes, join the Peace Corps, go off to a monastery, etc. 
+<p>(~JUMP|pgMaslow|Back~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgEsteem" desc="Esteem Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~PageDesc~)</h2>
+There are two types of esteem needs. First is self-esteem which results from competence or mastery of a task. Second, there's the attention and recognition that comes from others. This is similar to the belongingness level, however, wanting admiration has to do with the need for power. People who have all of their lower needs satisfied, often drive very expensive cars because doing so raises their level of esteem. "Hey, look what I can afford-peon!"
+<p>(~JUMP|pgMaslow|Back~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgLove" desc="Love and Belongingness Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~PageDesc~)</h2>
+Love and belongingness are next on the ladder. Humans have a desire to belong to groups: clubs, work groups, religious groups, family, gangs, etc. We need to feel loved (non-sexual) by others, to be accepted by others. Performers appreciate applause. We need to be needed. Beer commercials, in addition to playing on sex, also often show how beer makes for camaraderie. When was the last time you saw a beer commercial with someone drinking beer alone?
+<p>(~JUMP|pgMaslow|Back~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgSafety" desc="Safety Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~PageDesc~)</h2>
+Safety needs have to do with establishing stability and consistency in a chaotic world. These needs are mostly psychological in nature. We need the security of a home and family. However, if a family is dysfunction, i.e., an abusive husband, the wife cannot move to the next level because she is constantly concerned for her safety. Love and belongingness have to wait until she is no longer cringing in fear. Many in our society cry out for law and order because they do not feel safe enough to go for a walk in their neighborhood. Many people, particularly those in the inner cities, unfortunately, are stuck at this level. In addition, safety needs sometimes motivate people to be religious. Religions comfort us with the promise of a safe secure place after we die and leave the insecurity of this world. 
+<p>(~JUMP|pgMaslow|Back~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgPhysiological" desc="Physiological Needs">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~PageDesc~)</h2>
+Physiological needs are the very basic needs such as air, water, food, sleep, sex, etc. When these are not satisfied we may feel sickness, irritation, pain, discomfort, etc. These feelings motivate us to alleviate them as soon as possible to establish homeostasis. Once they are alleviated, we may think about other things. 
+<p>(~JUMP|pgMaslow|Back~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

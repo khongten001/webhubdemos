@@ -1,0 +1,7 @@
+[Projection]
+CoordSystem=1
+CoordsUnits=21
+proj=utm
+ellps=WGS84
+units=m
+zone=12

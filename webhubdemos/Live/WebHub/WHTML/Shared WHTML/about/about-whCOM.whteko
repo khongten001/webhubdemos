@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng">
+<whmacros>
+mcWhDemoOneLinerCOM=Microsoft COM Interface
+mcWhDemoCreditIdeaCOM=Ann Lynnworth
+mcWhDemoCreditFirstDraftCOM=Ann Lynnworth
+mcWhDemoCreditGraphicsCOM=Ann Lynnworth and Rob Daniels
+mcWhDemoCreditCopyCOM=Martha V. Moore
+mcWhDemoUpdatedCOM=May-1998
+mcWhDemoKeywordsCOM=COM,counter,Visual Basic
+mcWhDemoLiteCOM=No
+</whmacros>
+
+<whdroplet name="drDemoSetupCOM">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+<li> Make sure that you run cntr.exe and memosrvr.exe at least once prior to trying to connect to them via COM.</li>
+
+<li> Should you wish to remove the COM programs from your registry,  the 
+command  -UNREGSERVER  will remove a server from one's local registry.</li>
+
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescCOM">
+Pick a language, any language...<br />
+Demonstrations of the COM macro, which allows you to call and run code written in 
+Visual Basic, C++, or any other language that fits the Microsoft's COM specifications.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescCOM">
+The intent of this demo is to introduce the new COM macro,  get into how it works,
+ and give a couple of examples of when and where one might use it.
+</whtranslation>
+
+</whteko>

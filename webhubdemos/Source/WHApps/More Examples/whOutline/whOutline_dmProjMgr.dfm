@@ -1,0 +1,2 @@
+inherited DMForWHOutline: TDMForWHOutline
+end

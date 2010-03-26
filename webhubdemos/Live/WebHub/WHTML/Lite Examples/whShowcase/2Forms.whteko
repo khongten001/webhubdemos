@@ -1,0 +1,77 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGFORMS
+whSequenceFinal=PGFORMS
+bSeqHdr=true
+bReqUl=true
+level=2
+levelKeyword=Forms
+htmlFilename=2Forms.whteko
+showcaseBranch=(~GO|pgForms|Forms with Built-in Save-State~) &raquo;
+showcaseBranchText=Forms with Built-in Save-State: 
+</whpagesettingslist>
+
+
+<whpage pageid="pgWidgets" desc="Standard Interface Widgets">
+<whpagesettings inherit="a">
+downLink=PGLISTS
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Both programmers and users demand increasing functionality from websites.
+Using standard interface widgets, like radio buttons, checkboxes, and dropdown lists,
+allows web developers to draw on what their surfers already know about computer interfaces
+to navigate the site and find what they need quickly and easily. With this goal in mind, WebHub
+makes it easy for you to incorporate standard interface widgets into your site--without custom cgi programming.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barWidgets">
+(~GO|PGLISTS|List Boxes~)(~mcHeadingSeparator~)
+(~GO|PGMULTI|Multiple Select Lists~)(~mcHeadingSeparator~)
+(~GO|PGRADIOBUTTONS|Radio Buttons~)(~mcHeadingSeparator~)
+(~GO|PGADVRADIO|Advanced Radio Buttons~)(~mcHeadingSeparator~)
+(~GO|PGCHECKBOXES|Checkboxes~)(~mcHeadingSeparator~)
+(~GO|PGTEXTBOX|Text Boxes~)(~mcHeadingSeparator~)
+(~GO|PGBUTTONS|Buttons~)
+</whdroplet>
+
+
+<whdroplet name="ulPgWidgets">
+(~GO|PGLISTS|List Boxes~)<br/>
+(~GO|PGMULTI|Multiple Select Lists~)<br/>
+(~GO|PGRADIOBUTTONS|Radio Buttons~)<br/>
+(~GO|PGADVRADIO|Advanced Radio Buttons~)<br/>
+(~GO|PGCHECKBOXES|Checkboxes~)<br/>
+(~GO|PGTEXTBOX|Text Boxes~)<br/>
+(~GO|PGBUTTONS|Buttons~)<br/>
+</whdroplet>
+
+
+
+
+
+<whpage pageid="pgTogether" desc="Putting it All Together">
+<whpagesettings inherit="a">
+downLink=PGPERSONALIZING
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+These examples will give you a sense of how all these different widgets can be used in concert to create
+full-featured applications using WebHub.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barTogether">
+(~GO|PGPERSONALIZING|Personalizing Pages~)(~mcHeadingSeparator~)
+(~GO|PGSURFERPREFS|Setting Surfer Prefs~)
+</whdroplet>
+
+
+<whdroplet name="ulPgTogether">
+(~GO|PGPERSONALIZING|Personalizing Pages~)<br/>
+(~GO|PGSURFERPREFS|Setting Surfer Preferences~)<br/>
+</whdroplet>
+
+
+</whteko>

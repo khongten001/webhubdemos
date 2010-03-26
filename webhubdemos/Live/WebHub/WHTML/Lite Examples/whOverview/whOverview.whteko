@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code"
+  designpage="pgEnterDEMOS">
+
+<whdroplet name="drDemoSpeedbarFordemos">
+<!-- speedbar for DEMOS demo could appear here -->
+</whdroplet>
+
+<whsketch for="pgEnterDEMOS">
+<table id="whdemolist">
+<tr><th>#</th><th>Demo Name</th><th>&nbsp;</th><th>Updated</th></tr>
+<tr><td>1</td>
+<td class="oneliner"></td><td><a href="/adv::">Ad Rotation</a></td>
+<td>&nbsp;</td>
+<td align="right"><a name="ADV">ADV</a></td>
+</tr>
+<tr><td>&nbsp;</td><td colspan="2">The WebCycle component can be used to display a rotating series
+of items, such as advertisements, so that a new item is 
+featured with each new page.
+[<a href="javascript:newWindow('/DEMOS:pgDemoDetail::adv')">more</a>]
+</td>
+<td class="updatedon">20-Oct-1998</td>
+</tr>
+<tr><td>&nbsp;</td><td class="keywords">Keywords: Ad rotation,TwhCycle,cyclic list</td>
+<td align="right" valign="top">&nbsp;</td>
+</tr>
+<tr><td colspan="4">&nbsp;</td></tr>
+
+<tr><td>2</td>
+<td class="oneliner"></td><td><a href="/HtAsync::">Background Processing</a></td>
+<td>&nbsp;</td>
+<td align="right"><a name="HtAsync">HtAsync</a></td>
+</tr>
+<tr><td>&nbsp;</td><td colspan="2">This application demonstrates asyndrronous coding tedrniques using WebHub.  There are 3 parts 
+to the demo: explanatory text and diagrams, a simulation involving a slow database query, and 
+a group of examples whidr showcase the variety of settings and features available to WebHub programmers 
+using these techniques.
+[<a href="javascript:newWindow('/DEMOS:pgDemoDetail::HtAsync')">more</a>]
+</td>
+<td class="updatedon">2-Apr-2003</td>
+</tr>
+<tr><td>&nbsp;</td><td class="keywords">Keywords: Asynchronous processing,background processing, percent complete, partial completion,TWhAsync</td>
+<td align="right" valign="top">&nbsp;</td>
+</tr>
+<tr><td colspan="4">&nbsp;</td></tr>
+</table>
+</whsketch>
+
+<whpage pageid="pgEnterDEMOS" desc="Entrance to All WebHub Demos">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#whdemolist td.oneliner {
+		background-color:#FFFFFF;
+	}
+	#whdemolist th.updatedon {
+		font-weight: 100;
+	}
+	#whdemolist td.updatedon {
+		text-align:right; 
+		vertical-align:top;
+		font-size: .8em;
+	}
+	#whdemolist td.keywords {
+		color: #666667;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
+<h1>Overview of all WebHub Demos</h1>
+
+(~SET|tempCounter=1~)
+
+<table id="whdemolist" cellspacing="0">
+<tr><th>#</th><th>Demo Name</th><th></th><th class="updatedon">Updated</th></tr>
+<!--- These are in alphabetical order based on the "one liner" description. -->
+<![CDATA[
+(~PARAMS|drDemoLink|adv~)
+(~PARAMS|drDemoLink|htaj~)
+(~PARAMS|drDemoLink|htasync~)
+(~PARAMS|drDemoLink|brnd~)
+(~PARAMS|drDemoLink|scan~)
+(~PARAMS|drDemoLink|htcl~)
+(~drDemoLinkForDSP~)
+(~drDemoLinkForDFM2HTML~)
+(~PARAMS|drDemoLink|htdr~)
+(~PARAMS|drDemoLink|htem~)
+(~PARAMS|drDemoLink|htfd~)
+(~PARAMS|drDemoLink|htcv~)
+(~PARAMS|drDemoLink|fire~)
+(~PARAMS|drDemoLink|htfs~)
+(~PARAMS|drDemoLink|form~)
+(~PARAMS|drDemoLink|fast~)
+(~PARAMS|drDemoLink|htfm~)
+(~PARAMS|drDemoLink|jpeg~)
+(~PARAMS|drDemoLink|htls~)
+(~PARAMS|drDemoLink|dbhtml~)
+(~PARAMS|drDemoLink|com~)
+]]>
+
+<whdroplet name="drDemoLinkForDSP" show="no">
+<tr><td>(~tempCounter~)</td>
+<td class="oneliner"><a href="http://dsp.href.com/dsp::(~SessionID~)">(~mcWhDemoOneLinerDSP~)</a></td>
+<td></td>
+<td align="right"><a name="DSP">dsp</a></td>
+</tr>
+<tr><td></td><td colspan="2">(~DYNCHUNK|~whDemoShortDesc,dsp~)
+[<a href="javascript:newWindow('(~ACTION|pgDemoDetail,dsp~)')">more</a>]
+</td>
+<td class="updatedon">(~DYNCHUNK|mcWhDemoUpdated,dsp~)</td>
+</tr>
+<tr><td></td><td colspan="2" class="keywords">Keywords: (~DYNCHUNK|mcWhDemoKeywords,dsp~)</td>
+<td></td>
+</tr>
+<tr><td colspan="4"></td></tr>
+(~INC|tempCounter~)
+</whdroplet>
+
+<whdroplet name="drDemoLinkForDFM2HTML" show="no">
+<tr><td>(~tempCounter~)</td>
+<td class="oneliner">(~JUMP|dfm2html:|F2H Demo~)</td>
+<td></td>
+<td align="right"><a name="DFM2HTML">DFM2HTML</a></td>
+</tr>
+<tr><td></td><td colspan="2">A demo showing how the DFM to HTML Converter (&quot;F2H&quot; component's output can be used as the basis for the WebHub application.
+</td>
+<td class="updatedon">06-Sep-2007</td>
+</tr>
+<tr><td></td><td colspan="2" class="keywords">Keywords: F2H, Form conversion</td>
+<td></td>
+</tr>
+<tr><td colspan="4"></td></tr>
+(~INC|tempCounter~)
+</whdroplet>
+
+<whdroplet name="drDemoLink" show="no">
+<tr><td>(~tempCounter~)</td>
+<td class="oneliner">(~JUMP|(~DYN1~):|(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~)~)</td>
+<td></td>
+<td align="right"><a name="(~DYN1~)">(~DYN1~)</a></td>
+</tr>
+<tr><td></td><td colspan="2">(~DYNCHUNK|~whDemoShortDesc,(~DYN1~)~)
+[<a href="javascript:newWindow('(~ACTION|pgDemoDetail,(~DYN1~)~)')">more</a>]
+(~MATCH|(~DYNCHUNK|mcWhDemoLite,(~DYN1~)~)=Lite|(~mcLitePic~)~)
+</td>
+<td class="updatedon">(~DYNCHUNK|mcWhDemoUpdated,(~DYN1~)~)</td>
+</tr>
+<tr><td></td><td colspan="2" class="keywords">Keywords: (~DYNCHUNK|mcWhDemoKeywords,(~DYN1~)~)</td>
+<td></td>
+</tr>
+<tr><td colspan="4"></td></tr>
+(~INC|tempCounter~)
+</whdroplet>
+
+<![CDATA[
+(~PARAMS|drDemoLink|DEMOS~)
+(~PARAMS|drDemoLink|BW~)
+(~PARAMS|drDemoLink|HTRU~)
+(~PARAMS|drDemoLink|HTSC~)
+(~PARAMS|drDemoLink|JOKE~)
+(~PARAMS|drDemoLink|SHOP1~)
+(~PARAMS|drDemoLink|STORE000~)
+(~PARAMS|drDemoLink|SHOWCASE~)
+(~PARAMS|drDemoLink|HTUN~)
+(~PARAMS|drDemoLink|HTQ3~)
+(~PARAMS|drDemoLink|HTQ4~)
+(~PARAMS|drDemoLink|HTQ2~)
+(~PARAMS|drDemoLink|HTQ1~)
+(~PARAMS|drDemoLink|HTGR~)
+(~PARAMS|drDemoLink|HTOL~)
+(~PARAMS|drDemoLink|HTOB~)
+
+(~PARAMS|drDemoLink|WHCP~)
+]]>
+</table>
+<br />
+<br />
+<a href="http://demos.href.com/scripts/runisa.dll?demos:pgEnterDemos">View links on demos.href.com using Microsoft IIS</a><br />
+<br />
+<a href="http://demos.href.com">Check which additional web server links are available today</a><br />
+
+(~CLEAR|tempCounter~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgDemoDetail" desc="Detail about a Demo">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~PARAMS|aboutHREFExample|(~command~)~)
+
+<h3 style="margin-top:2em;">(~~Prerequisites~)</h3>
+<p>(~DYNCHUNK|drDemoSetup,(~command~)~)</p>
+
+<p><a href="javascript:self.close()">Close window</a></p>
+
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="drJavaScriptPopupWindow">
+<script type="text/javascript">
+<!--Hide script from old browsers
+
+leftpos = 0
+if (screen) {
+   leftPos = screen.width-280
+}
+
+function newWindow(terms) {
+addWindow = window.open(terms, 'addWin', 'width=280,height=510,toolbar=no,location=no,resizable=yes,scrollbars=yes,left='+leftPos+'')
+
+addWindow.focus()
+}
+
+// End hiding script from old browsers -->
+</script>
+</whdroplet>
+
+<whpage pageid="INFO" desc="Information on the Demos">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Tips for Running the Demos on your own Server</h1>
+<p>The overview information for each demo indicates the name of
+the application server you need to run it.</p>
+
+<hr style="text-align:center;width:60%;" />
+
+<h2>Compiling Application Servers</h2>
+<p>If you have the installed the WebHub Components with demos, you'll
+find the source code to the demos under <code>ht\htdemos\codedemo\</code>.
+For example, the generic application server installs to
+<code>ht\htdemos\codedemo\webmastr\whPower\dpr</code>.</p>
+<p>Check the
+(~JUMP|pgEnterDemos|Demos Entry page~) to determine the exact
+directory for any given demo.</p>
+
+<hr style="text-align:center;width:60%;" />
+
+<h2>Setting the AppID</h2>
+<p>The application server named aserver.exe is a generic WebHub application server
+that is capable of serving a wide range of applications.  While you can
+easily switch AppIDs on the fly (using the menu, either File|Open  or  AppID|Pick AppID), you
+may want to force it to start with the proper AppID each time it runs.</p>
+<p>Make a shortcut that starts the application as follows, filling in
+your desired AppID on the command line:</p>
+<pre>
+c:\ht\htexe\aserver.exe /ID:AppID
+</pre>
+
+<p>Note: The other application servers (htdrop.exe, etc.) will all set the
+AppID automatically because they are intended to serve only a single application.</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

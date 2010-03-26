@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForshop1">
+<!-- speedbar for SHOP1 demo could be here -->
+</whdroplet>
+
+<whpage pageid="pgEnterSHOP1" desc="Welcome to the WebHub Shopping Demo">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Parts! Parts! Get your parts here!</h1>
+<p>Big parts. Small parts. Parts for just about everything.</p>
+<p>Don't you think you need anything?
+Browse through our extensive list of parts
+and we bet you'll find something
+you didn't know you needed.</p>
+
+<form method="post" action="(~actionr|poster~)">
+(~webdatagrid1.execute~)
+(~INPUTSUBMIT|BtnShop,Save~)
+(~INPUTSUBMIT|BtnShop,First Page~)
+(~INPUTSUBMIT|BtnShop,Prior Page~)
+(~INPUTSUBMIT|BtnShop,Next Page~)
+(~INPUTSUBMIT|BtnShop,Last Page~)
+(~INPUTSUBMIT|BtnShop,Checkout~)
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="poster" desc="Internal page for posting">
+<whprep>
+(~WebActionPostLit.execute~)
+(~Match|(~BtnShop~)~Checkout|(~Page|Confirm~)~)
+(~waScrollGrid.execute|~)
+(~PAGE|pgEnterSHOP1~)
+</whprep>
+</whpage>
+
+
+<whpage pageid="confirm" desc="Confirm Your Order of Parts!">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#shipto td.prompt {
+		text-align:right;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>(~pagedesc~)</h2>
+<b>You have ordered the following items:</b><br />
+(~webactionOrderList.execute~)
+
+<p>(At this point you may want to (~JUMP|pgEnterSHOP1|return to the shop~) to change quantities of some of the items.
+While it would be helpful if the surfer could return to a specific item,
+this feature has been left as an exercise for the reader.)</p>
+<h2>Tell Us Where to Ship Your Parts!</h2>
+<form method="post" action="(~ACTION|thx~)">
+<table id="shipto" cellspacing="0">
+<tr>
+	<td class="prompt">Your Name:</td>
+	<td>(~INPUTTEXT|CustFullname,20,25~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your Address:</td>
+	<td>(~INPUTTEXT|CustAddress,20,25~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your City:</td>
+	<td>(~INPUTTEXT|CustCity,20,25~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your State:</td>
+	<td>(~INPUTTEXT|CustState,20,25~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your Zip:</td>
+	<td>(~INPUTTEXT|CustZip,15,15~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your Phone:</td>
+	<td>(~INPUTTEXT|CustPhone,20,25~)</td>
+</tr>
+<tr>
+	<td class="prompt">Your E-mail:</td>
+	<td>(~INPUTTEXT|CustEmail,20,25~)</td>
+</tr>
+<tr>
+	<td>&nbsp;</td>
+	<td>(~INPUTSUBMIT|NAME,Continue~)</td>
+</tr>
+</table>
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgError" desc="Insufficient Information">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>You didn't enter enough information for us to send you the order.</p>
+<p>Please (~JUMP|confirm|go back~) and enter your <b>email address and shipping city</b>.</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="thx" desc="Thank You">
+<whprep>
+<!--- Check for required fields. -->
+(~REQUIRES|CustEMail|pgError~)
+(~REQUIRES|CustCity|pgError~)
+<!--- Run the component which sends the email confirmation. -->
+(~webactionMailer.execute~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Thanks, (~CustFullname~)!</h2>
+<b>Your parts will be sent to:</b><br />
+(~custCity~)
+<p><b>If we have any problems with your order, we will contact you at:</b><br />
+(~custEmail~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

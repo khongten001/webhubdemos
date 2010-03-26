@@ -1,0 +1,231 @@
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase" designpage="pgBigPict" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGHTML
+whSequenceFinal=PGHTML
+bSeqHdr=true
+bReqUl=true
+level=2
+levelKeyword=HTML
+htmlFilename=2Html.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo;
+showcaseBranchText=Easier HTML: 
+</whpagesettingslist>
+
+<whpage pageid="pgBigPict" desc="How and Why WebHub Works">
+<whpagesettings inherit="a">
+downLink=PGSAVSTATE
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+At the heart of any Web application is the HTML -- the simple language which turns any
+piece of information the application provides into something which can be viewed by
+ the surfer.
+<p>
+But too many Web tools assume that "heart" means "buried deep inside". They wrap
+the HTML -- which governs the look and feel of the site -- inside compiled applications
+or complex development environments. Other tools go to the opposite extreme, by
+requiring much or all of the program logic to be coded "between the lines" of HTML
+ pages. These pages are difficult to maintain, because they require an in-depth
+ knowledge of both HTML <b>and</b> and the programming system.
+<p>
+WebHub was designed with two simple premises in mind:
+<ol>
+<li>The best people to develop and maintain HTML are those who are skilled in using HTML.
+<li>The best people to develop and maintain program logic are those who are skilled in programming.
+</ol>
+To live up to this, WebHub makes it possible to keep the HTML code in text files separate from the Web application.  HTML specialists can alter these files with their preferred text editor at any time -- even while the application is running. Alterations made to the HTML can be carried across to the generated pages at the push of a button on the server, or the click of a link from a remote browser.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barBigPict">
+(~GO|PGSAVSTATE|Saving State~)(~mcHeadingSeparator~)
+(~GO|PGWHURLS|WebHub URLs~)(~mcHeadingSeparator~)
+(~GO|PGCNR|Server Side Data~)(~mcHeadingSeparator~)
+(~GO|PGDYNLINK|Dynamic Links~)(~mcHeadingSeparator~)
+(~GO|PGAUTDEF|Form Defaults~)
+</whdroplet>
+
+<whdroplet name="ulPgBigPict">
+(~GO|PGSAVSTATE|Automatically Saving State~)<br/>
+(~GO|PGWHURLS|WebHub URLs~)<br/>
+(~GO|PGCNR|Server Side Session Data~)<br/>
+(~GO|PGDYNLINK|Dynamic Page Links~)<br/>
+(~GO|PGAUTDEF|Automatic Defaults on Forms~)<br/>
+</whdroplet>
+
+
+
+<whpage pageid="pgReusable" desc="Reusable Pieces of HTML">
+<whpagesettings inherit="a">
+downLink=PGTEXTSUB
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+An expensive hidden cost of running a web site is maintenance
+after the initial pages are posted.  WebHub  pages are easier to maintain
+because WebHub lets you name pieces of HTML so that you can reuse them later.
+For example, you can define the page header,
+footer, speedbar, etc., only once, and then re-use them
+across pages or even projects.
+<p>
+There are three major kinds of reusable pieces of HTML:
+<p>
+<h4>Text Substitution Macros</h4>
+Macros are one-liners used for simple substitution. For example, you can use macros to define your graphics
+by basing everything on a variable that points to your image directory. That way, if you need
+to change the directory name in the future, you only have to make one change.
+<p>
+<h4>Droplets</h4>
+Droplets are typically longer pieces of HTML. For example, you can use droplets to define page elements like
+page headers, footers, speed bars, common HTML forms, and even JavaScript, and VRML.
+With a little organization of your files, droplets can be shared across projects. 
+
+<h4>StringVars</h4>
+WebHub has something called &quot;StringVars&quot; which
+are a set of strings saved individually by the surfer. Usually,
+the contents of these strings come from the surfer directly;
+they type something into an HTML FORM.  However, you can
+also use the SET macro to define a literal on the fly.
+This lets you create various special effects, including
+customizing pages depending on the customer name. You will
+see examples of this in the Forms section of this showcase.
+<p>
+The most important thing about StringVars is that they
+are <i>variables</i>. Their content is easily changed
+at runtime, either by the surfer, or behind the scenes
+by the programmer.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barReusable">
+(~GO|PGTEXTSUB|Text Substitution~)(~mcHeadingSeparator~)
+(~GO|PGCONTACTINFO|Contact Info~)(~mcHeadingSeparator~)
+(~GO|PGHEADFOOT|Headers and Footers~)(~mcHeadingSeparator~)
+(~GO|PGREPUBLIT|StringVars~)
+</whdroplet>
+
+
+<whdroplet name="ulPgReusable">
+(~GO|PGTEXTSUB|Text Substitution~)<br/>
+(~GO|PGCONTACTINFO|Contact Info~)<br/>
+(~GO|PGHEADFOOT|Page Headers and Footers~)<br/>
+(~GO|PGREPUBLIT|Republishing StringVars~)<br/>
+</whdroplet>
+
+
+
+<whpage pageid="pgDynamicLinks" desc="Dynamic Links Within a Site">
+<whpagesettings inherit="a">
+downLink=PGJUMP
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+In order to build full-featured web applications, especially those that need
+to work as modules within a larger system, you need to control
+link generation. WebHub macros are designed to give you full control over your
+links while making it easy to make system-wide changes.
+<p>
+WebHub includes a variety of different kinds of macros that can be used to create dynamic A HREF links, including JUMP, GO, and HIDE. All of these can take extra parameters for Javascript and frame syntax.
+These examples will help you understand how WebHub dynamic links work.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barDynamicLinks">
+(~GO|PGJUMP|Jump~)(~mcHeadingSeparator~)
+(~GO|PGGO|Go~)(~mcHeadingSeparator~)
+(~GO|PGHIDE|Hide~)(~mcHeadingSeparator~)
+(~GO|PGACTION|Action~)(~mcHeadingSeparator~)
+(~GO|PGWHERE|Current~)(~mcHeadingSeparator~)
+(~GO|PGRANDOM|Reloading~)(~mcHeadingSeparator~)
+(~GO|PGPAGEALIAS|Aliasing~)
+</whdroplet>
+
+<whdroplet name="ulPgDynamicLinks">
+(~GO|PGJUMP|The JUMP Macro~)<br/>
+(~GO|PGGO|The GO Macro~)<br/>
+(~GO|PGHIDE|The HIDE Macro~)<br/>
+(~GO|PGACTION|The ACTION Macro~)<br/>
+(~GO|PGWHERE|The CURRENT Macro~)<br/>
+(~GO|PGRANDOM|Reload Macros~)<br/>
+(~GO|PGPAGEALIAS|Page Aliasing~)<br/>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgWHMacros" desc="WebHub Commands">
+<whpagesettings inherit="a">
+downLink=PGIF
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Earlier we looked at text substitution macros.  There are other
+uses for macro syntax within WebHub, including so-called
+<i>event macros</i>.  These macros do much more than just simple
+text substitution.
+<p>
+Many popular event macros are built into WebHub.  Delphi programmers
+can extend the macro language, providing unlimited features.
+<p>
+All built-in macros are fully documented in the WebHub Help File.
+Some, but not all, are highlighted in this SHOWCASE.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barWHMacros">
+(~GO|PGIF|If~)(~mcHeadingSeparator~)
+(~GO|PGCOND|Processing~)(~mcHeadingSeparator~)
+(~GO|PGCONDCHECK|Checkboxes~)(~mcHeadingSeparator~)
+(~GO|PGMATCH|Match~)(~mcHeadingSeparator~)
+(~GO|PGPAGE|Page~)(~mcHeadingSeparator~)
+(~GO|PGREQUIRES|Requires~)(~mcHeadingSeparator~)
+(~GO|PGINCLUDE|Include~)(~mcHeadingSeparator~)
+(~GO|PGSENDFILE|Sendfile~)(~mcHeadingSeparator~)
+(~GO|PGEXPIRE|Expires~)(~mcHeadingSeparator~)
+(~GO|PGSUMMARY|Summary~)
+</whdroplet>
+
+<whdroplet name="ulpgWHMacros">
+(~GO|PGIF|The IF, IFNOT Macro~)<br/>
+(~GO|PGCOND|Conditional Processing~)<br/>
+(~GO|PGCONDCHECK|WebHub and Checkboxes~)<br/>
+(~GO|PGMATCH|The MATCH, NOMATCH Macro~)<br/>
+(~GO|PGPAGE|The PAGE Macro~)<br/>
+(~GO|PGREQUIRES|The REQUIRES Macro~)<br/>
+(~GO|PGINCLUDE|The INCLUDE Macro~)<br/>
+(~GO|PGSENDFILE|The SENDFILE Macro~)<br/>
+(~GO|PGEXPIRE|The EXPIRES Macro~)<br/>
+(~GO|PGSUMMARY|The SUMMARY Macro~)<br/>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgFrames" desc="Frames">
+<whpagesettings inherit="a">
+downLink=FRAMESET1
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub provides support for Netscape's FRAME syntax. Target frame names can be
+sent as a modifier after any PageID. For example, if you are setting up a JUMP,
+you might say
+<p>
+<code>(~.JUMP|home<b>-FrameName</b>|Link to Home Page in a Frame~)</code>.
+<p>
+You can create a jump out of a frame environment with this syntax:
+<p>
+<code>(~.JUMP|home-_top|Let me Out!~)</code>
+<p>
+Many people use JavaScript to further control frames, especially
+the automatic loading of content into frames.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="ulPgFrames">
+(~GOR|FRAMESET1|Content Picker Example~)
+</whdroplet>
+
+
+</whteko>

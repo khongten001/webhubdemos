@@ -1,0 +1,239 @@
+<whteko designmode="code">
+
+<whpagesettingslist id="general">
+WHCPSecurePage=yes
+</whpagesettingslist>
+
+<whmacros>
+mcClearImg=<img src="noimg.gif" width="0" height="0" alt=" " />
+mcColumnLine=<TD WIDTH="1" BGCOLOR="(~mcLineColor~)">(~mcClearImg~)</td>
+mcLineColor=#AAAAAA
+mcWHCPImg=(~mcSiteRoot~)demos/whcControlPanel/
+</whmacros>
+
+<whpage pageid="pgEnterWHCP">
+<whpagesettings>
+WHCPSecurePage=no
+</whpagesettings>
+(~chWHCPHeader~)
+<table border="0">
+<tr><TD VALIGN="TOP"><FONT SIZE="4">Applications</FONT></td>
+<td>Shows all running [and not running appids] together with webapplications that are serving
+these AppIDs. Lets you restart, resume, start, stop, suspend, switch appid, terminate these web applications.</td></tr>
+<tr><TD VALIGN="TOP"><FONT SIZE="4">Settings</FONT></td><td>Configure the hub</td></tr>
+(~IFNOT|_bLoggedIn|<tr><td colspan="2">(~JUMPR|pgWHCPLogin|Login~)</td></tr>~)
+</table>
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chWHCPHeader">
+(~chCheckLogin~)
+<html>
+
+<HEAD>
+<TITLE>WebHub Control Panel - (~PageDesc~) (AppID is (~AppID~))</TITLE>
+</HEAD>
+
+<body>
+
+<TABLE BORDER="0" WIDTH="780">
+<tr><TD ROWSPAN="3" WIDTH="207" VALIGN="TOP">
+<img src="(~mcWHCPImg~)hreftc.jpg" HEIGHT="208" WIDTH="207" />
+(~chWHCPMenu~)
+</td><TD ALIGN="MIDDLE" VALIGN="TOP" HEIGHT="100"><H2>WEBHUB Control Panel</H2></td></tr>
+
+<tr><TD ALIGN="LEFT" VALIGN="TOP">(~DYNCHUNK|chPD,(~PageID~)~)</td></tr>
+<tr><TD ALIGN="MIDDLE" VALIGN="TOP">
+
+</whdroplet>
+
+<whdroplet name="chWHCPFooter">
+</td></tr>
+<tr><TD COLSPAN="2" ALIGN="MIDDLE">
+<FONT COLOR="#CCCCCC" SIZE="1">Time to produce this page : (~TIMESOFAR~)<br />
+Copyright &copy; 2000-2004 HREF Tools Corp.<BR>
+All rights reserved. Running (~version~)</FONT>
+</td></tr>
+</table>
+ </body>
+</html>
+</whdroplet>
+
+<whdroplet name="chCheckLogin">
+(~IFNOT|_bLoggedIn|(~MATCH|(~PageSetting.WHCPSecurePage~)=yes|(~SET|WHCPGoToPage=(~PageID~)~)(~BOUNCE|pgWHCPLogin~)~)~)
+</whdroplet>
+
+<whpage pageid="pgWHCPLogin" desc="Login">
+<whpagesettings>
+WHCPSecurePage=no
+</whpagesettings>
+(~chWHCPHeader~)
+<form method="post" action="(~ACTIONR|pgWHCPLoginPoster~)">
+<table border="0">
+<tr><td>Username</td><td>(~INPUTTEXT|Username~)</td></tr>
+<tr><td>Password</td><td>(~INPUTPASSWORD|Password~)</td></tr>
+<tr><TD COLSPAN="2">(~INPUTSUBMIT|lButton,Login~)</td></tr>
+</table>
+</form>
+(~chWHCPFooter~)
+</whpage>
+
+<whpage pageid="pgWHCPLoginPoster" desc="internal page">
+<whpagesettings>
+WHCPSecurePage=no
+</whpagesettings>
+<whprep>
+(~wlWHCP.Execute|Username,Password,_bLoggedIn~)
+(~IF|_bLoggedIn|(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.cgiApp~):pgEnterWHCP:(~SessionID~)~)||(~BOUNCE|pgWHCPLogin~)~)
+</whprep>
+</whpage>
+
+<whpage pageid="pgWHCPLogOut" desc="internal page">
+<whprep>
+(~CLEAR|_bLoggedIn~)
+(~CLEAR|Username~)
+(~CLEAR|Password~)
+(~IFNOT|_bLoggedIn|(~BOUNCE|~)~)
+</whprep>
+</whpage>
+
+<whdroplet name="chWHCPMenu">
+(~IF|_bLoggedIn|
+<TABLE BORDER="0" WIDTH="200">
+<TR HEIGHT="1"><TD ROWSPAN="6" WIDTH="20">&nbsp;</td><td>&nbsp;</td></tr>
+
+<tr><TD ALIGN="LEFT" VALIGN="TOP">
+<FONT SIZE="+2">(~GO||MENU~)</FONT>
+</td></tr>
+<tr><TD ALIGN="LEFT" VALIGN="TOP">
+<FONT SIZE="3">(~GO|pgApps|Applications~)</FONT>
+</td></tr>
+<tr><TD ALIGN="LEFT" VALIGN="TOP">
+<FONT SIZE="3">(~GO|pgSettings|Settings~)</FONT>
+</td></tr>
+<tr><TD HEIGHT="16">&nbsp;</td></tr>
+<tr><TD ALIGN="LEFT" VALIGN="TOP">
+<FONT SIZE="3">(~JUMP|pgWHCPLogOut|Logout~)</FONT>
+</td></tr>
+</table>
+~)
+</whdroplet>
+
+<whpage pageid="pgApps1">
+<whpagesettings inherit="general">
+</whpagesettings>
+(~chWHCPHeader~)
+(~PARAMS|chAppTitle|,<b>AppID</b>,<b>Calls</b>,~)
+<TABLE BORDER="0"><tr><TD HEIGHT="5">(~mcClearImg~)</td></tr></table>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR HEIGHT="1"><TD COLSPAN="2">(~mcClearImg~)</td>
+<TD COLSPAN="7" BGCOLOR="#AAAAAA">(~mcClearImg~)</td>
+<td>(~mcClearImg~)</td>
+<TD COLSPAN="5" BGCOLOR="#AAAAAA">(~mcClearImg~)</td></tr>
+(~PARAMS|chAppItem|,,<b>Process</b>,<b>Handle</b>,<b>Calls</b>,~)
+</table>
+
+(~waApps|Apps|whcp|chApps|chApp~)
+(~chWHCPFooter~)
+</whpage>
+
+<whdroplet name="chApps1">
+<TABLE BORDER="0"><tr><TD HEIGHT="20">&nbsp;</td></tr></table>
+(~PARAMS|chAppTitle|cb,(~whcpAppID~),(~whcpCalls~),pgAppsPoster~)
+<TABLE BORDER="0"><tr><TD HEIGHT="5">(~mcClearImg~)</td></tr></table>
+</whdroplet>
+
+<whdroplet name="chApp1">
+(~PARAMS|chAppItem|cb,(~whcpAppID~),(~whcpProcess~),(~whcpHandle~),(~whcpCalls~),pgAppsPoster~)
+</whdroplet>
+
+<whdroplet name="chAppStart1">
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR HEIGHT="1"><TD COLSPAN="2">(~mcClearImg~)</td>
+<TD COLSPAN="7" BGCOLOR="#AAAAAA">(~mcClearImg~)</td>
+<td>(~mcClearImg~)</td>
+<TD COLSPAN="5" BGCOLOR="#AAAAAA">(~mcClearImg~)</td></tr>
+</whdroplet>
+<whdroplet name="chAppStop1">
+</table>
+</whdroplet>
+<whdroplet name="chAppTitle1">
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+<TR HEIGHT="1"><td>(~mcClearImg~)</td>
+<TD COLSPAN="6" BGCOLOR="#AAAAAA">(~mcClearImg~)</td>
+<td>(~mcClearImg~)</td>
+<TD COLSPAN="5" BGCOLOR="#AAAAAA">(~mcClearImg~)</td></tr>
+
+<tr>
+<TD WIDTH="20">(~ASSIGNED|DYN1|(~INPUTCHECKBOX|(~DYN1~)(~Dyn2~)~)||&nbsp;~)</td>
+(~mcColumnLine~)
+(~ASSIGNED|DYN4|
+<TD WIDTH="100">(~JUMP|(~DYN2~):|(~DYN2~)~)</td>
+||
+<TD WIDTH="100">(~DYN2~)</td>
+~)
+(~mcColumnLine~)
+<TD WIDTH="100">(~DYN3~)</td><TD WIDTH="135">&nbsp;</td>
+(~mcColumnLine~)
+<TD WIDTH="50">&nbsp;</td>
+(~mcColumnLine~)
+(~ASSIGNED|DYN4|
+<TD WIDTH="19">(~JUMP|(~DYN4~),waAppAction.(~DYN2~)-Refresh|<IMG SRC="(~mcWHCPImg~)refresh.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+<TD WIDTH="19">(~JUMP|pgAppIDSettings,waAppInfo.(~DYN2~)|<IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+<TD WIDTH="19">(~JUMP|(~DYN4~),waAppAction.(~DYN2~)-Terminate|<IMG SRC="(~mcWHCPImg~)exit.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+||
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)refresh.jpg" HEIGHT="22" WIDTH="19"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)exit.jpg" HEIGHT="22" WIDTH="19"></td>
+~)
+(~mcColumnLine~)
+</tr>
+
+<TR HEIGHT="1"><td>(~mcClearImg~)</td>
+<TD COLSPAN="6" BGCOLOR="#AAAAAA">(~mcClearImg~)</td>
+<td>(~mcClearImg~)</td>
+<TD COLSPAN="5" BGCOLOR="#AAAAAA">(~mcClearImg~)</td></tr>
+</table>
+</whdroplet>
+<whdroplet name="chAppItem1">
+<tr><TD WIDTH="35">&nbsp;</td>
+<TD WIDTH="20">(~ASSIGNED|DYN1|(~INPUTCHECKBOX|(~DYN1~)(~Dyn2~)~)||&nbsp;~)</td>
+(~mcColumnLine~)
+(~ASSIGNED|DYN2|
+<TD WIDTH="100">(~JUMP|(~DYN2~).(~DYN4~):(~SESSIONID~)|(~DYN3~)~)</td>
+||
+<TD WIDTH="100">(~DYN3~)</td>
+~)
+(~mcColumnLine~)
+<TD WIDTH="100">(~DYN4~)</td>
+(~mcColumnLine~)
+<TD WIDTH="100">(~DYN5~)</td>
+(~mcColumnLine~)
+<TD WIDTH="50">&nbsp;</td>
+(~mcColumnLine~)
+(~ASSIGNED|DYN6|
+<TD WIDTH="19">(~JUMP|(~DYN6~),waAppAction.(~DYN4~)-Refresh|<IMG SRC="(~mcWHCPImg~)refresh.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+<TD WIDTH="19">(~JUMP|pgAppIDSettings,waAppInfo.(~DYN4~)|<IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+<TD WIDTH="19">(~JUMP|(~DYN6~),waAppAction.(~DYN3~)-Terminate|<IMG SRC="(~mcWHCPImg~)exit.jpg" HEIGHT="22" WIDTH="19" BORDER="0">~)</td>
+||
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)refresh.jpg" HEIGHT="22" WIDTH="19"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)settings.jpg" HEIGHT="22" WIDTH="19"></td>
+<TD WIDTH="19"><IMG SRC="(~mcWHCPImg~)exit.jpg" HEIGHT="22" WIDTH="19"></td>
+~)
+(~mcColumnLine~)
+</tr>
+
+<TR HEIGHT="1"><TD COLSPAN="2">(~mcClearImg~)</td>
+<TD COLSPAN="7" BGCOLOR="#AAAAAA">(~mcClearImg~)</td>
+<td>(~mcClearImg~)</td>
+<TD COLSPAN="5" BGCOLOR="#AAAAAA">(~mcClearImg~)</td></tr>
+</whdroplet>
+
+<whpage pageid="pgAppsPoster1" desc="internal page">
+<whprep>
+(~waAppAction.Execute~)
+(~MATCH|(~a~)~a|(~BOUNCE|pgApps~)~)
+</whprep>
+</whpage>
+
+</whteko>

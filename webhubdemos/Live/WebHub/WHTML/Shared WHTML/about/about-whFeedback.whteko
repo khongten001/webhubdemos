@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTFD=Feedback Message
+mcWhDemoCreditIdeaHTFD=AnnLynnworth
+mcWhDemoCreditFirstDraftHTFD=Ann Lynnworth
+mcWhDemoCreditGraphicsHTFD=Rob Daniels
+mcWhDemoCreditCopyHTFD=Rob Daniels and Karen Chauss
+mcWhDemoUpdatedHTFD=May-1998
+mcWhDemoKeywordsHTFD=email,feedback page,sendmail
+mcWhDemoLiteHTFD=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupHTFD">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+<li> You must have access to an outgoing mail server if you want to 
+see this demo work on your own machine.  If you are testing on demos.href.com, 
+then don't worry -- everything has already been set up for you.
+</li>
+<li> If you are testing on your own machine, change the mail server to one 
+that you have permission to use.  Do this through the <b>Mail Panel</b> or 
+edit the application's INI file using the menu: <b>HTFD|Edit Ini File</b>.
+</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescHTFD">
+This demo shows how to send a simple feedback message, and how to send a 
+form letter which "mail merges" a template file with data entered by the surfer (that's you).
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTFD">
+All form-to-email features are implemented using the whMail unit, which 
+is one of the shared panels included with the WebHub components.  
+<br /><br />
+The way to understand automatic e-mail is to start by looking at the form's 
+ACTION tag.  It will call a WebHub page, and will generally pass a command 
+to a TwhMailForm component.  On the resulting page, that component is 
+executed, and based on the command, it knows which settings to use to 
+send the message.
+<br /><br />
+The settings determine the email host, sender, recipient, and so on.
+If you look at the INI file, you will see exactly what is involved.
+</whtranslation>
+
+</whteko>

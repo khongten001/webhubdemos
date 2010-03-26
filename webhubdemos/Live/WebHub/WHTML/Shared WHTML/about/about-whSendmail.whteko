@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTEM=EMail Replies, Automated
+mcWhDemoCreditIdeaHTEM=Ann Lynnworth
+mcWhDemoCreditFirstDraftHTEM=Ann Lynnworth
+mcWhDemoCreditGraphicsHTEM=Rob Daniels
+mcWhDemoCreditCopyHTEM=Karen Chauss and Rob Daniels
+mcWhDemoUpdatedHTEM=May-1998
+mcWhDemoKeywordsHTEM=EMail,Form letter,quotation,mail merge,sendmail
+mcWhDemoLiteHTEM=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTEM">
+<ol>
+<li> Requires whSendmail.exe</li>
+<li> You will need access to a mail server in order to send email from your machine.
+Edit the htMailin.pas file, and customize this line:
+<pre>
+  MailHost.Hostname:='mail.href.com';   <!--- replace with your mail server -->
+</pre></li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTEM">
+This demo shows how to calculate a quotation based on surfer input, and then send a quotation letter by e-mail. 
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTEM">
+The surfer enters the quantity desired for two items, and a payment method.  Based on this information, 
+the application calculates the amount due.  It then generates an email message with fill-ins for the 
+calculated values.
+</whtranslation>
+
+</whteko>

@@ -1,0 +1,551 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcPageCounter=Cntr.htComServer,,AppID,PageID
+mcPgCntErr=PageCounter Error! [(~WebDCOM_mcPageCounter.Error~)]
+mcMemoServer=Memo.TMemoServer,localhost,We,love,WebHub
+mcMemoServer2=Memo.TMemoServer,localhost,now,for,something,totally,different...
+</whmacros>
+
+<whpage pageid="pgEnterCOM" desc="COM Demonstration">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	.important {color:#FF0000;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>What is the big deal about COM?</h1>
+<p><b>The COM macro brings a new level of meaning to the WebHub basic mantra: </b></p>
+
+<ol>
+<li><span class="important">Reduce</span> both the amount of code that needs to be written,
+ AND the number of machines it needs to run on!</li>
+
+<li><span class="important">Reuse</span> code by abstracting concepts, and making the code more generic.
+ The flexibility of the COM macro syntax allows the person writing the COM programs to
+abstract to a far higher level than would typically be the case.</li>
+
+<li><span class="important">Recycle</span> existing code by turning it a COM/DCOM program!  There  are
+ a LOT of non-Web programs in use today, written in VB and C++ and even Delphi,  that could be given
+radically increased viability by web-enabling them as COM programs!!</li>
+</ol>
+
+<p>This demo includes two tiny COM examples which demonstrate how
+to call a COM or DCOM resource using WebHub-HTML.</p>
+
+<p> (~JUMP|ComCounter|Page Counter~) is a functional and useful mini-example
+ which can be copied as-is, and pasted into any of your projects. </p>
+
+<p>(~JUMP|COMMemo|Memo Server~) is an Input/Process/Output example for Delphi Programmers,
+ intended as a study tool and a jumping off point for programmers to play around with the component.</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="drDemoSpeedbarForCOM">
+(~GO|ComCounter|Page Counter~)<br />
+(~GO|ComMemo|Memo Server~)<br />
+</whdroplet>
+
+<whdroplet name="chSpeedbarCOM1">
+<div class="dcenter" style="color:#FF0000;margin:2em 0 2em 0;">
+(~GO|ComCounter|Counter Server On~) &nbsp;
+(~GO|ComCounterFree|Counter Server Off~) &nbsp;
+(~GO|ComCounterSettings|Counter Server Settings~) &nbsp;
+(~GO|HowWorks|How ComCounter Works~)&nbsp;
+(~GO|ComMemo|On to the Memo Server Example~)
+</div>
+</whdroplet>
+
+<whpage pageid="ComCounter" desc="Page Counter Example">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM1~)
+<h2>(~PageDesc~)</h2>
+<!-- FYI: Connecting with (~WebDCOM_mcPageCounter.ProgID~) -->
+<p>The number of page requests is:
+(~COM|mcPageCounter|||(~mcPgCntErr~)~)</p>
+
+<p>(~JUMP|(~PageID~)|Click Here to Increment the Counter~)</p>
+
+<p>  If you want the details on how the ComCounter  works and on what you need to do to use this counter in ANY of your apps,</p>
+
+<p>(~JUMP|HowWorks|Come on in...~)</p>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="HowWorks" desc="Using the ComCounter">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM1~)
+<p>(~chCounterSpeedbar~)</p>
+
+<h1>What ComCounter looks like</h1>
+<p>Here is the syntax used to call the COM counter:
+<b>(~.COM|mcPageCounter|||mcPgCntErr~)</b></p>
+
+<p>The COM program itself is in a macro,  which must be defined as follows:</p>
+
+<p><b>key=GUID|ProgID [,MachineName[,CommaTextInitialParameters]]</b>.</p>
+
+<p>To clarify that interesting construct, we will try it in plain English--<br />
+  the key is the name you assign to the macro, and
+the definition must begin with EITHER a GUID or a ProgID--and this by itself CAN be the entire
+ definition.  The combination of the  machine name and TextInitial Parameters is
+optional, but if you want to include the TextInitial Parameters, you <span style="text-decoration:underline">must also</span> include the
+Machine Name (or at least hold a place for it with the commas!).</p>
+
+<p>To specify that you want to run on the local machine, leave MachineName blank, or
+set it equal to either  '.' or 'Localhost'.
+<br />
+To run this on a specific machine on your network, specify the name of the selected
+machine as the MachineName.
+<br />(Obvious, yes--but it is important to be very clear about these
+ matters!)</p>
+
+<p>This COM counter example requires  two macros:  mcPageCounter,  which is the macro
+ containing the the com program,  and mcPgCntErr, a text substitution macro with an
+error message and display of a property of a component that gives you information
+about the error.</p>
+
+<p>Here is how we have defined these two macros:</p>
+
+<p><code>mcPageCounter=Cntr.htComServer,,AppID,PageID </code><br />
+ <b>(the macro name)=(the ProgID)  (placeholder for the machine name)(the parameters) </b>
+<br />
+and<br />
+<code>mcPgCntErr=PageCounter Error! [(~.WebDCOM_mcPageCounter.Error~)]</code><br />
+<b>(macro name)=(text error message)(info about the error)</b>
+</p>
+
+<h2> How it works</h2>
+<p>The actual execution of the macro goes like this...</p>
+<p>The COM macro  calls the program Cntr.htComServer, and passes it the following parameters:
+ ,,AppID,PageID.  (remember, the placeholder commas are required if you are
+going to use additional parameters!)</p>
+
+<p>Assuming all goes well, the program will generate
+and display some output.  If there is an error preventing this, the "else" section of the macro kicks in;
+in this case, displaying the phrase PageCounterError! and, in brackets, the value of the error property of the
+ WebDCOM_mcPageCounter component (this component is generated on the fly).</p>
+ 
+
+<h2> How to use it</h2>
+<p>You can copy and paste this counter example verbatim to register hits on any of your own pages.
+You need to have the cntr.exe program on your server  (shipped with this demo,
+default installation to ht\htexe\com\cntr.exe), and have the macros mcPageCounter
+and mcPgCntErr added to your WebHub-HTML file, then you can call the counter from
+within your page, as shown above.</p>
+
+<p><b>NOTE:  Run cntr.exe ONCE to initialize your machine's settings,
+ so that it will be loaded automatically  when called by the COM macro.</b></p>
+
+<p>Unlike ordinary programs, COM applications must be run at least once so
+that they register, then they load "on demand".  This is
+quite different from regular custom WebHub applications, which you preload
+as applications or as services.  Keep in mind, <i> especially</i> when you
+deploy your COM applications to a new physical machine, that it is not enough
+to just copy the application there - <i>you need to run it once</i>.</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+
+<whpage pageid="ComCounterFree" desc="How to free the TwhDCOM component">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM1~)
+(~chCounterSpeedbar~)
+
+<h1>(~PageDesc~)</h1>
+<p>Use the following syntax to free the TwhDCOM component and close its COM
+connection.  This needs to be done before the application exits for optimal memory
+ management on your server.</p>
+
+<div class="dcenter">
+<b>(~.COM|mcPageCounter|FREE~)</b>
+</div>
+
+<p>(~COM|mcPageCounter|FREE~)</p>
+
+<p>NOTE:  If you close the counter, then click on the counter settings, you won't get any!!
+ You MUST restart the counter, then click on the counter settings in order to see them.</p>
+ 
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+<whpage pageid="ComCounterSettings">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM1~)
+
+<h1>(~PageDesc~)</h1>
+<p>Here are the WebDCOM Component's current settings:</p>
+
+<ol>
+<li>Name = (~WebDCOM_mcPageCounter.Name~)</li>
+<li>GUID = (~WebDCOM_mcPageCounter.GUID~)</li>
+<li>ProgID = (~WebDCOM_mcPageCounter.ProgID~)</li>
+<li>MachineName = (~WebDCOM_mcPageCounter.MachineName~)</li>
+<li>Parameters =<ul><li> (~WebDCOM_mcPageCounter.Parameters~)</li></ul></li>
+</ol>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+<whdroplet name="chSpeedbarCOM2">
+<whdoc for="chSpeedbarCOM2">
+///////  Memo-server example ///////
+</whdoc>
+<div class="dcenter" style="color:#FF0000;">
+(~GO|ComMemo|Memo Server On~) &nbsp;
+(~GO|ComMemoFree|Memo Server Off~) &nbsp;
+(~GO|HowMemoWorks|How the Memo Server Works~) &nbsp;
+(~GO|ComMemoSettings|Memo Server Settings~)&nbsp;
+(~GO|ComCounter|Back to the Com Counter~)
+</div>
+</whdroplet>
+
+<whpage pageid="ComMemo" desc="COM Memo Server Example">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chSpeedbarCOM1~)
+<h1>(~PageDesc~)</h1>
+<p>This little Memo Server's programmed task is to print out the parameters
+that are passed to it, formatted as an unordered list. Its unprogrammed task to 
+provide you with the opportunity to look at the source code 
+and figure out how this puppy works!</p>
+
+<p>The table below results from calling the WebHub COM macro and requesting the
+MemoServer COM program.</p>
+
+<p>The first row shows only the parameters that are passed directly to the MemoServer  program
+ itself via the definition of the macro mcMemoServer, while the second row includes additional parameters
+ which are added  via the COM macro.</p>
+
+<div class="dcenter">
+<table border="4" width="50%">
+<tr>
+	<td>
+	(~COM|mcMemoServer|||Error!~)
+	(~GO|HowMemoWorks|Here's How the Memo Server Works~)
+	</td>
+</tr>
+<tr>
+	<td>This second row adds additional parameters<br /> to the COM macro:
+(~COM|mcMemoServer|(~SessionID~),(~pagecount~),these,new,macros,are,so,COOL!||Error!~)
+<p>You can also define a new macro for the COM program--the same program will be called,
+and will run exactly in the same fashion, but performing its programmed operations on new data.</p>
+
+<p>(~JUMP|pgMemSrvr2|Check it out with multiple macros!~)</p>
+	</td>
+</tr>
+</table>
+</div>
+
+<h2>Hint #1!</h2>
+<p>When you are actually ready to try your hand at writing a utility that responds over COM, 
+we suggest that you start with the generic version that ships with this demo. 
+See projects\WebHub Demos\Source\More Examples\whCOM\generic\htsvr30.dpr.</p>
+<h2>Hint #2!</h2>  
+<p>When you are playing around with this, if the memoserver
+appears to be broken after you recompile,  it is likely that the recompiled version and the old version no
+longer match up in the registry editor. Go into DOS and use memosvr.exe -UNREGSERVER  to remove
+the server from your local registry.</p>
+
+<h2>Hint #3!</h2>
+<p>If you make changes in your parameters, and the server appears not to be
+recognizing your changes, try saving your changes to disk, then shutting down and
+restarting the  Aserver application.  Worked for ME...</p>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="HowMemoWorks" desc="How the Com MemoServer Works">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chSpeedbarCOM2~)
+<h1>What the MemoServer looks like</h1>
+<p>Again, the COM command requires that the text-substitution macro 
+it is acting upon (in this case,
+mcMemoServer)  be defined with the parameters it is to use:</p>
+
+<p><code>
+mcMemoServer=Memo.TMemoServer,localhost,We,love,WebHub</code><br />
+<b>(the macro name)=(the ProgID) (machine name)(the parameters)</b></p>
+
+<p>Here is the syntax for using the COM command to just call the COM MemoServer, without adding any additional parameters:</p>
+
+<p><code>
+(~.COM|mcMemoServer|||Error!~)
+</code></p>
+
+<p>and here it is with the additional parameters:</p>
+
+<p><code>
+(~.COM|mcMemoServer|(~.Session~),(~.pagecount~),these,new,macros,are,so,COOL!||Error!~)
+</code></p>
+
+
+<h2>How it works</h2>
+
+<p>The actual execution of the macro goes like this...<br />
+The COM macro  calls the program Memo.TMemoServer, which gets passed the following parameters:
+We,love,WebHub</p>
+
+<p><small><b>NOTE:  It looks like "Localhost"  is the first parameter passed, but it actually is telling the COMserver program
+which machine it is to run on.  This is an important point, because if you are on a network,
+ you can ASSIGN which machine you wish this to run on by naming it here</b></small></p>
+
+<p>The output of this program is the parameters, formatted in an unordered  list, and then
+ additionally displaying whatever follows the second vertical bar-- in this case, <b> the SessionID (expanded from (~.Session~)),<br />
+ the page count (expanded from (~.pagecount~),  <br />
+these,<br />
+new,<br />
+macros,<br />
+are,<br />
+so,<br />
+COOL!</b></p>
+
+<p>Again, if the program were to be unable to return the output, then the "else" section
+ of the macro would apply, and just the word <b>Error! </b>  would appear.</p>
+
+<h3>How to use it</h3>
+(~JUMP|MultMacs|Here is a brief example!~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgMemSrvr2">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM2~)
+<p>(~JUMP|MultMacs|What's the advantage~) of using multiple macros against the same COM program?</p>
+
+	<div class="dcenter">
+	<table border="4" width="50%">
+<tr><td style="color:#FF0000;">The original McMemoserver, with additional parameters added via the COM macro</td></tr>
+<tr><td>
+(~COM|mcMemoServer|(~SessionID~),(~pagecount~),these,new,macros,are,so,COOL!||Error!~)
+</td></tr>
+<tr><td style="color:#FF0000;">
+And now with a new macro, defined as
+mcMemoServer2=Memo.TMemoServer,localhost,now,for,something,totally,different...<br />
+and called like this:
+(~.COM|mcMemoServer2|Four,Score,and,Seven,Iterations,ago||Error!~)</td></tr>
+<tr><td>(~COM|mcMemoServer2|Four,Score,and,Seven,Iterations,ago||Error!~)
+</td></tr>
+</table>
+	</div>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="MultMacs" desc="Example Using Multiple Macros">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM2~)
+<h3>Why the fuss over being able to use multiple macros with the same COM program?</h3> 
+<p>Why else?  I want you to close your eyes, and intone the mantra... Reduce,Reuse,Recycle!<br />
+But this time, with a different twist:</p>
+
+<ul>
+<li><b>Reduce</b> the number of COM programs needed.</li>
+<li><b>Reuse</b> and refine your W-HTML skills, and utilize the COM macro to unlock the full potential of a well-written, generic COM program!</li>
+<li><b>Recycle</b> the original COM program by changing the macro definitions and the parameters, NOT the program!</li>
+</ul>
+
+<p>Let's make up an example...</p>
+
+<p>Take the banking industry-- ("PLEASE!!" hehehe):</p>
+
+<p>Undoubtedly there are a gazillion programs for calculating various types of compounded interest.
+You can write (or contract  out for) one COM program with conditional sections that covers all of these things;
+then define your program macro to determine to trigger the condition you want, along with
+ the exact operations you want performed, in the order you want them performed.  Then
+use the COM macro parameters to pass in the data upon which the operations are to
+be performed.</p>
+
+<p>Let's say you have a COM program called bank.ThtBankingServer, which covers  two types of compound interest calculations:</p>
+
+<p><span style="color:#FF0000;">Simple Compound Interest:<br />
+Amount = Principal * (1+i)^n<br />
+where i is interest rate and n is the number of periods</span></p>
+
+<p>and</p>
+
+<p><span style="color:#FF0000;">Interest compounded multiple times per year:<br />
+Amount = Principal * (1+(i/q))^(n * q)<br />
+where i is interest rate, q is number of periods per year and n is the
+number of years.</span></p>
+
+<p>Define 2 macros--mcSimpleCompoundInterest and mcCompoundInterest.<br />
+Both will call the same COM program, but their final parameter  will determine
+ WHICH sections of the COM program get utilized (ie: which formula is used to
+ process the data).  The data for the calculations; principal, interest rate, # of years,
+ # of periods per year all comes from the parameters that follow the second bar of the COM macro.</p>
+
+<p>So now we have the two program macros:</p>
+
+<ul>
+<li>mcSimpleCompoundInterest=bank.ThtBankingServer,localhost,calc1</li>
+<li>mcCompoundInterest=bank.ThtBankingServer,localhost,calc2</li>
+</ul>
+
+<p>and the 2 variations on the COM macro itself, with the parameters passing in the necessary data:</p>
+
+<b>(~.COM|mcSimpleCompoundInterest|1000,.10,1~)</b><br />
+
+<b>(~.COM|mcCompoundInterest|1000,.10,1,4~)</b>
+
+<h2>And the calculations are....</h2>
+<p>for McSimpleCompoundInterest:  (~COM|mcSimpleCompoundInterest|1000,.10,1~)</p>
+
+<p>for mcCompoundInterest:  (~COM|mcCompoundInterest|1000,.10,1,4~)</p>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whmacros>
+mcSimpleCompoundInterest=bank.ThtBankingServer,localhost,calc1
+mcCompoundInterest=bank.ThtBankingServer,localhost,calc2
+</whmacros>
+
+<whpage pageid="ComMemoFree">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM2~)
+<p>Just as with the ComCounter, use the FREE parameter to close 
+MemoServer program and close the COM connection:</p>
+
+<div class="dcenter"><b>(~.COM|mcMemoServer|FREE~)</b></div>
+
+<p>Note:  If you free the MemoServer and then click to view the settings, you won't see anything!
+
+You have to turn the MemoServer back on, THEN click view settings, in order to see them!</p>
+
+(~com|mcMemoserver|free~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+<whpage pageid="ComMemoSettings" desc="Overview of component settings">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chSpeedbarCOM2~)
+<h2>(~PageDesc~)</h2>
+<p>Here are the WebDCOM Component's current settings:</p>
+
+<ol>
+<li>Name = (~WebDCOM_mcMemoServer.Name~)</li>
+<li>GUID = (~WebDCOM_mcMemoServer.GUID~)</li>
+<li>ProgID = (~WebDCOM_mcMemoServer.ProgID~)</li>
+<li>MachineName = (~WebDCOM_mcMemoServer.MachineName~)</li>
+<li>Parameters =<ul><li> (~WebDCOM_mcMemoServer.Parameters~)</li></ul></li>
+</ol>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>

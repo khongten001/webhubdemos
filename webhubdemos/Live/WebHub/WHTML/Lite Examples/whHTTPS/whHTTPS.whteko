@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code"
+  designpage="pgEnterFAST">
+
+<whdoc>
+Copyright (c) 1995-2008 HREF Tools Corp.  All Rights Reserved WorldWide.
+Anyone with a WebHub license may use this file at no charge.
+http://www.href.com/
+</whdoc>
+
+<whdoc>
+WebHub allows you to define reusable text expansion macros.
+For example, you can define a macro for your images directory--here the macro name is mcImgHttpsDir -- which is located in the Macro shared file.
+As you look through this source code, note how the mcImgHttpsDir macro substitutes for the directory.
+If you ever need to move your images directory, it's much easier to change it in just one spot.
+</whdoc>
+
+<whmacros>
+mcPageTitle=<![CDATA[<tr><td colspan="2" valign="top" align="center"><span style="font-style:italic;font-size:1.4em;color:#DD0000;">(~pagedesc~)</span></td></tr>]]>
+mcSpacerRow=<![CDATA[<tr><td colspan="2">&nbsp;</td></tr>]]>
+</whmacros>
+
+<whdoc>
+WebHub also allows you to define longer sections of reusable information, 
+known as "chunks" in WebHub Syntax Stage 1 and as "droplets" in WebHub Syntax Stage 2.11.
+The page header has been defined as a single droplet, and is shared by all the demos.
+</whdoc>
+
+<whdroplet name="drDemoSpeedbarForFAST">
+<!--- no speedbar for this demo -->
+</whdroplet>
+
+<whpage pageid="pgEnterFAST" remap="(apphttp)" desc="Entrance to Fast Cars Demo">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+<whdroplet name="drStyleFAST" show="yes">
+	<style type="text/css">
+	#fastNav {text-align:center;float:left;}
+	#fastNav ul {
+		list-style-type: none;
+	}
+	#fastNav ul li {
+		display: block; 
+		margin: 0;
+	}
+	#fastpagecontent {
+		float:left;
+	}
+	#fastpageend {
+		clear:left;
+	}
+	</style>
+</whdroplet>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<whdroplet name="drPageBeginFAST" show="yes">
+	<div id="fastNav">
+<!--- display the full speedbar unless we are on the entrance or the about page. -->
+(~NOMATCH|(~PageID~)[pgWelcome,AboutFAST,pgSetUp|
+<ul>
+
+<li>(~GO|pgEnterFAST|<img src="(~mcImgHttpsDir~)entrance_on.jpg" alt="Go to Entrance Page" />||<img src="(~mcImgHttpsDir~)entrance_off.jpg" alt="Already on the Entrance Page" />~)</li>
+
+<li>(~GO|pgShowroom|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
+
+<li>(~GO|pgOrderForm|<img src="(~mcImgHttpsDir~)ordr_on.jpg" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
+
+<li>(~GO|pgChatroom|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
+
+<li>(~GO|pgGameroom|<img src="(~mcImgHttpsDir~)game_on.jpg" alt="Go to the Gameroom" />||<img src="(~mcImgHttpsDir~)game_off.jpg" alt="Already in Gameroom" />~)</li>
+</ul>
+~)
+	</div>
+</whdroplet>
+	<div id="fastpagecontent">
+
+		<table cellpadding="5" cellspacing="15" border="0">
+		(~mcPageTitle~)
+		<tr valign="middle">
+			<td>
+			<span style="font-size:1.4em;font-weight:700;">Ladies and Gentleman, start your engines!</span><p>
+The pages in this demo are (~JUMP|pgServerID|defined to route to a specific ServerProfileID,~)
+<br />either  defprofile or ssl.</p>
+			</td>
+			<td align="right">
+			<img src="(~mcImgHttpsDir~)ferrari.jpg" alt="ferrari" /><br />
+			<div class="dcenter"><span style="font-size:.9em;">Ferrari</span></div>
+			</td>
+		</tr>
+		</table>
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgServerID" desc="About WebHub Server Profile IDs">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+<table width="100%">
+(~mcPageTitle~)
+</table>
+<table width="100%">
+<tr valign="middle">
+<td align="left">
+The page definitions in this site use ServerProfileIDs within the PageAlias in order to indicate which server each one should run on.  Some use defprofile and some use ssl.
+The actual effect depends on how you configure the ServerProfileID, but the idea is to make the ssl
+pages run on HTTPS.
+<p>This is what a the page definition for the order page looks like:</p>
+<pre>
+&lt;whpage pageid="pgOrderForm" remap="(apphttps)" desc="Order Form"&gt;
+</pre>
+<p>Due to the presence of the remap attribute (apphttps), all JUMPs to that
+page will run on the ssl server.</p>
+
+<div class="dcenter"><img src="(~mcImgHttpsDir~)viper.jpg" alt="viper" /><br />
+<small>Dodge Viper</small></div>
+</td>
+</tr></table>
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgShowroom" remap="(apphttp)" desc="Showroom">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+<table cellpadding="5" cellspacing="15">
+
+(~mcPageTitle~)
+(~mcSpacerRow~)
+
+<tr valign="middle">
+<td align="left">Fast cars are cool.<br /><br />
+The (~JUMP|pgServerID|server profile ID~) for this page is defprofile.</td>
+<td align="right"><img src="(~mcImgHttpsDir~)viper.jpg" alt="Dodge Viper" /><br />
+<div class="dcenter"><small>Dodge Viper</small></div></td></tr></table>
+
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+
+
+<whpage pageid="pgOrderForm" desc="Order Form" remap="(apphttps)">
+<whdoc>
+Note that the order form page is being served by the secure (ssl) server.
+You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
+</whdoc>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+<table cellpadding="5" cellspacing="15">
+
+(~mcPageTitle~)
+(~mcSpacerRow~)
+
+<tr valign="middle">
+<td align="left">The (~JUMP|pgServerID|server ID~) for this page is SSL.</td>
+<td align="right"><img src="(~mcImgHttpsDir~)porsche.jpg" alt="Porsche" /><br />
+<div class="dcenter"><small>Porsche</small></div></td></tr></table>
+
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+
+    <div id="sslcert">
+<a href="http://certs.ipsca.com/sslcheck/servidorseguro.asp?numeroserie=B0:C8:76:B1:5E:9D:B1:FF:17:9C:38:F3:C6:91:8D:02:82:2D:A5:78" title="SSL Certificate"><img src="http://certs.ipsca.com/logos/ipsCASecured.jpg"  border= "0"alt="ipsCA SSL Secure Certificate"></a>	
+	</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgChatroom" desc="Chatroom">
+<whdoc>
+No server id specified. Links to the chatroom will work regardless of serverid setup.
+</whdoc>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+<table cellpadding="5" cellspacing="15">
+
+(~mcPageTitle~)
+(~mcSpacerRow~)
+
+<tr valign="middle">
+<td align="left">Fast cars relieve stress. <br /><br />No server ID is specified for this page.</td>
+<td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
+<div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
+
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgGameroom" desc="Gameroom" remap="(apphttps)">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+<table cellpadding="5" cellspacing="15">
+
+(~mcPageTitle~)
+(~mcSpacerRow~)
+
+<tr valign="middle">
+<td align="left">The (~JUMP|pgServerID|server ID~) for this page is SSL.</td>
+<td align="right"><img src="(~mcImgHttpsDir~)lamborgh.jpg" alt="lamborghini" /><br />
+<div class="dcenter"><small>Lamborghini</small></div></td></tr></table>
+
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgStressTestStart">
+<whdoc>
+The remaining pages in this document do not have anything to do with 
+the "FAST" demo per se.
+They are for use in testing HREF's stress tester application.
+</whdoc>
+Session #(~sessionID~).
+</whpage>
+
+<whpage pageid="pgStressTest1">
+Page 1.<!-- Test ok. -->
+</whpage>
+<whpage pageid="pgStressTest2">
+Page 2.<!-- Test ok. -->
+</whpage>
+<whpage pageid="pgStressTest3">
+Page 3.<!-- Test ok. -->
+</whpage>
+
+</whteko>

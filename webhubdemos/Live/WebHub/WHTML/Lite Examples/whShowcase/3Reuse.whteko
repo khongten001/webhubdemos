@@ -1,0 +1,141 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGREUSABLE
+final.PGREUSABLE
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Reusable
+htmlFilename=3Reuse.whteko
+showcaseBranch=(~GO|pgHTML|Easier HTML~) &raquo; (~GO|pgReusable|Reusable Pieces of HTML~) &raquo;
+showcaseBranchText=Easier HTML: Reusable Pieces of HTML: 
+</whpagesettingslist>
+
+<whpage pageid="pgTextSub" desc="Text Substitution">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub macros can be used for simple text substitution. For example, repeatedly typing out the name <b><i>Rufus Xavier Sarsparilla</i></b> (in italic boldface) could take forever! We save time by defining a macro named
+<b>mcRXS</b>. Then, each time we want to type the name (~mcRXS~), we can simply reference the macro by inserting
+<pre>(~.mcRXS~)</pre>
+<p>
+Macros can be defined in any file, but it is a good idea to stay organized and keep them in one file named macros.htm.  Also, the macro name should start with &quot;mc&quot; (for <b>m</b>a<b>c</b>ro) so it is easier to recognize. Here is how we defined our <b>mcRXS</b> macro:
+<pre>
+&lt;h1&gt;-Macros&lt;/h1&gt;
+mcRXS=&lt;b&gt;&lt;i&gt;Rufus Xavier Sarsparilla&lt;/i&gt;&lt;/b&gt;
+</pre>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whmacros>
+mcRXS=<b><i>Rufus Xavier Sarsparilla</i></b>
+<whmacros>
+
+
+<whpage pageid="pgContactInfo" desc="Contact Info">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub makes defining blocks of information easier too.  Macros are meant for &quot;one liners&quot;, while chunks are used for blocks of information which contain line breaks. In this demo, we've defined a chunk named
+<b>chContactInfo</b>. Rather than including all this text on every page:
+
+<pre>
+
+&lt;pre&gt;
+HREF Tools Corp.
+1275 Fourth Street #109
+Santa Rosa, CA
+95404 USA
+www.href.com/contact
+&lt;/pre&gt;
+
+</pre>
+
+we can simply reference the droplet name
+
+<pre>(~.drContactInfo~)</pre>
+
+and WebHub automatically places our contact information wherever we want it.
+<p>
+Droplets can be defined in any file. Also, the droplet name should start with &quot;dr&quot; (for <b>dr</b>oplet) so it is easier to recognize. Here is how we defined our <b>chContactInfo</b> droplet:
+<pre>
+&lt;whdroplet name="drContactInfo"&gt;
+&lt;pre&gt;
+HREF Tools Corp.
+1275 Fourth Street #109
+Santa Rosa, CA
+95404 USA
+www.href.com/contact
+&lt;/pre&gt;
+&lt;/whdroplet&gt;
+</pre>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="drContactInfo">
+<pre>
+HREF Tools Corp.
+1275 Fourth Street #109
+Santa Rosa, CA
+95404 USA
+www.href.com/contact
+</pre>
+</whdroplet>
+
+
+<whpage pageid="pgHeadFoot" desc="Page Headers and Footers">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+In most sites, the page header and footer remains constant across all the pages. With static HTML pages, you'd need to include those headers and footers on every page. Making even a small change could take hours.
+<p>
+With WebHub, you create only one page header and footer, and use a macro to display it on every page. For example, in this demo the header is named <b>chIntroHeader</b>. Rather than including all this text on every page:
+<pre>
+<p>&lt;CENTER&gt;<br />
+&lt;h5&gt;&lt;i&gt;* HREF Tools Corp. * Business Solutions for the Web *&lt;/i&gt;&lt;/h5&gt;<br />
+&lt;/CENTER&gt;<br />
+</pre>
+we call the desired header droplet on all pages in the application.
+<p>
+This same procedure is used for setting universal page footers.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgRepubLit" desc="Republishing StringVars">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+HTML input fields can have default values.  WebHub makes it easy
+to fill these in based on data the surfer has already entered.
+In the case of a simple text field, all you need to do is set the
+value based on the Literal:
+<pre>
+&lt;input type="text" name="litSurferName" <b>value=&quot(~.litSurferName~)&quot</b>>
+</pre>
+The first time the surfer gets to the form, the literal element will
+be blank. The second time, it will be filled in.
+<p>
+When publishing form StringVars, the keyword is always the NAME tag for the
+input field.  Notice the phrase <b>litSurferName</b> as the NAME
+and within the VALUE syntax.
+<p>
+<form method="post" action="(~DynURL.ToSessionIDW~)">
+Your name:(~inputtext|litSurferName+5~)
+(~inputsubmit|submit,Submit~)
+</form>
+<p>
+Hey (~litSurferName~)! Wanna see another name? Submit the form with a new one! And while you're at it, notice what's happening to the contents of the StringVars in the array shown below.  Try changing your wallpaper color and preferred font size on the (~GO|setpref|Options~)  page and checking back here:
+<p>
+(~chLiteralsInfo~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+</whteko>

@@ -1,0 +1,84 @@
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGIMAGINE
+whSequenceFinal=PGIMAGINE
+bSeqHdr=true
+bReqUl=true
+level=2
+levelKeyword=Imagine
+htmlFilename=2Imagine.whteko
+showcaseBranch=(~GO|pgImagine|Unleash Your Imagination~) &raquo;
+showcaseBranchText=Unleash Your Imagination:
+</whpagesettingslist>
+
+<whpage pageid="pgSlideShow" desc="Slide Shows">
+<whpagesettings inherit="a">
+downLink=pgslide0<!---animationOn-->
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub makes it relatively easy to create
+slide shows that either auto-advance or require the surfer to
+click the [next] button.
+<p>
+You create a chunk file with the HTML for all the slides (using macros,
+etc. as needed).
+Then under AppID > Edit Teko Files, you tell WebHub that this particular
+file should have animation and sequencing enabled.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barSlideShow">
+(~GO|pgslide0,animationOn|Auto-advancing~)(~mcHeadingSeparator~)
+(~GO|pgslide1,animationOff|Your Pace~)
+</whdroplet>
+
+<whdroplet name="ulPgSlideShow">
+(~GO|pgslide0,animationOn|Auto-advancing~)<br/>
+(~GO|pgslide1,animationOff|Your Pace~)
+</whdroplet>
+
+
+
+<whpage pageid="pgComponents" desc="WebHub Components for Delphi">
+<whpagesettings inherit="a">
+downLink=DEMOS:OVERVIEW
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This application was written to show all the non-Delphi features of
+WebHub -- that is, those that people can implement using regular HTML
+plus WebHub macros.
+<p>
+If you are a programmer, you can take this much further.  The overall
+architecture is extremely open since you can customize event handlers
+for all the Delphi components as well as create your own <i>web action</i>
+components.  Non-Delphi programmers can add features by writing .DLLs.
+<b>WebHub covers the basics for you, leaving you free to focus on the
+more creative aspects of web site development.</b>
+<p>
+Please refer to the WebHub User Manual to pursue these topics
+further.  To try demos that do involve custom Delphi code and
+database features, visit the Demos page linked on the left.  Full Delphi source is available for all demo projects.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="ulPgComponents">
+(~JUMP|DEMOS:OVERVIEW|Demos~)
+</whdroplet>
+
+<whpage pageid="pgDBComponents" desc="Database components">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Most sophisticated web sites use an underlying database.
+WebHub includes a set of components to make database publishing
+easy.  These can be used by a Delphi programmer to run queries
+against Oracle, Sybase, Informix, Interbase, Paradox, dBase,
+and Access tables.  (You can connect to <i>any</i> database
+supported by Delphi.)  Data entry is also supported.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

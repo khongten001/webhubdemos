@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized context="DEMOS" value="true"/>
+    <TrayIconEnabled value="true"/>
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="disabled"/>
+          <Module name="dreamweaver" status="enabled-gui"/>
+          <Module name="dwsecurity" status="enabled-gui"/>
+        </GUIOptional>
+        <GUI>
+          <Module name="appin" status="enabled-gui"/>
+          <Module name="appout" status="enabled-gui"/>
+          <Module name="decode" status="enabled-gui"/>
+          <Module name="googlesitemap" status="enabled-gui"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+      <AllowedSessionIDRange value="192.168.1.*;127.0.0.1"/>
+      <RemoteAccessPages>
+        <Page function="design" pageID="remotedesign"/>
+        <Page function="preview" pageID="remotepreview"/>
+        <Page function="refresh" pageID="remoterefresh"/>
+      </RemoteAccessPages>
+      <AllowedIPRange value="1800-1900"/>
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+    <Security>
+      <AdminSessionNumber value="1001" context="DEMOS"/>
+    </Security>
+    <Static>
+      <AppRoot value="/"/>
+      <ExportFolder value="D:\Projects\WebHub Demos\Live\WebRoot"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="overview" filename="whOverview.whteko"/>
+      <File id="abADV" filename="..\..\Shared WHTML\about\about-whAdRotation.whteko"/>
+      <File id="abBRND" filename="..\..\Shared WHTML\about\about-whBranding.whteko"/>
+      <File id="abBW" filename="..\..\Shared WHTML\about\about-whOptions.whteko"/>
+      <File id="abCOM" filename="..\..\Shared WHTML\about\about-whCOM.whteko"/>
+      <File id="abDBHTML" filename="..\..\Shared WHTML\about\about-whLoadFromDB.whteko"/>
+      <File id="abDEMOS" filename="..\..\Shared WHTML\about\about-whOverview.whteko"/>
+      <File id="abDSP" filename="..\..\Shared WHTML\about\about-whDSP.whteko"/>
+      <File id="abFAST" filename="..\..\Shared WHTML\about\about-whHTTPS.whteko"/>
+      <File id="abFIRE" filename="..\..\Shared WHTML\about\about-whFirebird.whteko"/>
+      <File id="abFORM" filename="..\..\Shared WHTML\about\about-whFormPosting.whteko"/>
+      <File id="abAJAX" filename="..\..\Shared WHTML\about\about-whAJAX.whteko"/>
+      <File id="abHTASYNC" filename="..\..\Shared WHTML\about\about-whASyncDemo.whteko"/>
+      <File id="abHTCL" filename="..\..\Shared WHTML\about\about-whClone.whteko"/>
+      <File id="abHTCV" filename="..\..\Shared WHTML\about\about-whConverter.whteko"/>
+      <File id="abHTEM" filename="..\..\Shared WHTML\about\about-whSendmail.whteko"/>
+      <File id="abHTFD" filename="..\..\Shared WHTML\about\about-whFeedback.whteko"/>
+      <File id="abHTGR" filename="..\..\Shared WHTML\about\about-whText2Table.whteko"/>
+      <File id="abHTLS" filename="..\..\Shared WHTML\about\about-whListserv.whteko"/>
+      <File id="abHTOB" filename="..\..\Shared WHTML\about\about-whObjectInspector.whteko"/>
+      <File id="abHTOL" filename="..\..\Shared WHTML\about\about-whOutline.whteko"/>
+      <File id="abHTSC" filename="..\..\Shared WHTML\about\about-whSecurity.whteko"/>
+      <File id="abHTUN" filename="..\..\Shared WHTML\about\about-whStopSpam.whteko"/>
+      <File id="abHUBAPP" filename="..\..\Shared WHTML\about\about-whcHubApp.whteko"/>
+      <File id="abJOKE" filename="..\..\Shared WHTML\about\about-whSequence.whteko"/>
+      <File id="abJPEG" filename="..\..\Shared WHTML\about\about-whDynamicJPEG.whteko"/>
+      <File id="abSHOWCASE" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
+      <File id="abWHCP" filename="..\..\Shared WHTML\about\about-whcControlPanel.whteko"/>
+      <File id="dbHTDR" filename="..\..\Shared WHTML\about\about-whDropdown.whteko"/>
+      <File id="dbHTFM" filename="..\..\Shared WHTML\about\about-whInstantForm.whteko"/>
+      <File id="dbHTFS" filename="..\..\Shared WHTML\about\about-whFishStore.whteko"/>
+      <File id="dbHTQ1" filename="..\..\Shared WHTML\about\about-whQuery1.whteko"/>
+      <File id="dbHTQ2" filename="..\..\Shared WHTML\about\about-whQuery2.whteko"/>
+      <File id="dbHTQ3" filename="..\..\Shared WHTML\about\about-whQuery3.whteko"/>
+      <File id="dbHTQ4" filename="..\..\Shared WHTML\about\about-whQuery4.whteko"/>
+      <File id="dbHTRU" filename="..\..\Shared WHTML\about\about-whRubicon.whteko"/>
+      <File id="dbSCAN" filename="..\..\Shared WHTML\about\about-whScanTable.whteko"/>
+      <File id="dbSHOP1" filename="..\..\Shared WHTML\about\about-whShopping.whteko"/>
+      <File id="dbSTORE000" filename="..\..\Shared WHTML\about\about-whShopCartJumpStart.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+</WebHubAppConfiguration>

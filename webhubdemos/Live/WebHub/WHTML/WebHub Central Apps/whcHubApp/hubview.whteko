@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whdoc>
+Subsystem to see WebHub Central panels.
+
+Ordinarily you would protect these pages and make them visible only
+to logged in users.
+
+These pages must be run by The Hub. If you run them outside the Hub, 
+you will not see very much!
+</whdoc>
+
+<whpage pageid="HubAccess" desc="About... Viewing WebHub Central Panels Remotely">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>(~PageDesc~)</h2>
+<p>As of v1.49x, it is possible to view your main Hub panels over the web.
+Just add this file (hubview.txt) to your HubApp, and request this page ((~PageID~)).
+If you're using the HUBAPP demo project, this is already set up for you.</p>
+
+<p>Use these links to view the panels remotely.</p>
+
+<ul>
+(~PARAMS|chHubShowNavBar|<li>,</li>~)
+</ul>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="HubShow" desc="WebHub Central">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+(~chLoginNavBar~)
+<div class="dcenter">
+(~PARAMS|chHubShowNavBar|, &nbsp;~)
+</div>
+<p><b>(~Command~):</b></p>
+<!--- Use the Hub's SHOW component to display the panel.  Panel name is in the command. -->
+(~show.execute|(~command~)~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whdroplet name="chhubShowNavBar">
+<!--- Prevent access by surfers who have not logged in... a feature to consider,
+      if the HTSC demo is also running.
+      (~IFNOT|_bLoginOk|(~BOUNCE|HTSC:PGLOGIN~)~)
+-->
+(~DYN1~)(~JUMP|HubAccess|About~)(~DYN2~)
+(~DYN1~)(~JUMP|HubShow,Connected|Connected~)(~DYN2~)
+(~DYN1~)(~JUMP|HubShow,Runners|Runners~)(~DYN2~)
+(~DYN1~)(~JUMP|HubShow,Hub|Hub~)(~DYN2~)
+(~DYN1~)(~JUMP|HubShow,HubApp|HubApp~)(~DYN2~)
+(~DYN1~)(~JUMP|HubShow,Setups|Setups~)
+</whdroplet>
+
+</whteko>

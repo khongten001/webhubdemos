@@ -1,0 +1,152 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}{\f1\fswiss\fprq2 Verdana;}{\f2\fmodern\fprq1 Courier New;}{\f3\fmodern\fprq1\fcharset0 Courier New;}}
+{\colortbl ;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;}
+{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\cf1\b\f0\fs28 How to Work with WebHub Demos\par
+\cf2\f1\fs22\par
+Viewing WebHub Demos\par
+\cf3\b0 - Use http://demos.href.com to view WebHub demos online.\par
+\par
+- \f0 Make a n\f1 ote \f0 of \f1 "AppID" for any demo you wish to compile and run locally. The AppID is shown top-right of the welcome page for almost all demos. \f0  It is also used in the filename of the demo's configuration file, e.g. for the \ldblquote adv\rdblquote  demo, the configuration file is WHAppConfig_adv.xml.  This is a convention followed by the demos and does not need to be followed for your own applications.\par
+\par
+** Reminder for long-time customers: the AppID must be \b lowercase\b0  for use with WebHub v2.077+.\par
+\f1\par
+\par
+\cf2\b Downloading Source\f0  to the Demos\f1\par
+\cf3\b0 - Download \f0 the source to all demos from \f1 http://demos.href.com/download\f0 . Look for the file named whDemo_Complete-v2xxx.zip where "xxx" is the latest version of WebHub.\par
+\par
+- Or use CVS.  Instructions are available by going into any demo at http://demos.href.com, and in the page footer, clicking the [Download] link.\par
+\par
+- Or view the source of one file at a time, by clicking the [Source] link in the page footer.  To see object pascal source, first click into the DPR file and then click into any PAS or DFM file.  You will find that the *.whteko and *.xml files are available for viewing, too.\par
+\par
+\par
+\cf2\b Unzipping\cf3\f1\par
+\b0 - \f0 Place files in \f1 any directory\f0 , ideally \f1 d:\\projects. All files will be placed into a subdirectory named "WebHub Demos".\f0   \f1\par
+\par
+\par
+\cf2\b\f0 HTTP\f1  Server Configuration\f0  (IIS, Sambar, Apache, etc.)\f1\par
+\cf3\b0 - Make sure the path \b /webhub/\b0  is a \b virtual root \b0 mapped to your actual ...\\WebHub Demos\\Live\\WebRoot\\\f0 webhub\\\f1  \f0 folder.\par
+\par
+- To test this, first view http://demos.href.com\b /webhub/\b0 demos/img/logos/adv.jpg which shows you what should appear.\par
+Then try a corresponding URL on your own computer, e.g. http://localhost\b /webhub/\b0 demos/img/logos/adv.jpg  -- if your vitual root definition is correct, you will see the same graphic.\f1\par
+\cf2\b\par
+\f0\par
+WebHub Runtime System Installation\par
+\cf3\b0\f1 - \f0 Having the WebHub Runtime System installed is a pre-requisite to running any of the demos. \par
+\par
+- If you have not already done so, please make sure that the following URLs work for you before proceeding to try to make any of the demos run.\par
+\par
+\b\tab For testing on Microsoft IIS or Sambar Web server\b0\par
+\par
+\tab 1. http://localhost/scripts/runisa.dll?echo\par
+\tab\tab ( Look for any errors highlighted in red on the echo response page )\par
+\par
+\tab 2. http://localhost/scripts/runisa.dll?hubvers:pgversion\par
+\par
+\b\tab Alternative tests for Apache:\par
+\cf2\f1\par
+\cf3\b0\f0\tab 1. http://localhost/cgi-bin/runbin.exe?echo\par
+\tab\tab ( Look for any errors highlighted in red on the echo response page )\par
+\par
+\tab 2. http://localhost/cgi-bin/runbin.exe?hubvers:pgversion\par
+\cf2\b\f1\par
+\par
+\par
+Compilation\cf3\par
+\b0 - You will need to either map drive "H" to your "lib" directory \par
+(e.g. share c:\\program files\\HREF\\WebHub\\lib as "whlib" and then map H: to "whlib") \par
+\f0 (or avoid setting up a share and instead use the SUBST command.  e.g.  subst h: d:\\Apps\\HREFTools\\WebHub\\Lib)\f1\par
+\par
+\cf1 or \par
+\cf3\par
+\f0 in each \f1 DPR file\f0 (s), replace H:\\ with your webhub\\lib folder.\f1  \par
+\par
+- \f0 For each demo that you want to compile, open the demo DPR file and review \b\f1 Project\f0  > \f1 Options\f0  > \f1 Packages\b0\f0 .  M\f1 ake sure that you are(n't) using packages, depending on your preference. We recommend using at least the ZaphodsMapRT_D\f0 ## and WebHubRT_D## \f1 package\f0 s\f1 , especially if you will be running more than one application -- both compilation and testing will be quicker.\f0   (D## means use D06 for Delphi 6, D07 for Delphi 7, D09 for Delphi 2005, D10 for Delphi 2006.)\f1\par
+\par
+\f0 For all lite demos, open D:\\Projects\\WebHub Demos\\Source\\WHApps\\Lite Examples\\whAppServer\\whLite\\whLite.dpr\f1\par
+\par
+Note: \f0 WebHub EXEs \f1 will run equally well from any directory, on any local or network drive\f0 , because they use the ZaphodsMap configuration system and find their configuration files based on their AppID.\f1\par
+\cf2\b\par
+\cf3\b0\par
+\cf2\b\par
+Running\f0  a WebHub Demo\cf3\f1\par
+\b0 - \f0 To make any WebHub application work, you \b always\b0  need to \b first define its \f1 AppID\b0 . \f0   NB: \b AppIDs \b0 should be in \b\i lowercase\b0\i0 .\f1\par
+\par
+For example, if you wanted to run the demo named "\f0 adv\f1 ", you would need \f0 and entry like this in your WHCentral.xml file \f1 to associate the AppID "\f0 adv\f1 " with the directory and filename which will initialize the application:\par
+\par
+\f2\fs18     <WebHubAppGroup name="WebHub Demos - Lite">\par
+      <WebHubApps>\par
+        <WebHubApp appID="adv">\par
+          <Nickname value="Advertising"/>\par
+          <ConfigFolder value="d:\\Projects\\WebHub Demos\\Live\\WebHub\\WHTML\\Lite Examples\\whAdRotation\\"/>\par
+          <ConfigFilename value="WHAppConfig_adv.xml"/>\par
+          <ErrorLogFolder value="c:\\temp\\"/>\par
+          <ShareSessions value="true"/>\par
+          <ShareByFile value="true"/>\par
+        </WebHubApp>\par
+      <WebHubApps>\par
+    <\f3 /\f2 WebHubAppGroup>\par
+\par
+\f0\fs22 After unzipping the demo source files, you will find a file D:\\Projects\\WebHub Demos\\Source\\Docs\\\b SampleForCentralInfo.txt \b0 which contains the \b definitions for ALL demos\b0 .  It is designed to be pasted into your copy of WHCentralInfo.xml, inside the WebHubAppGroups tag.  Be sure to adjust the ConfigFolder paths if you installed to a location other than d:\\Projects\\.\par
+\f1\par
+\f0 - Next, define the root folder for all demos.  Find your WebHubInstallationConfig.xml file (it will be under ZaphodsMap\\HREFTools\\Install).  Open it in Notepad or any editor.  Carefully add a \i <Product_tag>\i0  within the \i <InstallFolders_tag>\i0 , where you fill in the correct path to the demos for your system, as follows:\par
+\par
+  <InstallFolders>\par
+    <Product name="WebHubDemos" folder="d:\\Projects\\WebHub Demos\\"/>\par
+  </InstallFolders>\par
+\par
+Save your changes.  This particular change is required for the database demos, including the "Fish Store."\par
+\par
+\f1\par
+- \b After the AppID has been defined\f0  and the WebHubDemos folder has been defined\b0\f1 , run the EXE\f0  which you compiled\f1 .\f0   During testing, developers usually run their WebHub applications as standalone EXEs.  This makes debugging much easier, and gives quick access to any GUI elements.  On a production server, usually a few extra units are included in the project to make the application run as a service, which can start automatically when the server starts.\par
+\par
+Tip: in Delphi IDE, use the \b Projects > WebHub menu \b0 to run your EXE.  You can compile and run (within Delphi), or compile and launch (external to Delphi).  You can also stop the application - based on its AppID.  \par
+\f1\par
+\par
+\cf2\b\f0 Testing a WebHub Demo\cf3\f1\par
+\b0\f0 - When the EXE runs, it will put an icon in the tray. Double-click it to open the GUI.  Go to the \b HTML > Files\b0  panel to view the *.whteko file that make up the web application.   ( If you see any "file not found" errors, suspect that your AppID definition is pointing to the wrong configuration file. )\f1\par
+\par
+- To see the \f0 web \f1 application \f0 function \f1 on your local machine using a web browser, use \par
+\par
+http://localhost/scripts/runisa.dll?appid:\f0 pgwelcome\f1\par
+\par
+where you replace "appid" with the correct WebHub Application ID.\f0   The page identifier, pgwelcome, is used in all the demos to give a very quick overview of the demo.  In your own application, you can use any pageid.\f1\par
+\par
+\f0 Important: on the demos.href.com server, the StreamCatcher ISAPI filter is used to enable the demos to run with "short URLs", basically skipping over the /scripts/runisa.dll? part of the syntax.  StreamCatcher is a separate product; see http://www.streamcatcher.com.\par
+\f1\par
+\f0 - Another test that you can do is to run Start > Programs > HREF Tools > WebHubView and look at the Connected panel.  The EXE that you just compiled should be listed as a process, and you should see its AppID.  Generally, you should not leave WebHubView running; it is designed for occasional troubleshooting, and for covering/uncovering applications (see its Tools menu).\f1\par
+\par
+\par
+\cf2\b\f0 Web Page Design with Dreamweaver\par
+\cf3\b0\i This requires the WebHub Designer for Dreamweaver (http://www.href.com/whdwmgr).  If you do not have Dreamweaver, do not worry; you can use the built-in Html > Files panel to edit your .whteko files, or any other ascii file editor.  However, the features below do not apply to other editors.\f1\par
+\b\i0\par
+\b0\f0 - Reference: whdemo_DWSecurity.pas, a Delphi source file which defines the security rules for the demos. These rules are more complicated than most sites require, because we try give full source to all demos without giving away write-rights on the public demos server.\par
+\b\f1\par
+\b0\f0 - Make a \b Dreamweaver site \b0 whose root is d:\\Projects\\WebHub Demos (use your own path to the files).\par
+\b\f1\par
+\b0\f0 - On the main Dreamweaver menu, select Commands > WebHub Designer > DynSource Configuration.\par
+\f1\par
+- \f0 Add a \b DynSource \b0 definition like this, \b replacing demos.href.com with localhost\b0 :\par
+\par
+localdemoadv=http://demos.href.com:80/scripts/runisa.dll?adv|remotedesign|remoterefresh|1820\par
+\par
+- Open a .whteko file, e.g. D:\\Projects\\WebHub Demos\\Live\\WebHub\\WHTML\\Lite Examples\\whAdRotation\\whAdRotation.whteko.\par
+\par
+Importantly, the AppID associated with the .whteko file must relate to the AppID in the DynSource.  In the above example, the AppID is "adv".\par
+\par
+- In the top whteko tag, make sure you have both of these set: \par
+\par
+\b designdynsrc\b0 ="localdemoadv" \par
+\par
+and\par
+\par
+\b designmode\b0 ="visual" \par
+\par
+- Now click to design mode and you should see something. You may not see all graphics, but you should see text calculated dynamically. If you do not, it is probably because you tried before and Dreamweaver has cached the result. Go back to code mode, make any change to the file, and try again to see design view.\par
+\par
+- Remember, you will need to add a DynSource for each AppID you want to work on.\par
+\f1\par
+\par
+\f0 [ updated 11-Dec-2006 06:00 GMT for WebHub v2.078 ]\f1\par
+\par
+###\par
+}
+ 
