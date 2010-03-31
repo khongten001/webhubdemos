@@ -26,7 +26,7 @@
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_ExeOutput>D:\Projects\WebHub Demos\Live\WebHub\Apps</DCC_ExeOutput>
+			<DCC_ExeOutput>D:\Projects\WebHubDemos\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
 			<DCC_UsePackage>vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07</DCC_UsePackage>
 			<DCC_K>false</DCC_K>
@@ -145,7 +145,7 @@
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\WebHub Demos\Source\WHApps\Lite Examples\whAppServer\whLite\</Language>
+						<Language Name="RootDir">..\..\..\..\..\Projects\WebHubDemos\Source\WHApps\Lite Examples\whAppServer\whLite\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>

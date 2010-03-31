@@ -139,7 +139,7 @@
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\WebHub Demos\Source\WHApps\More Examples\whSendmail\</Language>
+						<Language Name="RootDir">..\..\..\..\..\Projects\WebHubDemos\Source\WHApps\More Examples\whSendmail\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
