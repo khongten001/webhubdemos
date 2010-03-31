@@ -26,7 +26,7 @@
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_ExeOutput>D:\Projects\WebHub Demos\Live\WebHub\Apps</DCC_ExeOutput>
+			<DCC_ExeOutput>D:\Projects\WebHubDemos\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
 			<DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;Etk70;ldiRegExD7;maxCode</DCC_UsePackage>
 			<DCC_K>false</DCC_K>
@@ -127,7 +127,7 @@
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\WebHub Demos\Source\WHApps\DB Examples\whFishStore\</Language>
+						<Language Name="RootDir">..\..\..\..\..\Projects\WebHubDemos\Source\WHApps\DB Examples\whFishStore\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
