@@ -22,15 +22,15 @@ htmlFilename=xmisc.whteko
 </whpage>
 
 <whpage pageid="pgXmlSample2" desc="XML Sample File (employees.xml)">
-(~SETPROLOGUETYPE|XML~)(~INCLUDE|D:\Projects\WebHub Demos\Live\WebRoot\webhub\demos\whShowcase\employees.xml~)
+(~SETPROLOGUETYPE|XML~)(~INCLUDE|D:\projects\webhubdemos\Live\WebRoot\webhub\demos\whShowcase\employees.xml~)
 </whpage>
 
 <whpage pageid="pgCsvSample" desc="CSV Sample File sent by INCLUDE (SampleScoreList.csv)">
-(~SETPROLOGUETYPE|text/csv~)(~INCLUDE|d:\Projects\WebHub Demos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv~)
+(~SETPROLOGUETYPE|text/csv~)(~INCLUDE|d:\projects\webhubdemos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv~)
 </whpage>
 
 <whpage pageid="pgCsvSample2" desc="CSV Sample File sent by SENDFILE (SampleScoreList.csv">
-(~SENDFILE|d:\Projects\WebHub Demos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv,text/csv~)
+(~SENDFILE|d:\projects\webhubdemos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv,text/csv~)
 </whpage>
 
 <whpage pageid="pgIndex" desc="Index of all pages in (~AppID~) demo">

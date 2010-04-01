@@ -47,8 +47,8 @@
 		<AdminSessionNumber value="1001" context="DEMOS" />
 	</Security>
     <Static>
-      <BrandFolder value="d:\Projects\WebHub Demos\Live\WebRoot\webhub\demos\whBranding\branddir\"/>
-      <ExportFolder value="d:\Projects\WebHub Demos\Live\WebRoot\webhub\demos\whBranding\branddir\"/>
+      <BrandFolder value="d:\projects\webhubdemos\Live\WebRoot\webhub\demos\whBranding\branddir\"/>
+      <ExportFolder value="d:\projects\webhubdemos\Live\WebRoot\webhub\demos\whBranding\branddir\"/>
       <ExportURLPrefix value="/webhub/demos/whBranding/branddir/"/>
     </Static>
     <StreamCatcherInterface>

@@ -38,8 +38,8 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="ConverterEXE" value="d:\Projects\WebHub Demos\Live\DelphiApps\CharReplace.exe"/>
-      <AppSetting name="ConverterConfig" value="d:\Projects\WebHub Demos\Live\DelphiApps\CharReplaceConfig1.set"/>
+      <AppSetting name="ConverterEXE" value="d:\projects\webhubdemos\Live\DelphiApps\CharReplace.exe"/>
+      <AppSetting name="ConverterConfig" value="d:\projects\webhubdemos\Live\DelphiApps\CharReplaceConfig1.set"/>
       <AppSetting name="TempPath" value="d:\temp\whConverter\"/>
       <AppSetting name="MaximumFreeSize" value="25"/>
     </AppSettings>

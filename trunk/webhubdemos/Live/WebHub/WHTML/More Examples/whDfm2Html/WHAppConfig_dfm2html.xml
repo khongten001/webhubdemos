@@ -31,7 +31,7 @@
       <ProjectSyntax value="0214"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="ScreenShotJPEG" value="D:\Projects\WebHub Demos\Live\WebRoot\webhub\demos\whDfm2Html\original.jpg"/>
+      <AppSetting name="ScreenShotJPEG" value="D:\projects\webhubdemos\Live\WebRoot\webhub\demos\whDfm2Html\original.jpg"/>
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="chPageFooter"/>

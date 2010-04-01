@@ -300,7 +300,7 @@ and will run exactly in the same fashion, but performing its programmed operatio
 <h2>Hint #1!</h2>
 <p>When you are actually ready to try your hand at writing a utility that responds over COM, 
 we suggest that you start with the generic version that ships with this demo. 
-See projects\WebHub Demos\Source\More Examples\whCOM\generic\htsvr30.dpr.</p>
+See projects\webhubdemos\Source\More Examples\whCOM\generic\htsvr30.dpr.</p>
 <h2>Hint #2!</h2>  
 <p>When you are playing around with this, if the memoserver
 appears to be broken after you recompile,  it is likely that the recompiled version and the old version no

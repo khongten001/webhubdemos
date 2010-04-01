@@ -77,7 +77,7 @@
     <Static>
       <AppRoot value="/"/>
       <ExportBackupGenerations value="3"/>
-      <ExportFolder value="D:\Projects\WebHub Demos\Live\WebRoot\"/>
+      <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot\"/>
       <ExportURLPrefix value="/foo/"/>
     </Static>
     <StreamCatcherInterface>
