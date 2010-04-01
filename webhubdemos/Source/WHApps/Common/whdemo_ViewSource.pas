@@ -49,9 +49,9 @@ type
 var
   DemoViewSource: TDemoViewSource = nil;
 
-function getHtDemoCodeRoot: String;     // default is c:\projects\WebHub Demos\Source\WhApps\
-function getHtDemoDataRoot: String;     // default is c:\projects\WebHub Demos\Live\Database\
-function getHtDemoWWWRoot: String;      // default is c:\projects\WebHub Demos\Live\WebRoot\
+function getHtDemoCodeRoot: String;     // default is c:\projects\WebHubDemos\Source\WhApps\
+function getHtDemoDataRoot: String;     // default is c:\projects\WebHubDemos\Live\Database\
+function getHtDemoWWWRoot: String;      // default is c:\projects\WebHubDemos\Live\WebRoot\
 
 procedure whDemoSetDelphiSourceLocation(const Path: String;
   const isRelativePath: Boolean);
@@ -98,12 +98,12 @@ begin
   Result := ZaphodKeyedFileZNodeAttr(HREFInstallBranch, cWebHubKeyGroupName,
     cWebHubInstallKeyName, cWebHubInstallConfigRootName,
     ['InstallFolders/Product[@name="WebHubDemos"]'], cxOptional, usrNone,
-    'folder', 'c:\projects\WebHub Demos\', Warning);
+    'folder', 'c:\projects\WebHubDemos\', Warning);
   if Warning <> '' then
     MsgWarningOk('You should do this NOW, and then restart this demo:' +
       sLinebreak + sLineBreak +
       'Add <Product name="WebHubDemos" ' +
-      'folder="d:\Projects\WebHub Demos" /> to your ' +
+      'folder="d:\Projects\WebHubDemos" /> to your ' +
       'WebHubInstallationConfig.xml file.' + sLineBreak + sLineBreak + Warning);
 end;
 

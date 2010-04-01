@@ -95,7 +95,7 @@ begin
       DrawBox := DrawBox1;
       { Note, these are the defaults as used on demos.href.com. The locations
         are loaded from the HTMP.ini file through the use of AppSetting below.
-        FilePath := 'd:\Projects\WebHub Demos\Live\WebRoot\demos\whEZMap\';
+        FilePath := 'd:\Projects\WebHubDemos\Live\WebRoot\demos\whEZMap\';
         FileURL := 'http://localhost:8000/webhub/demos/whEZMap/'; }
       FilePath := DefaultsTo(pWebApp.AppSetting['EZMapFilePath'],
         'C:\Inetpub\wwwroot\webhub\');

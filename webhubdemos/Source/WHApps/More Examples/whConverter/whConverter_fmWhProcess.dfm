@@ -49,7 +49,7 @@ inherited fmWhProcess: TfmWhProcess
         Width = 462
         Height = 153
         Align = alClient
-        Caption = 'd:\Projects\WebHub Demos\Live\DelphiApps\CharReplace.exe'
+        Caption = 'd:\Projects\WebHubDemos\Live\DelphiApps\CharReplace.exe'
         TabOrder = 0
         object tpMemoConfig: TtpMemo
           Left = 2

@@ -77,7 +77,7 @@ begin
   whDataModule.Init;
   whDemoInit;
   whDemoSetDelphiSourceLocation(
-    'D:\Projects\WebHub Demos\Source\WHApps\More Examples\whDfm2Html\', False);
+    'D:\Projects\WebHubDemos\Source\WHApps\More Examples\whDfm2Html\', False);
 end;
 
 procedure TPMforF2H.ProjMgrGUICreate(Sender: TtpProject;

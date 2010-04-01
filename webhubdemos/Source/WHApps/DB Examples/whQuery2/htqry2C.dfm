@@ -138,7 +138,7 @@ inherited fmHTQ2Panel: TfmHTQ2Panel
   object ADOQuery1: TADOQuery
     ConnectionString = 
       'Provider=MSDASQL.1;Persist Security Info=False;Data Source=WebHu' +
-      'bDemoHTQ2;Initial Catalog=D:\PROJECTS\WEBHUB DEMOS\LIVE\DATABASE' +
+      'bDemoHTQ2;Initial Catalog=D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE' +
       '\WHQUERY2'
     OnFilterRecord = Query2FilterRecord
     Parameters = <>

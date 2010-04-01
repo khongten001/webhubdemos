@@ -26,7 +26,7 @@ var
   findevent: TIB_Cursor;
   EventID: Integer;
 const
-  cFilespec = 'D:\Projects\WebHub Demos\Source\' +
+  cFilespec = 'D:\Projects\WebHubDemos\Source\' +
     'WHApps\DB Examples\whSchedule\DBDesign\' +
     'CodeRageScheduleProducts.txt';
 begin
