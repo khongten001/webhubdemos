@@ -5,7 +5,7 @@ Can be pasted into WHCentralInfo.xml
       <WebHubApps>
         <WebHubApp appID="htcl">
           <Nickname value="Cloning"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whClone\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whClone\"/>
           <ConfigFilename value="WHAppConfig_htcl.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -13,7 +13,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="fire">
           <Nickname value="Firebird"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whFirebird\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whFirebird\"/>
           <ConfigFilename value="WHAppConfig_fire.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -21,7 +21,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htfs">
           <Nickname value="Fish Store"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whFishStore\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whFishStore\"/>
           <ConfigFilename value="WHAppConfig_htfs.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -29,7 +29,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htfm">
           <Nickname value="Instant Form"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whInstantForm\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whInstantForm\"/>
           <ConfigFilename value="WHAppConfig_htfm.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -37,7 +37,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="dbhtml">
           <Nickname value="Load from DB"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whLoadFromDB\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whLoadFromDB\"/>
           <ConfigFilename value="WHAppConfig_dbhtml.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -45,7 +45,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htq1">
           <Nickname value="Query Example 1"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whQuery1\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whQuery1\"/>
           <ConfigFilename value="WHAppConfig_htq1.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -53,7 +53,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htq2">
           <Nickname value="Query Example 2"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whQuery2\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whQuery2\"/>
           <ConfigFilename value="WHAppConfig_htq2.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -61,7 +61,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htq3">
           <Nickname value="Query Example 3"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whQuery3\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whQuery3\"/>
           <ConfigFilename value="WHAppConfig_htq3.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -69,7 +69,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htq4">
           <Nickname value="Query Example 4"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whQuery4\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whQuery4\"/>
           <ConfigFilename value="WHAppConfig_htq4.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -77,7 +77,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="scan">
           <Nickname value="Scan Table"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whScanTable\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whScanTable\"/>
           <ConfigFilename value="WHAppConfig_scan.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -85,7 +85,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="shop1">
           <Nickname value="Shopping"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\DB Examples\whShopping\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whShopping\"/>
           <ConfigFilename value="WHAppConfig_shop1.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -97,7 +97,7 @@ Can be pasted into WHCentralInfo.xml
       <WebHubApps>
         <WebHubApp appID="htru">
           <Nickname value="Rubicon Search"/>
-          <ConfigFolder value="D:\Projects\WebHub Demos\Live\WebHub\WHTML\Third Party Examples\whRubicon\"/>
+          <ConfigFolder value="D:\Projects\WebHubDemos\Live\WebHub\WHTML\Third Party Examples\whRubicon\"/>
           <ConfigFilename value="WHAppConfig_htru.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -105,7 +105,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="dsp">
           <Nickname value="DSP Search Engine"/>
-          <ConfigFolder value="D:\Projects\WebHub Demos\Live\WebHub\WHTML\Third Party Examples\whDSP\"/>
+          <ConfigFolder value="D:\Projects\WebHubDemos\Live\WebHub\WHTML\Third Party Examples\whDSP\"/>
           <ConfigFilename value="WHAppConfig_dsp.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -117,7 +117,7 @@ Can be pasted into WHCentralInfo.xml
       <WebHubApps>
         <WebHubApp appID="adv">
           <Nickname value="Advertising"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whAdRotation\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\Lite Examples\whAdRotation\"/>
           <ConfigFilename value="WHAppConfig_adv.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -125,7 +125,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="brnd">
           <Nickname value="Branding"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whBranding\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\Lite Examples\whBranding\"/>
           <ConfigFilename value="WHAppConfig_brnd.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -133,7 +133,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htfd">
           <Nickname value="Feedback"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whFeedback\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\Lite Examples\whFeedback\"/>
           <ConfigFilename value="WHAppConfig_htfd.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -141,7 +141,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="form">
           <Nickname value="Form Posting"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whFormPosting\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\Lite Examples\whFormPosting\"/>
           <ConfigFilename value="WHAppConfig_form.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -149,7 +149,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="fast">
           <Nickname value="HTTPS"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whHTTPS\"/>
+          <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\Lite Examples\whHTTPS\"/>
           <ConfigFilename value="WHAppConfig_fast.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -157,7 +157,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htaj">
           <Nickname value="AJAX"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whAJAX\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whAJAX\"/>
           <ConfigFilename value="WHAppConfig_htaj.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -165,7 +165,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htls">
           <Nickname value="Listserv"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whListserv\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whListserv\"/>
           <ConfigFilename value="WHAppConfig_htls.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -173,7 +173,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="demos">
           <Nickname value="Options"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whOverview\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whOverview\"/>
           <ConfigFilename value="WHAppConfig_demos.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -181,7 +181,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="bw">
           <Nickname value="Options"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whOptions\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whOptions\"/>
           <ConfigFilename value="WHAppConfig_bw.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -189,7 +189,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htsc">
           <Nickname value="Security"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whSecurity\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whSecurity\"/>
           <ConfigFilename value="WHAppConfig_htsc.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -197,7 +197,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="joke">
           <Nickname value="Sequence"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whSequence\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whSequence\"/>
           <ConfigFilename value="WHAppConfig_joke.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -205,7 +205,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="showcase">
           <Nickname value="Showcase"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\Lite Examples\whShowcase\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whShowcase\"/>
           <ConfigFilename value="WHAppConfig_showcase.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -217,7 +217,7 @@ Can be pasted into WHCentralInfo.xml
       <WebHubApps>
         <WebHubApp appID="htasync">
           <Nickname value="ASync Demo"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whASyncDemo\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whASyncDemo\"/>
           <ConfigFilename value="WHAppConfig_htasync.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -225,7 +225,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="com">
           <Nickname value="COM"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whCOM\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whCOM\"/>
           <ConfigFilename value="WHAppConfig_com.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -233,7 +233,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htcv">
           <Nickname value="Converter"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whConverter\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whConverter\"/>
           <ConfigFilename value="WHAppConfig_htcv.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -241,7 +241,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="dfm2html">
           <Nickname value="DFM to HTML"/>
-          <ConfigFolder value="D:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whDfm2Html\"/>
+          <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whDfm2Html\"/>
           <ConfigFilename value="WHAppConfig_dfm2html.xml"/>
           <ErrorLogFolder value="c:\temp\wherrorlogs\"/>
           <ShareSessions value="true"/>
@@ -249,7 +249,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htdr">
           <Nickname value="Dropdown"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whDropdown\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whDropdown\"/>
           <ConfigFilename value="WHAppConfig_htdr.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -257,7 +257,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="jpeg">
           <Nickname value="Dynamic JPEG"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whDynamicJPEG\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whDynamicJPEG\"/>
           <ConfigFilename value="WHAppConfig_jpeg.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -265,7 +265,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htob">
           <Nickname value="Object Inspector"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whObjectInspector\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whObjectInspector\"/>
           <ConfigFilename value="WHAppConfig_htob.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -273,7 +273,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htol">
           <Nickname value="Outline"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whOutline\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOutline\"/>
           <ConfigFilename value="WHAppConfig_htol.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -281,7 +281,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htem">
           <Nickname value="SendMail"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whSendMail\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whSendMail\"/>
           <ConfigFilename value="WHAppConfig_htem.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -289,7 +289,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htun">
           <Nickname value="Stop Spam"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whStopSpam\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whStopSpam\"/>
           <ConfigFilename value="WHAppConfig_htun.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
@@ -297,7 +297,7 @@ Can be pasted into WHCentralInfo.xml
         </WebHubApp>
         <WebHubApp appID="htgr">
           <Nickname value="Text to Table"/>
-          <ConfigFolder value="d:\Projects\WebHub Demos\Live\WebHub\WHTML\More Examples\whText2Table\"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whText2Table\"/>
           <ConfigFilename value="WHAppConfig_htgr.xml"/>
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
