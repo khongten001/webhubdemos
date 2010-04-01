@@ -67,7 +67,7 @@ object FormTest: TFormTest
     Height = 21
     TabOrder = 2
     Text = 
-      'd:\Projects\WebHub Demos\Source\DelphiApps\CharReplace\SampleInp' +
+      'd:\Projects\WebHubDemos\Source\DelphiApps\CharReplace\SampleInp' +
       'ut.txt'
   end
   object EditFrom: TEdit
@@ -95,7 +95,7 @@ object FormTest: TFormTest
     Height = 21
     TabOrder = 5
     Text = 
-      'd:\Projects\WebHub Demos\Source\DelphiApps\CharReplace\SampleOut' +
+      'd:\Projects\WebHubDemos\Source\DelphiApps\CharReplace\SampleOut' +
       'put.txt'
   end
 end

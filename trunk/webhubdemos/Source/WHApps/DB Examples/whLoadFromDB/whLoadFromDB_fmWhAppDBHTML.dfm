@@ -26,7 +26,7 @@ inherited fmAppDBHTML: TfmAppDBHTML
         Height = 21
         Hint = 'Enter the path to your WebHub asset table'
         TabOrder = 0
-        Text = 'd:\Projects\WebHub Demos\Live\Database\whLoadFromDB\'
+        Text = 'd:\Projects\WebHubDemos\Live\Database\whLoadFromDB\'
       end
       object BtnLoad: TButton
         Left = 344

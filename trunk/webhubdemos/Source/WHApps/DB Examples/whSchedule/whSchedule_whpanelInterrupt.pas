@@ -106,7 +106,7 @@ var
 begin
   inherited;
   Launch('launch-backup.bat', '',
-    'D:\Projects\WebHub Demos\Live\Database\whSchedule',
+    'D:\Projects\WebHubDemos\Live\Database\whSchedule',
     True, 10 * 1000, ErrorText);
   if ErrorText <> '' then
     MsgWarningOk(ErrorText);
@@ -123,7 +123,7 @@ begin
     Exit;
   end;
   Launch('launch-restore.bat', '',
-    'D:\Projects\WebHub Demos\Live\Database\whSchedule',
+    'D:\Projects\WebHubDemos\Live\Database\whSchedule',
     True, 10 * 1000, ErrorText);
   if ErrorText <> '' then
     MsgWarningOk(ErrorText);

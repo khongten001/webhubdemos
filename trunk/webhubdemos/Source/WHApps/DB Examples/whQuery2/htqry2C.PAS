@@ -116,7 +116,7 @@ begin
     'Provider=MSDASQL.1;Persist Security Info=False;' +
     'Data Source=WebHubDemoHTQ2;' +
     'Initial Catalog=' +
-    'D:\PROJECTS\WEBHUB DEMOS\LIVE\DATABASE\WHQUERY2' +
+    'D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE\WHQUERY2' +
     '';
 
   RefreshWebActions(fmHTQ2Panel);
