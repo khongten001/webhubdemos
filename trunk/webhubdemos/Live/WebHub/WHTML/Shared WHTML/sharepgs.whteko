@@ -279,25 +279,22 @@ If you do not wish to map drive H:, edit the paths (to PAS files) in the project
 <p>You should unzip to a directory such as d:\Projects or c:\My Documents.  All files
 will install to a subdirectory named "WebHub Demos".  </p>
 
-<h3>Access through Concurrent Version System ("CVS")</h3>
-<p>If you have a CVS client, you may checkout the WebHub demos using the following details.</p>
+<h3>Access through SubVersion ("SVN")</h3>
+<p>If you have a SVN client, you may checkout the WebHub demos using the following details.</p>
 <ol>
 <li> ideal sandbox path is <b>d:\Projects\</b></li>
-<li> the protocol is <b>sserver</b></li>
-<li> the domain to connect to is <b>cvs.demos.href.com</b></li>
-<li> port is <b>2401</b></li>
-<li> repository is <b>/AppsData/cvsrepo</b></li>
-<li> the module name is <b>"WebHub Demos"</b> </li>
+<li> path to the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/</b></li>
+<li> the nested folder name is <b>"webhubdemos"</b> </li>
 <li> user account is <b>webhubber</b></li>
 <li> password is <b>demos</b></li>
 </ol>
-<p>If you do not already have a CVS client package, one to consider
-is <a target="outbound" href="http://www.tortoisecvs.org/download.shtml">Tortoise CVS</a>.  It is free and
+<p>If you do not already have a SVN client package, one to consider
+is <a target="outbound" href="http://tortoisesvn.net/downloads">Tortoise SVN</a>.  It is free and
 actively maintained.  Another is
-<a target="outbound" href="http://www.wincvs.org/download.html">WinCVS</a>, also free and also well-maintained.</p>
+<a target="outbound" href="http://www.open.collab.net/downloads/subversion/">CollabNet SVN</a>, which provides a standalone client which you can use with command-line parameters.</p>
 
-<h3>Note for Tortoise CVS users</h3>
-<p>We recommend that after installing Tortoise CVS, you go into CVS Properties, Advanced, and set "Include" to d:\Projects.  By setting an "Include", you automatically exclude all others paths from monitoring by Tortoise CVS (and that is good because it is faster).  You would then go to the d:\Projects folder, right-click and select CVS Checkout, using the settings above.</p>
+<h3>Note for Tortoise SVN users</h3>
+<p>We recommend that after installing Tortoise SVN, you go into SVN Properties, Advanced, and set "Include" to d:\Projects.  By setting an "Include", you automatically exclude all others paths from monitoring by Tortoise SVN (and that is good because it is faster).  You would then go to the d:\Projects folder, right-click and select SVN Checkout, using the settings above.</p>
 
 <h3>Note for Delphi Programmers</h3>
 <p>To compile the Delphi source code you will need to have drive H pointing to your HREFTools\WebHub\lib\ folder.  Use the DOS SUBST command (type HELP SUBST at a command prompt for syntax). Or, search and replace H:\ with your lib folder path.</p>
