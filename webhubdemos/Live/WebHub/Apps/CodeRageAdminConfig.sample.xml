@@ -6,7 +6,7 @@
     <UpdateCounterFieldname value="UpdateCounter" />
   </Project>
   <DatabaseAccess>
-    <ldiDBHost value="D:\Projects\WebHub Demos\Live\Database\whSchedule\" />
+    <ldiDBHost value="D:\Projects\WebHubDemos\Live\Database\whSchedule\" />
     <ldiDBAlias value="coderageschedule" />
     <ldiDBUsername value="SYSDBA" />
     <ldiDBPassword value="masterkey" />

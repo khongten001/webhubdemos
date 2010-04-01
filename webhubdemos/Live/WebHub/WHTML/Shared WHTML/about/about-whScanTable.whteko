@@ -18,7 +18,7 @@ mcWhDemoLiteSCAN=No
 <li> The Borland Database Engine is required for this particular example, 
 but the ideas apply regardless of database layer.</li>
 <li> A BDE table named graphics.db is required, and should be located in
-the projects\WebHub Demos\Live\Database\whScanTable directory.</li>
+the projects\webhubdemos\Live\Database\whScanTable directory.</li>
 </ul>
 </whdroplet>
 

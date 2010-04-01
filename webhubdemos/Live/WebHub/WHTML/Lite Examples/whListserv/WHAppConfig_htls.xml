@@ -51,7 +51,7 @@
 	</Security>
     <Static>
       <AppRoot value="/"/>
-      <ExportFolder value="D:\Projects\WebHub Demos\Live\WebRoot"/>
+      <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot"/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>

@@ -208,7 +208,7 @@ Any WebHub expressions in the included file will be expanded.
 </p>
 
 <h2>Example</h2>
-(~INCLUDE|d:\projects\WebHub Demos\Live\WebRoot\webhub\demos\whShowcase\to-include.txt~)
+(~INCLUDE|d:\projects\webhubdemos\Live\WebRoot\webhub\demos\whShowcase\to-include.txt~)
 (~drShowcaseGlobalFooter~)
 </whpage>
 

@@ -64,7 +64,7 @@
       <AdminSessionNumber value="1001" context="DEMOS"/>
     </Security>
     <Static>
-      <ExportFolder value="D:\Projects\WebHub Demos\Live\WebRoot" context="DEMOS"/>
+      <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot" context="DEMOS"/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
