@@ -76,6 +76,16 @@ This is the address specified in the MSGFROM field on the HTML form.
 In this context, <b>^</b> is used to tell WebHub that
 you want the message sender value to come from surfer input --
 not that you want the message to come from someone named MsgFrom^!
+<h2>Contrast with MAILTO Links</h2>
+<ol>
+<li> (~MAILTO|info1@href.com?subject=BrandX|title="hello"|email1|true~)</li>
+<li> (~MAILTO|info2@href.com|info2~) </li>
+<li> (~MAILTO|info3@href.com~) </li>
+<li> (~MAILTO|info4@href.com|info4|true~) </li>
+<li> (~MAILTO|info5@href.com||true~) </li>
+<li> (~MAILTO|info6@href.com||false~) </li>
+<li> (~MAILTO|info7@href.com|title="hello"||true~)</li>
+</ol>
 (~drShowcaseGlobalFooter~)
 </whpage>
 
