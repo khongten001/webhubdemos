@@ -20,7 +20,7 @@ loads its text from the application-level INI file.</li>
 </whdroplet>
 
 <whtranslation key="~whDemoShortDescHTOL">
-The TwhOutline component uses a Borland Delphi TTreeView component 
+The TwhOutline component uses a Delphi TTreeView component 
 in order to provide a hierarchical view of site content, plus navigation.
 </whtranslation>
 

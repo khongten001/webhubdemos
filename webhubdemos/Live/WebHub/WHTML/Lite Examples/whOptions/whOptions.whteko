@@ -123,7 +123,7 @@ of Internet-enabled public service systems. The EDD built a high quality, cost-e
 California. Called the California Job Openings Browse System (CalJOBS), this project marks the cornerstone of true industrial
 strength web application development.</p>
 
-<p>The EDD team, using Borland's Object Pascal programming language (Delphi) and low-overhead SQL links to Informix's
+<p>The EDD team, using the Object Pascal programming language (then Borland Delphi, renamed to CodeGear Delphi then Embarcadero Delphi) and low-overhead SQL links to Informix's
 SQL database, O'Reilly and Associate's web server (WebSite Professional) and HREF Tools Corporation's web
 development framework (WebHub), created a solid, interactive, database-driven web site.</p>
 
@@ -171,7 +171,7 @@ WebHub provides a complete development environment for building web
 applications. Its components simplify the development process with
 integrated solutions to the challenges of multiuser state management,
 persistent database connectivity and high level HTML page generation.
-For full customization, you need to use Borland's Delphi 2 or 3.
+For full customization, you need to use Delphi to program in object pascal.
 WebHub includes runners for ISAPI, cgi-bin and cgi-win so your
 application will run with any Windows NT web server.</p>
 
