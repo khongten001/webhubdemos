@@ -20,7 +20,7 @@ accessing MEMO and BLOB fields in Paradox tables.
 
 <whdroplet name="drDemoSetupHTFS">
 <ol>
-<li> This example uses the Borland demo table named biolife.db. We include it with the 
+<li> This example uses the Borland/Embarcadero demo table named biolife.db. We include it with the 
 demo and it should load <em>without</em> requiring a BDE Alias.</li>
 <li> Use Delphi to compile whFishStore.dpr to whFishStore.exe and run that as your application server.</li>
 </ol>
@@ -33,7 +33,8 @@ The data from that comes from a Blob field in a Paradox table (:dbdemos:biolife.
 Delphi brings the data into a TBitmap.  That data is converted to a JPEG in a directory 
 that may be seen from the web. A Web Action component generates an 
 IMG SRC tag which points to the file in question.</p>
-<p>The <b>fish pictures</b> come from Borland's BIOLIFE table, as BMP data.  To get the 
+<p>The <b>fish pictures</b> come from the BIOLIFE table (originally provided by Borland), 
+as BMP data.  To get the 
 graphics into JPEG, a conversion is necessary.  We include a separate DLL which works 
 for any BMP to JPEG conversion in Delphi 2+.</p>
 <p>Thanks to Charlie Calvert and Cary Jensen for including examples from The Fish Store 

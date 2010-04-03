@@ -60,7 +60,7 @@ Please allow two business days for a response with a ZIP file of the latest vers
 
 <h2>WebHub? What's the deal</h2>
 <p>(~JUMP|GOTO-_top,webhub.com|<img border="0" height="75" width="72" src="(~mcSiteRoot~)demos/whdsp/whbox.png" alt="WebHub Box" />~)
-WebHub is a programming framework for Borland Delphi. WebHub makes big and little webapps a pleasure to write 
+WebHub is a programming framework for Delphi (object pascal). WebHub makes big and little webapps a pleasure to write 
 and a joy to extend. WebHub applications remember what visitors type, intelligently reuse html and can deliver multiple
 personalities or languages without recompiling. That's a big deal. And yes, it's fast, powerful, scalable, proven.
 </p>

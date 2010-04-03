@@ -180,7 +180,7 @@ configures a number of defaults and sets the AppID. </li>
 
 <li> For testing purposes, we made sure the Hub was running.  </li>
 
-<li> We ran the application from the Borland Delphi Integrated Development Environment ("IDE")
+<li> We ran the application from the Delphi Integrated Development Environment ("IDE")
 so that we could use the debugger.  Once the EXE was running, we checked the HTML > Pages panel
 to make sure that our entrance and results pages were listed.</li>
 

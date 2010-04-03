@@ -23,7 +23,7 @@ mcWhDemoLitefire=No
 We installed Firebird SQL server v1.5.3 on demos.href.com using the <b>Official Windows Setup</b>. <![CDATA[<a target="_blank" href="http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_download_15">download</a>]]>.  Firebird SQL is an open source database. Firebird runs on both Windows and Linux servers.
 </whtranslation>
 </li>
-<li>We used the employee.gdb file, distributed by Borland with many versions of Delphi over the years.</li>
+<li>We used the employee.gdb file, distributed by Borland, CodeGear and Embarcadero Software with various versions of Delphi since 1994.</li>
 <li>We set up a Firebird ALIAS named "employee" pointing to this gdb file.  The entry in alias.conf looks like this
 <pre>
 employee = c:\BorlandSampleDB\employee.gdb
