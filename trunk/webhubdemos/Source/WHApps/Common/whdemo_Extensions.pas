@@ -289,7 +289,8 @@ begin
   begin
     with pWebApp do
     begin
-      if (IntToStr(InSessionNumber) = Security.AdminSessionID) then
+      if (IntToStr(InSessionNumber) = Security.AdminSessionID) and
+        (Request.UserAgent = 'HREF Tools QA Test Agent') then
         Exit;
 
       //implement new-session security.
