@@ -1,3 +1,5 @@
 cd \Projects\WebHubDemos\Live\WebHub\Apps
-start whLite.exe /ID=showcase /debug
+REM start whLite.exe /ID=showcase /debug
+
+start dserverD07.exe /ID=showcase 
 
