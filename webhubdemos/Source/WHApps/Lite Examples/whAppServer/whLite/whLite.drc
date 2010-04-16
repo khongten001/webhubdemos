@@ -887,15 +887,15 @@ END
 /* h:\utMainFm.dfm */
 /* h:\utTrayFm.dfm */
 /* h:\D14\webSplatGUI.dfm */
-/* K:\WebHub\Lib\WHVCL\WhConst.RES */
-/* K:\WebHub\Lib\WHVCL\CGIWIN.RES */
+/* k:\webhub\lib\whvcl\WhConst.RES */
+/* k:\webhub\lib\whvcl\CGIWIN.RES */
 /* h:\D14\wpeEdit.dfm */
 /* k:\webhub\lib\whgui_CoverPage.dfm */
 /* h:\D14\webPick.dfm */
 /* h:\D14\htEdMemo.dfm */
 /* h:\D14\..\whteko.res */
 /* h:\D14\wpcList.dfm */
-/* K:\WebHub\Lib\WHVCL\webMind.dfm */
+/* k:\webhub\lib\whvcl\webMind.dfm */
 /* h:\D14\wpeList.dfm */
 /* h:\D14\wpeError.dfm */
 /* h:\D14\wpeGrid.dfm */
@@ -924,9 +924,9 @@ END
 /* ..\..\..\Common\whdemo_ViewSource.DFM */
 /* ..\..\..\Common\whdemo_Refresh.DFM */
 /* ..\..\..\Common\whdemo_About.DFM */
-/* ..\..\..\Common\whdemo_Extensions.DFM */
+/* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Extensions.DFM */
 /* h:\dmWHApp.dfm */
 /* ..\..\..\Common\whdemo_DMProjMgr.dfm */
-/* D:\Projects\WebHub Demos\Source\WHApps\Lite Examples\whAppServer\whLite\whLite.RES */
+/* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite\whLite.RES */
 /* h:\HTDEMOS.RES */
-/* D:\Projects\WebHub Demos\Source\WHApps\Lite Examples\whAppServer\whLite\whLite.drf */
+/* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite\whLite.drf */

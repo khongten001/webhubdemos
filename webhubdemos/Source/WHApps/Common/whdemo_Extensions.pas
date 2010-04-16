@@ -1,16 +1,13 @@
 unit whdemo_Extensions;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1998-2009 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1998-2010 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v2.10x.  Please obtain a WebHub   //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
 
-// This unit, when included in a WebHub project, provides the functionality
-// of the TwhLogin and TwhCycle components.
-
-// This unit must be created AFTER the app object exists.
+// This unit must be created AFTER the TwhApplication component exists.
 
 interface
 
@@ -33,6 +30,7 @@ type
     procedure waLSecExecute(Sender: TObject);
   private
     { Private declarations }
+    function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppUpdate(Sender: TObject);
@@ -80,6 +78,13 @@ begin
 
   DemoAppUpdate(nil); // do this once, in case the app has already been loaded - likely.
 
+end;
+
+function TDemoExtensions.IsHREFToolsQATestAgent: Boolean;
+begin
+  with pWebApp do
+    Result := (SessionID = Security.AdminSessionID) and
+      (Request.UserAgent = 'HREF Tools QA Test Agent');
 end;
 
 //------------------------------------------------------------------------------
@@ -240,6 +245,8 @@ begin
   //message unless we reset it here. Resetting the value also allows
   //us to provide a custom message.
   bContinue := True;
+  if IsHREFToolsQATestAgent then
+    Exit;
 
   with Sender, Request do
   begin
@@ -256,14 +263,14 @@ begin
         to storing a cookie on the user's machine. }
       Exit;
 
-    //if PosCI('AOL', Request.UserAgent) > 0 then
-    //begin
+    if PosCI('AOL', Request.UserAgent) > 0 then
+    begin
       { AOL has a long history of pooling requests by its users among many
         IP numbers so it is very normal for an AOL browser to change IP numbers
         in the middle of a session.  Allow this.
         Reconfirmed 18-Apr-2008 }
-      //Exit;
-    //end;
+      Exit;
+    end;
 
     if HonorLowerSecurity then Exit;
 
@@ -289,8 +296,7 @@ begin
   begin
     with pWebApp do
     begin
-      if (IntToStr(InSessionNumber) = Security.AdminSessionID) and
-        (Request.UserAgent = 'HREF Tools QA Test Agent') then
+      if IsHREFToolsQATestAgent then
         Exit;
 
       //implement new-session security.
@@ -338,7 +344,7 @@ procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
 begin
   if NOT pWebApp.IsWebRobotRequest then
   begin
-    if IsEqual(pWebApp.AppID, 'showcase') then
+    if IsEqual(pWebApp.AppID, 'showcase') and (NOT IsHREFToolsQATestAgent) then
     begin
       {do not allow blank referer within the showcase demo}
       if (pWebApp.Session.PageCount > 1) and
