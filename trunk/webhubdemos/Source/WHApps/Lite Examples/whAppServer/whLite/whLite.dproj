@@ -139,13 +139,13 @@
 						<Source Name="MainSource">whLite.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/ID=hrefsite</Parameters>
+						<Parameters Name="RunParams">/ID=showcase</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\WebHubDemos\Source\WHApps\Lite Examples\whAppServer\whLite\</Language>
+						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
