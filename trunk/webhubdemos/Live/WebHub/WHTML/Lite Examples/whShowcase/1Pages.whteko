@@ -60,6 +60,7 @@ When you call the names with the macro syntax, it expands into full
 <whpage pageid="pgWebMaster" desc="WebMaster Topics">
 <whpagesettings inherit="a">
 downLink=PGSECURITY
+showcaseBranch= <!--- empty -->
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 The cost of maintaining your site can be as high or higher than that of developing it. 
