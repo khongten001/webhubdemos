@@ -151,7 +151,7 @@ Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reser
 
 <whdroplet name="drCreditsTimingEtc" show="no">
 (~IfDynamic|<span class="techiefooter">
-This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~) and 
+This web application was compiled using Delphi <span class="changing">(~CentralInfo.PascalCompilerCode~)</span>, <span class="changing">(~Version~)</span> and 
 Syntax Stage (~ProjectSyntax~).
 Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &nbsp; 
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span> and your 
