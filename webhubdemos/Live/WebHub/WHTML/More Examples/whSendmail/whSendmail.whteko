@@ -161,7 +161,9 @@ Amount due: (~vAmountDue~)
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<!-- changing:start-->
 <form method="post" action="(~ACTIONR|testwebmailform2,safemail~)">
+<!-- changing:stop-->
 Your email address: (~INPUTTEXT|inEmail,30,50~)<br>
 Your message:
 <textarea name="txtMessage" rows="12" cols="70">

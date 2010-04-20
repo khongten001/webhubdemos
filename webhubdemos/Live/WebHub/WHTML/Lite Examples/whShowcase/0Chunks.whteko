@@ -133,11 +133,11 @@ And this must include the http portion. -->
 
 <whdroplet name="drDemoSpeedbarForShowcase">
 (~GO|pgHelp|Help~)<br />
-(~GOR|remoterefresh|Refresh App~)<br />
+<span class="changing">(~GOR|remoterefresh|Refresh App~)</span><br />
 
 <whdoc>
-You may enable SHUTDOWN if you are running on your own machine. It's disabled on the live server.
-(~GOR|pgEnterShowcase,SHUTDOWNSHOW|Shut Down Showcase~)<br />
+You may enable SHUTDOWN if you are running on your own machine. It is disabled on demos.href.com.
+<span class="changing">(~GOR|pgEnterShowcase,SHUTDOWNSHOW|Shut Down Showcase~)</span><br />
 </whdoc>
 </whdroplet>
 

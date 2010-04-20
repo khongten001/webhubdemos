@@ -10,7 +10,7 @@ bReqUl=true
 level=1
 levelKeyword=Pages
 htmlFilename=1Pages.whteko
-showcaseBranch= <!--- empty -->
+showcaseBranch=<!-- empty -->
 </whpagesettingslist>
 
 <whpage pageid="pgHTML" desc="Easier HTML">

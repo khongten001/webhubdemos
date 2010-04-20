@@ -28,7 +28,7 @@ message to info@href.com.</p>
 	 
 	 Be careful: the name of the TwhMailForm configuration entry ("testfake") is CASE SENSITIVE. 
 	 -->
-<form method="post" action="(~ACTIONR|listserv,testfake~)">
+<!-- changing:start--><form method="post" action="(~ACTIONR|listserv,testfake~)"><!-- changing:stop-->
 <table>
 <tr>
 <td align="right">Enter your name:</td>

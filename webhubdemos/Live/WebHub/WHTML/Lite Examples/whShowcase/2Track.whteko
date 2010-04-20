@@ -39,9 +39,10 @@ and you can use cookie values in a variety of ways.</p>
 </whdroplet>
 
 <whdroplet name="ulPgCookies">
-(~GOR|PGSETCOOKIE|Setting Cookies~)<br/>
+<span class="changing">(~GOR|PGSETCOOKIE|Setting Cookies~)<br/>
 (~GOR|PGDELCOOKIE|Deleting Cookies~)<br/>
 (~GOR|PGEXPIRECOOKIE|Expiring Cookies~)<br/>
+</span>
 </whdroplet>
 
 
@@ -77,7 +78,7 @@ To associate a charge with a page, you have to use Delphi to set the PageCost pr
 </whpage>
 
 <whdroplet name="ulPgCharging">
-(~GoR|PGTOTAL|Show Me The Bill~)<br/>
+<span class="changing">(~GOR|PGTOTAL|Show Me The Bill~)</span><br/>
 (~Go|pgSURFERTRACKING|Too Rich for My Blood~)<br/>
 </whdroplet>
 

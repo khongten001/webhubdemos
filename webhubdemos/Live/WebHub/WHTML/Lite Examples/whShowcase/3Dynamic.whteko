@@ -159,7 +159,7 @@ Once this random number gets into the URL, the browser is forced to reload.
 RandomSession: (~RandomSession~)</b>
 <p>
 A regular GO: (~GO|PGHTML|GO to Easier HTML Main Page~)<br />
-Compare to GoR: (~GOR|PGHTML|Random GO to Easier HTML Main Page~)
+Compare to GoR: <span class="changing">(~GOR|PGHTML|Random GO to Easier HTML Main Page~)</span>
 <p>
 You can use JumpR, GoR, HideR and ActionR to get the random
 session number feature.  The CURRENT macro uses it automatically.

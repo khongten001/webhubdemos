@@ -204,7 +204,7 @@ the orchestrated sequence.
 (~drShowcaseGlobalHeader~)
 <h2>Entry Denied</h2>
 Sorry, you did not get to the secure page.
-<p> (~GOR||Return to the welcome page.~)</p>
+<p> <span class="changing">(~GOR||Return to the welcome page.~)</span></p>
 
 <form method="post" action="(~ACTION|Showcase:pgEnterShowcase,.CKB~)">
 (~inputhidden|Null~)
