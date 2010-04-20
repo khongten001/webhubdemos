@@ -42,7 +42,7 @@ through a dynamic web site.  Here is an example:</p>
 <p>(~WebCycle.Execute~)</p>
 <!--- Give the surfer something to click on to make this page run again, which
 will show the next ad.  Use the JUMPR macro so the browser can not cache! -->
-<p>(~JUMPR|(~PAGEID~)||Click to Show Next Advertisement~)</p>
+<p><span class="changing">(~JUMPR|(~PAGEID~)||Click to Show Next Advertisement~)</span></p>
 
 <h2>What can be in an advertisement?</h2>
 <p>Each advertisement can be made up of any combination of HTML,
@@ -152,12 +152,14 @@ Content:
 Note: The TwhCycle component can take commands to advance or back up its position, as shown below.
 </whdoc> 
 <div class="dcenter">
+<span class="changing">
 (~JUMPR|(~PageID~),WebCycle.First|First~)&nbsp;|&nbsp;
 (~JUMPR|(~PageID~),WebCycle.Prev|Prev~)&nbsp;|&nbsp;
 (~JUMPR|(~PageID~),WebCycle.This|This~)&nbsp;|&nbsp;
 (~JUMPR|(~PageID~),WebCycle.Next|Next~)&nbsp;|&nbsp;
 (~JUMPR|(~PageID~),WebCycle.Last|Last~)&nbsp;|&nbsp;
 (~JUMPR|(~PageID~),WebCycle.Random|Random~)
+</span>
 </div>
 </whdroplet>
 

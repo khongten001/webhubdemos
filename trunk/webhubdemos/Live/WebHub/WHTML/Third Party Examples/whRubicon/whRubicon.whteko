@@ -15,9 +15,11 @@ mcdgDelimitersAfter=||
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForhtru">
+<span class="changing">
 (~JUMPR|Search~)
 (~JUMPR|Contents~)
 (~JUMPR|BrowseWords|Words~)
+</span>
 </whdroplet>
 
 <whpage pageid="pgEnterHTRU">
@@ -33,11 +35,11 @@ mcdgDelimitersAfter=||
 <center>
 <table width=80% cellspacing=10 cellpadding=10 align=center border=0>
 <tr>
-<td align=center>(~JUMPR|Search~)</td><td> Demonstration of the TwhRubiconSearch component.
+<td align=center><span class="changing">(~JUMPR|Search~)</span></td><td> Demonstration of the TwhRubiconSearch component.
 </td></tr>
-<tr><td align=center>(~JUMPR|Contents~)</td><td> Browse the contents of the sample message database.
+<tr><td align=center><span class="changing">(~JUMPR|Contents~)</span></td><td> Browse the contents of the sample message database.
 </td></tr>
-<tr><td align=center>(~JUMPR|BrowseWords|Words Table~)</td><td> Browse Rubicon's list of words.
+<tr><td align=center><span class="changing">(~JUMPR|BrowseWords|Words Table~)</span></td><td> Browse the list of words that Rubicon has indexed.
 </td></tr>
 </table>
 </center>

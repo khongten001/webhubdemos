@@ -73,7 +73,7 @@ To associate a charge with a page, you have to use Delphi to set the PageCost pr
 <p>and</p>
 <p><b>$4.00 </b> for this disk: (~mcChgDiskIMG~)
 </p>
-<p>(~JumpR|pgCharging|I'm rich! Run up my bill! I want to Download Again!~)</p>
+<p><span class="changing">(~JumpR|pgCharging|I am rich! Run up my bill! I want to Download Again!~)</span></p>
 (~drShowcaseGlobalFooter~)
 </whpage>
 

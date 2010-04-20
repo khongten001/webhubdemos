@@ -29,9 +29,11 @@
 
 <h2>Example 3 at 20 percent</h2>
 <img src="(~ACTION|do,waJPEG.20~)" height="(~waJPEG.20|height~)" width="(~waJPEG.20|height~)" alt="example 3" />
-<br /><br />(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous Animal~) &nbsp;&nbsp;&nbsp;
+<br /><br />
+<span class="changing">
+(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous Animal~) &nbsp;&nbsp;&nbsp;
 (~JUMPR|(~PageID~)|Next Animal~)
-
+</span>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 </body></html>

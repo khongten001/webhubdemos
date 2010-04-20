@@ -1,4 +1,4 @@
-<whteko defaultlingvo="eng">
+<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on
@@ -51,7 +51,7 @@ Use the <b>Preview</b> button to test out your settings.  When you are ready to
 continue where you left off, use the <b>Return</b> button to go back.  You will
 return to Page ID (~prePref~).
 <p>
-<b>(~JUMPR|SetPref|Set Your Preferences~)</b>
+<b><span class="changing">(~JUMPR|SetPref|Set Your Preferences~)</span></b>
 <p>
 Several of the WebHub components
 work together to remember your settings as you move from page to page.  This is known
