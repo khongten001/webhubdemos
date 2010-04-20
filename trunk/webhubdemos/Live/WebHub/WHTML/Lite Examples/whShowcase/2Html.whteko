@@ -224,7 +224,7 @@ the automatic loading of content into frames.
 
 
 <whdroplet name="ulPgFrames">
-(~GOR|FRAMESET1|Content Picker Example~)
+<span class="changing">(~GOR|FRAMESET1|Content Picker Example~)</span>
 </whdroplet>
 
 

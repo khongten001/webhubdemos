@@ -3,7 +3,7 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whdroplet name="drDemoSpeedbarForHTQ4">
-(~GOR|testSearch|Search~)<br />
+<span class="changing">(~GOR|testSearch|Search~)</span><br />
 </whdroplet>
 
 <whpage pageid="pgEnterHTQ4" desc="Employee Search Query Demo">

@@ -20,7 +20,9 @@ conversion service.</p>
 
 <b>Character Converter Utility</b><br />
 
+<!-- changing:start-->
 <form method="post" enctype="multipart/form-data" action="(~ACTIONR|pgResult~)">
+<!-- changing:stop-->
 <table>
 <tr>
  <td>Coupon Code:</td>

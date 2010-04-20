@@ -42,7 +42,7 @@ To participate, fill in this form to describe your real or imaginary pet...
 </whtranslation>
 </p>
 (~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
-<form method="post" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
+<!-- changing:start--><form method="post" action="(~ACTIONR|FORM:pgThankYou,.CKB~)"><!-- changing:stop-->
 <table border="0" cellpadding="10" cellspacing="0">
 <tr><td valign="middle">
 <table id="inputleft">

@@ -57,9 +57,9 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~~Options~)</h1>
-
+<!-- changing:start-->
 <form method="post" action="(~ACTIONR|setpref,.ckb~)">
-
+<!-- changing:stop-->
 <h2>(~~Wallpaper~)</h2>
 <p>(~~SetPrefWallpaperIntro~)</p>
 
