@@ -41,7 +41,7 @@ showcaseBranchText=Surfer Tracking: Using Cookies:
 <!--- Set Every Time -->
 (~COOKIE|chocolate=Chip|1~)
 
-<h4>(~JumpR|pgSetCookie|Click this link to see the cookies displayed.~)</h4>
+<h4><span class="changing">(~JumpR|pgSetCookie|Click this link to see the cookies displayed.~)</span></h4>
 (You have to come back to this page to see the cookies.)
 
 <h4>Display of Cookies</h4>
@@ -103,7 +103,9 @@ Before deleting any cookies, the WebHub HTML code checks whether particular cook
 If they are not defined, you will see a <b>can not find that cookie</b> message.
 If they are defined, they will be deleted.
 <p>
+<span class="changing">
 (~JumpR|PGDELCOOKIE|Reload this page to confirm the cookies are deleted~)
+</span>
 <p>
 <ul>
 
@@ -183,7 +185,7 @@ or to a WebHub page.</p>
 <p>The following link will bounce you forward one page. Note that the 
 link says that you will go to page pgBounceTestA1.  Yet you will end up
 on pgBounceTestA2.</p>
-<p>(~JUMPR|pgBounceTestA1|bounce test A~)</p>
+<p><span class="changing">(~JUMPR|pgBounceTestA1|bounce test A~)</span></p>
 
 (~drShowcaseGlobalFooter~)
 </whpage>
@@ -198,7 +200,7 @@ on pgBounceTestA2.</p>
 (~drShowcaseGlobalHeader~)
 <p>You are now on page (~PageID~).</p>
 <p>Try a more difficult test, with an artificially long url.</p>
-<p>(~JUMPR|pgBounceTestB1|bounce test B~)</p>
+<p><span class="changing">(~JUMPR|pgBounceTestB1|bounce test B~)</span></p>
 
 (~drShowcaseGlobalFooter~)
 </whpage>

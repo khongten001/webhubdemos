@@ -140,7 +140,7 @@ Please try again.
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-(~JUMPR|pgEnterHTQ1|Back~)
+<span class="changing">(~JUMPR|pgEnterHTQ1|Back~)</span>
 <h2>Search Result</h2>
 (~answergrid.execute~)
 (~NOMATCH|(~flagGotData~)=Yes|(~errMessage~)~)

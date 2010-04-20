@@ -18,9 +18,11 @@ mcDebug=<hr />(~BoolVarsPending~)<hr />(~StringVars~)<br />(~Checked~)<hr />
 <whdroplet name="chBeforeScan">
 <tr>
 <td align="center">
-Viewing (~waResults.PageXofY~) for (~SearchRecords~) 
-(~JUMPR|Words|matching~) records. 
-Search Time=(~SearchTime~) ms.
+Viewing 
+<span class="changing">(~waResults.PageXofY~)</span> 
+for (~SearchRecords~) 
+<span class="changing">(~JUMPR|Words|matching~)</span> records. 
+Search Time=<span class="changing">(~SearchTime~)</span> ms.
 </td>
 </tr>
 (~chSpacer5~)

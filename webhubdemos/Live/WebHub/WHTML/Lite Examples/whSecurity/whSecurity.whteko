@@ -912,7 +912,8 @@ user to a specific page</td>
 <td><code>(~mcMacroStart~)WebLogin.Update(~mcMacroEnd~)</code></td>
 </tr>
 </table>
-<p>If you have been on this page longer than 5 seconds, (~JUMPR|pgTimeRunning|click here~) and see what happens!</p>
+<p>If you have been on this page longer than 5 seconds, 
+<span class="changing">(~JUMPR|pgTimeRunning|click here~)</span> and see what happens!</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)

@@ -3,16 +3,16 @@
 <whteko designmode="code">
 
 <whpage pageid="pgEnterHTMP" desc="Entrance">
-<!---%=JUMPR|do,webezmap1|Test 1=%<br />
-%=JUMPR|do,webezmap2|Test 2=%<br />
-%=JUMPR|do,webezmap3|Test 3=%<br /> -->
+<span class="changing">
 (~JUMPR|pgMapTest1|Test 1 (Pick Entity)~)<br />
 (~JUMPR|pgMapTest2|Test 2 (Zoom In)~)<br />
-(~JUMPR|pgMapTest3|Test 3 (Zoom Out)~)<br />
+(~JUMPR|pgMapTest3|Test 3 (Zoom Out)~)
+</span>
+<br />
 </whpage>
 
 <whpage pageid="pgMapTest1" desc="Pick Entity within the Map">
-%=webezmap1.execute=%
+%=webezmap1.execute|=%
 </whpage>
 
 <whpage pageid="pgMapTest2" desc="Zoom In to the Map">
