@@ -10,6 +10,7 @@ bReqUl=true
 level=1
 levelKeyword=Pages
 htmlFilename=1Pages.whteko
+showcaseBranch= <!--- empty -->
 </whpagesettingslist>
 
 <whpage pageid="pgHTML" desc="Easier HTML">
@@ -60,7 +61,6 @@ When you call the names with the macro syntax, it expands into full
 <whpage pageid="pgWebMaster" desc="WebMaster Topics">
 <whpagesettings inherit="a">
 downLink=PGSECURITY
-showcaseBranch= <!--- empty -->
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 The cost of maintaining your site can be as high or higher than that of developing it. 
@@ -194,7 +194,6 @@ much easier--and it doesn't require custom cgi programming.
 <whpage pageid="pgJava" desc="Java, JavaScript and XML">
 <whpagesettings inherit="a">
 downLink=PGJAVACL
-showcaseBranch= <!--- empty -->
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 WebHub works with other web development tools to provide you with full-featured 
