@@ -74,7 +74,9 @@ taken to a page where you can view the results, and, if you wish, clear them and
 <html><head>
 (~drHead~)
 
-<meta http-equiv="Refresh" content="(~Demo1Refresh~);(~DynURL.ToSessionIDW~)">
+<!-- changing:start-->
+<meta http-equiv="Refresh" content="(~Demo1Refresh~);(~DynURL.ToSessionIDW~)"/>
+<!-- changing:stop-->
 </head>
 <body>
 (~drPageBegin~)

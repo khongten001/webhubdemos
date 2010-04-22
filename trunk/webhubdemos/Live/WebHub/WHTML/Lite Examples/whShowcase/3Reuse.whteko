@@ -117,7 +117,7 @@ to fill these in based on data the surfer has already entered.
 In the case of a simple text field, all you need to do is set the
 value based on the Literal:
 <pre>
-&lt;input type="text" name="litSurferName" <b>value=&quot(~.litSurferName~)&quot</b>>
+&lt;input type="text" name="litSurferName" <b>value=&quot(~.litSurferName~)&quot</b>&rt;
 </pre>
 The first time the surfer gets to the form, the literal element will
 be blank. The second time, it will be filled in.
@@ -126,7 +126,8 @@ When publishing form StringVars, the keyword is always the NAME tag for the
 input field.  Notice the phrase <b>litSurferName</b> as the NAME
 and within the VALUE syntax.
 <p>
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 Your name:(~inputtext|litSurferName+5~)
 (~inputsubmit|submit,Submit~)
 </form>

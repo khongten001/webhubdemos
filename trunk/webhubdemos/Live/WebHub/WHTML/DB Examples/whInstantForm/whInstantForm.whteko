@@ -187,11 +187,13 @@ remembering these from one page to the next.  (In the demo, the grid preferences
 <!-- #$AUTHOR:unknown -->
 <!-- #$DATE:Thu Dec 19 21:26:22 1996 -->
 <!-- #$JPG:gridbtns.JPG -->
+<!-- changing:start-->
 <area shape="rect" coords="2,0,53,42" href="(~DynURL.ToSessionIDW~)grid.first" alt="first" />
 <area shape="rect" coords="53,2,105,42" href="(~DynURL.ToSessionIDW~)grid.prior" alt="previous" />
 <area shape="rect" coords="104,0,157,42" href="(~DynURL.ToSessionIDW~)grid.next" alt="next" />
 <area shape="rect" coords="157,1,203,42" href="(~DynURL.ToSessionIDW~)grid.last" alt="last" />
 <area shape="default" href="(~DynURL.ToSessionIDW~)grid.first" alt="first" />
+<!-- changing:stop-->
 </map></p>
 </whdroplet>
 

@@ -211,11 +211,13 @@ whether you see all graphics or just links.</span>
 <!-- #$AUTHOR:HREF Tools Corp.-->
 <!-- #$DATE:Fri Aug 29 22:25:27 1997 -->
 <!-- #$JPG:BtnNav.JPG -->
+<!-- changing:start-->
 <area shape="rect" coords="0,0,33,25" href="(~DynURL.ToSessionIDW~)BrowseScan.first" alt="first" />
 <area shape="rect" coords="34,0,67,25" href="(~DynURL.ToSessionIDW~)BrowseScan.prior" alt="previous" />
 <area shape="rect" coords="68,0,101,25" href="(~DynURL.ToSessionIDW~)BrowseScan.next" alt="next" />
 <area shape="rect" coords="102,0,136,25" href="(~DynURL.ToSessionIDW~)BrowseScan.last" alt="last" />
 <area shape="default" href="(~DynURL.ToSessionIDW~)BrowseScan.first" alt="first" />
+<!-- changing:stop-->
 </map>
 </whdroplet>
 

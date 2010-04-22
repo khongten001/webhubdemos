@@ -20,7 +20,8 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 The following example will allow you to personalize this Showcase Demo with your name and organization.
 <p>
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 <CENTER><table>
 <tr><td>
 Please enter your name: </td><td>(~inputtext|litSurferName,40,40~)<tr><td>

@@ -186,7 +186,8 @@ application will run with any Windows NT web server.</p>
 <br />
 <span style="font-size:1.2em;color:#666666">
 Adjust speed:</span>
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 <p>
 (~INPUTRADIO|inSpeed,slow~) Slow Modem (black and white images)
 (~INPUTRADIO|inSpeed,fast~) Fast Connection (color images)</p>

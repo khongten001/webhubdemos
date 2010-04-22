@@ -33,7 +33,9 @@ after 1hr by default.) Remember! access from the main thread only.
 meta refresh will kick in before the page is complete.
 does not work to continue a page once the action is done
 but might come in handy when used to provide a timeout
-<META HTTP-EQUIV="Refresh" CONTENT="1;(~DynURL.ToSessionIDW~)">
+<!-- changing:start-->
+<META HTTP-EQUIV="Refresh" CONTENT="1;(~DynURL.ToSessionIDW~)"/>
+<!-- changing:stop-->
 
 <font size=+2>(~ANCHOR|AsyncPage1~)</font><br />
 <font size=-1>(~ANCHOR|AsyncPage2~)</font><br />

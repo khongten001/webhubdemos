@@ -127,11 +127,12 @@ HTML stream using macro syntax.
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-You use the CURRENT macro to make a form re-run the current page.
+You use the ToSessionIDW property to make a form re-run the current page.
 
 <p>
 In this example, the current page will be reloaded with the form data.
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 Surfer name:(~inputtext|litSurferName~)
 (~inputsubmit|submit,Stay Where you are~)
 </form>
