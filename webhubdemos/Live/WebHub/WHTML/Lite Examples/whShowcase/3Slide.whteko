@@ -1,4 +1,4 @@
-<whteko defaultlingvo="eng">
+<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whSequence=on
@@ -14,14 +14,14 @@ htmlFilename=3Slide.whteko
 </whpagesettingslist>
 
 <whdroplet name="slideBefore">
-&#160<br />
-&#160<br />
+ 3Cbr />
+ 3Cbr />
 </whdroplet>
 
 
 <whdroplet name="slideAfter">
-&#160<br />
-&#160<br />
+ 3Cbr />
+ 3Cbr />
 </whdroplet>
 
 <whpage pageid="pgSlide0" desc="Questions to Ask When Evaluating Web Solutions">

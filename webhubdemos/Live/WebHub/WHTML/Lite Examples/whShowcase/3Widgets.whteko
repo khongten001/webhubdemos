@@ -1,4 +1,4 @@
-<whteko defaultlingvo="eng">
+<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on
@@ -25,7 +25,8 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 This example will allow you to select the icon you want from a dropdown list.
 
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 Please choose an icon:
  (~<SELECT NAME="litIconFile">
  (~<OPTION VALUE="Earth">Earth
@@ -53,7 +54,8 @@ because you need to be able to default one or more items to SELECTED
 depending on what the surfer chooses.
 <p>
 This example shows that WebHub handles multiple select lists with ease.
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 <h3>Hold down SHIFT or CTRL to choose one or more options:</h3>
  (~<SELECT NAME="MYSELECT" MULTIPLE>
  (~<OPTION Value="OPTION1">This is option #1
@@ -77,7 +79,8 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 This example will show you how easy it is for WebHub to remember a radio button selection.
 
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 Preferred color: (~INPUTRADIO|color,Red~) Red
 (~INPUTRADIO|color,Green~) Green (~INPUTRADIO|color,Blue~) Blue (~INPUTSUBMIT|submit,Post~)
 </form>
@@ -88,7 +91,8 @@ Preferred color: (~INPUTRADIO|color,Red~) Red
 <hr />
 This example will show you how WebHub can serve different pages based on radio button input.
 
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 Language:
  (~INPUTRADIO|Language,English~) English
  (~INPUTRADIO|Language,German~) German
@@ -140,7 +144,8 @@ This example will demonstrate how you can use radio buttons to perform complex c
 (~NOTASSIGNED|cost=50~)
 (~NOTASSIGNED|loss=25~)
 
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 <CENTER>
 <table BORDER>
 <tr><th> </th><th>Retail</th><th>Wholesale</th><th>Direct Cost</th><th>Loss</th><tr>
@@ -211,7 +216,8 @@ entered in the text box.
 <li>Try making another line read '(~.litSurferName~)'.
 </ol></b>
 
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 (~inputtextarea|txtDescription,5,60~)
 <p>
 (~inputsubmit|submit,See What Happens~)
@@ -250,7 +256,8 @@ Name and a Value. If you look at the WebHub source you will also
 see how the MATCH macro is used to bring in chunks based on
 the button name.
 <p>
-<form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
 (~inputhidden|Null~)
 (~inputsubmit|submit,HairStyle,Mohawk~)
 (~inputsubmit|submit,HairStyle,Punk~)

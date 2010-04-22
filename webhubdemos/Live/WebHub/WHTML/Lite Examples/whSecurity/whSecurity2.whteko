@@ -14,15 +14,6 @@ Define the helper macros that the above code jumps to.
 </whdoc>
 <whmacros>
 mcLoginNew="(~DynURL.ToSessionIDWBlankSession~)" Target="(~rand~)"
-<!---
-mcLoginLogOut=(~CLEAR|_bLoginOk~)
-mcLoginLogoutHome=(~mcLoginLogOut~)(~bounce|LoginHome~)
-mcLoginLogoutLogin=(~mcLoginLogOut~)(~bounce|LoginPage~)
-mcLoginSessionTouch2=(~mcLoginLogOut~)(~Session|time|2~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
-mcLoginSessionTouch7=(~mcLoginLogOut~)(~Session|time|7~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
-mcLoginSessionTouch30=(~mcLoginLogOut~)(~Session|time|30~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
-mcLoginSessionDelete=(~Session|delete~)(~bounce|(~DynURL.ToSessionIDWBlankSession~)~)
--->
 </whmacros>
 
 <whdoc>

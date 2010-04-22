@@ -111,10 +111,10 @@ view data from a Firebird SQL database.</p>
 
 <whmacros>
 <!--- used for customization of ScanEmployee2 - example #2 -->
-mcEmployee2ButtonSpecsFirst=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.First">FIRST</A>
-mcEmployee2ButtonSpecsPrior=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Prior">PRIOR</A>
-mcEmployee2ButtonSpecsNext=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Next">NEXT</A>
-mcEmployee2ButtonSpecsLast=<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Last">LAST</A>
+mcEmployee2ButtonSpecsFirst=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.First">FIRST</A><!-- changing:stop-->
+mcEmployee2ButtonSpecsPrior=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Prior">PRIOR</A><!-- changing:stop-->
+mcEmployee2ButtonSpecsNext=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Next">NEXT</A><!-- changing:stop-->
+mcEmployee2ButtonSpecsLast=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Last">LAST</A><!-- changing:stop-->
 mcEmployee2CaptionsFirst=FIRST
 mcEmployee2CaptionsPrior=PRIOR
 mcEmployee2CaptionsNext=NEXT
@@ -147,12 +147,14 @@ mcPromptsFieldSet=<b>Field Set</b>:
 
 <whdroplet name="drEmployeeButtons" show="yes">
 <div id="ScanEmployee3-buttons" class="whdbScanBase-buttons">
+<!-- changing:start-->
 <ul>
   <li class="whdbScanBase-firstbutton">(~ScanEmployee3|ButtonFirst|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</A>||<span class="disabled">first</span>~)</li>
   <li>(~ScanEmployee3|ButtonPrior|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</A>||<span class="disabled">previous</span>~)</li>
   <li>(~ScanEmployee3|ButtonNext|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</A>||<span class="disabled">next</span>~)</li>
   <li>(~ScanEmployee3|ButtonLast|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</A>||<span class="disabled">last</span>~)</li>
 </ul>
+<!-- changing:stop-->
 </div>
 </whdroplet>
 </div>  <!--- whdemopagecontent -->
