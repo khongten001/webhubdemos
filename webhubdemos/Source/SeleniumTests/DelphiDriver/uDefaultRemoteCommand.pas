@@ -8,28 +8,29 @@ uses
 type
 	DefaultRemoteCommand = class(TInterfacedObject, IRemoteCommand)
   public
-    args: ArrayOfString;
-		command: string;
+    args: ArrayOfUTF8String;
+		command: UTF8String;
   public
-    constructor Create(_command: string; _args: ArrayOfString);
-		function CommandString:string;
-		class function Parse(commandString: string): DefaultRemoteCommand;
+    constructor Create(_command: UTF8String; _args: ArrayOfUTF8String);
+		function CommandString: UTF8String;
+		class function Parse(commandString: UTF8String): DefaultRemoteCommand;
   end;
 
   const
-    PARSE_ERROR_MESSAGE = 'Command string must contain 4 pipe characters and should start with a ''|''. Unable to parse command string';
+    PARSE_ERROR_MESSAGE = 'Command must contain 4 pipe characters and should start with a ''|''. Unable to parse command';
 
 implementation
+
 uses
   ucString;
 
-    constructor DefaultRemoteCommand.Create(_command: string; _args: ArrayOfString);
+    constructor DefaultRemoteCommand.Create(_command: UTF8String; _args: ArrayOfUTF8String);
     begin
 			command := _command;
 			args := _args;
     end;
 
-		function  DefaultRemoteCommand.CommandString: string;
+		function  DefaultRemoteCommand.CommandString: UTF8String;
     var
       i : Integer;
     begin
@@ -41,9 +42,9 @@ uses
 					result := result + '&' + IntToStr(i+1) + '=' + UrlEncode(args[i]);
 		end;
 
-		class function DefaultRemoteCommand.Parse(commandString: string): DefaultRemoteCommand;
-    var
-     commandArray: ArrayOfString;
+		class function DefaultRemoteCommand.Parse(commandString: UTF8String): DefaultRemoteCommand;
+    //var
+    // commandArray: ArrayOfUTF8String;
 		begin
 			{if (commandString = '') or (Trim(commandString) = '') or (Copy(commandString, 1, 1) <> '|') then
 			begin

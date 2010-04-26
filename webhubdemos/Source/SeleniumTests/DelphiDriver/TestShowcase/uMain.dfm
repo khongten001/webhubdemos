@@ -19,6 +19,7 @@ object Form1: TForm1
     Width = 705
     Height = 390
     Align = alClient
+    ScrollBars = ssBoth
     TabOrder = 0
   end
   object Panel1: TPanel
@@ -28,23 +29,41 @@ object Form1: TForm1
     Height = 41
     Align = alTop
     TabOrder = 1
-    object btnStart: TButton
+    object btnTestA: TButton
       Left = 16
-      Top = 8
+      Top = 10
       Width = 75
       Height = 25
-      Caption = 'Start'
+      Caption = 'test a'
       TabOrder = 0
-      OnClick = btnStartClick
+      OnClick = btnTestAClick
     end
     object btnTest: TButton
-      Left = 96
-      Top = 8
+      Left = 312
+      Top = 10
       Width = 75
       Height = 25
       Caption = 'test'
       TabOrder = 1
       OnClick = btnTestClick
+    end
+    object btnTestB: TButton
+      Left = 97
+      Top = 8
+      Width = 75
+      Height = 25
+      Caption = 'test b'
+      TabOrder = 2
+      OnClick = btnTestAClick
+    end
+    object btnStop: TButton
+      Left = 178
+      Top = 10
+      Width = 75
+      Height = 25
+      Caption = 'stop'
+      TabOrder = 3
+      OnClick = btnStopClick
     end
   end
 end

@@ -9,7 +9,8 @@ uses
   uICommandProcessor in '..\uICommandProcessor.pas',
   uHttpCommandProcessor in '..\uHttpCommandProcessor.pas',
   uDefaultRemoteCommand in '..\uDefaultRemoteCommand.pas',
-  uIRemoteCommand in '..\uIRemoteCommand.pas';
+  uIRemoteCommand in '..\uIRemoteCommand.pas',
+  uSeleniumShared in '..\uSeleniumShared.pas';
 
 {$R *.res}
 

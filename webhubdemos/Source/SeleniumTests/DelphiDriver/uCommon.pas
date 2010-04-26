@@ -5,23 +5,23 @@ uses
   SysUtils;
   
 type
-  ArrayOfString = class
+  ArrayOfUTF8String = class
   private
-    m_data: array[0..99] of string;
+    m_data: array[0..99] of UTF8String;
     m_data_count: integer;
-    function getData(Index: integer): string;
-    procedure setData(Index: integer; data: string);
+    function getData(Index: integer): UTF8String;
+    procedure setData(Index: integer; data: UTF8String);
     function getCount(): integer;
   public
     constructor Create; overload;
-    constructor Create(s0: string); overload;
-    constructor Create(s0: string; s1: string); overload;
-    constructor Create(s0: string; s1: string; s2: string); overload;
-    constructor Create(s0: string; s1: string; s2: string; s3: string); overload;
-    constructor Create(s0: string; s1: string; s2: string; s3: string; s4: string); overload;
-    property Datas[Index: integer]: string read getData write setData; default;
+    constructor Create(s0: UTF8String); overload;
+    constructor Create(s0: UTF8String; s1: UTF8String); overload;
+    constructor Create(s0, s1, s2: UTF8String); overload;
+    constructor Create(s0, s1, s2, s3: UTF8String); overload;
+    constructor Create(s0, s1, s2, s3, s4: UTF8String); overload;
+    property Datas[Index: integer]: UTF8String read getData write setData; default;
     property Count: integer read getCount;
-    procedure Add(data: string);
+    procedure Add(data: UTF8String);
   end;
 
   ArrayOfDouble = class
@@ -62,11 +62,12 @@ type
     procedure Add(data: boolean);
   end;
 
-function URLEncode(const S: string; const InQueryString: Boolean = true): string;
+function URLEncode(const S: UTF8String; const InQueryString: Boolean = true)
+  : UTF8String;
 
 implementation
 
-function URLDecode(const S: string): string;
+function URLDecode(const S: UTF8String): UTF8String;
 var
   Idx: Integer;   // loops thru chars in string
   Hex: string;    // string of hex characters
@@ -112,7 +113,8 @@ begin
 end;
 
 
-function URLEncode(const S: string; const InQueryString: Boolean = true): string;
+function URLEncode(const S: UTF8String; const InQueryString: Boolean = true)
+  : UTF8String;
 var
   Idx: Integer; // loops thru characters in string
 begin
@@ -134,27 +136,27 @@ begin
 end;
 
 //*****************************************************
-//ArrayOfString
+//ArrayOfUTF8String
 //*****************************************************
-constructor ArrayOfString.Create();
+constructor ArrayOfUTF8String.Create();
 begin
   m_data_count := 0;
 end;
 
-constructor ArrayOfString.Create(s0: string);
+constructor ArrayOfUTF8String.Create(s0: UTF8String);
 begin
   m_data_count := 1;
   m_data[0] := s0;
 end;
 
-constructor ArrayOfString.Create(s0: string; s1: string);
+constructor ArrayOfUTF8String.Create(s0: UTF8String; s1: UTF8String);
 begin
   m_data_count := 2;
   m_data[0] := s0;
   m_data[1] := s1;
 end;
 
-constructor ArrayOfString.Create(s0: string; s1: string; s2: string);
+constructor ArrayOfUTF8String.Create(s0, s1, s2: UTF8String);
 begin
   m_data_count := 3;
   m_data[0] := s0;
@@ -162,7 +164,7 @@ begin
   m_data[2] := s2;
 end;
 
-constructor ArrayOfString.Create(s0: string; s1: string; s2: string; s3: string);
+constructor ArrayOfUTF8String.Create(s0, s1, s2, s3: UTF8String);
 begin
   m_data_count := 4;
   m_data[0] := s0;
@@ -171,7 +173,7 @@ begin
   m_data[3] := s3;
 end;
 
-constructor ArrayOfString.Create(s0: string; s1: string; s2: string; s3: string; s4: string);
+constructor ArrayOfUTF8String.Create(s0, s1, s2, s3, s4: UTF8String);
 begin
   m_data_count := 5;
   m_data[0] := s0;
@@ -181,26 +183,26 @@ begin
   m_data[4] := s4;
 end;
 
-function ArrayOfString.getData(Index: integer): string;
+function ArrayOfUTF8String.getData(Index: integer): UTF8String;
 begin
   if (Index >= m_data_count) then
     raise Exception.Create('index out bound!');
   result := m_data[Index];
 end;
 
-procedure ArrayOfString.setData(Index: integer; data: string);
+procedure ArrayOfUTF8String.setData(Index: integer; data: UTF8String);
 begin
   if (Index >= m_data_count) then
     raise Exception.Create('index out bound!');
   m_data[Index] := data;
 end;
 
-function ArrayOfString.getCount(): integer;
+function ArrayOfUTF8String.getCount(): integer;
 begin
   result := m_data_count;
 end;
 
-procedure ArrayOfString.Add(data: string);
+procedure ArrayOfUTF8String.Add(data: UTF8String);
 begin
   if (m_data_count > Length(m_data)) then
     raise Exception.Create('data buffer full!');
