@@ -11,21 +11,21 @@ type
   protected
     commandProcessor: ICommandProcessor;
   public
-    constructor Create(serverHost: string; serverPort: integer; browserString: string; browserURL: string); overload;
+    constructor Create(serverHost: UTF8String; serverPort: integer; browserString: UTF8String; browserURL: UTF8String); overload;
     constructor Create(processor: ICommandProcessor); overload;
     function Processor: ICommandProcessor;
     procedure Start();
     procedure Stop();
-    procedure Click(locator: string);
-    procedure ClickAndWait(locator: String);
-    procedure DoubleClick(locator: string);
-    procedure ContextMenu(locator: string);
-    procedure ClickAt(locator: string; coordString: string);
-    procedure DoubleClickAt(locator: string; coordString: string);
-    procedure ContextMenuAt(locator: string; coordString: string);
-    procedure FireEvent(locator: string; eventName: string);
-    procedure Focus(locator: string);
-    procedure KeyPress(locator: string; keySequence: string);
+    procedure Click(locator: UTF8String);
+    procedure ClickAndWait(locator: UTF8String);
+    procedure DoubleClick(locator: UTF8String);
+    procedure ContextMenu(locator: UTF8String);
+    procedure ClickAt(locator: UTF8String; coordString: UTF8String);
+    procedure DoubleClickAt(locator: UTF8String; coordString: UTF8String);
+    procedure ContextMenuAt(locator: UTF8String; coordString: UTF8String);
+    procedure FireEvent(locator: UTF8String; eventName: UTF8String);
+    procedure Focus(locator: UTF8String);
+    procedure KeyPress(locator: UTF8String; keySequence: UTF8String);
     procedure ShiftKeyDown();
     procedure ShiftKeyUp();
     procedure MetaKeyDown();
@@ -34,124 +34,124 @@ type
     procedure AltKeyUp();
     procedure ControlKeyDown();
     procedure ControlKeyUp();
-    procedure KeyDown(locator: string; keySequence: string);
-    procedure KeyUp(locator: string; keySequence: string);
-    procedure MouseOver(locator: string);
-    procedure MouseOut(locator: string);
-    procedure MouseDown(locator: string);
-    procedure MouseDownAt(locator: string; coordString: string);
-    procedure MouseUp(locator: string);
-    procedure MouseUpAt(locator: string; coordString: string);
-    procedure MouseMove(locator: string);
-    procedure MouseMoveAt(locator: string; coordString: string);
-    procedure Type_(locator: string; value: string);
-    procedure TypeKeys(locator: string; value: string);
-    procedure SetSpeed(value: string);
-    function GetSpeed(): string;
-    procedure Check(locator: string);
-    procedure Uncheck(locator: string);
-    procedure Select(selectLocator: string; optionLocator: string);
-    procedure AddSelection(locator: string; optionLocator: string);
-    procedure RemoveSelection(locator: string; optionLocator: string);
-    procedure RemoveAllSelections(locator: string);
-    procedure Submit(formLocator: string);
-    procedure Open(url: string);
-    procedure OpenWindow(url: string; windowID: string);
-    procedure SelectWindow(windowID: string);
-    procedure SelectFrame(locator: string);
-    function GetWhetherThisFrameMatchFrameExpression(currentFrameString: string; target: string): boolean;
-    function GetWhetherThisWindowMatchWindowExpression(currentWindowString: string; target: string): boolean;
-    procedure WaitForPopUp(windowID: string; timeout: string);
+    procedure KeyDown(locator: UTF8String; keySequence: UTF8String);
+    procedure KeyUp(locator: UTF8String; keySequence: UTF8String);
+    procedure MouseOver(locator: UTF8String);
+    procedure MouseOut(locator: UTF8String);
+    procedure MouseDown(locator: UTF8String);
+    procedure MouseDownAt(locator: UTF8String; coordString: UTF8String);
+    procedure MouseUp(locator: UTF8String);
+    procedure MouseUpAt(locator: UTF8String; coordString: UTF8String);
+    procedure MouseMove(locator: UTF8String);
+    procedure MouseMoveAt(locator: UTF8String; coordString: UTF8String);
+    procedure Type_(locator: UTF8String; value: UTF8String);
+    procedure TypeKeys(locator: UTF8String; value: UTF8String);
+    procedure SetSpeed(value: UTF8String);
+    function GetSpeed(): UTF8String;
+    procedure Check(locator: UTF8String);
+    procedure Uncheck(locator: UTF8String);
+    procedure Select(selectLocator: UTF8String; optionLocator: UTF8String);
+    procedure AddSelection(locator: UTF8String; optionLocator: UTF8String);
+    procedure RemoveSelection(locator: UTF8String; optionLocator: UTF8String);
+    procedure RemoveAllSelections(locator: UTF8String);
+    procedure Submit(formLocator: UTF8String);
+    procedure Open(url: UTF8String);
+    procedure OpenWindow(url: UTF8String; windowID: UTF8String);
+    procedure SelectWindow(windowID: UTF8String);
+    procedure SelectFrame(locator: UTF8String);
+    function GetWhetherThisFrameMatchFrameExpression(currentFrameString: UTF8String; target: UTF8String): boolean;
+    function GetWhetherThisWindowMatchWindowExpression(currentWindowString: UTF8String; target: UTF8String): boolean;
+    procedure WaitForPopUp(windowID: UTF8String; timeout: UTF8String);
     procedure ChooseCancelOnNextConfirmation();
     procedure ChooseOkOnNextConfirmation();
-    procedure AnswerOnNextPrompt(answer: string);
+    procedure AnswerOnNextPrompt(answer: UTF8String);
     procedure GoBack();
     procedure Refresh();
     procedure Close();
     function IsAlertPresent(): boolean;
     function IsPromptPresent(): boolean;
     function IsConfirmationPresent(): boolean;
-    function GetAlert(): string;
-    function GetConfirmation(): string;
-    function GetPrompt(): string;
-    function GetLocation(): string;
-    function GetTitle(): string;
-    function GetBodyText(): string;
-    function GetValue(locator: string): string;
-    function GetText(locator: string): string;
-    procedure Highlight(locator: string);
-    function GetEval(script: string): string;
-    function IsChecked(locator: string): boolean;
-    function GetTable(tableCellAddress: string): string;
-    function GetSelectedLabels(selectLocator: string): ArrayOfString;
-    function GetSelectedLabel(selectLocator: string): string;
-    function GetSelectedValues(selectLocator: string): ArrayOfString;
-    function GetSelectedValue(selectLocator: string): string;
-    function GetSelectedIndexes(selectLocator: string): ArrayOfString;
-    function GetSelectedIndex(selectLocator: string): string;
-    function GetSelectedIds(selectLocator: string): ArrayOfString;
-    function GetSelectedId(selectLocator: string): string;
-    function IsSomethingSelected(selectLocator: string): boolean;
-    function GetSelectOptions(selectLocator: string): ArrayOfString;
-    function GetAttribute(attributeLocator: string): string;
-    function IsTextPresent(pattern: string): boolean;
-    function IsElementPresent(locator: string): boolean;
-    function IsVisible(locator: string): boolean;
-    function IsEditable(locator: string): boolean;
-    function GetAllButtons(): ArrayOfString;
-    function GetAllLinks(): ArrayOfString;
-    function GetAllFields(): ArrayOfString;
-    function GetAttributeFromAllWindows(attributeName: string): ArrayOfString;
-    procedure Dragdrop(locator: string; movementsString: string);
-    procedure SetMouseSpeed(pixels: string);
+    function GetAlert(): UTF8String;
+    function GetConfirmation(): UTF8String;
+    function GetPrompt(): UTF8String;
+    function GetLocation(): UTF8String;
+    function GetTitle(): UTF8String;
+    function GetBodyText(): UTF8String;
+    function GetValue(locator: UTF8String): UTF8String;
+    function GetText(locator: UTF8String): UTF8String;
+    procedure Highlight(locator: UTF8String);
+    function GetEval(script: UTF8String): UTF8String;
+    function IsChecked(locator: UTF8String): boolean;
+    function GetTable(tableCellAddress: UTF8String): UTF8String;
+    function GetSelectedLabels(selectLocator: UTF8String): ArrayOfUTF8String;
+    function GetSelectedLabel(selectLocator: UTF8String): UTF8String;
+    function GetSelectedValues(selectLocator: UTF8String): ArrayOfUTF8String;
+    function GetSelectedValue(selectLocator: UTF8String): UTF8String;
+    function GetSelectedIndexes(selectLocator: UTF8String): ArrayOfUTF8String;
+    function GetSelectedIndex(selectLocator: UTF8String): UTF8String;
+    function GetSelectedIds(selectLocator: UTF8String): ArrayOfUTF8String;
+    function GetSelectedId(selectLocator: UTF8String): UTF8String;
+    function IsSomethingSelected(selectLocator: UTF8String): boolean;
+    function GetSelectOptions(selectLocator: UTF8String): ArrayOfUTF8String;
+    function GetAttribute(attributeLocator: UTF8String): UTF8String;
+    function IsTextPresent(pattern: UTF8String): boolean;
+    function IsElementPresent(locator: UTF8String): boolean;
+    function IsVisible(locator: UTF8String): boolean;
+    function IsEditable(locator: UTF8String): boolean;
+    function GetAllButtons(): ArrayOfUTF8String;
+    function GetAllLinks(): ArrayOfUTF8String;
+    function GetAllFields(): ArrayOfUTF8String;
+    function GetAttributeFromAllWindows(attributeName: UTF8String): ArrayOfUTF8String;
+    procedure Dragdrop(locator: UTF8String; movementsString: UTF8String);
+    procedure SetMouseSpeed(pixels: UTF8String);
     function GetMouseSpeed(): double;
-    procedure DragAndDrop(locator: string; movementsString: string);
-    procedure DragAndDropToObject(locatorOfObjectToBeDragged: string; locatorOfDragDestinationObject: string);
+    procedure DragAndDrop(locator: UTF8String; movementsString: UTF8String);
+    procedure DragAndDropToObject(locatorOfObjectToBeDragged: UTF8String; locatorOfDragDestinationObject: UTF8String);
     procedure WindowFocus();
     procedure WindowMaximize();
-    function GetAllWindowIds(): ArrayOfString;
-    function GetAllWindowNames(): ArrayOfString;
-    function GetAllWindowTitles(): ArrayOfString;
-    function GetHtmlSource(): string;
-    procedure SetCursorPosition(locator: string; position: string);
-    function GetElementIndex(locator: string): double;
-    function IsOrdered(locator1: string; locator2: string): boolean;
-    function GetElementPositionLeft(locator: string): double;
-    function GetElementPositionTop(locator: string): double;
-    function GetElementWidth(locator: string): double;
-    function GetElementHeight(locator: string): double;
-    function GetCursorPosition(locator: string): double;
-    function GetExpression(expression: string): string;
-    function GetXpathCount(xpath: string): double;
-    procedure AssignId(locator: string; identifier: string);
-    procedure AllowNativeXpath(allow: string);
-    procedure IgnoreAttributesWithoutValue(ignore: string);
-    procedure WaitForCondition(script: string; timeout: string);
-    procedure SetTimeout(timeout: string);
-    procedure WaitForPageToLoad(timeout: string);
-    procedure WaitForFrameToLoad(frameAddress: string; timeout: string);
-    function GetCookie(): string;
-    function GetCookieByName(name: string): string;
-    function IsCookiePresent(name: string): boolean;
-    procedure CreateCookie(nameValuePair: string; optionsString: string);
-    procedure DeleteCookie(name: string; optionsString: string);
+    function GetAllWindowIds(): ArrayOfUTF8String;
+    function GetAllWindowNames(): ArrayOfUTF8String;
+    function GetAllWindowTitles(): ArrayOfUTF8String;
+    function GetHtmlSource(): UTF8String;
+    procedure SetCursorPosition(locator: UTF8String; position: UTF8String);
+    function GetElementIndex(locator: UTF8String): double;
+    function IsOrdered(locator1: UTF8String; locator2: UTF8String): boolean;
+    function GetElementPositionLeft(locator: UTF8String): double;
+    function GetElementPositionTop(locator: UTF8String): double;
+    function GetElementWidth(locator: UTF8String): double;
+    function GetElementHeight(locator: UTF8String): double;
+    function GetCursorPosition(locator: UTF8String): double;
+    function GetExpression(expression: UTF8String): UTF8String;
+    function GetXpathCount(xpath: UTF8String): double;
+    procedure AssignId(locator: UTF8String; identifier: UTF8String);
+    procedure AllowNativeXpath(allow: UTF8String);
+    procedure IgnoreAttributesWithoutValue(ignore: UTF8String);
+    procedure WaitForCondition(script: UTF8String; timeout: UTF8String);
+    procedure SetTimeout(timeout: UTF8String);
+    procedure WaitForPageToLoad(timeout: UTF8String);
+    procedure WaitForFrameToLoad(frameAddress: UTF8String; timeout: UTF8String);
+    function GetCookie(): UTF8String;
+    function GetCookieByName(name: UTF8String): UTF8String;
+    function IsCookiePresent(name: UTF8String): boolean;
+    procedure CreateCookie(nameValuePair: UTF8String; optionsString: UTF8String);
+    procedure DeleteCookie(name: UTF8String; optionsString: UTF8String);
     procedure DeleteAllVisibleCookies();
-    procedure SetBrowserLogLevel(logLevel: string);
-    procedure RunScript(script: string);
-    procedure AddLocationStrategy(strategyName: string; functionDefinition: string);
-    procedure CaptureEntirePageScreenshot(filename: string);
-    procedure SetContext(context: string);
-    procedure AttachFile(fieldLocator: string; fileLocator: string);
-    procedure CaptureScreenshot(filename: string);
+    procedure SetBrowserLogLevel(logLevel: UTF8String);
+    procedure RunScript(script: UTF8String);
+    procedure AddLocationStrategy(strategyName: UTF8String; functionDefinition: UTF8String);
+    procedure CaptureEntirePageScreenshot(filename: UTF8String);
+    procedure SetContext(context: UTF8String);
+    procedure AttachFile(fieldLocator: UTF8String; fileLocator: UTF8String);
+    procedure CaptureScreenshot(filename: UTF8String);
     procedure ShutDownSeleniumServer();
-    procedure KeyDownNative(keycode: string);
-    procedure KeyUpNative(keycode: string);
-    procedure KeyPressNative(keycode: string);
+    procedure KeyDownNative(keycode: UTF8String);
+    procedure KeyUpNative(keycode: UTF8String);
+    procedure KeyPressNative(keycode: UTF8String);
   end;
 
 implementation
 
-constructor DefaultSelenium.Create(serverHost: string; serverPort: integer; browserString: string; browserURL: string);
+constructor DefaultSelenium.Create(serverHost: UTF8String; serverPort: integer; browserString: UTF8String; browserURL: UTF8String);
 begin
   commandProcessor := HttpCommandProcessor.Create(serverHost, serverPort, browserString, browserURL);
 end;
@@ -176,660 +176,661 @@ begin
   commandProcessor.Stop();
 end;
 
-procedure DefaultSelenium.Click(locator: string);
+procedure DefaultSelenium.Click(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('click', ArrayOfString.Create(locator, ''));
+  commandProcessor.DoCommand('click',
+    ArrayOfUTF8String.Create(locator, ''));
 end;
 
-procedure DefaultSelenium.ClickAndWait(locator: String);
+procedure DefaultSelenium.ClickAndWait(locator: UTF8String);
 begin
   Click(locator);
   WaitForPageToLoad('30000');
 end;
 
-procedure DefaultSelenium.DoubleClick(locator: string);
+procedure DefaultSelenium.DoubleClick(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('doubleClick', ArrayOfString.Create(locator, ''));
+  commandProcessor.DoCommand('doubleClick', ArrayOfUTF8String.Create(locator, ''));
 end;
 
-procedure DefaultSelenium.ContextMenu(locator: string);
+procedure DefaultSelenium.ContextMenu(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('contextMenu', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('contextMenu', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.ClickAt(locator: string; coordString: string);
+procedure DefaultSelenium.ClickAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('clickAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('clickAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.DoubleClickAt(locator: string; coordString: string);
+procedure DefaultSelenium.DoubleClickAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('doubleClickAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('doubleClickAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.ContextMenuAt(locator: string; coordString: string);
+procedure DefaultSelenium.ContextMenuAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('contextMenuAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('contextMenuAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.FireEvent(locator: string; eventName: string);
+procedure DefaultSelenium.FireEvent(locator: UTF8String; eventName: UTF8String);
 begin
-  commandProcessor.DoCommand('fireEvent', ArrayOfString.Create(locator, eventName));
+  commandProcessor.DoCommand('fireEvent', ArrayOfUTF8String.Create(locator, eventName));
 end;
 
-procedure DefaultSelenium.Focus(locator: string);
+procedure DefaultSelenium.Focus(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('focus', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('focus', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.KeyPress(locator: string; keySequence: string);
+procedure DefaultSelenium.KeyPress(locator: UTF8String; keySequence: UTF8String);
 begin
-  commandProcessor.DoCommand('keyPress', ArrayOfString.Create(locator, keySequence));
+  commandProcessor.DoCommand('keyPress', ArrayOfUTF8String.Create(locator, keySequence));
 end;
 
 procedure DefaultSelenium.ShiftKeyDown();
 begin
-  commandProcessor.DoCommand('shiftKeyDown', ArrayOfString.Create());
+  commandProcessor.DoCommand('shiftKeyDown', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.ShiftKeyUp();
 begin
-  commandProcessor.DoCommand('shiftKeyUp', ArrayOfString.Create());
+  commandProcessor.DoCommand('shiftKeyUp', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.MetaKeyDown();
 begin
-  commandProcessor.DoCommand('metaKeyDown', ArrayOfString.Create());
+  commandProcessor.DoCommand('metaKeyDown', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.MetaKeyUp();
 begin
-  commandProcessor.DoCommand('metaKeyUp', ArrayOfString.Create());
+  commandProcessor.DoCommand('metaKeyUp', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.AltKeyDown();
 begin
-  commandProcessor.DoCommand('altKeyDown', ArrayOfString.Create());
+  commandProcessor.DoCommand('altKeyDown', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.AltKeyUp();
 begin
-  commandProcessor.DoCommand('altKeyUp', ArrayOfString.Create());
+  commandProcessor.DoCommand('altKeyUp', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.ControlKeyDown();
 begin
-  commandProcessor.DoCommand('controlKeyDown', ArrayOfString.Create());
+  commandProcessor.DoCommand('controlKeyDown', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.ControlKeyUp();
 begin
-  commandProcessor.DoCommand('controlKeyUp', ArrayOfString.Create());
+  commandProcessor.DoCommand('controlKeyUp', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.KeyDown(locator: string; keySequence: string);
+procedure DefaultSelenium.KeyDown(locator: UTF8String; keySequence: UTF8String);
 begin
-  commandProcessor.DoCommand('keyDown', ArrayOfString.Create(locator, keySequence));
+  commandProcessor.DoCommand('keyDown', ArrayOfUTF8String.Create(locator, keySequence));
 end;
 
-procedure DefaultSelenium.KeyUp(locator: string; keySequence: string);
+procedure DefaultSelenium.KeyUp(locator: UTF8String; keySequence: UTF8String);
 begin
-  commandProcessor.DoCommand('keyUp', ArrayOfString.Create(locator, keySequence));
+  commandProcessor.DoCommand('keyUp', ArrayOfUTF8String.Create(locator, keySequence));
 end;
 
-procedure DefaultSelenium.MouseOver(locator: string);
+procedure DefaultSelenium.MouseOver(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseOver', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('mouseOver', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.MouseOut(locator: string);
+procedure DefaultSelenium.MouseOut(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseOut', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('mouseOut', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.MouseDown(locator: string);
+procedure DefaultSelenium.MouseDown(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseDown', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('mouseDown', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.MouseDownAt(locator: string; coordString: string);
+procedure DefaultSelenium.MouseDownAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseDownAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('mouseDownAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.MouseUp(locator: string);
+procedure DefaultSelenium.MouseUp(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseUp', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('mouseUp', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.MouseUpAt(locator: string; coordString: string);
+procedure DefaultSelenium.MouseUpAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseUpAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('mouseUpAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.MouseMove(locator: string);
+procedure DefaultSelenium.MouseMove(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseMove', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('mouseMove', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.MouseMoveAt(locator: string; coordString: string);
+procedure DefaultSelenium.MouseMoveAt(locator: UTF8String; coordString: UTF8String);
 begin
-  commandProcessor.DoCommand('mouseMoveAt', ArrayOfString.Create(locator, coordString));
+  commandProcessor.DoCommand('mouseMoveAt', ArrayOfUTF8String.Create(locator, coordString));
 end;
 
-procedure DefaultSelenium.Type_(locator: string; value: string);
+procedure DefaultSelenium.Type_(locator: UTF8String; value: UTF8String);
 begin
-  commandProcessor.DoCommand('type', ArrayOfString.Create(locator, value));
+  commandProcessor.DoCommand('type', ArrayOfUTF8String.Create(locator, value));
 end;
 
-procedure DefaultSelenium.TypeKeys(locator: string; value: string);
+procedure DefaultSelenium.TypeKeys(locator: UTF8String; value: UTF8String);
 begin
-  commandProcessor.DoCommand('typeKeys', ArrayOfString.Create(locator, value));
+  commandProcessor.DoCommand('typeKeys', ArrayOfUTF8String.Create(locator, value));
 end;
 
-procedure DefaultSelenium.SetSpeed(value: string);
+procedure DefaultSelenium.SetSpeed(value: UTF8String);
 begin
-  commandProcessor.DoCommand('setSpeed', ArrayOfString.Create(value));
+  commandProcessor.DoCommand('setSpeed', ArrayOfUTF8String.Create(value));
 end;
 
-function DefaultSelenium.GetSpeed(): string;
+function DefaultSelenium.GetSpeed(): UTF8String;
 begin
-  result := commandProcessor.GetString('getSpeed', ArrayOfString.Create());
+  result := commandProcessor.GetString('getSpeed', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.Check(locator: string);
+procedure DefaultSelenium.Check(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('check', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('check', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.Uncheck(locator: string);
+procedure DefaultSelenium.Uncheck(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('uncheck', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('uncheck', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.Select(selectLocator: string; optionLocator: string);
+procedure DefaultSelenium.Select(selectLocator: UTF8String; optionLocator: UTF8String);
 begin
-  commandProcessor.DoCommand('select', ArrayOfString.Create(selectLocator, optionLocator));
+  commandProcessor.DoCommand('select', ArrayOfUTF8String.Create(selectLocator, optionLocator));
 end;
 
-procedure DefaultSelenium.AddSelection(locator: string; optionLocator: string);
+procedure DefaultSelenium.AddSelection(locator: UTF8String; optionLocator: UTF8String);
 begin
-  commandProcessor.DoCommand('addSelection', ArrayOfString.Create(locator, optionLocator));
+  commandProcessor.DoCommand('addSelection', ArrayOfUTF8String.Create(locator, optionLocator));
 end;
 
-procedure DefaultSelenium.RemoveSelection(locator: string; optionLocator: string);
+procedure DefaultSelenium.RemoveSelection(locator: UTF8String; optionLocator: UTF8String);
 begin
-  commandProcessor.DoCommand('removeSelection', ArrayOfString.Create(locator, optionLocator));
+  commandProcessor.DoCommand('removeSelection', ArrayOfUTF8String.Create(locator, optionLocator));
 end;
 
-procedure DefaultSelenium.RemoveAllSelections(locator: string);
+procedure DefaultSelenium.RemoveAllSelections(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('removeAllSelections', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('removeAllSelections', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.Submit(formLocator: string);
+procedure DefaultSelenium.Submit(formLocator: UTF8String);
 begin
-  commandProcessor.DoCommand('submit', ArrayOfString.Create(formLocator));
+  commandProcessor.DoCommand('submit', ArrayOfUTF8String.Create(formLocator));
 end;
 
-procedure DefaultSelenium.Open(url: string);
+procedure DefaultSelenium.Open(url: UTF8String);
 begin
-  commandProcessor.DoCommand('open', ArrayOfString.Create(url));
+  commandProcessor.DoCommand('open', ArrayOfUTF8String.Create(url));
 end;
 
-procedure DefaultSelenium.OpenWindow(url: string; windowID: string);
+procedure DefaultSelenium.OpenWindow(url: UTF8String; windowID: UTF8String);
 begin
-  commandProcessor.DoCommand('openWindow', ArrayOfString.Create(url, windowID));
+  commandProcessor.DoCommand('openWindow', ArrayOfUTF8String.Create(url, windowID));
 end;
 
-procedure DefaultSelenium.SelectWindow(windowID: string);
+procedure DefaultSelenium.SelectWindow(windowID: UTF8String);
 begin
-  commandProcessor.DoCommand('selectWindow', ArrayOfString.Create(windowID));
+  commandProcessor.DoCommand('selectWindow', ArrayOfUTF8String.Create(windowID));
 end;
 
-procedure DefaultSelenium.SelectFrame(locator: string);
+procedure DefaultSelenium.SelectFrame(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('selectFrame', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('selectFrame', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetWhetherThisFrameMatchFrameExpression(currentFrameString: string; target: string): boolean;
+function DefaultSelenium.GetWhetherThisFrameMatchFrameExpression(currentFrameString: UTF8String; target: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('getWhetherThisFrameMatchFrameExpression', ArrayOfString.Create(currentFrameString, target));
+  result := commandProcessor.GetBoolean('getWhetherThisFrameMatchFrameExpression', ArrayOfUTF8String.Create(currentFrameString, target));
 end;
 
-function DefaultSelenium.GetWhetherThisWindowMatchWindowExpression(currentWindowString: string; target: string): boolean;
+function DefaultSelenium.GetWhetherThisWindowMatchWindowExpression(currentWindowString: UTF8String; target: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('getWhetherThisWindowMatchWindowExpression', ArrayOfString.Create(currentWindowString, target));
+  result := commandProcessor.GetBoolean('getWhetherThisWindowMatchWindowExpression', ArrayOfUTF8String.Create(currentWindowString, target));
 end;
 
-procedure DefaultSelenium.WaitForPopUp(windowID: string; timeout: string);
+procedure DefaultSelenium.WaitForPopUp(windowID: UTF8String; timeout: UTF8String);
 begin
-  commandProcessor.DoCommand('waitForPopUp', ArrayOfString.Create(windowID, timeout));
+  commandProcessor.DoCommand('waitForPopUp', ArrayOfUTF8String.Create(windowID, timeout));
 end;
 
 procedure DefaultSelenium.ChooseCancelOnNextConfirmation();
 begin
-  commandProcessor.DoCommand('chooseCancelOnNextConfirmation', ArrayOfString.Create());
+  commandProcessor.DoCommand('chooseCancelOnNextConfirmation', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.ChooseOkOnNextConfirmation();
 begin
-  commandProcessor.DoCommand('chooseOkOnNextConfirmation', ArrayOfString.Create());
+  commandProcessor.DoCommand('chooseOkOnNextConfirmation', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.AnswerOnNextPrompt(answer: string);
+procedure DefaultSelenium.AnswerOnNextPrompt(answer: UTF8String);
 begin
-  commandProcessor.DoCommand('answerOnNextPrompt', ArrayOfString.Create(answer));
+  commandProcessor.DoCommand('answerOnNextPrompt', ArrayOfUTF8String.Create(answer));
 end;
 
 procedure DefaultSelenium.GoBack();
 begin
-  commandProcessor.DoCommand('goBack', ArrayOfString.Create());
+  commandProcessor.DoCommand('goBack', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.Refresh();
 begin
-  commandProcessor.DoCommand('refresh', ArrayOfString.Create());
+  commandProcessor.DoCommand('refresh', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.Close();
 begin
-  commandProcessor.DoCommand('close', ArrayOfString.Create());
+  commandProcessor.DoCommand('close', ArrayOfUTF8String.Create());
 end;
 
 function DefaultSelenium.IsAlertPresent(): boolean;
 begin
-  result := commandProcessor.GetBoolean('isAlertPresent', ArrayOfString.Create());
+  result := commandProcessor.GetBoolean('isAlertPresent', ArrayOfUTF8String.Create());
 end;
 
 function DefaultSelenium.IsPromptPresent(): boolean;
 begin
-  result := commandProcessor.GetBoolean('isPromptPresent', ArrayOfString.Create());
+  result := commandProcessor.GetBoolean('isPromptPresent', ArrayOfUTF8String.Create());
 end;
 
 function DefaultSelenium.IsConfirmationPresent(): boolean;
 begin
-  result := commandProcessor.GetBoolean('isConfirmationPresent', ArrayOfString.Create());
+  result := commandProcessor.GetBoolean('isConfirmationPresent', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAlert(): string;
+function DefaultSelenium.GetAlert(): UTF8String;
 begin
-  result := commandProcessor.GetString('getAlert', ArrayOfString.Create());
+  result := commandProcessor.GetString('getAlert', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetConfirmation(): string;
+function DefaultSelenium.GetConfirmation(): UTF8String;
 begin
-  result := commandProcessor.GetString('getConfirmation', ArrayOfString.Create());
+  result := commandProcessor.GetString('getConfirmation', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetPrompt(): string;
+function DefaultSelenium.GetPrompt(): UTF8String;
 begin
-  result := commandProcessor.GetString('getPrompt', ArrayOfString.Create());
+  result := commandProcessor.GetString('getPrompt', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetLocation(): string;
+function DefaultSelenium.GetLocation(): UTF8String;
 begin
-  result := commandProcessor.GetString('getLocation', ArrayOfString.Create());
+  result := commandProcessor.GetString('getLocation', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetTitle(): string;
+function DefaultSelenium.GetTitle(): UTF8String;
 begin
-  result := commandProcessor.GetString('getTitle', ArrayOfString.Create());
+  result := commandProcessor.GetString('getTitle', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetBodyText(): string;
+function DefaultSelenium.GetBodyText(): UTF8String;
 begin
-  result := commandProcessor.GetString('getBodyText', ArrayOfString.Create());
+  result := commandProcessor.GetString('getBodyText', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetValue(locator: string): string;
+function DefaultSelenium.GetValue(locator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getValue', ArrayOfString.Create(locator));
+  result := commandProcessor.GetString('getValue', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetText(locator: string): string;
+function DefaultSelenium.GetText(locator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getText', ArrayOfString.Create(locator));
+  result := commandProcessor.GetString('getText', ArrayOfUTF8String.Create(locator));
 end;
 
-procedure DefaultSelenium.Highlight(locator: string);
+procedure DefaultSelenium.Highlight(locator: UTF8String);
 begin
-  commandProcessor.DoCommand('highlight', ArrayOfString.Create(locator));
+  commandProcessor.DoCommand('highlight', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetEval(script: string): string;
+function DefaultSelenium.GetEval(script: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getEval', ArrayOfString.Create(script));
+  result := commandProcessor.GetString('getEval', ArrayOfUTF8String.Create(script));
 end;
 
-function DefaultSelenium.IsChecked(locator: string): boolean;
+function DefaultSelenium.IsChecked(locator: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isChecked', ArrayOfString.Create(locator));
+  result := commandProcessor.GetBoolean('isChecked', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetTable(tableCellAddress: string): string;
+function DefaultSelenium.GetTable(tableCellAddress: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getTable', ArrayOfString.Create(tableCellAddress));
+  result := commandProcessor.GetString('getTable', ArrayOfUTF8String.Create(tableCellAddress));
 end;
 
-function DefaultSelenium.GetSelectedLabels(selectLocator: string): ArrayOfString;
+function DefaultSelenium.GetSelectedLabels(selectLocator: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getSelectedLabels', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetStringArray('getSelectedLabels', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedLabel(selectLocator: string): string;
+function DefaultSelenium.GetSelectedLabel(selectLocator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getSelectedLabel', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetString('getSelectedLabel', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedValues(selectLocator: string): ArrayOfString;
+function DefaultSelenium.GetSelectedValues(selectLocator: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getSelectedValues', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetStringArray('getSelectedValues', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedValue(selectLocator: string): string;
+function DefaultSelenium.GetSelectedValue(selectLocator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getSelectedValue', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetString('getSelectedValue', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedIndexes(selectLocator: string): ArrayOfString;
+function DefaultSelenium.GetSelectedIndexes(selectLocator: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getSelectedIndexes', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetStringArray('getSelectedIndexes', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedIndex(selectLocator: string): string;
+function DefaultSelenium.GetSelectedIndex(selectLocator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getSelectedIndex', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetString('getSelectedIndex', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedIds(selectLocator: string): ArrayOfString;
+function DefaultSelenium.GetSelectedIds(selectLocator: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getSelectedIds', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetStringArray('getSelectedIds', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectedId(selectLocator: string): string;
+function DefaultSelenium.GetSelectedId(selectLocator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getSelectedId', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetString('getSelectedId', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.IsSomethingSelected(selectLocator: string): boolean;
+function DefaultSelenium.IsSomethingSelected(selectLocator: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isSomethingSelected', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetBoolean('isSomethingSelected', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetSelectOptions(selectLocator: string): ArrayOfString;
+function DefaultSelenium.GetSelectOptions(selectLocator: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getSelectOptions', ArrayOfString.Create(selectLocator));
+  result := commandProcessor.GetStringArray('getSelectOptions', ArrayOfUTF8String.Create(selectLocator));
 end;
 
-function DefaultSelenium.GetAttribute(attributeLocator: string): string;
+function DefaultSelenium.GetAttribute(attributeLocator: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getAttribute', ArrayOfString.Create(attributeLocator));
+  result := commandProcessor.GetString('getAttribute', ArrayOfUTF8String.Create(attributeLocator));
 end;
 
-function DefaultSelenium.IsTextPresent(pattern: string): boolean;
+function DefaultSelenium.IsTextPresent(pattern: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isTextPresent', ArrayOfString.Create(pattern));
+  result := commandProcessor.GetBoolean('isTextPresent', ArrayOfUTF8String.Create(pattern));
 end;
 
-function DefaultSelenium.IsElementPresent(locator: string): boolean;
+function DefaultSelenium.IsElementPresent(locator: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isElementPresent', ArrayOfString.Create(locator));
+  result := commandProcessor.GetBoolean('isElementPresent', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.IsVisible(locator: string): boolean;
+function DefaultSelenium.IsVisible(locator: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isVisible', ArrayOfString.Create(locator));
+  result := commandProcessor.GetBoolean('isVisible', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.IsEditable(locator: string): boolean;
+function DefaultSelenium.IsEditable(locator: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isEditable', ArrayOfString.Create(locator));
+  result := commandProcessor.GetBoolean('isEditable', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetAllButtons(): ArrayOfString;
+function DefaultSelenium.GetAllButtons(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllButtons', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllButtons', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAllLinks(): ArrayOfString;
+function DefaultSelenium.GetAllLinks(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllLinks', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllLinks', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAllFields(): ArrayOfString;
+function DefaultSelenium.GetAllFields(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllFields', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllFields', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAttributeFromAllWindows(attributeName: string): ArrayOfString;
+function DefaultSelenium.GetAttributeFromAllWindows(attributeName: UTF8String): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAttributeFromAllWindows', ArrayOfString.Create(attributeName));
+  result := commandProcessor.GetStringArray('getAttributeFromAllWindows', ArrayOfUTF8String.Create(attributeName));
 end;
 
-procedure DefaultSelenium.Dragdrop(locator: string; movementsString: string);
+procedure DefaultSelenium.Dragdrop(locator: UTF8String; movementsString: UTF8String);
 begin
-  commandProcessor.DoCommand('dragdrop', ArrayOfString.Create(locator, movementsString));
+  commandProcessor.DoCommand('dragdrop', ArrayOfUTF8String.Create(locator, movementsString));
 end;
 
-procedure DefaultSelenium.SetMouseSpeed(pixels: string);
+procedure DefaultSelenium.SetMouseSpeed(pixels: UTF8String);
 begin
-  commandProcessor.DoCommand('setMouseSpeed', ArrayOfString.Create(pixels));
+  commandProcessor.DoCommand('setMouseSpeed', ArrayOfUTF8String.Create(pixels));
 end;
 
 function DefaultSelenium.GetMouseSpeed(): double;
 begin
-  result := commandProcessor.GetNumber('getMouseSpeed', ArrayOfString.Create());
+  result := commandProcessor.GetNumber('getMouseSpeed', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.DragAndDrop(locator: string; movementsString: string);
+procedure DefaultSelenium.DragAndDrop(locator: UTF8String; movementsString: UTF8String);
 begin
-  commandProcessor.DoCommand('dragAndDrop', ArrayOfString.Create(locator, movementsString));
+  commandProcessor.DoCommand('dragAndDrop', ArrayOfUTF8String.Create(locator, movementsString));
 end;
 
-procedure DefaultSelenium.DragAndDropToObject(locatorOfObjectToBeDragged: string; locatorOfDragDestinationObject: string);
+procedure DefaultSelenium.DragAndDropToObject(locatorOfObjectToBeDragged: UTF8String; locatorOfDragDestinationObject: UTF8String);
 begin
-  commandProcessor.DoCommand('dragAndDropToObject', ArrayOfString.Create(locatorOfObjectToBeDragged, locatorOfDragDestinationObject));
+  commandProcessor.DoCommand('dragAndDropToObject', ArrayOfUTF8String.Create(locatorOfObjectToBeDragged, locatorOfDragDestinationObject));
 end;
 
 procedure DefaultSelenium.WindowFocus();
 begin
-  commandProcessor.DoCommand('windowFocus', ArrayOfString.Create());
+  commandProcessor.DoCommand('windowFocus', ArrayOfUTF8String.Create());
 end;
 
 procedure DefaultSelenium.WindowMaximize();
 begin
-  commandProcessor.DoCommand('windowMaximize', ArrayOfString.Create());
+  commandProcessor.DoCommand('windowMaximize', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAllWindowIds(): ArrayOfString;
+function DefaultSelenium.GetAllWindowIds(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllWindowIds', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllWindowIds', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAllWindowNames(): ArrayOfString;
+function DefaultSelenium.GetAllWindowNames(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllWindowNames', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllWindowNames', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetAllWindowTitles(): ArrayOfString;
+function DefaultSelenium.GetAllWindowTitles(): ArrayOfUTF8String;
 begin
-  result := commandProcessor.GetStringArray('getAllWindowTitles', ArrayOfString.Create());
+  result := commandProcessor.GetStringArray('getAllWindowTitles', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetHtmlSource(): string;
+function DefaultSelenium.GetHtmlSource(): UTF8String;
 begin
-  result := commandProcessor.GetString('getHtmlSource', ArrayOfString.Create());
+  result := commandProcessor.GetString('getHtmlSource', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.SetCursorPosition(locator: string; position: string);
+procedure DefaultSelenium.SetCursorPosition(locator: UTF8String; position: UTF8String);
 begin
-  commandProcessor.DoCommand('setCursorPosition', ArrayOfString.Create(locator, position));
+  commandProcessor.DoCommand('setCursorPosition', ArrayOfUTF8String.Create(locator, position));
 end;
 
-function DefaultSelenium.GetElementIndex(locator: string): double;
+function DefaultSelenium.GetElementIndex(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getElementIndex', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getElementIndex', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.IsOrdered(locator1: string; locator2: string): boolean;
+function DefaultSelenium.IsOrdered(locator1: UTF8String; locator2: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isOrdered', ArrayOfString.Create(locator1, locator2));
+  result := commandProcessor.GetBoolean('isOrdered', ArrayOfUTF8String.Create(locator1, locator2));
 end;
 
-function DefaultSelenium.GetElementPositionLeft(locator: string): double;
+function DefaultSelenium.GetElementPositionLeft(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getElementPositionLeft', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getElementPositionLeft', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetElementPositionTop(locator: string): double;
+function DefaultSelenium.GetElementPositionTop(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getElementPositionTop', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getElementPositionTop', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetElementWidth(locator: string): double;
+function DefaultSelenium.GetElementWidth(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getElementWidth', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getElementWidth', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetElementHeight(locator: string): double;
+function DefaultSelenium.GetElementHeight(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getElementHeight', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getElementHeight', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetCursorPosition(locator: string): double;
+function DefaultSelenium.GetCursorPosition(locator: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getCursorPosition', ArrayOfString.Create(locator));
+  result := commandProcessor.GetNumber('getCursorPosition', ArrayOfUTF8String.Create(locator));
 end;
 
-function DefaultSelenium.GetExpression(expression: string): string;
+function DefaultSelenium.GetExpression(expression: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getExpression', ArrayOfString.Create(expression));
+  result := commandProcessor.GetString('getExpression', ArrayOfUTF8String.Create(expression));
 end;
 
-function DefaultSelenium.GetXpathCount(xpath: string): double;
+function DefaultSelenium.GetXpathCount(xpath: UTF8String): double;
 begin
-  result := commandProcessor.GetNumber('getXpathCount', ArrayOfString.Create(xpath));
+  result := commandProcessor.GetNumber('getXpathCount', ArrayOfUTF8String.Create(xpath));
 end;
 
-procedure DefaultSelenium.AssignId(locator: string; identifier: string);
+procedure DefaultSelenium.AssignId(locator: UTF8String; identifier: UTF8String);
 begin
-  commandProcessor.DoCommand('assignId', ArrayOfString.Create(locator, identifier));
+  commandProcessor.DoCommand('assignId', ArrayOfUTF8String.Create(locator, identifier));
 end;
 
-procedure DefaultSelenium.AllowNativeXpath(allow: string);
+procedure DefaultSelenium.AllowNativeXpath(allow: UTF8String);
 begin
-  commandProcessor.DoCommand('allowNativeXpath', ArrayOfString.Create(allow));
+  commandProcessor.DoCommand('allowNativeXpath', ArrayOfUTF8String.Create(allow));
 end;
 
-procedure DefaultSelenium.IgnoreAttributesWithoutValue(ignore: string);
+procedure DefaultSelenium.IgnoreAttributesWithoutValue(ignore: UTF8String);
 begin
-  commandProcessor.DoCommand('ignoreAttributesWithoutValue', ArrayOfString.Create(ignore));
+  commandProcessor.DoCommand('ignoreAttributesWithoutValue', ArrayOfUTF8String.Create(ignore));
 end;
 
-procedure DefaultSelenium.WaitForCondition(script: string; timeout: string);
+procedure DefaultSelenium.WaitForCondition(script: UTF8String; timeout: UTF8String);
 begin
-  commandProcessor.DoCommand('waitForCondition', ArrayOfString.Create(script, timeout));
+  commandProcessor.DoCommand('waitForCondition', ArrayOfUTF8String.Create(script, timeout));
 end;
 
-procedure DefaultSelenium.SetTimeout(timeout: string);
+procedure DefaultSelenium.SetTimeout(timeout: UTF8String);
 begin
-  commandProcessor.DoCommand('setTimeout', ArrayOfString.Create(timeout));
+  commandProcessor.DoCommand('setTimeout', ArrayOfUTF8String.Create(timeout));
 end;
 
-procedure DefaultSelenium.WaitForPageToLoad(timeout: string);
+procedure DefaultSelenium.WaitForPageToLoad(timeout: UTF8String);
 begin
-  commandProcessor.DoCommand('waitForPageToLoad', ArrayOfString.Create(timeout));
+  commandProcessor.DoCommand('waitForPageToLoad', ArrayOfUTF8String.Create(timeout));
 end;
 
-procedure DefaultSelenium.WaitForFrameToLoad(frameAddress: string; timeout: string);
+procedure DefaultSelenium.WaitForFrameToLoad(frameAddress: UTF8String; timeout: UTF8String);
 begin
-  commandProcessor.DoCommand('waitForFrameToLoad', ArrayOfString.Create(frameAddress, timeout));
+  commandProcessor.DoCommand('waitForFrameToLoad', ArrayOfUTF8String.Create(frameAddress, timeout));
 end;
 
-function DefaultSelenium.GetCookie(): string;
+function DefaultSelenium.GetCookie(): UTF8String;
 begin
-  result := commandProcessor.GetString('getCookie', ArrayOfString.Create());
+  result := commandProcessor.GetString('getCookie', ArrayOfUTF8String.Create());
 end;
 
-function DefaultSelenium.GetCookieByName(name: string): string;
+function DefaultSelenium.GetCookieByName(name: UTF8String): UTF8String;
 begin
-  result := commandProcessor.GetString('getCookieByName', ArrayOfString.Create(name));
+  result := commandProcessor.GetString('getCookieByName', ArrayOfUTF8String.Create(name));
 end;
 
-function DefaultSelenium.IsCookiePresent(name: string): boolean;
+function DefaultSelenium.IsCookiePresent(name: UTF8String): boolean;
 begin
-  result := commandProcessor.GetBoolean('isCookiePresent', ArrayOfString.Create(name));
+  result := commandProcessor.GetBoolean('isCookiePresent', ArrayOfUTF8String.Create(name));
 end;
 
-procedure DefaultSelenium.CreateCookie(nameValuePair: string; optionsString: string);
+procedure DefaultSelenium.CreateCookie(nameValuePair: UTF8String; optionsString: UTF8String);
 begin
-  commandProcessor.DoCommand('createCookie', ArrayOfString.Create(nameValuePair, optionsString));
+  commandProcessor.DoCommand('createCookie', ArrayOfUTF8String.Create(nameValuePair, optionsString));
 end;
 
-procedure DefaultSelenium.DeleteCookie(name: string; optionsString: string);
+procedure DefaultSelenium.DeleteCookie(name: UTF8String; optionsString: UTF8String);
 begin
-  commandProcessor.DoCommand('deleteCookie', ArrayOfString.Create(name, optionsString));
+  commandProcessor.DoCommand('deleteCookie', ArrayOfUTF8String.Create(name, optionsString));
 end;
 
 procedure DefaultSelenium.DeleteAllVisibleCookies();
 begin
-  commandProcessor.DoCommand('deleteAllVisibleCookies', ArrayOfString.Create());
+  commandProcessor.DoCommand('deleteAllVisibleCookies', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.SetBrowserLogLevel(logLevel: string);
+procedure DefaultSelenium.SetBrowserLogLevel(logLevel: UTF8String);
 begin
-  commandProcessor.DoCommand('setBrowserLogLevel', ArrayOfString.Create(logLevel));
+  commandProcessor.DoCommand('setBrowserLogLevel', ArrayOfUTF8String.Create(logLevel));
 end;
 
-procedure DefaultSelenium.RunScript(script: string);
+procedure DefaultSelenium.RunScript(script: UTF8String);
 begin
-  commandProcessor.DoCommand('runScript', ArrayOfString.Create(script));
+  commandProcessor.DoCommand('runScript', ArrayOfUTF8String.Create(script));
 end;
 
-procedure DefaultSelenium.AddLocationStrategy(strategyName: string; functionDefinition: string);
+procedure DefaultSelenium.AddLocationStrategy(strategyName: UTF8String; functionDefinition: UTF8String);
 begin
-  commandProcessor.DoCommand('addLocationStrategy', ArrayOfString.Create(strategyName, functionDefinition));
+  commandProcessor.DoCommand('addLocationStrategy', ArrayOfUTF8String.Create(strategyName, functionDefinition));
 end;
 
-procedure DefaultSelenium.CaptureEntirePageScreenshot(filename: string);
+procedure DefaultSelenium.CaptureEntirePageScreenshot(filename: UTF8String);
 begin
-  commandProcessor.DoCommand('captureEntirePageScreenshot', ArrayOfString.Create(filename));
+  commandProcessor.DoCommand('captureEntirePageScreenshot', ArrayOfUTF8String.Create(filename));
 end;
 
-procedure DefaultSelenium.SetContext(context: string);
+procedure DefaultSelenium.SetContext(context: UTF8String);
 begin
-  commandProcessor.DoCommand('setContext', ArrayOfString.Create(context));
+  commandProcessor.DoCommand('setContext', ArrayOfUTF8String.Create(context));
 end;
 
-procedure DefaultSelenium.AttachFile(fieldLocator: string; fileLocator: string);
+procedure DefaultSelenium.AttachFile(fieldLocator: UTF8String; fileLocator: UTF8String);
 begin
-  commandProcessor.DoCommand('attachFile', ArrayOfString.Create(fieldLocator, fileLocator));
+  commandProcessor.DoCommand('attachFile', ArrayOfUTF8String.Create(fieldLocator, fileLocator));
 end;
 
-procedure DefaultSelenium.CaptureScreenshot(filename: string);
+procedure DefaultSelenium.CaptureScreenshot(filename: UTF8String);
 begin
-  commandProcessor.DoCommand('captureScreenshot', ArrayOfString.Create(filename));
+  commandProcessor.DoCommand('captureScreenshot', ArrayOfUTF8String.Create(filename));
 end;
 
 procedure DefaultSelenium.ShutDownSeleniumServer();
 begin
-  commandProcessor.DoCommand('shutDownSeleniumServer', ArrayOfString.Create());
+  commandProcessor.DoCommand('shutDownSeleniumServer', ArrayOfUTF8String.Create());
 end;
 
-procedure DefaultSelenium.KeyDownNative(keycode: string);
+procedure DefaultSelenium.KeyDownNative(keycode: UTF8String);
 begin
-  commandProcessor.DoCommand('keyDownNative', ArrayOfString.Create(keycode));
+  commandProcessor.DoCommand('keyDownNative', ArrayOfUTF8String.Create(keycode));
 end;
 
-procedure DefaultSelenium.KeyUpNative(keycode: string);
+procedure DefaultSelenium.KeyUpNative(keycode: UTF8String);
 begin
-  commandProcessor.DoCommand('keyUpNative', ArrayOfString.Create(keycode));
+  commandProcessor.DoCommand('keyUpNative', ArrayOfUTF8String.Create(keycode));
 end;
 
-procedure DefaultSelenium.KeyPressNative(keycode: string);
+procedure DefaultSelenium.KeyPressNative(keycode: UTF8String);
 begin
-  commandProcessor.DoCommand('keyPressNative', ArrayOfString.Create(keycode));
+  commandProcessor.DoCommand('keyPressNative', ArrayOfUTF8String.Create(keycode));
 end;
 
 end.

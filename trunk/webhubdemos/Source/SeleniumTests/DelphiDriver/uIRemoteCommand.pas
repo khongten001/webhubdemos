@@ -4,7 +4,7 @@ interface
 
 type
   IRemoteCommand = interface
-  	function CommandString : string;
+  	function CommandString : UTF8String;
 	end;
 
 implementation

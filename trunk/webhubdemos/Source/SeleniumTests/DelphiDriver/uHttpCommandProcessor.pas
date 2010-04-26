@@ -1,4 +1,4 @@
-unit uHttpCommandProcessor;
+﻿unit uHttpCommandProcessor;
 
 interface
 uses
@@ -9,32 +9,35 @@ type
   HttpCommandProcessor = class(TInterfacedObject, ICommandProcessor)
   private
     sessionId: string;
-    serverHost: string;
+    serverHost: UTF8String;
     serverPort: integer;
-    browserStartCommand: string;
-    browserURL: string;
+    browserStartCommand: UTF8String;
+    browserURL: UTF8String;
   private
-    function BuildCommandString(commandString: string): string;
+    function BuildCommandString(commandString: UTF8String): UTF8String;
   public
-    constructor Create(_serverHost: string; _serverPort: integer; _browserStartCommand: string; _browserURL: string); overload;
+    constructor Create(_serverHost: UTF8String; _serverPort: integer; _browserStartCommand: UTF8String; _browserURL: UTF8String); overload;
     //constructor Create(serverURL: string; browserStartCommand: string; browserURL: string); overload;
-    function DoCommand(command: string; args: ArrayOfString): string;
+    function DoCommand(command: UTF8String; args: ArrayOfUTF8String): UTF8String;
     procedure Start();
     procedure Stop();
-    function GetString(commandName: string; args: ArrayOfString): string;
-    function GetStringArray(commandName: string; args: ArrayOfString): ArrayOfString;
-    class function parseCSV(input: string): ArrayOfString;
-    function GetNumber(commandName: string; args: ArrayOfString): double;
-    function GetNumberArray(commandName: string; args: ArrayOfString): ArrayOfDouble;
-    function GetBoolean(commandName: string; args: ArrayOfString): boolean;
-    function GetBooleanArray(commandName: string; args: ArrayOfString): ArrayOfBoolean;
+    function GetString(commandName: UTF8String; args: ArrayOfUTF8String): UTF8String;
+    function GetStringArray(commandName: UTF8String; args: ArrayOfUTF8String): ArrayOfUTF8String;
+    class function parseCSV(input: UTF8String): ArrayOfUTF8String;
+    function GetNumber(commandName: UTF8String; args: ArrayOfUTF8String): double;
+    function GetNumberArray(commandName: UTF8String; args: ArrayOfUTF8String): ArrayOfDouble;
+    function GetBoolean(commandName: UTF8String; args: ArrayOfUTF8String): boolean;
+    function GetBooleanArray(commandName: UTF8String; args: ArrayOfUTF8String): ArrayOfBoolean;
   end;
 
 implementation
-uses
-  webTelnt, IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
 
-constructor HttpCommandProcessor.Create(_serverHost: string; _serverPort: integer; _browserStartCommand: string; _browserURL: string);
+uses
+  StrUtils,
+  ucString, ucLogFil,
+  IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
+
+constructor HttpCommandProcessor.Create(_serverHost: UTF8String; _serverPort: integer; _browserStartCommand: UTF8String; _browserURL: UTF8String);
 begin
   serverHost:= _serverHost;
   serverPort := _serverPort;
@@ -49,18 +52,39 @@ begin
   browserURL := browserURL;
 end;}
 
-function HttpCommandProcessor.DoCommand(command: string; args: ArrayOfString): string;
+var
+  debugcount: integer = 0;
+
+function HttpCommandProcessor.DoCommand(command: UTF8String; args: ArrayOfUTF8String): UTF8String;
 var
   remoteCommand: IRemoteCommand;
   http: TIdHTTP;
   response: string;
   i: integer;
+  flag: Boolean;
+  part: UTF8String;
 begin
+  Inc(debugcount);
   remoteCommand := DefaultRemoteCommand.Create(command, args);
   http := TIdHTTP.Create(nil);
-  http.URL.Host := serverHost;
+  http.URL.Host := string(serverHost);
   http.URL.Port := IntToStr(serverPort);
-  response := http.Get(BuildCommandString(remoteCommand.CommandString));
+  http.Response.CharSet := 'utf-8';
+
+  response := http.Get(string(BuildCommandString(remoteCommand.CommandString)));
+  // Testing: in showcase, GetHtmlSource returns copyright symbol. We should
+  // be getting &copy; instead. Probably we need to use other functions insead
+  // of GetHtmlSource.
+  // Reference http://groups.google.com/group/selenium-users/browse_thread/thread/9d30035cf39676b8/a093cf7fe8c91a8a?lnk=gst&q=gethtmlsource#a093cf7fe8c91a8a
+  flag := (Pos('Русский', Response) > 0);
+  if flag then
+  begin
+    HREFTestLog('Russian ok', 'DoCommand', '');
+    flag := (Pos('Русский', Copy(Response, Length(Response) - 1500,
+      1500)) > 0);
+    HREFTestLog('Russian', 'found after copy', BoolToStr(flag, True));
+  end;
+
   if (http.ResponseCode <> 200) then
     raise Exception.Create(IntToStr(http.ResponseCode));
   i := Pos(#13#10#13#10, response);
@@ -68,49 +92,58 @@ begin
     response := Copy(response, i + 4, Length(response) - i - 3);
   if Copy(response, 1, 2) <> 'OK' then
     raise Exception.Create(response);
-  result := response;
+
+  Result := utf8encode(Response);
+  flag := (Pos(utf8encode('Русский'), Response) > 0);
+  HREFTestLog('Russian', 'found in Result', BoolToStr(flag, True));
+
+  if flag and (debugcount < 20) then
+    HREFTestLog('Result', IntToStr(debugcount), utf8decode(Result));
 end;
 
-function HttpCommandProcessor.BuildCommandString(commandString: string): string;
+function HttpCommandProcessor.BuildCommandString(commandString: UTF8String): UTF8String;
 begin
   result := '/selenium-server/driver/?' + commandString;
   if (sessionId <> '') then
-    result := result + '&sessionId=' + sessionId;
+    result := result + '&sessionId=' + UTF8String(sessionId);
 end;
 
 procedure HttpCommandProcessor.Start();
 begin
-  sessionId := GetString('getNewBrowserSession', ArrayOfString.Create(browserStartCommand, browserURL));
+  sessionId := string(GetString('getNewBrowserSession',
+    ArrayOfUTF8String.Create(browserStartCommand, browserURL)));
 end;
 
 procedure HttpCommandProcessor.Stop();
 begin
-  DoCommand('testComplete', ArrayOfString.Create(''));
+  DoCommand('testComplete', ArrayOfUTF8String.Create(''));
   sessionId := '';
 end;
 
-function HttpCommandProcessor.GetString(commandName: string; args: ArrayOfString): string;
+function HttpCommandProcessor.GetString(commandName: UTF8String;
+  args: ArrayOfUTF8String): UTF8String;
 var
-  s : string;
+  s : UTF8String;
 begin
   s := DoCommand(commandName, args);
   result := Copy(s, 4, Length(s) - 3);
 end;
 
-function HttpCommandProcessor.GetStringArray(commandName: string; args: ArrayOfString): ArrayOfString;
+function HttpCommandProcessor.GetStringArray(commandName: UTF8String;
+  args: ArrayOfUTF8String): ArrayOfUTF8String;
 var
-  s: string;
+  s: UTF8String;
 begin
   s := GetString(commandName, args);
   result := parseCSV(s);
 end;
 
-class function HttpCommandProcessor.parseCSV(input: string): ArrayOfString;
+class function HttpCommandProcessor.parseCSV(input: UTF8String): ArrayOfUTF8String;
 var
-  s: string;
+  s: UTF8String;
   i: integer;
 begin
-  result := ArrayOfString.Create();
+  result := ArrayOfUTF8String.Create();
   s := '';
   i := 1;
   while (i <= Length(input)) do
@@ -125,12 +158,12 @@ begin
       '\':
         begin
           i := i + 1;
-          s := s + input[i];
+          s := s + UTF8String(input[i]);
           continue;
         end;
     else
       begin
-        s := s + input[i];
+        s := s + UTF8String(input[i]);
         break;
       end;
     end;
@@ -138,43 +171,46 @@ begin
   end;
 end;
 
-function HttpCommandProcessor.GetNumber(commandName: string; args: ArrayOfString): double;
+function HttpCommandProcessor.GetNumber(commandName: UTF8String; args: ArrayOfUTF8String): double;
 var
-  s: string;
+  s: UTF8String;
 begin
   s := GetString(commandName, args);
-  result := StrToFloat(s);
+  result := StrToFloat(string(s));
 end;
 
-function HttpCommandProcessor.GetNumberArray(commandName: string; args: ArrayOfString): ArrayOfDouble;
+function HttpCommandProcessor.GetNumberArray(commandName: UTF8String; args: ArrayOfUTF8String): ArrayOfDouble;
 var
-  ss: ArrayOfString;
+  ss: ArrayOfUTF8String;
   dd: ArrayOfDouble;
   i: integer;
 begin
   ss := GetStringArray(commandName, args);
   dd := ArrayOfDouble.Create;
   for i := 0 to ss.Count - 1 do
-    dd.Add(StrToFloat(ss[i]));
+    dd.Add(StrToFloat(string(ss[i])));
   result := dd;
 end;
 
-function HttpCommandProcessor.GetBoolean(commandName: string; args: ArrayOfString): boolean;
+function HttpCommandProcessor.GetBoolean(commandName: UTF8String;
+  args: ArrayOfUTF8String): boolean;
 var
-  s: string;
+  s: UTF8String;
 begin
   s := GetString(commandName, args);
-  if SameText(s, 'true') then
+  if SameText(string(s), 'true') then
     result := true
-  else if SameText(s, 'false') then
+  else if SameText(string(s), 'false') then
     result := false
   else
-    raise Exception.Create('result was neither "true" nor "false": ' + s);
+    raise Exception.Create(Format('result was neither "true" nor "false": %s',
+      [string(s)]));
 end;
 
-function HttpCommandProcessor.GetBooleanArray(commandName: string; args: ArrayOfString): ArrayOfBoolean;
+function HttpCommandProcessor.GetBooleanArray(commandName: UTF8String;
+  args: ArrayOfUTF8String): ArrayOfBoolean;
 var
-  ss: ArrayOfString;
+  ss: ArrayOfUTF8String;
   bb: ArrayOfBoolean;
   i: integer;
 begin
@@ -182,12 +218,13 @@ begin
   bb := ArrayOfBoolean.Create;
   for i := 0 to ss.Count - 1 do
   begin
-    if SameText(ss[i], 'true') then
+    if SameText(string(ss[i]), 'true') then
       bb.Add(true)
-    else if SameText(ss[i], 'false') then
+    else if SameText(string(ss[i]), 'false') then
       bb.Add(false)
     else
-      raise Exception.Create('result was neither "true" nor "false": ' + ss[i]);
+      raise Exception.Create('result was neither "true" nor "false": ' +
+        string(ss[i]));
   end;
   result := bb;
 end;

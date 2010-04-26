@@ -1,5 +1,6 @@
 Log('0. SHOWCASE');
 selenium_Open('/showcase::1204');
+selenium_ClickAndWait('//div[@id=''menuThisWebHubDemo'']/ul/li[2]/a');
 
 Log('1. SHOWCASE >> Easier HTML');
 selenium_ClickAndWait('link=Easier HTML');
@@ -27,7 +28,12 @@ Log('1.1.5 SHOWCASE >> Easier HTML >> How and Why WebHub Works >> Automatic Defa
 selenium_ClickAndWait('link=Automatic Defaults on Forms');
 selenium_Type('litSurferName', 'Joshua');
 selenium_ClickAndWait('submit');
-selenium_WaitForPageToLoad('30000');
+selenium_Type('litSurferName', 'zur點kkommen');
+selenium_ClickAndWait('submit');
+selenium_Type('litSurferName', '龚少华');
+selenium_ClickAndWait('submit');
+selenium_Type('litSurferName', 'Joshua');
+selenium_ClickAndWait('submit');
 
 selenium_ClickAndWait('link=Easier HTML');
 
@@ -48,8 +54,6 @@ selenium_ClickAndWait('link=Reusable Pieces of HTML');
 
 Log('1.2.4 SHOWCASE >> Easier HTML >> Reusable Pieces of HTML >> Republishing StringVars');
 selenium_ClickAndWait('link=Republishing StringVars');
-selenium_Type('litSurferName+5', '龚少华');
-selenium_ClickAndWait('submit');
 selenium_Type('litSurferName+5', 'GongShaoHua');
 selenium_ClickAndWait('submit');
 
@@ -63,7 +67,7 @@ selenium_ClickAndWait('link=The JUMP Macro');
 selenium_ClickAndWait('link=JUMP to the same page');
 selenium_ClickAndWait('link=JUMP to the next page');
 selenium_ClickAndWait('link=GO to the next page');
-selenium_ClickAndWait('link=Do not HIDE the link to the next page');
+selenium_ClickAndWait('link=Don''t HIDE the link to the next page');
 selenium_ClickAndWait('submit');
 selenium_ClickAndWait('submit');
 

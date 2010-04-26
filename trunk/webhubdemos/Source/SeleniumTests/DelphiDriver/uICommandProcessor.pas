@@ -6,15 +6,20 @@ uses
 	
 type
   ICommandProcessor = interface
-		function DoCommand(command: string; args: ArrayOfString): string;
+		function DoCommand(command: UTF8String; args: ArrayOfUTF8String)
+      : UTF8String;
 		procedure Start();
 		procedure Stop();
-		function GetString(command: String; args: ArrayOfString): String;
-		function GetStringArray(command: String; args: ArrayOfString): ArrayOfString;
-		function GetNumber(command: String; args: ArrayOfString): double;
-		function GetNumberArray(command: String; args: ArrayOfString): ArrayOfDouble;
-		function GetBoolean(command: String; args: ArrayOfString): boolean;
-		function GetBooleanArray(command: String; args: ArrayOfString): ArrayOfBoolean;
+		function GetString(command: UTF8String; args: ArrayOfUTF8String)
+      : UTF8String;
+		function GetStringArray(command: UTF8String; args: ArrayOfUTF8String)
+      : ArrayOfUTF8String;
+		function GetNumber(command: UTF8String; args: ArrayOfUTF8String): double;
+		function GetNumberArray(command: UTF8String; args: ArrayOfUTF8String)
+      : ArrayOfDouble;
+		function GetBoolean(command: UTF8String; args: ArrayOfUTF8String): boolean;
+		function GetBooleanArray(command: UTF8String; args: ArrayOfUTF8String)
+      : ArrayOfBoolean;
 	end;
 
 implementation
