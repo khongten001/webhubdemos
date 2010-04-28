@@ -37,6 +37,7 @@ type
     procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
+    procedure DemoAppPageComplete(Sender: TwhRespondingApp; const PageContent: string);
   public
     { Public declarations }
     function Init: Boolean;
@@ -75,6 +76,7 @@ begin
   end;
   pWebApp.OnBadIP := DemoAppBadIP;
   pWebApp.OnNewSession := DemoAppNewSession;
+  pWebApp.OnPageComplete := DemoAppPageComplete;
 
   DemoAppUpdate(nil); // do this once, in case the app has already been loaded - likely.
 
@@ -336,6 +338,28 @@ begin
       if bForceNewSession then
         RejectSession(cUnitName + ', WebAppNewSession()', True);
     end;
+  end;
+end;
+
+var
+  TestNumber: Integer = 0;
+
+procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
+  const PageContent: string);
+var
+  S: string;
+begin
+  if Sender.SessionNumber = 1204 then
+  begin
+    S := pWebApp.Request.Headers.Values['X-Selenium-PageCount'];
+    if S <> '' then
+      TestNumber := StrToIntDef(S, 1)
+    else
+      Inc(TestNumber);
+
+    StringWriteToFile(Format('%stest%d.txt',
+      ['D:\Projects\webhubdemos\Live\WebRoot\webhub\echoqa\', TestNumber]),
+      PageContent);
   end;
 end;
 
