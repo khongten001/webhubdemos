@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko
   defaultlingvo="eng"
@@ -42,7 +42,10 @@ To participate, fill in this form to describe your real or imaginary pet...
 </whtranslation>
 </p>
 (~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
-<!-- changing:start--><form method="post" action="(~ACTIONR|FORM:pgThankYou,.CKB~)"><!-- changing:stop-->
+<!-- changing:start-->
+<!---<form method="post" charset="UTF-8" action="http://demos.href.com/WebRequestAnalysis/StreamCatcher.dll">  -->
+<form method="post" accept-charset="UTF-8" charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
+<!-- changing:stop-->
 <table border="0" cellpadding="10" cellspacing="0">
 <tr><td valign="middle">
 <table id="inputleft">
