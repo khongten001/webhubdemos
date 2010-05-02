@@ -21,7 +21,7 @@ metakeywords=Delphi super page mirror sites
 <div id="whdemopagecontent">
 
 <!-- changing:start-->
-<form method="post" action="(~actionr|pgEnterDSP~)">
+<form method="post" accept-charset="UTF-8" action="(~actionr|pgEnterDSP~)">
 <!-- changing:stop-->
 <h1>Select DSP Mirror that you would like to download from:</h1>
 <table id="mirrors">

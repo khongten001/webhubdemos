@@ -23,7 +23,7 @@ bNoMore=true
 WebHub provides explicit support for structured feedback pages.</p>
 <p>Send the following test message to yourself to see how the feedback page works.</p>
 <p>Of course, on your own site you would fill in the target e-mail address automatically.</p>
-<form method="post" action="(~ACTION|ExMailPost~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|ExMailPost~)">
 Send this Feedback to:
  (~inputtext|Msg To,47,47~)<br />
 Surfer's E-mail Address:

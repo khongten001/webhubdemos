@@ -28,7 +28,7 @@ mcList=a-Table,b-List,c-Text
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)ckb">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)ckb">
 <!-- changing:stop-->
 
 <table border="1" width="100%">

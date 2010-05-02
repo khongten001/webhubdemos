@@ -24,7 +24,7 @@ the page from which to experiment with the functionality of the async demo appli
 ||(~MATCH|(~AsyncDemo~)~tracert|(~mcDosTracert~)
 ||(~MATCH|(~AsyncDemo~)~nslookup|(~mcDosNsLookup~)
 ||(~waAsyncAction.execute~)~)~)~)
-<FORM METHOD="POST" ACTION="(~ACTION|Async,CKB~)">
+<FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|Async,CKB~)">
 (~AsyncTitleEnd~)
 <table><tr><td><hr />
 <INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any">

@@ -48,7 +48,7 @@
 This demo shows how to do a simple query based
 on user ID and Password.</p>
 <whdroplet name="chSearchCriteria" show="yes">
-<form method="post" action="(~ACTION|Page2~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Page2~)">
 <table id="searchCriteria" cellspacing="0">
 <tr>
 	<td class="empty">&nbsp;</td>

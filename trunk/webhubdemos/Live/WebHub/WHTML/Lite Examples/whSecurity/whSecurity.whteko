@@ -287,7 +287,7 @@ password.   If you submit the form using a valid Username and a blank or
 incorrect password, then the pass-phrase feature displays an additional table
 row with a  user-defined prompt "hint" for the password.</p>
 
-<form method="post" action="(~ACTION|pgLoginConfirm~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgLoginConfirm~)">
 <table width="100%">
 <tr>
 	<td style="width:33%;">&nbsp;</td>
@@ -1046,7 +1046,7 @@ IFINACTIVEFORSEC macro) and a (~JUMP|pgSecLogout| voluntary logout page~)...
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<form method="post" action="(~ACTION|HTSC:pgGoodby|post~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|HTSC:pgGoodby|post~)">
 <table border="1" width="100%" cellpadding="4" cellspacing="1">
 <caption><b> Voluntary Logout Page</b></caption>
 <tr><th>Macro Used</th>
@@ -1205,7 +1205,7 @@ undersession=no
 <div id="whdemopagecontent">
 
 <b>First, a look at EXPIRES in action:</b>
-<form method="post" action="(~ACTION|pgDumpData|Post~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgDumpData|Post~)">
 <table border="1" width="100%" cellpadding="1" cellspacing="1">
 <tr>
 <td>Please enter your Swiss Bank Account number here:</td>

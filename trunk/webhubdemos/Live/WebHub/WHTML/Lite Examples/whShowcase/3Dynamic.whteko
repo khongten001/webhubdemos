@@ -107,7 +107,7 @@ You use the ACTION macro to make the form go to a different page.
 <p>
 <p>
 In this example, you will advance to the next page in the sequence. Note that the form data is sent to the next page.
-<form method="post" action="(~ACTION|Showcase:pgWhere~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgWhere~)">
 Surfer name:(~inputtext|litSurferName~)
 (~inputsubmit|submit,Advance to Next page~)
 </form>
@@ -131,7 +131,7 @@ You use the ToSessionIDW property to make a form re-run the current page.
 
 <p>
 In this example, the current page will be reloaded with the form data.
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 Surfer name:(~inputtext|litSurferName~)
 (~inputsubmit|submit,Stay Where you are~)

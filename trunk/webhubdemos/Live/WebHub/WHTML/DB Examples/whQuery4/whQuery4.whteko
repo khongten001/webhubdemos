@@ -28,7 +28,7 @@
 </whpage>
 
 <whdroplet name="chCriteria">
-<form method="post" action="(~action|ChangeCriteria~)">
+<form method="post" accept-charset="UTF-8" action="(~action|ChangeCriteria~)">
 <table>
 <tr>
 <td align="center">Employee works in which department?</td>
@@ -178,7 +178,7 @@ keys: (~webdatasource1.keys~)
 <h1>Search by Key Field</h1>
 <p>Try employee numbers 37, 94 and -1.</p>
 
-<form method="post" action="(~ACTION|SearchResult~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|SearchResult~)">
 Find: (~INPUTTEXT|webDataSourceEmp.Keys~)
 <p><input type="submit" /></p>
 </form>

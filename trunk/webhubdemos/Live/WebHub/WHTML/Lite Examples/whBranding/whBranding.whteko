@@ -71,7 +71,7 @@ web pages with your dynamic site without depending upon cookies!</p>
 so we will ask for  your name, and a few multiple answer questions regarding these demos.
 To select more that one answer, hold down the control key while selecting.</p>
 
-<form method="post" action="(~ACTION|BrandABC~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|BrandABC~)">
 <table border="2" cellpadding="1" cellspacing="0">
 <tr><th> Your name:</th>
 <td align="left">(~INPUTTEXT|SurferName~)</td></tr>

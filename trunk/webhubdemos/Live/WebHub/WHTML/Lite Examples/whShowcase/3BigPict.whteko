@@ -121,7 +121,7 @@ other page.  Surfers won't need to enter data more than
 once, and the information they give can be utilized to personalize pages.
 
 <p>
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 <b>Please enter your name:</b>(~inputtext|litSurferName,40,40~)
 <br /><DIV ALIGN=CENTER>

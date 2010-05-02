@@ -16,7 +16,7 @@
 <h2>(~PageDesc~)</h2>
 
 <!-- changing:start-->
-<form method="post" action="(~ACTIONR|pgEnterHTUN~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgEnterHTUN~)">
 <!-- changing:stop-->
 <table>
 <tr>

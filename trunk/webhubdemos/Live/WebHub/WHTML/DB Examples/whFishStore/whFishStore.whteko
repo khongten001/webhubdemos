@@ -420,7 +420,7 @@ input, select{
 (~JUMP|admin|back~)
 <!---
 <h1>Data Entry</h1>
-<form method="post" action="(~ACTION|admin,post,gfAdmin.this~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|admin,post,gfAdmin.this~)">
 Your name:(~inputtext|SurferName,20,20~)<br />
 Password: (~inputtext|Password,20,20~)<p>
 Species No: (~Field|wdsAdmin|Species No~)<br />

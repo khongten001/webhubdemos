@@ -26,7 +26,7 @@ Once a default has been picked, the blank line disappears.
 The sixth example has a blank line in the list to allow you to clear your choice.</p>
 
 <div class="dcenter">
-<!-- changing:start--><form method="post" action="(~ACTIONR|pgEnterhtdr~)"><!-- changing:stop-->
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgEnterhtdr~)"><!-- changing:stop-->
 
 <hr style="width:75%;" />
 (~DropDown1~)

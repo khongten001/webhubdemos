@@ -35,7 +35,7 @@ Clicking this radio button sets the session variable named "inSpeed" to either "
 <div id="whdemopagecontent">
 <div class="dcenter">
 
-<form method="post" action="(~ACTION|BW:pgWebHubTimes~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|BW:pgWebHubTimes~)">
 
 <table cellpadding="0" cellspacing="0">
 	<tr>
@@ -186,7 +186,7 @@ application will run with any Windows NT web server.</p>
 <br />
 <span style="font-size:1.2em;color:#666666">
 Adjust speed:</span>
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 <p>
 (~INPUTRADIO|inSpeed,slow~) Slow Modem (black and white images)
