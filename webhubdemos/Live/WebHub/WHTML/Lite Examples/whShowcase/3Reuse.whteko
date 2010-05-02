@@ -126,7 +126,7 @@ When publishing form StringVars, the keyword is always the NAME tag for the
 input field.  Notice the phrase <b>litSurferName</b> as the NAME
 and within the VALUE syntax.
 <p>
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 Your name:(~inputtext|litSurferName+5~)
 (~inputsubmit|submit,Submit~)

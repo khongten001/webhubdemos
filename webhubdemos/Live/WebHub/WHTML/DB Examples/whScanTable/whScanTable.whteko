@@ -156,7 +156,7 @@ see the range of layout options that have been prepared for you.</p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <div class="dcenter">
-<form method="post" action="(~ACTION|pgEnterSCAN,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterSCAN,.CKB~)">
 
 <table id="gridoptions" cellspacing="0">
 <tr>

@@ -36,7 +36,7 @@ These icons mean that:
 (~chlightOn~)
 (~chLightOff~)
 
-<form method="post" action="(~ACTION|Showcase:pgCOND,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND,.CKB~)">
 <p>(~inputcheckbox|v1~) Flick The Light Switch (~inputsubmit|submit,Flick the Switch~) </p>
 </form>
 (~chPending~)
@@ -75,7 +75,7 @@ The value of the checkbox named V1 is (~BoolVar.v1~).</p>
 <h2>Test again</h2>
 The submit button on this page re-requests the <b>current</b> page.
 <p>
-<form method="post" action="(~ACTION|Showcase:pgCOND,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND,.CKB~)">
 <p>(~inputcheckbox|v1~)The Light Switch (~inputsubmit|submit,See it Work~) </p>
 </form>
 (~chPending~)

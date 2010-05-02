@@ -35,7 +35,7 @@ are on the (~JUMP|pgAbout,HTQ2|(~~About~)~) page.</p>
 <p>Please enter search criteria (value is defaulted to S to aid
 in testing):</p>
 
-<form method="post" action="(~ACTION|Answer,new~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Answer,new~)">
 <p>Employee last name (starts with): (~INPUTTEXT|FINDME,10,10~)</p>
 <p>Hint: try the letter S, F, or B, or leave blank for all names.</p>
 <p>(~INPUTSUBMIT|submit,Try it~)</p>

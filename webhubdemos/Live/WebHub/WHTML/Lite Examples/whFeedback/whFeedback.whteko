@@ -53,7 +53,7 @@ Try them out!
 This example uses a template file (feedback.txt) for the email message, which
  incorporates the StringVars from the following form with a slight amount of formatting.
 
- <form method="post" action="(~|pgFeedbackResult~)">
+ <form method="post" accept-charset="UTF-8" action="(~|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
@@ -218,7 +218,7 @@ mcSelectArtist=Picasso-Picasso,Chagall-Chagall,Kandinsky-Kandinsky,Miro-Miro,Roc
 This is essentially the same technique as the feedback example, just
 with more extensive formatting of the template.</p>
 
-<form method="post" action="(~ACTION|pgFormLetterResult,webmailform.FormLetter~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgFormLetterResult,webmailform.FormLetter~)">
 <table id="templateletter">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
@@ -340,7 +340,7 @@ the mail panel using the literal names from your form.
 Note that this example does not use a template, so there is no path
 listed.</p>
 
-<form method="post" action="(~ACTION|pgSimpleFormResult~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgSimpleFormResult~)">
 <table id="simple">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>

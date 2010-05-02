@@ -104,7 +104,7 @@ function setAllCheckboxes(b)
 <h1>(~pagedesc~)</h1>
 <!--<p>All presentations were planned as 45 minutes.</p>-->
 <div id="offset-div" style="margin: 0 0 2em 0;">
-<form method="post" action="(~ACTIONR|pgReadonly1,.ckb,wds.reset~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgReadonly1,.ckb,wds.reset~)">
 <a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a> 
 <table id="checker-table">
 <tr>

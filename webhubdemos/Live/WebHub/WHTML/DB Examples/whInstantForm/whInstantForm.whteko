@@ -69,7 +69,7 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Grid Options</h1>
-<form method="post" action="(~ACTION|pgEnterHTFM~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterHTFM~)">
 (~INPUTRADIO|RadioButtons,TEXT~)Text Controls
 (~INPUTRADIO|RadioButtons,GRAPHICS~)Graphics Controls
 (~INPUTSUBMIT|submit,Back to Grid~)
@@ -143,7 +143,7 @@ displaySet for the grid.  (~JUMP|pgEnterHTFM|Try Again~)</p>
 
 <whdroplet name="chEditAction">
 (~webdatasource1.activate~)
-<form method="post" action="(~ACTION|PostData~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|PostData~)">
 (~webdataform1.execute~)
 (~INPUTSUBMIT|submit,Click to Save Changes~)
 </form>

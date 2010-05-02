@@ -195,7 +195,7 @@ make a program equivalent to whLite by running the WebHub "new project" wizard. 
 
 <whdroplet name="drReturnButton" show="no">
 (~PushPrior|litJumpBack~)
-<form method="post" action="(~ACTION|litJumpBack~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|litJumpBack~)">
 (~Clear|litJumpBack~)
 (~inputhidden|Null~)
 (~INPUTSUBMIT|NAME,Return~)
@@ -203,7 +203,7 @@ make a program equivalent to whLite by running the WebHub "new project" wizard. 
 </whdroplet>
 
 <whdoc>
-Copyright &copy; 1995-2004 HREF Tools Corp.  All Rights Reserved Worldwide.
+Copyright &copy; 1995-2010 HREF Tools Corp.  All Rights Reserved Worldwide.
 Anyone with a WebHub license may use this file at no charge.
 </whdoc>
 </body></html>

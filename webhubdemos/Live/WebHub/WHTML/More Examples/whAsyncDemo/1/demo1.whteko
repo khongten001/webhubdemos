@@ -13,7 +13,7 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<form method="post" action="(~ACTION|Demo1Post,NewThread~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Demo1Post,NewThread~)">
 (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~)
 Query Length (sec): <br />
 (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)

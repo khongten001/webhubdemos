@@ -22,7 +22,7 @@ Browse through our extensive list of parts
 and we bet you'll find something
 you didn't know you needed.</p>
 
-<!-- changing:start--><form method="post" action="(~actionr|poster~)"><!-- changing:stop-->
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~actionr|poster~)"><!-- changing:stop-->
 (~webdatagrid1.execute~)
 (~INPUTSUBMIT|BtnShop,Save~)
 (~INPUTSUBMIT|BtnShop,First Page~)
@@ -69,7 +69,7 @@ you didn't know you needed.</p>
 While it would be helpful if the surfer could return to a specific item,
 this feature has been left as an exercise for the reader.)</p>
 <h2>Tell Us Where to Ship Your Parts!</h2>
-<form method="post" action="(~ACTION|thx~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|thx~)">
 <table id="shipto" cellspacing="0">
 <tr>
 	<td class="prompt">Your Name:</td>

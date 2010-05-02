@@ -48,7 +48,7 @@ metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologie
 
 <whdroplet name="chDataSearch" show="yes">
 <!-- changing:start-->
-<form method="post" action="(~actionr|pgEnterDSP,.ckb,results~)">
+<form method="post" accept-charset="UTF-8" action="(~actionr|pgEnterDSP,.ckb,results~)">
 <!-- changing:stop-->
 <table id="search">
 <tr>

@@ -19,7 +19,7 @@
 and uses the resulting figures in automated e-mail response letter.</p>
 
 <h3>Price Quote</h3>
-<form method="post" action="(~action|pgThankYou~)">
+<form method="post" accept-charset="UTF-8" action="(~action|pgThankYou~)">
 
 <table id="htem-table">
 <tr>
@@ -162,7 +162,7 @@ Amount due: (~vAmountDue~)
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <!-- changing:start-->
-<form method="post" action="(~ACTIONR|testwebmailform2,safemail~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|testwebmailform2,safemail~)">
 <!-- changing:stop-->
 Your email address: (~INPUTTEXT|inEmail,30,50~)<br>
 Your message:

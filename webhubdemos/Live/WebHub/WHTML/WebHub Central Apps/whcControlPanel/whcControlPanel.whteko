@@ -68,7 +68,7 @@ All rights reserved. Running (~version~)</FONT>
 WHCPSecurePage=no
 </whpagesettings>
 (~chWHCPHeader~)
-<form method="post" action="(~ACTIONR|pgWHCPLoginPoster~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgWHCPLoginPoster~)">
 <table border="0">
 <tr><td>Username</td><td>(~INPUTTEXT|Username~)</td></tr>
 <tr><td>Password</td><td>(~INPUTPASSWORD|Password~)</td></tr>

@@ -153,7 +153,7 @@ available on the TwhApplication component, for use in Object Pascal.
 host which is <code>(~host~)</code>.</p>
 
 <!-- changing:start-->
-<form method="post" action="(~ACTIONR|pgSetCookieAdvanced~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSetCookieAdvanced~)">
 <!-- changing:stop-->
 <p>Cookie 1: advcookie1 = (~INPUTTEXT|aCookieValue1~)</p>
 <p>Cookie 2: advcookie2 = (~INPUTTEXT|aCookieValue2~)</p>

@@ -20,7 +20,7 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 The following example will allow you to personalize this Showcase Demo with your name and organization.
 <p>
-<!-- changing:start--><form method="post" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 <CENTER><table>
 <tr><td>
