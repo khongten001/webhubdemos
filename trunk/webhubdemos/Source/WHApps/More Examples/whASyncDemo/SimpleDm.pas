@@ -192,6 +192,8 @@ end;
 
 procedure TdmSimpleAsync.waAsyncSimple1ThreadOnInit(Sender: TObject);
 //runs from the main-thread with Session set for the right surfer!
+var
+  S8: System.UTF8String;
 begin
   inherited;
   //create and initialize the object's extra data-packet.
@@ -201,7 +203,9 @@ begin
   begin
     Done := False;
     //set the resultstring property here to provide input to the object
-    ResultString := pWebApp.Expand(waAsyncSimple1.HtmlParam);
+    S8 :=
+      pWebApp.Expand(UTF8String(System.UTF8ToString(RawByteString(waAsyncSimple1.HtmlParam))));
+    ResultString := UTF8ToString(S8);
     //if you want to create a data/input object for use by the thread
     //you'd probably instantiate and initialize it here
     //Data:=TThreadInput.Create;

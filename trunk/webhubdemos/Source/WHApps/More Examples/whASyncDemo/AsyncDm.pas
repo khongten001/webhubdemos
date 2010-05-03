@@ -133,8 +133,8 @@ begin
   and assigned(Stream) then
     with stream do begin
       a1:=Value;
-      StringRepl(a1,#13#10,'<br />'#13#10);
-      if CommOutBufferToMailBox(Name,'+',pchar(a1),length(a1)) then
+      StringRepl(a1, sLineBreak, '<br/>' + sLineBreak);
+      if CommOutBufferToMailBox(Name,'+', pAnsiChar(a1), length(a1)) then
         bUsedGetStrProc:=True
       //else
       //  InterLockedExchange(Integer(bStreaming),Integer(False));
@@ -150,7 +150,8 @@ begin
   and assigned(Stream) then
     with Stream do begin
 
-  if temp<>stream.name then begin
+  if temp<>stream.name then
+  begin
     sleep(100);
     temp:=stream.name;
     end;
@@ -159,11 +160,11 @@ begin
       StringRepl(a1,'XXX',
 
         inttostr(PercentComplete));
-      if not CommOutBufferToMailBox(Name,'+',pchar(a1),length(a1)) then begin
+      if not CommOutBufferToMailBox(Name, '+', PAnsiChar(a1), Length(a1)) then
+      begin
         Result:=not bAbort;
-
-        end;
       end;
+    end;
 end;
 
 procedure TThreadInput.Finished(const ResultString:String);
@@ -232,7 +233,7 @@ begin
       +Expand(MacroStart + 'AsyncPageTop' + MacroEnd);
     end;
   //
-  CommOutBufferToMailBox(Stream.Name,'+',pchar(a1),Length(a1));
+  CommOutBufferToMailBox(Stream.Name, '+', PAnsiChar(a1), Length(a1));
   InterLockedExchange(Integer(bStreaming),Integer(True));
   //
   pWebApp.Save; //save before aborting the official page production
