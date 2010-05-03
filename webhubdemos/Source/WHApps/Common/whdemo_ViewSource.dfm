@@ -2,8 +2,6 @@ object DemoViewSource: TDemoViewSource
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 251
-  Top = 103
   Height = 480
   Width = 696
   object waDemoViewSource: TwhWebActionEx
