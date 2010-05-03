@@ -2,14 +2,15 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 
 // Usage: dserver.exe /ID:AppID [/NoMenu]
 // Search path for HREF:
-// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;D:\vcl\thtml9\Package
+// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;
+// D:\vcl\thtml9\Package
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
