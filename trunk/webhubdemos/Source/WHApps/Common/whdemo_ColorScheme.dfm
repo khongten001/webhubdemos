@@ -1,7 +1,5 @@
 object DataModuleColorScheme: TDataModuleColorScheme
   OldCreateOrder = False
-  Left = 153
-  Top = 192
   Height = 150
   Width = 215
   object waColorScheme: TwhWebAction

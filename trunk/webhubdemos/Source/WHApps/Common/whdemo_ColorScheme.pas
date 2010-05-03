@@ -1,4 +1,13 @@
 unit whdemo_ColorScheme;
+////////////////////////////////////////////////////////////////////////////////
+//  Copyright (c) 2008-2010 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//                                                                            //
+//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
+//  development license from HREF Tools Corp. before using this file, and     //
+//  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
+////////////////////////////////////////////////////////////////////////////////
+
+//  Original Author: Ann Lynnworth
 
 interface
 
@@ -135,9 +144,9 @@ begin
   if IsEqual(Action, 'scheme') then
   begin
     if Kolori <> '' then
-      pWebApp.SendStringImm(Kolori)
+      pWebApp.SendStringImm(UTF8Encode(Kolori))
     else
-      pWebApp.SendStringImm(FColorSchemeName);
+      pWebApp.SendStringImm(UTF8Encode(FColorSchemeName));
   end
   else
   if Kolori <> '' then
@@ -146,7 +155,7 @@ begin
     if SplitString(Action, '-', a1, a2) then
       AColor := SchemeToColor(Kolori, Action);
     if AColor <> '' then
-      pWebApp.SendStringImm(AColor)
+      pWebApp.SendStringImm(UTF8Encode(AColor))
     else
       pWebApp.Debug.AddPageError(cUsage);
   end

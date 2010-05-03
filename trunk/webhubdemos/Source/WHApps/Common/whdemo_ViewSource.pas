@@ -12,9 +12,9 @@ unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for us
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  WebTypes,   weblink,
-  tpaction, updateok{, IniLink};
+  Windows, Messages, SysUtils, Classes,
+  tpaction, updateok,
+  webTypes, webLink;
 
 type
   TDemoViewSource = class(TDataModule)
@@ -61,6 +61,7 @@ implementation
 {$R *.DFM}
 
 uses
+  Forms,
   ZaphodsMap,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
   htmlBase,      // PrologueMode property
@@ -178,9 +179,10 @@ begin
         begin
           // link project filename to display of self
           SplitThree(aCurrentLine,' ',a1,a2,a3);  // program aunit; //comment
-          aHyperLine:=a1+' ' + MacroStart + 'JUMP|' + MacroStart + 'PageID' +
-            MacroEnd + ',waDemoViewSource.'+
-            fProjectFilename+'|'+fProjectFilename+MacroEnd+'; '+a3;
+          aHyperLine :=
+            Format('%s %sJUMP|%sPageID%s,waDemoViewSource.%s|%s%s; %s',
+              [a1, MacroStart, MacroStart, MacroEnd, fProjectFilename,
+               fProjectFilename, MacroEnd, a3]);
         end;
         if copy(aCurrentLine,1,2)='//' then
         begin
@@ -253,9 +255,10 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourcePascalFileExecute(Sender: TObject);
 var
-  a1,a2 : String;
-  aFilename,aShowName: String;
-  aFileContents: String;
+  a1,a2 : string;
+  aFilename, aShowName: string;
+  aFileContents: string;
+  fs: TFileStream;
 begin
   inherited;
   with TwhWebActionEx(Sender) do
@@ -286,14 +289,20 @@ begin
       end
       else
       begin
+        fs := nil;
         try
-          aFileContents := stringloadfromfile(aFilename);
-        except
-          on E: Exception do
-          begin
-            aFileContents := '';
-            pWebApp.Debug.AddPageError(E.Message);
+          fs := TFileStream.Create(aFilename, fmOpenRead);
+          try
+            aFileContents := StringLoadFromStream(fs);
+          except
+            on E: Exception do
+            begin
+              aFileContents := '';
+              pWebApp.Debug.AddPageError(E.Message);
+            end;
           end;
+        finally
+          FreeAndNil(fs);
         end;
       end;
     end
@@ -336,7 +345,7 @@ begin
       else
       begin
         try
-          aFileContents:=htFormFileToString(aFilename);
+          aFileContents := htFormFileToString(aFilename);
         except
           on E: Exception do
           begin
@@ -375,7 +384,7 @@ var
   i,n:integer;
 begin
   result:=False;
-  n:=Screen.FormCount;
+  n := Screen.FormCount;
   if aClassname[1] <> 'T' then
     aClassname := 'T' + aClassname;
   for i:=0 to pred(n) do
@@ -439,14 +448,16 @@ end;
 procedure TDemoViewSource.waDemoViewSourceWHTMLFileExecute(Sender: TObject);
 var
   i, n: Integer;
-  S: String;
+  S: string;
+  S8: System.UTF8String;
 
   procedure SendFileIntro(const fileDescription: String);
   begin
     with pWebApp do
     begin
       SendMacro('mcHdrOn');
-      SendString('Contents of ' + fileDescription);
+      SendString(System.UTF8String(
+        Format('Contents of %s', [fileDescription])));
       SendMacro('mcHdrOff');
     end;
   end;
@@ -457,11 +468,7 @@ begin
     i := StrToIntDef(WebApp.Command,-99);
     if i = -1 then
     begin
-      {$IFNDEF CONFIGZAPHOD}
-      S := WebApp.ConfigFilespec;
-      {$ELSE}
       S := WebApp.WebAppKey.KeyedFilePath + WebApp.WebAppKey.KeyedFileName;
-      {$ENDIF}
       SendFileIntro('application-level config file');
     end
     else
@@ -485,8 +492,8 @@ begin
       begin
         SendLine('<form>');
         SendLine('<textarea name="" cols=80 rows=30>');
-        S := StringLoadFromFile(S);
-        Response.Stream.WriteS(S);
+        S8 := UTF8Encode(StringLoadFromFile(S));
+        Response.Stream.WriteS(S8);
         SendLine('</textarea>');
         SendLine('</form>');
       end;
@@ -501,10 +508,15 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourceProjectLinkExecute(
   Sender: TObject);
+var
+  S: string;
 begin
   with TwhWebActionEx(Sender) do
-    Response.Send(MacroStart + 'JUMP|viewDelphiFile,waDemoViewSource.' +
-      fProjectFilename + '|' + fProjectFilename + MacroEnd);
+  begin
+    S := Format('JUMP|viewDelphiFile,waDemoViewSource.%s|%s',
+      [fProjectFilename, fProjectFilename]);
+    WebApp.SendMacro(S);
+  end;
 end;
 
 end.
