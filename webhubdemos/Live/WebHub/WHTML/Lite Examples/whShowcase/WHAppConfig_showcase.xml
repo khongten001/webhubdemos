@@ -39,10 +39,7 @@
       <AppSetting name="DemoGraphic" value="yes"/>
     </AppSettings>
     <ErrorAlertFlags>
-      <ErrorAlertFlag name="ShowPageCreationExceptions"/>
-      <ErrorAlertFlag name="Send"/>
       <ErrorAlertFlag name="LogToFile" value="true"/>
-      <ErrorAlertFlag name="Comment"/>
       <ErrorAlertFlag name="Summary" value="true"/>
       <ErrorAlertFlag name="Summary" context="DEMOS" value="false"/>
     </ErrorAlertFlags>
