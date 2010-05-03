@@ -1,7 +1,5 @@
 object dmSimpleAsync: TdmSimpleAsync
   OldCreateOrder = True
-  Left = 285
-  Top = 161
   Height = 479
   Width = 742
   object waAsyncSimple1: TwhAsyncAction
