@@ -44,7 +44,7 @@ To participate, fill in this form to describe your real or imaginary pet...
 (~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
 <!-- changing:start-->
 <!---<form method="post" accept-charset="UTF-8"  action="http://demos.href.com/WebRequestAnalysis/StreamCatcher.dll">  -->
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
+<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
 <!-- changing:stop-->
 <table border="0" cellpadding="10" cellspacing="0">
 <tr><td valign="middle">
