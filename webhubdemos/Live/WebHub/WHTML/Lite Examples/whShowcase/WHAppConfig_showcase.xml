@@ -130,7 +130,7 @@
   </Application>
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
-      <Item name="FEEDBACK">
+      <Item name="feedback">
         <Host value="mail.href.com"/>
         <Port value="25"/>
         <From value="MsgFrom^"/>
