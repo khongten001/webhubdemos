@@ -37,7 +37,8 @@ type
     procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
-    procedure DemoAppPageComplete(Sender: TwhRespondingApp; const PageContent: string);
+    procedure DemoAppPageComplete(Sender: TwhRespondingApp;
+      const PageContent: UTF8String);
   public
     { Public declarations }
     function Init: Boolean;
@@ -351,9 +352,10 @@ var
   TestNumber: Integer = 0;
 
 procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
-  const PageContent: string);
+  const PageContent: UTF8String);
 var
   S: string;
+  AFilename: string;
 begin
   if Sender.SessionNumber = 1204 then
   begin
@@ -363,9 +365,9 @@ begin
     else
       Inc(TestNumber);
 
-    StringWriteToFile(Format('%stest%d.txt',
-      ['D:\Projects\webhubdemos\Live\WebRoot\webhub\echoqa\', TestNumber]),
-      PageContent);
+    AFilename := Format('%stest%d.txt',
+      ['D:\Projects\webhubdemos\Live\WebRoot\webhub\echoqa\', TestNumber]);
+    UTF8StringWriteToFile(AFilename, PageContent);
   end;
 end;
 
