@@ -116,8 +116,8 @@
 #define NativeXml_sxeCannotConvertToFloat 65197
 #define NativeXml_sxeSignificantDigitsOutOfRange 65198
 #define ZaphodsMapMessages_szmFileNotFound 65199
-#define ComStrs_sTabMustBeMultiLine 65200
-#define ComStrs_sPageIndexError 65201
+#define ucShell_SLaunchUnspecifiedError 65200
+#define ucFile_SFCantMove 65201
 #define tpUIBase_sRequestGUI 65202
 #define NativeXml_sxeErrorCalcStreamLength 65203
 #define NativeXml_sxeMissingDataInBinaryStream 65204
@@ -132,150 +132,150 @@
 #define NativeXml_sxeDeclarationMustBeFirstElem 65213
 #define NativeXml_sxeMoreThanOneDoctype 65214
 #define NativeXml_sxeDoctypeAfterRootElement 65215
-#define Consts_SDockZoneHasNoCtl 65216
-#define Consts_SDockZoneVersionConflict 65217
-#define Consts_SErrorSettingCount 65218
-#define Consts_SListBoxMustBeVirtual 65219
-#define Consts_SPageControlNotSet 65220
-#define Consts_SWindowsVistaRequired 65221
-#define Consts_SXPThemesRequired 65222
-#define Consts_STaskDlgButtonCaption 65223
-#define Consts_STaskDlgRadioButtonCaption 65224
-#define Consts_SInvalidTaskDlgButtonCaption 65225
-#define ComStrs_sTabFailClear 65226
-#define ComStrs_sTabFailDelete 65227
-#define ComStrs_sTabFailRetrieve 65228
-#define ComStrs_sTabFailGetObject 65229
-#define ComStrs_sTabFailSet 65230
-#define ComStrs_sTabFailSetObject 65231
-#define Consts_SServiceFailed 65232
-#define Consts_SExecute 65233
-#define Consts_SStart 65234
-#define Consts_SStop 65235
-#define Consts_SPause 65236
-#define Consts_SContinue 65237
-#define Consts_SInterrogate 65238
-#define Consts_SShutdown 65239
-#define Consts_SCustomError 65240
-#define Consts_SServiceInstallOK 65241
-#define Consts_SServiceInstallFailed 65242
-#define Consts_SServiceUninstallOK 65243
-#define Consts_SServiceUninstallFailed 65244
-#define Consts_SDockedCtlNeedsName 65245
-#define Consts_SDockTreeRemoveError 65246
-#define Consts_SDockZoneNotFound 65247
-#define Consts_SmkcDown 65248
-#define Consts_SmkcIns 65249
-#define Consts_SmkcDel 65250
-#define Consts_SmkcShift 65251
-#define Consts_SmkcCtrl 65252
-#define Consts_SmkcAlt 65253
-#define Consts_SOutOfRange 65254
-#define Consts_sAllFilter 65255
-#define Consts_SInsertLineError 65256
-#define Consts_SInvalidClipFmt 65257
-#define Consts_SIconToClipboard 65258
-#define Consts_SCannotOpenClipboard 65259
-#define Consts_SInvalidMemoSize 65260
-#define Consts_SInvalidPrinterOp 65261
-#define Consts_SNoDefaultPrinter 65262
-#define Consts_SDuplicateMenus 65263
-#define Consts_SMsgDlgAll 65264
-#define Consts_SMsgDlgNoToAll 65265
-#define Consts_SMsgDlgYesToAll 65266
-#define Consts_SMsgDlgClose 65267
-#define Consts_SmkcBkSp 65268
-#define Consts_SmkcTab 65269
-#define Consts_SmkcEsc 65270
-#define Consts_SmkcEnter 65271
-#define Consts_SmkcSpace 65272
-#define Consts_SmkcPgUp 65273
-#define Consts_SmkcPgDn 65274
-#define Consts_SmkcEnd 65275
-#define Consts_SmkcHome 65276
-#define Consts_SmkcLeft 65277
-#define Consts_SmkcUp 65278
-#define Consts_SmkcRight 65279
-#define Consts_SFixedRowTooBig 65280
-#define Consts_SInvalidStringGridOp 65281
-#define Consts_SMaskErr 65282
-#define Consts_SMaskEditErr 65283
-#define Consts_SMsgDlgWarning 65284
-#define Consts_SMsgDlgError 65285
-#define Consts_SMsgDlgInformation 65286
-#define Consts_SMsgDlgConfirm 65287
-#define Consts_SMsgDlgYes 65288
-#define Consts_SMsgDlgNo 65289
-#define Consts_SMsgDlgOK 65290
-#define Consts_SMsgDlgCancel 65291
-#define Consts_SMsgDlgHelp 65292
-#define Consts_SMsgDlgAbort 65293
-#define Consts_SMsgDlgRetry 65294
-#define Consts_SMsgDlgIgnore 65295
-#define Consts_SHelpButton 65296
-#define Consts_SCloseButton 65297
-#define Consts_SIgnoreButton 65298
-#define Consts_SRetryButton 65299
-#define Consts_SAbortButton 65300
-#define Consts_SAllButton 65301
-#define Consts_SCannotDragForm 65302
-#define Consts_SVMetafiles 65303
-#define Consts_SVEnhMetafiles 65304
-#define Consts_SVIcons 65305
-#define Consts_SVBitmaps 65306
-#define Consts_SVTIFFImages 65307
-#define Consts_SGridTooLarge 65308
-#define Consts_STooManyDeleted 65309
-#define Consts_SIndexOutOfRange 65310
-#define Consts_SFixedColTooBig 65311
-#define Consts_SMenuReinserted 65312
-#define Consts_SMenuNotFound 65313
-#define Consts_SNoTimers 65314
-#define Consts_SNotPrinting 65315
-#define Consts_SPrinting 65316
-#define Consts_SPrinterIndexError 65317
-#define Consts_SInvalidPrinter 65318
-#define Consts_SDeviceOnPort 65319
-#define Consts_SGroupIndexTooLow 65320
-#define Consts_SNoMDIForm 65321
-#define Consts_SImageCanvasNeedsBitmap 65322
-#define Consts_SControlParentSetToSelf 65323
-#define Consts_SOKButton 65324
-#define Consts_SCancelButton 65325
-#define Consts_SYesButton 65326
-#define Consts_SNoButton 65327
-#define Consts_SInvalidImageSize 65328
-#define Consts_SInvalidImageList 65329
-#define Consts_SReplaceImage 65330
-#define Consts_SImageIndexError 65331
-#define Consts_SImageReadFail 65332
-#define Consts_SImageWriteFail 65333
-#define Consts_SWindowDCError 65334
-#define Consts_SWindowClass 65335
-#define Consts_SCannotFocus 65336
-#define Consts_SParentRequired 65337
-#define Consts_SParentGivenNotAParent 65338
-#define Consts_SMDIChildNotVisible 65339
-#define Consts_SVisibleChanged 65340
-#define Consts_SCannotShowModal 65341
-#define Consts_SPropertyOutOfRange 65342
-#define Consts_SMenuIndexError 65343
-#define ucShell_SLaunchTimeoutError 65344
-#define ucShell_SLaunchUnspecifiedError 65345
-#define ucFile_SFCantMove 65346
-#define Consts_SInvalidTabPosition 65347
-#define Consts_SInvalidTabStyle 65348
-#define Consts_SInvalidBitmap 65349
-#define Consts_SInvalidIcon 65350
-#define Consts_SInvalidMetafile 65351
-#define Consts_SInvalidPixelFormat 65352
-#define Consts_SInvalidImage 65353
-#define Consts_SChangeIconSize 65354
-#define Consts_SChangeWicSize 65355
-#define Consts_SUnknownExtension 65356
-#define Consts_SUnknownClipboardFormat 65357
-#define Consts_SOutOfResources 65358
-#define Consts_SNoCanvasHandle 65359
+#define Consts_SListBoxMustBeVirtual 65216
+#define Consts_SPageControlNotSet 65217
+#define Consts_SWindowsVistaRequired 65218
+#define Consts_SXPThemesRequired 65219
+#define Consts_STaskDlgButtonCaption 65220
+#define Consts_STaskDlgRadioButtonCaption 65221
+#define Consts_SInvalidTaskDlgButtonCaption 65222
+#define ComStrs_sTabFailClear 65223
+#define ComStrs_sTabFailDelete 65224
+#define ComStrs_sTabFailRetrieve 65225
+#define ComStrs_sTabFailGetObject 65226
+#define ComStrs_sTabFailSet 65227
+#define ComStrs_sTabFailSetObject 65228
+#define ComStrs_sTabMustBeMultiLine 65229
+#define ComStrs_sPageIndexError 65230
+#define ucShell_SLaunchTimeoutError 65231
+#define Consts_SStop 65232
+#define Consts_SPause 65233
+#define Consts_SContinue 65234
+#define Consts_SInterrogate 65235
+#define Consts_SShutdown 65236
+#define Consts_SCustomError 65237
+#define Consts_SServiceInstallOK 65238
+#define Consts_SServiceInstallFailed 65239
+#define Consts_SServiceUninstallOK 65240
+#define Consts_SServiceUninstallFailed 65241
+#define Consts_SDockedCtlNeedsName 65242
+#define Consts_SDockTreeRemoveError 65243
+#define Consts_SDockZoneNotFound 65244
+#define Consts_SDockZoneHasNoCtl 65245
+#define Consts_SDockZoneVersionConflict 65246
+#define Consts_SErrorSettingCount 65247
+#define Consts_SmkcShift 65248
+#define Consts_SmkcCtrl 65249
+#define Consts_SmkcAlt 65250
+#define Consts_SOutOfRange 65251
+#define Consts_sAllFilter 65252
+#define Consts_SInsertLineError 65253
+#define Consts_SInvalidClipFmt 65254
+#define Consts_SIconToClipboard 65255
+#define Consts_SCannotOpenClipboard 65256
+#define Consts_SInvalidMemoSize 65257
+#define Consts_SInvalidPrinterOp 65258
+#define Consts_SNoDefaultPrinter 65259
+#define Consts_SDuplicateMenus 65260
+#define Consts_SServiceFailed 65261
+#define Consts_SExecute 65262
+#define Consts_SStart 65263
+#define Consts_SMsgDlgClose 65264
+#define Consts_SmkcBkSp 65265
+#define Consts_SmkcTab 65266
+#define Consts_SmkcEsc 65267
+#define Consts_SmkcEnter 65268
+#define Consts_SmkcSpace 65269
+#define Consts_SmkcPgUp 65270
+#define Consts_SmkcPgDn 65271
+#define Consts_SmkcEnd 65272
+#define Consts_SmkcHome 65273
+#define Consts_SmkcLeft 65274
+#define Consts_SmkcUp 65275
+#define Consts_SmkcRight 65276
+#define Consts_SmkcDown 65277
+#define Consts_SmkcIns 65278
+#define Consts_SmkcDel 65279
+#define Consts_SMaskEditErr 65280
+#define Consts_SMsgDlgWarning 65281
+#define Consts_SMsgDlgError 65282
+#define Consts_SMsgDlgInformation 65283
+#define Consts_SMsgDlgConfirm 65284
+#define Consts_SMsgDlgYes 65285
+#define Consts_SMsgDlgNo 65286
+#define Consts_SMsgDlgOK 65287
+#define Consts_SMsgDlgCancel 65288
+#define Consts_SMsgDlgHelp 65289
+#define Consts_SMsgDlgAbort 65290
+#define Consts_SMsgDlgRetry 65291
+#define Consts_SMsgDlgIgnore 65292
+#define Consts_SMsgDlgAll 65293
+#define Consts_SMsgDlgNoToAll 65294
+#define Consts_SMsgDlgYesToAll 65295
+#define Consts_SRetryButton 65296
+#define Consts_SAbortButton 65297
+#define Consts_SAllButton 65298
+#define Consts_SCannotDragForm 65299
+#define Consts_SVMetafiles 65300
+#define Consts_SVEnhMetafiles 65301
+#define Consts_SVIcons 65302
+#define Consts_SVBitmaps 65303
+#define Consts_SVTIFFImages 65304
+#define Consts_SGridTooLarge 65305
+#define Consts_STooManyDeleted 65306
+#define Consts_SIndexOutOfRange 65307
+#define Consts_SFixedColTooBig 65308
+#define Consts_SFixedRowTooBig 65309
+#define Consts_SInvalidStringGridOp 65310
+#define Consts_SMaskErr 65311
+#define Consts_SNotPrinting 65312
+#define Consts_SPrinting 65313
+#define Consts_SPrinterIndexError 65314
+#define Consts_SInvalidPrinter 65315
+#define Consts_SDeviceOnPort 65316
+#define Consts_SGroupIndexTooLow 65317
+#define Consts_SNoMDIForm 65318
+#define Consts_SImageCanvasNeedsBitmap 65319
+#define Consts_SControlParentSetToSelf 65320
+#define Consts_SOKButton 65321
+#define Consts_SCancelButton 65322
+#define Consts_SYesButton 65323
+#define Consts_SNoButton 65324
+#define Consts_SHelpButton 65325
+#define Consts_SCloseButton 65326
+#define Consts_SIgnoreButton 65327
+#define Consts_SImageIndexError 65328
+#define Consts_SImageReadFail 65329
+#define Consts_SImageWriteFail 65330
+#define Consts_SWindowDCError 65331
+#define Consts_SWindowClass 65332
+#define Consts_SCannotFocus 65333
+#define Consts_SParentRequired 65334
+#define Consts_SParentGivenNotAParent 65335
+#define Consts_SMDIChildNotVisible 65336
+#define Consts_SVisibleChanged 65337
+#define Consts_SCannotShowModal 65338
+#define Consts_SPropertyOutOfRange 65339
+#define Consts_SMenuIndexError 65340
+#define Consts_SMenuReinserted 65341
+#define Consts_SMenuNotFound 65342
+#define Consts_SNoTimers 65343
+#define Consts_SInvalidTabPosition 65344
+#define Consts_SInvalidTabStyle 65345
+#define Consts_SInvalidBitmap 65346
+#define Consts_SInvalidIcon 65347
+#define Consts_SInvalidMetafile 65348
+#define Consts_SInvalidPixelFormat 65349
+#define Consts_SInvalidImage 65350
+#define Consts_SChangeIconSize 65351
+#define Consts_SChangeWicSize 65352
+#define Consts_SUnknownExtension 65353
+#define Consts_SUnknownClipboardFormat 65354
+#define Consts_SOutOfResources 65355
+#define Consts_SNoCanvasHandle 65356
+#define Consts_SInvalidImageSize 65357
+#define Consts_SInvalidImageList 65358
+#define Consts_SReplaceImage 65359
 #define RTLConsts_SFileNotFound 65360
 #define RTLConsts_SMissingDateTimeField 65361
 #define RTLConsts_hNoFilterViewer 65362
@@ -562,8 +562,8 @@ BEGIN
 	NativeXml_sxeCannotConvertToFloat,	"Cannot convert value to float"
 	NativeXml_sxeSignificantDigitsOutOfRange,	"Significant digits out of range"
 	ZaphodsMapMessages_szmFileNotFound,	"File not found"
-	ComStrs_sTabMustBeMultiLine,	"MultiLine must be True when TabPosition is tpLeft or tpRight"
-	ComStrs_sPageIndexError,	"%d is an invalid PageIndex value.  PageIndex must be between 0 and %d"
+	ucShell_SLaunchUnspecifiedError,	"Unspecified error."
+	ucFile_SFCantMove,	"Cannot move file %s"
 	tpUIBase_sRequestGUI,	"Class %s does not support GUI %s"
 	NativeXml_sxeErrorCalcStreamLength,	"Error while calculating streamlength"
 	NativeXml_sxeMissingDataInBinaryStream,	"Missing data in binary stream"
@@ -578,9 +578,6 @@ BEGIN
 	NativeXml_sxeDeclarationMustBeFirstElem,	"Xml declaration must be first element"
 	NativeXml_sxeMoreThanOneDoctype,	"More than one doctype declaration found in root"
 	NativeXml_sxeDoctypeAfterRootElement,	"Doctype declaration found after root element"
-	Consts_SDockZoneHasNoCtl,	" - Dock zone has no control"
-	Consts_SDockZoneVersionConflict,	"Error loading dock zone from the stream. Expecting version %d, but found %d."
-	Consts_SErrorSettingCount,	"Error setting %s.Count"
 	Consts_SListBoxMustBeVirtual,	"Listbox (%s) style must be virtual in order to set Count"
 	Consts_SPageControlNotSet,	"PageControl must first be assigned"
 	Consts_SWindowsVistaRequired,	"%s requires Windows Vista or later"
@@ -594,9 +591,9 @@ BEGIN
 	ComStrs_sTabFailGetObject,	"Failed to get object at index %d"
 	ComStrs_sTabFailSet,	"Failed to set tab \"%s\" at index %d"
 	ComStrs_sTabFailSetObject,	"Failed to set object at index %d"
-	Consts_SServiceFailed,	"Service failed on %s: %s"
-	Consts_SExecute,	"execute"
-	Consts_SStart,	"start"
+	ComStrs_sTabMustBeMultiLine,	"MultiLine must be True when TabPosition is tpLeft or tpRight"
+	ComStrs_sPageIndexError,	"%d is an invalid PageIndex value.  PageIndex must be between 0 and %d"
+	ucShell_SLaunchTimeoutError,	"Timeout of %d ms exceeded."
 	Consts_SStop,	"stop"
 	Consts_SPause,	"pause"
 	Consts_SContinue,	"continue"
@@ -610,9 +607,9 @@ BEGIN
 	Consts_SDockedCtlNeedsName,	"Docked control must have a name"
 	Consts_SDockTreeRemoveError,	"Error removing control from dock tree"
 	Consts_SDockZoneNotFound,	" - Dock zone not found"
-	Consts_SmkcDown,	"Down"
-	Consts_SmkcIns,	"Ins"
-	Consts_SmkcDel,	"Del"
+	Consts_SDockZoneHasNoCtl,	" - Dock zone has no control"
+	Consts_SDockZoneVersionConflict,	"Error loading dock zone from the stream. Expecting version %d, but found %d."
+	Consts_SErrorSettingCount,	"Error setting %s.Count"
 	Consts_SmkcShift,	"Shift+"
 	Consts_SmkcCtrl,	"Ctrl+"
 	Consts_SmkcAlt,	"Alt+"
@@ -626,9 +623,9 @@ BEGIN
 	Consts_SInvalidPrinterOp,	"Operation not supported on selected printer"
 	Consts_SNoDefaultPrinter,	"There is no default printer currently selected"
 	Consts_SDuplicateMenus,	"Menu '%s' is already being used by another form"
-	Consts_SMsgDlgAll,	"&All"
-	Consts_SMsgDlgNoToAll,	"N&o to All"
-	Consts_SMsgDlgYesToAll,	"Yes to &All"
+	Consts_SServiceFailed,	"Service failed on %s: %s"
+	Consts_SExecute,	"execute"
+	Consts_SStart,	"start"
 	Consts_SMsgDlgClose,	"&Close"
 	Consts_SmkcBkSp,	"BkSp"
 	Consts_SmkcTab,	"Tab"
@@ -642,9 +639,9 @@ BEGIN
 	Consts_SmkcLeft,	"Left"
 	Consts_SmkcUp,	"Up"
 	Consts_SmkcRight,	"Right"
-	Consts_SFixedRowTooBig,	"Fixed row count must be less than row count"
-	Consts_SInvalidStringGridOp,	"Cannot insert or delete rows from grid"
-	Consts_SMaskErr,	"Invalid input value"
+	Consts_SmkcDown,	"Down"
+	Consts_SmkcIns,	"Ins"
+	Consts_SmkcDel,	"Del"
 	Consts_SMaskEditErr,	"Invalid input value.  Use escape key to abandon changes"
 	Consts_SMsgDlgWarning,	"Warning"
 	Consts_SMsgDlgError,	"Error"
@@ -658,9 +655,9 @@ BEGIN
 	Consts_SMsgDlgAbort,	"&Abort"
 	Consts_SMsgDlgRetry,	"&Retry"
 	Consts_SMsgDlgIgnore,	"&Ignore"
-	Consts_SHelpButton,	"&Help"
-	Consts_SCloseButton,	"&Close"
-	Consts_SIgnoreButton,	"&Ignore"
+	Consts_SMsgDlgAll,	"&All"
+	Consts_SMsgDlgNoToAll,	"N&o to All"
+	Consts_SMsgDlgYesToAll,	"Yes to &All"
 	Consts_SRetryButton,	"&Retry"
 	Consts_SAbortButton,	"Abort"
 	Consts_SAllButton,	"&All"
@@ -674,9 +671,9 @@ BEGIN
 	Consts_STooManyDeleted,	"Too many rows or columns deleted"
 	Consts_SIndexOutOfRange,	"Grid index out of range"
 	Consts_SFixedColTooBig,	"Fixed column count must be less than column count"
-	Consts_SMenuReinserted,	"Menu inserted twice"
-	Consts_SMenuNotFound,	"Sub-menu is not in menu"
-	Consts_SNoTimers,	"Not enough timers available"
+	Consts_SFixedRowTooBig,	"Fixed row count must be less than row count"
+	Consts_SInvalidStringGridOp,	"Cannot insert or delete rows from grid"
+	Consts_SMaskErr,	"Invalid input value"
 	Consts_SNotPrinting,	"Printer is not currently printing"
 	Consts_SPrinting,	"Printing in progress"
 	Consts_SPrinterIndexError,	"Printer index out of range"
@@ -690,9 +687,9 @@ BEGIN
 	Consts_SCancelButton,	"Cancel"
 	Consts_SYesButton,	"&Yes"
 	Consts_SNoButton,	"&No"
-	Consts_SInvalidImageSize,	"Invalid image size"
-	Consts_SInvalidImageList,	"Invalid ImageList"
-	Consts_SReplaceImage,	"Unable to Replace Image"
+	Consts_SHelpButton,	"&Help"
+	Consts_SCloseButton,	"&Close"
+	Consts_SIgnoreButton,	"&Ignore"
 	Consts_SImageIndexError,	"Invalid ImageList Index"
 	Consts_SImageReadFail,	"Failed to read ImageList data from stream"
 	Consts_SImageWriteFail,	"Failed to write ImageList data to stream"
@@ -706,9 +703,9 @@ BEGIN
 	Consts_SCannotShowModal,	"Cannot make a visible window modal"
 	Consts_SPropertyOutOfRange,	"%s property out of range"
 	Consts_SMenuIndexError,	"Menu index out of range"
-	ucShell_SLaunchTimeoutError,	"Timeout of %d ms exceeded."
-	ucShell_SLaunchUnspecifiedError,	"Unspecified error."
-	ucFile_SFCantMove,	"Cannot move file %s"
+	Consts_SMenuReinserted,	"Menu inserted twice"
+	Consts_SMenuNotFound,	"Sub-menu is not in menu"
+	Consts_SNoTimers,	"Not enough timers available"
 	Consts_SInvalidTabPosition,	"Tab position incompatible with current tab style"
 	Consts_SInvalidTabStyle,	"Tab style incompatible with current tab position"
 	Consts_SInvalidBitmap,	"Bitmap image is not valid"
@@ -722,6 +719,9 @@ BEGIN
 	Consts_SUnknownClipboardFormat,	"Unsupported clipboard format"
 	Consts_SOutOfResources,	"Out of system resources"
 	Consts_SNoCanvasHandle,	"Canvas does not allow drawing"
+	Consts_SInvalidImageSize,	"Invalid image size"
+	Consts_SInvalidImageList,	"Invalid ImageList"
+	Consts_SReplaceImage,	"Unable to Replace Image"
 	RTLConsts_SFileNotFound,	"The specified file was not found"
 	RTLConsts_SMissingDateTimeField,	"?"
 	RTLConsts_hNoFilterViewer,	"No help viewer that supports filters"
@@ -902,7 +902,7 @@ END
 
 /* d:\apps\embarcadero\radstudio\7.0\lib\character.res */
 /* d:\apps\embarcadero\radstudio\7.0\lib\Controls.res */
-/* h:tpAppService.dfm */
+/* h:\tpAppService.dfm */
 /* d:\apps\embarcadero\radstudio\7.0\lib\Buttons.res */
 /* h:combob32.res */
 /* h:\utPanFrm.dfm */
@@ -910,11 +910,11 @@ END
 /* h:\D14\docProps.dfm */
 /* h:\utMainFm.dfm */
 /* h:\utTrayFm.dfm */
-/* h:CGIWIN.RES */
 /* h:\D14\webSplatGUI.dfm */
+/* h:CGIWIN.RES */
 /* h:WhConst.RES */
 /* h:\D14\wpeEdit.dfm */
-/* h:whgui_CoverPage.dfm */
+/* h:\whgui_CoverPage.dfm */
 /* h:\D14\webPick.dfm */
 /* h:\D14\htEdMemo.dfm */
 /* h:\D14\..\whteko.res */
@@ -930,29 +930,29 @@ END
 /* h:\D14\wpaFiles.dfm */
 /* h:\D14\wpeLSplt.dfm */
 /* h:\D14\wpaChunk.dfm */
-/* dserver_whdmGeneral.dfm */
-/* ..\..\..\Common\whdemo_ColorScheme.dfm */
-/* h:whMain.dfm */
-/* h:whHTML.dfm */
-/* h:whShared.dfm */
-/* h:whpanel_Shared.DFM */
-/* h:whsample_GoogleSitemap.DFM */
-/* h:whpanel_Decode.dfm */
-/* d:\apps\embarcadero\radstudio\7.0\lib\SPIN.RES */
-/* h:whAppOut.dfm */
-/* h:whAppIn.dfm */
-/* h:whdw_RemotePages.dfm */
-/* h:whpanel_RemotePages.dfm */
-/* h:whsample_DWSecurity.dfm */
-/* h:whMail.dfm */
-/* h:whpanel_Mail.DFM */
-/* ..\..\..\Common\whdemo_ViewSource.DFM */
-/* ..\..\..\Common\whdemo_Refresh.DFM */
-/* ..\..\..\Common\whdemo_About.DFM */
+/* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\dserver\dserver_whdmGeneral.dfm */
+/* h:\whsample_EvtHandlers.dfm */
+/* h:\whMain.dfm */
+/* h:\dmWHApp.dfm */
 /* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Extensions.DFM */
-/* h:whsample_EvtHandlers.dfm */
-/* h:dmWHApp.dfm */
-/* dserver_dmProjMgr.dfm */
+/* h:\whdw_RemotePages.dfm */
+/* h:\whpanel_RemotePages.dfm */
+/* h:\whsample_DWSecurity.dfm */
+/* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_ViewSource.DFM */
+/* h:\whMail.dfm */
+/* h:\whpanel_Mail.DFM */
+/* h:\whShared.dfm */
+/* d:\apps\embarcadero\radstudio\7.0\lib\SPIN.RES */
+/* h:\whAppIn.dfm */
+/* h:\whAppOut.dfm */
+/* h:\whpanel_Decode.dfm */
+/* h:\whsample_GoogleSitemap.DFM */
+/* h:\whpanel_Shared.DFM */
+/* h:\whHTML.dfm */
+/* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_About.DFM */
+/* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Refresh.DFM */
+/* D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_ColorScheme.dfm */
+/* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\dserver\dserver_dmProjMgr.dfm */
 /* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\dserver\dserver.RES */
 /* D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\dserver\WHDICON.RES */
 /* h:HTICONS.RES */
