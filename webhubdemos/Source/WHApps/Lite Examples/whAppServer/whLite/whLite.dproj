@@ -21,7 +21,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DependencyCheckOutputName>..\..\..\..\..\Live\WebHub\Apps\whLite.exe</DCC_DependencyCheckOutputName>
-			<DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;K:\WebHub\lib\whplus;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;K:\WebHub\lib\whplus;K:\WebHub\lib\whrun;K:\WebHub\lib\wheditors;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>
@@ -45,7 +45,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_Define>DEBUG;EUREKALOG;EUREKALOG_VER6;$(DCC_Define)</DCC_Define>
+			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="whLite.dpr">
@@ -53,6 +53,7 @@
 			</DelphiCompile>
 			<DCCReference Include="h:\MultiTypeApp.pas"/>
 			<DCCReference Include="h:\tpProj.pas"/>
+			<DCCReference Include="k:\webhub\tpack\ucString.pas"/>
 			<DCCReference Include="h:\utPanFrm.pas">
 				<Form>utParentForm</Form>
 			</DCCReference>
@@ -117,6 +118,14 @@
 			<DCCReference Include="h:\uAutoPanels.pas"/>
 			<DCCReference Include="k:\webhub\lib\whvcl\webServ.pas"/>
 			<DCCReference Include="k:\webhub\lib\whvcl\webCore.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whvcl\cgiServ.pas"/>
+			<DCCReference Include="k:\webhub\lib\whvcl\webCall.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whrun\apiBuilt.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whrun\ipcMail.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whrun\apiCall.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whrun\apiStat.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whvcl\webApp.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whvcl\webSend.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -139,14 +148,11 @@
 						<Source Name="MainSource">whLite.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/ID=showcase</Parameters>
+						<Parameters Name="RunParams">/ID=form</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
 					</Parameters>
-					<Language>
-						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite\</Language>
-					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
@@ -188,7 +194,7 @@
 <!-- EurekaLog First Line
 [Exception Log]
 EurekaLog Version=6022
-Activate=1
+Activate=0
 Activate Handle=1
 Save Log File=1
 Foreground Tab=0
