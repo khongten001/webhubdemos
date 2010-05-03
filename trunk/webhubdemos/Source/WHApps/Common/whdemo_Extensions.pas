@@ -86,7 +86,8 @@ function TDemoExtensions.IsHREFToolsQATestAgent: Boolean;
 begin
   with pWebApp do
     Result := (SessionID = Security.AdminSessionID) and
-      (Request.UserAgent = 'HREF Tools QA Test Agent');
+      ((Request.UserAgent = 'HREF Tools QA Test Agent') or
+      (Request.RemoteAddress = '208.201.252.43'));
 end;
 
 //------------------------------------------------------------------------------
@@ -112,7 +113,7 @@ end;
 
 procedure TDemoExtensions.waVersionInfoExecute(Sender: TObject);
 var
-  S: string;
+  S: UTF8String;
 
   function GetVersionInfo(versionType: TVersionType): string;
   begin
@@ -135,7 +136,7 @@ var
   end;
 begin
   inherited;
-  S := GetVersionInformation(waVersionInfo.HtmlParam);
+  S := UTF8Encode(GetVersionInformation(waVersionInfo.HtmlParam));
   if S <> '' then
     pWebApp.SendStringImm(S)
   else
@@ -149,7 +150,7 @@ end;
 procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
 begin
   inherited;
-  pWebApp.SendString(ExtractFilename(Application.ExeName));
+  pWebApp.SendString(UTF8Encode(ExtractFilename(Application.ExeName)));
 end;
 
 procedure TDemoExtensions.waLSecExecute(Sender: TObject);
@@ -158,8 +159,10 @@ var
   ACutOff: string;
   CutOff: TDateTime;
   y, m, d, h, n: Integer;
-  temp, ASeconds: string;
+  temp, temp2: string;
+  ASeconds: UTF8String;
   NSeconds: Integer;
+  S8: UTF8String;
 
   function MakeOutgoingToken: string;
   begin
@@ -172,10 +175,13 @@ begin
   begin
     if (Copy(HtmlParam, 1, 3) = 'out') then
     begin
-      SplitString(HtmlParam, ',', temp, ASeconds);
+      SplitString(HtmlParam, ',', temp, temp2);
+      ASeconds := UTF8String(ASeconds);
       ASeconds := WebApp.MoreIfParentild(ASeconds);
-      NSeconds := StrToIntDef(ASeconds, 120);
-      WebApp.SendStringImm(Name + '.' + Code64String(MakeOutgoingToken));
+      NSeconds := StrToIntDef(string(ASeconds), 120);
+      S8 := UTF8Encode(Format('%s.%s',
+        [Name, Code64String(MakeOutgoingToken)]));
+      WebApp.SendStringImm(S8);
     end
     else
     if IsEqual(HtmlParam, 'in') then
