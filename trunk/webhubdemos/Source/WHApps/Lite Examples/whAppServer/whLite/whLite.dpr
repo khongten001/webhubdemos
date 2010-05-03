@@ -31,14 +31,13 @@ THE SOFTWARE.
 // e.g. h: would be mapped to c:\Program Files\HREF\WebHub\v2.098\lib
 
 uses
-  ExceptionLog,
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  ucString,
+  ucString in 'k:\webhub\tpack\ucString.pas',
   uCode,
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   webLink in 'h:\webLink.pas',
   whutil_ZaphodsMap in 'H:\whutil_ZaphodsMap.pas',
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
@@ -61,7 +60,15 @@ uses
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   uAutoPanels in 'h:\uAutoPanels.pas',
   webServ in 'k:\webhub\lib\whvcl\webServ.pas',
-  webCore in 'k:\webhub\lib\whvcl\webCore.pas';
+  webCore in 'k:\webhub\lib\whvcl\webCore.pas',
+  cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
+  webCall in 'k:\webhub\lib\whvcl\webCall.pas',
+  apiBuilt in 'K:\WebHub\lib\whrun\apiBuilt.pas',
+  ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
+  apiCall in 'K:\WebHub\lib\whrun\apiCall.pas',
+  apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
+  webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
+  webSend in 'K:\WebHub\lib\whvcl\webSend.pas';
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos
