@@ -14,14 +14,14 @@ htmlFilename=3Slide.whteko
 </whpagesettingslist>
 
 <whdroplet name="slideBefore">
- 3Cbr />
- 3Cbr />
+ 3C<br />
+ 3C<br />
 </whdroplet>
 
 
 <whdroplet name="slideAfter">
- 3Cbr />
- 3Cbr />
+ 3C<br />
+ 3C<br />
 </whdroplet>
 
 <whpage pageid="pgSlide0" desc="Questions to Ask When Evaluating Web Solutions">
