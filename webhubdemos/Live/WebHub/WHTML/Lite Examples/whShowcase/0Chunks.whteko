@@ -57,13 +57,14 @@ mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
 </whdroplet>
 
 <whdroplet name="drShowcaseExtraHeader">
-<!--
+<!-- comment for the curious:
+current pageid: (~PageID~)
 current filename: (~pagesetting.htmlFilename~)
 bSeqHdr: (~pagesetting.bSeqHdr~)
 bReqUl:  (~pagesetting.bReqUl~)
 level: (~pagesetting.level~)
 levelKeyword: (~pagesetting.levelKeyword~) -->
-<!---========================================================= -->
+<!--- ========================================================= -->
 (~drShowcasePageDesc~)
   <div id="whTopMenu" style="background-color: antiquewhite;font-size:small;bottom: 1px; width:100%;border-bottom: solid 2px #B22222;" >
     <div id="whCurrentLevel" style="text-align:center;width:100%;font-size:small;padding:.5em 0 .5em 0;" >
