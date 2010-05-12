@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls,
-  uISelenium, uDefaultSelenium;
+  uISelenium_1_0_3, uDefaultSelenium_1_0_3;
 
 type
   TForm1 = class(TForm)
@@ -15,9 +15,13 @@ type
     btnTest: TButton;
     btnTestB: TButton;
     btnStop: TButton;
+    Button1: TButton;
+    Button2: TButton;
     procedure btnTestAClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
   public
   end;
@@ -40,6 +44,10 @@ begin
   Application.ProcessMessages;
 end;
 
+procedure SaveText(const filename: string; const content: UTF8String);
+begin
+  UTF8StringWriteToFile(filename, content);
+end;
 
 var
   flagStop : boolean;
@@ -84,7 +92,7 @@ begin
       flagStop := false;
       {$I test_showcase.inc}
       
-      selenium.Stop();
+      //selenium.Stop();
     except
       on E: Exception do
       begin
@@ -93,18 +101,9 @@ begin
       end;
     end;
   finally
-    try
-      //selenium.Stop();
-      //selenium2.Stop();
-    except
-      on E: Exception do
-      begin
-        Log('************* Exception ***********');
-        Log(Format('Exception: %s', [e.Message]));
-      end;
-    end;
   end;
   Log('End.');
+  Sleep(1000);  // wait for OS to close the log file
   LogContents := StringLoadFromFileDef(GetTestLogFilespec, '');
   Form1.memoLog.Lines.Text := LogContents;
 end;
@@ -117,16 +116,44 @@ end;
 procedure TForm1.btnTestClick(Sender: TObject);
 var
   selenium: ISelenium;
-  LogContents: string;
+//  s: string;
 begin
   Log('Start......');
   try
-    selenium := DefaultSelenium.Create('localhost', 5555, '*chrome',
-      'http://demos.href.com/');
+    {selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://demos.href.com');
+    selenium.Start();
+    selenium.Open('/scripts/runisa.dll?hubvers:pgVersion');
+
+    //selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://demos.href.com');
+    //selenium.Start();
+    //selenium.Open('/showcase');
+
+    //s := selenium.GetHtmlSource();
+    //SaveText(ExtractFilePath(Application.ExeName) + '0_GetHtmlSource.txt', s);
+
+    //s_old_location := Selenium.getEval('window.location');
+    Selenium.getEval('window.location = ''view-source:'' + window.location;');
+    s := Selenium.getBodyText();
+    SaveText(ExtractFilePath(Application.ExeName) + '0_getBodyText.txt', s);
+
+    //Selenium.getEval('window.location = ''' + s_old_location + '''');
+    //s := selenium.GetHtmlSource();
+    //SaveText(ExtractFilePath(Application.ExeName) + '0_GetHtmlSource2.txt', s);
+
+    Selenium.GoBack();
+    Selenium.WaitForPageToLoad('30000');
+    //SaveText(ExtractFilePath(Application.ExeName) + '0_getBodyText.txt', s);
+
+    //Selenium.SelectFrame('relative=top');
+    //Selenium.getEval('window.history.go(-1)');
+
+    //selenium.Stop();}
+
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://demos.href.com');
     selenium.Start();
     selenium.Open('/showcase::1204');
-		//selenium.ClickAndWait('//div[@id=''menuThisWebHubDemo'']/ul/li[2]/a');
-		//selenium.ClickAndWait('link=Easier HTML');
+    selenium.ClickAndWait('//div[@id=''menuThisWebHubDemo'']/ul/li[2]/a');
+
     //selenium.Stop();
   except
     on E: Exception do
@@ -136,14 +163,61 @@ begin
     end;
   end;
   Log('End.');
-  LogContents := StringLoadFromFileDef(GetTestLogFilespec, '');
-  Form1.memoLog.Lines.Text := LogContents;
 
   //ShowMessage(RegReplace('aaa:12345bbb', ':[0-9]+(?=[^0-9])', ''));
   //ShowMessage(RegReplace('aaa:12345.123:bbb', ':[0-9]+\.[0-9]+:', ''));
   //ShowMessage(RegReplace('aaa<span class="changing">ccc</span>bbb', '<span class="changing">.*</span>', ''));
 	//ShowMessage(RegReplace('aaa<!-- changing:start-->ccc<!-- changing:stop-->bbb', '<!-- changing:start-->.*<!-- changing:stop-->', ''));
   //ShowMessage(RegReplace('aaa/* changing:start */ccc/* changing:stop */bbb', '/\* changing:start \*/.*/\* changing:stop \*/', ''));
+end;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.google.com');
+    selenium.Start();
+    selenium.Open('/');
+    selenium.ClickAndWait('link=Images');
+
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  selenium: ISelenium;
+  s: UTF8String;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.google.com');
+    selenium.Start('captureNetworkTraffic=true');
+    selenium.Open('/');
+    s := selenium.captureNetworkTraffic('plain');
+    UTF8StringWriteToFile(
+      ExtractFilePath(Application.ExeName) + '0captureNetworkTraffic.txt',
+      s);
+    selenium.ClickAndWait('link=Images');
+
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
 end;
 
 end.

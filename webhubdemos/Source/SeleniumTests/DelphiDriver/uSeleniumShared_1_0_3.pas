@@ -3,16 +3,14 @@ unit uSeleniumShared;
 interface
 
 uses
-  uISelenium_1_0_3;
+  uISelenium;
 
 function selenium_Open(url: UTF8String): boolean;
 function selenium_Click(locator: UTF8String): boolean;
 function selenium_ClickAndWait(locator: UTF8String): boolean;
 function selenium_save(title: UTF8String): boolean;
-function selenium_Type(const locator, value: UTF8String): boolean;
+function selenium_Type(locator: UTF8String;value: UTF8String): boolean;
 function selenium_GoBack(): boolean;
-function selenium_MouseMove(locator: UTF8String): boolean;
-function selenium_WaitForPageToLoad(timeout: UTF8String): boolean;
 
 var
   selenium_server: UTF8String = '';
@@ -31,21 +29,34 @@ uses
   Forms, SysUtils, Windows,
   ucLogFil,
   ldiRegEx,
-  uSeleniumIgnoreChanging, uDefaultSelenium_1_0_3;
+  uDefaultSelenium;
+
 
 
 procedure Log(const S: UTF8String); overload;
 begin
-  //TestMNH_uMain.Log(s);
   HREFTestLog('info', '', string(S));
 end;
 
 procedure Log(const S: string); overload;
 begin
-  //TestMNH_uMain.Log(s);
   HREFTestLog('info', '', S);
 end;
 
+
+function RegReplace(const src: UTF8String; const Pattern: UTF8String;
+  const replaceWith: UTF8String): UTF8String;
+var
+  Reg : TldiRegExMulti;
+  PatternStatus: TPatternStatus;
+  PatternID : Integer;
+begin
+  Reg := TldiRegExMulti.Create(nil);
+  if not Reg.AddPattern(Pattern, [coIgnoreCase, coUnGreedy], PatternID,
+    PatternStatus) then
+    raise Exception.Create('AddPattern error! ' + PatternStatus.ErrorMessage);
+  result := Reg.Replace(PatternID, src, replaceWith);
+end;
 
 function selenium_Open(url: UTF8String): boolean;
 var
@@ -55,29 +66,15 @@ begin
   try
     cmd := UTF8String(Format('Index=%d, Open(%s)', [PageIndex, url]));
     Log(string(cmd));
-
-// Joshua    selenium.start('captureNetworkTraffic=true');
-    (*
-    To use it, just call
-    selenium.start("captureNetworkTraffic=true"),
-    and then later on in your script you can call
-    selenium.captureNetworkTraffic("...")
-    where "..." is "plain", "xml", or "json".
-    *)
-   //Ann selenium.start('captureNetworkTraffic=true');
     selenium.Open(url);
-   //Ann selenium.captureNetworkTraffic('plain');
-//Joshua    selenium.captureNetworkTraffic('plain');
-
-
+    //Log(Format('host:(%s) cmd:%s', [selenium2_url, cmd]));
+    //selenium2.Open(url);
     result := selenium_save(cmd);
-    // Joshua : turn off capture ?
   except
     on E: Exception do
     begin
       Log('************* Exception ***********');
       Log(Format('Exception: %s', [e.Message]));
-      Inc(PageIndex);
       result := false;
     end;
   end;
@@ -100,7 +97,6 @@ begin
     begin
       Log('************* Exception ***********');
       Log(Format('Exception: %s', [e.Message]));
-      Inc(PageIndex);
       result := false;
     end;
   end;
@@ -124,7 +120,6 @@ begin
     begin
       Log('************* Exception ***********');
       Log(Format('Exception: %s', [e.Message]));
-      Inc(PageIndex);
       result := false;
     end;
   end;
@@ -148,7 +143,6 @@ begin
     begin
       Log('************* Exception ***********');
       Log(Format('Exception: %s', [e.Message]));
-      Inc(PageIndex);
       result := false;
     end;
   end;
@@ -177,15 +171,17 @@ begin
   end;
 end;
 
-function selenium_Type(const locator, value: UTF8String): boolean;
+function selenium_Type(locator: UTF8String;value: UTF8String): boolean;
 var
-  cmdinfo: UTF8String;
+  cmd: UTF8String;
 begin
   Application.ProcessMessages;
   try
-    cmdinfo := 'Type(' + locator + ', ' + value + ')';
-    Log(cmdinfo);
+    cmd := UTF8String(Format('Type(%s, %s)', [locator, value]));
+    Log(cmd);
     selenium.Type_(locator, value);
+    //Log(Format('host:(%s) cmd:%s', [selenium2_url, cmd]));
+    //selenium2.Type_(locator, value);
     result := true;
   except
     on E: Exception do
@@ -311,57 +307,75 @@ begin
   end;
 end;
 
-function selenium_MouseMove(locator: UTF8String): boolean;
-var
-  cmd: UTF8String;
-begin
-  Application.ProcessMessages;
-  try
-    cmd := UTF8String(Format('MouseMove(%s)', [string(locator)]));
-    Log(cmd);
-    selenium.MouseMove(locator);
-    result := true;
-  except
-    on E: Exception do
-    begin
-      Log('************* Exception ***********');
-      Log(Format('Exception: %s', [e.Message]));
-      result := false;
-    end;
-  end;
-end;
-
 function selenium_save(title: UTF8String): boolean;
 var
   s_org: UTF8String;
   s: UTF8String;
   filename: string;
 begin
+(*
+  //s1_org := selenium.GetHtmlSource();
+  //s2_org := selenium2.GetHtmlSource();
+  //s1 := StringReplace(s1_org, '<span class="changing">.*</span>', '',[rfReplaceAll, rfIgnoreCase]);
+  //s2 := StringReplace(s2_org, '<span class="changing">.*</span>', '',[rfReplaceAll, rfIgnoreCase]);
+  //s1 := StringReplace(s1_org, ':1204\..*"', ':1204"', [rfReplaceAll, rfIgnoreCase]);
+  //s2 := StringReplace(s2_org, ':1204\..*"', ':1204"', [rfReplaceAll, rfIgnoreCase]);
+  //s1 := StringReplace(s1_org, 'demos.href.com', 'demos.href.com',[rfReplaceAll, rfIgnoreCase]);
+  //s2 := StringReplace(s2_org, 'localhost', 'demos.href.com',[rfReplaceAll, rfIgnoreCase]);
 
-  s_org := 'placeholder';
+  //for (int i = 0; i < Math.Min(s1.Length, s2.Length); i++)
+  //{
+  //    if (s1[i] != s2[i])
+  //    {
+  //        Console.WriteLine("  Diff:\n\r    HtmlSource1={0}\n\r    HtmlSource2={1}",
+  //            s1.Substring(i, (s1.Length - i - 1 >= 20 ? 20 : s1.Length - i - 1)),
+  //            s2.Substring(i, (s2.Length - i - 1 >= 20 ? 20 : s2.Length - i - 1)));
+  //        break;
+  //    }
+  //}
+  //if (s1 != s2)
+  //{
+  Inc(error_count);
+  file1 := log_path + 'a\' + IntToStr(error_count) + '.txt';
+  if (FileExists(file1)) then
+    DeleteFile(file1);
+  AssignFile(F, file1);
+  Rewrite(F);
+  Writeln(F, title);
+  Writeln(F, s1);
+  CloseFile(F);
+
+  file2 := log_path + 'b\' + IntToStr(error_count) + '.txt';
+  if (FileExists(file2)) then
+    DeleteFile(file2);
+  AssignFile(F, file2);
+  Rewrite(F);
+  Writeln(F, title);
+  Writeln(F, s2);
+  CloseFile(F);
+
+  result := (s1 = s2);*)
 
   // Reference http://groups.google.com/group/selenium-users/browse_thread/thread/9d30035cf39676b8/a093cf7fe8c91a8a?lnk=gst&q=gethtmlsource#a093cf7fe8c91a8a
-
-  if false then
-  begin
-  Selenium.getEval(
-    'window.location = ''view-source:'' + window.location;');
+  //s_org := selenium.GetHtmlSource();
+  Selenium.getEval('window.location = ''view-source:'' + window.location;');
   s_org := Selenium.getBodyText();
-  // close the view-source window
-  Selenium.getEval('this.browserbot.getCurrentWindow().close()');
-  //Selenium.getEval('window.location = ''' + s_old_location + '''');
-  //Selenium.GoBack();
-  Selenium.WaitForPageToLoad('8000');  // 8 seconds?
-  //Selenium.SelectFrame('relative=top');
-  //Selenium.getEval('window.history.go(-1)');
-  end;
 
-  if false then
-  begin
-    S := StripChanging(s_org);
-  end
-  else
-    s := s_org;
+  // Joshua: need to set the window.location back to normal here
+
+if true then
+begin
+  s := RegReplace(s_org, ':[0-9]+(?=[^0-9])', ':1234');
+  s := RegReplace(s, ':[0-9]+\.[0-9]+:', ':1234.5678:');
+  //s := RegReplace(s, ':[0-9]+"', ':1204"');
+  //s := RegReplace(s, ':[0-9]+:', ':1204:');
+  //s := RegReplace(s, ':1204\..*"', ':1204"');
+	s := RegReplace(s, '<span class="changing">.*</span>', '');
+	s := RegReplace(s, '<!-- changing:start-->.*<!-- changing:stop-->', '');
+  s := RegReplace(s, '/\* changing:start \*/.*/\* changing:stop \*/', '');
+end
+else
+  s := s_org;
 
   filename := currentLogPath + IntToStr(PageIndex) + '.txt';
   UTF8StringWriteToFile(filename, Title + sLineBreak + s);
