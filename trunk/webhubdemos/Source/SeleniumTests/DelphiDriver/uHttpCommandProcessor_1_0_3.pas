@@ -1,9 +1,10 @@
-﻿unit uHttpCommandProcessor;
+﻿unit uHttpCommandProcessor_1_0_3;
 
 interface
 uses
   SysUtils,
-  uICommandProcessor, uDefaultRemoteCommand, uIRemoteCommand, uCommon;
+  uICommandProcessor_1_0_3, uDefaultRemoteCommand_1_0_3, uIRemoteCommand_1_0_3,
+  uCommon;
 
 type
   HttpCommandProcessor = class(TInterfacedObject, ICommandProcessor)
@@ -13,13 +14,16 @@ type
     serverPort: integer;
     browserStartCommand: UTF8String;
     browserURL: UTF8String;
+    extensionJs: UTF8String;
   private
     function BuildCommandString(commandString: UTF8String): UTF8String;
   public
     constructor Create(_serverHost: UTF8String; _serverPort: integer; _browserStartCommand: UTF8String; _browserURL: UTF8String); overload;
     //constructor Create(serverURL: string; browserStartCommand: string; browserURL: string); overload;
+    procedure SetExtensionJs(_extensionJs: UTF8String);
     function DoCommand(command: UTF8String; args: ArrayOfUTF8String): UTF8String;
-    procedure Start();
+    procedure Start(); overload;
+    procedure Start(optionsString: UTF8String); overload;
     procedure Stop();
     function GetString(commandName: UTF8String; args: ArrayOfUTF8String): UTF8String;
     function GetStringArray(commandName: UTF8String; args: ArrayOfUTF8String): ArrayOfUTF8String;
@@ -33,7 +37,7 @@ type
 implementation
 
 uses
-  StrUtils,
+  StrUtils, Classes,
   ucString, ucLogFil,
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP;
 
@@ -43,6 +47,7 @@ begin
   serverPort := _serverPort;
   browserStartCommand := _browserStartCommand;
   browserURL := _browserURL;
+  extensionJs := '';
 end;
 
 {constructor HttpCommandProcessor.Create(serverURL: string; browserStartCommand: string; browserURL: string);
@@ -50,7 +55,13 @@ begin
   url := serverURL;
   browserStartCommand := browserStartCommand;
   browserURL := browserURL;
+  extensionJs := '';
 end;}
+
+procedure HttpCommandProcessor.SetExtensionJs(_extensionJs: UTF8String);
+begin
+  extensionJs := _extensionJs;
+end;
 
 var
   debugcount: integer = 0;
@@ -63,30 +74,37 @@ var
   i: integer;
   flag: Boolean;
   part: UTF8String;
+  data: TStrings;
 begin
+  data := nil;
+  try
+    data := TStringList.Create();
   Inc(debugcount);
   remoteCommand := DefaultRemoteCommand.Create(command, args);
   http := TIdHTTP.Create(nil);
   http.URL.Host := string(serverHost);
   http.URL.Port := IntToStr(serverPort);
   http.Response.CharSet := 'utf-8';
-
+  http.Request.Method := 'POST';
+  http.Request.ContentType := 'application/x-www-form-urlencoded; charset=utf-8';
+  //http.Request.Source.Write();
+  data.Clear;
+  //data.Add(utf8encode(BuildCommandString(remoteCommand.CommandString)));
+  data.Add(BuildCommandString(remoteCommand.CommandString));
+  //response := http.Get('/selenium-server/driver/', data);
   response := http.Get(string(BuildCommandString(remoteCommand.CommandString)));
+
   // Testing: in showcase, GetHtmlSource returns copyright symbol. We should
   // be getting &copy; instead. Probably we need to use other functions insead
   // of GetHtmlSource.
   // Reference http://groups.google.com/group/selenium-users/browse_thread/thread/9d30035cf39676b8/a093cf7fe8c91a8a?lnk=gst&q=gethtmlsource#a093cf7fe8c91a8a
-  (*if (debugcount < 20) and (Length(Response) > 2) then
-    StringWriteToFile(Format('%s%d_test_%d.txt',
-      [GetLogFolder, debugcount, Length(Response)]),
-      Response);*)
   flag := (Pos('Русский', Response) > 0);
   if flag then
   begin
-    //HREFTestLog('Russian ok', 'DoCommand', '');
+    HREFTestLog('Russian ok', 'DoCommand', '');
     flag := (Pos('Русский', Copy(Response, Length(Response) - 1500,
       1500)) > 0);
-    //HREFTestLog('Russian', 'found after copy', BoolToStr(flag, True));
+    HREFTestLog('Russian', 'found after copy', BoolToStr(flag, True));
   end;
 
   if (http.ResponseCode <> 200) then
@@ -99,10 +117,14 @@ begin
 
   Result := utf8encode(Response);
   flag := (Pos(utf8encode('Русский'), Response) > 0);
-  //HREFTestLog('Russian', 'found in Result', BoolToStr(flag, True));
+  HREFTestLog('Russian', 'found in Result', BoolToStr(flag, True));
 
   if flag and (debugcount < 20) then
-    HREFTestLog('Result', IntToStr(debugcount), Result);
+    HREFTestLog('Result', IntToStr(debugcount), utf8decode(Result));
+  finally
+    if data <> nil then
+      FreeAndNil(data);
+  end;
 end;
 
 function HttpCommandProcessor.BuildCommandString(commandString: UTF8String): UTF8String;
@@ -115,7 +137,13 @@ end;
 procedure HttpCommandProcessor.Start();
 begin
   sessionId := string(GetString('getNewBrowserSession',
-    ArrayOfUTF8String.Create(browserStartCommand, browserURL)));
+    ArrayOfUTF8String.Create(browserStartCommand, browserURL, extensionJs)));
+end;
+
+procedure HttpCommandProcessor.Start(optionsString: UTF8String);
+begin
+  sessionId := string(GetString('getNewBrowserSession',
+    ArrayOfUTF8String.Create(browserStartCommand, browserURL, extensionJs, optionsString)));
 end;
 
 procedure HttpCommandProcessor.Stop();

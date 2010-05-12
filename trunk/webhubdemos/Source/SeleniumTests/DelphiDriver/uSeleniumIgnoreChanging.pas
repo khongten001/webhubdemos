@@ -18,12 +18,12 @@ var
   PatternIDSpanJSComment: Integer;
 
 
-function RegReplace(const src: string; const APatternID: Integer;
-  const replaceWith: string): TldiString;
+function RegReplace(const src: UTF8String; const PatternID: Integer;
+  const replaceWith: UTF8String): UTF8String;
 var
   PatternStatus: TPatternStatus;
 
-    procedure NewRegexPattern(const PatString: String;
+    procedure NewRegexPattern(const PatString: UTF8String;
       out NewPatternID: Integer);
     begin
       if not Reg.AddPattern(PatString,
@@ -49,37 +49,22 @@ begin
 
     InitOnce := True;
   end;
-  Result := TldiString(Reg.Replace(APatternID, src, replaceWith));
+  Result := Reg.Replace(PatternID, src, replaceWith);
 end;
 
 function StripChanging(const InValue: UTF8String): UTF8String;
 var
-  x, y, z: Integer;
+  S: UTF8String;
 begin
-  Result := InValue;
-  //Result := RegReplace(Result, ':[0-9]+(?=[^0-9])', ':1234');
-  //Result := RegReplace(Result, ':[0-9]+\.[0-9]+:', ':1234.5678:');
-  //Result := RegReplace(Result, ':[0-9]+"', ':1204"');
-  //Result := RegReplace(Result, ':[0-9]+:', ':1204:');
-  //Result := RegReplace(Result, ':1204\..*"', ':1204"');
-  Result := RegReplace(string(Result), PatternIDSpanChanging, '');
-
-  // fails in D14
-  // Result := RegReplace(string(Result), PatternIDSpanComment, '');
-
-  z := Length('<!-- changing:stop-->');
-  while true do
-  begin
-    x := Pos('<!-- changing:start-->', Result);
-    if x = 0 then break;
-    y := Pos('<!-- changing:stop-->', Result);
-    if y = 0 then break;
-    Result := Copy(Result, 1, x - 1) +
-      Copy(Result, y + z, MaxInt);
-  end;
-
-  // not sure yet whether this works
-  Result := RegReplace(string(Result), PatternIDSpanJSComment, '');
+  S := InValue;
+  //s := RegReplace(s, ':[0-9]+(?=[^0-9])', ':1234');
+  //s := RegReplace(s, ':[0-9]+\.[0-9]+:', ':1234.5678:');
+  //s := RegReplace(s, ':[0-9]+"', ':1204"');
+  //s := RegReplace(s, ':[0-9]+:', ':1204:');
+  //s := RegReplace(s, ':1204\..*"', ':1204"');
+  s := RegReplace(s, PatternIDSpanChanging, '');
+  s := RegReplace(s, PatternIDSpanComment, '');
+  s := RegReplace(s, PatternIDSpanJSComment, '');
 end;
 
 initialization
