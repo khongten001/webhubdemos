@@ -1,5 +1,9 @@
+Log('erase session 1204 var file');
+selenium_Open('/showcase:pgmonitor:1204');
+
 Log('0. SHOWCASE');
 selenium_Open('/showcase::1204');
+
 selenium_ClickAndWait('//div[@id=''menuThisWebHubDemo'']/ul/li[2]/a');
 
 Log('1. SHOWCASE >> Easier HTML');
