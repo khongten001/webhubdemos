@@ -28,11 +28,11 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 <whpage pageid="temp" mode="scaffold">
 
 <whdroplet name="drSharedDSPHeadTags" show="no">
-(~ANCHORMODIFY|metatags|
+<!---(~ANCHORMODIFY|metatags|-->
   <meta name="robots" content="(~pagesetting.metarobot~)" />
   <meta name="description" content="(~pagesetting.metadescription~)" />
   <meta name="keywords" content="(~pagesetting.metakeywords~)" />
-~)
+<!---~) -->
 (~ANCHORMODIFY|style|  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />~)
 </whdroplet>
 (~mcdoctypehtml~)
@@ -40,14 +40,6 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 <head>
 (~drHead~)
 (~drSharedDSPHeadTags~)
-<whsketch>
-(~HEADER|Content-Type: text/html; charset=iso-8859-1~)
-  <meta name="robots" content="(~pagesetting.metarobot~)" />
-  <meta name="description" content="(~pagesetting.metadescription~)" />
-  <meta name="keywords" content="(~pagesetting.metakeywords~)" />
-  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />
-</whsketch>
 </head>
 <body>
 (~drPageBegin~)
@@ -59,7 +51,7 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 <div class="whDemoSectionNav" style="border-color: teal;">
 	<span class="techiefooter">
 	<b>Search Technology Partners: <a href="http://www.webhub.com/">WebHub</a> &amp; (~JUMP|GOTO-_top,www.tamaracka.com|Rubicon~). </b>
-	<p><!--- (~HIDE|NEWS:AdInfo-_Top|Advertising~) &nbsp;&nbsp; -->Running (~version~) and Rubicon v2.21.  Web Application Version (~mcAppVersion~)<br />
+	<p><!--- (~HIDE|NEWS:AdInfo-_Top|Advertising~) &nbsp;&nbsp; -->Running (~version~) and Rubicon v3.  Web Application Version (~mcAppVersion~)<br />
 Session #(~SessionID~).  Your Browser: (~Request.UserAgent~)<br />
 	</p>
 	</span>(~ISWEBROBOTREQUEST| ||
