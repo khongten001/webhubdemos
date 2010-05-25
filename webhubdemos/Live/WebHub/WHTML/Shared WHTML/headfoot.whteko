@@ -46,8 +46,10 @@ siteroot is (~mcSiteRoot~)<br />
 (~ANCHOR|anRefresh~) (~waLingvo.execute~)
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="(~version~)" />
-(~ANCHOR|metatags~)
-(~ANCHORMODIFY|metatags|<meta name="description" content="This demo page is summarized as (~pagedesc~)" />~)
+(~NOMATCH|(~AppID~)=dsp|
+<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
+<!--- the DSP demo does its own meta tags -->
+~)
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />

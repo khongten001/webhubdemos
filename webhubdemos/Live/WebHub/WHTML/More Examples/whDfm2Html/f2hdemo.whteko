@@ -41,7 +41,6 @@ mcToggleReadOnly=(~IF|chkReadOnly|(~CLEAR|chkReadOnly~)||(~CHECK|chkReadOnly~)~)
 </whmacros>
 
 <whpage pageid="nsWarning">
-<!---(~ANCHORMODIFY|meta|<META HTTP-EQUIV="Refresh" CONTENT="3;URL=(~action|sample~)">-->
 (~chTip~)<p>
 <table width=60%><tr><td>
 <B>Warning:</B> During development we discovered that pages containing  
