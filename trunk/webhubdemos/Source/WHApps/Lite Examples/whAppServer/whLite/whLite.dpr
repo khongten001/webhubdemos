@@ -33,7 +33,6 @@ THE SOFTWARE.
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  ucString in 'k:\webhub\tpack\ucString.pas',
   uCode,
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
@@ -58,7 +57,10 @@ uses
   whHTML in 'h:\whHTML.pas' {fmAppHTML},
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
-  uAutoPanels in 'h:\uAutoPanels.pas',
+  uAutoPanels in 'h:\uAutoPanels.pas';
+
+(* for debugging with more source
+  ucString in 'k:\webhub\tpack\ucString.pas',
   webServ in 'k:\webhub\lib\whvcl\webServ.pas',
   webCore in 'k:\webhub\lib\whvcl\webCore.pas',
   cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
@@ -68,7 +70,9 @@ uses
   apiCall in 'K:\WebHub\lib\whrun\apiCall.pas',
   apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
   webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
-  webSend in 'K:\WebHub\lib\whvcl\webSend.pas';
+  webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
+  htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas';
+*)
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos

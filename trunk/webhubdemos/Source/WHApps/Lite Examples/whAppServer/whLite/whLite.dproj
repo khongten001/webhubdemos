@@ -53,7 +53,6 @@
 			</DelphiCompile>
 			<DCCReference Include="h:\MultiTypeApp.pas"/>
 			<DCCReference Include="h:\tpProj.pas"/>
-			<DCCReference Include="k:\webhub\tpack\ucString.pas"/>
 			<DCCReference Include="h:\utPanFrm.pas">
 				<Form>utParentForm</Form>
 			</DCCReference>
@@ -116,16 +115,6 @@
 			<DCCReference Include="h:\whcfg_App.pas"/>
 			<DCCReference Include="h:\uAutoDataModules.pas"/>
 			<DCCReference Include="h:\uAutoPanels.pas"/>
-			<DCCReference Include="k:\webhub\lib\whvcl\webServ.pas"/>
-			<DCCReference Include="k:\webhub\lib\whvcl\webCore.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whvcl\cgiServ.pas"/>
-			<DCCReference Include="k:\webhub\lib\whvcl\webCall.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whrun\apiBuilt.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whrun\ipcMail.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whrun\apiCall.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whrun\apiStat.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whvcl\webApp.pas"/>
-			<DCCReference Include="K:\WebHub\lib\whvcl\webSend.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -148,7 +137,7 @@
 						<Source Name="MainSource">whLite.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/ID=form</Parameters>
+						<Parameters Name="RunParams">/ID=csweb</Parameters>
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
