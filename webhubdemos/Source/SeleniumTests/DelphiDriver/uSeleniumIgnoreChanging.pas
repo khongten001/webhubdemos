@@ -65,6 +65,7 @@ begin
   s := RegReplace(s, PatternIDSpanChanging, '');
   s := RegReplace(s, PatternIDSpanComment, '');
   s := RegReplace(s, PatternIDSpanJSComment, '');
+  Result := S;
 end;
 
 initialization
