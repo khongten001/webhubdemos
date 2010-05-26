@@ -61,21 +61,19 @@ implementation
 
 {$R *.DFM}
 
-//----------------------------------------------------------------------
-
 uses
-  typinfo,         // for translating the Async-state into a literal
-  WebApp,          // for access to pWebApp in the thread's constructor
+  TypInfo,         // for translating the Async-state into a literal
+  webApp,          // for access to pWebApp in the thread's constructor
   whMacroAffixes,  // MacroStart and MacroEnd
-  WebSend,
-  HtStrWWW,
+  webSend,
+  htStrWWW,
   htWebApp,        // for subscribing to the AfterWebAppExecute event list.
   htThread,        // backgroundthread class to subscribe TNotifyevents to.
   ipcMail,
   whMacros,
   uCode,           // tpRaise, tpRaiseHere
   ucString,        // string function (IsIn..)
-  whAsyncDemo_ucPipe,    // access to dos output
+  ucPipe,          // access to dos output
   ucWinAPI,        // winpath
   whAsyncDemo_fmWhRequests;
 
@@ -123,48 +121,49 @@ type
       //
       end;
 
-//
-
 procedure TThreadInput.GetStrProc(const Value:String);
 var
-  a1:string;
+  S: string;
+  a1: UTF8String;
 begin
   if bStreaming
   and assigned(Stream) then
-    with stream do begin
-      a1:=Value;
-      StringRepl(a1, sLineBreak, '<br/>' + sLineBreak);
-      if CommOutBufferToMailBox(Name,'+', pAnsiChar(a1), length(a1)) then
-        bUsedGetStrProc:=True
-      //else
-      //  InterLockedExchange(Integer(bStreaming),Integer(False));
+    with stream do
+    begin
+      S := Value;
+      StringRepl(S, sLineBreak, '<br/>' + sLineBreak);
+      a1 := UTF8Encode(S);
+      if CommOutBufferToMailBox(Name, '+', a1) then
+        bUsedGetStrProc := True
       end;
 end;
 
 function TThreadInput.SendUpdate(PercentComplete:integer):Boolean;
 var
-  a1:string;
+  S: string;
+  a1: UTF8String;
 begin
   Result:=True;
-  if bStreaming
-  and assigned(Stream) then
-    with Stream do begin
-
-  if temp<>stream.name then
+  if bStreaming and assigned(Stream) then
   begin
-    sleep(100);
-    temp:=stream.name;
-    end;
+    with Stream do
+    begin
 
-      a1:=chForEach;
-      StringRepl(a1,'XXX',
-
-        inttostr(PercentComplete));
-      if not CommOutBufferToMailBox(Name, '+', PAnsiChar(a1), Length(a1)) then
+      if temp <> Stream.name then
       begin
-        Result:=not bAbort;
+        Sleep(100);
+        temp := Stream.name;
+      end;
+
+      S := chForEach;
+      StringRepl(S, 'XXX', IntToStr(PercentComplete));
+      a1 := UTF8Encode(S);
+      if not CommOutBufferToMailBox(Name, '+', a1) then
+      begin
+        Result := not bAbort;
       end;
     end;
+  end;
 end;
 
 procedure TThreadInput.Finished(const ResultString:String);
@@ -196,19 +195,21 @@ end;
 
 procedure TThreadInput.TakeOver(Response:TwhResponseSimple);
 var
-  a1,a2:string;
+  a1,a2: string;
+  s8: UTF8String;
 begin
   InterLockedExchange(Integer(bStreaming),Integer(False));
-  if assigned(Stream) then begin
+  if assigned(Stream) then
+  begin
     Stream.Flush;
     Stream.Free;
     Stream:=Nil;
-    end;
-  //
-  with Response do begin
+  end;
+
+  with Response do
+  begin
     if not assigned(Stream) then
       exit;
-    //
     if SplitString(Headers.Text,sLineBreak+sLineBreak,a1,a2) then
       a1:=a1+sLineBreak;
     Headers.Clear;
@@ -218,24 +219,26 @@ begin
     Stream:=Nil;
     Close;
     end;
-  //
+
   if temp='' then
     temp:=stream.name;
-  //
-  with pWebApp do begin
+
+  with pWebApp do
+  begin
     chForEach:=Expand(MacroStart + 'AsyncPageForEach' + MacroEnd);
     chTail:=Expand(MacroStart + 'AsyncPageTail' + MacroEnd);
     chDone:=Expand(MacroStart + 'AsyncPageDone' + MacroEnd);
     bAbort:=BoolVar['AsUnHookAbort'];
-    //
+
     a1:=a1
       +sLineBreak
       +Expand(MacroStart + 'AsyncPageTop' + MacroEnd);
     end;
-  //
-  CommOutBufferToMailBox(Stream.Name, '+', PAnsiChar(a1), Length(a1));
+
+  S8 := UTF8Encode(a1);
+  CommOutBufferToMailBox(Stream.Name, '+', S8);
   InterLockedExchange(Integer(bStreaming),Integer(True));
-  //
+
   pWebApp.Save; //save before aborting the official page production
   raise eAbortPrimary.create(''); //process through eAbortPrimary
 end;
@@ -271,7 +274,7 @@ end;
 procedure TdmAsyncDemo.waAsyncActionExecute(Sender: TObject);
 var
   i: Cardinal;
-  a1,a2: TwhtekoString;
+  a1,a2: string;
 
   function StartNewThread: Boolean;
   begin

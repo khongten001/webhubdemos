@@ -1,7 +1,7 @@
 unit SimpleDm;
 (*
 Copyright (c) 1999 HREF Tools Corp.
-Author: Michael Ax
+Original Author: Michael Ax
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -193,7 +193,7 @@ end;
 procedure TdmSimpleAsync.waAsyncSimple1ThreadOnInit(Sender: TObject);
 //runs from the main-thread with Session set for the right surfer!
 var
-  S8: System.UTF8String;
+  S: string;
 begin
   inherited;
   //create and initialize the object's extra data-packet.
@@ -203,9 +203,9 @@ begin
   begin
     Done := False;
     //set the resultstring property here to provide input to the object
-    S8 :=
-      pWebApp.Expand(UTF8String(System.UTF8ToString(RawByteString(waAsyncSimple1.HtmlParam))));
-    ResultString := UTF8ToString(S8);
+    S :=
+      pWebApp.Expand(waAsyncSimple1.HtmlParam);
+    ResultString := S;
     //if you want to create a data/input object for use by the thread
     //you'd probably instantiate and initialize it here
     //Data:=TThreadInput.Create;

@@ -75,7 +75,7 @@ gcStreamDepthLimit - CAPACITY that the system will PRE-ALLOCATE for macro
 
 procedure TdmStreams.waDocStreamsExecute(Sender: TObject);
 var
-  a1,a2: TwhtekoString;
+  a1,a2: string;
 begin
   with pWebApp, TwhWebActionEx(Sender) do
   begin
