@@ -20,6 +20,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_DcuOutput>D:\temp\DelphiTempDCU\</DCC_DcuOutput>
 			<DCC_DependencyCheckOutputName>WHIgnoreChanging.exe</DCC_DependencyCheckOutputName>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_ConsoleTarget>true</DCC_ConsoleTarget>
@@ -39,6 +40,8 @@
 			<DelphiCompile Include="WHIgnoreChanging.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="k:\webhub\tpack\ucPos.pas"/>
+			<DCCReference Include="k:\webhub\tpack\ucString.pas"/>
 			<DCCReference Include="k:\webhub\tpack\ucLogFil.pas"/>
 			<DCCReference Include="..\uSeleniumIgnoreChanging.pas"/>
 			<BuildConfiguration Include="Base">
@@ -66,7 +69,7 @@
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
-						<Parameters Name="RunParams">D:\Projects\webhubdemos\TestResults\2010-05-10\ShowcaseD07\repeat</Parameters>
+						<Parameters Name="RunParams">D:\Projects\webhubdemos\TestResults\2010-05-26</Parameters>
 						<Parameters Name="DebugSourceDirs">k:\webhub\regex\</Parameters>
 					</Parameters>
 					<VersionInfo>
