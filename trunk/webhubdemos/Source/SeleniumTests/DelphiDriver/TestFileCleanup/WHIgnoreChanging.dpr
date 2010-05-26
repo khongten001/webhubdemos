@@ -5,7 +5,8 @@ uses
   IOUtils,
   Classes,
   SysUtils,
-  ucString,
+  ucPos in 'k:\webhub\tpack\ucPos.pas',
+  ucString in 'k:\webhub\tpack\ucString.pas',
   ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
   uSeleniumIgnoreChanging in '..\uSeleniumIgnoreChanging.pas';
 
