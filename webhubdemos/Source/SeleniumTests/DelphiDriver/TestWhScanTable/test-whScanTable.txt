@@ -1,0 +1,7 @@
+WebHub Scanning Demo
+
+AppID = scan
+
+When testing from Selenium:
+
+Public Demo URL = http://demos.href.com/scan::1204
