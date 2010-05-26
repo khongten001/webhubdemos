@@ -38,7 +38,7 @@ type
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
     procedure DemoAppPageComplete(Sender: TwhRespondingApp;
-      const PageContent: UTF8String);
+      const PageContent: TwhString);
   public
     { Public declarations }
     function Init: Boolean;
@@ -114,7 +114,7 @@ end;
 
 procedure TDemoExtensions.waVersionInfoExecute(Sender: TObject);
 var
-  S: UTF8String;
+  S: TwhString;
 
   function GetVersionInfo(versionType: TVersionType): string;
   begin
@@ -137,7 +137,7 @@ var
   end;
 begin
   inherited;
-  S := UTF8Encode(GetVersionInformation(waVersionInfo.HtmlParam));
+  S := (GetVersionInformation(waVersionInfo.HtmlParam));
   if S <> '' then
     pWebApp.SendStringImm(S)
   else
@@ -151,7 +151,7 @@ end;
 procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
 begin
   inherited;
-  pWebApp.SendString(UTF8Encode(ExtractFilename(Application.ExeName)));
+  pWebApp.SendString(ExtractFilename(Application.ExeName));
 end;
 
 procedure TDemoExtensions.waLSecExecute(Sender: TObject);
@@ -161,9 +161,10 @@ var
   CutOff: TDateTime;
   y, m, d, h, n: Integer;
   temp, temp2: string;
-  ASeconds: UTF8String;
+  ASeconds: TwhString;
   NSeconds: Integer;
-  S8: UTF8String;
+  //S8: UTF8String;
+  S16: TwhString;
 
   function MakeOutgoingToken: string;
   begin
@@ -177,12 +178,11 @@ begin
     if (Copy(HtmlParam, 1, 3) = 'out') then
     begin
       SplitString(HtmlParam, ',', temp, temp2);
-      ASeconds := UTF8String(ASeconds);
       ASeconds := WebApp.MoreIfParentild(ASeconds);
       NSeconds := StrToIntDef(string(ASeconds), 120);
-      S8 := UTF8Encode(Format('%s.%s',
-        [Name, Code64String(MakeOutgoingToken)]));
-      WebApp.SendStringImm(S8);
+      S16 := Format('%s.%s',
+        [Name, Code64String(MakeOutgoingToken)]);
+      WebApp.SendStringImm(S16);
     end
     else
     if IsEqual(HtmlParam, 'in') then
@@ -352,7 +352,7 @@ var
   TestNumber: Integer = 0;
 
 procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
-  const PageContent: UTF8String);
+  const PageContent: Twhstring);
 var
   S: string;
   AFilename: string;
@@ -367,7 +367,7 @@ begin
 
     AFilename := Format('%stest%d.txt',
       ['D:\Projects\webhubdemos\Live\WebRoot\webhub\echoqa\', TestNumber]);
-    UTF8StringWriteToFile(AFilename, PageContent);
+    UTF8StringWriteToFile(AFilename, UTF8Encode(PageContent));
   end;
 end;
 
