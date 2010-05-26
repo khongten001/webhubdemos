@@ -28,7 +28,7 @@ implementation
 uses
   Forms, SysUtils, Windows,
   ucLogFil,
-  ldiRegEx,
+  ldiRegEx,   // search path use H:\ or K:\WebHub\regex
   uDefaultSelenium;
 
 

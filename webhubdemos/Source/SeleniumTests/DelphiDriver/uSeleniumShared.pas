@@ -30,7 +30,7 @@ implementation
 uses
   Forms, SysUtils, Windows,
   ucLogFil,
-  ldiRegEx,
+  ldiRegEx,   // search path use H:\ or K:\WebHub\regex
   uSeleniumIgnoreChanging, uDefaultSelenium_1_0_3;
 
 
