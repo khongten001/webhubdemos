@@ -144,9 +144,9 @@ begin
   if IsEqual(Action, 'scheme') then
   begin
     if Kolori <> '' then
-      pWebApp.SendStringImm(UTF8Encode(Kolori))
+      pWebApp.SendStringImm(Kolori)
     else
-      pWebApp.SendStringImm(UTF8Encode(FColorSchemeName));
+      pWebApp.SendStringImm(FColorSchemeName);
   end
   else
   if Kolori <> '' then
@@ -155,7 +155,7 @@ begin
     if SplitString(Action, '-', a1, a2) then
       AColor := SchemeToColor(Kolori, Action);
     if AColor <> '' then
-      pWebApp.SendStringImm(UTF8Encode(AColor))
+      pWebApp.SendStringImm(AColor)
     else
       pWebApp.Debug.AddPageError(cUsage);
   end
