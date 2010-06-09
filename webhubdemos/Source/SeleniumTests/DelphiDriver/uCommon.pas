@@ -1,4 +1,4 @@
-unit uCommon;
+unit uCommon;  // by Joshua Gong at HREF Tools Corp.
 
 interface
 uses
