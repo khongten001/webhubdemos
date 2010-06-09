@@ -1,0 +1,15 @@
+Original filename: sample-before-changes.txt
+Filename during testing: test123.txt
+
+<span class="changing">You could copy this to a file name test*.txt and then run WHIgnoreChanging.exe against it.</span>
+
+
+Test 1. <span class="changing">hello</span> there
+
+Test 2. <!-- changing:start-->this <!-- changing:stop--> is a test.
+
+Test 3. /* changing:start */
+this would be javascript code
+/* changing:stop */hardly anything left.
+
+THE END.
