@@ -58,11 +58,8 @@ var
   x, y, z: Integer;
 begin
   Result := InValue;
-  //Result := RegReplace(Result, ':[0-9]+(?=[^0-9])', ':1234');
-  //Result := RegReplace(Result, ':[0-9]+\.[0-9]+:', ':1234.5678:');
-  //Result := RegReplace(Result, ':[0-9]+"', ':1204"');
-  //Result := RegReplace(Result, ':[0-9]+:', ':1204:');
-  //Result := RegReplace(Result, ':1204\..*"', ':1204"');
+  // This uses the old version of ldiRegEx from about 2007. We have not
+  // yet released an update for Delphi 2010 native strings... (June 2010)
   Result := RegReplace(string(Result), PatternIDSpanChanging, '');
 
   // fails in D14
@@ -79,8 +76,20 @@ begin
       UTF8Copy(Result, y + z, MaxInt);
   end;
 
-  // not sure yet whether this works
-  Result := RegReplace(string(Result), PatternIDSpanJSComment, '');
+  // fails in D14
+  //Result := RegReplace(string(Result), PatternIDSpanJSComment, '');
+
+  z := Length('/* changing:stop */');
+  while true do
+  begin
+    x := UTF8PosCI('/* changing:start */', Result);
+    if x = 0 then break;
+    y := UTF8PosCI('/* changing:stop */', Result);
+    if y = 0 then break;
+    Result := UTF8Copy(Result, 1, x - 1) +
+      UTF8Copy(Result, y + z, MaxInt);
+  end;
+
 end;
 
 initialization
