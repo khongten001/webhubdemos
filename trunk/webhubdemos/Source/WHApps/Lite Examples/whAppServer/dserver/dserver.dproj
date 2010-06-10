@@ -115,6 +115,7 @@
 			<DCCReference Include="k:\webhub\tpack\ucAnsiUtil.pas">
 				<Form>$R *.RES</Form>
 			</DCCReference>
+			<DCCReference Include="K:\WebHub\ZaphodsMap\UTF8StringUtils.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
