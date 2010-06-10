@@ -44,7 +44,8 @@ uses
   htmlCore in 'K:\WebHub\lib\whvcl\htmlCore.pas',
   whsample_DWSecurity in 'k:\webhub\lib\whsample_DWSecurity.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
-  ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas';
+  ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas' {$R *.RES},
+  UTF8StringUtils in 'K:\WebHub\ZaphodsMap\UTF8StringUtils.pas';
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
