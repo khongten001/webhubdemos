@@ -88,6 +88,7 @@
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="K:\WebHub\ZaphodsMap\NativeXml.pas"/>
+			<DCCReference Include="k:\webhub\tpack\tpMemo.pas"/>
 			<DCCReference Include="K:\WebHub\ZaphodsMap\ZaphodsMap.pas"/>
 			<DCCReference Include="K:\WebHub\tpack\ucFile.pas"/>
 			<DCCReference Include="K:\WebHub\tpack\ucString.pas"/>
@@ -111,6 +112,9 @@
 			<DCCReference Include="K:\WebHub\lib\whvcl\htmlCore.pas"/>
 			<DCCReference Include="k:\webhub\lib\whsample_DWSecurity.pas"/>
 			<DCCReference Include="K:\WebHub\lib\whvcl\webSend.pas"/>
+			<DCCReference Include="k:\webhub\tpack\ucAnsiUtil.pas">
+				<Form>$R *.RES</Form>
+			</DCCReference>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
@@ -136,7 +140,7 @@
 						<Parameters Name="UseLauncher">False</Parameters>
 						<Parameters Name="LoadAllSymbols">True</Parameters>
 						<Parameters Name="LoadUnspecifiedSymbols">False</Parameters>
-						<Parameters Name="RunParams">/id=bw</Parameters>
+						<Parameters Name="RunParams">/id=showcase</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
