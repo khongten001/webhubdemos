@@ -85,9 +85,6 @@
 				<Form>DataModuleColorScheme</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
-			<DCCReference Include="h:\ucAnsiUtil.pas">
-				<Form>$R *.RES</Form>
-			</DCCReference>
 			<DCCReference Include="h:\UTF8StringUtils.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>

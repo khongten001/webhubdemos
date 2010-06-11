@@ -21,6 +21,7 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
+
   UTF8StringUtils in 'h:\UTF8StringUtils.pas';
 
 {$R *.RES}
@@ -29,6 +30,8 @@ uses
 {$R HTGLYPHS.RES}  // icons for WebHub UI features
 
 (* save for compiling with source
+  whAppOut in 'k:\webhub\lib\whAppOut.pas',
+
   NativeXml in 'K:\WebHub\ZaphodsMap\NativeXml.pas',
   tpMemo in 'k:\webhub\tpack\tpMemo.pas',
   ZaphodsMap in 'K:\WebHub\ZaphodsMap\ZaphodsMap.pas',
