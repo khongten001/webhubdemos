@@ -21,7 +21,6 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-  ucAnsiUtil in 'h:\ucAnsiUtil.pas' {$R *.RES},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas';
 
 {$R *.RES}
@@ -44,6 +43,7 @@ uses
   apiMail in 'k:\webhub\Lib\WHRun\apiMail.pas',
   ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
 
+  webAjax in 'K:\WebHub\lib\whvcl\webAjax.pas',
   webTypes in 'K:\WebHub\lib\webTypes.pas',
   webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
   webBase in 'k:\webhub\Lib\WHVCL\webBase.pas',
@@ -81,8 +81,7 @@ uses
 begin
   Application.Initialize;
   Application.CreateForm(TDMForDServer, DMForDServer);
-  DMForDServer.SetDemoFacts('adv',
-    'Lite Examples\whAppServer\dserver', True);
+  DMForDServer.SetDemoFacts('adv', 'Lite Examples\whAppServer\dserver', True);
   DMForDServer.ProjMgr.ManageStartup;
   Application.Run;
 end.
