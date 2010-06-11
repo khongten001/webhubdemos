@@ -258,7 +258,7 @@ var
   a1,a2 : string;
   aFilename, aShowName: string;
   aFileContents: string;
-  fs: TFileStream;
+//  fs: TFileStream;
 begin
   inherited;
   with TwhWebActionEx(Sender) do
@@ -289,7 +289,11 @@ begin
       end
       else
       begin
-        fs := nil;
+        aFileContents := UTF8ToString(UTF8StringLoadFromFile(aFilename));
+        if aFileContents = '' then
+          pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
+
+        (*fs := nil;
         try
           fs := TFileStream.Create(aFilename, fmOpenRead);
           try
@@ -303,7 +307,7 @@ begin
           end;
         finally
           FreeAndNil(fs);
-        end;
+        end;*)
       end;
     end
     else
@@ -318,7 +322,10 @@ begin
         aFileContents:='Source is not available for ' + aFilename + '.'
       else
       begin
-        try
+        aFileContents := UTF8ToString(UTF8StringLoadFromFile(aFilename));
+        if aFileContents = '' then
+          pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
+        (*try
           aFileContents:=StringLoadFromFile(aFilename);
         except
           on E: Exception do
@@ -326,7 +333,7 @@ begin
             aFileContents := '';
             pWebApp.Debug.AddPageError(E.Message);
           end;
-        end;
+        end;*)
       end;
     end
     else
@@ -349,7 +356,7 @@ begin
         except
           on E: Exception do
           begin
-            aFileContents:=stringloadfromfile(aFilename);
+            aFileContents:= UTF8ToString(UTF8StringLoadfromfile(aFilename));
             pWebApp.Debug.AddPageError(E.Message);
           end;
         end;
@@ -456,8 +463,7 @@ var
     with pWebApp do
     begin
       SendMacro('mcHdrOn');
-      SendString(System.UTF8String(
-        Format('Contents of %s', [fileDescription])));
+      SendString(Format('Contents of %s', [fileDescription]));
       SendMacro('mcHdrOff');
     end;
   end;
@@ -492,8 +498,8 @@ begin
       begin
         SendLine('<form>');
         SendLine('<textarea name="" cols=80 rows=30>');
-        S8 := UTF8Encode(StringLoadFromFile(S));
-        Response.Stream.WriteS(S8);
+        S8 := UTF8StringLoadFromFile(S);
+        Response.Stream.WriteS(UTF8ToString(S8));
         SendLine('</textarea>');
         SendLine('</form>');
       end;
