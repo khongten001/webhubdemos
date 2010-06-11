@@ -352,7 +352,7 @@ var
   TestNumber: Integer = 0;
 
 procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
-  const PageContent: Twhstring);
+  const PageContent: UTF8String);
 var
   S: string;
   AFilename: string;
