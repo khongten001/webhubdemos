@@ -355,19 +355,24 @@ procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
   const PageContent: UTF8String);
 var
   S: string;
-  AFilename: string;
+  AFolder, AFilename: string;
 begin
-  if Sender.SessionNumber = 1204 then
+  if IsHREFToolsQATestAgent and
+    (Sender.SessionID = pWebApp.Security.AdminSessionID) then
   begin
+    {archive page content for functionality test sequences}
     S := pWebApp.Request.Headers.Values['X-Selenium-PageCount'];
     if S <> '' then
       TestNumber := StrToIntDef(S, 1)
     else
       Inc(TestNumber);
 
-    AFilename := Format('%stest%d.txt',
-      ['D:\Projects\webhubdemos\Live\WebRoot\webhub\echoqa\', TestNumber]);
-    UTF8StringWriteToFile(AFilename, UTF8Encode(PageContent));
+    AFolder := Format('D:\Projects\webhubdemos\Live\WebRoot\webhub\%s\%s\%s%s\',
+      ['echoqa', FormatDateTime('yyyymmdd', now), Sender.AppID,
+       Sender.CentralInfo.PascalCompilerCode]);
+    ForceDirectories(AFolder);
+    AFilename := Format('test%d.txt', [TestNumber]);
+    UTF8StringWriteToFile(AFolder + AFilename, PageContent);
   end;
 end;
 
