@@ -65,7 +65,7 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 
 <h2>3. AJAXTimedEvent</h2>
-<p>Use this command to create an independent timed event that fires with a specified frequency.  The event can be started and stopped with appropriate events.
+<p>Use this command to create an independent timed event that fires with a specified frequency.  The event can be started and stopped with appropriate events.</p>
 <p>The following is an example of an event that fires every 2 seconds and retrieves the webserver date and time.  The event can be stopped and started with the links below.  (NB: if you click the start link twice, you will need to click stop twice as well.)</p>
 <p><a href="#" id="start">Start Time Update</a></p>
 <p><a href="#" id="stop">Stop Time Update</a></p>
@@ -78,7 +78,7 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 <h1>Learning how to use AJAX with WebHub</h1>
 <ol>
-<li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br><br>
+<li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
 <ul>
 <li style="list-style-type:disc">the JS command within the <i>&lt;head_tag&gt;</i> </li>
 <li style="list-style-type:disc">function setAJAXEvents within the <i>&lt;head_tag&gt;</i> </li>
@@ -105,10 +105,10 @@ Example2: Type something into the input box below. Only when you exit the data e
 (~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span></p>
 </whpage>
 
-<whpage pageID="AjaxObserverText1">
+<whpage  pageid="AjaxObserverText1">
 (~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext1|(~sampletext1~)~)</p>
 </whpage>
-<whpage pageID="AjaxObserverText2">
+<whpage pageid="AjaxObserverText2">
 (~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext2|(~sampletext2~)~)</p>
 </whpage>
 
