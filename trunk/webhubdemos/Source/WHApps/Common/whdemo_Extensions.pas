@@ -38,7 +38,7 @@ type
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
     procedure DemoAppPageComplete(Sender: TwhRespondingApp;
-      const PageContent: TwhString);
+      const PageContent: UTF8String);
   public
     { Public declarations }
     function Init: Boolean;
