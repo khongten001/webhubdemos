@@ -1,6 +1,6 @@
-program whStopSpam;     {demonstrates using the MAILTO macro to lessen likelihood of spam when email addresses are published}
+program whStopSpam;     {demonstrates SOAP plus using the MAILTO macro to lessen likelihood of spam when email addresses are published}
 (*
-Copyright (c) 2002-2005 HREF Tools Corp.
+Copyright (c) 2002-2010 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -25,8 +25,8 @@ uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -42,11 +42,19 @@ uses
 {$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
 {$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
 
+(* when compiling with source, could use these units
+  webSOAPPublish in 'K:\WebHub\lib\whplus\webSOAPPublish.pas',
+  webSOAPInvoke in 'K:\WebHub\lib\whplus\webSOAPInvoke.pas',
+  webSOAPInfo in 'K:\WebHub\lib\whplus\webSOAPInfo.pas',
+  webMailV in 'K:\WebHub\lib\whplus\webMailV.pas',
+  websoaphost in 'K:\WebHub\lib\whplus\websoaphost.pas',
+  webSOAPDispatch in 'K:\WebHub\lib\whplus\webSOAPDispatch.pas',
+*)
+
 begin
   Application.Initialize;
   Application.CreateForm(TDMForWHStopSpam, DMForWHStopSpam);
-  DMForWHStopSpam.SetDemoFacts('htun', 'More Examples',
-    True);
+  DMForWHStopSpam.SetDemoFacts('htun', 'More Examples', True);
   DMForWHStopSpam.ProjMgr.ManageStartup;
   Application.Run;
 end.
