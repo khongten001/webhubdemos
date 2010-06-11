@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="rus" designmode="code">
 
 <whmacros>
@@ -24,8 +24,11 @@ mcRussian=Русский
 ~HumanLanguage=Язык интерфейса
 ~Debugging=Отладка
 ~SetPrefReturn=Вы должны вернуться на страницу (~PrePref~).
-~SetPrefWallpaperIntro=Эта опция используется только для того, чтобы показать, что настройки можно изменять. WebHub демо не проектировались для хорошего отображения на всех фоновых рисунках.
 </whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro">
+Эта опция используется только для того, чтобы показать, что настройки можно изменять. WebHub демо не проектировались для хорошего отображения на всех фоновых рисунках.
+</whtranslation>
 
 <whtranslations>
 ~daySunday=Воскресенье
@@ -38,5 +41,3 @@ mcRussian=Русский
 </whtranslations>
 
 </whteko>
-
-
