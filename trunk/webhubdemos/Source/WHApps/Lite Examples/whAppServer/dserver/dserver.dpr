@@ -5,6 +5,8 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 // k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;
 // D:\vcl\thtml9\Package
 
+// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\ZaphodsMap;k:\webhub\RegEx;d:\vcl\EurekaLog6\Delphi14;$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(BDS)\include;d:\href\source\webapplication\reg\hrefapp;
+
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
@@ -19,6 +21,15 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
+  ucAnsiUtil in 'h:\ucAnsiUtil.pas' {$R *.RES},
+  UTF8StringUtils in 'h:\UTF8StringUtils.pas';
+
+{$R *.RES}
+{$R WHDICON.RES}   // dserver tray icon
+{$R HTICONS.RES}   // component icons for combo bar (not essential)
+{$R HTGLYPHS.RES}  // icons for WebHub UI features
+
+(* save for compiling with source
   NativeXml in 'K:\WebHub\ZaphodsMap\NativeXml.pas',
   tpMemo in 'k:\webhub\tpack\tpMemo.pas',
   ZaphodsMap in 'K:\WebHub\ZaphodsMap\ZaphodsMap.pas',
@@ -26,12 +37,13 @@ uses
   ucString in 'K:\WebHub\tpack\ucString.pas',
   ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
   ucPos in 'k:\webhub\tpack\ucPos.pas',
+
   cgiVars in 'k:\webhub\Lib\WHRun\cgiVars.pas',
   apiBuilt in 'K:\WebHub\lib\whrun\apiBuilt.pas',
   apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
   apiMail in 'k:\webhub\Lib\WHRun\apiMail.pas',
   ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
-  webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
+
   webTypes in 'K:\WebHub\lib\webTypes.pas',
   webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
   webBase in 'k:\webhub\Lib\WHVCL\webBase.pas',
@@ -40,17 +52,11 @@ uses
   htStrWWW in 'K:\WebHub\lib\whvcl\htStrWWW.pas',
   htStream in 'k:\webhub\Lib\WHVCL\htStream.pas',
   cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
-  htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas',
   htmlCore in 'K:\WebHub\lib\whvcl\htmlCore.pas',
   whsample_DWSecurity in 'k:\webhub\lib\whsample_DWSecurity.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
-  ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas' {$R *.RES},
-  UTF8StringUtils in 'K:\WebHub\ZaphodsMap\UTF8StringUtils.pas';
-
-{$R *.RES}
-{$R WHDICON.RES}   // dserver tray icon
-{$R HTICONS.RES}   // component icons for combo bar (not essential)
-{$R HTGLYPHS.RES}  // icons for WebHub UI features
+  htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
+  *)
 
 (* save for preview panel
 { S DEFINE HTMLVIEWERAVAILABLE}   {http://www.href.com/htmlview}
