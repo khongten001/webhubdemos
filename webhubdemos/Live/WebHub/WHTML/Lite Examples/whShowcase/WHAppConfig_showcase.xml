@@ -138,7 +138,9 @@
       </Item>
     </whMailForm>
     <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="C:\temp\" />
       <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="DEMOS"/>
+      <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="ultraann"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
