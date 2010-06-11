@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko
   designdynsrc="dserveradv"
@@ -46,7 +46,10 @@
 <div id="whdemopagecontent">
 <h1>Welcome!</h1>
 <h2>This is the &quot;(~mcWhDemoOneLiner~)&quot; WebHub Demo</h2>
-<p>(~DYNCHUNK|~whDemoShortDesc,(~AppID~)~)</p><p>(~DYNCHUNK|~whDemoLongDesc,(~AppID~)~)</p>
+<p>(~DYNCHUNK|~whDemoShortDesc,(~AppID~)~)</p>
+<div id="whDemoLongDesc(~AppID~)">
+(~DYNCHUNK|~whDemoLongDesc,(~AppID~)~)
+</div>
 
 <ul>
 <li>(~mcWhDemoDot~) (~JUMP|pgSetup|[~Prerequisites~]~)</li>
