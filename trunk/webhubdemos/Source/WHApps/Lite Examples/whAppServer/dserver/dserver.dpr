@@ -21,8 +21,8 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-
-  UTF8StringUtils in 'h:\UTF8StringUtils.pas';
+  UTF8StringUtils in 'h:\UTF8StringUtils.pas',
+  htWebApp in 'h:\htWebApp.pas';
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
