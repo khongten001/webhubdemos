@@ -86,6 +86,7 @@
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\UTF8StringUtils.pas"/>
+			<DCCReference Include="h:\htWebApp.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
