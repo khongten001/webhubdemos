@@ -22,7 +22,7 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  htWebApp in 'h:\htWebApp.pas';
+  htWebApp in 'H:\htWebApp.pas';
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
@@ -57,6 +57,7 @@ uses
   cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
   htmlCore in 'K:\WebHub\lib\whvcl\htmlCore.pas',
   whsample_DWSecurity in 'k:\webhub\lib\whsample_DWSecurity.pas',
+  webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
   htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
   *)

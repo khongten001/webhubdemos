@@ -20,6 +20,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UnitSearchPath>k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\ZaphodsMap;k:\webhub\RegEx;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<UsePackages>true</UsePackages>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_MapFile>3</DCC_MapFile>
@@ -86,7 +87,7 @@
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\UTF8StringUtils.pas"/>
-			<DCCReference Include="h:\htWebApp.pas"/>
+			<DCCReference Include="H:\htWebApp.pas"/>
 			<BuildConfiguration Include="Base">
 				<Key>Base</Key>
 			</BuildConfiguration>
