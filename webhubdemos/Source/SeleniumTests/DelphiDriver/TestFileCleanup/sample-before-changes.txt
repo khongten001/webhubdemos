@@ -12,4 +12,7 @@ Test 3. /* changing:start */
 this would be javascript code
 /* changing:stop */hardly anything left.
 
+Test 4. Random portion of session number to be standardized: <a href="/showcase:pgWelcome:12345.8923">welcome</a>
+<a href="/showcase:pgEnterShowcase:12345.0792">enter</a>
+
 THE END.
