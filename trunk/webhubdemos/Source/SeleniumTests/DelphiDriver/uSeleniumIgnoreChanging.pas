@@ -2,7 +2,9 @@ unit uSeleniumIgnoreChanging;
 
 interface
 
-function StripChanging(const InValue: UTF8String): UTF8String;
+procedure RegExInit(const AdminSessionID: string);
+function StripChanging(const InValue: UTF8String)
+  : UTF8String;
 
 implementation
 
@@ -14,13 +16,20 @@ uses
 var
   InitOnce: Boolean = False;
   Reg : TldiRegExMulti = nil;
+  PatternIDAdminSessionRandomPortion: Integer;
   PatternIDSpanChanging: Integer;
   PatternIDSpanComment: Integer;
   PatternIDSpanJSComment: Integer;
+  SavAdminSessionID: string;
 
 
 function RegReplace(const src: string; const APatternID: Integer;
   const replaceWith: string): TldiString;
+begin
+  Result := TldiString(Reg.Replace(APatternID, src, replaceWith));
+end;
+
+procedure RegExInit(const AdminSessionID: string);
 var
   PatternStatus: TPatternStatus;
 
@@ -37,9 +46,9 @@ var
       end;
     end;
 begin
-
   if NOT InitOnce then
   begin
+    SavAdminSessionID := AdminSessionID;
     Reg := TldiRegExMulti.Create(nil);
     NewRegexPattern('<span class="changing">.*</span>',
       PatternIDSpanChanging );
@@ -47,10 +56,12 @@ begin
       PatternIDSpanComment );
     NewRegexPattern('/\* changing:start \*/.*/\* changing:stop \*/',
       PatternIDSpanJSComment );
+    NewRegexPattern(
+      Format('%s\.\d\d\d\d', [AdminSessionID]),
+      PatternIDAdminSessionRandomPortion);
 
     InitOnce := True;
   end;
-  Result := TldiString(Reg.Replace(APatternID, src, replaceWith));
 end;
 
 function StripChanging(const InValue: UTF8String): UTF8String;
@@ -58,6 +69,7 @@ var
   x, y, z: Integer;
 begin
   Result := InValue;
+
   // This uses the old version of ldiRegEx from about 2007. We have not
   // yet released an update for Delphi 2010 native strings... (June 2010)
   Result := RegReplace(string(Result), PatternIDSpanChanging, '');
@@ -89,6 +101,9 @@ begin
     Result := UTF8Copy(Result, 1, x - 1) +
       UTF8Copy(Result, y + z, MaxInt);
   end;
+
+  Result := RegReplace(string(Result), PatternIDAdminSessionRandomPortion,
+    SavAdminSessionID + '\.9999');
 
 end;
 

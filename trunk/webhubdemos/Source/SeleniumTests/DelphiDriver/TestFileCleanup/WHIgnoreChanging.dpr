@@ -19,18 +19,25 @@ var
   A: AnsiString;
   S8Before, S8After: UTF8String;
   FilterSpec: string;
+  AdminSessionID: string;
 
 begin
+  AdminSessionID := '12345';
   if (ParamCount >= 1) then
   begin
     BaseFolder := ParamStr(1);
-    if ParamCount = 2 then
-      FilterSpec := ParamStr(2)
+    if ParamCount >= 2 then
+    begin
+      FilterSpec := ParamStr(2);
+      if ParamCount = 3 then
+        AdminSessionID := ParamStr(3);
+    end
     else
       FilterSpec := 'test*.txt';
 
     if TDirectory.Exists(BaseFolder) then
     begin
+      RegExInit(AdminSessionID);
       for Filespec in TDirectory.GetFiles(BaseFolder, FilterSpec) do
       begin
         Writeln(Filespec);
@@ -52,7 +59,9 @@ begin
     Writeln('');
 
     Writeln('usage: pass in the name of the folder containing files to clean ' +
-     'plus optionally the filespec');
-    Writeln('Example: WHIgnoreChanging.exe .\test1\ test*.txt');
+     'plus optionally the filespec plus optionally the separator plus ' +
+     'AdminSessionID.');
+    Writeln('Example: WHIgnoreChanging.exe .\test1\ test*.txt :12345');
+    Writeln('Example: WHIgnoreChanging.exe .\test2\ a*.txt /1204');
   end;
 end.
