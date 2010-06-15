@@ -67,6 +67,20 @@ var
         raise Exception.Create('AddPattern error! ' + PatternStatus.ErrorMessage);
       end;
     end;
+
+    procedure NewGreedyRegexPattern(const PatString: String;
+      out NewPatternID: Integer);
+    begin
+      if not Reg.AddPattern(PatString,
+        [],
+        NewPatternID,
+        PatternStatus) then
+      begin
+        FreeAndNil(Reg);
+        raise Exception.Create('AddPattern error! ' + PatternStatus.ErrorMessage);
+      end;
+    end;
+
 begin
   if NOT InitOnce then
   begin
@@ -78,9 +92,11 @@ begin
       PatternIDSpanComment );
     NewRegexPattern('/\* changing:start \*/.*/\* changing:stop \*/',
       PatternIDSpanJSComment );
-    NewRegexPattern(
-      Format('%s\.\d\d\d\d', [AdminSessionID]),
+
+    NewGreedyRegexPattern(
+      Format('(%s\.)([\d]{1,4})', [AdminSessionID]),
       PatternIDAdminSessionRandomPortion);
+
     NewRegexPattern('WebHub-v2\.\d\d\d', PatternIDWebHubVersion);
     InitOnce := True;
   end;
@@ -125,7 +141,7 @@ begin
   end;
 
   Result := RegReplace(string(Result), PatternIDAdminSessionRandomPortion,
-    SavAdminSessionID + '\.9999');
+   SavAdminSessionID + '\.9999');
 
   Result := RegReplace(string(Result), PatternIDWebHubVersion,
     'WebHub-v0.000');
