@@ -154,7 +154,7 @@ Syntax used: <b>(~.MATCH|(~.browser.Tables~)=True|(~.chTableYes~)~)</b>
 <p>
 (~MATCH|(~browser.Tables~)=True|(~chTableYes~)~)
 <h2>Extremely Advanced Example</h2>
-(~centralinfo.webtimelocal~)<br/>
+<span class="changing">(~centralinfo.webtimelocal~)</span><br/>
 <p>Set stringvar named abc123 equal to hello.(~SET|abc123=hello~)</p>
 <p>Also set a stringvar named suffix equal to 123. (~SET|suffix=123~)</p>
 <p>Display the stringvar named abc123: (~abc123~)</p>

@@ -112,10 +112,8 @@ function updatepage(str){
 
 <form name="f1">
   <p>word: <input name="word" type="text">  
-  <!-- changing:start-->
   <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' />
-  <!-- changing:stop-->
-    </p>
+  </p>
   <div id="result"></div>
 </form>
 </div>
