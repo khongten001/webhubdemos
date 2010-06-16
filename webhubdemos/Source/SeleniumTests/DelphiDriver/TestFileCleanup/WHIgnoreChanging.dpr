@@ -33,6 +33,7 @@ uses
   SysUtils,
   ucPos in 'k:\webhub\tpack\ucPos.pas',
   ucVers,
+  uCode,
   ucString in 'k:\webhub\tpack\ucString.pas',
   ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
   uSeleniumIgnoreChanging in '..\uSeleniumIgnoreChanging.pas';
@@ -46,17 +47,30 @@ var
   S8Before, S8After: UTF8String;
   FilterSpec: string;
   AdminSessionID: string;
+  LSearchOption: TSearchOption;
 
 begin
+
   AdminSessionID := '12345';
+
+  {References:
+   http://docwiki.embarcadero.com/CodeSamples/en/DirectoriesAndFilesEnumeraion_(Delphi)
+   http://www.malcolmgroves.com/blog/?p=447
+  }
+
+  LSearchOption := TSearchOption.soTopDirectoryOnly;
   if (ParamCount >= 1) then
   begin
     BaseFolder := ParamStr(1);
     if ParamCount >= 2 then
     begin
       FilterSpec := ParamStr(2);
-      if ParamCount = 3 then
+      if ParamCount >= 3 then
+      begin
         AdminSessionID := ParamStr(3);
+        if HaveParam('/s') then
+          LSearchOption := TSearchOption.soAllDirectories;
+      end;
     end
     else
       FilterSpec := 'test*.txt';
@@ -64,7 +78,7 @@ begin
     if TDirectory.Exists(BaseFolder) then
     begin
       RegExInit(AdminSessionID);
-      for Filespec in TDirectory.GetFiles(BaseFolder, FilterSpec) do
+      for Filespec in TDirectory.GetFiles(BaseFolder, FilterSpec, LSearchOption) do
       begin
         Writeln(Filespec);
         S8Before := UTF8StringLoadFromFile(Filespec);
@@ -86,8 +100,8 @@ begin
 
     Writeln('usage: pass in the name of the folder containing files to clean ' +
      'plus optionally the filespec plus optionally the separator plus ' +
-     'AdminSessionID.');
-    Writeln('Example: WHIgnoreChanging.exe .\test1\ test*.txt :12345');
-    Writeln('Example: WHIgnoreChanging.exe .\test2\ a*.txt /1204');
+     'AdminSessionID; finally optionally /s for recurse subdirs.');
+    Writeln('Example: WHIgnoreChanging.exe .\test1\ test*.txt :12345 /s');
+    Writeln('Example: WHIgnoreChanging.exe .\test2\ a*.txt /1204 /s');
   end;
 end.
