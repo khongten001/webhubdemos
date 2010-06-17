@@ -22,7 +22,7 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  htWebApp in 'H:\htWebApp.pas';
+  dmwhAnsiUmlauts in 'dmwhAnsiUmlauts.pas' {DataModule1: TDataModule};
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
@@ -30,8 +30,8 @@ uses
 {$R HTGLYPHS.RES}  // icons for WebHub UI features
 
 (* save for compiling with source
+  ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
   whAppOut in 'k:\webhub\lib\whAppOut.pas',
-
   NativeXml in 'K:\WebHub\ZaphodsMap\NativeXml.pas',
   tpMemo in 'k:\webhub\tpack\tpMemo.pas',
   ZaphodsMap in 'K:\WebHub\ZaphodsMap\ZaphodsMap.pas',
@@ -39,13 +39,11 @@ uses
   ucString in 'K:\WebHub\tpack\ucString.pas',
   ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
   ucPos in 'k:\webhub\tpack\ucPos.pas',
-
   cgiVars in 'k:\webhub\Lib\WHRun\cgiVars.pas',
   apiBuilt in 'K:\WebHub\lib\whrun\apiBuilt.pas',
   apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
   apiMail in 'k:\webhub\Lib\WHRun\apiMail.pas',
   ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
-
   webAjax in 'K:\WebHub\lib\whvcl\webAjax.pas',
   webTypes in 'K:\WebHub\lib\webTypes.pas',
   webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
@@ -60,6 +58,7 @@ uses
   webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
   htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
+  htWebApp in 'H:\htWebApp.pas',
   *)
 
 (* save for preview panel
@@ -89,4 +88,5 @@ begin
   DMForDServer.ProjMgr.ManageStartup;
   Application.Run;
 end.
+
 
