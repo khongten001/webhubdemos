@@ -57,6 +57,7 @@
     <TekoFiles>
       <File id="aboutJPEG" filename="..\..\Shared WHTML\about\about-whDynamicJPEG.whteko"/>
       <File id="contentJPEG" filename="whDynamicJPEG.whteko"/>
+      <File id="amatchtest" filename="..\..\Shared WHTML\matchtest.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
