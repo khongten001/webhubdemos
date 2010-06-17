@@ -623,7 +623,9 @@ Your user agent is [<span class="changing" id="echouseragent" >(~Request.UserAge
 </p>
 
 <h2>Session Data Cleared</h2>
-<p>Session data for session #(~RawSessionNumber~) deleted.</p>
+<p>Session data for session #
+<span id="webhubsessionid">(~RawSessionNumber~) </span>
+deleted.</p>
 <form id="sessionform" method="post" action="(~ACTION|pgmonitor~)">
 data: (~INPUTTEXT|data,30~)<br/>
 <input type="submit" name="btnMonitor(~RawSessionNumber~)" value="(~RawSessionNumber~)" />
