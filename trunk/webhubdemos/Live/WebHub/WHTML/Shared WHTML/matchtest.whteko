@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko>
+
+<whdroplet name="chSeiteEnde">
+<p>(~centralInfo.webtimegmt~)</p>
+(~waUUmlauts.Execute|~)
+</whdroplet>
+
+<whpage pageid="pgmatchtest">
+(~chSeiteBeg~)
+	(~drContentRightExposeBegin~)	
+	(~SET|v=three~)
+
+	(~NOMATCH|(~v~)$one,two|(~drmatchtest~)~)
+	(~drContentRightExposeEnd~)
+(~chSeiteEnde~)			
+</whpage>
+
+<whdroplet name="drmatchtest" show="no">
+	üüü
+</whdroplet>
+
+</whteko>
