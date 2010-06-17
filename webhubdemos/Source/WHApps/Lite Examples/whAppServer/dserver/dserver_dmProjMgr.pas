@@ -57,7 +57,7 @@ uses
   whpanel_RemotePages, whpanel_Mail, uAutoPanels,
   whMain,  // whpwMain,
   {$ENDIF}
-  dserver_whdmGeneral, whdemo_ColorScheme;
+  dserver_whdmGeneral, whdemo_ColorScheme, dmwhAnsiUmlauts;
 
 { TDMForWHDemo }
 
@@ -115,6 +115,7 @@ procedure TDMForDServer.ProjMgrDataModulesCreate3(
 begin
   Application.CreateForm(TdmwhGeneral, dmwhGeneral); 
   Application.CreateForm(TDataModuleColorScheme, DataModuleColorScheme);
+  Application.CreateForm(TDataModule1, DataModule1);
 end;
 
 procedure TDMForDServer.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -126,6 +127,7 @@ begin
   dmwhGeneral.Init;  {see also: TdmwhGeneral.WebAppUpdate}
   DataModuleColorScheme.Init;
   //pConnection.onBadPageID := nil;
+  DataModule1.Init;
 end;
 
 procedure TDMForDServer.ProjMgrGUICreate(Sender: TtpProject;
