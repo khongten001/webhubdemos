@@ -29,7 +29,7 @@ mcEnglish=English
 ~daySaturday=Saturday
 </whtranslations>
 
-<whtranslation key="~SetPrefWallpaperIntro">
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
 This option is used only to show that settings  may be changed. The WebHub demos were not designed to look visually appealing with all backgrounds.
 </whtranslation>
 

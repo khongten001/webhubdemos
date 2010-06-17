@@ -26,7 +26,7 @@ mcRussian=Русский
 ~SetPrefReturn=Вы должны вернуться на страницу (~PrePref~).
 </whtranslations>
 
-<whtranslation key="~SetPrefWallpaperIntro">
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
 Эта опция используется только для того, чтобы показать, что настройки можно изменять. WebHub демо не проектировались для хорошего отображения на всех фоновых рисунках.
 </whtranslation>
 

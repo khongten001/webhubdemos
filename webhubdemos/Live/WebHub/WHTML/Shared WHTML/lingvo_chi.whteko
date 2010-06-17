@@ -17,6 +17,10 @@ mcChinese=汉语
 ~Prerequisites=必要条件
 </whtranslations>
 
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
+这个选项用于显示可修改的设置. WebHub 演示程序设计的不一定能和所有的背景看上去协调.
+</whtranslation>
+
 <whtranslations>
 ~SetPrefLingvo=输入语种代码
 ~Wallpaper=壁纸
@@ -25,10 +29,6 @@ mcChinese=汉语
 ~Debugging=调试
 ~SetPrefReturn=您应该返回 (~PrePref~) 页面.
 </whtranslations>
-
-<whtranslation key="~SetPrefWallpaperIntro">
-这个选项用于显示可修改的设置. WebHub 演示程序设计的不一定能和所有的背景看上去协调.
-</whtranslation>
 
 </whteko>
 

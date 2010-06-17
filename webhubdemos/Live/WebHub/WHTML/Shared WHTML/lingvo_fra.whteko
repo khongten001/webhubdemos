@@ -37,7 +37,7 @@ mcFrench=Français
 ~daySaturday=Samedi
 </whtranslations>
 
-<whtranslation key="~SetPrefWallpaperIntro" lingvo="fra">
+<whtranslation key="~SetPrefWallpaperIntro" lingvo="fra" show="no">
 Cette option est employée pour prouver seulement que des arrangements 
 peuvent être changés. Les démonstrations de WebHub n'ont pas été conçues pour 
 regarder visuellement attrayantes avec tous les milieux.
