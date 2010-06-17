@@ -3,12 +3,19 @@
 <whteko>
 
 <whdroplet name="chSeiteBeg">
+(~mcdoctypehtml~)
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+(~drHead~)
+</head>
+<body>
 <p>PageID: (~PageID~)</p>
 </whdroplet>
 
 <whdroplet name="chSeiteEnde">
 <p>(~centralInfo.webtimegmt~)</p>
 (~waUUmlauts.Execute|~)
+</body></html>
 </whdroplet>
 
 <whdroplet name="drContentRightExposeBegin">
@@ -30,7 +37,7 @@
 </whpage>
 
 <whdroplet name="drmatchtest" show="no">
-	üüü
+üüü
 </whdroplet>
 
 </whteko>
