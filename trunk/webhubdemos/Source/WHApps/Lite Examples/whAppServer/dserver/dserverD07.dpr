@@ -21,8 +21,41 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-  UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  dmwhAnsiUmlauts in 'dmwhAnsiUmlauts.pas' {DataModule1: TDataModule};
+  UTF8StringUtils in 'k:\webhub\zaphodsmap\UTF8StringUtils.pas',
+  ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
+  whAppOut in 'k:\webhub\lib\whAppOut.pas',
+  NativeXml in 'K:\WebHub\ZaphodsMap\NativeXml.pas',
+  tpMemo in 'k:\webhub\tpack\tpMemo.pas',
+  ZaphodsMap in 'K:\WebHub\ZaphodsMap\ZaphodsMap.pas',
+  ucFile in 'K:\WebHub\tpack\ucFile.pas',
+  ucString in 'K:\WebHub\tpack\ucString.pas',
+  ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
+  ucPos in 'k:\webhub\tpack\ucPos.pas',
+  cgiVars in 'k:\webhub\Lib\WHRun\cgiVars.pas',
+  apiBuilt in 'K:\WebHub\lib\whrun\apiBuilt.pas',
+  apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
+  apiMail in 'k:\webhub\Lib\WHRun\apiMail.pas',
+  ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
+  webAjax in 'K:\WebHub\lib\whvcl\webAjax.pas',
+  webTypes in 'K:\WebHub\lib\webTypes.pas',
+  webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
+  webBase in 'k:\webhub\Lib\WHVCL\webBase.pas',
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas',
+  webCore in 'K:\WebHub\lib\whvcl\webCore.pas',
+  htStrWWW in 'K:\WebHub\lib\whvcl\htStrWWW.pas',
+  htStream in 'k:\webhub\Lib\WHVCL\htStream.pas',
+  cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
+  htmlCore in 'K:\WebHub\lib\whvcl\htmlCore.pas',
+  whsample_DWSecurity in 'k:\webhub\lib\whsample_DWSecurity.pas',
+  webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
+  webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
+  htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
+  dmwhAnsiUmlauts in 'dmwhAnsiUmlauts.pas' {DataModule1: TDataModule},
+  htWebApp in 'k:\webhub\lib\htWebApp.pas',
+  whMacros in 'K:\WebHub\lib\whvcl\whMacros.pas',
+  webPrologue in 'K:\WebHub\lib\whvcl\webPrologue.pas',
+  htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas',
+  webInfoU in 'K:\WebHub\lib\whvcl\webInfoU.pas';
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
@@ -58,7 +91,7 @@ uses
   webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
   htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
-  htWebApp in 'H:\htWebApp.pas',
+  htWebApp in 'k:\webhub\lib\htWebApp.pas',
   *)
 
 (* save for preview panel
