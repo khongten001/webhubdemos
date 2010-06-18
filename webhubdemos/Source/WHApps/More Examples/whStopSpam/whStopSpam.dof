@@ -90,7 +90,7 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=D:\Projects\WebHub Demos\Live\WebHub\Apps
+OutputDir=D:\Projects\WebHubDemos\Live\WebHub\Apps
 UnitOutputDir=d:\temp\delphitempdcu
 PackageDLLOutputDir=
 PackageDCPOutputDir=
@@ -135,8 +135,12 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-D:\HREF\Source\WebApplication\Reg\hrefapp\HREFSite_Package.bpl=HREFSite Component Package
+D:\Apps\Borland\Delphi\70\Bin\sdacvcl70.bpl=SQL Server Data Access GUI related Components
+d:\apps\borland\delphi\70\Bin\dclsdac70.bpl=SQL Server Data Access Components
+C:\WINDOWS\system32\IBO40FTS_D7.bpl=IB Objects Full Text Search
+C:\WINDOWS\system32\IBO40RPL_D7.bpl=IB Objects Replication
 d:\apps\borland\delphi\70\Projects\Bpl\WebHubIBO.bpl=HREF Tools WebHub - Interbase Objects
+d:\apps\borland\delphi\70\Projects\Bpl\robpackD07.bpl=Robpack custom components for Delphi 7
 h:\pkgd07\HubComponents.bpl=HREF Tools Hub components
 C:\WINNT\System32\ibevnt70.bpl=Borland Interbase Event Alerter Component
 d:\apps\borland\delphi\70\Projects\Bpl\dclusr70.bpl=Borland User Components
@@ -158,9 +162,10 @@ Count=2
 Item0=d:\temp\delphitempdcu
 Item1=d:\temp\delphitempdcus
 [HistoryLists\hlOutputDirectorry]
-Count=2
-Item0=D:\Projects\WebHub Demos\Live\WebHub\Apps
-Item1=D:\sandbox\ht\bin
+Count=3
+Item0=D:\Projects\WebHubDemos\Live\WebHub\Apps
+Item1=D:\Projects\WebHub Demos\Live\WebHub\Apps
+Item2=D:\sandbox\ht\bin
 [Exception Log]
 EurekaLog Version=6019
 Activate=0
