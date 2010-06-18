@@ -161,6 +161,8 @@ Amount due: (~vAmountDue~)
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<h2>Demo</h2>
+<p>Here you can send a message from yourself to yourself, with a cc to Customer Service.</p>
 <!-- changing:start-->
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|testwebmailform2,safemail~)">
 <!-- changing:stop-->

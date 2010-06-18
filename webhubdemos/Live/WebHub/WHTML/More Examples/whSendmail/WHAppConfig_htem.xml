@@ -76,7 +76,8 @@
         <Host value="mail.sonic.net"/>
         <Port value="25"/>
         <From value="inEMail^"/>
-        <To value="customerservice@href.com"/>
+        <To  value="inEMail^"/>
+        <Cc value="customerservice@href.com"/>
         <Subject value="testing in 'htem' demo"/>
         <Include value="ALL"/>
         <TxtVars value="ALL"/>
