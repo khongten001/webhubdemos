@@ -1,6 +1,6 @@
 unit whSendmail_dmWhQuote;   {custom code for emailing a quote - WebHub demo.}
 (*
-Copyright (c) 2003 HREF Tools Corp.
+Copyright (c) 2003-2010 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
@@ -38,7 +38,6 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function ExpandChunk(aDropletID: string): string;
     procedure Init;
   end;
 
@@ -49,36 +48,12 @@ implementation
 
 uses
   ucFile, ucOther, ucWinAPI,
-  whMail, webApp, webPrologue;
+  whMail, webApp, webPrologue, whMacroAffixes;
 
 {$R *.DFM}
 
 const
-  cOutgoingMailServer = 'mail.href.com';   // replace with your mail server
-
-function TdmWhQuote.ExpandChunk(aDropletID: string):string;
-var
-  t:TwhResponse;
-begin
-  //connect the mailmerge output
-  t:=pWebApp.Response;
-  pWebApp.Response:=ExtraOutput;
-  ExtraOutput.WebApp:=pWebApp;
-  //expand the droplet
-  With ExtraOutput do
-  begin
-    ResponseFilespec := GetTempFileName('quote.txt');
-    SetContentType(proSkip, '');
-    Open;
-    pWebApp.SendMacro(aDropletID);
-    Result := Stream.text;
-    Close;
-    DeleteFile(ResponseFilespec);
-    end;
-  //disconnect the mailmerge output;
-  pWebApp.Response:=t;
-  ExtraOutput.WebApp:=nil;
-end;
+  cOutgoingMailServer = 'mail.sonic.net';   // replace with your mail server
 
 procedure TdmWhQuote.Init;
 begin
@@ -116,10 +91,12 @@ begin
       Sender.Name:='WebHub Demo: HTMail Quote System';
       Mailto.text:=StringVar['inSurferEMail'];
       Subject:='Automated Quotation';
-      Lines.text:=ExpandChunk('chQuote');
-      MailHost.Hostname:=cOutgoingMailServer;
-      MailHost.Port:=25;
+      Lines.text := pWebApp.Expand(MacroStart + 'chQuote' + MacroEnd);
+      MailHost.Hostname := cOutgoingMailServer;
+      MailHost.Port := 25;
       DataModuleWhMail.WebMail.execute;            // send the custom message
+      Files.Clear;
+      Files.Add(pWebApp.AppPath + 'sampleattachment.txt');
     end;
     Response.SendComment('E-mail was sent to '+StringVar['inSurferEMail']);
   end;

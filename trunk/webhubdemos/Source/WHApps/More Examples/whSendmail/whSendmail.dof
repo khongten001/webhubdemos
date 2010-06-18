@@ -90,7 +90,7 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=
+OutputDir=D:\Projects\webhubdemos\Live\WebHub\Apps
 UnitOutputDir=d:\Temp\DelphiTempDCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
@@ -136,13 +136,26 @@ ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
 d:\apps\borland\delphi\70\Bin\dclindy70.bpl=Internet Direct (Indy) for D7 Property and Component Editors
+D:\Apps\Borland\Delphi\70\Bin\sdacvcl70.bpl=SQL Server Data Access GUI related Components
+d:\apps\borland\delphi\70\Bin\dclsdac70.bpl=SQL Server Data Access Components
+C:\WINDOWS\system32\IBO40FTS_D7.bpl=IB Objects Full Text Search
+C:\WINDOWS\system32\IBO40RPL_D7.bpl=IB Objects Replication
 d:\apps\borland\delphi\70\Projects\Bpl\WebHubIBO.bpl=HREF Tools WebHub - Interbase Objects
+d:\apps\borland\delphi\70\Projects\Bpl\robpackD07.bpl=Robpack custom components for Delphi 7
+h:\pkgd07\HubComponents.bpl=HREF Tools Hub components
 C:\WINNT\System32\ibevnt70.bpl=Borland Interbase Event Alerter Component
 d:\apps\borland\delphi\70\Projects\Bpl\dclusr70.bpl=Borland User Components
-D:\Apps\Borland\Delphi\70\Indy10D07\LibD7\dclIndyCore70.bpl=Indy 10 Core Design Time
-D:\Apps\Borland\Delphi\70\Indy10D07\LibD7\dclIndyProtocols70.bpl=Indy 10 Protocols Design Time
+[HistoryLists\hlUnitAliases]
+Count=1
+Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlUnitOutputDirectory]
+Count=1
+Item0=d:\Temp\DelphiTempDCU
+[HistoryLists\hlOutputDirectorry]
+Count=1
+Item0=D:\Projects\webhubdemos\Live\WebHub\Apps
 [Exception Log]
-EurekaLog Version=6015
+EurekaLog Version=6019
 Activate=0
 Activate Handle=1
 Save Log File=1
