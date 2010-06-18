@@ -2,42 +2,53 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko>
 
-<whdroplet name="chSeiteBeg">
+<whpage pageid="pgmatchtest">
 (~mcdoctypehtml~)
 <html>
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 (~drHead~)
 </head>
 <body>
 <p>PageID: (~PageID~)</p>
-</whdroplet>
 
-<whdroplet name="chSeiteEnde">
+(~SET|v=three~)
+	(~NOMATCH|(~v~)$one,two|(~drmatchtest~)~)
+	
+	(~INPUTFORM|pgMatchTest~)
+	City: (~INPUTTEXT|city~)
+	<input type="submit" />
+	(~drobjecttype~)
+	(~INPUTFORM|close~) City such as Düsseldorf
+	
+	(~chSeiteEnde~)
+</body></html>
+</whpage>
+
+<whdroplet name="chSeiteEnde" show="no">
 <p>(~centralInfo.webtimegmt~)</p>
 (~waUUmlauts.Execute|~)
-</body></html>
 </whdroplet>
-
-<whdroplet name="drContentRightExposeBegin">
-<br/>
-</whdroplet>
-
-<whdroplet name="drContentRightExposeEnd">
-<br/>
-</whdroplet>
-
-<whpage pageid="pgmatchtest">
-(~chSeiteBeg~)
-	(~drContentRightExposeBegin~)	
-	(~SET|v=three~)
-
-	(~NOMATCH|(~v~)$one,two|(~drmatchtest~)~)
-	(~drContentRightExposeEnd~)
-(~chSeiteEnde~)			
-</whpage>
 
 <whdroplet name="drmatchtest" show="no">
 üüü
 </whdroplet>
 
+<whdroplet name="drobjecttype">
+(~SET|quicksearchobjekttyp=myHAU~)
+<select name="quicksearchobjekttyp" id="qsot" class="inputDetailSelect" onChange="objekttyp();(~linkAjaxStart~)">
+                <option value="">Alle</option>
+                <option value="myHAU" class="wgf"(~MATCH|(~quicksearchobjekttyp~)=myHAU| selected~)>Häuser</option>
+                <option value="myWOH" class="wgf"(~MATCH|(~quicksearchobjekttyp~)=myWOH| selected~)>Wohnungen</option>
+                <option value="myGRU" class="wgf"(~MATCH|(~quicksearchobjekttyp~)=myGRU| selected~)>Grundstücke</option>
+                
+                <option value="myGBUP" class="g"(~MATCH|(~quicksearchobjekttyp~)=myGBUP| selected~)>Büro / Praxisflächen</option>
+                <option value="myGHAL" class="g"(~MATCH|(~quicksearchobjekttyp~)=myGHAL| selected~)>Hallen / Industrieflächen</option>
+                <option value="myGLAD" class="g"(~MATCH|(~quicksearchobjekttyp~)=myGLAD| selected~)>Ladenflächen</option>
+                <option value="myGEXI" class="g"(~MATCH|(~quicksearchobjekttyp~)=myGEXI| selected~)>Geschäft / Existenz</option>
+                <option value="myGHOT" class="g"(~MATCH|(~quicksearchobjekttyp~)=myGHOT| selected~)>Gastronomie / Hotels</option>
+                <option value="myREN" class="wg"(~MATCH|(~quicksearchobjekttyp~)=myREN| selected~)>Renditeobjekte</option>
+
+                <option value="myFZIM" class="f"(~MATCH|(~quicksearchobjekttyp~)=myFZIM| selected~)>Ferienzimmer</option>
+               </select>
+</whdroplet>
 </whteko>
