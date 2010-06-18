@@ -117,8 +117,10 @@ lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
 <span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span>
+(~NOMATCH|(~centralinfo.PascalCompilerCode~)=D07|
 <span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span>
 <span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
+||<!-- Chinese (~mcChinese~) and Russian (~mcRussian~) disabled when running under Delphi 7 --> ~)
 </div>
 
 </div>  <!--- whDemoSectionNav -->
@@ -153,7 +155,7 @@ Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reser
 
 <whdroplet name="drCreditsTimingEtc" show="no">
 (~IfDynamic|<span class="techiefooter">
-This web application was compiled using Delphi <span class="changing">(~CentralInfo.PascalCompilerCode~)</span>, (~Version~) and 
+This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~) and 
 Syntax Stage (~ProjectSyntax~).
 Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &nbsp; 
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span> and your 
