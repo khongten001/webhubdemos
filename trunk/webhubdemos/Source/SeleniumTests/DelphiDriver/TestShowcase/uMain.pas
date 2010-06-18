@@ -5,25 +5,50 @@ interface
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, ExtCtrls,
-  uISelenium_1_0_3, uDefaultSelenium_1_0_3;
+  uISelenium, uDefaultSelenium;
 
 type
   TForm1 = class(TForm)
     memoLog: TMemo;
     Panel1: TPanel;
-    btnTestA: TButton;
+    GroupBox1: TGroupBox;
+    btnPerformanceTestStart: TButton;
+    Label1: TLabel;
+    editThread: TEdit;
+    Label2: TLabel;
+    editTimes: TEdit;
+    GroupBox2: TGroupBox;
     btnTest: TButton;
-    btnTestB: TButton;
-    btnStop: TButton;
     Button1: TButton;
     Button2: TButton;
+    GroupBox3: TGroupBox;
+    btnTestA: TButton;
+    btnTestB: TButton;
+    btnStop: TButton;
+    GroupBox4: TGroupBox;
+    btn_andere: TButton;
+    btn_expose: TButton;
+    btn_inserieren: TButton;
+    btn_nodouble: TButton;
+    btn_partner: TButton;
+    btn_suchen: TButton;
+    btnPerformanceTestStop: TButton;
     procedure btnTestAClick(Sender: TObject);
     procedure btnTestClick(Sender: TObject);
     procedure btnStopClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure btn_andereClick(Sender: TObject);
+    procedure btn_exposeClick(Sender: TObject);
+    procedure btn_inserierenClick(Sender: TObject);
+    procedure btn_nodoubleClick(Sender: TObject);
+    procedure btn_partnerClick(Sender: TObject);
+    procedure btn_suchenClick(Sender: TObject);
+    procedure btnPerformanceTestStartClick(Sender: TObject);
+    procedure btnPerformanceTestStopClick(Sender: TObject);
   private
   public
+    procedure OnPerformanceTestMessage(s : string);
   end;
 
 var
@@ -33,7 +58,8 @@ implementation
 
 uses
   ucLogFil,
-  uSeleniumShared;
+  uSeleniumShared,
+  uPerformanceTest;
 
 {$R *.dfm}
 
@@ -201,9 +227,9 @@ begin
   Log('Start......');
   try
     selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.google.com');
-    selenium.Start('captureNetworkTraffic=true');
+    //selenium.Start('captureNetworkTraffic=true');
     selenium.Open('/');
-    s := selenium.captureNetworkTraffic('plain');
+    //s := selenium.captureNetworkTraffic('plain');
     UTF8StringWriteToFile(
       ExtractFilePath(Application.ExeName) + '0captureNetworkTraffic.txt',
       s);
@@ -218,6 +244,147 @@ begin
     end;
   end;
   Log('End.');
+end;
+
+procedure TForm1.btn_andereClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\andere.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.btn_exposeClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\expose.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.btn_inserierenClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\inserieren.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.btn_nodoubleClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\nodouble.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.btn_partnerClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\partner.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+procedure TForm1.btn_suchenClick(Sender: TObject);
+var
+  selenium: ISelenium;
+begin
+  Log('Start......');
+  try
+    selenium := DefaultSelenium.Create('localhost', 5555, '*firefox', 'http://www.my-next-home.de');
+    selenium.Start();
+    {$I .\next_home_testcase\suchen.inc}
+    //selenium.Stop();
+  except
+    on E: Exception do
+    begin
+      Log('************* Exception ***********');
+      Log(Format('Exception: %s', [e.Message]));
+    end;
+  end;
+  Log('End.');
+end;
+
+var
+  PerformanceTest : TPerformanceTest;
+
+procedure TForm1.btnPerformanceTestStartClick(Sender: TObject);
+begin
+  PerformanceTest := TPerformanceTest.Create();
+  PerformanceTest.OnMessage := OnPerformanceTestMessage;
+  PerformanceTest.Start();
+end;
+
+procedure TForm1.btnPerformanceTestStopClick(Sender: TObject);
+begin
+  PerformanceTest.Stop();
+  PerformanceTest.Free;
+end;
+
+procedure TForm1.OnPerformanceTestMessage(s : string);
+begin
+    Log('PerformanceTest: ' + s);
 end;
 
 end.
