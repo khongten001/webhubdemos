@@ -61,6 +61,10 @@ and uses the resulting figures in automated e-mail response letter.</p>
 	(~inputradio|inPayMethod,1.03~) <b>P.O. Net 60:</b> 3% surcharge
 	</td>
 </tr>
+<tr>
+	<td>Purchase Order:</td>
+	<td>(~INPUTTEXT|inPurchaseOrder~)</td>
+</tr>
 </table>
 
 <table border="1" cellpadding="5" width="50%">
@@ -150,6 +154,8 @@ For (~inQty1~) Bucket(s) of Puppies and (~inQty2~) Crate(s) of Kittens.
 List price: (~vListPrice~)
 Adjustment factor: (~inPayMethod~)
 Amount due: (~vAmountDue~)
+
+Your Purchase Order Reference: (~inPurchaseOrder~)
 </whdroplet>
 
 <whpage pageid="testwebmailform1" desc="Test TwhMailForm component">
@@ -167,6 +173,7 @@ Amount due: (~vAmountDue~)
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|testwebmailform2,safemail~)">
 <!-- changing:stop-->
 Your email address: (~INPUTTEXT|inEmail,30,50~)<br>
+Your data entry field: (~INPUTTEXT|inSomeData~)<br/>
 Your message:
 <textarea name="txtMessage" rows="12" cols="70">
 (~txtMessage~)

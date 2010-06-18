@@ -94,9 +94,9 @@ begin
       Lines.text := pWebApp.Expand(MacroStart + 'chQuote' + MacroEnd);
       MailHost.Hostname := cOutgoingMailServer;
       MailHost.Port := 25;
-      DataModuleWhMail.WebMail.execute;            // send the custom message
       Files.Clear;
       Files.Add(pWebApp.AppPath + 'sampleattachment.txt');
+      DataModuleWhMail.WebMail.execute;            // send the custom message
     end;
     Response.SendComment('E-mail was sent to '+StringVar['inSurferEMail']);
   end;
