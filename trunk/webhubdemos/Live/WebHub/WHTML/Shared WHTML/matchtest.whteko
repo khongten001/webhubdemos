@@ -12,19 +12,22 @@
 <p>PageID: (~PageID~)</p>
 
 (~SET|v=three~)
-	(~NOMATCH|(~v~)$one,two|(~drmatchtest~)~)
-	
+	Match test: (~NOMATCH|(~v~)$one,two|(~drmatchtest~)~)
+	<hr/>
+	Form test:<br/><br/>
 	(~INPUTFORM|pgMatchTest~)
-	City: (~INPUTTEXT|city~)
-	<input type="submit" />
+   <p>Test with city such as Düsseldorf or Saarbrücken...</p>
+	<p>City: (~INPUTTEXT|city~)</p>
 	(~drobjecttype~)
-	(~INPUTFORM|close~) City such as Düsseldorf
+	<p><input type="submit" /></p>
+	(~INPUTFORM|close~) 
 	
 	(~chSeiteEnde~)
 </body></html>
 </whpage>
 
 <whdroplet name="chSeiteEnde" show="no">
+<p>(~JUMPR||home page~)</p>
 <p>(~centralInfo.webtimegmt~)</p>
 (~waUUmlauts.Execute|~)
 </whdroplet>
@@ -35,7 +38,7 @@
 
 <whdroplet name="drobjecttype">
 (~SET|quicksearchobjekttyp=myHAU~)
-<select name="quicksearchobjekttyp" id="qsot" class="inputDetailSelect" onChange="objekttyp();(~linkAjaxStart~)">
+<select name="quicksearchobjekttyp" id="qsot" class="inputDetailSelect" ">
                 <option value="">Alle</option>
                 <option value="myHAU" class="wgf"(~MATCH|(~quicksearchobjekttyp~)=myHAU| selected~)>Häuser</option>
                 <option value="myWOH" class="wgf"(~MATCH|(~quicksearchobjekttyp~)=myWOH| selected~)>Wohnungen</option>
