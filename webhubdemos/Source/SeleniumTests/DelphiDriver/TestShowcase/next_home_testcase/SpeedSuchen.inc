@@ -1,0 +1,12 @@
+selenium.Open('/pgmonitor:12044:testcase=suchen');
+selenium.Click('link=home page for this application');
+selenium.WaitForPageToLoad('30000');
+selenium.Type('kfzortplz', '66121');
+selenium.Click('pressenter');
+selenium.WaitForPageToLoad('30000');
+selenium.Type('BaujAb', '2000');
+selenium.Click('link=7');
+selenium.WaitForPageToLoad('30000');
+selenium.Type('BaujBis', '2010');
+selenium.Click('pressenter');
+selenium.WaitForPageToLoad('30000');
