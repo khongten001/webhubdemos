@@ -5,5 +5,6 @@ Adèle
 Aimée
 Baumüller
 
-as at (~centralinfo.webtimegmt~)
+Note that parentils are NOT expanded within the attachment.
+Example: (~CentralInfo.WebTimeGMT~)
 
