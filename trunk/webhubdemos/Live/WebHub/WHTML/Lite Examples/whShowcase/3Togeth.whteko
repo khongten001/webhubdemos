@@ -1,4 +1,4 @@
-<whteko defaultlingvo="eng" designmode="code">
+﻿<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on
@@ -20,12 +20,16 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 The following example will allow you to personalize this Showcase Demo with your name and organization.
 <p>
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
-<!-- changing:stop-->
+(~INPUTFORM|pgPersonalizing~)
 <CENTER><table>
 <tr><td>
-Please enter your name: </td><td>(~inputtext|litSurferName,40,40~)<tr><td>
-Organization: </td><td>(~inputtext|litOrganization,40,40~)</td></tr>
+Please enter your name: </td><td>(~inputtext|litSurferName,40,40~)</td>
+<td>Examples: Adèle, Aimée</td>
+</tr>
+<tr><td>
+Organization: </td><td>(~inputtext|litOrganization,40,40~)</td>
+<td>Examples: Baumüller</td>
+</tr>
 </table>
 (~inputsubmit|submit,Post and Notice the Difference~)
 </CENTER>
