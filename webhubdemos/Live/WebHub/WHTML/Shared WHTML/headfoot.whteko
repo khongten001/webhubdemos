@@ -117,10 +117,8 @@ lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
 <span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span>
-(~NOMATCH|(~centralinfo.PascalCompilerCode~)=D07|
 <span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span>
 <span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
-||<!-- Chinese (~mcChinese~) and Russian (~mcRussian~) disabled when running under Delphi 7 --> ~)
 </div>
 
 </div>  <!--- whDemoSectionNav -->
