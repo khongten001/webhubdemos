@@ -36,8 +36,15 @@ procedure TDataModule1.waUUmlautsExecute(Sender: TObject);
 begin
   pWebApp.SendMacro('drmatchtest');
   pWebApp.SendString('<hr/>');
-  pwebapp.SendString('3:üüü<br/>');
+  pWebApp.SendStringA('single u umlaut symbol: ü<br/>');
+
+  {Test these SendMacro examples in D07 and D14.
+   Right now they work in D14, not D07. 21-Jun-2010 08:58 gmt}
+  pWebApp.Response.Send('Should now show match result of 4: ');
   pWebApp.SendMacro('MATCH|a=b|2:üü||4:üüüü');
+  pWebApp.SendString('<br/>');
+  pWebApp.Response.Send('Should now show match result of 2: ');
+  pWebApp.SendMacro('NOMATCH|a=b|2:üü||4:üüüü');
 end;
 
 end.
