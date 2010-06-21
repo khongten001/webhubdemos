@@ -45,6 +45,14 @@ begin
   pWebApp.SendString('<br/>');
   pWebApp.Response.Send('Should now show match result of 2: ');
   pWebApp.SendMacro('NOMATCH|a=b|2:üü||4:üüüü');
+  pWebApp.SendString('<br/>');
+
+  pWebApp.Response.Send('Better... result of 4: ');
+  pWebApp.SendMacroA('MATCH|a=b|2:üü||4:üüüü');
+  pWebApp.SendString('<br/>');
+  pWebApp.Response.Send('Better... result of 2: ');
+  pWebApp.SendMacroA('NOMATCH|a=b|2:üü||4:üüüü');
+  pWebApp.SendString('<br/>');
 end;
 
 end.
