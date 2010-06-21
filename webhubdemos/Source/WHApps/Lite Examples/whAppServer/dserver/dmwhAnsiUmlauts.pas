@@ -36,8 +36,8 @@ procedure TDataModule1.waUUmlautsExecute(Sender: TObject);
 begin
   pWebApp.SendMacro('drmatchtest');
   pWebApp.SendString('<hr/>');
-  pwebapp.SendString(UTF8Encode('3:üüü<br/>'));
-  pWebApp.SendMacro(UTF8Encode('MATCH|a=b|2:üü||4:üüüü'));
+  pwebapp.SendString('3:üüü<br/>');
+  pWebApp.SendMacro('MATCH|a=b|2:üü||4:üüüü');
 end;
 
 end.
