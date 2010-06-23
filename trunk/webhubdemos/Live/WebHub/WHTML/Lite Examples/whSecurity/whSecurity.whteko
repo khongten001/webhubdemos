@@ -981,7 +981,7 @@ so you can repeat the sequence--be sure to click the link within 5 seconds of la
 undersession=yes
 </whpagesettings>
 <whprep>
-(~SESSION|Delete~)
+(~EXPIRES|-1~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -1104,6 +1104,9 @@ on the site</td>
 </whoutput>
 </whpage>
 
+<whpage pageid="pgSessionDelete" desc="Delete your session object">
+(~pgLogout~)
+</whpage>
 
 <whpage pageid="pgNewSession" desc="Creating a New Session Object">
 <whpagesettings inherit="public">
@@ -1146,39 +1149,6 @@ undersession=yes
 The  datetime can be set so that you can determine the "length of storage"--
 by enabling  the Hub's Background Delete feature on the Session Panel,
 then the session file will be deleted once the specified date/time is reached. (v1.46+)
-</div>  <!--- demopagecontent -->
-(~drPageEnd~)
-</body></html>
-</whoutput>
-</whpage>
-
-
-
-
-<whpage pageid="pgSessionTouch" desc="Using Touch Session">
-<whpagesettings inherit="public">
-undersession=yes
-</whpagesettings>
-<whoutput>
-(~mcdoctypehtml~)
-<html>
-<head>
-(~drHead~)
-</head>
-<body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
-Allows you to merely "touch" the session object, altering the date/time stamp, but not actually altering any information
-Touch: This sets the timestamp on the object without saving any data. Any changes to StringVars, checkboxes etc.
-from the most recent page request WILL BE LOST. 
-<whdoc>
-
------ For HREF to look at -----
-
-1998 NOTE:  Michael says this is NOT true--have him look at this, and see if we can determine a more accurate way of describing this
-
-Get clarification from Michael on the exact nature of TOUCH, and examples for when and where it would be useful.
-</whdoc>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
