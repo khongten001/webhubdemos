@@ -104,11 +104,11 @@ mctimeout=2
 
 <whdroplet name="drSpeedbarUnderLogin">
 <!--- links to features that are available based on access level-->
-(~MATCH|(~weblogin.UsrAccess~)=1|(~GO|hubvers:pgversion|Access Level 1:  View The Hub~)
-||<span style="color:#666667;">Access Level 1:   View the Hub</span>~)
+(~MATCH|(~weblogin.UsrAccess~)[1,2|(~GO|hubvers:pgversion|Access Level 1:  View The Hub~)
+||<span style="color:#666667;">Level 1 CLOSED</span>~)
  &nbsp;|&nbsp;
 (~MATCH|(~weblogin.UsrAccess~)=2|Access Level 2: (~chLevel2Speedbar~)
-||<span style="color:#666667;">Access Level 2:   About TimeOuts &nbsp;||&nbsp;  About Session Control  &nbsp;||&nbsp;  About Expires</span>~)
+||<span style="color:#666667;">Level 2 CLOSED</span>~)
 <br />
 </whdroplet>
 
@@ -120,7 +120,7 @@ mctimeout=2
 <!--- extra line between the regular HTSC speedbar and the one for this section -->
 &nbsp;<br />
 <!--- Additional speedbar for the Session section -->
-(~GO|pgAboutSession|About Session~) &nbsp;||&nbsp;(~GO|pgNewSession|New Session~) &nbsp;||&nbsp;(~GO|pgSessionDelete|Delete Session~)  &nbsp;||&nbsp;(~GO|pgTouchSession|Touch Session~)
+(~GO|pgAboutSession|About Session~) &nbsp;||&nbsp;(~GO|pgNewSession|New Session~) &nbsp;||&nbsp;(~GO|pgSessionDelete|Delete Session~)
 <br />
 </whdroplet>
 
