@@ -3,7 +3,7 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whmacros>
-mclingvolist=eng-English,deu-Deutsch,fra-Français,rus-Русский
+mclingvolist=eng-English,deu-Deutsch,fra-Français,chi-汉语,rus-Русский
 </whmacros>
 
 <whmacros>
