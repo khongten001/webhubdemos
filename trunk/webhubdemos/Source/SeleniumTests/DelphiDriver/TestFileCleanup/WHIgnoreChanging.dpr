@@ -25,9 +25,11 @@ Author of original version of this file: Ann Lynnworth
 Requires: Delphi 2010+
 *)
 
+{$APPTYPE CONSOLE}
 
 uses
-  Forms,
+  MultiTypeApp,
+  ConApp,
   IOUtils,
   Classes,
   SysUtils,
@@ -50,6 +52,11 @@ var
   LSearchOption: TSearchOption;
 
 begin
+
+  Writeln('WHIgnoreChanging v' + GetVersionDigits(False));
+  Writeln('Open Source; Creative Commons License');
+  Writeln('Copyright (c) 2010 HREF Tools Corp.');
+  Writeln('');
 
   AdminSessionID := '12345';
 
@@ -93,11 +100,6 @@ begin
   end
   else
   begin
-    Writeln('WHIgnoreChanging v' + GetVersionDigits(False));
-    Writeln('Open Source; Creative Commons License');
-    Writeln('Copyright (c) 2010 HREF Tools Corp.');
-    Writeln('');
-
     Writeln('usage: pass in the name of the folder containing files to clean ' +
      'plus optionally the filespec plus optionally the separator plus ' +
      'AdminSessionID; finally optionally /s for recurse subdirs.');
