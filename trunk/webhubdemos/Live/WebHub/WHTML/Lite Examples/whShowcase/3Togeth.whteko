@@ -1,4 +1,6 @@
-﻿<whteko defaultlingvo="eng" designmode="code">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on

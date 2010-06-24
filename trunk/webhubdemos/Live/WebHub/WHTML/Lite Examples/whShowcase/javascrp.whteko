@@ -1,4 +1,6 @@
-<whteko defaultlingvo="eng">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" defaultlingvo="eng">
 
 <whdroplet name="chAdvertising">
 <whdoc>
@@ -62,26 +64,28 @@ scrollit_r2l(150)
 
 
 </SCRIPT>
+</whdroplet>
 
-<!-- ********************************************** -->
-     chJavaCl: displays a running clock
-<!-- ********************************************** -->
-;speed
-;length of box
-;tid
-;replacing what's in the quotes after value= will determine what the clock says while the javascript to run it is loading
-
-<h1>-Chunk:chClockVariables=,,,Java Clock</h1>
+<whdroplet name="chClockVariables">
 speed=1000
 len=25
 tid = 0;
+</whdroplet>
 
 <whdroplet name="chClockText">
 document.write(' value="Time For WebHub!"></FORM>')
+</whdroplet>
 
-
-<h1>-Chunk:chJavaCl=,,,Java Clock</h1>
-
+<whdroplet name="chJavaCl">
+<whdoc for="chJavaCl">
+Java-based Clock
+;speed
+;length of box
+;tid
+;replacing what's in the quotes after value= will 
+determine what the clock says while the javascript to 
+run it is loading
+</whdoc>
 
 <script language="javascript">
 <!-- Clock in Java Script .. Cameron Gregory cameron@corona.att.com
@@ -124,22 +128,25 @@ Clock();
 // Shields down -->
 </script>
 
-
-
 <i> Java is a registered trademark of Sun Microsystems, Inc.</i>
 
-<!-- ********************************************** -->
+</whdroplet>
 
 <whdroplet name="chMarquee1Speed">
 tt_speed=100
+</whdroplet>
+
 <whdroplet name="chMarquee1ScSize">
 document.write('<FORM name=tickertapeform><input name=scroll size=55></FORM>');tt_start(document.tickertapeform);
+</whdroplet>
 <whdroplet name="chMarquee1Text">
 
 ticker("Welcome to a marquee generated using javascript and expanded chunks in WebHub!");
-
-<h1>-Chunk:chMarquee1=,,,Tickertape Marquee</h1>
-
+</whdroplet>
+<whdroplet name="chMarquee1">
+<whdoc for="chMarquee1">
+Tickertape Marquee
+</whdoc>
 
 <script language="javascript">
 <!-- Ticker Tape in Java Script .. Cameron Gregory cameron@corona.att.com
