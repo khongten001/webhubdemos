@@ -57,9 +57,7 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~~Options~)</h1>
-<!-- changing:start-->
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|setpref,.ckb~)">
-<!-- changing:stop-->
 <h2>(~~Wallpaper~)</h2>
 <p>(~~SetPrefWallpaperIntro~)</p>
 
@@ -69,6 +67,12 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~~SetPrefLingvo~):
 (~inputselect|guestlingvo,mclingvolist,1,no~)
 
+<h2>URL Style</h2>
+<p>(~JUMPR|pgEnableSessionCookie|Enable~) 
+or
+(~JUMPR|pgDisableSessionCookie|Disable~) 
+</p>
+
 <h2>(~~Debugging~)</h2>
 (~inputcheckbox|showSystemInfo~) Show System Info
  (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" border="0" />~)
@@ -77,6 +81,46 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~inputsubmit|BtnPref,Return~)
 (~~SetPrefReturn~)
 </form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgEnableSessionCookie" desc="Enable WebHub session cookie">
+<whprep>
+(~COOKIE|Session=(~SessionID~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Session Cookie: ON</h2>
+(~JUMPR|SetPref|Return to Options page~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgDisableSessionCookie" desc="Disable WebHub session cookie">
+<whprep>
+(~COOKIECLEAR|Session~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Session Cookie: OFF</h2>
+(~JUMPR|SetPref|Return to Options page~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
 </whoutput>

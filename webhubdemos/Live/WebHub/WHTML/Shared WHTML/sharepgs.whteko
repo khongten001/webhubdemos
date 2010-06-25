@@ -28,8 +28,6 @@
 
           remotedesign,remotepreview,remoterefresh -- use with Dreamweaver">
 
-<!--- ================================================================================ -->
-
 <whpage pageid="pgWelcome" desc="Welcome Page for (~AppID~) Demo">
 <!--- The contents of this page change depending on the current AppID. -->
 <whprep>
@@ -640,6 +638,9 @@ data: (~INPUTTEXT|data,30~)<br/>
 
 <whpage pageid="pgLogout"  desc="Logout to erase session data">
 <whprep>
+(~COOKIECLEAR|SESSION~)
+(~COOKIECLEAR|KEYCODE~)
+(~COOKIECLEAR|FRONTDOORSESSION~)
 (~SESSION|Delete~)
 </whprep>
 (~mcdoctypehtml~)
