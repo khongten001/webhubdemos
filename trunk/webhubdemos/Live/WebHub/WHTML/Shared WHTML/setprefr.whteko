@@ -7,7 +7,6 @@
   designmode="code"
   showdoc="no"
   showsketch="no"
-  copyright="1995-2004 HREF Tools Corp."
   notes="This file defines the Options page shared by all WebHub demos.
 
      To use the SetPref page, make a JUMP or GO
@@ -68,9 +67,9 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~inputselect|guestlingvo,mclingvolist,1,no~)
 
 <h2>URL Style</h2>
-<p>(~JUMPR|pgEnableSessionCookie|Enable~) 
+<p>WebHub Session Cookie: (~JUMPR|pgEnableSessionCookie|id=apgEnableSessionCookie|Enable~) 
 or
-(~JUMPR|pgDisableSessionCookie|Disable~) 
+(~JUMPR|pgDisableSessionCookie|id=apgDisableSessionCookie|Disable~) 
 </p>
 
 <h2>(~~Debugging~)</h2>
