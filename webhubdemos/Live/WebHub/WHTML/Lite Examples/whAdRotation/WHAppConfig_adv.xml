@@ -68,7 +68,8 @@
       <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
     <Security>
-      <AdminSessionNumber value="1001" context="DEMOS"/>
+      <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
     </Security>
     <Situations>
       <ChangedIP pageID="pgBadIP"/>
