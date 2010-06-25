@@ -1,0 +1,30 @@
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerWHCP=WebHub Central - Control Panel
+mcWhDemoCreditIdeaWHCP=Michael Ax
+mcWhDemoCreditFirstDraftWHCP=Michael Ax
+mcWhDemoCreditGraphicsWHCP=n/a
+mcWhDemoCreditCopyWHCP=Michael Ax and Christian Bhn
+mcWhDemoUpdatedWHCP=3-Dec-2004
+mcWhDemoKeywordsWHCP=starting webhub apps,restarting apps,stopping apps,browser-based configuration and control
+mcWhDemoLiteWHCP=No
+</whmacros>
+
+<whdroplet name="drDemoSetupWHCP">
+<ol>
+<li> This application must run within Hub.exe.  It will not work in any other web application.</li>
+<li> The HubAppID must be set equal to WHCP.</li>
+<li> You should define a list of valid usernames and passwords. Edit the whcControlPanel.ini file, [WebLogin.UserList] section.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescWHCP" lingvo="eng">
+This application provides a browser-based interface to some of WebHub Central's configuration and 
+start/stop capabilities.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescWHCP" lingvo="eng">
+there is no long description yet
+</whtranslation>
+
+</whteko>

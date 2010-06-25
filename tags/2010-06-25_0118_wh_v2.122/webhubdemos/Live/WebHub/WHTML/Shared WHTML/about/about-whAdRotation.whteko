@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko   defaultlingvo="eng" designlingvo="eng" designmode="code">
+
+<whmacros>
+mcWhDemoOneLinerADV=Ad Rotation
+mcWhDemoCreditIdeaADV=Michael Ax 
+mcWhDemoCreditFirstDraftADV=Michael Ax
+mcWhDemoCreditGraphicsADV=Rob Daniels
+mcWhDemoCreditCopyADV=Rob Daniels&#44; Ann Lynnworth and Martha Moore
+mcWhDemoUpdatedADV=20-Oct-1998
+mcWhDemoKeywordsADV=Ad rotation,TwhCycle,cyclic list
+mcWhDemoLiteADV=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupADV">
+<ol>
+<li> 
+<whtranslation key="~whDemoSetupADV" lingvo="eng">
+The list of advertisements must be configured in the 
+application-level config file, in the section associated with  
+<code>WebCycle</code>.
+</whtranslation>
+</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoSetupADV" lingvo="deu">
+Die Liste der Reklameanzeigen muß in der Anwendung-Niveau INI Akte zusammengebaut werden, 
+im genannten worden Abschnitt <code>[WebCycle.Items]</code>.
+</whtranslation>
+
+
+<whtranslation key="~whDemoShortDescADV">
+The WebCycle component can be used to display a rotating series
+of items, such as advertisements, so that a new item is 
+featured with each new page.
+</whtranslation>
+
+
+<whtranslation key="~whDemoShortDescADV" lingvo="deu">
+Der WebCycle Bestandteil kann benutzt werden, um eine drehende Reihe Einzelteile, wie Reklameanzeigen anzuzeigen, damit ein neues Einzelteil mit jeder neuen Seite gekennzeichnet wird.
+</whtranslation>
+
+<whtranslation key="~whDemoShortDescADV" lingvo="fra">
+Le composant de WebCycle peut être employé pour montrer une série 
+tournante d'articles, tels que des annonces, de sorte qu'un nouvel article soit décrit avec draque nouvelle page.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescADV">
+The WebCycle component cycles through a list of predefined items, advancing 
+to the next  item in the list when a surfer changes the page. Each advertisement can be 
+made up of any combination of HTML, graphic images, multimedia links, JavaScript,
+ and/or java applet code. 
+</whtranslation>
+
+
+<whtranslation key="~SetupADV" lingvo="fra">
+La liste d'annonces doit être configurée dans le dossier du l'application-niveau INI, dans la section appelée [ WebCycle.Items ].
+</whtranslation>
+
+</whteko>

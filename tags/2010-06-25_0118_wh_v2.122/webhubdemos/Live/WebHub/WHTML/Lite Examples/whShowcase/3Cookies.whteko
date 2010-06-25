@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code" designdynsrc="localdemoSHOWCASE">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGCOOKIES
+whSequenceFinal=PGCOOKIES
+bSeqHdr=true
+bReqUl=false
+bNoMore=true
+level=3
+levelKeyword=Cookies
+htmlFilename=3Cookies.whteko
+showcaseBranch=(~GO|PgSurferTracking|Surfer Tracking~) &raquo; (~GO|pgCookies|Using Cookies~) &raquo;
+showcaseBranchText=Surfer Tracking: Using Cookies: 
+</whpagesettingslist>
+
+<whdroplet name="drCookieFooter">
+<hr />
+<h3>Cookie Related Background Data</h3>
+<h4>Response.Headers</h4>
+<p><span class="changing">(~Response.Headers~)</span></p>
+
+<h4>Request.CookiesIn</h4>
+<p><span class="changing">(~Request.CookiesIn~)</span></p>
+</whdroplet>
+
+<whpage pageid="pgSetCookie" desc="Setting Cookies">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>Please use the <b>Back</b> and <b>Next</b> buttons on this page for the cookie section.</p>
+
+<p>In this example we are setting 2 cookies.</p>
+
+<p>The first gets set when this page is first visited.  The other is set when you click the link and cause your web browser software to reload the page.</p>
+
+<p><span style="color:#FF0000;font-weight:700;">"Localhost" is a bad domain for testing cookies.</span> It never works. So set up some other name for your test site when you want to work on cookies.</p>
+
+<!--- Set Only if Chocolate cookie is blank -->
+(~Match|(~cookie.chocolate~)!*|(~COOKIE|marzipan=Sure|1~)~)
+<!--- Set Every Time -->
+(~COOKIE|chocolate=Chip|1~)
+
+<h4><span class="changing">(~JumpR|pgSetCookie|Click this link to see the cookies displayed.~)</span></h4>
+(You have to come back to this page to see the cookies.)
+
+<h4>Display of Cookies</h4>
+<b>An individual one:</b> (~Cookie.Chocolate~)
+<br />
+
+<b>All cookies:</b><br>
+(~Request.CookiesIn~)
+(~drCookieFooter~)
+
+<h4>Security Info</h4>
+<p>Remember, you can go into Options (in the page footer) to display lots of system information... </p>
+<p>Here is a summary of information that could be used to develop
+higher security rules for a site:</p>
+<ul>
+<li style="list-style-type:square"> Referer: <span class="changing">(~Request.Referer~)</span></li>
+<li style="list-style-type:square"> Surfer IP: <span class="changing">(~Request.RemoteAddress~)</span></li>
+<li style="list-style-type:square"> User Agent: <span class="changing">(~Request.UserAgent~)</span></li>
+<li style="list-style-type:square"> Proxy Name: <span class="changing">(~Request.ProxyName~)</span></li>
+<li style="list-style-type:square"> X-Forwarded-For: <span class="changing">(~Request.XForwardedFor~)</span></li>
+<li style="list-style-type:square"> Prior page: (~PriorPageID~)</li>
+<li style="list-style-type:square"> Query string: (~Request.QueryString~)</li>
+</ul>
+
+<h4>Security Override on a Per-Link Basis</h4>
+<p>The links in the following section will work on the public 
+demos.href.com server, and also on your own server as long as (a) an appropriate certificate has 
+been installed to enable https and (b) a local server profile id named <b>ssl</b> has been configured in ZMAdmin.</p>
+<p>What should happen: these special links should work for you if you use them within the number of seconds listed.</p>
+<p>The ordinary links should fail if
+<ul>
+<li style="list-style-type:square"> Referer is blank
+<br/>Use this free Firefox Add-On to control the referer:
+<a target="_blank" href="http://www.stardrifter.org/refcontrol/">refcontrol</a>.</li>
+<li style="list-style-type:square"> IP number changes</li>
+<li style="list-style-type:square"> User Agent changes (and actually the bypass does not allow a change in user agent</li>
+</ul></p>
+<p>These tests are here to help you simulate what happens when surfers 
+use a proxy which (for some reason) does not sending referer and/or the X-Forwarded-For data.  This can happen when switching between http and https, or simply when running over https with a proxy.</p>
+<p>The waLSec technique shown here can be put into any WebHub 
+application, any version.  Use the Source button below to view the 
+Delphi source for the waLSec web action component.</p>
+<span class="changing">
+<p>(~JUMPR|pgSetCookie(apphttps)|this page on https~) or (~JUMPR|pgSetCookie(apphttps),(~waLSec.execute|out,15~)|special, within 15 seconds~)</p>
+<p>(~JUMPR|pgSetCookie(apphttp)|this page on http~) or (~JUMPR|pgSetCookie(apphttp),(~waLSec.execute|out,90~)|special, within 90 seconds~)</p>
+<p>Used _BypassAllowed to get here: (~ASSIGNED|_BypassAllowed|(~_BypassAllowed~)||no~)(~CLEAR|_BypassAllowed~)</p>
+</span>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgDelCookie" desc="Deleting Cookies">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+To delete a cookie, WebHub sends out an expiration date in the past.
+<p>
+Before deleting any cookies, the WebHub HTML code checks whether particular cookies are defined.
+If they are not defined, you will see a <b>can not find that cookie</b> message.
+If they are defined, they will be deleted.
+<p>
+<span class="changing">
+(~JumpR|PGDELCOOKIE|Reload this page to confirm the cookies are deleted~)
+</span>
+<p>
+<ul>
+
+<li style="list-style-type:disc">(~NoMatch|(~cookie.Marzipan~)!*|I can not seem to locate Marzipan~)
+(~Match|(~cookie.Marzipan~)!*|Deleting Marzipan.. (~CookieClear|Marzipan~) ~)</li>
+
+<li style="list-style-type:disc">(~NoMatch|(~cookie.Chocolate~)!*|I can not seem to locate Chocolate~)
+(~Match|(~cookie.Chocolate~)!*|Deleting Chocolate.. (~CookieClear|Chocolate~) ~)</li>
+</ul>
+</p>
+
+(~drCookieFooter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgExpireCookie" desc="Expiring Cookies">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Cookies can be set to expire when you want them to.
+You can have WebHub set the cookie to expire a certain number of days in the future, or
+you can set the cookie to expire on an exact date and time (or just a date, or just a time)
+according to Delphi's date-time conversion conventions.
+If you enter no date, the cookie will not be stored when the surfer leaves the browser.
+<p>
+Delphi programmers note: there's a matching AddCookie function
+available on the TwhApplication component, for use in Object Pascal.
+
+(~drCookieFooter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSetCookieAdvanced" desc="Setting Arbitrary Cookies">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whprep>
+(~NOTASSIGNED|aCookieValue1|
+(~SET|aCookieValue1=aaaaa~)
+(~SET|aCookieValue2=bbbbbbbbbbbbbbbbbbbbbbbbbbbbb~)
+(~SET|aCookieValue3=try something extremely long~)
+~)
+</whprep>
+(~drShowcaseGlobalHeader~)
+<p>In this advanced example, YOU can control the cookie names and values, for testing purposes. All cookies are restricted to the current 
+host which is <code>(~host~)</code>.</p>
+
+<!-- changing:start-->
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSetCookieAdvanced~)">
+<!-- changing:stop-->
+<p>Cookie 1: advcookie1 = (~INPUTTEXT|aCookieValue1~)</p>
+<p>Cookie 2: advcookie2 = (~INPUTTEXT|aCookieValue2~)</p>
+<p>Cookie 3: advcookie3 = (~INPUTTEXT|aCookieValue3~)</p>
+<p><input type="submit" /> (Submit this form twice to see cookies returning.)</p>
+</form>
+
+(~COOKIE|advcookie1=(~aCookieValue1~)|1,(~host~)~)
+(~COOKIE|advcookie2=(~aCookieValue2~)|1,(~host~)~)
+(~COOKIE|advcookie3=(~aCookieValue3~)|1,(~host~)~)
+
+<h4>Display of Cookies</h4>
+
+<b>All cookies:</b><br>
+(~Request.CookiesIn~)
+
+(~drCookieFooter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgBouncing" desc="Bouncing via Status 302">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>WebHub includes a BOUNCE command for redirecting the surfer to 
+another page. You can BOUNCE to a specific URL on any web site, 
+or to a WebHub page.</p>
+<p>The following link will bounce you forward one page. Note that the 
+link says that you will go to page pgBounceTestA1.  Yet you will end up
+on pgBounceTestA2.</p>
+<p><span class="changing">(~JUMPR|pgBounceTestA1|bounce test A~)</span></p>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgBounceTestA1">
+(~BOUNCE|pgBounceTestA2~)
+</whpage>
+
+<whpage pageid="pgBounceTestA2" desc="Landing page for bounce test A">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>You are now on page (~PageID~).</p>
+<p>Try a more difficult test, with an artificially long url.</p>
+<p><span class="changing">(~JUMPR|pgBounceTestB1|bounce test B~)</span></p>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgBounceTestB1">
+<whdoc for="pgBounceTestB1">
+It is necessary to use defprofile here, where defprofile uses LONG URLs, e.g. /scripts/runisa.dll, 
+because IIS will not allow the really long URL unless it follows a ? symbol.
+</whdoc>
+(~BOUNCE|pgBounceTestB2(defprofile),603392259:YDFREG,blank=Null&et=777e326c535ace99e78d956c7202224186656e8f&email=rmartin1165@astrology.com&bpqs=Zmlyc3RfbmFtZT1Sb2JlcnQsbGVnYWN5X2VtYWlsPXJtYXJ0aW4xMTY1QGFzdHJvbG9neS5jb20sc2VuZF9lbWFpbD0xLHZpZXdfdHlwZT0wLGdlbmRlcj1tLGxvY2FsX2JpcnRoZGF0ZT0xMi8wNS8xOTYwLGxvY2FsX2JpcnRodGltZT0wMDowMCxsYXRpdHVkZV9zdHI9MzdOMjAwNyxsb25naXR1ZGVfc3RyPTEyMVc1MzM4LCJiaXJ0aF9jaXR5PVNhbiBKb3NlIixiaXJ0aF9zdGF0ZT1DYWxpZm9ybmlhLGJpcnRoX2NvdW50cnk9VVMsImJpcnRoX2NvdW50eT1TYW50YSBDbGFyYS~)
+</whpage>
+
+<whpage pageid="pgBounceTestB2" desc="Landing page for bounce test B">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>You are now on page (~PageID~).</p>
+
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

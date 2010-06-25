@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mclingvolist=eng-English,deu-Deutsch,fra-Français,chi-汉语,rus-Русский
+</whmacros>
+
+<whmacros>
+mcEnglish=English
+</whmacros>
+
+<whtranslations>
+~SetPrefLingvo=Enter language code
+~Wallpaper=wallpaper
+~none=none
+~HumanLanguage=Human Language
+~Debugging=Debugging
+~SetPrefReturn=You should return to the (~PrePref~) page.
+</whtranslations>
+
+<whtranslations>
+~daySunday=Sunday
+~dayMonday=Monday
+~dayTuesday=Tuesday
+~dayWednesday=Wednesday
+~dayThursday=Thursday
+~dayFriday=Friday
+~daySaturday=Saturday
+</whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
+This option is used only to show that settings  may be changed. The WebHub demos were not designed to look visually appealing with all backgrounds.
+</whtranslation>
+
+</whteko>

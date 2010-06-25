@@ -1,0 +1,25 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="chMenuDemo2">
+(~IF|AsKeepOnPage|
+	(~waAsyncAction.execute|send|
+		(~nomatch|(~AsyncState~)~None|
+			(~nomatch|(~PageID~)~Async|(~Page|Async~)
+~)~)~)~)
+<!---Load the logo for demo2-->
+(~ANCHORMODIFY|section|2~)
+(~GO|Demo2Home-_top|About Demo 2~)
+| (~Go|async-_top|Start Demo 2~)
+| (~JUMP|DescHome-_top|Back to Overview~)
+<hr />
+</whdroplet>
+
+
+<whdroplet name="chDebug">
+<hr />ConnectID: (~Request.SystemValues.ConnectID~)
+<br />(~waDocStreams.execute|Streams|Streams: [Active:(~dyn1~) Max:(~dyn2~) Cap:(~dyn3~)]~)
+<br />(~waDocStreams.execute|Tasks|Tasks: [Active:(~dyn1~) Max:(~dyn2~) Total:(~dyn3~) Finished:(~dyn4~)]~)
+<br /><a href="#top">top</a>
+</whdroplet>
+
+</whteko>

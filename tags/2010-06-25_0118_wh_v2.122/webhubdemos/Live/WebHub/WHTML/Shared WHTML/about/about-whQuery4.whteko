@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcWhDemoOneLinerHTQ4=SQL - Multiple Grids per Page
+mcWhDemoCreditIdeaHTQ4=Michael Ax
+mcWhDemoCreditFirstDraftHTQ4=Michael Ax and Ann Lynnworth
+mcWhDemoCreditGraphicsHTQ4=Rob Daniels
+mcWhDemoCreditCopyHTQ4=Rob Daniels
+mcWhDemoUpdatedHTQ4=May-1998
+mcWhDemoKeywordsHTQ4=database,query,sql,dynamic content,multi-table example
+mcWhDemoLiteHTQ4=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTQ4">
+<ol>
+<li> (~mcWhDemoVCLIcon~) Requires whQuery4.exe </li>
+<li> The Borland Database Engine is required. (incl. with Delphi)</li>
+<li> The Paradox table, employee.db, is required (incl. with WebHub VCL).</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTQ4">
+This demo shows how you can control two scrolling grids on the same
+ page.   It also includes a simple search feature, and it shows how to use
+ the DO page to call a web action component directly, without a
+ supporting PageID.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTQ4">
+<p>One grid is  based on a query on department, and the other is based 
+on salary. Both select data  from the employee table, which ships with
+ the WebHub demos.  The TwhdbForm component is used to
+ display the complete employee record in view mode.</p>
+
+<h3>How it Works</h3>
+<p>Be sure to set Query1.databasename to a valid location on your system.</p>
+
+<p>The query definition is in the Query1.SQL property.  Note that 
+query1.params must have the datatype set for each parameter.</p>
+
+<p>The list of displayed fields is controlled by the 'DisplaySet' which is 
+defined in the htqry4.ini file.  See WebDataSource > Edit DisplaySets.
+That is also where the "hot" fields are noted.</p>
+
+<p>The display of the employee data that you see if you drill-down to the Detail page 
+is handled by the TwhdbForm component. </p>
+</whtranslation>
+
+
+</whteko>

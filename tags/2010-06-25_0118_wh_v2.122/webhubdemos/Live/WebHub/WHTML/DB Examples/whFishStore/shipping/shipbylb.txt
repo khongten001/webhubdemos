@@ -1,0 +1,4 @@
+Fish Weight@Continental US@AK and HI@Out of USA
+&lt;3 lbs|$1/lb|$2/lb|$8/lb
+3-5 lbs|$.75/lb|$1.50/lb|$6/lb
+5+ lbs|$.50/lb|$1/lb|$4/lb

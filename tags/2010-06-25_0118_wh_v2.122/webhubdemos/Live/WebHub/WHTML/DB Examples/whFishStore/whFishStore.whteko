@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdemohtfs"
+  defaultlingvo="eng"
+  designpage="pgEnterHTFS"
+  notes="Droplets and Pages for WebHub Fish Store demo">
+
+<whmacros>
+mcImageDir=(~mcSiteRoot~)demos/whFishStore/
+mcLogo=<img src="(~mcImageDir~)fishstor.jpg"  alt="Fish Store Logo" />
+mcShoppingImg=<img src="(~mcImageDir~)shopcart.jpg" alt="Shopping Cart" />
+mcAdminImg=<img src="(~mcImageDir~)secret.jpg" alt="Top Secret" />
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForhtfs">
+<!-- speedbar for HTFS demo could be here -->
+</whdroplet>
+
+<whdroplet name="drStyleHTFSHomepage">
+<style type="text/css" media="screen">
+.homePageFish ul {
+  float: left;
+}
+.homePageFish li {
+  /* float: left; */
+  padding-top: 32px;
+}
+.homePageFish li a {
+  margin-left: 150px
+}
+#lookfish {
+background: url((~mcImageDir~)looktank.jpg) top left no-repeat;
+height: 50px;
+}
+#advfish {
+background: url((~mcImageDir~)looktank.jpg) top left no-repeat;
+height: 50px;
+}
+#shp {
+background: url((~mcImageDir~)smfish.jpg) top left no-repeat;
+height: 50px;
+}
+#admin {
+background: url((~mcImageDir~)secret.jpg) top left no-repeat;
+height: 50px;
+}
+</style>
+</whdroplet>
+
+
+<whpage pageid="pgEnterHTFS" desc="Fish Store Home Page">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFSHomepage~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~~WelcomeToOurStore~)!</h1>
+<p>(~~WeHaveAFewOptions~)</p>
+
+<div style="width: 50em;">
+
+<div class="homePageFish">
+<ul>
+<li id="lookfish">(~JUMP|lookfish|title="In this view, the fish names are shown with text, and pictures are available upon selection"|(~~BrowseForFish~) (text)~) </li>
+
+<li id="advfish">(~JUMP|advFish|title="In this view, thumbnails of the fish are shown."|(~~BrowseForFish~) (with pictures)~)</li>
+
+<li id="shp">(~JUMP|shp|title="Look at shipping costs by pound and by ounce"|(~~ShippingCosts~)~)</li>
+
+<li id="admin">(~JUMP|admin|(~~ChangeFishPrices~)~)</li>
+</ul>
+</div>
+
+<div style="float: left; margin-left: 20px; vertical-align: middle; padding: 5em;" >
+<img src="(~mcImageDir~)seahorse.jpg" alt="Sea Horse" />
+</div>
+
+</div>
+
+<div style="clear: both">
+&nbsp;
+</div>
+
+<i><br/>(~App.StoreMessage~)</i>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTFSLookFish">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css" media="screen">
+#gf-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#gf-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#gf-table th {
+ background-color: #2C42CC;
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#gf-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#gf-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whpage pageid="lookfish" desc="(~~BrowseForFish~) (text)">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFSLookFish~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~~BrowseForFish~) (using text)</h1>
+<p>We are so glad you decided to look at the fish in our aquariums.</p>
+<p>You guessed it -- click the link to see a fish.  If you like what you
+see, you can place an order.</p>
+(~gf.execute|~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTFSAdvFish">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css" media="screen">
+#gfa1-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#gfa1-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#gfa1-table th {
+ background-color: yellow;
+ color: red;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#gfa1-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#gfa1-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whpage pageid="advfish" desc="An Alternate Look at Fish">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFSAdvFish~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>An Alternate View: (~~BrowseForFish~) with Pictures</h1>
+<p>We are so glad you decided to look at the fish in our aquariums.</p>
+<p>You guessed it -- click the link to see a fish.  If you like what you
+see, you can place an order.</p>
+(~gfa1.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="detail" desc="Fish Blowup">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~waSaveCurrentFish.execute~)
+<h1>Selected fish: (~FIELD|WebDataSourceBiolife|Common_Name~)</h1>
+<p>Here's your fish!!</p>
+(~waFishPhoto.execute~)
+<p><i>If you have any difficulty seeing the graphic, please view the HTML
+source.  A comment should indicate the local filename that the
+graphic is being written to.</i></p>
+
+<h2>The Database gives us these notes about (~FIELD|WebDataSourceBiolife|Common_Name~)</h2>
+(~FIELD|WebDataSourceBiolife|Notes~)
+
+<h2>Take Action!</h2>
+<ul>
+<li> (~JUMP|grabfish|(~mcShoppingImg~)~) (~JUMP|grabfish|Put Fish in Cart~)</li>
+<li> (~JUMP|checkout|(~mcShoppingImg~)~) (~JUMP|checkout|Go to Checkout Counter~)</li>
+<li> (~JUMP|lookfish|(~mcShoppingImg~)~) (~JUMP|lookfish|Browse Fish (text)~)</li>
+</ul>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="chShoppingCartLink">
+<div class="dcenter">
+(~mcShoppingImg~)Go to Checkout Counter
+</div>
+</whdroplet>
+
+<whpage pageid="grabfish" desc="Put Item in Cart">
+<whprep>
+(~waGrabFish.Execute~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Fish #(~currentFish~) has been added to your shopping cart.
+
+<h2>Take Action</h2>
+<p>(~JUMP|lookfish|Look at More Fish~)</p>
+<p>(~JUMP|Checkout|(~chShoppingCartLink~)~)</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="checkout" desc="Checkout Stand">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Your current order</h2>
+(~fishList~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleShp">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebListGrid.css" />
+</whdroplet>
+<whpage pageid="shp" desc="Shipping Info">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleShp~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Shipping Information</h2>
+
+<p>(~WebListGrid1.execute~)</p>
+
+<hr />
+Note to developers: This example requires zero Object Pascal code.  You add the
+TwhListGrid component to your project, create the text files that contain
+the table data (in a very simple format), define the "DisplaySet" list of text file names,
+set up a page which calls the grid, and you're READY.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+
+<whpage pageid="admin" desc="Administrative Functions">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFSAdmin~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Maintain Fish Prices</h1>
+<p>Select fish to update information on.  Change the display set
+to &quot;SeePassword&quot; to find out what the passwords are.</p>
+<p>(~gfAdmin.execute~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTFSAdmin">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+<style type="text/css" media="screen">
+#gfAdmin-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#gfAdmin-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#gfAdmin-table th {
+ background-color: #2C42CC;
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#gfAdmin-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#gfAdmin-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whpage pageid="adminp" desc="Fish Price Maintenance">
+<whprep>
+<!---(~waSaveCurrentFish.execute~)-->
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~JUMP|admin|back~)
+<!---
+<h1>Data Entry</h1>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|admin,post,gfAdmin.this~)">
+Your name:(~inputtext|SurferName,20,20~)<br />
+Password: (~inputtext|Password,20,20~)<p>
+Species No: (~Field|wdsAdmin|Species No~)<br />
+Fish Cost: $(~inputtext|Price,10,10|wdsAdmin|Price~)<br />
+<br /><br />
+Shipping Notes:(~inputtextarea|txtShippingNotes,3,30|(~FIELD|wdsAdmin|ShippingNotes~)~)
+<br /><br />
+<input type="submit" value="Update Table">
+</form>
+-->
+</div> 
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="RemoteRefreshFishapp">
+<whdoc>
+Whereas the rest of the demos have an app object named "htwebapp",
+the fish store has an app object named FishApp. Therefore the fish store
+cannot use the shared remoterefresh page, and must have its own version.
+</whdoc>
+(~FishApp.Refresh~)
+</whpage>
+
+</whteko>

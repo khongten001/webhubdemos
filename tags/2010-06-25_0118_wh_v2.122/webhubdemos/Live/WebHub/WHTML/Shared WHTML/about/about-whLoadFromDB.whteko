@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerDBHTML=Load W-HTML from Database
+mcWhDemoCreditIdeaDBHTML=Michael Ax
+mcWhDemoCreditFirstDraftDBHTML=Michael Ax
+mcWhDemoCreditGraphicsDBHTML=n/a
+mcWhDemoCreditCopyDBHTML=Martha V. Moore
+mcWhDemoUpdatedDBHTML=1999
+mcWhDemoKeywordsDBHTML=using database to store WebHub HTML
+mcWhDemoLiteDBHTML=No
+</whmacros>
+
+<whdroplet name="drDemoSetupDBHTML">
+<ol>
+<li> whLoadFromDB.exe</li>
+<li> Borland Database Engine</li>
+<li> A database containing the sample W-HTML (sample is provided by HREF).
+See: (~JUMP|pgCachingChoices|caching choices page~) for details on how to configure 
+the caching options.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescDBHTML">
+This demo shows how to store some (or all) of your W-HTML code in a database. You 
+may extend the example to allow for multilingual text and other issues important to your application.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescDBHTML">
+Be sure to look at the source code for the WebHub application object, in htDBWApp.pas, because that 
+code hooks the database to the rest of WebHub.
+</whtranslation>
+
+</whteko>

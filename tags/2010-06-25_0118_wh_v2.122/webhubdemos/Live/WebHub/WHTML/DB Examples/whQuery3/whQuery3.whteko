@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForhtq3">
+<!-- speedbar for HTQ3 demo could be here -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTQ3" desc="A Sample Page">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Hint: try <code>select * from employee</code>
+or
+<code>select * from employee
+where Department='MIS'</code>
+</p>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|result,.new~)">
+<p>Enter SQL:(~INPUTTEXT|SQL,30,80~)</p>
+<p><input type="submit" value="Submit Query" /></p>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTQ3">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
+<style type="text/css" media="screen">
+#WebDataGrid1-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#WebDataGrid1-table td {
+ padding: 3px;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#WebDataGrid1-table th {
+ background-color: #996666;
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ }
+
+#WebDataGrid1-table th a{
+ color: #CCCCFF;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#WebDataGrid1-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+<whpage pageid="result" desc="A Result Page">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTQ3~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>You typed</h1>
+(~CmdHas|.new|New query...<br />~)
+(~CmdHas|.new|(~webdatasource1.CLOSE~)~)
+(~sql~)
+<h1>Your answer</h1>
+(~webdatagrid1.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code" designdynsrc="localdemoSHOWCASE">
+
+<whpagesettingslist id="a">
+bSeqHdr=false
+bReqUl=false
+htmlFilename=0Chunks.whteko
+</whpagesettingslist>
+
+<whmacros>
+mcImgShowcaseDir=(~mcSiteRoot~)demos/whShowcase/
+mcIconFileRef=<img src="(~mcImgShowcaseDir~)(~litIconFile~).jpg" alt="(~litIconFile~)" />
+mcChgPaperIMG=<img src="(~mcImgShowcaseDir~)skpaper.jpg" alt="paper" />|$=3
+mcTopicIMG=<img src="(~mcImgShowcaseDir~)sktopic.jpg" alt="Topic:" />
+mcAboutIMG=<img src="(~mcImgShowcaseDir~)skabout.jpg" alt="About:" />
+mcHeadingSeparator=&nbsp;<img src="(~mcImgShowcaseDir~)skrdsmal.jpg" />&nbsp;
+mcSpacerBeforeDesc=100
+mcSpacerLeftCol=100
+mcVerticalLine=<td bgcolor="#b22222"><img src="(~mcImgShowcaseDir~)blnk32.jpg" height="2" width="1" alt="vertical line" /></td>
+mcArrow=<img src="(~mcImgShowcaseDir~)skarrow.jpg" alt="arrow" />
+mcLevel1=(~mcArrow~)&nbsp;
+mcLevel2=(~mcArrow~)(~mcArrow~)&nbsp;
+mcLevel3=(~mcArrow~)(~mcArrow~)(~mcArrow~)&nbsp;
+mcLevel4=(~mcArrow~)(~mcArrow~)(~mcArrow~)(~mcArrow~)&nbsp;
+mcThisLevel=(~dynChunk|mcLevel,(~level~)~)
+mcShowcasePageDesc=<h3>(~GO|pgEnterShowcase|SHOWCASE~): (~pagedesc~)</h3><p>
+mcRedCube=<img src="(~mcImgShowcaseDir~)skrdcube.jpg" alt="*" />
+mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
+</whmacros>
+
+<whdroplet name="drShowcaseGlobalHeader">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+<style type="text/css">
+.currentnode {
+  font-weight:bold;
+  color: #A22222;
+}
+</style>
+
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)||<!-- bSeqHdr is not true-->~)
+</whdroplet>
+
+<whdroplet name="drShowcaseGlobalFooter">
+(~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseFooter~)||<!-- bSeqHdr is not true-->~)
+</div>  <!--- whdemopagecontent -->
+</div>
+(~drPageEnd~)
+</body></html>
+</whdroplet>
+
+<whdroplet name="drShowcaseExtraHeader">
+<!-- comment for the curious:
+current pageid: (~PageID~)
+current filename: (~pagesetting.htmlFilename~)
+bSeqHdr: (~pagesetting.bSeqHdr~)
+bReqUl:  (~pagesetting.bReqUl~)
+level: (~pagesetting.level~)
+levelKeyword: (~pagesetting.levelKeyword~) -->
+<!--- ========================================================= -->
+(~drShowcasePageDesc~)
+  <div id="whTopMenu" style="background-color: antiquewhite;font-size:small;bottom: 1px; width:100%;border-bottom: solid 2px #B22222;" >
+    <div id="whCurrentLevel" style="text-align:center;width:100%;font-size:small;padding:.5em 0 .5em 0;" >
+		(~Sequencing.ButtonPrior~)
+		This level: <span style="color:#B22222; font-weight:bold;">
+		<!--- (~dynchunk|bar,(~pagesetting.levelKeyword~)~)-->
+		(~pagesetting.levelKeyword~)
+		</span>
+		(~Sequencing.ButtonNext~)
+	</div>
+  </div>
+  <div id="whContent">
+  	<div id="Layer2" style="margin-top:1em; margin-bottom:1em;margin-left:7em;margin-right:7em;padding:.5em 0 .5em 0;">
+	  <span class="currentnode">(~PageDesc~)</span>
+		  <P>
+</whdroplet>
+
+<whdroplet name="drShowcaseFooter">
+			</P>
+		</div>
+		(~MATCH|(~pagesetting.bNoMore~)=true|<!-- bNoMore is true-->||(~drReadMore~)~)
+	</div>
+	<br/>
+	  <div id="whBottomMenu" style="background-color: #F9EAD1;font-size:small;bottom: 1px; border-top: solid 2px #B22222;width:100%" >
+			<div id="whLeftNavButtons" style="float:left;width:10%;padding:.5em 0 .5em 0;" >
+				<br/>(~Sequencing.ButtonPrior~)
+			</div>
+			<div id="whMiddleButtons" style="float:left;text-align:center;width:79%;padding:.5em 0 .5em 0;" >
+				(~Sequencing.ButtonUp~)<br/>
+
+				(~MATCH|(~pagesetting.bNoMore~)=true|<!-- bNoMore is true-->||
+				(~GO|(~pagesetting.downLink~)|<img src="(~mcImgShowcaseDir~)sequence/btndown.png" alt="Down" />~)||<img src="(~mcImgShowcaseDir~)sequence/greydown.png" alt="&nbsp;" />~)
+				
+				
+				</div>
+			<div id="whRightNavButtons" style="float:right;width:10%;text-align:right;padding:.5em 0 .5em 0;" >
+				<br/>(~Sequencing.ButtonNext~)
+			</div>
+			<br clear="all"/>
+			<p>Showcase Teko File: (~PageSetting.htmlFilename~)</p>
+	</div>
+</whdroplet>
+
+<whdroplet name="drReadMore">
+		<div id="whCategorySections" style="float: right; width:30em;font-size:small;">
+			Read more in-depth about <span class="currentnode">(~PageDesc~)</span>:<br/>
+			(~MATCH|(~pagesetting.bReqUl~)=true|(~chReqUl~)~)
+		</div>
+		<br clear="all"/>
+</whdroplet>
+
+<whdroplet name="drShowcaseExtraPageTail">
+</whdroplet>
+
+<whdroplet name="chReqUl">
+(~dynchunk|ul,(~pageID~)~)
+</whdroplet>
+
+<whdroplet name="chHeaderJavaBaseHREF">
+<HTML><HEAD>
+<TITLE>(~pagesetting.showcaseBranchText~)(~PageDesc~)</TITLE>
+<!-- you need base href here!! in order to enable the java .class file to be found.
+And this must include the http portion. -->
+<BASE HREF="(~DynURL.LocSMU~)/htdemo/java/">
+</HEAD>
+</whdroplet>
+
+<whdroplet name="drDemoSpeedbarForShowcase">
+(~GO|pgHelp|Help~)<br />
+<span class="changing">(~GOR|remoterefresh|Refresh App~)</span><br />
+
+<whdoc>
+You may enable SHUTDOWN if you are running on your own machine. It is disabled on demos.href.com.
+<span class="changing">(~GOR|pgEnterShowcase,SHUTDOWNSHOW|Shut Down Showcase~)</span><br />
+</whdoc>
+</whdroplet>
+
+<whdroplet name="drShowcasePageDesc">
+	<div id="showcaseOrientation" style="padding:.5em;font-size:small;width:100%;" >
+		Outline: (~GO|pgEnterShowcase|SHOWCASE~) &raquo; (~pagesetting.showcaseBranch~) <span class="currentnode">(~pagedesc~)</span>
+	</div>
+</whdroplet>
+
+</whteko>

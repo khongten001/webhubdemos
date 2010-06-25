@@ -1,0 +1,156 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGJAVA
+whSequenceFinal=PGJAVA
+bSeqHdr=true
+bReqUl=false
+level=2
+levelKeyword=Java
+htmlFilename=2Java.whteko
+showcaseBranch=(~GO|pgJava|Java. JavaScript and XML~) &raquo;
+showcaseBranchText=Java, JavaScript and XML: 
+</whpagesettingslist>
+
+<whpage pageid="pgJavacl" desc="Clock Example">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This is a simple example of a Java clock. 
+To include Java applets and scripts in your pages,
+all you need to do is place the appropriate droplet in your page code.
+<p>(~chJavaCl~)</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+
+<whpage pageid="pgMarquee1" desc="Tickertape Marquee Example">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This example creates a scrolling banner.
+<p>(~chMarquee1~)</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSimpleAjax" desc="Simple Ajax Example">
+<whdoc>
+17-Jul-2006
+
+This example was adapted from the code 
+at http://www.degraeve.com/reference/simple-ajax-example.php
+</whdoc>
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~ANCHOR|anRefresh~) (~waLingvo.execute~)
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="This page is summarized as (~pagedesc~)" />
+<meta name="generator" content="(~version~)" />
+<title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
+(~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
+<style type="text/css">
+body {
+  (~ASSIGNED|litWallpaper|background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;~)
+}
+</style>
+(~ANCHOR|style~)
+<style type="text/css">
+.currentnode {
+  font-weight:bold;
+  color: #A22222;
+}
+</style>
+<script language="Javascript">
+function xmlhttpPost(strURL) {
+    var xmlHttpReq = false;
+    var self = this;
+    // Mozilla/Safari
+    if (window.XMLHttpRequest) {
+        self.xmlHttpReq = new XMLHttpRequest();
+    }
+    // IE
+    else if (window.ActiveXObject) {
+        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    self.xmlHttpReq.open('POST', strURL, true);
+    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    self.xmlHttpReq.onreadystatechange = function() {
+        if (self.xmlHttpReq.readyState == 4) {
+            updatepage(self.xmlHttpReq.responseText);
+        }
+    }
+    self.xmlHttpReq.send(getquerystring());
+}
+
+function getquerystring() {
+    var form     = document.forms['f1'];
+    var word = form.word.value;
+    qstr = 'w=' + escape(word);  // NOTE: no '?' before querystring
+    return qstr;
+}
+
+function updatepage(str){
+    document.getElementById("result").innerHTML = str;
+}
+</script>
+
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
+
+<form name="f1">
+  <p>word: <input name="word" type="text">  
+  <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' />
+  </p>
+  <div id="result"></div>
+</form>
+</div>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgAboutXML" desc="About XML">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p></p>WebHub applications can serve XML documents as long as the containing page 
+specifies the correct content type.  In WebHub, this is done by using the SETPROLOGUEMODE command in the WHTEKO file, or by calling SetContentType from Delphi. (NB: formerly SETPROLOGUETYPE, until v2.099.)</p>
+<p>(~JUMP|pgXmlSample|Click to see a tiny XML document~)</p>
+<p>Here is a fancier XML file which is being translated via an XSL document.  
+This example was published by 
+<a href="http://www.ibm.com/developerworks/library/x-think41/">ibm.com</a> and we only modified the paths to the XSL document.  Here is it served raw -- NOT by WebHub: <a href="/webhub/demos/whShowcase/employees.xml">employees.xml file</a></p>
+<p>Here it is again, served by WebHub (should look the same in your browser): (~JUMP|pgXmlSample2|Employee data served by WebHub.~)</p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgAboutCSV" desc="About Comma-Separated Value Files">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub applications can serve Comma-Separated Value (&quot;CSV&quot;) documents as long as the containing page specifies the correct content type.  In WebHub, this is done by using the SETPROLOGUEMODE command in the WHTEKO file, or by calling SetContentType from Delphi.
+<p>Documents may be linked to directly, or served by the SENDFILE command.</p>
+<p><a href="/webhub/demos/whShowcase/SampleScoreList.csv">raw file, served by http server software</a></p>
+<p>(~JUMP|pgCSVSample,/SampleScoreList.csv|csv data included on a page by WebHub~)</p>
+<p>Here is the same content, served by the SENDFILE command (should look the same in your browser): (~JUMP|pgCSVSample2,/SampleScoreList.csv|csv data served by WebHub.~)</p>
+<h2>Example links on HREF's demo server</h2>
+<p><a href="http://demos.href.com/webhub/demos/whShowcase/SampleScoreList.csv">test 1</a></p>
+<p><a href="http://demos.href.com/scripts/runisa.dll/SampleScoreList.csv?showcase:pgCSVSample2:(~RawSessionNumber~):/SampleScoreList.csv">test 2</a></p>
+<p><a href="http://demos.href.com/showcase:pgCSVSample2:(~RawSessionNumber~):/SampleScoreList.csv">test 3</a></p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

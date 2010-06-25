@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHUBAPP=WebHub Central - Original App
+mcWhDemoCreditIdeaHUBAPP=Michael Ax and Ann Lynnworth
+mcWhDemoCreditFirstDraftHUBAPP=Ann Lynnworth
+mcWhDemoCreditGraphicsHUBAPP=n/a
+mcWhDemoCreditCopyHUBAPP=Ann Lynnworth
+mcWhDemoUpdatedHUBAPP=1998
+mcWhDemoKeywordsHUBAPP=systeminfo,central,status
+mcWhDemoLiteHUBAPP=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHUBAPP">
+<ol>
+<li> This application must run within Hub.exe.  It will not work in any other web application.</li>
+<li> The HubAppID must be set equal to HUBAPP.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescHUBAPP">
+This application provides a few web pages which display diagnostic data, 
+provided for troubleshooting purposes.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHUBAPP">
+This application was designed to run inside the Hub, hence the name HUBAPP. 
+Other applications can also run inside the hub, and you might even want 
+to change your default HubAppID to AppID (lowest overhead) or DEMOS (most features).
+<p>The recommended test page is HUBAPP:SYSTEMINFO.  Use HUBAPP:INDEX to list all possible pages.</p>
+</whtranslation>
+
+
+</whteko>

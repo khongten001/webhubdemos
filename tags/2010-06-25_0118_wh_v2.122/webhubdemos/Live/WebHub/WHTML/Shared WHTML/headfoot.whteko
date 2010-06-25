@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  designmode="code"
+  designdynsrc="localdemoscan"
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="temp1"
+  showdoc="no"
+  showsketch="no"
+  notes="Global Header and Footer assets
+    (shared by all WebHub demos)."
+  copyright="2006 HREF Tools Corp.">
+
+
+<whmacros>
+mcdoctypehtmlPRIOR=<![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">]]>
+mcdoctypehtml=<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">]]>
+mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
+mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
+</whmacros>
+
+
+<whpage pageid="temp1" mode="scaffold" desc="-for use in Dreamweaver design mode">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+siteroot is (~mcSiteRoot~)<br />
+<img src="(~mcSiteRoot~)demos/img/logos/adv.jpg" alt="logo for adv demo" />
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="temp2" mode="scaffold" desc="-for use in Dreamweaver design mode">
+(~mcdoctypehtml~)
+<html>
+<head>
+<whdroplet name="drHead" show="yes">
+(~ANCHOR|anRefresh~) (~waLingvo.execute~)
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="(~version~)" />
+(~NOMATCH|(~AppID~)=dsp|
+<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
+<!--- the DSP demo does its own meta tags -->
+~)
+<title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
+(~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
+(~ASSIGNED|litWallpaper|<style type="text/css">
+body {
+  background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;
+}
+</style>~)
+<!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
+(~ANCHOR|anchJavascript~)
+</whdroplet>
+</head>
+<body>
+<whdroplet name="drPageBegin" show="yes">
+(~NOMATCH|(~AppSetting.DemoGraphic~)=no|
+<!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
+<div class="whDemoSectionNav" style="border-color: plum;">
+<div id="whDemoLogo">
+(~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
+</div>
+<div id="whDemoShortDesc">
+AppID = (~AppID~)<br />
+Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
+&nbsp;<br />
+<!--- Except on the generic pages -->
+(~NOMATCH|(~pageid~)[pgWelcome,pgSetup,pgDownload,ViewFiles,VIEWDELPHIFILE,SetPref,SetPref2|
+<!--- link in a navigation/speedbar -->
+  (~HIDE|pgEnter(~AppID~)|(~~Entrance~)~)<br />
+  (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
+~)
+</div>
+
+</div>  <!--- whDemoSectionNav -->
+~)
+</whdroplet>
+
+<whdroplet name="drDemoSpeedbar" show="no">
+<div id="menuThisWebHubDemoContainer">
+<div id="menuThisWebHubDemo">
+<ul>
+<li>(~GO|pgWelcome|title="Go back to the first page in this demo"|[~Welcome~]~)</li>
+<li>(~GO|pgEnter(~AppID~)|title="Go into the entrance page for this demo."|[~Entrance~]~)</li>
+<li>(~GO|ViewFiles,(~AppID~)|title="View HTML and Object Pascal Source code for this demo."|[~Source~]~)</li>
+<li>(~GO|pgDownload,(~AppID~)|title="Download Source for this demo."|[~Download~]~)</li>
+<li>(~GO|pgLogout| title="logout to clear session data" |[~Logout~]~)</li>
+<li>(~GO|SetPref|title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
+</ul>
+</div>
+</div>
+</whdroplet>
+
+<whdroplet name="drPageEnd" show="no">
+<div class="whDemoSectionNav" style="border-color: #99CC00;">
+(~IFDynamic|(~drDemoSpeedBar~)~)
+</div>  <!--- whDemoSectionNav -->
+
+<div class="whDemoSectionNav" style="border-color: tan;">
+<div class="navWebHubDemos">
+view all demos on
+<!--- link to public demos server if we're not running there already -->
+(~NOMATCH|DEMOS~(~ZMDefaultMapContext~)|<a href="http://demos.href.com">demos.href.com</a> or ~)
+<!--- link to local copy of the demos demo. -->
+(~JUMP|demos:pgEnterDemos,#(~AppID~)|(~Request.Host~)~) <br />
+lingvo:
+<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
+<span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
+<span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span>
+<span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span>
+<span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
+</div>
+
+</div>  <!--- whDemoSectionNav -->
+
+<div class="whDemoSectionNav" style="border-color: lightsteelblue;">
+(~drCreditsTimingEtc~)
+</div>  <!--- whDemoSectionNav -->
+
+(~drConditionalSystemInfo~)
+
+<div class="whDemoSectionNav" style="border-color: darkgreen;">
+(~drCopyright~)
+</div>  <!--- whDemoSectionNav -->
+</whdroplet>
+
+<whdroplet name="drConditionalSystemInfo" show="no">
+(~IF|showSystemInfo|
+<div class="whDemoSectionNav" style="border-color: yellow;">
+(~drSystemInfo~)
+</div>  <!--- whDemoSectionNav -->
+~)
+</whdroplet>
+
+
+<whdroplet name="drCopyright" show="no">
+<div class="copyright">
+Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &nbsp;&nbsp;
+<a href="http://www.href.com/contact">contact</a>
+</div>
+</whdroplet>
+
+
+<whdroplet name="drCreditsTimingEtc" show="no">
+(~IfDynamic|<span class="techiefooter">
+This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~) and 
+Syntax Stage (~ProjectSyntax~).
+Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &nbsp; 
+Your IP number is reported as <span class="changing">(~RemoteAddress~)</span> and your 
+user agent is <span id="userAgentHere">(~Request.UserAgent~)</span>. 
+It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.<br />
+(~drLinkW3Org~)
+</span>~)
+</whdroplet>
+
+<whdroplet name="drLinkW3Org">
+(~MATCH|(~waLinkW3Validation.execute|active~)=true|
+<span class="changing">
+  (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
+</span>
+  <a onclick="window.open(this.href);return false;" href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)&charset=%28detect+automatically%29&doctype=Inline&group=0">validator.w3.org</a>
+~)
+</whdroplet>
+
+<whdroplet name="drAboutLiteDemo" show="no">
+(~mcLitePic~)
+This is considered a "Lite" demo, which means that there are no
+database requirements, and implies it can be served by
+just about <i>any</i> web application compiled with WebHub Object Pascal Components.
+(The only exception would be if a company decided to remove standard functionality, which is rare.)
+On the demos.href.com server, we run the Lite demos with whLite.exe. Delphi programmers can
+make a program equivalent to whLite by running the WebHub "new project" wizard. Instructions are in the WebHub Manual.
+</whdroplet>
+
+<whdroplet name="drJumpPrev" show="no">
+ (~PushPrior|litJumpPrev~)
+ (~JUMP|(~litJumpPrev~)|Previous~)
+ (~Clear|litJumpPrev~)
+</whdroplet>
+
+<whdroplet name="drJumpReturn" show="no">
+ (~PushPrior|litJumpReturn~)
+ (~JUMP|(~litJumpReturn~)|<img src="(~mcWhDemoMiscDir~)return.png" alt="return" />~)
+ (~Clear|litJumpReturn~)
+<br />
+</whdroplet>
+
+<whdroplet name="drReturnButton" show="no">
+(~PushPrior|litJumpBack~)
+<form method="post" accept-charset="UTF-8" action="(~ACTION|litJumpBack~)">
+(~Clear|litJumpBack~)
+(~inputhidden|Null~)
+(~INPUTSUBMIT|NAME,Return~)
+</form>
+</whdroplet>
+
+<whdoc>
+Copyright &copy; 1995-2010 HREF Tools Corp.  All Rights Reserved Worldwide.
+Anyone with a WebHub license may use this file at no charge.
+</whdoc>
+</body></html>
+</whpage>
+
+<whpage pageid="ReturnNow" desc="-internal page for returning from subroutine">
+(~PopPage|litReturnHere~)
+</whpage>
+
+</whteko>

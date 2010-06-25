@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGWEBMASTER
+whSequenceFinal=PGWEBMASTER
+bSeqHdr=true
+bReqUl=true
+level=2
+levelKeyword=WebMaster
+htmlFilename=2WebMast.whteko
+showcaseBranch=(~GO|PgWebMaster|WebMaster Topics~) &raquo;
+showcaseBranchText=WebMaster Topics:
+</whpagesettingslist>
+
+<whpage pageid="pgSecurity" desc="Site Security">
+<whpagesettings inherit="a">
+downLink=PGFrontDoor
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub makes sites more secure by defining a <b>session number</b> for each surfer.
+When a new surfer -- meaning someone without a session number or someone with an expired session number --
+comes in, WebHub sends that surfer to the page you specify.
+<p>
+The system also tracks the IP number that belongs with a
+session number.  If someone tries to use another person's
+session number on their own machine with a different IP,
+they will be assigned a new session number.  If you are
+building a custom WebApp with the components, you can
+further customize the OnBadIP event handler.
+<p>
+The data entered by the surfer is kept on the web server
+machine, in the TwhSession object.  The Session ID travels
+back and forth in the URL, but that is just a number.
+Compare this to a system based on cookies, where all the
+data needs to be sent back and forth every time.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="barSecurity">
+(~GO|PGFrontDoor|FrontDoor~)(~mcHeadingSeparator~)
+(~GO|pgHomepage|Homepage~)(~mcHeadingSeparator~)
+(~GO|PGINVALIDPAGE|Invalid Page~)
+</whdroplet>
+
+<whdroplet name="ulPgSecurity">
+(~GO|PGFRONTDOOR|About FrontDoor~)<br/>
+(~GO|PGHomepage|About Homepage~)<br/>
+(~GO|PGINVALIDPAGE|Invalid Page~)<br/>
+</whdroplet>
+
+
+
+<whpage pageid="pgTimeStats" desc="Gathering Time Statistics">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub claims to be the fastest cgi solution on the market for
+Windows NT. You can test this for yourself in various ways.
+<p>
+This example will allow you to perform an extended timing test on this Showcase demo.
+<p>
+You can also do a quick performance test against <i>any</i>
+WebHub app by using the reserved PageID SPEED.  For example, you could
+test (~GO|SPEED~) or HUBAPP:SPEED, depending on which AppID
+you have loaded.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="ulPgTimeStats">
+(~GO|pgExtendedTiming|Extended Test~)
+</whdroplet>
+
+
+
+<whpage pageid="pgBuiltInPages" desc="Using WebHub Built-In Pages">
+<whpagesettings inherit="a">
+downLink=index
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The following pages are built into WebHub.<p>
+<b>Index:</b> Displays a list of all the non-hidden pages in the application.<br />
+<b>Status:</b> Performs a brief status check on the application.<br />
+<b>Speed:</b> Displays speed statistics. <br />
+<b>Echo:</b> Displays all cgi environment and system data.<br />
+<b>SetPrefs:</b> Allows the user to customize the surfing environment.<br />
+<b>Error:</b> Displays a list of all the errors logged for a site.<br />
+<p>
+Click [back] in your browser to return here.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barBuiltInPages">
+(~GO|index|Index~)(~mcHeadingSeparator~)
+(~GO|status|Status~)(~mcHeadingSeparator~)
+(~GO|speed|Speed~)(~mcHeadingSeparator~)
+(~GO|echo|Echo~)(~mcHeadingSeparator~)
+(~GO|setpref|Personal Prefs~)(~mcHeadingSeparator~)
+(~GO|errors|Errors~)
+</whdroplet>
+
+<whdroplet name="ulPgBuiltInPages">
+(~GO|index|The Index Page~)<br/>
+(~GO|status|The Status Page~)<br/>
+(~GO|speed|The Speed Page~)<br/>
+(~GO|echo|The Echo Page~)<br/>
+(~GO|setpref|The Personal Preferences Page~)<br/>
+(~GO|errors|The Errors Page~)<br/>
+</whdroplet>
+
+
+<whpage pageid="pgStyleSheets" desc="StyleSheets">
+<whpagesettings inherit="a">
+downLink=pgPageSetting
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+The concept of stylesheets was part of WebHub before HTML introduced the syntax for Cascading Style Sheets.
+You may use either or both to control a website's presentation, so that fonts, colors, graphics, and the general layout
+can be defined and applied to the content of the entire site.
+<p>
+This entire showcase was built with a single page-header chunk.  The page defaults and macros are used to dynamically
+bring in the correct HTML for each situation.
+This functionality was obtained primarily using two WebHub macros: PAGESETTING and DYNCHUNK.
+You can define settings for your pages, and then dynamically call droplets based on these variables.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="barStyleSheets">
+(~GO|pgPageSetting|Page Settings~)
+</whdroplet>
+
+<whdroplet name="ulPgStyleSheets">
+(~GO|pgPageSetting|Page Settings~)
+</whdroplet>
+
+<whpage pageid="pgRTTI" desc="RTTI Properties">
+<whpagesettings inherit="a">
+bReqUl=false
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This demo showcases all the features of WebHub you can use without Delphi programming.
+Underlying all these HTML processing features is a solid object oriented architecture. <p>
+The RTTI (Run Time Type Information) dialog box allows you to view, and in some cases edit, the properties of a component. This is essential for testing and debugging custom applications.
+<p>
+This dialog shows the RTTI properties for the WebMailForm component.
+<p>
+<img src="(~mcImgShowcaseDir~)skrtti.jpg">
+<p>
+<h3>tpUpdated property</h3>
+When you are troubleshooting a web action component, such as TwhMailForm,
+one of the first things to check is the tpUpdated property.
+That is a true/false property that indicates whether the component is updated,
+or ready to do its job.  If this property is false, the component is not ready and will not execute.
+So if calling (~.webmailform.execute~) does nothing, this is the place to look.
+<p>
+<h3>RTTI Dialog</h3>
+Normally you cannot look inside the components within an application without a debugger.
+However WebHub includes something called the Run Time Time Inspector (RTTI)
+dialog which lets you do just that.  The RTTI dialog comes up when you use the Properties verb.
+ To try this, select <b>Components|WebMailForm|Properties</b> (screen shot above).
+The values you see are mostly read-only. However boolean values can be toggled by double-clicking.
+<p>
+<h3>MacroErrorShow</h3>
+The web application object has a property called MacroErrorShow which is false by default.
+When you are developing your app, set this to true and any unresolved macro calls will
+generate error messages as comments within the HTML.  You can do this through the RTTI dialog.
+ From the menu, select <b>WebHubApp > Properties</b>, find MacroErrorShow and double-click.
+<p>
+<h3>Version</h3>
+Most of the WebHub components also carry a version property.
+Look at this to find out precisely which build you are running.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

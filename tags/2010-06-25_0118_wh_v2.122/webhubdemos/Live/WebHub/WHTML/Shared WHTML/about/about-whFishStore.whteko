@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTFS=Fish Store
+mcWhDemoCreditIdeaHTFS=Ann Lynnworth
+mcWhDemoCreditFirstDraftHTFS=Ann Lynnworth
+mcWhDemoCreditGraphicsHTFS=Michael S. Davis&#44; Rob Daniels&#44; and ImageLib
+mcWhDemoCreditCopyHTFS=Rob Daniels and Ann Lynnworth
+mcWhDemoUpdatedHTFS=28-Sep-1998
+mcWhDemoKeywordsHTFS=dynamic graphics,Paradox,Borland Database Engine,shopping cart example,custom TwhAppBase class
+mcWhDemoLiteHTFS=No
+</whmacros>
+
+<whtranslation key="~whDemoShortDescHTFS">
+Demonstrated features include scrolling grids with &quot;drill-down&quot;, graphics files within 
+custom grids, data entry, BMP to JPEG conversion on the fly, and 
+accessing MEMO and BLOB fields in Paradox tables.
+</whtranslation>
+
+<whdroplet name="drDemoSetupHTFS">
+<ol>
+<li> This example uses the Borland/Embarcadero demo table named biolife.db. We include it with the 
+demo and it should load <em>without</em> requiring a BDE Alias.</li>
+<li> Use Delphi to compile whFishStore.dpr to whFishStore.exe and run that as your application server.</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoLongDescHTFS">
+<h3>Graphics and Memo Fields</h3>
+<p>When you drill into a detail page on a fish, a graphic is displayed. 
+The data from that comes from a Blob field in a Paradox table (:dbdemos:biolife.db).
+Delphi brings the data into a TBitmap.  That data is converted to a JPEG in a directory 
+that may be seen from the web. A Web Action component generates an 
+IMG SRC tag which points to the file in question.</p>
+<p>The <b>fish pictures</b> come from the BIOLIFE table (originally provided by Borland), 
+as BMP data.  To get the 
+graphics into JPEG, a conversion is necessary.  We include a separate DLL which works 
+for any BMP to JPEG conversion in Delphi 2+.</p>
+<p>Thanks to Charlie Calvert and Cary Jensen for including examples from The Fish Store 
+in <cite>Delphi 2 Unleashed</cite> and <cite>Delphi in Depth</cite>, respectively.</p>
+</whtranslation>
+
+</whteko>

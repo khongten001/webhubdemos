@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTCL=Dataset Cloning
+mcWhDemoCreditIdeaHTCL=Michael Ax
+mcWhDemoCreditFirstDraftHTCL=Michael Ax
+mcWhDemoCreditGraphicsHTCL=Rob Daniels
+mcWhDemoCreditCopyHTCL=Ann Lynnworth
+mcWhDemoUpdatedHTCL=May-1998
+mcWhDemoKeywordsHTCL=cloning,dataset cloning
+mcWhDemoLiteHTCL=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTCL">
+<ol>
+<li> The Borland Database Engine is required (installed with Delphi).</li>
+<li> The DBDEMOS Alias is required (installed with Delphi).</li>
+<li> The dBase table HOLDINGS.DBF and the Paradox table BIOLIFE.DB are required. Both are installed with Dephi.</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTCL">
+This example shows how to use preinstantiated TFields with WebHub dataset cloning. 
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTCL">
+WebHub's TwhdbSource will bend the dataset and field pointer(s) to the currently active 
+clone, making database operations both faster and easier to code.
+
+<p>There are two TwhdbScan components set up: SCAN1 and SCAN2.  The first one links to the :dbdemos:holdings.dbf (dBase file format) table with several tfields which have been customized on the Delphi form.  The second one links to :dbdemos:biolife.db (Paradox file format).  There is also a TwhdbGrid component which links to the holdings table.</p>
+
+<p>There is very little HTML linked into this project.  The pages are activated using the built-in PageID 'DO' which can be used to trigger web action components directly from the URL.  The property DirectCallOk determines whether this is activated.  While this property is set to false by default for security reasons, it is set to true in this demo.</p>
+</whtranslation>
+
+
+</whteko>

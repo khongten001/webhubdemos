@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForhtgr">
+<!-- speedbar for HTGR demo could appear here -->
+</whdroplet>
+
+<whdroplet name="drStyleHTGR">
+<style type="text/css">
+#webListGrid-table {
+  border: 2px solid #666667;
+  padding: 4px;
+  margin-bottom: 2em;
+}
+#webListGrid-table th {
+  border: 1px solid #666667;
+  background: #6600FF;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 4px;
+}
+#webListGrid-table td {
+  border: 1px solid #666667;
+  background: #66CCCC;
+  padding: 4px;
+}
+#webListGrid-form {
+  margin-bottom: 3em;
+}
+</style>
+</whdroplet>
+<whpage pageid="pgEnterHTGR" desc="TwhListGrid Demo">
+<whprep>
+(~NOTASSIGNED|WebListGrid.Files|(~SET|WebListGrid.Files=Border_Demo~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>(~ANCHORMODIFY|style|(~drStyleHTGR~)~)
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~weblistgrid.execute~)
+
+Use this (~JUMP|admin|refresh link~) if you change the
+text files and want to see the new data without shutting down
+the EXE file.
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="admin" desc="WebListGrid Admininstration Page">
+<whprep>
+(~weblistgrid.refresh~)
+(~wg2.refresh~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+ok, both grids have been refreshed.<br />
+ (~JUMP|pgEnterHTGR|try again~)
+
+<p>Just calling this page makes the TwhListGrid component
+refresh.  View the source code if you want to know how it works.</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

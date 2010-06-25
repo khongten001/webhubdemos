@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whdoc>
+You might be wondering: "where is the code to tell WebHub which page is next?
+No extra code is required to make the sequencing of these pages work!
+When you turn page sequencing on, WebHub will automatically advance to the
+next PageID within a WHTEKO file.
+</whdoc>
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceUp=pgEnterJoke
+whSequenceFinal=pgEnterJoke
+</whpagesettingslist>
+
+<whpage pageid="pgJoke1a" desc="Joke 1a">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>A salesman tells the Pope that he represents the largest fish processor in
+the world, who would pay the church 1 billion dollars if they change the
+wording in the Lord's prayer from "Give us this day our daily bread"
+ to "Give us this day our daily fish".</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke1b" desc="Joke 1b">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>After much negotiation, they settle on $5 billion. The next day the Pope
+calls a meeting of the college of cardinals and says:</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke1c" desc="Joke 1c">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>"I've got good news and bad news.  The good news is we get 5 billion
+dollars; the bad news is that we lost the Wonderbread account !!"</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

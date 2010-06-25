@@ -1,0 +1,32 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  designmode="code"
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="temp">
+ 
+<whpage pageid="remotedesign" desc="For use with Macromedia Dreamweaver">
+<whdoc for="remotedesign">
+This page must stay exactly as-is in order for the Dreamweaver interface to function.
+This page implements the Design View feature.
+</whdoc>
+(~waCommWHDWDLL.execute~)
+</whpage>
+
+<whpage pageid="remotepreview" desc="For displaying files in browser from DW">
+<whdoc for="remotepreview">
+This page must stay exactly as-is in order for the Dreamweaver interface to function.
+This page implements the Remote Preview feature.
+</whdoc>
+(~waLoadFileFromCommand.execute~)
+</whpage>
+
+<whpage pageid="remoterefresh" desc="For use with Macromedia Dreamweaver">
+<whdoc for="remoterefresh">
+This page must stay exactly as-is in order for the Dreamweaver interface to function.
+This page implements the Refresh feature.
+</whdoc>
+(~App.Refresh~)
+</whpage>
+
+</whteko>

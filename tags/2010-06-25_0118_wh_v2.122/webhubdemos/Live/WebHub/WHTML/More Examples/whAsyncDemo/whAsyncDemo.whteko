@@ -1,0 +1,281 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcImageDir=(~mcSiteRoot~)demos/whAsyncDemo/
+mcGray1=#DDDDDD
+mcLtGreen=#66FF66
+mcLtBlue=#6666FF
+mcLtRed=#FF6666
+mcBar= |&nbsp;
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForhtasync">
+<!-- speedbar for HTASYNC demo could appear here -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTASYNC" desc="Explain layout of this demo">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+	<style>
+	.highlighter {
+		font-family: Verdana,Arial; 
+		font-size: 11px; 
+		background-color: yellow;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+This demo is arranged into three sections.
+<ol>
+<li><FONT SIZE="+1"><b>Explanatory text and diagrams</b></FONT><br />
+This section provides background material about async processing.
+Read these pages:
+<ul>
+<li> (~JUMP|pgSOver|Sync Overview~): limitations of ordinary synchronous processing</li>
+<li> (~JUMP|pgAOver|Async Overview~): see how the Async components can be useful</li>
+<li> (~JUMP|pgDetail|Details~): more in-depth information on implementing an asynchronous web application.</li>
+<li> (~JUMP|pgLifeCycle|LifeCycle~): detailed information on the lifecycle of a <CODE>TAsyncObject</CODE>. </li>
+</ul>
+<p>
+
+<li><FONT SIZE="+1"><b>Async/1</b></FONT><br />
+(~JUMP|Demo1Home|Demo 1~) simulates a database query response, using asynchronous methods.<br />&nbsp;
+</LI>
+
+<li><FONT SIZE="+1"><b>Async/2</b></FONT> <br />
+(~JUMP|Demo2Home|Demo 2~) demonstrates the options available
+in an async enabled WebHub application.<br />&nbsp;</LI>
+</ol>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgSOver" desc="Sync Overview">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Normal WebHub traffic is <i>synchronous</i>, that is, each request must wait until the one
+before it has finished.  The speed of the Hub and the EXE's serving the surfers ensure that
+no one is kept waiting.  But what if the page being requested requires a database query (or
+something else that might take a long time)? The EXE handling that surfer makes the query,
+and then waits for the result, not able to handle any other requests, or even to finish building
+the page for the waiting surfer, until the lengthy process has completed.  At best, the surfer
+experiences sluggish performance, and at worst, the connection might time out before the
+page is ever displayed. This is an inherent limitation of synchronous processing.<br />
+<CENTER><h2>Synchronous Processing</h2>
+<IMAGE SRC="(~mcImagedir~)normal_app.gif" HEIGHT=508 WIDTH=698 alt="synchronous schematic">
+</CENTER>
+<br />
+Next page: (~JUMP|pgAOver|Async Overview~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgAOver" desc="Async Overview">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+An <i>asynchronous</i> WebHub application works a little differently.  When its main thread
+receives a request  for a page that will require a long time to construct, it spawns a dedicated
+worker thread to handle the long task, and then can return a page to the surfer informing him
+of the progress of the request. The App is now free to handle additional requests, either from the
+original surfer, to whom it can reply with status updates, or from other surfers, in which case it can
+spawn off additional threads to handle their queries as necessary. When the worker thread finishes
+processing, its results are made available to the App's main thread, and the worker thread is
+terminated.  The App is then free to pass the results on to the surfer, either immediately, if the
+connection was kept open, or on the next reload of the page.<br />
+<CENTER><h2>Asynchronous Processing</h2>
+<IMAGE SRC="(~mcImagedir~)async_app.gif" HEIGHT=564 WIDTH=704 alt="asynchronous schematic">
+</CENTER>
+<br />
+The Async package is versatile.  It allows you to keep the connection open between the App's main
+thread and the surfer, allowing near-realtime feedback for the surfer on the progress of his request.
+Or, using a refresh tag, his status page can be set to reload itself, freeing the main thread to handle
+other requests.  You can tell the main thread to abort the worker thread if the surfer switches away
+from the status page or you can force the surfer to remain on the status page.  You can even give
+the surfer a button to abort the request himself. Also, you can assign a task to be run over and over in the
+common background thread.<br />
+<br />
+Next page: (~JUMP|pgDetail|Details~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgDetail" desc="Details of the Async Package">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Each <CODE>TAsyncObject</CODE> represents a single, asynchronous
+task (thread). It is the job of <CODE>TwhAsyncAction</CODE> (which inherits
+from <CODE>TwhWebActionEx</CODE>) to keep track of and report the state of
+each of the <CODE>TAsyncObjects</CODE> running in the current WebApp.
+You can have multiple <CODE>TwhAsyncActions</CODE> running at the same
+time, but you must then set <CODE>CGIUseAppProcessID = true</CODE>, so that the
+Hub knows how to connect a surfer with the WebApp running his set of asynchronous
+tasks.</p>
+
+<p>The default thread class for a <CODE>TAsyncObject</CODE> is
+<CODE>TwhAsyncThread</CODE>.  If you set the thread class to be
+<CODE>nil</CODE>, the task will be subscribed to the <CODE>TwhAsyncAction</CODE>'s
+background thread's list of tasks (this includes the house cleaning routines). The
+sequence of background tasks are run over and over in the same order, until a  task
+has signaled that it is finished by setting <CODE>Done = true, Aborted = true</CODE>, or on an
+<CODE>Exception</CODE>.</p>
+
+<p>If you need more result output capabilities than is provided with the basic
+<CODE>ResultString</CODE> and <CODE>ResultValue</CODE> properties,
+use the <CODE>TAsyncObject.Data</CODE> property to access a user
+implemented data object (which inherits from <CODE>TObject</CODE>).</p>
+<p>And remember, you can use the [Source] link to view the full source of this 
+demo at any time. Click into the Delphi Project File (the DPR file), and then select the ASyncDm.pas file.  Look for the TThreadInput class.</p>
+<p>Next page: (~JUMP|pgLifeCycle|Life Cycle of TAsyncObject~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgLifeCycle" desc="Lifecycle of TAsyncObject">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<table CELLSPACING=0 CELLPADDING=5 BORDER=1>
+//top row
+<tr>
+  <td ALIGN="CENTER" VALIGN="BOTTOM"><FONT SIZE="+1"><b>Is<br />Session<br />accessible?</b></FONT></td>
+  <td ALIGN="CENTER" VALIGN="BOTTOM"><FONT SIZE="+1"><b><CODE>TAsyncObject<br />(TwhAsyncAction.SurfersObject)</CODE></b></FONT></td>
+  <td ALIGN="CENTER" VALIGN="BOTTOM"><FONT SIZE="+1"><b><CODE>AsyncAction</CODE><br />reports object's<br />state as:</b></FONT></td>
+  <td ALIGN="CENTER" VALIGN="BOTTOM"><FONT SIZE="+1"><b>Notes:</b></FONT></td>
+</tr>
+
+//next row
+<tr>
+  <td ROWSPAN=3 ALIGN="CENTER"><FONT SIZE="+1"><b>YES</b></FONT></td>
+  <td>Created by calling method <CODE>TwhAsyncAction.NewThread</CODE>.</td>
+  <td ROWSPAN=2 ALIGN="CENTER"><CODE><b>asNone</b></CODE></td>
+  <td>set <CODE>ThreadClass:=&nbsp;nil</CODE> to subscribe task to background thread</td>
+</tr>
+
+//next row
+<tr>
+  <td><CODE>TwhAsyncAction</CODE> creates <CODE>.SurfersObject</CODE> of class
+  <CODE>.ObjectClass</CODE> (default:<CODE>TwhAsyncObject</CODE>), initializes object, and calls
+  <CODE>(~JUMP|Demo1Code,#ONINIT|TwhAsyncAction.ThreadOnInit~)</CODE></td>
+  <td ROWSPAN=2>Now is the time to access the Session in order to initialize the async object.</td>
+</tr>
+
+//next row
+<tr>
+  <td>TwhAsyncAction.NewThread recurses to <CODE>TwhAsyncAction.Execute</CODE> calls (~JUMP|Demo1Code,#AONEXECUTE|TwhAsyncAction.OnExecute~)</td>
+  <td ALIGN="CENTER"><CODE><b>asStarted</b></CODE></td>
+</tr>
+
+//next row
+<tr>
+  <td  ROWSPAN=6 ALIGN="CENTER"><FONT SIZE="+1"><b>NO</b></FONT></td>
+  <td COLSPAN=2 BGCOLOR="#000000" ALIGN="CENTER"><FONT COLOR="#FFFFFF">The worker thread starts running in the background.</FONT></td>
+  <td ROWSPAN=4>Other Sessions will now be processed from the main thread and the async object must only access data which it owns.</td>
+</tr>
+
+//next row
+<tr>
+  <td BGCOLOR="(~mcGray1~)"><CODE>(~JUMP|Demo1Code,#AONEXECUTE|TwhAsyncAction.OnExecute~)</CODE></td>
+  <td ALIGN="CENTER" BGCOLOR="(~mcGray1~)"><CODE><b>asBusy</b></CODE></td>
+</tr>
+
+//next row
+<tr>
+  <td ALIGN="TOP" BGCOLOR="(~mcGray1~)">
+  <table BORDER=0><tr><td ROWSPAN=3 ALIGN="TOP">
+  <CODE>SurfersObject.OnExecute</CODE> called until:<br /><CODE>((~JUMP|Demo1Code,#ONEXECUTE|TwhAsyncAction.ThreadOnExecute~))</CODE></td>
+  <td ROWSPAN=3>&nbsp;</td>
+  <td BGCOLOR="(~mcLtGreen~)"><CODE>Done = True</CODE></td></tr>
+  <tr><td BGCOLOR="(~mcLtBlue~)"><CODE>Aborted = True</CODE></td></tr>
+  <tr><td BGCOLOR="(~mcLtRed~)"><CODE>Exception</CODE></td></tr>
+  </table>
+  </td>
+  <td BGCOLOR="(~mcGray1~)">&nbsp;</td>
+</tr>
+
+//next row
+<tr>
+  <td COLSPAN=2 BGCOLOR="#000000" ALIGN="CENTER"><FONT COLOR="#FFFFFF">The worker thread terminates.</FONT></td>
+</tr>
+
+//next row
+<tr>
+  <td>Result page can now be built from the data object created by the worker thread. </td>
+  <td ALIGN="CENTER">
+     <table>
+     <tr><td BGCOLOR="(~mcLtGreen~)" ALIGN="CENTER"><CODE><b>asFinished</b></CODE></td></tr>
+     <tr><td BGCOLOR="(~mcLtBlue~)" ALIGN="CENTER"><CODE><b>asAborted</b></CODE></td></tr>
+     <tr><td BGCOLOR="(~mcLtRed~)" ALIGN="CENTER"><CODE><b>asFailed</b></CODE></td></tr>
+     </table>
+  </td>
+  <td>The async results are now available for the surfer. Call <CODE>TwhAsyncAction.DeleteTask</CODE> if the results are to be deleted immediately.</td>
+</tr>
+
+//next row
+<tr>
+  <td><CODE>DeleteTask</CODE> or housecleaning calls object's <CODE>(~JUMP|Demo1Code,#ONDEST|TwhAsyncObject.OnDestroy~)</CODE></td>
+  <td ALIGN="CENTER"><CODE><b>asNone</b></CODE></td>
+  <td>The async object will now be freed.</td>
+</tr>
+//end table
+</table></CENTER>
+<p>
+Return: (~JUMP|pgEnterHTASYNC|Return to Demo Entrance~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgCode" desc="Code Examples">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~JUMP|Demo1Code|Here~) are the code examples from the first demo.<br />
+<br />
+(~JUMP|Demo2Code|Here~) are the code examples from the second demo.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+</whteko>

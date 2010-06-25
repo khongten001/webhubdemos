@@ -1,0 +1,2 @@
+subscribe fake-list@majordomo.adomain.com (~surferemail~)
+

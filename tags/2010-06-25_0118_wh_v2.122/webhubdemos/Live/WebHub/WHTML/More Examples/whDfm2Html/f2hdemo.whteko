@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpage pageid="unused" mode="scaffold">
+<whdroplet name="chPageHeader">
+<!---(~MATCH|(~pageid~)~nswarning|<META HTTP-EQUIV="Refresh" CONTENT="3;URL=(~action|sample~)">~)
+(~ANCHOR|meta~)-->
+<html><head>
+<title>HREF Tools Corp. VCL Form to HTML Conversion Demo - (~PageDesc~)</title>
+</head>
+<body>
+(~IFNOT|bInit|(~chNewSurfer~)~)
+</whdroplet>
+
+<whdroplet name="chNewSurfer" show="no">
+(~waRESETNOW.execute~)
+(~CHECK|bInit~)
+<!-- (~webcycle.first~) -->
+</whdroplet>
+
+<whdroplet name="chPageFooter">
+<hr><CENTER>
+<smallest>
+(~JUMP||Home~) | 
+(~JUMP|ViewFiles,dfm2html|Source~) | 
+Copyright &copy; 1998-2007 <A HREF="http://www.href.com/">HREF Tools Corp.</A><BR>
+Powered by <A HREF="http://webhub.com/">(~Version~)</A>.
+</smallest>
+</CENTER>
+ </body></html>
+</whdroplet>
+</whpage>
+
+
+<whmacros>
+mcDFonts=(~CMDHAS|DFonts|(~SET|rdoFonts=rdoDFonts~)~)
+mcBFonts=(~CMDHAS|BFonts|(~SET|rdoFonts=rdoBFonts~)~)
+mcReadOnly=(~CMDHAS|chkReadOnly|(~mcToggleReadOnly~)~)
+mcToggleReadOnly=(~IF|chkReadOnly|(~CLEAR|chkReadOnly~)||(~CHECK|chkReadOnly~)~)
+</whmacros>
+
+<whpage pageid="nsWarning">
+(~chTip~)<p>
+<table width=60%><tr><td>
+<B>Warning:</B> During development we discovered that pages containing  
+a form with "TitleBar" or "Border" set in its border options will take a while to render
+in Netscape browsers. 
+It appears this strange rendering behaviour occours only when 
+BGcolors are used with nested tables !
+<p>
+(~JUMP|Sample|Continue on to the page that you requested...~)
+</td></tr></table></center>
+</whpage>
+
+<whpage pageid="Original">
+(~chTip~)
+<p>Here is the screenshot of the original Delphi form...</p>
+<p><img src="http://www.href.com/img256/f2h/original.jpg" alt="original delphi form" /></p>
+(~JUMP|Sample|Continue~)
+</center>
+</whpage>
+
+<whdroplet name="chTip">
+<center>
+<table width="80%" border="0" cellpadding="8" cellspacing="0">
+<tr><td bgcolor="#F5F5DC">
+<center>
+<span class="changing">
+(~JUMPR|sample,webcycle.first|First Tip~) |
+(~JUMPR|sample,webcycle.Prev|Prev Tip~) |
+(~JUMPR|sample,webcycle.Next|Next Tip~) |
+(~JUMPR|sample,webcycle.last|Last Tip~) | 
+</span>
+</center>
+</td></tr>
+<tr><td bgcolor="#F5F5DC">
+<center>
+(~CMDHAS|webcycle|(~webcycle.execute|~)||(~webcycle.item~)~)
+</center>
+</td></tr>
+</table>
+</whdroplet>
+
+<whpage pageid="sample">
+(~MATCH|Reset Data[(~butSubmit~)|(~waRESETNOW.execute|~)~)
+(~mcDFonts~)
+(~mcBFonts~)
+(~mcReadOnly~)
+(~chTip~)
+(~waF2H|Sample~)
+</center>
+</whpage>
+
+<whpage pageid="pgWebEye" desc="For WebEye Robot Checkup">
+(~pgMonitor~)
+</whpage>
+
+</whteko>

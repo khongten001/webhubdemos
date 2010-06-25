@@ -1,0 +1,4 @@
+row1|one|two|three
+row2|123|234|456
+row3|a|b|c|
+row4|hello there|another column|and the last

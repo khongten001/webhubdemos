@@ -1,0 +1,132 @@
+<whteko defaultlingvo="eng" designmode="code">
+<whdoc>
+the page, chunks and macros for the async demonstrations
+
+the page from which to experiment with the functionality of the async demo application
+(uses flush/close/no app specific header to plug into any appid you might be using)
+</whdoc>
+
+<whpage pageid="Async">
+<whprep>
+(~IFNOT|_FlagInit|(~chNewSession~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<!--- notice that we are intentionally being security conscious here about
+      the commands that we give a surfer remote access to. -->
+(~MATCH|(~AsyncDemo~)~ping|(~mcDosPing~)
+||(~MATCH|(~AsyncDemo~)~tracert|(~mcDosTracert~)
+||(~MATCH|(~AsyncDemo~)~nslookup|(~mcDosNsLookup~)
+||(~waAsyncAction.execute~)~)~)~)
+<FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|Async,CKB~)">
+(~AsyncTitleEnd~)
+<table><tr><td><hr />
+<INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any">
+(~MATCH|(~AsyncState~)[Finished,Failed,Aborted,Prior|<INPUT TYPE="SUBMIT" VALUE="Clear" NAME="@Clear">~)
+(~NOMATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Start" NAME="@Start">~)
+(~MATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Abort" NAME="@Abort">~)
+(~NOMATCH|(~AsyncState~)[Aborted,Busy|(~INPUTSELECT|AsyncDemo,AsyncDemos~)~)
+<hr /></td></tr></table>
+(~NOMATCH|(~AsyncState~)[Aborted,Busy|(~AsyncDemoPick~)~)
+</FORM>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<!---macros defining the commandlines used when surfacing dos commands:-->
+<whmacros>
+mcDosPing=(~waAsyncAction.execute|ping (~RemoteAddress~)~)
+mcDosTracert=(~waAsyncAction.execute|tracert (~RemoteAddress~)~)
+mcDosNsLookup=(~waAsyncAction.execute|nslookup (~RemoteAddress~)~)
+</whmacros>
+
+<!---define the list of demos-->
+<whdroplet name="AsyncDemos">
+Percent-% Complete
+Tracert-Trace the route back to you
+Ping-Ping your IP Address
+NsLookup-Lookup your IP's name
+</whdroplet>
+
+<whdroplet name="chNewSession">
+(~CHECK|_FlagInit~)
+(~CHECK|AsUnHook~)
+(~CHECK|AsInc~)
+(~CHECK|AsBg~)
+</whdroplet>
+
+<whdroplet name="AsyncDemoPick">
+(~INPUTCHECKBOX|AsUnHook~) keep the connection open and send while processing<br />
+<ul>
+<li>(~INPUTCHECKBOX|AsUnHookAbort~) Abort %Complete demo when switching away from the page being produced.
+<li>(~INPUTCHECKBOX|AsyncSplitLoop~) Automatically load 'the next page' upon completion.
+</ul>
+//
+(~INPUTCHECKBOX|AsInc~) Process work over multiple executions (%complete example only)<br />
+<ul>
+<li>Checked - The demo will 'multi-task cooperatively' by breaking down its
+(fixed) 10 seconds of work over multiple requests.
+If your algorithm can do the same, use this technique and a single, shared background thread.<br />
+<li>UnChecked - The demo will spend 10 seconds counting before
+returning a random number. When time is used like this, a thread dedicated
+to each request will be best.
+</ul>
+//
+(~INPUTCHECKBOX|AsBG~) Process in a shared background thread<br />
+<ul>
+<li>Checked - low resource utilization, never overloads system
+<li>UnChecked - dedicated thread servicing each request.
+</ul>
+//
+(~INPUTCHECKBOX|AsKeepOnPage~) Keep the surfer on this page during processing<br />
+</whdroplet>
+
+
+<whdroplet name="AsyncTitle">
+<whdoc for="AsyncTitle">
+implementing the yellow box at the top of the async page.
+It is meant to display the asyn status for the demo and deciphers
+the options selected by the checkboxes.
+</whdoc>
+Your async state is (~AsyncState~).<br/><br/>
+<table width="100%" (~IFNOT|AsUnHook|(~NoMATCH|(~AsyncState~)[None|height="200"~)~) border="3">
+<tr><td bgcolor="yellow" valign="top">
+<font size=+2>Status: (~NOMATCH|(~AsyncState~)[None|(~INC|AsyncPages~)(~AsyncDemo~) Demo ~)(~AsyncState~)
+</font><hr width=90% align="left">
+<font size=-1>Session: (~SessionID~),
+(~ASSIGNED|AsyncPages|TaskPage# (~AsyncPages~), ~)
+as of <span class="changing">(~CentralInfo.WebTimeGMT~)</span>
+</font><hr width=95% align="left">
+(~NOMATCH|(~AsyncState~)[None|
+Executing in a (~IF|AsBG|shared background||dedicated~) thread
+(~MATCH|(~AsyncDemo~)!Percent| (~IF|AsInc|1% per iteration||0..100% at one time~)
+~)
+(~MATCH|(~AsyncState~)~Started
+|(~IF|AsUnHook|<br />while keeping the connection open
+. .. see the (~MATCH|(~AsyncDemo~)!Percent|changing button||progressive output~) below!
+||.~)
+||.~)
+<br />
+(~IF|AsBG|(~IFNOT|AsInc|(e.g. all other background activities wait while this task runs!)<br />~)~)
+~)
+</whdroplet>
+
+<whdroplet name="AsyncTitleEnd">
+</td></tr></table>
+</whdroplet>
+
+
+<whdroplet name="AsyncErrors">
+<!--- a droplet to translate error codes returned by your thread -->
+(~MATCH|(~dyn1~)=-1|Aborted by you.~)
+</whdroplet>
+
+</whteko>

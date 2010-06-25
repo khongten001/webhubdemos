@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTDR=Dropdown Controls
+mcWhDemoCreditIdeaHTDR=Michael Ax
+mcWhDemoCreditFirstDraftHTDR=Michael Ax
+mcWhDemoCreditGraphicsHTDR=Rob Daniels
+mcWhDemoCreditCopyHTDR=Ann Lynnworth and Martha Moore
+mcWhDemoUpdatedHTDR=19-Oct-1998
+mcWhDemoKeywordsHTDR=TwhDropDown,select syntax,dropdown
+mcWhDemoLiteHTDR=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTDR">
+<ol>
+<li> Requires whDropdown.exe</li>
+
+<li> This project uses the TwhDropDown component which 
+is not included in WebHub Lite.</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTDR">
+Demonstration of the TwhDropDown component, showing variations in 
+terms of select list height and default settings.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTDR">
+There is almost no Pascal code in this demo. Most of the examples 
+work just by setting properties on the TwhDropDown component.
+</whtranslation>
+
+</whteko>

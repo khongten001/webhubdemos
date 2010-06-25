@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designdynsrc="localdemoBW" designmode="code" designpage="pgWebHubTimes">
+
+<whmacros>
+<whdoc>
+The session variable "inSpeed" is defined based on surfer input via radio button--see below.
+This determines the name of the directory from which the images are taken.
+The color images are considered acceptable for fast connections, and the black and white 
+images are for slow connections.
+</whdoc>
+mcImgDir=(~mcSiteRoot~)demos/whOptions/(~inSpeed~)/
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForbw" show="no">
+(~JUMP|pgWebHubTimes|WH Times~) | (~JUMP|pgNews|RSS Example~)
+</whdroplet>
+
+<whpage pageid="pgEnterBW" remap="(apphttp)" desc="Bandwidth Picker">
+<whdoc>
+The surfer clicks a radio button to specify a fast or slow connection.
+Clicking this radio button sets the session variable named "inSpeed" to either "fast" or "slow".
+</whdoc>
+<whprep>
+(~NOTASSIGNED|inSpeed|(~SET|inSpeed=Fast~)~) <!---Default the speed setting to fast.-->
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">
+
+<form method="post" accept-charset="UTF-8" action="(~ACTION|BW:pgWebHubTimes~)">
+
+<table cellpadding="0" cellspacing="0">
+	<tr>
+		<td align="center" valign="middle">
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="middle">
+<span style="font-size:2em;color:red">This site is graphics-intensive.</span><br />
+<span style="font-size:2em;">Please specify your preferred bandwidth:</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="middle">
+<br /><br />
+
+(~INPUTRADIO|inSpeed,slow~) Slow Modem  <!---Let the visitor override the setting. -->
+(~INPUTRADIO|inSpeed,fast~) Fast Connection
+<br /><br />
+		</td>
+	</tr>
+	<tr>
+		<td align="center" valign="middle">(~inputsubmit|submit,Proceed~)
+		</td>
+	</tr>
+</table>
+</form>
+
+</div>
+<br /><br />
+(~~whDemoLongDescBW~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgWebHubTimes" desc="The WebHub Times Newspaper">
+<whprep>
+(~NOTASSIGNED|inSpeed|(~SET|inSpeed=Fast~)~) <!---Default the speed setting to fast.-->
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#whTimesNewspaper {
+		width:550px;
+		border: solid 2px black;
+		padding: 5px;
+	}
+	#whTimesNewspaper td {
+		font-size: .9em;
+		font-family:"Trebuchet MS",Arial;
+	}
+	#whTimesNewspaper ul {
+		list-style-image:url((~mcImgDir~)goldbut.jpg);
+	}
+	#whTimesNewspaper li {
+		margin-bottom:1em;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">
+<table id="whTimesNewspaper" cellspacing="0">
+<tr><td colspan="2" align="center" valign="middle">
+<img src="(~mcImgDir~)whthead.jpg" alt="WebHub-Times banner" /></td></tr>
+<tr><td colspan="2" align="center" valign="middle">
+<span style="font-size:1.4em;color:#CC3333;">WebHub will solve <i>your</i> business problems.<br /> Faster, Better, Cheaper!</span></td></tr>
+<tr>
+<td>
+<table cellpadding="10" cellspacing="0">
+<tr><td colspan="2" align="center" valign="middle">
+<span style="font-size:2em;">CalJOBS Powered by WebHub</span>
+</td></tr>
+<tr><td valign="top">
+<p>The State of California Employment Development Department (EDD) has been given the opportunity to reevaluate the means
+through which public service information is provided. The following case study will discuss work done by the EDD in the area
+of Internet-enabled public service systems. The EDD built a high quality, cost-effective job search system for the State of
+California. Called the California Job Openings Browse System (CalJOBS), this project marks the cornerstone of true industrial
+strength web application development.</p>
+
+<p>The EDD team, using the Object Pascal programming language (then Borland Delphi, renamed to CodeGear Delphi then Embarcadero Delphi) and low-overhead SQL links to Informix's
+SQL database, O'Reilly and Associate's web server (WebSite Professional) and HREF Tools Corporation's web
+development framework (WebHub), created a solid, interactive, database-driven web site.</p>
+
+The sites powerful functionality is derived from its ability to:
+<ul>
+
+<li>Maintain the user's identity throughout their session.</li>
+
+<li>Provide complex drill down queries.</li>
+
+<li>Increase information delivery speed with extreme modular scalability.</li>
+
+</ul>
+</td>
+<td valign="top">
+<p>The site's functionality is provided in a secure environment that has been created by separating the database security from the
+Internet application and implementing a captive browser using ActiveX technology.</p>
+
+<p>The CalJOBS Internet pilot project has realized custom application development for the web at the highest, most thoroughly
+tested level, the State government. This not only marks the successful implementation of a cutting edge technology, it also sets
+the standard for high quality, cost-effective government service programs. Using WebHub technology, EDD has merged
+desktop computing with the World Wide Web, allowing people to access custom database information easier than they could
+from their own personal computer. The CalJOBS project is an undeniable realization of something that has, until now, been
+exceedingly difficult to create: a dynamic, database-driven, enterprise-wide computer application for the World Wide Web.</p>
+</td></tr>
+<tr><td colspan="2" align="center" valign="middle">
+<small>
+<img src="(~mcImgDir~)CA_EDD.jpg" alt="CalJOBS initial development team" /><br />
+<i>EDD Development Team</i></small>
+</td></tr></table>
+</td>
+<td valign="top">
+<br />
+<div class="dcenter">
+<img src="(~mcImgDir~)htc.jpg" alt="HREF Tools Corp." /><br />
+<span style="font-size:1.2em;">Software Tools for Dynamic Web Sites</span></div>
+<p>Founded in September 1995, HREF Tools
+Corporation provides middleware that greatly reduces the time and
+complexity of creating interactive, database-intensive, web-based
+applications that run on Windows NT servers.</p>
+
+<p>WebHub is a software product for people who
+want fast, full-featured web sites that are easy to maintain.
+WebHub provides a complete development environment for building web
+applications. Its components simplify the development process with
+integrated solutions to the challenges of multiuser state management,
+persistent database connectivity and high level HTML page generation.
+For full customization, you need to use Delphi to program in object pascal.
+WebHub includes runners for ISAPI, cgi-bin and cgi-win so your
+application will run with any Windows NT web server.</p>
+
+<div class="dcenter">
+<img src="(~mcImgDir~)whlogo.jpg" alt="WebHub logo" /><br />
+<img src="(~mcImgDir~)hthref.jpg" alt="HREF Tools logo" /><br />
+<img src="(~mcImgDir~)goldbut.jpg" alt="gold button" />
+</div>
+</td>
+</tr>
+</table>
+<br />
+<span style="font-size:1.2em;color:#666666">
+Adjust speed:</span>
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+<p>
+(~INPUTRADIO|inSpeed,slow~) Slow Modem (black and white images)
+(~INPUTRADIO|inSpeed,fast~) Fast Connection (color images)</p>
+<p>(~INPUTSUBMIT|SUBMIT,Reload~)</p>
+</form>
+</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>
+

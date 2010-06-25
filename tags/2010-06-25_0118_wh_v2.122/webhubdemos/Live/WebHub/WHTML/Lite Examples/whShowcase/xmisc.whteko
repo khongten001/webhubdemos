@@ -1,0 +1,50 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" 
+	notes="Use this file for pages which must never be sequenced.">
+
+<whpagesettingslist id="a">
+whsequence=off
+bSeqHdr=false
+bReqUl=false
+htmlFilename=xmisc.whteko
+</whpagesettingslist>
+
+<whpage pageid="pgSimpleAjaxFillin" desc="Partial page, used during AJAX demonstration">
+<p>The secret word is (~w~) and your ip# is (~Request.RemoteAddress~).</p>
+</whpage>
+
+<whpage pageid="pgXmlSample" desc="Extremely Short XML Sample Document">
+(~SETPROLOGUETYPE|XML~)<![CDATA[<?xml version="1.0" encoding="UTF-8"?>]]>
+<tag>
+	<something>data</something>
+	<other name="fred" />
+</tag>
+</whpage>
+
+<whpage pageid="pgXmlSample2" desc="XML Sample File (employees.xml)">
+(~SETPROLOGUETYPE|XML~)(~INCLUDE|D:\projects\webhubdemos\Live\WebRoot\webhub\demos\whShowcase\employees.xml~)
+</whpage>
+
+<whpage pageid="pgCsvSample" desc="CSV Sample File sent by INCLUDE (SampleScoreList.csv)">
+(~SETPROLOGUETYPE|text/csv~)(~INCLUDE|d:\projects\webhubdemos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv~)
+</whpage>
+
+<whpage pageid="pgCsvSample2" desc="CSV Sample File sent by SENDFILE (SampleScoreList.csv">
+(~SENDFILE|d:\projects\webhubdemos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv,text/csv~)
+</whpage>
+
+<whpage pageid="pgIndex" desc="Index of all pages in (~AppID~) demo">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~waSiteIndex.execute|~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgTestCSS" desc="-sample css">
+<!--- (~SETPROLOGUEMODE|CSS~) requires WebHub v2.100 -->
+#styleTest {background-color: yellow; color: red;}
+</whpage>
+
+</whteko>

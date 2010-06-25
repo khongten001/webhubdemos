@@ -1,0 +1,664 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  designdynsrc="dserveradv"
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="pgWelcome"
+  designmode="code"
+  showdoc="no"
+  showsketch="no"
+  notes="This file contains pages that are shared by many of
+        the WebHub demos.
+
+        These pages are subroutines that you can call from
+        any WebHub application, by including this file.
+
+        Pages
+        -----
+          ViewFiles -- Links to INI, HTML and Delphi source
+
+          ViewDelphiFile -- WebHub/Delphi Source Code Browser
+
+          InvalidPage -- Gives notice of invalid page request
+
+          pgBadIP -- Error message when IP number changes.
+
+          WHProperties -- display current properties
+
+          remotedesign,remotepreview,remoterefresh -- use with Dreamweaver">
+
+<!--- ================================================================================ -->
+
+<whpage pageid="pgWelcome" desc="Welcome Page for (~AppID~) Demo">
+<!--- The contents of this page change depending on the current AppID. -->
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Welcome!</h1>
+<h2>This is the &quot;(~mcWhDemoOneLiner~)&quot; WebHub Demo</h2>
+<p>(~DYNCHUNK|~whDemoShortDesc,(~AppID~)~)</p>
+<div id="whDemoLongDesc(~AppID~)">
+(~DYNCHUNK|~whDemoLongDesc,(~AppID~)~)
+</div>
+
+<ul>
+<li>(~mcWhDemoDot~) (~JUMP|pgSetup|[~Prerequisites~]~)</li>
+
+<li>(~mcWhDemoDot~) (~JUMP|pgEnter(~AppID~)|(~~Entrance~)~)</li>
+
+<li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)|(~~Source~)~)</li>
+
+<li>(~mcWhDemoDot~) (~JUMP|pgAbout,(~AppID~)|[~About~]~)</li>
+
+</ul>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgSetup" desc="Setup Instructions and/or Requirements for this Demo">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~~Prerequisites~)</h1>
+<p>Here is your checklist for running this demo ((~AppID~)) on your own system.
+Note: these instructions assume that you know how to run WebHub application servers.</p>
+(~DYNCHUNK|drDemoSetup,(~AppID~)~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="InvalidPage" desc="Invalid Page">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Invalid PageID</h2>
+<p>You've requested a Page that is not currently defined.  You asked
+for (~Request.QueryString~).</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgBadIP" desc="IP Number changed">
+<whdoc>
+To cause this error, start a demo, click into a page, note your session#, then go to a
+different machine and request the same demo with the same session #.
+</whdoc>
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Invalid IP Number</h2>
+<p>Alert! You have requested a URL under a session number associated
+with a different IP number.  The request was denied for security reasons.</p>
+
+<p>Note:  This message is intended for IP numbers that switch due to use
+of a clipboarded URL from another machine, BUT <b>it will also be triggered for AOL
+users</b> (AOL pools IP numbers, and surfers' IP numbers will change basically
+with each page request!), <b>and by users testing this demo on their local machines</b>.
+The latter occurs because even though they refer to the same machine, the actual machine
+number, localhost and 127.0.0.1 are not equivalent, so the test match fails.</p>
+
+<p>Delphi programmers can alter how and when this pages gets triggered, by
+customizing the onBadIP event of the TwhAppBase.</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgAbout" desc="About a WebHub Demo">
+<whprep>
+(~CLEAR|_tempFlag~)
+(~CMDHAS|lingvo=deu|(~CHECK|_tempFlag~)~)
+(~CMDHAS|lingvo=fra|(~CHECK|_tempFlag~)~)
+(~CMDHAS|lingvo=eng|(~CHECK|_tempFlag~)~)
+(~IFNOT|_tempFlag|(~SET|_aboutID=(~command~)~)~)
+(~CLEAR|_tempFlag~)
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~~About~)</h1>
+<ul>
+<li>Original idea: (~DYNCHUNK|mcWhDemoCreditIdea,(~_aboutID~)~)</li>
+<li>First draft: (~DYNCHUNK|mcWhDemoCreditFirstDraft,(~_aboutID~)~)</li>
+<li>Graphics: (~DYNCHUNK|mcWhDemoCreditGraphics,(~_aboutID~)~)</li>
+<li>Demo text: (~DYNCHUNK|mcWhDemoCreditCopy,(~_aboutID~)~)</li>
+<li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~_aboutID~)~)</li>
+<li>Running: (~version~)</li>
+<li>Syntax Stage: (~ProjectSyntax~)</li>
+</ul>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+
+<!--- Expected parameters:
+      1 - AppID for the demo in question -->
+<whdroplet name="aboutHREFExample">
+<!--- Set the appid used for the speed bar at the bottom of the page -->
+<span style="color:darkslateblue;font-weight:700;">(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~) Demo</span><br />
+(~DYNCHUNK|~whDemoShortDesc,(~DYN1~)~)<br />
+<span style="color:darkslateblue;font-weight:700;">More Detail</span><br />
+(~DYNCHUNK|~whDemoLongDesc,(~DYN1~)~)
+</whdroplet>
+
+
+<whpage pageid="ViewWHTMLFile" desc="View WHTML File">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+[(~JUMP|ViewFiles,(~AppID~)|Back~)]<br />
+(~waDemoViewSourceWHTMLFile.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whmacros>
+mcGlobalDot=<span style="color:mediumvioletred;">?</span>
+mcHdrOn=<h2>
+mcHdrOff=</h2>
+</whmacros>
+
+<whpage pageid="ViewFiles" desc="View source files for this demo">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~~Source~)</h1>
+
+<h2>Object Pascal (~~Source~)</h2>
+<p><i>A developer uses Delphi to compile this source code with WebHub libraries to create
+the EXE which generates the dynamic web content.</i></p>
+(~mcWhDemoDot~)
+(~waDemoViewSourceProjectLink.execute~)
+
+<h2>WebHub-HTML (~~Source~)</h2>
+<p><i>The INI file provides overall configuration information about the application.
+The other WHTEKO files define "pages", "droplets" and "macros" which
+together provide the web page layout and content.
+Additional content may come from a database or other sources.</i></p>
+(~waDemoViewSourceWHTMLFileList.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgDownload" desc="(~~Download~)">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~~Download~)</h1>
+<p>The WebHub demos compile with Delphi 7, Delphi 2007, Delphi 2009 or Delphi 2010 plus the
+WebHub Object Pascal Components from HREF Tools Corp. </p>
+<p>It is a good idea to check which version of WebHub this page was created by.
+To do this, look for the version number in the page footer on every demo page.  (The answer is (~version~) for this
+(~AppID~) app. )
+Compare this version against the information on
+<a href="http://www.href.com/whVersion">this page</a>, where HREF indicates the latest
+release of WebHub.  Generally, these versions are in sync but occasionally there are
+delays in updating the demos.  </p>
+<p>Be sure to read the instructions in the Source\Doc directory.  For easiest compilation, map drive H: to your WebHub lib\ directory.
+If you do not wish to map drive H:, edit the paths (to PAS files) in the project source (DPR file) for any demo you want to compile.</p>
+
+<h3>ZIP of All WebHub Demos</h3>
+(~mcWhDemoDot~)
+<a href="http://demos.href.com/download/">whDemo_Complete-v2xxx.zip</a>
+~1.5MB
+<p>You should unzip to a directory such as d:\Projects or c:\My Documents.  All files
+will install to a subdirectory named "WebHub Demos".  </p>
+
+<h3>Access through SubVersion ("SVN")</h3>
+<p>If you have a SVN client, you may checkout the WebHub demos using the following details.</p>
+<ol>
+<li> ideal sandbox path is <b>d:\Projects\</b></li>
+<li> path to the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/</b></li>
+<li> the nested folder name is <b>"webhubdemos"</b> </li>
+<li> user account is <b>webhubber</b></li>
+<li> password is <b>demos</b></li>
+</ol>
+<p>If you do not already have a SVN client package, one to consider
+is <a target="outbound" href="http://tortoisesvn.net/downloads">Tortoise SVN</a>.  It is free and
+actively maintained.  Another is
+<a target="outbound" href="http://www.open.collab.net/downloads/subversion/">CollabNet SVN</a>, which provides a standalone client which you can use with command-line parameters.</p>
+
+<h3>Note for Tortoise SVN users</h3>
+<p>We recommend that after installing Tortoise SVN, you go into SVN Properties, Advanced, and set "Include" to d:\Projects.  By setting an "Include", you automatically exclude all others paths from monitoring by Tortoise SVN (and that is good because it is faster).  You would then go to the d:\Projects folder, right-click and select SVN Checkout, using the settings above.</p>
+
+<h3>Note for Delphi Programmers</h3>
+<p>To compile the Delphi source code you will need to have drive H pointing to your HREFTools\WebHub\lib\ folder.  Use the DOS SUBST command (type HELP SUBST at a command prompt for syntax). Or, search and replace H:\ with your lib folder path.</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="ViewDelphiFile" desc="View Delphi Source File (Object Pascal)">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+[(~JUMP|ViewFiles,(~AppID~)|Back~)]<br />
+<h3>Project File, Uses Clause</h3>
+<i>Click the links within the project uses clause to display the Pascal (.PAS)
+and Delphi Form (.DFM) files.</i>
+<pre>
+(~waDemoViewSource.execute~)
+</pre>
+(~waDemoViewSourcePascalFile.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgPNG" desc="PNG File Format">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Anything but GIF</h2>
+<p><i>This web page contains advice about a controversial legal issue.  While we do
+our best to accurately report our perceptions, we can not advise you on your
+use of GIF files on your own web servers.  You may need to contact your
+lawyer.</i></p>
+
+<p><b>HREF Tools Corp. is promoting the use of the PNG file format as a
+replacement for GIF files, and using JPEG files wherever possible</b>.</p>
+
+<h3>Technical Comments</h3>
+<p>On a technical level, we recommend PNG because it is an open standard that is
+fully supported by the W3 consortium, and it provides better compression and
+sharper images.  The two drawbacks are (a) no animation and (b) although
+PNG supports transparency, at least Netscape 4.04 does not render it yet.</p>
+
+<p>(~JUMP|pgPNGHow|Here is a technique~) to use with a WebHub application to make
+your web pages sensitive to browser version and use PNG whenever possible.</p>
+
+<h3>PNG Support in Delphi</h3>
+<p>See the PixelGraphicLibrary when you have to do some image processing with
+Delphi 2 or 3. The PixelGraphicLibrary is shareware (US$ 47). You can download
+a fully functional trial version from <a href="http://www.beyersdorf.com/">beyersdorf.com</a>.
+There are more than 50 example projects included. And there is a support
+mailing list available.</p>
+
+<h3>Economic Comments</h3>
+<p><b>PNG is FREE</b> (and GIF can be very expensive).</p>
+
+<p>The GIF file format uses a compression algorithm which is patented by Unisys.
+HREF was faxed a set of license agreements in early March 1998 that
+quoted <b>$1500</b> per server per year for free "billboard" style web sites;
+the same price for Intranet servers, and <b>1% of revenue</b> for servers that
+conduct commerce.</p>
+
+<h3>HREF's decision</h3>
+<p>Due to the unclear legal terrain, HREF Tools deleted all GIF files from
+www.href.com and demos.href.com in March 1998.  Due to the lack of easy
+support for PNG, HREF has decided to use the JPEG file format.</p>
+
+<h3>Products that have licensed GIF</h3>
+<p>PaintShopPro includes in its About box: "licensed under United States
+Patent No. 4,558,302 and foreign counterparts."</p>
+
+<p>Microsoft FrontPage.</p>
+
+<h3>About the Unisys Patent</h3>
+<p><a href="http://www.unisys.com/LeadStory/lzwfaq.html">According to Unisys' web site</a>,
+reading and/or writing of GIF images requires a license to use Unisys patented Lempel Ziv
+Welch (LZW) data compression and decompression technology, including
+United States Patent No. 4,558,302, Japanese Patent Numbers 2,123,602
+and 2,610,084, and patents in Canada, France, Germany, Italy and the United Kingdom.</p>
+
+<blockquote>
+In all cases, a written license agreement or statement signed by an authorized Unisys representative
+ is required from Unisys for all use, sale or distribution of any software (including so-called
+ "freeware") and/or hardware providing LZW conversion capability (for example, downloaded
+ software used for creating/displaying GIF images). In certain cases, no license fees may be
+ required, but this needs to be evidenced by a written agreement or written statement signed by an
+ authorized Unisys representative.
+</blockquote>
+
+To sign up with Unisys: send E-mail to <a
+        href="mailto:LZW_INFO@UNISYS.COM">LZW_INFO@UNISYS.COM</a>, or use a form available on the
+        <a href="http://www.unisys.com/ServerInformation/contact/contact.html">Contact Page</a> of the Unisys Web Server to request follow-up
+        information.
+
+<p>The rest of this page provides a transcript of a conversation between
+Martha V. Moore, an employee at HREF Tools, and Nathan Cass,
+patent attorney at Unisys. It
+illustrates the lack of clarity on the seemingly simple question of
+&quot;can we use any static GIF files for free on a commercial web server?&quot;</p>
+<blockquote>
+<p>March 16, 1998: When asked if static .gif files (simply transmitted and displayed, with no
+conversion involved) were legally usable without a license, Nathan Cass
+unswayingly hammered on the theme that "an illegally created item is no less illegal
+by virtue of the fact that YOU were not the one to create it."</p>
+
+<p>I repeatedly asked him if that meant that the files themselves were in fact
+covered by the patent, rather that just the conversion process, as the
+contract stated.  He repeatedly answered "I did not say that.  I said that
+use of an illegally created image is illegal, no matter how it was
+obtained.  Why is that concept so hard to comprehend?"  After multiple
+examples of why possessing a stolen vehicle was illegal, even if you were
+not the one who stole it, and downloading an author's works and selling
+them as your own does not make you the true author, etc. I tried again,
+explaining that I thoroughly grasped that concept, and was trying to focus
+on the CONVERSION aspect, not the CREATION aspect:  that if the files were,
+in fact created legally, and obtained legally, would DISPLAYING a STATIC
+.GIF file be legal, since there was NO CONVERSION involved.</p>
+
+<p>He said that unless you could provide ABSOLUTE PROOF that all images on all
+of our sites, demos, etc. were created with a valid license intact, then
+HREF can be sued for "induced infringement" or "contributory infringement".
+ BUT!  (interesting point) if we were to license the format, then we could
+legally display .gif files, no matter how we obtained them.</p>
+
+<p>He further said that the issue of patent protection is the realm of
+attorneys, and we should consult ours for a legal interpretation of the
+wording.  He also said that if one ends up in a lawsuit--you lose, even if
+you win, because it requires so much time, energy and financial resources.</p>
+</blockquote>
+
+<p>Updated June 4, 1998.</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="remotedesign" desc="-Display a page from a WHTEKO file in Dreamweaver">
+(~waCommWHDWDLL.execute~)
+</whpage>
+
+<whpage pageid="remotepreview" desc="-Display a WHTEKO file in browser">
+(~waLoadFileFromCommand.execute~)
+</whpage>
+
+<whpage pageid="remoterefresh" desc="-Refresh WebHub Demo Application">
+<!---(~waDemoRefresh.execute|3~)-->
+(~app.Refresh~)
+</whpage>
+
+<whpage pageid="pgDemoAppExit" desc="-Make all WebHub Demos Exit">
+(~waDemoRefresh.execute|1~)
+</whpage>
+
+<whpage pageid="WHProperties" desc="Display WebHub component properties">
+<whprep>
+(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>TwhApplication</h2>
+<ul>
+<li> AppID: (~AppID~)</li>
+<li> AppPath: (~AppPath~)</li>
+<li> AppRoot: (~Static.AppRoot~)</li>
+<li> Command: (~Command~)</li>
+<li> MacroCost: (~MacroCost~)</li>
+<li> MacroErrorShow: (~MacroErrorShow~)</li>
+<li> Name: (~Name~)</li>
+<li> Project Lingvo: (~ProjectLingvo~) </li>
+<li> Project Syntax: (~ProjectSyntax~) </li>
+<li> RandomSession (SessionNumberEx): <span class="changing">(~SessionNumberEx~)</span></li>
+<li> SessionID (~SessionID~)</li>
+<li> AppInfo.ShareByFile: (~AppInfo.ShareByFile~)</li>
+<li> AppInfo.ShareSessions: (~AppInfo.ShareSessions~)</li>
+<li> ComponentUpdated: (~ComponentUpdated~)</li>
+<li> Version: (~Version~)</li>
+<li> DynURL.ToAppID: (~DynURL.ToAppID~)</li>
+<li> DynURLConfig.UseAppID: (~DynURLConfig.UseAppID~)</li>
+<li> DynURL.RawToActiveAuthorityM : (~DynURL.RawToActiveAuthorityM ~)</li>
+<li> DynURL.ToAuthorityM: (~DynURL.ToAuthorityM~)</li>
+<li> DynURL.ToSessionIDW: <span class="changing">(~DynURL.ToSessionIDW~)</span></li>
+<li> DynURL.UseAppProcessID: (~DynURL.UseAppProcessID~)</li>
+<li> RunTime.ServerProfileID: (~RunTime.ServerProfileID~) </li>
+<li> RunTime.HttpServerID: (~RunTime.HttpServerID~) </li>
+</ul>
+
+<h3>TwhApplication Arrays</h3>
+<h4>droplets</h4>
+(~tekeros~)
+
+<h4>Errors</h4>
+(~Errors~)
+
+<h4>Event Macros</h4>
+(~EventMacros~)
+
+<h4>Files</h4>
+(~TekoFiles~)
+
+<!--- <h4>Macros</h4>   do not display these as there are likely to be problems
+      (~Macros~) -->
+
+<h4>Media Servers</h4>
+(~Media~)
+
+<h4>Uploaded Files</h4>
+(~Uploaded Files~)
+
+<h2>TwhSession</h2>
+<ul>
+<li> MacroCost: (~MacroCost~)</li>
+<li> ModuleReferer: (~ModuleReferer~)</li>
+<li> PageCost: (~PageCost~)</li>
+<li> PageCount: (~PageCount~)</li>
+<li> PriorAppID: (~PriorAppID~)</li>
+<li> PriorAppIDPageID: (~PriorAppIDPageID~)</li>
+<li> PriorPageID: (~PriorPageID~)</li>
+<li> RawSessionNumber: (~RawSessionNumber~) </li><!-- displays something for web robots -->
+<li> SessionCost: (~SessionCost~)</li>
+<li> SessionCreatedOnAt: <span class="changing">(~SessionCreatedOnAt~)</span></li>
+<li> SessionElapsedSec: <span class="changing">(~SessionElapsedSec~)</span></li>
+<li> SessionLastActivatedOnAt: <span class="changing">(~SessionLastActivatedOnAt~)</span></li>
+<li> SessionFirstReferer: (~SessionFirstReferer~)</li>
+<li> SessionFirstIP: <span class="changing">(~SessionFirstIP~)</span></li>
+</ul>
+
+<h3>TwhSession Arrays</h3>
+
+<h4>BoolVars</h4>
+(~BoolVars~)
+
+<h4>StringVars</h4>
+(~StringVars~)
+
+<h4>BoolVarsPending</h4>
+(~BoolVarsPending~)
+
+<h4>Saved States</h4>
+(~SavedStates~)
+
+<h3>TwhRequest</h3>
+<table border="0">
+<tr><td>CentralInfo.WebTimeGMT:</td><td><span class="changing">(~CentralInfo.WebTimeGMT~)</span></td></tr>
+<tr><td>CGIVersion:</td><td>(~Request.CGIVersion~)</td></tr>
+<tr><td>RequestMethod:</td><td>(~Request.RequestMethod~)</td></tr>
+<tr><td>ExecutablePath:</td><td>(~Request.ExecutablePath~)</td></tr>
+<tr><td>HttpServerSoftwareName:</td><td>(~Request.HttpServerSoftwareName~)</td></tr>
+<tr><td>HttpVersion:</td><td>(~Request.HttpVersion~)</td></tr>
+<tr><td>PhysicalPath:</td><td>(~Request.PhysicalPath~)</td></tr>
+<tr><td>QueryString:</td><td>(~Request.QueryString~)</td></tr>
+<tr><td>ContentType:</td><td>(~Request.ContentType~)</td></tr>
+<tr><td>CGIContentLength:</td><td>(~Request.CGIContentLength~)</td></tr>
+<tr><td>Port:</td><td>(~Request.Port~)</td></tr>
+<tr><td>Host:</td><td>(~Request.Host~)</td></tr>
+<tr><td>Referer:</td><td>(~Request.Referer~)</td></tr>
+<tr><td>RemoteHost:</td><td>(~Request.RemoteHost~)</td></tr>
+<tr><td>RemoteAddress:</td><td><span class="changing">(~Request.RemoteAddress~)</span></td></tr>
+<tr><td>CGIAuthenticatedUsername:</td><td>(~Request.CGIAuthenticatedUsername~)
+</td></tr>
+<tr><td>CGIAuthenticatedPassword:</td><td>(~Request.CGIAuthenticatedPassword~)
+</td></tr>
+<tr><td>CGIAuthenticationMethod:</td><td>(~Request.CGIAuthenticationMethod~)</td></tr>
+<tr><td>CGIAuthenticationRealm:</td><td>(~Request.CGIAuthenticationRealm~)</td></tr>
+<tr><td>UserAgent:</td><td>(~Request.UserAgent~)</td></tr>
+<tr><td>HTTP:</td><td>(~Request.HTTP~)</td></tr>
+<tr><td>HTTPS:</td><td>(~Request.HTTPS~)</td></tr>
+</table>
+
+<h4>CGIValues</h4>
+(~Request.ServerVariables~)
+
+<h4>SystemValues</h4>
+<span class="changing">
+(~Request.SystemValues~)
+</span>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgMonitor"  desc="use this page for site monitoring">
+<whprep>
+(~SESSION|Delete~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+<h2>Application Test</h2>
+<p>(~AppID~) is running under (~version~) 
+as at <span class="changing">(~CentralInfo.WebTimeGMT~)</span>. Your ip# is <span class="changing">(~Request.RemoteAddress~)</span>.
+Your user agent is [<span class="changing" id="echouseragent" >(~Request.UserAgent~)</span>]. 
+<span class="webrobotstatus">(~ISWEBROBOTREQUEST|You have been classified as a web robot.||You have not been classified as a web robot.~)</span>
+</p>
+
+<h2>Session Data Cleared</h2>
+<p>Session data for session #
+<span id="webhubsessionid">(~RawSessionNumber~) </span>
+deleted.</p>
+<form id="sessionform" method="post" action="(~ACTION|pgmonitor~)">
+data: (~INPUTTEXT|data,30~)<br/>
+<input type="submit" name="btnMonitor(~RawSessionNumber~)" value="(~RawSessionNumber~)" />
+</form>
+
+<h2>Enter Site</h2>
+(~JUMP||home page for this demo~)
+
+</body>
+</html>
+</whpage>
+
+<whpage pageid="pgLogout"  desc="Logout to erase session data">
+<whprep>
+(~SESSION|Delete~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+
+<h2>Session Data Cleared</h2>
+<p>Thank you for logging out.</p>
+
+<h2>Re-Enter</h2>
+<p><a href="(~DynURL.ToAppID~)">home page for this demo</a></p>
+
+</body>
+</html>
+</whpage>
+
+
+
+</whteko>

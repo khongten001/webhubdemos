@@ -1,0 +1,42 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="remotedsp">
+
+<whpage pageid="Feedback" desc="dsp.href.com: Feedback and Suggestions">
+<whpagesettings>
+googlesitemap=include_all_lingvo
+googlechangefreq=yearly
+googlepriority=0.4
+metarobot=index,nofollow
+metadescription=Feedback and Suggestions for the Delphi Super Page Search Engine
+metakeywords=Feedback,suggestions
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Feedback</h1>
+<p>Please write to customer service when you have comments or questions 
+about the operation of the DSP Search Engine:
+<a target="outbound" href="http://www.href.com/contact">contact</a>.</p>
+
+<p>If you have comments about the content within the DSP, please 
+contact:
+<BLOCKQUOTE>
+Robert M. Czerwinski       <br />
+The Delphi Super Page administrator/owner <br />
+DSP email: (~MAILTO|rmczerw@icm.edu.pl||true~) (uploads etc)<br />
+</BLOCKQUOTE>
+</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
+</whteko>

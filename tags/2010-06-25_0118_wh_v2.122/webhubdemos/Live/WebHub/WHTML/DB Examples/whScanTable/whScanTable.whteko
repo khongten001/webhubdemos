@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whmacros>
+mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|Browse|FileURLDir~)(~Field|Browse|Filename~).(~Field|Browse|FileExt~)
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForscan">
+<!-- speedbar for SCAN demo could be here-->
+</whdroplet>
+
+<whdroplet name="chInitVarsSCAN">
+(~SET|Browse.IndexOrder=File Number~)
+(~SET|speed=fast~)
+(~SET|fontsize=.8~)
+(~CHECK|grey~)
+(~CHECK|constraint~)
+(~SET|pixels=30~)
+(~CHECK|chkInit~)
+</whdroplet>
+
+<whpage pageid="pgEnterSCAN" desc="Grid Page">
+<whprep>
+(~IFNOT|chkInit|(~chInitVarsSCAN~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+<style type="text/css">
+#customizedArea {
+  font-size: (~fontsize~)em;
+  text-align: center;
+}
+#browseScan-table {
+  font-size: 1em;
+  padding: 5px;
+  border: 1px solid #000;
+}
+#browseScan-table td.highlight {
+  background-color: #AAEEAA;
+  padding: 0 0 .2em 0;
+}
+#browseScan-table td.maybeGreyImgNormal {
+  (~IF|grey|background-color:#CCCCCC;~)
+  text-align: center;
+  padding: 0;
+}
+#browseScan-table td.maybeGreyImgNormal img{
+  border: 0;
+}
+#browseScan-table td.maybeGreyImgConstrained {
+  (~IF|grey|background-color:#CCCCCC;~)
+  text-align: center;
+  padding: 0;
+}
+#browseScan-table td.maybeGreyImgConstrained img {
+  border: 0;
+  width:(~pixels~)px;
+  height:(~pixels~)px;
+}
+#browseScan-table td.colorForJPG {
+  text-align:center;
+  background-color: #EEAAAA;
+}
+#browseScan-table td.colorForPNG {
+  text-align:center;
+  background-color: #AAAAEE;
+}
+#BrowseScan-controls {
+  font-size: (~fontsize~)em;
+}
+#BrowseScan-controls input {
+  font-size: (~fontsize~)em;
+}
+</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+  <div class="dcenter">
+<p>The layout and style of this table are completely controlled
+through W-HTML.</p><p>Try the (~JUMP|gridOptions|grid options~) to
+see the range of layout options that have been prepared for you.</p>
+
+    <div id="customizedArea" align="center">
+(~browsescan.execute|drBrowseScan~)
+<whdroplet name="drBrowseScan" show="no">
+<table id="browseScan-table" cellspacing="0" align="center">
+<tr align="center" valign="middle">
+ <td colspan="5" class="highlight"><h2>Free Form Layout Demo</h2></td></tr>
+ <tr align="center">
+ <td class="highlight">Number:</td>
+ <td class="highlight">Graphic:</td>
+ <td class="highlight">Name:</td>
+ <td class="highlight">Type:</td>
+ <td class="highlight">Description:</td>
+</tr>
+<whrow>
+<tr>
+<td>(~Field|Browse|FileID~)</td>
+<td class="maybeGreyImg(~IF|constraint|Constrained||Normal~)">(~DYNCHUNK|chGraphic,(~speed~)~)</td>
+<td>(~Field|Browse|Filename~)</td>
+<td class="colorFor(~litExt~)">(~Field|Browse|FileExt~)</td>
+<td>(~Field|Browse|FileDesc~)</td>
+</tr>
+</whrow>
+</table>
+</whdroplet>
+
+  </div>
+<div style="text-align:center">
+(~chGridImagemap~)
+(~chDivider~)
+(~browsescan.controls~)
+    </div> <!--- customized-area -->
+</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="chGraphicSlow">
+<a href="(~mcGraphicSrc~)">(~Field|Browse|FileSize~) bytes</a>
+</whdroplet>
+
+<whdroplet name="chGraphicFast">
+<a href="(~mcGraphicSrc~)"><img src="(~mcGraphicSrc~)" alt="graphic for fast connection" /></a>
+<br />(~Field|Browse|FileSize~) bytes
+</whdroplet>
+
+
+<whpage pageid="GridOptions" desc="Grid Options">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+<style type="text/css">
+#gridoptions {
+  width: 50%;
+  border: 0;
+  cellpadding: 10px;
+}
+.prompt {
+  color: #666666;
+  font-weight: 700;
+}
+.fyi {
+  font-size: .8em;
+  color: #666666;
+}
+</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterSCAN,.CKB~)">
+
+<table id="gridoptions" cellspacing="0">
+<tr>
+  <td align="left" valign="middle">
+<span class="prompt">Font size:</span>
+(~INPUTRADIO|fontsize,.5~) .5em
+(~INPUTRADIO|fontsize,.8~) .8em
+(~INPUTRADIO|fontsize,1~) 1em
+(~INPUTRADIO|fontsize,1.2~) 1.2em
+(~INPUTRADIO|fontsize,2~) 2em
+<br /><br />
+<span class="prompt">Bandwidth setting:</span>
+(~INPUTRADIO|speed,fast~) Fast
+(~INPUTRADIO|speed,slow~)Slow
+<br />
+<span class="fyi">Your bandwidth setting will determine
+whether you see all graphics or just links.</span>
+<br /><br />
+<span class="prompt">Graphics on grey background:</span>
+(~INPUTCHECKBOX|grey~)
+<br /><br />
+<span class="prompt">Constrain graphic size:</span>
+(~INPUTCHECKBOX|constraint~)<br />
+(~INPUTRADIO|pixels,10~) 10x10
+(~INPUTRADIO|pixels,20~) 20x20
+(~INPUTRADIO|pixels,30~) 30x30
+(~INPUTRADIO|pixels,40~) 40x40
+(~INPUTRADIO|pixels,50~) 50x50
+</td></tr>
+<tr><td align="center" valign="middle">
+<input type="submit" value="Set Options" />
+</td></tr></table>
+
+</form>
+</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="chDemoSpeedbarForSCAN">
+[(~GO|GRIDOPTIONS|Grid Options~)]<br />
+</whdroplet>
+
+<whdroplet name="chGridImagemap">
+<img src="(~mcSiteRoot~)demos/whScanTable/BtnNav.jpg" usemap="#GridButtons" ismap="ismap" border="2" alt="navigation buttons" style="margin-top: 1em;" />
+<map id="gridButtonMap" name="GridButtons">
+<!-- #$-:Image Map file created by Map THIS! -->
+<!-- #$-:Map THIS! free image map editor by Todd C. Wilson -->
+<!-- #$-:Please do not edit lines starting with "#$" -->
+<!-- #$VERSION:1.20 -->
+<!-- #$AUTHOR:HREF Tools Corp.-->
+<!-- #$DATE:Fri Aug 29 22:25:27 1997 -->
+<!-- #$JPG:BtnNav.JPG -->
+<!-- changing:start-->
+<area shape="rect" coords="0,0,33,25" href="(~DynURL.ToSessionIDW~)BrowseScan.first" alt="first" />
+<area shape="rect" coords="34,0,67,25" href="(~DynURL.ToSessionIDW~)BrowseScan.prior" alt="previous" />
+<area shape="rect" coords="68,0,101,25" href="(~DynURL.ToSessionIDW~)BrowseScan.next" alt="next" />
+<area shape="rect" coords="102,0,136,25" href="(~DynURL.ToSessionIDW~)BrowseScan.last" alt="last" />
+<area shape="default" href="(~DynURL.ToSessionIDW~)BrowseScan.first" alt="first" />
+<!-- changing:stop-->
+</map>
+</whdroplet>
+
+
+<whdroplet name="chDivider">
+<div class="dcenter" style="margin: 1em 0 1em 0;">
+  <img src="(~mcSiteRoot~)demos/whScanTable/divider.jpg" border="0" alt="----" />
+</div>
+</whdroplet>
+
+<whpage pageid="scantest">
+<html><head><title>scan test</title></head>
+<body>
+<h2>data?</h2>
+(~browse.22~)(~browse.activate~)
+(~browsescan.execute|drBrowseScan~)
+ </body></html>
+</whpage>
+</whteko>

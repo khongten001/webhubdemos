@@ -1,0 +1,80 @@
+
+<h1>-Chunk:chConfigPgAppLoadText</h1>
+%=Set|nSeconds=5=%
+<h1>-Page:pgAppLoadText=,appLoad.txt,,App is Loading</h1>
+<b>The application is currently loading.</b>
+<br>
+The page you have requested will be available shortly.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgAppShutText</h1>
+//No Meta Refresh on Shutdown
+%=Clear|nSeconds=%
+<h1>-Page:pgAppShutText=,appShut.txt,,App is Shutting Down</h1>
+<b>The application has been shut down.</b>
+<br>
+At this time the application is exiting, and does not accept requests.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgAppSuspText</h1>
+%=Set|nSeconds=5=%
+<h1>-Page:pgAppSuspText=,appSusp.txt,,App is Suspended</h1>
+<b>The application you have requested has been suspended.</b>
+<br>
+At this time, the application does not accept new users and will not serve pages.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgHubLoadText</h1>
+%=Set|nSeconds=3=%
+<h1>-Page:pgHubLoadText=,hubLoad.txt,,Hub is Loading</h1>
+<b>The Hub is starting.</b>
+<br>The module/page you have requested will become available shortly.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgHubNoAppText</h1>
+%=Set|nSeconds=10=%
+<h1>-Page:pgHubNoAppText=,hubNoApp.txt,,Unknown AppID</h1>
+<B>WebHub is not currently serving pages for  the module you requested.</B>
+<br>
+This is either because:
+<P>
+1)  There is currently no WebHub application server running, or <p>
+ 2) The application server(s) is/are currently serving an AppID other than the 
+      application you have selected.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgHubNoneText</h1>
+%=Set|nSeconds=20=%
+%=PageDefault|ByRunner=Yes=%
+<h1>-Page:pgHubNoneText=,hubNone.txt,,The Hub is Not Running</h1>
+<B>The application is currently not serving web pages. </B>
+<BR>
+This is either because:<P>
+a)  The Hub is not running, or <P>
+b)  The Hub has been configured on the Option|StartUp panel to refuse new surfers.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgHubSuspText</h1>
+%=Set|nSeconds=10=%
+<h1>-Page:pgHubSuspText=,hubSusp.txt,,The Hub is Suspended</h1>
+<b>The Hub is suspended.</b>
+<br>
+ The system is functioning, but does not currently allow new surfers.
+%=mcTrailer=%
+<hr><!-- *********************************************************************** -->
+
+<h1>-Chunk:chConfigPgHubTimeText</h1>
+%=Set|nSeconds=30=%
+%=PageDefault|ByRunner=Yes=%
+<h1>-Page:pgHubTimeText=,hubTime.txt,,The Application Timed Out</h1>
+<B> Your request has timed out</B>
+<br> 
+ Your request could not be processed in %=TIMEOUT=% seconds.   Please confirm your target URL, and  try again. 
+<hr><!-- *********************************************************************** -->
+

@@ -1,0 +1,10 @@
+Here is an attachment with 
+some words in various lingvos.
+
+Adèle
+Aimée
+Baumüller
+
+Note that parentils are NOT expanded within the attachment.
+Example: (~CentralInfo.WebTimeGMT~)
+

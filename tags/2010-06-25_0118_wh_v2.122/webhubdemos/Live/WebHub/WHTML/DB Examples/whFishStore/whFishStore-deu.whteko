@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdemohtfs"
+  defaultlingvo="deu"
+  notes="German translation">
+
+<whtranslations lingvo="deu">
+~WelcomeToOurStore=Willkommen zu unserem Fisch-Speicher
+~WeHaveAFewOptions=Wir haben einige Wahlen für Sie.
+~BrowseForFish=Grasen Sie für Fische
+~ShippingCosts=Verschiffenkosten
+~ChangeFishPrices=Ändern Sie Fischpreise
+~LabelSpeciesNumber=Sorte-Zahl
+~LabelGraphic=Thumbnail
+~LabelCategory=Kategorie
+~LabelCommonName=Allgemeiner Nam
+</whtranslations>
+
+</whteko>

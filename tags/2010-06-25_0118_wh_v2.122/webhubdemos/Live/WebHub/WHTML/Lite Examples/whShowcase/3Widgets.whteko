@@ -1,0 +1,301 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGWIDGETS
+whSequenceFinal=PGWIDGETS
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Widgets
+htmlFilename=3Widgets.whteko
+showcaseBranch=(~GO|pgForms|Forms with Built-in Save-State~) &raquo; (~GO|pgWidgets|Standard Interface Widgets~) &raquo;
+showcaseBranchText=Forms with Built-in Save-State: Standard Interface Widgets: 
+</whpagesettingslist>
+
+
+<whpage pageid="pgLists" desc="List Boxes">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+(~NOTASSIGNED|litIconFile|(~SET|litIconFile=Earth~)~)
+</whprep>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+This example will allow you to select the icon you want from a dropdown list.
+
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+Please choose an icon:
+ (~<SELECT NAME="litIconFile">
+ (~<OPTION VALUE="Earth">Earth
+ (~<OPTION VALUE="Fair">Fair
+ (~<OPTION VALUE="Sold">Sold
+ </SELECT>
+(~inputsubmit|submit,Post and Notice the Difference~)
+<p>
+<b>Confirmation: WebHub remembers your input</b>
+<p>
+You chose this icon: (~mcIconFileRef~)
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+<whpage pageid="pgMulti" desc="Forms with Built-in Save-State: Standard Interface Widgets: Multiple Select Lists">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+From a cgi programming point of view, multiple select lists are more difficult than single select lists
+because you need to be able to default one or more items to SELECTED
+depending on what the surfer chooses.
+<p>
+This example shows that WebHub handles multiple select lists with ease.
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+<h3>Hold down SHIFT or CTRL to choose one or more options:</h3>
+ (~<SELECT NAME="MYSELECT" MULTIPLE>
+ (~<OPTION Value="OPTION1">This is option #1
+ (~<OPTION Value="OPTION2">This is option #2
+ (~<OPTION Value="OPTION3">This is option #3
+ (~<OPTION Value="OPTION4">This is option #4
+ (~<OPTION Value="OPTION5">This is option #5
+ (~<OPTION Value="OPTION6">This is option #6
+</SELECT>
+(~inputsubmit|submit,Post~)
+</form>
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgRadioButtons" desc="Radio Buttons">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+This example will show you how easy it is for WebHub to remember a radio button selection.
+
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+Preferred color: (~INPUTRADIO|color,Red~) Red
+(~INPUTRADIO|color,Green~) Green (~INPUTRADIO|color,Blue~) Blue (~INPUTSUBMIT|submit,Post~)
+</form>
+<p>
+<b>Confirmation: WebHub remembers (~litSurferName~)'s input</b><br />
+(~litSurferName~) selected: (~theColor~)
+<p>
+<hr />
+This example will show you how WebHub can serve different pages based on radio button input.
+
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+Language:
+ (~INPUTRADIO|Language,English~) English
+ (~INPUTRADIO|Language,German~) German
+ (~INPUTRADIO|Language,French~) French
+ (~INPUTRADIO|Language,Spanish~) Spanish
+(~INPUTSUBMIT|submit,Post~)
+</form>
+
+ (~ASSIGNED|language|<b>Confirmation: Greetings in (~language~)</b>~)<br />
+ (~MATCH|(~language~)=English|(~greetingEnglish~)~)
+ (~MATCH|(~language~)=German|(~greetingGerman~)~)
+ (~MATCH|(~language~)=French|(~greetingFrench~)~)
+ (~MATCH|(~language~)=Spanish|(~greetingSpanish~)~)
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="greetingEnglish">
+Hello! How are you?
+</whdroplet>
+
+<whdroplet name="greetingGerman">
+Hallo! Wie gehts?
+</whdroplet>
+
+<whdroplet name="greetingFrench">
+Bon Jour!  Comment allez vous?
+</whdroplet>
+
+<whdroplet name="greetingSpanish">
+Ola.  Como estas?
+</whdroplet>
+
+
+<whpage pageid="pgAdvRadio" desc="Advanced Radio Buttons">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Advanced users may have more complicated tasks to perform using radio buttons.
+WebHub can handle these tasks as well.
+<p>
+This example will demonstrate how you can use radio buttons to perform complex calculations.
+
+(~NOTASSIGNED|retail=100~)
+(~NOTASSIGNED|wholesale=60~)
+(~NOTASSIGNED|cost=50~)
+(~NOTASSIGNED|loss=25~)
+
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+<CENTER>
+<table BORDER>
+<tr><th> </th><th>Retail</th><th>Wholesale</th><th>Direct Cost</th><th>Loss</th><tr>
+<tr><td>Price</td><td>$(~INPUTTEXT|Retail,8,8~)</td>
+<td>$(~INPUTTEXT|wholesale,8,8~)</td>
+<td>$(~INPUTTEXT|cost,8,8~)</td>
+<td>$(~INPUTTEXT|loss,8,8~)</td></tr>
+<tr><td>Customer type:</td>
+<td>(~INPUTRADIO|radioA,Retail~) Retail</td>
+<td>(~INPUTRADIO|radioA,Wholesale~) Wholesale</td>
+<td>(~INPUTRADIO|radioA,Cost~) Cost</td>
+<td>(~INPUTRADIO|radioA,Loss~) Loss</td>
+</tr>
+</table>
+<br />
+(~INPUTSUBMIT|submit,Adjust Price based on Customer Type~)
+</form>
+</CENTER>
+
+<b>Confirmation: WebHub calculates the customer's price.</b><br />
+Customer Type (RadioA): (~radioA~)<br />
+Customer Price (RadioA^): $(~radioA^~)<br />
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgCheckboxes" desc="Checkboxes">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>
+This example will allow you to try a checkbox or two.
+Watch the BoolVarsPending array below to see how WebHub checks the submitted data against it.
+<p>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|showcase:pgCheckboxes,.CKB~)">
+(~INPUTCHECKBOX|MYCHECKBOX~)My Checkbox is Better
+<p>
+ (~INPUTCHECKBOX|YOURCHECKBOX~)Your Checkbox is Better
+<p>
+(~INPUTSUBMIT|submit,POST~)
+</form>
+<p>
+(~chLiteralsInfo~)<br />
+(~chCheckedInfo~)<br />
+(~chPendingInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+
+<whpage pageid="pgTextBox" desc="Text Boxes">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+WebHub can remember data that surfers enter in text boxes.
+(When you name your text area, start the name with 'txt' if you want to allow for single-line entries.)
+<p>
+This example will show you how WebHub remembers the data entered in text boxes, and will demonstrate
+what WebHub can do with that data. Look below to see all the ways you can use the information
+entered in the text box.
+
+<ol><b>
+<li>Try entering some text in the box.
+<li>Try making one line read 'apples=red' -- without the quotes, please.
+<li>Try making another line read '(~.litSurferName~)'.
+</ol></b>
+
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+(~inputtextarea|txtDescription,5,60~)
+<p>
+(~inputsubmit|submit,See What Happens~)
+</form>
+
+<p>
+Here are all the ways you can republish the text box data:
+<ul>
+<li>(~<>txtDescription~): <b>(~txtDescription~)</b>
+<p>
+<li>(~<>TxtVar.txtDescription~): <b>(~TxtVar.txtDescription~)</b>
+<p>
+<li>(~<>TextBR.txtDescription~):<b> (~TextBR.txtDescription~)</b>
+<p>
+<li>(~<>TxtVar.txtDescription.Apples~):  <b>(~TxtVar.txtDescription.Apples~)</b>
+
+</ul>
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<!-- **** -->
+
+<whpage pageid="pgButtons" desc="Text Buttons">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+If you give your submit button a Name and a Value, you
+can use that information to determine other things...
+say, hairstyle!
+<p>
+This example will show you the benefit of giving buttons a
+Name and a Value. If you look at the WebHub source you will also
+see how the MATCH macro is used to bring in chunks based on
+the button name.
+<p>
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
+<!-- changing:stop-->
+(~inputhidden|Null~)
+(~inputsubmit|submit,HairStyle,Mohawk~)
+(~inputsubmit|submit,HairStyle,Punk~)
+(~inputsubmit|submit,HairStyle,Matted~)
+(~inputsubmit|submit,HairStyle,Toupee~)
+(~inputsubmit|submit,HairStyle,Curly~)
+</form>
+
+(~assigned|HairStyle|(~chHairStyleConfirmation~)~)
+<p>
+(~chLiteralsInfo~)<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whdroplet name="chHairStyleConfirmation">
+<h3>(~HairStyle~)
+(~MATCH|(~HairStyle~)=Mohawk|(~hairMohawk~)~)
+(~MATCH|(~HairStyle~)=Punk|(~hairPunk~)~)
+(~MATCH|(~HairStyle~)=Matted|(~hairMatted~)~)
+(~MATCH|(~HairStyle~)=Curly|(~hairCurly~)~)
+(~MATCH|(~HairStyle~)=Toupee|(~hairToupee~)~)
+</h3>
+</whdroplet>
+
+<whdroplet name="hairMohawk">
+<table BORDER=0><th>-:-)</th></table>
+</whdroplet>
+<whdroplet name="hairPunk">
+<table BORDER=0><th>=:-)</th></table>
+</whdroplet>
+<whdroplet name="hairMatted">
+<table BORDER=0><th>#:-)</th></table>
+</whdroplet>
+<whdroplet name="hairToupee">
+<table BORDER=0><th>,:-)</th></table>
+</whdroplet>
+<whdroplet name="hairCurly">
+<table BORDER=0><th>&amp;:-)</th></table>
+</whdroplet>
+</whteko>

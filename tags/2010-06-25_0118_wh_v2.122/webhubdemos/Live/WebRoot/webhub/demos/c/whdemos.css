@@ -1,0 +1,182 @@
+body {
+  margin-left: 20px;
+  margin-right: 20px;
+  font-family: Verdana,Arial; background-color: #FFFFFF;
+}
+
+img {
+  border: 0;
+}
+
+h1 {
+  color: #009966;
+  font-size: 1.8em;
+}
+
+h2 {
+  color: #009966;
+  font-size: 1.3em;
+}
+
+h3 {
+  color: #009966;
+  font-size: 1.1em;
+}
+
+
+ul li {
+  list-style: none;
+  margin-bottom: 2em;
+}
+
+ol li {
+  margin-bottom: 2em;
+}
+
+table {
+  border:0;
+}
+
+td {
+  font-family: Verdana,Arial
+  text-align: left;
+  vertical-align: top;
+}
+th {
+  font-family: Verdana,Arial
+  text-align: left;
+  vertical-align: top;
+}
+img {
+  border: 0;
+}
+
+/*  Menu */
+
+#menuThisWebHubDemoContainer {
+	width: 99%;
+	margin: 0 auto 20px 0; 
+	padding: 7px 4px 8px 4px;
+	vertical-align:  middle;
+}
+
+#menuThisWebHubDemo {
+	height: 2em;
+	width: 95%; 
+	margin: auto auto auto 5px;
+	padding: 0;
+	font-size: .8em;   
+    color: #99CC66;
+}
+
+#menuThisWebHubDemo ul {
+	list-style-type: none;
+	clear: left;
+	border: 0;
+	margin: 0 0 0 0;
+	padding: 0;
+	text-align: center;
+	}
+
+#menuThisWebHubDemo ul li {
+	display: inline; 
+	float: left;
+	width: 9em;
+	margin: 0 auto 6px 0;
+	padding: 0;
+	border: 1px solid midnightblue;
+	background-color:#ccc; 
+	color: midnightblue;
+	font-weight: 700;
+	text-decoration: none;
+	text-align: center;
+	letter-spacing: 1px;
+	line-height: 2em; 
+	}
+
+#menuThisWebHubDemo ul li a {
+	display: block;
+	background-color: #CCFFCC;
+	text-decoration: none;
+	}
+
+#menuThisWebHubDemo ul li a:hover {
+	background: #009999;
+	color: white;
+	font-weight: 700;
+	}
+
+#menuThisWebHubDemo a:active	{
+	background: yellow; /* #c60;*/
+	color: red;  /*#fff;*/
+	}	
+
+/* ------------------------------------------- */
+
+.navWebHubDemos {
+  font-size: .9em;
+  color: #99CC66;
+}
+
+.techiefooter {
+  text-align: left;
+  font-size: .8em;
+  color: #99CC66;
+}
+
+.copyright {
+  text-align: left;
+  font-size: .8em;
+  color: #99CC66;
+}
+
+#whDemoLogo {
+  position: absolute;
+  top: 10;
+  left: 50; 
+  border: 0;
+  width: 250px;
+  margin: 0 100 0 0;
+}
+
+#whDemoShortDesc {
+  text-align: right;
+  height: 110px;
+  color:slategray;
+}
+
+#whdemopagecontent {
+  border-left: 12px solid; 
+  padding: 0 0 0 20px; 
+  margin-bottom: 3em;
+  border-color: antiquewhite;
+}
+
+.whDemoSectionNav {
+  border-left: 12px solid; 
+  padding: 0 0 0 20px; 
+  margin-bottom: 3em;
+}
+
+.WHSystemInfo {
+  width: 80%; 
+  border: 1px;
+}
+.WHSystemInfo th {
+  text-align: left;
+  width: 50%;
+}
+.WHSystemInfo td {
+  vertical-align: top;
+  width: 50%;
+}
+
+.dcenter {
+	text-align:center;
+}
+
+#divcount object {
+width: 15em;
+height: 2em;
+border: solid 1px #000000;
+}

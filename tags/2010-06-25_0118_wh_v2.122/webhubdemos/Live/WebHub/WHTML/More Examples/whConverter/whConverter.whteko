@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForhtcv">
+<!-- speedbar for HTCV demo could appear here -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTCV" desc="Converter Demonstration">
+(~mcdoctypehtml~)
+<html>
+<head>
+ (~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>This demonstration shows how a web application can provide a file
+conversion service.</p>
+
+<b>Character Converter Utility</b><br />
+
+<!-- changing:start-->
+<form method="post" enctype="multipart/form-data" action="(~ACTIONR|pgResult~)">
+<!-- changing:stop-->
+<table>
+<tr>
+ <td>Coupon Code:</td>
+ <td>(~INPUTTEXT|inCoupon~)</td>
+ <td><small>Enter "FREE" to convert up to (~AppSetting.MaximumFreeSize~) kbytes at no charge.</small></td>
+</tr>
+<tr>
+ <td>Input file:</td>
+ <td><input type="file" name="inFile" 
+                            VALUE="(~inFile~)"
+                            ACCEPT="text/plain" size="30" /></td>
+ <td><small>Upload any ASCII file.</small></td>
+</tr>
+<tr>
+ <td>From this character...</td>
+ <td>(~INPUTTEXT|inFrom,3,1~)</td>
+ <td><small>Enter character to search for...</small></td>
+</tr>
+<tr>
+ <td>...to this character:</td>
+ <td>(~INPUTTEXT|inTo,3,1~)</td>
+ <td><small>Enter replacement character.</small></td>
+</tr>
+<tr>
+ <td colspan="3">&nbsp;<br />If your coupon code is accepted, the utility will convert your file and make the result available for download on the next web page.<br />&nbsp;</td>
+</tr>
+<tr>
+ <td colspan="3"><input type="submit" value="Convert Now" /></td>
+</tr>
+</table>
+</form>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgResult">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~waValidateCoupon.execute~)
+(~waConvert.execute~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgInvalidCoupon">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Sorry, your coupon code is invalid.  Use coupon code "FREE" for a free trial.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgDownloadResult" desc="Download the File after Processing is Complete">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~waDownload.execute~)
+File has been sent.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>

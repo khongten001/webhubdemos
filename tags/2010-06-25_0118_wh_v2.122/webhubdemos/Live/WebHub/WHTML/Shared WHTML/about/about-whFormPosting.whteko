@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerFORM=Form Posting
+mcWhDemoCreditIdeaFORM=Suzanne Aldrich and Ann Lynnworth
+mcWhDemoCreditFirstDraftFORM=Suzanne Aldrich
+mcWhDemoCreditGraphicsFORM=Rob Daniels
+mcWhDemoCreditCopyFORM=Martha V. Moore
+mcWhDemoUpdatedFORM=6-May-2006
+mcWhDemoKeywordsFORM=HTML Form tag,data entry,save-state,session,data input
+mcWhDemoLiteFORM=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupFORM">
+<ol>
+<li> (~drAboutLiteDemo~) </li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescFORM">
+This demo shows how to  use WebHub-HTML syntax to save state on all form
+data WITHOUT the use of cookies!
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescFORM">
+One of the most powerful features of WebHub is its ability to "save state" (~mcEmDash~)
+meaning  that the surfer's data can be stored and reused as the surfer moves 
+throughout the site .  WebHub is much more powerful (~mcEmDash~) and easier to use (~mcEmDash~) than 
+CGI programming: you receive all the performance at a fraction of the overhead!
+</whtranslation>
+
+</whteko>

@@ -1,0 +1,96 @@
+C++Builder	Delphi				Delphi and Subversion	
+Delphi					PARTNER SOLUTION: FastReport VCL 	
+Delphi					Web Application Development with Delphi	
+RAD Studio	Delphi				Enterprise Applications with Delphi	
+RAD Studio	Delphi	Delphi Prism	C++Builder		GENERAL SESSION: RAD Studio Product Address
+Delphi					Delphi Compiler RTTI Enhancements	
+Delphi Prism					PARTNER SOLUTION: #Install SDK	
+Delphi Prism					ASP.NET MVC in Delphi Prism	
+Delphi Prism					Aspect Oriented Programming: A Separation of Concerns	
+Delphi	Delphi Prism				CrossTalk: Best of Two Worlds	
+All-Access					On-Demand Tooling, and Other Strategies for Reducing your Total Cost of Software Ownership *	
+Delphi	C++Builder				Building Awesome Touch Enabled Applications *	
+Change Manager					Database Change Management for Developers	
+Delphi					Essential Pascal	
+Delphi Prism					Silverlight with Delphi Prism	
+Delphi	Delphi Prism				PARTNER SOLUTION: The Technology of the QuantumGrid	
+Delphi					Make Tests Easier with Mocks	
+Delphi	C++Builder				What's New in the VCL *	
+ERStudio					Seven Deadly Sins of Designing Databases	
+Delphi	C++Builder				Hands-On: Gestures in the VCL	
+All-Access					Reporting Across the Enterprise with All-Access	
+Delphi	C++Builder				What's New in the Delphi and C++Builder Debugger *	
+Delphi					Speech Enabling Delphi Applications	
+RAD Studio	Delphi	C++Builder			New Features in the RAD Studio IDE *	
+Delphi					PARTNER SOLUTION: Delivering Delphi Applications as Appliances	
+Delphi	C++Builder				Customizing the Object Inspector	
+Delphi	C++Builder				PARTNER SOLUTION: Audio, Video & Signal Processing in Delphi using Mitov Software Components	
+Delphi	Delphi Prism				Win32 and .NET Interoperability	
+InterBase SMP					InterBase 2009 the Vault	
+Delphi	InterBase SMP				Understand InterBase Transactions	
+Delphi	Delphi Prism				Smart Clients with Delphi and RemObjects	
+Delphi					Practical XML in Delphi	
+Delphi	C++Builder				Building Awesome Touch Enabled Applications *	
+RAD Studio	Delphi				DataSnap REST Support for Web Applications	
+Delphi	Delphi Prism	Delphi for PHP			Delphi for PHP Introduction to jQuery	
+DB Optimizer					Deploy Top-Performing SQL Code with DB Optimizer	
+Delphi					Developing Multi-tier Solutions using DataSnap *	
+ERStudio	Schema Examiner				Using Embarcadero's Design Tools for a Model Review	
+Delphi					Audits and Metrics: Delphi Static Analysis	
+Delphi	Delphi Prism				PARTNER SOLUTION: DevExpress	
+Delphi					Converting from BDE to DBX	
+RAD Studio	Delphi	Delphi Prism	C++Builder		RAD Studio Product Address *	
+Delphi	Delphi Prism				Building and Consuming Web Services in Delphi and Delphi Prism	
+All-Access	Delphi				Software + Database Archeology for Delphi Developers	
+Delphi Prism					Creating Custom WPF Controls in Delphi Prism	
+All-Access	JBuilder				Software + Database Archeology for Java Developers	
+Delphi					Creating Custom VCL Component Designers	
+Delphi Prism					How to Think Like the Entity Framework	
+Delphi					Debugging Techniques for Delphi	
+Delphi					Implementing Artificial Intelligence with Delphi	
+Delphi	Delphi Prism				DataSnap Tooling	
+Delphi	C++Builder				PARTNER SOLUTION: Data Visualization with PlotLab and InstrumentLab	
+Delphi					Delphi Programming Tips and Solutions for Everyday Use	
+Delphi	InterBase SMP				Delphi 2010 and Firebird	
+Delphi					Multi-Threading in Delphi	
+Delphi					PARTNER SOLUTION: Integrating Delphi with Flex/Flash/AIR using kbmMW	
+Delphi	C++Builder				What's New in the VCL *	
+Delphi					PARTNER SOLUTION: From Paradox to Client/Server in 5 Minutes	
+Delphi					Practical Application of RTTI and Attributes	
+InterBase SMP	Rapid SQL				Rapid SQL and InterBase: A Powerful Combination	
+Delphi					Building Unit Tests with DUnit	
+All-Access					On-Demand Tooling, and Other Strategies for Reducing your Total Cost of Software Ownership *	
+ERStudio					Best Practices for Collaborative Modeling with ER/Studio Enterprise	
+Delphi	C++Builder				Developing Delphi Components with OpenWire	
+RAD Studio	Delphi Prism				PARTNER SOLUTION: Effectively Using CodeSite in Delphi Prism	
+Delphi					Developing Multi-tier Solutions using DataSnap *	
+RAD Studio					Embarcadero Product Quality Process	
+DBArtisan					The Value of Using DBArtisan in a DBA Team	
+Delphi Prism					Why and When to Use DataTables in ASP.NET	
+All-Access					Getting Intimate with Your Newly Inherited Database	
+Delphi					9 Thread Synchronization Options in Delphi Compared	
+Change Manager					Change Manager 5.1 Automation for Developers	
+Delphi					DataSnap Server Method Table Parameters	
+Delphi					Dynamic Class Creation at Runtime	
+Delphi					Deep Dive: Developer UML with Delphi	
+Delphi					PARTNER SOLUTION: Using CodeHealer to Monitor and Improve Code Quality	
+Delphi					How to Write World Ready Applications in Delphi	
+Delphi					PARTNER SOLUTION: Next Generation Delphi Development with PDF Technologies from Gnostice	
+Delphi	Delphi Prism				WCF with Delphi Prism and Win32	
+Delphi					PARTNER SOLUTION: Message-oriented Middleware using kbmMW	
+Delphi	InterBase SMP	Blackfish SQL			The Oracle from Delphi	
+Delphi					Reliable Communication between Applications with Delphi and ActiveMQ	
+Delphi	Delphi Prism				Developing, Testing and Debugging Web Applications using Delphi	
+Delphi					Using Unicode and Other Encodings in your Programs	
+Delphi					10 Rest Clients in Delphi	
+RAD Studio	Delphi	C++Builder			New Features in the RAD Studio IDE *	
+Delphi					Domain Specific Languages in Delphi	
+Delphi					PARTNER SOLUTION: Castalia for Delphi - Great Tools for Great Developers	
+Delphi Prism					An Introduction to LINQ in Delphi Prism	
+RAD Studio	Delphi	Delphi Prism	C++Builder		PARTNER SOLUTION: Add Internet Communications, Security, and E-Business Connectivity to Any Application, on Any Platform, Anywhere	
+Delphi Prism					The Making of Delphi Robots	
+Delphi					Refactoring: A Little Bit of How, but Mostly WHY	
+Delphi					Stop Annoying Your Users!	
+Delphi	C++Builder				What's New in the Delphi and C++Builder Debugger *	
+Delphi Prism					Accessing FileMaker Data from Delphi Prism	
+All-Access	C++Builder				Software + Database Archeology for C++ Developers	

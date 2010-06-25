@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd"><whteko>
+<whpage pageid="pgCBCheck" desc="test">
+<whprep>
+(~NOTASSIGNED|cbCheckName1|(~SET|cbCheckName1=aaa~)~)
+(~NOTASSIGNED|cbCheckName2|(~SET|cbCheckName2=bbb~)~)
+(~NOTASSIGNED|cbCheckName3|(~SET|cbCheckName3=ccc~)~)
+</whprep>
+<whdroplet name="drCBHeader" show="yes">
+<![CDATA[<html><head><title>(~pagedesc~)</title></head><body>]]>
+</whdroplet>
+(~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
+<p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
+<p>(~INPUTCHECKBOX|cbCBCheckOne~) Check box one</p>
+(~INPUTSUBMIT|Submit,Submit~)
+(~INPUTFORM|CLOSE~)
+<whdroplet name="drCBFooter" show="yes">
+<![CDATA[<hr/><h2>stringvars</h2>(~StringVars~)<hr/><h2>boolvars</h2>(~BoolVars~)<hr/><h2>boolvarspending</h2>(~BoolVarsPending~)
+<hr/>(~JUMP|pgCBCheck~)</body></html>]]>
+</whdroplet>
+</whpage>
+
+<whpage pageid="pgCBSubmitOne" desc="test">
+(~drCBHeader~)
+<p><b>Form 1 page 1</b></p>
+<p>Name 1: (~cbCheckName1~)</p>
+<p>Check box: <!---(~IF|cbCBCheckOne|Yes||NO~)--></p>
+
+<p><b>Form with .ckb</b></p>
+(~INPUTFORM|pgCBSubmitTwo,.ckb,.keepckb~)
+<p>Name: (~INPUTTEXT|cbCheckName2,35~)</p>
+<p>(~INPUTCHECKBOX|cbCBCheckTwo~) Check box two</p>
+(~INPUTSUBMIT|Submit,Submit~)
+(~INPUTFORM|CLOSE~)
+
+<p><b>Form without .ckb</b></p>
+(~INPUTFORM|pgCBSubmitTwo~)
+<p>Name: (~INPUTTEXT|cbCheckName3,35~)</p>
+(~INPUTSUBMIT|Submit,Submit~)
+(~INPUTFORM|CLOSE~)
+
+<p>(~GO|pgCBSubmitTwo|Go to next page~)</p>
+(~drCBFooter~)
+</whpage>
+
+<whpage pageid="pgCBSubmitTwo" desc="test">
+(~drCBHeader~)
+<p><b>Form 1 page 1</b></p>
+<p>Name 1: (~cbCheckName1~)</p>
+<p>Check box test: <!---(~IF|cbCBCheckOne|Yes||NO~)--></p>
+
+<p><b>Form 1 page 2</b></p>
+<p>Name 2: (~cbCheckName2~)</p>
+<p>Form two check box: (~IF|cbCBCheckTwo|Yes||NO~)</p>
+
+<p><b>Form 2 page 2</b></p>
+<p>Name 3: (~cbCheckName3~)</p>
+<p>No check box and no .ckb on form tag</p>
+(~drCBFooter~)
+</whpage>
+
+</whteko>

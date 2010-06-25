@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTLS=Listserv Assistant
+mcWhDemoCreditIdeaHTLS=Ann Lynnworth
+mcWhDemoCreditFirstDraftHTLS=Ann Lynnworth
+mcWhDemoCreditGraphicsHTLS=Rob Daniels
+mcWhDemoCreditCopyHTLS=Rob Daniels
+mcWhDemoUpdatedHTLS=15-Nov-2006
+mcWhDemoKeywordsHTLS=listserv,email,sendmail,TwhMailForm
+mcWhDemoLiteHTLS=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupHTLS">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+<li> If you want to realistically test this demo on your own machine, you will need 
+access to an outgoing mail server and a listserver.</li>
+</ol>
+</whdroplet>
+<whtranslation key="~whDemoShortDescHTLS">
+The ListServ demo automates the task of managing listserv <code>subscribe</code> 
+and <code>unsubscribe</code> messages by using web forms and 
+the TwhMailForm component.  
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTLS">
+This application is used on www.href.com to service the webhub-list listserv.
+</whtranslation>
+
+</whteko>

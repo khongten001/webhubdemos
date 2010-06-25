@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerSCAN=Database Publishing
+mcWhDemoCreditIdeaSCAN=Michael S. Davis and Robert Martin
+mcWhDemoCreditFirstDraftSCAN=Suzanne Aldrich
+mcWhDemoCreditGraphicsSCAN=Rob Daniels
+mcWhDemoCreditCopySCAN=Ann Lynnworth 
+mcWhDemoUpdatedSCAN=29-Oct-2004
+mcWhDemoKeywordsSCAN=Database,table,flat-file,display data,customize,skins
+mcWhDemoLiteSCAN=No
+</whmacros>
+
+<whdroplet name="drDemoSetupSCAN">
+<ul>
+<li> Requires whScanTable.exe</li>
+<li> The Borland Database Engine is required for this particular example, 
+but the ideas apply regardless of database layer.</li>
+<li> A BDE table named graphics.db is required, and should be located in
+the projects\webhubdemos\Live\Database\whScanTable directory.</li>
+</ul>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescSCAN">
+This demo shows how to make a WebHub database application where the "look" of 
+the database display is defined in W-HTML and can be changed without recompiling.
+It uses the TwhdbScan component.  
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescSCAN">
+This demo is set up to allow easy customization. The W-HTML calls a 
+TwhdbScan named "browseScan" and passes in the name of a droplet. 
+The component uses that droplet 3 times in 3 different ways:
+<ol>
+<li> To initialize the table display, it sends everything prior to the &lt;whrow...> tag.</li>
+<li> For each row in the database being displayed, it sends everything within the 
+&lt;whrow...> tag.</li>
+<li> At the end of the table, it sends everything after the &lt;/whrow...> tag.</li>
+</ol>
+That enables the HTML specialist to 
+control every aspect of the table's appearance -- colors, layout, everything!
+
+<p>The Grid Options page lets the surfer change a number of factors that determine 
+how the grid is displayed, just to give an idea of the type of variety that 
+is possible by making various portions of the W-HTML based on session 
+variables.</p>
+</whtranslation>
+
+</whteko>

@@ -1,0 +1,45 @@
+
+<h1>-Page:pgAppLoadHTML=,appLoad.htm,,App is Loading</h1>
+%=pgAppLoadText=%
+
+
+<hr><!-- *********************************************************************** -->
+
+<h1>-Page:pgAppShutHTML=,appShut.htm,,App is Shutting Down</h1>
+%=pgAppShutText=%
+
+<hr><!-- *********************************************************************** -->
+
+<h1>-Page:pgAppSuspHTML=,appSusp.htm,,App is Suspended</h1>
+%=pgAppSuspText=%
+
+<hr><!-- *********************************************************************** -->
+
+<h1>-Page:pgHubLoadHTML=,hubLoad.htm,,Hub is Loading</h1>
+%=pgHubLoadText=%
+
+<hr><!-- *********************************************************************** -->
+
+<h1>-Page:pgHubNoAppHTML=,hubNoApp.htm,,Unknown AppID</h1>
+%=pgHubNoAppText=%
+
+<hr><!-- *********************************************************************** -->
+<h1>-Chunk:chConfigPgHubNoneHTML</h1>
+%=PageDefault|ByRunner=Yes=%
+
+<h1>-Page:pgHubNoneHTML=,hubNone.htm,,The Hub is Not Running</h1>
+%=pgHubNoneText=%
+
+<hr><!-- *********************************************************************** -->
+
+<h1>-Page:pgHubSuspHTML=,hubSusp.htm,,The Hub is Suspended</h1>
+%=pgHubSuspText=%
+
+<hr><!-- *********************************************************************** -->
+<h1>-Chunk:chConfigPgHubTimeHTML</h1>
+%=PageDefault|ByRunner=Yes=%
+
+<h1>-Page:pgHubTimeHTML=,hubTime.htm,,The Application Timed Out</h1>
+%=pgHubTimeText=%
+
+<hr><!-- *********************************************************************** -->

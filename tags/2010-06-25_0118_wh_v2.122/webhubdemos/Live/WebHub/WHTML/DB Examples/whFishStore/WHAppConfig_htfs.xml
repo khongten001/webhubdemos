@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <MenuEnabled value="false" context="DEMOS"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <TrayIconEnabled value="true"/>
+	<Modules>
+		<StandardModules>
+			<GUIOptional>
+				<Module name="email" status="disabled" />
+				<Module name="dreamweaver" status="enabled-gui" />
+				<Module name="dwsecurity" status="enabled-gui" />
+			</GUIOptional>
+			<GUI>
+				<Module name="appin" status="enabled-gui" />
+				<Module name="appout" status="enabled-gui" />
+				<Module name="decode" status="enabled-gui" />
+				<Module name="googlesitemap" status="disabled" />
+				<Module name="whteko" status="enabled-gui" />
+			</GUI>
+		</StandardModules>
+	</Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="defprofile"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+	  <AllowedSessionIDRange value="1800-1900" />
+	  <RemoteAccessPages>
+	    <Page function="design" pageID="remotedesign" />
+	    <Page function="preview" pageID="remotepreview" />
+	    <Page function="refresh" pageID="remoterefresh" />
+	  </RemoteAccessPages>
+	  <AllowedIPRange value="192.168.1.*;127.0.0.1" />
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+	<Security>
+		<AdminSessionNumber value="1800"/>
+		<AdminSessionNumber value="1204" context="DEMOS" />
+	</Security>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="aboutHTFS" filename="..\..\Shared WHTML\about\about-whFishStore.whteko"/>
+      <File id="contentFish" filename="whFishStore.whteko"/>
+      <File id="ceng" filename="whFishStore-eng.whteko"/>
+      <File id="cdeu" filename="whFishStore-deu.whteko"/>
+      <File id="cfra" filename="whFishStore-fra.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whdbSource componentName="wdsAdmin">
+      <DisplaySets>
+        <Item id="Basic" value="Species No:HF,Price,UpdatedOn,UpdatedBy,ShippingNotes"/>
+        <Item id="SeePassword" value="Species No:HF,Price,UpdatedOn,UpdatedBy,Password,ShippingNotes"/>
+      </DisplaySets>
+      <IndexOrders>
+        <Item id="PrimaryKey" value="*"/>
+        <Item id="PriceIndexIO" value="priceindex"/>
+        <Item id="UpdatedOnIndexIO" value="Updatedonindex"/>
+        <Item id="UpdatedByIndexIO" value="updatedbyindex"/>
+      </IndexOrders>
+    </whdbSource>
+    <whdbSource componentName="WebDataSourceBiolife">
+      <DisplaySets>
+        <Item id="ShortList" value="Species No:CB,Category,Common_Name:HF"/>
+        <Item id="LongerList" value="Species No,Category:CB,Common_Name:HF,Length_In"/>
+        <Item id="NameOnly" value="Common_Name:HF"/>
+      </DisplaySets>
+    </whdbSource>
+    <whdbSource componentName="wdsa1">
+      <DisplaySets>
+        <Item id="TheList" value="Category,Graphic:HF"/>
+      </DisplaySets>
+    </whdbSource>
+    <whListGrid componentName="WebListGrid1">
+    <ItemList>
+      <Item id="CostByOunce" filename="shipping\shipbyoz.txt"/>
+      <Item id="CostByPound" filename="shipping\shipbylb.txt"/>
+    </ItemList>
+    </whListGrid>
+  </ComponentConfig>
+</WebHubAppConfiguration>

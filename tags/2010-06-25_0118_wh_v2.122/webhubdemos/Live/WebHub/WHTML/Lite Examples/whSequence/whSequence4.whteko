@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceUp=pgEnterJoke
+whSequenceFinal=pgEnterJoke
+</whpagesettingslist>
+
+<whpage pageid="pgJoke4a" desc="Joke 4a">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<b>THE TOP 15 SIGNS YOUR WEBMASTER IS IN A CULT</b>
+<p>15.  Every link seems to take you to www.amway.com.</p>
+<p>14.  Repetition of same banner ads: Stoli, Mott's... Stoli, Mott's...</p>
+<p>13.  He brings twenty-three wives to the office Holiday Party.</p>
+<p>12.  Instead of counting up visitors, your site counts down days to the apocalypse.</p>
+<p>11.  Suddenly your travel agency's site is featuring inter-planetary excursions for
+ comet watching and one-way tickets to Guyana.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgJoke4b" desc="Joke 4b">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>10.  His home page says "Best viewed from the Mothership."</p>
+<p>9.  Your website's "Hall of Fame" inductees required to do stint handing out flowers at airports.</p>
+<p>8.  Your website is honored as the David Koresh Fan Club's "Site of the Day."</p>
+<p>7.  She has 38 roommates, yet is oddly stress-free.</p>
+<p>6.  Insists that Sabbath actually begins when "X-files" ends.</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke4c" desc="Joke 4c">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>5.  Frequently mutters about the "Prophet Steve Jobs" returning
+to rescue the true believers.</p>
+<p>4.  Not only does he understand Unix, he *IS* one.</p>
+<p>3.  Big "N" on your browser replaced by spinning head of Charles Manson.</p>
+<p>2.  He only answers to the name, "Doe-bert."</p>
+<p><b>and the Number 1 Sign Your Webmaster is in a Cult...</b></p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgJoke4d" desc="Joke 4d">
+<whpagesettings inherit="a">
+</whpagesettings>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>1.  Ugly clothes; insufficient diet; lack of sleep; goofy haircut; lives in a mansion; has many followe...  
+Hey, wait a minute! That's Bill Gates!!</p>
+<p>(~Sequencing.ButtonsAll~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+</whteko>

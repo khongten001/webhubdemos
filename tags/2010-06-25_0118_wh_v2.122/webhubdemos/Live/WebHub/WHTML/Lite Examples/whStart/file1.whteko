@@ -1,0 +1,25 @@
+<whteko designmode="code" designdynsrc="hreftestpractice"
+ designpage="test">
+
+<whdoc>
+Here is the required "dynsource" configuration to paste
+into Dreamweaver:
+
+hreftestpractice=http://localhost:80/scripts/runisa.dll?hreftest|RemoteDesign|RemoteRefresh|1200|(~
+
+</whdoc>
+
+<whpage pageid="home" desc="home page for the application">
+hello, it is now
+<span class="changing">(~CentralInfo.webtimegmt~)</span> 
+<p><span class="changing">(~JUMPR|temp~)</span></p>
+<p>(~waTest.execute|~)
+</whpage>
+
+<whpage pageid="temp" mode="scaffold">
+<span class="changing">(~CentralInfo.webtimegmt~)</span> on (~Request.HostName~)
+<p>(~JUMPR|home~)</p>
+</whpage>
+
+
+</whteko>

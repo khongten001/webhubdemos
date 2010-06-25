@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTMP=Map Scaling
+mcWhDemoCreditIdeaHTMP=Ronan van Riet
+mcWhDemoCreditFirstDraftHTML=Leonid Elfimov
+mcWhDemoCreditGraphicsHTMP=EZSoft Engineering
+mcWhDemoCreditCopyHTMP=n/a
+mcWhDemoUpdatedHTMP=4-May-2003
+mcWhDemoKeywordsHTMP=map,EZGIS,GIS
+mcWhDemoLiteHTMP=No
+</whmacros>
+<whdroplet name="chSetupHTMP">
+<ul>
+<li> Data files are required. These are provided by EZSoft Engineering.</li>
+<li> Customize these settings in the application-level INI file, and then restart the EXE:
+<pre>
+[TwhAppBase.Defaults]
+EZMapFilePath=d:\projects\webhubdemos\Live\WebRoot\demos\whEZMap\
+EZMapFileURL=(~mcSiteRoot~)demos/whEZMap/
+EZMapData=Data\Animate.ezm
+</pre>
+</li>
+<li> More instructions as we figure out what this EZSoft demo is really doing!</li>
+</ul> 
+</whdroplet>
+
+<whdroplet name="chDemoShortDescHTMP">
+The WebEZMap component makes the EZGIS component from EZSoft Engineering 
+available to WebHub programmers. This demo is UNDER CONSTRUCTION.
+</whdroplet>
+
+<whdroplet name="chDemoLongDescHTMP">
+(none)
+</whdroplet>
+
+</whteko>

@@ -1,0 +1,458 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko  
+	defaultlingvo="eng"  
+	designlingvo="eng" 
+	designpage="pgEnterADV"  
+	designdynsrc="practiceADV"  
+	designmode="code">
+ 
+<whdroplet name="drDemoSpeedbarForHTAJ">
+<!-- placeholder for speedbar -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTAJ" desc="Using WebHub with AJAX">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
+    <script type="text/javascript">
+		function setAJAXEvents()
+		{
+			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
+			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
+			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
+			/* changing:start */
+			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position="" method="get" url="(~ACTIONR|gettime2~)"~)
+			/* changing:stop */
+		}
+		onload = setAJAXEvents
+	</script>
+	(~drCommandStyles~)
+	<style type="text/css">
+	/*body {font-family:Arial, Helvetica, sans-serif; font-size: 80%; text-align: center}*/
+	#content {margin:auto; width: 50em; text-align: left;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Three Simple AJAX Examples</h1>
+<h2>1. AJAXEvent</h2>
+<p>Use this command when you require an AJAX update to occur following a Javascript event for a specified HTML element.</p>
+<span class="syntax"><span class="parentil">(~.</span><span class="syntaxcommand">AJAXEvent</span>|tagtype="" id ="" event=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm="" before="" after="" condition=""</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+<p>One example would be partial page content update following the onclick event of an a href tag.</p>
+<p>To show the webserver date and time, (using the onclick event of an a href tag) (~JUMP|gettime1|id="showtime"|Click here~)</p>
+
+<div id="showtime1"></div>
+
+
+<h2>2. AJAXObserver</h2>
+<p>Use this command to observe all elements within a form or an individual form element and fire an AJAX event at a certain frequency or on a change of value.</p>
+<span class="syntax"><span class="parentil">(~.</span><span class="syntaxcommand">AJAXObserver</span>|tagtype="" id ="" frequency=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm="" before="" after="" condition=""</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+Example1: Type something into the input box below. The contents are examined every second and if a change is detected, the form contents are posted to the server and sent back with the time stamp.
+<form id="form1" action="(~ACTION|AjaxObserverText1~)">(~INPUTTEXT|sampletext1~)</form>
+
+<div id="showform1"></div>
+
+Example2: Type something into the input box below. Only when you exit the data entry box and a change has been detected are the form contents are posted to the server and sent back with the time stamp.
+<form id="form2" action="(~ACTION|AjaxObserverText2~)">(~INPUTTEXT|sampletext2~)</form>
+
+<div id="showform2"></div>
+
+
+
+<h2>3. AJAXTimedEvent</h2>
+<p>Use this command to create an independent timed event that fires with a specified frequency.  The event can be started and stopped with appropriate events.</p>
+<p>The following is an example of an event that fires every 2 seconds and retrieves the webserver date and time.  The event can be stopped and started with the links below.  (NB: if you click the start link twice, you will need to click stop twice as well.)</p>
+<p><a href="#" id="start">Start Time Update</a></p>
+<p><a href="#" id="stop">Stop Time Update</a></p>
+
+<div id="showtime2"></div>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+
+<h1>Learning how to use AJAX with WebHub</h1>
+<ol>
+<li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
+<ul>
+<li style="list-style-type:disc">the JS command within the <i>&lt;head_tag&gt;</i> </li>
+<li style="list-style-type:disc">function setAJAXEvents within the <i>&lt;head_tag&gt;</i> </li>
+<li style="list-style-type:disc">the calls to AJAXEvent, AJAXObserver and AJAXTimedEvent.</li>
+<li style="list-style-type:disc">the page definitions for gettime1, AjaxObserverText1, gettime2, AjaxObserverText2</li>
+</ul>
+</li>
+<li> Ask HREF tech support for a copy of the spreadsheet which sketches out all the parameters for the commands.</li>
+</ol>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+<whpage pageid="gettime1">
+<!--- for earlier versions of WebHub <p>The time is (~webserver.webtime~) - (~sampletext1~)</p> -->
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span></p>
+</whpage>
+
+<whpage pageid="gettime2">
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span></p>
+</whpage>
+
+<whpage  pageid="AjaxObserverText1">
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext1|(~sampletext1~)~)</p>
+</whpage>
+<whpage pageid="AjaxObserverText2">
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext2|(~sampletext2~)~)</p>
+</whpage>
+
+
+<whdroplet name="drCommandStyles">
+<style type="text/css">
+/*body {
+	font-family:Arial, Helvetica, sans-serif; 
+	font-size: 80%; 
+	margin-left:5em;
+	background-color: #F8FFDF;
+	}*/
+	
+h1 {
+	font-size: 1.5em;
+	}
+	
+h2 {
+	font-size: 1.3em;
+	color: #993300;
+	margin: 2em auto .8em auto;
+	}
+	
+h3 {
+	font-size: 1.1em;
+	color: #808000;
+	margin-bottom: .4em;
+	}
+	
+.command {
+	clear:left;
+	float:left;
+	margin-left: 1em;
+	font-size: 1em; 
+	color:#009933;
+	font-weight: 700; 
+	}
+	
+.summary{
+	font-size: 1em; 
+	display: block;
+	margin: auto auto .1em 15em;
+	}
+	
+.detail {
+	/*border: 1px solid #CCC;*/
+	/*margin-bottom: 1em;*/
+	/*padding: .5em;*/
+	
+	margin-left: 2em;
+	background-color: #FFF;
+	margin-right: 5%;
+	font-size: 0;
+	line-height: 0;
+	}
+
+h4 {
+	font-size: 1em;
+	color: #808000;
+	margin: .2em auto .6em auto;
+	}
+
+
+.parentil {
+	color: #FF9933;
+	font-weight: 700;
+	}
+	
+.syntax1 {
+	display: block;
+	margin: .2em 5% .5em 1em;
+	font-family:"Courier New", Courier, mono;
+	font-size: 1em;
+	font-weight: 100;
+	color: #CC4444;
+	text-indent: -1em;  
+	}
+
+.syntax{
+	display: block;
+	margin: .2em 5% .7em 1em;
+	font-family:"Courier New", Courier, mono;
+	font-size: 1em;
+	font-weight: 100;
+	color: #CC4444; 
+	text-indent: -1em;  
+	  
+}
+.syntaxinline{
+	margin: 0.5em;
+	font-family:"Courier New", Courier, mono;
+	font-size: 1em;
+	font-weight: 100;
+	color: #CC4444; 
+}
+
+.syntaxcommand{
+	font-size: 1.1em;
+	font-weight: 900;
+	}
+	
+.syntaxoption {
+	font-style: italic;
+	background-color: #FFFFCC;
+	}
+
+.syntaxbracket {
+	color:#999;
+	font-style: italic;
+	}
+
+.parameter {
+	clear: both;
+	float: left;
+	margin: auto auto .2em .5em;
+	font-size: 1em;
+	color: #006060;
+	}
+	
+.paramdesc{
+	display: block;
+	margin: .2em auto .2em 10.5em;
+	color: #555;
+	}
+
+.paramdesc em {
+	color: #aaa;
+	}
+
+.paramdesc2{
+	display: block;
+	margin: .2em auto .2em 14em;
+	color: #555;
+	}
+
+.paramdesc2 em {
+	color: #aaa;
+	}
+
+.paramdesc3{
+	display: block;
+	margin: .2em auto .2em 19em; 
+	color: #555;
+	}
+
+.paramdesc3 em {
+	color: #aaa;
+	}
+
+.paramchoicevalue {
+	clear: both;
+	float: left;
+	margin: auto auto .2em 12em;
+	font-size: 1em;
+	color: #008080;
+}
+
+.paramchoicedesc {
+	display: block;
+	margin: .2em auto .2em 14em;
+	color: #555;
+}
+
+.paramchoicedesc2 {
+	display: block;
+	margin: .2em auto .2em 18em;
+	color: #555;
+}
+
+.syntaxold {
+	display: block;
+	margin: .2em auto .7em auto;
+	font-family:"Courier New", Courier, mono;
+	font-size: 1em;
+	font-weight: 700;
+	color: #008080;
+	}
+
+
+/* additional documentation styles */
+
+#syntaxlegend {
+	width: 50em;
+	padding: 1em;
+	background-color:#FFE;
+	border: 1px solid #993300;
+	margin-top: 3em;
+	}
+
+#expansionlegend {
+	width: 50em;
+	padding: 1em;
+	background-color:#FFE;
+	border: 1px solid #993300;
+	margin-top: 3em;
+	}
+
+.expid {
+	clear: both;
+	float: left;
+	margin: auto auto .2em .5em;
+	font-size: 1em;
+	color: #666;
+	}
+	
+.expword {
+	margin: auto auto .2em 3em;
+	font-size: 1em;
+	color: #CC4444;
+}
+
+.expdesc {
+	display: block;
+	margin: .2em auto .2em 14em;
+	color: #000;
+}
+
+
+#legend {
+	width: 50em;
+	padding: 1em;
+	background-color:#FFE;
+	border: 1px solid #993300;
+	margin-top: 3em;
+
+	}
+
+.simpleindent{
+	display: block;
+	margin: auto auto .3em 3.5em;
+	text-indent: -1em;
+}
+
+.indentnarrow {
+	clear:both;
+	float:left;
+	margin: auto auto auto 2em;
+	width:6em;
+}
+
+
+.indent {
+	clear:both;
+	float:left;
+	margin: auto auto auto 2em;
+	width:11em;
+	}
+
+.indentmedium {
+
+	clear:both;
+	float:left;
+	margin: auto auto auto 2em;
+	width:15em;
+	}
+
+.indentwide {
+	clear:both;
+	float:left;
+	margin: auto auto auto 2em;
+	width:20em;
+	}
+
+.indentverywide {
+	display: block;
+	margin: .2em auto auto 3em;
+	width: 40em;
+	text-indent: -1.5em;
+	}
+	
+.qualifier	{
+	float:left;
+	margin: auto auto auto 2em;
+	}
+
+.qualifierend	{
+	display: block;
+	margin: auto auto .5em 10em;
+	}
+
+.qualifierend2	{
+	display: block;
+	margin: auto auto .5em 18em;
+	}
+
+.qualifierend3	{
+	display: block;
+	margin: auto auto .5em 15em;
+	}
+
+.expexample	{
+	display: block;
+	margin: auto auto auto 32em;
+	font-family:"Courier New", Courier, mono;
+	color: #CC4444;
+	}
+
+.similarexample	{
+	display: block;
+	margin: auto auto auto 15em;
+	font-family:"Courier New", Courier, mono;
+	color: #CC4444;
+	}
+
+
+.commandcolor {
+	color: #CC4444;
+	}
+
+.commandfont {
+	color: #CC4444;
+	font-family:"Courier New", Courier, mono;
+	}
+
+.commandfontbold {
+	color: #CC4444;
+	font-family:"Courier New", Courier, mono;
+	font-weight: 700;
+	}
+
+h5 {
+	font-size: 1em;
+	color:#CC4444;
+	margin: 2em auto -0.5em auto;
+	}
+	
+.analysis {
+	padding: 1em;
+	margin: auto 2em auto 2em;
+	border: 1px solid #CCC; 
+}	
+
+.analysistype {
+  font-weight: 700;
+  color: #999900;
+}
+
+.url {
+	font-family:"Courier New", Courier, mono;
+	color:#000099;
+}
+
+</style>
+
+</whdroplet>
+
+</whteko>

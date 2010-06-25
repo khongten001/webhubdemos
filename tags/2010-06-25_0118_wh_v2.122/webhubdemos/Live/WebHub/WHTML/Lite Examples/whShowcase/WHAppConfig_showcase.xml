@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <TrayIconEnabled value="true"/>
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="enabled-gui"/>
+          <Module name="dreamweaver" status="enabled-gui"/>
+          <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="shareint" status="disabled"/>
+        </GUIOptional>
+        <GUI>
+          <Module name="appin" status="enabled-gui"/>
+          <Module name="appout" status="enabled-gui"/>
+          <Module name="decode" status="enabled-gui"/>
+          <Module name="googlesitemap" status="enabled-gui"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDSecure value="ssl"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="eng"/>
+    </AppProperties>
+    <AppSettings>
+      <AppSetting name="DemoGraphic" value="yes"/>
+    </AppSettings>
+    <ErrorAlertFlags>
+      <ErrorAlertFlag name="LogToFile" value="true"/>
+      <ErrorAlertFlag name="Summary" value="true"/>
+      <ErrorAlertFlag name="Summary" context="DEMOS" value="false"/>
+    </ErrorAlertFlags>
+    <ErrorSituations>
+      <ErrorSituation name="RejectSession" logToFile="true"/>
+    </ErrorSituations>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+      <Sequencing>
+        <Up activeImage="(~mcSeqDir~)BtnUp.png" caption="Up" dimImage="(~mcSeqDir~)GreyUp.png"/>
+        <Prior activeImage="(~mcSeqDir~)BtnPrev.png" caption="Prev" dimImage="(~mcSeqDir~)GreyPrev.png"/>
+        <Next activeImage="(~mcSeqDir~)BtnNext.png" caption="Next" dimImage="(~mcSeqDir~)GreyNext.png"/>
+        <Stop activeImage="(~mcSeqDir~)BtnStop.png" caption="Stop" dimImage="(~mcSeqDir~)GreyStop.png"/>
+      </Sequencing>
+    </PageGeneration>
+    <RemoteDesignDefaultInterface>
+      <AllowedSessionIDRange value="1800-1900"/>
+      <RemoteAccessPages>
+        <Page function="design" pageID="remotedesign"/>
+        <Page function="preview" pageID="remotepreview"/>
+        <Page function="refresh" pageID="remoterefresh"/>
+      </RemoteAccessPages>
+      <AllowedIPRange value="192.168.1.*;127.0.0.1;192.168.0.*"/>
+      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
+    </RemoteDesignDefaultInterface>
+    <Security>
+      <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
+    </Security>
+    <Situations>
+      <FrontDoor pageID="pgWelcome"/>
+      <Home pageID="pgentershowcase"/>
+    </Situations>
+    <Static>
+      <AppRoot value="/"/>
+      <ExportFolder value="C:\projects\webhubdemos\Live\WebRoot"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="L0Chunks" filename="0Chunks.whteko"/>
+      <File id="L0Intro" filename="0Intro.whteko"/>
+      <File id="L0Jumps" filename="0Jumps.whteko"/>
+      <File id="L1Pages" filename="1Pages.whteko"/>
+      <File id="L2EMail" filename="2Email.whteko"/>
+      <File id="L2Forms" filename="2Forms.whteko"/>
+      <File id="L2Html" filename="2Html.whteko"/>
+      <File id="L2Imagine" filename="2Imagine.whteko"/>
+      <File id="L2Java" filename="2Java.whteko"/>
+      <File id="L2Track" filename="2Track.whteko"/>
+      <File id="L2Webmast" filename="2Webmast.whteko"/>
+      <File id="L3BigPict" filename="3BigPict.whteko"/>
+      <File id="L3Charge" filename="3Charge.whteko"/>
+      <File id="L3Cookies" filename="3Cookies.whteko"/>
+      <File id="L3Dynamic" filename="3Dynamic.whteko"/>
+      <File id="L3Frame" filename="3Frame.whteko"/>
+      <File id="L3Macro" filename="3Macro.whteko"/>
+      <File id="L3Reuse" filename="3Reuse.whteko"/>
+      <File id="L3Secure" filename="3Secure.whteko"/>
+      <File id="LL3Slide" filename="3Slide.whteko"/>
+      <File id="L3Style" filename="3Style.whteko"/>
+      <File id="L3Timing" filename="3Timing.whteko"/>
+      <File id="L3Togeth" filename="3Togeth.whteko"/>
+      <File id="L3Widgets" filename="3Widgets.whteko"/>
+      <File id="L4Expire" filename="4Expire.whteko"/>
+      <File id="about" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
+      <File id="XEmail" filename="XEmail.whteko"/>
+      <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
+      <File id="_JavaChnk" filename="javachnk.whteko"/>
+      <File id="_JavaScrp" filename="javascrp.whteko"/>
+      <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
+      <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
+      <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
+      <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
+      <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
+      <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+      <File id="xmisc" filename="xmisc.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whMailForm componentName="WebMailForm">
+      <Item name="feedback">
+        <Host value="mail.href.com"/>
+        <Port value="25"/>
+        <From value="MsgFrom^"/>
+        <Name value="SurferName^"/>
+        <To value="MsgTo^"/>
+        <Subject value="Feedback Message"/>
+        <TxtVars value="txtMessage"/>
+      </Item>
+    </whMailForm>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="C:\temp\" />
+      <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="DEMOS"/>
+      <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="ultraann"/>
+    </whWebAction>
+  </ComponentConfig>
+</WebHubAppConfiguration>

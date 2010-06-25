@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceAnimate=On
+whSequenceStop=(~DynURL.ToSessionIDW~)
+whSequenceUp=PGSLIDESHOW
+final.PGSLIDESHOW
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=Slide
+htmlFilename=3Slide.whteko
+</whpagesettingslist>
+
+<whdroplet name="slideBefore">
+ 3C<br />
+ 3C<br />
+</whdroplet>
+
+
+<whdroplet name="slideAfter">
+ 3C<br />
+ 3C<br />
+</whdroplet>
+
+<whpage pageid="pgSlide0" desc="Questions to Ask When Evaluating Web Solutions">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+<center>
+<h3>(~PageDesc~)</h3>
+</center>
+
+(~divider~)
+(~slideAfter~)
+<p>
+If this page doesn't automatically advance, try clicking 
+[Reload] in your browser.  If that doesn't work, your browser 
+does not support the META REFRESH command.  Try a more recent 
+copy of Netscape or Mosaic.
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgSlide1" desc="Question 1">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+<center>
+<h2>
+Questions to Ask When Evaluating Web Solutions
+</h2>
+</center>
+
+<h2>1. How easy is it to get started?</h2>
+WebHub makes it easy for you to start using it. WebHub includes runners
+for 
+ISAPI, cgi-bin and cgi-win so that you do not have to develop that
+interface yourself.  
+Furthermore the architecture builds in an easy-to-use mechanism for
+tracking the surfer via the URL, 
+and saving his/her data on a TWebSession object on the server-side.  
+Over a dozen demos are included, with full source, and free technical
+support for installation and running any demo.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide2" desc="Question 2">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>2. Does the solution allow you to re-use your existing skills and
+your existing Delphi, C++, and HTML code?</h2>
+WebHub helps you web-enable existing Delphi and C++ applications.  
+Even your HTML and Javascript code can be re-used.  
+WebHub projects can easily be worked on by a team of people with varying
+skill levels.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide3" desc="Question 3">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>3. How fast is it?</h2>
+Fully dynamic WebHub pages take 8 to 50 milliseconds to produce on
+current hardware, using ISAPI. 
+ A dual-processor P200 box with 128 meg RAM can do 36 page requests per
+second using just a single EXE.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide4" desc="Question 4">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>4. How flexible is it?</h2>
+WebHub expects you will need the flexibility to write custom features.  
+The "web action" class provides for that, giving programmers the ability
+to activate any functionality from the web.  
+WebHub runs on all major Windows web servers and you can change servers
+without recompiling your apps.  
+You can maintain your web applications remotely, and you can build your
+own "web action" components.  
+You can use the debugger to work on your EXE (no need to fight DLLs), 
+and you can stop/replace/restart your application without bringing down
+the web server.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide5" desc="Question 5">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>5. What are the hidden costs?</h2>
+With WebHub there are no hidden costs because WebHub sites are extremely
+easy to maintain.  
+The HTML and Javascript is kept outside the Delphi/C++ project, 
+so that it can be maintained by a page layout specialist without even
+requiring recompilation of the application.  
+Using WebHub, you can control how many database connections you want to
+have open, 
+and thus use a limited SQL license.  
+The cost of scaling to additional boxes is a matter of software
+configuration and 
+obtaining a hub license for each additional box.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide6" desc="Question 6">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>6. How is the system scalable?</h2>
+WebHub scales in two ways:
+<ol>
+<li>On a single machine, you can run multiple instances of your EXE to
+support higher traffic. 
+<li>Using a cluster of machines, you can have requests from new surfers
+sent around the cluster providing linear scalability.  
+</ol>
+The Hub serves as process controller on each machine, and ensures that
+surfers are routed to the least-busy 
+EXE on the machine, and to the next available machine in the cluster. 
+The runners are configured to time-out after N seconds if all EXEs are
+too busy.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgSlide7" desc="Question 7">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>7. What security features are included?  </h2>
+WebHub has features that address all key security issues, without
+relying solely on cookies or IP#.  
+User login/password checks are not limited to NT security rules; 
+you can validate people against an in-house user or "membership"
+database.
+
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide8" desc="Question 8">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>8. What technical support resources are available?</h2>
+<ul>
+<li> There is an active WebHub community that participates in free
+discussions by e-mail.  </li>
+<li> There is a full-time technical support department available for private
+questions and consultation.  </li>
+<li> There is an on-line technical support knowledgebase which is searchable
+via the web.  </li>
+<li> Ongoing releases with new features are made available to customers with 
+active subscriptions. </li>
+</ul>
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgSlide9" desc="Question 9">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~slideBefore~)
+(~divider~)
+
+<h2>9. How expensive is it?</h2>
+WebHub Power HTML costs $195 and includes a 1exe Hub.<br />
+The WebHub VCL components cost $295 per developer.  <br />
+The Hub is licensed per server, ranging from $95 to $1955 per machine
+depending on capacity.  
+<p>
+There is a free trial version available at
+http://webhub.com/.
+(~divider~)
+(~slideAfter~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

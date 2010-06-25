@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTCV=File Converter Service
+mcWhDemoCreditIdeaHTCV=Max Sautin <a target="_blank" href="http://convert.sautin.com">HTML to RTF converter</a>
+mcWhDemoCreditFirstDraftHTCV=Ann Lynnworth
+mcWhDemoCreditGraphicsHTCV=Suzanne Aldrich and <a target="geekphotos" href="http://geekphilosopher.com/MainPage/photos.htm">Geek Philosopher Free Stock Photos</a>
+mcWhDemoCreditCopyHTCV=Ann Lynnworth
+mcWhDemoUpdatedHTCV=24-Aug-2003
+mcWhDemoKeywordsHTCV=convert,process,online service,ASP business model
+mcWhDemoLiteHTCV=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTCV">
+<ol>
+<li> Requires an EXE which converts one file to another based on data in a configuration file, 
+based as a commandline parameter.  Source code for an example converter, 
+charReplace.exe, is included with this demo.</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTCV">
+Demonstration of how to create an online web application which converts files for customers
+using a utility program.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTCV">
+This demo uses a fictitious converter which simply replaces a given character with another 
+character throughout a file. 
+<p>This demo also uses a fairly simplistic security model, where the surfer only needs to enter 
+a valid coupon code in order to be allowed to use the converter.  In a real-world application, 
+you might validate a customer number, take credit card payment, and so on.</p>
+</whtranslation>
+
+</whteko>

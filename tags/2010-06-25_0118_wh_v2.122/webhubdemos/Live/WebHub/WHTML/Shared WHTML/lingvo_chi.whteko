@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="chi" designmode="code">
+
+<whmacros>
+mcChinese=汉语
+</whmacros>
+
+<whtranslations>
+~Welcome=欢迎
+~Entrance=入口
+~Source=源代码
+~Download=下载
+~Logout=注销
+~Options=选项
+~About=关于
+~Prerequisites=必要条件
+</whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
+这个选项用于显示可修改的设置. WebHub 演示程序设计的不一定能和所有的背景看上去协调.
+</whtranslation>
+
+<whtranslations>
+~SetPrefLingvo=输入语种代码
+~Wallpaper=壁纸
+~none=没有
+~HumanLanguage=语言
+~Debugging=调试
+~SetPrefReturn=您应该返回 (~PrePref~) 页面.
+</whtranslations>
+
+</whteko>
+

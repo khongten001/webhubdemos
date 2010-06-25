@@ -1,0 +1,7 @@
+WebHub Query #2 Demo
+
+AppID = htq2
+
+When testing from Selenium:
+
+Public Demo URL = http://demos.href.com/htq2::1204

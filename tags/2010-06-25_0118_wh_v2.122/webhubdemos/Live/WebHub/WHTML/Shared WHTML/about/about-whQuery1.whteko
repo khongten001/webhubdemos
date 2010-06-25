@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTQ1=SQL - Simple Example
+mcWhDemoCreditIdeaHTQ1=Robert Martin
+mcWhDemoCreditFirstDraftHTQ1=Ann Lynnworth
+mcWhDemoCreditGraphicsHTQ1=Rob Daniels
+mcWhDemoCreditCopyHTQ1=Rob Daniels
+mcWhDemoUpdatedHTQ1=May-1998
+mcWhDemoKeywordsHTQ1=database,query,sql,dynamic content,beginner
+mcWhDemoLiteHTQ1=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTQ1">
+<ol>
+<li> Requires whQuery1.exe </li>
+<li> The Borland Database Engine is required</li>
+<li> The tables "contract.db" and "member.db" are required (included).</li>
+<li> The table navigation is defined through a combination of answergrid.Captions, 
+answergrid.ButtonSpecs, and Cascading Style Sheet entries.</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTQ1">
+This web application demonstrates (a) how to run a query that leads to an HTML table result;
+(b) how to make the query selected based on data typed in by a site visitor; and 
+(c) how to show an error message if the query returns zero records.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTQ1">
+The query will select all matches for the MemberID, as long as the correct 
+password is supplied.
+</whtranslation>
+
+</whteko>

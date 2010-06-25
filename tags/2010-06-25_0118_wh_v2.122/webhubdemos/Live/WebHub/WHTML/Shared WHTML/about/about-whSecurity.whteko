@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng">
+<whmacros>
+mcWhDemoOneLinerHTSC=Secure Login
+mcWhDemoCreditIdeaHTSC=Michael Ax and AnnLynnworth
+mcWhDemoCreditFirstDraftHTSC=Michael Ax and Ann Lynnworth
+mcWhDemoCreditGraphicsHTSC=Rob Daniels
+mcWhDemoCreditCopyHTSC=Ann Lynnworth and Martha V. Moore
+mcWhDemoUpdatedHTSC=27-Nov-1998
+mcWhDemoKeywordsHTSC=secure login,security,TwhLogin,login form,protected access,secure pages
+mcWhDemoLiteHTSC=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupHTSC">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+</ol>
+</whdroplet>
+
+<whtranslation key="~whDemoShortDescHTSC">
+The security demo shows how WebHub's architecture solves common security 
+problems automatically, and illustrates additional steps you can take to further secure 
+your site. 
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescHTSC">
+ WebHub allows you to easily implement login and log out security measures.
+This demo shows how  the TwhLogin component is used to implement a timed 
+security feature, tiered security levels, and an automatic log-out if the surfer is 
+inactive for a specified amount of time (determined by the programmer) . 
+</whtranslation>
+
+</whteko>

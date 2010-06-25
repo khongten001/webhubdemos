@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcImgHttpsDir=(~mcSiteRoot~)demos/whHttps/
+mcWhDemoOneLinerFAST=HTTPS
+mcWhDemoCreditIdeaFAST=Suzanne Aldrich
+mcWhDemoCreditFirstDraftFAST=Suzanne Aldrich
+mcWhDemoCreditGraphicsFAST=Suzanne Aldrich
+mcWhDemoCreditCopyFAST=Martha V. Moore
+mcWhDemoUpdatedFAST=30-Sep-1998
+mcWhDemoKeywordsFAST=https,secure,ssl,mixing http and https pages on one site
+mcWhDemoLiteFAST=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupFAST">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+
+<li>  WebHub ServerIDs can be set to route pages to specific 
+servers, ie: to either a secure or insecure  web server.
+<br />
+<small><b>Note:  To get your data into the boxes, you need to click in them 
+TWICE-- the first click to select the box, and the second  to bring in your cursor.</b></small>
+<ol>
+<li> 
+  First, define two ServerIDs, PLAIN and SSL, by opening the Hub, and going into
+ the <b>Options | ServerID Panel</b>.
+</li>
+
+<li>
+* If you have a secure web server running HTTPS on your machine, use that 
+for the SSL definition.  Otherwise, just change http://localhost/ to http://127.0.0.1/ 
+so that you will be able to actually see the changes between the two settings.
+</li>
+
+<li> <b>Save</b> your settings, then go back to your application server.  Choose 
+<b>Components > CentralInfo > Refresh</b> from the menu to load in your new ServerID settings 
+- or just exit and restart the application server.
+</li>
+</ol>
+</li>
+
+<li> 
+<table id="settings" border="1">
+<tr>
+	<th align="left" style="background-color:#00CCCC;">ServerID</th>	
+	<th align="left" style="background-color:#00CCCC;">Http</th>	 
+	<th align="left" style="background-color:#00CCCC;">CgiPath</th>          
+	<th align="left" style="background-color:#00CCCC;">Runner</th>
+	<th align="left" style="background-color:#00CCCC;">Use Filter</th>
+</tr>
+
+<tr><td>PLAIN</td>
+<td><b>(~DynURL.LocSMU~)/</b></td>
+<td>path<br />
+<b>Example:</b> scripts/</td>
+<td>runner<br />
+<b>Example:</b> runisa.dll</td>
+<td>If StreamCatcher ISAPI filter is used, this should be <b>YES</b></td></tr>
+
+<tr>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td colspan="2">Hint - combination of your path and runner: <b>(~cgiCaller~)</b></td>
+<td>&nbsp;</td></tr>
+
+<tr><td>SSL</td>
+<td>https://localhost/ or<br />
+http://127.0.0.1*/ </td>
+<td>same path</td>
+<td>same runner</td>
+<td>&nbsp;</td></tr>
+</table>
+</li>
+
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescFAST">
+This demo shows how WebHub ServerIDs can be used to route various pages
+ to specific servers, ie: routing certain pages to a regular HTTP web server, 
+while routing others to a secure HTTPS  web server.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescFAST">
+Besides the Server ID set up, there are two other important techniques shown 
+in this demo as well:
+<ol>
+<li> Simplifying maintenance of page headers and footers by utilizing reusable droplets and macros.</li>
+
+<li> Using the GO macro with an 'else' phrase so that the graphic varies when you 
+are on the matching page. For example, when you are on the CHATROOM page, the graphic 
+for that link is grey and disabled.</li>
+</ol>
+</whtranslation>
+
+</whteko>

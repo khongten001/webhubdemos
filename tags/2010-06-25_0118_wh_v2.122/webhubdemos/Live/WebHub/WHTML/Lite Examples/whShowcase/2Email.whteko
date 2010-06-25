@@ -1,0 +1,93 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whSequence=on
+whSequenceUp=pgEMail
+whSequenceFinal=pgEMail
+bSeqHdr=true
+bReqUl=false
+level=2
+levelKeyword=Email
+htmlFilename=2EMail.whteko
+showcaseBranch=(~GO|pgEmail|E-mail~) &raquo;
+showcaseBranchText=E-Mail: 
+bNoMore=true
+</whpagesettingslist>
+
+<whpage pageid="pgFeedback" desc="Including a Feedback Page">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>Most companies want to get feedback from people surfing their site.
+WebHub provides explicit support for structured feedback pages.</p>
+<p>Send the following test message to yourself to see how the feedback page works.</p>
+<p>Of course, on your own site you would fill in the target e-mail address automatically.</p>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|ExMailPost~)">
+Send this Feedback to:
+ (~inputtext|Msg To,47,47~)<br />
+Surfer's E-mail Address:
+(~inputtext|MsgFrom,47,47~)<br />
+Surfer's Name:
+(~inputtext|SurferName,47,47~)<br />
+Surfer's Feedback Message:<br />
+(~inputtextarea|TxtVar.txtMessage,4,40~)
+<br />
+<br />
+(~inputsubmit|submit,Send Message~)
+</form>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+
+<whpage pageid="pgFormToMail" desc="Using the Form-to-E-mail Feature">
+<whpagesettings inherit="a">
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+Form-to-E-mail is used to send structured e-mail messages.
+Instead of using a MAILTO link, which just opens a free-form e-mail dialog,
+WebHub allows you to provide the surfer with an HTML form which lists the
+specific questions you want answered.
+When the surfer clicks the [submit] button on the page,
+any data they have entered will be sent to the e-mail account you've
+specified.
+<p>
+Copy the <code>whMailForm componentName="WebMailForm"</code> section from the showcase configuration file to use as a basis, or look up TwhMailForm in the WebHub Help/Reference.</p>
+
+<pre>
+[WebMailForm.FEEDBACK]
+Host=mail.href.com
+Port=25
+From=MsgFrom^
+Name=SurferName^
+To=MsgTo^
+Subject=Feedback Message
+TxtVars=txtMessage
+</pre>
+
+<h3>Configuration Example</h3>
+<code>From=ann@href.com</code><br />
+This sets the message sender as 'ann@href.com'.
+<br /><br />
+<code>From=MsgFrom^</code><br />
+This sets the message sender as the contents of StringVar['MsgFrom'].
+This is the address specified in the MSGFROM field on the HTML form.
+<br /><br />
+In this context, <b>^</b> is used to tell WebHub that
+you want the message sender value to come from surfer input --
+not that you want the message to come from someone named MsgFrom^!
+<h2>Contrast with MAILTO Links</h2>
+<ol>
+<li> (~MAILTO|info1@href.com?subject=BrandX|title="hello"|email1|true~)</li>
+<li> (~MAILTO|info2@href.com|info2~) </li>
+<li> (~MAILTO|info3@href.com~) </li>
+<li> (~MAILTO|info4@href.com|info4|true~) </li>
+<li> (~MAILTO|info5@href.com||true~) </li>
+<li> (~MAILTO|info6@href.com||false~) </li>
+<li> (~MAILTO|info7@href.com|title="hello"||true~)</li>
+</ol>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>
+

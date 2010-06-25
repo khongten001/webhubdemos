@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="fra" designmode="code">
+
+<whmacros>
+mcFrench=Français
+</whmacros>
+
+<whtranslations lingvo="fra">
+~Welcome=Bienvenue 
+~Entrance=Entrée
+~Source=Source
+~Download=Téléchargement
+~Logout=Déconnexion
+~Options=Options
+~About=Au sujet de
+~Prerequisites=Choses nécessaires
+</whtranslations>
+
+<!--- used in setpref file           -->
+<whtranslations lingvo="fra">
+~SetPrefLingvo=Écrivez le code de langue
+~Wallpaper=Papier peint
+~none=aucun
+~HumanLanguage=Langue humaine
+~Debugging=Correction
+~SetPrefReturn=Vous devriez retourner à la page de (~PrePref~)
+</whtranslations>
+
+<whtranslations>
+~daySunday=Dimanche
+~dayMonday=Lundi
+~dayTuesday=Mardi
+~dayWednesday=Mercredi
+~dayThursday=Jeudi
+~dayFriday=Vendredi
+~daySaturday=Samedi
+</whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro" lingvo="fra" show="no">
+Cette option est employée pour prouver seulement que des arrangements 
+peuvent être changés. Les démonstrations de WebHub n'ont pas été conçues pour 
+regarder visuellement attrayantes avec tous les milieux.
+</whtranslation>
+
+</whteko>

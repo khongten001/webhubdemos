@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerJOKE=Sequenced Presentation
+mcWhDemoCreditIdeaJOKE=Suzanne Aldrich and Ann Lynnworth
+mcWhDemoCreditFirstDraftJOKE=Suzanne Aldrich
+mcWhDemoCreditGraphicsJOKE=Rob Daniels
+mcWhDemoCreditCopyJOKE=Karen Chauss and Martha V. Moore
+mcWhDemoUpdatedJOKE=22-Oct-1998
+mcWhDemoKeywordsJOKE=joke,jokes,sequencing,automatic sequencing,presentation,training,tutorial
+mcWhDemoLiteJOKE=Lite
+</whmacros>
+
+<whdroplet name="drDemoSetupJOKE">
+<ol>
+<li> (~drAboutLiteDemo~)</li>
+
+<li> The joke sequencing is controlled through settings in the application's INI file, in the 
+<code>[TwhAppBase.Files]</code> section.  That is all set up for you by default during 
+installation, but if you want to understand why this demo has automatically sequenced 
+pages, that is the place to look.</li>
+
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescJOKE">
+See WebHub's automatic sequencing feature in action, and catch a laugh if you can!
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescJOKE">
+<b>Please Note!</b><br />
+We don't mean to offend anyone with these jokes...
+this demo is meant only to illustrate site sequencing.
+<br /><br />
+<b>Automatic sequencing</b><br />
+Slide shows and other web sites that require sequencing are a snap with 
+WebHub.  All the webmaster has to do is put the pages in order in a file, and 
+set the page defaults to request sequencing--WebHub will sequence 
+everything in that file.   
+</whtranslation>
+
+</whteko>

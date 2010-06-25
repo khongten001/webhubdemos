@@ -1,0 +1,30 @@
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpage pageid="exMailPost" desc="-Email Processed">
+<whpagesettings>
+whsequence=off
+whSequenceUp=pgEnterShowcase
+whSequenceFinal=pgEnterShowcase
+bSeqHdr=false
+bReqUl=true
+level=99
+levelKeyword=None
+htmlFilename=XEmail.whteko
+showcaseBranch=<!-- empty -->
+</whpagesettings>
+<whprep>
+(~WebMailForm.execute|feedback~)
+</whprep>
+(~drShowcaseGlobalHeader~)
+<h2>Thank you</h2>
+Your message has been sent. 
+<p>
+ (~GO|PGFEEDBACK|Return to Feedback page~)
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgFrameHelper" desc="-Link to FrameSet1">
+(~PAGE|FrameSet1~)
+</whpage>
+
+</whteko>

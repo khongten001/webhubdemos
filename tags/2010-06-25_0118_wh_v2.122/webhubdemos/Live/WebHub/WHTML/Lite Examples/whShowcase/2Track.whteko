@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=PGSURFERTRACKING
+whSequenceFinal=PGSURFERTRACKING
+bSeqHdr=true
+bReqUl=true
+bNoMore=false
+level=2
+levelKeyword=SurferTracking
+htmlFilename=2Track.whteko
+showcaseBranch=(~GO|PgSurferTracking|Surfer Tracking~) &raquo;
+showcaseBranchText=Surfer Tracking: 
+</whpagesettingslist>
+
+<whpage pageid="pgCookies" desc="Using Cookies">
+<whpagesettings inherit="a">
+downLink=PGSETCOOKIE
+</whpagesettings>
+<whoutput>
+(~drShowcaseGlobalHeader~)
+<p>Cookies are sent to your browser by a variation of the header
+macro, also known as <b>the Cookie Macro.</b>
+WebHub allows you to control the HTML headers independently of the actual HTML that you're sending,
+and you can use cookie values in a variety of ways.</p>
+<p>The syntax for cookies looks like this:</p>
+<pre>(~.Cookie|key[=value][,rootpath]|[expire][,domain][,secure]~)</pre>
+<p>The following examples will help you understand how WebHub uses cookies to track information about the surfer.</p>
+(~drShowcaseGlobalFooter~)
+</whoutput>
+</whpage>
+
+
+<whdroplet name="barCookies">
+(~GO|PGSETCOOKIE|Setting Cookies~)(~mcHeadingSeparator~)
+(~GO|PGDELCOOKIE|Deleting Cookies~)(~mcHeadingSeparator~)
+(~GO|PGEXPIRECOOKIE|Expiring Cookies~)
+</whdroplet>
+
+<whdroplet name="ulPgCookies">
+<span class="changing">(~GOR|PGSETCOOKIE|Setting Cookies~)<br/>
+(~GOR|PGDELCOOKIE|Deleting Cookies~)<br/>
+(~GOR|PGEXPIRECOOKIE|Expiring Cookies~)<br/>
+</span>
+</whdroplet>
+
+
+
+
+<whpage pageid="pgCharging" desc="Microcharging Surfers">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<p>WebHub has properties to keep a running tally of "micro charges."
+These are small fees that you associate with any macro and/or any page.
+A common use for microcharging is to assess a cost for graphics, video files, or audio files.
+You could set up a macro, and then each time that macro is expanded,
+the total cost assessed for that surfer will go up.  For example, the following syntax charges
+$3.00 for a newspaper and $4.00 for a disk.</p>
+<pre>
+mcChgPaperIMG=&lt;img src=(~ mcImgShowcaseDir~)skpaper.JPG>|$=3<br />
+mcChgDiskIMG=&lt;img src=(~ mcImgShowcaseDir~)skdskguy.JPG>|$=4
+</pre>
+<p>Microcharges are stored as arbitrary units in a longint, but
+you may convert those units to any convenient currency unit.
+Here we are assuming $1.00 units.
+To associate a charge with a page, you have to use Delphi to set the PageCost property.</p>
+<p>This page uses the two charging macros shown above to display graphics. </p>
+<p>You are being charged: </p>
+<b>$3.00</b> for this newspaper: (~mcChgPaperIMG~)
+<p>and</p>
+<p><b>$4.00 </b> for this disk: (~mcChgDiskIMG~)
+</p>
+<p><span class="changing">(~JumpR|pgCharging|I am rich! Run up my bill! I want to Download Again!~)</span></p>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whdroplet name="ulPgCharging">
+<span class="changing">(~GOR|PGTOTAL|Show Me The Bill~)</span><br/>
+(~Go|pgSURFERTRACKING|Too Rich for My Blood~)<br/>
+</whdroplet>
+
+</whteko>

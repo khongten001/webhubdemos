@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ZMGlobalSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zaphodsmap.com/zmdesign/xsd/ZMGlobalSettings200605.xsd">
+  <DefaultContext value="test"/>
+</ZMGlobalSettings>

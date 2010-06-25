@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" defaultlingvo="eng">
+
+<whdroplet name="chAdvertising">
+<whdoc>
+chAdvertising: Displays 4 lines of text that run in the status bar.
+</whdoc>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+<!-- Beginning of JavaScript Applet -------------------
+
+/* Copyright (C)1996 Web Integration Systems, Inc. DBA Websys, Inc. 
+All Rights Reserved.
+   This applet can be re-used or modified, if credit is given in the source
+code.
+   Chris Skinner, January 30th, 1996.   Hacked for CNNfn by RD, Jan. 31, 1996
+*/
+
+function scrollit_r2l(seed)
+{
+        var m1  = "......Welcome to The WebHub Demo Center......";
+        var m2  = "......Database-driven web apps.......";
+        var m3  = "......Interactive web apps.......";
+        var m4  = "......Object Oriented Elegance.......";
+        var m5  = "......This page is brought to you by HREF Tools Corp........";
+        
+        var msg=m1+m2+m3+m4+m5;
+        var out = " ";
+        var c   = 1;
+
+        if (seed > 100) {
+                seed--;
+                var cmd="scrollit_r2l(" + seed + ")";
+                timerTwo=window.setTimeout(cmd,100);
+        }
+        else if (seed <= 100 && seed > 0) {
+                for (c=0 ; c < seed ; c++) {
+                        out+=" ";
+                }
+                out+=msg;
+                seed--;
+                var cmd="scrollit_r2l(" + seed + ")";
+                    window.status=out;
+                timerTwo=window.setTimeout(cmd,100);
+        }
+        else if (seed <= 0) {
+                if (-seed < msg.length) {
+                        out+=msg.substring(-seed,msg.length);
+                        seed--;
+                        var cmd="scrollit_r2l(" + seed + ")";
+                        window.status=out;
+                        timerTwo=window.setTimeout(cmd,100);
+                }
+                else {
+                        window.status=" ";
+                        timerTwo=window.setTimeout("scrollit_r2l(100)",75);
+                }
+        }
+}
+scrollit_r2l(150)
+// -- End of JavaScript code -------------- -->
+
+
+</SCRIPT>
+</whdroplet>
+
+<whdroplet name="chClockVariables">
+speed=1000
+len=25
+tid = 0;
+</whdroplet>
+
+<whdroplet name="chClockText">
+document.write(' value="Time For WebHub!"></FORM>')
+</whdroplet>
+
+<whdroplet name="chJavaCl">
+<whdoc for="chJavaCl">
+Java-based Clock
+;speed
+;length of box
+;tid
+;replacing what's in the quotes after value= will 
+determine what the clock says while the javascript to 
+run it is loading
+</whdoc>
+
+<script language="javascript">
+<!-- Clock in Java Script .. Cameron Gregory cameron@corona.att.com
+// http://www.att.com/homes/cameron/
+var dateform
+(~chClockVariables~)
+
+function dodate()
+{
+  f.date.value=new Date();
+  tid=window.setTimeout("dodate()",speed);
+}
+ 
+function start(x) {
+  f=x
+  tid=window.setTimeout("dodate()",speed);
+}
+ 
+function cleartid() {
+  window.clearTimeout(tid);
+}
+ 
+// for some reason on some pages this crashes netscape
+function Clock()
+{
+document.write('<FORM name=dateform><input name=date size=')
+document.write(len)
+(~chClockText~)
+start(document.dateform);
+}
+// end-->
+</script>
+
+
+<body>
+
+<script language="javascript">
+<!-- Shields up
+Clock();
+// Shields down -->
+</script>
+
+<i> Java is a registered trademark of Sun Microsystems, Inc.</i>
+
+</whdroplet>
+
+<whdroplet name="chMarquee1Speed">
+tt_speed=100
+</whdroplet>
+
+<whdroplet name="chMarquee1ScSize">
+document.write('<FORM name=tickertapeform><input name=scroll size=55></FORM>');tt_start(document.tickertapeform);
+</whdroplet>
+<whdroplet name="chMarquee1Text">
+
+ticker("Welcome to a marquee generated using javascript and expanded chunks in WebHub!");
+</whdroplet>
+<whdroplet name="chMarquee1">
+<whdoc for="chMarquee1">
+Tickertape Marquee
+</whdoc>
+
+<script language="javascript">
+<!-- Ticker Tape in Java Script .. Cameron Gregory cameron@corona.att.com
+//-- http://www.att.com/homes/cameron/
+var tickertapeform
+(~chMarquee1Speed~)
+tt_len=50
+tt_space="                                                                                                    "
+tt_tid = 0;
+tt_message="TickerTape in JavaScript .. by Cameron Gregory .. cameron@corona.att.com .. visit my home page at http://www.att.com/homes/cameron/ or http://www.cs.jcu.edu.au/~cameron/"
+tt_c= -tt_len;
+
+function move() {
+  cend=Math.min(tt_c+tt_len,tt_message.length)
+  if (tt_c <0)
+    cstart=0;
+  else
+    cstart=tt_c;
+  if (tt_c < 0)
+    tt_f.scroll.value=tt_space.substring(0,-tt_c) + tt_message.substring(cstart,cend)
+  else
+    tt_f.scroll.value=tt_message.substring(cstart,cend)
+  tt_c = tt_c +1;
+  if (tt_c == tt_message.length ) tt_c = -tt_len;
+  tt_tid=window.setTimeout("move()",tt_speed);
+}
+ 
+function tt_start(x) {
+  tt_f=x
+  tt_tid=window.setTimeout("move()",tt_speed);
+}
+ 
+function tt_cleartid() {
+  window.clearTimeout(tt_tid);
+}
+ 
+// for some reason on some pages this crashes netscape
+function ticker(m,l,s)
+{
+tt_message=m
+tt_len=l
+tt_speed=s
+document.write('<FORM name=tickertapeform><input name=scroll size=')
+document.write(tt_len)
+document.write(' value=""></FORM>')
+tt_start(document.tickertapeform);
+}
+
+// for some reason on some pages this crashes netscape
+function ticker(m)
+{
+tt_message=m
+tt_len=75
+tt_speed=100
+(~chMarquee1ScSize~)
+}
+
+// end-->
+</script>
+<p>
+
+<script language="javascript">
+(~chMarquee1Text~)// end javascipt section --> <br />
+</script>
+</center>
+<i>
+Java is a registered trademark of Sun Microsystems, Inc.
+</i>
+</whdroplet>
+
+</whteko>

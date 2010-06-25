@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdroplet name="drDemoSpeedbarForhtdr">
+<!-- speedbar for HTDR demo could appear here -->
+</whdroplet>
+
+<whpage pageid="pgEnterHTDR" desc="TwhDropDown Demonstration">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Demonstration of the TwhDropDown component</h1>
+<p>These components use a stringlist that you configure at design time to present a SELECT area to the user. 
+Configurable parameters include the height, text, default value processing, and  multiple select attributes.
+Events include an OnChange event.</p>
+
+<p>The first five dropdown components have exactly four items in their list. 
+They present a blank line/item as indicated when no default has been chosen.
+Once a default has been picked, the blank line disappears.
+The sixth example has a blank line in the list to allow you to clear your choice.</p>
+
+<div class="dcenter">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgEnterhtdr~)"><!-- changing:stop-->
+
+<hr style="width:75%;" />
+(~DropDown1~)
+<p>DropDown1.<br />
+Presents a blank value if none has been chosen.</p>
+
+<hr style="width:75%;" />
+(~DropDown2~) <p>DropDown2.<br />Defaults to first item.</p>
+
+<hr style="width:75%;" />
+(~DropDown3~) <p>DropDown3.<br />Single select, defaults to blank, three rows high.</p>
+
+<hr style="width:75%;" />
+(~DropDown4~) <p>DropDown4.<br />Multiple select, defaults to blank, full height.</p>
+
+<hr style="width:75%;" />
+(~DropDown5~) <p>DropDown5.<br />Multiple select, defaults to first item,  full height.</p>
+<hr style="width:75%;" />
+
+(~DropDown6~) <p>DropDown6.<br />Single select, full height, list contains a blank item.</p>
+<hr style="width:75%;" />
+
+(~DropDown7.execute|dr7~) <p>DropDown7.<br />Customize the name of the field to dr7.</p>
+<hr style="width:75%;" />
+
+(~DropDown8~) <p>DropDown8.<br />Defaults to 'three' --this could be a formula that pulls the 
+default from a database or other calculation where the end result varies based on some information known about
+the surfer.</p>
+<input type="submit" />
+</form>
+	</div>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+</whteko>

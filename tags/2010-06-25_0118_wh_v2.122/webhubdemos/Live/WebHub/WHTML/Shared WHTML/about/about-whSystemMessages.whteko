@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whpage pageid="AboutSYSMSG" desc="About the WebHub System Messages">
+(~PARAMS|aboutHREFExample|SYSMSG~)
+</whpage>
+<whmacros>
+mcWhDemoOneLinerSYSMSG=WebHub System Messages
+mcWhDemoCreditIdeaSYSMSG=Michael Ax and Ann Lynnworth
+mcWhDemoCreditFirstDraftSYSMSG=Ann Lynnworth
+mcWhDemoCreditGraphicsSYSMSG=n/a
+mcWhDemoCreditCopySYSMSG=Ann Lynnworth
+mcWhDemoUpdatedSYSMSG=1999
+mcWhDemoKeywordsSYSMSG=messages about system problems
+mcWhDemoLiteSYSMSG=Lite
+</whmacros>
+<whdroplet name="chSetupSYSMSG">
+<ul>
+<li> (~chAboutLiteDemo~)</li>
+</ul>
+</whdroplet>
+<whdroplet name="chDemoShortDescSYSMSG">
+This application is used in-house to generate the default WebHub system messages. You may 
+use the files to generate your own set of files with minor, consistent changes.
+</whdroplet>
+<whdroplet name="chDemoLongDescSYSMSG">
+(none)
+</whdroplet>
+</whteko>

@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Untitled Document</title>
+<script type="text/javascript">
+function setAllCheckboxes(b)
+{
+	var e = document.getElementById('checker-table');
+  var arr = new Array();
+  arr = document.getElementsByTagName( "input" );
+  for(var i=0; i < arr.length; i++)
+  {
+    if (arr[i].type == 'checkbox')
+		{
+			arr[i].checked = b;
+		}
+  }
+}	 
+</script>
+</head>
+<body>
+<table id="checker-table">
+<tr>
+<td><input type="checkbox" /></td><td><input type="checkbox"/></td>
+</tr>
+</table>
+<a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a>
+</body>
+</html>

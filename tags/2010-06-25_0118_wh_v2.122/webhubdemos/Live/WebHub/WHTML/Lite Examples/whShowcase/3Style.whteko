@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpagesettingslist id="a">
+whsequence=on
+whSequenceUp=pgStyleSheets
+whSequenceFinal=pgStyleSheets
+bSeqHdr=true
+bReqUl=false
+level=3
+levelKeyword=StyleSheets
+htmlFilename=3Style.whteko
+showcaseBranch=(~GO|PgWebMaster|WebMaster Topics~) &raquo; (~GO|pgStyleSheets|StyleSheets~) &raquo;
+showcaseBranchText=WebMaster Topics: StyleSheets: 
+</whpagesettingslist>
+
+
+<whpage pageid="pgPageSetting" desc="Page Settings">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<!---(~ANCHORMODIFY|style|<link rel="stylesheet" type="text/css" href="(~ACTION|pgTestCSS~)" />~)-->
+<h1>Note!</h1>
+<p>WebHub was able to provide "style sheet" behavior before CSS was invented. 
+Now that the world has Cascading Style Sheets, we encourage you to use them as much as possible.</p>
+<p><span id="styleTest">CSS style test</span></p>
+
+<h1>Creating "styles" (aka skins) with WebHub</h1>
+Files have attributes which are inherited by the pages contained by the file.  A file could have a default such as
+style=fancy or style=nographics.  In turn, all the pages in that file would have the same property.  The expression  
+<b>pagesetting.style</b> would retrieve the value of the setting name style.  In addition, a page could have the
+ PAGESETTING macro defined to override the file's default.  Suppose you wanted all your pages
+in a file to be fancy, except for one.  The command would look like:
+<br /><code>PageSetting|style=plain</code>.<br />
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+</whteko>

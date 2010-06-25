@@ -1,0 +1,26 @@
+<!-- CSS Stylesheet -->
+<!-- modified by Ann Lynnworth -->
+
+body {background-color:#ffffff;}
+.table1 {font-family:"Verdana"; border:1px Solid Gray; padding:"4px"; }
+.table2 {font-family:"Verdana"; border:1px Solid White; padding:"4px"; }
+.tableheader1 {font-family:"Verdana"; font-size:"10pt"; font-weight:bold; color:#FFFFF; background-color:#999999; }
+.tableheader1 td {padding: 5px; }
+.tableheader2 {margin-top: 3em; padding: 5px; font-family:"Verdana"; font-size:"10pt"; font-weight:bold; color:#00000; background-color:#ffffcc; }
+.tabledata1 {vertical-align:top; padding: 5px; font-family:"Verdana"; font-size:"8pt"; color:Black; background-color:#FFFFFF; border:0; padding:"1px"; }
+.tabledata2 {font-family:"Verdana"; font-size:"8pt"; color:Black; background-color:#FFFFCC; border:0; padding:"1px"; }
+.header1 {font-family:"Verdana"; font-size:"10pt"; font-weight:bold; color:Black; border:0; padding:"0px"; }
+.header1 td {background-color: #ffffcc;}
+.header2 {font-family:"Verdana"; font-size:"11pt"; font-weight:bold; color:Black; border:1px Solid Blue; padding:2px; }
+.normaltext {font-family:"Verdana"; font-size:"10pt"; color:Black; border:0; padding:0; }
+.normaltext td {background-color: #ffffcc;}
+.label1 {font-family:"Verdana"; font-size:"10pt"; font-weight:bold;color:Black; border:0; padding:0; }
+.owt {color: firebrick; }
+.nwt {color: sienna; background-color: cornsilk;}
+.vtd {color: blue;display:block}
+.vsy {color: green;display:block}
+.vim {color: purple;display:block}
+.mkf {color: #dd0000; background-color: yellow;}
+.nkf {color: #dd0000; background-color: yellow;}
+.vcm {color: darkslateblue;display:block}
+.vcp {color: sandybrown;display:block}

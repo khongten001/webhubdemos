@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designdynsrc="localdemoFORM"
+  designpage="pgDetour"
+  designmode="code"
+  notes="This file provides most of the content for the FORM demo.">
+
+<whmacros>
+mcSpeciesList=1-Cat,2-Dog,3-Rodent,4-Bird,5-Reptile,6-Fish,7-Pig,8-Horse,9-Insect,10-Rock,11-Other
+mcPersonalityList=1-Docile,2-Affectionate,3-Playful,4-Active,5-Cranky,6-Vicious,7-Intelligent,8-Trickster,9-Naughty,10-Beastly
+mcSizeList=1-Tiny,2-Small,3-Average,4-Large,5-Enormous
+mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gray,10-White
+</whmacros>
+
+<whdroplet name="drDemoSpeedbarForFORM">
+(~GO|pgEnterFORM|Basic Save-State~)<br />
+(~GO|Param|Advanced INPUTSELECT~)<br />
+</whdroplet>
+
+<whpage pageid="pgEnterFORM" desc="Describe Your Pet">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#inputleft  td {padding: .5em;text-align:center;}
+	#inputright td {padding: .5em;text-align:center;}
+	#inputleft  td.prompt {color:gray;font-weight:700;}
+	#inputright td.prompt {color:gray;font-weight:700;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Demo of WebHub Save-State</h1>
+<p>
+<whtranslation key="~FormIntro" show="yes">
+To participate, fill in this form to describe your real or imaginary pet...
+</whtranslation>
+</p>
+(~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
+<!-- changing:start-->
+<!---<form method="post" accept-charset="UTF-8"  action="http://demos.href.com/WebRequestAnalysis/StreamCatcher.dll">  -->
+<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
+<!-- changing:stop-->
+<table border="0" cellpadding="10" cellspacing="0">
+<tr><td valign="middle">
+<table id="inputleft">
+<tr>
+	<td class="prompt">
+	<!--- The text the surfer enters into this field is saved as a literal called "inPetname."
+          This text can be saved and reused throughout the surfer's visit. -->
+	Name:
+	</td>
+</tr>
+<tr><td>(~inputtext|inPetname,15,25~)</td></tr>
+<tr>
+	<td class="prompt">
+	<!---The surfer can make a single selection from this drop-down list.
+		 The selection will be saved for reuse as the literal "inSpecies." -->
+	Species:
+	</td>
+</tr>
+<tr>
+	<td>
+	(~INPUTSELECT|inSpecies,mcSpeciesList~)
+	</td>
+</tr>
+<tr>
+	<td class="prompt">
+	<!--- The user can select multiple options from this drop-down list.
+          All these options will be saved in a literal called "inPersonality." -->
+	Personality:<br />
+<small>(Hold down SHIFT or CTRL <br />to choose multiple options)</small>
+	</td>
+</tr>
+<tr>
+	<td>
+	(~INPUTSELECT|inPersonality,mcPersonalityList,5,Yes|~)
+	</td>
+</tr>
+</table>
+</td>
+<td valign="middle">
+<table id="inputright">
+<tr>
+	<td class="prompt">
+<!--- The surfer can select only one of these radio buttons.
+      The data will be saved for reuse in a literal called "inSize." -->
+	Size:
+	</td>
+</tr>
+<tr><td>(~INPUTSELECTRADIO|inSize,mcSizeList~)</td></tr>
+<tr>
+             <td class="prompt">
+             (~INPUTCHECKBOX|inVeryYoung|class="cbox"~) Pet is very young.
+             (~INPUTCHECKBOX|inVeryLoved|class="cbox"~) Pet is very loved.
+             </td>
+</tr>
+<tr>
+	<td class="prompt">
+<!--- The surfer can check as many boxes as he or she likes.
+      The resulting data will be saved as "Yes" or "No" StringVars. -->
+	Coloring:
+	</td>
+</tr>
+<tr><td>(~INPUTSELECTCHECKBOX|bColor,mcColorList|class="cbox"~)</td></tr>
+<tr>
+	<td class="prompt">Comments:
+	</td>
+</tr>
+<tr><td>(~inputtextarea|txtdescription,6,30~)</td></tr>
+</table>
+
+</td></tr>
+<tr><td colspan="2">
+<input type="submit" name="petFormButton" value="Post Pet Particulars" />
+<input type="submit" name="petFormButton" value="Shortcut" />
+</td></tr></table>
+</form>
+
+<!--- This page compares the information that CGI and WebHub retain.
+      But CGI can only retain this information for one page,
+      so the next page will look much different. -->
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whtranslation key="~FormIntro" lingvo="fra" show="no">
+Pour participer, compltez cette forme pour dcrire votre vrai ou imaginaire animal de compagnie...
+</whtranslation>
+
+<whtranslation key="~FormIntro" lingvo="deu" show="no">
+Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haustier zu beschreiben...
+</whtranslation>
+
+<whpage pageid="pgThankYou" desc="Thank You">
+<whprep>
+(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|(~BOUNCE|pgEnterForm~)~)~)
+(~MATCH|(~petFormButton~)=Shortcut|(~BOUNCE|pgShortcut~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<div class="dcenter">
+(~chCGILiterals~)
+(~chWHLiterals~)
+<p><b>Not much difference? (~GO|pgDetour|Follow along~) and find out!</b></p>
+</div>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgShortcut" desc="Slight Shortcut">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+Thank you for trying the shortcut button.
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+
+<whdoc for="pgDetour">
+With CGI, all that data is lost. With WebHub it can be kept throughout the surfer's visit to the site.
+</whdoc>
+<whpage pageid="pgDetour" desc="Detour">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~chCGILiterals~)
+(~chWHLiterals~)
+<p>CGI can only retain the surfer's data for one page.<br />
+WebHub can retain the same data throughout the surfer's visit to the site!
+</p>
+Return to the (~GO|pgEnterFORM|Pet Form~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdoc for="chCGILiterals">
+The built-in Delphi component "Request.FormData" is used to track the form StringVars used by CGI.
+If (for some reason) you do want to use CGI, WebHub provides support for that too!
+</whdoc>
+<whdroplet name="chCGILiterals">
+<span style="color:#666666;">Here is the form data that an everyday CGI app saves:</span>
+<br />
+<table width="50%" border="2" cellpadding="5" cellspacing="0">
+<tr><td>(~Request.FormData~)</td></tr>
+</table>
+</whdroplet>
+
+<whdoc for="chWHLiterals">
+Note that WebHub allows you to track checkboxes and text fields separate from the other StringVars.
+</whdoc>
+<whdroplet name="chWHLiterals">
+<span style="color:#666666;">Here is the form data that WebHub saves:</span><br />
+
+<table width="50%" border="2" cellpadding="5" cellspacing="0">
+<tr><td>
+<b>StringVars:</b><br />
+(~StringVars~)<br />
+<b>txtDescription:</b><br />
+(~txtDescription~)<br />
+<b>BoolVars:</b><br />
+(~BoolVars~)
+</td></tr>
+</table>
+</whdroplet>
+
+</whteko>
