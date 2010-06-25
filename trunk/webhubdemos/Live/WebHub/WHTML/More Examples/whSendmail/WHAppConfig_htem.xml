@@ -39,13 +39,13 @@
       <ErrorAlertFlag name="LogToFile" value="true"/>
     </ErrorAlertFlags>
     <RemoteDesignDefaultInterface>
-	  <AllowedSessionIDRange value="192.168.1.*;127.0.0.1" />
+	  <AllowedSessionIDRange value="1800-1900" />
 	  <RemoteAccessPages>
 	    <Page function="design" pageID="remotedesign" />
 	    <Page function="preview" pageID="remotepreview" />
 	    <Page function="refresh" pageID="remoterefresh" />
 	  </RemoteAccessPages>
-	  <AllowedIPRange value="1800-1900" />
+	  <AllowedIPRange value="192.168.1.*;127.0.0.1" />
       <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
 	<Security>
