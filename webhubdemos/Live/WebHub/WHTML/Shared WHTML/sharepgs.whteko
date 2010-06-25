@@ -150,6 +150,8 @@ customizing the onBadIP event of the TwhAppBase.</p>
 (~CMDHAS|lingvo=deu|(~CHECK|_tempFlag~)~)
 (~CMDHAS|lingvo=fra|(~CHECK|_tempFlag~)~)
 (~CMDHAS|lingvo=eng|(~CHECK|_tempFlag~)~)
+(~CMDHAS|lingvo=chi|(~CHECK|_tempFlag~)~)
+(~CMDHAS|lingvo=rus|(~CHECK|_tempFlag~)~)
 (~IFNOT|_tempFlag|(~SET|_aboutID=(~command~)~)~)
 (~CLEAR|_tempFlag~)
 (~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
