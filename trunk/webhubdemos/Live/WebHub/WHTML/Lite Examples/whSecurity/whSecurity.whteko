@@ -26,6 +26,9 @@ UnderLogin=yes
 <whpage pageid="pgEnterHTSC" desc="Entrance for the HTSC Demo">
 <whpagesettings inherit="public">
 </whpagesettings>
+<whprep>
+
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -326,12 +329,13 @@ row with a  user-defined prompt "hint" for the password.</p>
 </whoutput>
 </whpage>
 
-
-
-<whpage pageid="PgAboutBasics" desc="About WebHub Security">
+<whpage pageid="pgAboutBasics" desc="About WebHub Security">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
+<whprep>
+(~COOKIE|KEYCODE=1234~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -364,6 +368,9 @@ Here is a list of (~JUMP|PgWHSecBasics|built-in WebHub Security features~)</p>
 <whpage pageid="pgWHSecBasics" desc="Basic WebHub Security Features">
 <whpagesettings inherit="public">
 </whpagesettings>
+<whprep>
+(~COOKIE|FRONTDOORSESSION=abcd|~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -532,6 +539,13 @@ they are best suited--transmission of data that has no need to be protected.</p>
 <li><a href="http://www.junkbusters.com/ht/en/cookies.html">http://www.junkbusters.com/ht/en/cookies.html</a></li>
 </ul>
 </div>  <!--- demopagecontent -->
+<h2>Your Request Cookies</h2>
+(~Request.CookiesIn~)
+
+<h2>Cookie Control</h2>
+<p>You may decide whether you want a WebHub session cookie, or not, by visiting the 
+(~JUMPR|setpref|(~~Options~)~) page.  If you accept the WebHub session cookie, 
+all non-random page jumps will exclude session digits.</p>
 (~drPageEnd~)
 </body></html>
 </whoutput>
