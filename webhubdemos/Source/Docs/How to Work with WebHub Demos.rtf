@@ -1,9 +1,9 @@
 {\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}{\f1\fswiss\fprq2 Verdana;}{\f2\fmodern\fprq1 Courier New;}{\f3\fmodern\fprq1\fcharset0 Courier New;}}
 {\colortbl ;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;}
-{\*\generator Msftedit 5.41.15.1507;}\viewkind4\uc1\pard\cf1\b\f0\fs28 How to Work with WebHub Demos\par
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\cf1\b\f0\fs28 How to Work with WebHub Demos\par
 \cf2\f1\fs22\par
 Viewing WebHub Demos\par
-\cf3\b0 - Use http://demos.href.com to view WebHub demos online.\par
+\cf3\b0 - Use \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com"}}{\fldrslt{\ul\cf1 http://demos.href.com}}}\cf3\f1\fs22  to view WebHub demos online.\par
 \par
 - \f0 Make a n\f1 ote \f0 of \f1 "AppID" for any demo you wish to compile and run locally. The AppID is shown top-right of the welcome page for almost all demos. \f0  It is also used in the filename of the demo's configuration file, e.g. for the \ldblquote adv\rdblquote  demo, the configuration file is WHAppConfig_adv.xml.  This is a convention followed by the demos and does not need to be followed for your own applications.\par
 \par
@@ -11,22 +11,22 @@ Viewing WebHub Demos\par
 \f1\par
 \par
 \cf2\b Downloading Source\f0  to the Demos\f1\par
-\cf3\b0 - Download \f0 the source to all demos from \f1 http://demos.href.com/download\f0 . Look for the file named whDemo_Complete-v2xxx.zip where "xxx" is the latest version of WebHub.\par
+\cf3\b0 - Download \f0 the source to all demos from \cf0\f1{\field{\*\fldinst{HYPERLINK "http://demos.href.com/download"}}{\fldrslt{\ul\cf1 http://demos.href.com/download}}}\cf3\f0\fs22 . Look for the file named whDemo_Complete-v2xxx.zip where "xxx" is the latest version of WebHub.\par
 \par
-- Or use CVS.  Instructions are available by going into any demo at http://demos.href.com, and in the page footer, clicking the [Download] link.\par
+- Or use Subversion.  Instructions are available by going into any demo at \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com"}}{\fldrslt{\ul\cf1 http://demos.href.com}}}\cf3\f0\fs22 , and in the page footer, clicking the [Download] link.\par
 \par
 - Or view the source of one file at a time, by clicking the [Source] link in the page footer.  To see object pascal source, first click into the DPR file and then click into any PAS or DFM file.  You will find that the *.whteko and *.xml files are available for viewing, too.\par
 \par
 \par
 \cf2\b Unzipping\cf3\f1\par
-\b0 - \f0 Place files in \f1 any directory\f0 , ideally \f1 d:\\projects. All files will be placed into a subdirectory named "WebHub Demos".\f0   \f1\par
+\b0 - \f0 Place files in \f1 any directory\f0 , ideally \f1 d:\\projects. All files will be placed into a subdirectory named "\f0 webhubdemos\f1 ".\f0   \f1\par
 \par
 \par
 \cf2\b\f0 HTTP\f1  Server Configuration\f0  (IIS, Sambar, Apache, etc.)\f1\par
 \cf3\b0 - Make sure the path \b /webhub/\b0  is a \b virtual root \b0 mapped to your actual ...\\WebHub Demos\\Live\\WebRoot\\\f0 webhub\\\f1  \f0 folder.\par
 \par
-- To test this, first view http://demos.href.com\b /webhub/\b0 demos/img/logos/adv.jpg which shows you what should appear.\par
-Then try a corresponding URL on your own computer, e.g. http://localhost\b /webhub/\b0 demos/img/logos/adv.jpg  -- if your vitual root definition is correct, you will see the same graphic.\f1\par
+- To test this, first view \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com/webhub/demos/img/logos/adv.jpg"}}{\fldrslt{\ul\cf1 http://demos.href.com\b /webhub/\b0 demos/img/logos/adv.jpg}}}\cf3\f0\fs22  which shows you what should appear.\par
+Then try a corresponding URL on your own computer, e.g. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/webhub/demos/img/logos/adv.jpg"}}{\fldrslt{\ul\cf1 http://localhost\b /webhub/\b0 demos/img/logos/adv.jpg}}}\cf3\f0\fs22   -- if your vitual root definition is correct, you will see the same graphic.\f1\par
 \cf2\b\par
 \f0\par
 WebHub Runtime System Installation\par
@@ -36,24 +36,23 @@ WebHub Runtime System Installation\par
 \par
 \b\tab For testing on Microsoft IIS or Sambar Web server\b0\par
 \par
-\tab 1. http://localhost/scripts/runisa.dll?echo\par
+\tab 1. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?echo"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?echo}}}\cf3\f0\fs22\par
 \tab\tab ( Look for any errors highlighted in red on the echo response page )\par
 \par
-\tab 2. http://localhost/scripts/runisa.dll?hubvers:pgversion\par
+\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?hubvers:pgversion"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?hubvers:pgversion}}}\cf3\f0\fs22\par
 \par
 \b\tab Alternative tests for Apache:\par
 \cf2\f1\par
-\cf3\b0\f0\tab 1. http://localhost/cgi-bin/runbin.exe?echo\par
+\cf3\b0\f0\tab 1. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/cgi-bin/runbin.exe?echo"}}{\fldrslt{\ul\cf1 http://localhost/cgi-bin/runbin.exe?echo}}}\cf3\f0\fs22\par
 \tab\tab ( Look for any errors highlighted in red on the echo response page )\par
 \par
-\tab 2. http://localhost/cgi-bin/runbin.exe?hubvers:pgversion\par
+\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/cgi-bin/runbin.exe?hubvers:pgversion"}}{\fldrslt{\ul\cf1 http://localhost/cgi-bin/runbin.exe?hubvers:pgversion}}}\cf3\f0\fs22\par
 \cf2\b\f1\par
 \par
 \par
 Compilation\cf3\par
-\b0 - You will need to either map drive "H" to your "lib" directory \par
-(e.g. share c:\\program files\\HREF\\WebHub\\lib as "whlib" and then map H: to "whlib") \par
-\f0 (or avoid setting up a share and instead use the SUBST command.  e.g.  subst h: d:\\Apps\\HREFTools\\WebHub\\Lib)\f1\par
+\b0 - \f0 The easiest thing is to substitute "drive"\f1  "H" \f0 so that it points \f1 to your "lib" directory \par
+\f0 (use the SUBST command.  e.g.  subst h: d:\\Apps\\HREFTools\\WebHub\\Lib  and be careful to avoid trailing path delimiter when using the SUBST command)\f1\par
 \par
 \cf1 or \par
 \cf3\par
@@ -63,9 +62,10 @@ Compilation\cf3\par
 \par
 \f0 For all lite demos, open D:\\Projects\\WebHub Demos\\Source\\WHApps\\Lite Examples\\whAppServer\\whLite\\whLite.dpr\f1\par
 \par
-Note: \f0 WebHub EXEs \f1 will run equally well from any directory, on any local or network drive\f0 , because they use the ZaphodsMap configuration system and find their configuration files based on their AppID.\f1\par
-\cf2\b\par
-\cf3\b0\par
+Note: \f0 WebHub EXEs \f1 will run equally well from any directory, on any local or network drive\f0 , because they use the ZaphodsMap configuration system and find their configuration files based on their AppID.\par
+\par
+Note: any references to "drive" K: are for in-house use when testing and compiling with source.   There \i should\i0  not be \i any\i0  active USES lines referencing drive K:, and sadly sometimes we forget to remove them after testing.  You can either delete the k:\\ line from the uses clause, or try using h:\\ as the path to the pascal file, or list the unit without any corresponding pascal file spec.  Feel free to complain to tech support if you catch one of these.\f1\par
+\par
 \cf2\b\par
 Running\f0  a WebHub Demo\cf3\f1\par
 \b0 - \f0 To make any WebHub application work, you \b always\b0  need to \b first define its \f1 AppID\b0 . \f0   NB: \b AppIDs \b0 should be in \b\i lowercase\b0\i0 .\f1\par
@@ -106,17 +106,17 @@ Tip: in Delphi IDE, use the \b Projects > WebHub menu \b0 to run your EXE.  You 
 \par
 - To see the \f0 web \f1 application \f0 function \f1 on your local machine using a web browser, use \par
 \par
-http://localhost/scripts/runisa.dll?appid:\f0 pgwelcome\f1\par
+\cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?appid:pgwelcome"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?appid:\f0 pgwelcome}}}\cf3\f1\fs22\par
 \par
 where you replace "appid" with the correct WebHub Application ID.\f0   The page identifier, pgwelcome, is used in all the demos to give a very quick overview of the demo.  In your own application, you can use any pageid.\f1\par
 \par
-\f0 Important: on the demos.href.com server, the StreamCatcher ISAPI filter is used to enable the demos to run with "short URLs", basically skipping over the /scripts/runisa.dll? part of the syntax.  StreamCatcher is a separate product; see http://www.streamcatcher.com.\par
+\f0 Important: on the demos.href.com server, the StreamCatcher ISAPI filter is used to enable the demos to run with "short URLs", basically skipping over the /scripts/runisa.dll? part of the syntax.  StreamCatcher is a separate product; see \cf0{\field{\*\fldinst{HYPERLINK "http://www.streamcatcher.com"}}{\fldrslt{\ul\cf1 http://www.streamcatcher.com}}}\cf3\f0\fs22 .\par
 \f1\par
 \f0 - Another test that you can do is to run Start > Programs > HREF Tools > WebHubView and look at the Connected panel.  The EXE that you just compiled should be listed as a process, and you should see its AppID.  Generally, you should not leave WebHubView running; it is designed for occasional troubleshooting, and for covering/uncovering applications (see its Tools menu).\f1\par
 \par
 \par
 \cf2\b\f0 Web Page Design with Dreamweaver\par
-\cf3\b0\i This requires the WebHub Designer for Dreamweaver (http://www.href.com/whdwmgr).  If you do not have Dreamweaver, do not worry; you can use the built-in Html > Files panel to edit your .whteko files, or any other ascii file editor.  However, the features below do not apply to other editors.\f1\par
+\cf3\b0\i This requires the WebHub Designer for Dreamweaver (\cf0{\field{\*\fldinst{HYPERLINK "http://www.href.com/whdwmgr"}}{\fldrslt{\ul\cf1 http://www.href.com/whdwmgr}}}\cf3\f0\fs22 ).  If you do not have Dreamweaver, do not worry; you can use the built-in Html > Files panel to edit your .whteko files, or any other ascii file editor.  However, the features below do not apply to other editors.\f1\par
 \b\i0\par
 \b0\f0 - Reference: whdemo_DWSecurity.pas, a Delphi source file which defines the security rules for the demos. These rules are more complicated than most sites require, because we try give full source to all demos without giving away write-rights on the public demos server.\par
 \b\f1\par
@@ -145,7 +145,7 @@ and\par
 - Remember, you will need to add a DynSource for each AppID you want to work on.\par
 \f1\par
 \par
-\f0 [ updated 11-Dec-2006 06:00 GMT for WebHub v2.078 ]\f1\par
+\f0 [ updated 06-Jul-2010 00:30 GMT for WebHub v2.123 ]\f1\par
 \par
 ###\par
 }
