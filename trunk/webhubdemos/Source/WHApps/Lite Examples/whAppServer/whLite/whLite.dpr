@@ -21,14 +21,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-// Usage: whLite.exe /ID:AppID [/NoMenu]
+// Usage: whLite.exe /ID:AppID 
 // Check Run|Parameters if you are running this from within the Delphi IDE!
 
 // Full paths are required on utpanfrm, utmainfm, uttrayfm so that WebHub Panels
 // will open inside the Delphi IDE.
 
 // Either map h: to your WebHub "lib" directory or change the paths as needed.
-// e.g. h: would be mapped to c:\Program Files\HREF\WebHub\v2.098\lib
+// e.g. h: would be mapped to c:\Program Files\HREFTools\WebHub\lib
+
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
@@ -58,21 +61,6 @@ uses
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   uAutoPanels in 'h:\uAutoPanels.pas';
-
-(* for debugging with more source
-  ucString in 'k:\webhub\tpack\ucString.pas',
-  webServ in 'k:\webhub\lib\whvcl\webServ.pas',
-  webCore in 'k:\webhub\lib\whvcl\webCore.pas',
-  cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
-  webCall in 'k:\webhub\lib\whvcl\webCall.pas',
-  apiBuilt in 'K:\WebHub\lib\whrun\apiBuilt.pas',
-  ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
-  apiCall in 'K:\WebHub\lib\whrun\apiCall.pas',
-  apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
-  webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
-  webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
-  htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas';
-*)
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos

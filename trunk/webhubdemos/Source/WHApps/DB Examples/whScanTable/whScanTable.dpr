@@ -26,8 +26,10 @@ THE SOFTWARE.
 *)
 
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
-  ExceptionLog,
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},

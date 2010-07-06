@@ -21,11 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
-  Forms,
-  webInfoU,
-  webApp,
-  ucString,
+  MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
@@ -40,7 +40,6 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   webDrop in 'h:\webDrop.pas',
   htDropDM in 'htDropDM.pas' {DMDrop: TDataModule},
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whDropdown_dmProjMgr in 'whDropdown_dmProjMgr.pas' {DMForWHDropdown: TDataModule},

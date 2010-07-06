@@ -3,6 +3,9 @@ program whRubicon; {Rubicon full text search example.}
 //  Copyright (c) 1995-2008 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 ////////////////////////////////////////////////////////////////////////////////
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
@@ -20,10 +23,14 @@ uses
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htRubiC in 'htRubiC.pas' {fmHTRUPanel},
-  webrubi in 'k:\webhub\lib\whplus\rubi\webrubi.pas',
   htru_fmExMakeU in 'htru_fmExMakeU.pas' {fmRubiconMakeBDE},
-  webScanKeys in 'K:\WebHub\lib\whplus\webScanKeys.pas',
   whRubicon_dmdbProjMgr in 'whRubicon_dmdbProjMgr.pas' {DMForWHRubicon: TDataModule};
+
+(* for working with more source:
+  webrubi in 'k:\webhub\lib\whplus\rubi\webrubi.pas',
+  webScanKeys in 'K:\WebHub\lib\whplus\webScanKeys.pas',
+*)
+
 
 {$R *.RES}
 {$R HTDEMOS.RES}   // main icon for demos

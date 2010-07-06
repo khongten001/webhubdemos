@@ -56,12 +56,10 @@ uses
   whhtml in 'h:\whHtml.pas' {fmAppHTML},
   whgui_CoverPage in 'h:\whgui_CoverPage.pas' {whfmCoverPage},
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
-  webInfoU,
   whAppOut in 'h:\whAppOut.pas' {fmAppOut},
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
-  whAppIn in 'k:\webhub\lib\whAppIn.pas' {fmAppIn},
-  cgiServ in 'k:\webhub\lib\whvcl\cgiServ.pas';
+  whAppIn in 'h:\whAppIn.pas' {fmAppIn};
 
 (*
   whHtmlVw in 'h:\whHtmlVw.pas' {fmAppHtmlViewer},
@@ -81,10 +79,6 @@ uses
   Htmlsbs1 in 'd:\vcl\thtml9\Package\Htmlsbs1.pas',
   StylePars in 'd:\vcl\thtml9\Package\StylePars.pas',
   URLSubs in 'd:\vcl\thtml9\Package\URLSubs.pas';
-
-  // removed 30-Sep-2008
-  dmShutdown in 'dmShutdown.pas' {DataModuleShutdown: TDataModule},
-  {M}Application.CreateForm(TDataModuleShutdown, DataModuleShutdown);
 *)
 
 {$R *.RES}
@@ -96,7 +90,7 @@ begin
   {M}Application.Initialize;
   CreateCoreWebHubDataModule;
 
-  pWebApp.AppID := DefaultsTo(LowerCase(ParamString('ID')),'appvers');
+  pWebApp.AppID := DefaultsTo(LowerCase(ParamString('ID')), 'appvers');
   pWebApp.Refresh;
 
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
