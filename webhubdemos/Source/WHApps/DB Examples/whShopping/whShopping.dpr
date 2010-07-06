@@ -21,6 +21,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
   Forms,
   MultiTypeApp in 'h:\MultiTypeApp.pas',

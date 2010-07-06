@@ -4,6 +4,9 @@ Copyright (c) 2008 HREF Tools Corp.
 Author: Ann Lynnworth
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},

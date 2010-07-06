@@ -1,6 +1,10 @@
 program f2hdemo;
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
+  MultiTypeApp in 'h:\MultiTypeApp.pas',
   sample in 'sample.pas' {sampleFrm},
   whDM in 'whDM.pas' {whDataModule: TDataModule},
   fmf2h in 'fmf2h.pas' {fmF2HDemo},
@@ -17,7 +21,6 @@ uses
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   webCycle in 'h:\webCycle.pas',
   webLink in 'h:\webLink.pas',
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   f2hdemo_dmProjMgr in 'f2hdemo_dmProjMgr.pas' {PMforF2H: TDataModule};
 

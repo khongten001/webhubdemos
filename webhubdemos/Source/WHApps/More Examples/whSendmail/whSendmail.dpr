@@ -21,7 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
+  MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
@@ -37,11 +41,8 @@ uses
   whpanel_Mail in 'h:\whpanel_Mail.pas' {fmWebMail},
   whSendmail_dmWhQuote in 'whSendmail_dmWhQuote.pas' {dmWhQuote: TdmWhQuote},
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
-  webMailV,
-  webMail,
   whSendMail_dmProjMgr in 'whSendMail_dmProjMgr.pas' {DMForWHSendMail: TDataModule},
   htmaildm in 'htmaildm.pas' {FormLetterDM: TDataModule};
 

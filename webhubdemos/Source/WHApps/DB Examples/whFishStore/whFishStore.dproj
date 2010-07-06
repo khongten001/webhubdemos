@@ -21,7 +21,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DependencyCheckOutputName>..\..\..\..\Live\WebHub\Apps\whFishStore.exe</DCC_DependencyCheckOutputName>
-			<DCC_UnitSearchPath>k:\webhub\lib\whdb;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_Platform>x86</DCC_Platform>

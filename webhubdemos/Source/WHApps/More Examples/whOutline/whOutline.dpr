@@ -21,14 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-// Either map h: to your WebHub "lib" directory or change the paths as needed.
-// e.g. h: would be mapped to c:\Program Files\HREF\WebHub\lib
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
 
 uses
-  Forms,
-  webApp,
-  webInfoU,
-  ucString,
+  MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
@@ -41,7 +38,6 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whOutline_fmWhSampleOutlines in 'whOutline_fmWhSampleOutlines.pas' {fmWhSampleOutlines},

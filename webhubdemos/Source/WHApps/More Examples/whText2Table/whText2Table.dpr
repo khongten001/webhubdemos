@@ -21,7 +21,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
+  MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
@@ -35,7 +39,6 @@ uses
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   PaLstGrd in 'PaLstGrd.pas' {fmWebListGridPanel},
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   webLGrid in 'h:\webLGrid.pas',

@@ -12,7 +12,7 @@ uses
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whMain in 'H:\whMain.pas' {fmWebHubMainForm},
-  dmWHApp in 'k:\webhub\lib\dmWHApp.pas' {dmWebHubApp: TDataModule},
+  dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whHTML in 'H:\whHtml.pas' {fmAppHTML},
   whMail in 'H:\whMail.pas' {DataModuleWhMail: TDataModule},
   whpanel_Mail in 'H:\whpanel_Mail.pas' {fmWebMail},
@@ -31,7 +31,7 @@ uses
   Htmlsbs1 in '..\..\..\..\..\..\vcl\thtml9\Package\Htmlsbs1.pas',
   StylePars in '..\..\..\..\..\..\vcl\thtml9\Package\StylePars.pas',
   URLSubs in '..\..\..\..\..\..\vcl\thtml9\Package\URLSubs.pas',
-  whHtmlVw in 'k:\webhub\lib\whHtmlVw.pas' {fmAppHtmlViewer},
+  whHtmlVw in 'h:\whHtmlVw.pas' {fmAppHtmlViewer},
   htWebApp in 'h:\htWebApp.pas';
 
 {$R *.res}

@@ -21,8 +21,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
-  Forms,
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
@@ -39,9 +41,12 @@ uses
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   Htqry1C in 'Htqry1C.pas' {fmHTQ1Panel},
+  whQuery1_dmdbProjMgr in 'whQuery1_dmdbProjMgr.pas' {DMForWHQuery1: TDataModule};
+
+(* for debugging with source
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
   wbdeSource in 'K:\WebHub\lib\whdb\wbdeSource.pas',
-  whQuery1_dmdbProjMgr in 'whQuery1_dmdbProjMgr.pas' {DMForWHQuery1: TDataModule};
+*)
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

@@ -21,6 +21,9 @@ program whDSP;
 // compiler directive.  It's okay to comment out all calls to LogInfo.
 
 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+   for information about "drives" H: and K:. *)
+
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
@@ -33,14 +36,14 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whHtml in 'h:\whHtml.pas' {fmAppHTML},
   whAppIn in 'h:\whAppIn.pas' {fmAppIn},
-  whAppOut in 'k:\webhub\lib\whAppOut.pas' {fmAppOut},
+  whAppOut in 'h:\whAppOut.pas' {fmAppOut},
   DSP_dmRubicon in 'DSP_dmRubicon.pas' {DSPdm: TDataModule},
   DSP_u1 in 'DSP_u1.pas',
   DSP_fmPanel in 'DSP_fmPanel.pas' {fmPanel},
   DSP_fmPanelSearch in 'DSP_fmPanelSearch.pas' {fmSearchForm},
   DSP_dmWH1 in 'DSP_dmWH1.pas' {dmDSPWebSearch: TDataModule},
   HTMLText in 'htmltext.pas',
-  webLink in 'k:\webhub\lib\webLink.pas',
+  webLink in 'H:\webLink.pas',
   whMacroAffixes,
   webApp,
   webSplat,
@@ -66,8 +69,6 @@ uses
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
-  webRubi in 'k:\webhub\lib\whplus\rubi\WebRubi.pas',
-  webScanKeys in 'k:\webhub\lib\whplus\webScanKeys.pas',
   uDSPFuzziness in 'uDSPFuzziness.pas';
 
 {$R *.RES}
@@ -81,6 +82,9 @@ uses
   utmainfm in 'H:\Utmainfm.pas' {fmMainForm},
   utpanfrm in 'H:\Utpanfrm.pas' {utParentForm},
   uttrayfm in 'H:\utTrayFm.pas' {fmTrayForm},
+
+  // for working with source
+  webScanKeys in 'k:\webhub\lib\whplus\webScanKeys.pas',
 *)
 
 
