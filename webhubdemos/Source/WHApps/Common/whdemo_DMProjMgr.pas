@@ -107,11 +107,14 @@ begin
       [Sender.Identifier, SuggestedAppID]);
     Continue := False;
   end;
-  
-  UsedAppID := Sender.Identifier;
+
+  // the suggested appid is from the command line - we should let it take
+  // precedence
+
+  UsedAppID := SuggestedAppID;
   if UsedAppID = '' then
   begin
-    UsedAppID := SuggestedAppID;
+    UsedAppID := Sender.Identifier;
     if UsedAppID = '' then
       UsedAppID := 'appvers';
   end;

@@ -24,11 +24,13 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htRubiC in 'htRubiC.pas' {fmHTRUPanel},
   htru_fmExMakeU in 'htru_fmExMakeU.pas' {fmRubiconMakeBDE},
-  whRubicon_dmdbProjMgr in 'whRubicon_dmdbProjMgr.pas' {DMForWHRubicon: TDataModule};
-
-(* for working with more source:
   webrubi in 'k:\webhub\lib\whplus\rubi\webrubi.pas',
   webScanKeys in 'K:\WebHub\lib\whplus\webScanKeys.pas',
+  whRubicon_dmdbProjMgr in 'whRubicon_dmdbProjMgr.pas' {DMForWHRubicon: TDataModule};
+
+(* The webRubi and webScanKeys files are available with source.
+   The webRubi unit is included with Rubicon, and the webScanKeys unit is 
+   included when you license the WebHub "useful source." 
 *)
 
 

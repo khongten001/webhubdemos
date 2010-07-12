@@ -7,22 +7,21 @@ program whDSP;
 *)
 
 
-// Delphi Super Page, compiled with Delphi 7, WebHub v2.090 and Rubicon 2
-// 20 August 2007, AML
+// Delphi Super Page, compiled with Delphi, WebHub and Rubicon 
 
 // To compile, map drive h: to the WebHub "lib" directory, or change the paths
 // below.
 
-// The extra WebHub component in webrubi.pas needs to be installed in order
-// to open DSP_dmWH1.pas.  However you can compile the project without installing
-// the component, as long as you don't open the data module.
-
 // Note that the LogInfo function does nothing, by default. It is enabled via
 // compiler directive.  It's okay to comment out all calls to LogInfo.
 
-
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
    for information about "drives" H: and K:. *)
+
+(* The webRubi and webScanKeys files are available with source.
+   The webRubi unit is included with Rubicon, and the webScanKeys unit is 
+   included when you license the WebHub "useful source." 
+*)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
@@ -69,6 +68,8 @@ uses
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
+  webrubi in 'k:\webhub\lib\whplus\rubi\webrubi.pas',
+  webScanKeys in 'K:\WebHub\lib\whplus\webScanKeys.pas',
   uDSPFuzziness in 'uDSPFuzziness.pas';
 
 {$R *.RES}
