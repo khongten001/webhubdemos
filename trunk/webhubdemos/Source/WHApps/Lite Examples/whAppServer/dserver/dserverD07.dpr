@@ -16,6 +16,7 @@ uses
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
+  whpanel_Decode in 'h:\whpanel_Decode.pas',
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
