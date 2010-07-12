@@ -2,6 +2,7 @@ program cserver;  // Created 29-Jun-2006 by the WebHub New Project Wizard
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
+  MultiTypeAppSvc in 'h:\MultiTypeAppSvc.pas',
   tpProj in 'h:\tpProj.pas',
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
