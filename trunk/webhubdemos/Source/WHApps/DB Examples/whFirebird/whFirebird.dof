@@ -94,7 +94,7 @@ OutputDir=..\..\..\..\Live\WebHub\Apps
 UnitOutputDir=d:\Temp\DelphiTempDCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=D:\vcl\ibo\4.8.6;D:\vcl\ibo\4.8.6\D7
+SearchPath=D:\vcl\ibo\v4.8.6;D:\vcl\ibo\v4.8.6\D7
 Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;maxCode;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07
 Conditionals=
 DebugSourceDirs=
@@ -148,8 +148,9 @@ d:\apps\borland\delphi\70\Projects\Bpl\dclusr70.bpl=Borland User Components
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=1
-Item0=D:\vcl\ibo\4.8.6;D:\vcl\ibo\4.8.6\D7
+Count=2
+Item0=D:\vcl\ibo\v4.8.6;D:\vcl\ibo\v4.8.6\D7
+Item1=D:\vcl\ibo\4.8.6;D:\vcl\ibo\4.8.6\D7
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=d:\Temp\DelphiTempDCU
