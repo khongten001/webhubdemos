@@ -12,16 +12,17 @@ interface
 {$I hrefdefines.inc}
 
 uses
+  SysUtils, Classes,
 {$IFDEF LINUX}
   QForms, QControls, QDialogs, QGraphics, QExtCtrls, QStdCtrls,
 {$ELSE}
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ComCtrls,
 {$ENDIF}
-  SysUtils, Classes,
-  IB_Components, 
-  IB_Access,  // part of IBObjects 4.9.9
-  toolbar, utPanFrm, tpMemo, restorer, ComCtrls, tpStatus, updateOK,
-  tpAction, webTypes, webLink, wdbLink, WdbSSrc, wdbScan, whibds;
+  IB_Components,
+  IB_Access,  // part of IBObjects 4.9.9 but not part of v4.8.6
+  toolbar, utPanFrm, tpMemo, restorer, tpStatus, tpCompPanel, updateOK,
+  tpAction,
+  webTypes, webLink, wdbLink, wdbSSrc, wdbScan, whibds;
 
 type
   TfmEmployee = class(TutParentForm)
