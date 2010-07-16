@@ -24,7 +24,7 @@ uses
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   webLink in 'h:\webLink.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
-  whibds;
+  whibds in 'h:\whibds.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
