@@ -10,6 +10,7 @@ unit whfmEmployee;
 interface
 
 {$I hrefdefines.inc}
+{$I IB_Constants.INC}
 
 uses
   SysUtils, Classes,
@@ -19,7 +20,9 @@ uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ComCtrls,
 {$ENDIF}
   IB_Components,
-  IB_Access,  // part of IBObjects 4.9.9 but not part of v4.8.6
+{$IF (IBO_VERSION_MAJOR='4') and (IBO_VERSION_MINOR<>'8') 
+  IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
+{$ENDIF}
   toolbar, utPanFrm, tpMemo, restorer, tpStatus, tpCompPanel, updateOK,
   tpAction,
   webTypes, webLink, wdbLink, wdbSSrc, wdbScan, whibds;
