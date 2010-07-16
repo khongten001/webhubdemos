@@ -8,7 +8,9 @@ interface
 uses
   SysUtils, Classes, DB, Controls,
   {IBODataSet, }IB_Components,
-  IB_Access,  // part of IBObjects 4.9.9 but not part of v4.8.6
+{$IFDEF IBO_49_OR_GREATER} 
+  IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
+{$ENDIF}
   whibds, webLink, updateOK, tpAction, webTypes,
   wdbLink, wdbSSrc, wdbScan, webScan;
 
