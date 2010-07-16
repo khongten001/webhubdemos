@@ -36,7 +36,7 @@ uses
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas';
 
   else:
-  whibds in 'h:\whibds.pas',
+  whibds in 'h:\whibds.pas';
 *)
 
 
