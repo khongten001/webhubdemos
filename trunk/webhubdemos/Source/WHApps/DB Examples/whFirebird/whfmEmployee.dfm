@@ -36,7 +36,7 @@ inherited fmEmployee: TfmEmployee
     Height = 19
     Panels = <
       item
-        Text = 'whWebAction2: Not Updated'
+        Text = ''
         Width = 50
       end>
     ParentShowHint = False
@@ -45,7 +45,6 @@ inherited fmEmployee: TfmEmployee
   end
   object ScanEmployee3: TwhdbScan
     ComponentOptions = [tpStatusPanel]
-    WebApp = dmWebHubApp.app
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonsWhere = dsbNone
@@ -58,7 +57,6 @@ inherited fmEmployee: TfmEmployee
   end
   object ScanEmployee2: TwhdbScan
     ComponentOptions = [tpStatusPanel]
-    WebApp = dmWebHubApp.app
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonAutoHide = False
@@ -70,7 +68,6 @@ inherited fmEmployee: TfmEmployee
   end
   object ScanEmployee1: TwhdbScan
     ComponentOptions = [tpStatusPanel]
-    WebApp = dmWebHubApp.app
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonAutoHide = False
@@ -83,7 +80,6 @@ inherited fmEmployee: TfmEmployee
   object waMoney: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waMoneyExecute
-    WebApp = dmWebHubApp.app
     Left = 269
     Top = 13
   end
