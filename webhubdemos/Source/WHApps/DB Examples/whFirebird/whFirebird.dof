@@ -90,11 +90,11 @@ MaxStackSize=1048576
 ImageBase=4194304
 ExeDescription=
 [Directories]
-OutputDir=D:\Projects\WebHub Demos\Live\WebHub\Apps
+OutputDir=..\..\..\..\Live\WebHub\Apps
 UnitOutputDir=d:\Temp\DelphiTempDCU
 PackageDLLOutputDir=
 PackageDCPOutputDir=
-SearchPath=
+SearchPath=D:\vcl\ibo\4.8.6;D:\vcl\ibo\4.8.6\D7
 Packages=vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;maxCode;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07
 Conditionals=
 DebugSourceDirs=
@@ -115,7 +115,7 @@ AutoIncBuild=1
 MajorVer=1
 MinorVer=0
 Release=0
-Build=9
+Build=8
 Debug=0
 PreRelease=0
 Special=0
@@ -126,7 +126,7 @@ CodePage=1252
 [Version Info Keys]
 CompanyName=HREF Tools Corp.
 FileDescription=
-FileVersion=1.0.0.9
+FileVersion=1.0.0.8
 InternalName=
 LegalCopyright=
 LegalTrademarks=
@@ -135,21 +135,30 @@ ProductName=
 ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
-D:\HREF\Source\WebApplication\Reg\hrefapp\HREFSite_Package.bpl=HREFSite Component Package
+D:\Apps\Borland\Delphi\70\Bin\sdacvcl70.bpl=SQL Server Data Access GUI related Components
+d:\apps\borland\delphi\70\Bin\dclsdac70.bpl=SQL Server Data Access Components
+C:\WINDOWS\system32\IBO40FTS_D7.bpl=IB Objects Full Text Search
+C:\WINDOWS\system32\IBO40RPL_D7.bpl=IB Objects Replication
 d:\apps\borland\delphi\70\Projects\Bpl\WebHubIBO.bpl=HREF Tools WebHub - Interbase Objects
+d:\apps\borland\delphi\70\Projects\Bpl\robpackD07.bpl=Robpack custom components for Delphi 7
+h:\pkgd07\HubComponents.bpl=HREF Tools Hub components
 C:\WINNT\System32\ibevnt70.bpl=Borland Interbase Event Alerter Component
 d:\apps\borland\delphi\70\Projects\Bpl\dclusr70.bpl=Borland User Components
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
+[HistoryLists\hlSearchPath]
+Count=1
+Item0=D:\vcl\ibo\4.8.6;D:\vcl\ibo\4.8.6\D7
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=d:\Temp\DelphiTempDCU
 [HistoryLists\hlOutputDirectorry]
-Count=1
-Item0=D:\Projects\WebHub Demos\Live\WebHub\Apps
+Count=2
+Item0=..\..\..\..\Live\WebHub\Apps
+Item1=D:\Projects\WebHub Demos\Live\WebHub\Apps
 [Exception Log]
-EurekaLog Version=6015
+EurekaLog Version=6019
 Activate=0
 Activate Handle=1
 Save Log File=1

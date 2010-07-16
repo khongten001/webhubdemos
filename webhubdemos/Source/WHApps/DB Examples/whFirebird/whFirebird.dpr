@@ -17,19 +17,28 @@ uses
   whfmEmployee in 'whfmEmployee.pas' {fmEmployee},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
-  whibds in 'h:\whibds.pas',
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDemoViewSource},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   webLink in 'h:\webLink.pas',
-  whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule};
+  whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
+  whibds;
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
 {$R HTICONS.RES}
 {$R HTGLYPHS.RES}
+
+(* when compiling with full source:
+  whibds in 'K:\WebHub\lib\whibds.pas',
+  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas';
+
+  else:
+  whibds in 'h:\whibds.pas',
+*)
+
 
 begin
   {M}Application.Initialize;
