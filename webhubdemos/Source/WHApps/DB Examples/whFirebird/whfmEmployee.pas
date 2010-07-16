@@ -1,8 +1,8 @@
 unit whfmEmployee;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2006 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2010 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
-//  This source code file is part of WebHub v2.07x.  Please obtain a WebHub   //
+//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -18,7 +18,8 @@ uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
 {$ENDIF}
   SysUtils, Classes,
-  IB_Components,
+  IB_Components, 
+  IB_Access,  // part of IBObjects 4.9.9
   toolbar, utPanFrm, tpMemo, restorer, ComCtrls, tpStatus, updateOK,
   tpAction, webTypes, webLink, wdbLink, WdbSSrc, wdbScan, whibds;
 
