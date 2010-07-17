@@ -11,7 +11,7 @@ mcWhDemoCreditIdeafire=Mike Hickman
 mcWhDemoCreditFirstDraftfire=Ann Lynnworth
 mcWhDemoCreditGraphicsfire=M.J. Kennedy
 mcWhDemoCreditCopyfire=Ann Lynnworth
-mcWhDemoUpdatedfire=4-Nov-2006
+mcWhDemoUpdatedfire=16-Jul-2010
 mcWhDemoKeywordsfire=Firebird,SQL,Interbase Objects
 mcWhDemoLitefire=No
 </whmacros>
@@ -19,9 +19,8 @@ mcWhDemoLitefire=No
 <whdroplet name="drDemoSetupfire">
 <ol>
 <li> Interbase Objects is used to connect from Delphi to Firebird.
-Compiles with IBObjects versions 4.8.6, 4.9.5 and 4.9.9 in Delphi 7.
-Does NOT yet compile with Delphi-Unicode (D12, D14). --16 July 2010.
-</li>
+Compiles with IBObjects versions 4.8.6, 4.9.5 and 4.9.9, with D07 through D14. Note that WebHub v2.125+ is required for use with 
+D12 and D14.</li>
 <li> 
 <whtranslation key="~whDemoSetupfire" lingvo="eng">
 We installed Firebird SQL server v1.5.3 on demos.href.com using the <b>Official Windows Setup</b>. <![CDATA[<a target="_blank" href="http://www.ibphoenix.com/main.nfs?a=ibphoenix&page=ibp_download_15">download</a>]]>.  Firebird SQL is an open source database. Firebird runs on both Windows and Linux servers.
