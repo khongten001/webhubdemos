@@ -29,6 +29,7 @@
 <whpage pageid="pgOpenTable2" desc="-Open Table">
 <whprep>
 (~SET|_currentTablename=(~command~)~)
+</whprep>
 <html><head>
 <title>(~pagedesc~) (~command~)</title>
 </head>
