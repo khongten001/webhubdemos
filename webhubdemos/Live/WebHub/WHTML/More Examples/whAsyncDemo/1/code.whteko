@@ -17,7 +17,7 @@
 <a name="ONINIT">
 <H2>Example Code (Demo 1): <CODE>ThreadOnInit</CODE></H2>
 <table BORDER=0><tr>
-  <td><b>Note: &nbsp; </td>
+  <td><h3>Note: &nbsp; </h3></td>
   <td>
   <CODE>TwhAsyncAction</CODE> copies<br />
   <CODE>.ThreadOnExecute</CODE> to <CODE>OnExecute</CODE><br />
@@ -46,7 +46,7 @@ end;
 </PRE>
 </TT>
 
-//Example ThreadOnExecute method
+<p>Example ThreadOnExecute method</p>
 <A NAME="ONEXECUTE">
 <H2>Example Code (Demo 1): <CODE>ThreadOnExecute</CODE></H2>
 To synchronize the ui with the state of the asyncobject you must assign a <CODE>tNotifyEvent</CODE> 
@@ -81,7 +81,7 @@ end;
 </PRE>
 </TT>
 
-//Example ThreadOnDestroy method
+<p>Example ThreadOnDestroy method</p>
 <A NAME="ONDEST">
 <H2>Example Code (Demo 1): <CODE>ThreadOnDestroy</CODE></H2>
 <PRE>
@@ -132,5 +132,6 @@ var
         end;
   end;
 </PRE>
+</whpage>
 
 </whteko>
