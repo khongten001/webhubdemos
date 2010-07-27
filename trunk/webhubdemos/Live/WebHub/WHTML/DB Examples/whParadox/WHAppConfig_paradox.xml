@@ -53,8 +53,7 @@
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
     </StreamCatcherInterface>
     <TekoFiles>
-      <File id="about" filename="..\..\Shared WHTML\about\about-whParadox.whteko"/>
-	  <File id="content" filename="whParadox.whteko" />
+      <File id="content" filename="whParadox.whteko" />
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
