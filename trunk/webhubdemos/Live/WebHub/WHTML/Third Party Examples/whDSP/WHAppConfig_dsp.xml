@@ -77,7 +77,7 @@
 		<AdminSessionNumber value="1204" context="DEMOS" />
 	</Security>
     <Situations>
-      <ChangedIP pageID="pgBadIP"/>
+      <ChangedIP pageID="pgBadIPWithinDSP"/>
       <ChangedUserAgent pageID="pgBadBrowser"/>
       <Home pageID="pgEnterDSP"/>
     </Situations>

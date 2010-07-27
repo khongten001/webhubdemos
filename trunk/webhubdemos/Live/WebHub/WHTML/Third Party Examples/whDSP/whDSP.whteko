@@ -103,7 +103,7 @@ Reset to 35 for both 23-May-2009 Ann.
 </whdroplet>
 
 
-<whpage pageid="pgBadIP" desc="Bad IP number">
+<whpage pageid="pgBadIPWithinDSP" desc="Bad IP number">
 <whpagesettings>
 googlesitemap=exclude
 metarobot=noindex,nofollow
