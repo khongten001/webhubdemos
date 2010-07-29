@@ -37,17 +37,17 @@ and you can use cookie values in a variety of ways.</p>
 <whdroplet name="barCookies">
 (~GO|PGSETCOOKIE|Setting Cookies~)(~mcHeadingSeparator~)
 (~GO|PGDELCOOKIE|Deleting Cookies~)(~mcHeadingSeparator~)
-(~GO|PGEXPIRECOOKIE|Expiring Cookies~)
+(~GO|PGEXPIRECOOKIE|Expiring Cookies~)(~mcHeadingSeparator~)
+(~GO|pgSetCookieAdvanced|Arbitrary Cookies~)
 </whdroplet>
 
 <whdroplet name="ulPgCookies">
 <span class="changing">(~GOR|PGSETCOOKIE|Setting Cookies~)<br/>
 (~GOR|PGDELCOOKIE|Deleting Cookies~)<br/>
 (~GOR|PGEXPIRECOOKIE|Expiring Cookies~)<br/>
+(~GOR|pgSetCookieAdvanced|Arbitrary Cookies~)<br/>
 </span>
 </whdroplet>
-
-
 
 
 <whpage pageid="pgCharging" desc="Microcharging Surfers">

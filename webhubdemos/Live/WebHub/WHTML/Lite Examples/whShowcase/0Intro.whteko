@@ -95,7 +95,6 @@ Demo?  What do the icons mean?  How can I order WebHub?
 (~GO|pgRequires|<dd><font size=1>The REQUIRES macro</font></dd>~)
 (~GO|pgInclude|<dd><font size=1>The INCLUDE macro</font></dd>~)
 (~GO|pgSendfile|<dd><font size=1>The SENDFILE macro</font></dd>~)
-(~GO|pgExpireCookie|<dd><font size=1>The EXPIRES Macro</font></dd>~)
 (~GO|pgSummary|<dd><font size=1>The SUMMARY Macro</font></dd>~)
 
 (~GO|pgFrames|<dd><em>Using Frames</em></dd>~)
@@ -154,6 +153,7 @@ Demo?  What do the icons mean?  How can I order WebHub?
 (~GO|pgSetCookie|<dd><font size=1>Setting Cookies</font></dd>~)
 (~GO|pgExpireCookie|<dd><font size=1>Expiring Cookies</font></dd>~)
 (~GO|pgDelCookie|<dd><font size=1>Deleting Cookies</font></dd>~)
+(~GO|pgSetCookieAdvanced|<dd><font size=1>Setting Arbitrary Cookies</font></dd>~)
 
 (~GO|pgCharging|<dd><em>Microcharging Surfers</em></dd>~)
 
