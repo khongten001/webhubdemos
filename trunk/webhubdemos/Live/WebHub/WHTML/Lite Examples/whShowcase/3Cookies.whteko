@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code" designdynsrc="localdemoSHOWCASE">
 
@@ -154,9 +154,7 @@ available on the TwhApplication component, for use in Object Pascal.
 <p>In this advanced example, YOU can control the cookie names and values, for testing purposes. All cookies are restricted to the current 
 host which is <code>(~host~)</code>.</p>
 
-<!-- changing:start-->
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSetCookieAdvanced~)">
-<!-- changing:stop-->
+(~INPUTFORM|pgSetCookieAdvanced~)
 <p>Cookie 1: advcookie1 = (~INPUTTEXT|aCookieValue1~)</p>
 <p>Cookie 2: advcookie2 = (~INPUTTEXT|aCookieValue2~)</p>
 <p>Cookie 3: advcookie3 = (~INPUTTEXT|aCookieValue3~)</p>
