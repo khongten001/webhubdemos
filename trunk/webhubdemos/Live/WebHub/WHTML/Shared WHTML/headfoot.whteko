@@ -117,8 +117,10 @@ lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
 <span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span>
+(~MATCH|(~CentralInfo.PascalCompilerCode~)=D07|&nbsp;||
 <span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span>
 <span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
+~)
 </div>
 
 </div>  <!--- whDemoSectionNav -->
