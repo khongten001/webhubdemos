@@ -1,0 +1,14 @@
+Dutch: Huizen
+
+English: Houses
+
+French: Chambres
+
+German: Häuser 
+
+Italian: Camere
+
+Spanish: Casas
+
+
+
