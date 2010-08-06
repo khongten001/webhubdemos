@@ -4,8 +4,8 @@
 
 <whpagesettingslist id="a">
 whsequence=on
-whSequenceUp=PGREUSABLE
-final.PGREUSABLE
+whSequenceUp=pgTestInclude
+final.pgTestInclude
 bSeqHdr=true
 bReqUl=false
 level=3
@@ -81,7 +81,7 @@ www.href.com/contact
 <whdroplet name="drContactInfo">
 <pre>
 HREF Tools Corp.
-1275 Fourth Street #109
+1585 Terrace Way #109
 Santa Rosa, CA
 95404 USA
 www.href.com/contact
@@ -140,7 +140,7 @@ Hey (~litSurferName~)! Wanna see another name? Submit the form with a new one! A
 (~drShowcaseGlobalFooter~)
 </whpage>
 
-<whpage pageid="pgTestInclude" desc="Test file include command">
+<whpage pageid="pgTestInclude" desc="Demonstrate the file-include command">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
