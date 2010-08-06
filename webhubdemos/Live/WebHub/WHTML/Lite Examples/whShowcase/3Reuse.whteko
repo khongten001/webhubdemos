@@ -140,5 +140,24 @@ Hey (~litSurferName~)! Wanna see another name? Submit the form with a new one! A
 (~drShowcaseGlobalFooter~)
 </whpage>
 
+<whpage pageid="pgTestInclude" desc="Test file include command">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+
+<h2>Include Latin1 test file - source encoding is Ansi</h2>
+<pre>
+(~INCLUDE|D:\Projects\webhubdemos\Source\Docs\LingvoTestLatin1.txt~)
+</pre>
+
+<h2>Include Latin1 test file - source encoding is UTF-8</h2>
+<pre>
+(~INCLUDE|D:\Projects\webhubdemos\Source\Docs\LingvoTestLatin1-8.txt~)
+</pre>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
 
 </whteko>
