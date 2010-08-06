@@ -4,8 +4,8 @@
 
 <whpagesettingslist id="a">
 whsequence=on
-whSequenceUp=pgTestInclude
-final.pgTestInclude
+whSequenceUp=pgReusable
+final.pgReusable
 bSeqHdr=true
 bReqUl=false
 level=3
@@ -145,6 +145,11 @@ Hey (~litSurferName~)! Wanna see another name? Submit the form with a new one! A
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
+<p>The INCLUDE command can be used to include the contents of an arbitrary 
+file within a WebHub page.</p>
+<p>Here we demonstrate the inclusion of two separate files which contain the "same" 
+words but are encoded differently.  The first one is encoded as Ansi with the Latin-1 
+character set. The second one is encoded as UTF-8.</p>
 
 <h2>Include Latin1 test file - source encoding is Ansi</h2>
 <pre>
