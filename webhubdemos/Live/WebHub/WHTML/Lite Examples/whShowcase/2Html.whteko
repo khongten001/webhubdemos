@@ -103,7 +103,8 @@ by the programmer.
 (~GO|PGTEXTSUB|Text Substitution~)(~mcHeadingSeparator~)
 (~GO|PGCONTACTINFO|Contact Info~)(~mcHeadingSeparator~)
 (~GO|PGHEADFOOT|Headers and Footers~)(~mcHeadingSeparator~)
-(~GO|PGREPUBLIT|StringVars~)
+(~GO|PGREPUBLIT|StringVars~)(~mcHeadingSeparator~)
+(~GO|pgTestInclude|Include Files~)
 </whdroplet>
 
 
@@ -112,6 +113,7 @@ by the programmer.
 (~GO|PGCONTACTINFO|Contact Info~)<br/>
 (~GO|PGHEADFOOT|Page Headers and Footers~)<br/>
 (~GO|PGREPUBLIT|Republishing StringVars~)<br/>
+(~GO|pgTestInclude|Include Files~)<br/>
 </whdroplet>
 
 
