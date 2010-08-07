@@ -52,7 +52,7 @@ uses
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
   ucLogFil,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whsample_EvtHandlers,
-  whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App,
+  whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
   whpanel_RemotePages, whpanel_Mail, uAutoPanels,
   whMain,  // whpwMain,
@@ -83,6 +83,9 @@ end;
 procedure TDMForDServer.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
+  {$IFNDEF UNICODE}
+  whConst.isDelphi7UTF8 := True;
+  {$ENDIF}
   CreateCoreWebHubDataModule;
 end;
 
