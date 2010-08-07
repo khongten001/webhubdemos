@@ -88,6 +88,10 @@ end;
 procedure TDMForWHDemo.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
+  {$IFNDEF UNICODE}
+  // extra flag required in Delphi 7 for UTF-8 support 
+  whConst.isDelphi7UTF8 := True;  
+  {$ENDIF}
   CreateCoreWebHubDataModule;
 end;
 
