@@ -83,9 +83,6 @@ end;
 procedure TDMForDServer.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
-  {$IFNDEF UNICODE}
-  whConst.isDelphi7UTF8 := True;
-  {$ENDIF}
   CreateCoreWebHubDataModule;
 end;
 
