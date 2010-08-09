@@ -52,7 +52,7 @@ implementation
 uses
   DateUtils,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
-  webApp, htWebApp, whMacroAffixes, webCore;
+  whConst, webApp, htWebApp, whMacroAffixes, webCore;
 
 {$R *.DFM}
 
@@ -396,4 +396,9 @@ begin
   end;
 end;
 
+initialization
+  {$IFNDEF UNICODE}
+  whConst.isDelphi7UTF8 := True;      // all demos assume UTF-8 encoding
+  {$ENDIF}
+  
 end.
