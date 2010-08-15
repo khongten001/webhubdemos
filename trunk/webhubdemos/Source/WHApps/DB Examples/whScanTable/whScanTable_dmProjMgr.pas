@@ -3,8 +3,9 @@ unit whScanTable_dmProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMProjMgr, tpProj;
+  Windows, SysUtils, Classes,
+  tpProj,
+  whdemo_DMProjMgr;
 
 type
   TDMForWHScanTable = class(TDMForWHDemo)
@@ -25,7 +26,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, scanfm;
+  MultiTypeApp,
+  scanfm;
   
 procedure TDMForWHScanTable.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
