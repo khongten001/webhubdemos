@@ -4,30 +4,30 @@ inherited FormImport: TFormImport
   Width = 450
   Height = 356
   Caption = '&Import Data'
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 442
-    Height = 299
+    Width = 432
+    Height = 292
     object tpComponentPanel2: TtpComponentPanel
       Left = 5
       Top = 5
       Width = 100
-      Height = 289
+      Height = 282
       TabOrder = 0
     end
     object Panel1: TPanel
       Left = 105
       Top = 5
-      Width = 332
-      Height = 289
+      Width = 322
+      Height = 282
       Align = alClient
       TabOrder = 1
       object Label1: TLabel
         Left = 8
         Top = 56
-        Width = 320
-        Height = 13
+        Width = 507
+        Height = 18
         Caption = 
           'This panel is provided to demonstrate how you can scan directori' +
           'es.'
@@ -35,12 +35,12 @@ inherited FormImport: TFormImport
       object Toolbar: TtpToolBar
         Left = 1
         Top = 1
-        Width = 330
+        Width = 320
         TabOrder = 0
         object tpToolButton1: TtpToolButton
           Left = 1
           Top = 1
-          Width = 124
+          Width = 186
           Caption = 'Load Files into Database'
           OnClick = tpToolButton1Click
           MinWidth = 28
@@ -50,7 +50,7 @@ inherited FormImport: TFormImport
         Left = 8
         Top = 80
         Width = 297
-        Height = 21
+        Height = 26
         Hint = 'Directory to Scan for Files'
         TabOrder = 1
       end
@@ -58,7 +58,7 @@ inherited FormImport: TFormImport
         Left = 8
         Top = 112
         Width = 297
-        Height = 21
+        Height = 26
         Hint = 'Equivalent URL to enter into database for these files.'
         TabOrder = 2
       end
@@ -66,8 +66,8 @@ inherited FormImport: TFormImport
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 299
-    Width = 442
+    Top = 292
+    Width = 432
     Height = 19
     Panels = <
       item

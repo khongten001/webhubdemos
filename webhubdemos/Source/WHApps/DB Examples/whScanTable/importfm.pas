@@ -27,12 +27,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls,
-  UTPANFRM, ExtCtrls, StdCtrls, TpMemo, wbdeForm, DB, DBTables,
-  TpTable, wbdeSource, UpdateOk, tpAction, WebTypes,  
+  ComCtrls, ExtCtrls, StdCtrls, DB, DBTables,
+  UTPANFRM, tpMemo, tpTable, UpdateOk, tpAction, 
+  wbdeForm,
+  wbdeSource, WebTypes,
   WebLink, WdbLink, WdbScan, wbdeGrid, WebMemo, Buttons, Toolbar, {}tpCompPanel,
   Grids, TxtGrid, DBGrids, DBCtrls, tpStatus, 
-  ucstring, WebPage, WebPHub, IniLink;
+  ucstring, WebPage, WebPHub;
 
 type
   TFormImport = class(TutParentForm)
