@@ -26,12 +26,12 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ExtCtrls, StdCtrls,  DB, DBTables, DBClient, Buttons, Grids,
-  DBGrids, DBCtrls, MidasLib,
-  Toolbar, {}tpCompPanel, 
-  ucstring, UTPANFRM, TpMemo, TpTable, UpdateOk, tpAction, tpStatus, TxtGrid,   
-  wbdeForm, wbdeSource, webTypes, webLink, wdbLink, wdbScan, wbdeGrid, webMemo, 
-  webPage, webPHub, wdbSSrc, webScan, Provider, SimpleDS, wdbxSource;
+  ComCtrls, ExtCtrls, StdCtrls, DB, DBTables, DBClient, Buttons, Grids,
+  DBGrids, DBCtrls, MidasLib, Provider, SimpleDS, 
+  Toolbar, {}tpCompPanel, ucstring, UTPANFRM, tpTable, updateOk,
+  tpAction, tpStatus, TxtGrid,
+  wbdeForm, wbdeSource, webTypes, webLink, wdbLink, wdbScan, wbdeGrid, webMemo,
+  webPage, webPHub, wdbSSrc, webScan, wdbxSource;
 
 type
   TfmDBPanel = class(TutParentForm)
@@ -85,6 +85,9 @@ uses
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
 
+var
+  FlagDone: Boolean = False;
+
 function TfmDBPanel.Init: Boolean;
 var
   Flex: TwhdbSourceBase;
@@ -92,9 +95,10 @@ begin
   Result:= inherited Init;
   if not Result then
     Exit;
+  if FlagDone then Exit;
 
   (* There is a lot of code here purely for testing for differences between
-     BDE and dbExpress.  Please excuse the mess.  11-Dec-2008 *) 
+     BDE and dbExpress.  Please excuse the mess.  11-Dec-2008 *)
   try
     with Table1 do
     begin
@@ -134,8 +138,8 @@ begin
       MsgWarningOk('Invalid KeyFields on DBX web data source');
     Name := 'disabledDBX';
   end;
-  
-  ToggleUseBDE(False);
+
+  ToggleUseBDE(True);
 
   { Note. The PageHeight is set to 3 initially, just so that the grid is not
     too large/slow for downloaders on overseas connections. 7-Jun-1998. }
@@ -144,6 +148,7 @@ begin
   BrowseScan.ButtonsWhere := dsNone;
 
   RefreshWebActions(Self);
+  FlagDone := True;
 end;
 
 //------------------------------------------------------------------------------
@@ -214,6 +219,19 @@ begin
   begin
     dbNavigator2.DataSource:=DataSource1;
     dbGrid2.DataSource:=DataSource1;
+    if Assigned(dbGrid2.DataSource.DataSet) then
+    begin
+      if dbGrid2.DataSource.DataSet is TSimpleDataSet then
+      begin
+        MsgInfoOk(Format('Filename: %s',
+          [TSimpleDataSet(dbGrid2.DataSource.DataSet).FileName]));
+      end
+      else
+        MsgWarningOk(Format('DataSet.ClassName is %s',
+          [dbGrid2.DataSource.DataSet.ClassName]));
+    end
+    else
+      MsgWarningOk('dbGrid2.DataSource.DataSet is nil');
   end
   else
   begin
@@ -248,6 +266,8 @@ var
   CompBDE: TComponent;
   CompDBX: TComponent;
 begin
+  BrowseScan.WebDataSource.HouseClean;
+
   if NOT (cbUseBDE.Checked = DesiredState) then
     cbUseBDE.Checked := DesiredState;
 
@@ -261,6 +281,7 @@ begin
 
   if DesiredState = True then
   begin
+    //use BDE
     CompDBX.Name := 'disabledDBX';
     CompBDE.Name := 'Browse';
     if Assigned(disabledBDE) then
