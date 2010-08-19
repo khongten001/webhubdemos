@@ -133,7 +133,27 @@ inherited fmDBPanel: TfmDBPanel
   end
   object sdsScanDemo: TSimpleDataSet
     Aggregates = <>
+    Connection.ConnectionName = 'FBConnection'
+    Connection.DriverName = 'Firebird'
+    Connection.GetDriverFunc = 'getSQLDriverINTERBASE'
+    Connection.LibraryName = 'dbxfb.dll'
     Connection.LoginPrompt = False
+    Connection.Params.Strings = (
+      'DriverName=Firebird'
+      'Database=database.gdb'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    Connection.VendorLib = 'fbclient.dll'
     DataSet.CommandText = 'GRAPHICS'
     DataSet.CommandType = ctTable
     DataSet.MaxBlobSize = -1
