@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaSCAN=Michael S. Davis and Robert Martin
 mcWhDemoCreditFirstDraftSCAN=Suzanne Aldrich
 mcWhDemoCreditGraphicsSCAN=Rob Daniels
 mcWhDemoCreditCopySCAN=Ann Lynnworth 
-mcWhDemoUpdatedSCAN=29-Oct-2004
+mcWhDemoUpdatedSCAN=18-Aug-2010
 mcWhDemoKeywordsSCAN=Database,table,flat-file,display data,customize,skins
 mcWhDemoLiteSCAN=No
 </whmacros>
@@ -15,10 +15,14 @@ mcWhDemoLiteSCAN=No
 <whdroplet name="drDemoSetupSCAN">
 <ul>
 <li> Requires whScanTable.exe</li>
-<li> The Borland Database Engine is required for this particular example, 
-but the ideas apply regardless of database layer.</li>
-<li> A BDE table named graphics.db is required, and should be located in
+<li> This demo is able to display data using the Borland Database Engine "BDE" 
+and/or dbExpress.  There is a toggle within the Pascal code to select the database 
+connection type, and there is a checkbox in the GUI to toggle as well.</li>
+
+<li> When using the BDE, a table named graphics.db is required, and should be located in
 the projects\webhubdemos\Live\Database\whScanTable directory.</li>
+<li> When using dbExpress, the connection goes to a Firebird SQL table located  
+on the demos.href.com server and open to the public.</li>
 </ul>
 </whdroplet>
 
