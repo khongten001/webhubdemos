@@ -282,11 +282,19 @@ If you do not wish to map drive H:, edit the paths (to PAS files) in the project
 will install to a subdirectory named "WebHub Demos".  </p>
 
 <h3>Access through SubVersion ("SVN")</h3>
-<p>If you have a SVN client, you may checkout the WebHub demos using the following details.</p>
+<p>If you have Delphi XE, you can open the demos from inside the Delphi IDE as follows:</p>
+<ol>
+<li> File > Open from Version Control </li>
+<li> URL: http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/ </li>
+<li> Destination: d:\projects\webhubdemos\</li>
+<li> user account is <b>webhubber</b></li>
+<li> password is <b>demos</b></li>
+</ol>
+
+<p>If you have an older version of Delphi and you have any SubVersion client, you may still checkout the WebHub demos using the following details.</p>
 <ol>
 <li> ideal sandbox path is <b>d:\Projects\</b></li>
-<li> path to the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/</b></li>
-<li> the nested folder name is <b>"webhubdemos"</b> </li>
+<li> URL for the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos</b></li>
 <li> user account is <b>webhubber</b></li>
 <li> password is <b>demos</b></li>
 </ol>
@@ -299,7 +307,7 @@ actively maintained.  Another is
 <p>We recommend that after installing Tortoise SVN, you go into SVN Properties, Advanced, and set "Include" to d:\Projects.  By setting an "Include", you automatically exclude all others paths from monitoring by Tortoise SVN (and that is good because it is faster).  You would then go to the d:\Projects folder, right-click and select SVN Checkout, using the settings above.</p>
 
 <h3>Note for Delphi Programmers</h3>
-<p>To compile the Delphi source code you will need to have drive H pointing to your HREFTools\WebHub\lib\ folder.  Use the DOS SUBST command (type HELP SUBST at a command prompt for syntax). Or, search and replace H:\ with your lib folder path.</p>
+<p>To compile the Delphi source code for all the demos, <b>you will need to have drive H:\</b> pointing to your HREFTools\WebHub\lib\ folder.  Use the DOS SUBST command (type HELP SUBST at a command prompt for syntax). Or, search and replace H:\ with your lib folder path.</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
