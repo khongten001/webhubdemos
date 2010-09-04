@@ -138,7 +138,7 @@ end;
 
 function TFishApp.GetStoreMessage: string;
 begin
-  Result := Traduko(lgvFishesUnlimited);
+  Result := FishTraduko(lgvFishesUnlimited);
 end;
 
 

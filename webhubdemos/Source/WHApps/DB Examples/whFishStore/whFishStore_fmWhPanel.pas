@@ -254,20 +254,21 @@ begin
   fullFile := fullFile + shortFile;   // now fullFile equals full path plus filename
 
   // Create the graphics file.
-  if NOT fileExists(fullFile) then begin
+  if NOT fileExists(fullFile) then
+  begin
     // make a TPicture object and load it with data from BIOLIFE.Graphic
     image1.picture.assign( TableBiolife.fieldByName( 'Graphic' ) );
     // translate the graphic to the file, unless it has already been created!
-    Bmp2JPEGFile(image1.picture.bitmap.handle,fullfile);
-    end;
+    Bmp2JPEGFile(image1.picture.bitmap.handle, ShortString(fullfile));
+  end;
   // Generate an IMG SRC tag referencing the file.
   with TwhWebActionEx(Sender).Response,WebApp do
   begin
     SendLine( Format(
       '<img src="/webhub/demos/whFishStore/dynfish/%s " alt="%s" />',
       [ShortFile,
-       Format(Traduko(lgvBitmapImageConverted), [ShortFile])]) );
-    SendComment(Format(Traduko(lgvFileGraphicStored), [fullfile]));
+       Format(FishTraduko(lgvBitmapImageConverted), [ShortFile])]) );
+    SendComment(Format(FishTraduko(lgvFileGraphicStored), [fullfile]));
     end;
 end;
 
@@ -299,7 +300,7 @@ begin
   end;
 
   { expand the description to something more surfer-friendly }
-  Desc := Format('%s%s %s', [Traduko(lgvFishNumber), FloatToStr(item), Desc]);
+  Desc := Format('%s%s %s', [FishTraduko(lgvFishNumber), FloatToStr(item), Desc]);
 
   { Put the Fish In the Shopping Cart
     Look at ht\htdemos\codedemo\register\tfish.pas and see where fishList

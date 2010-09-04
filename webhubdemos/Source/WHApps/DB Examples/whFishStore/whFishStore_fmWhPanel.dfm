@@ -1,14 +1,18 @@
 inherited fmHTFSPanel: TfmHTFSPanel
   Left = 454
   Top = 141
-  Width = 480
-  Height = 453
   Caption = 'Fish Store Form'
-  PixelsPerInch = 96
-  TextHeight = 13
+  ClientHeight = 408
+  ClientWidth = 462
+  ExplicitWidth = 480
+  ExplicitHeight = 453
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 472
-    Height = 390
+    Width = 462
+    Height = 389
+    ExplicitWidth = 472
+    ExplicitHeight = 390
     object Image1: TImage
       Left = 241
       Top = 47
@@ -78,8 +82,8 @@ inherited fmHTFSPanel: TfmHTFSPanel
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 390
-    Width = 472
+    Top = 389
+    Width = 462
     Height = 19
     Panels = <
       item
@@ -88,6 +92,8 @@ inherited fmHTFSPanel: TfmHTFSPanel
     ParentShowHint = False
     ShowHint = True
     PanelStatusIndex = 0
+    ExplicitTop = 390
+    ExplicitWidth = 472
   end
   object WebListGrid1: TwhListGrid
     ComponentOptions = [tpUpdateOnGet]
