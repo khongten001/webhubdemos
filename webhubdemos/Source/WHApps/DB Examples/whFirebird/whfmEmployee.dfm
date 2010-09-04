@@ -47,7 +47,6 @@ inherited fmEmployee: TfmEmployee
     ComponentOptions = [tpStatusPanel]
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
-    ButtonsWhere = dsbNone
     ButtonAutoHide = False
     OverlapScroll = False
     OnRowStart = ScanEmployee1RowStart
