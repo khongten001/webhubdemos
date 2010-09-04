@@ -32,10 +32,8 @@ inherited dmDSPWebSearch: TdmDSPWebSearch
     FixColHeader = False
     OverlapScroll = False
     ScanMode = dsByKey
-    ControlsPos = dsbNone
     ControlAutoHide = True
     Buttons = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    ButtonsPos = dsbNone
     ButtonMode = bmJump
     ButtonStyle = bsLink
     ButtonAutoHide = True
