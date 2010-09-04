@@ -76,7 +76,7 @@ var
 
       );
 
-function Traduko(const InPhrase: TStorePhrase): string;
+function FishTraduko(const InPhrase: TStorePhrase): string;
 
 implementation
 
@@ -84,7 +84,7 @@ uses
   webApp,
   tfish;
 
-function Traduko(const InPhrase: TStorePhrase): string;
+function FishTraduko(const InPhrase: TStorePhrase): string;
 begin
   Assert(StorePhrases[InPhrase].idx = InPhrase);
   if Assigned(pWebApp) then
