@@ -417,7 +417,9 @@ input, select{
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-(~JUMP|admin|back~)
+<p>(~JUMP|admin|back~)</p>
+<p>This data entry form has been commented out. The WebHub-html code is still available 
+in a comment in the whFishStore.whteko file. </p>
 <!---
 <h1>Data Entry</h1>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|admin,post,gfAdmin.this~)">
