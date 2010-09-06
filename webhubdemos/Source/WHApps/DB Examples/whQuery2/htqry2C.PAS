@@ -25,11 +25,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, DB, DBTables, ExtCtrls, StdCtrls, Grids, DBGrids,
+  ComCtrls, DB, DBTables, ExtCtrls, StdCtrls, Grids, DBGrids, Buttons, ADODB,
   ZaphodsMap,
-  UTPANFRM, tpStatus, UpdateOk, tpAction,
-  WebPage, WebPHub, WdbLink, WdbScan, wbdeGrid, WebTypes, webScan, WebLink,
-  wbdeSource, wdbSSrc, ADODB, wdbxSource, Buttons, toolbar, tpCompPanel;
+  UTPANFRM, tpStatus, UpdateOk, tpAction, toolbar, tpCompPanel,
+  webPage, webPHub, wdbLink, wdbScan, wbdeGrid, WebTypes, webScan, WebLink,
+  wbdeSource, wdbSSrc, wdbxSource;
 
 type
   TfmHTQ2Panel = class(TutParentForm)
@@ -112,12 +112,19 @@ begin
   if not Result then
     Exit;
 
+  { The following works when compiled with Delphi XE and run on Windows 7.
+  Thanks to this web page for the documentation of the ConnectionString
+  syntax:
+  http://www.codemaker.co.uk/it/tips/ado_conn.htm#ODBCDriverForParadox
+  Note that DefaultDir means "working directory" i.e. location of *.db
+  and Dbq means "private directory" i.e. location of paradox .net file.}
   ADOQuery1.ConnectionString :=
-    'Provider=MSDASQL.1;Persist Security Info=False;' +
-    'Data Source=WebHubDemoHTQ2;' +
-    'Initial Catalog=' +
-    'D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE\WHQUERY2' +
-    '';
+   'Driver={Microsoft Paradox Driver (*.db )};' +
+           'DriverID=538;' +
+           'Fil=Paradox 5.X;' +
+           'DefaultDir=d:\temp\pdoxnet\;' +
+           'Dbq=D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE\WHQUERY2\;' +
+           'CollatingSequence=ASCII';
 
   RefreshWebActions(fmHTQ2Panel);
   grid.SetCaptions2004;
@@ -134,7 +141,7 @@ begin
   whdbxSource2.KeyFieldNames := 'EmpNo';
   WebDataScan1.PageHeight := 2;
   WebDataScan1.ButtonsWhere := dsBelow;
-  ADOQuery1.SQL.Text := 'select * from employee'; // where (0=3)';
+  ADOQuery1.SQL.Text := 'select * from employee';
 end;
 
 // -----------------------------------------------------------------------------
