@@ -3,14 +3,8 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whdroplet name="drDemoSpeedbarForHTQ2">
-<whdoc for="drDemoSpeedbarForHTQ2">
-Note the editCounter.text syntax, which calls a custom Delphi component to display the number of visitors.
-The visitor number increases with each new surfer session--not each new page hit.
-You can start new session with the "Be a New Visitor" link.
-</whdoc>
 (~GO|TestScan|ADO Test~) &nbsp; 
 (~GO|Answer|Browse Answer Table~)<br />
-Visitor Session Counter: (~editCounter.text~) <br />
 </whdroplet>
 
 <whpage pageid="pgEnterHTQ2" desc="Home Page for Demo">

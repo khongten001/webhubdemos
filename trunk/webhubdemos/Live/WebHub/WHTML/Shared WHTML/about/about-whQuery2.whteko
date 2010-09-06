@@ -91,14 +91,6 @@ on the fly based on settings in the .ini file.
   fly.  i.e. if the surfer enters 'S' we want to change that to 'S%'.</li>
 </ul>
 
-<h3>Visitor Counter Feature</h3>
-<p>The counter increments each time a new visitor uses the site (rather than by each hit of the page), providing a more accurate reflection of page traffic.  
-You can experiment with this by clicking the "new surfer" link in the page footer. 
-That gives you a new session number, so you will be considered a new surfer and counted again.</p>
-<p>The actual count is kept in the application-level INI file.  Its value is surfaced 
-to the web using the (~.editCounter.text~) syntax because the application happens to keep the total in an edit box at runtime.  There are *many* ways of implementing a counter in WebHub. This is just one way.</p>
-<p>VCL programmers may include the counter.pas unit in any project where this type of 
-counter is desired.</p>
 </whtranslation>
 
 
