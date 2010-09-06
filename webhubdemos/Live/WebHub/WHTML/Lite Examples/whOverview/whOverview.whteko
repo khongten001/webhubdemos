@@ -146,7 +146,8 @@ DYN1 = AppID in lowercase
 DYN2 = Server Profile ID example shortformat, lite, db, more, dsp
 </whdoc>
 <tr><td>(~tempCounter~)</td>
-<td class="oneliner">(~JUMP|(~DYN1~):((~DYN2~))|(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~)~)</td>
+<td class="oneliner"><!-- dyn1=(~DYN1~) and dyn2=(~DYN2~). -->
+(~JUMP|(~DYN1~):((~DYN2~))|(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~)~)</td>
 <td></td>
 <td align="right"><a name="(~DYN1~)">(~DYN1~)</a></td>
 </tr>
