@@ -1,39 +1,43 @@
 inherited fmHTQ2Panel: TfmHTQ2Panel
   Left = 812
   Top = 299
-  Width = 517
-  Height = 298
   Caption = 'HTQ2 Database'
+  ClientHeight = 253
+  ClientWidth = 499
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
-  TextHeight = 13
+  ExplicitWidth = 517
+  ExplicitHeight = 298
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 509
-    Height = 235
+    Width = 499
+    Height = 234
+    ExplicitWidth = 499
+    ExplicitHeight = 234
     object DBGrid1: TDBGrid
       Left = 5
       Top = 45
-      Width = 499
+      Width = 489
       Height = 120
       Align = alTop
       Enabled = False
       TabOrder = 0
       TitleFont.Charset = DEFAULT_CHARSET
       TitleFont.Color = clWindowText
-      TitleFont.Height = -11
-      TitleFont.Name = 'MS Sans Serif'
+      TitleFont.Height = -15
+      TitleFont.Name = 'Lucida Sans Unicode'
       TitleFont.Style = []
     end
     object Toolbar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 499
+      Width = 489
       TabOrder = 1
       object tpToolButton1: TtpToolButton
         Left = 1
         Top = 1
-        Width = 124
+        Width = 184
         Caption = 'Show Table (using ADO)'
         OnClick = tpToolButton1Click
         MinWidth = 28
@@ -42,8 +46,8 @@ inherited fmHTQ2Panel: TfmHTQ2Panel
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 235
-    Width = 509
+    Top = 234
+    Width = 499
     Height = 19
     Panels = <
       item
@@ -136,10 +140,6 @@ inherited fmHTQ2Panel: TfmHTQ2Panel
     Top = 181
   end
   object ADOQuery1: TADOQuery
-    ConnectionString = 
-      'Provider=MSDASQL.1;Persist Security Info=False;Data Source=WebHu' +
-      'bDemoHTQ2;Initial Catalog=D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE' +
-      '\WHQUERY2'
     OnFilterRecord = Query2FilterRecord
     Parameters = <>
     Left = 416
