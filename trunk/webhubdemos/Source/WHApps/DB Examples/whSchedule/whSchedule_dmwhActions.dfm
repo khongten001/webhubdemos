@@ -2,8 +2,6 @@ object DMCodeRageActions: TDMCodeRageActions
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 395
-  Top = 138
   Height = 277
   Width = 656
   object ScanSchedule: TwhdbScan

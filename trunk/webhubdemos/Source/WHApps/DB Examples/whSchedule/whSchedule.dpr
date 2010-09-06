@@ -27,7 +27,6 @@ uses
   whSchedule_dmwhActions in 'whSchedule_dmwhActions.pas' {DMCodeRageActions: TDataModule},
   CodeRage_dmCommon in 'DBDesign\gen_delphi\1\CodeRage_dmCommon.pas' {dmCommon: TDataModule},
   ldiDmUtil in '..\..\..\..\..\..\vcl\LDI\ldiDmUtil.pas',
-  whibods in 'h:\whibods.pas',
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_uImport in 'whSchedule_uImport.pas',
   ucCalifTime in 'O:\WebApplication\Shared\All\ucCalifTime.pas';
