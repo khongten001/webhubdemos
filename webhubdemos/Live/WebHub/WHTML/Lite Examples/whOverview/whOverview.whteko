@@ -47,7 +47,7 @@ using these techniques.
 </table>
 </whsketch>
 
-<whpage pageid="pgEnterDEMOS" desc="Entrance to All WebHub Demos">
+<whpage pageid="pgEnterDEMOS" desc="Entrance to WebHub Demos">
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -74,7 +74,8 @@ using these techniques.
 (~drPageBegin~)
 <div id="whdemopagecontent">
 (~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
-<h1>Overview of all WebHub Demos</h1>
+<h1>Overview of WebHub Demos</h1>
+<h2>Database-Driven Demos</h2>
 
 (~SET|tempCounter=1~)
 
@@ -82,27 +83,14 @@ using these techniques.
 <tr><th>#</th><th>Demo Name</th><th></th><th class="updatedon">Updated</th></tr>
 <!--- These are in alphabetical order based on the "one liner" description. -->
 <![CDATA[
-(~PARAMS|drDemoLink|adv,lite~)
-(~PARAMS|drDemoLink|htaj,lite~)
-(~PARAMS|drDemoLink|htasync,more~)
-(~PARAMS|drDemoLink|brnd,lite~)
 (~PARAMS|drDemoLink|scan,db~)
 (~PARAMS|drDemoLink|htcl,db~)
 (~drDemoLinkForDSP~)
-(~drDemoLinkForDFM2HTML~)
-(~PARAMS|drDemoLink|htdr,more~)
-(~PARAMS|drDemoLink|htem,more~)
-(~PARAMS|drDemoLink|htfd,lite~)
-(~PARAMS|drDemoLink|htcv,more~)
 (~PARAMS|drDemoLink|fire,db~)
 (~PARAMS|drDemoLink|htfs,db~)
-(~PARAMS|drDemoLink|form,lite~)
-(~PARAMS|drDemoLink|fast,lite~)
 (~PARAMS|drDemoLink|htfm,db~)
-(~PARAMS|drDemoLink|jpeg,more~)
 (~PARAMS|drDemoLink|htls,lite~)
 (~PARAMS|drDemoLink|dbhtml,db~)
-(~PARAMS|drDemoLink|com,more~)
 ]]>
 
 <whdroplet name="drDemoLinkForDSP" show="no">
@@ -174,29 +162,26 @@ or not (i.e. your local computer) -->
 </whdroplet>
 
 <![CDATA[
-(~PARAMS|drDemoLink|demos,apphttp~)
-(~PARAMS|drDemoLink|bw,lite~)
+<!--- (~PARAMS|drDemoLink|demos,apphttp~) -->
 (~PARAMS|drDemoLink|HTRU,db~)
-(~PARAMS|drDemoLink|HTSC,lite~)
-(~PARAMS|drDemoLink|JOKE,lite~)
 (~PARAMS|drDemoLink|SHOP1,db~)
 (~PARAMS|drDemoLink|STORE000,db~)
-(~PARAMS|drDemoLink|SHOWCASE,lite~)
-(~PARAMS|drDemoLink|htun,more~)
 (~PARAMS|drDemoLink|HTQ3,db~)
 (~PARAMS|drDemoLink|HTQ4,db~)
 (~PARAMS|drDemoLink|HTQ2,db~)
 (~PARAMS|drDemoLink|HTQ1,db~)
-(~PARAMS|drDemoLink|HTGR,more~)
-(~PARAMS|drDemoLink|HTOL,more~)
-(~PARAMS|drDemoLink|HTOB,more~)
 ]]>
 </table>
 <br />
+<h2>More Demos</h2>
+<p>(~JUMP|pgEnterMoreDEMOS|List of all MORE WebHub Demos~)</p>
+<p>These are demos that go beyond the LITE category but are not database-driven.</p>
+
+<h2>Lite Demos</h2>
+<p>(~JUMP|pgEnterLiteDEMOS|List of all LITE WebHub Demos~)</p>
 <br />
-<a href="http://demos.href.com/scripts/runisa.dll?demos:pgEnterDemos">View links on demos.href.com using Microsoft IIS</a><br />
+<a href="http://lite.demos.href.com/scripts/runisa.dll?demos:pgEnterDemos">View links on lite.demos.href.com using Microsoft IIS</a><br />
 <br />
-<a href="http://demos.href.com">Check which additional web server links are available today</a><br />
 
 (~CLEAR|tempCounter~)
 </div>  <!--- demopagecontent -->
@@ -205,6 +190,128 @@ or not (i.e. your local computer) -->
 </whoutput>
 </whpage>
 
+<whdroplet name="drDemoSpeedbarForDEMOS">
+<br/>
+[(~GO|pgEnterLiteDEMOS|Lite Demos~)]<br/>
+[(~GO|pgEnterMoreDEMOS|More Demos~)]<br/>
+[(~GO|pgEnterDEMOS|Database-Driven~)]<br/>
+</whdroplet>
+
+<whpage pageid="pgEnterLiteDEMOS" desc="Entrance to the Lite WebHub Demos">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#whdemolist td.oneliner {
+		background-color:#FFFFFF;
+	}
+	#whdemolist th.updatedon {
+		font-weight: 100;
+	}
+	#whdemolist td.updatedon {
+		text-align:right; 
+		vertical-align:top;
+		font-size: .8em;
+	}
+	#whdemolist td.keywords {
+		color: #666667;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
+<h1>Overview of WebHub Demos</h1>
+<h2>LITE WebHub Demos</h2>
+(~SET|tempCounter=1~)
+
+<table id="whdemolist" cellspacing="0">
+<tr><th>#</th><th>Demo Name</th><th></th><th class="updatedon">Updated</th></tr>
+<!--- These are in alphabetical order based on the "one liner" description. -->
+<![CDATA[
+(~PARAMS|drDemoLink|adv,lite~)
+(~PARAMS|drDemoLink|htaj,lite~)
+(~PARAMS|drDemoLink|brnd,lite~)
+(~PARAMS|drDemoLink|htfd,lite~)
+(~PARAMS|drDemoLink|form,lite~)
+(~PARAMS|drDemoLink|fast,lite~)
+(~PARAMS|drDemoLink|demos,apphttp~)
+(~PARAMS|drDemoLink|bw,lite~)
+(~PARAMS|drDemoLink|HTSC,lite~)
+(~PARAMS|drDemoLink|JOKE,lite~)
+(~PARAMS|drDemoLink|SHOWCASE,lite~)
+]]>
+</table>
+<br />
+<br />
+
+(~CLEAR|tempCounter~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgEnterMoreDEMOS" desc="Entrance to the MORE WebHub Demos">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#whdemolist td.oneliner {
+		background-color:#FFFFFF;
+	}
+	#whdemolist th.updatedon {
+		font-weight: 100;
+	}
+	#whdemolist td.updatedon {
+		text-align:right; 
+		vertical-align:top;
+		font-size: .8em;
+	}
+	#whdemolist td.keywords {
+		color: #666667;
+	}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
+<h1>Overview of WebHub Demos</h1>
+<h2>&quot;MORE&quot; WebHub Demos</h2>
+(~SET|tempCounter=1~)
+
+<table id="whdemolist" cellspacing="0">
+<tr><th>#</th><th>Demo Name</th><th></th><th class="updatedon">Updated</th></tr>
+<!--- These are in alphabetical order based on the "one liner" description. -->
+<![CDATA[
+(~PARAMS|drDemoLink|htasync,more~)
+(~drDemoLinkForDFM2HTML~)
+(~PARAMS|drDemoLink|htdr,more~)
+(~PARAMS|drDemoLink|htem,more~)
+(~PARAMS|drDemoLink|htcv,more~)
+(~PARAMS|drDemoLink|jpeg,more~)
+(~PARAMS|drDemoLink|com,more~)
+(~PARAMS|drDemoLink|htun,more~)
+(~PARAMS|drDemoLink|HTGR,more~)
+(~PARAMS|drDemoLink|HTOL,more~)
+(~PARAMS|drDemoLink|HTOB,more~)
+]]>
+</table>
+<br />
+<br />
+
+(~CLEAR|tempCounter~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
 
 <whpage pageid="pgDemoDetail" desc="Detail about a Demo">
 <whoutput>
