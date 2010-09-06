@@ -82,27 +82,27 @@ using these techniques.
 <tr><th>#</th><th>Demo Name</th><th></th><th class="updatedon">Updated</th></tr>
 <!--- These are in alphabetical order based on the "one liner" description. -->
 <![CDATA[
-(~PARAMS|drDemoLink|adv~)
-(~PARAMS|drDemoLink|htaj~)
-(~PARAMS|drDemoLink|htasync~)
-(~PARAMS|drDemoLink|brnd~)
-(~PARAMS|drDemoLink|scan~)
-(~PARAMS|drDemoLink|htcl~)
+(~PARAMS|drDemoLink|adv,lite~)
+(~PARAMS|drDemoLink|htaj,lite~)
+(~PARAMS|drDemoLink|htasync,more~)
+(~PARAMS|drDemoLink|brnd,lite~)
+(~PARAMS|drDemoLink|scan,db~)
+(~PARAMS|drDemoLink|htcl,db~)
 (~drDemoLinkForDSP~)
 (~drDemoLinkForDFM2HTML~)
-(~PARAMS|drDemoLink|htdr~)
-(~PARAMS|drDemoLink|htem~)
-(~PARAMS|drDemoLink|htfd~)
-(~PARAMS|drDemoLink|htcv~)
-(~PARAMS|drDemoLink|fire~)
-(~PARAMS|drDemoLink|htfs~)
-(~PARAMS|drDemoLink|form~)
-(~PARAMS|drDemoLink|fast~)
-(~PARAMS|drDemoLink|htfm~)
-(~PARAMS|drDemoLink|jpeg~)
-(~PARAMS|drDemoLink|htls~)
-(~PARAMS|drDemoLink|dbhtml~)
-(~PARAMS|drDemoLink|com~)
+(~PARAMS|drDemoLink|htdr,more~)
+(~PARAMS|drDemoLink|htem,more~)
+(~PARAMS|drDemoLink|htfd,lite~)
+(~PARAMS|drDemoLink|htcv,more~)
+(~PARAMS|drDemoLink|fire,db~)
+(~PARAMS|drDemoLink|htfs,db~)
+(~PARAMS|drDemoLink|form,lite~)
+(~PARAMS|drDemoLink|fast,lite~)
+(~PARAMS|drDemoLink|htfm,db~)
+(~PARAMS|drDemoLink|jpeg,more~)
+(~PARAMS|drDemoLink|htls,lite~)
+(~PARAMS|drDemoLink|dbhtml,db~)
+(~PARAMS|drDemoLink|com,more~)
 ]]>
 
 <whdroplet name="drDemoLinkForDSP" show="no">
@@ -141,8 +141,12 @@ using these techniques.
 </whdroplet>
 
 <whdroplet name="drDemoLink" show="no">
+<whdoc for="drDemoLink">
+DYN1 = AppID in lowercase
+DYN2 = Server Profile ID example shortformat, lite, db, more, dsp
+</whdoc>
 <tr><td>(~tempCounter~)</td>
-<td class="oneliner">(~JUMP|(~DYN1~):|(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~)~)</td>
+<td class="oneliner">(~JUMP|(~DYN1~):((~DYN2~))|(~DYNCHUNK|mcWhDemoOneLiner,(~DYN1~)~)~)</td>
 <td></td>
 <td align="right"><a name="(~DYN1~)">(~DYN1~)</a></td>
 </tr>
