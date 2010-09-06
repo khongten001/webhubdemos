@@ -86,6 +86,7 @@ input, select{
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<p>(~JUMPR|pgEnterhtq3|Go Back to Enter Another Query~)</p>
 <h1>You typed</h1>
 (~CmdHas|.new|New query...<br />~)
 (~CmdHas|.new|(~webdatasource1.CLOSE~)~)
