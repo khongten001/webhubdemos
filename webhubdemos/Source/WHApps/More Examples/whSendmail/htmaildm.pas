@@ -13,10 +13,14 @@ type
     WebFormLetter: TwhWebActionEx;
     WebAppOutputFormLtr: TwhResponse;
     procedure WebFormLetterExecute(Sender: TObject);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
+    procedure RedirectExecute(Sender: TObject);
   public
     { Public declarations }
+    waRedirect301: TwhWebAction;
     procedure Init;
   end;
 
@@ -36,22 +40,44 @@ uses
   so you can not invoke it by name.  But we can wrap it in a WebAction
   component as shown here.
 }
+procedure TFormLetterDM.DataModuleCreate(Sender: TObject);
+begin
+  waRedirect301 := TwhWebAction.Create(Self);
+  waRedirect301.Name := 'waRedirect301';
+  waRedirect301.OnExecute := RedirectExecute;
+end;
+
+procedure TFormLetterDM.DataModuleDestroy(Sender: TObject);
+begin
+  FreeAndNil(waRedirect301);
+end;
+
 procedure TFormLetterDM.Init;
 begin
   WebAppOutputFormLtr.GUI.SetShowResponse(outQuick);
+  RefreshWebActions(Self);
+end;
+
+procedure TFormLetterDM.RedirectExecute(Sender: TObject);
+var
+  TargetURL: string;
+begin
+  TargetURL := TwhWebAction(Sender).HtmlParam;
+  pWebApp.Response.SendRedirection301(TargetURL);
 end;
 
 procedure TFormLetterDM.WebFormLetterExecute(Sender: TObject);
 var
-  app:TwhAppBase;
-  sav:TwhResponse;
+  app: TwhAppBase;
+  sav: TwhResponse;
 begin
   //Sender is a TwhWebActionEx component.
-  with WebAppOutputFormLtr do begin
+  with WebAppOutputFormLtr do
+  begin
     {connect this output component to the app and vice versa}
     app:=TwhWebActionEx(Sender).WebApp;
     sav:=app.Response;
-    //
+
     WebApp:=app;
     app.Response:=WebAppOutputFormLtr;
 
@@ -77,7 +103,7 @@ begin
 
     {reconnect the app to the main output component}
     app.Response:=sav;
-    end;
+  end;
 end;
 
 end.

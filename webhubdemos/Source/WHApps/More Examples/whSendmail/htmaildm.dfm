@@ -1,5 +1,7 @@
 object FormLetterDM: TFormLetterDM
   OldCreateOrder = True
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 150
   Width = 216
   object WebFormLetter: TwhWebActionEx
