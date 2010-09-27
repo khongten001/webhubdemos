@@ -207,4 +207,8 @@ Your message:
 </body></html>
 </whpage>
 
+<whpage pageid="pgTest301" desc="test 301 redirection">
+(~waRedirect301.execute|http://webhub.com/dynhelp~)
+</whpage>
+
 </whteko>
