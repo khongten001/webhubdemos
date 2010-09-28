@@ -56,6 +56,7 @@ procedure TDMForWHSendMail.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
+  {M}Application.CreateForm(TFormLetterDM, FormLetterDM);
   {M}Application.CreateForm(TdmWhQuote, dmWhQuote);
 end;
 
