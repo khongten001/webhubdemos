@@ -76,7 +76,8 @@
     </Situations>
     <Static>
       <AppRoot value="/"/>
-      <ExportFolder value="C:\projects\webhubdemos\Live\WebRoot"/>
+      <ExportFolder value="D:\temp\whExport\"/>
+      <ExportURLPrefix value="./"/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
@@ -138,7 +139,7 @@
       </Item>
     </whMailForm>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="C:\temp\" />
+      <Item id="DiskFolder" value="C:\temp\"/>
       <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="DEMOS"/>
       <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" context="ultraann"/>
     </whWebAction>
