@@ -44,11 +44,7 @@ uses
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whSendMail_dmProjMgr in 'whSendMail_dmProjMgr.pas' {DMForWHSendMail: TDataModule},
-  htmaildm in 'htmaildm.pas' {FormLetterDM: TDataModule},
-  webPrologue in 'K:\WebHub\lib\whvcl\webPrologue.pas',
-  whcfg_AppInfo in 'K:\WebHub\lib\whcfg_AppInfo.pas',
-  whcfg_App in 'K:\WebHub\lib\whcfg_App.pas',
-  webServ in 'K:\WebHub\lib\whvcl\webServ.pas';
+  htmaildm in 'htmaildm.pas' {FormLetterDM: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
