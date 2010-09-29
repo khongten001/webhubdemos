@@ -78,7 +78,7 @@ WHCPSecurePage=no
 (~chWHCPFooter~)
 </whpage>
 
-<whpage pageid="pgWHCPLoginPoster" desc="internal page">
+<whpage pageid="pgWHCPLoginPoster" desc="-internal page">
 <whpagesettings>
 WHCPSecurePage=no
 </whpagesettings>
@@ -88,7 +88,7 @@ WHCPSecurePage=no
 </whprep>
 </whpage>
 
-<whpage pageid="pgWHCPLogOut" desc="internal page">
+<whpage pageid="pgWHCPLogOut" desc="-internal page">
 <whprep>
 (~CLEAR|_bLoggedIn~)
 (~CLEAR|Username~)
