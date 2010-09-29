@@ -1,13 +1,8 @@
 program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 
 // Usage: dserver.exe /ID:AppID 
-// Search path for HREF:
-// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;
-// D:\vcl\thtml9\Package
 
-// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\ZaphodsMap;k:\webhub\RegEx;d:\vcl\EurekaLog6\Delphi14;$(BDS)\lib;$(BDS)\Imports;$(BDS)\Lib\Indy10;$(BDSCOMMONDIR)\Dcp;$(BDS)\include;d:\href\source\webapplication\reg\hrefapp;
-
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
@@ -25,8 +20,7 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  htWebApp in 'H:\htWebApp.pas',
-  dmwhAnsiUmlauts in 'dmwhAnsiUmlauts.pas' {DataModule1: TDataModule};
+  htWebApp in 'H:\htWebApp.pas';
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
@@ -34,6 +28,10 @@ uses
 {$R HTGLYPHS.RES}  // icons for WebHub UI features
 
 (* save for compiling with source
+
+// Search path for HREF Tools in-house usage:
+// k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;
+
   ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
   whAppOut in 'k:\webhub\lib\whAppOut.pas',
   NativeXml in 'K:\WebHub\ZaphodsMap\NativeXml.pas',
@@ -62,6 +60,8 @@ uses
   webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
   htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
+  whcfg_App in 'K:\WebHub\lib\whcfg_App.pas',
+  webServ in 'K:\WebHub\lib\whvcl\webServ.pas',
   *)
 
 (* save for preview panel
