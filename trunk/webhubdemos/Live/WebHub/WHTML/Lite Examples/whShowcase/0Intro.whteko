@@ -8,7 +8,7 @@ level=0
 htmlFilename=0Intro.whteko
 </whpagesettingslist>
 
-<whpage pageid="pgHelp" desc="Help">
+<whpage pageid="pgHelp" desc="Help" exportfilename="testhelp.html">
 <whpagesettings inherit="a">
 bSeqHdr=false
 </whpagesettings>
@@ -41,7 +41,7 @@ Demo?  What do the icons mean?  How can I order WebHub?
 (~GO|htInfo|Contact Information~)<br/>
 </whdroplet>
 
-<whpage pageid="pgNav" desc="Navigating this Demo">
+<whpage pageid="pgNav" desc="Navigating this Demo" exportfilename="pgNav.html">
 <whpagesettings inherit="a">
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
@@ -172,19 +172,17 @@ Demo?  What do the icons mean?  How can I order WebHub?
 </td>
 (~mcVerticalLine~)
 <td VALIGN=TOP>
-(~tpNav~)
-</td></tr></table>
-(~drShowcaseGlobalFooter~)
-</whpage>
-
-<whdroplet name="tpNav">
 <p>The information hierarchy for this demo has three major levels.
 </p>
 <p>We have provided <b>Back</b> and <b>Next</b> sequence buttons to make it
 easier for you to navigate this demo. However, you do not need to read
 the pages in order.</p>
 <p>We hope you will surf around and explore everything that interests you.</p>
-</whdroplet>
+<p>(~JUMP|pgIndex,#top|Alphabetical Page Index~)</p>
+</td></tr></table>
+(~drShowcaseGlobalFooter~)
+</whpage>
+
 
 
 <whpage pageid="pgIcons" desc="Icon Definitions">
