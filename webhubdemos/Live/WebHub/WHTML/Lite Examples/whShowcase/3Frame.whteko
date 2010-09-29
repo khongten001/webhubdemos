@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -11,7 +11,7 @@ levelKeyword=Frame
 htmlFilename=3Frame.whteko
 </whpagesettingslist>
 
-<whpage pageid="FramePageA">
+<whpage pageid="FramePageA" desc="-Frame A">
 <whpagesettings inherit="a">
 </whpagesettings>
 <HTML><HEAD><TITLE>Frame A</TITLE><HEAD>
@@ -54,7 +54,7 @@ Please choose a Page:<br /><SMALL>
 </CENTER></DIV></BODY></HTML>
 </whpage>
 
-<whpage pageid="FrameControl">
+<whpage pageid="FrameControl" desc="Frame Control Example">
 <whpagesettings inherit="a">
 </whpagesettings>
 <HTML><HEAD><TITLE>Frame A</TITLE><HEAD>
@@ -85,7 +85,7 @@ Borderless<p>
 </SMALL></BODY></HTML>
 </whpage>
 
-<whpage pageid="FramePageB">
+<whpage pageid="FramePageB" desc="-Frame B">
 <whpagesettings inherit="a">
 </whpagesettings>
 <HTML><HEAD><TITLE>Icon</TITLE></HEAD>
@@ -127,7 +127,7 @@ Borderless<p>
 </whpage>
 
 
-<whpage pageid="FramePageC">
+<whpage pageid="FramePageC" desc="-Frame C">
 <whpagesettings inherit="a">
 </whpagesettings>
 <HTML><HEAD>
