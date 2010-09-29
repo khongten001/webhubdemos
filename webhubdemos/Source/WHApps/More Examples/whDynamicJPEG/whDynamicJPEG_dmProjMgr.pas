@@ -31,14 +31,13 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whDynamicJPEG_fmWh, dmwhAnsiUmlauts;
+  MultiTypeApp, whDynamicJPEG_fmWh;
 
 procedure TDMForWHDynamicJPEG.ProjMgrDataModulesCreate2(Sender: TtpProject;
   const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TDataModule1, DataModule1);
 end;
 
 procedure TDMForWHDynamicJPEG.ProjMgrGUICreate(Sender: TtpProject;
