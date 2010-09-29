@@ -43,8 +43,7 @@ uses
   htWebApp in 'h:\htwebapp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
-  whDynamicJPEG_dmProjMgr in 'whDynamicJPEG_dmProjMgr.pas' {DMForWHDynamicJPEG: TDataModule},
-  dmwhAnsiUmlauts in '..\..\Lite Examples\whAppServer\dserver\dmwhAnsiUmlauts.pas' {DataModule1: TDataModule};
+  whDynamicJPEG_dmProjMgr in 'whDynamicJPEG_dmProjMgr.pas' {DMForWHDynamicJPEG: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
