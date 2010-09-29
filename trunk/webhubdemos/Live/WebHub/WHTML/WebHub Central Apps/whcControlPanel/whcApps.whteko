@@ -105,7 +105,7 @@ closed, this control panel will be unavailable.
 </table>~)
 </whdroplet>
 
-<whpage pageid="pgAppsTerminate" desc="Internal page">
+<whpage pageid="pgAppsTerminate" desc="-Internal page">
 (~waAppAction.Execute||Terminate~)
 (~chAppsBounce~)
 </whpage>
