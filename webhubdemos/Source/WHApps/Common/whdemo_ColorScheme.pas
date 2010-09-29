@@ -30,6 +30,7 @@ type
   public
     { Public declarations }
     procedure Init;
+    function TestRawVMR: string;
   end;
 
 var
@@ -128,6 +129,15 @@ begin
   finally
     FreeAndNil(ColorList);
   end;
+end;
+
+function TDataModuleColorScheme.TestRawVMR: string;
+const
+  M = '/';
+begin
+  {for tech support issue on 29-Sep-2010}
+  {the result should be something like 'scripts/runisa.dll' }
+  Result := pWebApp.Request.VirtualPath + M + pWebApp.Request.Runner;
 end;
 
 procedure TDataModuleColorScheme.waColorSchemeExecute(Sender: TObject);

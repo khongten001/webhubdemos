@@ -173,7 +173,7 @@ begin
   begin
     pWebApp.DoUpdateGUI;
 
-    fmWebHubMainForm.Restorer.Flags := [];  // !!! Restorer not fully functional, 26-Aug-2008
+   // fmWebHubMainForm.Restorer.Flags := [];  // !!! Restorer not fully functional, 26-Aug-2008
 
     InitCoreWebHubDataModuleGUI;
     InitStandardWHModulesGUI;
