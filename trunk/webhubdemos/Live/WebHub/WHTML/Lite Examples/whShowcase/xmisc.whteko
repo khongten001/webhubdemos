@@ -33,12 +33,20 @@ htmlFilename=xmisc.whteko
 (~SENDFILE|d:\projects\webhubdemos\Live\WebRoot\WebHub\Demos\whShowcase\SampleScoreList.csv,text/csv~)
 </whpage>
 
-<whpage pageid="pgIndex" desc="Index of all pages in (~AppID~) demo">
+<whpage pageid="pgIndex" desc="-Index of all pages in (~AppID~) demo"  exportfilename="pgIndex.html">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
+<h1><a name="top">Alphabetical Page Index</a></h1>
 (~waSiteIndex.execute|~)
+<p>
+<!-- demonstrate links to pages that are exported; links should work 
+equally well when used dynamically or when static (exported). -->
+(~JUMP|pgEnterShowcase|Enter Showcase~).. 
+(~GO|pgHelp|Help,#top~).. 
+(~GO|pgIndex,#top|top of this page~)
+</p>
 (~drShowcaseGlobalFooter~)
 </whpage>
 
