@@ -57,7 +57,7 @@ uses
   whpanel_RemotePages, whpanel_Mail, uAutoPanels,
   whMain,  // whpwMain,
   {$ENDIF}
-  dserver_whdmGeneral, whdemo_ColorScheme, dmwhAnsiUmlauts;
+  dserver_whdmGeneral, whdemo_ColorScheme;
 
 { TDMForWHDemo }
 
