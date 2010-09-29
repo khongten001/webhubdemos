@@ -90,10 +90,8 @@
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\UTF8StringUtils.pas"/>
-			<DCCReference Include="H:\htWebApp.pas"/>
-			<DCCReference Include="dmwhAnsiUmlauts.pas">
-				<Form>DataModule1</Form>
-				<DesignClass>TDataModule</DesignClass>
+			<DCCReference Include="H:\htWebApp.pas">
+				<Form>$R *.RES</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
