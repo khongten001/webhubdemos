@@ -87,7 +87,7 @@ Note: these instructions assume that you know how to run WebHub application serv
 </whoutput>
 </whpage>
 
-<whpage pageid="InvalidPage" desc="Invalid Page">
+<whpage pageid="InvalidPage" desc="-Invalid Page">
 <whprep>
 (~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
 </whprep>
