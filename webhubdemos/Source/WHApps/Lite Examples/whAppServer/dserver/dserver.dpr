@@ -1,6 +1,6 @@
 program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 
-// Usage: dserver.exe /ID:AppID 
+// Usage: dserver.exe /ID:AppID
 
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
@@ -20,7 +20,7 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  htWebApp in 'H:\htWebApp.pas';
+  htWebApp in 'H:\htWebApp.pas' {$R *.RES};
 
 {$R *.RES}
 {$R WHDICON.RES}   // dserver tray icon
