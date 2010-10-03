@@ -49,13 +49,11 @@ implementation
 uses
   Forms,
   MultiTypeApp,
-  {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
-  ucLogFil,
+  ucDlgs, ucLogFil,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whsample_EvtHandlers,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
-  whpanel_RemotePages, whpanel_Mail, uAutoPanels,
-  whMain,  // whpwMain,
+  whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain,
   {$ENDIF}
   dserver_whdmGeneral, whdemo_ColorScheme;
 
