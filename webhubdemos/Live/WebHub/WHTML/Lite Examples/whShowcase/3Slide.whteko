@@ -16,14 +16,12 @@ htmlFilename=3Slide.whteko
 </whpagesettingslist>
 
 <whdroplet name="slideBefore">
- 3C<br />
- 3C<br />
+<!-- slideBefore -->
 </whdroplet>
 
 
 <whdroplet name="slideAfter">
- 3C<br />
- 3C<br />
+<!-- slideAfter -->
 </whdroplet>
 
 <whpage pageid="pgSlide0" desc="Questions to Ask When Evaluating Web Solutions">
@@ -247,13 +245,10 @@ bNoMore=true
 (~divider~)
 
 <h2>9. How expensive is it?</h2>
-WebHub Power HTML costs $195 and includes a 1exe Hub.<br />
-The WebHub VCL components cost $295 per developer.  <br />
-The Hub is licensed per server, ranging from $95 to $1955 per machine
+WebHub Power HTML is free.<br />
+The Hub is licensed per server, ranging from $49 to $4000 per machine
 depending on capacity.  
 <p>
-There is a free trial version available at
-http://webhub.com/.
 (~divider~)
 (~slideAfter~)
 (~drShowcaseGlobalFooter~)
