@@ -26,7 +26,7 @@ uses
   whSchedule_dmdbProjMgr in 'whSchedule_dmdbProjMgr.pas' {DMForWHSchedule: TDataModule},
   whSchedule_dmwhActions in 'whSchedule_dmwhActions.pas' {DMCodeRageActions: TDataModule},
   CodeRage_dmCommon in 'DBDesign\gen_delphi\1\CodeRage_dmCommon.pas' {dmCommon: TDataModule},
-  ldiDmUtil in '..\..\..\..\..\..\vcl\LDI\ldiDmUtil.pas',
+  ldiDmUtil in 'd:\vcl\LDI\ldiDmUtil.pas',
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_uImport in 'whSchedule_uImport.pas',
   ucCalifTime in 'O:\WebApplication\Shared\All\ucCalifTime.pas';
