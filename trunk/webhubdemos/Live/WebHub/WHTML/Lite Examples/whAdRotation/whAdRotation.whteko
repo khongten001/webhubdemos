@@ -8,6 +8,7 @@
 	designmode="code">
  
 <whdroplet name="drDemoSpeedbarForADV">
+(~COOKIE|Session=(~SessionID~)~)
 [(~GO|Cycle2|Internal Workings~)]<br />
 [(~GO|Cycle2A|Cycle List Navigation Bar~)]<br />
 [(~Go|CycleHow|How to Use it~)]<br />
