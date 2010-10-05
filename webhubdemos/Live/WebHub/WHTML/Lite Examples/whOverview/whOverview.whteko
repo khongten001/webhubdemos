@@ -7,46 +7,6 @@
 <!-- speedbar for DEMOS demo could appear here -->
 </whdroplet>
 
-<whsketch for="pgEnterDEMOS">
-<table id="whdemolist">
-<tr><th>#</th><th>Demo Name</th><th>&nbsp;</th><th>Updated</th></tr>
-<tr><td>1</td>
-<td class="oneliner"></td><td><a href="/adv::">Ad Rotation</a></td>
-<td>&nbsp;</td>
-<td align="right"><a name="ADV">ADV</a></td>
-</tr>
-<tr><td>&nbsp;</td><td colspan="2">The WebCycle component can be used to display a rotating series
-of items, such as advertisements, so that a new item is 
-featured with each new page.
-[<a href="javascript:newWindow('/DEMOS:pgDemoDetail::adv')">more</a>]
-</td>
-<td class="updatedon">20-Oct-1998</td>
-</tr>
-<tr><td>&nbsp;</td><td class="keywords">Keywords: Ad rotation,TwhCycle,cyclic list</td>
-<td align="right" valign="top">&nbsp;</td>
-</tr>
-<tr><td colspan="4">&nbsp;</td></tr>
-
-<tr><td>2</td>
-<td class="oneliner"></td><td><a href="/HtAsync::">Background Processing</a></td>
-<td>&nbsp;</td>
-<td align="right"><a name="HtAsync">HtAsync</a></td>
-</tr>
-<tr><td>&nbsp;</td><td colspan="2">This application demonstrates asyndrronous coding tedrniques using WebHub.  There are 3 parts 
-to the demo: explanatory text and diagrams, a simulation involving a slow database query, and 
-a group of examples whidr showcase the variety of settings and features available to WebHub programmers 
-using these techniques.
-[<a href="javascript:newWindow('/DEMOS:pgDemoDetail::HtAsync')">more</a>]
-</td>
-<td class="updatedon">2-Apr-2003</td>
-</tr>
-<tr><td>&nbsp;</td><td class="keywords">Keywords: Asynchronous processing,background processing, percent complete, partial completion,TWhAsync</td>
-<td align="right" valign="top">&nbsp;</td>
-</tr>
-<tr><td colspan="4">&nbsp;</td></tr>
-</table>
-</whsketch>
-
 <whpage pageid="pgEnterDEMOS" desc="Entrance to WebHub Demos">
 <whoutput>
 (~mcdoctypehtml~)
