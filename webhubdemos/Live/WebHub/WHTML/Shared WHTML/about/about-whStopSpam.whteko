@@ -7,8 +7,8 @@ mcWhDemoCreditIdeaHTUN=www.fantomaster.com
 mcWhDemoCreditFirstDraftHTUN=Ann Lynnworth
 mcWhDemoCreditGraphicsHTUN=n/a
 mcWhDemoCreditCopyHTUN=n/a
-mcWhDemoUpdatedHTUN=Jul-2008
-mcWhDemoKeywordsHTUN=obfuscation of email addresses,spam prevention,numeric coding
+mcWhDemoUpdatedHTUN=Oct-2010
+mcWhDemoKeywordsHTUN=obfuscation of email addresses,spam prevention,numeric coding,soap
 mcWhDemoLiteHTUN=No
 </whmacros>
 
@@ -16,6 +16,9 @@ mcWhDemoLiteHTUN=No
 <ol>
 <li> Requires whStopSpam.exe</li>
 <li> Requires AppID 'htun' defined and pointing to the appropriate application-level configuration file. </li>
+<li> If you are looking at this demo to learn how to make SOAP servers and clients 
+with Delphi, you may want to use SubVersion to download the source and look at the 
+SOAP client which is in a folder under the whStopSpam demo itself.</li>
 </ol>
 </whdroplet>
 
@@ -24,7 +27,8 @@ mcWhDemoLiteHTUN=No
 This demo shows the conversion of an email address 
 from plain text to numeric equivalent.  The purpose is to generate 
 mailto links which spiders might not put in spam databases, 
-yet human readers can use easily.
+yet human readers can use easily. Secondarily, the feature is 
+available over SOAP.
 </whtranslation>
 
 <whmacros>
@@ -47,12 +51,12 @@ be careful not to create a haven for spammers.  An insecure server-side mail dae
 is much more problematic than getting onto a few spam lists.</p>
 
 <p>Technical notes: There is one custom web action component named waSlowSpam in 
-this application. This is implemented on a panel so that it can be added to any WebHub application. 
-See also: MAILTO macro in WebHub v2.014+</p>
+this application. See also: MAILTO macro, which as of WebHub v2.014 includes a parameter 
+to let you automatically obfuscate the email address.</p>
 
-<p>The waSlowSpam component's features may be utilized via SOAP.  (The whSlowSpam.exe is the SOAP Host application.)
+<p>The waSlowSpam component's features may be utilized via SOAP.  (The whSlowSpam.exe is the SOAP Host application.  It runs as a service, but this is not a requirement.)
 WebHub provides automatic documentation for all web action components that have SOAP enabled.  For easier testing, 
-a list of the documentation URLs are provided below:</p>
+a list of the documentation URLs are provided below.  The second two links might not display anything in Google Chrome; use Firefox or Internet Explorer, or view-source within Chrome.</p>
 <ul>
 <li> <a href="(~mcSoapURLStart~)/">(~mcSoapURLStart~)</a> </li>
 <li> <a href="(~mcSoapURLStart~)/html/waSlowSpam">(~mcSoapURLStart~)/html/waSlowSpam</a></li>
