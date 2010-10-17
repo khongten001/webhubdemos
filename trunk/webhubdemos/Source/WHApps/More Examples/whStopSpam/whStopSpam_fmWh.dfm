@@ -4,38 +4,38 @@ inherited fmUnicodePanel: TfmUnicodePanel
   Width = 397
   Height = 405
   Caption = '&Unicode'
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 389
-    Height = 348
+    Width = 379
+    Height = 341
     object Panel: TPanel
       Left = 5
       Top = 45
-      Width = 379
-      Height = 298
+      Width = 369
+      Height = 291
       Align = alClient
       BevelOuter = bvNone
       TabOrder = 1
       object Label1: TLabel
         Left = 8
         Top = 24
-        Width = 24
-        Height = 13
+        Width = 38
+        Height = 18
         Caption = 'Input'
       end
       object Label2: TLabel
         Left = 8
         Top = 48
-        Width = 32
-        Height = 13
+        Width = 52
+        Height = 18
         Caption = 'Output'
       end
       object Label3: TLabel
         Left = 8
         Top = 74
-        Width = 51
-        Height = 13
+        Width = 80
+        Height = 18
         Caption = 'Mailto Link'
       end
       object BtnObfuscate: TBitBtn
@@ -52,7 +52,7 @@ inherited fmUnicodePanel: TfmUnicodePanel
         Left = 81
         Top = 16
         Width = 241
-        Height = 21
+        Height = 26
         TabOrder = 1
         OnChange = Edit1Change
       end
@@ -86,16 +86,15 @@ inherited fmUnicodePanel: TfmUnicodePanel
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 379
-      Height = 40
+      Width = 369
       BorderWidth = 5
       TabOrder = 0
     end
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 348
-    Width = 389
+    Top = 341
+    Width = 379
     Height = 19
     Panels = <
       item
@@ -105,11 +104,5 @@ inherited fmUnicodePanel: TfmUnicodePanel
     ParentShowHint = False
     ShowHint = True
     PanelStatusIndex = 0
-  end
-  object WebActionNoSaveState1: TwhWebAction
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = WebActionNoSaveState1Execute
-    Left = 253
-    Top = 205
   end
 end
