@@ -24,10 +24,13 @@ THE SOFTWARE.
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
    for information about "drives" H: and K:. *)
 
+(* This demo runs as a service on http://more.demos.href.com/htun 
+    as of 15-Oct-2010. *)
+
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
@@ -38,7 +41,8 @@ uses
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whStopSpam_fmWh in 'whStopSpam_fmWh.pas' {fmUnicodePanel},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
-  whStopSpam_dmProjMgr in 'whStopSpam_dmProjMgr.pas' {DMForWHStopSpam: TDataModule};
+  whStopSpam_dmProjMgr in 'whStopSpam_dmProjMgr.pas' {DMForWHStopSpam: TDataModule},
+  whStopSpam_dmwh in 'whStopSpam_dmwh.pas' {DMforHTUN: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
