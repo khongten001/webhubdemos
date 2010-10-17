@@ -11,6 +11,10 @@ type
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
       var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: String; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject;
+      var ErrorText: String; var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -25,7 +29,14 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whStopSpam_fmWh;
+  MultiTypeApp, whStopSpam_fmWh, whStopSpam_dmwh;
+
+procedure TDMForWHStopSpam.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: String; var Continue: Boolean);
+begin
+  inherited;
+  {M}Application.CreateForm(TDMforHTUN, DMforHTUN);
+end;
 
 procedure TDMForWHStopSpam.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
@@ -35,4 +46,12 @@ begin
   {M}Application.CreateForm(TfmUnicodePanel, fmUnicodePanel);
 end;
 
+procedure TDMForWHStopSpam.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: String; var Continue: Boolean);
+begin
+  inherited;
+  DMforHTUN.Init;
+end;
+
 end.
+
