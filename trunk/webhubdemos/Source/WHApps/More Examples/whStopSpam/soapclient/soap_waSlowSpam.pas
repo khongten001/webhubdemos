@@ -1,10 +1,12 @@
 // ************************************************************************ //
 // The types declared in this file were generated from data read from the
 // WSDL File described below:
-// WSDL     : http://demos.href.com/scripts/runisa.dll/HTUN/wsdl/waSlowSpam
+// WSDL     : http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam
 // Encoding : utf-8
 // Version  : 1.0
 // (07/04/2005 5:54:40 PM - 1.33.2.5)
+// URL adjusted 15-Oct-2010 from demos.href.com to more.demos.href.com
+//                          and to make the AppID 'htun' lowercase
 // ************************************************************************ //
 
 unit soap_waSlowSpam;
@@ -19,7 +21,7 @@ type
   // The following types, referred to in the WSDL document are not being represented
   // in this file. They are either aliases[@] of other types represented or were referred
   // to but never[!] declared in the document. The types from the latter category
-  // typically map to predefined/known XML or Borland types; however, they could also 
+  // typically map to predefined/known XML or Borland types; however, they could also
   // indicate incorrect WSDL documents that failed to declare or import a schema type.
   // ************************************************************************ //
   // !:unsignedInt     - "http://www.w3.org/2001/XMLSchema"
@@ -35,7 +37,7 @@ type
   // binding   : waSlowSpamBinding
   // service   : waSlowSpamService
   // port      : waSlowSpamPort
-  // URL       : http://demos.href.com/scripts/runisa.dll/HTUN/soap/waSlowSpam
+  // URL       : http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam
   // ************************************************************************ //
   IwaSlowSpam = interface(IInvokable)
   ['{B50CBDD7-C839-6817-0DA5-FE8C213BD54B}']
@@ -49,8 +51,8 @@ implementation
 
 function GetIwaSlowSpam(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IwaSlowSpam;
 const
-  defWSDL = 'http://demos.href.com/scripts/runisa.dll/HTUN/wsdl/waSlowSpam';
-  defURL  = 'http://demos.href.com/scripts/runisa.dll/HTUN/soap/waSlowSpam';
+  defWSDL = 'http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam';
+  defURL  = 'http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam';
   defSvc  = 'waSlowSpamService';
   defPrt  = 'waSlowSpamPort';
 var
