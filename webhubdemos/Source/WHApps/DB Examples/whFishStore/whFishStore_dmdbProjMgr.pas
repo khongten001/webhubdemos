@@ -158,7 +158,7 @@ begin
   Assert(pWebApp.IsUpdated);
   if ShouldEnableGUI then
   begin
-    fmWebHubMainForm.Restorer.Flags := [];  // else fish store gives A/V on exit !!!
+//    fmWebHubMainForm.Restorer.Flags := [];  // else fish store gives A/V on exit !!!
 
     pWebApp.DoUpdateGUI;
 
