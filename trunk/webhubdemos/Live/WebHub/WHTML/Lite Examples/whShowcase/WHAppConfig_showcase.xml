@@ -77,7 +77,7 @@
     <Static>
       <AppRoot value="/"/>
       <ExportFolder value="D:\temp\whExport\"/>
-      <ExportURLPrefix value="./"/>
+      <ExportURLPrefix value=""/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
