@@ -86,7 +86,7 @@
         <Template value="letters\form-ltr.txt"/>
         <LogToFile value="false"/>
       </Item>
-      <Item name="feedback">
+      <Item name="Feedback">
         <Host value="mail.href.com"/>
         <Port value="25"/>
         <From value="EMail^"/>
