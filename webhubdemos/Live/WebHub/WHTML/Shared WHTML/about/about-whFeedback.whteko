@@ -42,7 +42,8 @@ executed, and based on the command, it knows which settings to use to
 send the message.
 <br /><br />
 The settings determine the email host, sender, recipient, and so on.
-If you look at the INI file, you will see exactly what is involved.
+If you look at the application-level configuration file, you will see exactly what is involved.
+Use an XML editor or ZMAdmin.
 </whtranslation>
 
 </whteko>
