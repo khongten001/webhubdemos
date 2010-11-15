@@ -53,7 +53,7 @@ Try them out!
 This example uses a template file (feedback.txt) for the email message, which
  incorporates the StringVars from the following form with a slight amount of formatting.
 
- <form method="post" accept-charset="UTF-8" action="(~|pgFeedbackResult~)">
+ <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
