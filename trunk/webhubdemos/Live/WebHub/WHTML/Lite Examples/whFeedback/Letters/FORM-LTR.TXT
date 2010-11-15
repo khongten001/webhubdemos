@@ -1,4 +1,4 @@
-(~webserver.webtime~)
+(~CentralInfo.WebTimeGMT~)
 
 Dear (~FullName~),
 
@@ -13,7 +13,7 @@ Thanks for taking the time to write.
 
 Bye for now,
 
-techsupport@href.com
+techsupport at href dot com
 Technical Support Department
 HREF Tools Corp.
 

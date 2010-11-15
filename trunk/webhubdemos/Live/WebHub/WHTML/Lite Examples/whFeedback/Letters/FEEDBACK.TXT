@@ -2,7 +2,7 @@ FEEDBACK MESSAGE
 
 From:    (~EMail~)
 Subject: (~Subject~)
-Date:    (~webserver.webtime~)
+Date:    (~centralinfo.webtimegmt~)
 
 (~txtMessage~)
 
