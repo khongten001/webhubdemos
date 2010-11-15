@@ -76,7 +76,7 @@
   </Application>
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
-      <Item name="formLetter">
+      <Item name="FormLetter">
         <Host value="mail.href.com"/>
         <Port value="25"/>
         <From value="info@href.com"/>
@@ -86,7 +86,7 @@
         <Template value="letters\form-ltr.txt"/>
         <LogToFile value="false"/>
       </Item>
-      <Item name="Feedback" comment="case-sensitive">
+      <Item name="Feedback">
         <Host value="mail.href.com"/>
         <Port value="25"/>
         <From value="EMail^"/>
