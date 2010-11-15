@@ -1,5 +1,5 @@
-cd \Projects\WebHubDemos\Live\WebHub\Apps
-REM start whLite.exe /ID=showcase /debug
+::change to folder containing this bat file
+cd %~dp0
 
-start dserverD07.exe /ID=showcase 
-
+::start the WebHub showcase demo
+start whLite.exe /ID=showcase 
