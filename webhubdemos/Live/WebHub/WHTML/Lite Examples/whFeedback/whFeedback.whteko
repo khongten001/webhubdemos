@@ -68,6 +68,10 @@ This example uses a template file (feedback.txt) for the email message, which
  <td>(~INPUTTEXT|EMailTo~)</td>
 </tr>
 <tr>
+ <td class="prompt">Subject (<i>required</i>)</td>
+ <td>(~INPUTTEXT|Subject~)</td>
+</tr>
+<tr>
  <td class="prompt">Message</td>
  <td>(~inputtextarea|txtMessage,5,60~)</td>
 </tr>
@@ -177,7 +181,7 @@ Date:    <span class="changing">(~.CentralInfo.webtimegmt~)</span>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <strong>You have not filled in all the required fields. Please try again.</strong>
-<p>This is what we do have: (~Request.FormData~)</p>
+<p>This is what we do have:</p><p> (~Request.FormData~)</p>
 
 <hr />
 <p>(~pgEnterHTFD~)</p>
