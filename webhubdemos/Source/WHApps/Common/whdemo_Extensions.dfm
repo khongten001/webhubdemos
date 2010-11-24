@@ -32,4 +32,10 @@ object DemoExtensions: TDemoExtensions
     Left = 96
     Top = 312
   end
+  object waDelaySec: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waDelaySecExecute
+    Left = 208
+    Top = 304
+  end
 end
