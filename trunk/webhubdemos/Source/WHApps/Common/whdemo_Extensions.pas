@@ -24,10 +24,12 @@ type
     waVersionInfo: TwhWebAction;
     waGetExename: TwhWebAction;
     waLSec: TwhWebAction;
+    waDelaySec: TwhWebAction;
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
     procedure waVersionInfoExecute(Sender: TObject);
     procedure waLSecExecute(Sender: TObject);
+    procedure waDelaySecExecute(Sender: TObject);
   private
     { Private declarations }
     function IsHREFToolsQATestAgent: Boolean;
@@ -146,6 +148,14 @@ begin
       '%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
       [waVersionInfo.Name]) );
   end;
+end;
+
+procedure TDemoExtensions.waDelaySecExecute(Sender: TObject);
+var
+  SecondsToDelay: Integer;
+begin
+  SecondsToDelay := StrToIntDef(TwhWebAction(Sender).HtmlParam, 0) * 1000;
+  Sleep(SecondsToDelay);
 end;
 
 procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
