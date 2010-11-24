@@ -126,19 +126,22 @@ end;
 procedure TfmAppAboutPanel.ActionToggleConnectionExecute(Sender: TObject);
 begin
   inherited;
-  if (NOT Assigned(pConnection)) or (NOT pConnection.IsUpdated) then
-    Exit;
+// off, WebHub v2.132, 24-Nov-2010
+//  if (NOT Assigned(pConnection)) or (NOT pConnection.IsUpdated) then
+//    Exit;
 
   with btnToggleConnection do
   begin
     if IsEqual(Caption, 'suspend') then
     begin
-      pConnection.Active := False;
+      //pConnection.Active := False;  // off, WebHub v2.132, 24-Nov-2010
+      FreeAndNil(pConnection);        // alternative
       Caption := 'Resume';
     end
     else
     begin
-      pConnection.Active := True;
+      //pConnection.Active := True;  // off, WebHub v2.132, 24-Nov-2010
+      pWebApp.Refresh;               // alternative
       Caption := 'Suspend';
     end;
   end;
