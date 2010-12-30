@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko  
 	defaultlingvo="eng"  
@@ -274,4 +274,22 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 </whoutput>
 </whpage>
 
+<whpage pageid="pgSlowPage" desc="Simulate a slow action">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>Before: (~centralinfo.webtimegmt~)</p>
+(~waDelaySec.Execute|3~)
+<p>After: (~centralinfo.webtimegmt~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
 </whteko>
