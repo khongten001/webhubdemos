@@ -6,15 +6,11 @@ inherited fmHTQ2Panel: TfmHTQ2Panel
   ClientWidth = 499
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitWidth = 517
-  ExplicitHeight = 298
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
     Width = 499
     Height = 234
-    ExplicitWidth = 499
-    ExplicitHeight = 234
     object DBGrid1: TDBGrid
       Left = 5
       Top = 45
