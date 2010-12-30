@@ -83,19 +83,44 @@ page headers, footers, speed bars, common HTML forms, and even JavaScript, and V
 With a little organization of your files, droplets can be shared across projects. 
 
 <h4>StringVars</h4>
-WebHub has something called &quot;StringVars&quot; which
+<p>WebHub has something called &quot;StringVars&quot; which
 are a set of strings saved individually by the surfer. Usually,
 the contents of these strings come from the surfer directly;
 they type something into an HTML FORM.  However, you can
-also use the SET macro to define a literal on the fly.
+also use the SET macro to define a string variable on the fly.
 This lets you create various special effects, including
 customizing pages depending on the customer name. You will
-see examples of this in the Forms section of this showcase.
+see examples of this in the Forms section of this showcase.</p>
 <p>
 The most important thing about StringVars is that they
 are <i>variables</i>. Their content is easily changed
 at runtime, either by the surfer, or behind the scenes
-by the programmer.
+by the programmer.</p>
+
+<h4>Syntax Test for the Set Command</h4>
+(~CLEAR|*~)
+<whdroplet name="setgroup" show="yes">
+(~SET|Session['Sx']=hello~)
+(~SET|Session[Session['Sx']]=world~)
+(~SET|Session[Session[Session['Sx']]]=green~)
+(~SET|Session['colorswithcomma']=red,green,blue~)
+(~SET|y=yellow~)
+(~SET|z=(~y~)~)
+(~SET|Session['St']=(~CentralInfo.WebTimeGMT~)~)
+(~SET|Session['red']=balloon~)
+(~SET|Session['Sr']=red~)
+(~SET|r=Session['Sr']~)
+(~SET|b=Session[Session['Sr']]~)
+</whdroplet>
+<hr />
+(~StringVars~)
+<hr />
+<h4>Display of Source for the SetGroup test droplet</h4>
+<pre>
+(~SOURCE|setgroup~)
+</pre>
+<p>(~JUMPR|(~PAGEID~)|run page (~PageID~) again~)</p>
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 
