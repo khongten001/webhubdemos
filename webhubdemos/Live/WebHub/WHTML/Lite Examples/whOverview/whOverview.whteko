@@ -3,8 +3,11 @@
 <whteko defaultlingvo="eng" designmode="code"
   designpage="pgEnterDEMOS">
 
-<whdroplet name="drDemoSpeedbarFordemos">
-<!-- speedbar for DEMOS demo could appear here -->
+<whdroplet name="drDemoSpeedbarForDEMOS">
+<br/>
+[(~GO|pgEnterLiteDEMOS|Lite Demos~)]<br/>
+[(~GO|pgEnterMoreDEMOS|More Demos~)]<br/>
+[(~GO|pgEnterDEMOS|Database-Driven~)]<br/>
 </whdroplet>
 
 <whpage pageid="pgEnterDEMOS" desc="Entrance to WebHub Demos">
@@ -149,13 +152,6 @@ or not (i.e. your local computer) -->
 </body></html>
 </whoutput>
 </whpage>
-
-<whdroplet name="drDemoSpeedbarForDEMOS">
-<br/>
-[(~GO|pgEnterLiteDEMOS|Lite Demos~)]<br/>
-[(~GO|pgEnterMoreDEMOS|More Demos~)]<br/>
-[(~GO|pgEnterDEMOS|Database-Driven~)]<br/>
-</whdroplet>
 
 <whpage pageid="pgEnterLiteDEMOS" desc="Entrance to the Lite WebHub Demos">
 <whoutput>
