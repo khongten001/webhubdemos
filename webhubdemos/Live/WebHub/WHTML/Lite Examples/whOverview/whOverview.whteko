@@ -126,6 +126,7 @@ or not (i.e. your local computer) -->
 
 <![CDATA[
 <!--- (~PARAMS|drDemoLink|demos,apphttp~) -->
+(~PARAMS|drDemoLink|jpeg,db~)
 (~PARAMS|drDemoLink|HTRU,db~)
 (~PARAMS|drDemoLink|SHOP1,db~)
 (~PARAMS|drDemoLink|STORE000,db~)
@@ -251,7 +252,6 @@ or not (i.e. your local computer) -->
 (~PARAMS|drDemoLink|htdr,more~)
 (~PARAMS|drDemoLink|htem,more~)
 (~PARAMS|drDemoLink|htcv,more~)
-(~PARAMS|drDemoLink|jpeg,more~)
 (~PARAMS|drDemoLink|com,more~)
 (~PARAMS|drDemoLink|htun,more~)
 (~PARAMS|drDemoLink|HTGR,more~)

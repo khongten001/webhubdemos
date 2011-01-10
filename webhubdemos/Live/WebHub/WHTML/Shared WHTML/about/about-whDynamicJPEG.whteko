@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaJPEG=Michael Ax
 mcWhDemoCreditFirstDraftJPEG=Michael Ax
 mcWhDemoCreditGraphicsJPEG=Michael Ax
 mcWhDemoCreditCopyJPEG=Ann Lynnworth
-mcWhDemoUpdatedJPEG=02-Jun-2006
+mcWhDemoUpdatedJPEG=09-Jan-2011
 mcWhDemoKeywordsJPEG=JPEG,dynamic,graphics
 mcWhDemoLiteJPEG=No
 </whmacros>
@@ -15,6 +15,7 @@ mcWhDemoLiteJPEG=No
 <whdroplet name="drDemoSetupJPEG">
 <ol>
 <li> Requires whDynamicJPEG.exe </li>
+<li> Requires Borland Database Engine (and that is why it was recategorized as a "db" demo, January 2011)</li>
 </ol>
 </whdroplet>
 
