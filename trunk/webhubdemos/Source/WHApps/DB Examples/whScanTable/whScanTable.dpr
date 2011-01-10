@@ -43,20 +43,22 @@ uses
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
-  whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
-  whMain in 'k:\webhub\lib\whMain.pas' {fmWebHubMainForm},
+  whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
+  whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   scanfm in 'scanfm.pas' {fmDBPanel},
   importfm in 'importfm.pas' {FormImport},
   ucScnDir in 'ucScnDir.pas',
+  whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule};
+
+{
   wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
   wdbxSource in 'K:\WebHub\lib\whdb\wdbxSource.pas',
   webScan in 'K:\WebHub\lib\whplus\webScan.pas',
   htWebApp in 'K:\WebHub\lib\htWebApp.pas',
-  whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
   webLink in 'k:\webhub\lib\webLink.pas',
   htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas';
-
+}
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
 {..$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
