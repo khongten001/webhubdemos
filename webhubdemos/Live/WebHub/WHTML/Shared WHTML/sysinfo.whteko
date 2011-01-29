@@ -61,11 +61,16 @@
  <td>
 DynURL.RawToActiveAuthorityM = (~DynURL.RawToActiveAuthorityM~)<br />
 DynURL.ToAppID = (~DynURL.ToAppID~)<br />
-Request.RequestProtocol = (~Request.RequestProtocol~)<br />
 Request.Host = (~Request.Host~)<br />
-Request.VirtualPath = (~Request.VirtualPath~)<br/>
+Request.Proxy = (~Request.Proxy~)<br/>
+Request.RequestProtocol = (~Request.RequestProtocol~)<br />
+Request.RemoteHost = (~Request.RemoteHost~)<br />
 Request.Runner = (~Request.Runner~)<br/>
 Request.RawVMR = (~Request.RawVMR~)<br/>
+Request.Referer = (~Request.Referer~)<br/>
+Request.UserAgent = (~Request.UserAgent~)<br/>
+Request.VirtualPath = (~Request.VirtualPath~)<br/>
+Request.XForwardedFor = (~Request.XForwardedFor~)<br/>
 Port = (~Port~)<br />
  </td>
  <td>AppID: (~AppID~)<br/>
