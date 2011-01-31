@@ -1,13 +1,29 @@
-unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://demos.href.com }
+unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://lite.demos.href.com }
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1998-2006 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1998-2011 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
-//  This source code file is part of WebHub v2.07x.  Please obtain a WebHub   //
+//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub   //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
 
-//  Original Authors: Ann Lynnworth, Michael Ax and Rob Martin.
+
+{ To configure the "View Source" feature to use a root folder other than
+  c:\Projects\webhubdemos\
+
+  add
+
+  <Product name="WebHubDemos" folder="d:\YourPath\Projects\WebHubDemos" />
+
+  to your WebHubInstallationConfig.xml file which can be found using ZMAdmin,
+  ZM Configuration, go into branch HREFTools\Install. View the ZMKeybox.
+  On the right side, look for
+
+    KeyGroup = WebHub
+    Keys = Install
+
+  There you can EDIT the WebHubInstallationConfig.xml file.
+}
 
 interface
 
@@ -32,26 +48,30 @@ type
     procedure waDemoViewSourceProjectLinkExecute(Sender: TObject);
   private
     { Private declarations }
+    FIsDemoRootKnown: Boolean;
     fpaslist: TStringlist;
     fformlist: Tstringlist;
     foutputlist: TStringlist;
     ftemplist: TStringlist;
     fProjectFilename: String;
     fDelphiSourcePath: String;
-    function GetWHTMLFilename(const i: Integer): String;
-    function isEndOfUses(a1: String): boolean;
-    function isInCurrentForm(aClassname:string):boolean;
+    function GetWHTMLFilename(const i: Integer): string;
+    function isEndOfUses(a1: string): Boolean;
+    function isInCurrentForm(aClassname: string): Boolean;
   public
     { Public declarations }
-    property DelphiSourcePath: String read fDelphiSourcePath write fDelphiSourcePath;
+    property DelphiSourcePath: string read fDelphiSourcePath
+      write fDelphiSourcePath;
+    property IsDemoRootKnown: Boolean read FIsDemoRootKnown
+      write FIsDemoRootKnown;
   end;
 
 var
   DemoViewSource: TDemoViewSource = nil;
 
-function getHtDemoCodeRoot: String;     // default is c:\projects\WebHubDemos\Source\WhApps\
-function getHtDemoDataRoot: String;     // default is c:\projects\WebHubDemos\Live\Database\
-function getHtDemoWWWRoot: String;      // default is c:\projects\WebHubDemos\Live\WebRoot\
+function getHtDemoCodeRoot: string;     // default is c:\projects\WebHubDemos\Source\WhApps\
+function getHtDemoDataRoot: string;     // default is c:\projects\WebHubDemos\Live\Database\
+function getHtDemoWWWRoot: string;      // default is c:\projects\WebHubDemos\Live\WebRoot\
 
 procedure whDemoSetDelphiSourceLocation(const Path: String;
   const isRelativePath: Boolean);
@@ -87,7 +107,7 @@ end;
 
 //----------------------------------------------------------------------
 
-function getWebHubDemoInstallRoot: String;
+function getWebHubDemoInstallRoot: string;
 var
   HREFInstallBranch: string;
   Warning: string;
@@ -100,12 +120,8 @@ begin
     cWebHubInstallKeyName, cWebHubInstallConfigRootName,
     ['InstallFolders/Product[@name="WebHubDemos"]'], cxOptional, usrNone,
     'folder', 'c:\projects\WebHubDemos\', Warning);
-  if Warning <> '' then
-    MsgWarningOk('You should do this NOW, and then restart this demo:' +
-      sLinebreak + sLineBreak +
-      'Add <Product name="WebHubDemos" ' +
-      'folder="d:\Projects\WebHubDemos" /> to your ' +
-      'WebHubInstallationConfig.xml file.' + sLineBreak + sLineBreak + Warning);
+  if Warning = '' then
+    DemoViewSource.IsDemoRootKnown := True;
 end;
 
 function getHtDemoCodeRoot: String;
@@ -131,7 +147,8 @@ end;
 
 procedure TDemoViewSource.DataModuleCreate(Sender: TObject);
 begin
-  fProjectFilename := ChangeFileExt(ExtractFilename(Paramstr(0)),'.dpr');
+  FIsDemoRootKnown := False;
+  fProjectFilename := ChangeFileExt(ExtractFilename(Paramstr(0)), '.dpr');
   fpaslist := TStringList.Create;
   fformlist := TStringList.Create;
   foutputlist := TStringList.Create;
@@ -153,14 +170,23 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourceExecute(Sender: TObject);
 var
-  aUnitName:string;
-  a1,a2,a3,a4 : String;
-  aTemp,aCurrentLine,aHyperLine:string;
-  i : Integer;
-  bOk,bDFM:boolean;
+  aUnitName: string;
+  a1, a2, a3, a4 : string;
+  aTemp, aCurrentLine, aHyperLine: string;
+  i: Integer;
+  bOk, bDFM: Boolean;
 begin
+
   with TwhWebActionEx(Sender) do
   begin
+
+    if NOT FIsDemoRootKnown then
+    begin
+      WebApp.SendStringImm(
+        'Error: the root folder for the demos has not been configured.');
+      Exit;
+    end;
+
     // calculate every time so this works multi-surfer.
     foutputlist.clear;
     with ftemplist do
