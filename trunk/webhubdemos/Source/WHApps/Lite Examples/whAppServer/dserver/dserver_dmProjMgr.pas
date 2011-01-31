@@ -102,7 +102,7 @@ begin
   whDemoSetAppId(UsedAppID);  // this refreshes the app
 
   //Cover again after refresh
-  CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
+  htWebApp.CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
   ProjMgr.Item := S;
 
   whDemoCreateSharedDataModules;
@@ -111,7 +111,7 @@ end;
 procedure TDMForDServer.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
-  Application.CreateForm(TdmwhGeneral, dmwhGeneral); 
+  Application.CreateForm(TdmwhGeneral, dmwhGeneral);
   Application.CreateForm(TDataModuleColorScheme, DataModuleColorScheme);
 end;
 
@@ -182,7 +182,7 @@ end;
 
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
 begin
-  UncoverApp(ProjMgr.Item);
+  htWebApp.UncoverApp(ProjMgr.Item);
 end;
 
 end.
