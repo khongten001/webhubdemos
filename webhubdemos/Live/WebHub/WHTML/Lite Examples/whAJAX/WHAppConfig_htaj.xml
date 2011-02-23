@@ -72,7 +72,7 @@
       <AppRoot value="http://demos.href.com/"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
     </StreamCatcherInterface>
     <TekoFiles>
