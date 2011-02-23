@@ -86,7 +86,7 @@
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="" />
-      <WebRobotIniFilespec value="D:\AppsData\StreamCatcher\WebSites\wwwDSP\Config\SCWebSiteConfig_wwwDSP.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDSP\Config\SCWebSiteConfig_wwwDSP.cfg" context="DEMOS"/>
       <WebRobotIniSection value="wwwDSP.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
