@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designdynsrc="localdemoFORM"
+  designpage=""
+  designmode="code"
+  notes="This file provides a way to test a RegNow license server.">
+
+<whpage pageid="pgTestRegNow01" desc="Test a RegNow license generator">
+<whprep>
+(~CHECK|parametersdate~)
+(~CHECK|parametersorder_id~)
+(~CHECK|parametersquantity~)
+(~CHECK|parametersitem~)
+(~CHECK|parametersfname~)
+(~CHECK|parameterslname~)
+(~CHECK|parametersname~)
+(~CHECK|parameterscompany~)
+(~CHECK|parameterscountry~)
+(~CHECK|parametersemail~)
+(~CHECK|parametersphone~)
+(~SET|URL=http://ann.codenewsfast.com/scripts/runisa64.dll?whsales:regnow~)
+(~SET|URL=https://www.href.com/whsales:regnow~)
+(~SET|item=33883-2~)
+(~SET|date=4/15/2011~)
+(~SET|order_id=12332~)
+(~SET|quantity=1~)
+(~SET|fname=Timothy~)
+(~SET|lname=Leary~)
+(~SET|phone=800-555-1212~)
+(~SET|company=N.I.H.~)
+(~SET|country=United States~)
+(~SET|email=ann@href.com~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+#Part1Div {
+display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; background-color: #f0f2f5;"}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Testing RegNow Shareware License Generator</h1>
+<p><a target="_blank" href="http://www.regnow.com/">RegNow</a> is the software industry’s premier registration commerce provider. </p>
+<p>Among many other features, they let shareware authors use a custom web application to generate unlock codes for their products.  Testing such an interface usually involves triggering a test order within RegNow's developer-only interface. Instructions are in their Help system.</p>
+<p>Here we use our own form to simulate a test.  We post selected fields to a license generator.</p>
+<p>This is a 3 step process.</p>
+<h2>Step 1: define the license interface</h2>
+<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~ACTIONR|pgTestRegNow02,.ckb~)">
+
+<div id="Part1Div" >
+ <table cellpadding="2" cellspacing="0" border="0" width="100%" >
+  
+  <tr><td colspan="3">
+
+     <table cellpadding="2" cellspacing="0" border="0" width="100%" >
+  
+      <tr><td width="10%">&nbsp;</td><td width="80%">
+      Please provide the information below in order for us to post order information to your server.  We will need the full URL where we will need to post the order information as well as the parameters you would like passed.
+      </td><td width="10%">&nbsp;</td></tr>
+    
+ </table>
+
+  </td></tr>
+  <tr><td colspan="3">&nbsp;</td></tr>
+  
+  <tr >
+
+  <td style="border-top: solid #F2F3F4 1px" nowrap class="dialogrowdisplay" width="25%" valign="top" align="right"><b><span style="color: #f00;">*</span>Method</b>:</td>
+  <td style="border-top: solid #F2F3F4 1px">&nbsp;</td>
+  <td style="border-top: solid #F2F3F4 1px" width="75%" valign="top">
+     <table cellpadding="2" cellspacing="0" border="0" width="100%" >
+  
+    <tr>
+      <td valign="top"><input type="radio" name="METHOD" selected="selected" value="post" >Post</td>
+    </tr>  
+    
+ </table>
+
+  </td>
+</tr>  
+  
+  <tr >
+  <td style="border-top: solid #F2F3F4 1px" nowrap class="dialogrowdisplay" width="25%"  align="right"><b><span style="color: #f00;">*</span>URL</b>:</td>
+
+  <td style="border-top: solid #F2F3F4 1px">&nbsp;</td>
+  <td style="border-top: solid #F2F3F4 1px" width="75%" >
+     <table cellpadding="2" cellspacing="0" border="0" width="100%" >
+  
+      <tr>
+      <td width="50%">(~INPUTTEXT|URL| style="position: relative; width: 100%;" ~)</td>
+      <td>&nbsp;</td>
+      </tr>
+    
+ </table>
+      
+  </td>
+
+</tr>  
+
+  <tr >
+  <td style="border-top: solid #F2F3F4 1px" nowrap class="dialogrowdisplay" width="25%" valign="top" align="right"><b><span style="color: #f00;">*</span>Parameters</b><br>(select all that apply):</td>
+  <td style="border-top: solid #F2F3F4 1px">&nbsp;</td>
+  <td style="border-top: solid #F2F3F4 1px" width="75%" valign="top">
+     <table cellpadding="2" cellspacing="0" border="0" width="100%" >
+  
+      <tr><td width="20%">(~INPUTCHECKBOX|parametersdate~)  Date
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersorder_id~) Order ID
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersitem~)  Item (Product)
+               </td>
+
+              <td width="20%">(~INPUTCHECKBOX|parametersquantity~) Quantity
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersorder_total~) Order Total
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersfname~) First Name
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterslname~) Last Name
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersname~) Name
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscompany~) Company
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersaddr1~) Address1
+               </td>
+
+              <td width="20%">(~INPUTCHECKBOX|parametersaddr2~) Address2
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscity~) City
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersstate~)State
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterszip~) Zip
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscountry~) Country
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersphone~) Phone
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersemail~) Email
+               </td>
+
+              <td width="20%">(~INPUTCHECKBOX|parameterslink_id~) Link ID
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametershas_tax~) Has Tax
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersship_country~) Ship Country
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersship_state~) Ship State
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_name~) Product Name
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_price~) Product Price
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_shipping~) Product Shipping Price
+               </td>
+
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscustomer_email_optin~) Customer Email Opt-in
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscurrencyid~) Currency ID
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscurrency_total~) Currency Total
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersaffiliateid~) Affiliate ID
+               </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscouponid~) Coupon ID
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersvendor~) Vendor ID
+               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscrosssell~) Cross Sell
+               </td>
+
+              <td colspan="1">&nbsp;</td></tr>
+    
+ </table>
+
+  </td>
+</tr>
+
+
+ </table>
+
+</div>
+<p style="text-align:center; font-size:x-large;"><input type="submit" value="Proceed to next step" /></p>
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgTestRegNow02" desc="Step 2 of RegNow License Test">
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Step 2: Enter data to be passed to your license system</h1>
+<i></i>
+<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~URL~)">
+<table>
+
+(~IF|parametersdate|<tr><th>date:</th><td>(~INPUTTEXT|date~)</td></tr> ~)
+(~IF|parametersorder_id|<tr><th>order_id:</th><td>(~INPUTTEXT|order_id~)</td></tr> ~)
+(~IF|parametersquantity|<tr><th>quantity:</th><td>(~INPUTTEXT|quantity~)</td></tr> ~)
+(~IF|parametersitem|<tr><th>item:</th><td>(~INPUTTEXT|item~)</td></tr> ~)
+(~IF|parametersfname|<tr><th>first name:</th><td>(~INPUTTEXT|fname~)</td></tr> ~)
+(~IF|parameterslname|<tr><th>last name:</th><td>(~INPUTTEXT|lname~)</td></tr> ~)
+(~IF|parametersname|<tr><th>name:</th><td>(~INPUTTEXT|name~)</td></tr> ~)
+(~IF|parameterscompany|<tr><th>company:</th><td>(~INPUTTEXT|company~)</td></tr> ~)
+(~IF|parameterscountry|<tr><th>country:</th><td>(~INPUTTEXT|country~)</td></tr> ~)
+(~IF|parametersemail|<tr><th>email:</th><td>(~INPUTTEXT|email~)</td></tr> ~)
+(~IF|parametersphone|<tr><th>phone:</th><td>(~INPUTTEXT|phone~)</td></tr> ~)
+
+</table>
+<input type="submit" />
+</form>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>
