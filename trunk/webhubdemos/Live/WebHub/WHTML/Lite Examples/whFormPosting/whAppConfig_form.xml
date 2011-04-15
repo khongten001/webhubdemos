@@ -55,7 +55,9 @@
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="" />
+	  <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="" />
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
     </StreamCatcherInterface>
     <TekoFiles>
@@ -63,6 +65,7 @@
       <File id="aboutFORM" filename="..\..\Shared WHTML\about\about-whFormPosting.whteko"/>
       <File id="contentFORM" filename="whFormPosting.whteko"/>
       <File id="contentFORM2" filename="whFormPosting2.whteko"/>
+      <File id="contentRegNow" filename="whTestRegNow.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
