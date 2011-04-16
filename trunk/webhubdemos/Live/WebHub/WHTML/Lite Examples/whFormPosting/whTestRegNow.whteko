@@ -36,7 +36,11 @@
 	<style type="text/css">
 #Part1Div {
 display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; background-color: #f0f2f5;"}
-	</style>
+ #captchaNewRegNow b {    /* TwhCaptcha generates all key digits in bold */
+   /* color should be the same as in the instructions for filling in the form */
+   color: red;    
+ }
+</style>
 </head>
 <body>
 (~drPageBegin~)
@@ -149,7 +153,13 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
               <td width="20%">(~INPUTCHECKBOX|parameterscrosssell~) Cross Sell       </td>
 
               <td colspan="1">&nbsp;</td></tr>
-    
+    <tr><td>Enter security code:</td>
+	<td>(~waCaptcha.Execute|new,RegNow~)<!--- Action=new and Keyword=RegNow   --></td>
+	<td>(~INPUTTEXT|CaptchaX~)</td>
+	<td>Ahoy Humans!<br/>Please enter 
+the <span style="color: red; font-weight: 900;">red</span> security code.</td>
+	</tr>
+	 
  </table>
 
   </td>
@@ -168,8 +178,15 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
 </body></html>
 </whpage>
 
+<whdroplet name="drCaptchaErrorRegNow">
+(~BOUNCE|pgErrorCaptcha~)  
+</whdroplet>
+
 <whpage pageid="pgTestRegNow02" desc="Step 2 of RegNow License Test">
 <whprep>
+<!--- Now we call the SAME web action, with 
+Action 'control' and the SAME keyword RegNow. -->
+(~waCaptcha.Execute|control,RegNow~)
 (~REQUIRES|url|pgTestRegNow01~)
 </whprep>
 (~mcdoctypehtml~)
