@@ -18,6 +18,7 @@ mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gr
 <whdroplet name="drDemoSpeedbarForFORM">
 (~GO|pgEnterFORM|Basic Save-State~)<br />
 (~GO|Param|Advanced INPUTSELECT~)<br />
+(~GO|pgTestRegNow01|Test RegNow Licensing~)<br/>
 </whdroplet>
 
 <whpage pageid="pgEnterFORM" desc="Describe Your Pet">
