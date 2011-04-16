@@ -153,9 +153,9 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
               <td width="20%">(~INPUTCHECKBOX|parameterscrosssell~) Cross Sell       </td>
 
               <td colspan="1">&nbsp;</td></tr>
-    <tr><td>Enter security code:</td>
-	<td>(~waCaptcha.Execute|new,RegNow~)<!--- Action=new and Keyword=RegNow   --></td>
-	<td>(~INPUTTEXT|CaptchaX~)</td>
+    <tr><td width="20%">Enter security code:</td>
+	<td width="20%">(~waDemoCaptcha.Execute|new,RegNow~)<!--- Action=new and Keyword=RegNow   --></td>
+	<td width="20%"> (~INPUTTEXT|CaptchaX~)</td>
 	<td>Ahoy Humans!<br/>Please enter 
 the <span style="color: red; font-weight: 900;">red</span> security code.</td>
 	</tr>
@@ -186,7 +186,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.</td>
 <whprep>
 <!--- Now we call the SAME web action, with 
 Action 'control' and the SAME keyword RegNow. -->
-(~waCaptcha.Execute|control,RegNow~)
+(~waDemoCaptcha.Execute|control,RegNow~)
 (~REQUIRES|url|pgTestRegNow01~)
 </whprep>
 (~mcdoctypehtml~)
