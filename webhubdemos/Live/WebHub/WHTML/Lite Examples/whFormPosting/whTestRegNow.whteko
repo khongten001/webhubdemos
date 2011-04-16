@@ -35,8 +35,10 @@
 	(~drHead~)
 	<style type="text/css">
 #Part1Div {
-display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; background-color: #f0f2f5;"}
- #captchaNewRegNow b {    /* TwhCaptcha generates all key digits in bold */
+	display:block; border: 1px #ccc solid; margin-top: 15px; 
+	padding: 5px 0px; background-color: #f0f2f5;
+}
+#captchaNewRegNow b {  
    /* color should be the same as in the instructions for filling in the form */
    color: red;    
  }
@@ -179,7 +181,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.</td>
 </whpage>
 
 <whdroplet name="drCaptchaErrorRegNow">
-(~BOUNCE|pgErrorCaptcha~)  
+(~BOUNCE|pgTestRegNow01~)  
 </whdroplet>
 
 <whpage pageid="pgTestRegNow02" desc="Step 2 of RegNow License Test">
