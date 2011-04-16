@@ -238,7 +238,7 @@ Action 'control' and the SAME keyword RegNow. -->
 (~IF|parameterscrosssell|<tr><th>crosssell:</th><td>(~INPUTTEXT|crosssell~)</td></tr> ~)
 
 </table>
-<input type="submit" />
+<input type="submit" value="Send to (~URL~) Now" />
 </form>
 
 </div>  <!--- demopagecontent -->
