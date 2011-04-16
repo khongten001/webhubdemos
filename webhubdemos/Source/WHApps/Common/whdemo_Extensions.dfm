@@ -38,7 +38,7 @@ object DemoExtensions: TDemoExtensions
     Left = 208
     Top = 304
   end
-  object whDemoCaptcha: TwhCaptcha
+  object waDemoCaptcha: TwhCaptcha
     ComponentOptions = [tpUpdateOnLoad]
     Left = 280
     Top = 200

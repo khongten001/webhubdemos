@@ -25,7 +25,7 @@ type
     waGetExename: TwhWebAction;
     waLSec: TwhWebAction;
     waDelaySec: TwhWebAction;
-    whDemoCaptcha: TwhCaptcha;
+    waDemoCaptcha: TwhCaptcha;
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
     procedure waVersionInfoExecute(Sender: TObject);
