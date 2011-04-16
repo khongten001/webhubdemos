@@ -15,7 +15,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ActnList,
   updateOk, tpAction, tpActionGUI,
-  webSend, webTypes, webLink, webCycle, webLogin;
+  webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
   TDemoExtensions = class(TDataModule)
@@ -25,6 +25,7 @@ type
     waGetExename: TwhWebAction;
     waLSec: TwhWebAction;
     waDelaySec: TwhWebAction;
+    whDemoCaptcha: TwhCaptcha;
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
     procedure waVersionInfoExecute(Sender: TObject);
