@@ -10,29 +10,24 @@
 
 <whpage pageid="pgTestRegNow01" desc="Test a RegNow license generator">
 <whprep>
-(~CHECK|parametersdate~)
-(~CHECK|parametersorder_id~)
 (~CHECK|parametersquantity~)
 (~CHECK|parametersitem~)
-(~CHECK|parametersfname~)
-(~CHECK|parameterslname~)
 (~CHECK|parametersname~)
 (~CHECK|parameterscompany~)
 (~CHECK|parameterscountry~)
 (~CHECK|parametersemail~)
 (~CHECK|parametersphone~)
-(~SET|URL=http://ann.codenewsfast.com/scripts/runisa64.dll?whsales:regnow~)
-(~SET|URL=https://www.href.com/whsales:regnow~)
+(~NOTASSIGNED|item|
 (~SET|item=33883-2~)
-(~SET|date=4/15/2011~)
-(~SET|order_id=12332~)
 (~SET|quantity=1~)
-(~SET|fname=Timothy~)
-(~SET|lname=Leary~)
+(~SET|fname=Steve~)
+(~SET|lname=Martin~)
+(~SET|lname=Steve Martin~)
 (~SET|phone=800-555-1212~)
-(~SET|company=N.I.H.~)
+(~SET|company=none~)
 (~SET|country=United States~)
-(~SET|email=ann@href.com~)
+(~SET|email=info@href.com~)
+~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
@@ -52,7 +47,7 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
 <p>Here we use our own form to simulate a test.  We post selected fields to a license generator.</p>
 <p>This is a 3 step process.</p>
 <h2>Step 1: define the license interface</h2>
-<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~ACTIONR|pgTestRegNow02,.ckb~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgTestRegNow02,.ckb~)">
 
 <div id="Part1Div" >
  <table cellpadding="2" cellspacing="0" border="0" width="100%" >
@@ -78,7 +73,7 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
      <table cellpadding="2" cellspacing="0" border="0" width="100%" >
   
     <tr>
-      <td valign="top"><input type="radio" name="METHOD" selected="selected" value="post" >Post</td>
+      <td valign="top"><input type="radio" name="METHOD"  checked="checked" value="post" >Post</td>
     </tr>  
     
  </table>
@@ -110,72 +105,41 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
   <td style="border-top: solid #F2F3F4 1px" width="75%" valign="top">
      <table cellpadding="2" cellspacing="0" border="0" width="100%" >
   
-      <tr><td width="20%">(~INPUTCHECKBOX|parametersdate~)  Date
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersorder_id~) Order ID
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersitem~)  Item (Product)
-               </td>
+      <tr><td width="20%">(~INPUTCHECKBOX|parametersdate~)  Date             </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersorder_id~) Order ID              </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersitem~)  Item (Product)             </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersquantity~) Quantity             </td>
+              </tr>
+		<tr><td width="20%">(~INPUTCHECKBOX|parametersorder_total~) Order Total      </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersfname~) First Name              </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterslname~) Last Name           </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersname~) Name            </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscompany~) Company         </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersaddr1~) Address1         </td>
 
-              <td width="20%">(~INPUTCHECKBOX|parametersquantity~) Quantity
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersorder_total~) Order Total
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersfname~) First Name
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterslname~) Last Name
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersname~) Name
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscompany~) Company
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersaddr1~) Address1
-               </td>
-
-              <td width="20%">(~INPUTCHECKBOX|parametersaddr2~) Address2
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterscity~) City
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersstate~)State
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterszip~) Zip
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterscountry~) Country
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersphone~) Phone
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersemail~) Email
-               </td>
-
-              <td width="20%">(~INPUTCHECKBOX|parameterslink_id~) Link ID
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametershas_tax~) Has Tax
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersship_country~) Ship Country
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersship_state~) Ship State
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersproduct_name~) Product Name
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersproduct_price~) Product Price
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersproduct_shipping~) Product Shipping Price
-               </td>
-
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscustomer_email_optin~) Customer Email Opt-in
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterscurrencyid~) Currency ID
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterscurrency_total~) Currency Total
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersaffiliateid~) Affiliate ID
-               </td>
-              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscouponid~) Coupon ID
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parametersvendor~) Vendor ID
-               </td>
-              <td width="20%">(~INPUTCHECKBOX|parameterscrosssell~) Cross Sell
-               </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersaddr2~) Address2          </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscity~) City           </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersstate~)State          </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterszip~) Zip           </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscountry~) Country           </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersphone~) Phone          </td>
+              </tr>
+		<tr><td width="20%">(~INPUTCHECKBOX|parametersemail~) Email         </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterslink_id~) Link ID           </td>
+              <td width="20%">(~INPUTCHECKBOX|parametershas_tax~) Has Tax           </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersship_country~) Ship Country            </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parametersship_state~) Ship State      </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_name~) Product Name     </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_price~) Product Price      </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersproduct_shipping~) Product Shipping Price   </td>
+              </tr>
+		<tr><td width="20%">(~INPUTCHECKBOX|parameterscustomer_email_optin~) Customer Email Opt-in          </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscurrencyid~) Currency ID               </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscurrency_total~) Currency Total      </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersaffiliateid~) Affiliate ID          </td>
+              </tr><tr><td width="20%">(~INPUTCHECKBOX|parameterscouponid~) Coupon ID        </td>
+              <td width="20%">(~INPUTCHECKBOX|parametersvendor~) Vendor ID          </td>
+              <td width="20%">(~INPUTCHECKBOX|parameterscrosssell~) Cross Sell       </td>
 
               <td colspan="1">&nbsp;</td></tr>
     
@@ -198,6 +162,9 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
 </whpage>
 
 <whpage pageid="pgTestRegNow02" desc="Step 2 of RegNow License Test">
+<whprep>
+(~REQUIRES|url|pgTestRegNow01~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -208,20 +175,41 @@ display:block; border: 1px #ccc solid; margin-top: 15px; padding: 5px 0px; backg
 <div id="whdemopagecontent">
 <h1>Step 2: Enter data to be passed to your license system</h1>
 <i></i>
-<form method="post" charset="UTF-8" accept-charset="UTF-8" action="(~URL~)">
-<table>
+<form method="post" accept-charset="UTF-8" action="(~URL~)">
+<table id="orderentry-table">
 
 (~IF|parametersdate|<tr><th>date:</th><td>(~INPUTTEXT|date~)</td></tr> ~)
 (~IF|parametersorder_id|<tr><th>order_id:</th><td>(~INPUTTEXT|order_id~)</td></tr> ~)
-(~IF|parametersquantity|<tr><th>quantity:</th><td>(~INPUTTEXT|quantity~)</td></tr> ~)
 (~IF|parametersitem|<tr><th>item:</th><td>(~INPUTTEXT|item~)</td></tr> ~)
+(~IF|parametersquantity|<tr><th>quantity:</th><td>(~INPUTTEXT|quantity~)</td></tr> ~)
+(~IF|parametersorder_total|<tr><th>order_total:</th><td>(~INPUTTEXT|order_total~)</td></tr> ~)
 (~IF|parametersfname|<tr><th>first name:</th><td>(~INPUTTEXT|fname~)</td></tr> ~)
 (~IF|parameterslname|<tr><th>last name:</th><td>(~INPUTTEXT|lname~)</td></tr> ~)
 (~IF|parametersname|<tr><th>name:</th><td>(~INPUTTEXT|name~)</td></tr> ~)
 (~IF|parameterscompany|<tr><th>company:</th><td>(~INPUTTEXT|company~)</td></tr> ~)
+(~IF|parametersaddr1|<tr><th>addr1:</th><td>(~INPUTTEXT|addr1~)</td></tr> ~)
+(~IF|parametersaddr2|<tr><th>addr2:</th><td>(~INPUTTEXT|addr2~)</td></tr> ~)
+(~IF|parameterscity|<tr><th>city:</th><td>(~INPUTTEXT|city)</td></tr> ~)
+(~IF|parametersstate|<tr><th>state:</th><td>(~INPUTTEXT|state)</td></tr> ~)
+(~IF|parameterszip|<tr><th>zip:</th><td>(~INPUTTEXT|zip)</td></tr> ~)
 (~IF|parameterscountry|<tr><th>country:</th><td>(~INPUTTEXT|country~)</td></tr> ~)
-(~IF|parametersemail|<tr><th>email:</th><td>(~INPUTTEXT|email~)</td></tr> ~)
 (~IF|parametersphone|<tr><th>phone:</th><td>(~INPUTTEXT|phone~)</td></tr> ~)
+(~IF|parametersemail|<tr><th>email:</th><td>(~INPUTTEXT|email~)</td></tr> ~)
+(~IF|parameterslink_id|<tr><th>link_id:</th><td>(~INPUTTEXT|link_id~)</td></tr> ~)
+(~IF|parametershas_tax|<tr><th>has tax:</th><td>(~INPUTTEXT|has_tax~)</td></tr> ~)
+(~IF|parametersship_country|<tr><th>ship country:</th><td>(~INPUTTEXT|ship_country~)</td></tr> ~)
+(~IF|parametersship_state|<tr><th>ship state:</th><td>(~INPUTTEXT|ship_state~)</td></tr> ~)
+(~IF|parametersproduct_name|<tr><th>product name:</th><td>(~INPUTTEXT|product_name~)</td></tr> ~)
+(~IF|parametersproduct_price|<tr><th>product price:</th><td>(~INPUTTEXT|product_price~)</td></tr> ~)
+(~IF|parametersproduct_shipping|<tr><th>product shipping price:</th><td>(~INPUTTEXT|product_shipping~)</td></tr> ~)
+(~IF|parameterscustomer_email_optin|<tr><th>customer email optin:</th><td>(~INPUTTEXT|customer_email_optin~)</td></tr> ~)
+(~IF|parameterscurrencyid|<tr><th>currency id:</th><td>(~INPUTTEXT|currencyid~)</td></tr> ~)
+(~IF|parametersproduct_shipping|<tr><th>product_shipping:</th><td>(~INPUTTEXT|product_shipping~)</td></tr> ~)
+(~IF|parameterscurrency_total|<tr><th>currency_total:</th><td>(~INPUTTEXT|currency_total~)</td></tr> ~)
+(~IF|parametersaffiliateid|<tr><th>affiliateid:</th><td>(~INPUTTEXT|affiliateid~)</td></tr> ~)
+(~IF|parameterscouponid|<tr><th>couponid:</th><td>(~INPUTTEXT|couponid~)</td></tr> ~)
+(~IF|parametersvendor|<tr><th>vendor:</th><td>(~INPUTTEXT|vendor~)</td></tr> ~)
+(~IF|parameterscrosssell|<tr><th>crosssell:</th><td>(~INPUTTEXT|crosssell~)</td></tr> ~)
 
 </table>
 <input type="submit" />
