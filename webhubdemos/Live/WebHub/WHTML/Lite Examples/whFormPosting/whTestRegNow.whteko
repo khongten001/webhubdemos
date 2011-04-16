@@ -19,6 +19,7 @@
 (~CHECK|parametersphone~)
 (~NOTASSIGNED|item|
 (~SET|item=33883-2~)
+(~SET|vendor=33883~)
 (~SET|quantity=1~)
 (~SET|fname=Steve~)
 (~SET|lname=Martin~)
@@ -26,7 +27,6 @@
 (~SET|phone=800-555-1212~)
 (~SET|company=none~)
 (~SET|country=United States~)
-(~SET|email=info@href.com~)
 ~)
 </whprep>
 (~mcdoctypehtml~)
