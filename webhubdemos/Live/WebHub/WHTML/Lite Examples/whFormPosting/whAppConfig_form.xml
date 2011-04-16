@@ -79,7 +79,11 @@
     </TekoFiles>
   </Application>
   <ComponentConfig>
-    <whWebAction componentName="waLinkW3Validation">
+   <whWebAction componentName="waDemoCaptcha">
+        <Item id="LengthFull" value="10"/>
+        <Item id="LengthKey" value="5"/>
+    </whWebAction>
+	<whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\form\" context="DEMOS"/>
     </whWebAction>
   </ComponentConfig>
