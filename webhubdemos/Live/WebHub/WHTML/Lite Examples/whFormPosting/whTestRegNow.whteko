@@ -200,7 +200,7 @@ Action 'control' and the SAME keyword RegNow. -->
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Step 2: Enter data to be passed to your license system</h1>
-<i></i>
+<i>RegNow does not support UTF-8. Use Latin-1 symbols only.</i>
 <form method="post" accept-charset="UTF-8" action="(~URL~)">
 <table id="orderentry-table">
 
