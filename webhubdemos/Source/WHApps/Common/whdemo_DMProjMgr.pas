@@ -73,7 +73,7 @@ uses
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
-  whsample_EvtHandlers, whpanel_RemotePages, whpanel_Mail, uAutoPanels;
+  whpanel_RemotePages, whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
 

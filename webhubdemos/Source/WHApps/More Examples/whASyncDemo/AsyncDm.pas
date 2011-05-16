@@ -71,6 +71,7 @@ uses
   htThread,        // backgroundthread class to subscribe TNotifyevents to.
   ipcMail,
   whMacros,
+  ucAnsiUtil,      // explicit conversion using specified CodePage number
   uCode,           // tpRaise, tpRaiseHere
   ucString,        // string function (IsIn..)
   ucPipe,          // access to dos output
@@ -92,7 +93,7 @@ uses
 
 type
   TThreadInput= class(TObject)  //simple object.
-    DosCmd: string;             //add and initialize fields as needed.
+    DosCmd: AnsiString;         //add and initialize fields as needed.
     temp: string;
     //
     //stream and stream related
@@ -102,16 +103,16 @@ type
     bAbort: Boolean;
       //if true aborts when switching away from open page.
       //if false - continues processing!
-    bUsedGetStrProc: Boolean;
-      //if true then GetStrProc has been called and we've sent
+    bUsedGetAnsiStrProc: Boolean;
+      //if true then GetAnsiStrProc has been called and we've sent
       //some actual in-progress message as opposed to 'just a dot
       //to update the display'.. when that happens we know that per
       //the design of this demo that ALL of the result-text will flow
-      //through GetStrProc right back to the user and that therefore
+      //through GetAnsiStrProc right back to the user and that therefore
       //we don't need to send the resulttext when finished/done.
-    procedure GetStrProc(const Value:String);
-      //GetStrProc is called back, roughly line by line, by
-      //the GetDosOutput function for the 'split-off' dos-cmd
+    procedure GetAnsiStrProc(const Value: AnsiString);
+      //GetAnsiStrProc is called back, roughly line by line, by
+      //the GetDosOutputA function for the 'split-off' dos-cmd
       //demo.
     function SendUpdate(PercentComplete:integer):Boolean;
       //SendUpdate is used to deliver chForEach to the surfer.
@@ -121,21 +122,23 @@ type
       //
       end;
 
-procedure TThreadInput.GetStrProc(const Value:String);
+procedure TThreadInput.GetAnsiStrProc(const Value: AnsiString);
 var
+  a8: UTF8String;
   S: string;
-  a1: UTF8String;
 begin
-  if bStreaming
-  and assigned(Stream) then
-    with stream do
-    begin
-      S := Value;
-      StringRepl(S, sLineBreak, '<br/>' + sLineBreak);
-      a1 := UTF8Encode(S);
-      if CommOutBufferToMailBox(Name, '+', a1) then
-        bUsedGetStrProc := True
-      end;
+  if bStreaming and assigned(Stream) then
+  begin
+    S := StringReplaceAll(AnsiCodePageToUnicode(Value, 1252),
+      sLineBreak, '<br/>' + sLineBreak);
+    {$IFDEF UNICODE}
+    a8 := UnicodeToUTF8(S);
+    {$ELSE}
+    a8 := AnsiCodePageToUTF8(S, 1252);
+    {$ENDIF}
+    if CommOutBufferToMailBox(Stream.Name, '+', a8) then
+      bUsedGetAnsiStrProc := True
+  end;
 end;
 
 function TThreadInput.SendUpdate(PercentComplete:integer):Boolean;
@@ -180,7 +183,7 @@ begin
         //(btw, if YOU close the connection at any time the runner
         //will cause CommOutBufferToMailBox to fail. you can see that
         //used below to conditionally abort the balance of the process.
-        if bUsedGetStrProc then
+        if bUsedGetAnsiStrProc then
           Writes(chDone+chTail)
         else
           Writes(chDone+ResultString+chTail);
@@ -478,12 +481,18 @@ begin
   and (Sender is TwhAsyncObject) then
   with pWebApp, TwhAsyncObject(Sender) do begin
     Data:=TThreadInput.Create;
-    TThreadInput(Data).DosCmd:=Expand(waAsyncAction.HtmlParam);
+    TThreadInput(Data).DosCmd :=
+      {$IFDEF UNICODE}
+      UnicodeToAnsiCodePage(Expand(waAsyncAction.HtmlParam), 1252);
+      {$ELSE}
+      Expand(waAsyncAction.HtmlParam);
+      {$ENDIF}
 
-    if BoolVar['AsUnHook'] then begin
+    if BoolVar['AsUnHook'] then
+    begin
       SetAsyncState(asStarted);
       TThreadInput(Data).Takeover(Response);
-      end;
+    end;
 
     //might just set the resultstring here and ignore the data object!
     ResultString:='';
@@ -533,31 +542,47 @@ end;
 
 procedure TdmAsyncDemo.ExecuteDosCmd(Sender: TObject);
 var
-  a1:string;
+  aa: AnsiString;
+  a1: string;
+  ErrorCode: Integer;
 begin
   if assigned(Sender)
   and (Sender is TwhAsyncObject) then
   with TwhAsyncObject(Sender) do
-    if not Done then begin
+    if not Done then
+    begin
       try
         if assigned(Data) then
           with TThreadInput(Data) do
-            a1:= GetDosOutput(DosCmd,GetStrProc) //ucPipe
-        else begin
-          a1:= ResultString;
-          a1:= GetDosOutput(a1,nil);
-          end;
-      except on e:exception do begin
-        ResultValue:=-1;
-        a1:=e.message;
+          begin
+            aa:= GetDosOutputA(DosCmd, GetAnsiStrProc, ErrorCode);
+            {$IFDEF UNICODE}
+            a1 := AnsiCodePageToUnicode(aa, 1252);
+            {$ELSE}
+            a1 := aa;
+            {$ENDIF}
+          end
+        else
+        begin
+          aa := GetDosOutputA(AnsiString(ResultString), nil, ErrorCode);
+          {$IFDEF UNICODE}
+          a1 := AnsiCodePageToUnicode(aa, 1252);
+          {$ELSE}
+          a1 := aa;
+          {$ENDIF}
         end;
-        end;
-      StringRepl(a1,#13#10,'<brx>');
-      StringRepl(a1,'<brx><brx>','<brx>&nbsp;<brx>');
-      StringRepl(a1,'<brx>','<br />'#13#10);
-      ResultString:=a1;
-      Done:=True;
+      except on E: Exception do
+      begin
+        ResultValue := -1;
+        a1 := E.Message;
       end;
+    end;
+    StringRepl(a1, sLineBreak, '<brx>');
+    StringRepl(a1, '<brx><brx>', '<brx>&nbsp;<brx>');
+    StringRepl(a1, '<brx>', '<br />'#13#10);
+    ResultString := a1;
+    Done := True;
+  end;
 end;
 
 //----------------------------------------------------------------------
