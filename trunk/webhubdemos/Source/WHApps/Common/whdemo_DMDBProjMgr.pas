@@ -55,7 +55,7 @@ uses
   MultiTypeApp, ucDlgs, ucLogFil,
   webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
-  whMain, whsample_EvtHandlers, whpanel_RemotePages,
+  whMain, htWebApp, whpanel_RemotePages,
   whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
