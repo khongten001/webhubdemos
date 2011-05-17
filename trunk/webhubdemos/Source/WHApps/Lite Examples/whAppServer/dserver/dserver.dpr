@@ -20,9 +20,9 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   UTF8StringUtils in 'h:\UTF8StringUtils.pas',
-  htWebApp in 'H:\htWebApp.pas' {$R *.RES};
+  htWebApp in 'H:\htWebApp.pas';
 
-{$R *.RES}
+{$R dserver_version.RES}
 {$R WHDICON.RES}   // dserver tray icon
 {$R HTICONS.RES}   // component icons for combo bar (not essential)
 {$R HTGLYPHS.RES}  // icons for WebHub UI features
