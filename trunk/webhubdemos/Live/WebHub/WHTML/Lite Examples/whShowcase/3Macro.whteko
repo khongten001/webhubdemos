@@ -208,10 +208,13 @@ Any WebHub expressions in the included file will be expanded.
 </p>
 
 <h2>Example</h2>
+<i>The following example is styled by the following div command so that you can see where the included data starts and stops.</i>
+<div id="included" style="background-color:#666666; color: #CCFFFF; padding: 0 2em 0 2em;">
 (~INCLUDE|d:\projects\webhubdemos\Live\WebRoot\webhub\demos\whShowcase\to-include.txt~)
-(~drShowcaseGlobalFooter~)
+</div>
 <h2>Further Examples</h2>
 (~JUMP|pgTestInclude|Test WebHub INCLUDE command~)
+(~drShowcaseGlobalFooter~)
 </whpage>
 
 <whpage pageid="pgSendfile" desc="The SENDFILE Command">
