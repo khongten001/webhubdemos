@@ -38,7 +38,7 @@ showcaseBranchText=Surfer Tracking: Using Cookies:
 
 <p><span style="color:#FF0000;font-weight:700;">"Localhost" is a bad domain for testing cookies.</span> It never works. So set up some other name for your test site when you want to work on cookies.</p>
 
-<!--- Set Only if Chocolate cookie is blank -->
+<!--- Only set Marzipan if Chocolate cookie is blank -->
 (~Match|(~cookie.chocolate~)!*|(~COOKIE|marzipan=Sure|1~)~)
 <!--- Set Every Time -->
 (~COOKIE|chocolate=Chip|1~)
@@ -116,6 +116,16 @@ If they are defined, they will be deleted.
 
 <li style="list-style-type:disc">(~NoMatch|(~cookie.Chocolate~)!*|I can not seem to locate Chocolate~)
 (~Match|(~cookie.Chocolate~)!*|Deleting Chocolate.. (~CookieClear|Chocolate~) ~)</li>
+
+<li style="list-style-type:disc">(~NoMatch|(~cookie.ADVCOOKIE1~)!*|I can not seem to locate ADVCOOKIE1~)
+(~Match|(~cookie.ADVCOOKIE1~)!*|Deleting ADVCOOKIE1.. (~COOKIE|advcookie1=|1,(~host~)~)~)</li>
+
+<li style="list-style-type:disc">(~NoMatch|(~cookie.advcookie2~)!*|I can not seem to locate advcookie2~)
+(~Match|(~cookie.advcookie2~)!*|Deleting advcookie2.. (~COOKIE|advcookie2=|1,(~host~)~)~)</li>
+
+<li style="list-style-type:disc">(~NoMatch|(~cookie.advcookie3~)!*|I can not seem to locate advcookie3~)
+(~Match|(~cookie.advcookie3~)!*|Deleting advcookie3.. (~COOKIE|advcookie3=|1,(~host~)~)~)</li>
+
 </ul>
 </p>
 
