@@ -203,13 +203,15 @@ See the WebHub Help file for syntax.
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-<p>Use the INCLUDE macro to include a separate document, embedded into the current page.
+<p>Use the INCLUDE command  to include a separate document, embedded into the current page.
 Any WebHub expressions in the included file will be expanded.
 </p>
 
 <h2>Example</h2>
 (~INCLUDE|d:\projects\webhubdemos\Live\WebRoot\webhub\demos\whShowcase\to-include.txt~)
 (~drShowcaseGlobalFooter~)
+<h2>Further Examples</h2>
+(~JUMP|pgTestInclude|Test WebHub INCLUDE command~)
 </whpage>
 
 <whpage pageid="pgSendfile" desc="The SENDFILE Command">
