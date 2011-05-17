@@ -55,4 +55,31 @@ equally well when used dynamically or when static (exported). -->
 #styleTest {background-color: yellow; color: red;}
 </whpage>
 
+<whpage pageid="pgReset" desc="Reset (Erase) Showcase Session Data including cookies">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+(~CLEAR|~)
+(~COOKIECLEAR|SESSION~)
+(~COOKIE|advcookie1=|1,(~host~)~)
+(~COOKIE|advcookie2=|1,(~host~)~)
+(~COOKIE|advcookie3=|1,(~host~)~)
+(~COOKIECLEAR|Chocolate~)
+(~COOKIECLEAR|Marzipan~)
+</whprep>
+(~drShowcaseGlobalHeader~)
+<h1>(~pagedesc~)</h1>
+<p>Your session variables have been cleared. To fully erase your cookies, 
+please display this page</p><p></p>(~JUMPR|pgReset|again and again, until zero cookies are received from web browser,~)</p>
+<p>to convince yourself that your browser (<b>(~Request.UserAgent~)</b>) 
+is no longer sending cookies 
+to <b>(~Request.Host~)</b>.</p>
+<p>When you are ready, (~JUMP|pgEnterShowcase|return to the SHOWCASE main menu~).</p>
+
+<h4>Cookies Received from Web Browser</h4>
+(~Request.CookiesIn~)
+
+(~drShowcaseGlobalFooter~)
+</whpage>
 </whteko>
