@@ -50,13 +50,13 @@
 </div>
 
 <ul>
-<li>(~mcWhDemoDot~) (~JUMP|pgSetup|[~Prerequisites~]~)</li>
+<li>(~mcWhDemoDot~) (~JUMP|pgSetup| id="a-pgsetup" |[~Prerequisites~]~)</li>
 
-<li>(~mcWhDemoDot~) (~JUMP|pgEnter(~AppID~)|(~~Entrance~)~)</li>
+<li>(~mcWhDemoDot~) (~JUMP|pgEnter(~AppID~)| id="a-pgenter(~AppID~)" |(~~Entrance~)~)</li>
 
-<li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)|(~~Source~)~)</li>
+<li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)| id="a-viewfiles" |(~~Source~)~)</li>
 
-<li>(~mcWhDemoDot~) (~JUMP|pgAbout,(~AppID~)|[~About~]~)</li>
+<li>(~mcWhDemoDot~) (~JUMP|pgAbout,(~AppID~)| id="a-pgabout" |[~About~]~)</li>
 
 </ul>
 </div>  <!--- demopagecontent -->

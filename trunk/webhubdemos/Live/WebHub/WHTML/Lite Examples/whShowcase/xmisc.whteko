@@ -71,14 +71,17 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 <h1>(~pagedesc~)</h1>
 <p>Your session variables have been cleared. To fully erase your cookies, 
-please display this page</p><p></p>(~JUMPR|pgReset|again and again, until zero cookies are received from web browser,~)</p>
+please display this page</p>
+<p><span class="changing">(~JUMPR|pgReset| id="a-pgreset" |again and again, until zero cookies are received from web browser,~)</span></p>
 <p>to convince yourself that your browser (<b>(~Request.UserAgent~)</b>) 
 is no longer sending cookies 
 to <b>(~Request.Host~)</b>.</p>
-<p>When you are ready, (~JUMP|pgEnterShowcase|return to the SHOWCASE main menu~).</p>
+<p>When you are ready, (~JUMP|pgEnterShowcase| id="a-pgentershowcase" |return to the SHOWCASE main menu~).</p>
 
 <h4>Cookies Received from Web Browser</h4>
+<span class="changing">
 (~Request.CookiesIn~)
+</span>
 
 (~drShowcaseGlobalFooter~)
 </whpage>
