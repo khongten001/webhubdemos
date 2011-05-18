@@ -30,8 +30,8 @@ type
     waRetrieve: TWebAction2;
   public
     { Public declarations }
-    procedure Init;
-    procedure InitGUI;
+    function Init(out ErrorText: string): Boolean;
+    function InitGUI(out ErrorText: string): Boolean;
   end;
 
 var
@@ -48,8 +48,9 @@ uses
 
 // -----------------------------------------------------------------------------
 
-procedure TdmWhRetrieve.Init;
+function TdmWhRetrieve.Init(out ErrorText: string): Boolean;
 begin
+  ErrorText := '';
   waRetrieve := TWebAction2.Create(Self);
   waRetrieve.Name := 'waRetrieve';
   waRetrieve.OnExecute := waRetrieveExecute;
@@ -62,23 +63,29 @@ begin
   +'(Identifier = :Identifier) '
   +'AND (Type = ''n/a'')';
 
-  RefreshWebActions(dmWhRetrieve);
+  RefreshWebActions(Self);
+  Result := waRetrieve.IsUpdated;
+  if NOT Result then
+    ErrorText := 'Unable to update the waRetrieve component.';
 end;
 
-procedure TdmWhRetrieve.InitGUI;
+function TdmWhRetrieve.InitGUI(out ErrorText: string): Boolean;
 begin
+  ErrorText := '';
   Assert(Assigned(fmAppDBHTML));
-  fQuery.DatabaseName := fmAppDBHTML.EditPath.Text;
-  RefreshWebActions(dmWhRetrieve);
+  fQuery.DatabaseName := fmAppDBHTML.Table1.DatabaseName;
+  RefreshWebActions(Self);
+  Result := FileExists(IncludeTrailingPathDelimiter(fQuery.DatabaseName) +
+    'whContent.db');
+  if NOT Result then
+    ErrorText := 'File not found: ' +
+      IncludeTrailingPathDelimiter(fQuery.DatabaseName) + 'whContent.db';
 end;
 
 procedure TdmWhRetrieve.DataModuleDestroy(Sender: TObject);
 begin
-  waRetrieve.Free;
-  waRetrieve := nil;
-
-  fQuery.Free;
-  fQuery := nil;
+  FreeAndNil(waRetrieve);
+  FreeAndNil(fQuery);
 end;
 
 // -----------------------------------------------------------------------------

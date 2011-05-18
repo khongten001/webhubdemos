@@ -156,19 +156,21 @@ end;
 
 procedure TfmAppDBHTML.DatabaseToWebHubStructure;
 var
-  aPageID: String;
-  aPageContent: String;
-  aPageDesc: String;
+  aPageID: string;
+  aPageContent: string;
+  aPageDesc: string;
+  aTypeField: string;
 begin
   {assume that we are positioned on the database record to load}
   with Table1 do
   begin
-    if (FieldByName(cTypeField).asString = whMacrosTag) then
+    aTypeField := FieldByName(cTypeField).asString;
+    if (aTypeField = whMacrosTag) then
     begin
       AddMacros('eng', FieldByName(cTextField).AsString);
     end
     else
-    if (FieldByName(cTypeField).asString = whFolio) then  // whFolio means whPage
+    if (aTypeField = whFolio) then  // whFolio means whPage
     begin
       aPageID := FieldByName(cIDField).asString;
       if FieldByName(cWhenToLoadField).asString = 'Preload' then

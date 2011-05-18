@@ -1,17 +1,22 @@
 inherited fmAppDBHTML: TfmAppDBHTML
   Left = 411
   Top = 158
-  Width = 581
-  Height = 596
   Caption = '&Database'
+  ClientHeight = 551
+  ClientWidth = 563
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
-  TextHeight = 13
+  ExplicitWidth = 581
+  ExplicitHeight = 596
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
     Left = 41
-    Width = 532
-    Height = 552
+    Width = 522
+    Height = 551
+    ExplicitLeft = 41
+    ExplicitWidth = 532
+    ExplicitHeight = 552
     object ToolBar: TtpToolBar
       Left = 5
       Top = 45
@@ -82,8 +87,8 @@ inherited fmAppDBHTML: TfmAppDBHTML
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
-        TitleFont.Height = -11
-        TitleFont.Name = 'MS Sans Serif'
+        TitleFont.Height = -15
+        TitleFont.Name = 'Lucida Sans Unicode'
         TitleFont.Style = []
       end
       object DBNavigator1: TDBNavigator
@@ -135,8 +140,9 @@ inherited fmAppDBHTML: TfmAppDBHTML
     Left = 0
     Top = 0
     Width = 41
-    Height = 552
+    Height = 551
     TabOrder = 1
+    ExplicitHeight = 552
   end
   object Table1: TTable
     AfterPost = Table1AfterPost

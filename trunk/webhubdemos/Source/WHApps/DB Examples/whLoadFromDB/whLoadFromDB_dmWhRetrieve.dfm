@@ -1,8 +1,6 @@
 object dmWhRetrieve: TdmWhRetrieve
   OldCreateOrder = False
   OnDestroy = DataModuleDestroy
-  Left = 112
-  Top = 131
   Height = 346
   Width = 303
   object waSETLOCAL: TwhWebAction
