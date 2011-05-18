@@ -56,6 +56,7 @@
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="aboutDBHTML" filename="..\..\Shared WHTML\about\about-whLoadFromDB.whteko"/>
+      <File id="content" filename="whLoadFromDB.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
