@@ -45,7 +45,7 @@ procedure TDMForWHLoadFromDB.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  dmWhRetrieve.Init;
+  Continue := dmWhRetrieve.Init(ErrorText);
 end;
 
 procedure TDMForWHLoadFromDB.ProjMgrGUICreate(Sender: TtpProject;
@@ -61,7 +61,7 @@ procedure TDMForWHLoadFromDB.ProjMgrGUIInit(Sender: TtpProject;
   var Continue: Boolean);
 begin
   inherited;
-  dmWhRetrieve.InitGUI;
+  Continue := dmWhRetrieve.InitGUI(ErrorText);
 end;
 
 end.
