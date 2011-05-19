@@ -25,7 +25,6 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  ExceptionLog,
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
