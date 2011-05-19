@@ -141,7 +141,7 @@
 						<Source Name="MainSource">whLoadFromDB.dpr</Source>
 					</Source>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\webhubdemos\Source\WHApps\DB Examples\whLoadFromDB\</Language>
+						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\DB Examples\whLoadFromDB\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
@@ -182,7 +182,7 @@
 <!-- EurekaLog First Line
 [Exception Log]
 EurekaLog Version=6025
-Activate=1
+Activate=0
 Activate Handle=1
 Save Log File=1
 Foreground Tab=0
