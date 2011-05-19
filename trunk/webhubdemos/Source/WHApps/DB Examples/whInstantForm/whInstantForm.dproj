@@ -24,6 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UnitSearchPath>h:\;h:\D15;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whubd7;whubdbd7;whdemod7;Etk70;ldiRegExD7;maxCode;HubComponents</DCC_UsePackage>
 			<DebugSourcePath>k:\webhub\lib\whdb\;$(DebugSourcePath)</DebugSourcePath>
 			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
@@ -128,7 +129,7 @@
 						<Source Name="MainSource">whInstantForm.dpr</Source>
 					</Source>
 					<Language>
-						<Language Name="RootDir">..\..\..\..\..\Projects\webhubdemos\Source\WHApps\DB Examples\whInstantForm\</Language>
+						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\DB Examples\whInstantForm\</Language>
 					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
