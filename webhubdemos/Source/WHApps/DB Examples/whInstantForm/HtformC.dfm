@@ -67,8 +67,8 @@ inherited fmHTFMPanel: TfmHTFMPanel
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 4
     ScanMode = dsByKey
-    ControlsWhere = dsbNone
-    ButtonsWhere = dsbNone
+    ControlsWhere = dsNone
+    ButtonsWhere = dsNone
     ButtonAutoHide = False
     OverlapScroll = False
     TR = '<tr>'
