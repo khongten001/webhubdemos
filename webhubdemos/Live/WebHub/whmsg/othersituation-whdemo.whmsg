@@ -1,0 +1,39 @@
+<html><head><title>WebHub Demo - System Error Message -- (~SITUATIONTEXT~)</title></head>
+<style>
+  body {
+	font-family: Verdana;Arial;
+	font-size: 98%; 
+	margin: 0 0 0 0;
+	background-color: darkslategray;
+  }
+  #content {
+	padding: 2em;
+	margin-right: 10%;
+	margin-left: 10%;
+	background-color: palegreen; /*peru;*/
+	color: black;
+}
+  h2 {
+    font-size: 1.2em;
+    margin-top: 2em;
+  }
+</style>
+<body>
+<div id="content">
+	<div align="center">
+<h2>demos.href.com</h2>
+	</div>
+<p><i>(~NOWGMT~)</i></p>
+
+<p>Sorry, this WebHub Demo application can not calculate web pages for you right now.</p>
+<blockquote>
+<p>Situation: (~SITUATIONTEXT~)</p>
+<p>AppID: (~APPID~)</p>
+</blockquote>
+<ul>
+<li> <a href="http://lite.demos.href.com/">LITE demos</a> </li>
+<li> <a href="http://more.demos.href.com/">MORE demos</a> </li>
+<li> <a href="http://db.demos.href.com/">Database demos</a> </li>
+</ul>
+
+</div></body></html>
