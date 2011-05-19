@@ -1,24 +1,24 @@
 unit htshopc;
 (*
-Copyright (c) 1998 HREF Tools Corp.
+  Copyright (c) 1998-2011 HREF Tools Corp.
 
-Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
-obtaining a copy of this file (the "Software"), to deal in the Software
-without restriction, including without limitation the rights to use, copy,
-modify, merge, publish, distribute, sublicense, and/or sell copies of the
-Software, and to permit persons to whom the Software is furnished to do so,
-subject to the following conditions:
+  Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
+  obtaining a copy of this file (the "Software"), to deal in the Software
+  without restriction, including without limitation the rights to use, copy,
+  modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  Software, and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
 *)
 
 // The WebDataGrid1.DataScanOptions were changed from the default settings.
@@ -27,15 +27,15 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, StdCtrls, Buttons, DBTables, DB, Grids, DBGrids, ComCtrls, 
-  DBCtrls, 
-  tpStatus, UTPANFRM, UpdateOk, tpAction, tpMemo, toolbar, {}tpCompPanel, 
-  webMail, webSock, wbdeSource, webTypes, webLink, webScan, wdbLink, wdbScan, 
+  ExtCtrls, StdCtrls, Buttons, DBTables, DB, Grids, DBGrids, ComCtrls,
+  DBCtrls,
+  tpStatus, UTPANFRM, UpdateOk, tpAction, tpMemo, toolbar, {} tpCompPanel,
+  webMail, webSock, wbdeSource, webTypes, webLink, webScan, wdbLink, wdbScan,
   wbdeGrid, webMemo, wdbSSrc;
 
 type
   TfmShopPanel = class(TutParentForm)
-    ToolBar: TtpToolBar;
+    toolbar: TtpToolBar;
     WebDataGrid1: TwhbdeGrid;
     WebActionOrderList: TwhWebActionEx;
     WebActionPostLit: TwhWebActionEx;
@@ -82,7 +82,7 @@ type
     procedure waScrollGridExecute(Sender: TObject);
   private
     { Private declarations }
-    procedure getOrderList( sList: TStringList );
+    procedure getOrderList(sList: TStringList);
     procedure ConfigEMail;
   public
     { Public declarations }
@@ -99,62 +99,69 @@ implementation
 uses
   WebApp, ucString, whMail, whdemo_ViewSource;
 
-//------------------------------------------------------------------------------
-
-function TfmShopPanel.Init:Boolean;
+function TfmShopPanel.Init: Boolean;
 begin
-  Result:= inherited Init;
-  if not result then
-    exit;
-  //
+  Result := inherited Init;
+  if not Result then
+    Exit;
+
   with Table1 do
   begin
     DatabaseName := getHtDemoDataRoot + 'whShopping\';
     TableName := 'PARTS.DB';
   end;
 
-  RefreshWebActions(fmShopPanel);
+  WebDataGrid1.DataScanOptions := [dsbFirst, dsbPrior, dsbNext, dsbLast,
+    dsbCheckBoxes, dsbInputFields];
+  WebDataGrid1.ControlsWhere := dsNone;
+  WebDataGrid1.ButtonsWhere := dsAbove;
 
-  DataModuleWhMail.WebMail.subject:='';   // init so that we know to config later.
-  //
-  {Other required settings:
-  TwhbdeGrid
+  RefreshWebActions(Self);
+
+  DataModuleWhMail.webMail.Subject := '';
+
+  { Other required settings:
+    TwhbdeGrid
     datascanoptions        all set to true, except refresh and checkboxes
     buttonsWhere           above
     controlsWhere          none
 
-  TwhbdeSource
+    TwhbdeSource
     maxOpenDataSets        1 (no cloning)
     displaySets            defined in .ini file
 
-  TTable
+    TTable
     add fields using Delphi field editor
     add calculated field called Qty, type integer
   }
+  Result := WebDataGrid1.IsUpdated;
 end;
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
 
 procedure TfmShopPanel.ConfigEMail;
 begin
-  {configure email based on values on form. These are saved to the
-   href.ini file by the Restorer component.}
+  { configure email based on values on form. These are saved to the
+    href.ini file by the Restorer component. }
   // e-mail settings -- please change to use your own defaults!
-  if EditEMailFrom.text='' then EditEMailFrom.text:='someone@theweb.com';
-  if EditEMailTo.text=''   then EditEMailTo.text:='info@href.com';
-  if EditMailHost.text=''  then EditMailHost.text:='mail.href.com';
-  if EditMailPort.text=''  then EditMailPort.text:='25';
-  if EditSubject.text=''   then EditSubject.text:='** Shop1 Sale';
+  if EditEMailFrom.Text = '' then
+    EditEMailFrom.Text := 'someone@theweb.com';
+  if EditEMailTo.Text = '' then
+    EditEMailTo.Text := 'info@href.com';
+  if EditMailhost.Text = '' then
+    EditMailhost.Text := 'mail.href.com';
+  if EditMailPort.Text = '' then
+    EditMailPort.Text := '25';
+  if EditSubject.Text = '' then
+    EditSubject.Text := '** Shop1 Sale';
   //
-  with DataModuleWhMail.WebMail do
+  with DataModuleWhMail.webMail do
   begin
-    Sender.EMail:=EditEmailFrom.text;
+    Sender.EMail := EditEMailFrom.Text;
     MailTo.clear;
-    MailTo.add(editEMailTo.text);
-    MailHost.hostname:=EditMailhost.text;
-    MailHost.port:=StrToIntDef(EditMailport.text,25);
-    Subject:=EditSubject.text;
+    MailTo.add(EditEMailTo.Text);
+    MailHost.hostname := EditMailhost.Text;
+    MailHost.port := StrToIntDef(EditMailPort.Text, 25);
+    subject := EditSubject.Text;
   end;
 end;
 
@@ -172,137 +179,144 @@ end;
 }
 procedure TfmShopPanel.WebActionPostLitExecute(Sender: TObject);
 var
-  a1,a2:string;
-  i:integer;
+  a1, a2: string;
+  i: integer;
 begin
-  //WebDataSource1.Qty@1316=35
-  with TwhWebActionEx(Sender).WebApp do begin
-    for i:=0 to pred(Request.dbFields.count) do begin
-      SplitString(Request.dbFields[i],'=',a1,a2);
-      if a2<>'' then
-        StringVar[a1]:=a2;   {post single entry to StringVars array}
-      end;
+  // WebDataSource1.Qty@1316=35
+  with TwhWebActionEx(Sender).WebApp do
+  begin
+    for i := 0 to pred(Request.dbFields.count) do
+    begin
+      SplitString(Request.dbFields[i], '=', a1, a2);
+      if a2 <> '' then
+        StringVar[a1] := a2; { post single entry to StringVars array }
     end;
+  end;
 end;
 
 { ------------------------------------------------------------------------- }
 
 { Illusion central:
   Make the table act multi-surfer by defining the calculated field as equal to
-  the current surfer's StringVars.}
+  the current surfer's StringVars. }
 procedure TfmShopPanel.Table1QtyGetText(Sender: TField; var Text: string;
   DisplayText: Boolean);
 begin
-  Text:=pWebApp.StringVar['webdatasource1.Qty@'+
-    Sender.DataSet.FieldByName('PartNo').asString];
+  Text := pWebApp.StringVar['webdatasource1.Qty@' + Sender.DataSet.FieldByName
+    ('PartNo').asString];
 end;
 
-
 { ------------------------------------------------------------------------- }
 { ------------------------------------------------------------------------- }
 
-{Fill a stringlist with the current order.
- Loop thru the StringVars[] array looking for items with @ which come from the
- data entry session.}
-procedure TfmShopPanel.getOrderList( sList: TStringList );
+{ Fill a stringlist with the current order.
+  Loop thru the StringVars[] array looking for items with @ which come from the
+  data entry session. }
+procedure TfmShopPanel.getOrderList(sList: TStringList);
 var
-  a1,a2:string;
-  i:integer;
+  a1, a2: string;
+  i: integer;
 begin
-  slist.clear;
-  with pWebApp.Session do begin
-    for i:=0 to pred(StringVars.count) do begin
-      a1:=LeftOfEqual(StringVars[i]);
-      if pos( '@', a1 ) > 0 then begin
-        //WebDataSource1.Qty@1316=35
-        SplitString(StringVars[i],'=',a1,a2);  // SplitString is in the ucString unit
-        slist.add( 'Qty ' + a2 + ' of Product #' + RightOf( '@', a1 ));
-        end;
+  sList.clear;
+  with pWebApp.Session do
+  begin
+    for i := 0 to pred(StringVars.count) do
+    begin
+      a1 := LeftOfEqual(StringVars[i]);
+      if pos('@', a1) > 0 then
+      begin
+        // WebDataSource1.Qty@1316=35
+        SplitString(StringVars[i], '=', a1, a2);
+        // SplitString is in the ucString unit
+        sList.add('Qty ' + a2 + ' of Product #' + RightOf('@', a1));
       end;
     end;
+  end;
 end;
-
 
 { ------------------------------------------------------------------------- }
 
-{this is one way to echo the current order.}
+{ this is one way to echo the current order. }
 procedure TfmShopPanel.WebActionOrderListExecute(Sender: TObject);
 var
-  sList:TStringList;
+  sList: TStringList;
 begin
-  sList:=nil;
+  sList := nil;
   try
-    sList:=TStringList.create;
-    getOrderList(slist);
-    //send out the order, with a <BR> at end of each line
-    TwhWebActionEx(Sender).WebApp.Response.SendStringListBR(slist);
+    sList := TStringList.create;
+    getOrderList(sList);
+    // send out the order, with a <BR> at end of each line
+    TwhWebActionEx(Sender).WebApp.Response.SendStringListBR(sList);
   finally
-    slist.free;
-    end;
+    sList.free;
+  end;
 end;
 
 { ------------------------------------------------------------------------- }
 
-{ Prepare and send mail message.}
+{ Prepare and send mail message. }
 procedure TfmShopPanel.WebActionMailerExecute(Sender: TObject);
 var
-  sList:TStringList;
+  sList: TStringList;
 begin
-  with TwhWebActionEx(Sender).WebApp, DataModuleWhMail.WebMail do
+  with TwhWebActionEx(Sender).WebApp, DataModuleWhMail.webMail do
   begin
-    if subject='' then
-      configEMail;
+    if subject = '' then
+      ConfigEMail;
     //
-    Sender.Name:=StringVar['CustFullName'];
+    Sender.Name := StringVar['CustFullName'];
     // fill in the message (Lines property)
     Lines.clear;
-    Lines.add( 'CUSTOMER:' );
-    Lines.add( StringVar['CustFullName'] );
-    Lines.add( StringVar['CustCity'] );
-    Lines.add( '' );
-    Lines.add( 'ORDER:' );
-    sList:=nil;
+    Lines.add('CUSTOMER:');
+    Lines.add(StringVar['CustFullName']);
+    Lines.add(StringVar['CustCity']);
+    Lines.add('');
+    Lines.add('ORDER:');
+    sList := nil;
     try
-      sList:=TStringList.create;
-      getOrderList(slist);
-      Lines.AddStrings(slist);
+      sList := TStringList.create;
+      getOrderList(sList);
+      Lines.AddStrings(sList);
     finally
-      slist.free;
-      end;
-    execute;  {send the message}
+      sList.free;
     end;
+    execute; { send the message }
+  end;
 end;
 
 { ------------------------------------------------------------------------- }
 
-{ fun with tool buttons...}
+{ fun with tool buttons... }
 
 procedure TfmShopPanel.tpToolButton1Click(Sender: TObject);
 begin
   with DBGrid1 do
-    if DataSource=nil then
+    if DataSource = nil then
     begin
-      DataSource:=DataSource1;
-      DbNavigator1.DataSource:=DataSource1;
+      DataSource := DataSource1;
+      DBNavigator1.DataSource := DataSource1;
       DataSource.DataSet.Open;
     end
     else
     begin
-      DataSource:=nil;
-      DbNavigator1.DataSource:=nil;
+      DataSource := nil;
+      DBNavigator1.DataSource := nil;
     end
 end;
 
 procedure TfmShopPanel.waScrollGridExecute(Sender: TObject);
 var
-  a1,a2:string;
+  a1, a2: string;
 begin
   inherited;
-  with TwhWebActionEx(Sender).WebApp do begin
-    SplitString(StringVar['BtnShop'],' ',a1,a2);  // e.g. Next Page
-    if a1='Save' then a1:='This'; // save but do not scroll anywhere.
-    WebDataGrid1.Command:=a1;     // Make the grid scroll by setting its command, e.g. Next
-    end;
+  with TwhWebActionEx(Sender).WebApp do
+  begin
+    SplitString(StringVar['BtnShop'], ' ', a1, a2); // e.g. Next Page
+    if a1 = 'Save' then
+      a1 := 'This'; // save but do not scroll anywhere.
+    WebDataGrid1.Command := a1;
+    // Make the grid scroll by setting its command, e.g. Next
+  end;
 end;
 
 end.
