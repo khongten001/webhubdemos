@@ -9,6 +9,15 @@
 			<Projects Include="whLoadFromDB\whLoadFromDB.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whInstantForm\whInstantForm.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="whShopping\whShopping.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="whScanTable\whScanTable.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +44,41 @@
 		<Target Name="whLoadFromDB:Make">
 			<MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whInstantForm">
+			<MSBuild Projects="whInstantForm\whInstantForm.dproj"/>
+		</Target>
+		<Target Name="whInstantForm:Clean">
+			<MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whInstantForm:Make">
+			<MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="whShopping">
+			<MSBuild Projects="whShopping\whShopping.dproj"/>
+		</Target>
+		<Target Name="whShopping:Clean">
+			<MSBuild Projects="whShopping\whShopping.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whShopping:Make">
+			<MSBuild Projects="whShopping\whShopping.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="whScanTable">
+			<MSBuild Projects="whScanTable\whScanTable.dproj"/>
+		</Target>
+		<Target Name="whScanTable:Clean">
+			<MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whScanTable:Make">
+			<MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whClone;whLoadFromDB"/>
+			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean"/>
+			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whClone:Make;whLoadFromDB:Make"/>
+			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
