@@ -1,0 +1,39 @@
+<html><head><title>Spam aversion demo presently offline</title></head>
+<style>
+  body {
+    font-family: Verdana;Arial;
+    font-size: 1em; 
+	margin-right: 5%;
+	margin-left: 5%;
+  }
+</style>
+<body>
+<div align="center">
+<h2>(~SITUATIONTEXT~)</h2>
+</div>
+<p><i>(~NOWGMT~)</i></p>
+
+<p><b>The spam aversion application has been intentionally covered.</b>
+It will not serve pages until the administrator restores regular access.</p>
+
+<p>Here are the facts concerning this situation:
+<ul>
+<li> Maintenance started: (~COVEREDONAT~)</li>
+<li> Time: (~EXPECTEDMINUTES~) </li>
+<li> Reason: (~REASON~)</li>
+</ul>
+</p>
+
+<p><a href="(~WHERE~)">Click here to try again.</a></p>
+
+<h2>Reporting Problems to the Site Administrator</h2>
+<p>If you suspect a problem with this site, report the following to the <b>customerservice at href dot com</b>:
+<ul>
+<li> AppID (~APPID~)</li>
+<li> Situation code "(~SITUATION~)" </li>
+<li> URL "(~WHERE~)"</li>
+</ul>
+Thank you.
+</p>
+
+</body></html>
