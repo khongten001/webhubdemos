@@ -204,10 +204,7 @@ inherited fmShopPanel: TfmShopPanel
   end
   object WebDataGrid1: TwhbdeGrid
     ComponentOptions = [tpUpdateOnGet, tpStatusPanel]
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast, dsCheckBoxes, dsInputFields]
     ScanMode = dsByKey
-    ControlsWhere = dsbNone
-    ButtonsWhere = dsbNone
     ButtonAutoHide = False
     OverlapScroll = False
     Border = 'BORDER'
