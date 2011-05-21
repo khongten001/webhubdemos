@@ -123,15 +123,6 @@ levelKeyword: (~pagesetting.levelKeyword~) -->
 (~dynchunk|ul,(~pageID~)~)
 </whdroplet>
 
-<whdroplet name="chHeaderJavaBaseHREF">
-<HTML><HEAD>
-<TITLE>(~pagesetting.showcaseBranchText~)(~PageDesc~)</TITLE>
-<!-- you need base href here!! in order to enable the java .class file to be found.
-And this must include the http portion. -->
-<BASE HREF="(~DynURL.LocSMU~)/htdemo/java/">
-</HEAD>
-</whdroplet>
-
 <whdroplet name="drDemoSpeedbarForShowcase">
 (~GO|pgHelp| id="a-pghelp" |Help~)<br />
 <span class="changing">(~GOR|remoterefresh|Refresh App~)</span><br />
