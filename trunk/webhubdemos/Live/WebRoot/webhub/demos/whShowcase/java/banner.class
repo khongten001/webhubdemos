@@ -1,72 +1,14 @@
 //**************************************
 // Name: Teeny tiny banner applet
 // Description: Simplest java applet
-// By: Ann Lynnworth
-// Inspired by http://planet-source-code.com/vb/scripts/ShowCode.asp?txtCodeId=1957&lngWId=2
-//
-// Input: a text string to display
-//
-// Assumes:Compile with sun's javac 1.1 compiler.
-//
 
-// Little
-import java.applet.Applet;
+// Thanks: http://www.roseindia.net/java/example/java/applet/FirstApplet.shtml
+
+import java.applet.*;
 import java.awt.*;
-public class scroll extends Applet implements Runnable
-{
-String message;
-Image messageimage;
-Graphics messagegraphics;
-Thread me;
-int xpos;
-int ypos;
-int textwidth;
-	public void init()
-	{
-		setBackground(Color.blue); 
-		message = getParameter("message");
-		messageimage = createImage(size().width, size().height);
-		messagegraphics = messageimage.getGraphics();
-		xpos = size().width + 10;
-		ypos = 12; // position to look right
-		textwidth = 7 * message.length();
-		me = new Thread(this);
-		me.start();
-	}
-	public void run()
-	{
-		while(true) {
-			xpos--;
-			if (xpos < -textwidth)
-			{
-				xpos = size().width + 10;			
-			}
-			try
-			{
-			Thread.sleep(10);
-			}
-			catch (InterruptedException _ex) { }
-			repaint();
-		}
-	}
-	public void paint(Graphics g)
-	{
-		messagegraphics.setColor(Color.blue); // Background colour again
-		messagegraphics.fillRect(0,0,size().width + 1, size().height + 1);
-		messagegraphics.setColor(Color.white); // Text colour here
-try
-{
- messagegraphics.setFont(new Font("Verdana",0,11)); // change font or font size (Fontname, 0, Size)
-}
-catch(NullPointerException _ex) { }
-		messagegraphics.drawString(message, xpos, ypos);
-		g.drawImage(messageimage, 0, 0, this);
-	}
-	
-	public void update(Graphics g)
-	{
-		paint(g);
-	}
-}
 
- 
+public class FirstApplet extends Applet{
+  public void paint(Graphics g){
+    g.drawString("Welcome in Java Applet.",40,20);
+  }
+}
