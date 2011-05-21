@@ -25,6 +25,7 @@ program whAsyncDemo;
   for information about "drives" H: and K:. *)
 
 uses
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   webInfoU,
