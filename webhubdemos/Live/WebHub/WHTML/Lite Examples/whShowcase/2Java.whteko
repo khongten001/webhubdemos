@@ -19,7 +19,7 @@ showcaseBranchText=Java, JavaScript and XML:
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-This is a simple example of a Java clock. 
+This is a simple example of a JavaScript clock. 
 To include Java applets and scripts in your pages,
 all you need to do is place the appropriate droplet in your page code.
 <p>(~chJavaCl~)</p>
@@ -35,6 +35,13 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 This example creates a scrolling banner.
 <p>(~chMarquee1~)</p>
+<h2>Java Banner</h2>
+<whdroplet name="drJavaBanner" show="yes">
+<applet code="/webhub/demos/whShowcase/java/banner.class" width=450 height=50>
+<param name="message" value="(~bannerText~)">
+</applet>
+</whdroplet>
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 
@@ -110,7 +117,7 @@ function updatepage(str){
 <div id="whdemopagecontent">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
-<form name="f1">
+<form name="f1" method="post">
   <p>word: <input name="word" type="text">  
   <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' />
   </p>
