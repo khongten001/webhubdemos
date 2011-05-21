@@ -1,7 +1,0 @@
-<whteko defaultlingvo="eng">
-<whdroplet name="chJavaBanner">
-<applet code="TestForAnn.class" width=450 height=50>
-<param name=text value="(~bannerText~)">
-</applet>
-</whdroplet>
-</whteko>
