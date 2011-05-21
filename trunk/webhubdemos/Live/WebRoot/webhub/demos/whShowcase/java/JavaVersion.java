@@ -1,4 +1,4 @@
-﻿import java.applet.*;
+import java.applet.*;
  import java.awt.*;
  public class JavaVersionDisplayApplet extends Applet
  { private Label m_labVersionVendor; 
