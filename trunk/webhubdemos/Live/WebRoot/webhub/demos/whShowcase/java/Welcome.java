@@ -13,6 +13,8 @@ import java.awt.*;
 
 public class Welcome extends Applet{
   public void paint(Graphics g){
-    g.drawString("Welcome via Java Applet.",40,20);
+  String myString = "Welcome " + 
+     getParameter("surfername") + " via java Applet.";
+    g.drawString(myString,40,20);
   }
 }
