@@ -46,6 +46,7 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
+			<DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
 			<DCC_Optimize>false</DCC_Optimize>
 			<DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
@@ -140,9 +141,6 @@
 					<Source>
 						<Source Name="MainSource">whLoadFromDB.dpr</Source>
 					</Source>
-					<Language>
-						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\DB Examples\whLoadFromDB\</Language>
-					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>

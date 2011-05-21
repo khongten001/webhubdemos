@@ -24,7 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps\</DCC_ExeOutput>
+			<DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
 			<DCC_DcuOutput>d:\temp\DelphiTempDCU\</DCC_DcuOutput>
 			<DCC_UnitSearchPath>h:\;h:\d15;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
