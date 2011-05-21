@@ -40,7 +40,7 @@ mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
   color: #A22222;
 }
 </style>
-
+(~ANCHOR|anchBaseHREF~)
 </head>
 <body>
 (~drPageBegin~)
