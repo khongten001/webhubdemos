@@ -53,6 +53,7 @@ implementation
 {$R *.DFM}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo, // for translating the Async-state into a literal
   webApp, // for access to pWebApp in the thread's constructor
   whMacroAffixes, // MacroStart and MacroEnd
@@ -151,7 +152,7 @@ var
   a1: UTF8String;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);
-  CodeSite.SendUpdate('PercentComplete', PercentComplete)
+  CodeSite.Send('PercentComplete', PercentComplete);
   {$ENDIF}
   Result := True;
   if bStreaming and assigned(Stream) then
@@ -408,7 +409,10 @@ begin
 
     SplitTerms(HtmlParam, '|', a1, a2);
     if IsEqual(a1, 'send') then
-      Response.Send(a2)
+    begin
+      {$IFDEF CodeSite}CodeSite.Send(a1, a2);{$ENDIF}
+      Response.Send(a2);
+    end
     else
       case AsyncState of
 
@@ -504,6 +508,11 @@ begin
         AsInit:
           begin
             SendMacro('AsyncNone');
+          end;
+
+        else
+          begin
+            {$IFDEF CodeSite}CodeSite.SendError('Unhandled ASyncState');{$ENDIF}
           end;
       end;
   end;
@@ -644,9 +653,11 @@ end;
 // everyone else scheduled in the background while running!)
 
 procedure TdmAsyncDemo.ExecuteAsOneBlock(Sender: TObject);
+const cFn = 'ExecuteAsOneBlock';
 var
   i: integer;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   if assigned(Sender) and (Sender is TwhAsyncObject) then
     with TwhAsyncObject(Sender) do
       try
@@ -665,9 +676,14 @@ begin
           ResultString := 'OK! Here is your random #: ' + floattostr(random);
         Done := True;
       except
-        // make up an error code.
-        ResultValue := (1 + random(10));
+        on E: Exception do
+        begin
+          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+          // make up an error code.
+          ResultValue := (1 + random(10));
+        end;
       end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 // ----------------------------------------------------------------------
@@ -675,21 +691,26 @@ end;
 // each time called. at 100% it signals completion.
 
 procedure TdmAsyncDemo.ExecuteSynchronized(Sender: TObject);
+const cFn = 'ExecuteSynchronized';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   with TwhAsyncObject(Sender) do
     if not Aborted then
     begin
       ResultString := 'OK! Here is your random #: ' + floattostr(random);
       Done := True;
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmAsyncDemo.ExecuteStepByStep(Sender: TObject);
+const cFn = 'ExecuteStepByStep';
 // to make integrating StringVars and webaction output that depends
 // on answers gotten by the async thread processing a possibility,
 // this execute method shows how to trigger the ExecuteSynchronized
 // procedure shown above
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   with TwhAsyncObject(Sender) do
     if Done then
       Synchronized := False
@@ -715,6 +736,7 @@ begin
           .SendUpdate(PercentComplete) then
           Aborted := True; // important! do not reset the flag by accident!
       end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 end.

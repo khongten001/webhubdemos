@@ -46,7 +46,8 @@ implementation
 {$R *.DFM}
 
 uses
-  WebApp,    //pWebApp //htwebapp
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  webApp,    //pWebApp
   whMacros,  //SplitTerms()
   ucString,  //isEqual()
   whAsync,   //Task globals
@@ -74,13 +75,17 @@ gcStreamDepthLimit - CAPACITY that the system will PRE-ALLOCATE for macro
 //%=waDocStreams.execute|Tasks|Tasks: [Active:%=dyn1=% Max:%=dyn2=% Total:%=dyn3=% Finished:%=dyn4=%]=%
 
 procedure TdmStreams.waDocStreamsExecute(Sender: TObject);
+const cFn = 'waDocStreamsExecute';
 var
   a1,a2: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);
+  CodeSite.Send('HtmlParam', TwhWebActionEx(Sender).HtmlParam);
+  {$ENDIF}
   with pWebApp, TwhWebActionEx(Sender) do
   begin
     SplitTerms(HtmlParam,'|',a1,a2);
-    Macros.Values[Name]:=a2;      //Create the macro used in Parameterize
+    Macros.Values[Name] := a2;      //Create the macro used in Parameterize
     if isEqual(a1,'Streams') then // (the macro is not cleared as we intend to re-use the array entry (the macro name) often)
       Parameterize(Name,'dyn',    //syntax: macro to parameterize, paramname, parameters
         Format('%d,%d,%d',[activestreams,maxstreams,gcStreamDepthLimit]))
@@ -89,6 +94,7 @@ begin
       Parameterize(Name,'dyn',
         Format('%d,%d,%d,%d',[ActiveTasks,MaxTasks,TasksAttempted,TasksFinished]))
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 end.

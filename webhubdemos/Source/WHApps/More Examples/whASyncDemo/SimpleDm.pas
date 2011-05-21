@@ -64,6 +64,7 @@ implementation
 {$R *.DFM}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo,   // for translating the Async-state into a literal
   Math,      // integer helpers (min/max)
   WebApp,    // for access to pWebApp in the thread's constructor
@@ -72,20 +73,26 @@ uses
 //..private helper method to map the async state into a wh-literal.
 //also used to change the reported state for convenience when canceling.
 
-procedure TdmSimpleAsync.SetAsyncState(Value:TAsyncState);
+procedure TdmSimpleAsync.SetAsyncState(Value: TAsyncState);
 begin
-  waAsyncSimple1.AsyncState:=Value;
-  pWebApp.StringVar['AsyncState']:= copy(GetEnumName(TypeInfo(TAsyncState),ord(Value)),3,255);
+  waAsyncSimple1.AsyncState := Value;
+  pWebApp.StringVar['AsyncState'] :=
+    Copy(GetEnumName(TypeInfo(TAsyncState),ord(Value)),3,255);
+  {$IFDEF CodeSite}CodeSite.Send('TdmSimpleAsync.SetAsyncState',
+    pWebApp.StringVar['AsyncState']);{$ENDIF}
 end;
 
 //..the code to drive the async activities..
 
 procedure TdmSimpleAsync.waAsyncSimple1Execute(Sender: TObject);
+const cFn = 'waAsyncSimple1Execute';
 var
   i: Cardinal;
 
   function StartNewThread: Boolean;
+  const cFn = 'StartNewThread';
   begin
+    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
     Result:=False;
     with waAsyncSimple1 do
       //double check that the session is not already running a thread
@@ -105,10 +112,13 @@ var
         SetAsyncState(asStarted);
         NewThread;
         end;
+    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
   end;
 
 begin
-  with pWebApp, waAsyncSimple1 do begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+  with pWebApp, waAsyncSimple1 do
+  begin
     //deal with commands sent to waAsyncAction.
     //please note that waAsyncAction DOES NOT look at either its command
     //or htmlparam properies. It simply reports back one of FOUR states
@@ -133,7 +143,8 @@ begin
       begin
         if assigned(SurfersObject) then
           SurfersObject.Aborted:=True;
-        exit;
+       {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+        Exit;
       end
       else
       begin
@@ -186,15 +197,18 @@ begin
       end;
 
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 //..three procedures to init, run and finish async operations.
 
 procedure TdmSimpleAsync.waAsyncSimple1ThreadOnInit(Sender: TObject);
+const cFn = 'waAsyncSimple1ThreadOnInit';
 //runs from the main-thread with Session set for the right surfer!
 var
   S: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   inherited;
   //create and initialize the object's extra data-packet.
   if assigned(Sender)
@@ -211,17 +225,21 @@ begin
     //Data:=TThreadInput.Create;
     //TThreadInput(Data).urlstr:=Expand(..);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmSimpleAsync.waAsyncSimple1ThreadOnExecute(Sender: TObject);
+const cFn = 'waAsyncSimple1ThreadOnExecute';
 //runs in its own thread.. sessions change in the main thread
 //as pages are served there. do not access StringVars etc from here!
 var
   i,SleepTime:integer;
   a1,a2:string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   inherited;
-  with TwhAsyncObject(Sender) do begin
+  with TwhAsyncObject(Sender) do
+  begin
     // on entry htmlparam has been expanded into ResultString. lets now
     // parse it into substrings that we use below:
     // we expect the following format:
@@ -244,26 +262,31 @@ begin
     //init info into here through the ResultString/ResultValues properties.
     //do a 'blocking' loop to simulate work..
     for i:=1 to 100 do
-      if not Aborted then begin
+      if not Aborted then
+      begin
         PercentComplete:=i;
         sleep(SleepTime); //takes from +0..25% msec
-        end;
+      end;
     //on the way out, if not aborted, make up a result
-    if not Aborted then begin
+    if not Aborted then
+    begin
       //store the answer here:
       ResultString:= DefaultsTo(a2,'Done!'); //return 'something' if a2=''
       Done:= True;
-      end;
+    end;
     //YOU MUST SET DONE (or Aborted, or raise an exception) to indicate
     //the the thread servicing this event can stop calling it!
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmSimpleAsync.waAsyncSimple1ThreadOnDestroy(Sender: TObject);
+const cFn = 'waAsyncSimple1ThreadOnDestroy';
 //runs in its own thread
 //the worker object is about to be destroyed by 'DeleteTask' which
 //is called by you or the background house-cleaning task.
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   inherited;
   if assigned(Sender)
   and (Sender is TwhAsyncObject) then
@@ -272,8 +295,9 @@ begin
     if assigned(Data) then
     begin
       Data.Free;
-      Data:=nil;
+      Data := nil;
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 end.
