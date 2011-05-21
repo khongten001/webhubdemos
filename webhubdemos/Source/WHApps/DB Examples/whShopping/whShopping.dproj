@@ -25,7 +25,7 @@
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
 			<DCC_DcuOutput>d:\Temp\DelphiTempDCU\</DCC_DcuOutput>
-			<DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps</DCC_ExeOutput>
+			<DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_UnitSearchPath>h:\;h:\d15\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whubd7;whubdbd7;whdemod7;Etk70;ldiRegExD7;maxCode;HubComponents;rb20r70r;HREFSite_Package;rb20b70r</DCC_UsePackage>
 			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>

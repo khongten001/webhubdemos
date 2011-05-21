@@ -29,7 +29,7 @@
 			<DebugSourcePath>k:\webhub\lib\whdb\;$(DebugSourcePath)</DebugSourcePath>
 			<DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
-			<DCC_ExeOutput>D:\Projects\WebHub Demos\Live\WebHub\Apps</DCC_ExeOutput>
+			<DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_K>false</DCC_K>
 			<DCC_N>true</DCC_N>
@@ -128,9 +128,6 @@
 					<Source>
 						<Source Name="MainSource">whInstantForm.dpr</Source>
 					</Source>
-					<Language>
-						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\DB Examples\whInstantForm\</Language>
-					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">False</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
