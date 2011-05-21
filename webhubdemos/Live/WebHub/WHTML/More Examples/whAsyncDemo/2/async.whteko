@@ -27,10 +27,10 @@ the page from which to experiment with the functionality of the async demo appli
 <FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|Async,CKB~)">
 (~AsyncTitleEnd~)
 <table><tr><td><hr />
-<INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any">
-(~MATCH|(~AsyncState~)[Finished,Failed,Aborted,Prior|<INPUT TYPE="SUBMIT" VALUE="Clear" NAME="@Clear">~)
-(~NOMATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Start" NAME="@Start">~)
-(~MATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Abort" NAME="@Abort">~)
+<INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any"/>
+(~MATCH|(~AsyncState~)[Finished,Failed,Aborted,Prior|<INPUT TYPE="SUBMIT" VALUE="Clear" NAME="@Clear"/>~)
+(~NOMATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Start" NAME="@Start"/>~)
+(~MATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Abort" NAME="@Abort"/>~)
 (~NOMATCH|(~AsyncState~)[Aborted,Busy|(~INPUTSELECT|AsyncDemo,AsyncDemos~)~)
 <hr /></td></tr></table>
 (~NOMATCH|(~AsyncState~)[Aborted,Busy|(~AsyncDemoPick~)~)
@@ -66,26 +66,26 @@ NsLookup-Lookup your IP's name
 <whdroplet name="AsyncDemoPick">
 (~INPUTCHECKBOX|AsUnHook~) keep the connection open and send while processing<br />
 <ul>
-<li>(~INPUTCHECKBOX|AsUnHookAbort~) Abort %Complete demo when switching away from the page being produced.
-<li>(~INPUTCHECKBOX|AsyncSplitLoop~) Automatically load 'the next page' upon completion.
+<li>(~INPUTCHECKBOX|AsUnHookAbort~) Abort %Complete demo when switching away from the page being produced.</li>
+<li>(~INPUTCHECKBOX|AsyncSplitLoop~) Automatically load 'the next page' upon completion.</li>
 </ul>
-//
+
 (~INPUTCHECKBOX|AsInc~) Process work over multiple executions (%complete example only)<br />
 <ul>
 <li>Checked - The demo will 'multi-task cooperatively' by breaking down its
 (fixed) 10 seconds of work over multiple requests.
-If your algorithm can do the same, use this technique and a single, shared background thread.<br />
+If your algorithm can do the same, use this technique and a single, shared background thread.<br /></li>
 <li>UnChecked - The demo will spend 10 seconds counting before
 returning a random number. When time is used like this, a thread dedicated
-to each request will be best.
+to each request will be best.</li>
 </ul>
-//
+
 (~INPUTCHECKBOX|AsBG~) Process in a shared background thread<br />
 <ul>
-<li>Checked - low resource utilization, never overloads system
-<li>UnChecked - dedicated thread servicing each request.
+<li>Checked - low resource utilization, never overloads system</li>
+<li>UnChecked - dedicated thread servicing each request.</li>
 </ul>
-//
+
 (~INPUTCHECKBOX|AsKeepOnPage~) Keep the surfer on this page during processing<br />
 </whdroplet>
 
@@ -99,12 +99,12 @@ the options selected by the checkboxes.
 Your async state is (~AsyncState~).<br/><br/>
 <table width="100%" (~IFNOT|AsUnHook|(~NoMATCH|(~AsyncState~)[None|height="200"~)~) border="3">
 <tr><td bgcolor="yellow" valign="top">
-<font size=+2>Status: (~NOMATCH|(~AsyncState~)[None|(~INC|AsyncPages~)(~AsyncDemo~) Demo ~)(~AsyncState~)
-</font><hr width=90% align="left">
-<font size=-1>Session: (~SessionID~),
+<span style="font-size:x-large;">Status: (~NOMATCH|(~AsyncState~)[None|(~INC|AsyncPages~)(~AsyncDemo~) Demo ~)(~AsyncState~)
+</span><hr width="90%" align="left"/>
+<span style="font-size:smaller;">Session: (~SessionID~),
 (~ASSIGNED|AsyncPages|TaskPage# (~AsyncPages~), ~)
 as of <span class="changing">(~CentralInfo.WebTimeGMT~)</span>
-</font><hr width=95% align="left">
+</span><hr width=95% align="left"/>
 (~NOMATCH|(~AsyncState~)[None|
 Executing in a (~IF|AsBG|shared background||dedicated~) thread
 (~MATCH|(~AsyncDemo~)!Percent| (~IF|AsInc|1% per iteration||0..100% at one time~)
