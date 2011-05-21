@@ -1,1 +1,4 @@
 http://localhost/webhub/demos/whShowcase/java/JavaTest.html
+
+http://lite.demos.href.com/webhub/demos/whShowcase/java/JavaTest.html
+
