@@ -129,11 +129,12 @@ var
 begin
   if bStreaming and assigned(Stream) then
   begin
+    {$IFDEF UNICODE}
     S := StringReplaceAll(AnsiCodePageToUnicode(Value, 1252),
       sLineBreak, '<br/>' + sLineBreak);
-    {$IFDEF UNICODE}
     a8 := UnicodeToUTF8(S);
     {$ELSE}
+    S := StringReplaceAll(Value, sLineBreak, '<br/>' + sLineBreak);
     a8 := AnsiCodePageToUTF8(S, 1252);
     {$ENDIF}
     if CommOutBufferToMailBox(Stream.Name, '+', a8) then
