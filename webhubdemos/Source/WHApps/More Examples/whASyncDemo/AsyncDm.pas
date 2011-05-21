@@ -1,7 +1,7 @@
 unit AsyncDm;
 (*
-  Copyright (c) 1999 HREF Tools Corp.
-  Author: Michael Ax
+  Copyright (c) 1999-2011 HREF Tools Corp.
+  Original Author: Michael Ax
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -24,21 +24,12 @@ unit AsyncDm;
 
 interface
 
-// ----------------------------------------------------------------------
-
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UpdateOk, tpAction, WebTypes, WebLink, WebVars, whAsync,
-  HtmlCore;
-
-// ----------------------------------------------------------------------
+  Windows, SysUtils, Classes,
+  updateOk, tpAction, webTypes, webLink, webVars, whAsync,
+  htmlCore;
 
 type
-  // TwhAsyncAction might not be on your palette.  If it is not, and you want
-  // it to be, you could cheat and redefine TwhWebActionEx for this unit to
-  // 'splice' in the new code for you.
-  // TwhWebAction = class(TwhAsyncAction);
-
   TdmAsyncDemo = class(TDataModule)
     waAsyncAction: TwhAsyncAction;
     procedure ExecuteSynchronized(Sender: TObject);
@@ -116,17 +107,21 @@ type
     // demo.
     function SendUpdate(PercentComplete: integer): Boolean;
     // SendUpdate is used to deliver chForEach to the surfer.
-    procedure Finished(const ResultString: String);
+    procedure Finished(const ResultString: string);
     // Finished closes out the stream when the task is done.
     procedure TakeOver(Response: TwhResponseSimple);
     //
   end;
 
 procedure TThreadInput.GetAnsiStrProc(const Value: AnsiString);
+const cFn = 'GetAnsiStrProc';
 var
   a8: UTF8String;
   S: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);
+  CodeSite.Send(Value);{$ENDIF}
+
   if bStreaming and assigned(Stream) then
   begin
 {$IFDEF UNICODE}
@@ -138,15 +133,26 @@ begin
     a8 := AnsiCodePageToUTF8(S, 1252);
 {$ENDIF}
     if CommOutBufferToMailBox(Stream.Name, '+', a8) then
-      bUsedGetAnsiStrProc := True
+      bUsedGetAnsiStrProc := True;
+  end
+  else
+  begin
+    {$IFDEF CodeSite}CodeSite.Send('bStreaming', bStreaming);
+    CodeSite.Send('Assigned(Stream)', Assigned(Stream));{$ENDIF}
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 function TThreadInput.SendUpdate(PercentComplete: integer): Boolean;
+const
+  cFn = 'SendUpdate';
 var
   S: string;
   a1: UTF8String;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);
+  CodeSite.SendUpdate('PercentComplete', PercentComplete)
+  {$ENDIF}
   Result := True;
   if bStreaming and assigned(Stream) then
   begin
@@ -168,10 +174,13 @@ begin
       end;
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
-procedure TThreadInput.Finished(const ResultString: String);
+procedure TThreadInput.Finished(const ResultString: string);
+const cFn = 'TThreadInput.Finished';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   if assigned(Stream) then
   begin
     with Stream do
@@ -181,7 +190,7 @@ begin
         // note.. up to here any and all intermediate output that
         // we may have been sending into the surfer's output stream
         // has been prefixed by the '+' concatenation symbol. this
-        // time around we're completely done though and use the
+        // time around we are completely done though and use the
         // absence of the concatenation operator to signal to the
         // runner that it's time to close the connection now.
         // (btw, if YOU close the connection at any time the runner
@@ -194,33 +203,37 @@ begin
       end
       else
         Flush;
-      Free;
     end;
-    Stream := nil;
+    FreeAndNil(Stream);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TThreadInput.TakeOver(Response: TwhResponseSimple);
+const cFn = 'TThreadInput.TakeOver';
 var
   a1, a2: string;
   s8: UTF8String;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   InterLockedExchange(integer(bStreaming), integer(False));
   if assigned(Stream) then
   begin
     Stream.Flush;
-    Stream.Free;
-    Stream := Nil;
+    FreeAndNil(Stream);
   end;
 
   with Response do
   begin
-    if not assigned(Stream) then
-      exit;
+    if not Assigned(Stream) then
+    begin
+      {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+      Exit;
+    end;
     if SplitString(Headers.Text, sLineBreak + sLineBreak, a1, a2) then
       a1 := a1 + sLineBreak;
     Headers.Clear;
-    //
+
     Self.Stream := Stream;
     Stream.Flush;
     Stream := Nil;
@@ -245,6 +258,7 @@ begin
   InterLockedExchange(integer(bStreaming), integer(True));
 
   pWebApp.Save; // save before aborting the official page production
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
   raise eAbortPrimary.create(''); // process through eAbortPrimary
 end;
 
@@ -271,19 +285,28 @@ end;
 // the asyncstate is also available as string literal 'AsyncState'
 
 procedure TdmAsyncDemo.SetAsyncState(Value: TAsyncState);
+const cFn = 'SetAsyncState';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   waAsyncAction.AsyncState := Value;
   pWebApp.StringVar['AsyncState'] :=
-    copy(GetEnumName(TypeInfo(TAsyncState), ord(Value)), 3, 255);
+    Copy(GetEnumName(TypeInfo(TAsyncState), ord(Value)), 3, MaxInt);
+  {$IFDEF CodeSite}
+  CodeSite.Send('StringVar[''AsyncState'']', pWebApp.StringVar['AsyncState']);
+  CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmAsyncDemo.waAsyncActionExecute(Sender: TObject);
+const cFn = 'waAsyncActionExecute';
 var
   i: Cardinal;
   a1, a2: string;
 
   function StartNewThread: Boolean;
+  const cFn = 'StartNewThread';
   begin
+    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+
     Result := False;
     // in order to accomodate different examples we call StartNewThread
     // to start a new thread of the right type and with the right events.
@@ -336,9 +359,11 @@ var
         SetAsyncState(asStarted);
         NewThread;
       end;
+    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
   end;
 
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   fmWhRequests.LogRequest(pWebApp.SessionID,
     copy(GetEnumName(TypeInfo(TAsyncState), ord(waAsyncAction.AsyncState)),
     3, 255));
@@ -359,7 +384,8 @@ begin
       Command := '';
       Request.dbFields.Values['@Start'] := '';
       StartNewThread; // will recurse here and call asStarted!
-      exit;
+      {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+      Exit;
     end;
 
     if assigned(SurfersObject) then
@@ -481,24 +507,28 @@ begin
           end;
       end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
-// ----------------------------------------------------------------------
-// ----------------------------------------------------------------------
+
 
 procedure TdmAsyncDemo.ThreadInit(Sender: TObject);
+const cFn = 'ThreadInit';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   // create and initialize the object's extra data-packet.
   if assigned(Sender) and (Sender is TwhAsyncObject) then
     with pWebApp, TwhAsyncObject(Sender) do
     begin
-      Data := TThreadInput.create;
+      Data := TThreadInput.Create;
       TThreadInput(Data).DosCmd :=
 {$IFDEF UNICODE}
         UnicodeToAnsiCodePage(Expand(waAsyncAction.HtmlParam), 1252);
 {$ELSE}
         Expand(waAsyncAction.HtmlParam);
 {$ENDIF}
+      {$IFDEF CodeSite}CodeSite.Send('TThreadInput(Data).DosCmd',
+        TThreadInput(Data).DosCmd);{$ENDIF}
       if BoolVar['AsUnHook'] then
       begin
         SetAsyncState(asStarted);
@@ -508,9 +538,11 @@ begin
       // might just set the resultstring here and ignore the data object!
       ResultString := '';
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmAsyncDemo.ThreadFinish(Sender: TObject);
+const cFn = 'ThreadFinish';
 // called from a thread when an object becomes 'Done.'
 // the TwhAsyncObject stays around, but we now need to
 // call the Finished method to close & free the output
@@ -523,24 +555,29 @@ procedure TdmAsyncDemo.ThreadFinish(Sender: TObject);
 // of the TThreadInput class!
 //
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   if assigned(Sender) and (Sender is TwhAsyncObject) then
     with TwhAsyncObject(Sender) do
     begin
       if (Data <> nil) and (Data is TThreadInput) then
         TThreadInput(Data).Finished(ResultString);
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure TdmAsyncDemo.ThreadDestroy(Sender: TObject);
+const cFn = 'ThreadDestroy';
 // the worker object is about to be destroyed, free the
 // data object.
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   if assigned(Sender) and (Sender is TwhAsyncObject) then
     with TwhAsyncObject(Sender) do
     begin
       Data.Free;
       Data := nil;
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 // ----------------------------------------------------------------------
@@ -551,11 +588,14 @@ end;
 // Execute example retrieves DOS output and preps it for the web.
 
 procedure TdmAsyncDemo.ExecuteDosCmd(Sender: TObject);
+const cFn = 'ExecuteDosCmd';
 var
   aa: AnsiString;
   a1: string;
   ErrorCode: integer;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+
   if assigned(Sender) and (Sender is TwhAsyncObject) then
     with TwhAsyncObject(Sender) do
       if not Done then
@@ -579,10 +619,12 @@ begin
 {$ELSE}
             a1 := aa;
 {$ENDIF}
+            {$IFDEF CodeSite}CodeSite.Send('a1', a1);{$ENDIF}
           end;
         except
           on E: Exception do
           begin
+            {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             ResultValue := -1;
             a1 := E.Message;
           end;
@@ -593,6 +635,7 @@ begin
         ResultString := a1;
         Done := True;
       end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 // ----------------------------------------------------------------------
@@ -673,10 +716,5 @@ begin
           Aborted := True; // important! do not reset the flag by accident!
       end;
 end;
-
-// ----------------------------------------------------------------------
-// ----------------------------------------------------------------------
-
-initialization
 
 end.

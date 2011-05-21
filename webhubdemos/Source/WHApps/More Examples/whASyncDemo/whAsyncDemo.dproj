@@ -24,6 +24,9 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps\</DCC_ExeOutput>
+			<DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
+			<DCC_DcuOutput>d:\temp\DelphiTempDCU</DCC_DcuOutput>
 			<DCC_UnitSearchPath>h:\;h:\d15\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_DependencyCheckOutputName>whAsyncDemo.exe</DCC_DependencyCheckOutputName>
@@ -37,12 +40,13 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_Define>DEBUG;CodeSite;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="whAsyncDemo.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="h:\ucCodeSiteInterface.pas"/>
 			<DCCReference Include="h:\MultiTypeApp.pas"/>
 			<DCCReference Include="h:\tpProj.pas"/>
 			<DCCReference Include="h:\utPanFrm.pas">

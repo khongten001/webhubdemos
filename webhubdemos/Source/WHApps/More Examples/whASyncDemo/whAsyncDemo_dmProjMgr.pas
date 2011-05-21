@@ -11,11 +11,10 @@ type
     procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
       var ErrorText: String; var Continue: Boolean);
     procedure ProjMgrGUICreate(Sender: TtpProject;
-      const ShouldEnableGUI: Boolean; var ErrorText: String;
+      const ShouldEnableGUI: Boolean; var ErrorText: string;
       var Continue: Boolean);
-    procedure ProjMgrGUIInit(Sender: TtpProject;
-      const ShouldEnableGUI: Boolean; var ErrorText: String;
-      var Continue: Boolean);
+    procedure ProjMgrGUIInit(Sender: TtpProject; const ShouldEnableGUI: Boolean;
+      var ErrorText: string; var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -38,28 +37,23 @@ procedure TDMForWHAsync.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TdmAsyncDemo, dmAsyncDemo);
-  {M}Application.CreateForm(TdmStreams, dmStreams);
-  {M}Application.CreateForm(TdmSimpleAsync, dmSimpleAsync);
-
+  Application.CreateForm(TdmAsyncDemo, dmAsyncDemo);
+  Application.CreateForm(TdmStreams, dmStreams);
+  Application.CreateForm(TdmSimpleAsync, dmSimpleAsync);
 end;
 
 procedure TDMForWHAsync.ProjMgrGUICreate(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: String;
-  var Continue: Boolean);
+  const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
   Application.CreateForm(TfmWhRequests, fmWhRequests);
-
 end;
 
 procedure TDMForWHAsync.ProjMgrGUIInit(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: String;
-  var Continue: Boolean);
+  const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
   AddConnectionExecuteHandler(fmWhRequests.WebCommandLineExecute);
-
 end;
 
 end.
