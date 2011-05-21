@@ -78,7 +78,7 @@ document.write(' value="Time For WebHub!"></FORM>')
 
 <whdroplet name="chJavaCl">
 <whdoc for="chJavaCl">
-Java-based Clock
+Javascript-based Clock
 ;speed
 ;length of box
 ;tid
