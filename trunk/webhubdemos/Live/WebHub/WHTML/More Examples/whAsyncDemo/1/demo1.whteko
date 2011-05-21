@@ -115,6 +115,7 @@ taken to a page where you can view the results, and, if you wish, clear them and
 <p>
 <table WIDTH="75%"><tr><td>
 (~MATCH|(~AsyncState~)[Finished|(~chDemo1FinishedText~)~)
+(~MATCH|(~AsyncState~)[Prior|(~chDemo1FinishedText~)~)
 (~MATCH|(~AsyncState~)[Aborted|(~chDemo1AbortedText~)~)
 </td></tr></table></CENTER>
 </div>  <!--- demopagecontent -->
@@ -167,6 +168,14 @@ Click the &quot;On to Demo 2&quot; link above to continue on to Demo #2.
 
 <whdroplet name="Demo1AsyncNone">
 (~CLEAR|asResult*~)
+</whdroplet>
+
+<whdroplet name="Demo1AsyncStarted">
+Started...
+</whdroplet>
+
+<whdroplet name="Demo1AsyncPrior">
+Finished (Prior results suffice.)
 </whdroplet>
 
 </whteko>
