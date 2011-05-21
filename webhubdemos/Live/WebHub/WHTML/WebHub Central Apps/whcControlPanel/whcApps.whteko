@@ -87,7 +87,7 @@ closed, this control panel will be unavailable.
 </whdroplet>
 <whdroplet name="chAppsPosterSettings">
 (~SET|SettingsBouncePage=pgapps~)
-(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.ToAppID~):pgAppIDSettings:(~SessionID~):,waAppInfo.(~whcpAppSel~)~)
+(~BOUNCE|(~DynURL.ToAppID~):pgAppIDSettings:(~SessionID~):,waAppInfo.(~whcpAppSel~)~)
 </whdroplet>
 <whdroplet name="chAppsPosterStart">
 (~waAppAction.Execute|(~whcpAppSel~)|Start~)

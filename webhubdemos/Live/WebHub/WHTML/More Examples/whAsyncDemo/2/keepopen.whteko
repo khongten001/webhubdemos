@@ -59,7 +59,7 @@ but might come in handy when used to provide a timeout
 </font>
 </center>
 
-(~Jump|Async,Abort|Abort~)
+(~Jump|pgASync,Abort|Abort~)
 ~)
 (~AsyncTitleEnd~)
 </whdroplet>
@@ -138,7 +138,7 @@ finish the yellow table past the results.
 
 (~IF|AsyncSplitLoop
 |(~AsyncPageTailLoop~)
-||(~JUMP|Async|Continue..~)
+||(~JUMP|pgASync|Continue..~)
 ~)
 
 <br/><br/>
@@ -150,7 +150,7 @@ finish the yellow table past the results.
 <whdroplet name="AsyncPageTailLoop">
 <whdoc for="AsyncPageTailLoop">
 as this chunk is expanded BEFORE the result is actually in,
-using (~BOUNCE|Async~) does not advance you from 'here'.
+using (~BOUNCE|pgASync~) does not advance you from 'here'.
 (even if the bounce is _actually done by the runner now, your browser
 would already have processed the document header.
 so, let us use JavaScript to display the main/completion page:

@@ -7,7 +7,7 @@ use BOUNCE to the same page in case we used a POST to make
 this page.. once GET was used include a meta refresh header!
 </whdoc>
 (~MATCH|(~Request.RequestMethod~)~POST
-|(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.ToSessionIDW~)RRR~)
+|(~BOUNCE|(~DynURL.ToSessionIDW~)RRR~)
 ||(~ANCHORMODIFY|anRefresh|<META HTTP-EQUIV="Refresh" CONTENT="2;(~DynURL.ToSessionIDW~)"/>~)~)
 </whdroplet>
 

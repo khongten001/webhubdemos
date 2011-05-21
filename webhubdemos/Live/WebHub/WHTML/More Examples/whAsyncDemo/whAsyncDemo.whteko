@@ -14,6 +14,9 @@ mcBar= |&nbsp;
 </whdroplet>
 
 <whpage pageid="pgEnterHTASYNC" desc="Explain layout of this demo">
+<whprep>
+(~NOTASSIGNED|AsyncDemo|(~SET|AsyncDemo=Percent~)~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -42,11 +45,11 @@ Read these pages:
 </ul>
 <p>
 
-<li><FONT SIZE="+1"><b>Async/1</b></FONT><br />
+<li><span style="font-size:larger;font-weight:900;">Async/1</span><br />
 (~JUMP|Demo1Home|Demo 1~) simulates a database query response, using asynchronous methods.<br />&nbsp;
 </LI>
 
-<li><FONT SIZE="+1"><b>Async/2</b></FONT> <br />
+<li><span style="font-size:larger;font-weight:900;">Async/2</span> <br />
 (~JUMP|Demo2Home|Demo 2~) demonstrates the options available
 in an async enabled WebHub application.<br />&nbsp;</LI>
 </ol>
