@@ -587,10 +587,10 @@ This is also true for graphics--- e.g. IMG SRC="/img/filename.gif"]</font></b>
 <td colspan="2"> None--this is a specialized A HREF link...</td></tr>
 <tr><th align="left">Macro Syntax</th>
 <td colspan="2">
-<code>&lt;A HREF="%=.DynURL.CgiApp=%:pgBrndData:%=.SessionID=%&gt;Link back to the dynamic Branding Data Input Page&lt;/A&gt;
+<code>&lt;A HREF="%=.DynURL.ToAppID=%:pgBrndData:%=.SessionID=%&gt;Link back to the dynamic Branding Data Input Page&lt;/A&gt;
 </td></tr>
 <tr><th align="left">Try it!</th>
-<td colspan="2"><a href="(~DynURL.CgiApp~):pgBrndData:(~SessionID~)">Link back to the dynamic Branding Data Input Page</a></code>
+<td colspan="2"><a href="(~DynURL.ToAppID~):pgBrndData:(~SessionID~)">Link back to the dynamic Branding Data Input Page</a></code>
 </td></tr>
 </table>
 <p>

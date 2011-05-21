@@ -84,7 +84,7 @@ WHCPSecurePage=no
 </whpagesettings>
 <whprep>
 (~wlWHCP.Execute|Username,Password,_bLoggedIn~)
-(~IF|_bLoggedIn|(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.cgiApp~):pgEnterWHCP:(~SessionID~)~)||(~BOUNCE|pgWHCPLogin~)~)
+(~IF|_bLoggedIn|(~BOUNCE|(~DynURL.ToAppID~):pgEnterWHCP:(~SessionID~)~)||(~BOUNCE|pgWHCPLogin~)~)
 </whprep>
 </whpage>
 
