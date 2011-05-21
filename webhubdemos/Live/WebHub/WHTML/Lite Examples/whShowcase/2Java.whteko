@@ -32,15 +32,29 @@ all you need to do is place the appropriate droplet in your page code.
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
+<whprep>
+(~NOTASSIGNED|surfername|(~SET|surfername=SUSAN~)~)
+</whprep>
 (~drShowcaseGlobalHeader~)
-This example creates a scrolling banner.
+(~ANCHORMODIFY|anchBaseHREF,replace|<base href="(~Request.URLToAuthority~)/webhub/demos/whShowcase/java/"/>~)
+
+<h2>JavaScript Marquee Examle</h2>
 <p>(~chMarquee1~)</p>
-<h2>Java Banner</h2>
-<whdroplet name="drJavaBanner" show="yes">
-<applet code="/webhub/demos/whShowcase/java/banner.class" width=450 height=50>
-<param name="message" value="(~bannerText~)">
+
+<h2>Java Examples</h2>
+<p>Java source was precompiled online thanks to
+<a href="http://www.innovation.ch/java/java_compile.html">innovation.ch</a>.</p>
+
+<h3>Test Java Version</h3>
+This example shows the version of Java installed.
+<applet code="JavaVersionDisplayApplet.java" width="400" height="50"></applet>
+
+<h3>Test Java Welcome APPLET</h3>
+<p>This example shows how a parameter can be passed to the Java applet.</p>
+
+<applet code="Welcome" width="250" height="50" >
+<param name="surfername"    value="(~surfername~)">
 </applet>
-</whdroplet>
 
 (~drShowcaseGlobalFooter~)
 </whpage>
