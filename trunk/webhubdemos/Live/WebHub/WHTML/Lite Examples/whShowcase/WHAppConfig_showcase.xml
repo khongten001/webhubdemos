@@ -112,7 +112,6 @@
       <File id="about" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
       <File id="XEmail" filename="XEmail.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
-      <File id="_JavaChnk" filename="javachnk.whteko"/>
       <File id="_JavaScrp" filename="javascrp.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
       <File id="_lingvo_eng" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
