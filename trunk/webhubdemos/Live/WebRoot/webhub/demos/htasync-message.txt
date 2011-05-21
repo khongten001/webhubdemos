@@ -1,4 +1,0 @@
-18-Nov-2006 11:30am GMT
-
-The async demo is offline because it throws an access violation under WebHub v2.074 ... under 
-investigation...
