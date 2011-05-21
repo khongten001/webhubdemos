@@ -13,7 +13,7 @@ Welcome to Demo 2, an advanced showcase of async capabilities in WebHub.
 <p>
 <p>
 Next: (~JUMP|Async|Start Demo 2 as Current Surfer~) or 
-<a href="(~DynURL.cgiApp~):Async::">Start Demo 2 as New Surfer</a><br />
+<a href="(~DynURL.ToAppID~):Async::">Start Demo 2 as New Surfer</a><br />
 <span class="highlighter"><i>Start the demo in a new window so that you can simulate multiple surfers 
 while keeping the instructions handy.</i></span>
 <p>

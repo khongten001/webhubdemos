@@ -6,11 +6,7 @@
 (~GO|Mirrors|Mirrors~) |
 (~GO|pgLinkToDSP|Promote DSP~) |
 (~GO|Feedback|Feedback~) | 
-<!---<td align="right">-->
-<!--- use the random session number as a way to prevent caching!! we are passing it as the COMMAND -->
-<!--- <a href="(~DynURL.cgiApp~):welcome::(~SessionNumberEx~)" target="_top">Start Again</a>  -->
 (~HREF|(~mcDSP~)|target="_top"|DSP Home~)
-<!---</td>-->
 </whdroplet>
 
 <whpage pageid="welcome" remap="pgEnterDSP">

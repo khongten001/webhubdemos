@@ -32,8 +32,8 @@ FrontDoor=pgWelcome
 In other words, the FrontDoor page that new surfers are automatically routed to is
 named "pgWelcome."
 <p>
-<a href="(~DynURL.cgiApp~):(~PageID~)">Try this link</a> to see what happens 
-if you try to link to the current page, <b>(~pagedesc~)</b>, as a new surfer--
+<a href="(~DynURL.ToPageID~)">Try this link</a> to see what happens 
+if you try to link to the current page, <b>(~pageid~), (~pagedesc~)</b>, as a new surfer--
 that is, without a session number.
 You will get bounced to the FrontDoor page.  <p>
 Click [back] in your browser to return here!
@@ -56,7 +56,7 @@ HomePage=pgWelcome
 </pre>
 meaning that the page surfers are automatically routed to is pgWelcome.
 <p>
-<a href="(~DynURL.cgiApp~)::(~SessionID~)">Try this link</a> to see what happens 
+<a href="(~DynURL.ToAppID~)::(~SessionID~)">Try this link</a> to see what happens 
 if you try to go to a blank page. <p>
 Click [back] in your browser to return here!
 <p>
@@ -80,7 +80,7 @@ InvalidPage=InvalidPage
 </pre>
 meaning that the Page surfers are automatically routed to is named InvalidPage.
 <p>
-<a href="(~DynURL.cgiApp~):junkpage:(~SessionID~)">Try this link</a> to see what happens 
+<a href="(~DynURL.ToAppID~):junkpage:(~SessionID~)">Try this link</a> to see what happens 
 if you try to go to an invalid page.<p>
 Click [back] in your browser to return here!
 (~drShowcaseGlobalFooter~)
