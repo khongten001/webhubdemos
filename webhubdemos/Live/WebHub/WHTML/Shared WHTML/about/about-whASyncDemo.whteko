@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
 mcWhDemoOneLinerHTASYNC=Background Processing
@@ -34,6 +35,30 @@ using these techniques.
 We recommend these techniques for sites that include slow processes, because they let you provide 
 a quick reply to the surfer, plus optional ongoing status information while the processing goes on in 
 a background thread.
+
+<h2>Notes</h2>
+<ul>
+<li> AsyncState is a StringVar set by customized OnExecute logic in AsyncDM.pas. </li>
+<li> whAsyncAction.OnExecute:
+<ul>
+<li>surfaces 7 different states and the customized response
+logic expands macros named after the state. 
+<pre>
+AsyncNone
+AsyncPrior
+AsyncStarted
+AsyncBusy
+AsyncAborted
+AsyncFinished
+AsyncFailed
+</pre>
+</li>
+<li>where applicable dyn1 will be set to the object's result otherwise to the %complete</li>
+
+</ul>
+
+</ul>
+
 </whtranslation>
 
 </whteko>
