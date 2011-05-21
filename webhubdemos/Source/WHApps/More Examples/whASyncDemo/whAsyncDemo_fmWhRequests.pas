@@ -53,7 +53,7 @@ type
   public
     { Public declarations }
     function Init: Boolean; override;
-    procedure LogRequest(const Value:String);
+    procedure LogRequest(const A, B: string);
     procedure WebAppOutputShow(Sender: TObject);
     procedure WebCommandLineExecute(Sender: TObject);
     procedure tpApplication1Idle(Sender: TObject; var Done: Boolean);
@@ -67,9 +67,8 @@ implementation
 {$R *.DFM}
 
 uses
-  WebApp;
-
-//------------------------------------------------------------------------------
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  webApp;
 
 function TfmWhRequests.Init:Boolean;
 begin
@@ -82,13 +81,12 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure TfmWhRequests.LogRequest(const Value:String);
+procedure TfmWhRequests.LogRequest(const A, B: string);
 begin
   if CheckBox1.Checked then
-    listbox1.items.insert(0,Value);
+    listbox1.items.insert(0,A + Chr(183) + B);
+  {$IFDEF CodeSite}CodeSite.Send(A, B); {$ENDIF}
 end;
-
-//
 
 procedure TfmWhRequests.WebAppOutputShow(Sender: TObject);
 var
@@ -126,7 +124,7 @@ end;
 
 procedure TfmWhRequests.WebCommandLineExecute(Sender: TObject);
 begin
-  LogRequest(pWebApp.Request.systemvalues.values['ConnectID']+':'#9+
+  LogRequest(pWebApp.Request.systemvalues.values['ConnectID'],
     pWebApp.Request.QueryString);
 end;
 
