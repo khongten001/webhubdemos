@@ -6,7 +6,7 @@ the page from which to experiment with the functionality of the async demo appli
 (uses flush/close/no app specific header to plug into any appid you might be using)
 </whdoc>
 
-<whpage pageid="Async">
+<whpage pageid="pgASync">
 <whprep>
 (~IFNOT|_FlagInit|(~chNewSession~)~)
 </whprep>
@@ -24,7 +24,7 @@ the page from which to experiment with the functionality of the async demo appli
 ||(~MATCH|(~AsyncDemo~)~tracert|(~mcDosTracert~)
 ||(~MATCH|(~AsyncDemo~)~nslookup|(~mcDosNsLookup~)
 ||(~waAsyncAction.execute~)~)~)~)
-<FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|Async,CKB~)">
+<FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|pgASync,CKB~)">
 (~AsyncTitleEnd~)
 <table><tr><td><hr />
 <INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any"/>
@@ -92,7 +92,7 @@ to each request will be best.</li>
 
 <whdroplet name="AsyncTitle">
 <whdoc for="AsyncTitle">
-implementing the yellow box at the top of the async page.
+implementing the yellow box at the top of the pgASync page.
 It is meant to display the asyn status for the demo and deciphers
 the options selected by the checkboxes.
 </whdoc>

@@ -52,7 +52,7 @@ so that you will be able to actually see the changes between the two settings.
 </tr>
 
 <tr><td>PLAIN</td>
-<td><b>(~DynURL.LocSMU~)/</b></td>
+<td><b>(~DynURL.RawToActiveAuthorityM~)</b></td>
 <td>path<br />
 <b>Example:</b> scripts/</td>
 <td>runner<br />
@@ -62,7 +62,7 @@ so that you will be able to actually see the changes between the two settings.
 <tr>
 <td>&nbsp;</td>
 <td>&nbsp;</td>
-<td colspan="2">Hint - combination of your path and runner: <b>(~cgiCaller~)</b></td>
+<td colspan="2">Hint - combination of your path and runner: <b>(~Request.RawVMR~)</b></td>
 <td>&nbsp;</td></tr>
 
 <tr><td>SSL</td>

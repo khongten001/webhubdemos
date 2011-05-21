@@ -13,7 +13,7 @@ TwhAsyncAction.OnExecute
 <whdroplet name="AsyncStarted">
 (~SET|AsyncPages=0~)
 (~MATCH|(~Request.RequestMethod~)~POST
-|(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.ToSessionIDW~)XXX~)
+|(~BOUNCE|(~DynURL.ToSessionIDW~)XXX~)
 ||(~AsyncTitle~)(~AsyncRefresh~)
 ~)
 </whdroplet>
@@ -21,7 +21,7 @@ TwhAsyncAction.OnExecute
 <!---give notice that a thread has just aborted-->
 <whdroplet name="AsyncAborted">
 (~MATCH|(~Request.RequestMethod~)~POST
-|(~BOUNCE|(~LocSMU~)(~DynURL.ToSessionIDW~)YYY~)
+|(~BOUNCE|(~DynURL.ToSessionIDW~)YYY~)
 ||(~AsyncTitle~) (~dyn1~)% Completed before Task was aborted.
 ~)
 </whdroplet>
