@@ -1,32 +1,36 @@
-<whteko defaultlingvo="eng">
+<whteko designmode="code" defaultlingvo="eng">
 
-//a header for a page that reloads itself.
-//use BOUNCE to the same page in case we used a POST to make
-//this page.. once GET was used include a meta refresh header!
 <whdroplet name="AsyncRefresh">
+<whdoc for="AsyncRefresh">
+a header for a page that reloads itself.
+use BOUNCE to the same page in case we used a POST to make
+this page.. once GET was used include a meta refresh header!
+</whdoc>
 (~MATCH|(~Request.RequestMethod~)~POST
 |(~BOUNCE|(~DynURL.LocSMU~)(~DynURL.ToSessionIDW~)RRR~)
-||(~ANCHORMODIFY|anRefresh|<META HTTP-EQUIV="Refresh" CONTENT="2;(~DynURL.ToSessionIDW~)">~)~)
+||(~ANCHORMODIFY|anRefresh|<META HTTP-EQUIV="Refresh" CONTENT="2;(~DynURL.ToSessionIDW~)"/>~)~)
 </whdroplet>
 
-//----------------------------------------------------------------------------------------------------------------
-//a chunk indicating '(~Dyn1~)' from 0..100 in a progressbar
 
-//the annotated progressbar
 <whdroplet name="AsyncProgress">
-<hr width=96% align="left">
-<table width=100% border=0><tr>
+<whdoc for="AsyncProgress">
+the annotated progressbar
+</whdoc>
+<hr width="96%" align="left"/>
+<table width="100%" border="0"><tr>
 <td>Progress:</td>
-<td width=99%>(~AsyncProgressBar~)</td>
-<td width=2%>&nbsp;</td>
+<td width="99%">(~AsyncProgressBar~)</td>
+<td width="2%">&nbsp;</td>
 </tr></table>
 </whdroplet>
 
-//the essential progressbar
 <whdroplet name="AsyncProgressBar">
-<table width="100%" border=3><tr>
-(~NOMATCH|(~dyn1~)~0|<td width="(~dyn1~)%" bgcolor=green>&nbsp;</td>~)
-(~NOMATCH|(~dyn1~)~100|<td width="*" bgcolor=red>&nbsp;</td>~)
+<whdoc for="AsyncProgressBar">
+a chunk indicating '(~Dyn1~)' from 0..100 in a progressbar
+</whdoc>
+<table width="100%" border="3"><tr>
+(~NOMATCH|(~dyn1~)~0|<td width="(~dyn1~)%" bgcolor="green">&nbsp;</td>~)
+(~NOMATCH|(~dyn1~)~100|<td width="*" bgcolor="red">&nbsp;</td>~)
 </tr></table>
 </whdroplet>
 
