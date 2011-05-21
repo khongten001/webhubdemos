@@ -1,3 +1,7 @@
+
+// online java compiler (.java -> .class)
+// http://www.innovation.ch/java/java_compile.html
+
 import java.applet.*;
  import java.awt.*;
  public class JavaVersionDisplayApplet extends Applet
