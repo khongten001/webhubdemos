@@ -193,13 +193,13 @@ demo at any time. Click into the Delphi Project File (the DPR file), and then se
 <tr>
   <td><CODE>TwhAsyncAction</CODE> creates <CODE>.SurfersObject</CODE> of class
   <CODE>.ObjectClass</CODE> (default:<CODE>TwhAsyncObject</CODE>), initializes object, and calls
-  <CODE>(~JUMP|Demo1Code,#ONINIT|TwhAsyncAction.ThreadOnInit~)</CODE></td>
+  <CODE>TwhAsyncAction.ThreadOnInit</CODE></td>
   <td ROWSPAN=2>Now is the time to access the Session in order to initialize the async object.</td>
 </tr>
 
 //next row
 <tr>
-  <td>TwhAsyncAction.NewThread recurses to <CODE>TwhAsyncAction.Execute</CODE> calls (~JUMP|Demo1Code,#AONEXECUTE|TwhAsyncAction.OnExecute~)</td>
+  <td>TwhAsyncAction.NewThread recurses to <CODE>TwhAsyncAction.Execute</CODE> calls TwhAsyncAction.OnExecute</td>
   <td ALIGN="CENTER"><CODE><b>asStarted</b></CODE></td>
 </tr>
 
@@ -212,7 +212,7 @@ demo at any time. Click into the Delphi Project File (the DPR file), and then se
 
 //next row
 <tr>
-  <td BGCOLOR="(~mcGray1~)"><CODE>(~JUMP|Demo1Code,#AONEXECUTE|TwhAsyncAction.OnExecute~)</CODE></td>
+  <td BGCOLOR="(~mcGray1~)"><CODE>TwhAsyncAction.OnExecute</CODE></td>
   <td ALIGN="CENTER" BGCOLOR="(~mcGray1~)"><CODE><b>asBusy</b></CODE></td>
 </tr>
 
@@ -220,7 +220,7 @@ demo at any time. Click into the Delphi Project File (the DPR file), and then se
 <tr>
   <td ALIGN="TOP" BGCOLOR="(~mcGray1~)">
   <table BORDER=0><tr><td ROWSPAN=3 ALIGN="TOP">
-  <CODE>SurfersObject.OnExecute</CODE> called until:<br /><CODE>((~JUMP|Demo1Code,#ONEXECUTE|TwhAsyncAction.ThreadOnExecute~))</CODE></td>
+  <CODE>SurfersObject.OnExecute</CODE> called until:<br /><CODE>(TwhAsyncAction.ThreadOnExecute)</CODE></td>
   <td ROWSPAN=3>&nbsp;</td>
   <td BGCOLOR="(~mcLtGreen~)"><CODE>Done = True</CODE></td></tr>
   <tr><td BGCOLOR="(~mcLtBlue~)"><CODE>Aborted = True</CODE></td></tr>
@@ -250,11 +250,11 @@ demo at any time. Click into the Delphi Project File (the DPR file), and then se
 
 //next row
 <tr>
-  <td><CODE>DeleteTask</CODE> or housecleaning calls object's <CODE>(~JUMP|Demo1Code,#ONDEST|TwhAsyncObject.OnDestroy~)</CODE></td>
+  <td><CODE>DeleteTask</CODE> or housecleaning calls object's <CODE>TwhAsyncObject.OnDestroy</CODE></td>
   <td ALIGN="CENTER"><CODE><b>asNone</b></CODE></td>
   <td>The async object will now be freed.</td>
 </tr>
-//end table
+
 </table></CENTER>
 <p>
 Return: (~JUMP|pgEnterHTASYNC|Return to Demo Entrance~)
@@ -264,21 +264,4 @@ Return: (~JUMP|pgEnterHTASYNC|Return to Demo Entrance~)
 </body></html>
 </whpage>
 
-<whpage pageid="pgCode" desc="Code Examples">
-(~mcdoctypehtml~)
-<html>
-<head>
-(~drHead~)
-</head>
-<body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
-(~JUMP|Demo1Code|Here~) are the code examples from the first demo.<br />
-<br />
-(~JUMP|Demo2Code|Here~) are the code examples from the second demo.
-</div>  <!--- demopagecontent -->
-(~drPageEnd~)
-
-</body></html>
-</whpage>
 </whteko>
