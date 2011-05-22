@@ -13,7 +13,7 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Demo1Post,NewThread~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post,NewThread~)">
 (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~)
 Query Length (sec): <br />
 (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)
@@ -21,7 +21,7 @@ Status Refresh Rate (sec):
 <p>
 <input type="submit" value="Submit Query" />
 <CENTER>
-<FONT SIZE="+1"><b>Status:</b></FONT> Idle
+<h2>Status:</h2> Idle
 </CENTER>
 <p>
 Welcome to Demo #1.  This very simple async example simulates a 5 second (or longer) database query.  Because 5 seconds is a long
@@ -67,13 +67,12 @@ taken to a page where you can view the results, and, if you wish, clear them and
 <whpage pageid="Demo1Loop" desc="Demo 1 Waiting Start Page">
 <whprep>
 (~waAsyncSimple1.Execute|(~Demo1SleepSec~)|what?~)
-//go to the result page if nothing is happening
+<!--- go to the Demo1Result page if nothing is happening -->
 (~NOMATCH|(~AsyncState~)[Started,Busy|(~PAGE|Demo1Result~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html><head>
 (~drHead~)
-
 <!-- changing:start-->
 <meta http-equiv="Refresh" content="(~Demo1Refresh~);(~DynURL.ToSessionIDW~)"/>
 <!-- changing:stop-->
@@ -161,8 +160,8 @@ Click the &quot;On to Demo 2&quot; link above to continue on to Demo #2.
 
 
 <whdroplet name="chDemo1ProgressBar">
-<table BORDER=1 WIDTH="60%"><tr>
-<td BGCOLOR="#FF0000" WIDTH="(~asResultPercentDone~)%">&nbsp;</td>
+<table id="progressbar" style="border: solid 1px black; width: 60%;"><tr>
+<td style="background-color:#FF0000; width:(~asResultPercentDone~)%;">&nbsp;</td>
 <td></td></tr></table>
 </whdroplet>
 
@@ -171,7 +170,8 @@ Click the &quot;On to Demo 2&quot; link above to continue on to Demo #2.
 </whdroplet>
 
 <whdroplet name="Demo1AsyncStarted">
-Started...
+<!--- keep quiet here because the Started status 
+is sent (in this demo) too early on the page -->
 </whdroplet>
 
 <whdroplet name="Demo1AsyncPrior">
