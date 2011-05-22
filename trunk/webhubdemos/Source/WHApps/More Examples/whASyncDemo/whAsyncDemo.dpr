@@ -28,8 +28,6 @@ uses
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  webInfoU,
-  ucString,
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
@@ -38,17 +36,13 @@ uses
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
-  whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
-  whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   AsyncDm in 'AsyncDm.pas' {dmAsyncDemo: TDataModule},
   StreamsDM in 'StreamsDM.pas' {dmStreams: TDataModule},
   SimpleDm in 'SimpleDm.pas' {dmSimpleAsync},
-  dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
-  whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whAsyncDemo_fmWhRequests in 'whAsyncDemo_fmWhRequests.pas' {fmWhRequests},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
-  whAsyncDemo_dmProjMgr in 'whAsyncDemo_dmProjMgr.pas' {DMForWHAsync: TDataModule},
-  whAsync in 'K:\WebHub\lib\whplus\whAsync.pas';
+  whAsyncDemo_dmProjMgr in 'whAsyncDemo_dmProjMgr.pas' {DMForWHAsync: TDataModule};
+
 
 {$R *.RES}
 {$R HTDEMOS.RES}     { main icon for WebHub demos }
