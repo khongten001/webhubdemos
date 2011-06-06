@@ -27,7 +27,7 @@ WebHub provides explicit support for structured feedback pages.</p>
 <p>Use SMTP server: 
 (~INPUTTEXT|smtp,40,40~)</p>
 <p>Send this Feedback to:
- (~inputtext|Msg To,47,47~)</p>
+ (~inputtext|MsgTo,47,47~)</p>
 <p>Surfer's E-mail Address:
 (~inputtext|MsgFrom,47,47~)</p>
 <p>Surfer's Name:
