@@ -51,7 +51,7 @@ h2 {text-align: center; font-size: 1.1em; margin: .8em 0 .3em 0;}
 (~GO|PGRTTI|(~mcRedCube~)~)&nbsp;RTTI Properties
 
 <h2>(~GO|pgEMAIL|E-Mail~)</h2>
-(~GO|PGFEEDBACK|(~mcRedCube~)~)&nbsp;Feedback Page<br />
+(~GO|pgFeedback|(~mcRedCube~)~)&nbsp;Feedback Page<br />
 (~GO|PGFORMTOMAIL|(~mcRedCube~)~)&nbsp;Form-to-Mail Feature
 
 <h2>(~GO|pgSURFERTRACKING|Surfer Tracking~)</h2>

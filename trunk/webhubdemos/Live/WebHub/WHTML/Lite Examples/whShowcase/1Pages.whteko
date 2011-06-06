@@ -126,7 +126,7 @@ To watch the contents of the of TWebSession component expand as you go through t
 
 <whpage pageid="pgEmail" desc="E-mail">
 <whpagesettings inherit="a">
-downLink=PGFEEDBACK
+downLink=pgFeedback
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 WebHub includes an e-mail component called <b>TwhMailForm.</b>
@@ -141,13 +141,13 @@ The following examples cover the sorts of features that WebHub can provide you -
 </whpage>
 
 <whdroplet name="barEmail">
-(~GO|PGFEEDBACK|Feedback~)(~mcHeadingSeparator~)
+(~GO|pgFeedback|Feedback~)(~mcHeadingSeparator~)
 (~GO|PGFORMTOMAIL|Form-to-Mail~)
 </whdroplet>
 
 
 <whdroplet name="ulPgEmail">
-(~GO|PGFEEDBACK|Feedback Page~)<br/>
+(~GO|pgFeedback|Feedback Page~)<br/>
 (~GO|PGFORMTOMAIL|Form-to-Mail Feature~)<br/>
 </whdroplet>
 
