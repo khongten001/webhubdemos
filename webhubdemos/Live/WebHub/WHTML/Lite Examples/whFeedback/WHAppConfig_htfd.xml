@@ -77,7 +77,7 @@
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
       <Item name="FormLetter">
-        <Host value="mail.href.com"/>
+        <Host value="smtp^"/>
         <Port value="25"/>
         <From value="info@href.com"/>
         <Name value="Someone on the Web"/>
@@ -87,7 +87,7 @@
         <LogToFile value="false"/>
       </Item>
       <Item name="Feedback">
-        <Host value="mail.href.com"/>
+        <Host value="smtp^"/>
         <Port value="25"/>
         <From value="EMail^"/>
         <Name value="FullName^"/>
@@ -99,7 +99,7 @@
         <LogToFile value="false"/>
       </Item>
       <Item name="SimpleForm">
-        <Host value="mail.href.com"/>
+        <Host value="smtp^"/>
         <Port value="25"/>
         <From value="EMail^"/>
         <Name value="FullName^"/>

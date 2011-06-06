@@ -9,6 +9,9 @@
 </whdroplet>
 
 <whpage pageid="pgEnterHTFD" desc="Various ways to use the WebHub Mail Panel">
+<whprep>
+(~NOTASSIGNED|smtp|(~SET|smtp=mail.href.com~)~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -56,6 +59,10 @@ This example uses a template file (feedback.txt) for the email message, which
  <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
 <tr>
+ <td class="prompt">SMTP Server (<i>required</i>)</td>
+ <td>(~INPUTTEXT|smtp~)</td>
+</tr>
+<tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
  <td>(~INPUTTEXT|EMail~)</td>
 </tr>
@@ -94,6 +101,7 @@ This example uses a template file (feedback.txt) for the email message, which
 
 <whpage pageid="pgFeedbackResult">
 <whprep>
+(~REQUIRES|smtp|STARTOVER~)
 (~REQUIRES|Email|STARTOVER~)
 (~REQUIRES|EmailTo|STARTOVER~)
 (~REQUIRES|Subject|STARTOVER~)
@@ -114,7 +122,7 @@ This example uses a template file (feedback.txt) for the email message, which
 <table>
 <tr>
 <td>
-Here is the template used in this example, feedback.txt:
+Use the [View Source] feature to find the template used in this example, feedback.txt:
 </td>
 
 <td>
@@ -128,16 +136,6 @@ this application and your web server.
 <table width="60%">
 <tr>
 <td>
-FEEDBACK MESSAGE
-<br />
-From:    (~.EMail~)
-<br />
-Subject: (~.Subject~)
-<br />
-Date:    <span class="changing">(~.CentralInfo.webtimegmt~)</span>
-<br />
-(~.txtMessage~)
-<br />
 ###
 </td>
 </tr>
