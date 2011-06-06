@@ -13,6 +13,10 @@ htmlFilename=XEmail.whteko
 showcaseBranch=<!-- empty -->
 </whpagesettings>
 <whprep>
+<!--- Now we call the SAME web action, with 
+Action 'control' and the SAME keyword X. -->
+(~webmailCaptcha.Execute|control,X~)
+<!--- if we get this far, it is okay to send the email message -->
 (~WebMailForm.execute|feedback~)
 </whprep>
 (~drShowcaseGlobalHeader~)

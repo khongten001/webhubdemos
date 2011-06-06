@@ -15,26 +15,53 @@ showcaseBranchText=E-Mail:
 bNoMore=true
 </whpagesettingslist>
 
+<whdroplet name="drCaptchaError">
+<whdoc for="drCaptchaError">
+Droplet name should be EITHER 'drCaptchaError'  
+OR 'drCaptchaError' + Keyword 
+Goal: bounce to some error page
+</whdoc>
+(~BOUNCE|pgFeedback~)  
+</whdroplet>
+
 <whpage pageid="pgFeedback" desc="Including a Feedback Page">
 <whpagesettings inherit="a">
 </whpagesettings>
+<whprep>
+(~NOTASSIGNED|smtp|(~SET|smtp=mail.bigpond.com~)~)
+</whprep>
 (~drShowcaseGlobalHeader~)
+
+(~ANCHORMODIF|style|<style>
+ #captchaNewX b {    /* TwhCaptcha generates all key digits in bold */
+   /* color should be the same as in the instructions for filling in the form */
+   color: red;    
+ }
+</style>~)
+
 <p>Most companies want to get feedback from people surfing their site.
-WebHub provides explicit support for structured feedback pages.</p>
+WebHub provides support for structured feedback pages.</p>
 <p>Send the following test message to yourself to see how the feedback page works.</p>
-<p>Of course, on your own site you would fill in the target e-mail address automatically.</p>
+<p>Of course, on your own site you would fill in the smtp server name and 
+target e-mail address automatically.</p>
+<p>The captcha feature was added as of WebHub v2.139.</p>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|ExMailPost~)">
-<p>Use SMTP server: 
+<p>SMTP server: 
 (~INPUTTEXT|smtp,40,40~)</p>
-<p>Send this Feedback to:
+<p>TO email address:
  (~inputtext|MsgTo,47,47~)</p>
-<p>Surfer's E-mail Address:
+<p>FROM Surfer's E-mail Address:
 (~inputtext|MsgFrom,47,47~)</p>
-<p>Surfer's Name:
+<p>FROM Surfer's Name:
 (~inputtext|SurferName,47,47~)</p>
-<p>Surfer's Feedback Message:
+<p>Feedback Message:
 (~inputtextarea|txtMessage,4,40~)</p>
-<br />
+<p>Enter Security Code:
+(~webmailCaptcha.Execute|new,X~)<!--- Action=new and Keyword=X   -->
+(~INPUTTEXT|CaptchaX~) <br/>
+Please enter 
+the <span style="color: red; font-weight: 900;">red</span> security code.
+</p>
 (~inputsubmit|submit,Send Message~)
 </form>
 (~drShowcaseGlobalFooter~)
