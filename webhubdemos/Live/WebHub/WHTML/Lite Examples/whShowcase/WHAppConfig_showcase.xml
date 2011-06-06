@@ -128,12 +128,12 @@
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
       <Item name="feedback">
-        <Host value="mail.href.com"/>
+        <Host value="smtp^"/>
         <Port value="25"/>
         <From value="MsgFrom^"/>
         <Name value="SurferName^"/>
         <To value="MsgTo^"/>
-        <Subject value="Feedback Message"/>
+        <Subject value="Showcase Demo Feedback Message"/>
         <TxtVars value="txtMessage"/>
       </Item>
     </whMailForm>
