@@ -85,8 +85,8 @@ Preferred color: (~INPUTRADIO|color,Red~) Red
 (~INPUTRADIO|color,Green~) Green (~INPUTRADIO|color,Blue~) Blue (~INPUTSUBMIT|submit,Post~)
 </form>
 <p>
-<b>Confirmation: WebHub remembers (~litSurferName~)'s input</b><br />
-(~litSurferName~) selected: (~theColor~)
+<b>Confirmation: WebHub remembers surfer input</b><br />
+(~litSurferName~) selected: (~Color~)
 <p>
 <hr />
 This example will show you how WebHub can serve different pages based on radio button input.
