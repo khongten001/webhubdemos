@@ -15,10 +15,20 @@ htmlFilename=xmisc.whteko
 
 <whpage pageid="pgXmlSample" desc="Extremely Short XML Sample Document">
 (~SETPROLOGUETYPE|XML~)<![CDATA[<?xml version="1.0" encoding="UTF-8"?>]]>
-<tag>
-	<something>data</something>
-	<other name="fred" />
-</tag>
+<tags>
+	<tag>
+		<something>data</something>
+		<other name="fred" />
+	</tag>
+	<tag>
+		<something>French</something>
+		<other name="(~mcFrench~)" />
+	</tag>
+	<tag>
+		<something>Russian</something>
+		<other name="(~mcRussian~)" />
+	</tag>
+</tags>
 </whpage>
 
 <whpage pageid="pgXmlSample2" desc="XML Sample File (employees.xml)">
