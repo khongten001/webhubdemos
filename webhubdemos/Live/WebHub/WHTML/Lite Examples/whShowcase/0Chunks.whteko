@@ -10,7 +10,7 @@ htmlFilename=0Chunks.whteko
 
 <whmacros>
 mcImgShowcaseDir=(~mcSiteRoot~)demos/whShowcase/
-mcIconFileRef=<img src="(~mcImgShowcaseDir~)(~litIconFile~).jpg" alt="(~litIconFile~)" />
+mcIconFileRef=<img src="(~mcImgShowcaseDir~)(~litIconFile~).png" alt="(~litIconFile~) in PNG format" />
 mcChgPaperIMG=<img src="(~mcImgShowcaseDir~)skpaper.jpg" alt="paper" />|$=3
 mcTopicIMG=<img src="(~mcImgShowcaseDir~)sktopic.jpg" alt="Topic:" />
 mcAboutIMG=<img src="(~mcImgShowcaseDir~)skabout.jpg" alt="About:" />
