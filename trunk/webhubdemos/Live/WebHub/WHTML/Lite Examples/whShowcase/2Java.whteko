@@ -60,7 +60,7 @@ This example shows the version of Java installed.
 </whpage>
 
 <whpage pageid="pgSimpleAjax" desc="Simple Ajax Example">
-<whdoc>
+<whdoc for="credits">
 17-Jul-2006
 
 This example was adapted from the code 
@@ -91,6 +91,15 @@ body {
   color: #A22222;
 }
 </style>
+<whdoc for="encoding data sent by javascript">
+This is required, so that the data is encoded as UTF-8 AND url-encoded prior to being 
+submitted back to the http server.
+
+encodeURIComponent(encodedURIString)
+Reference: http://msdn.microsoft.com/en-us/library/aeh9cef7
+
+See function getquerystring below.
+</whdoc>
 <script language="Javascript">
 function xmlhttpPost(strURL) {
     var xmlHttpReq = false;
@@ -116,7 +125,7 @@ function xmlhttpPost(strURL) {
 function getquerystring() {
     var form     = document.forms['f1'];
     var word = form.word.value;
-    qstr = 'w=' + escape(word);  // NOTE: no '?' before querystring
+    qstr = 'w=' + encodeURIComponent(word);  // NOTE: no '?' before querystring
     return qstr;
 }
 
@@ -131,7 +140,7 @@ function updatepage(str){
 <div id="whdemopagecontent">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
-<form name="f1" method="post">
+<form name="f1" accept-charset="UTF-8" method="post">
   <p>word: <input name="word" type="text">  
   <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' />
   </p>
