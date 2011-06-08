@@ -62,7 +62,7 @@
 DynURL.RawToActiveAuthorityM = (~DynURL.RawToActiveAuthorityM~)<br />
 DynURL.ToAppID = (~DynURL.ToAppID~)<br />
 Request.Host = (~Request.Host~)<br />
-Request.Proxy = (~Request.Proxy~)<br/>
+Request.ProxyName = (~Request.ProxyName~)<br/>
 Request.RequestProtocol = (~Request.RequestProtocol~)<br />
 Request.RemoteHost = (~Request.RemoteHost~)<br />
 Request.Runner = (~Request.Runner~)<br/>
