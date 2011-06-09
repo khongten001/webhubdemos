@@ -1,8 +1,12 @@
 <whteko defaultlingvo="eng" designmode="code">
 
+<whdroplet name="drDemoSpeedbarForHTUN">
+(~GO|pgSoapClientTest|title="How to test SOAP services"|Test SOAP Interface~)
+</whdroplet>
+
 <whpage pageid="pgEnterHTUN" desc="Quick Conversion of Standard Characters to Numeric HTML">
 <whprep>
-(~NOTASSIGNED|edit1|(~SET|edit1=info@href.com~)~)
+(~NOTASSIGNED|edit1|(~SET|edit1=billgates@microsoft.com~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
@@ -59,6 +63,36 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 
 </center>
 
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgSoapClientTest" desc="How to test the SOAP server from a quick, free, web-based client"
+defaultlingvo="eng">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Testing SOAP Server</h2>
+<p>Below is a link to an excellent free online service which lets you test 
+ANY SOAP server for which you know the WSDL.</p>
+<p style="text-align:center;"><a href="http://www.soapclient.com/soaptest.html" target="_blank">www.soapclient.com</a></p>
+<p>To test THIS WebHub slow-spam SOAP server, use this WSDL: <code style="font-weight:900;">http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam</code></p>
+<p>To test your own WebHub SOAP services, change the WSDL to your own information:
+<ul>
+<li> more.demos.href.com -> your domain</li>
+<li> /scripts/runisa.dll -> your runner path and name</li>
+<li> htun -> your AppID in lowercase</li>
+<li> waSlowSpan -> the name of your TwhWebAction component where you have toggled SOAP support on</li>
+</ul>
+</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
