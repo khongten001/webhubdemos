@@ -75,6 +75,10 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 <html>
 <head>
 (~drHead~)
+(~ANCHORMODIFY|style|<style>
+ul.sq {list-style-type:square;}
+ul.sq li {list-style-type:square;}
+</style>~)
 </head>
 <body>
 (~drPageBegin~)
@@ -90,7 +94,7 @@ ANY SOAP server for which you know the WSDL.</p>
 <p style="text-align:center;"><a href="http://www.soapclient.com/soaptest.html" target="_blank">www.soapclient.com</a></p>
 <h3>Test Your Own WebHub SOAP Service</h3>
 <p>To test your own WebHub SOAP services, change the WSDL such that it contains your own information:
-<ul style="list-style-type:square;">
+<ul class="sq">
 <li> more.demos.href.com &rarr; your domain</li>
 <li> /scripts/runisa.dll &rarr; your runner path and name</li>
 <li> htun &rarr; your AppID in lowercase</li>
