@@ -24,18 +24,15 @@ echo .
 pause
 
 echo on
-
-::Live
 %svndir%\svn.exe checkout %src%/webhubdemos  ./webhubdemos  --force
-if errorlevel 1 pause
-
+@if errorlevel 1 pause
 @echo off
-rem That is all, folks!
-pause
 goto end
 
-TargetFolderMissing:
-rem Target folder must be named webhubdemos
+:TargetFolderMissing
+@echo Target folder must be named webhubdemos
 pause
 
-end:
+:end
+rem That is all, folks!
+pause
