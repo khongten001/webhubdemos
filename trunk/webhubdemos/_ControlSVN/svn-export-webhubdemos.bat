@@ -6,6 +6,7 @@
 setlocal
 
 set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/
+set svndir=d:\Apps\Utilities\SVN\Console
 
 cd /d %~dp0
 cd ..
@@ -24,7 +25,7 @@ pause
 echo on
 
 ::Live
-d:\Apps\Utilities\SVN\console\svn.exe export %src%/Live  ./Live  --force
+%svndir%\svn.exe export %src%/Live  ./Live  --force
 if errorlevel 1 pause
 
 ::Source

@@ -5,7 +5,8 @@
 @echo off
 setlocal
 
-set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk/
+set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk
+set svndir=d:\Apps\Utilities\SVN\Console
 
 cd /d %~dp0
 cd ..
@@ -25,9 +26,10 @@ pause
 echo on
 
 ::Live
-d:\Apps\Utilities\SVN\console\svn.exe checkout %src%/webhubdemos  ./webhubdemos  
+%svndir%\svn.exe checkout %src%/webhubdemos  ./webhubdemos  --force
 if errorlevel 1 pause
 
+@echo off
 rem That is all, folks!
 pause
 goto end
