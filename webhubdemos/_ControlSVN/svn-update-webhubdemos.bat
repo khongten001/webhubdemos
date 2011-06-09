@@ -10,17 +10,12 @@ set svndir=d:\Apps\Utilities\SVN\Console
 
 cd /d %~dp0
 cd ..
-cd ..
 
-:: http://support.microsoft.com/kb/65994
-IF NOT EXIST .\webhubdemos\NUL GOTO TargetFolderMissing
+echo on
+%svndir%\svn.exe update 
+@if errorlevel 1 pause
 
-%svndir%\svn.exe update %src%/webhubdemos  ./webhubdemos 
-if errorlevel 1 pause
-goto end
-
-TargetFolderMissing:
-rem Target folder must be named webhubdemos
+:end
+@echo off
+Echo ###
 pause
-
-end:
