@@ -26,11 +26,11 @@ echo on
 
 ::Live
 %svndir%\svn.exe export %src%/Live  ./Live  --force
-if errorlevel 1 pause
+@if errorlevel 1 pause
 
 ::Source
 d:\Apps\Utilities\SVN\console\svn.exe export %src%/Source  ./Source  --force
-if errorlevel 1 pause
+@if errorlevel 1 pause
 
 rem That is all, folks!
 pause
