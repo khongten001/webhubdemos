@@ -80,17 +80,21 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<h2>Testing SOAP Server</h2>
-<p>Below is a link to an excellent free online service which lets you test 
+<h2>How to Test a SOAP Service</h2>
+<p>You can use Delphi 6+ to create a custom SOAP client... or you can use 
+a generic soap client to quickly test any SOAP service.</p>
+<p>Below is a link to an excellent free web-based client which helps you test 
 ANY SOAP server for which you know the WSDL.</p>
+<h3>Test THIS whSlowSpam Service</h3>
+<p>If you want to test THIS whSlowSpam service, copy this <b>WSDL</b> into the online tester: <code style="font-weight:900;">http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam</code></p>
 <p style="text-align:center;"><a href="http://www.soapclient.com/soaptest.html" target="_blank">www.soapclient.com</a></p>
-<p>To test THIS WebHub slow-spam SOAP server, use this WSDL: <code style="font-weight:900;">http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam</code></p>
-<p>To test your own WebHub SOAP services, change the WSDL to your own information:
+<h3>Test Your Own WebHub SOAP Service</h3>
+<p>To test your own WebHub SOAP services, change the WSDL such that it contains your own information:
 <ul>
-<li> more.demos.href.com -> your domain</li>
-<li> /scripts/runisa.dll -> your runner path and name</li>
-<li> htun -> your AppID in lowercase</li>
-<li> waSlowSpan -> the name of your TwhWebAction component where you have toggled SOAP support on</li>
+<li> more.demos.href.com &rarr; your domain</li>
+<li> /scripts/runisa.dll &rarr; your runner path and name</li>
+<li> htun &rarr; your AppID in lowercase</li>
+<li> waSlowSpan &rarr; the name of your TwhWebAction component where you have toggled SOAP support on</li>
 </ul>
 </p>
 </div>  <!--- demopagecontent -->
