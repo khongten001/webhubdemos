@@ -70,8 +70,7 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 </body></html>
 </whpage>
 
-<whpage pageid="pgSoapClientTest" desc="How to test the SOAP server from a quick, free, web-based client"
-defaultlingvo="eng">
+<whpage pageid="pgSoapClientTest" desc="How to test the SOAP server from a quick, free, web-based client">
 (~mcdoctypehtml~)
 <html>
 <head>
