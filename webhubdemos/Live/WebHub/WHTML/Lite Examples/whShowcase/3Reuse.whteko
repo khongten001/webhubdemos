@@ -161,6 +161,33 @@ character set. The second one is encoded as UTF-8.</p>
 (~INCLUDE|D:\Projects\webhubdemos\Source\Docs\LingvoTestLatin1-8.txt~)
 </pre>
 
+<h2>Lorem Ipsum</h2>
+<p><i>from <a href="http://www.lipsum.com/">http://www.lipsum.com</a>...</i></p>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
+<h3>again</h3>
+(~drLoremIpsum~)
 (~drShowcaseGlobalFooter~)
 </whpage>
 
