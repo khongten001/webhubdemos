@@ -198,45 +198,42 @@ Watch the BoolVarsPending array below to see how WebHub checks the submitted dat
 
 
 
-<whpage pageid="pgTextBox" desc="Text Boxes">
+<whpage pageid="pgTextBox" desc="Text Boxes (TextAreas)">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-WebHub can remember data that surfers enter in text boxes.
-(When you name your text area, start the name with 'txt' if you want to allow for single-line entries.)
-<p>
-This example will show you how WebHub remembers the data entered in text boxes, and will demonstrate
+<p>WebHub can remember data that a surfer enters in a text boxes.</p>
+<p>(When you name your text area, start the name with prefix 'txt.')</p>
+<p>This example will show you how WebHub remembers the data entered in text boxes, and will demonstrate
 what WebHub can do with that data. Look below to see all the ways you can use the information
-entered in the text box.
+entered in the text box.</p>
 
-<ol><b>
-<li>Try entering some text in the box.
-<li>Try making one line read 'apples=red' -- without the quotes, please.
-<li>Try making another line read '(~.litSurferName~)'.
-</ol></b>
+<ol style="font-weight:900;">
+<li> Try entering some text in the box. </li>
+<li> Try making one line read 'apples=red' -- without the quotes, please.</li>
+<li> Try one line of text; try multiple lines of text.</li>
+</ol>
 
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
-(~inputtextarea|txtDescription,5,60~)
-<p>
-(~inputsubmit|submit,See What Happens~)
+<textarea rows="5" cols="60" name="txtDescription">(~txtDescription~)</textarea>
+<p><input type="submit" value="Post the form, see what happens"></p>
 </form>
 
 <p>
-Here are all the ways you can republish the text box data:
+Here are all the ways you can republish the text box data:</p>
 <ul>
-<li>(~<>txtDescription~): <b>(~txtDescription~)</b>
+<li><b>(~txtDescription~)</b>
 <p>
-<li>(~<>TxtVar.txtDescription~): <b>(~TxtVar.txtDescription~)</b>
+<li><b>(~TxtVar.txtDescription~)</b>
 <p>
-<li>(~<>TextBR.txtDescription~):<b> (~TextBR.txtDescription~)</b>
+<li><b> (~TextBR.txtDescription~)</b>
 <p>
-<li>(~<>TxtVar.txtDescription.Apples~):  <b>(~TxtVar.txtDescription.Apples~)</b>
+<li><b>(~TxtVar.txtDescription.Apples~)</b>
 
 </ul>
-<p>
-(~chLiteralsInfo~)<br />
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 
