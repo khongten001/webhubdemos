@@ -106,7 +106,7 @@ by the programmer.</p>
 (~SET|Session['colorswithcomma']=red,green,blue~)
 (~SET|y=yellow~)
 (~SET|z=(~y~)~)
-(~SET|Session['St']=(~CentralInfo.WebTimeGMT~)~)
+(~SET|Session['St']=(~Request.Host~)~)
 (~SET|Session['red']=balloon~)
 (~SET|Session['Sr']=red~)
 (~SET|r=Session['Sr']~)
