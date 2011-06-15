@@ -27,8 +27,8 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
-    Toolbar, Restorer, tpmemo, Buttons, ComCtrls, tpstatus,
-  WebTypes, weblink, tpCompPanel;
+  Toolbar, Restorer, tpmemo, Buttons, ComCtrls, tpstatus,
+  webTypes, weblink, tpCompPanel;
 
 type
   TfmWhProcess = class(TutParentForm)
@@ -68,15 +68,16 @@ implementation
 {$R *.DFM}
 
 uses
-  WebApp, ucShell, ucLogFil, ucFile, DateUtils;
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  DateUtils,
+  ucShell, ucLogFil, ucFile, ucDlgs,
+  webApp;
 
-{______________________________________________________________________________}
-
-function TfmWhProcess.Init:Boolean;
+function TfmWhProcess.Init: Boolean;
 begin
   Result:= inherited Init;
-  if not result then
-    exit;
+  if not Result then
+    Exit;
 
   {This INIT function is used to initialize aspects of the WebHub system that
    are particular to the file conversion application.}
@@ -125,12 +126,12 @@ begin
   if FileExists(outputFile) then
   begin
     S := StringLoadFromFile(outputFile);
-    ShowMessage(S);
+    MsgInfoOk(S);
   end
   else
   begin
-    ShowMessage('Converter did not generate output file named ' + outputFile
-     + #13#10 + ErrorText);
+    MsgInfoOk('Converter did not generate output file named ' + outputFile
+     + sLineBreak + ErrorText);
   end;
 end;
 
@@ -151,7 +152,7 @@ begin
   tempPath := TwhAppBase(Sender).AppSetting['TempPath'];
   SaveAs := tempPath + 'whConverterInput' +
             IntToStr(TwhAppBase(Sender).SessionNumber) + '.dat';
-  //tpLogMessage(SaveAs);
+  {$IFDEF CodeSite}CodeSite.Send('SaveAs', SaveAs);{$ENDIF}
   if FileExists(SaveAs) then
     SysUtils.DeleteFile(SaveAs);
   KeepNow := True;
@@ -183,8 +184,7 @@ var
   FromData, ToData: String;
   ErrorText: String;
   maximumBytes: Integer;
-const
-  sLineBreak = #13#10;
+  convConfigFilespec: string;
 begin
   inherited;
   with TwhWebActionEx(Sender), WebApp do
@@ -197,8 +197,7 @@ begin
     end;
 
     tempPath := AppSetting['TempPath'];
-    configFilespec := tempPath;
-    configFilespec := configFilespec + 'whConverterConfig' +
+    convConfigFilespec := tempPath + 'whConverterConfig' +
       IntToStr(SessionNumber) + '.set';
     iniConfig.Section := 'CharReplace';
     inputFilename := tempPath + 'whConverterInput' + IntToStr(SessionNumber) +
@@ -210,10 +209,10 @@ begin
       Exit;
     end;
 
-    maximumBytes := StrToIntDef(AppSetting['MaximumFileSize'],1) * 1024;
+    maximumBytes := StrToIntDef(AppSetting['MaximumFreeSize'], 1) * 1024;
     if GetFileSize(inputFilename) > maximumBytes then
     begin
-      SendString('Input file size must be smaller than ' +
+      SendString('With FREE coupon, input file size must be smaller than ' +
         IntToStr(maximumBytes) + ' bytes.');
       DeleteFile(inputFilename);
       Exit;
@@ -236,7 +235,7 @@ begin
     {This is where we create a temporary configuration file which guides the
      converter to do its job.  The name of the configuration file is based on
      the surfer session number.}
-    StringWriteToFile(configFilespec,
+    StringWriteToFile(convConfigFilespec,
       '[CharReplace]' + sLineBreak +
       'InputFile=' + inputFilename + sLineBreak +
       'OutputFile=' + outputFilename + sLineBreak +
@@ -245,12 +244,12 @@ begin
 
     {Start running the converter. Allow 20 seconds max to complete.}
     SendString('Launching: ' +
-      ConverterFilename.Caption + ' ' + ConfigFilespec + '<p>');
+      ConverterFilename.Caption + ' ' + convConfigFilespec + '<p>');
     Launch( ConverterFilename.Caption,
-      '"' + ConfigFilespec + '"', '', True, 20000, ErrorText);
+      '"' + convConfigFilespec + '"', '', True, 20000, ErrorText);
 
     {Delete the temporary configuration file.}
-    DeleteFile(configFilespec);
+    DeleteFile(convConfigFilespec);
 
     if FileExists(outputFilename) then
     begin

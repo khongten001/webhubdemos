@@ -6,6 +6,12 @@
 			<Projects Include="whASyncDemo\whAsyncDemo.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whConverter\whConverter.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="..\..\DelphiApps\CharReplace\CharReplace.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -23,14 +29,32 @@
 		<Target Name="whAsyncDemo:Make">
 			<MSBuild Projects="whASyncDemo\whAsyncDemo.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whConverter">
+			<MSBuild Projects="whConverter\whConverter.dproj"/>
+		</Target>
+		<Target Name="whConverter:Clean">
+			<MSBuild Projects="whConverter\whConverter.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whConverter:Make">
+			<MSBuild Projects="whConverter\whConverter.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="CharReplace">
+			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj"/>
+		</Target>
+		<Target Name="CharReplace:Clean">
+			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="CharReplace:Make">
+			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo"/>
+			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean"/>
+			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make"/>
+			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
