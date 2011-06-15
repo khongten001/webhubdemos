@@ -14,7 +14,8 @@ object frmSlowSpamClient: TfrmSlowSpamClient
   OldCreateOrder = False
   Position = poDesktopCenter
   Scaled = False
-  PixelsPerInch = 96
+  OnCreate = FormCreate
+  PixelsPerInch = 120
   TextHeight = 16
   object lblInput: TLabel
     Left = 16

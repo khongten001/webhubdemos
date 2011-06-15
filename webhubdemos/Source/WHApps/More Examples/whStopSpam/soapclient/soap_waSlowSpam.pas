@@ -46,13 +46,16 @@ type
 
 function GetIwaSlowSpam(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IwaSlowSpam;
 
+procedure SetURLs(const WSDL, URL: string);
 
 implementation
 
+var
+  defWSDL: string;
+  defURL: string;
+
 function GetIwaSlowSpam(UseWSDL: Boolean; Addr: string; HTTPRIO: THTTPRIO): IwaSlowSpam;
 const
-  defWSDL = 'http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam';
-  defURL  = 'http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam';
   defSvc  = 'waSlowSpamService';
   defPrt  = 'waSlowSpamPort';
 var
@@ -85,8 +88,15 @@ begin
   end;
 end;
 
+procedure SetURLs(const WSDL, URL: string);
+begin
+  defWSDL := WSDL;
+  defURL := URL;
+end;
 
 initialization
+  defWSDL := 'http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam';
+  defURL  := 'http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam';
   InvRegistry.RegisterInterface(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_fmWh-waSlowSpam', 'utf-8');
   InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_fmWh-waSlowSpam#MailtoStrObfuscate');
 

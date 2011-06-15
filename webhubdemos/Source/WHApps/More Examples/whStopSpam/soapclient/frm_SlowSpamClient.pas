@@ -16,6 +16,7 @@ type
     btnTest: TBitBtn;
     btnClose: TBitBtn;
     procedure btnTestClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -62,6 +63,13 @@ begin
   finally
     edtOutput.Enabled := True;
   end;
+end;
+
+procedure TfrmSlowSpamClient.FormCreate(Sender: TObject);
+begin
+  {to test your own copy, change the URLs here}
+  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
+    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
 end;
 
 end.
