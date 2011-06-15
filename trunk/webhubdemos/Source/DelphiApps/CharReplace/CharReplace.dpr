@@ -40,7 +40,7 @@ begin
       IniFilename := ParamStr(1);  // name of configuration file
       Section := 'CharReplace';
       ProcessFile(StringEntry['InputFile'], StringEntry['OutputFile'],
-        CharacterEntry['From'], CharacterEntry['To']);
+        Char(CharacterEntry['From']), Char(CharacterEntry['To']));
     end;
     ini.Free;
   end;

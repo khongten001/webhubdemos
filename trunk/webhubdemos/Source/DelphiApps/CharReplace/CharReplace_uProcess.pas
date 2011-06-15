@@ -33,22 +33,28 @@ function ProcessFile( const inputFilename, outputFilename: String;
 implementation
 
 uses 
+  Classes,
   ucString, ucLogFil;
 
 function ProcessFile( const inputFilename, outputFilename: String;
   const FromChar, ToChar: Char): Boolean;
 var
   S: String;
+  y: TStringList;
 begin
   Result := FileExists(inputFilename);
   if NOT Result then Exit;
 
-  S := StringLoadFromFile(inputFilename);
-
-  StringRepl(S,FromChar,ToChar);
-
-  StringWriteToFile(outputFilename,S);
-
+  y := nil;
+  try
+    y := TStringList.Create;
+    y.LoadFromFile(inputFilename);  // Unicode Delphi sees a BOM if present
+    S := StringReplaceAll(y.Text, FromChar, ToChar);
+    y.Text := S;
+    y.SaveToFile(outputFilename);
+  finally
+    FreeAndNil(y);
+  end;
 end;
 
 end.
