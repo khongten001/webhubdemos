@@ -7,6 +7,11 @@
 </whdroplet>
 
 <whpage pageid="pgEnterHTCV" desc="Converter Demonstration">
+<whprep>
+(~NOTASSIGNED|inCoupon|(~SET|inCoupon=FREE~)~)
+(~NOTASSIGNED|inFrom|(~SET|inFrom=e~)~)
+(~NOTASSIGNED|inTo|(~SET|inTo=Q~)~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -32,7 +37,7 @@ conversion service.</p>
 <tr>
  <td>Input file:</td>
  <td><input type="file" name="inFile" 
-                            VALUE="(~inFile~)"
+                            VALUE="(~ASSIGNED|inFile|(~inFile~)~)"
                             ACCEPT="text/plain" size="30" /></td>
  <td><small>Upload any ASCII file.</small></td>
 </tr>
