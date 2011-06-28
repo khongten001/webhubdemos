@@ -97,9 +97,13 @@ begin
 end;
 
 initialization
-  defWSDL := 'http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam';
-  defURL  := 'http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam';
-  InvRegistry.RegisterInterface(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_dmWh-waSlowSpam', 'utf-8');
-  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_dmWh-waSlowSpam#MailtoStrObfuscate');
+  defWSDL := 'http://more.demos.href.com/' +
+    'scripts/runisa.dll/htun/wsdl/waSlowSpam';
+  defURL  := 'http://more.demos.href.com/' +
+    'scripts/runisa.dll/htun/soap/waSlowSpam';
+  InvRegistry.RegisterInterface(TypeInfo(IwaSlowSpam),
+    'urn:whStopSpam_dmWh-waSlowSpam', '');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IwaSlowSpam),
+    'urn:whStopSpam_dmWh-waSlowSpam#MailtoStrObfuscate');
 
 end.
