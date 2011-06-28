@@ -67,9 +67,19 @@ end;
 
 procedure TfrmSlowSpamClient.FormCreate(Sender: TObject);
 begin
-  {to test your own copy, change the URLs here}
+  {To test your own server, change the URLs here. Leave commented-out to test
+   against http://more.demos.href.com}
+
+//  SetURLs('http://localhost/scripts/runisa.dll/htun/wsdl/waSlowSpam',
+//    'http://localhost/scripts/runisa.dll/htun/soap/waSlowSpam');
+
 //  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
 //    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
+
+//  SetURLs('http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+//    'htun/wsdl/waSlowSpam',
+//    'http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+//    'htun/soap/waSlowSpam');
 end;
 
 end.
