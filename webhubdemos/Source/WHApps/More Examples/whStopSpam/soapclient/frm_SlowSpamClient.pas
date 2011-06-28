@@ -68,8 +68,8 @@ end;
 procedure TfrmSlowSpamClient.FormCreate(Sender: TObject);
 begin
   {to test your own copy, change the URLs here}
-  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
-    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
+//  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
+//    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
 end;
 
 end.
