@@ -30,8 +30,8 @@ type
 
 
   // ************************************************************************ //
-  // Namespace : urn:whStopSpam_fmWh-waSlowSpam
-  // soapAction: urn:whStopSpam_fmWh-waSlowSpam#MailtoStrObfuscate
+  // Namespace : urn:whStopSpam_dmwh-waSlowSpam
+  // soapAction: urn:whStopSpam_dmwh-waSlowSpam#MailtoStrObfuscate
   // transport : http://schemas.xmlsoap.org/soap/http
   // style     : rpc
   // binding   : waSlowSpamBinding
@@ -41,7 +41,9 @@ type
   // ************************************************************************ //
   IwaSlowSpam = interface(IInvokable)
   ['{B50CBDD7-C839-6817-0DA5-FE8C213BD54B}']
-    function  MailtoStrObfuscate(var InstanceID: Cardinal; var SessionID: Cardinal; const input: WideString; const MakeResultReadyToCopyFromWeb: Boolean): WideString; stdcall;
+    function  MailtoStrObfuscate(var ProcessID: Cardinal;
+      var SessionID: Cardinal; const input: WideString;
+      const MakeResultReadyToCopyFromWeb: Boolean): WideString; stdcall;
   end;
 
 function GetIwaSlowSpam(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IwaSlowSpam;
@@ -97,7 +99,7 @@ end;
 initialization
   defWSDL := 'http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam';
   defURL  := 'http://more.demos.href.com/scripts/runisa.dll/htun/soap/waSlowSpam';
-  InvRegistry.RegisterInterface(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_fmWh-waSlowSpam', 'utf-8');
-  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_fmWh-waSlowSpam#MailtoStrObfuscate');
+  InvRegistry.RegisterInterface(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_dmWh-waSlowSpam', 'utf-8');
+  InvRegistry.RegisterDefaultSOAPAction(TypeInfo(IwaSlowSpam), 'urn:whStopSpam_dmWh-waSlowSpam#MailtoStrObfuscate');
 
 end.
