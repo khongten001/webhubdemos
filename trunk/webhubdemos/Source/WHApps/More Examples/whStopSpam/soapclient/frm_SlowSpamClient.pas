@@ -31,6 +31,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  uCode;
+
 { TfrmSlowSpamClient }
 
 procedure TfrmSlowSpamClient.btnTestClick(Sender: TObject);
@@ -76,10 +79,12 @@ begin
 //  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
 //    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
 
-//  SetURLs('http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
-//    'htun/wsdl/waSlowSpam',
-//    'http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
-//    'htun/soap/waSlowSpam');
+  Self.Caption := Self.Caption + ' compiled with ' + PascalCompilerCode;
+
+  SetURLs('http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+    'htun/wsdl/waSlowSpam',
+    'http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+    'htun/soap/waSlowSpam');
 end;
 
 end.
