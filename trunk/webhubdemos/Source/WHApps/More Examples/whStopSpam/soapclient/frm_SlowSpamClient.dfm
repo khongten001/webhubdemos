@@ -15,6 +15,7 @@ object frmSlowSpamClient: TfrmSlowSpamClient
   Position = poDesktopCenter
   Scaled = False
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   PixelsPerInch = 120
   TextHeight = 16
   object lblInput: TLabel
@@ -57,21 +58,31 @@ object frmSlowSpamClient: TfrmSlowSpamClient
     TabOrder = 2
   end
   object btnTest: TBitBtn
-    Left = 144
-    Top = 184
-    Width = 75
+    Left = 328
+    Top = 76
+    Width = 113
     Height = 25
-    Caption = 'Test'
+    Caption = '1. Request'
     TabOrder = 3
     OnClick = btnTestClick
     Kind = bkOK
   end
   object btnClose: TBitBtn
-    Left = 248
-    Top = 184
-    Width = 75
+    Left = 328
+    Top = 176
+    Width = 113
     Height = 25
     TabOrder = 4
     Kind = bkClose
+  end
+  object BtnShowResult: TBitBtn
+    Left = 16
+    Top = 176
+    Width = 145
+    Height = 25
+    Caption = '2/ Show Result'
+    TabOrder = 5
+    OnClick = BtnShowResultClick
+    Kind = bkOK
   end
 end

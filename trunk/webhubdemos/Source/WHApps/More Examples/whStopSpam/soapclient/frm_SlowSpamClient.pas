@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, soap_waSlowSpam, StdCtrls, Buttons;
+  Dialogs, StdCtrls, Buttons,
+  soap_waSlowSpam;
 
 type
   TfrmSlowSpamClient = class(TForm)
@@ -15,10 +16,14 @@ type
     edtOutput: TEdit;
     btnTest: TBitBtn;
     btnClose: TBitBtn;
+    BtnShowResult: TBitBtn;
     procedure btnTestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure BtnShowResultClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
+    FTestHtmlFilespec: string;
   public
     { Public declarations }
     procedure Test;
@@ -32,9 +37,17 @@ implementation
 {$R *.dfm}
 
 uses
-  uCode;
+  ucShell, ucLogFil, ucString, ucFile, uCode;
 
 { TfrmSlowSpamClient }
+
+procedure TfrmSlowSpamClient.BtnShowResultClick(Sender: TObject);
+begin
+  if FTestHtmlFilespec = '' then
+    FTestHtmlFilespec := GetTempFileName('htun-soap-client-demo.html');
+  UTF8StringWriteToFile(FTestHtmlFilespec, UTF8Encode(edtOutput.Text));
+  WinShellOpen(FTestHtmlFilespec);
+end;
 
 procedure TfrmSlowSpamClient.btnTestClick(Sender: TObject);
 begin
@@ -45,7 +58,7 @@ procedure TfrmSlowSpamClient.Test;
 var
   InstanceID: Cardinal;
   SessionID: Cardinal;
-  input: WideString;
+  input: UnicodeString;
   MakeResultReadyToCopyFromWeb: Boolean;
 begin
   edtOutput.Enabled := False;
@@ -70,21 +83,29 @@ end;
 
 procedure TfrmSlowSpamClient.FormCreate(Sender: TObject);
 begin
+  FTestHtmlFilespec := '';
+  Self.Caption := Self.Caption + ' compiled with ' + PascalCompilerCode;
+
   {To test your own server, change the URLs here. Leave commented-out to test
-   against http://more.demos.href.com}
+   against http://more.demos.href.com.
+   See initialization of soap_waSlowSpam.pas for the default values.}
 
 //  SetURLs('http://localhost/scripts/runisa.dll/htun/wsdl/waSlowSpam',
 //    'http://localhost/scripts/runisa.dll/htun/soap/waSlowSpam');
 
-//  SetURLs('http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/wsdl/waSlowSpam',
-//    'http://local32/scriptsd07/runisa_d15_debug_win32.dll/htun/soap/waSlowSpam');
+//  SetURLs('http://local32/scriptsd07/runisa_d15_win32_debug.dll/htun/wsdl/waSlowSpam',
+//    'http://local32/scriptsd07/runisa_d15_win32_debug.dll/htun/soap/waSlowSpam');
 
-  Self.Caption := Self.Caption + ' compiled with ' + PascalCompilerCode;
+//  SetURLs('http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+//    'htun/wsdl/waSlowSpam',
+//    'http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
+//    'htun/soap/waSlowSpam');
+end;
 
-  SetURLs('http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
-    'htun/wsdl/waSlowSpam',
-    'http://more.demos.href.com/scripts/runisa_d07_win32_debug.dll/' +
-    'htun/soap/waSlowSpam');
+procedure TfrmSlowSpamClient.FormDestroy(Sender: TObject);
+begin
+  if FTestHtmlFilespec <> '' then
+    DeleteFile(FTestHtmlFilespec);
 end;
 
 end.
