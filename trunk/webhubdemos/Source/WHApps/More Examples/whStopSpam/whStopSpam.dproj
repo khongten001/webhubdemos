@@ -2,9 +2,9 @@
 		<PropertyGroup>
 			<ProjectGuid>{47F870CB-D386-494A-A106-7036D295D9F2}</ProjectGuid>
 			<MainSource>whStopSpam.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">Release</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-			<ProjectVersion>12.2</ProjectVersion>
+			<ProjectVersion>12.3</ProjectVersion>
 			<Base>True</Base>
 			<Platform>Win32</Platform>
 			<AppType>Application</AppType>
@@ -24,6 +24,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
+			<DCC_UnitSearchPath>k:\webhub\zaphodsmap;k:\webhub\tpack;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\whrun;k:\webhub\lib\whrun\isapi;k:\webhub\lib\whplus;k:\webhub\lib\whplus\cc;k:\webhub\lib\wheditors;k:\webhub\regex;k:\webhub\lib\whdb;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_DependencyCheckOutputName>whStopSpam.exe</DCC_DependencyCheckOutputName>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
@@ -36,12 +37,15 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+			<DCC_MapFile>3</DCC_MapFile>
+			<DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps\</DCC_ExeOutput>
+			<DCC_Define>DEBUG;CodeSite;LOGIPC;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="whStopSpam.dpr">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
+			<DCCReference Include="K:\WebHub\tpack\ucCodeSiteInterface.pas"/>
 			<DCCReference Include="h:\MultiTypeApp.pas"/>
 			<DCCReference Include="h:\tpProj.pas"/>
 			<DCCReference Include="h:\utPanFrm.pas">
@@ -53,6 +57,8 @@
 			<DCCReference Include="h:\utTrayFm.pas">
 				<Form>fmTrayForm</Form>
 			</DCCReference>
+			<DCCReference Include="k:\webhub\ZaphodsMap\NativeXml.pas"/>
+			<DCCReference Include="k:\webhub\ZaphodsMap\ZaphodsMap.pas"/>
 			<DCCReference Include="..\..\Common\whdemo_Initialize.pas"/>
 			<DCCReference Include="..\..\Common\whdemo_About.pas">
 				<Form>fmAppAboutPanel</Form>
@@ -73,23 +79,8 @@
 				<Form>whdmCommonEventHandlers</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
-			<DCCReference Include="whStopSpam_fmWh.pas">
-				<Form>fmUnicodePanel</Form>
-			</DCCReference>
 			<DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
 				<Form>DMForWHDemo</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
-			<DCCReference Include="whStopSpam_dmProjMgr.pas">
-				<Form>DMForWHStopSpam</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
-			<DCCReference Include="whStopSpam_dmwh.pas">
-				<Form>DMforHTUN</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
-			<DCCReference Include="K:\WebHub\lib\whdm_AppOut.pas">
-				<Form>dmAppOut</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="K:\WebHub\lib\whplus\webSOAPPublish.pas"/>
@@ -98,6 +89,20 @@
 			<DCCReference Include="K:\WebHub\lib\whplus\webMailV.pas"/>
 			<DCCReference Include="K:\WebHub\lib\whplus\websoaphost.pas"/>
 			<DCCReference Include="K:\WebHub\lib\whplus\webSOAPDispatch.pas"/>
+			<DCCReference Include="whStopSpam_dmProjMgr.pas">
+				<Form>DMForWHStopSpam</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="whStopSpam_dmwh.pas">
+				<Form>DMforHTUN</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
+			<DCCReference Include="whStopSpam_fmWh.pas">
+				<Form>fmUnicodePanel</Form>
+			</DCCReference>
+			<DCCReference Include="K:\WebHub\lib\whvcl\cgiServ.pas"/>
+			<DCCReference Include="K:\WebHub\tpack\ucLogFil.pas"/>
+			<DCCReference Include="K:\WebHub\lib\whvcl\webApp.pas"/>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -111,7 +116,7 @@
 			</BuildConfiguration>
 		</ItemGroup>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')" Project="$(BDS)\Bin\CodeGear.Delphi.Targets"/>
-		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\8.0\UserTools.proj"/>
+		<Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
 		<ProjectExtensions>
 			<Borland.Personality>Delphi.Personality.12</Borland.Personality>
 			<Borland.ProjectType>VCLApplication</Borland.ProjectType>
@@ -121,14 +126,11 @@
 						<Source Name="MainSource">whStopSpam.dpr</Source>
 					</Source>
 					<Parameters/>
-					<Language>
-						<Language Name="RootDir">D:\Projects\webhubdemos\Source\WHApps\More Examples\whStopSpam\</Language>
-					</Language>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
 						<VersionInfo Name="AutoIncBuild">False</VersionInfo>
 						<VersionInfo Name="MajorVer">1</VersionInfo>
-						<VersionInfo Name="MinorVer">1</VersionInfo>
+						<VersionInfo Name="MinorVer">2</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
 						<VersionInfo Name="Build">0</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
@@ -140,9 +142,9 @@
 						<VersionInfo Name="CodePage">1252</VersionInfo>
 					</VersionInfo>
 					<VersionInfoKeys>
-						<VersionInfoKeys Name="CompanyName"/>
-						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">1.1.0.0</VersionInfoKeys>
+						<VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription">htun WebHub demo</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">1.2.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -150,6 +152,7 @@
 						<VersionInfoKeys Name="ProductName"/>
 						<VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
 						<VersionInfoKeys Name="Comments"/>
+						<VersionInfoKeys Name="ServiceName">whstopspam</VersionInfoKeys>
 					</VersionInfoKeys>
 				</Delphi.Personality>
 				<Platforms>
