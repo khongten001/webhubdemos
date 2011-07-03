@@ -73,7 +73,6 @@
     <Situations>
       <FrontDoor pageID="pgWelcome"/>
       <Home pageID="pgentershowcase"/>
-	  <Invalid pageID="pgInvalidPage" />
     </Situations>
     <Static>
       <AppRoot value="/"/>
@@ -120,6 +119,7 @@
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
       <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
+      <File id="_monitor" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
