@@ -142,7 +142,7 @@
 						<Source Name="MainSource">whLite.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/id=support00388</Parameters>
+						<Parameters Name="RunParams">/id=adv</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
