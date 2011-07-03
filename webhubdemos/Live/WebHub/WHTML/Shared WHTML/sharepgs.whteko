@@ -101,8 +101,11 @@ Note: these instructions assume that you know how to run WebHub application serv
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h2>Invalid PageID</h2>
-<p>You've requested a Page that is not currently defined.  You asked
+<p>You have requested a Page that is not currently defined.  You asked
 for (~Request.QueryString~).</p>
+<p>You are now looking at page <code>(~PageID~)</code> within the 
+application <code>(~AppID~)</code>.</p>
+<p>Click [Back] in your web browser to return.</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
 </whoutput>
@@ -668,52 +671,6 @@ data: (~INPUTTEXT|data,30~)<br/>
 
 </body>
 </html>
-</whpage>
-
-<whpage pageid="pgAjaxCheckVersion">
-<whdoc for="pgAjaxCheckVersion">
-This mini page can be called by Ajax *as long as* the calling page is 
-on the same DOMAIN. This is a security rule enforced by the web browser.
-</whdoc>
-<p>(~version~)</p>
-</whpage>
-
-<whpage pageid="pgAjaxCheckCompiler">
-<p>(~CentralInfo.PascalCompilerCode~)</p>
-</whpage>
-
-<whpage pageid="pgRemoteCheckVersion">
-<whdoc for="pgCheckVersion">
-This mini page could be called by JavaScript / AJAX. A tag of some sort (span, p, etc.) must surround 
-the content.
-</whdoc>
-<html><head>
-<style type="text/css">
-body {font-family:"Trebuchet MS";
-	padding: 0;
-	}
-p { margin: 0; padding: 0;
-}
-</style>
-</head>
-<body>
-<p>(~version~)</p>
-</body></html>
-</whpage>
-
-<whpage pageid="pgRemoteCheckCompiler">
-<html><head>
-<style type="text/css">
-body {font-family:"Trebuchet MS";
-	padding: 0;
-	}
-p { margin: 0; padding: 0;
-}
-</style>
-</head>
-<body>
-<p>(~CentralInfo.PascalCompilerCode~)</p>
-</body></html>
 </whpage>
 
 </whteko>
