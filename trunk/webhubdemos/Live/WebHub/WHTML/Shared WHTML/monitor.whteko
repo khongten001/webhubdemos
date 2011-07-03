@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  designmode="code"
+  notes="pages for monitoring the application health and details">
+
+<whpage pageid="pgAjaxCheckVersion" desc="-Check WebHub Component Version within domain">
+<whdoc for="pgAjaxCheckVersion">
+This mini page can be called by Ajax *as long as* the calling page is 
+on the same DOMAIN. This is a security rule enforced by the web browser.
+</whdoc>
+<p>(~version~)</p>
+</whpage>
+
+<whpage pageid="pgAjaxCheckCompiler" desc="-Check Compiler Version within domain">
+<p>(~CentralInfo.PascalCompilerCode~)</p>
+</whpage>
+
+<whpage pageid="pgRemoteCheckVersion" desc="-Check WebHub Component Version from any domain">
+<whdoc for="pgCheckVersion">
+This mini page could be called by JavaScript / AJAX. A tag of some sort (span, p, etc.) must surround 
+the content.
+</whdoc>
+<html><head>
+<style type="text/css">
+body {font-family:"Trebuchet MS"; margin: 0; padding: 0; }
+p { margin: 0; padding: 0; }
+</style>
+</head>
+<body>
+<p>(~version~)</p>
+</body></html>
+</whpage>
+
+<whpage pageid="pgRemoteCheckCompiler" desc="-Check Compiler Version from any domain">
+<html><head>
+<style type="text/css">
+body {font-family:"Trebuchet MS"; margin: 0; padding: 0; }
+p { margin: 0; padding: 0; }
+</style>
+</head>
+<body>
+<p>(~CentralInfo.PascalCompilerCode~)</p>
+</body></html>
+</whpage>
+
+</whteko>
