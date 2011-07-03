@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
-<whteko defaultlingvo="eng">
+<whteko defaultlingvo="eng" designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on
@@ -43,13 +43,13 @@ data needs to be sent back and forth every time.
 <whdroplet name="barSecurity">
 (~GO|PGFrontDoor|FrontDoor~)(~mcHeadingSeparator~)
 (~GO|pgHomepage|Homepage~)(~mcHeadingSeparator~)
-(~GO|PGINVALIDPAGE|Invalid Page~)
+(~GO|pgInvalidPage|Invalid Page~)
 </whdroplet>
 
 <whdroplet name="ulPgSecurity">
 (~GO|PGFRONTDOOR|About FrontDoor~)<br/>
 (~GO|PGHomepage|About Homepage~)<br/>
-(~GO|PGINVALIDPAGE|Invalid Page~)<br/>
+(~GO|pgInvalidPage|Invalid Page~)<br/>
 </whdroplet>
 
 

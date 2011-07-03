@@ -70,16 +70,13 @@ The HomePage is also served when the surfer requests an invalid page
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-If you define an <b>InvalidPage,</b> it will be served when surfers request a page that doesn't exist.
+<p>If you define an <b>InvalidPage,</b> it will be served when surfers request a page that doesn't exist.
 This allows you to present a custom message rather 
-than the default text sent by the web server on a 404 error.
-<p>
-The application you are now running has a InvalidPage setting (defined in XML via ZMAdmin.exe)
-meaning that the Page surfers are automatically routed to is named InvalidPage.
-<p>
-<a href="(~DynURL.ToAppID~):junkpage:(~SessionID~)">Try this link</a> to see what happens 
-if you try to go to an invalid page.<p>
-Click [back] in your browser to return here!
+than the default text sent by the web server on a 404 error.</p>
+<p><a href="(~DynURL.ToAppID~):junkpage:(~SessionID~)">Try this link</a> to see what happens 
+if you try to go to an invalid page named <code>junkpage</code>.  <b>Click [back] in your browser to return here!</b></p>
+<p>If not otherwise specified, the PageID used in an invalid situation is <code>InvalidPage</code>.</p>
+<p>You can check the configuration by using the [Source] link and looking at the application-level XML file.</p>
 (~drShowcaseGlobalFooter~)
 </whpage>
 
