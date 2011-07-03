@@ -73,6 +73,7 @@
     <Situations>
       <FrontDoor pageID="pgWelcome"/>
       <Home pageID="pgentershowcase"/>
+	  <Invalid pageID="pgInvalidPage" />
     </Situations>
     <Static>
       <AppRoot value="/"/>
