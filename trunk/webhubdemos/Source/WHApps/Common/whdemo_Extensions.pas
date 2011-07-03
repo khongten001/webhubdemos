@@ -392,15 +392,16 @@ procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
 begin
   if NOT pWebApp.IsWebRobotRequest then
   begin
-    if IsEqual(pWebApp.AppID, 'showcase') and (NOT IsHREFToolsQATestAgent) then
+    if IsEqual(Sender.AppID, 'showcase') and (NOT IsHREFToolsQATestAgent) then
     begin
-      {do not allow blank referer within the showcase demo}
-      if (pWebApp.Session.PageCount > 1) and
-        (pWebApp.Request.Referer = '') then
+      {do not allow blank referer within the showcase demo unless on the
+       home page}
+      if NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID) and
+        (Sender.Request.Referer = '') then
       begin
         if NOT HonorLowerSecurity then
         begin
-          pWebApp.RejectSession('Blank referer', False);
+          Sender.RejectSession('Blank referer', False);
         end;
       end;
     end;
