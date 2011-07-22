@@ -396,8 +396,10 @@ begin
     begin
       {do not allow blank referer within the showcase demo unless on the
        home page}
-      if NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID) and
-        (Sender.Request.Referer = '') then
+      if (Sender.Request.Referer = '') and
+       (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
+       (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) 
+      then
       begin
         if NOT HonorLowerSecurity then
         begin
