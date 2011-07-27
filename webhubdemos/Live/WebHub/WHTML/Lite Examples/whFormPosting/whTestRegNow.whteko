@@ -38,10 +38,12 @@
 	display:block; border: 1px #ccc solid; margin-top: 15px; 
 	padding: 5px 0px; background-color: #f0f2f5;
 }
-#captchaNewRegNow b {  
+#captchaNewRegNow em {  
    /* color should be the same as in the instructions for filling in the form */
-   color: red;    
- }
+	color: red;    
+	font-style: normal;
+	font-weight: 700;
+}
 </style>
 </head>
 <body>
@@ -100,7 +102,7 @@
       </tr>
 	  
       <tr>
-      <td colspan="2"><span style="text-align:center;">Example: http://www.mydomain.com/scripts/runisa.dll?aa:regnow</span</td>
+      <td colspan="2"><span style="text-align:center;">Example: http://www.mydomain.com/scripts/runisa.dll?aa:regnow</span></td>
       </tr>
     
  </table>

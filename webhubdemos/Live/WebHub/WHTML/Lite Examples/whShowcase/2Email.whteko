@@ -33,10 +33,12 @@ Goal: bounce to some error page
 (~drShowcaseGlobalHeader~)
 
 (~ANCHORMODIF|style|<style>
- #captchaNewX b {    /* TwhCaptcha generates all key digits in bold */
+ #captchaNewX em {    /* TwhCaptcha generates all key digits as emphasized */
    /* color should be the same as in the instructions for filling in the form */
-   color: red;    
- }
+	color: red;    
+	font-style: normal;
+	font-weight: 700;
+}
 </style>~)
 
 <p>Most companies want to get feedback from people surfing their site.
