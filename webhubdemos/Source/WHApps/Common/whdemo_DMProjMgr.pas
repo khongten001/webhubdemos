@@ -24,6 +24,8 @@ THE SOFTWARE.
 
 interface
 
+{$I hrefdefines.inc}
+
 uses
   SysUtils, Classes, tpProj;
 
@@ -87,8 +89,19 @@ end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
+const cFn = 'ProjMgrDataModulesCreate1';
 begin
-  CreateCoreWebHubDataModule;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  try
+    CreateCoreWebHubDataModule;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);
+      {$ELSE}HREFTestLog('exception', E.Message, '');{$ENDIF}
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate2(
@@ -119,13 +132,18 @@ begin
       UsedAppID := 'appvers';
   end;
 
+  {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
+
   whDemoSetAppId(UsedAppID);  // this refreshes the app
 
   //Cover again after refresh
+  {$IFNDEF Delphi16UP}
   CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
+  {$ENDIF}
   Sender.Item := S;
 
   whDemoCreateSharedDataModules;
+  {$IFDEF CodeSite}CodeSite.Send('ok', ok);{$ENDIF}
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
@@ -191,7 +209,8 @@ end;
 procedure TDMForWHDemo.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  HREFTestLog('error', 'during demo startup', ErrorText);
+  {$IFDEF CodeSite}CodeSite.SendError(ErrorText);
+  {$ELSE}HREFTestLog('error', 'during demo startup', ErrorText);{$ENDIF}
   WebMessage(ErrorText);
 end;
 
@@ -207,5 +226,8 @@ begin
   except
   end;
 end;
+
+initialization
+  {$IFDEF CodeSite}CodeSite.Send('hello');{$ENDIF}
 
 end.
