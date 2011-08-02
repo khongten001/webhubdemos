@@ -1,11 +1,12 @@
 unit whdemo_About;  {panel to help self-document all WebHub demos}
-////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2008 HREF Tools Corp.  All Rights Reserved Worldwide.  //
-//                                                                            //
-//  This source code file is part of WebHub v2.09x.  Please obtain a WebHub   //
-//  development license from HREF Tools Corp. before using this file, and     //
-//  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
-////////////////////////////////////////////////////////////////////////////////
+
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 1996-2011 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * development license from HREF Tools Corp. before using this file, and    * }
+{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
@@ -41,7 +42,9 @@ type
     Panel6: TPanel;
     LabelIdentification: TLabel;
     LabelDllCalls: TLabel;
+    LabelAboutCPU: TLabel;
     LabelAboutHarry: TLabel;
+    LabelAboutCompiler: TLabel;
     procedure LabelURLClick(Sender: TObject);
     procedure ActionToggleConnectionExecute(Sender: TObject);
     procedure ActionShowConnectionDetailExecute(Sender: TObject);
@@ -62,7 +65,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucShell, ucVers, ucString,
+  ucShell, ucVers, ucString, uCode,
 {$IFDEF WEBHUBACE}
   whxpUtils,
 {$ENDIF}
@@ -150,11 +153,12 @@ end;
 
 procedure TfmAppAboutPanel.ActionShowConnectionDetailExecute(
   Sender: TObject);
-{$IFDEF WEBHUBACE}
 var
+{$IFDEF WEBHUBACE}
   Port: Integer;
   pid: Cardinal;
 {$ENDIF}
+  S: string;
 begin
   inherited;
 {$IFDEF WEBHUBACE}
@@ -168,7 +172,7 @@ begin
       ' and looking for data on port ' + IntToStr(Port) + '.';
   end
   else
-    LabelAboutHarry.Caption := 'Harry not running'
+    LabelAboutHarry.Caption := 'Harry not running';
 {$ELSE}
   LabelDllCalls.Caption := '';
   LabelIdentification.Caption := 'AppID=' + pWebApp.AppID +
@@ -178,9 +182,17 @@ begin
   else
     LabelAboutHarry.Caption := 'Connect to Hub = False';
 {$ENDIF}
+  S := 'Native Code: ';
+{$IFDEF CPUX64}
+  S := S + '64-bit';
+{$ELSE}
+  S := S + '32-bit';
+{$ENDIF}
+  LabelAboutCPU.Caption := S;
+  LabelAboutCompiler.Caption := 'Compiler: ' + uCode.PascalCompilerCode;
 end;
 
-destructor TfmAppAboutPanel.Destroy; 
+destructor TfmAppAboutPanel.Destroy;
 begin
   inherited;
   fmAppAboutPanel := nil;

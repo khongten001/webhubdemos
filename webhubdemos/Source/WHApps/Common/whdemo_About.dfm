@@ -4,17 +4,16 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
   Width = 624
   Height = 317
   Caption = '&About'
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Left = 100
-    Width = 516
-    Height = 273
+    Width = 606
+    Height = 272
     object Panel1: TPanel
       Left = 225
-      Top = 45
+      Top = 5
       Width = 4
-      Height = 223
+      Height = 262
       Cursor = crHSplit
       Align = alLeft
       BevelOuter = bvNone
@@ -24,14 +23,14 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         Left = 0
         Top = 0
         Width = 20
-        Height = 223
+        Height = 262
       end
     end
     object Panel: TPanel
       Left = 5
-      Top = 45
+      Top = 5
       Width = 220
-      Height = 223
+      Height = 262
       Align = alLeft
       BevelOuter = bvNone
       BorderWidth = 5
@@ -117,7 +116,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
       end
       object Panel3: TPanel
         Left = 5
-        Top = 173
+        Top = 212
         Width = 206
         Height = 41
         Align = alBottom
@@ -130,7 +129,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Height = 41
           Align = alClient
           AutoSize = False
-          Caption = 'Copyright (c) 1997-2006'
+          Caption = 'Copyright (c) 1997-2011'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clTeal
           Font.Height = -11
@@ -159,33 +158,11 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         TabOrder = 2
       end
     end
-    object tpToolBar1: TtpToolBar
-      Left = 5
-      Top = 5
-      Width = 506
-      TabOrder = 2
-      object btnToggleConnection: TtpToolButton
-        Left = 6
-        Top = 1
-        Width = 49
-        Action = ActionToggleConnection
-        LeaveSpace = True
-        MinWidth = 28
-      end
-      object tpToolButton1: TtpToolButton
-        Left = 61
-        Top = 1
-        Width = 121
-        Action = ActionShowConnectionDetail
-        LeaveSpace = True
-        MinWidth = 28
-      end
-    end
     object GroupBoxWHXP: TGroupBox
       Left = 229
-      Top = 45
-      Width = 282
-      Height = 223
+      Top = 5
+      Width = 372
+      Height = 262
       Align = alClient
       Caption = 'Connection Detail'
       Font.Charset = DEFAULT_CHARSET
@@ -194,12 +171,12 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 2
       object Panel5: TPanel
         Left = 2
         Top = 18
         Width = 10
-        Height = 203
+        Height = 242
         Align = alLeft
         BevelOuter = bvNone
         TabOrder = 0
@@ -207,63 +184,84 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
       object Panel6: TPanel
         Left = 12
         Top = 18
-        Width = 268
-        Height = 203
+        Width = 358
+        Height = 242
         Align = alClient
         BevelOuter = bvNone
         TabOrder = 1
         object LabelIdentification: TLabel
           Left = 0
           Top = 0
-          Width = 268
-          Height = 16
+          Width = 358
+          Height = 21
           Align = alTop
           Caption = 'LabelIdentification'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'MS Sans Serif'
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
           WordWrap = True
         end
         object LabelDllCalls: TLabel
           Left = 0
-          Top = 16
-          Width = 268
-          Height = 16
+          Top = 21
+          Width = 358
+          Height = 21
           Align = alTop
           Caption = 'LabelDllCalls'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'MS Sans Serif'
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
+          Font.Style = []
+          ParentFont = False
+        end
+        object LabelAboutCPU: TLabel
+          Left = 0
+          Top = 63
+          Width = 358
+          Height = 21
+          Align = alTop
+          Caption = 'LabelAboutCPU'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
         end
         object LabelAboutHarry: TLabel
           Left = 0
-          Top = 32
-          Width = 268
-          Height = 16
+          Top = 42
+          Width = 358
+          Height = 21
           Align = alTop
           Caption = 'LabelAboutHarry'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
-          Font.Height = -15
-          Font.Name = 'MS Sans Serif'
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
+          Font.Style = []
+          ParentFont = False
+        end
+        object LabelAboutCompiler: TLabel
+          Left = 0
+          Top = 84
+          Width = 358
+          Height = 21
+          Align = alTop
+          Caption = 'LabelAboutCompiler'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
         end
       end
     end
-  end
-  object tpComponentPanel1: TtpComponentPanel
-    Left = 0
-    Top = 0
-    Width = 100
-    Height = 273
-    TabOrder = 1
   end
   object ActionList1: TActionList
     Left = 24
