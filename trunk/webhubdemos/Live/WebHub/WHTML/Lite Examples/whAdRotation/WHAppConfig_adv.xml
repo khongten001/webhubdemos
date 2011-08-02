@@ -30,6 +30,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard context="ultraann" value="newipc"/>
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>
