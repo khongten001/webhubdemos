@@ -4,32 +4,35 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
+    <MenuEnabled context="ultraann" value="false"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized context="ultraann" value="true"/>
     <TrayIconEnabled value="true"/>
-	<Modules>
-		<StandardModules>
-			<GUIOptional>
-				<Module name="email" status="disabled" />
-				<Module name="dreamweaver" status="enabled-gui" />
-				<Module name="dwsecurity" status="enabled-gui" />
-			</GUIOptional>
-			<GUI>
-				<Module name="appin" status="enabled-gui" />
-				<Module name="appout" status="enabled-gui" />
-				<Module name="decode" status="enabled-gui" />
-				<Module name="googlesitemap" status="enabled-gui" />
-				<Module name="whteko" status="enabled-gui" />
-			</GUI>
-		</StandardModules>
-	</Modules>
+    <TrayIconEnabled context="ultraann" value="false"/>
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="disabled"/>
+          <Module name="dreamweaver" status="enabled-gui"/>
+          <Module name="dwsecurity" status="enabled-gui"/>
+        </GUIOptional>
+        <GUI>
+          <Module name="appin" status="enabled-gui"/>
+          <Module name="appout" status="enabled-gui"/>
+          <Module name="decode" status="enabled-gui"/>
+          <Module name="googlesitemap" status="enabled-gui"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
   </Startup>
   <Application>
     <AppProperties>
       <DynURLConfig>
-	  	<ServerProfileIDStandard value="defprofile" />
-	  	<ServerProfileIDStandard value="shortformat" context="DEMOS" />
+        <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
         <UseAppProcessID value="false"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -40,19 +43,19 @@
       <AutoPageHeader dropletName="None"/>
     </PageGeneration>
     <RemoteDesignDefaultInterface>
-	  <AllowedSessionIDRange value="1800-1900" />
-	  <RemoteAccessPages>
-	    <Page function="design" pageID="remotedesign" />
-	    <Page function="preview" pageID="remotepreview" />
-	    <Page function="refresh" pageID="remoterefresh" />
-	  </RemoteAccessPages>
-	  <AllowedIPRange value="192.168.1.*;127.0.0.1" />
+      <AllowedSessionIDRange value="1800-1900"/>
+      <RemoteAccessPages>
+        <Page function="design" pageID="remotedesign"/>
+        <Page function="preview" pageID="remotepreview"/>
+        <Page function="refresh" pageID="remoterefresh"/>
+      </RemoteAccessPages>
+      <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
       <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
-	<Security>
-		<AdminSessionNumber value="1800"/>
-		<AdminSessionNumber value="1204" context="DEMOS" />
-	</Security>
+    <Security>
+      <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
+    </Security>
     <Static>
       <AppRoot value="/"/>
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot"/>

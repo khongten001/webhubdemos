@@ -4,10 +4,13 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
+    <MenuEnabled context="ultraann" value="false"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized context="ultraann" value="true"/>
     <TrayIconEnabled value="true"/>
+    <TrayIconEnabled context="ultraann" value="false"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
