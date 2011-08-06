@@ -79,6 +79,7 @@ bNoMore=true
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
+	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
 <style type="text/css">
 body {
   (~ASSIGNED|litWallpaper|background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;~)
