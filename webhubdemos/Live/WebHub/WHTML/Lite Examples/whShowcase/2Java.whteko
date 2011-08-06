@@ -81,16 +81,9 @@ bNoMore=true
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
 	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
 <style type="text/css">
-body {
-  (~ASSIGNED|litWallpaper|background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;~)
-}
-</style>
-(~ANCHOR|style~)
-<style type="text/css">
-.currentnode {
-  font-weight:bold;
-  color: #A22222;
-}
+
+  (~ASSIGNED|litWallpaper|body {background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat; }~)
+
 </style>
 
     <script type="text/javascript">
