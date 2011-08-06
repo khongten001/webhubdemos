@@ -81,9 +81,7 @@ bNoMore=true
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
 	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
 <style type="text/css">
-
   (~ASSIGNED|litWallpaper|body {background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat; }~)
-
 </style>
 
     <script type="text/javascript">
@@ -93,6 +91,7 @@ bNoMore=true
 		}
 		onload = setAJAXEvents
 	</script>
+	<!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
 </head>
 <body>
 (~drPageBegin~)
