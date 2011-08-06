@@ -1,7 +1,8 @@
 body {
   margin-left: 20px;
   margin-right: 20px;
-  font-family: Verdana,Arial; background-color: #FFFFFF;
+  font-family:Verdana, Arial, Helvetica, sans-serif;
+  background-color: #FFFFFF;
 }
 
 img {
@@ -38,12 +39,10 @@ table {
 }
 
 td {
-  font-family: Verdana,Arial
   text-align: left;
   vertical-align: top;
 }
 th {
-  font-family: Verdana,Arial
   text-align: left;
   vertical-align: top;
 }
