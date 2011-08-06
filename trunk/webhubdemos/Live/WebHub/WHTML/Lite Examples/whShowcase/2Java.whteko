@@ -106,12 +106,12 @@ body {
 <div id="whdemopagecontent">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
-<form id="f1" accept-charset="UTF-8" method="post" action=""(~ACTIONR|pgSimpleAjaxFillin~)">
-  <p>word: <input name="word" type="text" />  
-<!---   <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' /> -->
+<form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">
+  <p>Enter a word: <input name="word" type="text" />  
   </p>
   <div id="result"></div>
 </form>
+<br/><br/>
 <h2>See Also</h2>
 <p>See also the (~JUMP|htaj:pgwelcome|WebHub AJAX Demo~)</p>
 </div>
