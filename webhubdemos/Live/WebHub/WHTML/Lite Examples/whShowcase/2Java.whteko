@@ -82,16 +82,18 @@ bNoMore=true
 	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
 <style type="text/css">
   (~ASSIGNED|litWallpaper|body {background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat; }~)
-</style>
+.currentnode {
+  font-weight:700;
+  color: #A22222;
+}</style>
 
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position="top" method="post" post="(~ACTIONR|pgSimpleAjaxFillin~)"~)
+			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position="top" method="post"~)
 		}
 		onload = setAJAXEvents
 	</script>
-	<!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
 </head>
 <body>
 (~drPageBegin~)
