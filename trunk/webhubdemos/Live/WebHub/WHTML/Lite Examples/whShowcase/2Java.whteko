@@ -92,61 +92,28 @@ body {
   color: #A22222;
 }
 </style>
-<whdoc for="encoding data sent by javascript">
-This is required, so that the data is encoded as UTF-8 AND url-encoded prior to being 
-submitted back to the http server.
 
-encodeURIComponent(encodedURIString)
-Reference: http://msdn.microsoft.com/en-us/library/aeh9cef7
-
-See function getquerystring below.
-</whdoc>
-<script language="Javascript">
-function xmlhttpPost(strURL) {
-    var xmlHttpReq = false;
-    var self = this;
-    // Mozilla/Safari
-    if (window.XMLHttpRequest) {
-        self.xmlHttpReq = new XMLHttpRequest();
-    }
-    // IE
-    else if (window.ActiveXObject) {
-        self.xmlHttpReq = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    self.xmlHttpReq.open('POST', strURL, true);
-    self.xmlHttpReq.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    self.xmlHttpReq.onreadystatechange = function() {
-        if (self.xmlHttpReq.readyState == 4) {
-            updatepage(self.xmlHttpReq.responseText);
-        }
-    }
-    self.xmlHttpReq.send(getquerystring());
-}
-
-function getquerystring() {
-    var form     = document.forms['f1'];
-    var word = form.word.value;
-    qstr = 'w=' + encodeURIComponent(word);  // NOTE: no '?' before querystring
-    return qstr;
-}
-
-function updatepage(str){
-    document.getElementById("result").innerHTML = str;
-}
-</script>
-
+    <script type="text/javascript">
+		function setAJAXEvents()
+		{
+			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position=" method="post"~)
+		}
+		onload = setAJAXEvents
+	</script>
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
-<form name="f1" accept-charset="UTF-8" method="post">
-  <p>word: <input name="word" type="text">  
-  <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' />
+<form id="f1" accept-charset="UTF-8" method="post" action=""(~ACTIONR|pgSimpleAjaxFillin~)">
+  <p>word: <input name="word" type="text" />  
+<!---   <input value="Go" type="button" onclick='JavaScript:xmlhttpPost("(~ACTIONR|pgSimpleAjaxFillin~)")' /> -->
   </p>
   <div id="result"></div>
 </form>
+<h2>See Also</h2>
+<p>See also the (~JUMP|htaj:pgwelcome|WebHub AJAX Demo~)</p>
 </div>
 (~drShowcaseGlobalFooter~)
 </whpage>
