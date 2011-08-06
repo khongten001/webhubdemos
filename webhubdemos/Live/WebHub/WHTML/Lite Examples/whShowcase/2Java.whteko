@@ -90,7 +90,7 @@ bNoMore=true
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position="top" method="post"~)
+			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position="top"~)
 		}
 		onload = setAJAXEvents
 	</script>
