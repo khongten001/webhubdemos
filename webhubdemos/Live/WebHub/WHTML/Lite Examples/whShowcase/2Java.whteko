@@ -90,7 +90,7 @@ bNoMore=true
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position="top"~)
+			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position=""~)
 		}
 		onload = setAJAXEvents
 	</script>
@@ -101,7 +101,7 @@ bNoMore=true
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
 <form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">
-  <p>Enter a word: <input name="word" type="text" />  
+  <p>Enter a word: <input name="w" type="text" />  
   </p>
   <div id="result"></div>
 </form>
