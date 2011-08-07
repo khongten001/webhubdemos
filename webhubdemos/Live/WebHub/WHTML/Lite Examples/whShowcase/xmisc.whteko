@@ -10,7 +10,7 @@ htmlFilename=xmisc.whteko
 </whpagesettingslist>
 
 <whpage pageid="pgSimpleAjaxFillin" desc="Partial page, used during AJAX demonstration">
-<p>(~CentralInfo.WebTimeGMT~) (~ASSIGNED|w|The secret word is (~w~).||No secret word was posted.~)  Your ip# is reported as (~Request.RemoteAddress~).</p>
+<p>(~CentralInfo.WebTimeGMT~) (~ASSIGNED|w|The word is <span style="background-color:yellow; padding: 0 0.3em 0 0.3em;">(~w~)</span>.||No secret word was posted.~)  Your ip# is reported as (~Request.RemoteAddress~).</p>
 </whpage>
 
 <whpage pageid="pgXmlSample" desc="Extremely Short XML Sample Document">
