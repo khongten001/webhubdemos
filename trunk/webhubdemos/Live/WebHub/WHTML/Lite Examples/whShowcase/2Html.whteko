@@ -111,6 +111,12 @@ by the programmer.</p>
 (~SET|Session['Sr']=red~)
 (~SET|r=Session['Sr']~)
 (~SET|b=Session[Session['Sr']]~)
+
+(~SET|APoolNo=12~)
+(~SET|tmtProductGroup12=Excelsior~)
+(~SET|AProductGroupVarName=(~DYNCHUNK|tmtProductGroup(~APoolNo~)~)~)
+(~SET|AProductGroup=(~AProductGroupVarName~)~)
+
 </whdroplet>
 <hr />
 (~StringVars~)
