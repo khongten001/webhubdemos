@@ -21,7 +21,7 @@
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position="~)
+			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
 			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
 			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
 			/* changing:start */
