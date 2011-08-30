@@ -3,7 +3,7 @@ unit whpwMain;
 ////////////////////////////////////////////////////////////////////////////////
 //  Copyright (c) 1995-2007 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
-//  This source code file is part of WebHub v2.09x.  Please obtain a WebHub   //
+//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -19,6 +19,7 @@ unit whpwMain;
 interface
 
 {$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
 
 uses
 {$IFDEF CLR}
@@ -287,11 +288,11 @@ begin
       AddToString(
       AddToString(
       AddToString(pWebApp.AppID
-        ,PageID,':')
-        ,Session,':')
+        ,pWebApp.PageID,':')
+        ,pWebApp.SessionID,':')
         ,Command,':')
       +' '+IntToStr(Application.Handle)
-      +' '+AppProcessId;
+      +' '+pWebApp.AppProcessId;
     //
     //we use low session numbers like these to check our apps robotically
     //and suspect that you do the same. so, here we make a distinction
@@ -300,7 +301,7 @@ begin
     //as well and use pWebApp.RejectSession from pWebApp.OnNewSession to
     //reject manually generated numbers if they do not originate on your
     //subnet..
-    i:=strtointdef(session,0);
+    i:=strtointdef(pWebApp.SessionID,0);
     if (i>=1000) and (i<=1010) then
       Icon:=fIconPing
     else
