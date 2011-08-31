@@ -62,11 +62,6 @@ uses
 
 begin
   Application.Initialize;
-  Application.CreateForm(TDMForWHFishStore, DMForWHFishStore);
-  Application.CreateForm(TfmAppAboutPanel, fmAppAboutPanel);
-  Application.CreateForm(TDemoExtensions, DemoExtensions);
-  Application.CreateForm(TdmWhRefresh, dmWhRefresh);
-  Application.CreateForm(TDemoViewSource, DemoViewSource);
   DMForWHFishStore.SetDemoFacts('htfs', 'DB Examples', True);
   DMForWHFishStore.ProjMgr.ManageStartup;
   Application.Run;
