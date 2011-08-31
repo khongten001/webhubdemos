@@ -10,11 +10,14 @@ unit whdemo_About;  {panel to help self-document all WebHub demos}
 
 interface
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls,
-  UTPANFRM, ExtCtrls, StdCtrls, TpMemo, tpStatus, UpdateOk, 
-  tpAction, WebTypes,   WebLink, ActnList, toolbar, {}tpCompPanel, Buttons;
+  ComCtrls, ExtCtrls, StdCtrls, ActnList, Buttons, 
+  UTPANFRM, tpMemo, tpStatus, updateOk, tpAction, toolbar, {}tpCompPanel, 
+  webTypes, webLink;
 
 type
   TfmAppAboutPanel = class(TutParentForm)
