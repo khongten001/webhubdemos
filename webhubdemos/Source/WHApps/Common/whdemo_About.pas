@@ -171,11 +171,10 @@ begin
     ' Slot#' + IntToStr(pConnection.SlotNo); {17-Dec-2004}
   if GetHarryListenPortAndPID(Port, pid) then
   begin
-    LabelAboutHarry.Caption := 'Harry is running with PID ' + IntToStr(pid) +
-      ' and looking for data on port ' + IntToStr(Port) + '.';
+    LabelAboutHarry.Caption := 'Hub is running with PID ' + IntToStr(pid);
   end
   else
-    LabelAboutHarry.Caption := 'Harry not running';
+    LabelAboutHarry.Caption := 'Hub not running';
 {$ELSE}
   LabelDllCalls.Caption := '';
   LabelIdentification.Caption := 'AppID=' + pWebApp.AppID +
