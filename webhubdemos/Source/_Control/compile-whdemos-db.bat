@@ -2,6 +2,10 @@ set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demoD15.bat
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
+:: need DEMOS app even on DB server
+cd %droot%\Lite Examples\whAppServer\whLite
+call %cbat% whLite
+
 cd %droot%\DB Examples\whQuery1
 call %cbat% whQuery1
 
