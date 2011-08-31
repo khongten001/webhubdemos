@@ -163,40 +163,61 @@ end;
 procedure TDMForWHDemo.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
+const 
+  cFn = 'ProjMgrGUICreate';
 var
   SplashMessage: string;
 begin
+  ErrorText := '';
   if ShouldEnableGUI then
   begin
     SplashMessage := 'Creating panels';
     WebMessage(SplashMessage);
 
-    {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
-    fmWebHubMainForm.Caption := pWebApp.AppID;
+    try
+      {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
+      fmWebHubMainForm.Caption := pWebApp.AppID;
 
-    whDemoCreateSharedPanels;
+      whDemoCreateSharedPanels;
 
-    WebMessage('-' + SplashMessage);
+      WebMessage('-' + SplashMessage);
+    except
+      on E: Exception do
+       begin
+          ErrorText := cFn + Chr(183) + E.Message;
+          Continue := False;
+       end;
+    end;
   end;
 end;
 
 procedure TDMForWHDemo.ProjMgrGUIInit(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
+const
+  cFn = 'ProjMgrGUIInit';
 begin
   Assert(Assigned(pWebApp));
   Assert(pWebApp.IsUpdated);
 
   if ShouldEnableGUI then
   begin
-    pWebApp.DoUpdateGUI;
+    try
+      pWebApp.DoUpdateGUI;
 
-   // fmWebHubMainForm.Restorer.Flags := [];  // !!! Restorer not fully functional, 26-Aug-2008
+     // fmWebHubMainForm.Restorer.Flags := [];  // can disable Restorer here
 
-    InitCoreWebHubDataModuleGUI;
-    InitStandardWHModulesGUI;
+      InitCoreWebHubDataModuleGUI;
+      InitStandardWHModulesGUI;
 
-    WebMessage('0');         // required to close splash screen
+      WebMessage('0');   
+    except
+      on E: Exception do
+       begin
+          ErrorText := cFn + Chr(183) + E.Message;
+          Continue := False;
+       end;
+    end;
   end;
 
 end;
@@ -224,6 +245,10 @@ begin
     DestroyCoreWebHubDataModuleGUI;
     whDemoDestroySharedDataModules;
   except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+    end;
   end;
 end;
 
