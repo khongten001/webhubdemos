@@ -121,7 +121,10 @@ begin
     ['InstallFolders/Product[@name="WebHubDemos"]'], cxOptional, usrNone,
     'folder', 'c:\projects\WebHubDemos\', Warning);
   if Warning = '' then
+  begin
     DemoViewSource.IsDemoRootKnown := True;
+    Result := IncludeTrailingPathDelimiter(Result);
+  end;
 end;
 
 function getHtDemoCodeRoot: String;
