@@ -52,12 +52,10 @@ implementation
 
 uses
   Forms,
-  MultiTypeApp,
-  {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
-  ucLogFil, webApp, webBase, webSplat, dmFishAp, tfish, htbdeWApp,
+  MultiTypeApp, ucDlgs, ucLogFil,
+  webApp, webBase, webSplat, dmFishAp, tfish, htWebApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
-  whsample_EvtHandlers, whpanel_RemotePages, whpanel_Mail, AdminDM,
-  whFishStore_fmWhPanel;
+  whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel;
 
 { TDMForWHDemo }
 
