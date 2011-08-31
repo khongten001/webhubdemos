@@ -62,6 +62,7 @@ uses
 
 begin
   Application.Initialize;
+  Application.CreateForm(TDMForWHFishStore, DMForWHFishStore);
   DMForWHFishStore.SetDemoFacts('htfs', 'DB Examples', True);
   DMForWHFishStore.ProjMgr.ManageStartup;
   Application.Run;
