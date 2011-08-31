@@ -123,29 +123,51 @@ end;
 
 procedure TDMForWHDBDemo.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+const
+  cFn = 'ProjMgrDataModulesInit';
 begin
-  InitCoreWebHubDataModule;
-  whDemoInit;
-  whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
+  ErrorText := '';
+  try
+    InitCoreWebHubDataModule;
+    whDemoInit;
+    whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
+  except
+    on E: Exception do
+    begin
+       ErrorText := cFn + Chr(183) + E.Message;
+       Continue := False;
+    end;
+  end;
 end;
 
 procedure TDMForWHDBDemo.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
+const
+  cFn = 'ProjMgrGUICreate';
 var
   SplashMessage: string;
 begin
+  ErrorText := '';
   if ShouldEnableGUI then
   begin
-    SplashMessage := 'Creating panels';
-    WebMessage(SplashMessage);
+    try
+      SplashMessage := 'Creating panels';
+      WebMessage(SplashMessage);
 
-    {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
-    fmWebHubMainForm.Caption := pWebApp.AppID;
+      {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
+      fmWebHubMainForm.Caption := pWebApp.AppID;
 
-    whDemoCreateSharedPanels;
-
-    WebMessage('-' + SplashMessage);
+      whDemoCreateSharedPanels;
+ 
+      WebMessage('-' + SplashMessage);
+    except
+      on E: Exception do
+      begin
+         ErrorText := cFn + Chr(183) + E.Message;
+         Continue := False;
+      end;
+    end;
   end;
 end;
 
