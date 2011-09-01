@@ -1,4 +1,6 @@
 :: run-more-demos.bat
+:: Copyright (c) 2011 HREF Tools Corp.
+:: www.href.com
 
 @echo off
 setlocal
