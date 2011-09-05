@@ -70,6 +70,7 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
@@ -107,43 +108,55 @@ end;
 procedure TDMForWHDemo.ProjMgrDataModulesCreate2(
   Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
+const cFn = 'Create2';
 var
   UsedAppID: string;
   S: string;
 begin
-  if (Sender.Identifier <> '') and (Sender.Identifier <> 'appvers') and
-     (SuggestedAppID <> '') then
-  begin
-    {This "error" is here primarily to enable easy testing of setting Continue
-     to False.}
-    ErrorText := Format('Fixed AppID = %s. Do not override the AppID to %s',
-      [Sender.Identifier, SuggestedAppID]);
-    Continue := False;
-  end;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
 
-  // the suggested appid is from the command line - we should let it take
-  // precedence
+  try
+    if (Sender.Identifier <> '') and (Sender.Identifier <> 'appvers') and
+       (SuggestedAppID <> '') then
+    begin
+      {This "error" is here primarily to enable easy testing of setting Continue
+       to False.}
+      ErrorText := Format('Fixed AppID = %s. Do not override the AppID to %s',
+        [Sender.Identifier, SuggestedAppID]);
+      Continue := False;
+    end;
 
-  UsedAppID := SuggestedAppID;
-  if UsedAppID = '' then
-  begin
-    UsedAppID := Sender.Identifier;
+    // the suggested appid is from the command line - we should let it take
+    // precedence
+
+    UsedAppID := SuggestedAppID;
     if UsedAppID = '' then
-      UsedAppID := 'appvers';
+    begin
+      UsedAppID := Sender.Identifier;
+      if UsedAppID = '' then
+        UsedAppID := 'appvers';
+    end;
+
+    {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
+
+    whDemoSetAppId(UsedAppID);  // this refreshes the app
+
+    //Cover again after refresh
+    { $ IFNDEF Delphi16UP}
+    CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
+    { $ ENDIF}
+    Sender.Item := S;
+
+    whDemoCreateSharedDataModules;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      Continue := False;
+      ErrorText := E.Message;
+    end;
   end;
-
-  {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
-
-  whDemoSetAppId(UsedAppID);  // this refreshes the app
-
-  //Cover again after refresh
-  {$IFNDEF Delphi16UP}
-  CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
-  {$ENDIF}
-  Sender.Item := S;
-
-  whDemoCreateSharedDataModules;
-  {$IFDEF CodeSite}CodeSite.Send('ok', ok);{$ENDIF}
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
