@@ -1,7 +1,7 @@
 setlocal
 
 :: change the following line for each change in BuildNo
-set fileversion=2,0,0,57
+set fileversion=2,0,0,87
 set productversion=2,0
 
 :: use ZaphodsMap to find compiler
@@ -17,6 +17,7 @@ set servicename=dserver
 :: %resfilenamenoext%.rc and %resfilenamenoext%.res
 
 echo Making version resource file
+
 echo 1 VERSIONINFO >"%~dp0\%resfilenamenoext%.rc"
 echo FILEVERSION %fileversion% >> "%~dp0%resfilenamenoext%.rc"
 echo PRODUCTVERSION %productversion% >> "%~dp0%resfilenamenoext%.rc"
@@ -33,6 +34,7 @@ echo    VALUE "FileDescription", "WebHub Application Server for use with Dreamwe
 echo    VALUE "FileVersion", "%fileversion%\000" >> "%~dp0%resfilenamenoext%.rc"
 echo    VALUE "InternalName", "\000" >> "%~dp0%resfilenamenoext%.rc"
 echo    VALUE "ServiceName", "%servicename%\000" >> "%~dp0%resfilenamenoext%.rc"
+echo    VALUE "DisplayName", "WebHub %servicename%\000" >> "%~dp0%resfilenamenoext%.rc"
 echo    VALUE "ProductName", "DServer\000" >> "%~dp0%resfilenamenoext%.rc"
 echo    VALUE "OriginalFilename", "dserver.exe\000" >> "%~dp0%resfilenamenoext%.rc"
 echo    VALUE "Technical Support", "http://www.href.com/contact\000" >> "%~dp0%resfilenamenoext%.rc"
