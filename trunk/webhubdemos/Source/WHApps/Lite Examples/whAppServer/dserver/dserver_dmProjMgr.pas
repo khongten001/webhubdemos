@@ -62,6 +62,11 @@ uses
 procedure TDMForDServer.DataModuleCreate(Sender: TObject);
 begin
   ProjMgr.Identifier := '';
+  {$IFDEF PREVENTSVCMGR}
+  ProjMgr.InstanceMonitoringMode := simmIgnoreInstanceNum;
+  {$ELSE}
+  ProjMgr.InstanceMonitoringMode := simmAppendInstanceNumToServiceName;
+  {$ENDIF}
 end;
 
 procedure TDMForDServer.SetDemoFacts(const DemoAppID, SourceSubdir: string;
