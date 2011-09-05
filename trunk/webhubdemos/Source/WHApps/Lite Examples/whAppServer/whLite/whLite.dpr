@@ -34,6 +34,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   uCode,
