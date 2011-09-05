@@ -27,8 +27,6 @@ type
       procedure CalcDemoButtonLinks(Sender: TwhRespondingApp; var bContinue: Boolean);
       procedure DemoAppUpdate(Sender: TObject);
       procedure DemoForceConfig(Sender: TwhAppPropertyCategory);
-      //procedure DemoAppProjectSyntax(Sender: TObject);
-      //procedure DemoAppProjectLingvo(Sender: TObject);
     end;
 
 var
@@ -37,6 +35,7 @@ var
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   ZaphodsMap,
   MultiTypeApp, ucLogFil,
@@ -47,9 +46,6 @@ uses
   ucPos, uCode, ucString, ucDlgs, whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About,
   whdemo_Refresh;
-
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
 
 procedure whDemoSetAppId(const whDemoAppID: string);
 begin
@@ -64,16 +60,19 @@ begin
 end;
 
 procedure whDemoCreateSharedDataModules;
+const cFn = 'whDemoCreateSharedDataModules';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   CreateStandardWHModules; // based on flags in app's config
 
   // The dmWhRefresh datamodule enables global refresh of all WebHub demos.
   {M}Application.CreateForm(TdmWhRefresh, dmWhRefresh);
 
-  // The "view source" and "extensions" data modules are required for production
-  // use.
+  // The "view source" and "extensions" data modules are required
+  // on demos.href.com
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 procedure whDemoDestroySharedDataModules;
