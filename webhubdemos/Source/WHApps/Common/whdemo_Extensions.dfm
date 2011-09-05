@@ -1,5 +1,6 @@
 object DemoExtensions: TDemoExtensions
   OldCreateOrder = True
+  OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
   Height = 479
   Width = 741
