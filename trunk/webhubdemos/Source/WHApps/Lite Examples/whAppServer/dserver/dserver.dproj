@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{E80CA4D2-2C64-4A05-B2A6-095905C8D294}</ProjectGuid>
 			<MainSource>dserver.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">NewIPC</Config>
+			<Config Condition="'$(Config)'==''">Debug</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.3</ProjectVersion>
 			<Base>True</Base>
@@ -29,7 +29,7 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UnitSearchPath>h:\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL;h:\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_UsePackage>vcl;rtl;vclx;dbrtl;ldiRegExD15;vclactnband;vcldb</DCC_UsePackage>
@@ -52,12 +52,14 @@
 			<DCC_DebugInformation>false</DCC_DebugInformation>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_2)'!=''">
-			<DCC_UnitSearchPath>k:\webhub\Lib;k:\webhub\Lib\WHVCL;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\Regex;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-			<DCC_Define>DEBUG;CodeSite;LOGIPC;$(DCC_Define)</DCC_Define>
+			<DCC_UnitSearchPath>h:\;h:\dcu_d15_win32</DCC_UnitSearchPath>
+			<DCC_Define>DEBUG;CodeSite;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Cfg_3)'!=''">
-			<DCC_Define>WEBHUBACE;PREVENTSVCMGR;CodeSite;LOGIPC;$(DCC_Define)</DCC_Define>
-			<DCC_UnitSearchPath>K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
+			<DCC_RangeChecking>true</DCC_RangeChecking>
+			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
+			<DCC_Define>WEBHUBACE;PREVENTSVCMGR;CodeSite;LOGIPC;LOGTEKOREADx;EUREKALOG;EUREKALOG_VER6;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="dserver.dpr">
@@ -100,9 +102,7 @@
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\UTF8StringUtils.pas"/>
-			<DCCReference Include="H:\htWebApp.pas">
-				<Form>$R dserver_version.RES</Form>
-			</DCCReference>
+			<DCCReference Include="H:\htWebApp.pas"/>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -130,7 +130,7 @@
 						<Source Name="MainSource">dserver.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/id=adv</Parameters>
+						<Parameters Name="RunParams">/id=edeliver</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
@@ -138,7 +138,7 @@
 						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">59</VersionInfo>
+						<VersionInfo Name="Build">87</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -149,8 +149,8 @@
 					</VersionInfo>
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
-						<VersionInfoKeys Name="FileDescription"/>
-						<VersionInfoKeys Name="FileVersion">2.0.0.59</VersionInfoKeys>
+						<VersionInfoKeys Name="FileDescription">WebHub Application Server for use with Dreamweaver</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.87</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
@@ -160,6 +160,7 @@
 						<VersionInfoKeys Name="Comments">Loads AppID &apos;adv&apos; unless given one via /id=appid</VersionInfoKeys>
 						<VersionInfoKeys Name="WHSetupDate">28-Aug-2009</VersionInfoKeys>
 						<VersionInfoKeys Name="ServiceName">dserver</VersionInfoKeys>
+						<VersionInfoKeys Name="DisplayName">WebHub DServer</VersionInfoKeys>
 					</VersionInfoKeys>
 					<Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k150.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
@@ -329,8 +330,8 @@ boUseMainModuleOptions=1
 boCopyLogInCaseOfError=1
 boSaveCompressedCopyInCaseOfError=0
 boHandleSafeCallExceptions=1
-boCallRTLExceptionEvent=0
-boCatchHandledExceptions=0
+boCallRTLExceptionEvent=1
+boCatchHandledExceptions=1
 loCatchLeaks=0
 loGroupsSonLeaks=1
 loHideBorlandLeaks=1
