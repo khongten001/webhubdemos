@@ -32,10 +32,9 @@ type
     procedure waVersionInfoExecute(Sender: TObject);
     procedure waLSecExecute(Sender: TObject);
     procedure waDelaySecExecute(Sender: TObject);
-    procedure tpSharedLongintChange(Sender: TObject; var Continue: Boolean);
   private
     { Private declarations }
-    tpSharedLongint: TtpSharedLongint;  // for use with WebHubGuardian
+    FMonitorFilespec: string;  // for use with WebHubGuardian
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -59,7 +58,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
-  whConst, webApp, htWebApp, whMacroAffixes, webCore;
+  whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap;
 
 {$R *.DFM}
 
@@ -71,6 +70,8 @@ var
 
 function TDemoExtensions.Init: Boolean;
 {$IFDEF CodeSite}const cFn = 'Init';{$ENDIF}
+var
+  inst: string;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   Result := True;
@@ -85,15 +86,22 @@ begin
 
     {$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
-    if NOT Assigned(tpSharedLongint) then
+    if FMonitorFilespec = '' then
     begin
-      tpSharedLongint := TtpSharedLongint.Create(Self);
-      tpSharedLongint.GlobalName := 'webhubapphandle' + pWebApp.AppProcessID;
-      tpSharedLongint.IgnoreOwnChanges := True;
-      tpSharedLongint.OnChange := tpSharedLongintChange;
-      tpSharedLongint.GlobalValue := GetCurrentProcessId;
-      {$IFDEF CodeSite}CodeSite.Send('TtpSharedLongint GlobalName %s, value %d',
-        [tpSharedLongint.GlobalName, tpSharedLongint.GlobalValue]);{$ENDIF}
+      FMonitorFilespec := GetWHTemp + // e.g. c:\temp\webhub\
+        'ipc\http-' +
+        pWebApp.AppID + '-' +
+        pWebApp.AppProcessID + '.h2i';
+      inst := IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
+
+      // report the combination of instance number and current Process ID
+      // where instance number is critical only if running as service
+      // write as Ansi for compatibility with non-Unicode Delphi
+      StringWriteToFile(FMonitorFilespec,
+        AnsiString(inst + '-' +
+        IntToStr(GetCurrentProcessId)));
+      {$IFDEF CodeSite}CodeSite.Send('Recording Instance #%s, PID %d',
+        [inst, GetCurrentProcessId]);{$ENDIF}
     end;
     {$ENDIF}
 
@@ -116,26 +124,6 @@ begin
       (Request.RemoteAddress = '208.201.252.43'));
 end;
 
-procedure TDemoExtensions.tpSharedLongintChange(Sender: TObject;
-  var Continue: Boolean);
-const cFn = 'tpSharedLongintChange';
-begin
-{$IFNDEF WEBHUBACE}
-  // for use with WebHubGuardian; code needed only for old-ipc
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);
-  CodeSite.Send(TtpSharedLongint(Sender).Name);{$ENDIF}
-  if TtpSharedLongint(Sender).GlobalValue = 0 then
-  begin
-    {The PID of this instance has been memorized by the WebHubGuardian;
-     therefore no need to keep the shared longint running.}
-    {$IFDEF CodeSite}CodeSite.Send('about to free');{$ENDIF}
-    Continue := False;
-    FreeAndNil(tpSharedLongInt);
-  end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-{$ENDIF}
-end;
-
 //------------------------------------------------------------------------------
 
 procedure TDemoExtensions.DemoAppUpdate(Sender: TObject);
@@ -156,14 +144,18 @@ procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
 {$IFDEF CodeSite}const cFn = 'Create';{$ENDIF}
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-  tpSharedLongint := nil; // for use with WebHubGuardian
+  FMonitorFilespec := '';  // for use with WebHubGuardian
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.DataModuleDestroy(Sender: TObject);
 begin
+  if FMonitorFilespec <> '' then
+  begin
+    {$IFDEF Delphi12Up}{$INLINE OFF}{$ENDIF}
+    DeleteFile(FMonitorFilespec);
+  end;
   DemoExtensions := nil;
-  FreeAndNil(tpSharedLongint); // for use with WebHubGuardian
 end;
 
 procedure TDemoExtensions.waVersionInfoExecute(Sender: TObject);
@@ -465,5 +457,5 @@ initialization
   {$IFNDEF UNICODE}
   whConst.isDelphi7UTF8 := True;      // all demos assume UTF-8 encoding
   {$ENDIF}
-  
+
 end.
