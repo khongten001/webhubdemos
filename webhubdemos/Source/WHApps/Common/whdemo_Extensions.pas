@@ -14,7 +14,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ActnList,
-  updateOk, tpAction, tpActionGUI,
+  updateOk, tpAction, tpActionGUI, tpShareI,
   webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
@@ -26,13 +26,16 @@ type
     waLSec: TwhWebAction;
     waDelaySec: TwhWebAction;
     waDemoCaptcha: TwhCaptcha;
+    procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
     procedure waVersionInfoExecute(Sender: TObject);
     procedure waLSecExecute(Sender: TObject);
     procedure waDelaySecExecute(Sender: TObject);
+    procedure tpSharedLongintChange(Sender: TObject; var Continue: Boolean);
   private
     { Private declarations }
+    tpSharedLongint: TtpSharedLongint;  // for use with WebHubGuardian
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -53,6 +56,7 @@ var
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
   whConst, webApp, htWebApp, whMacroAffixes, webCore;
@@ -66,7 +70,9 @@ var
   FlagBeenHere: Boolean = False;
 
 function TDemoExtensions.Init: Boolean;
+{$IFDEF CodeSite}const cFn = 'Init';{$ENDIF}
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   Result := True;
   // make the components in this data module refresh
   // when the app object updates.
@@ -76,6 +82,21 @@ begin
   begin
     AddAppUpdateHandler(DemoAppUpdate);  // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
+
+    {$IFNDEF WEBHUBACE}
+    // for use with WebHubGuardian (old-ipc only)
+    if NOT Assigned(tpSharedLongint) then
+    begin
+      tpSharedLongint := TtpSharedLongint.Create(Self);
+      tpSharedLongint.GlobalName := 'webhubapphandle' + pWebApp.AppProcessID;
+      tpSharedLongint.IgnoreOwnChanges := True;
+      tpSharedLongint.OnChange := tpSharedLongintChange;
+      tpSharedLongint.GlobalValue := GetCurrentProcessId;
+      {$IFDEF CodeSite}CodeSite.Send('TtpSharedLongint GlobalName %s, value %d',
+        [tpSharedLongint.GlobalName, tpSharedLongint.GlobalValue]);{$ENDIF}
+    end;
+    {$ENDIF}
+
     FlagBeenHere := True;
   end;
   pWebApp.OnBadIP := DemoAppBadIP;
@@ -84,6 +105,7 @@ begin
 
   DemoAppUpdate(nil); // do this once, in case the app has already been loaded - likely.
 
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 function TDemoExtensions.IsHREFToolsQATestAgent: Boolean;
@@ -92,6 +114,26 @@ begin
     Result := (SessionID = Security.AdminSessionID) and
       ((Request.UserAgent = 'HREF Tools QA Test Agent') or
       (Request.RemoteAddress = '208.201.252.43'));
+end;
+
+procedure TDemoExtensions.tpSharedLongintChange(Sender: TObject;
+  var Continue: Boolean);
+const cFn = 'tpSharedLongintChange';
+begin
+{$IFNDEF WEBHUBACE}
+  // for use with WebHubGuardian; code needed only for old-ipc
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);
+  CodeSite.Send(TtpSharedLongint(Sender).Name);{$ENDIF}
+  if TtpSharedLongint(Sender).GlobalValue = 0 then
+  begin
+    {The PID of this instance has been memorized by the WebHubGuardian;
+     therefore no need to keep the shared longint running.}
+    {$IFDEF CodeSite}CodeSite.Send('about to free');{$ENDIF}
+    Continue := False;
+    FreeAndNil(tpSharedLongInt);
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$ENDIF}
 end;
 
 //------------------------------------------------------------------------------
@@ -110,9 +152,18 @@ begin
     WebCycle.Refresh;
 end;
 
+procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
+{$IFDEF CodeSite}const cFn = 'Create';{$ENDIF}
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  tpSharedLongint := nil; // for use with WebHubGuardian
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
 procedure TDemoExtensions.DataModuleDestroy(Sender: TObject);
 begin
   DemoExtensions := nil;
+  FreeAndNil(tpSharedLongint); // for use with WebHubGuardian
 end;
 
 procedure TDemoExtensions.waVersionInfoExecute(Sender: TObject);
