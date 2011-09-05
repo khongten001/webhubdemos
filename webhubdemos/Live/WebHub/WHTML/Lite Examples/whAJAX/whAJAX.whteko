@@ -17,15 +17,15 @@
 <html>
 <head>
 	(~drHead~)
-	(~JS|ScriptTag|src="http://webhub.com/js/prototype-1.4.0.js"~)
+	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
-			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
-			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
+			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position="~)
+			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position=" method="post"~)
+			(~AJAXObserver|tagtype="form" id="form2" frequency="|update="showform2" position=" method="post"~)
 			/* changing:start */
-			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position="" method="get" url="(~ACTIONR|gettime2~)"~)
+			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position=" method="get" url="(~ACTIONR|gettime2~)"~)
 			/* changing:stop */
 		}
 		onload = setAJAXEvents
