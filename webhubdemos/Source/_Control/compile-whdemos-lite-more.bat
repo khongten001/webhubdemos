@@ -6,7 +6,7 @@ set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
-DEL D:\Projects\webhubdemos\Live\WebHub\Apps\DServerD1*.exe /q
+DEL D:\Projects\webhubdemos\Live\WebHub\Apps\DServer*.exe /q
 
 cd %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
@@ -15,8 +15,6 @@ cd %droot%\Lite Examples\whAppServer\aserver
 call %cbat% aserver
 
 cd %droot%\Lite Examples\whAppServer\dserver
-
-if %comp3%=="D16" goto DServerContinue01
 
 :: as-service
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32_svc.bat
@@ -29,6 +27,7 @@ call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%.exe
 call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32_nopackages.bat dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%_win32_NoPackages.exe
+if errorlevel 1 pause
 
 cd %droot%\More Examples\whCOM
 call %cbat% whCOM
