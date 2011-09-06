@@ -1,4 +1,7 @@
-set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demoD15.bat
+set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D16) :   
+if %comp3%=="" goto end
+
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
