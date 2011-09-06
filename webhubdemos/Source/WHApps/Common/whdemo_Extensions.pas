@@ -86,6 +86,7 @@ begin
 
     {$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
+    ForceDirectories(GetWHTemp);
     if FMonitorFilespec = '' then
     begin
       FMonitorFilespec := GetWHTemp + // e.g. c:\temp\webhub\
