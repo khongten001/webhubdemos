@@ -56,7 +56,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  DateUtils,
+  DateUtils, Math,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap;
 
@@ -347,9 +347,12 @@ end;
 
 procedure TDemoExtensions.DemoAppNewSession(Sender: TObject;
   InSessionNumber: Cardinal; const Command: string);
+const cFn = 'DemoAppNewSession';
 var
   bNewSessionInURL: Boolean;
   bForceNewSession: Boolean;
+  QueryStringWithoutCommand: string;
+  x: Integer;
 const
   cDomainLevels = 3;  // demos.href.com has 3 levels.
 begin
@@ -373,8 +376,15 @@ begin
       end
       else
       begin
+        // Avoid continuous loops which can occur when sessionid is also
+        // part of the command string, specifically when RejectSession(.., True)
+        // is called and waRSPrior is involved   06-Sep-2011
+        x := Pos(pWebApp.Command, Request.QueryString);
+        QueryStringWithoutCommand := Copy(Request.QueryString, 1,
+          IfThen(x > 0, Pred(x), MaxInt));
+        // Check the query string, avoiding the command portion
         bNewSessionInURL := Pos(IntToStr(InSessionNumber),
-          Request.QueryString) > 0;
+          QueryStringWithoutCommand) > 0;
         if HonorLowerSecurity then
         begin
           // do nothing -- allow the page to run
@@ -398,7 +408,7 @@ begin
       end;
 
       if bForceNewSession then
-        RejectSession(cUnitName + ', WebAppNewSession()', True);
+        RejectSession(cUnitName + ', ' + cFn + '()', True);
     end;
   end;
 end;
