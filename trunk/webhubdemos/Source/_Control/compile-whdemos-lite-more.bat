@@ -1,6 +1,6 @@
+@echo off
 set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D16) :   
 if %comp3%=="" goto end
-
 
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
 set droot=\projects\WebHubDemos\Source\WHApps
@@ -16,11 +16,14 @@ call %cbat% aserver
 
 cd %droot%\Lite Examples\whAppServer\dserver
 
+if %comp3%=="D16" goto DServerContinue01
+
 :: as-service
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32_svc.bat
 call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%svc.exe
 
+:DServerContinue01
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
 call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%.exe
