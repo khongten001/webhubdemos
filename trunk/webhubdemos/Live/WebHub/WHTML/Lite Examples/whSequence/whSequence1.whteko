@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 <whdoc>
 You might be wondering: "where is the code to tell WebHub which page is next?
