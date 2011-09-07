@@ -5,7 +5,7 @@ interface
 uses
    Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
    dmBasic, TpMenu, UpdateOk, tpAction, IniLink, {} DBTables, Db,
-   rbBase, rbDS, rbTable, rbBDE, rbSearch, rbLogic,
+   rbBase, rbDS, rbTable, rbBridge_b_bde, rbSearch, rbLogic,
    rbRank, rbPrgDlg, rbCache, rbMake, rbMatch;
 
 const
