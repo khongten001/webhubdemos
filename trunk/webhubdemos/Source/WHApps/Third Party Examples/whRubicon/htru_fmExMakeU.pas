@@ -18,14 +18,10 @@ interface
 {$I hrefdefines.inc}
 
 uses
-{$IFDEF LINUX}
-  QForms, QControls, QDialogs, QGraphics, QExtCtrls, QStdCtrls,
-{$ELSE}
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
-{$ENDIF}
   SysUtils, Classes,
   toolbar, {}tpCompPanel, utPanFrm, tpMemo, restorer, Tabs, rbPrgDlg, rbBase, rbCache,
-  rbAccept, rbMake, rbDS, rbTable, rbBDE, DB, DBTables, Grids, DBGrids,
+  rbAccept, rbMake, rbDS, rbTable, rbBridge_b_bde, DB, DBTables, Grids, DBGrids,
   DBCtrls;
 
 type
