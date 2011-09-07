@@ -10,7 +10,7 @@ uses
   WdbLink, WdbScan, wbdeGrid, DBTables, TpTable, DB, wbdeSource,
   wbdeForm, UpdateOk, tpAction, WebTypes,   WebLink,
   tpStatus, Toolbar, {}tpCompPanel, rbBase, rbSearch, rbLogic, rbRank,
-  rbDS, rbTable, rbBDE, wdbSSrc;
+  rbDS, rbTable, rbBridge_b_bde, wdbSSrc;
 
 (*
 
