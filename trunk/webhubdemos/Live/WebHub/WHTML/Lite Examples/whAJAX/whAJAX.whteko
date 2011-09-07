@@ -11,13 +11,24 @@
 <!-- placeholder for speedbar -->
 </whdroplet>
 
+<whmacros>
+mcProto14=http://static.webhub.com/js/prototype-1.4.0.js
+mcProto15=http://www.prototypejs.org/assets/2008/1/25/prototype-1.5.1.2.js
+mcProto16=http://prototypejs.org/assets/2009/8/31/prototype.js
+mcProto17=https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js
+mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
+</whmacros>
+
 <whpage pageid="pgEnterHTAJ" desc="Using WebHub with AJAX">
+<whprep>
+(~NOTASSIGNED|protoVers|(~SET|protoVers=14~)~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
 <head>
 	(~drHead~)
-	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
+	(~JS|ScriptTag|src="(~DYNCHUNK|mcProto,(~protoVers~)~)"~)
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
@@ -39,6 +50,14 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<h1>Select Prototype Library to Test</h1>
+<p>Current library: (~protoVers~) from <code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></p>
+(~INPUTFORM|pgEnterHTAJ~)
+Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,4~)
+<input type="submit" value="go" />
+</form>
+
+
 <h1>Three Simple AJAX Examples</h1>
 <h2>1. AJAXEvent</h2>
 <p>Use this command when you require an AJAX update to occur following a Javascript event for a specified HTML element.</p>
