@@ -32,11 +32,11 @@ mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position="~)
-			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position=" method="post"~)
-			(~AJAXObserver|tagtype="form" id="form2" frequency="|update="showform2" position=" method="post"~)
+			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
+			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
+			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
 			/* changing:start */
-			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position=" method="get" url="(~ACTIONR|gettime2~)"~)
+			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position="" method="get" url="(~ACTIONR|gettime2~)"~)
 			/* changing:stop */
 		}
 		onload = setAJAXEvents
@@ -51,7 +51,7 @@ mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Select Prototype Library to Test</h1>
-<p>Current library: (~protoVers~) from <code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></p>
+<p>Current library: <b><code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
 (~INPUTFORM|pgEnterHTAJ~)
 Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,4~)
 <input type="submit" value="go" />
