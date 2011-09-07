@@ -18,6 +18,9 @@
 			<Projects Include="whScanTable\whScanTable.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whFishStore\whFishStore.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
 		<Target Name="whScanTable:Make">
 			<MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whFishStore">
+			<MSBuild Projects="whFishStore\whFishStore.dproj"/>
+		</Target>
+		<Target Name="whFishStore:Clean">
+			<MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whFishStore:Make">
+			<MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable"/>
+			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean"/>
+			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make"/>
+			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
