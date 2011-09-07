@@ -63,7 +63,9 @@ Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
 <h2>1. AJAXEvent</h2>
 <p>Use this command when you require an AJAX update to occur following a Javascript event for a specified HTML element.</p>
 <span class="syntax"><span class="parentil">(~.</span>
-<span class="syntaxcommand">AJAXEvent</span>|tagtype="" id="" event=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+<span class="syntaxcommand">AJAXEvent</span>|tagtype="" id="" event=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span>
+<span class="syntaxoption">|confirm="" before="" after="" condition=""</span>
+<span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
 <p>One example would be partial page content update following the onclick event of an a href tag.</p>
 <p>To show the webserver date and time, (using the onclick event of an a href tag) (~JUMP|gettime1|id="showtime"|Click here~)</p>
 
@@ -73,7 +75,8 @@ Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
 <h2>2. AJAXObserver</h2>
 <p>Use this command to observe all elements within a form or an individual form element and fire an AJAX event at a certain frequency or on a change of value.</p>
 <span class="syntax"><span class="parentil">(~.</span>
-<span class="syntaxcommand">AJAXObserver</span>|tagtype="" id="" frequency=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+<span class="syntaxcommand">AJAXObserver</span>|tagtype="" id="" frequency=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span>
+<span class="syntaxoption">|confirm="" before="" after="" condition=""</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
 Example1: Type something into the input box below. The contents are examined every second and if a change is detected, the form contents are posted to the server and sent back with the time stamp.
 <form id="form1" action="(~ACTION|AjaxObserverText1~)">(~INPUTTEXT|sampletext1~)</form>
 
