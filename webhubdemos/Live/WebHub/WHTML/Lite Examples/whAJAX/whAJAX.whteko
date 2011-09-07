@@ -21,7 +21,7 @@ mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
 
 <whpage pageid="pgEnterHTAJ" desc="Using WebHub with AJAX">
 <whprep>
-(~NOTASSIGNED|protoVers|(~SET|protoVers=14~)~)
+(~NOTASSIGNED|protoVers|(~SET|protoVers=17~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -51,9 +51,10 @@ mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Select Prototype Library to Test</h1>
+<p><i>These examples should work with ALL FOUR libraries.</i></p>
 <p>Current library: <b><code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
 (~INPUTFORM|pgEnterHTAJ~)
-Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,4~)
+Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
 <input type="submit" value="go" />
 </form>
 
@@ -61,7 +62,8 @@ Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,4~)
 <h1>Three Simple AJAX Examples</h1>
 <h2>1. AJAXEvent</h2>
 <p>Use this command when you require an AJAX update to occur following a Javascript event for a specified HTML element.</p>
-<span class="syntax"><span class="parentil">(~.</span><span class="syntaxcommand">AJAXEvent</span>|tagtype=" id =" event="|update=" position=" mode=" evalscripts=" method="  url=" post=" submit=" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+<span class="syntax"><span class="parentil">(~.</span>
+<span class="syntaxcommand">AJAXEvent</span>|tagtype="" id="" event=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
 <p>One example would be partial page content update following the onclick event of an a href tag.</p>
 <p>To show the webserver date and time, (using the onclick event of an a href tag) (~JUMP|gettime1|id="showtime"|Click here~)</p>
 
@@ -70,7 +72,8 @@ Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,4~)
 
 <h2>2. AJAXObserver</h2>
 <p>Use this command to observe all elements within a form or an individual form element and fire an AJAX event at a certain frequency or on a change of value.</p>
-<span class="syntax"><span class="parentil">(~.</span><span class="syntaxcommand">AJAXObserver</span>|tagtype=" id =" frequency="|update=" position=" mode=" evalscripts=" method="  url=" post=" submit=" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
+<span class="syntax"><span class="parentil">(~.</span>
+<span class="syntaxcommand">AJAXObserver</span>|tagtype="" id="" frequency=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span><span class="syntaxoption">|confirm=" before=" after=" condition="</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
 Example1: Type something into the input box below. The contents are examined every second and if a change is detected, the form contents are posted to the server and sent back with the time stamp.
 <form id="form1" action="(~ACTION|AjaxObserverText1~)">(~INPUTTEXT|sampletext1~)</form>
 
@@ -85,7 +88,8 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 <h2>3. AJAXTimedEvent</h2>
 <p>Use this command to create an independent timed event that fires with a specified frequency.  The event can be started and stopped with appropriate events.</p>
-<p>The following is an example of an event that fires every 2 seconds and retrieves the webserver date and time.  The event can be stopped and started with the links below.  (NB: if you click the start link twice, you will need to click stop twice as well.)</p>
+<p>The following is an example of an event that fires every 2 seconds and retrieves the webserver date and time.  
+The event can be stopped and started with the links below.  (NB: if you click the start link twice, you will need to click stop twice as well.)</p>
 <p><a href="#" id="start">Start Time Update</a></p>
 <p><a href="#" id="stop">Stop Time Update</a></p>
 
