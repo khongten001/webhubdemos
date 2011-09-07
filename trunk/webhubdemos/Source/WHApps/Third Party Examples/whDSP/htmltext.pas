@@ -129,7 +129,8 @@ begin
       begin
          TokenStart := P;
          Inc(P);
-         While not (P^ in ['<', #0, #13,#10]) do Inc(P);
+         while not CharInSet(P^, ['<', #0, #13,#10]) do
+           Inc(P);
          SetString(FTokenString, TokenStart, P-TokenStart);
          FToken := etSymbol;
       end;
