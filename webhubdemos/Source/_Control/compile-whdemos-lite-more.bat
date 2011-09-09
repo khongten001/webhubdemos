@@ -13,13 +13,13 @@ d:
 
 DEL D:\Projects\webhubdemos\Live\WebHub\Apps\DServer*.exe /q
 
-cd %droot%\Lite Examples\whAppServer\whLite
+cd "%droot%\Lite Examples\whAppServer\whLite"
 call %cbat% whLite
 
-cd %droot%\Lite Examples\whAppServer\aserver
+cd "%droot%\Lite Examples\whAppServer\aserver"
 call %cbat% aserver
 
-cd %droot%\Lite Examples\whAppServer\dserver
+cd "%droot%\Lite Examples\whAppServer\dserver"
 
 :: as-service
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_svc.bat
