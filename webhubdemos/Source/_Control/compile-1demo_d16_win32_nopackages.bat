@@ -8,7 +8,7 @@ set dcc=%d16%bin\dcc32.exe
 if not exist %dcc% pause
 
 set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL
-set libsearchpath=h:\;h:\dcu_d16_win32;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%d16%\lib\win32\release;
+set libsearchpath="h:\;h:\dcu_d16_win32;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%d16%\lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 set compilerflags=PREVENTSVCMGR;use_IBO;
@@ -24,7 +24,7 @@ ren %1.cfg %1.off
 echo 1demo no-packages d16_win32 %1
 
 @echo on
-%dcc%  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%raizelib% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%raizelib% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause
 
 @echo off
