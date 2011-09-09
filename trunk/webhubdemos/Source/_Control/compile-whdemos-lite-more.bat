@@ -34,8 +34,8 @@ call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_nop
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%_win%bits%_NoPackages.exe
 if errorlevel 1 pause
 
-cd %droot%\More Examples\whCOM
-call %cbat% whCOM
+if %comp3%==D15 cd %droot%\More Examples\whCOM
+if %comp3%==D15 call %cbat% whCOM
 
 cd %droot%\More Examples\whASyncDemo
 call %cbat% whASyncDemo
@@ -48,9 +48,6 @@ call %cbat% whDropdown
 
 cd %droot%\More Examples\whConverter
 call %cbat% whConverter
-
-cd %droot%\More Examples\whDynamicJPEG
-call %cbat% whDynamicJPEG
 
 cd %droot%\More Examples\whOutline
 call %cbat% whOutline
