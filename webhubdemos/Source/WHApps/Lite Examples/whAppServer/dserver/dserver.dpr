@@ -11,6 +11,7 @@ uses
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
+  uCode,
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
@@ -84,10 +85,24 @@ uses
   URLSubs in '..\..\..\..\..\..\..\vcl\thtml9\Package\URLSubs.pas',
 *)
 
+var
+  DemoAppID: string;
+
 begin
   Application.Initialize;
   Application.CreateForm(TDMForDServer, DMForDServer);
-  DMForDServer.SetDemoFacts('adv', 'Lite Examples\whAppServer\dserver', True);
+
+  {$IFDEF PREVENTSVCMGR}
+  if HaveParam('/id') then
+    ParamValue('id', DemoAppID)
+  else
+    DemoAppID := 'adv';
+  {$ELSE}
+  DemoAppID := 'adv';
+  {$ENDIF}
+
+  DMForDServer.SetDemoFacts(DemoAppID, 'Lite Examples\whAppServer\dserver',
+    True);
   DMForDServer.ProjMgr.ManageStartup;
   Application.Run;
 end.
