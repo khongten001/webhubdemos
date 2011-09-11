@@ -47,12 +47,13 @@ implementation
 {$R *.dfm}
 
 uses
-  Forms,
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
-  ucDlgs, ucLogFil,
+  ucDlgs, ucLogFil, ucCodeSiteInterface,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whsample_EvtHandlers,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
+  Forms,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain,
   {$ENDIF}
   dserver_whdmGeneral, whdemo_ColorScheme;
@@ -182,7 +183,8 @@ end;
 procedure TDMForDServer.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  HREFTestLog('error', 'during startup', ErrorText);
+  {$IFDEF CodeSite}CodeSite.SendError(ErrorText);
+  {$ELSE}HREFTestLog('error', 'during startup', ErrorText);{$ENDIF}
 end;
 
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
