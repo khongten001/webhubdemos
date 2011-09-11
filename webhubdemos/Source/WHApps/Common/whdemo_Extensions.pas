@@ -1,26 +1,30 @@
 unit whdemo_Extensions;
-////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1998-2010 HREF Tools Corp.  All Rights Reserved Worldwide.  //
-//                                                                            //
-//  This source code file is part of WebHub v2.10x.  Please obtain a WebHub   //
-//  development license from HREF Tools Corp. before using this file, and     //
-//  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
-////////////////////////////////////////////////////////////////////////////////
+
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 1998-2011 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * development license from HREF Tools Corp. before using this file, and    * }
+{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ ---------------------------------------------------------------------------- }
 
 // This unit must be created AFTER the TwhApplication component exists.
+
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
 
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ActnList,
   updateOk, tpAction, tpActionGUI, tpShareI,
   webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
   TDemoExtensions = class(TDataModule)
-    WebLogin: TwhLogin;
-    WebCycle: TwhCycle;
+    webLogin: TwhLogin;
+    webCycle: TwhCycle;
     waVersionInfo: TwhWebAction;
     waGetExename: TwhWebAction;
     waLSec: TwhWebAction;
@@ -34,7 +38,7 @@ type
     procedure waDelaySecExecute(Sender: TObject);
   private
     { Private declarations }
-    FMonitorFilespec: string;  // for use with WebHubGuardian
+    FMonitorFilespec: string; // for use with WebHubGuardian
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -55,7 +59,7 @@ var
 implementation
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils, Math,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap;
@@ -69,11 +73,12 @@ var
   FlagBeenHere: Boolean = False;
 
 function TDemoExtensions.Init: Boolean;
-{$IFDEF CodeSite}const cFn = 'Init';{$ENDIF}
+{$IFDEF CodeSite}const
+  cFn = 'Init'; {$ENDIF}
 var
   inst: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   Result := True;
   // make the components in this data module refresh
   // when the app object updates.
@@ -81,51 +86,48 @@ begin
 
   if NOT FlagBeenHere then
   begin
-    AddAppUpdateHandler(DemoAppUpdate);  // without this, changes to AppID will not refresh the mail panel.
+    AddAppUpdateHandler(DemoAppUpdate);
+    // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
 
-    {$IFNDEF WEBHUBACE}
+{$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
     ForceDirectories(GetWHTemp);
     if FMonitorFilespec = '' then
     begin
       FMonitorFilespec := GetWHTemp + // e.g. c:\temp\webhub\
-        'ipc\http-' +
-        pWebApp.AppID + '-' +
-        pWebApp.AppProcessID + '.h2i';
+        'ipc\http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
       inst := IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
 
       // report the combination of instance number and current Process ID
       // where instance number is critical only if running as service
       // write as Ansi for compatibility with non-Unicode Delphi
       StringWriteToFile(FMonitorFilespec,
-        AnsiString(inst + '-' +
-        IntToStr(GetCurrentProcessId)));
-      {$IFDEF CodeSite}CodeSite.Send('Recording Instance #%s, PID %d',
-        [inst, GetCurrentProcessId]);{$ENDIF}
+        AnsiString(inst + '-' + IntToStr(GetCurrentProcessId)));
+{$IFDEF CodeSite}CodeSite.Send('Recording Instance #%s, PID %d',
+           [inst, GetCurrentProcessId]); {$ENDIF}
     end;
-    {$ENDIF}
-
+{$ENDIF}
     FlagBeenHere := True;
   end;
   pWebApp.OnBadIP := DemoAppBadIP;
   pWebApp.OnNewSession := DemoAppNewSession;
   pWebApp.OnPageComplete := DemoAppPageComplete;
 
-  DemoAppUpdate(nil); // do this once, in case the app has already been loaded - likely.
+  DemoAppUpdate(nil);
+  // do this once, in case the app has already been loaded - likely.
 
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 function TDemoExtensions.IsHREFToolsQATestAgent: Boolean;
 begin
   with pWebApp do
     Result := (SessionID = Security.AdminSessionID) and
-      ((Request.UserAgent = 'HREF Tools QA Test Agent') or
-      (Request.RemoteAddress = '208.201.252.43'));
+      (Request.UserAgent = 'HREF Tools QA Test Agent');
 end;
 
-//------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------
 
 procedure TDemoExtensions.DemoAppUpdate(Sender: TObject);
 begin
@@ -133,27 +135,28 @@ begin
   // is when this unit is used within the WebHub Editor, which frees
   // them because they are n/a.
   //
-  if assigned(WebLogin) then
+  if Assigned(webLogin) then
     // reload the user list based on the current AppID.
-    WebLogin.Refresh;
-  if assigned(WebCycle) then
+    webLogin.Refresh;
+  if Assigned(webCycle) then
     // reload the cycle list information
-    WebCycle.Refresh;
+    webCycle.Refresh;
 end;
 
 procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
-{$IFDEF CodeSite}const cFn = 'Create';{$ENDIF}
+{$IFDEF CodeSite}const
+  cFn = 'Create'; {$ENDIF}
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-  FMonitorFilespec := '';  // for use with WebHubGuardian
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  FMonitorFilespec := ''; // for use with WebHubGuardian
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDemoExtensions.DataModuleDestroy(Sender: TObject);
 begin
   if FMonitorFilespec <> '' then
   begin
-    {$IFDEF Delphi12Up}{$INLINE OFF}{$ENDIF}
+{$IFDEF Delphi12Up}{$INLINE OFF}{$ENDIF}
     DeleteFile(FMonitorFilespec);
   end;
   DemoExtensions := nil;
@@ -182,6 +185,7 @@ var
     else
       Result := GetVersionString(S);
   end;
+
 begin
   inherited;
   S := (GetVersionInformation(waVersionInfo.HtmlParam));
@@ -189,9 +193,9 @@ begin
     pWebApp.SendStringImm(S)
   else
   begin
-    pWebApp.Debug.AddPageError(Format(
-      '%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
-      [waVersionInfo.Name]) );
+    pWebApp.Debug.AddPageError
+      (Format('%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
+      [waVersionInfo.Name]));
   end;
 end;
 
@@ -218,7 +222,7 @@ var
   temp, temp2: string;
   ASeconds: TwhString;
   NSeconds: Integer;
-  //S8: UTF8String;
+  // S8: UTF8String;
   S16: TwhString;
 
   function MakeOutgoingToken: string;
@@ -233,23 +237,21 @@ begin
     if (Copy(HtmlParam, 1, 3) = 'out') then
     begin
       SplitString(HtmlParam, ',', temp, temp2);
-      ASeconds := WebApp.MoreIfParentild(ASeconds);
+      ASeconds := webApp.MoreIfParentild(ASeconds);
       NSeconds := StrToIntDef(string(ASeconds), 120);
-      S16 := Format('%s.%s',
-        [Name, Code64String(MakeOutgoingToken)]);
-      WebApp.SendStringImm(S16);
+      S16 := Format('%s.%s', [Name, Code64String(MakeOutgoingToken)]);
+      webApp.SendStringImm(S16);
     end
-    else
-    if IsEqual(HtmlParam, 'in') then
+    else if IsEqual(HtmlParam, 'in') then
     begin
-      WebApp.BoolVar['_lowerSecurity'] := False;
+      webApp.BoolVar['_lowerSecurity'] := False;
       // decode
       if Command <> '' then
       begin
         try
           PossibleBypass := UnCode64String(Command);
         except
-          PossibleBypass := '';  // failed decode process
+          PossibleBypass := ''; // failed decode process
         end;
         if pos('ok until ', PossibleBypass) > 0 then
         begin
@@ -264,7 +266,7 @@ begin
             if Now <= CutOff then
             begin
               // grant lower security
-              WebApp.BoolVar['_lowerSecurity'] := True;
+              webApp.BoolVar['_lowerSecurity'] := True;
             end;
           except
           end;
@@ -282,12 +284,13 @@ begin
   Result := False;
   if (pos('waLSec', pWebApp.Command) > 0) then
   begin
-    {This can be set by waLSec web action, in WebHub Demos.}
+    { This can be set by waLSec web action, in WebHub Demos. }
     pWebApp.Expand(MacroStart + 'waLSec.execute|in' + MacroEnd);
     if pWebApp.BoolVar['_LowerSecurity'] then
     begin
-      pWebApp.StringVar['_BypassAllowed'] := FormatDateTime('dddd hh:nn:ss:zzz', Now);
-      pWebApp.BoolVar['_LowerSecurity'] := False;  // immediately reset
+      pWebApp.StringVar['_BypassAllowed'] :=
+        FormatDateTime('dddd hh:nn:ss:zzz', Now);
+      pWebApp.BoolVar['_LowerSecurity'] := False; // immediately reset
       Result := True;
     end;
   end;
@@ -305,16 +308,16 @@ procedure TDemoExtensions.DemoAppBadIP(Sender: TwhRespondingApp;
   It is false by default. }
 begin
   inherited;
-  //bContinue defaults to false and will produce a fixed-format error
-  //message unless we reset it here. Resetting the value also allows
-  //us to provide a custom message.
+  // bContinue defaults to false and will produce a fixed-format error
+  // message unless we reset it here. Resetting the value also allows
+  // us to provide a custom message.
   bContinue := True;
   if IsHREFToolsQATestAgent then
     Exit;
 
   with Sender, Request do
   begin
-    //determine the domain
+    // determine the domain
     if PosCI(ExtractParentDomain(Request.Host) + '.', Referer) > 0 then
       { The surfer's IP changed and the referer includes the domain
         of this server. let it go by!
@@ -336,7 +339,8 @@ begin
       Exit;
     end;
 
-    if HonorLowerSecurity then Exit;
+    if HonorLowerSecurity then
+      Exit;
 
     if Situations.ChangedIPPageID <> '' then
       PageID := Situations.ChangedIPPageID;
@@ -344,20 +348,21 @@ begin
   end;
 end;
 
-
 procedure TDemoExtensions.DemoAppNewSession(Sender: TObject;
   InSessionNumber: Cardinal; const Command: string);
-const cFn = 'DemoAppNewSession';
+const
+  cFn = 'DemoAppNewSession';
 var
   bNewSessionInURL: Boolean;
   bForceNewSession: Boolean;
   QueryStringWithoutCommand: string;
   x: Integer;
 const
-  cDomainLevels = 3;  // demos.href.com has 3 levels.
+  cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
   inherited;
-  if InSessionNumber = 0 then Exit;
+  if InSessionNumber = 0 then
+    Exit;
 
   if Assigned(pWebApp) and pWebApp.IsUpdated then
   begin
@@ -366,7 +371,7 @@ begin
       if IsHREFToolsQATestAgent then
         Exit;
 
-      //implement new-session security.
+      // implement new-session security.
       bForceNewSession := False;
 
       if IsWebRobotRequest then
@@ -379,11 +384,11 @@ begin
         // Avoid continuous loops which can occur when sessionid is also
         // part of the command string, specifically when RejectSession(.., True)
         // is called and waRSPrior is involved   06-Sep-2011
-        x := Pos(pWebApp.Command, Request.QueryString);
+        x := pos(pWebApp.Command, Request.QueryString);
         QueryStringWithoutCommand := Copy(Request.QueryString, 1,
           IfThen(x > 0, Pred(x), MaxInt));
         // Check the query string, avoiding the command portion
-        bNewSessionInURL := Pos(IntToStr(InSessionNumber),
+        bNewSessionInURL := pos(IntToStr(InSessionNumber),
           QueryStringWithoutCommand) > 0;
         if HonorLowerSecurity then
         begin
@@ -391,12 +396,12 @@ begin
         end
         else
         begin
-        if bNewSessionInURL then
+          if bNewSessionInURL then
           begin
-            {user comes in from a bookmark or a search engine}
-            bForceNewSession := (posci(
-              ExtractParentDomain(Request.Host, cDomainLevels),
-              Request.Referer)=0);
+            { user comes in from a bookmark or a search engine }
+            bForceNewSession :=
+              (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
+              Request.Referer) = 0);
           end
           else
           begin
@@ -425,7 +430,7 @@ begin
   if IsHREFToolsQATestAgent and
     (Sender.SessionID = pWebApp.Security.AdminSessionID) then
   begin
-    {archive page content for functionality test sequences}
+    { archive page content for functionality test sequences }
     S := pWebApp.Request.Headers.Values['X-Selenium-PageCount'];
     if S <> '' then
       TestNumber := StrToIntDef(S, 1)
@@ -433,8 +438,8 @@ begin
       Inc(TestNumber);
 
     AFolder := Format('D:\Projects\webhubdemos\Live\WebRoot\webhub\%s\%s\%s%s\',
-      ['echoqa', FormatDateTime('yyyymmdd', now), Sender.AppID,
-       Sender.CentralInfo.PascalCompilerCode]);
+      ['echoqa', FormatDateTime('yyyymmdd', Now), Sender.AppID,
+      Sender.CentralInfo.PascalCompilerCode]);
     ForceDirectories(AFolder);
     AFilename := Format('test%d.txt', [TestNumber]);
     UTF8StringWriteToFile(AFolder + AFilename, PageContent);
@@ -448,12 +453,11 @@ begin
   begin
     if IsEqual(Sender.AppID, 'showcase') and (NOT IsHREFToolsQATestAgent) then
     begin
-      {do not allow blank referer within the showcase demo unless on the
-       home page}
+      { do not allow blank referer within the showcase demo unless on the
+        home page }
       if (Sender.Request.Referer = '') and
-       (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
-       (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) 
-      then
+        (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
+        (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) then
       begin
         if NOT HonorLowerSecurity then
         begin
@@ -465,8 +469,9 @@ begin
 end;
 
 initialization
-  {$IFNDEF UNICODE}
-  whConst.isDelphi7UTF8 := True;      // all demos assume UTF-8 encoding
-  {$ENDIF}
+
+{$IFNDEF UNICODE}
+  whConst.isDelphi7UTF8 := True; // all demos assume UTF-8 encoding
+{$ENDIF}
 
 end.
