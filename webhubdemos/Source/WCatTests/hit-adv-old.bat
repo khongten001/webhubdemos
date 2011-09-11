@@ -4,12 +4,12 @@ net stop w3svc
 net stop hub
 
 del D:\temp\whSessions\*.var
-del C:\temp\whTemp\ipc\*.*
+del C:\temp\whTemp\ipc\*.* /q
 
 net start w3svc
 net start hub
 
-echo Start DServer X instances now
+echo Start DServer instances now
 pause
 
 cd /d D:\Apps\Microsoft\wcat
