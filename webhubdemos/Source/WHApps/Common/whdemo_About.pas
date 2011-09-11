@@ -32,14 +32,10 @@ type
     LabelAbout: TLabel;
     Panel2: TPanel;
     Panel4: TPanel;
-    tpToolBar1: TtpToolBar;
-    btnToggleConnection: TtpToolButton;
-    tpComponentPanel1: TtpComponentPanel;
     ActionList1: TActionList;
     ActionToggleConnection: TAction;
     GroupBoxWHXP: TGroupBox;
     ActionShowConnectionDetail: TAction;
-    tpToolButton1: TtpToolButton;
     Splitter1: TSplitter;
     Panel5: TPanel;
     Panel6: TPanel;
@@ -48,9 +44,13 @@ type
     LabelAboutCPU: TLabel;
     LabelAboutHarry: TLabel;
     LabelAboutCompiler: TLabel;
+    Timer1: TTimer;
     procedure LabelURLClick(Sender: TObject);
     procedure ActionToggleConnectionExecute(Sender: TObject);
     procedure ActionShowConnectionDetailExecute(Sender: TObject);
+    procedure LabelAboutHarryClick(Sender: TObject);
+    procedure Timer1Timer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -122,27 +122,36 @@ begin
   ActionShowConnectionDetailExecute(Self);
 end;
 
+procedure TfmAppAboutPanel.Timer1Timer(Sender: TObject);
+begin
+  inherited;
+  Timer1.Enabled := False;
+  FreeAndNil(pConnection);   // for testing WebHubGuardian
+end;
+
+procedure TfmAppAboutPanel.LabelAboutHarryClick(Sender: TObject);
+begin
+  inherited;
+  ActionToggleConnectionExecute(LabelAboutHarry);
+end;
+
 procedure TfmAppAboutPanel.LabelURLClick(Sender: TObject);
 begin
   inherited;
   with TLabel(Sender) do
-    ucShell.WinShellOpen('http://localhost/scripts/runisa.dll' + Caption);
+    WinShellOpen('http://localhost/scripts/runisa.dll' + Caption);
 end;
 
 procedure TfmAppAboutPanel.ActionToggleConnectionExecute(Sender: TObject);
 begin
   inherited;
-// off, WebHub v2.132, 24-Nov-2010
-//  if (NOT Assigned(pConnection)) or (NOT pConnection.IsUpdated) then
-//    Exit;
 
-  with btnToggleConnection do
-  begin
     if IsEqual(Caption, 'suspend') then
     begin
       //pConnection.Active := False;  // off, WebHub v2.132, 24-Nov-2010
       FreeAndNil(pConnection);        // alternative
       Caption := 'Resume';
+      LabelAboutHarry.Caption := 'Connect to Hub = False';
     end
     else
     begin
@@ -150,7 +159,6 @@ begin
       pWebApp.Refresh;               // alternative
       Caption := 'Suspend';
     end;
-  end;
 
 end;
 
@@ -198,6 +206,14 @@ destructor TfmAppAboutPanel.Destroy;
 begin
   inherited;
   fmAppAboutPanel := nil;
+end;
+
+procedure TfmAppAboutPanel.FormCreate(Sender: TObject);
+begin
+  inherited;
+  // Timer1 is a placeholder for testing WebHubGuardian with services
+  // It is not ordinarily required at all.
+  FreeAndNil(Timer1);
 end;
 
 end.
