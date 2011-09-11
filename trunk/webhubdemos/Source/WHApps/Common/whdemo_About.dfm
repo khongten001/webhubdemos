@@ -1,14 +1,19 @@
 inherited fmAppAboutPanel: TfmAppAboutPanel
   Left = 386
   Top = 197
-  Width = 624
-  Height = 317
   Caption = '&About'
+  ClientHeight = 272
+  ClientWidth = 606
+  OnCreate = FormCreate
+  ExplicitWidth = 624
+  ExplicitHeight = 317
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
     Width = 606
     Height = 272
+    ExplicitWidth = 606
+    ExplicitHeight = 272
     object Panel1: TPanel
       Left = 225
       Top = 5
@@ -49,6 +54,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         Font.Name = 'MS Sans Serif'
         Font.Style = [fsBold]
         ParentFont = False
+        ExplicitWidth = 125
       end
       object LabelQueryString: TLabel
         Left = 5
@@ -67,6 +73,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         ParentShowHint = False
         ShowHint = False
         OnClick = LabelURLClick
+        ExplicitWidth = 75
       end
       object Label3: TLabel
         Left = 5
@@ -81,6 +88,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 164
       end
       object Label4: TLabel
         Left = 5
@@ -95,6 +103,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         ParentFont = False
+        ExplicitWidth = 95
       end
       object LabelAbout: TLabel
         Left = 5
@@ -113,6 +122,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
         ParentShowHint = False
         ShowHint = False
         OnClick = LabelURLClick
+        ExplicitWidth = 75
       end
       object Panel3: TPanel
         Left = 5
@@ -203,6 +213,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Font.Style = []
           ParentFont = False
           WordWrap = True
+          ExplicitWidth = 154
         end
         object LabelDllCalls: TLabel
           Left = 0
@@ -217,6 +228,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 108
         end
         object LabelAboutCPU: TLabel
           Left = 0
@@ -231,6 +243,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 128
         end
         object LabelAboutHarry: TLabel
           Left = 0
@@ -245,6 +258,8 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
+          OnClick = LabelAboutHarryClick
+          ExplicitWidth = 141
         end
         object LabelAboutCompiler: TLabel
           Left = 0
@@ -259,6 +274,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Font.Name = 'Lucida Sans Unicode'
           Font.Style = []
           ParentFont = False
+          ExplicitWidth = 172
         end
       end
     end
@@ -274,5 +290,11 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
       Caption = 'Show Connection Detail'
       OnExecute = ActionShowConnectionDetailExecute
     end
+  end
+  object Timer1: TTimer
+    Interval = 10000
+    OnTimer = Timer1Timer
+    Left = 160
+    Top = 128
   end
 end
