@@ -1,6 +1,10 @@
 setlocal
 @echo off
 
+::delete the session data for the quality-assurance test run
+del c:\temp\whSessions\1204.var
+del d:\temp\whSessions\1204.var
+
 ::change to folder containing this bat file
 cd %~dp0
 
@@ -13,8 +17,8 @@ echo Demo params: %demoparams%
 
 set /P isdebug=Debug version? (Y/N) :  
 if "%isdebug%"=="" goto end
-if "%isdebug%"=="Y" set exename=DServer_x_d15_win32_debug.exe
-if "%isdebug%"=="N" set exename=DServer_x_d15_win32.exe
+if "%isdebug%"=="Y" set exename=DServer_x_d16_win32_debug.exe
+if "%isdebug%"=="N" set exename=DServer_x_d16_win32.exe
 
 echo %exename%
 
