@@ -9,7 +9,7 @@ if not exist %dcc% pause
 ::set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL
 set libsearchpath="h:\;h:\dcu_d16_win32;h:\pkg_d16_win32;%raizelib%;%d16%\lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
-set pkg="vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;"
+set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
 set compilerflags=
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
