@@ -25,8 +25,8 @@ cd %droot%\DB Examples\whQuery4
 call %cbat% whQuery4
 
 ::whSchedule uses IBObjects 
-cd %droot%\DB Examples\whSchedule
-call %cbat% whSchedule
+::cd %droot%\DB Examples\whSchedule
+::::call %cbat% whSchedule
 
 cd %droot%\DB Examples\whFishStore
 call %cbat% whFishStore
