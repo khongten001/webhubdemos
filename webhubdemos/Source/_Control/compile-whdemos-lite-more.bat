@@ -61,7 +61,7 @@ cd %droot%\More Examples\whSendmail
 call %cbat% whSendmail
 
 cd %droot%\More Examples\whStopspam
-call d:\projects\compile-1demo_%comp3%_win%bits%_svc.bat whStopspam
+call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_svc.bat whStopspam
 
 cd %droot%\More Examples\whText2Table
 call %cbat% whText2Table
