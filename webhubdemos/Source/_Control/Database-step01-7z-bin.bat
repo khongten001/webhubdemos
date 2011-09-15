@@ -11,6 +11,7 @@ del Database-Library-bin.7z
 
 set t=Database-bin.7z
 
+d:\Apps\Utilities\7Zip\7z.exe a %t% whLite.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whClone.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whQuery*.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whInstantForm.exe
