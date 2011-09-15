@@ -1,4 +1,6 @@
 @echo off
+if NOT "%comp3%%bits%"=="" goto DServerContinue00
+
 set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D16) :   
 if %comp3%=="" goto end
 if %comp3%==D15 set bits=32
