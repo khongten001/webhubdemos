@@ -15,9 +15,6 @@ copy webhubadmin_newipc.exe WebHubAdmin.exe
 cd whRunner
 copy runisa_newipc.dll runisa.dll
 
-net start hub
-net start w3svc
-
 cd /d %~dp0
 cd ..\WebHub\Apps
 
@@ -31,3 +28,10 @@ if errorlevel 1 pause
 cd /d D:\AppsData\ZaphodsMap\HREFTools\Install
 copy ZMKeybox-newipc.xml ZMKeybox.xml
 
+net start hub
+d:\Apps\HREFTools\MiscUtil\wait.exe 10
+
+cd /d %~dp0
+call run-lite.demos.bat
+
+net start w3svc
