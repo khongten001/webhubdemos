@@ -12,7 +12,7 @@ if NOT %flagdemosdb%==yes goto end
 set covermin=90
 set coverreason="testing selected database demos; if you need to see this one, please contact techsupport"
 
-set demodbhtml=yes
+set demodbhtml=no
 set demodsp=yes
 set demofire=no
 set demohtcl=no
