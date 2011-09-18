@@ -32,6 +32,6 @@ net start hub
 d:\Apps\HREFTools\MiscUtil\wait.exe 10
 
 cd /d %~dp0
-call run-lite.demos.bat
+call run-lite-demos.bat
 
 net start w3svc
