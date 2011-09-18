@@ -24,8 +24,8 @@ Download:
 <table id="DSPAdvertisement" border="1" cellpadding="6">
 <tr>
 <td bgcolor="lightcyan">
-<strong>Support the DSP Search Engine! Host your web site and email with HREF Tools Corp.</strong><br />
-If you are having any trouble whatsoever with your current web site host, 
+<strong>Support the DSP Search Engine! Host your Firebird SQL database with HREF Tools Corp.</strong><br />
+If you are having any trouble whatsoever with your current hosting partner, 
 please check with us, we have hosting customers who have stayed since 1995.
 We would love to have your business, and we will try to match any price deals 
 that you are currently enjoying.
@@ -54,8 +54,8 @@ Product Summary Page:
 <td bgcolor="darkseagreen">
 <strong>Convert old binary Delphi form files (*.dfm) to plain text</strong><br />
 &nbsp;<br />
-DFMConverter.exe is a standalone program which prompts for a Delphi project (DPR) whose *.dfm files you want converted, or for a path containing *.dfm files. Backups are optional. The wizard-style user interface endeavors to be very clear; operation takes only a few seconds. Once your files are in plain-text format, you can quickly refactor them using standard search &amp; replace tools.   (Release as shareware -- $2.00 -- by donation -- no timeouts.  Source available upon request.)
-<a href="http://www.href.com/pub/sw/DFMConverter.zip">Download DFMConverter.zip</a>
+DFMConverter.exe is a standalone program which prompts for a Delphi project (DPR) whose *.dfm files you want converted, or for a path containing *.dfm files. Backups are optional. The wizard-style user interface endeavors to be very clear; operation takes only a few seconds. Once your files are in plain-text format, you can quickly refactor them using standard search &amp; replace tools.   (Released as shareware -- $2.00 -- by donation -- no timeouts.  Source available upon request.)
+<a href="http://cc.embarcadero.com/Item/24063">Download from Code Central</a>
 </td></tr></table>
 </whdroplet>
 
