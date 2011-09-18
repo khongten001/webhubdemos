@@ -7,6 +7,7 @@ rem wait until all WebHub EXEs have closed
 pause
 
 net stop hub
+d:\Apps\HREFTools\MiscUtil\wait.exe 10
 
 copy hub_oldipc.exe hub.exe
 copy webhubadmin_oldipc.exe WebHubAdmin.exe

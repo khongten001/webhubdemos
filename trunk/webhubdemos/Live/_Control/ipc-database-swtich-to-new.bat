@@ -3,10 +3,11 @@ cd /d d:\Apps\HREFTools\WebHub\bin
 ShutdownWHApps.exe
 net stop w3svc
 
-rem wait until all WebHub EXEs have closed
+rem wait until all WebHub EXEs (including WebHubAdmin) have closed
 pause
 
 net stop hub
+d:\Apps\HREFTools\MiscUtil\wait.exe 10
 
 copy hub_d16_win32_debug_newipc.exe hub.exe
 copy webhubadmin_newipc.exe WebHubAdmin.exe
