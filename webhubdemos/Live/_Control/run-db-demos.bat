@@ -79,7 +79,7 @@ d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq4 /minutes=9999999
 ::08Jan2011 OFF code is a complete mess start whScanTable.exe  
 ::Missing dbExpress driver named 'Firebird' ???
 ::08Jan2011 OFF d:\Apps\HREFTools\miscutil\wait.exe 12
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=scan /minutes=9999999 /reason="disabled; demo needs complete upgrade off BDE"
+d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=scan /minutes=9999999 /reason="disabled; demo needs complete upgrade away from BDE"
 
 if %demoshop1%==yes start whShopping.exe  
 if %demoshop1%==yes d:\Apps\HREFTools\miscutil\wait.exe 12

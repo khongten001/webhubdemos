@@ -8,7 +8,7 @@ pause
 
 net stop hub
 
-copy hub_d15_win32_debug_newipc.exe hub.exe
+copy hub_d16_win32_debug_newipc.exe hub.exe
 copy webhubadmin_newipc.exe WebHubAdmin.exe
 
 cd whRunner
