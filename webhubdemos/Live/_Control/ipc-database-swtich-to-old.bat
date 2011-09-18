@@ -16,7 +16,6 @@ cd whRunner
 copy runisa_oldipc.dll runisa.dll
 
 net start hub
-net start w3svc
 
 cd /d %~dp0
 cd ..\WebHub\Apps
@@ -31,3 +30,8 @@ if errorlevel 1 pause
 cd /d D:\AppsData\ZaphodsMap\HREFTools\Install
 copy ZMKeybox-oldipc.xml ZMKeybox.xml
 
+cd /d %~dp0
+call run-lite-demos.bat
+call run-db-demos.bat
+
+net start w3svc
