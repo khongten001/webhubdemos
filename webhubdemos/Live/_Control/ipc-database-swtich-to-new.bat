@@ -3,7 +3,7 @@ cd /d d:\Apps\HREFTools\WebHub\bin
 ShutdownWHApps.exe
 net stop w3svc
 
-rem wait until all WebHub EXEs (including WebHubAdmin) have closed
+rem wait until all WebHub EXEs including WebHubAdmin have closed
 pause
 
 net stop hub
