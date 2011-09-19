@@ -128,6 +128,7 @@ begin
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
   dmwhGeneral.Init;  {see also: TdmwhGeneral.WebAppUpdate}
+  DemoExtensions.Init;
   DataModuleColorScheme.Init;
   //pConnection.onBadPageID := nil;
 end;
