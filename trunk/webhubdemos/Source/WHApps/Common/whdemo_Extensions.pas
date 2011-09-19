@@ -75,8 +75,7 @@ var
 function TDemoExtensions.Init: Boolean;
 {$IFDEF CodeSite}const
   cFn = 'Init'; {$ENDIF}
-var
-  inst: string;
+{$IFNDEF WEBHUBACE}var inst: string;{$ENDIF}
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   Result := True;
