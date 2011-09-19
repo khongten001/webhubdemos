@@ -16,12 +16,12 @@
 	<div align="center">
 	<img src="http://demos.href.com/webhub/demos/whOptions/fast/whlogo.jpg" alt="WebHub logo" />
 
-	<h2>(~SITUATIONTEXT~)</h2>
+	<h2>closed</h2>
 	</div>
 <p><i>(~NOWGMT~)</i></p>
 
 <p><b>The application (&quot;(~APPID~)&quot;) that you have requested has been intentionally covered.</b>
-It will not serve pages until the administrator restores regular access.</p>
+It will not serve pages until/unless the webmaster restores regular access.</p>
 
 <p>Here are the facts concerning this situation:</p>
 <ul>
@@ -30,11 +30,9 @@ It will not serve pages until the administrator restores regular access.</p>
 <li> <span style="background-color:yellow;">Reason: (~REASON~)</span></li>
 </ul>
 
-<p><a href="(~WHERE~)">Click here to try again.</a></p>
-
-<h2>Reporting Problems to the Site Administrator</h2>
-<p>If you suspect a problem with this site, report the following to the administrator using the 
-contact link below.</p>
+<h3>Reporting Problems to the Site Administrator</h3>
+<p>If you suspect a problem with this site, you can help us by reporting the following details to the webmaster using the 
+<a href="http://www.href.com/contact">contact</a> form.</p>
 <ul>
 <li> AppID (~APPID~)</li>
 <li> Situation code &quot;(~SITUATION~)&quot; </li>
