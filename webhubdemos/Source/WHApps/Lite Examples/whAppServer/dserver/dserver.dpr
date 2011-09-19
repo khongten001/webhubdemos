@@ -101,7 +101,7 @@ begin
   DemoAppID := 'adv';
   {$ENDIF}
 
-  DMForDServer.SetDemoFacts(DemoAppID, 'Lite Examples\whAppServer\dserver',
+  DMForDServer.SetDemoFacts(DemoAppID, 'Lite Examples\whAppServer',
     True);
   DMForDServer.ProjMgr.ManageStartup;
   Application.Run;
