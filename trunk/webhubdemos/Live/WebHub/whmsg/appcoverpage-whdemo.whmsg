@@ -27,7 +27,7 @@ It will not serve pages until the administrator restores regular access.</p>
 <ul>
 <li> <span style="background-color:yellow;">Maintenance started: (~COVEREDONAT~)</span></li>
 <li> <span style="background-color:yellow;">Expected Down-Time: (~EXPECTEDMINUTES~) </span></li>
-<li> Reason: (~REASON~)</li>
+<li> <span style="background-color:yellow;">Reason: (~REASON~)</span></li>
 </ul>
 
 <p><a href="(~WHERE~)">Click here to try again.</a></p>
@@ -38,7 +38,6 @@ contact link below.</p>
 <ul>
 <li> AppID (~APPID~)</li>
 <li> Situation code &quot;(~SITUATION~)&quot; </li>
-<li> URL &quot;(~WHERE~)&quot;</li>
 </ul>
 
 <p>Thank you.</p>
