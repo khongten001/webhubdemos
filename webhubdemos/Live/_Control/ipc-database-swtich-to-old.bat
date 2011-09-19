@@ -34,4 +34,6 @@ cd /d %~dp0
 call run-lite-demos.bat
 call run-db-demos.bat
 
+copy D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com_oldipc.cfg D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg 
+
 net start w3svc
