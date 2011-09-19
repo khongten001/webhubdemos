@@ -9,7 +9,7 @@ pause
 net stop hub
 d:\Apps\HREFTools\MiscUtil\wait.exe 10
 
-copy hub_d16_win32_debug_newipc.exe hub.exe
+copy hub_newipc.exe hub.exe
 copy webhubadmin_newipc.exe WebHubAdmin.exe
 
 cd whRunner
