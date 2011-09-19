@@ -2,7 +2,7 @@
 		<PropertyGroup>
 			<ProjectGuid>{E80CA4D2-2C64-4A05-B2A6-095905C8D294}</ProjectGuid>
 			<MainSource>dserver.dpr</MainSource>
-			<Config Condition="'$(Config)'==''">Debug</Config>
+			<Config Condition="'$(Config)'==''">NewIPCFromSource</Config>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.3</ProjectVersion>
 			<Base>True</Base>
@@ -23,13 +23,13 @@
 			<CfgParent>Base</CfgParent>
 			<Base>true</Base>
 		</PropertyGroup>
-		<PropertyGroup Condition="'$(Config)'=='NewIPC' or '$(Cfg_3)'!=''">
+		<PropertyGroup Condition="'$(Config)'=='NewIPCFromSource' or '$(Cfg_3)'!=''">
 			<Cfg_3>true</Cfg_3>
 			<CfgParent>Base</CfgParent>
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_UnitSearchPath>K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL;h:\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+			<DCC_UnitSearchPath>K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL;K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_MapFile>3</DCC_MapFile>
 			<DCC_UsePackage>vcl;rtl;vclx;dbrtl;ldiRegExD15;vclactnband;vcldb</DCC_UsePackage>
@@ -59,7 +59,7 @@
 			<DCC_IntegerOverflowCheck>true</DCC_IntegerOverflowCheck>
 			<DCC_RangeChecking>true</DCC_RangeChecking>
 			<DCC_DebugInfoInExe>true</DCC_DebugInfoInExe>
-			<DCC_Define>WEBHUBACE;PREVENTSVCMGR;CodeSite;LOGIPC;LOGTEKOREADx;EUREKALOG;EUREKALOG_VER6;$(DCC_Define)</DCC_Define>
+			<DCC_Define>WEBHUBACE;PREVENTSVCMGR;CodeSite;LOGIPC;LOGTEKOREADx;$(DCC_Define)</DCC_Define>
 		</PropertyGroup>
 		<ItemGroup>
 			<DelphiCompile Include="dserver.dpr">
@@ -107,7 +107,7 @@
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
 			</BuildConfiguration>
-			<BuildConfiguration Include="NewIPC">
+			<BuildConfiguration Include="NewIPCFromSource">
 				<Key>Cfg_3</Key>
 				<CfgParent>Base</CfgParent>
 			</BuildConfiguration>
@@ -138,7 +138,7 @@
 						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">87</VersionInfo>
+						<VersionInfo Name="Build">89</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -150,7 +150,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">WebHub Application Server for use with Dreamweaver</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">2.0.0.87</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.89</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
