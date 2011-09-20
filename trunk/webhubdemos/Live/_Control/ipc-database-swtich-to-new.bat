@@ -3,6 +3,8 @@ cd /d d:\Apps\HREFTools\WebHub\bin
 ShutdownWHApps.exe
 net stop w3svc
 
+del D:\AppsData\WebHub\WHTemp\ipc\*.* /q
+
 rem wait until all WebHub EXEs including WebHubAdmin have closed
 pause
 
