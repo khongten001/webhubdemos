@@ -14,11 +14,11 @@ set coverreason="testing selected database demos; if you need to see this one, p
 
 set demodbhtml=yes
 set demodsp=yes
-set demofire=yes
+set demofire=no
 set demohtcl=no
-set demohtfm=yes
+set demohtfm=no
 set demohtfs=yes
-set demojpeg=yes
+set demojpeg=no
 set demoshop1=no
 
 d:
