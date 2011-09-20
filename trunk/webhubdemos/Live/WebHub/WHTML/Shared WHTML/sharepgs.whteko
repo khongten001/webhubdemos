@@ -82,7 +82,7 @@
 ~)
 </whdroplet>
 
-<whdroplet name="drLinkToAllDemos" show="yes">
+<whdroplet name="drLinkToAllDemos" show="no">
 <!--- special processing for the DEMOS demo which runs on multiple domains -->
 (~MATCH|(~Request.Host~)!lite.demos|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)!more.demos|<a href="http://more.demos.href.com/demos:pgEnterMoreDemos:(~SessionID~)">more.demos.href.com</a>~)
