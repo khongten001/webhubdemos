@@ -4,12 +4,18 @@ set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D16) :
 if %comp3%=="" goto end
 
 :Continue00
+set droot=d:\projects\WebHubDemos\Source\WHApps
+if "%demonopackages%"=="yes" goto Continue01
 set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
-set droot=\projects\WebHubDemos\Source\WHApps
-d:
+goto Continue02
 
+:Continue01
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_d15_win32_nopackages.bat
+
+
+:Continue02
 :: need DEMOS app even on DB server
-cd %droot%\Lite Examples\whAppServer\whLite
+cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
 
 del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q
