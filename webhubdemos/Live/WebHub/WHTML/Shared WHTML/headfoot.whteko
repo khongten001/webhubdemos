@@ -77,7 +77,7 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <!--- Except on the generic pages -->
 (~NOMATCH|(~pageid~)[pgWelcome,pgSetup,pgDownload,ViewFiles,VIEWDELPHIFILE,SetPref,SetPref2|
 <!--- link in a navigation/speedbar -->
-  (~drLinkToDemoEntrance~)<br/>
+  (~drHideToDemoEntrance~)<br/>
   (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
 ~)
 </div>
@@ -109,10 +109,8 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <div class="whDemoSectionNav" style="border-color: tan;">
 <div class="navWebHubDemos">
 view links to all demos on
-<!--- link to public demos server if we're not running there already -->
-(~NOMATCH|href.com[(~Request.Host~)|<a href="http://lite.demos.href.com">lite.demos.href.com</a> or ~)
-<!--- link to local copy of the demos demo. -->
-(~JUMP|demos:pgEnterDemos,#(~AppID~)|(~Request.Host~)~) <br />
+<!--- link to public demos server -->
+(~drLinkToAllDemos~)<br />
 lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
