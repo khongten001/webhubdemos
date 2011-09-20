@@ -1,9 +1,10 @@
-REM Make sure server is ready
+set whserver=192.168.42.3
+:: .2 is virtualbox
+
+REM Make sure hub and apps are running on %whserver% 
 pause
 
-cd /d D:\Apps\Microsoft\wcat
-
-wcat.wsf -terminate -run -s 192.168.42.2 -t D:\Projects\webhubdemos\Source\WCatTests\demo-x-adv.ubr -f D:\Projects\webhubdemos\Source\WCatTests\settings.ubr -singleip -x 
+D:\Apps\Microsoft\wcat\wcat.wsf -terminate -run -s %whserver% -t demo-x-adv.ubr -f settings.ubr -singleip -x 
 
 pause
 
