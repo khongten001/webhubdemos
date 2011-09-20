@@ -9,6 +9,10 @@ d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=demos /minutes=10 "/r
 cd /d %~dp0
 cd ..\WebHub\Apps
 
+ren WHIgnoreChanging.exe WHIgnoreChanging.save
+del wh*.exe
+ren WHIgnoreChanging.save WHIgnoreChanging.exe
+
 d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z
 if errorlevel 1 pause
 

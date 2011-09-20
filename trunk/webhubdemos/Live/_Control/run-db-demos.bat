@@ -10,42 +10,12 @@ echo flagdemosdb is %flagdemosdb%
 if NOT %flagdemosdb%==yes goto end
 
 
-call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
+cd /d %~dp0
+call .\select-db-demos.bat
 
-echo .
-echo ***
-echo ipc is %whipc%
-echo ***
-echo .
 
 set covermin=90
 set coverreason="testing selected database demos; if you need to see this one, please contact techsupport"
-
-if "%whipc%"=="old" set demodbhtml=yes
-if "%whipc%"=="x"    set demodbhtml=no
-
-set demodsp=yes
-
-if "%whipc%"=="old" set demofire=yes
-if "%whipc%"=="x"    set demofire=no
-
-if "%whipc%"=="old" set demohtcl=yes
-if "%whipc%"=="x"    set demohtcl=no
-
-if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"    set demohtfm=no
-
-set demohtfs=yes
-
-:: not enough memory on APATE server for jpeg demo (BDE error)
-:: 20-Sep-2011
-if "%whipc%"=="old" set demojpeg=no
-if "%whipc%"=="x"    set demojpeg=no
-
-if "%whipc%"=="old" set demoshop1=yes
-if "%whipc%"=="x"    set demoshop1=no
-
-set demostore000=no
 
 cd /d %~dp0
 cd ..\WebHub\Apps
