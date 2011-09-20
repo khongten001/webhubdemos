@@ -110,7 +110,7 @@ final example,  (~JUMP|BRAND,a/b/PageB.htm| Scenario #7!!~)</p>
 mcBar=|
 mcComma=,
 mcCategories=WebMaster-Webmaster,ECommerce-ECommerce,WebActions-Custom WebAction Components,Database-Database,EMail-Electronic Mail
-mcDemos=COM-COM,BRND-Branding,FORM-Form Save State,JOKE-Jokes/Sequencing,BW-Bandwidth Demo,SHOWCASE-SHOWCASE,FAST-FAST/Server IDs Demo,SHOP1-SHOP1/Shopping Cart,ADV-ADV/webcycle component,HTSC-HTSC/Security demo,HTFD-HTFD/Email feedback messages,HTLS-HTLS/ listserv demo,HTEM-HTEM/Custom Email demo,HTDR-HTDR/DropDown demo,HTGR-HTGF/Listgrid component demo,HTCL-HTCL/Cloning,HTQ1-HTQ1/Query level1,HTQ2-HTQ2/Query level 2,HTQ3-HTQ3/Query level 3,HTQ4-HTQ4/Query level 4,SCAN-WebDataScan  component demo,HTFS-HTFS/ Fish Store demo,DEMOS-DEMOS
+mcDemos=COM-COM,BRND-Branding,FORM-Form Save State,JOKE-Jokes/Sequencing,BW-Bandwidth Demo,SHOWCASE-SHOWCASE,FAST-FAST/Server IDs Demo,SHOP1-SHOP1/Shopping Cart,ADV-ADV/webcycle component,HTSC-HTSC/Security demo,HTFD-HTFD/Email feedback messages,HTEM-HTEM/Custom Email demo,HTDR-HTDR/DropDown demo,HTGR-HTGF/Listgrid component demo,HTCL-HTCL/Cloning,HTQ1-HTQ1/Query level1,HTQ2-HTQ2/Query level 2,HTQ3-HTQ3/Query level 3,HTQ4-HTQ4/Query level 4,SCAN-WebDataScan  component demo,HTFS-HTFS/ Fish Store demo,DEMOS-DEMOS
 mcRecap=<div class="dcenter">(~JUMP|BRNDRecap|Branding Scenario Recap~)</div>
 mcLinkABC=<div class="dcenter">(~JUMP|BrandABC|Jump back to the BrandABC page~) </div>
 </whmacros>
