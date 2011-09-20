@@ -43,6 +43,8 @@ if "%whipc%"=="x"    set demojpeg=no
 if "%whipc%"=="old" set demoshop1=yes
 if "%whipc%"=="x"    set demoshop1=no
 
+set demostore000=no
+
 cd /d %~dp0
 cd ..\WebHub\Apps
 
@@ -106,6 +108,8 @@ d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=scan /minutes=9999999
 if %demoshop1%==yes start whShopping.exe  
 if %demoshop1%==yes d:\Apps\HREFTools\miscutil\wait.exe 14
 if %demoshop1%==no  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
+
+d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=store000 /minutes=9999999 /reason="Shopping Cart Jump Start Project needs to be ported to Firebird SQL"
 
 ::start whRubicon.exe 
 ::d:\Apps\HREFTools\miscutil\wait.exe 15
