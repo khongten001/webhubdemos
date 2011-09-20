@@ -63,7 +63,7 @@
 (~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!dsp.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~NOMATCH|demos.href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 ~)
 </whdroplet>
 </li>
@@ -89,6 +89,7 @@
 (~MATCH|(~Request.Host~)!db.demos|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)=dsp.href.com|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)=demos.href.com|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
+(~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos|(~~Entrance~)~)~)
 </whdroplet>
 
 <li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)| id="a-viewfiles" |(~~Source~)~)</li>
