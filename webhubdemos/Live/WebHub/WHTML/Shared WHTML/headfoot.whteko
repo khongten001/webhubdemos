@@ -77,7 +77,7 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <!--- Except on the generic pages -->
 (~NOMATCH|(~pageid~)[pgWelcome,pgSetup,pgDownload,ViewFiles,VIEWDELPHIFILE,SetPref,SetPref2|
 <!--- link in a navigation/speedbar -->
-  (~HIDE|pgEnter(~AppID~)|(~~Entrance~)~)<br />
+  (~drLinkToDemoEntrance~)<br/>
   (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
 ~)
 </div>
