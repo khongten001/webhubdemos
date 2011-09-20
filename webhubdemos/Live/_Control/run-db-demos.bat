@@ -9,20 +9,42 @@ call %ZaphodsMap%zmset.bat flagdemosdb UsingKey2Value "HREFTools/WebHub/cv004 Sy
 echo flagdemosdb is %flagdemosdb%
 if NOT %flagdemosdb%==yes goto end
 
+
+call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
+
+echo .
+echo ***
+echo ipc is %whipc%
+echo ***
+echo .
+
 set covermin=90
 set coverreason="testing selected database demos; if you need to see this one, please contact techsupport"
 
-set demodbhtml=yes
-set demodsp=yes
-set demofire=no
-set demohtcl=no
-set demohtfm=no
-set demohtfs=yes
-set demojpeg=no
-set demoshop1=no
+if "%whipc%"=="old" set demodbhtml=yes
+if "%whipc%"=="x"    set demodbhtml=no
 
-d:
-cd \projects\WebHubDemos\Live\WebHub\Apps\
+set demodsp=yes
+
+if "%whipc%"=="old" set demofire=yes
+if "%whipc%"=="x"    set demofire=no
+
+if "%whipc%"=="old" set demohtcl=yes
+if "%whipc%"=="x"    set demohtcl=no
+
+if "%whipc%"=="old" set demohtfm=yes
+if "%whipc%"=="x"    set demohtfm=no
+
+set demohtfs=yes
+
+if "%whipc%"=="old" set demojpeg=yes
+if "%whipc%"=="x"    set demojpeg=no
+
+if "%whipc%"=="old" set demoshop1=yes
+if "%whipc%"=="x"    set demoshop1=no
+
+cd /d %~dp0
+cd ..\WebHub\Apps
 
 @echo on
 
