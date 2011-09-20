@@ -59,9 +59,9 @@
 <!--- special processing for the DEMOS demo which runs on multiple domains -->
 (~MATCH|(~Request.Host~)!lite.demos| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!more.demos| (~JUMP|pgEnterMoreDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDatabaseDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDatabaseDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~NOMATCH|demos.href.com[(~Request.Host~)| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~NOMATCH|demos.href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 ~)
 </li>
 
