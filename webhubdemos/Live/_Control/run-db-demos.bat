@@ -37,7 +37,9 @@ if "%whipc%"=="x"    set demohtfm=no
 
 set demohtfs=yes
 
-if "%whipc%"=="old" set demojpeg=yes
+:: not enough memory on APATE server for jpeg demo (BDE error)
+:: 20-Sep-2011
+if "%whipc%"=="old" set demojpeg=no
 if "%whipc%"=="x"    set demojpeg=no
 
 if "%whipc%"=="old" set demoshop1=yes
