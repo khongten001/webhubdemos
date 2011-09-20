@@ -53,16 +53,18 @@
 <li>(~mcWhDemoDot~) (~JUMP|pgSetup| id="a-pgsetup" |[~Prerequisites~]~)</li>
 
 <li>(~mcWhDemoDot~)
+<whdroplet name="drLinkToDemoEntrance" show="yes">
 (~NOMATCH|(~AppID~)=demos|
- (~JUMP|pgEnter(~AppID~)| id="a-pgenter(~AppID~)" |(~~Entrance~)~)
+ (~HIDE|pgEnter(~AppID~)| id="a-pgenter(~AppID~)" |(~~Entrance~)~)
 ||
 <!--- special processing for the DEMOS demo which runs on multiple domains -->
-(~MATCH|(~Request.Host~)!lite.demos| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!more.demos| (~JUMP|pgEnterMoreDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~NOMATCH|demos.href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!lite.demos| (~HIDE|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!more.demos| (~HIDE|pgEnterMoreDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!db.demos| (~HIDE|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)=demos.href.com| (~HIDE|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~NOMATCH|demos.href.com[(~Request.Host~)| (~HIDE|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 ~)
+</whdroplet>
 </li>
 
 <li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)| id="a-viewfiles" |(~~Source~)~)</li>
