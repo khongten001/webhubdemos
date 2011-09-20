@@ -163,14 +163,6 @@ Can be pasted into WHCentralInfo.xml
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
         </WebHubApp>
-        <WebHubApp appID="htls">
-          <Nickname value="Listserv"/>
-          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whListserv\"/>
-          <ConfigFilename value="WHAppConfig_htls.xml"/>
-          <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
-          <ShareSessions value="true"/>
-          <ShareByFile value="true"/>
-        </WebHubApp>
         <WebHubApp appID="demos">
           <Nickname value="Options"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whOverview\"/>
