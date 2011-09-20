@@ -25,7 +25,8 @@ scenario
         setheader
         {
             name    = "Host";
-            value   = '192.168.42.2';
+            value   = '192.168.42.3';
+            //value   = 'localhost';
         }
 
         // HTTP1.1 request
@@ -45,7 +46,8 @@ scenario
 
         request
         {
-            url         = "/win64/runisa_x_d16_win64.dll?adv:";
+           // url         = "/win32/runisa_x_d15_win32_debug.dll?adv:";
+	url         = "/win32/runisa.dll?adv:";
             statuscode  = 200;
         }
 
