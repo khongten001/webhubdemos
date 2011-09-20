@@ -130,7 +130,7 @@
 						<Source Name="MainSource">dserver.dpr</Source>
 					</Source>
 					<Parameters>
-						<Parameters Name="RunParams">/id=edeliver</Parameters>
+						<Parameters Name="RunParams">/id=adv</Parameters>
 					</Parameters>
 					<VersionInfo>
 						<VersionInfo Name="IncludeVerInfo">True</VersionInfo>
@@ -138,7 +138,7 @@
 						<VersionInfo Name="MajorVer">2</VersionInfo>
 						<VersionInfo Name="MinorVer">0</VersionInfo>
 						<VersionInfo Name="Release">0</VersionInfo>
-						<VersionInfo Name="Build">89</VersionInfo>
+						<VersionInfo Name="Build">92</VersionInfo>
 						<VersionInfo Name="Debug">False</VersionInfo>
 						<VersionInfo Name="PreRelease">False</VersionInfo>
 						<VersionInfo Name="Special">False</VersionInfo>
@@ -150,7 +150,7 @@
 					<VersionInfoKeys>
 						<VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
 						<VersionInfoKeys Name="FileDescription">WebHub Application Server for use with Dreamweaver</VersionInfoKeys>
-						<VersionInfoKeys Name="FileVersion">2.0.0.89</VersionInfoKeys>
+						<VersionInfoKeys Name="FileVersion">2.0.0.92</VersionInfoKeys>
 						<VersionInfoKeys Name="InternalName"/>
 						<VersionInfoKeys Name="LegalCopyright"/>
 						<VersionInfoKeys Name="LegalTrademarks"/>
