@@ -12,7 +12,7 @@ cd /d %~dp0
 cd ..
 
 echo on
-%svndir%\svn.exe update 
+%svndir%\svn.exe update  --accept theirs-full
 @if errorlevel 1 pause
 
 :end
