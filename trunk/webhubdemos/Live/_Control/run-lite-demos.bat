@@ -40,9 +40,6 @@ d:\Apps\HREFTools\miscutil\wait.exe 6
 start whLite.exe /ID:fast    
 d:\Apps\HREFTools\miscutil\wait.exe 6
 
-start whLite.exe /ID:htls    
-d:\Apps\HREFTools\miscutil\wait.exe 6
-
 rem 16-Oct-2009 start whLite.exe /ID:bw    
 rem 16-Oct-2009 d:\Apps\HREFTools\miscutil\wait.exe 6
 
