@@ -565,8 +565,8 @@ end;
 
 procedure TDSPdm.tblFilesAfterOpen(DataSet: TDataSet);
 var
-   a1:string;
-   i:integer;
+  a1: string;
+  dt: TDateTime;
 begin
    Inherited;
    With DataSet do
@@ -626,16 +626,15 @@ begin
    If dbDsp.Directory<>'' then
       begin
          a1:=dbDsp.Directory;
-         a1:=trailingbackslash(a1)+ttable(DataSet).Tablename;
+         a1:=IncludeTrailingPathDelimiter(a1) + TTable(DataSet).Tablename;
       end
    Else
       begin
          a1:=ttable(DataSet).Tablename;
       end;
-   i:=FileAge(a1);
-   If i>0 then FilesAsOf := FormatDateTime('dd-MMMM-yyyy',FileDateToDateTime(i)) //FilesAsOf:=DateToStr(FileDateToDateTime(i))  //
-   Else FilesAsOf:='<not available>';
-   FilesCount:=ttable(DataSet).RecordCount;
+  FileAge(a1, dt);
+  FilesAsOf := FormatDateTime('dd-MMMM-yyyy', dt);
+  FilesCount:=ttable(DataSet).RecordCount;
 end;
 
 
