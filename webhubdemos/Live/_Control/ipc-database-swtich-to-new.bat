@@ -20,11 +20,11 @@ copy runisa_newipc.dll runisa.dll
 cd /d %~dp0
 cd ..\WebHub\Apps
 
-d:\Apps\Utilities\7Zip\7z.exe x Database-bin-newipc.7z -aoa 
+d:\Apps\Utilities\7Zip\7z.exe x Database-bin_newipc.7z -aoa 
 if errorlevel 1 pause
 
 cd ..\..\Library
-d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin-newipc.7z -aoa 
+d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin_newipc.7z -aoa 
 if errorlevel 1 pause
 
 cd /d D:\AppsData\ZaphodsMap\HREFTools\Install
