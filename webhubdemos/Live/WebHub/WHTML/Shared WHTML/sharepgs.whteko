@@ -315,13 +315,6 @@ delays in updating the demos.  </p>
 <p>Be sure to read the instructions in the Source\Doc directory.  For easiest compilation, map drive H: to your WebHub lib\ directory.
 If you do not wish to map drive H:, edit the paths (to PAS files) in the project source (DPR file) for any demo you want to compile.</p>
 
-<h3>ZIP of All WebHub Demos</h3>
-(~mcWhDemoDot~)
-<a href="http://demos.href.com/download/">whDemo_Complete-v2xxx.zip</a>
-~1.5MB
-<p>You should unzip to a directory such as d:\Projects or c:\My Documents.  All files
-will install to a subdirectory named "WebHub Demos".  </p>
-
 <h3>Access through SubVersion ("SVN")</h3>
 <p>If you have Delphi XE, you can open the demos from inside the Delphi IDE as follows:</p>
 <ol>
