@@ -208,8 +208,6 @@ customizing the onBadIP event of the TwhAppBase.</p>
 <div id="whdemopagecontent">
 <h1>(~~About~)</h1>
 <ul>
-<li>Original idea: (~DYNCHUNK|mcWhDemoCreditIdea,(~_aboutID~)~)</li>
-<li>First draft: (~DYNCHUNK|mcWhDemoCreditFirstDraft,(~_aboutID~)~)</li>
 <li>Graphics: (~DYNCHUNK|mcWhDemoCreditGraphics,(~_aboutID~)~)</li>
 <li>Demo text: (~DYNCHUNK|mcWhDemoCreditCopy,(~_aboutID~)~)</li>
 <li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~_aboutID~)~)</li>
