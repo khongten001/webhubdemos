@@ -16,11 +16,15 @@
           <Module name="dreamweaver" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
+	<Module name="w3validation" status="enabled" />
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
+          <Module name="appin" status="disabled" context="DEMOS"/>
           <Module name="appout" status="enabled-gui"/>
+          <Module name="appout" status="disabled" context="DEMOS"/>
           <Module name="decode" status="enabled-gui"/>
+          <Module name="decode" status="disabled" context="DEMOS"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
