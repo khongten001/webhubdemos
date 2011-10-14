@@ -15,9 +15,9 @@
           <Module name="email" status="enabled-gui"/>
           <Module name="email" status="enabled" context="DEMOS"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dreamweaver" status="disabled" context="DEMOS"/>
+          <Module name="dreamweaver" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
-          <Module name="dwsecurity" status="disabled" context="DEMOS"/>
+          <Module name="dwsecurity" status="enabled" context="DEMOS"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
