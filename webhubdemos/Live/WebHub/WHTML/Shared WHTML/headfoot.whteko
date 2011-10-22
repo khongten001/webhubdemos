@@ -111,14 +111,14 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 view links to all demos on
 <!--- link to public demos server -->
 (~drLinkToAllDemos~)<br />
-lingvo:
+(~NOMATCH|(~pageid~)[ViewFiles,ViewWHTMLFile,VIEWDELPHIFILE,SetPref,SetPref2|lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span>
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span>
 <span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span>
-(~MATCH|(~CentralInfo.PascalCompilerCode~)=D07|&nbsp;||
+(~MATCH|(~CentralInfo.PascalCompilerCode~)=d07_win32|&nbsp;||
 <span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span>
 <span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
-~)
+~)~)
 </div>
 
 </div>  <!--- whDemoSectionNav -->
