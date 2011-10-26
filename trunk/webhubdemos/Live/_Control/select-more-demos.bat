@@ -35,7 +35,7 @@ if "%whipc%"=="old" set demohtol=yes
 if "%whipc%"=="x" set demohtol=no
 
 if "%whipc%"=="old" set demohtem=yes
-if "%whipc%"=="x" set demohtem=no
+if "%whipc%"=="x" set demohtem=yes
 
 if "%whipc%"=="old" set demohtgr=yes
 if "%whipc%"=="x" set demohtgr=no
