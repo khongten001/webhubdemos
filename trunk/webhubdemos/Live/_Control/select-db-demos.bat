@@ -24,9 +24,11 @@ if "%whipc%"=="old" set demohtcl=yes
 if "%whipc%"=="x"    set demohtcl=no
 
 if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"    set demohtfm=yes
+if "%whipc%"=="x"    set demohtfm=no
 
-set demohtfs=yes
+if "%whipc%"=="old" set set demohtfs=yes
+if "%whipc%"=="x"    set set demohtfs=no
+
 
 set demohtq1=no
 set demohtq2=no
@@ -35,15 +37,13 @@ set demohtq4=no
 set demohtru=no
 
 :: not enough memory on APATE server for jpeg demo (BDE error)
-:: but it is fine on the stress test server
-:: 20-Sep-2011
 if "%whipc%"=="old" set demojpeg=no
-if "%whipc%"=="x"    set demojpeg=yes
+if "%whipc%"=="x"    set demojpeg=no
 
 set demoscan=no
 
 if "%whipc%"=="old" set demoshop1=yes
-if "%whipc%"=="x"    set demoshop1=yes
+if "%whipc%"=="x"    set demoshop1=no
 
 set demostore000=no
 
