@@ -18,13 +18,13 @@ set demodsp=yes
 set democoderage=no
 
 if "%whipc%"=="old" set demofire=yes
-if "%whipc%"=="x"    set demofire=no
+if "%whipc%"=="x"    set demofire=yes
 
 if "%whipc%"=="old" set demohtcl=yes
 if "%whipc%"=="x"    set demohtcl=no
 
 if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"    set demohtfm=no
+if "%whipc%"=="x"    set demohtfm=yes
 
 if "%whipc%"=="old" set set demohtfs=yes
 if "%whipc%"=="x"    set set demohtfs=yes
@@ -36,7 +36,6 @@ set demohtq3=no
 set demohtq4=no
 set demohtru=no
 
-:: not enough memory on APATE server for jpeg demo (BDE error)
 if "%whipc%"=="old" set demojpeg=no
 if "%whipc%"=="x"    set demojpeg=no
 
