@@ -26,8 +26,8 @@ if "%whipc%"=="x"    set demohtcl=no
 if "%whipc%"=="old" set demohtfm=yes
 if "%whipc%"=="x"    set demohtfm=yes
 
-if "%whipc%"=="old" set set demohtfs=yes
-if "%whipc%"=="x"    set set demohtfs=yes
+if "%whipc%"=="old" set demohtfs=yes
+if "%whipc%"=="x"    set demohtfs=yes
 
 
 set demohtq1=no
