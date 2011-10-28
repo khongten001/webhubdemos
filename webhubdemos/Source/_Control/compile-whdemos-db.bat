@@ -84,4 +84,5 @@ if NOT "%demodsp%"=="no" cd %droot%\Third Party Examples\whDSP
 if NOT "%demodsp%"=="no" call %cbat% whDSP
 
 :END
+echo Complete
 pause
