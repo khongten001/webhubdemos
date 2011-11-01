@@ -37,12 +37,12 @@ set demohtq4=no
 set demohtru=no
 
 if "%whipc%"=="old" set demojpeg=no
-if "%whipc%"=="x"    set demojpeg=no
+if "%whipc%"=="x"    set demojpeg=yes
 
 set demoscan=no
 
 if "%whipc%"=="old" set demoshop1=yes
-if "%whipc%"=="x"    set demoshop1=yes
+if "%whipc%"=="x"    set demoshop1=no
 
 set demostore000=no
 
