@@ -4,7 +4,7 @@ interface
 
 uses
    Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-   dmBasic, TpMenu, UpdateOk, tpAction,
+   dmBasic, UpdateOk, tpAction,
    webTypes, webLink, webScan, webGrid, webScanKeys, webRubi,
    uDSPFuzziness;
 

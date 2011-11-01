@@ -24,6 +24,8 @@ program whDSP;
 *)
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},

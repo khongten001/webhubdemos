@@ -11,7 +11,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UpdateOk, tpAction, IniLink, WebStLst, TpMenu;
+  UpdateOk, tpAction, IniLink, webStLst;
 
 type
   TdmBasicDatamodule = class(TDataModule)
