@@ -187,14 +187,6 @@ customizing the onBadIP event of the TwhAppBase.</p>
 
 <whpage pageid="pgAbout" desc="About a WebHub Demo">
 <whprep>
-(~CLEAR|_tempFlag~)
-(~CMDHAS|lingvo=deu|(~CHECK|_tempFlag~)~)
-(~CMDHAS|lingvo=fra|(~CHECK|_tempFlag~)~)
-(~CMDHAS|lingvo=eng|(~CHECK|_tempFlag~)~)
-(~CMDHAS|lingvo=chi|(~CHECK|_tempFlag~)~)
-(~CMDHAS|lingvo=rus|(~CHECK|_tempFlag~)~)
-(~IFNOT|_tempFlag|(~SET|_aboutID=(~command~)~)~)
-(~CLEAR|_tempFlag~)
 (~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
 </whprep>
 <whoutput>
@@ -208,9 +200,9 @@ customizing the onBadIP event of the TwhAppBase.</p>
 <div id="whdemopagecontent">
 <h1>(~~About~)</h1>
 <ul>
-<li>Graphics: (~DYNCHUNK|mcWhDemoCreditGraphics,(~_aboutID~)~)</li>
-<li>Demo text: (~DYNCHUNK|mcWhDemoCreditCopy,(~_aboutID~)~)</li>
-<li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~_aboutID~)~)</li>
+<li>Graphics: (~DYNCHUNK|mcWhDemoCreditGraphics,(~AppID~)~)</li>
+<li>Demo text: (~DYNCHUNK|mcWhDemoCreditCopy,(~AppID~)~)</li>
+<li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~AppID~)~)</li>
 <li>Running: (~version~)</li>
 <li>Syntax Stage: (~ProjectSyntax~)</li>
 </ul>
