@@ -7,6 +7,7 @@ object DemoViewSource: TDemoViewSource
   object waDemoViewSource: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waDemoViewSourceExecute
+    OnSetCommand = waDemoViewSourceSetCommand
     DirectCallOk = True
     Left = 229
     Top = 125
