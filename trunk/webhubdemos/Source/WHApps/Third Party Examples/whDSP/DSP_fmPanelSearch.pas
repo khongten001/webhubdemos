@@ -8,7 +8,7 @@ interface
 
 uses
    Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-   TpMenu, UpdateOk, tpAction, IniLink, {} Toolbar, ExtCtrls,
+   UpdateOk, tpAction, IniLink, {} Toolbar, ExtCtrls,
    StdCtrls, ComCtrls, DBCtrls, Grids, DBGrids, TxtGrid,
    Dbstrgrd, db, DSP_fmPanel, tpCompPanel;
 

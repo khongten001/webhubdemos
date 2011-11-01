@@ -9,7 +9,7 @@ interface
 
 uses
    Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-   UTPANFRM, ExtCtrls, StdCtrls, TpMenu, UpdateOk, tpAction, IniLink,
+   UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
    Toolbar, Restorer, Buttons, tpCompPanel;
 
 type
