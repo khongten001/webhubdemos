@@ -25,7 +25,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  CodeSiteLogging,
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
