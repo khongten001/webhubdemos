@@ -27,7 +27,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
     Toolbar, Restorer, DBCtrls, WebTypes, weblink, Db, DBTables,
-  Grids, DBGrids, whJPEG, ComCtrls, tpStatus;
+  Grids, DBGrids, whJPEG, ComCtrls, tpStatus, tpCompPanel;
 
 type
   TwhWebActionEx = class(TwhJPEG);
@@ -56,7 +56,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function Init: Boolean; override;
+    function Init: boolean; override;
     end;
 
 var
@@ -67,45 +67,57 @@ implementation
 {$R *.DFM}
 
 uses
-  WebApp, WebInfou, whdemo_ViewSource;
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ucCodeSiteInterface,
+  webApp, webInfou, whdemo_ViewSource;
 
-//------------------------------------------------------------------------------
-
-function TfmWhAnimals.Init:Boolean;
+function TfmWhAnimals.Init: boolean;
 begin
   Result:= inherited Init;
-  if not Result then
-    Exit;
-  with Table1 do
+  if Result then
   begin
-    DatabaseName := getHtDemoDataRoot + 'whDynamicJPEG\';
-    TableName := 'animals.dbf';
-    Open;
+    with Table1 do
+    begin
+      DatabaseName := getHtDemoDataRoot + 'whDynamicJPEG\';
+      TableName := 'animals.dbf';
+      Open;
+    end;
+    RefreshWebActions(Self);
+    //waJPEGUpdate(waJPEG);
   end;
-  RefreshWebActions(fmWhAnimals);
 end;
 
-//------------------------------------------------------------------------------
 procedure TfmWhAnimals.waJPEGUpdate(Sender: TObject);
+const cFn = 'waJPEGUpdate';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  with TwhJPEG(Sender) do
+  if Sender is TwhJPEG then
   begin
-    //YOU MUST .. assign the picture property at runtime.
-    if assigned(dbImage) then
-      Picture:= dbImage.Picture;
-    //optionally you can customize jpeg encoding options:
-    //Grayscale:=True;
-    //whJPEGImage.Smoothing := False;
-    //whJPEGImage.CompressionQuality := 100;
-    whJPEGImage.ProgressiveEncoding:=True;
+    with TwhJPEG(Sender) do
+    begin
+      //YOU MUST .. assign the picture property at runtime.
+      if assigned(dbImage) then
+        Picture:= dbImage.Picture
+      else
+        LogSendWarning('dbImage is nil', cFn);
+      //optionally you can customize jpeg encoding options:
+      //Grayscale:=True;
+      //whJPEGImage.Smoothing := False;
+      //whJPEGImage.CompressionQuality := 100;
+      whJPEGImage.ProgressiveEncoding:=True;
+    end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhAnimals.waJPEGExecute(Sender: TObject);
+{$IFDEF CodeSite}const cFn = 'waJPEGExecute';{$ENDIF}
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  //pWebApp.Summary.Add('<i>Record #' + IntToStr(Table1.RecNo) + '</i>');
+  {$IFDEF CodeSite}CodeSite.Send('Record #', Table1.RecNo);{$ENDIF}
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhAnimals.waAnimalNavExecute(Sender: TObject);
