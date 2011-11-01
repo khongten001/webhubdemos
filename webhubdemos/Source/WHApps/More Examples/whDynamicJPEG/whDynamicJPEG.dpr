@@ -1,6 +1,6 @@
 program whDynamicJPEG;
 (*
-Copyright (c) 2003-2004 HREF Tools Corp.
+Copyright (c) 2003-2011 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -21,14 +21,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
+  CodeSiteLogging,
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -38,10 +40,10 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  whDynamicJPEG_fmWh in 'whDynamicJPEG_fmWh.pas' {fmWhAnimals},
   whJPEG in 'h:\whJPEG.pas',
-  htWebApp in 'h:\htwebapp.pas',
+  htwebapp in 'h:\htwebapp.pas',
   tpProj in 'h:\tpProj.pas',
+  whDynamicJPEG_fmWh in 'whDynamicJPEG_fmWh.pas' {fmWhAnimals},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whDynamicJPEG_dmProjMgr in 'whDynamicJPEG_dmProjMgr.pas' {DMForWHDynamicJPEG: TDataModule};
 
