@@ -21,7 +21,7 @@
 <div id="whdemopagecontent">
 <p>This free sample application demonstrates how one can make
 generic SQL query-and-response pages with WebHub.  More details 
-are on the (~JUMP|pgAbout,HTQ2|(~~About~)~) page.</p>
+are on the (~JUMP|pgAbout,htq2|(~~About~)~) page.</p>
 
 (~webdatasource1.close~) <!--- Close the prior result set, if any. -->
 
