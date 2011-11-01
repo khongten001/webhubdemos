@@ -7,12 +7,12 @@ call %ZaphodsMap%zmset.bat d16 UsingKey2Folder "HREFTools\Production\cv001 Delph
 set dcc=%d16%bin\dcc32.exe
 if not exist %dcc% pause
 
-set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL
-set libsearchpath="h:\;h:\dcu_d16_win32;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%d16%\lib\win32\release;"
+set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
+set libsearchpath="h:\;h:\dcu_d16_win32;k:\Rubicon\source;%d16%\lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
-set compilerflags=PREVENTSVCMGR;use_IBO;
-set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v4.9.11
+set compilerflags=PREVENTSVCMGR;use_IBO
+set includepath=h:\;k:\Rubicon\source\inc;
 
 :: extra parameters for Delphi XE2
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE

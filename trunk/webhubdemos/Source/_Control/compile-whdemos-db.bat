@@ -79,9 +79,26 @@ del %~dp0\..\..\Live\WebHub\Apps\whRubicon.exe
 if NOT "%demohtru%"=="no" cd %droot%\Third Party Examples\whRubicon
 if NOT "%demohtru%"=="no" call %cbat% whRubicon
 
-del %~dp0\..\..\Live\WebHub\Apps\whDPP.exe
-if NOT "%demodsp%"=="no" cd %droot%\Third Party Examples\whDSP
-if NOT "%demodsp%"=="no" call %cbat% whDSP
+call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
+
+echo .
+echo ***
+echo ipc is %whipc%
+echo ***
+echo .
+
+del %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
+if "%demodsp%"=="no" goto end
+cd %droot%\Third Party Examples\whDSP
+goto dsp%whipc%
+
+:dspold
+call %cbat% whDSP
+goto end
+
+:dspx
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d16_win32_source.bat whDSP
+goto end
 
 :END
 echo Complete
