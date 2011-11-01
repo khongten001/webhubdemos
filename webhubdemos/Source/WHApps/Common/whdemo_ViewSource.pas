@@ -46,6 +46,8 @@ type
     procedure waDemoViewSourceWHTMLFileExecute(Sender: TObject);
     procedure waDemoViewSourceWHTMLFileListExecute(Sender: TObject);
     procedure waDemoViewSourceProjectLinkExecute(Sender: TObject);
+    procedure waDemoViewSourceSetCommand(Sender: TObject;
+      var ThisCommand: string);
   private
     { Private declarations }
     FIsDemoRootKnown: Boolean;
@@ -81,6 +83,7 @@ implementation
 {$R *.DFM}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   ZaphodsMap,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
@@ -284,10 +287,10 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourcePascalFileExecute(Sender: TObject);
 var
-  a1,a2 : string;
+  a1,a2: string;
   aFilename, aShowName: string;
   aFileContents: string;
-//  fs: TFileStream;
+  InfoMsg: string;
 begin
   inherited;
   with TwhWebActionEx(Sender) do
@@ -312,31 +315,18 @@ begin
       if NOT FileExists(aFilename) then
       begin
         Response.SendHdr('2','Error');
-        Response.Send('File does not exist: ' + aFilename);
+        InfoMsg := 'File does not exist: ' + aFilename;
+        Response.Send(InfoMsg);
+        {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
+          ' or garbage command');{$ENDIF}
         Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
         Exit;
       end
       else
       begin
-        aFileContents := UTF8ToString(UTF8StringLoadFromFile(aFilename));
+        aFileContents := StringLoadFromFile(aFilename);
         if aFileContents = '' then
           pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
-
-        (*fs := nil;
-        try
-          fs := TFileStream.Create(aFilename, fmOpenRead);
-          try
-            aFileContents := StringLoadFromStream(fs);
-          except
-            on E: Exception do
-            begin
-              aFileContents := '';
-              pWebApp.Debug.AddPageError(E.Message);
-            end;
-          end;
-        finally
-          FreeAndNil(fs);
-        end;*)
       end;
     end
     else
@@ -374,7 +364,10 @@ begin
       if NOT FileExists(aFilename) then
       begin
         Response.SendHdr('2','Error');
-        Response.Send('DFM File does not exists: ' + aFilename);
+        InfoMsg := 'DFM File does not exists: ' + aFilename;
+        Response.Send(InfoMsg);
+        {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
+          ' or garbage command');{$ENDIF}
         Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
         Exit;
       end
@@ -385,8 +378,17 @@ begin
         except
           on E: Exception do
           begin
-            aFileContents:= UTF8ToString(UTF8StringLoadfromfile(aFilename));
+            {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             pWebApp.Debug.AddPageError(E.Message);
+            try
+              aFileContents:= StringLoadfromfile(aFilename);
+            except
+              on E: Exception do
+              begin
+                {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+                aFileContents := '';
+              end;
+            end;
           end;
         end;
       end;
@@ -551,6 +553,24 @@ begin
     S := Format('JUMP|viewDelphiFile,waDemoViewSource.%s|%s',
       [fProjectFilename, fProjectFilename]);
     WebApp.SendMacro(S);
+  end;
+end;
+
+procedure TDemoViewSource.waDemoViewSourceSetCommand(Sender: TObject;
+  var ThisCommand: string);
+begin
+  if (ThisCommand = '') or (ThisCommand = FProjectFilename) then
+  begin
+    // all is well - normal
+  end
+  else
+  begin
+    {$IFDEF CodeSite}CodeSite.SendWarning(Self.ClassName+' bot overload');
+    CodeSite.Send('ThisCommand', ThisCommand);{$ENDIF}
+    ThisCommand := '';
+    pWebApp.Response.Flush;
+    pWebApp.SendStringImm('Invalid URL');
+    pWebApp.Response.Close;
   end;
 end;
 
