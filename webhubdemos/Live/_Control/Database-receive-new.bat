@@ -13,11 +13,11 @@ ren WHIgnoreChanging.exe WHIgnoreChanging.save
 del wh*.exe
 ren WHIgnoreChanging.save WHIgnoreChanging.exe
 
-d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z
+d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z -aoa
 if errorlevel 1 pause
 
 cd ..\..\Library
-d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin.7z
+d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin.7z -aoa
 if errorlevel 1 pause
 
 :: now call startup procedure
