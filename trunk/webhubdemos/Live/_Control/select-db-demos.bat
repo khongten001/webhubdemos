@@ -18,13 +18,13 @@ set demodsp=yes
 set democoderage=no
 
 if "%whipc%"=="old" set demofire=yes
-if "%whipc%"=="x"    set demofire=yes
+if "%whipc%"=="x"    set demofire=no
 
 if "%whipc%"=="old" set demohtcl=yes
 if "%whipc%"=="x"    set demohtcl=no
 
 if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"    set demohtfm=yes
+if "%whipc%"=="x"    set demohtfm=no
 
 if "%whipc%"=="old" set demohtfs=yes
 if "%whipc%"=="x"    set demohtfs=yes
