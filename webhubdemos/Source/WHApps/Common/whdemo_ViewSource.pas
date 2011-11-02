@@ -326,7 +326,10 @@ begin
       begin
         aFileContents := StringLoadFromFile(aFilename);
         if aFileContents = '' then
+        begin
+          {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
           pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
+        end;
       end;
     end
     else
@@ -341,18 +344,12 @@ begin
         aFileContents:='Source is not available for ' + aFilename + '.'
       else
       begin
-        aFileContents := UTF8ToString(UTF8StringLoadFromFile(aFilename));
+        aFileContents := StringLoadFromFile(aFilename);
         if aFileContents = '' then
+        begin
+          {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
           pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
-        (*try
-          aFileContents:=StringLoadFromFile(aFilename);
-        except
-          on E: Exception do
-          begin
-            aFileContents := '';
-            pWebApp.Debug.AddPageError(E.Message);
-          end;
-        end;*)
+        end;
       end;
     end
     else
@@ -378,8 +375,14 @@ begin
         except
           on E: Exception do
           begin
-            {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-            pWebApp.Debug.AddPageError(E.Message);
+            // modern DFM files are no longer binary so this is expected....
+            if (E.Message <> 'Invalid stream format') then
+            begin
+              {$IFDEF CodeSite}CodeSite.SendException(E);
+              CodeSite.Send('when loading', aFilename);
+              {$ENDIF}
+              pWebApp.Debug.AddPageError(E.Message);
+            end;
             try
               aFileContents:= StringLoadfromfile(aFilename);
             except
@@ -488,6 +491,7 @@ var
   i, n: Integer;
   S: string;
   S8: System.UTF8String;
+  InfoMsg: string;
 
   procedure SendFileIntro(const fileDescription: String);
   begin
@@ -537,7 +541,9 @@ begin
     end
     else
     begin
-      Response.Send('File #' + WebApp.Command + ' not found.');
+      InfoMsg := 'File #' + WebApp.Command + ' not found.';
+      {$IFDEF CodeSite}CodeSite.SendWarning(InfoMsg);{$ENDIF}
+      Response.Send(InfoMsg);
       Response.SendComment(S);
     end;
   end;
@@ -559,18 +565,16 @@ end;
 procedure TDemoViewSource.waDemoViewSourceSetCommand(Sender: TObject;
   var ThisCommand: string);
 begin
-  if (ThisCommand = '') or (ThisCommand = FProjectFilename) then
+  if (ThisCommand = '') or IsEqual(ThisCommand, FProjectFilename) then
   begin
     // all is well - normal
   end
   else
   begin
     {$IFDEF CodeSite}CodeSite.SendWarning(Self.ClassName+' bot overload');
-    CodeSite.Send('ThisCommand', ThisCommand);{$ENDIF}
+    CodeSite.SendError('ThisCommand' + #183 + ThisCommand);{$ENDIF}
     ThisCommand := '';
-    pWebApp.Response.Flush;
-    pWebApp.SendStringImm('Invalid URL');
-    pWebApp.Response.Close;
+    raise Exception.Create('Invalid URL');
   end;
 end;
 
