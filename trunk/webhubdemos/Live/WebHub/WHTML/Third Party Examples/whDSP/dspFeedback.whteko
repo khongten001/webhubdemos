@@ -39,4 +39,32 @@ DSP email: (~MAILTO|rmczerw@icm.edu.pl||true~) (uploads etc)<br />
 </body></html>
 </whpage>
 
+<whpage pageid="pgTestException">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=yearly
+googlepriority=0
+metarobot=noindex,nofollow
+metadescription=test exception handler
+metakeywords=error,exception
+</whpagesettings>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~drSharedDSPHeadTags~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Hello </h1>
+<p>(~CentralInfo.webtimegmt~)</p>
+(~waIntentionalException.Execute|~)
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+(~chDSPPageFooter~)
+</body></html>
+</whpage>
+
 </whteko>
