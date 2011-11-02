@@ -1,13 +1,6 @@
 program whDSP;
 
-(* to do:
-
-- 5/24/01 1:09:57 AM 211.189.211.6,91104,SEARCHDSP:waResults.Last,EDivByZero,Division by zero
-
-*)
-
-
-// Delphi Super Page, compiled with Delphi, WebHub and Rubicon 
+// Delphi Super Page, compiled with Delphi, WebHub and Rubicon
 
 // To compile, map drive h: to the WebHub "lib" directory, or change the paths
 // below.
@@ -24,6 +17,7 @@ program whDSP;
 *)
 
 uses
+  {$IFDEF EUREKALOG}ExceptionLog,{$ENDIF}
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
@@ -49,7 +43,6 @@ uses
   webApp,
   webSplat,
   htWebApp in 'h:\htWebApp.pas',
-  webCall,
   webVars,
   webScan,
   uCode,
@@ -80,14 +73,10 @@ uses
 {$R HtGlyphs.res}  // icons for WebHub UI features
 
 (*
-  // Handy ancestor units.
-  dmBasic in 'd:\Apps\HREF\WebHub\v2.007d\lib\dmBasic.pas' {dmBasicDatamodule: TDataModule},
-  utmainfm in 'H:\Utmainfm.pas' {fmMainForm},
-  utpanfrm in 'H:\Utpanfrm.pas' {utParentForm},
-  uttrayfm in 'H:\utTrayFm.pas' {fmTrayForm},
-
   // for working with source
   webScanKeys in 'k:\webhub\lib\whplus\webScanKeys.pas',
+  webCall in 'k:\webhub\lib\whvcl\webCall.pas',
+  webSend in 'k:\webhub\lib\whvcl\webSend.pas',
 *)
 
 
