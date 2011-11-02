@@ -27,7 +27,8 @@ implementation
 {$R *.dfm}
 
 uses
-   MultiTypeApp, webApp, htWebApp, DSP_u1, DSP_dmDisplayResults, DSP_dmWH1, DSP_dmRubicon, DSP_fmPanelSearch, DSP_fmConfigure;
+   MultiTypeApp, webApp, htWebApp, DSP_u1, DSP_dmDisplayResults, DSP_dmWH1,
+   whsample_ExceptionTester, DSP_dmRubicon, DSP_fmPanelSearch, DSP_fmConfigure;
 
 procedure TPMForDSP.ProjMgrDataModulesCreate2(Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String; var Continue: Boolean);
 begin
@@ -67,8 +68,12 @@ end;
 procedure TPMForDSP.ProjMgrGUICreate(Sender: TtpProject; const ShouldEnableGUI: Boolean; var ErrorText: String; var Continue: Boolean);
 begin
    Inherited;
-   {M}Application.CreateForm(TfmSearchForm, fmSearchForm);
-   {M}Application.CreateForm(TfmAppConfigure, fmAppConfigure);
+   if ShouldEnableGUI then
+   begin
+     {M}Application.CreateForm(TfmSearchForm, fmSearchForm);
+     {M}Application.CreateForm(TfmAppConfigure, fmAppConfigure);
+     {M}Application.CreateForm(TfmAppPanelExceptions, fmAppPanelExceptions);
+   end;
 end;
 
 procedure TPMForDSP.ProjMgrStop(Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
