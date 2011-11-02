@@ -18,7 +18,7 @@
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
           <Module name="shareint" status="disabled"/>
-	<Module name="w3validation" status="enabled" />
+          <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
@@ -38,6 +38,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortdsp" context="DEMOS"/>
+        <ServerProfileIDStandard context="ultraann" value="newipc"/>
         <UseAppID value="true"/>
         <UseAppID value="false" context="DEMOS"/>
       </DynURLConfig>
