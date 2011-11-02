@@ -34,6 +34,7 @@ var
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
    whMacroAffixes,
    DSP_dmRubicon,             // DSPdm
    Weblist,                   // TwhList
@@ -49,15 +50,21 @@ var
 {-}
 procedure LogInfo(const S: string);
 begin
-   If iLogInfo=0 then Exit;
-   If iLogInfo=-1 then
-      If HaveParam('/LogInfo') then iLogInfo:=1
-      Else
-         begin
-            iLogInfo:=0;
-            Exit;
-         end;
-   AppendToLog(DatedFileName(ExtractFilePath(ParamStr(0))+'DSP.info.log'), S);
+   If iLogInfo <> 0 then
+   begin
+     If iLogInfo=-1 then
+        If HaveParam('/LogInfo') then
+          iLogInfo:=1
+        Else
+          iLogInfo:=0;
+   end;
+   if iLogInfo = 1 then
+   begin
+     {$IFDEF CodeSite}CodeSite.Send(S);
+     {$ELSE}
+     AppendToLog(DatedFileName(ExtractFilePath(ParamStr(0))+'DSP.info.log'), S);
+     {$ENDIF}
+   end;
 end;
 
 {-}
@@ -252,15 +259,22 @@ end;
 
 {-}
 procedure TDSPAppHandler.DSPAppError(Sender: TObject; E: Exception; var Handled, ReDoPage: Boolean);
+var
+  S: string;
 begin
-   With pWebApp do //uclogfil
-      AppendToLog(DatedFileName(AppSetting['ErrorLog'])
-         ,Request.RemoteAddress
+  With pWebApp do
+  begin
+    S := Request.RemoteAddress
          +','+SessionID
          +','+AddToString(pageid,command,':')  //ucstring
          +','+e.classname
-         +','+e.message
-      );
+         +','+e.message;
+    {$IFDEF CodeSite}
+    CodeSite.SendError(S);
+    {$ELSE}
+      AppendToLog(DatedFileName(AppSetting['ErrorLog']), S);
+    {$ENDIF}
+  end;
 end;
 
 procedure TDSPAppHandler.DSPAppBadBrowser(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -301,7 +315,7 @@ begin
 end;
 
 initialization
-   DSPAppHandler := nil; // TDSPAppHandler.create;
+   DSPAppHandler := nil;
 
 finalization
    FreeAndNil(DSPApphandler);
