@@ -287,6 +287,7 @@ Look in:<br />
 (~chSearchGroupItems~)
 </select>
 </whdoc>
+</whdroplet>
 
 
 <whdroplet name="chSearchGroupItems">
