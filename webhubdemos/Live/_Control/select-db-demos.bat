@@ -27,7 +27,7 @@ if "%whipc%"=="old" set demohtfm=yes
 if "%whipc%"=="x"    set demohtfm=no
 
 if "%whipc%"=="old" set demohtfs=yes
-if "%whipc%"=="x"    set demohtfs=yes
+if "%whipc%"=="x"    set demohtfs=no
 
 
 set demohtq1=no
@@ -37,7 +37,7 @@ set demohtq4=no
 set demohtru=no
 
 if "%whipc%"=="old" set demojpeg=no
-if "%whipc%"=="x"    set demojpeg=yes
+if "%whipc%"=="x"    set demojpeg=no
 
 set demoscan=no
 
