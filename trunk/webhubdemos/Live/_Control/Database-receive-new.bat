@@ -13,7 +13,7 @@ ren WHIgnoreChanging.exe WHIgnoreChanging.save
 del wh*.exe
 ren WHIgnoreChanging.save WHIgnoreChanging.exe
 
-call %ZaphodsMap%zmset.bat flagdemosdb UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
+call %ZaphodsMap%zmset.bat flagdemosdb UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdb"
 
 if "%flagdemosdb%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z -aoa
 if errorlevel 1 pause
