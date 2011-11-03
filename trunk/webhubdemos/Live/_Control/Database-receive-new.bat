@@ -13,11 +13,23 @@ ren WHIgnoreChanging.exe WHIgnoreChanging.save
 del wh*.exe
 ren WHIgnoreChanging.save WHIgnoreChanging.exe
 
-d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z -aoa
+call %ZaphodsMap%zmset.bat flagdemosdb UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
+
+if "%flagdemosdb%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z -aoa
 if errorlevel 1 pause
+
+call %ZaphodsMap%zmset.bat flagdemosdsp UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
+
+if "%flagdemosdsp%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-dsp.7z -aoa
+if errorlevel 1 pause
+
 
 cd ..\..\Library
 d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin.7z -aoa
+if errorlevel 1 pause
+
+cd /d h:\
+d:\Apps\Utilities\7Zip\7z.exe x d:\Projects\WebHubDemos\live\WebHub\Apps\DriveH-source.7z -aoa
 if errorlevel 1 pause
 
 :: now call startup procedure
