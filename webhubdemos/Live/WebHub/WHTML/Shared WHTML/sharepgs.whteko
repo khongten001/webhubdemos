@@ -293,10 +293,10 @@ Additional content may come from a database or other sources.</i></p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~~Download~)</h1>
-<p>The WebHub demos compile with Delphi 7, Delphi 2007, Delphi 2009 or Delphi 2010 plus the
-WebHub Object Pascal Components from HREF Tools Corp. </p>
+<p>The WebHub demos compile with Embarcadero Delphi XE and XE2 plus the
+WebHub Components from HREF Tools Corp. </p>
 <p>It is a good idea to check which version of WebHub this page was created by.
-To do this, look for the version number in the page footer on every demo page.  (The answer is (~version~) for this
+To do this, look for the version number in the page footer.  (The answer is (~version~) for this
 (~AppID~) app. )
 Compare this version against the information on
 <a href="http://www.href.com/whVersion">this page</a>, where HREF indicates the latest
