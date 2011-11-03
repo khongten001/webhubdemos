@@ -46,7 +46,7 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 <whdroplet name="chDSPPageFooter">
 <div class="whDemoSectionNav" style="border-color: teal;">
 	<span class="techiefooter">
-	<b>Search Technology Partners: <a href="http://www.href.com/webhub">WebHub</a> &amp; <a href="<a href="http://www.href.com/rubicon">Rubicon</a>. </b>
+	<b>Search Technology Partners: <a href="http://www.href.com/webhub">WebHub</a> &amp; <a href="http://www.href.com/rubicon">Rubicon</a>. </b>
 	<p>Running (~version~) (~CentralInfo.PascalCompilerCode~) and Rubicon v3.  Web Application Version (~mcAppVersion~)<br />
 Session #(~SessionID~).  Your Browser: (~Request.UserAgent~)<br />
 	</p>
