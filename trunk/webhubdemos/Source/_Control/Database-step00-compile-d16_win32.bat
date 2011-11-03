@@ -16,5 +16,8 @@ call ..\..\Live\_Control\select-db-demos.bat
 set demonopackages=no
 call compile-whdemos-db.bat
 
+@del D:\Projects\webhubdemos\Live\WebHub\Apps\whDSP.drc
+@del D:\Projects\webhubdemos\Live\WebHub\Apps\whDSP.map
+
 :END
 endlocal
