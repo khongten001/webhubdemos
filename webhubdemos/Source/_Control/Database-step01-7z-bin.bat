@@ -8,6 +8,11 @@ cd ..\..\Live\WebHub\Apps
 
 del Database-bin.7z
 del Database-Library-bin.7z
+del Database-dsp.7z
+
+set t=Database-dsp.7z
+d:\Apps\Utilities\7Zip\7z.exe a %t% whLite.exe
+d:\Apps\Utilities\7Zip\7z.exe a %t% whDSP.exe
 
 set t=Database-bin.7z
 
@@ -20,7 +25,6 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whRubicon.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whSchedule.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whShopping.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whText2Table.exe
-d:\Apps\Utilities\7Zip\7z.exe a %t% whDSP.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whDynamicJPEG.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whFirebird.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whFishStore.exe
