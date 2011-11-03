@@ -27,6 +27,22 @@ set demoscan=no
 set demoshop1=no
 set demostore000=no
 
+set compiledbhtml=no
+set compiledsp=yes
+set compilecoderage=no
+set compilefire=yes
+set compilehtcl=no
+set compilehtfm=yes
+set compilehtfs=yes
+set compilehtq1=no
+set compilehtq2=no
+set compilehtq3=no
+set compilehtq4=no
+set compilehtru=no
+set compilejpeg=yes
+set compilescan=no
+set compileshop1=yes
+set compilestore000=no
 
 if "%whipc%"=="old" set demodbhtml=yes
 if "%whipc%"=="x"    set demodbhtml=no
