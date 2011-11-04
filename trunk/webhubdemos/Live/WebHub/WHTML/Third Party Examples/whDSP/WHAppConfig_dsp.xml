@@ -104,6 +104,7 @@
       <File id="ads" filename="dspAds.whteko"/>
       <File id="form" filename="dspForm.whteko"/>
       <File id="home" filename="dspHome.whteko"/>
+      <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="welcome" filename="dspWelcome.whteko"/>
       <File id="mirrors" filename="dspMirrors.whteko"/>
       <File id="feedback" filename="dspFeedback.whteko"/>
