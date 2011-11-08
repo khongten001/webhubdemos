@@ -49,6 +49,7 @@
 	<Security>
 		<AdminSessionNumber value="1800"/>
 		<AdminSessionNumber value="1204" context="DEMOS" />
+		<CookieDomainDefault value="demos.href.com"/>
 	</Security>
     <Static>
       <AppRoot value="/"/>
