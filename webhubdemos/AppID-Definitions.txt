@@ -10,6 +10,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="fire">
           <Nickname value="Firebird"/>
@@ -18,6 +19,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htfs">
           <Nickname value="Fish Store"/>
@@ -26,6 +28,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htfm">
           <Nickname value="Instant Form"/>
@@ -34,6 +37,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="dbhtml">
           <Nickname value="Load from DB"/>
@@ -42,6 +46,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htq1">
           <Nickname value="Query Example 1"/>
@@ -50,6 +55,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htq2">
           <Nickname value="Query Example 2"/>
@@ -58,6 +64,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htq3">
           <Nickname value="Query Example 3"/>
@@ -66,6 +73,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htq4">
           <Nickname value="Query Example 4"/>
@@ -74,6 +82,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="scan">
           <Nickname value="Scan Table"/>
@@ -82,6 +91,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="shop1">
           <Nickname value="Shopping"/>
@@ -90,6 +100,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
@@ -102,6 +113,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="dsp">
           <Nickname value="DSP Search Engine"/>
@@ -110,6 +122,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
@@ -122,6 +135,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="brnd">
           <Nickname value="Branding"/>
@@ -130,6 +144,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htfd">
           <Nickname value="Feedback"/>
@@ -138,6 +153,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="form">
           <Nickname value="Form Posting"/>
@@ -146,6 +162,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="fast">
           <Nickname value="HTTPS"/>
@@ -154,6 +171,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htaj">
           <Nickname value="AJAX"/>
@@ -162,6 +180,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="demos">
           <Nickname value="Options"/>
@@ -170,6 +189,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="bw">
           <Nickname value="Options"/>
@@ -178,6 +198,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htsc">
           <Nickname value="Security"/>
@@ -186,6 +207,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="joke">
           <Nickname value="Sequence"/>
@@ -194,6 +216,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="showcase">
           <Nickname value="Showcase"/>
@@ -202,6 +225,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
@@ -214,6 +238,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="com">
           <Nickname value="COM"/>
@@ -222,6 +247,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htcv">
           <Nickname value="Converter"/>
@@ -230,6 +256,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="dfm2html">
           <Nickname value="DFM to HTML"/>
@@ -238,6 +265,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\wherrorlogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htdr">
           <Nickname value="Dropdown"/>
@@ -246,6 +274,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="jpeg">
           <Nickname value="Dynamic JPEG"/>
@@ -254,6 +283,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htob">
           <Nickname value="Object Inspector"/>
@@ -262,6 +292,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htol">
           <Nickname value="Outline"/>
@@ -270,6 +301,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htem">
           <Nickname value="SendMail"/>
@@ -278,6 +310,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htun">
           <Nickname value="Stop Spam"/>
@@ -286,6 +319,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
         <WebHubApp appID="htgr">
           <Nickname value="Text to Table"/>
@@ -294,6 +328,7 @@ Can be pasted into WHCentralInfo.xml
           <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
