@@ -343,7 +343,7 @@ begin
 
     if Situations.ChangedIPPageID <> '' then
       PageID := Situations.ChangedIPPageID;
-    RejectSession(cUnitName + ', WebAppBadIP()', True);
+    RejectSession(cUnitName + ', WebAppBadIP()', False);  // was True
   end;
 end;
 
@@ -412,7 +412,7 @@ begin
       end;
 
       if bForceNewSession then
-        RejectSession(cUnitName + ', ' + cFn + '()', True);
+        RejectSession(cUnitName + ', ' + cFn + '()', False);  // was True
     end;
   end;
 end;
