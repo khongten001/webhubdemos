@@ -36,7 +36,7 @@ showcaseBranchText=Surfer Tracking: Using Cookies:
 
 <p>The first gets set when this page is first visited.  The other is set when you click the link and cause your web browser software to reload the page.</p>
 
-<p><span style="color:#FF0000;font-weight:700;">"Localhost" is a bad domain for testing cookies.</span> It never works. So set up some other name for your test site when you want to work on cookies.</p>
+<p><span style="color:#FF0000;font-weight:700;">Hint: "Localhost" is a bad choice when testing cookies.</span> Support varies depending on which web browser you use; many browsers never send cookies to localhost. When testing cookies, edit your hosts file to create a fake domain name such as local32.mydomain.com or local.mydomain.co.nz.  Map that to 127.0.0.1 or, even better, to your local ip number such as 192.168.1.14. Reference: <a target="_blank" href="http://en.wikipedia.org/wiki/Hosts_%28file%29">Wikipedia, Hosts file</a>.</p>
 
 <!--- Only set Marzipan if Chocolate cookie is blank -->
 (~Match|(~cookie.chocolate~)!*|(~COOKIE|marzipan=Sure|1~)~)
