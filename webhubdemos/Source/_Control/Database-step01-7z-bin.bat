@@ -9,6 +9,11 @@ cd ..\..\Live\WebHub\Apps
 del Database-bin.7z
 del Database-Library-bin.7z
 del Database-dsp.7z
+del DriveH-source.7z
+
+set t=DriveH-source.7z
+d:\Apps\Utilities\7Zip\7z.exe a %t% h:\*.pas h:\*.dfm
+if errorlevel 1 pause
 
 set t=Database-dsp.7z
 d:\Apps\Utilities\7Zip\7z.exe a %t% whLite.exe
