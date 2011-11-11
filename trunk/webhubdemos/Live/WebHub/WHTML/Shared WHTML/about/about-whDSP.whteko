@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
@@ -26,7 +26,8 @@ metakeywords=Delphi Super Page,Credits,Announcements
 <whdroplet name="drDemoSetupDSP">
 <ol>
 <li> Requires: dsp.exe</li>
-<li> You will need a licensed version of Rubicon and webRubi.pas from HREF Tools Corp. in order to compile DSP.EXE with Delphi.</li>
+<li> You will need Rubicon and webRubi.pas from HREF Tools Corp. in order to compile DSP.EXE with Delphi.
+You can usee the free evaluation version of Rubicon for this.</li>
 <li> NB: The database is owned by Robert M. Czerwinski and is not distributed without his permission. (<a href="http://delphi.icm.edu.pl/">contact</a>)</li>
 </ol>
 </whdroplet>
@@ -45,15 +46,16 @@ and whether the file must be free to try.
 
 <h2>infrastructure and web application news</h2>
 <p>The web application behind the Delphi Super Page Search Engine 
-was written in Delphi with HREF Tools's (~version~) and 
-Rubicon v3, and the web page design was done with 
+was written in Delphi ((~PascalCompilerCode~)) with HREF Tools's (~version~) and 
+Rubicon v(~waExtraInfo.Execute|RubiconVersion~) with Database Bridge 
+(~waExtraInfo.Execute|RubiconBridge~). Most of the web page design was done with 
 Dreamweaver MX 2004 plus the WebHub Extension.  The site uses no Microsoft ASP, 
 no Visual Basic or javascript, and does not rely on cookies. </p>
 
-<h2>WebHub? What's the deal</h2>
+<h2>WebHub? What's the deal?</h2>
 <p><img border="0" height="75" width="72" src="(~mcSiteRoot~)demos/whdsp/whbox.png" alt="WebHub Box" />
 WebHub is a programming framework for Delphi (object pascal). WebHub makes big and little webapps a pleasure to write 
-and a joy to extend. WebHub applications remember what visitors type, intelligently reuse html and can deliver multiple
+and a joy to extend. WebHub applications remember what visitors type, intelligently reuses html and can deliver multiple
 personalities or languages without recompiling. That's a big deal. And yes, it's fast, powerful, scalable, proven.
 </p>
 <h2>THANKS for visiting!</h2>
