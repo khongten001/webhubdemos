@@ -13,6 +13,7 @@ type
       waSearch: TwhWebActionEx;
       waFeedback: TwhWebActionEx;
       waMirrors: TwhScanGrid;
+      procedure waExtraInfoExecute(Sender: TObject);
       procedure waSearchExecute(Sender: TObject);
       procedure waFeedbackExecute(Sender: TObject);
       procedure waResultsExecute(Sender: TObject);
@@ -26,6 +27,7 @@ type
       { Private declarations }
    public
       waResults: TwhScanKeysGrid;
+      waExtraInfo: TwhWebAction;
       function Init: Boolean; override;
    end;
 
@@ -44,12 +46,17 @@ procedure TdmDSPWebSearch.DataModuleCreate(Sender: TObject);
 begin
    Inherited;
    waResults:=nil;
+   waExtraInfo := nil;
 end;
 
 function TdmDSPWebSearch.Init: Boolean;
 begin
-   Result:=Inherited Init;
-   If not Result then Exit;
+  Result:=Inherited Init;
+  If not Result then Exit;
+  waExtraInfo := TwhWebAction.Create(Self);
+  waExtraInfo.Name := 'waExtraInfo';
+  waExtraInfo.OnExecute := waExtraInfoExecute;
+
    With waMirrors do
       begin
          TD := MacroStart + 'mcMirrTD' + MacroEnd;
@@ -90,6 +97,7 @@ begin
          TD := '<td>';
          BR := '';
       end;
+  RefreshWebActions(Self);
 end;
 
 function StringReplace2(const Value,sThis,sWith:String): String;
@@ -102,6 +110,27 @@ begin
       begin
          While SplitString(Result,sThis,a1,a2) do Result:=a1+sWith+a2;
       end;
+end;
+
+procedure TdmDSPWebSearch.waExtraInfoExecute(Sender: TObject);
+{$I rbVersion.inc}  // const RubiconVersion
+var
+  ActionKeyword: string;
+  ARVersion: string;
+  InfoMsg: string;
+begin
+  ActionKeyword := TwhWebAction(Sender).HtmlParam;
+  if ActionKeyword = 'RubiconVersion' then
+  begin
+    ARVersion := IntToStr(RubiconVersion);  // e.g. 3997
+    pWebApp.SendStringImm(Copy(ARVersion, 1, 1) + '.' + Copy(ARVersion, 2, 3));
+  end
+  else
+  if ActionKeyword = 'RubiconBridge' then
+  begin
+    InfoMsg := 'B (Borland Database Engine)';
+    pWebApp.SendStringImm(InfoMsg);
+  end;
 end;
 
 var FlagInitOnce: Boolean = False;
