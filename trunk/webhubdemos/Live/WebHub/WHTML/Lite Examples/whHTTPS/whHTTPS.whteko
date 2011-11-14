@@ -4,12 +4,6 @@
   designpage="pgEnterFAST">
 
 <whdoc>
-Copyright (c) 1995-2008 HREF Tools Corp.  All Rights Reserved WorldWide.
-Anyone with a WebHub license may use this file at no charge.
-http://www.href.com/
-</whdoc>
-
-<whdoc>
 WebHub allows you to define reusable text expansion macros.
 For example, you can define a macro for your images directory--here the macro name is mcImgHttpsDir -- which is located in the Macro shared file.
 As you look through this source code, note how the mcImgHttpsDir macro substitutes for the directory.
@@ -70,7 +64,7 @@ The page header has been defined as a single droplet, and is shared by all the d
 
 <li>(~GO|pgShowroom|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
 
-<li>(~GO|pgOrderForm|<img src="(~mcImgHttpsDir~)ordr_on.jpg" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
+<li>(~GO|pgOrderForm(apphttps)|<img src="(~mcImgHttpsDir~)ordr_on.jpg" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
 
 <li>(~GO|pgChatroom|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
 
@@ -277,7 +271,7 @@ No server id specified. Links to the chatroom will work regardless of serverid s
 (~mcSpacerRow~)
 
 <tr valign="middle">
-<td align="left">The (~JUMP|pgServerID|server ID~) for this page is SSL.</td>
+<td align="left">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</td>
 <td align="right"><img src="(~mcImgHttpsDir~)lamborgh.jpg" alt="lamborghini" /><br />
 <div class="dcenter"><small>Lamborghini</small></div></td></tr></table>
 
@@ -308,6 +302,33 @@ Page 2.<!-- Test ok. -->
 </whpage>
 <whpage pageid="pgStressTest3">
 Page 3.<!-- Test ok. -->
+</whpage>
+
+<whpage pageid="pgTestCookies">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleFAST~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+(~drPageBeginFAST~)
+	<div id="fastpagecontent">
+	<ol>
+	<li> (~JUMP|htun:pgEnterHtun(more)|anti spam demo~) </li>
+	<li> (~JUMP|demos:pgEnterDemos(lite)|overview demo~) </li>
+	<li> (~JUMP|jpeg:pgEnterJPEG(db)|dynamic jpeg images~) </li>
+	</ol>
+	</div> <!--- fastpagecontent -->
+	<div id="fastpageend">&nbsp;</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
 </whpage>
 
 </whteko>
