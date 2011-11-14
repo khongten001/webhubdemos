@@ -31,7 +31,7 @@ if "%whipc%"=="old" set demoform=yes
 if "%whipc%"=="x" set demoform=no
 
 if "%whipc%"=="old" set demofast=yes
-if "%whipc%"=="x" set demofast=no
+if "%whipc%"=="x" set demofast=yes
 
 if "%whipc%"=="old" set demobw=no
 if "%whipc%"=="x" set demobw=no
