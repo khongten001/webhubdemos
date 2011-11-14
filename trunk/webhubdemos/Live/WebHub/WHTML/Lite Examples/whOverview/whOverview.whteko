@@ -143,7 +143,7 @@ or not (i.e. your local computer) -->
 <h2>Lite Demos</h2>
 <p>(~JUMP|pgEnterLiteDEMOS|List of all LITE WebHub Demos~)</p>
 <br />
-<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos">View links on lite.demos.href.com using Microsoft IIS</a><br />
+<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos">View links on lite.demos.href.com</a><br />
 <br />
 
 (~CLEAR|tempCounter~)
