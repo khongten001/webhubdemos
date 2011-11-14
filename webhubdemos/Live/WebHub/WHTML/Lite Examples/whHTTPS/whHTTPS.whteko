@@ -207,7 +207,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 	<div id="fastpageend">&nbsp;</div>
 
     <div id="sslcert">
-<a href="http://certs.ipsca.com/sslcheck/servidorseguro.asp?numeroserie=B0:C8:76:B1:5E:9D:B1:FF:17:9C:38:F3:C6:91:8D:02:82:2D:A5:78" title="SSL Certificate"><img src="http://certs.ipsca.com/logos/ipsCASecured.jpg"  border= "0"alt="ipsCA SSL Secure Certificate"></a>	
+<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
 	</div>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
@@ -275,6 +275,10 @@ No server id specified. Links to the chatroom will work regardless of serverid s
 <td align="right"><img src="(~mcImgHttpsDir~)lamborgh.jpg" alt="lamborghini" /><br />
 <div class="dcenter"><small>Lamborghini</small></div></td></tr></table>
 
+	<div id="sslcert">
+		<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
+	</div>
+	
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
 
