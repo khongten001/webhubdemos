@@ -59,10 +59,11 @@ var
 implementation
 
 uses
-{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
+  {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils, Math,
   ucVers, ucString, ucBase64, ucLogFil, ucPos,
-  whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap;
+  whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
+  runConst;
 
 {$R *.DFM}
 
@@ -406,7 +407,8 @@ begin
           begin
             { worst case.. user fakes a cookie or comes back days later with the
               non-stored session cookie still loaded in the browser }
-            bForceNewSession := HaveSessionCookie;
+            {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie');{$ENDIF}
+            bForceNewSession := (HaveSessionCookie = whsncPresent);
           end;
         end;
       end;
