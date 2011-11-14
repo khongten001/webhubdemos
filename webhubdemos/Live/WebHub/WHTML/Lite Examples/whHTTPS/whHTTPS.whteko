@@ -60,15 +60,15 @@ The page header has been defined as a single droplet, and is shared by all the d
 (~NOMATCH|(~PageID~)[pgWelcome,AboutFAST,pgSetUp|
 <ul>
 
-<li>(~GO|pgEnterFAST|<img src="(~mcImgHttpsDir~)entrance_on.jpg" alt="Go to Entrance Page" />||<img src="(~mcImgHttpsDir~)entrance_off.jpg" alt="Already on the Entrance Page" />~)</li>
+<li>(~GO|pgEnterFAST(apphttp)|<img src="(~mcImgHttpsDir~)entrance_on.jpg" alt="Go to Entrance Page" />||<img src="(~mcImgHttpsDir~)entrance_off.jpg" alt="Already on the Entrance Page" />~)</li>
 
-<li>(~GO|pgShowroom|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
+<li>(~GO|pgShowroom(apphttp)|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
 
 <li>(~GO|pgOrderForm(apphttps)|<img src="(~mcImgHttpsDir~)ordr_on.jpg" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
 
-<li>(~GO|pgChatroom|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
+<li>(~GO|pgChatroom(apphttp)|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
 
-<li>(~GO|pgGameroom|<img src="(~mcImgHttpsDir~)game_on.jpg" alt="Go to the Gameroom" />||<img src="(~mcImgHttpsDir~)game_off.jpg" alt="Already in Gameroom" />~)</li>
+<li>(~GO|pgGameroom(apphttps)|<img src="(~mcImgHttpsDir~)game_on.jpg" alt="Go to the Gameroom" />||<img src="(~mcImgHttpsDir~)game_off.jpg" alt="Already in Gameroom" />~)</li>
 </ul>
 ~)
 	</div>
