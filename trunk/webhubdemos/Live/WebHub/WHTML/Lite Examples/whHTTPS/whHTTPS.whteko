@@ -60,11 +60,11 @@ The page header has been defined as a single droplet, and is shared by all the d
 (~NOMATCH|(~PageID~)[pgWelcome,AboutFAST,pgSetUp|
 <ul>
 
-<li>(~GO|pgEnterFAST(apphttp)|<img src="(~mcImgHttpsDir~)entrance_on.jpg" alt="Go to Entrance Page" />||<img src="(~mcImgHttpsDir~)entrance_off.jpg" alt="Already on the Entrance Page" />~)</li>
+<li>(~GO|pgEnterFAST|<img src="(~mcImgHttpsDir~)entrance_on.jpg" alt="Go to Entrance Page" />||<img src="(~mcImgHttpsDir~)entrance_off.jpg" alt="Already on the Entrance Page" />~)</li>
 
 <li>(~GO|pgShowroom|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
 
-<li>(~GO|pgOrderForm(apphttps)|<img src="(~mcImgHttpsDir~)ordr_on.jpg" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
+<li>(~GO|pgOrderForm|<img src="https://local32.secure.demos.href.com/win32/runisa_x_d16_win32_debug.dll?fast:pgordrimage:(~RawSessionNumber~)" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Already on Order Form" />~)</li>
 
 <li>(~GO|pgChatroom|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
 
@@ -241,6 +241,16 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <tr valign="middle">
 <td align="left" width="490px"><p>Fast cars relieve stress. </p> <p>No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
+
+<span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
+	<ol>
+	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
+	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
+	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
+	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) </li>
+	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
+	</ol></span>
+	
 </td>
 <td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
 <div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
@@ -275,14 +285,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <tr valign="middle">
 <td align="left" width="490px"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
-<span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
-	<ol>
-	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
-	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
-	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
-	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) </li>
-	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
-	</ol></span>
+
 </td>
 <td align="right"><img src="(~mcImgHttpsDir~)lamborgh.jpg" alt="lamborghini" /><br />
 <div class="dcenter"><small>Lamborghini</small></div></td></tr></table>
@@ -298,6 +301,10 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~drPageEnd~)
 </body></html>
 </whoutput>
+</whpage>
+
+<whpage pageid="pgordrimage">
+(~FLUSH}~)(~waImgSrc.Execute|d:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whHttps\ordr_on.jpg~)(~CLOSE|~)
 </whpage>
 
 </whteko>
