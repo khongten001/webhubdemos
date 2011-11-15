@@ -35,7 +35,7 @@
 </whdroplet>
 
 <whdroplet name="drSystemInfo" show="no">
-<h3>Background Data for Surfer #(~SessionID~)</h3>
+<h3>Background Data for Surfer #(~RawSessionNumber~)</h3>
 (~drLiteralsInfo~)
 <br />
 <table id="SessionData" class="WHSystemInfo">
