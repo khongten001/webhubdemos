@@ -80,8 +80,7 @@ The page header has been defined as a single droplet, and is shared by all the d
 		<tr valign="middle">
 			<td width="490px">
 			<span style="font-size:1.4em;font-weight:700;">Ladies and Gentleman, start your engines!</span><p>
-The pages in this demo are (~JUMP|pgServerID|defined to route to a specific ServerProfileID,~)
-<br />either  defprofile or ssl.</p>
+The pages in this demo are (~JUMP|pgServerID|defined to route to a specific ServerProfileID~), either  defprofile or ssl.</p>
 			</td>
 			<td align="right">
 			<img src="(~mcImgHttpsDir~)ferrari.jpg" alt="ferrari" /><br />
@@ -159,6 +158,7 @@ page will run on the ssl server.</p>
 
 <tr valign="middle">
 <td width="490px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
+<p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 <p>Fast cars can run on <b>solar energy</b> as proven by the winner of the 3000km race 
 from Darwin to Adelaide, Australia in October 2011.  Average speed over 90km per hour, top speed over 160km/hr.</p>
 <p style="text-align:center; font-size: xx-small;">
@@ -201,7 +201,9 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left" width="490px">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</td>
+<td align="left" width="490px"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
+<p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
+</td>
 <td align="right"><img src="(~mcImgHttpsDir~)porsche.jpg" alt="Porsche" /><br />
 <div class="dcenter"><small>Porsche</small></div></td></tr></table>
 
@@ -236,7 +238,9 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left" width="490px">Fast cars relieve stress. <br /><br />No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</td>
+<td align="left" width="490px"><p>Fast cars relieve stress. </p> <p>No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</p>
+<p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
+</td>
 <td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
 <div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
 
@@ -269,6 +273,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 
 <tr valign="middle">
 <td align="left" width="490px"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
+<p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 <span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
@@ -285,29 +290,6 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 		<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
 	</div>
 	
-	</div> <!--- fastpagecontent -->
-	<div id="fastpageend">&nbsp;</div>
-
-</div>  <!--- demopagecontent -->
-(~drPageEnd~)
-</body></html>
-</whoutput>
-</whpage>
-
-<whpage pageid="pgTestCookies" mode="design">
-<whoutput>
-(~mcdoctypehtml~)
-<html>
-<head>
-	(~drHead~)
-	(~drStyleFAST~)
-</head>
-<body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
-(~drPageBeginFAST~)
-	<div id="fastpagecontent">
-
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
 
