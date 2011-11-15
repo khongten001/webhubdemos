@@ -78,7 +78,7 @@ The page header has been defined as a single droplet, and is shared by all the d
 		<table cellpadding="5" cellspacing="15" border="0">
 		(~mcPageTitle~)
 		<tr valign="middle">
-			<td>
+			<td width="490px">
 			<span style="font-size:1.4em;font-weight:700;">Ladies and Gentleman, start your engines!</span><p>
 The pages in this demo are (~JUMP|pgServerID|defined to route to a specific ServerProfileID,~)
 <br />either  defprofile or ssl.</p>
@@ -116,7 +116,7 @@ The pages in this demo are (~JUMP|pgServerID|defined to route to a specific Serv
 </table>
 <table width="100%">
 <tr valign="middle">
-<td align="left">
+<td align="left" width="490px">
 The page definitions in this site use ServerProfileIDs within the PageAlias in order to indicate which server each one should run on.  Some use defprofile and some use ssl.
 The actual effect depends on how you configure the ServerProfileID, but the idea is to make the ssl
 pages run on HTTPS.
@@ -153,12 +153,12 @@ page will run on the ssl server.</p>
 <div id="whdemopagecontent">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
-<table cellpadding="5" cellspacing="15" width="800px">
+<table cellpadding="5" cellspacing="15" >
 
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
+<td width="490px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
 <p>Fast cars can run on <b>solar energy</b> as proven by the winner of the 3000km race 
 from Darwin to Adelaide, Australia in October 2011.  Average speed over 90km per hour, top speed over 160km/hr.</p>
 <p style="text-align:center; font-size: xx-small;">
@@ -201,7 +201,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</td>
+<td align="left" width="490px">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</td>
 <td align="right"><img src="(~mcImgHttpsDir~)porsche.jpg" alt="Porsche" /><br />
 <div class="dcenter"><small>Porsche</small></div></td></tr></table>
 
@@ -236,7 +236,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left" width="550px">Fast cars relieve stress. <br /><br />No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</td>
+<td align="left" width="490px">Fast cars relieve stress. <br /><br />No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</td>
 <td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
 <div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
 
@@ -268,7 +268,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
+<td align="left" width="490px"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
 <span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
