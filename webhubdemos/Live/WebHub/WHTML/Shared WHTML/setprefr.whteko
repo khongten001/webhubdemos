@@ -66,11 +66,16 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~~SetPrefLingvo~):
 (~inputselect|guestlingvo,mclingvolist,1,no~)
 
+<whdoc for="sessioncookie">
+Previously the surfer could toggle the session cookie on and off. 
+This feature does not belong in ALL demos; it may be moved to a 
+single demo in future.  November 2011.
 <h2>URL Style</h2>
 <p>WebHub Session Cookie: (~JUMPR|pgEnableSessionCookie|id=apgEnableSessionCookie|Enable~) 
 or
 (~JUMPR|pgDisableSessionCookie|id=apgDisableSessionCookie|Disable~) 
 </p>
+</whdoc>
 
 <h2>(~~Debugging~)</h2>
 (~inputcheckbox|showSystemInfo~) Show System Info
