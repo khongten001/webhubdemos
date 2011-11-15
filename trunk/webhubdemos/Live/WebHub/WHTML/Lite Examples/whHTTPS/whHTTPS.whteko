@@ -236,7 +236,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td align="left">Fast cars relieve stress. <br /><br />No server ID is specified for this page. It will stay on whichever demos.href.com domain referred you here.</td>
+<td align="left" width="550px">Fast cars relieve stress. <br /><br />No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</td>
 <td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
 <div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
 
