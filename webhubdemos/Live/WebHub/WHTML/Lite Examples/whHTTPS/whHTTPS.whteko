@@ -153,16 +153,19 @@ page will run on the ssl server.</p>
 <div id="whdemopagecontent">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
-<table cellpadding="5" cellspacing="15">
+<table cellpadding="5" cellspacing="15" width="800px">
 
 (~mcPageTitle~)
-(~mcSpacerRow~)
 
 <tr valign="middle">
-<td align="left">Fast cars are cool.<br /><br />
-The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</td>
-<td align="right"><img src="(~mcImgHttpsDir~)viper.jpg" alt="Dodge Viper" /><br />
-<div class="dcenter"><small>Dodge Viper</small></div></td></tr></table>
+<td><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
+<p>Fast cars can run on <b>solar energy</b> as proven by the winner of the 3000km race 
+from Darwin to Adelaide, Australia in October 2011.  Average speed over 90km per hour, top speed over 160km/hr.</p>
+<p style="text-align:center; font-size: xx-small;">
+<img src="http://www.worldsolarchallenge.org/file/resize/r500x500/216_tokai-challenger-1.jpg" alt="Japanese team, winners 2011 World Solar Challenge" /><br/>
+Japanese team for 2011 World Solar Challenge</p>
+</td>
+</tr></table>
 
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
