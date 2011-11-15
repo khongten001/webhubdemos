@@ -268,7 +268,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 (~mcSpacerRow~)
 
 <tr valign="middle">
-<td align="left">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.
+<td align="left"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
 <span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
