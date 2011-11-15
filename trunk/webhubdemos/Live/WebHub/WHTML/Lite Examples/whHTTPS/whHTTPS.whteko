@@ -303,8 +303,8 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 </whoutput>
 </whpage>
 
-<whpage pageid="pgordrimage">
-(~FLUSH}~)(~waImgSrc.Execute|d:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whHttps\ordr_on.jpg~)(~CLOSE|~)
+<whpage pageid="pgordrimage" desc="-send ordr jpg">
+(~waImgSrc.Execute|d:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whHttps\ordr_on.jpg~)
 </whpage>
 
 </whteko>
