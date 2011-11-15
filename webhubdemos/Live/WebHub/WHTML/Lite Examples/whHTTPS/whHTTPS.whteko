@@ -81,6 +81,7 @@ The page header has been defined as a single droplet, and is shared by all the d
 			<td width="490px">
 			<span style="font-size:1.4em;font-weight:700;">Ladies and Gentleman, start your engines!</span><p>
 The pages in this demo are (~JUMP|pgServerID|defined to route to a specific ServerProfileID~), either  defprofile or ssl.</p>
+<p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 			</td>
 			<td align="right">
 			<img src="(~mcImgHttpsDir~)ferrari.jpg" alt="ferrari" /><br />
