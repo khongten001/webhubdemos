@@ -269,14 +269,14 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 
 <tr valign="middle">
 <td align="left">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.
-<i>Links for testing session number cookie processing...</i>
+<span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> (~JUMP|htun:pgEnterHtun(more)|more: anti spam demo, same server, cookie~) </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
 	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
-	</ol>
+	</ol></span>
 </td>
 <td align="right"><img src="(~mcImgHttpsDir~)lamborgh.jpg" alt="lamborghini" /><br />
 <div class="dcenter"><small>Lamborghini</small></div></td></tr></table>
