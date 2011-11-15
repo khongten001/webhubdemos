@@ -6,6 +6,8 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
    for information about "drives" H: and K:. *)
 
 uses
+  {$IFDEF EUREKALOG}ExceptionLog,{$ENDIF}
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
@@ -58,6 +60,7 @@ uses
   cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
   htmlCore in 'K:\WebHub\lib\whvcl\htmlCore.pas',
   whsample_DWSecurity in 'k:\webhub\lib\whsample_DWSecurity.pas',
+  webVars in 'k:\webhub\lib\webVars.pas',
   webApp in 'K:\WebHub\lib\whvcl\webApp.pas',
   webSend in 'K:\WebHub\lib\whvcl\webSend.pas',
   htmConst in 'K:\WebHub\lib\whvcl\htmConst.pas',
