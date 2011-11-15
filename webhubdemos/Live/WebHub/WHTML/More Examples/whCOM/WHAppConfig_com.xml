@@ -28,8 +28,8 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="shortformat"/>
-        <ServerProfileIDStandard value="defprofile" context="ultraann"/>
+        <ServerProfileIDStandard value="more" context="DEMOS"/>
+        <ServerProfileIDStandard value="defprofile" />
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>

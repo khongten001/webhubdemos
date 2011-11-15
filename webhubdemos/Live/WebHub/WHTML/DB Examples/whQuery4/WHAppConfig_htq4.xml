@@ -34,7 +34,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile" />
-        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="db" context="DEMOS"/>
         <ServerProfileIDStandard value="defprofile" context="qa" />
       </DynURLConfig>
       <ProjectSyntax value="0214"/>

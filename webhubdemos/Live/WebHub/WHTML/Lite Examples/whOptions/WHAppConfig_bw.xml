@@ -32,7 +32,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <UseAppProcessID value="false"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
