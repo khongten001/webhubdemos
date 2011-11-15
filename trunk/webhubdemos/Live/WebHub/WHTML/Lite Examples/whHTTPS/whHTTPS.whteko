@@ -199,7 +199,6 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <table cellpadding="5" cellspacing="15">
 
 (~mcPageTitle~)
-(~mcSpacerRow~)
 
 <tr valign="middle">
 <td align="left">The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</td>
@@ -235,10 +234,9 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <table cellpadding="5" cellspacing="15">
 
 (~mcPageTitle~)
-(~mcSpacerRow~)
 
 <tr valign="middle">
-<td align="left">Fast cars relieve stress. <br /><br />No server ID is specified for this page.</td>
+<td align="left">Fast cars relieve stress. <br /><br />No server ID is specified for this page. It will stay on whichever demos.href.com domain referred you here.</td>
 <td align="right"><img src="(~mcImgHttpsDir~)rx7.jpg" alt="rx7" /><br />
 <div class="dcenter"><small>Mazda RX7</small></div></td></tr></table>
 
@@ -268,7 +266,6 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <table cellpadding="5" cellspacing="15">
 
 (~mcPageTitle~)
-(~mcSpacerRow~)
 
 <tr valign="middle">
 <td align="left"><p>The (~JUMP|pgServerID|server ID~) for this page is <code>apphttps</code>.</p>
