@@ -28,7 +28,7 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <ServerProfileIDStandard value="defprofile"/>
         <UseAppProcessID value="false"/>
       </DynURLConfig>

@@ -29,7 +29,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="shortformat" context="DEMOS"/>
+        <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <ServerProfileIDStandard context="ultraann" value="newipc"/>
         <ServerProfileIDSecure value="ssl"/>
       </DynURLConfig>
