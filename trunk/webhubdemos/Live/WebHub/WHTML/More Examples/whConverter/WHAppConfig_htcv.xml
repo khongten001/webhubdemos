@@ -56,7 +56,7 @@
 	<Security>
 		<AdminSessionNumber value="1800"/>
 		<AdminSessionNumber value="1204" context="DEMOS" />
-      <CookieDomainDefault value="demos.href.com"/>
+      <CookieDomainDefault value=""/>
 	</Security>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
