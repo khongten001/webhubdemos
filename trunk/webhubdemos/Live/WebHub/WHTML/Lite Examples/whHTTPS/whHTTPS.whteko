@@ -248,7 +248,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> <img 
-src="https://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
+src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
              width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: anti spam demo, same server, cookie~) </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
