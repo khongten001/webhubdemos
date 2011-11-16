@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo200808.xsd">
+  <Variables begin="{" end="}"/>
+  <HttpServers>
+    <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
+  </HttpServers>
+  <LocalMachine>
+    <Runners>
+      <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
+        <Interface value="isapi"/>
+        <DelayMS value="0"/>
+        <UploadFolder value="D:\AppsData\WebHub\upload\"/>
+        <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
+        <AdminAccess scheme="http" authority="lite2.demos.href.com:80"/>
+      </Runner>
+    </Runners>
+    <ServerProfiles>
+      <ServerProfile id="defprofile">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="lite2.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="lite">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="lite2.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="more">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="more2.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="ssl">
+        <HttpServerID value="iis"/>
+        <Scheme value="https"/>
+        <Authority value="secure2.demos.href.com:443"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+    </ServerProfiles>
+  </LocalMachine>
+  <OtherMachines>
+    <ServerProfiles>
+      <ServerProfile id="db">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="db.demos.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="dsp">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="dsp.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="dpr">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="delphiprefix.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+    </ServerProfiles>
+  </OtherMachines>
+</WebHubNetworkInfo>
