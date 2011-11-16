@@ -74,6 +74,6 @@ if "%whipc%"=="old" set demojpeg=yes
 if "%whipc%"=="x"    set demojpeg=yes
 
 if "%whipc%"=="old" set demoshop1=yes
-if "%whipc%"=="x"    set demoshop1=no
+if "%whipc%"=="x"    set demoshop1=yes
 
 :end
