@@ -30,7 +30,6 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="lite" context="DEMOS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
