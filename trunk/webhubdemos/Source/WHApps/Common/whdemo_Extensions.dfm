@@ -44,4 +44,10 @@ object DemoExtensions: TDemoExtensions
     Left = 280
     Top = 200
   end
+  object waImgSrc: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waImgSrcExecute
+    Left = 392
+    Top = 272
+  end
 end
