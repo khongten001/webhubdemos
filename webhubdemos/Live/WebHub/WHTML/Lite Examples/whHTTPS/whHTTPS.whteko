@@ -161,7 +161,7 @@ page will run on the ssl server.</p>
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td width="250px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
+<td width="190px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 <p>Fast cars can run on <b>solar energy</b> as proven by the winner of the 3000km race 
 from Darwin to Adelaide, Australia in October 2011.  Average speed over 90km per hour, top speed over 160km/hr.</p>
