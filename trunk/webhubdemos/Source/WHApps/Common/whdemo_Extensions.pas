@@ -224,7 +224,10 @@ begin
   begin
     if HtmlParam <> '' then
     begin
-      AFilespec := getWebHubDemoInstallRoot + HtmlParam;
+      if WebApp.Expand(HtmlParam) <> '' then
+        AFilespec := getWebHubDemoInstallRoot + WebApp.Expand(HtmlParam)
+      else
+        AFilespec := getWebHubDemoInstallRoot + HtmlParam;
       if FileExists(AFilespec) then
       begin
         WebApp.Response.Flush;
@@ -465,9 +468,9 @@ begin
     else
       Inc(TestNumber);
 
-    AFolder := Format('D:\Projects\webhubdemos\Live\WebRoot\webhub\%s\%s\%s%s\',
-      ['echoqa', FormatDateTime('yyyymmdd', Now), Sender.AppID,
-      Sender.CentralInfo.PascalCompilerCode]);
+    AFolder := Format('%sLive\WebRoot\webhub\%s\%s\%s%s\',
+      [getWebHubDemoInstallRoot, 'echoqa', FormatDateTime('yyyymmdd', Now),
+       Sender.AppID, Sender.CentralInfo.PascalCompilerCode]);
     ForceDirectories(AFolder);
     AFilename := Format('test%d.txt', [TestNumber]);
     UTF8StringWriteToFile(AFolder + AFilename, PageContent);
