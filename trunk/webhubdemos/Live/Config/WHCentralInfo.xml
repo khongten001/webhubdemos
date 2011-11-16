@@ -394,8 +394,8 @@
           <ErrorLogFolder value="d:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
-          <SessionCookieName value=""/>
-	  <SessionNumberLocation value="URL" />
+          <SessionCookieName value="whsession"/>
+		  <SessionNumberLocation value="CookieFixedDomain" />
         </WebHubApp>
         <WebHubApp appID="htun">
           <Nickname value="Stop Spam"/>
@@ -404,8 +404,8 @@
           <ErrorLogFolder value="d:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
-          <SessionCookieName value="whsession"/>
-		  <SessionNumberLocation value="CookieFixedDomain" />
+          <SessionCookieName value=""/>
+		  <SessionNumberLocation value="URL" />
         </WebHubApp>
         <WebHubApp appID="htgr">
           <Nickname value="Text to Table"/>
