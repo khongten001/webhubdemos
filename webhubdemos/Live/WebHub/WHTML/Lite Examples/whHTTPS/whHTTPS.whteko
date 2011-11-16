@@ -64,7 +64,10 @@ The page header has been defined as a single droplet, and is shared by all the d
 
 <li>(~GO|pgShowroom|<img src="(~mcImgHttpsDir~)ShRm_on.jpg" alt="Go to the Showroom" />||<img src="(~mcImgHttpsDir~)ShRm_off.jpg" alt="Already in the Showroom" />~)</li>
 
-<li>(~GO|pgOrderForm|<img src="https://secure.demos.href.com/fast:pgordrimage:(~RawSessionNumber~)" alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Order Form for a FAST Car" />~)</li>
+<li>(~GO|pgOrderForm|<img 
+src="https://secure.demos.href.com/fast:pgordrimage:(~RawSessionNumber~)" 
+<!--- src="http://local32.secure.demos.href.com/win32/runisa_x_d16_win32_debug.dll?fast:pgordrimage:(~RawSessionNumber~)"  -->
+alt="Go to Order Form" />||<img src="(~mcImgHttpsDir~)ordr_off.jpg" alt="Order Form for a FAST Car" />~)</li>
 
 <li>(~GO|pgChatroom|<img src="(~mcImgHttpsDir~)chat_on.jpg" alt="Go to Chatroom" />||<img src="(~mcImgHttpsDir~)chat_off.jpg" alt="Already in Chatroom" />~)</li>
 
@@ -304,7 +307,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 </whpage>
 
 <whpage pageid="pgordrimage" desc="-send ordr jpg">
-(~waImgSrc.Execute|d:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whHttps\ordr_on.jpg~)
+(~waImgSrc.Execute|Live\WebRoot\webhub\demos\whHttps\ordr_on.jpg~)
 </whpage>
 
 </whteko>
