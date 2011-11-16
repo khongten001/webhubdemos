@@ -161,10 +161,12 @@ page will run on the ssl server.</p>
 (~mcPageTitle~)
 
 <tr valign="middle">
-<td width="490px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
+<td width="250px"><p>The (~JUMP|pgServerID|server profile ID~) for this page is <code>apphttp</code>.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 <p>Fast cars can run on <b>solar energy</b> as proven by the winner of the 3000km race 
 from Darwin to Adelaide, Australia in October 2011.  Average speed over 90km per hour, top speed over 160km/hr.</p>
+</td>
+<td valign="middle">
 <p style="text-align:center; font-size: xx-small;">
 <img src="http://www.worldsolarchallenge.org/file/resize/r500x500/216_tokai-challenger-1.jpg" alt="Japanese team, winners 2011 World Solar Challenge" /><br/>
 Japanese team for 2011 World Solar Challenge</p>
@@ -245,7 +247,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <td align="left" width="490px"><p>Fast cars relieve stress. </p> <p>No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 
-<span style="font-size:x-small;"><i>Links for testing session number cookie processing...</i>
+<span style="font-size:x-small;"><i>Links for testing session number cookie processing... </i>
 	<ol>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
@@ -255,7 +257,7 @@ src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)"
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
 <li> <img 
 src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)" 
-             width="90px" alt="shopping demo" /> (~JUMP|jpeg:pgEnterJPEG(db)|db: shopping, separate machine, with cookie~) </li>
+             width="90px" alt="shopping demo" /> (~JUMP|shop1:pgEnterShop1(db)|db: shopping, separate machine, with cookie~) </li>
 	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) <br/>
 <i>No graphic required because this one runs on lite.demos.href.com</i> </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
