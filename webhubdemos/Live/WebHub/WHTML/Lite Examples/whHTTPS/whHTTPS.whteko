@@ -249,9 +249,12 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 	<ol>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
-             width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: anti spam demo, same server, cookie~) </li>
+             width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: send email demo, same server, cookie~) </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
+<li> <img 
+src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)" 
+             width="90px" alt="shopping demo" /> (~JUMP|jpeg:pgEnterJPEG(db)|db: shopping, separate machine, with cookie~) </li>
 	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
 	</ol></span>
