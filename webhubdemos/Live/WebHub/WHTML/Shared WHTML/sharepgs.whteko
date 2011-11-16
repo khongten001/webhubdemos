@@ -694,4 +694,9 @@ data: (~INPUTTEXT|data,30~)<br/>
 </html>
 </whpage>
 
+<whpage pageid="pglogoimage" desc="-send logo jpg for this demo">
+<!--- (~waImgSrc.Execute|Live\WebRoot\webhub\demos\img\logos\(~AppID~).jpg~) -->
+(~waImgSrc.Execute|Live\WebRoot\webhub\demos\img\logos\htem.jpg~)
+</whpage>
+
 </whteko>
