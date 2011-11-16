@@ -71,6 +71,7 @@ type
 var
   DemoViewSource: TDemoViewSource = nil;
 
+function getWebHubDemoInstallRoot: string;
 function getHtDemoCodeRoot: string;     // default is c:\projects\WebHubDemos\Source\WhApps\
 function getHtDemoDataRoot: string;     // default is c:\projects\WebHubDemos\Live\Database\
 function getHtDemoWWWRoot: string;      // default is c:\projects\WebHubDemos\Live\WebRoot\
