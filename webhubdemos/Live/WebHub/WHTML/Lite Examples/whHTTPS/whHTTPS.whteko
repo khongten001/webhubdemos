@@ -120,9 +120,9 @@ The pages in this demo are (~JUMP|pgServerID|defined to route to a specific Serv
 <table width="100%">
 <tr valign="middle">
 <td align="left" width="490px">
-The page definitions in this site use ServerProfileIDs within the PageAlias in order to indicate which server each one should run on.  Some use defprofile and some use ssl.
-The actual effect depends on how you configure the ServerProfileID, but the idea is to make the ssl
-pages run on HTTPS.
+The page definitions in this site use ServerProfileIDs within the page declaration 
+in order to indicate which domain name each page should run on.  Some use the default application profile, 
+and some use the secure (apphttps) profile.  The actual effect depends on how you configure the ServerProfileID.
 <p>This is what a the page definition for the order page looks like:</p>
 <pre>
 &lt;whpage pageid="pgOrderForm" remap="(apphttps)" desc="Order Form"&gt;
@@ -249,13 +249,15 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 	<ol>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
-             width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: send email demo, same server, cookie~) </li>
+             width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: send email demo, same server, cookie~) <br/>
+<i>uses graphic to pre-send the cookie for more.demos.href.com</i> </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
 <li> <img 
 src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)" 
              width="90px" alt="shopping demo" /> (~JUMP|jpeg:pgEnterJPEG(db)|db: shopping, separate machine, with cookie~) </li>
-	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) </li>
+	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) <br/>
+<i>No graphic required because this one runs on lite.demos.href.com</i> </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
 	</ol></span>
 	
