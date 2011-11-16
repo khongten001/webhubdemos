@@ -30,12 +30,14 @@ type
     waLSec: TwhWebAction;
     waDelaySec: TwhWebAction;
     waDemoCaptcha: TwhCaptcha;
+    waImgSrc: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
     procedure waVersionInfoExecute(Sender: TObject);
     procedure waLSecExecute(Sender: TObject);
     procedure waDelaySecExecute(Sender: TObject);
+    procedure waImgSrcExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -61,9 +63,10 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils, Math,
-  ucVers, ucString, ucBase64, ucLogFil, ucPos,
+  ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  runConst;
+  runConst,
+  whdemo_ViewSource;
 
 {$R *.DFM}
 
@@ -211,6 +214,30 @@ procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
 begin
   inherited;
   pWebApp.SendString(ExtractFilename(Application.ExeName));
+end;
+
+procedure TDemoExtensions.waImgSrcExecute(Sender: TObject);
+var
+  AFilespec: string;
+begin
+  with TwhWebAction(Sender) do
+  begin
+    if HtmlParam <> '' then
+    begin
+      AFilespec := getWebHubDemoInstallRoot + HtmlParam;
+      if FileExists(AFilespec) then
+      begin
+        WebApp.Response.Flush;
+        WebApp.AddCookieWithSessionNumber(True, WebApp.Request.IsHTTPS,
+          WebApp.Request.Host);
+        WebApp.Response.SendFileIIS(AFilespec, 'image/jpg', False);
+      end
+      else
+      begin
+        LogSendError('File not found: ' + AFilespec);
+      end;
+    end;
+  end;
 end;
 
 procedure TDemoExtensions.waLSecExecute(Sender: TObject);
