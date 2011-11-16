@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<SystemMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubSystemMessages200808.xsd">
+  <Variables begin="{" end="}">
+    <Var name="SysMsgRoot" value="d:\AppsData\WebHub\sysmsgs\"/>
+    <Var name="WebHubDemoMsgRoot" value="D:\Projects\webhubdemos\Live\WebHub\whmsg\"/>
+  </Variables>
+  <Situations>
+    <AllSituationsDefault appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+    <AppCoverPage appID="" value="{WebHubDemoMsgRoot}appcoverpage-whdemo.whmsg"/>
+    <AppCoverPage appID="htun" value="{WebHubDemoMsgRoot}appcoverpage-htun.whmsg"/>
+    <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+    <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+    <AppNotRunning appID="coderage" value="{SysMsgRoot}appnotrunning-coderage.whmsg"/>
+    <AppShuttingDown appID="" value="http://webhub.com/appshuttingdown.html"/>
+    <HubNotFound appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+    <RequestTimeout appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+  </Situations>
+  <Text>
+    <Asap value="as soon as possible"/>
+    <AppCoverPage value="temporary admin mode"/>
+    <AppNotDefined value="invalid AppID"/>
+    <AppNotRunning value="app not running"/>
+    <AppShuttingDown value="app in process of shutting down"/>
+    <HubNotFound value="hub.exe not running or not available"/>
+    <Minutes value="minutes"/>
+    <RequestTimeout value="request timeout"/>
+  </Text>
+</SystemMessages>
