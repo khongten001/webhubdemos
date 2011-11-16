@@ -37,7 +37,7 @@ you didn't know you needed.</p>
 </body></html>
 </whpage>
 
-<whpage pageid="poster" desc="Internal page for posting">
+<whpage pageid="poster" desc="Internal page for posting" remap="(apphttps)">
 <whprep>
 (~WebActionPostLit.execute~)
 (~Match|(~BtnShop~)~Checkout|(~Page|Confirm~)~)
@@ -47,7 +47,7 @@ you didn't know you needed.</p>
 </whpage>
 
 
-<whpage pageid="confirm" desc="Confirm Your Order of Parts!">
+<whpage pageid="confirm" desc="Confirm Your Order of Parts!" remap="(apphttps)">
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -112,7 +112,7 @@ this feature has been left as an exercise for the reader.)</p>
 </body></html>
 </whpage>
 
-<whpage pageid="pgError" desc="Insufficient Information">
+<whpage pageid="pgError" desc="Insufficient Information" remap="(apphttps)">
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -121,7 +121,7 @@ this feature has been left as an exercise for the reader.)</p>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<p>You didn't enter enough information for us to send you the order.</p>
+<p>You did not enter enough information for us to send you the order.</p>
 <p>Please (~JUMP|confirm|go back~) and enter your <b>email address and shipping city</b>.</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
@@ -129,7 +129,7 @@ this feature has been left as an exercise for the reader.)</p>
 </body></html>
 </whpage>
 
-<whpage pageid="thx" desc="Thank You">
+<whpage pageid="thx" desc="Thank You" remap="(apphttps)">
 <whprep>
 <!--- Check for required fields. -->
 (~REQUIRES|CustEMail|pgError~)
