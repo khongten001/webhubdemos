@@ -75,23 +75,10 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="shortdsp">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="dsp.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapi"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
       <ServerProfile id="ssl">
         <HttpServerID value="iis"/>
         <Scheme value="https"/>
-        <Authority value="dbsecure.demos.href.com:443"/>
+        <Authority value="db.demos.href.com:443"/>
         <AllowDynamicAuthority value="false"/>
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
