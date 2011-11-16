@@ -245,7 +245,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 <td align="left" width="490px"><p>Fast cars relieve stress. </p> <p>No server ID is specified for this page. The web browser will stay on whichever demos.href.com domain referred you here.</p>
 <p>Host: <b>(~Request.Host~)</b> and Session Number: <b>(~RawSessionNumber~)</b></p>
 
-<span style="font-size:xx-small;"><i>Links for testing session number cookie processing...</i>
+<span style="font-size:x-small;"><i>Links for testing session number cookie processing...</i>
 	<ol>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
