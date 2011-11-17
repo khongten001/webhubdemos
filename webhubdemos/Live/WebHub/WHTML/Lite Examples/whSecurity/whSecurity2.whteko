@@ -47,7 +47,7 @@ hint: (~weblogin.usrPassPhrase~)
 </tr>
 
 <tr>
-<td>User's full name</td>
+<td>User Full Name</td>
 <td>(~WebLogin.UsrFullName~)</td>
 </tr>
 
@@ -57,7 +57,7 @@ hint: (~weblogin.usrPassPhrase~)
 </tr>
 
 <tr>
-<td>User's password</td>
+<td>User Password</td>
 <td> (~WebLogin.UsrPassword~) </td>
 </tr>
 

@@ -23,7 +23,7 @@ securitylevel=2
 UnderLogin=yes
 </whpagesettingslist>
 
-<whpage pageid="pgEnterHTSC" desc="Entrance for the HTSC Demo">
+<whpage pageid="pgEnterHTSC" desc="Entrance for the HTSC Demo" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
@@ -122,7 +122,7 @@ end their session (or do it automatically at a certain point.)
 </whpage>
 
 
-<whpage pageid="pgFlowchart" desc="Security Demo Site Map">
+<whpage pageid="pgFlowchart" desc="Security Demo Site Map" remap="(apphttp)">
 <whpagesettings inherit="public">
 undersession=no
 </whpagesettings>
@@ -152,7 +152,7 @@ uses the IFINACTIVEFORSEC macro.</p>
 </whpage>
 
 
-<whpage pageid="pgAboutLogin" desc="About the Login Procedure">
+<whpage pageid="pgAboutLogin" desc="About the Login Procedure" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -192,7 +192,7 @@ specifying varying response pages based on the login result.</p>
 </whpage>
 
 
-<whpage pageid="pgAboutUserList" desc="About the UserList">
+<whpage pageid="pgAboutUserList" desc="About the UserList" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -263,7 +263,7 @@ are optional.</p>
 </whpage>
 
 
-<whpage pageid="pgLogin" desc="The Log-in Page">
+<whpage pageid="pgLogin" desc="The Log-in Page" remap="(apphttps)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -329,7 +329,7 @@ row with a  user-defined prompt "hint" for the password.</p>
 </whoutput>
 </whpage>
 
-<whpage pageid="pgAboutBasics" desc="About WebHub Security">
+<whpage pageid="pgAboutBasics" desc="About WebHub Security" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -365,7 +365,7 @@ Here is a list of (~JUMP|PgWHSecBasics|built-in WebHub Security features~)</p>
 </whoutput>
 </whpage>
 
-<whpage pageid="pgWHSecBasics" desc="Basic WebHub Security Features">
+<whpage pageid="pgWHSecBasics" desc="Basic WebHub Security Features" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
@@ -495,7 +495,7 @@ Event:  <br /> OnBadPageID event</td>
 </whpage>
 
 
-<whpage pageid="pgCookies" desc="What others have to say about the use of Cookies">
+<whpage pageid="pgCookies" desc="What others have to say about the use of Cookies" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -543,16 +543,16 @@ they are best suited--transmission of data that has no need to be protected.</p>
 (~Request.CookiesIn~)
 
 <h2>Cookie Control</h2>
-<p>You may decide whether you want a WebHub session cookie, or not, by visiting the 
-(~JUMPR|setpref|(~~Options~)~) page.  If you accept the WebHub session cookie, 
-all non-random page jumps will exclude session digits.</p>
+<p>As of November 2011, the WebHub developer decides, for each application, 
+whether a session number cookie should be available for those surfers who
+accept cookies.</p>
 (~drPageEnd~)
 </body></html>
 </whoutput>
 </whpage>
 
 
-<whpage pageid="pgHTTPS" desc="About HTTPS">
+<whpage pageid="pgHTTPS" desc="About HTTPS" remap="(apphttps)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -606,7 +606,7 @@ and further information on ServerIDs can be found in the webhub.hlp file.</p>
 </whoutput>
 </whpage>
 
-<whpage pageid="pgLoginConfirm">
+<whpage pageid="pgLoginConfirm" remap="(apphttps)">
 <whpagesettings inherit="level2">
 undersession=no
 </whpagesettings>
@@ -626,7 +626,7 @@ undersession=no
 </whprep>
 </whpage>
 
-<whpage pageid="PgAccessLevel1" desc="First Level Access">
+<whpage pageid="PgAccessLevel1" desc="First Level Access" remap="(apphttps)">
 <whpagesettings>
 securitylevel=1
 undersession=no
@@ -673,7 +673,7 @@ level 2 username and password.  Note the resulting change in the speedbar!</p>
 </whoutput>
 </whpage>
 
-<whpage pageid="pgBounceHow" desc="How the Login mechanism works">
+<whpage pageid="pgBounceHow" desc="How the Login mechanism works" remap="(apphttp)">
 <whpagesettings>
 securitylevel=1
 UnderLogin=yes
@@ -757,7 +757,7 @@ level 2 username and password.  Note the resulting change in the speedbar!
 
 
 
-<whpage pageid="PgLoginSettings" desc="Display  TwhLogin settings">
+<whpage pageid="PgLoginSettings" desc="Display TwhLogin settings" remap="(apphttps)">
 <whpagesettings inherit="level2">
 undersession=no
 </whpagesettings>
@@ -785,7 +785,7 @@ undersession=no
 
 
 
-<whpage pageid="pgAccessLevel2" desc="Second Level Access">
+<whpage pageid="pgAccessLevel2" desc="Second Level Access" remap="(apphttps)">
 <whpagesettings inherit="level2">
 undersession=no
 </whpagesettings>
@@ -822,7 +822,7 @@ activating the speedbar with links to
 </whpage>
 
 
-<whpage pageid="pgAboutTimeout" desc="About TIMEOUT ">
+<whpage pageid="pgAboutTimeout" desc="About TIMEOUT" remap="(apphttp)">
 <whpagesettings inherit="level2">
 undersession=no
 </whpagesettings>
@@ -869,7 +869,7 @@ of elapsed time between page requests.
 </whpage>
 
 
-<whpage pageid="pgTimeoutLogout" desc="Using Timeout to Force a LogOut">
+<whpage pageid="pgTimeoutLogout" desc="Using Timeout to Force a LogOut" remap="(apphttp)">
 <whpagesettings inherit="level2">
 undersession=yes
 </whpagesettings>
@@ -936,7 +936,7 @@ user to a specific page</td>
 </whpage>
 
 
-<whpage pageid="pgTimeRunning" desc="No timeout here!">
+<whpage pageid="pgTimeRunning" desc="No timeout here!" remap="(apphttp)">
 <whpagesettings inherit="level2">
 </whpagesettings>
 <whprep>
@@ -962,7 +962,7 @@ Fast clicking!  You made it under the timeout allowance!
 </whpage>
 
 
-<whpage pageid="pgTimedOut" desc="Automatic Logout on Timeout">
+<whpage pageid="pgTimedOut" desc="Automatic Logout on Timeout" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
@@ -990,7 +990,7 @@ so you can repeat the sequence--be sure to click the link within 5 seconds of la
 
 
 
-<whpage pageid="pgAboutSession" desc="Working with the Session Macro to control the Session Object">
+<whpage pageid="pgAboutSession" desc="Working with the Session Macro to control the Session Object" remap="(apphttp)">
 <whpagesettings inherit="level2">
 undersession=yes
 </whpagesettings>
@@ -1047,7 +1047,7 @@ IFINACTIVEFORSEC macro) and a (~JUMP|pgSecLogout| voluntary logout page~)...
 
 
 
-<whpage pageid="pgSecLogout" desc="The Voluntary Logout page">
+<whpage pageid="pgSecLogout" desc="The Voluntary Logout page" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whoutput>
@@ -1095,7 +1095,7 @@ on the site</td>
 </whpage>
 
 
-<whpage pageid="pgGoodby" desc="Automatic Logout page">
+<whpage pageid="pgGoodby" desc="Automatic Logout page" remap="(apphttp)">
 <whprep>
 (~CLEAR|_bLoginOk~)
 (~Session|Delete~)
@@ -1118,11 +1118,11 @@ on the site</td>
 </whoutput>
 </whpage>
 
-<whpage pageid="pgSessionDelete" desc="Delete your session object">
+<whpage pageid="pgSessionDelete" desc="Delete your session object" remap="(apphttp)">
 (~pgLogout~)
 </whpage>
 
-<whpage pageid="pgNewSession" desc="Creating a New Session Object">
+<whpage pageid="pgNewSession" desc="Creating a New Session Object" remap="(apphttp)">
 <whpagesettings inherit="public">
 undersession=yes
 </whpagesettings>
@@ -1146,7 +1146,7 @@ Use this whenever you want to have a "fresh start", but without losing the infor
 </whpage>
 
 
-<whpage pageid="pgSaveSession" desc="Saving a Session Object">
+<whpage pageid="pgSaveSession" desc="Saving a Session Object" remap="(apphttp)">
 <whpagesettings inherit="public">
 undersession=yes
 </whpagesettings>
@@ -1170,7 +1170,7 @@ then the session file will be deleted once the specified date/time is reached. (
 </whpage>
 
 
-<whpage pageid="pgAboutExpires" desc="Using the Expires Macro">
+<whpage pageid="pgAboutExpires" desc="Using the Expires Macro" remap="(apphttp)">
 <whpagesettings inherit="level2">
 undersession=no
 </whpagesettings>
@@ -1249,7 +1249,7 @@ literal has been cleared.</p>
 </whpage>
 
 
-<whpage pageid="pgDumpData" desc="Data Sent and Deleted">
+<whpage pageid="pgDumpData" desc="Data Sent and Deleted" remap="(apphttp)">
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
@@ -1272,7 +1272,7 @@ Thank you--your account number has been submitted and deleted.  Try hitting the 
 </whpage>
 
 
-<whpage pageid="pgBackButton" desc="Neutralizing the effects of the browser's back button on data state">
+<whpage pageid="pgBackButton" desc="Neutralizing the effects of the browser's back button on data state" remap="(apphttp)">
 <whpagesettings inherit="level2">
 </whpagesettings>
 <whoutput>
