@@ -65,7 +65,7 @@ uses
   DateUtils, Math,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  runConst,
+  runConst, whcfg_AppInfo,
   whdemo_ViewSource;
 
 {$R *.DFM}
@@ -220,6 +220,10 @@ procedure TDemoExtensions.waImgSrcExecute(Sender: TObject);
 var
   AFilespec: string;
 begin
+  {This is meant to be used to send a JPG file plus an optional cookie.
+   Reference the WebHub Demo "FAST" and look at the Order Form button.
+   November 2011
+  }
   with TwhWebAction(Sender) do
   begin
     if HtmlParam <> '' then
@@ -231,9 +235,15 @@ begin
       if FileExists(AFilespec) then
       begin
         WebApp.Response.Flush;
-        WebApp.AddCookieWithSessionNumber(True, WebApp.Request.IsHTTPS,
-          WebApp.Request.Host);
-        WebApp.Response.SendFileIIS(AFilespec, 'image/jpg', False);
+        if WebApp.AppInfo.SessionNumberLocation in
+          [whsnlCookieFixedDomain, whsnlCookieVaryDomain] then
+        begin
+          // extremely important to use Request.Host here, rather than
+          // Security.CookieDefaultDomain, so that this particular cookie
+          // comes from the same place as the JPEG file.
+          WebApp.AddCookieWithSessionNumber(True, WebApp.Request.Host);
+        end;
+        WebApp.Response.SendFileIIS(AFilespec, 'image/jpeg', False);
       end
       else
       begin
