@@ -55,8 +55,6 @@
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
-      <CookieDomainDefault value="lite.demos.href.com" context="DEMOS" />
-      <CookieDomainDefault context="ultraann" value="local32.lite.demos.href.com"/>
     </Security>
     <Static>
       <AppRoot value="/"/>
