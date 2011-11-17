@@ -261,6 +261,10 @@ src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)"
 	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) <br/>
 <i>No graphic required because this one runs on lite.demos.href.com</i> </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
+        <li> (~JUMP|pgEnterFAST|Home~)<br/><i>JUMP</i></li>
+        <li> (~JUMPR|pgEnterFAST|Home~)<br/><i>JUMPR</i></li>
+        <li> (~JUMPR|pgshowroom|Showroom~)<br/><i>JUMPR</i></li>
+        <li> (~JUMPR|pgorderform|Order Form~)<br/><i>JUMPR</i></li>
 	</ol></span>
 	
 </td>
