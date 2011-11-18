@@ -716,7 +716,8 @@ data: (~INPUTTEXT|data,30~)<br/>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
              width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: send email demo, LITEMORE server~) <br/>
-<i>uses graphic to pre-send the cookie for more.demos.href.com</i> </li>
+<i><b>(~ACTION|htem:pgEnterHtem(more)~)</b></i><br/>
+<i>uses graphic to pre-send the cookie</i> </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, LITEMORE server~) </li>
 	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, DB server~) </li>
 <li> <img 
@@ -731,8 +732,15 @@ src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)"
         <li> <img width="90px" 
 src="https://secure.demos.href.com/fast:pgordrimage:(~RawSessionNumber~)" 
 alt="Go to Order Form" /> (~JUMPR|pgorderform|Order Form~)<br/><i>JUMPR, LITEMORE server</i></li>
-        <li> (~JUMPR|dsp:(dsp)|The DSP~)<br/><i>JUMPR, short URLs, DSP server</i></li>
-        <li> (~JUMPR|dpr:(dpr)|Prefix Registry~)<br/><i>JUMPR, short URLs, DB server</i></li>
+
+        <li> (~JUMPR|dsp:(dsp)|The DSP~)
+<br/><i><b>(~ACTIONR|dsp:(dsp)~)</b></i>
+<br/><i>JUMPR, short URLs, DSP server</i></li>
+
+        <li> (~JUMPR|dpr:(dpr)|Prefix Registry~)
+<br/><i><b>(~ACTIONR|dpr:(dpr)~)</b></i>
+<br/><i>JUMPR, short URLs, DB server</i></li>
+
 	</ol>
 	
 </div>  <!--- demopagecontent -->
