@@ -719,10 +719,14 @@ src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)"
 <i><b>(~ACTION|htem:pgEnterHtem(more)~)</b></i><br/>
 <i>uses graphic to pre-send the cookie</i> </li>
 	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, LITEMORE server~) </li>
-	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, DB server~) </li>
+	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, DB server~)
+<br/><i><b>(~ACTION|jpeg:pgEnterJPEG(db)~)</b></i> </li>
+
 <li> <img 
 src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)" 
-             width="90px" alt="shopping demo" /> (~JUMP|shop1:pgEnterShop1(db)|db: shopping, continue with cookie~) </li>
+             width="90px" alt="shopping demo" /> (~JUMP|shop1:pgEnterShop1(db)|db: shopping, continue with cookie~) 
+<br/><i><b>(~ACTION|shop1:pgEnterShop1(db)~)</b></i></li>
+
 	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, keeps using cookie~) <br/>
 <i>No graphic required because this one runs on lite.demos.href.com</i> </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo~) </li>
