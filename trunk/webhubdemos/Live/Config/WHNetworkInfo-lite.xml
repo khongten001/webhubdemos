@@ -13,7 +13,7 @@
         <DelayMS value="0"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
         <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
-        <AdminAccess scheme="http" authority="slim5.href.com:80"/>
+        <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
       </Runner>
       <Runner id="cgibin" filespec="d:\apps\hreftools\webhub\bin\whrunner\runbin.exe">
         <Interface value="cgi-bin"/>
