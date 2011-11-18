@@ -90,19 +90,6 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="cgiprofile">
-        <HttpServerID value="apache"/>
-        <Scheme value="http"/>
-        <Authority value="demos.href.com:8082"/>
-        <AllowDynamicAuthority value="true"/>
-        <RunnerPath value="/cgi-bin/"/>
-        <RunnerID value="cgibin"/>
-        <URLUseShortFormat value="false"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="lower"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="true"/>
-      </ServerProfile>
       <ServerProfile id="longhand">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
@@ -135,7 +122,7 @@
         <Scheme value="http"/>
         <Authority value="dsp.href.com:80"/>
         <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="false"/>
+        <URLUseShortFormat value="true"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
@@ -145,7 +132,7 @@
         <Scheme value="http"/>
         <Authority value="delphiprefix.href.com:80"/>
         <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="false"/>
+        <URLUseShortFormat value="true"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>

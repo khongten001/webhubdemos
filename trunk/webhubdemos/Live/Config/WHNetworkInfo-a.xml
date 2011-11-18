@@ -101,19 +101,7 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="true"/>
       </ServerProfile>
-      <ServerProfile id="longhand">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="demos.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapixp"/>
-        <URLUseShortFormat value="false"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
+      
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
