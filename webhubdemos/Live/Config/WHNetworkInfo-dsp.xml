@@ -64,7 +64,7 @@
         <Scheme value="http"/>
         <Authority value="db.demos.href.com:80"/>
         <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="true"/>
+        <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
