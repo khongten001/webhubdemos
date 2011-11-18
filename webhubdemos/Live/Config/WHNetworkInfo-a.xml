@@ -12,15 +12,15 @@
         <Interface value="isapi"/>
         <DelayMS value="0"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
-        <ErrorLogFolder value="c:\temp\whErrorlogs\"/>
-        <AdminAccess scheme="http" authority="slim5.href.com:80"/>
+        <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
+        <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
       </Runner>
       <Runner id="cgibin" filespec="d:\apps\hreftools\webhub\bin\whrunner\runbin.exe">
         <Interface value="cgi-bin"/>
         <DelayMS value="0"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
         <UploadMaxFileSizeKB value="5"/>
-        <ErrorLogFolder value="c:\temp\whErrorlogs\"/>
+        <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
         <AdminAccess scheme="http" authority="demos.href.com:8082"/>
       </Runner>
     </Runners>
