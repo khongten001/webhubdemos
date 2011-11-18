@@ -698,4 +698,43 @@ data: (~INPUTTEXT|data,30~)<br/>
 (~waImgSrc.Execute|Live\WebRoot\webhub\demos\img\logos\(~AppID~).jpg~)
 </whpage>
 
+<whpage pageid="pgLinkTest" desc="Test Outbound Links from this Demo">
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+
+<span style="font-size:x-small;"><i>Links for testing session number cookie processing... </i>
+	<ol>
+	<li> <img 
+src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
+             width="90px" alt="whSendmail demo" /> (~JUMP|htem:pgEnterHtem(more)|more: send email demo, same server, cookie~) <br/>
+<i>uses graphic to pre-send the cookie for more.demos.href.com</i> </li>
+	<li> (~JUMP|demos:pgEnterDemos(lite)|lite: overview demo, same server, no cookie~) </li>
+	<li> (~JUMP|jpeg:pgEnterJPEG(db)|db: dynamic jpeg images, separate machine, no cookie~) </li>
+<li> <img 
+src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)" 
+             width="90px" alt="shopping demo" /> (~JUMP|shop1:pgEnterShop1(db)|db: shopping, separate machine, with cookie~) </li>
+	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, uses cookie~) <br/>
+<i>No graphic required because this one runs on lite.demos.href.com</i> </li>
+	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo, no cookie~) </li>
+        <li> (~JUMP|pgEnterFAST|Home~)<br/><i>JUMP</i></li>
+        <li> (~JUMPR|pgEnterFAST|Home~)<br/><i>JUMPR</i></li>
+        <li> (~JUMPR|pgshowroom|Showroom~)<br/><i>JUMPR</i></li>
+        <li> (~JUMPR|pgorderform|Order Form~)<br/><i>JUMPR</i></li>
+	</ol></span>
+	
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+
 </whteko>
