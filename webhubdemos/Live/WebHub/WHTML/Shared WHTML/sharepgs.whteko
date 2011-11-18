@@ -711,7 +711,7 @@ data: (~INPUTTEXT|data,30~)<br/>
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
 
-<span style="font-size:x-small;"><i>Links for testing session number cookie processing... </i>
+<i>Links for testing session number cookie processing... </i>
 	<ol>
 	<li> <img 
 src="http://more.demos.href.com/htem:pglogoimage:(~RawSessionNumber~)" 
@@ -728,8 +728,10 @@ src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)"
         <li> (~JUMP|pgEnterFAST|Home~)<br/><i>JUMP</i></li>
         <li> (~JUMPR|pgEnterFAST|Home~)<br/><i>JUMPR</i></li>
         <li> (~JUMPR|pgshowroom|Showroom~)<br/><i>JUMPR</i></li>
-        <li> (~JUMPR|pgorderform|Order Form~)<br/><i>JUMPR</i></li>
-	</ol></span>
+        <li> <img width="90px" 
+src="https://secure.demos.href.com/fast:pgordrimage:(~RawSessionNumber~)" 
+alt="Go to Order Form" /> (~JUMPR|pgorderform|Order Form~)<br/><i>JUMPR</i></li>
+	</ol>
 	
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>

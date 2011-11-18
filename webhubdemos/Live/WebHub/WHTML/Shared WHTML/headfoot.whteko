@@ -96,7 +96,7 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <li>(~GO|pgDownload,(~AppID~)|title="Download Source for this demo."|[~Download~]~)</li>
 <li>(~GO|pgLogout| title="logout to clear session data" |[~Logout~]~)</li>
 <li>(~GO|SetPref|title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
-<li>(~GO|pgLinkTest| title="test a wide range of links" |[Link-Tests]~) </li>
+<li>(~GO|pgLinkTest| title="test a wide range of links" |Link-Tests~) </li>
 </ul>
 </div>
 </div>
