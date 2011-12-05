@@ -25,7 +25,8 @@ cd ..\WebHub\Apps
 :DB Examples
 if "%demodsp%"=="yes" start whDSP.exe 
 if "%demodsp%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
-if "%demodsp%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dsp /minutes=%covermin% /reason=%coverreason%
+::DSP has an AppNotRunning page of its own
+::if "%demodsp%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dsp /minutes=%covermin% /reason=%coverreason%
 
 rem CodeRage from 2009
 REM  29-Dec-2010 start whSchedule.exe 
