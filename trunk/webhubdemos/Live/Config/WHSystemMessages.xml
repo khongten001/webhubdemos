@@ -12,6 +12,7 @@
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="coderage" value="{SysMsgRoot}appnotrunning-coderage.whmsg"/>
+    <AppNotRunning appID="dsp" value="{SysMsgRoot}appnotrunning-dsp.whmsg"/>
     <AppShuttingDown appID="" value="http://webhub.com/appshuttingdown.html"/>
     <HubNotFound appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <RequestTimeout appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
