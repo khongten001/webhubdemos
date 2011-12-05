@@ -3,7 +3,6 @@
 
 <whdroplet name="drDemoSpeedbarForDSP">
 (~IF|bAdvSearch|(~JUMPR|pgEnterDSP,Basic|Search~)||(~JUMPR|pgEnterDSP,Advanced|Advanced Search~)~) | 
-(~GO|Mirrors|Mirrors~) |
 (~GO|pgLinkToDSP|Promote DSP~) |
 (~GO|Feedback|Feedback~) | 
 (~HREF|(~mcDSP~)|target="_top"|DSP Home~)
@@ -15,7 +14,7 @@ googlesitemap=exclude-duplicates-homepage
 googlechangefreq=monthly
 googlepriority=1.0
 metarobot=index,nofollow
-metadescription=Search the Delphi Super Page archive for freeware, shareware and utilities for Delphi (from Borland, CodeGear and then Embarcadero).  Download from one of many mirror sites.
+metadescription=Search the Delphi Super Page archive for freeware, shareware and utilities for Delphi and CPPBuilder (from Borland, CodeGear and then Embarcadero). 
 metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 </whpagesettings>
 (~pgEnterDSP~)
