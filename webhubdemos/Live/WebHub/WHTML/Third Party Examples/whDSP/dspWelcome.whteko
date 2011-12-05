@@ -105,10 +105,9 @@ is made (that's Fuzziness=Auto).  If you can't find something that you are sure 
 the database, use the Advanced Search mode and search for <i>single words</i> 
 and increase fuzziness.</p>
 <h2>Root for File Downloads</h2>
-<p>The system is pointing to <b><i>(~DSPUrlPrefix~)</i></b> as the root for your file downloads. 
-Please check out the list of (~JUMP|mirrors|mirrors~) and select the nearest mirror site to spread the traffic for everyone's benefit.</p>
-<p>That's pretty much all there is to using this site. Play around and try things. 
-Look at the advanced search mode if you can't find what you need right away. </p>
+<p>The system is pointing to <b><i>(~DSPUrlPrefix~)</i></b> as the root for your file downloads. </p>
+<p>That is pretty much all there is to using this site. Play around and try things. 
+Look at the advanced search mode if you can not find what you need right away. </p>
 </whdroplet>
 
 <whpage pageid="AdvSearch" desc="Advanced Search Mode">

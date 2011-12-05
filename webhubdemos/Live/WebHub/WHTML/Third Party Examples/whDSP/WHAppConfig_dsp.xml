@@ -107,7 +107,6 @@
       <File id="home" filename="dspHome.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="welcome" filename="dspWelcome.whteko"/>
-      <File id="mirrors" filename="dspMirrors.whteko"/>
       <File id="feedback" filename="dspFeedback.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
