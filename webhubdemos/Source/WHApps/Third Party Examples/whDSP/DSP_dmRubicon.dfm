@@ -62,13 +62,6 @@ inherited DSPdm: TDSPdm
     Left = 282
     Top = 104
   end
-  object tblMirrors: TTable
-    AfterOpen = tblMirrorsAfterOpen
-    TableName = 'MIRRORS.DB'
-    TableType = ttParadox
-    Left = 66
-    Top = 56
-  end
   object rbMake: TrbMake
     Cache = rbCache
     CounterLimit = 0
