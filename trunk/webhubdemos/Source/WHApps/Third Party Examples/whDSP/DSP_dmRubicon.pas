@@ -25,7 +25,6 @@ type
       tblFilesGroup: TTable;
       tblFilesPlt: TTable;
       tblWords: TTable;
-      tblMirrors: TTable;
       rbMake: TrbMake;
       rbCache: TrbCache;
       rbProgressDialog: TrbProgressDialog;
@@ -40,7 +39,6 @@ type
       procedure tblFilesGroupAfterOpen(DataSet: TDataSet);
       procedure tblFilesCatAfterOpen(DataSet: TDataSet);
       procedure tblWordsAfterOpen(DataSet: TDataSet);
-      procedure tblMirrorsAfterOpen(DataSet: TDataSet);
       procedure tblFilesAfterOpen(DataSet: TDataSet);
       procedure rbMakeTextBDELinkProcessField(Sender: TObject; Engine: TrbEngine; Field: TField);
       procedure rbSearchSearch(Sender: TObject);
@@ -59,7 +57,6 @@ type
       fCatgList: TStringList;
       fCatgDrop: TStringList;
       fSearchWords: TStringList;
-      fMirrors: TStringList;
       fWordsTable:string;
       fWordCount: TField;
       function GetGroupSearchPrefix(GroupIndex:integer): String;
@@ -148,7 +145,6 @@ type
       property TimeOut: Integer read fTimeOut write fTimeOut;
       property Debug: Boolean read fDebug write fDebug;
       property GroupPrfxList: TStringList read fGroupPrfxList;
-      property Mirrors: TStringList read fMirrors;
       property GroupSearchPrefix[GroupIndex:integer]: String read GetGroupSearchPrefix;
       property SearchWords: TStringList read fSearchWords;
       property SearchResults: String read GetSearchResults;
@@ -179,7 +175,6 @@ begin
    fCatgList := TStringList.Create;
    fCatgDrop := TStringList.Create;
    fSearchWords := TStringList.Create;
-   fMirrors := TStringList.Create;
    fImgExt := 'gif';
    Inherited;
 end;
@@ -295,7 +290,6 @@ begin
       end;
    SetDatabase(tblFiles,bAlias,FilesDatabasename,'files.db');
    SetDatabase(tblFilesAuth,bAlias,FilesDatabasename,'filesaut.db');
-   SetDatabase(tblMirrors,bAlias,FilesDatabasename,'mirrors.db');
    SetDatabase(tblAuthors,bAlias,FilesDatabasename,'authors.db');
    SetDatabase(tblFilesPlt,bAlias,FilesDatabasename,'filesplt.db');
    SetDatabase(tblFilesGroup,bAlias,FilesDatabasename,'filesgrp.db');
@@ -327,20 +321,12 @@ end;
 procedure TDSPdm.DSPdmDestroy(Sender: TObject);
 begin
    Inherited;
-   fPlatFormList.Free;
-   fPlatFormList:=nil;
-   fGroupPrfxList.Free;
-   fGroupPrfxList:=nil;
-   fGroupNameList.Free;
-   fGroupNameList:=nil;
-   fCatgList.Free;
-   fCatgList:=nil;
-   fCatgDrop.Free;
-   fCatgDrop:=nil;
-   fSearchWords.Free;
-   fSearchWords:=nil;
-   fMirrors.Free;
-   fMirrors:=nil;
+   FreeAndNil(fPlatFormList);
+   FreeAndNil(fGroupPrfxList);
+   FreeAndNil(fGroupNameList);
+   FreeAndNil(fCatgList);
+   FreeAndNil(fCatgDrop);
+   FreeAndNil(fSearchWords);
 end;
 
 
@@ -541,28 +527,6 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure TDSPdm.tblMirrorsAfterOpen(DataSet: TDataSet);
-var a1,a2:string;
-begin
-   Inherited;
-   //clear the list of mirrors
-   fMirrors.Clear;
-   fMirrors.add(lowercase(cDSP) + '=Poland,Europe');
-   With Dataset do
-      begin
-         //start scanning
-         First;
-         While not eof do
-            begin //ucstring
-               //eliminate any file-names from the url stored in the table
-               splitright(FieldByName('URL').AsString,'/',a1,a2);
-               //add exactly what the referer must be prefixed by to the list
-               fMirrors.add(lowercase(a1)+'/='+FieldByName('Country').AsString+','+FieldByName('Continent').AsString);
-               Next;
-            end;
-      end;
-end;
-
 procedure TDSPdm.tblFilesAfterOpen(DataSet: TDataSet);
 var
   a1: string;
@@ -665,21 +629,10 @@ end;
 {------------------------------------------------------------------------------}
 function TDSPdm.IsValidReferer(const Referer:String;var Prefix:String):Boolean;
 var i:integer;
-const cHREF='http://developers.href.com/';
+const cHREF='http://www.codenewsfast.com/';
 begin
-   //setup defaults
    Prefix:=cDSP;
    Result:=(referer='') or (posci(cHREF,Referer)=1); //i dont like accepting a blank here, but its blank when reloaded from javascript!
-   If Result then Exit;
-   //scan the list of legal mirrors
-   With fMirrors do
-      For i:= 0 to pred(count) do
-         begin
-            Prefix:=LeftOf('=',strings[i]);
-            Result:=posci(Prefix,Referer)=1;
-            If Result then Break;
-         end;
-   If not Result or (Prefix='') then Prefix:=cDSP;
 end;
 
 function TDSPdm.GetFileDetailHTML(FileID:Integer):String;

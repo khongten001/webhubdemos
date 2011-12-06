@@ -12,16 +12,12 @@ type
    TdmDSPWebSearch = class(TdmBasicDatamodule)
       waSearch: TwhWebActionEx;
       waFeedback: TwhWebActionEx;
-      waMirrors: TwhScanGrid;
       procedure waExtraInfoExecute(Sender: TObject);
       procedure waSearchExecute(Sender: TObject);
       procedure waFeedbackExecute(Sender: TObject);
       procedure waResultsExecute(Sender: TObject);
       procedure waResultsColStart(Sender: TwhScan; var ok: Boolean);
       procedure waResultsNotify(Sender: TObject; Event: TwhScanNotify);
-      procedure waMirrorsExecute(Sender: TObject);
-      procedure waMirrorsRowStart(Sender: TwhScan; var ok: Boolean);
-      procedure waMirrorsColStart(Sender: TwhScan; var ok: Boolean);
       procedure DataModuleCreate(Sender: TObject);
    private
       { Private declarations }
@@ -57,15 +53,6 @@ begin
   waExtraInfo.Name := 'waExtraInfo';
   waExtraInfo.OnExecute := waExtraInfoExecute;
 
-   With waMirrors do
-      begin
-         TD := MacroStart + 'mcMirrTD' + MacroEnd;
-         TH := MacroStart + 'mcMirrTD' + MacroEnd;
-         OnColStart := waMirrorsColStart;
-         OnRowStart := waMirrorsRowStart;
-         TABLE := '<table>';
-         BR := '<br />';
-      end;
    waResults := TwhScanKeysGrid.Create(Self);
    waResults.Name := 'waResults';
    With waResults do
@@ -385,64 +372,6 @@ begin
                   +','+StringReplaceAll(Session.TxtVars.ListText['txtMessage'],#13#10,'\n')
          );
       end;
-end;
-
-procedure TdmDSPWebSearch.waMirrorsExecute(Sender: TObject);
-begin
-   Inherited;
-   LogInfo('waMirrorsExecute');
-   With waMirrors, DSPdm.Mirrors do
-      begin
-         RowCount := Count+1;
-         Row := 1;
-         PageHeight := 0
-      end;
-end;
-
-var c0,c1,c2,c3: String;
-procedure TdmDSPWebSearch.waMirrorsRowStart(Sender: TwhScan; var ok: Boolean);
-   function GetC1:String;
-   begin
-      //if waMirrors.Row=2 then
-      //  Result:=UpperCase(c1)
-      //else
-      Result:=c1;
-   end;
-begin
-   Inherited;
-   With waMirrors, DSPdm.Mirrors do
-      If Row>0 then
-         If Row=1 then
-            begin
-               c0:='&nbsp';
-               c1:='URL';
-               c2:='Country';
-               c3:='Continent';
-            end
-         Else
-            begin
-               splitstring(strings[Row-2],'=',c1,c2);
-               splitstring(c2,',',c2,c3);
-
-               c0 := '';
-               If pWebApp.StringVar['DSPUrlPrefix'] = c1 then c0 := 'checked="checked" ';
-               c0:='<input type="radio" name="DSPUrlPrefix" ' + c0 + 'value="' + c1 + '"/>';
-
-               c1:='<a href="'+c1+'" target="_top">'+GetC1;
-               If c2='United States' then c3:='North America';
-            end;
-end;
-
-procedure TdmDSPWebSearch.waMirrorsColStart(Sender: TwhScan; var ok: Boolean);
-begin
-   Inherited;
-   With waMirrors, pWebApp do
-      Case col of
-         1: SendString(c0);
-         2: SendString(c3);
-         3: SendString(c2);
-         4: SendString(c1);
-      End;
 end;
 
 end.
