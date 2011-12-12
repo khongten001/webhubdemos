@@ -295,10 +295,12 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 
 <whpage pageid="pgtestcookie">
 <p>User agent: (~Request.UserAgent~)</p>
-<p>Query string: (~Request.CgiQuery~)</p>
+
 <P>session (~Session.RawSessionNumber~) <!--- (~mcGetSessionID~) --><BR>
 <hr/>
 (~JUMP|(~PageID~)|Retest this page~)
+</p>
+<p>(~JUMPR|(~PageID~)|Random, retest this page~)</p>
 </whpage>
 
 </whteko>
