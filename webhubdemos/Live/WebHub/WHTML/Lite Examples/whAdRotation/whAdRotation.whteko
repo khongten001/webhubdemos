@@ -291,4 +291,12 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 </body></html>
 </whoutput>
 </whpage>
+
+
+<whpage pageid="pgtestcookie">
+<P>session (~mcGetSessionID~)<BR>
+<hr/>
+(~JUMP|(~PageID~)|Retest this page~)
+</whpage>
+
 </whteko>
