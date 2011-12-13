@@ -36,8 +36,17 @@ call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_nop
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%_win%bits%_NoPackages.exe
 if errorlevel 1 pause
 
+copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
+if errorlevel 1 pause
+
 cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d16_win32_source.bat DServer
+
+copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc k:\webhub\lib\WebHub_Comms.inc
+if errorlevel 1 pause
+
+cd "%droot%\Lite Examples\whAppServer\dserver"
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_old_d16_win32_source.bat DServer
 
 if %comp3%==D15 cd %droot%\More Examples\whCOM
 if %comp3%==D15 call %cbat% whCOM
