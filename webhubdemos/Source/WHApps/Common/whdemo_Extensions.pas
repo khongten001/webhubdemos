@@ -62,7 +62,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
-  DateUtils, Math,
+  DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   runConst, whcfg_AppInfo,
@@ -424,7 +424,10 @@ begin
         // Avoid continuous loops which can occur when sessionid is also
         // part of the command string, specifically when RejectSession(.., True)
         // is called and waRSPrior is involved   06-Sep-2011
-        x := pos(pWebApp.Command, Request.QueryString);
+        if pWebApp.Command = '' then
+          x := 0
+        else
+          x := pos(pWebApp.Command, Request.QueryString);
         QueryStringWithoutCommand := Copy(Request.QueryString, 1,
           IfThen(x > 0, Pred(x), MaxInt));
         // Check the query string, avoiding the command portion
@@ -438,6 +441,8 @@ begin
         begin
           if bNewSessionInURL then
           begin
+            {$IFDEF CodeSite}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
+            CodeSite.SendNote(Request.QueryString);{$ENDIF}
             { user comes in from a bookmark or a search engine }
             bForceNewSession :=
               (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
@@ -445,10 +450,17 @@ begin
           end
           else
           begin
-            { worst case.. user fakes a cookie or comes back days later with the
-              non-stored session cookie still loaded in the browser }
-            {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie');{$ENDIF}
-            bForceNewSession := (HaveSessionCookie = whsncPresent);
+            {$IFDEF CodeSite}CodeSite.Send(Self.Name + #183 + cFn + #183 + 
+              'HaveSessionCookie',
+              GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
+            {$ENDIF}
+            if (HaveSessionCookie = whsncPresent) then
+            begin
+              { worst case.. user fakes a cookie or comes back days later with the
+                non-stored session cookie still loaded in the browser }
+              {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie in ' + cFn);{$ENDIF}
+              bForceNewSession := True;
+            end;
           end;
         end;
       end;
