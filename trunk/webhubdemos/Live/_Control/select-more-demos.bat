@@ -10,8 +10,9 @@ echo ipc is %whipc%
 echo ***
 echo .
 
+:: htcv includes file upload feature
 if "%whipc%"=="old" set demohtcv=yes
-if "%whipc%"=="x"    set demohtcv=no
+if "%whipc%"=="x"    set demohtcv=yes
 
 if "%whipc%"=="old" set demohtun=yes
 if "%whipc%"=="x" set demohtun=yes
