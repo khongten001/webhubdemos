@@ -38,15 +38,21 @@ if errorlevel 1 pause
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
 if errorlevel 1 pause
+copy h:\WebHub_Comms.inc WebHub_Comms.txt
+copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d16_win32_source.bat DServer
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc k:\webhub\lib\WebHub_Comms.inc
 if errorlevel 1 pause
+copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc h:\WebHub_Comms.inc
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_old_d16_win32_source.bat DServer
+
+copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
+copy h:\WebHub_Comms.txt WebHub_Comms.inc
 
 if %comp3%==D15 cd %droot%\More Examples\whCOM
 if %comp3%==D15 call %cbat% whCOM
