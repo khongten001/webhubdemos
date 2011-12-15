@@ -70,7 +70,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
-  ucShell, ucLogFil, ucFile, ucDlgs,
+  ucShell, ucLogFil, ucFile, ucDlgs, ucCodeSiteInterface,
   webApp;
 
 function TfmWhProcess.Init: Boolean;
@@ -145,14 +145,18 @@ var
 begin
   inherited;
   {This event is called by the WebHub System whenever a file is uploaded.      }
+  LogSendInfo('FileName=' + FileName);
+  LogSendInfo('FileSource=' + FileSource);
 
   {Save the uploaded file to a temporary directory, making the file sufficiently
    unique for our purposes by putting the surfer session number into the
    filename.}
   tempPath := TwhAppBase(Sender).AppSetting['TempPath'];
+  ForceDirectories(tempPath);  // make sure target folder exists
+
   SaveAs := tempPath + 'whConverterInput' +
             IntToStr(TwhAppBase(Sender).SessionNumber) + '.dat';
-  {$IFDEF CodeSite}CodeSite.Send('SaveAs', SaveAs);{$ENDIF}
+  LogSendInfo('SaveAs=' + SaveAs);
   if FileExists(SaveAs) then
     SysUtils.DeleteFile(SaveAs);
   KeepNow := True;
