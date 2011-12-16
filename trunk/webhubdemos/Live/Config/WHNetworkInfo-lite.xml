@@ -29,7 +29,7 @@
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
         <Authority value="lite.demos.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
+        <AllowDynamicAuthority value="true"/>
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="false"/>
