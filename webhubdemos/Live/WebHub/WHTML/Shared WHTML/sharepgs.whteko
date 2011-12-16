@@ -736,6 +736,11 @@ src="http://lite.demos.href.com/adv:pglogoimage:(~RawSessionNumber~)"
 	<b><i>http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
 	<li> <a href="http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.zaphodsmap.com</a><br/>
 	<b><i>http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
+	
+	(~MATCH|htaj=(~AppID~)|
+	<li>(~JUMP|htaj:pgLinkTestA~) &nbsp; (~JUMP|htaj:pgLinkTestB~) &nbsp; (~JUMP|htaj:pgLinkTestC~) </li>
+	~)
+	
         <li> (~JUMP|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMP, LITEMORE server</i></li>
         <li> (~JUMPR|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMPR, LITEMORE server</i></li>
         <li> (~JUMPR|fast:pgshowroom(lite)|Showroom~)<br/><i>JUMPR, LITEMORE server</i></li>
@@ -755,11 +760,73 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <br/><i>JUMPR, short URLs, DB server</i></li>
 
 	</ol>
-	
+
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
 </whoutput>
 </whpage>
 
+<whpage pageid="pgLinkTestA" desc="Link Test Page A">
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>SessionID: (~SessionID~)</p>
+<p>RawSessionNumber: (~RawSessionNumber~)</p>
+<p>Request.Host: (~Request.Host~)</p>
+<p>(~JUMP|pgLinkTestA~) &nbsp; (~JUMP|pgLinkTestB~) &nbsp; (~JUMP|pgLinkTestC~) </p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgLinkTestB" desc="Link Test Page B">
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>SessionID: (~SessionID~)</p>
+<p>RawSessionNumber: (~RawSessionNumber~)</p>
+<p>Request.Host: (~Request.Host~)</p>
+<p>(~JUMP|pgLinkTestA~) &nbsp; (~JUMP|pgLinkTestB~) &nbsp; (~JUMP|pgLinkTestC~) </p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgLinkTestC" desc="Link Test Page C">
+<whoutput>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>SessionID: (~SessionID~)</p>
+<p>RawSessionNumber: (~RawSessionNumber~)</p>
+<p>Request.Host: (~Request.Host~)</p>
+<p>(~JUMP|pgLinkTestA~) &nbsp; (~JUMP|pgLinkTestB~) &nbsp; (~JUMP|pgLinkTestC~) </p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
 
 </whteko>
