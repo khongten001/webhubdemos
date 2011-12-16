@@ -727,9 +727,15 @@ src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)"
              width="90px" alt="shopping demo" /> (~JUMP|shop1:pgEnterShop1(db)|db: shopping, continue with cookie~) 
 <br/><i><b>(~ACTION|shop1:pgEnterShop1(db)~)</b></i></li>
 
-	<li> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, keeps using cookie~) <br/>
-<i>No graphic required because this one runs on lite.demos.href.com</i> </li>
+	<li> <img 
+src="http://lite.demos.href.com/adv:pglogoimage:(~RawSessionNumber~)" 
+             width="90px" alt="advertising demo" /> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, keeps using cookie~) <br/>
+<i>runs on lite.demos.href.com</i> </li>
 	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo~) </li>
+	<li> <a href="http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.fuzregex.com</a> <br/>
+	<b><i>http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
+	<li> <a href="http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.zaphodsmap.com</a><br/>
+	<b><i>http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
         <li> (~JUMP|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMP, LITEMORE server</i></li>
         <li> (~JUMPR|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMPR, LITEMORE server</i></li>
         <li> (~JUMPR|fast:pgshowroom(lite)|Showroom~)<br/><i>JUMPR, LITEMORE server</i></li>
