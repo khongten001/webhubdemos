@@ -739,11 +739,12 @@ src="http://lite.demos.href.com/adv:pglogoimage:(~RawSessionNumber~)"
 	<li> <a href="http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.fuzregex.com</a> <br/>
 	<b><i>http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
 	<li> <a href="http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.zaphodsmap.com</a><br/>
-	<b><i>http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
+	<b><i>http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest</i></b>
 	
 	(~MATCH|htaj=(~AppID~)|
-	<li>(~JUMP|htaj:pgLinkTestA~) &nbsp; (~JUMP|htaj:pgLinkTestB~) &nbsp; (~JUMP|htaj:pgLinkTestC~) </li>
+	<br/>(~JUMP|htaj:pgLinkTestA~) &nbsp; (~JUMP|htaj:pgLinkTestB~) &nbsp; (~JUMP|htaj:pgLinkTestC~) </li>
 	~)
+	</li>
 	
         <li> (~JUMP|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMP, LITEMORE server</i></li>
         <li> (~JUMPR|fast:pgEnterFAST(lite)|Home~)<br/><i>JUMPR, LITEMORE server</i></li>
