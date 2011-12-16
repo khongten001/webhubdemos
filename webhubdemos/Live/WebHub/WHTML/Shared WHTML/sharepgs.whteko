@@ -735,7 +735,9 @@ src="http://db.demos.href.com/shop1:pglogoimage:(~RawSessionNumber~)"
 src="http://lite.demos.href.com/adv:pglogoimage:(~RawSessionNumber~)" 
              width="90px" alt="advertising demo" /> (~JUMP|adv:pgEnterAdv(lite)|lite: advertising demo, keeps using cookie~) <br/>
 <i>runs on lite.demos.href.com</i> </li>
-	<li> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo~) </li>
+	<li> <img 
+src="http://lite.demos.href.com/htaj:pglogoimage:(~RawSessionNumber~)" 
+             width="90px" alt="ajax demo" /> (~JUMP|htaj:pgEnterHtaj(lite)|lite: ajax demo~) </li>
 	<li> <a href="http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.fuzregex.com</a> <br/>
 	<b><i>http://ctest.fuzregex.com/scripts/runisa.dll?htaj:pgLinkTest</i></b></li>
 	<li> <a href="http://ctest.zaphodsmap.com/scripts/runisa.dll?htaj:pgLinkTest">ajax demo on ctest.zaphodsmap.com</a><br/>
