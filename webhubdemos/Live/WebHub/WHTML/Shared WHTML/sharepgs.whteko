@@ -711,6 +711,10 @@ data: (~INPUTTEXT|data,30~)<br/>
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
 
+<p>Request.Host: (~Request.Host~)</p>
+<p>SessionID: (~SessionID~)</p>
+<p>RawSessionNumber: (~RawSessionNumber~)</p>
+
 <i>Links for testing session number cookie processing... </i>
 	<ol>
 	<li> <img 
