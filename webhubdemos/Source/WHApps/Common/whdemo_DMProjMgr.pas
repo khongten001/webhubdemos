@@ -1,7 +1,7 @@
 unit whdemo_DMProjMgr;  { initialization shared by all webhub demos }
 
 (*
-Copyright (c) 2004-2010 HREF Tools Corp.
+Copyright (c) 2004-2011 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -74,6 +74,7 @@ uses
   Forms,
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
+  ucCodeSiteInterface,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
@@ -238,13 +239,13 @@ end;
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
 begin
   UncoverApp(Sender.Item);
+  LogSendInfo('uncovered ' + Sender.Item, 'ProjMgrStartupComplete');
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  {$IFDEF CodeSite}CodeSite.SendError(ErrorText);
-  {$ELSE}HREFTestLog('error', 'during demo startup', ErrorText);{$ENDIF}
+  LogSendError(ErrorText, 'during demo startup');
   WebMessage(ErrorText);
 end;
 
