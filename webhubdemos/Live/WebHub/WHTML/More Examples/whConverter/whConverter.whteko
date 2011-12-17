@@ -135,13 +135,14 @@ Browse to your file now<br/>
 
 (~JUMPR|pguploadtest|again~)
 
-/body></html>
+</body></html>
 </whpage>
 
 
 <whpage pageid="pgupload2">
 <html><head><title>(~pageid~)</title></head>
 <body>
+(~CentralInfo.WebTimeGMT~)<br/>
 (~Version~)<br/>
 <p>(~FormFiles~)</p>
 
