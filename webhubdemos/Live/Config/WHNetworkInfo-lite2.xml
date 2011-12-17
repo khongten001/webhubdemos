@@ -9,8 +9,9 @@
     <Runners>
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
         <Interface value="isapi"/>
-        <DelayMS value="0"/>
+        <DelayMS value="-2"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
+        <UploadMaxFileSizeKB value="4048"/>
         <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
         <AdminAccess scheme="http" authority="lite2.demos.href.com:80"/>
       </Runner>
@@ -20,7 +21,7 @@
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
         <Authority value="lite2.demos.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
+        <AllowDynamicAuthority value="true"/>
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="false"/>
