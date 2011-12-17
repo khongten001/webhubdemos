@@ -115,4 +115,38 @@ File has been sent.
 </body></html>
 </whpage>
 
+<whpage pageid="pguploadtest">
+<html><head><title>(~pageid~)</title></head>
+<body>
+
+hello from (~version~)
+<form name="newjob"
+      enctype="multipart/form-data" method="post" action="/scripts/runisa.dll?(~appid~):pgupload2:(~RawSessionNumber~)">
+Browse to your file now<br/>
+<input type="file"
+                            name="InputFile"
+                           accept="text/plain,application/rtf" size="30" />
+<br/>
+(~INPUTTEXT|sample1~)<br/>
+(~INPUTTEXT|sample2~)<br/>
+(~INPUTTEXT|sample3~)<br/>
+<input type="submit" />
+</form>
+
+(~JUMPR|pguploadtest|again~)
+
+/body></html>
+</whpage>
+
+
+<whpage pageid="pgupload2">
+<html><head><title>(~pageid~)</title></head>
+<body>
+(~Version~)<br/>
+<p>(~FormFiles~)</p>
+
+(~JUMPR|pguploadtest|again~)
+</body></html>
+</whpage>
+
 </whteko>
