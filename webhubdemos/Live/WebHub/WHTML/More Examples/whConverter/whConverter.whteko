@@ -130,6 +130,11 @@ Browse to your file now<br/>
 (~INPUTTEXT|sample1~)<br/>
 (~INPUTTEXT|sample2~)<br/>
 (~INPUTTEXT|sample3~)<br/>
+<input type="file"
+                            name="InputSecondFile"
+                           accept="text/plain,application/rtf" size="30" />
+<br/>
+
 <input type="submit" />
 </form>
 
