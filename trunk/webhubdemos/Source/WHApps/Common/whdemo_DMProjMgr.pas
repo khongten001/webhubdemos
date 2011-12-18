@@ -237,9 +237,10 @@ begin
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
+{$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
 begin
   UncoverApp(Sender.Item);
-  LogSendInfo('uncovered ' + Sender.Item, 'ProjMgrStartupComplete');
+  {$IFDEF CodeSite}CodeSite.Send(cFn + ' uncovered ' + Sender.Item);{$ENDIF}
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupError(Sender: TtpProject;
