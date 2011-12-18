@@ -334,7 +334,7 @@
           <ErrorLogFolder value="d:\temp\whErrorLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
-          <SessionCookieName value=""/>
+          <SessionCookieName value="n/a"/>
 		  <SessionNumberLocation value="URL" />
         </WebHubApp>
         <WebHubApp appID="dfm2html">
