@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo200808.xsd">
+<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201112.xsd">
   <Variables begin="{" end="}"/>
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
@@ -14,6 +14,7 @@
         <UploadMaxFileSizeKB value="4048"/>
         <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
         <AdminAccess scheme="http" authority="lite2.demos.href.com:80"/>
+	<AdvancedFlags value="none" />
       </Runner>
     </Runners>
     <ServerProfiles>
