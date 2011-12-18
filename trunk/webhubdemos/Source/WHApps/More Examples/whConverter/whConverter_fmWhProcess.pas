@@ -50,6 +50,7 @@ type
     procedure waDownloadExecute(Sender: TObject);
   private
     { Private declarations }
+    FLastFileType: string;
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -147,6 +148,8 @@ begin
   {This event is called by the WebHub System whenever a file is uploaded.      }
   LogSendInfo('FileName=' + FileName);
   LogSendInfo('FileSource=' + FileSource);
+  LogSendInfo('FileType=' + FileType);
+  FLastFileType := FileType;
 
   {Save the uploaded file to a temporary directory, making the file sufficiently
    unique for our purposes by putting the surfer session number into the
@@ -197,74 +200,84 @@ begin
     begin
       SendString('Error: converter "' + ConverterFilename.Caption +
         '" does not exist.');
-      Exit;
-    end;
-
-    tempPath := AppSetting['TempPath'];
-    convConfigFilespec := tempPath + 'whConverterConfig' +
-      IntToStr(SessionNumber) + '.set';
-    iniConfig.Section := 'CharReplace';
-    inputFilename := tempPath + 'whConverterInput' + IntToStr(SessionNumber) +
-      '.dat';
-
-    if NOT FileExists(inputFilename) then
-    begin
-      SendString('Error: input file "' + inputFilename + '" does not exist.');
-      Exit;
-    end;
-
-    maximumBytes := StrToIntDef(AppSetting['MaximumFreeSize'], 1) * 1024;
-    if GetFileSize(inputFilename) > maximumBytes then
-    begin
-      SendString('With FREE coupon, input file size must be smaller than ' +
-        IntToStr(maximumBytes) + ' bytes.');
-      DeleteFile(inputFilename);
-      Exit;
-    end;
-
-    outputFilename := tempPath + 'whConverterOutput' + IntToStr(SessionNumber) +
-      '.dat';
-    DeleteFile(outputFilename);
-
-    FromData := StringVar['inFrom'];
-    ToData := StringVar['inTo'];
-
-    if (Length(FromData)<>1) or (Length(ToData)<>1) then
-    begin
-      SendString('Both the "From" and the "To" values must be single characters.');
-      DeleteFile(inputFilename);
-      Exit;
-    end;
-
-    {This is where we create a temporary configuration file which guides the
-     converter to do its job.  The name of the configuration file is based on
-     the surfer session number.}
-    StringWriteToFile(convConfigFilespec,
-      '[CharReplace]' + sLineBreak +
-      'InputFile=' + inputFilename + sLineBreak +
-      'OutputFile=' + outputFilename + sLineBreak +
-      'From=' + FromData + sLineBreak +
-      'To=' + ToData + sLineBreak);
-
-    {Start running the converter. Allow 20 seconds max to complete.}
-    SendString('Launching: ' +
-      ConverterFilename.Caption + ' ' + convConfigFilespec + '<p>');
-    Launch( ConverterFilename.Caption,
-      '"' + convConfigFilespec + '"', '', True, 20000, ErrorText);
-
-    {Delete the temporary configuration file.}
-    DeleteFile(convConfigFilespec);
-
-    if FileExists(outputFilename) then
-    begin
-      SendString('The conversion was successful.<p>Click ');
-      SendMacro('JUMP|pgDownloadResult,/output.dat|here');
-      SendString(' to download the result.');
     end
     else
     begin
-      SendString('Unable to create output file named ' + outputFilename);
-      if ErrorText <> '' then SendString( '<p>Error:' + ErrorText);
+
+      if (FLastFileType <> 'image/jpeg') then
+      begin
+
+        tempPath := AppSetting['TempPath'];
+        convConfigFilespec := tempPath + 'whConverterConfig' +
+          IntToStr(SessionNumber) + '.set';
+        iniConfig.Section := 'CharReplace';
+        inputFilename := tempPath + 'whConverterInput' + IntToStr(SessionNumber) +
+          '.dat';
+
+        if NOT FileExists(inputFilename) then
+        begin
+          SendString('Error: input file "' + inputFilename + '" does not exist.');
+          Exit;
+        end;
+
+        maximumBytes := StrToIntDef(AppSetting['MaximumFreeSize'], 1) * 1024;
+        if GetFileSize(inputFilename) > maximumBytes then
+        begin
+          SendString('With FREE coupon, input file size must be smaller than ' +
+            IntToStr(maximumBytes) + ' bytes.');
+          DeleteFile(inputFilename);
+          Exit;
+        end;
+
+        outputFilename := tempPath + 'whConverterOutput' + IntToStr(SessionNumber) +
+          '.dat';
+        DeleteFile(outputFilename);
+
+        FromData := StringVar['inFrom'];
+        ToData := StringVar['inTo'];
+
+        if (Length(FromData)<>1) or (Length(ToData)<>1) then
+        begin
+          SendString('Both the "From" and the "To" values must be single characters.');
+          DeleteFile(inputFilename);
+          Exit;
+        end;
+
+        {This is where we create a temporary configuration file which guides the
+         converter to do its job.  The name of the configuration file is based on
+         the surfer session number.}
+        StringWriteToFile(convConfigFilespec,
+          '[CharReplace]' + sLineBreak +
+          'InputFile=' + inputFilename + sLineBreak +
+          'OutputFile=' + outputFilename + sLineBreak +
+          'From=' + FromData + sLineBreak +
+          'To=' + ToData + sLineBreak);
+
+        {Start running the converter. Allow 20 seconds max to complete.}
+        SendStringImm('Launching: ' +
+          ConverterFilename.Caption + ' ' + convConfigFilespec + '<p>');
+        Launch( ConverterFilename.Caption,
+          '"' + convConfigFilespec + '"', '', True, 20000, ErrorText);
+
+        {Delete the temporary configuration file.}
+        DeleteFile(convConfigFilespec);
+
+        if FileExists(outputFilename) then
+        begin
+          SendStringImm('The conversion was successful.<p>Click ');
+          SendMacro('JUMP|pgDownloadResult,/output.dat|here');
+          SendStringImm(' to download the result.');
+        end
+        else
+        begin
+          SendStringImm('Unable to create output file named ' + outputFilename);
+          if ErrorText <> '' then SendStringImm( '<p>Error:' + ErrorText);
+        end;
+      end
+      else
+      begin
+        SendStringImm('Invalid file type: ' + FLastFileType);
+      end;
     end;
   end;
 end;
