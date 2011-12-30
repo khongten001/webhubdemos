@@ -46,7 +46,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="GoogleSitemapFile" value="D:\InternetSites\dsp.href.com\Live\googlesitemap.xml"/>
+      <AppSetting name="GoogleSitemapFile" value="D:\ISites\dsp.href.com\Live\WebRoot\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://dsp.href.com/"/>
       <AppSetting name="DatabaseAlias" value="_DSP"/>
       <AppSetting name="ErrorLog" value="c:\temp\DSP\DSPerrors.txt"/>
@@ -54,7 +54,7 @@
       <AppSetting name="LogFile" value="c:\temp\DSP\DSPlogfile.txt"/>
       <AppSetting name="RefererLog" value="c:\temp\DSP\DSPreferers.txt"/>
       <AppSetting name="SearchLog" value="c:\temp\DSP\DSPsearches.txt"/>
-      <AppSetting name="WordsTablePath" value="D:\isites\dsp.href.com\Private\words\" context="DEMOS"/>
+      <AppSetting name="WordsTablePath" value="D:\isites\dsp.href.com\Live\Database\Words\" context="DEMOS"/>
       <AppSetting name="WordsTablePath" value="D:\HREF\apate\drived\InternetSites\dsp.href.com\Private\words\" context="ultraann"/>
     </AppSettings>
     <ErrorAlertFlags>
