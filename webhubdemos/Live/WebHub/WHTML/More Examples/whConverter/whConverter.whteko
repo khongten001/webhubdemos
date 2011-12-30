@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -121,7 +121,7 @@ File has been sent.
 
 hello from (~version~)
 <form name="newjob"
-      enctype="multipart/form-data" method="post" action="/scripts/runisa.dll?(~appid~):pgupload2:(~RawSessionNumber~)">
+      enctype="multipart/form-data" method="post" action="(~ACTIONR|pgupload2~)">
 Browse to your file now<br/>
 <input type="file"
                             name="InputFile"
@@ -149,7 +149,22 @@ Browse to your file now<br/>
 <body>
 (~CentralInfo.WebTimeGMT~)<br/>
 (~Version~)<br/>
+<h2>String Variables</h2>
+<p>(~StringVars~)</p>
+<h2>Form Files</h2>
 <p>(~FormFiles~)</p>
+
+(~JUMPR|pguploadtest|again~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgUploadTooBig">
+<html><head><title>(~pageid~)</title></head>
+<body>
+(~CentralInfo.WebTimeGMT~)<br/>
+(~Version~)<br/>
+<h2>Error</h2>
+<p>File too big. Upload cancelled.</p>
 
 (~JUMPR|pguploadtest|again~)
 </body></html>
