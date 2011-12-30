@@ -12,6 +12,9 @@
 			<Projects Include="..\..\DelphiApps\CharReplace\CharReplace.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whStopSpam\whStopSpam.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
 		<Target Name="CharReplace:Make">
 			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whStopSpam">
+			<MSBuild Projects="whStopSpam\whStopSpam.dproj"/>
+		</Target>
+		<Target Name="whStopSpam:Clean">
+			<MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whStopSpam:Make">
+			<MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace"/>
+			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean"/>
+			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make"/>
+			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
