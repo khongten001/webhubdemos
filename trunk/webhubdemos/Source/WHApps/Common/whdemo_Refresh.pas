@@ -15,7 +15,7 @@ uses
 
 type
   TdmWhRefresh = class(TDataModule)
-    tpSharedLongint: TtpSharedLongint;
+    tpSharedLongint: TtpSharedInt32;
     waDemoRefresh: TwhWebActionEx;
     procedure DataModuleCreate(Sender: TObject);
     procedure tpSharedLongintChange(Sender: TObject;
@@ -57,7 +57,7 @@ var
   newValue: Integer;
 begin
   inherited;
-  newValue := TtpSharedLongInt(Sender).GlobalValue;
+  newValue := TtpSharedInt32(Sender).GlobalValue;
   { These are the same values (1,3) as used in whShared.pas. Nonetheless you
     may define any values to lead to any actions. }
   case newValue of
