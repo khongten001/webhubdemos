@@ -8,7 +8,7 @@ uses
 
 type
   TForm1 = class(TForm)
-    tpSharedLongint1: TtpSharedLongint;
+    tpSharedLongint1: TtpSharedInt32;
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
   private
