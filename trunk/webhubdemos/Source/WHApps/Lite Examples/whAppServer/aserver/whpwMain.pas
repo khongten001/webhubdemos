@@ -235,6 +235,7 @@ begin
   Result:=inherited Init;
   if not Result then
     exit;
+  {$IFNDEF WEBHUBACE}
   {Here we tap into the TwhConnection component
    so that we can adjust the icon used by the application to indicate
    the active/not-active state.}
@@ -244,6 +245,7 @@ begin
   AddConnectionSuspendHandler(WebCommandLineSuspendResume);
   if Assigned(pConnection) then
     MenuItemSuspense(NOT pConnection.Active, nil);
+  {$ENDIF}
 end;
 
 //----------------------------------------------------------------------
