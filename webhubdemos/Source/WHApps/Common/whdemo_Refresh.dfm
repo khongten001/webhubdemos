@@ -6,7 +6,7 @@ object dmWhRefresh: TdmWhRefresh
   Top = 103
   Height = 480
   Width = 696
-  object tpSharedLongint: TtpSharedLongint
+  object tpSharedLongint: TtpSharedInt32
     GlobalName = 'WebHubDemo'
     GlobalValue = 0
     IgnoreOwnChanges = True
