@@ -4,7 +4,7 @@ object DataModuleShutdown: TDataModuleShutdown
   Top = 127
   Height = 150
   Width = 215
-  object tpSharedLongint1: TtpSharedLongint
+  object tpSharedLongint1: TtpSharedInt32
     GlobalName = 'AppShutdown'
     GlobalValue = 0
     IgnoreOwnChanges = True

@@ -7,7 +7,7 @@ uses
 
 type
   TDataModuleShutdown = class(TDataModule)
-    tpSharedLongint1: TtpSharedLongint;
+    tpSharedLongint1: TtpSharedInt32;
     procedure tpSharedLongint1Change(Sender: TObject;
       var Continue: Boolean);
   private
@@ -29,7 +29,7 @@ uses
 procedure TDataModuleShutdown.tpSharedLongint1Change(Sender: TObject;
   var Continue: Boolean);
 begin
-  with TtpSharedLongInt(Sender) do
+  with TtpSharedInt32(Sender) do
   begin
     if GlobalValue = 57 then
     begin
