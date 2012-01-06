@@ -17,7 +17,7 @@ uses
 
 type
   TfmCommon = class(TutParentForm)
-    Global: TtpSharedLongint;
+    Global: TtpSharedInt32;
     rg: TRadioGroup;
     Button1: TButton;
     tpAppRole1: TtpAppRole;
@@ -79,7 +79,7 @@ end;
 procedure TfmCommon.GlobalChange(Sender: TObject; var Continue: Boolean);
 begin
   inherited;
-  with TtpSharedLongInt(Sender) do
+  with TtpSharedInt32(Sender) do
     case GlobalValue of
       0:;
       1:begin

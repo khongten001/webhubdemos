@@ -67,7 +67,7 @@ inherited fmCommon: TfmCommon
       TabOrder = 4
     end
   end
-  object Global: TtpSharedLongint
+  object Global: TtpSharedInt32
     GlobalValue = 0
     IgnoreOwnChanges = True
     OnChange = GlobalChange
