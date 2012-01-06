@@ -1,5 +1,8 @@
 @echo off
 setlocal
+
+del d:\temp\DelphiTempDCU\*.dcu
+
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
 call %ZaphodsMap%zmset.bat d16 UsingKey2Folder "HREFTools\Production\cv001 Delphi D16"
