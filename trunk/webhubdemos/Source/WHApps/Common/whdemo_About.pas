@@ -97,7 +97,7 @@ var
 begin
   S := GetVersionString(vsLegalCopyright);
   LabelCopyright.Caption := 'Copyright ';
-  if S = '' then
+  if (S = '') or (S = 'Unknown') then
     LabelCopyRight.Caption := LabelCopyright.Caption + '(c) 1997-' +
       FormatDateTime('yyyy', Now) + ' HREF Tools Corp.'
   else
