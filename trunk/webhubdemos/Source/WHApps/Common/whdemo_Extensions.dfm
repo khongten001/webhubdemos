@@ -50,4 +50,10 @@ object DemoExtensions: TDemoExtensions
     Left = 392
     Top = 272
   end
+  object FEATURE: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = FEATUREExecute
+    Left = 512
+    Top = 144
+  end
 end
