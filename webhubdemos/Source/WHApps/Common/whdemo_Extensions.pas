@@ -31,6 +31,7 @@ type
     waDelaySec: TwhWebAction;
     waDemoCaptcha: TwhCaptcha;
     waImgSrc: TwhWebAction;
+    FEATURE: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -38,6 +39,7 @@ type
     procedure waLSecExecute(Sender: TObject);
     procedure waDelaySecExecute(Sender: TObject);
     procedure waImgSrcExecute(Sender: TObject);
+    procedure FEATUREExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -66,7 +68,7 @@ uses
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   runConst, whcfg_AppInfo,
-  whdemo_ViewSource;
+  whdemo_ViewSource, whcfg_App;
 
 {$R *.DFM}
 
@@ -144,6 +146,22 @@ begin
   if Assigned(webCycle) then
     // reload the cycle list information
     webCycle.Refresh;
+end;
+
+procedure TDemoExtensions.FEATUREExecute(Sender: TObject);
+var
+  InputData: string;
+  Flag: Boolean;
+begin
+  InputData := FEATURE.HtmlParam;
+
+  if IsEqual(LeftOfEqual(InputData), 'SilentUnrecognizedExpressions') then
+  begin
+    Flag := IsEqual(RightOfEqual(InputData), 'true'); // case insensitive
+    pWebApp.Debug.SilentUnrecognizedExpressions := Flag;
+  end
+  else
+    pWebApp.Debug.AddPageError('invalid FEATURE syntax: ' + InputData);
 end;
 
 procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
