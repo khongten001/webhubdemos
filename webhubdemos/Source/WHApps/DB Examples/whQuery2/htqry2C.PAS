@@ -128,7 +128,7 @@ begin
 
   RefreshWebActions(fmHTQ2Panel);
   grid.SetCaptions2004;
-  grid.SetButtonSpecs2004;
+  grid.SetButtonSpecs2012;
 
   if NOT Assigned(ZMKey) then
   begin

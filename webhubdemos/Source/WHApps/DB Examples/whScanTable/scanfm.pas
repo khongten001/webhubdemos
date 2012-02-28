@@ -246,7 +246,7 @@ begin
   (* testing in May 2006 -- not generally important
   with TwhdbScan(Sender) do
   begin
-    SetButtonSpecs2004;     // stopped working in v2.055
+    SetButtonSpecs2012;     // stopped working in v2.055
     SetCaptions2004;
   end; *)
 end;

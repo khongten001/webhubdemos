@@ -120,7 +120,7 @@ begin
   if gf.IsUpdated then
   begin
     gf.SetCaptions2004;
-    gf.SetButtonSpecs2004;
+    gf.SetButtonSpecs2012;
     gfa1.ButtonsWhere := dsBelow;
     gfa1.ControlsWhere := dsBelow;
   end
@@ -130,7 +130,7 @@ begin
   if gfa1.IsUpdated then
   begin
     gfa1.SetCaptions2004;
-    gfa1.SetButtonSpecs2004;
+    gfa1.SetButtonSpecs2012;
     gfa1.ButtonsWhere := dsAbove;
     gfa1.ControlsWhere := dsBelow;
   end;

@@ -79,7 +79,7 @@ begin
   WebDataSource1.BendPointers := False;
   grid1.Border := '';
   grid1.SetCaptions2004;
-  grid1.SetButtonSpecs2004;
+  grid1.SetButtonSpecs2012;
   grid1.Captions.Values['Redraw'] := '<input type="submit" value="X">';
 
   if assigned(pWebApp) then

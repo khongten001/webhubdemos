@@ -70,7 +70,7 @@ procedure TDataModuleQ3.Init;
 begin
   RefreshWebActions(DataModuleQ3);
   WebDataGrid1.SetCaptions2004;
-  WebDataGrid1.SetButtonSpecs2004;
+  WebDataGrid1.SetButtonSpecs2012;
 end;
 
 // -----------------------------------------------------------------------------
