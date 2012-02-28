@@ -71,7 +71,7 @@ begin
   WebDataSource2.BendPointers := False;
   grid2.Border := '';
   grid2.SetCaptions2004;
-  grid2.SetButtonSpecs2004;
+  grid2.SetButtonSpecs2012;
   grid2.Captions.Values['Redraw'] := '<input type="submit" value="X">';
 end;
 

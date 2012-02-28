@@ -68,7 +68,7 @@ begin
   if gfAdmin.IsUpdated then
   begin
     gfAdmin.SetCaptions2004;
-    gfAdmin.SetButtonSpecs2004;
+    gfAdmin.SetButtonSpecs2012;
   end;
 
 end;

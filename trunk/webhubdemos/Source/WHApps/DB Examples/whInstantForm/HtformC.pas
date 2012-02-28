@@ -96,7 +96,7 @@ begin
   RefreshWebActions(fmHTFMPanel);
 
   grid.SetCaptions2004;
-  grid.SetButtonSpecs2004;
+  grid.SetButtonSpecs2012;
 end;
 
 procedure TfmHTFMPanel.gridHotField(Sender: TwhbdeGrid; aField: TField;

@@ -119,15 +119,15 @@ begin
   ScanEmployee1.PageHeight := 10;  {number of records to display initially}
   ScanEmployee1.ButtonsWhere := dsBelow;
   ScanEmployee1.OnBeginTable := ScanEmployeeBeginTable;
-  ScanEmployee1.SetDelimiters2004;
+  ScanEmployee1.SetDelimiters2012;
   ScanEmployee1.SetCaptions2004;
-  ScanEmployee1.SetButtonSpecs2004;
+  ScanEmployee1.SetButtonSpecs2012;
 
   ScanEmployee2.WebDataSource := whdsEmployee;
   ScanEmployee2.PageHeight := 10;  {number of records to display initially}
   ScanEmployee2.ButtonsWhere := dsBelow;
   ScanEmployee2.OnBeginTable := ScanEmployeeBeginTable;
-  ScanEmployee1.SetDelimiters2004;
+  ScanEmployee1.SetDelimiters2012;
 
   ScanEmployee3.WebDataSource := whdsEmployee;
   ScanEmployee3.PageHeight := 10;  {number of records to display initially}
