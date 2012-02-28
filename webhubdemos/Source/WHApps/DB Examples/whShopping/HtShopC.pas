@@ -140,15 +140,14 @@ end;
 
 procedure TfmShopPanel.ConfigEMail;
 begin
-  { configure email based on values on form. These are saved to the
-    href.ini file by the Restorer component. }
+  { configure email based on values on form. }
   // e-mail settings -- please change to use your own defaults!
   if EditEMailFrom.Text = '' then
     EditEMailFrom.Text := 'someone@theweb.com';
   if EditEMailTo.Text = '' then
     EditEMailTo.Text := 'info@href.com';
   if EditMailhost.Text = '' then
-    EditMailhost.Text := 'mail.href.com';
+    EditMailhost.Text := 'smtplocal.href.com';  
   if EditMailPort.Text = '' then
     EditMailPort.Text := '25';
   if EditSubject.Text = '' then
@@ -167,9 +166,9 @@ end;
 
 { ------------------------------------------------------------------------- }
 
-{ To see what webhub is doing with your data, add %=chDebugInfo=% to the
+{ To see what webhub is doing with your data, add (~chDebugInfo~) to the
   bottom of the homepage and/or confirm pages.  That will display some
-  key arrays: Request.dbFields, Request.FormLiterals and Session.StringVars.
+  essential arrays: Request.dbFields, Request.FormLiterals and Session.StringVars.
 
   The data entered by the surfer into the webdatagrid is posted to the
   dbFields array.  We need to jump in and copy that to the StringVars array,
