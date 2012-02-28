@@ -53,7 +53,7 @@ uses
 {$R *.DFM}
 
 const
-  cOutgoingMailServer = 'mail.sonic.net';   // replace with your mail server
+  cOutgoingMailServer = 'smtplocal.href.com';   // replace with your mail server
 
 procedure TdmWhQuote.Init;
 begin

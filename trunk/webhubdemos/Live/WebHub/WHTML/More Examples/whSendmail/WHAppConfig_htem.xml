@@ -76,7 +76,7 @@
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
       <Item name="safemail">
-        <Host value="mail.sonic.net"/>
+        <Host value="smtplocal.href.com"/>
         <Port value="25"/>
         <From value="inEMail^"/>
         <To  value="inEMail^"/>
