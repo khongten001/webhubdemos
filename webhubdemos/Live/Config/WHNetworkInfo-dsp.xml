@@ -56,6 +56,19 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
+      <ServerProfile id="shortdpr">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="delphiprefix.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
