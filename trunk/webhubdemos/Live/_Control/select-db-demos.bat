@@ -1,5 +1,5 @@
 :: select-db-demos.bat
-:: Copyright (c) 2011 HREF Tools Corp.
+:: Copyright (c) 2011-2012 HREF Tools Corp.
 :: www.href.com
 
 call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
@@ -34,7 +34,7 @@ set compilefire=yes
 set compilehtcl=no
 set compilehtfm=yes
 set compilehtfs=yes
-set compilehtq1=no
+set compilehtq1=yes
 set compilehtq2=no
 set compilehtq3=no
 set compilehtq4=no
@@ -58,22 +58,16 @@ echo flagdemosdb is %flagdemosdb%
 
 if "%flagdemosdb%"=="no" goto end
 
-if "%whipc%"=="old" set demofire=yes
-if "%whipc%"=="x"    set demofire=yes
+set demofire=yes
 
 if "%whipc%"=="old" set demohtcl=yes
-if "%whipc%"=="x"    set demohtcl=no
+if "%whipc%"=="x"   set demohtcl=no
 
 if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"    set demohtfm=no
+if "%whipc%"=="x"   set demohtfm=no
 
-if "%whipc%"=="old" set demohtfs=yes
-if "%whipc%"=="x"    set demohtfs=yes
-
-if "%whipc%"=="old" set demojpeg=yes
-if "%whipc%"=="x"    set demojpeg=yes
-
-if "%whipc%"=="old" set demoshop1=yes
-if "%whipc%"=="x"    set demoshop1=no
+set demohtfs=yes
+set demojpeg=yes
+set demohtq1=yes
 
 :end
