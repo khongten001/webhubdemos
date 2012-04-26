@@ -80,7 +80,8 @@ d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=scan /minutes=9999999
 
 if "%demoshop1%"=="yes" start whShopping.exe  
 if "%demoshop1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
-if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
+::if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
+if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=99999 "/reason=access violation on startup of whShopping.exe; to be resolved; contact techsupport if important to you."
 
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=store000 /minutes=9999999 /reason="Shopping Cart Jump Start Project needs to be ported to Firebird SQL"
 
