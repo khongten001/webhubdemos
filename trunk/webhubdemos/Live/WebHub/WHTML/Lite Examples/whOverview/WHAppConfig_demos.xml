@@ -6,6 +6,7 @@
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized context="DEMOS" value="true"/>
+    <StartMinimized context="DORIS" value="true"/>
     <StartMinimized context="ultraann" value="true"/>
     <TrayIconEnabled value="true"/>
     <TrayIconEnabled context="ultraann" value="false"/>
@@ -51,6 +52,7 @@
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
     </Security>
     <Static>
@@ -58,8 +60,10 @@
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot"/>
     </Static>
     <StreamCatcherInterface>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="overview" filename="whOverview.whteko"/>
