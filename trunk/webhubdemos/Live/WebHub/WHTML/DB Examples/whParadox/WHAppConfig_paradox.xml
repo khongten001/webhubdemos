@@ -56,8 +56,12 @@
 		<AdminSessionNumber value="1204" context="DEMOS" />
 	</Security>
     <StreamCatcherInterface>
+      <WebRobotIniFilespec value="" />
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
+      <WebRobotIniSection value="" />
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="content" filename="whParadox.whteko" />

@@ -4,9 +4,11 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
+    <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
 	<Modules>
 		<StandardModules>
@@ -14,17 +16,22 @@
 				<Module name="email" status="disabled" />
           <Module name="dreamweaver" status="enabled-gui"/>
           <Module name="dreamweaver" status="enabled" context="DEMOS"/>
+          <Module name="dreamweaver" status="enabled" context="DORIS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
+          <Module name="dwsecurity" status="enabled" context="DORIS"/>
 	<Module name="w3validation" status="enabled" />
 			</GUIOptional>
 			<GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appin" status="disabled" context="DEMOS"/>
+          <Module name="appin" status="disabled" context="DORIS"/>
           <Module name="appout" status="enabled-gui"/>
           <Module name="appout" status="disabled" context="DEMOS"/>
+          <Module name="appout" status="disabled" context="DORIS"/>
           <Module name="decode" status="enabled-gui"/>
           <Module name="decode" status="disabled" context="DEMOS"/>
+          <Module name="decode" status="disabled" context="DORIS"/>
 				<Module name="googlesitemap" status="disabled" />
 				<Module name="whteko" status="enabled-gui" />
 			</GUI>
@@ -36,6 +43,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="db" context="DEMOS"/>
+        <ServerProfileIDStandard value="db" context="DORIS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
@@ -57,10 +65,15 @@
 	<Security>
 		<AdminSessionNumber value="1800"/>
 		<AdminSessionNumber value="1204" context="DEMOS" />
+		<AdminSessionNumber value="1204" context="DORIS" />
 	</Security>
     <StreamCatcherInterface>
+      <WebRobotIniFilespec value="" />
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
+      <WebRobotIniSection value="" />
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="aboutHTFS" filename="..\..\Shared WHTML\about\about-whFishStore.whteko"/>
