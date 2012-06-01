@@ -21,8 +21,6 @@ D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps DriveH-
 if errorlevel 1 pause
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-dsp.7z
 if errorlevel 1 pause
-D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-bin.7z
-if errorlevel 1 pause
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/Library Database-Library-bin.7z
 if errorlevel 1 pause
 
