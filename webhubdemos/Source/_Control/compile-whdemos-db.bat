@@ -87,7 +87,7 @@ echo ipc is %whipc%
 echo ***
 echo .
 
-del %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
+del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
 if "%compiledsp%"=="no" goto end
 cd %droot%\Third Party Examples\whDSP
 goto dsp%whipc%
@@ -98,7 +98,8 @@ goto end
 
 :dspx
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d16_win32_source.bat whDSP
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d15_win32_source.bat whDSP
+::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d15_win32_source.bat whDSP
+copy %~dp0\..\..\Live\WebHub\Apps\whDSP_x_d16_win32.exe %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
 goto end
 
 :END
