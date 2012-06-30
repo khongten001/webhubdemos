@@ -15,6 +15,9 @@
 			<Projects Include="whStopSpam\whStopSpam.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whExpertInstall\whExpertInstall.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
 		<Target Name="whStopSpam:Make">
 			<MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whExpertInstall">
+			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj"/>
+		</Target>
+		<Target Name="whExpertInstall:Clean">
+			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whExpertInstall:Make">
+			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam"/>
+			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean"/>
+			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make"/>
+			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

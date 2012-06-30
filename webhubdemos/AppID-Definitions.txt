@@ -312,6 +312,17 @@ Can be pasted into WHCentralInfo.xml
           <ShareByFile value="true"/>
           <SessionCookieName value="session"/>
         </WebHubApp>
+
+	<WebHubApp appID="htex">
+          <Nickname value="WebHubInstallationExpert"/>
+          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whExpertInstall\"/>
+          <ConfigFilename value="WHAppConfig_htex.xml"/>
+          <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
+          <ShareSessions value="true"/>
+          <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
+        </WebHubApp>
+
         <WebHubApp appID="htun">
           <Nickname value="Stop Spam"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whStopSpam\"/>
