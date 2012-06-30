@@ -628,7 +628,6 @@ end;
 {G1: Web application GUI                                                       }
 {------------------------------------------------------------------------------}
 function TDSPdm.IsValidReferer(const Referer:String;var Prefix:String):Boolean;
-var i:integer;
 const cHREF='http://www.codenewsfast.com/';
 begin
    Prefix:=cDSP;
