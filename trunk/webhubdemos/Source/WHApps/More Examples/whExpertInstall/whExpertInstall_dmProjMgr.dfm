@@ -1,0 +1,2 @@
+inherited DMForWHExpertInstall: TDMForWHExpertInstall
+end
