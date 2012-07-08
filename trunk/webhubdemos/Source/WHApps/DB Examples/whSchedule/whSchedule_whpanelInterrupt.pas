@@ -1,8 +1,8 @@
 unit whSchedule_whpanelInterrupt;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2009 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2012 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
-//  This source code file is part of WebHub v2.10x.  Please obtain a WebHub   //
+//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -59,7 +59,7 @@ implementation
 
 uses
   ucShell, ucDlgs, ucDlgsGUI,
-  whcfg_App, webApp, whsample_EvtHandlers,
+  whcfg_App, webApp, htWebApp,
   CodeRage_dmCommon, whSchedule_dmwhActions, whSchedule_uImport;
 
 {$R *.dfm}
