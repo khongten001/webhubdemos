@@ -11,8 +11,10 @@ interface
 
 uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
-  SysUtils, Classes,
-  toolbar, utPanFrm, restorer, tpCompPanel, ActnList, Vcl.Buttons, Vcl.ComCtrls;
+  SysUtils, Classes, ActnList, Vcl.Buttons, Vcl.ComCtrls,
+  IB_Components,
+  toolbar, utPanFrm, restorer, tpCompPanel,
+  whutil_RegExParsing;
 
 type
   TfmCodeGenerator = class(TutParentForm)
@@ -40,20 +42,30 @@ type
     LabeledEditProjectAbbrev: TLabeledEdit;
     TabSheet4: TTabSheet;
     tpToolBar1: TtpToolBar;
-    ComboBox1: TComboBox;
+    cbCodeGenPattern: TComboBox;
     Button1: TButton;
+    ActionCodeGenForPattern: TAction;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
     procedure ActionImportExecute(Sender: TObject);
+    procedure ActionCodeGenForPatternExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     FProjectAbbreviationNoSpaces: string;
+    FAttributeParser: TAttributeParser;
     function ProjectAbbrevForCodeGen: string;
     procedure TranslateOutgoingStringBreaks( var AString: string );
 (*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
                              NumberOfFields: integer);*)
+  private
+    procedure WHMacroLabels(const CurrentTable: string; const FieldNum: Integer;
+      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
+    procedure IBObjImportFld(const CurrentTable: string; const FieldNum: Integer;
+      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -69,7 +81,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  IB_Components, IB_Export,
+  IB_Export,
   ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString, ucAnsiUtil,
   webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
   tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import;
@@ -113,6 +125,55 @@ begin
   else
     MsgErrorOk('Directory not found' + sLineBreak + sLineBreak +
       cPASOutputRoot);
+end;
+
+procedure TfmCodeGenerator.ActionCodeGenForPatternExecute(Sender: TObject);
+var
+  y: TStringList;
+  DBName, DBUser, DBPass: string;
+  Flag: Boolean;
+  i: Integer;
+  CodeContent: string;
+begin
+  inherited;
+  y := nil;
+
+  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName, DBUser,
+    DBPass);
+  CreateIfNil(DBName, DBUser, DBPass);
+  Memo1.Lines.Text := DBName;
+  Memo1.Lines.Add('connecting...');
+  Application.ProcessMessages;
+  gCodeRageSchedule_Conn.Connect;
+
+  Firebird_GetTablesInDatabase(y, Flag, DBName,
+    gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
+
+  case cbCodeGenPattern.ItemIndex of
+    0: CodeContent := '<whmacros>' + sLineBreak;
+    1: CodeContent := '';
+  end;
+
+  for i := 0 to Pred(y.Count) do
+  begin
+    case cbCodeGenPattern.ItemIndex of
+      0: CodeContent := CodeContent +
+        Firebird_GenPAS_For_Each_Field_in_1Table(gCodeRageSchedule_Conn, y[i],
+        WHMacroLabels);
+      1: CodeContent := CodeContent + ';; ' + y[i] + sLineBreak +
+        '[FieldList]' + sLineBreak +
+        Firebird_GenPAS_For_Each_Field_in_1Table(gCodeRageSchedule_Conn, y[i],
+        IBObjImportFld) + sLineBreak;
+    end;
+  end;
+
+  case cbCodeGenPattern.ItemIndex of
+    0: CodeContent := CodeContent + '</whmacros>' + sLineBreak;
+  end;
+
+  Application.ProcessMessages;
+  Memo1.Lines.Text := CodeContent;
+  gCodeRageSchedule_Conn.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.ActionExportExecute(Sender: TObject);
@@ -199,7 +260,7 @@ begin
   Memo1.Lines.Add('Starting... takes time depending on connection speed');
   Memo1.Lines.Add('');
 
-  ZMLookup_Firebird_Credentials('CodeRageScheduleLOCAL', FBDB, FBUsername,
+  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, FBDB, FBUsername,
     FBPassword);
   CreateIfNil(FBDB, FBUsername, FBPassword);
   Memo1.Lines.Add(FBDB);
@@ -303,6 +364,25 @@ begin
   gCodeRageSchedule_Conn.DisconnectToPool;
 end;
 
+procedure TfmCodeGenerator.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FAttributeParser := nil;
+end;
+
+procedure TfmCodeGenerator.FormDestroy(Sender: TObject);
+begin
+  inherited;
+  FreeAndNil(FAttributeParser);
+end;
+
+procedure TfmCodeGenerator.IBObjImportFld(const CurrentTable: string;
+  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  out Value: string);
+begin
+  Value := Format('f%d=%s', [FieldNum, CurrentFieldname]) + sLineBreak;
+end;
+
 function TfmCodeGenerator.Init: Boolean;
 var
   DBName, DBUser, DBPass: string;
@@ -310,6 +390,7 @@ begin
   Result := inherited Init;
   if Result then
   begin
+    cbCodeGenPattern.ItemIndex := 0;
     FProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
     if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
       FProjectAbbreviationNoSpaces := FProjectAbbreviationNoSpaces + 'LOCAL';
@@ -339,9 +420,9 @@ begin
 end;*)
 
 procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
-var
+(*var
   SAnsi: AnsiString;
-  Raw: TBytes;
+  Raw: TBytes;*)
 const
   // http://www.fileformat.info/info/unicode/char/2029/index.htm
   cParaBreak: UnicodeString = #$2029;
@@ -353,6 +434,45 @@ begin
   *)
   // unicode parabreak
   AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
+end;
+
+procedure TfmCodeGenerator.WHMacroLabels(const CurrentTable: string;
+  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  out Value: string);
+var
+  FieldDescription: string;
+  FieldLabel: string;
+begin
+  FieldLabel := '';
+  if IsEqual(CurrentFieldname, 'UpdatedBy') then
+    FieldLabel := 'Updated By'
+  else
+  if IsEqual(CurrentFieldname, 'UpdatedOnAt') then
+    FieldLabel := 'Last Mod'
+  else
+  if IsEqual(CurrentFieldname, 'UpdateCounter') then
+    {nothing} // no macro desired
+  else
+  begin
+    if NOT Assigned(FAttributeParser) then
+    begin
+      FAttributeParser := TAttributeParser.Create(' ');
+    end;
+    // Example: pk="autoincrement" label="ok dokie" otherAttrib="abc"
+    FieldDescription := Cursor.FieldByName('field_description').AsString;
+    FAttributeParser.SetPairs(FieldDescription);
+    FieldLabel := FAttributeParser.Value('label');  // case sensitive
+    if FieldLabel = '' then
+    begin
+      if FieldNum = 0 then
+        FieldLabel := CurrentTable + ' PK'
+      else
+        FieldLabel := CurrentFieldname;  // default to actual field name
+    end;
+  end;
+  if FieldLabel <> '' then
+    Value := 'mcLabel' + '-' + CurrentTable + '-' + CurrentFieldName + '=' +
+      FieldLabel + sLineBreak;
 end;
 
 end.
