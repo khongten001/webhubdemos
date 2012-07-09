@@ -1,7 +1,7 @@
 //unit uStructureClientDataSets_CodeRageSchedule;
 unit uStructureClientDataSets_CodeRageSchedule;
 // project abbreviation: CodeRageSchedule
-// generated 09-Jul-2012 00:03
+// generated 09-Jul-2012 06:12
 // by Firebird_GenPAS_StructureClientDatasets in TPack, maintained by HREF Tools Corp.
 
 interface 
@@ -11,9 +11,9 @@ uses
 
 procedure PrepareCDS_for_SCHEDULE(var table : TClientDataset;
   const CreateNow: Boolean = True);
-procedure PrepareCDS_for_ABOUT(var table : TClientDataset;
-  const CreateNow: Boolean = True);
 procedure PrepareCDS_for_XPRODUCT(var table : TClientDataset;
+  const CreateNow: Boolean = True);
+procedure PrepareCDS_for_ABOUT(var table : TClientDataset;
   const CreateNow: Boolean = True);
 
 implementation
@@ -32,92 +32,21 @@ begin
 
   table.FieldDefs.Clear;
 
-  table.FieldDefs.Add('SCHID',  ftInteger, 0, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHTITLE',  ftString, 95 div 4, False);
-  table.FieldDefs.Add('SCHONATPDT',  ftDateTime, 0, False);
-  table.FieldDefs.Add('SCHMINUTES',  ftSmallInt, 0, False);
-  table.FieldDefs.Add('SCHPRESENTERFULLNAME',  ftString, 45 div 4, False);
-  table.FieldDefs.Add('SCHPRESENTERORG',  ftString, 45 div 4, False);
-  table.FieldDefs.Add('SCHLOCATION',  ftString, 10 div 4, False);
-  table.FieldDefs.Add('SCHBLURB',  ftString, 512 div 4, False);
-  table.FieldDefs.Add('UPDATECOUNTER',  ftSmallInt, 0, False);
-  table.FieldDefs.Add('UPDATEDONAT',  ftDateTime, 0, False);
+  table.FieldDefs.Add('SCHNO',  ftInteger, 0, False);(* autoincrement *)
+  table.FieldDefs.Add('SCHTITLE',  ftString, 260 div 4, False);(* label="Presentation Title" *)
+  table.FieldDefs.Add('SCHONATPDT',  ftDateTime, 0, False);(* label="Live presentation time (PDT)" *)
+  table.FieldDefs.Add('SCHMINUTES',  ftSmallInt, 0, False);(* label="Duration" *)
+  table.FieldDefs.Add('SCHPRESENTERFULLNAME',  ftString, 180 div 4, False);(* label="Presenter" *)
+  table.FieldDefs.Add('SCHPRESENTERORG',  ftString, 180 div 4, False);(* label="Organization" *)
+  table.FieldDefs.Add('SCHLOCATION',  ftString, 40 div 4, False);(* label="Location" *)
+  table.FieldDefs.Add('SCHBLURB',  ftMemo, 0, False);(* label="Presentation Description" *)
   table.FieldDefs.Add('SCHREPEATOF',  ftInteger, 0, False);
-  table.FieldDefs.Add('SCHTAGC',  ftFixedChar, 4 div 4, False);
-  table.FieldDefs.Add('SCHTAGD',  ftFixedChar, 4 div 4, False);
+  table.FieldDefs.Add('SCHTAGC',  ftString, 160 div 4, False);
+  table.FieldDefs.Add('SCHTAGD',  ftString, 160 div 4, False);
   table.FieldDefs.Add('SCHTAGPRISM',  ftFixedChar, 4 div 4, False);
-
-  if CreateNow then
-    table.CreateDataSet;
-end;
-
-procedure PrepareCDS_for_ABOUT(var table : TClientDataset;
-  const CreateNow: Boolean = True);
-begin
-  if NOT Assigned(table) then
-  begin
-    table := TClientDataset.Create(nil);
-    table.Name := 'cdsABOUT';
-  end;
-
-  table.FieldDefs.Clear;
-
-  table.FieldDefs.Add('ABOUTID',  ftInteger, 0, False);
-  table.FieldDefs.Add('SCHID',  ftInteger, 0, False);
-  table.FieldDefs.Add('PRODUCTID',  ftInteger, 0, False);
-  table.FieldDefs.Add('UPDATECOUNTER',  ftInteger, 0, False);
+  table.FieldDefs.Add('UPDATEDBY',  ftString, 12 div 4, False);
   table.FieldDefs.Add('UPDATEDONAT',  ftDateTime, 0, False);
+  table.FieldDefs.Add('UPDATECOUNTER',  ftSmallInt, 0, False);
 
   if CreateNow then
     table.CreateDataSet;
@@ -134,11 +63,34 @@ begin
 
   table.FieldDefs.Clear;
 
-  table.FieldDefs.Add('PRODUCTID',  ftInteger, 0, False);
-  table.FieldDefs.Add('PRODUCTABBREV',  ftString, 8 div 4, False);
-  table.FieldDefs.Add('PRODUCTNAME',  ftString, 15 div 4, False);
-  table.FieldDefs.Add('UPDATECOUNTER',  ftInteger, 0, False);
+  table.FieldDefs.Add('PRODUCTNO',  ftInteger, 0, False);(* autoincrement *)
+  table.FieldDefs.Add('PRODUCTABBREV',  ftString, 32 div 4, False);(* label="Abbreviation" *)
+  table.FieldDefs.Add('PRODUCTNAME',  ftString, 60 div 4, False);(* label="Full Product Name" *)
+  table.FieldDefs.Add('UPDATEDBY',  ftString, 12 div 4, False);
   table.FieldDefs.Add('UPDATEDONAT',  ftDateTime, 0, False);
+  table.FieldDefs.Add('UPDATECOUNTER',  ftSmallInt, 0, False);
+
+  if CreateNow then
+    table.CreateDataSet;
+end;
+
+procedure PrepareCDS_for_ABOUT(var table : TClientDataset;
+  const CreateNow: Boolean = True);
+begin
+  if NOT Assigned(table) then
+  begin
+    table := TClientDataset.Create(nil);
+    table.Name := 'cdsABOUT';
+  end;
+
+  table.FieldDefs.Clear;
+
+  table.FieldDefs.Add('ABOUTNO',  ftInteger, 0, False);(* autoincrement *)
+  table.FieldDefs.Add('SCHNO',  ftInteger, 0, False);
+  table.FieldDefs.Add('PRODUCTNO',  ftInteger, 0, False);
+  table.FieldDefs.Add('UPDATEDBY',  ftString, 12 div 4, False);
+  table.FieldDefs.Add('UPDATEDONAT',  ftDateTime, 0, False);
+  table.FieldDefs.Add('UPDATECOUNTER',  ftSmallInt, 0, False);
 
   if CreateNow then
     table.CreateDataSet;
