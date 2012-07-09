@@ -12,7 +12,7 @@ interface
 uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
   SysUtils, Classes,
-  toolbar, utPanFrm, restorer, tpCompPanel, ActnList, Vcl.Buttons;
+  toolbar, utPanFrm, restorer, tpCompPanel, ActnList, Vcl.Buttons, Vcl.ComCtrls;
 
 type
   TfmCodeGenerator = class(TutParentForm)
@@ -20,26 +20,40 @@ type
     tpComponentPanel: TtpComponentPanel;
     Panel: TPanel;
     ActionList1: TActionList;
-    tpToolBar1: TtpToolBar;
-    tpToolButton1: TtpToolButton;
     ActionBootstrap: TAction;
-    Memo1: TMemo;
-    tpToolButton2: TtpToolButton;
     ActionGenPASandSQL: TAction;
     ActionExport: TAction;
-    tpToolButton3: TtpToolButton;
-    tpToolButton4: TtpToolButton;
     ActionImport: TAction;
+    PageControl1: TPageControl;
+    TabSheet1: TTabSheet;
+    tpToolBar2: TtpToolBar;
+    tpToolButton5: TtpToolButton;
+    TabSheet2: TTabSheet;
+    tpToolBar3: TtpToolBar;
+    tpToolButton10: TtpToolButton;
+    TabSheet3: TTabSheet;
+    tpToolBar4: TtpToolBar;
+    tpToolButton15: TtpToolButton;
+    tpToolButton16: TtpToolButton;
+    Memo1: TMemo;
+    LabelDBInfo: TLabel;
+    LabeledEditProjectAbbrev: TLabeledEdit;
+    TabSheet4: TTabSheet;
+    tpToolBar1: TtpToolBar;
+    ComboBox1: TComboBox;
+    Button1: TButton;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
     procedure ActionImportExecute(Sender: TObject);
   private
     { Private declarations }
+    FProjectAbbreviationNoSpaces: string;
+    function ProjectAbbrevForCodeGen: string;
     procedure TranslateOutgoingStringBreaks( var AString: string );
-    procedure TranslateIncomingStringBreaks(Sender: TObject;
+(*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
-                             NumberOfFields: integer);
+                             NumberOfFields: integer);*)
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -57,11 +71,10 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Components, IB_Export,
   ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString, ucAnsiUtil,
-  webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
+  webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
   tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import;
 
 const
-  cProjectAbbreviationNoSpaces = 'CodeRageSchedule';
   cPASOutputRoot = 'D:\Projects\webhubdemos\' +
     'Source\WHApps\DB Examples\whSchedule\';
   cSQLOutputRoot = 'D:\Projects\webhubdemos\' +
@@ -144,7 +157,7 @@ var
 begin
   inherited;
 
-  ZMLookup_Firebird_Credentials(cProjectAbbreviationNoSpaces +'LOCAL', DBName,
+  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName,
     DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
@@ -209,17 +222,17 @@ begin
 
     Filespec :=
       cPASOutputRoot +
-      'uStructureClientDataSets_' + cProjectAbbreviationNoSpaces + '.pas';
+      'uStructureClientDataSets_' + ProjectAbbrevForCodeGen + '.pas';
     Firebird_GenPAS_StructureClientDatasets(y, gCodeRageSchedule_Conn,
-      cProjectAbbreviationNoSpaces, Filespec);
+      ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
 
     Filespec :=
       cPASOutputRoot +
-      'uFirebird_SQL_Snippets_' + cProjectAbbreviationNoSpaces + '.pas';
+      'uFirebird_SQL_Snippets_' + ProjectAbbrevForCodeGen + '.pas';
     Firebird_GenPAS_SQL_Snippets(y, gCodeRageSchedule_Conn,
-      cProjectAbbreviationNoSpaces, Filespec);
+      ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
 
@@ -227,9 +240,9 @@ begin
     // BUT: it helps to have the Fill code for copy and paste samples
     Filespec :=
       cPASOutputRoot +
-      'uFillClientDataSets_' + cProjectAbbreviationNoSpaces + '.pas';
+      'uFillClientDataSets_' + ProjectAbbrevForCodeGen + '.pas';
     Firebird_GenPAS_FillClientDatasets(y, gCodeRageSchedule_Conn,
-      cProjectAbbreviationNoSpaces, Filespec);
+      ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
   end;
@@ -247,7 +260,7 @@ begin
   im := nil;
   Memo1.Clear;
 
-  ZMLookup_Firebird_Credentials(cProjectAbbreviationNoSpaces +'LOCAL', DBName,
+  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName,
     DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
@@ -291,12 +304,27 @@ begin
 end;
 
 function TfmCodeGenerator.Init: Boolean;
+var
+  DBName, DBUser, DBPass: string;
 begin
   Result := inherited Init;
-  if not Result then
-    Exit;
-  // Call RefreshWebActions here only if it is not called within a TtpProject event
-  // RefreshWebActions(Self);
+  if Result then
+  begin
+    FProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
+    if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
+      FProjectAbbreviationNoSpaces := FProjectAbbreviationNoSpaces + 'LOCAL';
+    ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName, DBUser,
+      DBPass);
+    LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
+    CreateIfNil(DBName, DBUser, DBPass);
+  end;
+end;
+
+function TfmCodeGenerator.ProjectAbbrevForCodeGen: string;
+begin
+  Result := FProjectAbbreviationNoSpaces;
+  if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
+    Result := StringReplaceAll(Result, 'LOCAL', '');
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
@@ -304,23 +332,27 @@ begin
   Result := False;
 end;
 
-procedure TfmCodeGenerator.TranslateIncomingStringBreaks(Sender: TObject;
+(*procedure TfmCodeGenerator.TranslateIncomingStringBreaks(Sender: TObject;
   var InputFields: TStrings; NumberOfFields: integer);
 begin
 // do nothing for now
-end;
+end;*)
 
 procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
 var
-  Data: TBytes;
-  S8: UTF8String;
   SAnsi: AnsiString;
   Raw: TBytes;
+const
+  // http://www.fileformat.info/info/unicode/char/2029/index.htm
+  cParaBreak: UnicodeString = #$2029;
 begin
-  AString := StringReplaceAll(AString, sLineBreak, '#CRLF#');
+  (* required during transition from CHARSET None to CHARSET UTF8.
   Raw := BytesOf(AString);
   SAnsi := UTF8ToAnsiCodePage(UTF8String(Raw), 1252);
   AString := AnsiCodePageToUnicode(SAnsi, 1252);
+  *)
+  // unicode parabreak
+  AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
 end;
 
 end.
