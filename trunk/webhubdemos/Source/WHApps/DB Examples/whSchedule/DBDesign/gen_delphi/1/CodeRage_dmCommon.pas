@@ -97,7 +97,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucString, ZaphodsMap;
+  ucString, ZaphodsMap, tpFirebirdCredentials;
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
@@ -140,30 +140,17 @@ end;
 
 procedure TdmCommon.DataModuleCreate(Sender: TObject);
 var
-  ldiDBHost, ldiDBAlias, ldiDBUsername, ldiDBPassword: string;
-const
-  cZaphodBranch = 'LDI\ScriptGen';
-  cKeyName = 'ProjCodeRage';
-  
-  function ZMAttr( XPath: array of const; ADefault: Variant): string;
-  var
-    ZMWarning: string;
-  begin
-    Result := ZaphodKeyedFileZNodeAttr(cZaphodBranch, 'ScriptGen', cKeyName,
-      'DBAdminConfig', XPath, cxOptional, usrNone, 'value', ADefault, ZMWarning);
-  end;
-  
+  DBName, DBUser, DBPass: string;
 begin
-  ldiDBHost     := ZMAttr(['DatabaseAccess', 'ldiDBHost'], 'localhost');
-  ldiDBAlias    := ZMAttr(['DatabaseAccess', 'ldiDBAlias'], '');
-  ldiDBUsername := ZMAttr(['DatabaseAccess', 'ldiDBUsername'], 'SYSDBA');
-  ldiDBPassword := ZMAttr(['DatabaseAccess', 'ldiDBPassword'], 'masterkey');
+
+  ZMLookup_Firebird_Credentials('CodeRageScheduleLOCAL', DBName, DBUser,
+    DBPass);
 
   with cn1 do
   begin
-    Database:=ldiDBHost + ':' + ldiDBAlias;
-    Username:=ldiDBUsername;
-    Password:=ldiDBPassword;
+    Database:=DBName;
+    Username:=DBUser;
+    Password:=DBPass;
     Connect;
   end;
   with tr1 do
@@ -173,9 +160,7 @@ begin
   end;
   SetAllSQLStatements;
   PrepareAllQueriesAndProcs(Sender as TDataModule, cn1, tr1);
-  globCheckLengthBeforeExecSQL:=
-    AnsiSameText('Yes',
-      ZMAttr(['ErrorReporting', 'CheckLengthBeforeExecSQLYesNo'], 'No'));
+  globCheckLengthBeforeExecSQL:= True;
 end;
 
 procedure TdmCommon.DataModuleDestroy(Sender: TObject);
