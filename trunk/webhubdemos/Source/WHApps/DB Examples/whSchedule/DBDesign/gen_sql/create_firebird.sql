@@ -2,10 +2,10 @@
 /* Script generated with: DeZign for Databases v4.2.0                     */
 /* Target DBMS:           Firebird 2                                      */
 /* Project file:          CodeRageSchedule.dez                            */
-/* Project name:                                                          */
-/* Author:                                                                */
+/* Project name:          Code Rage Schedule                              */
+/* Author:                Ann Lynnworth                                   */
 /* Script type:           Database creation script                        */
-/* Created on:            2012-07-09 02:21                                */
+/* Created on:            2012-07-09 03:19                                */
 /* ---------------------------------------------------------------------- */
 
 
@@ -38,7 +38,7 @@ CREATE TABLE SCHEDULE (
     SCHPRESENTERFULLNAME VARCHAR(45) CHARACTER SET UTF8,
     SCHPRESENTERORG VARCHAR(45) CHARACTER SET UTF8,
     SCHLOCATION VARCHAR(10) CHARACTER SET UTF8,
-    SCHBLURB VARCHAR(512) CHARACTER SET UTF8,
+    SCHBLURB BLOB SUB_TYPE 1,
     SCHREPEATOF INTEGER,
     SCHTAGC VARCHAR(40),
     SCHTAGD VARCHAR(40),

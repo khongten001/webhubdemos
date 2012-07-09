@@ -2,10 +2,10 @@
 /* Script generated with: DeZign for Databases v4.2.0                     */
 /* Target DBMS:           Firebird 2                                      */
 /* Project file:          CodeRageSchedule.dez                            */
-/* Project name:                                                          */
-/* Author:                                                                */
+/* Project name:          Code Rage Schedule                              */
+/* Author:                Ann Lynnworth                                   */
 /* Script type:           Database drop script                            */
-/* Created on:            2012-07-09 02:21                                */
+/* Created on:            2012-07-09 03:19                                */
 /* ---------------------------------------------------------------------- */
 
 
