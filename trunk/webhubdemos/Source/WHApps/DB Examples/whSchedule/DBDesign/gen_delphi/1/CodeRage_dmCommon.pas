@@ -22,12 +22,6 @@ type
   TdmCommon = class(TDataModule)
     cn1: TIB_Connection;
     tr1: TIB_Transaction;
-    sp_g_AboutNo    : TIB_StoredProc;
-    sp_g_ScheduleNo : TIB_StoredProc;
-    sp_g_XProductNo : TIB_StoredProc;
-    quInsertAbout    : TIB_DSQL;
-    quInsertSchedule : TIB_DSQL;
-    quInsertXProduct : TIB_DSQL;
     procedure SetAllSQLStatements;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
@@ -35,6 +29,9 @@ type
     { Private declarations }
   public
     { Public declarations }
+    quInsertAbout: TIB_DSQL;
+    quInsertSchedule: TIB_DSQL;
+    quInsertXProduct: TIB_DSQL;
     procedure SetDefaultsFor_About;
     procedure SetDefaultsFor_Schedule;
     procedure SetDefaultsFor_XProduct;
@@ -53,9 +50,9 @@ type
 
 bufferFor_About_Rec = record
   SetPrimaryKeyOnInsert : boolean;
-  AboutID       :integer;
-  SchID         :integer;
-  ProductID     :integer;
+  AboutNo       :integer;
+  SchNo         :integer;
+  ProductNo     :integer;
   UpdateCounter :integer;
   UpdatedOnAt   :TDateTime;
 end;
@@ -64,7 +61,7 @@ end;
 
 bufferFor_Schedule_Rec = record
   SetPrimaryKeyOnInsert : boolean;
-  SchID                :integer;
+  SchNo                :integer;
   SchTitle             :string;
   SchOnAtPDT           :TDateTime;
   SchMinutes           :smallint;
@@ -80,7 +77,7 @@ end;
 
 bufferFor_XProduct_Rec = record
   SetPrimaryKeyOnInsert : boolean;
-  ProductID     :integer;
+  ProductNo     :integer;
   ProductAbbrev :string;
   ProductName   :string;
   UpdateCounter :integer;
@@ -104,37 +101,6 @@ uses
 
 procedure TDmCommon.SetAllSQLStatements;
 begin
-  with quInsertAbout do
-  begin
-    SQL.Clear;
-    SQL.Add(''
-      + 'INSERT INTO ABOUT('
-      + 'AboutID,SchID,ProductID)'
-      + 'VALUES('
-      + ':AboutID,:SchID,:ProductID);');
-  end;
-//
-  with quInsertSchedule do
-  begin
-    SQL.Clear;
-    SQL.Add(''
-      + 'INSERT INTO SCHEDULE('
-      + 'SchID,SchTitle,SchOnAtPDT,SchMinutes,SchPresenterFullname,SchPresenterOrg,SchLocation,'
-      + 'SchBlurb)'
-      + 'VALUES('
-      + ':SchID,:SchTitle,:SchOnAtPDT,:SchMinutes,:SchPresenterFullname,:SchPresenterOrg,:SchLocation,'
-      + ':SchBlurb);');
-  end;
-//
-  with quInsertXProduct do
-  begin
-    SQL.Clear;
-    SQL.Add(''
-      + 'INSERT INTO XPRODUCT('
-      + 'ProductID,ProductAbbrev,ProductName)'
-      + 'VALUES('
-      + ':ProductID,:ProductAbbrev,:ProductName);');
-  end;
 //
 end;
 
@@ -202,15 +168,11 @@ begin
     begin
       if SetPrimaryKeyOnInsert then
       begin
-        with sp_g_AboutNo do
-        begin
-          ExecProc;
-          AboutID := Fields[0].asInteger;
-        end;
+        AboutNo := -1;
       end;
-      Params[0].asInteger   := AboutID;
-      Params[1].asInteger   := SchID;
-      Params[2].asInteger   := ProductID;
+      Params[0].asInteger   := AboutNo;
+      Params[1].asInteger   := SchNo;
+      Params[2].asInteger   := ProductNo;
       with ldiDBError do begin;
         Tablename:='About';
         Process:=cProcess;
@@ -241,13 +203,9 @@ begin
       end;
       if SetPrimaryKeyOnInsert then
       begin
-        with sp_g_ScheduleNo do
-        begin
-          ExecProc;
-          SchID := Fields[0].asInteger;
-        end;
+        SchNo := -1;
       end;
-      Params[0].asInteger   := SchID;
+      Params[0].asInteger   := SchNo;
       Params[1].asString    := SchTitle;
       Params[2].asDateTime  := SchOnAtPDT;
       Params[3].asInteger   := SchMinutes;
@@ -282,13 +240,9 @@ begin
       end;
       if SetPrimaryKeyOnInsert then
       begin
-        with sp_g_XProductNo do
-        begin
-          ExecProc;
-          ProductID := Fields[0].asInteger;
-        end;
+        ProductNo := Fields[0].asInteger;
       end;
-      Params[0].asInteger   := ProductID;
+      Params[0].asInteger   := ProductNo;
       Params[1].asString    := ProductAbbrev;
       Params[2].asString    := ProductName;
       with ldiDBError do begin;
