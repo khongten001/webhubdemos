@@ -19,7 +19,7 @@ function ImportProductAbout: Boolean;
 var
   S: string;
   ProductName: array[1..5] of string;
-  ProductID: array[1..5] of integer;
+  ProductNo: array[1..5] of integer;
   EventTitle: string;
   FileContents: string;
   y: TStringList;
@@ -74,13 +74,13 @@ begin
             begin
               ProductName[j] := Trim(ProductName[j]);
               if ProductName[j] = '' then
-                ProductID[j] := -1
+                ProductNo[j] := -1
               else
               begin
                 findprod.Close;
                 findprod.Params[0].AsString := ProductName[j];
                 findprod.Open;
-                ProductID[j] := findprod.Fields[0].asInteger; //key
+                ProductNo[j] := findprod.Fields[0].asInteger; //key
                 findprod.Close;
               end;
             end;
@@ -103,11 +103,11 @@ begin
               EventID := findevent.Fields[0].AsInteger;
               for j := 1 to 5 do
               begin
-                if ProductID[j] <> -1 then
+                if ProductNo[j] <> -1 then
                 begin
                   dmCommon.SetDefaultsFor_About;
-                  bufferFor_About.SchID := EventID;
-                  bufferFor_About.ProductID := ProductID[j];
+                  bufferFor_About.SchNo := EventID;
+                  bufferFor_About.ProductNo := ProductNo[j];
                   dmCommon.InsertRecordInto_About;
                 end;
               end;
@@ -124,8 +124,8 @@ begin
               '#' + IntToStr(EventID) + #9 + EventTitle +
                 sLineBreak +
               Format('%d %d %d %d %d',
-               [ProductID[1], ProductID[2], ProductID[3],
-               ProductID[4], ProductID[5]])
+               [ProductNo[1], ProductNo[2], ProductNo[3],
+               ProductNo[4], ProductNo[5]])
               );}
 
           end;
