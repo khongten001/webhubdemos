@@ -1,2 +1,4 @@
-d:\Apps\Kynosoura\LaunchWithDate.exe "D:\Projects\WebHub Demos\Live\Database\whSchedule\restore-db.bat" yyyymmdd
+cd /d %~dp0 
+call restore-db.bat 20090910
+
 
