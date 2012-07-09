@@ -39,7 +39,8 @@ uses
   uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
   IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
-  whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas';
+  whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
+  whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule};
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

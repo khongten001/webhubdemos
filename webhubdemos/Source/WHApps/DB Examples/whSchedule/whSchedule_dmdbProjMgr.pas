@@ -31,7 +31,7 @@ implementation
 uses
   MultiTypeApp, uCode,
   CodeRage_dmCommon, whSchedule_dmwhActions,
-  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen;
+  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
@@ -42,6 +42,18 @@ begin
     {M}Application.CreateForm(TdmCommon, dmCommon);
     {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
   end;
+  Application.CreateForm(TDMIBObjCodeGen, DMIBObjCodeGen);
+end;
+
+procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: String; var Continue: Boolean);
+begin
+  inherited;
+  if NOT HaveParam('/justexport') then
+  begin
+    Continue := DMCodeRageActions.Init;
+  end;
+  DMIBObjCodeGen.Init;
 end;
 
 procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
@@ -60,15 +72,6 @@ begin
   end;
 end;
 
-procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
-  var ErrorText: String; var Continue: Boolean);
-begin
-  inherited;
-  if NOT HaveParam('/justexport') then
-  begin
-    Continue := DMCodeRageActions.Init;
-  end;
-end;
 
 end.
 

@@ -45,27 +45,21 @@ type
     cbCodeGenPattern: TComboBox;
     Button1: TButton;
     ActionCodeGenForPattern: TAction;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
     procedure ActionImportExecute(Sender: TObject);
     procedure ActionCodeGenForPatternExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
-    FProjectAbbreviationNoSpaces: string;
-    FAttributeParser: TAttributeParser;
-    function ProjectAbbrevForCodeGen: string;
     procedure TranslateOutgoingStringBreaks( var AString: string );
 (*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
                              NumberOfFields: integer);*)
-  private
-    procedure WHMacroLabels(const CurrentTable: string; const FieldNum: Integer;
-      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
-    procedure IBObjImportFld(const CurrentTable: string; const FieldNum: Integer;
-      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -84,7 +78,8 @@ uses
   IB_Export,
   ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString, ucAnsiUtil,
   webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
-  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import;
+  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import,
+  whdemo_DMIBObjCodeGen;
 
 const
   cPASOutputRoot = 'D:\Projects\webhubdemos\' +
@@ -132,43 +127,34 @@ var
   y: TStringList;
   DBName, DBUser, DBPass: string;
   Flag: Boolean;
-  i: Integer;
   CodeContent: string;
 begin
   inherited;
   y := nil;
 
-  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName, DBUser,
-    DBPass);
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   Memo1.Lines.Text := DBName;
   Memo1.Lines.Add('connecting...');
   Application.ProcessMessages;
   gCodeRageSchedule_Conn.Connect;
 
-  Firebird_GetTablesInDatabase(y, Flag, DBName,
-    gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
 
-  case cbCodeGenPattern.ItemIndex of
-    0: CodeContent := '<whmacros>' + sLineBreak;
-    1: CodeContent := '';
-  end;
+  try
+    Firebird_GetTablesInDatabase(y, Flag, DBName,
+      gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
 
-  for i := 0 to Pred(y.Count) do
-  begin
     case cbCodeGenPattern.ItemIndex of
-      0: CodeContent := CodeContent +
-        Firebird_GenPAS_For_Each_Field_in_1Table(gCodeRageSchedule_Conn, y[i],
-        WHMacroLabels);
-      1: CodeContent := CodeContent + ';; ' + y[i] + sLineBreak +
-        '[FieldList]' + sLineBreak +
-        Firebird_GenPAS_For_Each_Field_in_1Table(gCodeRageSchedule_Conn, y[i],
-        IBObjImportFld) + sLineBreak;
+      0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpMacroLabelsForFields);
+      1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpFieldListForImport);
+      2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpSelectSQLDroplet);
     end;
-  end;
-
-  case cbCodeGenPattern.ItemIndex of
-    0: CodeContent := CodeContent + '</whmacros>' + sLineBreak;
+  finally
+    FreeAndNil(y);
   end;
 
   Application.ProcessMessages;
@@ -218,8 +204,8 @@ var
 begin
   inherited;
 
-  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName,
-    DBUser, DBPass);
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
 
@@ -260,8 +246,8 @@ begin
   Memo1.Lines.Add('Starting... takes time depending on connection speed');
   Memo1.Lines.Add('');
 
-  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, FBDB, FBUsername,
-    FBPassword);
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    FBDB, FBUsername, FBPassword);
   CreateIfNil(FBDB, FBUsername, FBPassword);
   Memo1.Lines.Add(FBDB);
   Memo1.Lines.Add(FBUsername + #9 + FBPassword);
@@ -283,17 +269,18 @@ begin
 
     Filespec :=
       cPASOutputRoot +
-      'uStructureClientDataSets_' + ProjectAbbrevForCodeGen + '.pas';
+      'uStructureClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen +
+      '.pas';
     Firebird_GenPAS_StructureClientDatasets(y, gCodeRageSchedule_Conn,
-      ProjectAbbrevForCodeGen, Filespec);
+      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
 
     Filespec :=
       cPASOutputRoot +
-      'uFirebird_SQL_Snippets_' + ProjectAbbrevForCodeGen + '.pas';
+      'uFirebird_SQL_Snippets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
     Firebird_GenPAS_SQL_Snippets(y, gCodeRageSchedule_Conn,
-      ProjectAbbrevForCodeGen, Filespec);
+      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
 
@@ -301,9 +288,9 @@ begin
     // BUT: it helps to have the Fill code for copy and paste samples
     Filespec :=
       cPASOutputRoot +
-      'uFillClientDataSets_' + ProjectAbbrevForCodeGen + '.pas';
+      'uFillClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
     Firebird_GenPAS_FillClientDatasets(y, gCodeRageSchedule_Conn,
-      ProjectAbbrevForCodeGen, Filespec);
+      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
     Memo1.Lines.Add(Filespec);
     Memo1.Lines.Add('');
   end;
@@ -321,8 +308,8 @@ begin
   im := nil;
   Memo1.Clear;
 
-  ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName,
-    DBUser, DBPass);
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
 
@@ -364,25 +351,6 @@ begin
   gCodeRageSchedule_Conn.DisconnectToPool;
 end;
 
-procedure TfmCodeGenerator.FormCreate(Sender: TObject);
-begin
-  inherited;
-  FAttributeParser := nil;
-end;
-
-procedure TfmCodeGenerator.FormDestroy(Sender: TObject);
-begin
-  inherited;
-  FreeAndNil(FAttributeParser);
-end;
-
-procedure TfmCodeGenerator.IBObjImportFld(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
-  out Value: string);
-begin
-  Value := Format('f%d=%s', [FieldNum, CurrentFieldname]) + sLineBreak;
-end;
-
 function TfmCodeGenerator.Init: Boolean;
 var
   DBName, DBUser, DBPass: string;
@@ -391,21 +359,15 @@ begin
   if Result then
   begin
     cbCodeGenPattern.ItemIndex := 0;
-    FProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
+    DMIBObjCodeGen.ProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
     if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
-      FProjectAbbreviationNoSpaces := FProjectAbbreviationNoSpaces + 'LOCAL';
-    ZMLookup_Firebird_Credentials(FProjectAbbreviationNoSpaces, DBName, DBUser,
-      DBPass);
+      DMIBObjCodeGen.ProjectAbbreviationNoSpaces :=
+        DMIBObjCodeGen.ProjectAbbreviationNoSpaces + 'LOCAL';
+    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+      DBName, DBUser, DBPass);
     LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
     CreateIfNil(DBName, DBUser, DBPass);
   end;
-end;
-
-function TfmCodeGenerator.ProjectAbbrevForCodeGen: string;
-begin
-  Result := FProjectAbbreviationNoSpaces;
-  if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
-    Result := StringReplaceAll(Result, 'LOCAL', '');
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
@@ -434,45 +396,6 @@ begin
   *)
   // unicode parabreak
   AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
-end;
-
-procedure TfmCodeGenerator.WHMacroLabels(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
-  out Value: string);
-var
-  FieldDescription: string;
-  FieldLabel: string;
-begin
-  FieldLabel := '';
-  if IsEqual(CurrentFieldname, 'UpdatedBy') then
-    FieldLabel := 'Updated By'
-  else
-  if IsEqual(CurrentFieldname, 'UpdatedOnAt') then
-    FieldLabel := 'Last Mod'
-  else
-  if IsEqual(CurrentFieldname, 'UpdateCounter') then
-    {nothing} // no macro desired
-  else
-  begin
-    if NOT Assigned(FAttributeParser) then
-    begin
-      FAttributeParser := TAttributeParser.Create(' ');
-    end;
-    // Example: pk="autoincrement" label="ok dokie" otherAttrib="abc"
-    FieldDescription := Cursor.FieldByName('field_description').AsString;
-    FAttributeParser.SetPairs(FieldDescription);
-    FieldLabel := FAttributeParser.Value('label');  // case sensitive
-    if FieldLabel = '' then
-    begin
-      if FieldNum = 0 then
-        FieldLabel := CurrentTable + ' PK'
-      else
-        FieldLabel := CurrentFieldname;  // default to actual field name
-    end;
-  end;
-  if FieldLabel <> '' then
-    Value := 'mcLabel' + '-' + CurrentTable + '-' + CurrentFieldName + '=' +
-      FieldLabel + sLineBreak;
 end;
 
 end.
