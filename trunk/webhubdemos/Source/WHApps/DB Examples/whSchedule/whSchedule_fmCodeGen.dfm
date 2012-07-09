@@ -40,9 +40,18 @@ inherited fmCodeGenerator: TfmCodeGenerator
           MinWidth = 28
         end
         object tpToolButton3: TtpToolButton
-          Left = 186
+          Left = 191
           Top = 1
+          Width = 57
           Action = ActionExport
+          LeaveSpace = True
+          MinWidth = 28
+        end
+        object tpToolButton4: TtpToolButton
+          Left = 249
+          Top = 1
+          Width = 57
+          Action = ActionImport
           MinWidth = 28
         end
       end
@@ -91,6 +100,10 @@ inherited fmCodeGenerator: TfmCodeGenerator
     object ActionExport: TAction
       Caption = 'Export'
       OnExecute = ActionExportExecute
+    end
+    object ActionImport: TAction
+      Caption = 'Import'
+      OnExecute = ActionImportExecute
     end
   end
 end

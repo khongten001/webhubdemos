@@ -28,12 +28,18 @@ type
     ActionGenPASandSQL: TAction;
     ActionExport: TAction;
     tpToolButton3: TtpToolButton;
+    tpToolButton4: TtpToolButton;
+    ActionImport: TAction;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
+    procedure ActionImportExecute(Sender: TObject);
   private
     { Private declarations }
-    procedure TranslateStringBreaks( var AString: string );
+    procedure TranslateOutgoingStringBreaks( var AString: string );
+    procedure TranslateIncomingStringBreaks(Sender: TObject;
+                         var InputFields: TStrings;
+                             NumberOfFields: integer);
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -48,10 +54,11 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Components, IB_Export,
-  ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString,
+  ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString, ucAnsiUtil,
   webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
-  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule;
+  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import;
 
 const
   cProjectAbbreviationNoSpaces = 'CodeRageSchedule';
@@ -59,6 +66,8 @@ const
     'Source\WHApps\DB Examples\whSchedule\';
   cSQLOutputRoot = 'D:\Projects\webhubdemos\' +
     'Source\WHApps\DB Examples\whSchedule\DBDesign\gen_sql\';
+  cCSVIniRoot = 'D:\Projects\webhubdemos\' +
+    'Source\WHApps\DB Examples\whSchedule\DBDesign\csv_import\';
 
 { TfmCodeGenerator }
 
@@ -110,7 +119,7 @@ var
     else
     if InTablename = 'SCHEDULE' then
       Result := 'select -1 as SCHID, SCHTITLE, SCHONATPDT, SCHMINUTES, ' +
-        'SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHLOCATION, SCHBLURB ' +
+        'SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHLOCATION, SCHBLURB, ' +
         'SCHREPEATOF, SCHTAGC, SCHTAGD, SCHTAGPRISM from SCHEDULE';
   end;
 
@@ -150,8 +159,9 @@ begin
     ex := TIB_Export.Create(Self);
     ex.Dataset := q;
     ex.ExportFormat := efText_Delimited;
-    ex.IncludeHeaders := True;
-    ex.OnTranslateString := TranslateStringBreaks;
+
+    ex.IncludeHeaders := False;
+    ex.OnTranslateString := TranslateOutgoingStringBreaks;
     Memo1.Clear;
     Export_1_Table('ABOUT');
     Export_1_Table('XPRODUCT');
@@ -228,6 +238,58 @@ begin
   Memo1.Lines.Add('Done! ' + FormatDateTime('dddd hh:nn:ss', Now));
 end;
 
+procedure TfmCodeGenerator.ActionImportExecute(Sender: TObject);
+var
+  im: TIB_Import;
+  DBName, DBUser, DBPass: string;
+begin
+  inherited;
+  im := nil;
+  Memo1.Clear;
+
+  ZMLookup_Firebird_Credentials(cProjectAbbreviationNoSpaces +'LOCAL', DBName,
+    DBUser, DBPass);
+  CreateIfNil(DBName, DBUser, DBPass);
+  gCodeRageSchedule_Conn.Connect;
+
+  try
+    im := TIB_Import.Create(Self);
+    im.Name := 'import4coderage';
+    im.IB_Connection := gCodeRageSchedule_Conn;
+    im.IB_Transaction := gCodeRageSchedule_Tr;
+    im.ImportFormat := ifUTF8;
+    try
+      // XProduct table
+      im.IniFile := cCSVIniRoot + 'ImportSpec_001_XProduct.ini';
+      Memo1.Lines.Add(im.IniFile);
+      im.ImportMode := mCopy;
+      im.Execute;
+      // schedule table
+      im.IniFile := cCSVIniRoot + 'ImportSpec_002_schedule.ini';
+      Memo1.Lines.Add(im.IniFile);
+      im.ImportMode := mCopy;  // erase first then import
+      //im.OnParse := TranslateIncomingStringBreaks;
+      im.Execute;
+
+      // About table (requires the above 2 present, first)
+      im.IniFile := cCSVIniRoot + 'ImportSpec_003_about.ini';
+      Memo1.Lines.Add(im.IniFile);
+      im.ImportMode := mCopy;  // erase first then import
+      im.Execute;
+      Memo1.Lines.Add('Done');
+    except
+      on E: Exception do
+      begin
+        {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+        Memo1.Lines.Add(E.Message);
+      end;
+    end;
+  finally
+    FreeAndNil(im);
+  end;
+  gCodeRageSchedule_Conn.DisconnectToPool;
+end;
+
 function TfmCodeGenerator.Init: Boolean;
 begin
   Result := inherited Init;
@@ -242,9 +304,23 @@ begin
   Result := False;
 end;
 
-procedure TfmCodeGenerator.TranslateStringBreaks(var AString: string);
+procedure TfmCodeGenerator.TranslateIncomingStringBreaks(Sender: TObject;
+  var InputFields: TStrings; NumberOfFields: integer);
+begin
+// do nothing for now
+end;
+
+procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
+var
+  Data: TBytes;
+  S8: UTF8String;
+  SAnsi: AnsiString;
+  Raw: TBytes;
 begin
   AString := StringReplaceAll(AString, sLineBreak, '#CRLF#');
+  Raw := BytesOf(AString);
+  SAnsi := UTF8ToAnsiCodePage(UTF8String(Raw), 1252);
+  AString := AnsiCodePageToUnicode(SAnsi, 1252);
 end;
 
 end.
