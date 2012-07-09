@@ -26,10 +26,14 @@ type
     Memo1: TMemo;
     tpToolButton2: TtpToolButton;
     ActionGenPASandSQL: TAction;
+    ActionExport: TAction;
+    tpToolButton3: TtpToolButton;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
+    procedure ActionExportExecute(Sender: TObject);
   private
     { Private declarations }
+    procedure TranslateStringBreaks( var AString: string );
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -44,9 +48,10 @@ implementation
 {$R *.dfm}
 
 uses
-  ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap,
+  IB_Components, IB_Export,
+  ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString,
   webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
-  tpFirebirdCredentials;
+  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule;
 
 const
   cProjectAbbreviationNoSpaces = 'CodeRageSchedule';
@@ -86,6 +91,76 @@ begin
   else
     MsgErrorOk('Directory not found' + sLineBreak + sLineBreak +
       cPASOutputRoot);
+end;
+
+procedure TfmCodeGenerator.ActionExportExecute(Sender: TObject);
+var
+  q: TIB_Cursor;
+  ex: TIB_Export;
+  DBName, DBUser, DBPass: string;
+
+  function Select_SQL_for_Export(const InTablename: string): string;
+  begin
+    if InTablename = 'ABOUT' then
+      Result := 'select -1 as AboutID, SCHID, PRODUCTID from ABOUT'
+    else
+    if InTablename = 'XPRODUCT' then
+      Result := 'select PRODUCTID, PRODUCTABBREV, PRODUCTNAME ' +
+        'FROM XPRODUCT'
+    else
+    if InTablename = 'SCHEDULE' then
+      Result := 'select -1 as SCHID, SCHTITLE, SCHONATPDT, SCHMINUTES, ' +
+        'SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHLOCATION, SCHBLURB ' +
+        'SCHREPEATOF, SCHTAGC, SCHTAGD, SCHTAGPRISM from SCHEDULE';
+  end;
+
+  procedure Export_1_Table(const InTablename: string);
+  begin
+    if Q.Active then
+    begin
+      Q.Close;
+      Q.Unprepare;
+    end;
+    q.SQL.Text := Select_SQL_for_Export(InTablename);
+    Memo1.Lines.Add(q.SQL.Text);
+    ex.Filename := 'D:\Projects\webhubdemos\Live\Database\whSchedule\backup\' +
+      InTablename + '.csv';
+    Memo1.Lines.Add(ex.Filename);
+    q.Open;
+    ex.Execute;
+    Memo1.Lines.Add('Done with ' + InTablename);
+    Memo1.Lines.Add('');
+  end;
+
+begin
+  inherited;
+
+  ZMLookup_Firebird_Credentials(cProjectAbbreviationNoSpaces +'LOCAL', DBName,
+    DBUser, DBPass);
+  CreateIfNil(DBName, DBUser, DBPass);
+  gCodeRageSchedule_Conn.Connect;
+
+  ex := nil;
+  q := nil;
+  try
+    q := TIB_Cursor.Create(Self);
+    q.IB_Connection := gCodeRageSchedule_Conn;
+    q.IB_Transaction := gCodeRageSchedule_Tr;
+    q.Name := 'q4export';
+    ex := TIB_Export.Create(Self);
+    ex.Dataset := q;
+    ex.ExportFormat := efText_Delimited;
+    ex.IncludeHeaders := True;
+    ex.OnTranslateString := TranslateStringBreaks;
+    Memo1.Clear;
+    Export_1_Table('ABOUT');
+    Export_1_Table('XPRODUCT');
+    Export_1_Table('SCHEDULE');
+  finally
+    FreeAndNil(ex);
+    FreeAndNil(q);
+  end;
+  gCodeRageSchedule_Conn.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.ActionGenPASandSQLExecute(Sender: TObject);
@@ -165,6 +240,11 @@ end;
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
 begin
   Result := False;
+end;
+
+procedure TfmCodeGenerator.TranslateStringBreaks(var AString: string);
+begin
+  AString := StringReplaceAll(AString, sLineBreak, '#CRLF#');
 end;
 
 end.

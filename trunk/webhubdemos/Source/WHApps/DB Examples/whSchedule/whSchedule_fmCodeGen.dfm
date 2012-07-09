@@ -34,8 +34,15 @@ inherited fmCodeGenerator: TfmCodeGenerator
         object tpToolButton2: TtpToolButton
           Left = 86
           Top = 1
+          Width = 99
           Action = ActionGenPASandSQL
           LeaveSpace = True
+          MinWidth = 28
+        end
+        object tpToolButton3: TtpToolButton
+          Left = 186
+          Top = 1
+          Action = ActionExport
           MinWidth = 28
         end
       end
@@ -74,11 +81,16 @@ inherited fmCodeGenerator: TfmCodeGenerator
     Top = 69
     object ActionBootstrap: TAction
       Caption = 'Bootstrap'
+      Checked = True
       OnExecute = ActionBootstrapExecute
     end
     object ActionGenPASandSQL: TAction
       Caption = 'PAS and SQL'
       OnExecute = ActionGenPASandSQLExecute
+    end
+    object ActionExport: TAction
+      Caption = 'Export'
+      OnExecute = ActionExportExecute
     end
   end
 end
