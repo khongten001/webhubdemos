@@ -5,7 +5,7 @@
 /* Project name:                                                          */
 /* Author:                                                                */
 /* Script type:           Database creation script                        */
-/* Created on:            2012-07-09 02:05                                */
+/* Created on:            2012-07-09 02:21                                */
 /* ---------------------------------------------------------------------- */
 
 
@@ -43,9 +43,9 @@ CREATE TABLE SCHEDULE (
     SCHTAGC VARCHAR(40),
     SCHTAGD VARCHAR(40),
     SCHTAGPRISM CHAR(1),
-    UPDATEDBY CHAR(1),
-    UPDATECOUNTER CHAR(1) DEFAULT '0',
+    UPDATEDBY VARCHAR(3),
     UPDATEDONAT TIMESTAMP,
+    UPDATECOUNTER SMALLINT DEFAULT 0,
     CONSTRAINT PK_SCHEDULE PRIMARY KEY (SCHNO)
 );
 
@@ -74,8 +74,8 @@ CREATE TABLE XPRODUCT (
     PRODUCTABBREV VARCHAR(8),
     PRODUCTNAME VARCHAR(15),
     UPDATEDBY VARCHAR(3),
-    UPDATECOUNTER INTEGER,
     UPDATEDONAT TIMESTAMP,
+    UPDATECOUNTER SMALLINT,
     CONSTRAINT PK_XPRODUCT PRIMARY KEY (PRODUCTNO)
 );
 
@@ -94,8 +94,8 @@ CREATE TABLE ABOUT (
     SCHNO INTEGER NOT NULL,
     PRODUCTNO INTEGER NOT NULL,
     UPDATEDBY VARCHAR(3),
-    UPDATECOUNTER INTEGER,
     UPDATEDONAT TIMESTAMP,
+    UPDATECOUNTER SMALLINT,
     CONSTRAINT PK_ABOUT PRIMARY KEY (ABOUTNO)
 );
 
