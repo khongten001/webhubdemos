@@ -86,7 +86,7 @@ begin
   q.IB_Connection := dmCommon.cn1;
   q.BeforeOpen := IBNativeQuery1BeforeOpen;
   q.SQL.Text := 'select distinct ' +
-      'S.SCHID, S.SCHTITLE, S.SCHONATPDT, ' +
+      'S.SCHNo, S.SCHTITLE, S.SCHONATPDT, ' +
       'DATEADD(hour, 7, S.SCHONATPDT) as GMT, ' +
       'DATEADD(hour, 7 + :OFFSET, S.SCHONATPDT) as LocalTime, ' +
       'S.SCHMINUTES, S.SCHPRESENTERFULLNAME, ' +
@@ -94,23 +94,23 @@ begin
       'S.UPDATECOUNTER, S.UPDATEDONAT, ' +
       'S.SCHREPEATOF, S.SCHTAGC, S.SCHTAGD, S.SCHTAGPRISM ' +
       'from schedule S, about a ' +
-      'WHERE (S.SchID = A.SchID) ' +
+      'WHERE (S.SchNo = A.SchNo) ' +
       'and (' +
-      ' (A.ProductID = :p1) or ' +
-      ' (A.ProductID = :p2) or ' +
-      ' (A.ProductID = :p3) or ' +
-      ' (A.ProductID = :p4) or ' +
-      ' (A.ProductID = :p5) or ' +
-      ' (A.ProductID = :p6) or ' +
-      ' (A.ProductID = :p7) or ' +
-      ' (A.ProductID = :p8) or ' +
-      ' (A.ProductID = :p9) or ' +
-      ' (A.ProductID = :p10) or ' +
-      ' (A.ProductID = :p11) or ' +
-      ' (A.ProductID = :p12) or ' +
-      ' (A.ProductID = :p13) or ' +
-      ' (A.ProductID = :p14) or ' +
-      ' (A.ProductID = :p15) ' +
+      ' (A.ProductNo = :p1) or ' +
+      ' (A.ProductNo = :p2) or ' +
+      ' (A.ProductNo = :p3) or ' +
+      ' (A.ProductNo = :p4) or ' +
+      ' (A.ProductNo = :p5) or ' +
+      ' (A.ProductNo = :p6) or ' +
+      ' (A.ProductNo = :p7) or ' +
+      ' (A.ProductNo = :p8) or ' +
+      ' (A.ProductNo = :p9) or ' +
+      ' (A.ProductNo = :p10) or ' +
+      ' (A.ProductNo = :p11) or ' +
+      ' (A.ProductNo = :p12) or ' +
+      ' (A.ProductNo = :p13) or ' +
+      ' (A.ProductNo = :p14) or ' +
+      ' (A.ProductNo = :p15) ' +
       ') ' + sLineBreak +
       'and (SCHONATPDT >= :Recently) ' +  // '9/8/2009 15:00'
       'order by S.SchOnAtPDT, S.SchLocation ';
@@ -120,11 +120,11 @@ begin
   c.Name := 'c';
   c.IB_Connection := dmCommon.cn1;
   c.SQL.Text := 'select ' +
-     'A.SCHID, A.SCHTITLE, A.SCHONATPDT, ' +
+     'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' +
      'DATEADD(hour, 7, A.SCHONATPDT) as GMT, ' +
      'DATEADD(hour, 7 + :OFFSET, A.SCHONATPDT) as LocalTime ' +
      'from schedule A ' +
-     'where (A.SchID = :ID) ';
+     'where (A.SchNo = :ID) ';
   c.Prepare;
 
   ds := TIB_DataSource.Create(Self);
@@ -148,8 +148,8 @@ begin
   qA.BeforeOpen := IBNativeQueryAboutBeforeOpen;
   qA.SQL.Text := 'select distinct P.ProductName ' +
     'from ABOUT A, XPRODUCT P ' +
-    'where (A.ProductID = P.ProductID) ' +
-    'and (A.SchID = :Event) ';
+    'where (A.ProductNo = P.ProductNo) ' +
+    'and (A.SchNo = :Event) ';
   qA.Prepare;
 
 
