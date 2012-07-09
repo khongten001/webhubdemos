@@ -1,10 +1,11 @@
 program whSchedule;  // Created 01-Nov-2006 by the WebHub New Project Wizard
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
+  MultiTypeApp in 'h:\MultiTypeApp.pas' {comment: tpProj.pas',
+  whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
@@ -13,7 +14,7 @@ uses
   whMain in 'H:\whMain.pas' {fmWebHubMainForm},
   dmWHApp in 'H:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
-  whHTML in 'h:\whHtml.pas' {fmAppHTML},
+  whHtml in 'h:\whHtml.pas' {fmAppHTML},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
   whibds in 'h:\whibds.pas',
@@ -29,7 +30,16 @@ uses
   ldiDmUtil in 'd:\vcl\LDI\ldiDmUtil.pas',
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_uImport in 'whSchedule_uImport.pas',
-  ucCalifTime in 'O:\WebApplication\Shared\All\ucCalifTime.pas';
+  ucCalifTime in 'O:\WebApplication\project-hrefrack-d\trunk\meta\Source\SharedAll\ucCalifTime.pas',
+  whSchedule_fmCodeGen in 'whSchedule_fmCodeGen.pas' {fmCodeGenerator},
+  tpIBOCodeGenerator_Bootstrap in 'K:\WebHub\tpack\tpIBOCodeGenerator_Bootstrap.pas',
+  tpIBOCodeGenerator in 'K:\WebHub\tpack\tpIBOCodeGenerator.pas',
+  tpFirebirdCredentials in 'K:\WebHub\tpack\tpFirebirdCredentials.pas',
+  uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
+  uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
+  IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
+  IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
+  whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
