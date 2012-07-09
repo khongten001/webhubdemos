@@ -1,8 +1,0 @@
-[Directories]
-OutputDir=D:\Projects\WebHub Demos\Live\WebHub\Apps\
-UnitOutputDir=d:\temp\DelphiTempDCU\
-SearchPath=d:\vcl\ldi\;d:\vcl\ldi\tblmaint;d:\vcl\ibo;o:\;
-Packages=vcl;IBO40VRT_D7;IBO40XRT_D7
-Conditionals=use_IBO
-UsePackages=0
-
