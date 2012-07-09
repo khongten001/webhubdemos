@@ -2,13 +2,14 @@ object dmCommon: TdmCommon
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   OnDestroy = DataModuleDestroy
-  Left = 206
-  Top = 107
   Height = 480
   Width = 696
   object cn1: TIB_Connection
+    CacheStatementHandles = False
     SQLDialect = 3
     DatabaseName = 'dbcoderageschedule'
+    Params.Strings = (
+      'SQL DIALECT=3')
     Left = 48
     Top = 16
   end
