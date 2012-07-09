@@ -30,17 +30,7 @@ implementation
 
 uses
   MultiTypeApp, CodeRage_dmCommon, whSchedule_dmwhActions,
-  whSchedule_whpanelInterrupt;
-  
-procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: String;
-  var Continue: Boolean);
-begin
-  inherited;
-  // create additional forms AFTER appid has been set.
-  if ShouldEnableGUI then
-    {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
-end;
+  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
@@ -48,6 +38,19 @@ begin
   inherited;
   {M}Application.CreateForm(TdmCommon, dmCommon);
   {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
+end;
+
+procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
+  const ShouldEnableGUI: Boolean; var ErrorText: String;
+  var Continue: Boolean);
+begin
+  inherited;
+  // create additional forms AFTER appid has been set.
+  if ShouldEnableGUI then
+  begin
+    {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
+    {M}Application.CreateForm(TfmCodeGenerator, fmCodeGenerator);
+  end;
 end;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
