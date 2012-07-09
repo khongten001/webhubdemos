@@ -32,8 +32,9 @@ inherited fmCodeGenerator: TfmCodeGenerator
           MinWidth = 28
         end
         object tpToolButton2: TtpToolButton
-          Left = 81
+          Left = 86
           Top = 1
+          Action = ActionGenPASandSQL
           LeaveSpace = True
           MinWidth = 28
         end
