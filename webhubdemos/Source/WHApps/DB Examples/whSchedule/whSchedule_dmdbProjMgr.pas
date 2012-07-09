@@ -29,15 +29,19 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, CodeRage_dmCommon, whSchedule_dmwhActions,
+  MultiTypeApp, uCode,
+  CodeRage_dmCommon, whSchedule_dmwhActions,
   whSchedule_whpanelInterrupt, whSchedule_fmCodeGen;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TdmCommon, dmCommon);
-  {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
+  if NOT HaveParam('/justexport') then
+  begin
+    {M}Application.CreateForm(TdmCommon, dmCommon);
+    {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
+  end;
 end;
 
 procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
@@ -48,7 +52,10 @@ begin
   // create additional forms AFTER appid has been set.
   if ShouldEnableGUI then
   begin
-    {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
+    if NOT HaveParam('/justexport') then
+    begin
+      {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
+    end;
     {M}Application.CreateForm(TfmCodeGenerator, fmCodeGenerator);
   end;
 end;
@@ -57,7 +64,10 @@ procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  Continue := DMCodeRageActions.Init;
+  if NOT HaveParam('/justexport') then
+  begin
+    Continue := DMCodeRageActions.Init;
+  end;
 end;
 
 end.
