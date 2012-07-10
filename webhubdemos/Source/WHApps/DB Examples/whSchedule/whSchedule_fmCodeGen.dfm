@@ -181,7 +181,9 @@ inherited fmCodeGenerator: TfmCodeGenerator
               Items.Strings = (
                 'Macros for Field Labels'
                 'Field List for IBObjects Import'
-                'Droplets with Select SQL for each table')
+                'Droplets with Select SQL for each table'
+                'Readonly Form for each table'
+                'Editable Form for each table')
             end
             object Button1: TButton
               Left = 288

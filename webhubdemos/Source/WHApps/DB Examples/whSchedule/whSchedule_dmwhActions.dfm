@@ -43,4 +43,10 @@ object DMCodeRageActions: TDMCodeRageActions
     Left = 64
     Top = 128
   end
+  object waFindSchedule: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waFindScheduleExecute
+    Left = 312
+    Top = 120
+  end
 end
