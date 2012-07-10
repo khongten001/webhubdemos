@@ -8,11 +8,11 @@ interface
 uses
   SysUtils, Classes,
   IB_Components,
-  webLink, whutil_RegExParsing;
+  webLink, whutil_RegExParsing, whCodeGenIBObj;
 
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpFieldListForImport,
-    cgpSelectSQLDroplet);
+    cgpSelectSQLDroplet, cgpFormViewReadonly, cgpFormViewEdit);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -25,18 +25,30 @@ type
     FAttributeParser: TAttributeParser;
     procedure WebAppUpdate(Sender: TObject);
   private
-    procedure MacroLabelsForFields(const CurrentTable: string; const FieldNum: Integer;
-      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
-    procedure FieldListForImport(const CurrentTable: string; const FieldNum: Integer;
-      const CurrentFieldname: string; Cursor: TIB_Cursor; out Value: string);
+    FDatabaseIterator: TwhDatabaseIterator;
+  private
+    procedure MacroLabelsForFields(const CurrentTable: string;
+      const FieldNum: Integer; const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+    procedure FieldListForImport(const CurrentTable: string;
+      const FieldNum: Integer; const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
     procedure SelectSQLDroplet(const currTable: string;
       const primaryKeyFieldname: string; out Value: string);
+    procedure FormViewReadonly(const CurrentTable: string;
+      const FieldNum: Integer; const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+    procedure FormViewEdit(const CurrentTable: string;
+      const FieldNum: Integer; const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
   public
     { Public declarations }
     procedure Init;
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
       const CodeGenPattern: TCodeGenPattern): string;
     function ProjectAbbrevForCodeGen: string;
+    property DatabaseIterator: TwhDatabaseIterator read FDatabaseIterator
+      write FDatabaseIterator;
   published
     property ProjectAbbreviationNoSpaces: string
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
@@ -50,6 +62,8 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  TypInfo,
   webApp, htWebApp,
   ucString, tpFirebirdCredentials, tpIBOCodeGenerator;
 
@@ -71,6 +85,8 @@ begin
   case CodeGenPattern of
     cgpMacroLabelsForFields: CodeContent := '<whmacros>' + sLineBreak;
     cgpFieldListForImport: CodeContent := '';
+    cgpSelectSQLDroplet: CodeContent := '';
+    cgpFormViewReadonly, cgpFormViewEdit: CodeContent := '';
   end;
 
   for i := 0 to Pred(TableList.Count) do
@@ -89,6 +105,53 @@ begin
         if i = 0 then  // no additional table looping
           CodeContent := CodeContent +
             Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet);
+      cgpFormViewReadonly, cgpFormViewEdit:
+        begin
+          CodeContent := CodeContent +
+            '<whdroplet name="drFormView';
+          if CodeGenPattern = cgpFormViewReadonly then
+            CodeContent := CodeContent + 'Readonly'
+          else
+            CodeContent := CodeContent + 'Edit';
+          CodeContent := CodeContent +
+             TableList[i] + '" show="no">' +
+             sLineBreak;
+          if CodeGenPattern = cgpFormViewEdit then
+            CodeContent := CodeContent +
+              '<form method="post" accept-charset="UTF-8" action="#">' +
+              sLineBreak;
+          CodeContent := CodeContent +
+          '  <table id="' +
+            LowerCase(
+              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
+              '-' + TableList[i] + '" class="' +
+              LowerCase(
+              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
+              '">' +
+          sLineBreak;
+          if CodeGenPattern = cgpFormViewReadonly then
+            CodeContent := CodeContent +
+              Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                FormViewReadonly)
+          else
+            CodeContent := CodeContent +
+              Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                FormViewEdit);
+          CodeContent := CodeContent +
+          '  <tr class="' +
+            LowerCase(
+              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
+            'Submit">' + sLineBreak +
+          '    <td colspan="2"><input type="submit" name="btnFormView"/></td>' +
+          sLineBreak +
+          '  </tr>' + sLineBreak +
+          '  </table>' + sLineBreak;
+          if CodeGenPattern = cgpFormViewEdit then
+            CodeContent := CodeContent +
+              '</form>' + sLineBreak;
+          CodeContent := CodeContent +
+            '</whdroplet>' + sLineBreak + sLineBreak;
+        end;
     end;
   end;
 
@@ -119,6 +182,42 @@ procedure TDMIBObjCodeGen.FieldListForImport(const CurrentTable: string;
 begin
   // f1, f2, f3, f4
   Value := Format('f%d=%s', [FieldNum+1, CurrentFieldname]) + sLineBreak;
+end;
+
+procedure TDMIBObjCodeGen.FormViewEdit(const CurrentTable: string;
+  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  out Value: string);
+begin
+  Value := '  <tr>' + sLineBreak +
+    '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
+    sLineBreak +
+    '    <td>' +
+    '<input name="edit-' + CurrentTable + '-' + CurrentFieldname +
+      '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" />' +
+      '</td>' +
+      sLineBreak +
+    '  </tr>' + sLineBreak;
+end;
+
+procedure TDMIBObjCodeGen.FormViewReadonly(const CurrentTable: string;
+  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  out Value: string);
+begin
+  try
+    Value := '  <tr>' + sLineBreak +
+      '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
+      sLineBreak +
+      '    <td>(~readonly-' + CurrentTable + '-' + CurrentFieldname + '~)' +
+      '</td>' + sLineBreak +
+      '  </tr>' + sLineBreak;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      Value := '<!-- error fieldnum ' + IntToStr(FieldNum) + ' -->';
+    end;
+
+  end;
 end;
 
 procedure TDMIBObjCodeGen.Init;
