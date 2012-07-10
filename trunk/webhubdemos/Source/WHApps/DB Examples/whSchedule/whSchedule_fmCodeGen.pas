@@ -152,6 +152,10 @@ begin
         y, cgpFieldListForImport);
       2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpSelectSQLDroplet);
+      3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpFormViewReadonly);
+      4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpFormViewEdit);
     end;
   finally
     FreeAndNil(y);
@@ -382,19 +386,20 @@ begin
 end;*)
 
 procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
-(*var
+var
   SAnsi: AnsiString;
-  Raw: TBytes;*)
+  Raw: TBytes;
 const
   // http://www.fileformat.info/info/unicode/char/2029/index.htm
-  cParaBreak: UnicodeString = #$2029;
+  cParaBreak: UnicodeString = #$2029; // '#CRLF#';
 begin
-  (* required during transition from CHARSET None to CHARSET UTF8.
+  (* required during transition from CHARSET None to CHARSET UTF8. *)
   Raw := BytesOf(AString);
   SAnsi := UTF8ToAnsiCodePage(UTF8String(Raw), 1252);
   AString := AnsiCodePageToUnicode(SAnsi, 1252);
-  *)
+
   // unicode parabreak
+  //AString := StringReplace(AString, sLineBreak, cParaBreak, [rfReplaceAll]);
   AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
 end;
 

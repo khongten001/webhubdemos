@@ -40,7 +40,9 @@ uses
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
   IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
-  whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule};
+  whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
+  whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule},
+  webSock in 'K:\WebHub\lib\whplus\webSock.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

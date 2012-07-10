@@ -22,6 +22,7 @@ type
     waOnAt: TwhWebAction;
     waRepeatOf: TwhWebAction;
     ScanAbout: TwhdbScan;
+    waFindSchedule: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure IBNativeQuery1BeforeOpen(DataSet: TIB_DataSet);
     procedure IBNativeQueryAboutBeforeOpen(DataSet: TIB_DataSet);
@@ -35,6 +36,7 @@ type
     procedure DataModuleDestroy(Sender: TObject);
     procedure ScanAboutRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+    procedure waFindScheduleExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -63,12 +65,13 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
-  ucLogFil,
+  ucLogFil, ucCodeSiteInterface,
   webApp, htWebApp, webSend,
-  CodeRage_dmCommon, ucCalifTime;
+  CodeRage_dmCommon, ucCalifTime, uFirebird_Connect_CodeRageSchedule;
 
-{ TDM001 }
+{ TDMCodeRageActions }
 
 procedure TDMCodeRageActions.DataModuleCreate(Sender: TObject);
 begin
@@ -76,6 +79,7 @@ begin
 end;
 
 function TDMCodeRageActions.Init: Boolean;
+const cFn = 'Init';
 begin
   Result := True;
   // reserved for code that should run once, after AppID set
@@ -114,7 +118,15 @@ begin
       ') ' + sLineBreak +
       'and (SCHONATPDT >= :Recently) ' +  // '9/8/2009 15:00'
       'order by S.SchOnAtPDT, S.SchLocation ';
-  q.Prepare;
+  try
+    q.Prepare;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
+    end;
+  end;
 
   c := TIB_Cursor.Create(Self);
   c.Name := 'c';
@@ -125,7 +137,15 @@ begin
      'DATEADD(hour, 7 + :OFFSET, A.SCHONATPDT) as LocalTime ' +
      'from schedule A ' +
      'where (A.SchNo = :ID) ';
-  c.Prepare;
+  try
+    c.Prepare;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      LogSendInfo('c.SQL.Text', c.SQL.Text, cFn);
+    end;
+  end;
 
   ds := TIB_DataSource.Create(Self);
   ds.Name := 'ds';
@@ -135,6 +155,7 @@ begin
   wds.Name := 'wds';
   wds.DataSource := ds;
   wds.MaxOpenDataSets := 1;
+  wds.ValidateConfig := True;
 
   ScanSchedule.WebDataSource := wds;
   ScanSchedule.PageHeight := 0;
@@ -150,7 +171,15 @@ begin
     'from ABOUT A, XPRODUCT P ' +
     'where (A.ProductNo = P.ProductNo) ' +
     'and (A.SchNo = :Event) ';
-  qA.Prepare;
+  try
+    qA.Prepare;
+  except
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      LogSendInfo('qA.SQL.Text', qA.SQL.Text, cFn);
+    end;
+  end;
 
 
   dsA := TIB_DataSource.Create(Self);
@@ -161,6 +190,7 @@ begin
   wdsA.Name := 'wdsA';
   wdsA.DataSource := dsA;
   wdsA.MaxOpenDataSets := 1;
+  wdsA.ValidateConfig := True;
 
   ScanAbout.WebDataSource := wdsA;
   ScanAbout.PageHeight := 0;
@@ -186,11 +216,13 @@ end;
 
 procedure TDMCodeRageActions.IBNativeQuery1BeforeOpen(
   DataSet: TIB_DataSet);
+const cFn = 'IBNativeQuery1BeforeOpen';
 var
   TheOffsetInHours: Integer;
   j: Integer;
   Recently: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with DataSet as TIB_Query do
   begin
     TheOffsetInHours :=
@@ -208,8 +240,10 @@ begin
     // '9/8/2009 15:00'
     Recently := FormatDateTime('m/d/yyyy hh:nn',
       IncMinute(NowCalifornia, -75));
+    Recently := FormatDateTime('m/d/yyyy hh:nn', IncYear(Now, -3));
     Params[16].AsString := Recently;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMCodeRageActions.ScanScheduleInit(Sender: TObject);
@@ -263,6 +297,76 @@ begin
   begin
     dn := HtmlParam;  // droplet name to base off
     WebApp.SendDroplet(dn, drAfterWhrow);
+  end;
+end;
+
+procedure TDMCodeRageActions.waFindScheduleExecute(Sender: TObject);
+const cFn = 'waFindScheduleExecute';
+var
+  q: TIB_Cursor;
+  SelectSQL: string;
+  i: Integer;
+  FieldContent: string;
+begin
+  q := nil;
+  try
+    q := TIB_Cursor.Create(Self);
+    q.Name := 'qScheduleFind';
+    q.IB_Connection := gCodeRageSchedule_Conn;
+    if NOT gCodeRageSchedule_Conn.Connected then gCodeRageSchedule_Conn.Connect;
+    SelectSQL := TwhWebAction(Sender).HtmlParam;
+    SelectSQL := pWebApp.Expand(SelectSQL);
+    q.SQL.Text := SelectSQL;
+    try
+      q.Prepare;
+    except
+      on E: Exception do
+      begin
+        {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+        pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name + Chr(183) +
+          E.Message);
+        LogSendInfo('HtmlParam', TwhWebAction(Sender).HtmlParam, cFn);
+        LogSendInfo('SelectSQL', SelectSQL, cFn);
+      end;
+    end;
+
+    q.First;
+    pWebApp.SendStringImm('<table class="' +
+      lowercase(TwhWebAction(Sender).Name) + '-table">' +
+      sLineBreak);
+    pWebApp.SendStringImm('<tr>' + sLineBreak);
+    for i := 0 to Pred(q.FieldCount) do
+    begin
+      pWebApp.SendStringImm(' <th>');
+      pWebApp.SendMacro('mcLabel-' + 'Schedule' + '-' + q.Fields[i].FieldName);
+      pWebApp.SendStringImm(' </th>' + sLineBreak);
+    end;
+    pWebApp.SendStringImm('</tr>' + sLineBreak);
+    while not q.eof do
+    begin
+      pWebApp.SendStringImm('<tr>' + sLineBreak);
+      for i := 0 to Pred(q.FieldCount) do
+      begin
+        pWebApp.SendStringImm(' <td>');
+        FieldContent := q.Fields[i].AsString;
+        if i = 0 then
+        begin
+          pWebApp.SendMacro(Format('JUMP|pgEditScheduleLayout1,%s|%s',
+            [FieldContent, FieldContent]));
+        end
+        else
+          pWebApp.SendStringImm(FieldContent);
+        pWebApp.SendStringImm(' </td>' + sLineBreak);
+      end;
+      pWebApp.SendStringImm('</tr>' + sLineBreak);
+      q.Next;
+    end;
+    pWebApp.SendStringImm('</table>' + sLineBreak);
+
+    q.Unprepare;
+    q.Close;
+  finally
+    FreeAndNil(q);
   end;
 end;
 
