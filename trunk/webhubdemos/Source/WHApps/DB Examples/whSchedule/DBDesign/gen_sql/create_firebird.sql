@@ -5,7 +5,7 @@
 /* Project name:          Code Rage Schedule                              */
 /* Author:                Ann Lynnworth                                   */
 /* Script type:           Database creation script                        */
-/* Created on:            2012-07-09 03:19                                */
+/* Created on:            2012-07-10 17:59                                */
 /* ---------------------------------------------------------------------- */
 
 
@@ -43,6 +43,9 @@ CREATE TABLE SCHEDULE (
     SCHTAGC VARCHAR(40),
     SCHTAGD VARCHAR(40),
     SCHTAGPRISM CHAR(1),
+    SCHREPLAYDOWNLOADURL VARCHAR(80),
+    SCHREPLAYWATCHNOWURL BLOB SUB_TYPE 1,
+    SCHCODERAGECONFNO SMALLINT,
     UPDATEDBY VARCHAR(3),
     UPDATEDONAT TIMESTAMP,
     UPDATECOUNTER SMALLINT DEFAULT 0,
@@ -64,6 +67,12 @@ UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'label="Organization"' WHERE (R
 UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'label="Location"' WHERE (RDB$RELATION_NAME = 'SCHEDULE') AND (RDB$FIELD_NAME = 'SCHLOCATION');
 
 UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'label="Presentation Description"' WHERE (RDB$RELATION_NAME = 'SCHEDULE') AND (RDB$FIELD_NAME = 'SCHBLURB');
+
+UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'label="Replay Download URL"' WHERE (RDB$RELATION_NAME = 'SCHEDULE') AND (RDB$FIELD_NAME = 'SCHREPLAYDOWNLOADURL');
+
+UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'label="Watch Replay Now URL"' WHERE (RDB$RELATION_NAME = 'SCHEDULE') AND (RDB$FIELD_NAME = 'SCHREPLAYWATCHNOWURL');
+
+UPDATE RDB$RELATION_FIELDS SET RDB$DESCRIPTION = 'note="Code Rage #4 was in 2009" label="CodeRage Conference Number"' WHERE (RDB$RELATION_NAME = 'SCHEDULE') AND (RDB$FIELD_NAME = 'SCHCODERAGECONFNO');
 
 /* ---------------------------------------------------------------------- */
 /* Add table "XPRODUCT"                                                   */
