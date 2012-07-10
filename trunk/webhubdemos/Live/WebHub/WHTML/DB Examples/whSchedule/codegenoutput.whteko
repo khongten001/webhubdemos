@@ -1,0 +1,328 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whmacros>
+mcLabel-SCHEDULE-SCHNO=SCHEDULE PK
+mcLabel-SCHEDULE-SCHTITLE=Presentation Title
+mcLabel-SCHEDULE-SCHONATPDT=Live presentation time (PDT)
+mcLabel-SCHEDULE-SCHMINUTES=Duration
+mcLabel-SCHEDULE-SCHPRESENTERFULLNAME=Presenter
+mcLabel-SCHEDULE-SCHPRESENTERORG=Organization
+mcLabel-SCHEDULE-SCHLOCATION=Location
+mcLabel-SCHEDULE-SCHBLURB=Presentation Description
+mcLabel-SCHEDULE-SCHREPEATOF=SCHREPEATOF
+mcLabel-SCHEDULE-SCHTAGC=SCHTAGC
+mcLabel-SCHEDULE-SCHTAGD=SCHTAGD
+mcLabel-SCHEDULE-SCHTAGPRISM=SCHTAGPRISM
+mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL=Replay Download URL
+mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL=Watch Replay Now URL
+mcLabel-SCHEDULE-SCHCODERAGECONFNO=CodeRage Conference Number
+mcLabel-SCHEDULE-UPDATEDBY=Updated By
+mcLabel-SCHEDULE-UPDATEDONAT=Last Mod
+mcLabel-XPRODUCT-PRODUCTNO=XPRODUCT PK
+mcLabel-XPRODUCT-PRODUCTABBREV=Abbreviation
+mcLabel-XPRODUCT-PRODUCTNAME=Full Product Name
+mcLabel-XPRODUCT-UPDATEDBY=Updated By
+mcLabel-XPRODUCT-UPDATEDONAT=Last Mod
+mcLabel-ABOUT-ABOUTNO=ABOUT PK
+mcLabel-ABOUT-SCHNO=SCHNO
+mcLabel-ABOUT-PRODUCTNO=PRODUCTNO
+mcLabel-ABOUT-UPDATEDBY=Updated By
+mcLabel-ABOUT-UPDATEDONAT=Last Mod
+</whmacros>
+
+<whdroplet name="drFormViewReadonlySCHEDULE" show="no">
+  <table id="cgpformviewreadonly-SCHEDULE" class="cgpformviewreadonly">
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHNO~)</th>
+    <td>(~readonly-SCHEDULE-SCHNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTITLE~)</th>
+    <td>(~readonly-SCHEDULE-SCHTITLE~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHONATPDT~)</th>
+    <td>(~readonly-SCHEDULE-SCHONATPDT~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHMINUTES~)</th>
+    <td>(~readonly-SCHEDULE-SCHMINUTES~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERFULLNAME~)</th>
+    <td>(~readonly-SCHEDULE-SCHPRESENTERFULLNAME~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERORG~)</th>
+    <td>(~readonly-SCHEDULE-SCHPRESENTERORG~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHLOCATION~)</th>
+    <td>(~readonly-SCHEDULE-SCHLOCATION~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHBLURB~)</th>
+    <td>(~readonly-SCHEDULE-SCHBLURB~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPEATOF~)</th>
+    <td>(~readonly-SCHEDULE-SCHREPEATOF~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGC~)</th>
+    <td>(~readonly-SCHEDULE-SCHTAGC~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGD~)</th>
+    <td>(~readonly-SCHEDULE-SCHTAGD~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGPRISM~)</th>
+    <td>(~readonly-SCHEDULE-SCHTAGPRISM~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL~)</th>
+    <td>(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL~)</th>
+    <td>(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHCODERAGECONFNO~)</th>
+    <td>(~readonly-SCHEDULE-SCHCODERAGECONFNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATEDBY~)</th>
+    <td>(~readonly-SCHEDULE-UPDATEDBY~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATEDONAT~)</th>
+    <td>(~readonly-SCHEDULE-UPDATEDONAT~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATECOUNTER~)</th>
+    <td>(~readonly-SCHEDULE-UPDATECOUNTER~)</td>
+  </tr>
+  <tr class="cgpformviewreadonlySubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</whdroplet>
+
+<whdroplet name="drFormViewReadonlyXPRODUCT" show="no">
+  <table id="cgpformviewreadonly-XPRODUCT" class="cgpformviewreadonly">
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTNO~)</th>
+    <td>(~readonly-XPRODUCT-PRODUCTNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTABBREV~)</th>
+    <td>(~readonly-XPRODUCT-PRODUCTABBREV~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTNAME~)</th>
+    <td>(~readonly-XPRODUCT-PRODUCTNAME~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATEDBY~)</th>
+    <td>(~readonly-XPRODUCT-UPDATEDBY~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATEDONAT~)</th>
+    <td>(~readonly-XPRODUCT-UPDATEDONAT~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATECOUNTER~)</th>
+    <td>(~readonly-XPRODUCT-UPDATECOUNTER~)</td>
+  </tr>
+  <tr class="cgpformviewreadonlySubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</whdroplet>
+
+<whdroplet name="drFormViewReadonlyABOUT" show="no">
+  <table id="cgpformviewreadonly-ABOUT" class="cgpformviewreadonly">
+  <tr>
+    <th>(~mcLabel-ABOUT-ABOUTNO~)</th>
+    <td>(~readonly-ABOUT-ABOUTNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-SCHNO~)</th>
+    <td>(~readonly-ABOUT-SCHNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-PRODUCTNO~)</th>
+    <td>(~readonly-ABOUT-PRODUCTNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATEDBY~)</th>
+    <td>(~readonly-ABOUT-UPDATEDBY~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATEDONAT~)</th>
+    <td>(~readonly-ABOUT-UPDATEDONAT~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATECOUNTER~)</th>
+    <td>(~readonly-ABOUT-UPDATECOUNTER~)</td>
+  </tr>
+  <tr class="cgpformviewreadonlySubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</whdroplet>
+
+<whdroplet name="drFormViewEditSCHEDULE" show="no">
+<form method="post" accept-charset="UTF-8" action="#">
+  <table id="cgpformviewedit-SCHEDULE" class="cgpformviewedit">
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHNO~)</th>
+    <td><input name="edit-SCHEDULE-SCHNO" value="(~edit-SCHEDULE-SCHNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTITLE~)</th>
+    <td><input name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHONATPDT~)</th>
+    <td><input name="edit-SCHEDULE-SCHONATPDT" value="(~edit-SCHEDULE-SCHONATPDT~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHMINUTES~)</th>
+    <td><input name="edit-SCHEDULE-SCHMINUTES" value="(~edit-SCHEDULE-SCHMINUTES~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERFULLNAME~)</th>
+    <td><input name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERORG~)</th>
+    <td><input name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHLOCATION~)</th>
+    <td><input name="edit-SCHEDULE-SCHLOCATION" value="(~edit-SCHEDULE-SCHLOCATION~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHBLURB~)</th>
+    <td><input name="edit-SCHEDULE-SCHBLURB" value="(~edit-SCHEDULE-SCHBLURB~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPEATOF~)</th>
+    <td><input name="edit-SCHEDULE-SCHREPEATOF" value="(~edit-SCHEDULE-SCHREPEATOF~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGC~)</th>
+    <td><input name="edit-SCHEDULE-SCHTAGC" value="(~edit-SCHEDULE-SCHTAGC~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGD~)</th>
+    <td><input name="edit-SCHEDULE-SCHTAGD" value="(~edit-SCHEDULE-SCHTAGD~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTAGPRISM~)</th>
+    <td><input name="edit-SCHEDULE-SCHTAGPRISM" value="(~edit-SCHEDULE-SCHTAGPRISM~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL~)</th>
+    <td><input name="edit-SCHEDULE-SCHREPLAYDOWNLOADURL" value="(~edit-SCHEDULE-SCHREPLAYDOWNLOADURL~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL~)</th>
+    <td><input name="edit-SCHEDULE-SCHREPLAYWATCHNOWURL" value="(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHCODERAGECONFNO~)</th>
+    <td><input name="edit-SCHEDULE-SCHCODERAGECONFNO" value="(~edit-SCHEDULE-SCHCODERAGECONFNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATEDBY~)</th>
+    <td><input name="edit-SCHEDULE-UPDATEDBY" value="(~edit-SCHEDULE-UPDATEDBY~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATEDONAT~)</th>
+    <td><input name="edit-SCHEDULE-UPDATEDONAT" value="(~edit-SCHEDULE-UPDATEDONAT~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATECOUNTER~)</th>
+    <td><input name="edit-SCHEDULE-UPDATECOUNTER" value="(~edit-SCHEDULE-UPDATECOUNTER~)" /></td>
+  </tr>
+  <tr class="cgpformvieweditSubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</form>
+</whdroplet>
+
+<whdroplet name="drFormViewEditXPRODUCT" show="no">
+<form method="post" accept-charset="UTF-8" action="#">
+  <table id="cgpformviewedit-XPRODUCT" class="cgpformviewedit">
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTNO~)</th>
+    <td><input name="edit-XPRODUCT-PRODUCTNO" value="(~edit-XPRODUCT-PRODUCTNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTABBREV~)</th>
+    <td><input name="edit-XPRODUCT-PRODUCTABBREV" value="(~edit-XPRODUCT-PRODUCTABBREV~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-PRODUCTNAME~)</th>
+    <td><input name="edit-XPRODUCT-PRODUCTNAME" value="(~edit-XPRODUCT-PRODUCTNAME~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATEDBY~)</th>
+    <td><input name="edit-XPRODUCT-UPDATEDBY" value="(~edit-XPRODUCT-UPDATEDBY~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATEDONAT~)</th>
+    <td><input name="edit-XPRODUCT-UPDATEDONAT" value="(~edit-XPRODUCT-UPDATEDONAT~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-XPRODUCT-UPDATECOUNTER~)</th>
+    <td><input name="edit-XPRODUCT-UPDATECOUNTER" value="(~edit-XPRODUCT-UPDATECOUNTER~)" /></td>
+  </tr>
+  <tr class="cgpformvieweditSubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</form>
+</whdroplet>
+
+<whdroplet name="drFormViewEditABOUT" show="no">
+<form method="post" accept-charset="UTF-8" action="#">
+  <table id="cgpformviewedit-ABOUT" class="cgpformviewedit">
+  <tr>
+    <th>(~mcLabel-ABOUT-ABOUTNO~)</th>
+    <td><input name="edit-ABOUT-ABOUTNO" value="(~edit-ABOUT-ABOUTNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-SCHNO~)</th>
+    <td><input name="edit-ABOUT-SCHNO" value="(~edit-ABOUT-SCHNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-PRODUCTNO~)</th>
+    <td><input name="edit-ABOUT-PRODUCTNO" value="(~edit-ABOUT-PRODUCTNO~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATEDBY~)</th>
+    <td><input name="edit-ABOUT-UPDATEDBY" value="(~edit-ABOUT-UPDATEDBY~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATEDONAT~)</th>
+    <td><input name="edit-ABOUT-UPDATEDONAT" value="(~edit-ABOUT-UPDATEDONAT~)" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-ABOUT-UPDATECOUNTER~)</th>
+    <td><input name="edit-ABOUT-UPDATECOUNTER" value="(~edit-ABOUT-UPDATECOUNTER~)" /></td>
+  </tr>
+  <tr class="cgpformvieweditSubmit">
+    <td colspan="2"><input type="submit" name="btnFormView"/></td>
+    </tr>
+  </table>
+</form>
+</whdroplet>
+
+</whteko>
