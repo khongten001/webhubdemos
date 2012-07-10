@@ -1,7 +1,7 @@
 //unit uFirebird_SQL_Snippets_CodeRageSchedule;
 unit uFirebird_SQL_Snippets_CodeRageSchedule;
 // project abbreviation: CodeRageSchedule
-// generated 09-Jul-2012 06:12
+// generated 10-Jul-2012 02:08
 // by Firebird_GenPAS_SQL_Snippets in TPack, maintained by HREF Tools Corp.
 
 interface 
@@ -43,6 +43,9 @@ begin
   ', SCHTAGC' +
   ', SCHTAGD' +
   ', SCHTAGPRISM' +
+  ', SCHREPLAYDOWNLOADURL' +
+  ', SCHREPLAYWATCHNOWURL' +
+  ', SCHCODERAGECONFNO' +
   ', UPDATEDBY' +
   ')' + sLineBreak + sLineBreak + 
   'VALUES( ' + sLineBreak +
@@ -58,7 +61,10 @@ begin
   ', :SCHTAGC' + sLineBreak + // 9
   ', :SCHTAGD' + sLineBreak + // 10
   ', :SCHTAGPRISM' + sLineBreak + // 11
-  ', :UPDATEDBY' + sLineBreak + // 12
+  ', :SCHREPLAYDOWNLOADURL' + sLineBreak + // 12
+  ', :SCHREPLAYWATCHNOWURL' + sLineBreak + // 13
+  ', :SCHCODERAGECONFNO' + sLineBreak + // 14
+  ', :UPDATEDBY' + sLineBreak + // 15
   ') returning SCHNO';
 end;
 
@@ -154,11 +160,14 @@ begin
   ', SCHTAGC=:SCHTAGC ' + sLineBreak + // 8
   ', SCHTAGD=:SCHTAGD ' + sLineBreak + // 9
   ', SCHTAGPRISM=:SCHTAGPRISM ' + sLineBreak + // 10
-  ', UPDATEDBY=:UPDATEDBY ' + sLineBreak + // 11
-  'WHERE (SCHNO = :SCHNO) '; // 12
+  ', SCHREPLAYDOWNLOADURL=:SCHREPLAYDOWNLOADURL ' + sLineBreak + // 11
+  ', SCHREPLAYWATCHNOWURL=:SCHREPLAYWATCHNOWURL ' + sLineBreak + // 12
+  ', SCHCODERAGECONFNO=:SCHCODERAGECONFNO ' + sLineBreak + // 13
+  ', UPDATEDBY=:UPDATEDBY ' + sLineBreak + // 14
+  'WHERE (SCHNO = :SCHNO) '; // 15
   if MatchUpdateCounter then
     Result := Result +
-    ' and (UpdateCounter=:UpdateCounter)'; // 13
+    ' and (UpdateCounter=:UpdateCounter)'; // 16
 end;
 
 function Firebird_SQL_Update_for_XPRODUCT(const MatchUpdateCounter

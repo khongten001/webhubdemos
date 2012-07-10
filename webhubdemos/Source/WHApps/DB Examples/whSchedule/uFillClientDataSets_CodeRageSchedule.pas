@@ -1,7 +1,7 @@
 //unit uFillClientDataSets_CodeRageSchedule;
 unit uFillClientDataSets_CodeRageSchedule;
 // project abbreviation: CodeRageSchedule
-// generated 09-Jul-2012 06:12
+// generated 10-Jul-2012 02:08
 // by Firebird_GenPAS_FillClientDatasets in TPack, maintained by HREF Tools Corp.
 
 {$INCLUDE IB_Directives.inc}
@@ -58,6 +58,9 @@ begin
       table.FieldByName('SCHTAGC').AsString := q.FieldByName('SCHTAGC').AsString;
       table.FieldByName('SCHTAGD').AsString := q.FieldByName('SCHTAGD').AsString;
       table.FieldByName('SCHTAGPRISM').AsString := q.FieldByName('SCHTAGPRISM').AsString;
+      table.FieldByName('SCHREPLAYDOWNLOADURL').AsString := q.FieldByName('SCHREPLAYDOWNLOADURL').AsString;
+      table.FieldByName('SCHREPLAYWATCHNOWURL').AsString := q.FieldByName('SCHREPLAYWATCHNOWURL').AsString;
+      table.FieldByName('SCHCODERAGECONFNO').AsInteger := q.FieldByName('SCHCODERAGECONFNO').AsInteger;
       table.FieldByName('UPDATEDBY').AsString := q.FieldByName('UPDATEDBY').AsString;
       table.FieldByName('UPDATEDONAT').AsDateTime := q.FieldByName('UPDATEDONAT').AsDateTime;
       table.FieldByName('UPDATECOUNTER').AsInteger := q.FieldByName('UPDATECOUNTER').AsInteger;

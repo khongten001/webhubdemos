@@ -1,7 +1,7 @@
 //unit uStructureClientDataSets_CodeRageSchedule;
 unit uStructureClientDataSets_CodeRageSchedule;
 // project abbreviation: CodeRageSchedule
-// generated 09-Jul-2012 06:12
+// generated 10-Jul-2012 02:08
 // by Firebird_GenPAS_StructureClientDatasets in TPack, maintained by HREF Tools Corp.
 
 interface 
@@ -44,6 +44,9 @@ begin
   table.FieldDefs.Add('SCHTAGC',  ftString, 160 div 4, False);
   table.FieldDefs.Add('SCHTAGD',  ftString, 160 div 4, False);
   table.FieldDefs.Add('SCHTAGPRISM',  ftFixedChar, 4 div 4, False);
+  table.FieldDefs.Add('SCHREPLAYDOWNLOADURL',  ftString, 320 div 4, False);
+  table.FieldDefs.Add('SCHREPLAYWATCHNOWURL',  ftMemo, 0, False);
+  table.FieldDefs.Add('SCHCODERAGECONFNO',  ftSmallInt, 0, False);(* Code Rage #4 was in 2009 *)
   table.FieldDefs.Add('UPDATEDBY',  ftString, 12 div 4, False);
   table.FieldDefs.Add('UPDATEDONAT',  ftDateTime, 0, False);
   table.FieldDefs.Add('UPDATECOUNTER',  ftSmallInt, 0, False);
