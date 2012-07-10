@@ -117,7 +117,8 @@ procedure TDMIBObjCodeGen.FieldListForImport(const CurrentTable: string;
   const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 begin
-  Value := Format('f%d=%s', [FieldNum, CurrentFieldname]) + sLineBreak;
+  // f1, f2, f3, f4
+  Value := Format('f%d=%s', [FieldNum+1, CurrentFieldname]) + sLineBreak;
 end;
 
 procedure TDMIBObjCodeGen.Init;
