@@ -56,4 +56,10 @@ object DemoExtensions: TDemoExtensions
     Left = 512
     Top = 144
   end
+  object waCheckSubnet: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waCheckSubnetExecute
+    Left = 520
+    Top = 264
+  end
 end
