@@ -32,6 +32,7 @@ type
     waDemoCaptcha: TwhCaptcha;
     waImgSrc: TwhWebAction;
     FEATURE: TwhWebAction;
+    waCheckSubnet: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -40,6 +41,7 @@ type
     procedure waDelaySecExecute(Sender: TObject);
     procedure waImgSrcExecute(Sender: TObject);
     procedure FEATUREExecute(Sender: TObject);
+    procedure waCheckSubnetExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -67,7 +69,7 @@ uses
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  runConst, whcfg_AppInfo,
+  webSock, runConst, whcfg_AppInfo,
   whdemo_ViewSource, whcfg_App;
 
 {$R *.DFM}
@@ -217,6 +219,38 @@ begin
     pWebApp.Debug.AddPageError
       (Format('%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
       [waVersionInfo.Name]));
+  end;
+end;
+
+procedure TDemoExtensions.waCheckSubnetExecute(Sender: TObject);
+var
+  ServerIP: string;
+  SurferIP: string;
+  Flag: Boolean;
+  DestPageID: string;
+
+  function IP_ABC(const ipv4: string): string;
+  var
+    x: Integer;
+  begin
+    // A.B.C.D
+    x := StrRScanPos(ipv4, '.');  // from 123.123.22.1 to 123.123.22
+    Result := Copy(ipv4, 1, Pred(x));
+  end;
+begin
+  ServerIP := HostToIPv4(pWebApp.Request.Host); // requires WebHub v2.170+
+  SurferIP := pWebApp.Request.RemoteAddress;
+
+  Flag := IP_ABC(SurferIP) = IP_ABC(ServerIP);  // compare A.B.C without .D
+
+  if NOT Flag then
+  begin
+    DestPageID := TwhWebAction(Sender).HtmlParam;
+    if DestPageID <> '' then
+      pWebApp.Response.SendBounceToPage(DestPageID, '')
+    else
+      pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
+        ' requires 1 parameter equal to a PageID');
   end;
 end;
 
