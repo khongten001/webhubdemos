@@ -1,0 +1,77 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpage pageid="pgAdminMenu" desc="Database Administration Menu">
+<whprep>
+(~waCheckSubnet.Execute|pgAccessDenied~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<ul>
+<li> (~JUMPR|pgMaintReplayInfo|Maintain Replay URLs~) </li>
+
+</ul>
+</div>
+</body>
+</html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgMaintReplayInfo" desc="Maintain Replay Info">
+<whprep>
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<form method="post" action="(~ACTIONR|pgEditReplayInfo~)">
+<table id="maintReplay-Find-Table">
+<tr><th>Presentation Title</th>
+<td>(~INPUTTEXT|findSCHEDULE-SCHTITLE~)</td>
+</tr>
+<tr><td colspan="2"><input type="submit" value="Find" /></td></tr>
+</table>
+</form>
+</div>
+</body>
+</html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgAccessDenied" desc="Access Denied to Administrator Features">
+<whprep>
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<p>Sorry, IP #(~Request.RemoteAddress~) is not authorized for administration.</p>
+<p>(~JUMP||home page for demo~)</p>
+</div>
+</body>
+</html>
+</whoutput>
+</whpage>
+
+
+</whteko>
