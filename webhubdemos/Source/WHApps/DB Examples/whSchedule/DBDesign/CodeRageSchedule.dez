@@ -4,14 +4,14 @@
 <VERSION>
 <PROJECTSETTINGS>
 <PROJECTFILENAME>D:\Projects\WebHub Demos\Source\WHApps\DB Examples\whSchedule\CodeRateSchedule.dez</PROJECTFILENAME>
-<MODIFIED>2012-07-09</MODIFIED>
+<MODIFIED>2012-07-10</MODIFIED>
 <CREATED>2009-09-07</CREATED>
 <CREATED2></CREATED2>
 <PROJECTNAME>Code Rage Schedule</PROJECTNAME>
 <DESCRIPTION></DESCRIPTION>
 <AUTHOR>Ann Lynnworth</AUTHOR>
 <COPYRIGHT>HREF Tools Corp. 2009-2012</COPYRIGHT>
-<LASTGENERATEDFILES>D:\Projects\WebHubDemos\Source\WHApps\DB Examples\whSchedule\DBDesign\gen_sql\create_firebird.sql;D:\Projects\WebHubDemos\Source\WHApps\DB Examples\whSchedule\DBDesign\gen_sql\drop_firebird.sql;D:\Apps\DeZign\V4\logfiles\CreateDBLog_201207096.txt</LASTGENERATEDFILES>
+<LASTGENERATEDFILES>D:\Projects\WebHubDemos\Source\WHApps\DB Examples\whSchedule\DBDesign\gen_sql\create_firebird.sql;D:\Projects\WebHubDemos\Source\WHApps\DB Examples\whSchedule\DBDesign\gen_sql\drop_firebird.sql;D:\Apps\DeZign\V4\logfiles\CreateDBLog_201207102.txt</LASTGENERATEDFILES>
 </PROJECTSETTINGS>
 <DATADICT>
 <DBID>firebird2</DBID>
@@ -61,7 +61,7 @@
 <POSNR>0</POSNR>
 <SCHEMANAME></SCHEMANAME>
 <DESC></DESC>
-<ATTRLASTID>17</ATTRLASTID>
+<ATTRLASTID>20</ATTRLASTID>
 <IDXLASTID>1</IDXLASTID>
 <TRGLASTID>1</TRGLASTID>
 <CONLASTID>1</CONLASTID>
@@ -258,6 +258,47 @@
 <DT>
 <DTLISTNAME>CHAR</DTLISTNAME>
 <LE>1</LE>
+<SD>0</SD>
+<INC>1</INC>
+</DT>
+</ATTR>
+<ATTR>
+<NAME>SchReplayDownloadURL</NAME>
+<ID>18</ID>
+<POSNR>0</POSNR>
+<SCHEMANAME></SCHEMANAME>
+<DESC>label=&quot;Replay Download URL&quot;</DESC>
+<DOMAINID>-1</DOMAINID>
+<DT>
+<DTLISTNAME>VARCHAR</DTLISTNAME>
+<LE>80</LE>
+<SD>0</SD>
+<INC>1</INC>
+</DT>
+</ATTR>
+<ATTR>
+<NAME>SchReplayWatchNowURL</NAME>
+<ID>19</ID>
+<POSNR>0</POSNR>
+<SCHEMANAME></SCHEMANAME>
+<DESC>label=&quot;Watch Replay Now URL&quot;</DESC>
+<DOMAINID>-1</DOMAINID>
+<DT>
+<DTLISTNAME>BLOB</DTLISTNAME>
+<SD>0</SD>
+<INC>1</INC>
+<SUBTYPE>1</SUBTYPE>
+</DT>
+</ATTR>
+<ATTR>
+<NAME>SchCodeRageConfNo</NAME>
+<ID>20</ID>
+<POSNR>0</POSNR>
+<SCHEMANAME></SCHEMANAME>
+<DESC>note=&quot;Code Rage #4 was in 2009&quot; label=&quot;CodeRage Conference Number&quot;</DESC>
+<DOMAINID>-1</DOMAINID>
+<DT>
+<DTLISTNAME>SMALLINT</DTLISTNAME>
 <SD>0</SD>
 <INC>1</INC>
 </DT>
@@ -790,8 +831,8 @@
 <ENTC>
 <ID>2</ID>
 <DIAGRAMID>1</DIAGRAMID>
-<W>254</W>
-<H>291</H>
+<W>273</W>
+<H>342</H>
 <L>91</L>
 <T>90</T>
 <BRUSH>0,16777215</BRUSH>
@@ -818,8 +859,8 @@
 <DIAGRAMID>1</DIAGRAMID>
 <W>201</W>
 <H>138</H>
-<L>328</L>
-<T>437</T>
+<L>318</L>
+<T>491</T>
 <BRUSH>0,16777215</BRUSH>
 <PEN>0,1,4,0</PEN>
 <FONT>Arial,8,,0,clWindowText,0</FONT>
@@ -847,20 +888,20 @@
 <TORELATIVEY>5000</TORELATIVEY>
 <POINTS>
 <POINT>
-<X>218</X>
-<Y>381</Y>
+<X>227</X>
+<Y>432</Y>
 </POINT>
 <POINT>
-<X>218</X>
-<Y>409</Y>
+<X>227</X>
+<Y>461</Y>
 </POINT>
 <POINT>
-<X>376</X>
-<Y>409</Y>
+<X>366</X>
+<Y>461</Y>
 </POINT>
 <POINT>
-<X>376</X>
-<Y>436</Y>
+<X>366</X>
+<Y>490</Y>
 </POINT>
 </POINTS>
 </RELC>
@@ -883,12 +924,12 @@
 <Y>291</Y>
 </POINT>
 <POINT>
-<X>483</X>
+<X>473</X>
 <Y>291</Y>
 </POINT>
 <POINT>
-<X>483</X>
-<Y>436</Y>
+<X>473</X>
+<Y>490</Y>
 </POINT>
 </POINTS>
 </RELC>
