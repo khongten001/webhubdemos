@@ -76,6 +76,7 @@
       <File id="about" filename="..\..\Shared WHTML\about\about-whSchedule.whteko"/>
       <File id="coderage" filename="whCodeRage.whteko"/>
 	  <File id="f03" filename="dbmaint.whteko" />
+	  <File id="f04" filename="codegenoutput.whteko" />
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>

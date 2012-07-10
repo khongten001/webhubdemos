@@ -19,7 +19,8 @@
 <li> (~JUMPR|pgMaintReplayInfo|Maintain Replay URLs~) </li>
 
 </ul>
-</div>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
 </body>
 </html>
 </whoutput>
@@ -27,6 +28,7 @@
 
 <whpage pageid="pgMaintReplayInfo" desc="Maintain Replay Info">
 <whprep>
+(~waCheckSubnet.Execute|pgAccessDenied~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -38,7 +40,7 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<form method="post" action="(~ACTIONR|pgEditReplayInfo~)">
+<form method="post" action="(~ACTIONR|pgSelectSchedulePK~)">
 <table id="maintReplay-Find-Table">
 <tr><th>Presentation Title</th>
 <td>(~INPUTTEXT|findSCHEDULE-SCHTITLE~)</td>
@@ -46,7 +48,96 @@
 <tr><td colspan="2"><input type="submit" value="Find" /></td></tr>
 </table>
 </form>
-</div>
+<p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body>
+</html>
+</whoutput>
+</whpage>
+
+
+
+<whpage pageid="pgSelectSchedulePK" desc="Select Schedule Record to Maintain">
+<whprep>
+(~waCheckSubnet.Execute|pgAccessDenied~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	.wafindschedule-table { border: solid 1px #667;  }
+	.wafindschedule-table th { border: solid 1px #667; padding: 0.2em; background-color: #66FF99;}
+	.wafindschedule-table td { padding: 0.2em; }
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<p>Here are the matching records in the SCHEDULE table:</p>
+(~waFindSchedule.Execute|select SchNo,SchTitle,SCHPRESENTERFULLNAME from SCHEDULE where (SchTitle LIKE '%(~findSCHEDULE-SCHTITLE~)%') ~)
+</div>  <!--- whdemopagecontent -->
+<p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
+(~drPageEnd~)
+</body>
+</html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgEditScheduleLayout1" desc="Edit Schedule Replay Data">
+<whprep>
+(~waCheckSubnet.Execute|pgAccessDenied~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+
+<whsketch for="drFormViewEditSCHEDULE" show="no">
+<form method="post" action="#">
+<table>
+<tr>
+  <th>(~mcLabel-Schedule-SchNo~)</th>
+  <td>20</td>
+</tr>
+<tr>
+  <th>(~mcLabel-Schedule-SchTitle~)</th>
+  <td>Hands on gestures</td>
+</tr>
+<tr>
+  <th>(~mcLabel-Schedule-SchPresenterFullname~)</th>
+  <td>Sippy</td>
+</tr>
+<tr>
+  <th>(~mcLabel-Schedule-SCHREPLAYDOWNLOADURL~)</th>
+  <td><input type="text" name="editSchedule-Layout1-SCHREPLAYDOWNLOADURL" value="abc" /></td>
+</tr>
+<tr>
+  <th>(~mcLabel-Schedule-SCHREPLAYWATCHNOWURL~)</th>
+  <td><input type="text" name="editSchedule-Layout1-SCHREPLAYWATCHNOWURL" value="abc" /></td>
+</tr>
+<tr>
+  <th></th>
+  <td><input type="submit" /></td>
+</tr>
+</table>
+
+</form>
+</whsketch>
+
+(~drFormViewEditSCHEDULE~)
+</div>  <!--- whdemopagecontent -->
+<p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
+(~drPageEnd~)
 </body>
 </html>
 </whoutput>
@@ -67,11 +158,11 @@
 <h1>(~pagedesc~)</h1>
 <p>Sorry, IP #(~Request.RemoteAddress~) is not authorized for administration.</p>
 <p>(~JUMP||home page for demo~)</p>
-</div>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
 </body>
 </html>
 </whoutput>
 </whpage>
-
 
 </whteko>
