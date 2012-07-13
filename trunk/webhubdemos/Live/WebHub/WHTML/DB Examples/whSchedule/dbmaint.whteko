@@ -78,7 +78,7 @@
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
 <p>Here are the matching records in the SCHEDULE table:</p>
-(~waFindSchedule.Execute|select SchNo,SchTitle,SCHPRESENTERFULLNAME from SCHEDULE where (SchTitle LIKE '%(~findSCHEDULE-SCHTITLE~)%') ~)
+(~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHCODERAGECONFNO from SCHEDULE where (SchTitle LIKE '%(~findSCHEDULE-SCHTITLE~)%') ~)
 </div>  <!--- whdemopagecontent -->
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
@@ -90,12 +90,16 @@
 <whpage pageid="pgEditScheduleLayout1" desc="Edit Schedule Replay Data">
 <whprep>
 (~waCheckSubnet.Execute|pgAccessDenied~)
+(~waPKtoStringVars.Execute|schedule,schno,(~command~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
 <head>
 	(~drHead~)
+	<style type="text/css">
+	#cgpinstantformedit-SCHEDULE {width:100%; border: solid 1px black;}
+	</style>
 </head>
 <body>
 (~drPageBegin~)
@@ -134,7 +138,55 @@
 </form>
 </whsketch>
 
-(~drFormViewEditSCHEDULE~)
+<whdroplet name="drInstantFormEditSchLayout1" show="yes">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgPostSchLayout1~)">
+  <table id="cgpinstantformedit-SCHEDULE" class="cgpinstantformedit">
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHNO~)</th>
+    <td>(~readonly-SCHEDULE-SCHNO~)</td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHTITLE~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" size="55" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERFULLNAME~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" size="35" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHPRESENTERORG~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" size="35"  /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHBLURB~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHBLURB" value="(~edit-SCHEDULE-SCHBLURB~)" size="128" maxlength="32000"/></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHREPLAYDOWNLOADURL" value="(~edit-SCHEDULE-SCHREPLAYDOWNLOADURL~)" size="80" maxlength="80" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL~)</th>
+    <td><input type="text" name="edit-SCHEDULE-SCHREPLAYWATCHNOWURL" value="(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)" size="128" maxlength="4096" /></td>
+  </tr>
+  <tr>
+    <th>(~mcLabel-SCHEDULE-UPDATEDBY~)</th>
+    <td><input type="text" name="edit-SCHEDULE-UPDATEDBY" value="(~edit-SCHEDULE-UPDATEDBY~)" /></td>
+  </tr>
+  <tr>
+    <th>Last Mod:</th>
+	<td>(~readonly-SCHEDULE-UPDATEDONAT~)</td>
+  </tr>
+<input type="hidden" name="edit-SCHEDULE-UPDATECOUNTER" value="(~readonly-SCHEDULE-UPDATECOUNTER~)" />
+
+  <tr class="cgpinstantformeditSubmit">
+    <td colspan="2" style="text-align:right;"><input type="submit" name="btnInstantForm" value="Save" /></td>
+  </tr>
+  </table>
+</form>
+</whdroplet>
+
+
 </div>  <!--- whdemopagecontent -->
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
@@ -142,6 +194,27 @@
 </html>
 </whoutput>
 </whpage>
+
+<whpage pageid="pgPostSchLayout1" desc="-Post">
+<whprep>
+(~waCheckSubnet.Execute|pgAccessDenied~)
+(~waUpdateFromStringVars.Execute|drUpdateSchLayout1~)
+</whprep>
+</whpage>
+
+<whdroplet name="drUpdateSchLayout1">
+update schedule
+set 
+  SCHTITLE=:SCHTITLE 
+  , SCHPRESENTERFULLNAME=:SCHPRESENTERFULLNAME 
+  , SCHPRESENTERORG=:SCHPRESENTERORG 
+  , SCHBLURB=:SCHBLURB 
+  , SCHREPLAYDOWNLOADURL=:SCHREPLAYDOWNLOADURL 
+  , SCHREPLAYWATCHNOWURL=:SCHREPLAYWATCHNOWURL 
+  , UPDATEDBY=:UPDATEDBY 
+  WHERE (SCHNO = (~readonly-Schedule-SCHNO~)) 
+     and (UpdateCounter=(~readonly-Schedule-UpdateCounter~))
+</whdroplet>
 
 <whpage pageid="pgAccessDenied" desc="Access Denied to Administrator Features">
 <whprep>
@@ -164,5 +237,12 @@
 </html>
 </whoutput>
 </whpage>
+
+<whpage pageid="pgDownloadPDF" desc="Test SendFileIIS Download Feature">
+<whprep>
+(~waDownload.execute|~)
+</whprep>
+</whpage>
+
 
 </whteko>
