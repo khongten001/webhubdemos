@@ -30,7 +30,7 @@ type
     TabSheet1: TTabSheet;
     tpToolBar2: TtpToolBar;
     tpToolButton5: TtpToolButton;
-    TabSheet2: TTabSheet;
+    tsCodeGenBasics: TTabSheet;
     tpToolBar3: TtpToolBar;
     tpToolButton10: TtpToolButton;
     TabSheet3: TTabSheet;
@@ -76,8 +76,8 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Export,
-  ucLogFil, ucDlgs, tpIBOCodeGenerator_Bootstrap, ucString, ucAnsiUtil,
-  webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBOCodeGenerator,
+  ucLogFil, ucDlgs, tpIBObjCodeGen_Bootstrap, ucString, ucAnsiUtil,
+  webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBObjCodeGen,
   tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import,
   whdemo_DMIBObjCodeGen;
 
@@ -153,9 +153,9 @@ begin
       2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpSelectSQLDroplet);
       3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpFormViewReadonly);
+        y, cgpInstantFormReadonly);
       4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpFormViewEdit);
+        y, cgpInstantFormEdit);
     end;
   finally
     FreeAndNil(y);
@@ -362,6 +362,7 @@ begin
   Result := inherited Init;
   if Result then
   begin
+    PageControl1.ActivePage := tsCodeGenBasics;
     cbCodeGenPattern.ItemIndex := 0;
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
     if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
