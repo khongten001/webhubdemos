@@ -4,8 +4,7 @@ program whSchedule;  // Created 01-Nov-2006 by the WebHub New Project Wizard
    for information about "drives" H: and K:. *)
 
 uses
-  MultiTypeApp in 'h:\MultiTypeApp.pas' {comment: tpProj.pas',
-  whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
+  MultiTypeApp in 'h:\MultiTypeApp.pas' {comment: console, service or winapp},
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
