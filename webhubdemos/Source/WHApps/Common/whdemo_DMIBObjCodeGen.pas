@@ -1,7 +1,20 @@
 unit whdemo_DMIBObjCodeGen;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this file *)
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * development license from HREF Tools Corp. before using this file, and    * }
+{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ ---------------------------------------------------------------------------- }
+
+{ ---------------------------------------------------------------------------- }
+{ * Requires IBObjects from www.ibobjects.com                                * }
+{ * Requires Firebird SQL Database                                           * }
+{ *                                                                          * }
+{ * EXTREMELY EXPERIMENTAL !                                                 * }
+{ *                                                                          * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
@@ -12,7 +25,7 @@ uses
 
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpFieldListForImport,
-    cgpSelectSQLDroplet, cgpFormViewReadonly, cgpFormViewEdit);
+    cgpSelectSQLDroplet, cgpInstantFormReadonly, cgpInstantFormEdit);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -22,6 +35,8 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     FProjectAbbreviationNoSpaces: string;
+    FUpdatedOnAtFieldname: string;
+    FUpdateCounterFieldname: string;
     FAttributeParser: TAttributeParser;
     procedure WebAppUpdate(Sender: TObject);
   private
@@ -35,10 +50,10 @@ type
       Cursor: TIB_Cursor; out Value: string);
     procedure SelectSQLDroplet(const currTable: string;
       const primaryKeyFieldname: string; out Value: string);
-    procedure FormViewReadonly(const CurrentTable: string;
+    procedure InstantFormReadonly(const CurrentTable: string;
       const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
-    procedure FormViewEdit(const CurrentTable: string;
+    procedure InstantFormEdit(const CurrentTable: string;
       const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
   public
@@ -49,9 +64,12 @@ type
     function ProjectAbbrevForCodeGen: string;
     property DatabaseIterator: TwhDatabaseIterator read FDatabaseIterator
       write FDatabaseIterator;
-  published
     property ProjectAbbreviationNoSpaces: string
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
+    property UpdatedOnAtFieldname: string
+      read FUpdatedOnAtFieldname write FUpdatedOnAtFieldname;
+    property UpdateCounterFieldname: string read FUpdateCounterFieldname
+      write FUpdateCounterFieldname;
   end;
 
 var
@@ -65,7 +83,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo,
   webApp, htWebApp,
-  ucString, tpFirebirdCredentials, tpIBOCodeGenerator;
+  ucString, tpFirebirdCredentials, tpIBObjCodeGen;
 
 { TDMIBObjCodeGen }
 
@@ -86,7 +104,7 @@ begin
     cgpMacroLabelsForFields: CodeContent := '<whmacros>' + sLineBreak;
     cgpFieldListForImport: CodeContent := '';
     cgpSelectSQLDroplet: CodeContent := '';
-    cgpFormViewReadonly, cgpFormViewEdit: CodeContent := '';
+    cgpInstantFormReadonly, cgpInstantFormEdit: CodeContent := '';
   end;
 
   for i := 0 to Pred(TableList.Count) do
@@ -105,18 +123,18 @@ begin
         if i = 0 then  // no additional table looping
           CodeContent := CodeContent +
             Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet);
-      cgpFormViewReadonly, cgpFormViewEdit:
+      cgpInstantFormReadonly, cgpInstantFormEdit:
         begin
           CodeContent := CodeContent +
-            '<whdroplet name="drFormView';
-          if CodeGenPattern = cgpFormViewReadonly then
+            '<whdroplet name="drInstantForm';
+          if CodeGenPattern = cgpInstantFormReadonly then
             CodeContent := CodeContent + 'Readonly'
           else
             CodeContent := CodeContent + 'Edit';
           CodeContent := CodeContent +
              TableList[i] + '" show="no">' +
              sLineBreak;
-          if CodeGenPattern = cgpFormViewEdit then
+          if CodeGenPattern = cgpInstantFormEdit then
             CodeContent := CodeContent +
               '<form method="post" accept-charset="UTF-8" action="#">' +
               sLineBreak;
@@ -129,24 +147,25 @@ begin
               GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
               '">' +
           sLineBreak;
-          if CodeGenPattern = cgpFormViewReadonly then
+          if CodeGenPattern = cgpInstantFormReadonly then
             CodeContent := CodeContent +
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                FormViewReadonly)
+                InstantFormReadonly)
           else
             CodeContent := CodeContent +
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                FormViewEdit);
+                InstantFormEdit);
           CodeContent := CodeContent +
           '  <tr class="' +
             LowerCase(
               GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
             'Submit">' + sLineBreak +
-          '    <td colspan="2"><input type="submit" name="btnFormView"/></td>' +
+          '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
+           'value="Save" /></td>' +
           sLineBreak +
           '  </tr>' + sLineBreak +
           '  </table>' + sLineBreak;
-          if CodeGenPattern = cgpFormViewEdit then
+          if CodeGenPattern = cgpInstantFormEdit then
             CodeContent := CodeContent +
               '</form>' + sLineBreak;
           CodeContent := CodeContent +
@@ -169,6 +188,8 @@ procedure TDMIBObjCodeGen.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
   FAttributeParser := nil;
+  FUpdatedOnAtFieldname := 'UpdatedOnAt';
+  FUpdateCounterFieldname := 'UpdateCounter';
 end;
 
 procedure TDMIBObjCodeGen.DataModuleDestroy(Sender: TObject);
@@ -184,22 +205,39 @@ begin
   Value := Format('f%d=%s', [FieldNum+1, CurrentFieldname]) + sLineBreak;
 end;
 
-procedure TDMIBObjCodeGen.FormViewEdit(const CurrentTable: string;
+procedure TDMIBObjCodeGen.InstantFormEdit(const CurrentTable: string;
   const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 begin
-  Value := '  <tr>' + sLineBreak +
-    '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
-    sLineBreak +
-    '    <td>' +
-    '<input name="edit-' + CurrentTable + '-' + CurrentFieldname +
-      '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" />' +
-      '</td>' +
+  if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
+  begin
+    { primary key field: readonly }
+    { UpdatedOnAt field: set by trigger }
+    InstantFormReadonly(CurrentTable, FieldNum, CurrentFieldname, Cursor, Value)
+  end
+  else
+  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
+  begin
+    { pass through the UpdateCounter for optimal multi-user editing }
+    Value := '    <input type="hidden" name="edit-' + CurrentTable + '-' +
+      FUpdateCounterFieldname + '" value="(~readonly-' + CurrentTable + '-' +
+      FUpdateCounterFieldname + '~)" />' + sLineBreak
+  end
+  else
+  begin
+    Value := '  <tr>' + sLineBreak +
+      '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
       sLineBreak +
-    '  </tr>' + sLineBreak;
+      '    <td>' +
+      '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
+        '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" />' +
+        '</td>' +
+        sLineBreak +
+      '  </tr>' + sLineBreak;
+  end;
 end;
 
-procedure TDMIBObjCodeGen.FormViewReadonly(const CurrentTable: string;
+procedure TDMIBObjCodeGen.InstantFormReadonly(const CurrentTable: string;
   const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 begin
