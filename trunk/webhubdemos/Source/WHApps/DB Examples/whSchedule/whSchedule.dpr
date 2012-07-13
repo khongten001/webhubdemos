@@ -32,8 +32,8 @@ uses
   whSchedule_uImport in 'whSchedule_uImport.pas',
   ucCalifTime in 'O:\WebApplication\project-hrefrack-d\trunk\meta\Source\SharedAll\ucCalifTime.pas',
   whSchedule_fmCodeGen in 'whSchedule_fmCodeGen.pas' {fmCodeGenerator},
-  tpIBOCodeGenerator_Bootstrap in 'K:\WebHub\tpack\tpIBOCodeGenerator_Bootstrap.pas',
-  tpIBOCodeGenerator in 'K:\WebHub\tpack\tpIBOCodeGenerator.pas',
+  tpIBObjCodeGen_Bootstrap in 'K:\WebHub\tpack\tpIBObjCodeGen_Bootstrap.pas',
+  tpIBObjCodeGen in 'K:\WebHub\tpack\tpIBObjCodeGen.pas',
   tpFirebirdCredentials in 'K:\WebHub\tpack\tpFirebirdCredentials.pas',
   uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
   uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
@@ -41,8 +41,7 @@ uses
   IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
-  whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule},
-  webSock in 'K:\WebHub\lib\whplus\webSock.pas';
+  whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule};
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
