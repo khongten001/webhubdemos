@@ -23,6 +23,9 @@ type
     waRepeatOf: TwhWebAction;
     ScanAbout: TwhdbScan;
     waFindSchedule: TwhWebAction;
+    waDownload: TwhWebAction;
+    waPKtoStringVars: TwhWebAction;
+    waUpdateFromStringVars: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure IBNativeQuery1BeforeOpen(DataSet: TIB_DataSet);
     procedure IBNativeQueryAboutBeforeOpen(DataSet: TIB_DataSet);
@@ -37,6 +40,9 @@ type
     procedure ScanAboutRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
     procedure waFindScheduleExecute(Sender: TObject);
+    procedure waDownloadExecute(Sender: TObject);
+    procedure waPKtoStringVarsExecute(Sender: TObject);
+    procedure waUpdateFromStringVarsExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -67,9 +73,10 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
-  ucLogFil, ucCodeSiteInterface,
+  ucLogFil, ucCodeSiteInterface, ucString,
   webApp, htWebApp, webSend,
-  CodeRage_dmCommon, ucCalifTime, uFirebird_Connect_CodeRageSchedule;
+  CodeRage_dmCommon, ucCalifTime, uFirebird_Connect_CodeRageSchedule,
+  whdemo_DMIBObjCodeGen;
 
 { TDMCodeRageActions }
 
@@ -300,6 +307,21 @@ begin
   end;
 end;
 
+procedure TDMCodeRageActions.waDownloadExecute(Sender: TObject);
+var
+  outputFilename: String;
+begin
+  inherited;
+  { Test new feature in v2.170; SendFileIIS will catch this invalid filespec. }
+  with TwhWebActionEx(Sender) do
+  begin
+    outputFilename := 'd:\temp\nonsensefile.pdf';
+    Response.SendFileIIS(outputFilename, 'application/pdf',
+      False);  // delete after send = False
+  end;
+
+end;
+
 procedure TDMCodeRageActions.waFindScheduleExecute(Sender: TObject);
 const cFn = 'waFindScheduleExecute';
 var
@@ -391,6 +413,66 @@ begin
   end;
 end;
 
+procedure TDMCodeRageActions.waPKtoStringVarsExecute(Sender: TObject);
+var
+  CurrentTable: string;
+  CurrentPK: string;
+  CurrentFieldname: string;
+  PKValue: string;
+  q: TIB_Cursor;
+  i: Integer;
+  SVName: string;
+begin
+  q := nil;
+  if SplitThree(TwhWebAction(Sender).HtmlParam, ',', CurrentTable, CurrentPK,
+    PKValue)
+  then
+  begin
+    PKValue := pWebApp.MoreIfParentild(PKValue);
+    {$IFDEF CodeSite}CodeSite.Send('CurrentTable', CurrentTable);
+    CodeSite.Send('CurrentPK', CurrentPK);
+    CodeSite.Send('PKValue', PKValue);
+    {$ENDIF}
+
+    if NOT gCodeRageSchedule_Conn.Connected then gCodeRageSchedule_Conn.Connect;
+    try
+      q := TIB_Cursor.Create(Self);
+      q.Name := 'q' + CurrentTable;
+      q.IB_Connection := gCodeRageSchedule_Conn;
+      q.SQL.Text := Format('select * from %s where (%s=:PK)',
+        [CurrentTable, CurrentPK]);
+      try
+        q.Prepare;
+      except
+        on E: Exception do
+        begin
+          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+          LogSendInfo(q.Name, q.SQL.Text, TwhWebAction(Sender).Name);
+        end;
+      end;
+      q.Params[0].AsString := PKValue;
+      Q.Open;
+      for i := 0 to Pred(q.FieldCount) do
+      begin
+        CurrentFieldName := q.Fields[i].FieldName;
+        if (i = 0) or IsEqual(CurrentFieldName,
+          DMIBObjCodeGen.UpdatedOnAtFieldname) or IsEqual(CurrentFieldname,
+            DMIBObjCodeGen.UpdateCounterFieldname) then
+        begin
+          SVName := 'readonly-' + CurrentTable + '-' + CurrentFieldname;
+        end
+        else
+          SVName := 'edit-' + CurrentTable + '-' + CurrentFieldname;
+        pWebApp.StringVar[SVName] := q.Fields[i].AsString;
+      end;
+      Q.Close;
+      Q.Unprepare;
+    finally
+      FreeAndNil(q);
+    end;
+  end;
+end;
+
 procedure TDMCodeRageActions.ScanScheduleExecute(Sender: TObject);
 begin
   (Sender as TwhdbScan).PageHeight := 0;
@@ -432,6 +514,77 @@ begin
        ASign, TheOffSetInHours]));
     c.Close;
   end;
+end;
+
+procedure TDMCodeRageActions.waUpdateFromStringVarsExecute(Sender: TObject);
+var
+  q: TIB_DSQL;
+  UpdateSQL: string;
+  DrName: string;
+  i: Integer;
+  CurrentTableName: string;
+  FldName: string;
+  a1, a2: string;
+  FlagFwd: Boolean;
+begin
+  q := nil;
+  FlagFwd := True; // forward
+  DrName := TwhWebAction(Sender).HtmlParam;
+  UpdateSQL := pWebApp.Tekeros.TekeroAsString(DrName);
+  if SplitString(UpdateSQL, 'set', a1, a2) then
+  begin
+    a1 := Trim(a1);
+    if SplitString(a1, ' ', a1, a2) then
+    begin
+      CurrentTableName := a2;  // update_thistable_set
+
+      if NOT gCodeRageSchedule_Conn.Connected then
+        gCodeRageSchedule_Conn.Connect;
+
+      try
+        q := TIB_DSQL.Create(Self);
+        q.IB_Connection := gCodeRageSchedule_Conn;
+        q.IB_Transaction := gCodeRageSchedule_Tr;
+        q.SQL.Text := pWebApp.Expand(UpdateSQL);
+
+        try
+          q.Prepare;
+          for i := 0 to Pred(q.ParamCount) do
+          begin
+            FldName := q.Params[i].FieldName;
+            q.Params[i].AsString := pWebApp.StringVar['edit-' +
+              CurrentTableName + '-' + FldName];
+          end;
+        except
+          on E: Exception do
+          begin
+            {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+            FlagFwd := False;
+            pWebApp.Debug.AddPageError(E.Message);
+          end;
+        end;
+        if FlagFwd then
+        begin
+          try
+            q.IB_Transaction.StartTransaction;
+            q.ExecSQL;
+            q.IB_Transaction.Commit;
+            q.Unprepare;
+          except
+            on E: Exception do
+            begin
+              {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+              q.IB_Transaction.Rollback;
+              pWebApp.Debug.AddPageError(E.Message);
+            end;
+          end;
+        end;
+      finally
+        FreeAndNil(q);
+      end;
+    end;
+  end;
+  pWebApp.Response.SendBounceToPageR('pgAdminMenu', '');
 end;
 
 procedure TDMCodeRageActions.DataModuleDestroy(Sender: TObject);

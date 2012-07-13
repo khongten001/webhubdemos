@@ -46,7 +46,25 @@ object DMCodeRageActions: TDMCodeRageActions
   object waFindSchedule: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waFindScheduleExecute
-    Left = 312
-    Top = 120
+    Left = 560
+    Top = 112
+  end
+  object waDownload: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waDownloadExecute
+    Left = 592
+    Top = 24
+  end
+  object waPKtoStringVars: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waPKtoStringVarsExecute
+    Left = 560
+    Top = 160
+  end
+  object waUpdateFromStringVars: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waUpdateFromStringVarsExecute
+    Left = 560
+    Top = 208
   end
 end
