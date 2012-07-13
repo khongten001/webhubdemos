@@ -63,7 +63,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
         Top = 0
         Width = 572
         Height = 193
-        ActivePage = TabSheet4
+        ActivePage = tsCodeGenBasics
         Align = alTop
         TabOrder = 0
         object TabSheet1: TTabSheet
@@ -92,7 +92,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
             end
           end
         end
-        object TabSheet2: TTabSheet
+        object tsCodeGenBasics: TTabSheet
           Caption = 'Basics'
           ImageIndex = 1
           object Label2: TLabel
@@ -114,6 +114,12 @@ inherited fmCodeGenerator: TfmCodeGenerator
               Top = 1
               Width = 99
               Action = ActionGenPASandSQL
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -18
+              Font.Name = 'Lucida Sans Unicode'
+              Font.Style = []
+              ParentFont = False
               LeaveSpace = True
               MinWidth = 28
             end
@@ -159,11 +165,11 @@ inherited fmCodeGenerator: TfmCodeGenerator
           Caption = 'By Pattern'
           ImageIndex = 3
           object Label3: TLabel
-            Left = 16
+            Left = 8
             Top = 56
-            Width = 99
-            Height = 44
-            Caption = 'work in progress....'
+            Width = 449
+            Height = 57
+            Caption = 'Generate a variety of useful items for WebHub applications...'
             WordWrap = True
           end
           object tpToolBar1: TtpToolBar
@@ -201,11 +207,25 @@ inherited fmCodeGenerator: TfmCodeGenerator
         Top = 193
         Width = 572
         Height = 159
+        Margins.Left = 6
+        Margins.Top = 6
+        Margins.Right = 6
+        Margins.Bottom = 6
         Align = alClient
+        Color = clGradientActiveCaption
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clInactiveCaptionText
+        Font.Height = -17
+        Font.Name = 'Courier New'
+        Font.Style = []
+        Font.Quality = fqClearType
         Lines.Strings = (
           'Memo1')
+        ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 1
+        ExplicitTop = 155
+        ExplicitHeight = 197
       end
     end
   end
