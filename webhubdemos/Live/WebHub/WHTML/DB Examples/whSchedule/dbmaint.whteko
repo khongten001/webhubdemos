@@ -106,38 +106,6 @@
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
 
-<whsketch for="drFormViewEditSCHEDULE" show="no">
-<form method="post" action="#">
-<table>
-<tr>
-  <th>(~mcLabel-Schedule-SchNo~)</th>
-  <td>20</td>
-</tr>
-<tr>
-  <th>(~mcLabel-Schedule-SchTitle~)</th>
-  <td>Hands on gestures</td>
-</tr>
-<tr>
-  <th>(~mcLabel-Schedule-SchPresenterFullname~)</th>
-  <td>Sippy</td>
-</tr>
-<tr>
-  <th>(~mcLabel-Schedule-SCHREPLAYDOWNLOADURL~)</th>
-  <td><input type="text" name="editSchedule-Layout1-SCHREPLAYDOWNLOADURL" value="abc" /></td>
-</tr>
-<tr>
-  <th>(~mcLabel-Schedule-SCHREPLAYWATCHNOWURL~)</th>
-  <td><input type="text" name="editSchedule-Layout1-SCHREPLAYWATCHNOWURL" value="abc" /></td>
-</tr>
-<tr>
-  <th></th>
-  <td><input type="submit" /></td>
-</tr>
-</table>
-
-</form>
-</whsketch>
-
 <whdroplet name="drInstantFormEditSchLayout1" show="yes">
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgPostSchLayout1~)">
   <table id="cgpinstantformedit-SCHEDULE" class="cgpinstantformedit">
@@ -147,19 +115,20 @@
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHTITLE~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" size="55" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" size="65" maxlength="65"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHPRESENTERFULLNAME~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" size="35" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" size="45" maxlength="45"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHPRESENTERORG~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" size="35"  /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" size="45" maxlength="45"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHBLURB~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHBLURB" value="(~edit-SCHEDULE-SCHBLURB~)" size="128" maxlength="32000"/></td>
+    <td><!--- BLOB Raw#261 --><textarea name="txt-edit-SCHEDULE-SCHBLURB" rows="6" cols="55" id="SCHBLURB-Blob">(~edit-SCHEDULE-SCHBLURB~)</textarea>
+    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL~)</th>
@@ -167,7 +136,9 @@
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHREPLAYWATCHNOWURL" value="(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)" size="128" maxlength="4096" /></td>
+    <td><!--- BLOB Raw#261 no line breaks allowed! -->
+	<textarea name="txt-edit-SCHEDULE-SCHREPLAYWATCHNOWURL" rows="4" cols="60" id="SCHREPLAYWATCHNOWURL-Blob">(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)</textarea>
+    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-UPDATEDBY~)</th>
@@ -177,7 +148,7 @@
     <th>Last Mod:</th>
 	<td>(~readonly-SCHEDULE-UPDATEDONAT~)</td>
   </tr>
-<input type="hidden" name="edit-SCHEDULE-UPDATECOUNTER" value="(~readonly-SCHEDULE-UPDATECOUNTER~)" />
+  <input type="hidden" name="edit-SCHEDULE-UPDATECOUNTER" value="(~readonly-SCHEDULE-UPDATECOUNTER~)" />
 
   <tr class="cgpinstantformeditSubmit">
     <td colspan="2" style="text-align:right;"><input type="submit" name="btnInstantForm" value="Save" /></td>

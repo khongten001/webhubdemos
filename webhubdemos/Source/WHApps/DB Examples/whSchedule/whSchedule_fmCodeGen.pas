@@ -154,8 +154,10 @@ begin
       2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpSelectSQLDroplet);
       3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpInstantFormReadonly);
+        y, cgpUpdateSQLDroplet);
       4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpInstantFormReadonly);
+      5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpInstantFormEdit);
     end;
   finally
