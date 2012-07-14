@@ -81,9 +81,10 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  IB_Header,
   TypInfo,
   webApp, htWebApp,
-  ucString, tpFirebirdCredentials, tpIBObjCodeGen;
+  ucString, ucCodeSiteInterface, tpFirebirdCredentials, tpIBObjCodeGen;
 
 { TDMIBObjCodeGen }
 
@@ -208,6 +209,12 @@ end;
 procedure TDMIBObjCodeGen.InstantFormEdit(const CurrentTable: string;
   const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
+const cFn = 'InstantFormEdit';
+var
+  Size: Integer;
+  SizeText: string;
+  ThisFieldType: string;
+  ThisFieldTypeRaw: Integer;
 begin
   if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
@@ -225,12 +232,44 @@ begin
   end
   else
   begin
+    Size := -1;
+    ThisFieldType := Cursor.FieldByName('field_type').AsString;
+    ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+    LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
+   // LogSendInfo('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+    case ThisFieldTypeRaw of
+      blr_text: Size := 1; // char
+      blr_short: Size := 4;
+      blr_long,
+      blr_quad,
+      blr_float,
+      blr_double,
+      blr_d_float: Size := 12;
+      blr_int64: Size := 16;
+      blr_Varying:
+        begin
+          Size := Cursor.FieldByName('field_length').AsInteger; // varchar
+          Size := Size Div 4;  // UTF-8 charset !!!
+        end;
+      blr_sql_date: Size := 12;
+      blr_timestamp: Size := 20;  // datetime
+    end;
+    if Size <> -1 then
+    begin
+      SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+    end
+    else
+      SizeText := '';
+
     Value := '  <tr>' + sLineBreak +
       '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
       sLineBreak +
-      '    <td>' +
+      '    <td>' + '<!-- ' + ThisFieldType +
+        //' ' + IntToStr(ThisFieldTypeRaw) +
+        ' -->' +
       '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
-        '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" />' +
+        '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
+        SizeText + '/>' +
         '</td>' +
         sLineBreak +
       '  </tr>' + sLineBreak;
