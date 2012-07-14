@@ -63,7 +63,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
         Top = 0
         Width = 572
         Height = 193
-        ActivePage = tsCodeGenBasics
+        ActivePage = TabSheet4
         Align = alTop
         TabOrder = 0
         object TabSheet1: TTabSheet
@@ -188,6 +188,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
                 'Macros for Field Labels'
                 'Field List for IBObjects Import'
                 'Droplets with Select SQL for each table'
+                'Droplets with Update SQL for each table'
                 'Readonly Form for each table'
                 'Editable Form for each table')
             end

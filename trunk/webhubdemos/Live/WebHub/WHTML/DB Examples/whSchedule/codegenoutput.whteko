@@ -176,7 +176,7 @@ mcLabel-ABOUT-UPDATEDONAT=Last Mod
 </whdroplet>
 
 <whdroplet name="drInstantFormEditSCHEDULE" show="no">
-<form method="post" accept-charset="UTF-8" action="#">
+<!--- <form method="post" accept-charset="UTF-8" action="(~ACTIONR|~)"> -->
   <table id="cgpinstantformedit-SCHEDULE" class="cgpinstantformedit">
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHNO~)</th>
@@ -184,78 +184,80 @@ mcLabel-ABOUT-UPDATEDONAT=Last Mod
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHTITLE~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHTITLE" value="(~edit-SCHEDULE-SCHTITLE~)" size="65" maxlength="65"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHONATPDT~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHONATPDT" value="(~edit-SCHEDULE-SCHONATPDT~)" /></td>
+    <td><!--- TIMESTAMP Raw#35 --><input type="text" name="edit-SCHEDULE-SCHONATPDT" value="(~edit-SCHEDULE-SCHONATPDT~)" size="20" maxlength="20"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHMINUTES~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHMINUTES" value="(~edit-SCHEDULE-SCHMINUTES~)" /></td>
+    <td><!--- SMALLINT Raw#7 --><input type="text" name="edit-SCHEDULE-SCHMINUTES" value="(~edit-SCHEDULE-SCHMINUTES~)" size="4" maxlength="4"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHPRESENTERFULLNAME~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHPRESENTERFULLNAME" value="(~edit-SCHEDULE-SCHPRESENTERFULLNAME~)" size="45" maxlength="45"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHPRESENTERORG~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHPRESENTERORG" value="(~edit-SCHEDULE-SCHPRESENTERORG~)" size="45" maxlength="45"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHLOCATION~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHLOCATION" value="(~edit-SCHEDULE-SCHLOCATION~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHLOCATION" value="(~edit-SCHEDULE-SCHLOCATION~)" size="10" maxlength="10"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHBLURB~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHBLURB" value="(~edit-SCHEDULE-SCHBLURB~)" /></td>
+    <td><!--- BLOB Raw#261 --><textarea name="txt-edit-SCHEDULE-SCHBLURB" id="SCHBLURB-Blob">(~edit-SCHEDULE-SCHBLURB~)</textarea>
+    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHREPEATOF~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHREPEATOF" value="(~edit-SCHEDULE-SCHREPEATOF~)" /></td>
+    <td><!--- INTEGER Raw#8 --><input type="text" name="edit-SCHEDULE-SCHREPEATOF" value="(~edit-SCHEDULE-SCHREPEATOF~)" size="12" maxlength="12"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHTAGC~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHTAGC" value="(~edit-SCHEDULE-SCHTAGC~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHTAGC" value="(~edit-SCHEDULE-SCHTAGC~)" size="40" maxlength="40"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHTAGD~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHTAGD" value="(~edit-SCHEDULE-SCHTAGD~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHTAGD" value="(~edit-SCHEDULE-SCHTAGD~)" size="40" maxlength="40"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHTAGPRISM~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHTAGPRISM" value="(~edit-SCHEDULE-SCHTAGPRISM~)" /></td>
+    <td><!--- CHAR Raw#14 --><input type="text" name="edit-SCHEDULE-SCHTAGPRISM" value="(~edit-SCHEDULE-SCHTAGPRISM~)" size="1" maxlength="1"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHREPLAYDOWNLOADURL~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHREPLAYDOWNLOADURL" value="(~edit-SCHEDULE-SCHREPLAYDOWNLOADURL~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-SCHREPLAYDOWNLOADURL" value="(~edit-SCHEDULE-SCHREPLAYDOWNLOADURL~)" size="80" maxlength="80"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHREPLAYWATCHNOWURL~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHREPLAYWATCHNOWURL" value="(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)" /></td>
+    <td><!--- BLOB Raw#261 --><textarea name="txt-edit-SCHEDULE-SCHREPLAYWATCHNOWURL" id="SCHREPLAYWATCHNOWURL-Blob">(~edit-SCHEDULE-SCHREPLAYWATCHNOWURL~)</textarea>
+    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-SCHCODERAGECONFNO~)</th>
-    <td><input type="text" name="edit-SCHEDULE-SCHCODERAGECONFNO" value="(~edit-SCHEDULE-SCHCODERAGECONFNO~)" /></td>
+    <td><!--- SMALLINT Raw#7 --><input type="text" name="edit-SCHEDULE-SCHCODERAGECONFNO" value="(~edit-SCHEDULE-SCHCODERAGECONFNO~)" size="4" maxlength="4"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-UPDATEDBY~)</th>
-    <td><input type="text" name="edit-SCHEDULE-UPDATEDBY" value="(~edit-SCHEDULE-UPDATEDBY~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-SCHEDULE-UPDATEDBY" value="(~edit-SCHEDULE-UPDATEDBY~)" size="3" maxlength="3"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-SCHEDULE-UPDATEDONAT~)</th>
     <td>(~readonly-SCHEDULE-UPDATEDONAT~)</td>
   </tr>
-    <input type="hidden" name="edit-SCHEDULE-UpdateCounter" value="(~readonly-SCHEDULE-UpdateCounter~)" />
+  <input type="hidden" name="edit-SCHEDULE-UpdateCounter" value="(~readonly-SCHEDULE-UpdateCounter~)" />
   <tr class="cgpinstantformeditSubmit">
-    <td colspan="2"><input type="submit" name="btnInstantForm"/></td>
+    <td colspan="2"><input type="submit" name="btnInstantForm" value="Save" /></td>
   </tr>
   </table>
-</form>
+<!--- </form> -->
 </whdroplet>
 
 <whdroplet name="drInstantFormEditXPRODUCT" show="no">
-<form method="post" accept-charset="UTF-8" action="#">
+<!--- <form method="post" accept-charset="UTF-8" action="(~ACTIONR|~)"> -->
   <table id="cgpinstantformedit-XPRODUCT" class="cgpinstantformedit">
   <tr>
     <th>(~mcLabel-XPRODUCT-PRODUCTNO~)</th>
@@ -263,30 +265,30 @@ mcLabel-ABOUT-UPDATEDONAT=Last Mod
   </tr>
   <tr>
     <th>(~mcLabel-XPRODUCT-PRODUCTABBREV~)</th>
-    <td><input type="text" name="edit-XPRODUCT-PRODUCTABBREV" value="(~edit-XPRODUCT-PRODUCTABBREV~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-XPRODUCT-PRODUCTABBREV" value="(~edit-XPRODUCT-PRODUCTABBREV~)" size="8" maxlength="8"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-XPRODUCT-PRODUCTNAME~)</th>
-    <td><input type="text" name="edit-XPRODUCT-PRODUCTNAME" value="(~edit-XPRODUCT-PRODUCTNAME~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-XPRODUCT-PRODUCTNAME" value="(~edit-XPRODUCT-PRODUCTNAME~)" size="15" maxlength="15"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-XPRODUCT-UPDATEDBY~)</th>
-    <td><input type="text" name="edit-XPRODUCT-UPDATEDBY" value="(~edit-XPRODUCT-UPDATEDBY~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-XPRODUCT-UPDATEDBY" value="(~edit-XPRODUCT-UPDATEDBY~)" size="3" maxlength="3"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-XPRODUCT-UPDATEDONAT~)</th>
     <td>(~readonly-XPRODUCT-UPDATEDONAT~)</td>
   </tr>
-    <input type="hidden" name="edit-XPRODUCT-UpdateCounter" value="(~readonly-XPRODUCT-UpdateCounter~)" />
+  <input type="hidden" name="edit-XPRODUCT-UpdateCounter" value="(~readonly-XPRODUCT-UpdateCounter~)" />
   <tr class="cgpinstantformeditSubmit">
-    <td colspan="2"><input type="submit" name="btnInstantForm"/></td>
+    <td colspan="2"><input type="submit" name="btnInstantForm" value="Save" /></td>
   </tr>
   </table>
-</form>
+<!--- </form> -->
 </whdroplet>
 
 <whdroplet name="drInstantFormEditABOUT" show="no">
-<form method="post" accept-charset="UTF-8" action="#">
+<!--- <form method="post" accept-charset="UTF-8" action="(~ACTIONR|~)"> -->
   <table id="cgpinstantformedit-ABOUT" class="cgpinstantformedit">
   <tr>
     <th>(~mcLabel-ABOUT-ABOUTNO~)</th>
@@ -294,26 +296,26 @@ mcLabel-ABOUT-UPDATEDONAT=Last Mod
   </tr>
   <tr>
     <th>(~mcLabel-ABOUT-SCHNO~)</th>
-    <td><input type="text" name="edit-ABOUT-SCHNO" value="(~edit-ABOUT-SCHNO~)" /></td>
+    <td><!--- INTEGER Raw#8 --><input type="text" name="edit-ABOUT-SCHNO" value="(~edit-ABOUT-SCHNO~)" size="12" maxlength="12"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-ABOUT-PRODUCTNO~)</th>
-    <td><input type="text" name="edit-ABOUT-PRODUCTNO" value="(~edit-ABOUT-PRODUCTNO~)" /></td>
+    <td><!--- INTEGER Raw#8 --><input type="text" name="edit-ABOUT-PRODUCTNO" value="(~edit-ABOUT-PRODUCTNO~)" size="12" maxlength="12"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-ABOUT-UPDATEDBY~)</th>
-    <td><input type="text" name="edit-ABOUT-UPDATEDBY" value="(~edit-ABOUT-UPDATEDBY~)" /></td>
+    <td><!--- VARCHAR Raw#37 --><input type="text" name="edit-ABOUT-UPDATEDBY" value="(~edit-ABOUT-UPDATEDBY~)" size="3" maxlength="3"/>    </td>
   </tr>
   <tr>
     <th>(~mcLabel-ABOUT-UPDATEDONAT~)</th>
     <td>(~readonly-ABOUT-UPDATEDONAT~)</td>
   </tr>
-    <input type="hidden" name="edit-ABOUT-UpdateCounter" value="(~readonly-ABOUT-UpdateCounter~)" />
+  <input type="hidden" name="edit-ABOUT-UpdateCounter" value="(~readonly-ABOUT-UpdateCounter~)" />
   <tr class="cgpinstantformeditSubmit">
-    <td colspan="2"><input type="submit" name="btnInstantForm"/></td>
+    <td colspan="2"><input type="submit" name="btnInstantForm" value="Save" /></td>
   </tr>
   </table>
-</form>
+<!--- </form> -->
 </whdroplet>
 
 

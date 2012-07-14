@@ -72,6 +72,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  IB_Header,
   DateUtils,
   ucLogFil, ucCodeSiteInterface, ucString,
   webApp, htWebApp, webSend,
@@ -436,6 +437,8 @@ var
   q: TIB_Cursor;
   i: Integer;
   SVName: string;
+  ThisFieldTypeRaw: Integer;
+  HumanReadable: string;
 begin
   q := nil;
   if SplitThree(TwhWebAction(Sender).HtmlParam, ',', CurrentTable, CurrentPK,
@@ -477,7 +480,23 @@ begin
         end
         else
           SVName := 'edit-' + CurrentTable + '-' + CurrentFieldname;
-        pWebApp.StringVar[SVName] := q.Fields[i].AsString;
+
+        ThisFieldTypeRaw := Q.Fields[i].SQLType;
+        case ThisFieldTypeRaw of
+          blr_sql_date:
+            HumanReadable := FormatDateTime('dd-MMM-yyyy',
+              Q.Fields[i].AsDate);
+          blr_sql_time:
+            HumanReadable := FormatDateTime('hh:nn:ss',
+              Q.Fields[i].AsDateTime);  // ???
+          blr_timestamp, SQL_DATE_:
+            HumanReadable := FormatDateTime('dd-MMM-yyyy hh:nn',
+              Q.Fields[i].AsDateTime);
+          else
+            HumanReadable := q.Fields[i].AsString;
+        end;
+
+        pWebApp.StringVar[SVName] := HumanReadable;
       end;
       Q.Close;
       Q.Unprepare;
