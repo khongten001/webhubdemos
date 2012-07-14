@@ -86,7 +86,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
             object tpToolButton5: TtpToolButton
               Left = 1
               Top = 1
-              Width = 79
+              Width = 97
               Action = ActionBootstrap
               MinWidth = 28
             end
@@ -112,7 +112,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
             object tpToolButton10: TtpToolButton
               Left = 6
               Top = 1
-              Width = 99
+              Width = 124
               Action = ActionGenPASandSQL
               Font.Charset = DEFAULT_CHARSET
               Font.Color = clWindowText
@@ -146,15 +146,15 @@ inherited fmCodeGenerator: TfmCodeGenerator
             object tpToolButton15: TtpToolButton
               Left = 6
               Top = 1
-              Width = 112
+              Width = 135
               Action = ActionExport
               LeaveSpace = True
               MinWidth = 28
             end
             object tpToolButton16: TtpToolButton
-              Left = 124
+              Left = 147
               Top = 1
-              Width = 132
+              Width = 160
               Action = ActionImport
               LeaveSpace = True
               MinWidth = 28
@@ -167,8 +167,8 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object Label3: TLabel
             Left = 8
             Top = 56
-            Width = 449
-            Height = 57
+            Width = 408
+            Height = 44
             Caption = 'Generate a variety of useful items for WebHub applications...'
             WordWrap = True
           end
@@ -224,8 +224,6 @@ inherited fmCodeGenerator: TfmCodeGenerator
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 1
-        ExplicitTop = 155
-        ExplicitHeight = 197
       end
     end
   end

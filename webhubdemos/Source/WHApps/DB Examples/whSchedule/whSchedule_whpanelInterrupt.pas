@@ -60,7 +60,9 @@ implementation
 uses
   ucShell, ucDlgs, ucDlgsGUI,
   whcfg_App, webApp, htWebApp,
-  CodeRage_dmCommon, whSchedule_dmwhActions, whSchedule_uImport;
+  //CodeRage_dmCommon, whSchedule_uImport,
+  whSchedule_dmwhActions,
+  uFirebird_Connect_CodeRageSchedule;
 
 {$R *.dfm}
 
@@ -81,7 +83,7 @@ end;
 procedure TfmAppDBInterrupt.ActionDBOFFExecute(Sender: TObject);
 begin
   inherited;
-  dmCommon.cn1.Connected := False;
+  gCodeRageSchedule_Conn.Connected := False;
   CoverApp('coderage', 2, 'Loading new schedule info', False,
     ACoverPageFilespec);
 end;
@@ -89,7 +91,7 @@ end;
 procedure TfmAppDBInterrupt.ActionDBOnExecute(Sender: TObject);
 begin
   inherited;
-  dmCommon.cn1.Connected := True;
+  gCodeRageSchedule_Conn.Connected := True;
   DMCodeRageActions.ResetDBConnection;
   UnCoverApp(ACoverPageFilespec);
 end;
@@ -132,7 +134,7 @@ end;
 procedure TfmAppDBInterrupt.ActionImportExecute(Sender: TObject);
 begin
   inherited;
-  ImportProductAbout;
+(*  ImportProductAbout; *)
 end;
 
 end.

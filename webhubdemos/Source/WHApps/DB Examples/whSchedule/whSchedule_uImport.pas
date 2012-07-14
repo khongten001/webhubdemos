@@ -13,7 +13,8 @@ uses
 {$IFDEF IBO_49_OR_GREATER} 
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
-  CodeRage_dmCommon;
+  //CodeRage_dmCommon;
+  uFirebird_Connect_CodeRageSchedule;
 
 function ImportProductAbout: Boolean;
 var

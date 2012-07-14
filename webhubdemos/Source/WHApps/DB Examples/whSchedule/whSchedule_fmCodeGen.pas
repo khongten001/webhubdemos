@@ -132,9 +132,10 @@ begin
   inherited;
   y := nil;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
     DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
+
   Memo1.Lines.Text := DBName;
   Memo1.Lines.Add('connecting...');
   Application.ProcessMessages;
@@ -208,7 +209,7 @@ var
 begin
   inherited;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
     DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
@@ -250,7 +251,7 @@ begin
   Memo1.Lines.Add('Starting... takes time depending on connection speed');
   Memo1.Lines.Add('');
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
     FBDB, FBUsername, FBPassword);
   CreateIfNil(FBDB, FBUsername, FBPassword);
   Memo1.Lines.Add(FBDB);
@@ -312,7 +313,7 @@ begin
   im := nil;
   Memo1.Clear;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
     DBName, DBUser, DBPass);
   CreateIfNil(DBName, DBUser, DBPass);
   gCodeRageSchedule_Conn.Connect;
@@ -364,11 +365,10 @@ begin
   begin
     PageControl1.ActivePage := tsCodeGenBasics;
     cbCodeGenPattern.ItemIndex := 0;
-    DMIBObjCodeGen.ProjectAbbreviationNoSpaces := LabeledEditProjectAbbrev.Text;
-    if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
+    if DMIBObjCodeGen.ProjectAbbreviationNoSpaces = '' then
       DMIBObjCodeGen.ProjectAbbreviationNoSpaces :=
-        DMIBObjCodeGen.ProjectAbbreviationNoSpaces + 'LOCAL';
-    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+        LabeledEditProjectAbbrev.Text;
+    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
       DBName, DBUser, DBPass);
     LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
     CreateIfNil(DBName, DBUser, DBPass);
