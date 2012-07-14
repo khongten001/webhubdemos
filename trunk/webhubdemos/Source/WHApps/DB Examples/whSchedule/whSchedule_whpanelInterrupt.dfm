@@ -1,14 +1,18 @@
 inherited fmAppDBInterrupt: TfmAppDBInterrupt
   Left = 157
   Top = 146
-  Width = 478
-  Height = 315
   Caption = '&Schedule'
-  PixelsPerInch = 96
-  TextHeight = 13
+  ClientHeight = 270
+  ClientWidth = 460
+  ExplicitWidth = 478
+  ExplicitHeight = 315
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 470
-    Height = 271
+    Width = 460
+    Height = 270
+    ExplicitWidth = 470
+    ExplicitHeight = 271
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5

@@ -59,7 +59,7 @@ type
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
-    function Init: Boolean;
+    function Init(out ErrorText: string): Boolean;
     function ResetDBConnection: Boolean;
   end;
 
@@ -75,8 +75,9 @@ uses
   DateUtils,
   ucLogFil, ucCodeSiteInterface, ucString,
   webApp, htWebApp, webSend,
-  CodeRage_dmCommon, ucCalifTime, uFirebird_Connect_CodeRageSchedule,
-  whdemo_DMIBObjCodeGen;
+  //CodeRage_dmCommon,
+  ucCalifTime, uFirebird_Connect_CodeRageSchedule,
+  whdemo_DMIBObjCodeGen, tpFirebirdCredentials;
 
 { TDMCodeRageActions }
 
@@ -85,16 +86,28 @@ begin
   FlagInitDone := False;
 end;
 
-function TDMCodeRageActions.Init: Boolean;
+function TDMCodeRageActions.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
+var
+  DBName, DBUser, DBPass: string;
 begin
-  Result := True;
+  Result := FlagInitDone;
+  ErrorText := '';
   // reserved for code that should run once, after AppID set
   if FlagInitDone then Exit;
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    DBName, DBUser, DBPass);
+
+  CreateifNil(DBName, DBUser, DBPass);
+  try
+    gCodeRageSchedule_Conn.Connect;
+  except
+
+  end;
 
   q := TIB_Query.Create(Self);
   q.Name := 'q';
-  q.IB_Connection := dmCommon.cn1;
+  q.IB_Connection := gCodeRageSchedule_Conn;
   q.BeforeOpen := IBNativeQuery1BeforeOpen;
   q.SQL.Text := 'select distinct ' +
       'S.SCHNo, S.SCHTITLE, S.SCHONATPDT, ' +
@@ -137,7 +150,7 @@ begin
 
   c := TIB_Cursor.Create(Self);
   c.Name := 'c';
-  c.IB_Connection := dmCommon.cn1;
+  c.IB_Connection := gCodeRageSchedule_Conn;
   c.SQL.Text := 'select ' +
      'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' +
      'DATEADD(hour, 7, A.SCHONATPDT) as GMT, ' +
@@ -172,7 +185,7 @@ begin
 
   qA := TIB_Query.Create(Self);
   qA.Name := 'qA';
-  qA.IB_Connection := dmCommon.cn1;
+  qA.IB_Connection := gCodeRageSchedule_Conn;
   qA.BeforeOpen := IBNativeQueryAboutBeforeOpen;
   qA.SQL.Text := 'select distinct P.ProductName ' +
     'from ABOUT A, XPRODUCT P ' +
@@ -212,6 +225,7 @@ begin
     // WebHub app is refreshed.
     AddAppUpdateHandler(WebAppUpdate);
     FlagInitDone := True;
+    Result := True;
   end;
 end;
 

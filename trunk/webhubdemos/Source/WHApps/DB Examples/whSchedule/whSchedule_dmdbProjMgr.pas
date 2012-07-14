@@ -30,7 +30,8 @@ implementation
 
 uses
   MultiTypeApp, uCode,
-  CodeRage_dmCommon, whSchedule_dmwhActions,
+  webApp,
+  whSchedule_dmwhActions,
   whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
@@ -39,10 +40,13 @@ begin
   inherited;
   if NOT HaveParam('/justexport') then
   begin
-    {M}Application.CreateForm(TdmCommon, dmCommon);
     {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
   end;
   Application.CreateForm(TDMIBObjCodeGen, DMIBObjCodeGen);
+  if pWebApp.ZMDefaultMapContext = 'DEMOS' then
+    DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageSchedule'
+  else
+    DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageScheduleLOCAL';
 end;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -51,9 +55,10 @@ begin
   inherited;
   if NOT HaveParam('/justexport') then
   begin
-    Continue := DMCodeRageActions.Init;
+    Continue := DMCodeRageActions.Init(ErrorText);
   end;
-  DMIBObjCodeGen.Init;
+  if Continue then
+    DMIBObjCodeGen.Init;
 end;
 
 procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
