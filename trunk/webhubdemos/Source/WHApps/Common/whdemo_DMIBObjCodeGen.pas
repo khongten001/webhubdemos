@@ -137,7 +137,8 @@ begin
              sLineBreak;
           if CodeGenPattern = cgpInstantFormEdit then
             CodeContent := CodeContent +
-              '<form method="post" accept-charset="UTF-8" action="#">' +
+              '<!--- <form method="post" accept-charset="UTF-8" ' +
+              'action="(~ACTIONR|~)"> -->' +
               sLineBreak;
           CodeContent := CodeContent +
           '  <table id="' +
@@ -168,7 +169,7 @@ begin
           '  </table>' + sLineBreak;
           if CodeGenPattern = cgpInstantFormEdit then
             CodeContent := CodeContent +
-              '</form>' + sLineBreak;
+              '<!--- </form> -->' + sLineBreak;
           CodeContent := CodeContent +
             '</whdroplet>' + sLineBreak + sLineBreak;
         end;
@@ -264,7 +265,7 @@ begin
     Value := '  <tr>' + sLineBreak +
       '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
       sLineBreak +
-      '    <td>' + '<!-- ' + ThisFieldType +
+      '    <td>' + '<!--- ' + ThisFieldType +
         //' ' + IntToStr(ThisFieldTypeRaw) +
         ' -->' +
       '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
