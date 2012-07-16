@@ -30,6 +30,7 @@ uses
   whSchedule_dmwhActions in 'whSchedule_dmwhActions.pas' {DMCodeRageActions: TDataModule},
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_fmCodeGen in 'whSchedule_fmCodeGen.pas' {fmCodeGenerator},
+  whSchedule_fmKeywordIndex in 'whSchedule_fmKeywordIndex.pas' {fmRubiconIndex},
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
   ucCalifTime in 'O:\WebApplication\project-hrefrack-d\trunk\meta\Source\SharedAll\ucCalifTime.pas',
@@ -39,7 +40,12 @@ uses
   uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
   uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
-  IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas';
+  IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
+  rbMake in 'K:\Rubicon\source\rbMake.pas',
+  rbAccept in 'K:\Rubicon\source\rbAccept.pas',
+  rbPrgDlg in 'K:\Rubicon\source\rbPrgDlg.pas' {rbProgressDlg},
+  rbCache in 'K:\Rubicon\source\rbCache.pas',
+  uLingvoCodePoints in 'O:\WebApplication\project-cnf-d\trunk\codenewsfast\source\newsreader\uLingvoCodePoints.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
