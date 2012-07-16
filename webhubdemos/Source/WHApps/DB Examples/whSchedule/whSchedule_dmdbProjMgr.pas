@@ -32,7 +32,8 @@ uses
   MultiTypeApp, uCode,
   webApp,
   whSchedule_dmwhActions,
-  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen;
+  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen,
+  whSchedule_fmKeywordIndex;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
@@ -74,6 +75,7 @@ begin
       {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
     end;
     {M}Application.CreateForm(TfmCodeGenerator, fmCodeGenerator);
+    {M}Application.CreateForm(TfmRubiconIndex, fmRubiconIndex);
   end;
 end;
 
