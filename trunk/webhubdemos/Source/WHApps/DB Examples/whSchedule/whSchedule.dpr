@@ -27,6 +27,7 @@ uses
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule},
   whSchedule_dmdbProjMgr in 'whSchedule_dmdbProjMgr.pas' {DMForWHSchedule: TDataModule},
+  whSchedule_dmKeywordSearch in 'whSchedule_dmKeywordSearch.pas' {DMRubiconSearch: TDataModule},
   whSchedule_dmwhActions in 'whSchedule_dmwhActions.pas' {DMCodeRageActions: TDataModule},
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_fmCodeGen in 'whSchedule_fmCodeGen.pas' {fmCodeGenerator},
@@ -45,7 +46,9 @@ uses
   rbAccept in 'K:\Rubicon\source\rbAccept.pas',
   rbPrgDlg in 'K:\Rubicon\source\rbPrgDlg.pas' {rbProgressDlg},
   rbCache in 'K:\Rubicon\source\rbCache.pas',
-  uLingvoCodePoints in 'O:\WebApplication\project-cnf-d\trunk\codenewsfast\source\newsreader\uLingvoCodePoints.pas';
+  uLingvoCodePoints in '..\..\Common\uLingvoCodePoints.pas',
+  rbSearch in 'K:\Rubicon\source\rbSearch.pas',
+  webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
