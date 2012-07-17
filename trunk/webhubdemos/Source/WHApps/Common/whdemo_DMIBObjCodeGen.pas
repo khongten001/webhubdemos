@@ -65,7 +65,7 @@ type
       Cursor: TIB_Cursor; out Value: string);
   public
     { Public declarations }
-    procedure Init;
+    function Init(out ErrorText: string): Boolean;
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
       const CodeGenPattern: TCodeGenPattern): string;
     function ProjectAbbrevForCodeGen: string;
@@ -338,10 +338,12 @@ begin
   end;
 end;
 
-procedure TDMIBObjCodeGen.Init;
+function TDMIBObjCodeGen.Init(out ErrorText: string): Boolean;
 begin
+  ErrorText := '';
+  Result := FlagInitDone;
   // reserved for code that should run once, after AppID set
-  if FlagInitDone then Exit;
+  if Result then Exit;
 
   if Assigned(pWebApp) and pWebApp.IsUpdated then
   begin
