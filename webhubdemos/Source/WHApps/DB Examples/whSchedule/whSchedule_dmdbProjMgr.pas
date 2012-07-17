@@ -33,7 +33,7 @@ uses
   webApp,
   whSchedule_dmwhActions,
   whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen,
-  whSchedule_fmKeywordIndex;
+  whSchedule_fmKeywordIndex, whSchedule_dmKeywordSearch;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
@@ -48,6 +48,7 @@ begin
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageSchedule'
   else
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageScheduleLOCAL';
+  Application.CreateForm(TDMRubiconSearch, DMRubiconSearch);
 end;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -59,7 +60,11 @@ begin
     Continue := DMCodeRageActions.Init(ErrorText);
   end;
   if Continue then
-    DMIBObjCodeGen.Init;
+  begin
+    Continue := DMIBObjCodeGen.Init(ErrorText);
+    if Continue then
+      Continue := DMRubiconSearch.Init(ErrorText);
+  end;
 end;
 
 procedure TDMForWHSchedule.ProjMgrGUICreate(Sender: TtpProject;
