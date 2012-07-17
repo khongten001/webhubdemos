@@ -17,8 +17,9 @@ uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ActnList, Vcl.Buttons,
   SysUtils, Classes,
   IB_Components, IBODataSet,
-  rbBridge_i_ibobjects, rbMake, rbAccept,
-  toolbar, utPanFrm, restorer, tpCompPanel, rbPrgDlg, rbCache, uLingvoCodePoints;
+  rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache,
+  toolbar, utPanFrm, restorer, tpCompPanel,
+  uLingvoCodePoints;
 
 type
   TfmRubiconIndex = class(TutParentForm)
@@ -90,10 +91,10 @@ begin
 
     rbAccept1 := TrbAccept.Create(Self);
     rbAccept1.Name := 'rbAccept1';
-    rbAccept1.Alpha := CNFInternationalAlphabet;
+    rbAccept1.Alpha := DemoInternationalAlphabet;
     rbAccept1.NoLeadingNumbers := True;
 
-    rbMake1.WordDelims := CNFInternationalWordDelims;
+    rbMake1.WordDelims := DemoInternationalWordDelims;
     rbMake1.MinWordLen := 4; // cCNFMinWordLen;
 
     rbProgressDialog1 := TrbProgressDialog.Create(Self);
