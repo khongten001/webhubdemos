@@ -1,7 +1,7 @@
 inherited fmRubiconIndex: TfmRubiconIndex
   Left = 157
   Top = 146
-  Caption = '&Search'
+  Caption = '&Create Index'
   ClientHeight = 270
   ClientWidth = 460
   OnCreate = FormCreate
@@ -24,6 +24,7 @@ inherited fmRubiconIndex: TfmRubiconIndex
       object tpToolButton1: TtpToolButton
         Left = 6
         Top = 6
+        Width = 288
         Action = ActionCreateIndex
         MinWidth = 28
       end
@@ -45,15 +46,23 @@ inherited fmRubiconIndex: TfmRubiconIndex
       BevelOuter = bvNone
       BorderStyle = bsSingle
       TabOrder = 2
-      ExplicitLeft = 105
-      ExplicitWidth = 350
+      object Memo1: TMemo
+        Left = 0
+        Top = 0
+        Width = 290
+        Height = 216
+        Align = alClient
+        Lines.Strings = (
+          'Memo1')
+        TabOrder = 0
+      end
     end
   end
   object ActionList1: TActionList
     Left = 29
     Top = 69
     object ActionCreateIndex: TAction
-      Caption = 'Create Keyword Index'
+      Caption = 'Create Keyword Index using Rubicon'
       OnExecute = ActionCreateIndexExecute
     end
   end
