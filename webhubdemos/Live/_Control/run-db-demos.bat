@@ -28,10 +28,10 @@ if "%demodsp%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
 ::DSP has an AppNotRunning page of its own
 ::if "%demodsp%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dsp /minutes=%covermin% /reason=%coverreason%
 
-rem CodeRage from 2009
-REM  29-Dec-2010 start whSchedule.exe 
-REM d:\Apps\HREFTools\miscutil\wait.exe 15
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=coderage /minutes=9325322 /reason="obsolete; was for CodeRage in 2009"
+rem CodeRage Schedule and Archive
+if "%democoderage%"=="yes" start whSchedule.exe 
+if "%democoderage%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
+if "%democoderage%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=coderage /minutes=999 /reason="upgrading"
 
 if "%demojpeg%"=="yes" start whDynamicJPEG.exe 
 if "%demojpeg%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
