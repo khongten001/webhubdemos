@@ -23,17 +23,14 @@ At Embarcadero:
 <h1>(~pagedesc~)</h1>
 
 <p>This application aims to help everyone who wants to go to 
-the Code Rage 4 conference and lives outside of the PDT time zone 
-(California).</p>
+the Embarcadero Code Rage conference and 
+lives outside of the PDT time zone (Pacific Daylight Time, California).</p>
 <ol>
 <li> (~JUMP|pgReadonly1|view entire schedule~)</li>
-<li> (~JUMPR|pgAdminMenu|Admin Menu~)</li>
+<li> (~JUMPR|pgSearch|search replay archive~)</li>
+<li> (~JUMPR|pgAdminMenu|Admin Menu (restrictred)~)</li>
 
 </ol>
-
-<div align="center" style="padding-top: 2em;">
-<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="(~mcSiteRoot~)demos/whFirebird/FirebirdFoundation.png" alt="Donate to Firebird Foundation" /></a>
-</div>
 
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
