@@ -24,9 +24,9 @@ uses
   webLink, whutil_RegExParsing, whCodeGenIBObj;
 
 type
-  TCodeGenPattern = (cgpMacroLabelsForFields, cgpFieldListForImport,
-    cgpSelectSQLDroplet, cgpUpdateSQLDroplet, cgpInstantFormReadonly,
-    cgpInstantFormEdit);
+  TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
+    cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
+    cgpInstantFormReadonly, cgpInstantFormEdit);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -46,6 +46,8 @@ type
     procedure MacroLabelsForFields(const CurrentTable: string;
       const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
+    procedure MacroPKsForTables(const currTable: string;
+      const primaryKeyFieldname: string; out Value: string);
     procedure FieldListForImport(const CurrentTable: string;
       const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
@@ -109,7 +111,8 @@ begin
   if NOT FlagWasConnected then conn.Connect;
 
   case CodeGenPattern of
-    cgpMacroLabelsForFields: CodeContent := '<whmacros>' + sLineBreak;
+    cgpMacroLabelsForFields,
+    cgpMacroPKsForTables: CodeContent := '<whmacros>' + sLineBreak;
     cgpFieldListForImport: CodeContent := '';
     cgpSelectSQLDroplet: CodeContent := '';
     cgpUpdateSQLDroplet: CodeContent := '';
@@ -123,11 +126,18 @@ begin
         CodeContent := CodeContent +
           Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
           MacroLabelsForFields);
+
+      cgpMacroPKsForTables:
+        if i = 0 then  // no additional table looping
+          CodeContent := CodeContent +
+            Firebird_GenPAS_For_Each_Table(conn, MacroPKsForTables);
+
       cgpFieldListForImport:
         CodeContent := CodeContent + ';; ' + TableList[i] + sLineBreak +
           '[FieldList]' + sLineBreak +
           Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
           FieldListForImport) + sLineBreak;
+
       cgpSelectSQLDroplet:
         if i = 0 then  // no additional table looping
           CodeContent := CodeContent +
@@ -199,7 +209,7 @@ begin
   end;
 
   case CodeGenPattern of
-    cgpMacroLabelsForFields:
+    cgpMacroLabelsForFields, cgpMacroPKsForTables:
       CodeContent := CodeContent + '</whmacros>' + sLineBreak;
   end;
 
@@ -355,6 +365,7 @@ begin
     AddAppUpdateHandler(WebAppUpdate);
 
     FlagInitDone := True;
+    Result := True;
   end;
 end;
 
@@ -395,6 +406,12 @@ begin
   if FieldLabel <> '' then
     Value := 'mcLabel' + '-' + CurrentTable + '-' + CurrentFieldName + '=' +
       FieldLabel + sLineBreak;
+end;
+
+procedure TDMIBObjCodeGen.MacroPKsForTables(const currTable,
+  primaryKeyFieldname: string; out Value: string);
+begin
+  Value := 'mcPK' + '-' + CurrTable + '=' + primaryKeyFieldname + sLineBreak;
 end;
 
 function TDMIBObjCodeGen.ProjectAbbrevForCodeGen: string;
