@@ -3,13 +3,14 @@
 
 
 <whdroplet name="drDemoSpeedbarForcoderage">
-<!-- speedbar for coderage schedule -->
+<!-- speedbar for coderage schedule; appears when logo is active -->
+(~JUMP|pgSearch|Search Replays~)
 <br/>
 At Embarcadero: 
 <a href="http://conferences.embarcadero.com/coderage/sessions">Official Schedule</a>, <a href="http://conferences.embarcadero.com/coderage">Register</a>
 </whdroplet>
 
-<whpage pageid="pgEnterCodeRage" desc="Code Rage Schedule Helper">
+<whpage pageid="pgEnterCodeRage" desc="Code Rage Conference Assistant">
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -22,13 +23,24 @@ At Embarcadero:
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
 
-<p>This application aims to help everyone who wants to go to 
-the Embarcadero Code Rage conference and 
+(~MATCH|(~AppSetting.LiveNow~)=yes|
+<p>This application aims to help everyone who wants to attend 
+a Embarcadero Code Rage conference and 
 lives outside of the PDT time zone (Pacific Daylight Time, California).</p>
+||
+<p>This application aims to help people learn about 
+Embarcadero products. It provides a search engine for 
+the "session replays" from past Code Rage Conferences (2009-2011).</p>
+~)
+
 <ol>
-<li> (~JUMP|pgReadonly1|view entire schedule~)</li>
-<li> (~JUMPR|pgSearch|search replay archive~)</li>
-<li> (~JUMPR|pgAdminMenu|Admin Menu (restrictred)~)</li>
+
+(~MATCH|(~AppSetting.LiveNow~)=yes|
+<li> (~JUMP|pgReadonly1|View live conference schedule~)</li>
+~)
+
+<li> (~JUMPR|pgSearch|Search archive of free training presentations~)</li>
+<li> (~JUMPR|pgAdminMenu|Data Entry Menu (restricted)~)</li>
 
 </ol>
 

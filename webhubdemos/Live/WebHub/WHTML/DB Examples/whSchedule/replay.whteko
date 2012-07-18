@@ -9,18 +9,22 @@
 <html>
 <head>
 	(~drHead~)
+	<style type="text/css">
+	#search-table {padding: 0.6em;}
+	</style>
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<h2>Code Rage 4 through 6 (2009-2011)</h2>
+<h2>Archived: Code Rage 4 through Code Rage 6</h2>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSearchResult~)">
 
-<table>
-<tr><th>Search for</th><td>(~INPUTTEXT|inKeywords~)</td></tr>
-<tr><td colspan="2" style="text-align:right;">
-<input type="submit" name="btnSearch" value="Cancel" />
+<table id="search-table">
+<tr><th>Search for:</th><td>(~INPUTTEXT|inKeywords,30,255~)</td></tr>
+<tr><th>Logic</th><td>(~waSelectSearchLogic.Execute|~)</td></tr>
+<tr><td>(~JUMP|pgEnterCodeRage|Back~)</td>
+<td style="text-align:right;">
 <input type="submit" name="btnSearch" value="Go" /></td></tr>
 </table>
 
@@ -34,7 +38,7 @@
 </whpage>
 
 
-<whpage pageid="pgSearchResult" desc="Matches from Code Rage Presentation Archive">
+<whpage pageid="pgSearchResult" desc="Matches from Embarcadero Code Rage Conference Archive">
 <whprep>
 (~NOMATCH|(~btnSearch~)=Go|(~BOUNCE|pgEnterCodeRage~)~)
 </whprep>
@@ -43,14 +47,22 @@
 <html>
 <head>
 	(~drHead~)
+	<style type="text/css">
+	.TwhRubiconSearch td {padding: 0.2em 0.2em 1.5em 0.2em; }
+	</style>
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<p>(~JUMPR|pgSearch|Search Again~)</p>
 <h1>(~pagedesc~)</h1>
+<p><i>Note: you must be logged into the Embarcadero Developer Network in order to download. If you are not already logged in, you will be prompted to do so when you attempt a download.</i></p>
+<p><i>The duration of a Code Rage Conference presentation is generally 45 minutes. Each replay includes video and audio.</i></p>
+<h2>Your Search Keywords: (~inKeywords~)</h2>
 
-results here ...
+(~waRubiSearch.Execute|~)
 
+<p>(~JUMPR|pgSearch|Search Again~)</p>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 

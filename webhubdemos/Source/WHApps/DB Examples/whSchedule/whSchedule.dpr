@@ -1,9 +1,12 @@
-program whSchedule;  // Created 01-Nov-2006 by the WebHub New Project Wizard
+program whSchedule;
 
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
-{$R *.dres}
+{$R *.res}
+{$R HTDEMOS.RES}     // main icon for WebHub demos
+{$R HTICONS.RES}
+{$R HTGLYPHS.RES}
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas' {comment},
@@ -19,6 +22,7 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whibds in 'h:\whibds.pas',
+  uLingvoCodePoints in '..\..\Common\uLingvoCodePoints.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDemoViewSource},
@@ -35,9 +39,9 @@ uses
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
   ucCalifTime in 'O:\WebApplication\project-hrefrack-d\trunk\meta\Source\SharedAll\ucCalifTime.pas',
-  tpIBObjCodeGen_Bootstrap in 'K:\WebHub\tpack\tpIBObjCodeGen_Bootstrap.pas',
-  tpIBObjCodeGen in 'K:\WebHub\tpack\tpIBObjCodeGen.pas',
-  tpFirebirdCredentials in 'K:\WebHub\tpack\tpFirebirdCredentials.pas',
+  tpIBObjCodeGen_Bootstrap in 'h:\tpIBObjCodeGen_Bootstrap.pas',
+  tpIBObjCodeGen in 'h:\tpIBObjCodeGen.pas',
+  tpFirebirdCredentials in 'h:\tpFirebirdCredentials.pas',
   uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
   uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
@@ -46,20 +50,8 @@ uses
   rbAccept in 'K:\Rubicon\source\rbAccept.pas',
   rbPrgDlg in 'K:\Rubicon\source\rbPrgDlg.pas' {rbProgressDlg},
   rbCache in 'K:\Rubicon\source\rbCache.pas',
-  uLingvoCodePoints in '..\..\Common\uLingvoCodePoints.pas',
   rbSearch in 'K:\Rubicon\source\rbSearch.pas',
   webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas';
-
-{$R *.res}
-{$R HTDEMOS.RES}     // main icon for WebHub demos
-{$R HTICONS.RES}
-{$R HTGLYPHS.RES}
-
-(*
-  ldiDmUtil in 'd:\vcl\LDI\ldiDmUtil.pas',
-  CodeRage_dmCommon in 'DBDesign\gen_delphi\1\CodeRage_dmCommon.pas' {dmCommon: TDataModule},
-  whSchedule_uImport in 'whSchedule_uImport.pas',
-*)
 
 begin
   {M}Application.Initialize;
@@ -68,4 +60,3 @@ begin
   DMForWHSchedule.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
-

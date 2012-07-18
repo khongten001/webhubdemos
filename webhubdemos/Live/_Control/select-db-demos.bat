@@ -12,7 +12,7 @@ echo .
 
 set demodbhtml=no
 set demodsp=no
-set democoderage=no
+set democoderage=yes
 set demofire=no
 set demohtcl=no
 set demohtfm=no
@@ -29,7 +29,7 @@ set demostore000=no
 
 set compiledbhtml=no
 set compiledsp=yes
-set compilecoderage=no
+set compilecoderage=yes
 set compilefire=yes
 set compilehtcl=no
 set compilehtfm=yes

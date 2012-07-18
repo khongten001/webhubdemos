@@ -103,7 +103,13 @@ begin
   try
     gCodeRageSchedule_Conn.Connect;
   except
-
+    on E: Exception do
+    begin
+      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      ErrorText := E.Message;
+      Result := False;
+      Exit;
+    end;
   end;
 
   q := TIB_Query.Create(Self);

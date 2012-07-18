@@ -5,19 +5,19 @@
  designlingvo="eng" >
 
 <whmacros>
-mcWhDemoOneLinerCodeRage=Code Rage Schedule
+mcWhDemoOneLinerCodeRage=Code Rage Archive and Live Schedule
 mcWhDemoCreditIdeaCodeRage=Ann Lynnworth
 mcWhDemoCreditFirstDraftCodeRage=Ann Lynnworth
 mcWhDemoCreditGraphicsCodeRage=none
 mcWhDemoCreditCopyCodeRage=Ann Lynnworth
-mcWhDemoUpdatedCodeRage=05-Sep-2009
-mcWhDemoKeywordsCoderage=Firebird,SQL,GMT
+mcWhDemoUpdatedCodeRage=18-Jul-2012
+mcWhDemoKeywordsCoderage=Firebird,SQL,Rubicon,Training,GMT
 mcWhDemoLiteCodeRage=No
 </whmacros>
 
 <whdroplet name="drDemoSetupcoderage">
 <ol>
-<li> Firebird 2.1 </li>
+<li> Firebird 2.5 </li>
 <li> Schedule table created based on public schedule info</li>
 <li> Firebird ALIAS named "coderageschedule" points to this fdb file.  
 </li>
