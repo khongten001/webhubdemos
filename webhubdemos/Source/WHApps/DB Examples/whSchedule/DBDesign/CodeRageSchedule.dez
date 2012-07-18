@@ -4,7 +4,7 @@
 <VERSION>
 <PROJECTSETTINGS>
 <PROJECTFILENAME>D:\Projects\WebHub Demos\Source\WHApps\DB Examples\whSchedule\CodeRateSchedule.dez</PROJECTFILENAME>
-<MODIFIED>2012-07-17</MODIFIED>
+<MODIFIED>2012-07-18</MODIFIED>
 <CREATED>2009-09-07</CREATED>
 <CREATED2></CREATED2>
 <PROJECTNAME>Code Rage Schedule</PROJECTNAME>
@@ -267,11 +267,11 @@
 <ID>18</ID>
 <POSNR>0</POSNR>
 <SCHEMANAME></SCHEMANAME>
-<DESC>label=&quot;Replay Download URL&quot;</DESC>
+<DESC>label=&quot;Replay Download URL&quot; note=&quot;size should have stayed at 80&quot;</DESC>
 <DOMAINID>-1</DOMAINID>
 <DT>
 <DTLISTNAME>VARCHAR</DTLISTNAME>
-<LE>80</LE>
+<LE>90</LE>
 <SD>0</SD>
 <INC>1</INC>
 </DT>
