@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTEX=Expert guidance for WebHub Installation
+mcWhDemoCreditIdeaHTEX=Jack Cane and Telstra Corporation
+mcWhDemoCreditFirstDraftHTEX=Ann Lynnworth
+mcWhDemoCreditGraphicsHTEX=none
+mcWhDemoCreditCopyHTEX=Ann Lynnworth
+mcWhDemoUpdatedHTEX=6-Jun-2012
+mcWhDemoKeywordsHTEX=expert,wizard,webhub,installation,runtime,configuration
+mcWhDemoLiteHTEX=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTEX">
+<ol>
+<li> No additional files are needed to run this particular demo.</li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTEX">
+Demonstration of a step-by-step wizard which gives complete advice about setting up a new machine with WebHub.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTEX">
+This is a custom expert system for WebHub developers and administrators who wish to save installation, 
+configuration and organizational time by following setup instructions that have been simplified for their exact use case.
+<p>Full source is provided.</p>
+</whtranslation>
+
+</whteko>
