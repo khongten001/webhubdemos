@@ -38,9 +38,9 @@ if NOT "%compilehtq4%"=="no" call %cbat% whQuery4
 
 :: democoderage
 del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
-::whSchedule uses IBObjects 
-::cd %droot%\DB Examples\whSchedule
-::::call %cbat% whSchedule
+::whSchedule uses IBObjects and Rubicon
+if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
+if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
