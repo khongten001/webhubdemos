@@ -3,6 +3,14 @@ Can be pasted into WHCentralInfo.xml
 
     <WebHubAppGroup name="WebHub Demos Database">
       <WebHubApps>
+        <WebHubApp appID="coderage">
+          <Nickname value="CodeRageSchedule"/>
+          <ConfigFolder value="D:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whSchedule\"/>
+          <ConfigFilename value="WHAppConfig_coderage.xml"/>
+          <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
+          <ShareSessions value="true"/>
+          <ShareByFile value="true"/>
+        </WebHubApp>
         <WebHubApp appID="htcl">
           <Nickname value="Cloning"/>
           <ConfigFolder value="d:\Projects\WebHubDemos\Live\WebHub\WHTML\DB Examples\whClone\"/>
