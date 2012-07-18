@@ -165,7 +165,8 @@ var
 begin
 
   // Find out whether we are running on a demos server, in production mode
-  flagPublicDemos := IsEqual('demos', pWebApp.ZMDefaultMapContext);
+  flagPublicDemos := IsEqual('demos', pWebApp.ZMDefaultMapContext) or
+    IsEqual('doris', pWebApp.ZMDefaultMapContext);
 
   if Sender is TwhAppDynURLConfig then
   begin

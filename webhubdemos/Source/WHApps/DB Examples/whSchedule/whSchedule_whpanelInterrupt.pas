@@ -58,7 +58,7 @@ var
 implementation
 
 uses
-  ucShell, ucDlgs, ucDlgsGUI,
+  ucShell, ucDlgs, ucDlgsGUI, ucString,
   whcfg_App, webApp, htWebApp,
   //CodeRage_dmCommon, whSchedule_uImport,
   whSchedule_dmwhActions,
@@ -119,7 +119,9 @@ var
   ErrorText: string;
 begin
   inherited;
-  if pWebApp.ZMDefaultMapContext <> 'DEMOS' then
+  if (NOT IsEqual(pWebApp.ZMDefaultMapContext, 'DEMOS')) and
+     (NOT IsEqual(pWebApp.ZMDefaultMapContext, 'DORIS')) 
+  then
   begin
     MsgWarningOk('Only on DEMOS!');
     Exit;
