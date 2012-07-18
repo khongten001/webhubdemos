@@ -113,6 +113,7 @@ begin
     // WebHub app is refreshed.
     AddAppUpdateHandler(WebAppUpdate);
     FlagInitDone := True;
+    Result := True;
   end;
 end;
 
