@@ -28,6 +28,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whInstantForm.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whLoadFromDB.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whRubicon.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whSchedule.exe
+if errorlevel 1 pause
 d:\Apps\Utilities\7Zip\7z.exe a %t% whShopping.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whText2Table.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whDynamicJPEG.exe
