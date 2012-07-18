@@ -29,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, uCode,
+  MultiTypeApp, uCode, ucString,
   webApp,
   whSchedule_dmwhActions,
   whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen,
@@ -44,7 +44,10 @@ begin
     {M}Application.CreateForm(TDMCodeRageActions, DMCodeRageActions);
   end;
   Application.CreateForm(TDMIBObjCodeGen, DMIBObjCodeGen);
-  if pWebApp.ZMDefaultMapContext = 'DEMOS' then
+
+  if IsEqual(pWebApp.ZMDefaultMapContext, 'DEMOS') or
+     IsEqual(pWebApp.ZMDefaultMapContext, 'DORIS') 
+  then
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageSchedule'
   else
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageScheduleLOCAL';
