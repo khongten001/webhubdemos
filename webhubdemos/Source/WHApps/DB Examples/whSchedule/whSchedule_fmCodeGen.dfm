@@ -186,6 +186,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
               Text = 'Macros for Field Labels'
               Items.Strings = (
                 'Macros for Field Labels'
+                'Macros for Primary Keys'
                 'Field List for IBObjects Import'
                 'Droplets with Select SQL for each table'
                 'Droplets with Update SQL for each table'

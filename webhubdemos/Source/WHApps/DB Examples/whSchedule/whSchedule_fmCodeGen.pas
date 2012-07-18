@@ -75,10 +75,11 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  IB_Export,
-  ucLogFil, ucDlgs, tpIBObjCodeGen_Bootstrap, ucString, ucAnsiUtil,
-  webApp, webLink, uFirebird_Connect_CodeRageSchedule, tpIBObjCodeGen,
-  tpFirebirdCredentials, uFirebird_SQL_Snippets_CodeRageSchedule, IB_Import,
+  IB_Export, IB_Import,
+  ucLogFil, ucDlgs, ucString, ucAnsiUtil,
+  tpFirebirdCredentials, tpIBObjCodeGen_Bootstrap, tpIBObjCodeGen,
+  webApp, webLink,
+  uFirebird_Connect_CodeRageSchedule, uFirebird_SQL_Snippets_CodeRageSchedule,
   whdemo_DMIBObjCodeGen;
 
 const
@@ -150,14 +151,16 @@ begin
       0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpMacroLabelsForFields);
       1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpFieldListForImport);
+        y, cgpMacroPKsForTables);
       2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpSelectSQLDroplet);
+        y, cgpFieldListForImport);
       3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpUpdateSQLDroplet);
+        y, cgpSelectSQLDroplet);
       4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
-        y, cgpInstantFormReadonly);
+        y, cgpUpdateSQLDroplet);
       5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+        y, cgpInstantFormReadonly);
+      6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
         y, cgpInstantFormEdit);
     end;
   finally
