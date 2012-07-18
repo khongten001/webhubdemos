@@ -1,0 +1,61 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpage pageid="pgSearch" desc="Search Embarcadero Code Rage Presentation Archive">
+<whprep>
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<h2>Code Rage 4 through 6 (2009-2011)</h2>
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSearchResult~)">
+
+<table>
+<tr><th>Search for</th><td>(~INPUTTEXT|inKeywords~)</td></tr>
+<tr><td colspan="2" style="text-align:right;">
+<input type="submit" name="btnSearch" value="Cancel" />
+<input type="submit" name="btnSearch" value="Go" /></td></tr>
+</table>
+
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+
+<whpage pageid="pgSearchResult" desc="Matches from Code Rage Presentation Archive">
+<whprep>
+(~NOMATCH|(~btnSearch~)=Go|(~BOUNCE|pgEnterCodeRage~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+
+results here ...
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+</whteko>
