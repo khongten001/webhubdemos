@@ -3,6 +3,7 @@
 
 <whpage pageid="pgSearch" desc="Search Embarcadero Code Rage Presentation Archive">
 <whprep>
+(~NOTASSIGNED|inSearchLogic|(~SET|inSearchLogic=slSmart~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
