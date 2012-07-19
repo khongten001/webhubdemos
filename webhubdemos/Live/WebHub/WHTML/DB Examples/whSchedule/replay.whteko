@@ -22,6 +22,7 @@
 
 <table id="search-table">
 <tr><th>Search for presentations using these keywords:</th><td>(~INPUTTEXT|inKeywords,30,255~)</td></tr>
+<tr><td colspan="2">Example keywords: delphi components unicode configuration regex codesite</td></tr>
 <tr><th>Rubicon Logic</th><td>(~waSelectSearchLogic.Execute|~)</td></tr>
 <tr><td>(~JUMP|pgEnterCodeRage|Back~)</td>
 <td style="text-align:right;">
