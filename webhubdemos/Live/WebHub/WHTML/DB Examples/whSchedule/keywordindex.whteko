@@ -1,0 +1,56 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designlingvo="eng" designmode="code">
+
+<whpage pageid="pgTrainingKeywordIndex" desc="Index for Training Archive">
+<whprep>
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	#RubiconWordsTable {font-family: Arial Unicode MS,Verdana;}
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Keyword Index</h1>
+<h2>for training archive</h2>
+(~waShowIndex.Execute|drIndexLetter,drIndexTable~)
+<whdroplet name="drIndexLetter" show="no">
+<tr class="rbLetter"><th>(~readonly-Words-rbLetter~)</th><td></td></tr>
+</whdroplet>
+
+<whdroplet name="drIndexTable" show="no">
+<table id="RubiconWordsTable">
+<whrow>
+<tr>
+  <td>(~JUMPR|pgRubiconWord,(~readonly-WORDS-RbWord~)|(~readonly-WORDS-RbWord~)~)</td>
+  <td>(~readonly-WORDS-RbCount~)</td>
+</tr>
+</whrow>
+</table>
+</whdroplet>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+
+</whpage>
+
+<whpage pageid="pgRubiconWord" desc="Matches for One Indexed Word">
+<whprep>
+(~SET|inKeywords=(~COMMAND~)~)
+(~REQUIRES|inKeywords|pgSearch~)
+(~SET|btnSearch=Go~)
+</whprep>
+<whoutput>
+(~PAGE|pgSearchResult~)
+</whoutput>
+</whpage>
+
+</whteko>
