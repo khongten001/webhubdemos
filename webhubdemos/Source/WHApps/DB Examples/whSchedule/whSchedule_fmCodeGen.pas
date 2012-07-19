@@ -54,8 +54,10 @@ type
     procedure ActionExportExecute(Sender: TObject);
     procedure ActionImportExecute(Sender: TObject);
     procedure ActionCodeGenForPatternExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
+    FlagInitDone: Boolean;
     procedure TranslateOutgoingStringBreaks( var AString: string );
 (*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
@@ -95,6 +97,8 @@ const
 procedure TfmCodeGenerator.ActionBootstrapExecute(Sender: TObject);
 var
   BootstrapFilespec: string;
+const
+  cProjectAbbrev = 'CodeRageSchedule';
 begin
   inherited;
   { Bootstrap step must be done once at the beginning, to create the unit that
@@ -102,7 +106,8 @@ begin
   Memo1.Clear;
   if DirectoryExists(cPASOutputRoot) then
   begin
-    BootstrapFilespec := cPASOutputRoot + 'uFirebird_Connect_CodeRageSchedule.pas';
+    BootstrapFilespec := cPASOutputRoot +
+      'uFirebird_Connect_' + cProjectAbbrev + '.pas';
     if FileExists(BootstrapFilespec) then
     begin
       if AskQuestionYesNo('Delete prior ' + sLineBreak + sLineBreak +
@@ -113,7 +118,7 @@ begin
     end;
     if NOT FileExists(BootstrapFilespec) then
     begin
-      Firebird_GenPAS_Connect('CodeRageSchedule', BootstrapFilespec);
+      Firebird_GenPAS_Connect(cProjectAbbrev, BootstrapFilespec);
       Memo1.Lines.Text := StringLoadFromFile(BootstrapFilespec);
       MsgInfoOk('Done. Contents are displayed in memo now.');
     end;
@@ -133,9 +138,7 @@ begin
   inherited;
   y := nil;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
-    DBName, DBUser, DBPass);
-  CreateIfNil(DBName, DBUser, DBPass);
+  Init;
 
   Memo1.Lines.Text := DBName;
   Memo1.Lines.Add('connecting...');
@@ -214,9 +217,7 @@ var
 begin
   inherited;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
-    DBName, DBUser, DBPass);
-  CreateIfNil(DBName, DBUser, DBPass);
+  Init;
   gCodeRageSchedule_Conn.Connect;
 
   ex := nil;
@@ -256,9 +257,7 @@ begin
   Memo1.Lines.Add('Starting... takes time depending on connection speed');
   Memo1.Lines.Add('');
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
-    FBDB, FBUsername, FBPassword);
-  CreateIfNil(FBDB, FBUsername, FBPassword);
+  Init;
   Memo1.Lines.Add(FBDB);
   Memo1.Lines.Add(FBUsername + #9 + FBPassword);
   Memo1.Lines.Add('');
@@ -318,9 +317,7 @@ begin
   im := nil;
   Memo1.Clear;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
-    DBName, DBUser, DBPass);
-  CreateIfNil(DBName, DBUser, DBPass);
+  Init;
   gCodeRageSchedule_Conn.Connect;
 
   try
@@ -361,23 +358,35 @@ begin
   gCodeRageSchedule_Conn.DisconnectToPool;
 end;
 
+procedure TfmCodeGenerator.FormCreate(Sender: TObject);
+begin
+  inherited;
+  FlagInitDone := False;
+end;
+
 function TfmCodeGenerator.Init: Boolean;
 var
   DBName, DBUser, DBPass: string;
 begin
   Result := inherited Init;
-  if Result then
+  if NOT FlagInitDone then
   begin
     PageControl1.ActivePage := tsCodeGenBasics;
     cbCodeGenPattern.ItemIndex := 0;
-    if DMIBObjCodeGen.ProjectAbbreviationNoSpaces = '' then
-      DMIBObjCodeGen.ProjectAbbreviationNoSpaces :=
-        LabeledEditProjectAbbrev.Text;
-    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbrevForCodeGen,
-      DBName, DBUser, DBPass);
-    LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
-    CreateIfNil(DBName, DBUser, DBPass);
+    FlagInitDone := True;
   end;
+
+  if DMIBObjCodeGen.ProjectAbbreviationNoSpaces = '' then
+    DMIBObjCodeGen.ProjectAbbreviationNoSpaces :=
+      LabeledEditProjectAbbrev.Text
+  else
+    LabeledEditProjectAbbrev.Text :=
+      DMIBObjCodeGen.ProjectAbbreviationNoSpaces;
+
+  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+    DBName, DBUser, DBPass);
+  LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
+  CreateIfNil(DBName, DBUser, DBPass);
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
