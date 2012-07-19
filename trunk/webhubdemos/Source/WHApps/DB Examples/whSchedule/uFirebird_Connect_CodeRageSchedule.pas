@@ -1,7 +1,7 @@
 //unit uFirebird_Connect_CodeRageSchedule;
 unit uFirebird_Connect_CodeRageSchedule;
 // project abbreviation: CodeRageSchedule
-// generated 08-Jul-2012 23:44
+// generated 19-Jul-2012 07:57
 // by Firebird_GenPAS_Connect
 
 interface 
@@ -18,6 +18,7 @@ procedure CreateIfNil(const FullDatabaseName: string;
 var
   gCodeRageSchedule_Conn: TIB_Connection = nil;
   gCodeRageSchedule_Tr: TIB_Transaction = nil;
+  gCodeRageSchedule_Sess: TIB_Session = nil;
 
 const
   gUpdatedOnAtFieldname = 'UpdatedOnAt';
@@ -35,6 +36,8 @@ begin
     gCodeRageSchedule_Conn.CharSet := 'UTF8';
     gCodeRageSchedule_Tr := TIB_Transaction.Create(nil);
     gCodeRageSchedule_Tr.Name := 'gCodeRageSchedule_Tr';
+    gCodeRageSchedule_Sess := TIB_Session.Create(nil);
+    gCodeRageSchedule_Sess.Name := 'gCodeRageSchedule_Sess';
     with gCodeRageSchedule_Conn do
     begin
       Database := FullDatabaseName;
@@ -56,6 +59,7 @@ finalization
     gCodeRageSchedule_Conn.Disconnect;
     FreeAndNil(gCodeRageSchedule_Tr);
     FreeAndNil(gCodeRageSchedule_Conn);
+    FreeAndNil(gCodeRageSchedule_Sess);
   end;
 
 end.
