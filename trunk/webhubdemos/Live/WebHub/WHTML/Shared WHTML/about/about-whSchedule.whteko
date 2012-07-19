@@ -18,7 +18,14 @@ mcWhDemoLiteCodeRage=No
 <whdroplet name="drDemoSetupcoderage">
 <ol>
 <li> Firebird 2.5 </li>
-<li> Database created by parsing public Embarcadero web pages for 2009-2011, and inserting relevant data via TIB_DSQL; 3 tables plus Rubicon keyword index. </li>
+<li> Database created by parsing public Embarcadero web pages for 2009-2011, and inserting relevant data via TIB_DSQL; 3 tables plus Rubicon keyword index.
+<ul>
+<li> <a target="_blank" href="http://edn.embarcadero.com/article/39727">Code Rage 4, October 2009</a></li>
+<li> <a target="_blank" href="http://www.embarcadero.com/coderage5/sessions">Code Rage 5, October 2010</a></li>
+<li> <a target="_blank" href="http://www.embarcadero.com/coderage/sessions">Code Rage 6, October 2011</a></li>
+
+</ul>
+ </li>
 <li> Firebird database name, username and password stored in XML file pointed to by ZaphodsMap configuration. Reference
 <a target="_blank" href="http://webhub.com/dynhelp:alias::zmlookupfirebirdcredentials">ZMLookup_Firebird_Credentials</a> and use project abbreviation of CodeRageScheduleLOCAL. </li>
 <li> Compilation of the source code requires Delphi, Rubicon v4, Interbase Objects v5 plus WebHub (~version~).  A few in-house units are used in this particular demo; they are available upon request for any WebHub or Rubicon customers.</li>
