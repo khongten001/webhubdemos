@@ -246,6 +246,12 @@ begin
         break;
       end;
     end;
+    if gCodeRageSchedule_Conn.ConnectionWasLost then
+    begin
+      gCodeRageSchedule_Conn.DisconnectToPool;
+      gCodeRageSchedule_Conn.Connect;
+    end;
+
     Search;
     //pWebApp.Summary.Add(IBOQueryText.SQL.text);
   end;
