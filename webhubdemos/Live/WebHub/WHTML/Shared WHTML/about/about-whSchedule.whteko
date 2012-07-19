@@ -42,14 +42,12 @@ for your location, i.e. time zone adjustments done for you.
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescCodeRage">
-During Code Rage, this demo provides schedule details. 
+During the Embarcadero Live Code Rage Conference, 
+this demo provides schedule details with times adjusted for your time zone. 
 During the rest of the year, this demo provides a search engine 
-for free archived presentations from prior years.  These 
-replays may be viewed if you are logged in on the 
+for archived presentations from prior years.  These 
+replays may be viewed for free if you are logged in to the 
 Embarcadero Developer Network ("EDN").
-<div align="center" style="padding-top: 2em;">
-<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="(~mcSiteRoot~)demos/whFirebird/FirebirdFoundation.png" alt="Donate to Firebird Foundation" /></a>
-</div>
 </whtranslation>
 
 </whteko>

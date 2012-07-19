@@ -18,12 +18,14 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<h2>Archived: Code Rage 4 through Code Rage 6</h2>
+<h2>Code Rage 4 through Code Rage 6</h2>
+<p><i>(~JUMP|pgTrainingKeywordIndex|Keyword Index~)</i></p>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSearchResult~)">
 
 <table id="search-table">
 <tr><th>Search for presentations using these keywords:</th><td>(~INPUTTEXT|inKeywords,30,255~)</td></tr>
 <tr><td colspan="2">Example keywords: delphi components unicode configuration regex codesite</td></tr>
+<tr><td colspan="2">Case Insensitive!</td></tr>
 <tr><th>Rubicon Logic</th><td>(~waSelectSearchLogic.Execute|~)</td></tr>
 <tr><td>(~JUMP|pgEnterCodeRage|Back~)</td>
 <td style="text-align:right;">
@@ -50,7 +52,10 @@
 <head>
 	(~drHead~)
 	<style type="text/css">
-	.TwhRubiconSearch td {padding: 0.2em 0.2em 1.5em 0.2em; }
+	.TwhRubiconSearch {border: solid 1px #667;}
+	.TwhRubiconSearch td {padding: 0.4em 0.8em 1.5em 0.8em; }
+	.TwhRubiconSearch td.alteven {background-color:cornsilk;}
+	.TwhRubiconSearch td.altodd  {background-color:lavender;}
 	</style>
 </head>
 <body>
@@ -64,6 +69,22 @@
 
 (~waRubiSearch.Execute|~)
 
+<whdroplet name="drReplayMatchCell" show="no">
+<b>(~readonly-SCHEDULE-SchTitle~)</b><br/>
+(~readonly-SCHEDULE-CalcPresenter~)<br/>
+Code Rage (~readonly-SCHEDULE-SchCodeRageConfNo~), (~readonly-SCHEDULE-SCHONATPDT~)<br/>
+<blockquote>
+(~readonly-SCHEDULE-SCHBlurb~)
+<div style="text-align:center;">
+(~ASSIGNED|readonly-SCHEDULE-SCHREPLAYDOWNLOADURL|
+<a target="_blank" href="(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)" title="Download from EDN">Download</a>
+~)
+(~ASSIGNED|readonly-SCHEDULE-SCHREPLAYWATCHNOWURL|~ <a target="_blank" href="(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)" title="Watch Now on Embarcadero Web Site">Watch Now</a>
+~)
+
+</div>
+</blockquote>
+</whdroplet>
 <p>(~JUMPR|pgSearch|Search Again~)</p>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
