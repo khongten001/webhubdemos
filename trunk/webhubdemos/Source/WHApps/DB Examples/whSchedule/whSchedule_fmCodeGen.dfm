@@ -4,6 +4,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
   Caption = '&Code-Generator'
   ClientHeight = 406
   ClientWidth = 742
+  OnCreate = FormCreate
   ExplicitWidth = 760
   ExplicitHeight = 451
   PixelsPerInch = 120
@@ -22,7 +23,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
       BorderWidth = 5
       TabOrder = 0
       object LabelDBInfo: TLabel
-        Left = 295
+        Left = 383
         Top = 9
         Width = 103
         Height = 22
@@ -31,7 +32,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
       object LabeledEditProjectAbbrev: TLabeledEdit
         Left = 129
         Top = 6
-        Width = 160
+        Width = 232
         Height = 30
         EditLabel.Width = 119
         EditLabel.Height = 22
