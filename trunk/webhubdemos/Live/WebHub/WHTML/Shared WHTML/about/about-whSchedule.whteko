@@ -11,15 +11,16 @@ mcWhDemoCreditFirstDraftCodeRage=Ann Lynnworth
 mcWhDemoCreditGraphicsCodeRage=none
 mcWhDemoCreditCopyCodeRage=Ann Lynnworth
 mcWhDemoUpdatedCodeRage=18-Jul-2012
-mcWhDemoKeywordsCoderage=Firebird,SQL,Rubicon,Training,GMT
+mcWhDemoKeywordsCoderage=Firebird,SQL,Rubicon,Training,GMT,Code Rage,Replay
 mcWhDemoLiteCodeRage=No
 </whmacros>
 
 <whdroplet name="drDemoSetupcoderage">
 <ol>
 <li> Firebird 2.5 </li>
-<li> Schedule table created based on public schedule info</li>
-<li> Firebird ALIAS named "coderageschedule" points to this fdb file.  
+<li> Database created by parsing public Embarcadero web pages for 2009-2011, and inserting relevant data via TIB_DSQL; 3 tables plus Rubicon keyword index. </li>
+<li> Firebird database name, username and password stored in XML file pointed to by ZaphodsMap configuration. Reference
+<a target="_blank" href="http://webhub.com/dynhelp:alias::zmlookupfirebirdcredentials">ZMLookup_Firebird_Credentials</a> and use project abbreviation of CodeRageScheduleLOCAL. </li>
 </li>
 </ol>
 
