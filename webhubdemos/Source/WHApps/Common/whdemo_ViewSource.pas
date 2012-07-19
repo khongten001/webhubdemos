@@ -342,7 +342,7 @@ begin
       //aShowName:=command;
       aShowName := ExtractFilename(aFilename);
       if not fileExists(aFilename) then
-        aFileContents:='Source is not available for ' + aFilename + '.'
+        aFileContents:='Source is not available here for ' + aFilename + '.'
       else
       begin
         aFileContents := StringLoadFromFile(aFilename);
