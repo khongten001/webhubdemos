@@ -417,10 +417,7 @@ end;
 function TDMIBObjCodeGen.ProjectAbbrevForCodeGen: string;
 begin
   Result := FProjectAbbreviationNoSpaces;
-  if (NOT IsEqual(pWebApp.ZMDefaultMapContext, 'DEMOS')) and
-     (NOT IsEqual(pWebApp.ZMDefaultMapContext, 'DORIS')) 
-  then
-    Result := StringReplaceAll(Result, 'LOCAL', '');
+  Result := StringReplaceAll(Result, 'LOCAL', '');
 end;
 
 procedure TDMIBObjCodeGen.SelectSQLDroplet(const currTable,
