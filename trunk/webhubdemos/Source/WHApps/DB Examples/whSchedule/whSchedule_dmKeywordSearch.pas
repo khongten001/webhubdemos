@@ -20,10 +20,12 @@ uses
 type
   TDMRubiconSearch = class(TDataModule)
     waSelectSearchLogic: TwhWebAction;
+    waShowIndex: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waRubiSearchExecute(Sender: TObject);
     procedure waSelectSearchLogicExecute(Sender: TObject);
+    procedure waShowIndexExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -54,9 +56,9 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  TypInfo,
-  ucCodeSiteInterface,
-  webApp, htWebApp, whMacroAffixes,
+  TypInfo, Character,
+  ucCodeSiteInterface, ucString,
+  webApp, htWebApp, whMacroAffixes, webSend,
   uFirebird_Connect_CodeRageSchedule;
 
 { TDMRubiconSearch }
@@ -182,45 +184,40 @@ begin
   pWebApp.Response.SendComment('SchNo ' + IntToStr(i));
   if IBOQueryText.Locate('SchNo', i, []) then
   begin
-    pWebApp.SendStringImm('<b>' +
-      IBOQueryText.FieldByName('SchTitle').AsString + '</b>');
-    pWebApp.Response.SendLine('<br/>');
-    pWebApp.SendStringImm(IBOQueryText.FieldByName('SCHPRESENTERFULLNAME').AsString);
-    S := IBOQueryText.FieldByName('SCHPRESENTEROrg').AsString;
-    if S <> '' then
-      pWebApp.SendStringImm(' &ndash; ' + S);
-    pWebApp.Response.SendLine('<br/>');
-    pWebApp.SendStringImm('Code Rage ' +
-      IBOQueryText.FieldByName('SchCodeRageConfNo').AsString + ', ');
-    pWebApp.SendStringImm(FormatDateTime('dd-MMM-yyyy',
-      IBOQueryText.FieldByName('SCHONATPDT').AsDateTime));
-    pWebApp.Response.SendLine('<br/>');
-    pWebApp.Response.SendLine('<blockquote>');
-
-    S := IBOQueryText.FieldByName('SCHBlurb').AsString;
-    if S <> '' then
-      pWebApp.SendStringImm(S + '<br/>');
-    pWebApp.Response.SendLine('<div style="text-align:center;">');
-    pWebApp.SendStringImm('<a target="_blank" href="' +
-      IBOQueryText.FieldByName('SCHREPLAYDOWNLOADURL').AsString +
-      '" title="Download">Download</a>');
-
-    if False then
+    with pWebApp do
     begin
+      StringVar['readonly-SCHEDULE-SchTitle'] := IBOQueryText.FieldByName('SchTitle').AsString;
+      StringVar['readonly-SCHEDULE-CalcPresenter'] :=
+        IBOQueryText.FieldByName('SCHPRESENTERFULLNAME').AsString;
+      S := IBOQueryText.FieldByName('SCHPRESENTEROrg').AsString;
+      if S <> '' then
+        StringVar['readonly-SCHEDULE-CalcPresenter'] :=
+        StringVar['readonly-SCHEDULE-CalcPresenter'] +
+          ' &ndash; ' + S;
+
+      StringVar['readonly-SCHEDULE-SchCodeRageConfNo'] :=
+       IBOQueryText.FieldByName('SchCodeRageConfNo').AsString;
+
+      StringVar['readonly-SCHEDULE-SCHONATPDT'] :=
+       FormatDateTime('dd-MMM-yyyy',
+         IBOQueryText.FieldByName('SCHONATPDT').AsDateTime);
+
+      S := IBOQueryText.FieldByName('SCHBlurb').AsString;
+      if S <> '' then
+        S := S + '<br/>';
+      StringVar['readonly-SCHEDULE-SCHBlurb'] := S;
+
+      S := IBOQueryText.FieldByName('SCHREPLAYDOWNLOADURL').AsString;
+      StringVar['readonly-SCHEDULE-SCHREPLAYDOWNLOADURL'] := S;
+
       // 18-July-2012: the "watch now" URLs are all not working, not even from
       // within the Embarcadero web site.  They were working 3 days ago.
-      // So - temporarily off.
+
       S := IBOQueryText.FieldByName('SCHREPLAYWATCHNOWURL').AsString;
-      if S <> '' then
-      begin
-        pWebApp.Response.SendLine(' ~ ');
-        pWebApp.SendStringImm('<a target="_blank" href="' +
-          S +
-          '" title="Watch Now">Watch Now</a>');
-      end;
+      StringVar['readonly-SCHEDULE-SCHREPLAYWATCHNOWURL'] := S;
+
+      SendMacro('drReplayMatchCell');
     end;
-    pWebApp.Response.SendLine('</div>');
-    pWebApp.Response.SendLine('</blockquote>');
   end
   else
     pWebApp.SendStringImm(Format('SchNo %d not found?!?', [i]));
@@ -274,13 +271,16 @@ procedure TDMRubiconSearch.waRubiSearchNotify(Sender: TObject;
 *)
 begin
   inherited;
-  with TwhRubiconSearch(Sender),Response do begin
+  with TwhRubiconSearch(Sender),Response do
+  begin
     //SendComment(GetEnumName(TypeInfo(TwhScanNotify),ord(Event)));
     case Event of
 //    wsBefore:
     wsBeforeCol:
-      //this would be the place to set the TD property to change it for one cell.
-      td:='<td>';
+      if Row mod 2 = 0 then
+        td := '<td class="alteven">'
+      else
+        td := '<td class="altodd">';
     wsBeforeRow:
       begin
         IBOQueryText.Close;
@@ -335,19 +335,86 @@ begin
   pWebApp.SendMacro('INPUTSELECT|inSearchLogic,mcSearchLogicList,1,No');
 end;
 
+procedure TDMRubiconSearch.waShowIndexExecute(Sender: TObject);
+var
+  Q: TIB_Cursor;
+  DrLetterName, DrWordName: string;
+  PrevLetter, ThisLetter: char;
+  ThisWord: string;
+begin
+  if NOT gCodeRageSchedule_Conn.Connected then
+    gCodeRageSchedule_Conn.Connect;
+
+  if SplitString(waShowIndex.HtmlParam, ',', DrLetterName, DrWordName) then
+  begin
+    try
+      Q := TIB_Cursor.Create(Self);
+      Q.Name := 'QWordList';
+      Q.IB_Connection := gCodeRageSchedule_Conn;
+      Q.IB_Session := gCodeRageSchedule_Sess;
+      Q.SQL.Text := 'SELECT RbWord, RbCount from Words order by RbWord';
+      if gCodeRageSchedule_Conn.ConnectionWasLost then
+        gCodeRageSchedule_Conn.Connect;
+      try
+        Q.Prepare;
+        Q.Open;
+      except
+        on E: Exception do
+        begin
+          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+          LogSendInfo(Q.Name, Q.SQL.Text);
+        end;
+      end;
+      pWebApp.SendDroplet(DrWordName, drBeforeWhrow);
+      Q.First;
+      PrevLetter := #0;
+      while NOT Q.EOF do
+      begin
+        with pWebApp do
+        begin
+          ThisWord := Q.Fields[0].AsString;
+          if Length(ThisWord) > 0 then
+          begin
+            Thisletter := ThisWord[1];
+            { be sure to skip the special __Properties__ entry in WORDS table }
+            if (NOT IsDigit(ThisLetter)) and (Ord(ThisLetter) <> 127) then
+            begin
+              StringVar['readonly-WORDS-rbLetter'] := ThisLetter;
+              if ThisLetter <> PrevLetter then
+              begin
+                pWebApp.SendMacro(DrLetterName);
+                PrevLetter := ThisLetter;
+              end;
+              StringVar['readonly-WORDS-RbWord'] := ThisWord;
+              StringVarInt['readonly-WORDS-RbCount'] := Q.Fields[1].AsInteger;
+              SendDroplet(DrWordName, drWithinWhrow);
+            end;
+          end;
+        end;
+        Q.Next;
+      end;
+      Q.Close;
+      pWebApp.SendDroplet(DrWordName, drAfterWhrow);
+    finally
+      FreeAndNil(Q);
+    end;
+  end;
+end;
+
 function TDMRubiconSearch.ScheduleMaxIndex(Sender: TObject): Integer;
 //const cFn = 'ScheduleMaxIndex';
 var
   Q: TIB_Cursor;
 begin
   Q := nil;
-  FScheduleGeneratorNumber := 200;
+///  FScheduleGeneratorNumber := 200;  // !!! code below fails. not sure why yet.
   if FScheduleGeneratorNumber = -1 then
   begin
     try
       Q := TIB_Cursor.Create(Self);
       Q.Name := 'QGENSCHEDULENO';
       Q.IB_Connection := gCodeRageSchedule_Conn;
+      Q.IB_Session := gCodeRageSchedule_Sess;
       Q.ReadOnly := True;
       Q.SQL.Text := 'SELECT GEN_ID(GENSCHEDULENO, 0) FROM RDB$DATABASE';
       if NOT gCodeRageSchedule_Conn.Connected then
