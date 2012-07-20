@@ -164,8 +164,8 @@ begin
     x := y.IndexOf('Words');
     y.Delete(x);  // no generation for Rubicon Words table.
 
-    {Set number of fields to prompt for per HTML row}
-    DMIBObjCodeGen.FieldsPerRowInInstantForm := 4;
+    {Set number of fields to prompt for, per HTML row}
+    DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
 
     case cbCodeGenPattern.ItemIndex of
       0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
