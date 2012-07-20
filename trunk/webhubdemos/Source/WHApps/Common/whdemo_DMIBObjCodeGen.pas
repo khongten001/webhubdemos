@@ -186,19 +186,20 @@ begin
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
                 InstantFormReadonly)
           else
+          begin
             CodeContent := CodeContent +
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                InstantFormEdit);
-          CodeContent := CodeContent +
-          '  <tr class="' +
-            LowerCase(
-              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
-            'Submit">' + sLineBreak +
-          '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
-           'value="Save" /></td>' +
-          sLineBreak +
-          '  </tr>' + sLineBreak +
-          '  </table>' + sLineBreak;
+                InstantFormEdit) +
+            '  <tr class="' +
+              LowerCase(
+                GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
+              'Submit">' + sLineBreak +
+            '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
+             'value="Save" /></td>' +
+            sLineBreak +
+            '  </tr>' + sLineBreak;
+          end;
+          CodeContent := CodeContent + '  </table>' + sLineBreak;
           if CodeGenPattern = cgpInstantFormEdit then
             CodeContent := CodeContent +
               '<!--- </form> -->' + sLineBreak;
