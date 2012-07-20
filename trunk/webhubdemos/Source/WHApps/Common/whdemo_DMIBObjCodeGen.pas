@@ -11,6 +11,7 @@ unit whdemo_DMIBObjCodeGen;
 { ---------------------------------------------------------------------------- }
 { * Requires IBObjects from www.ibobjects.com                                * }
 { * Requires Firebird SQL Database                                           * }
+{ * Requires WebHub v2.171+                                                  * }
 { *                                                                          * }
 { * EXTREMELY EXPERIMENTAL !                                                 * }
 { *                                                                          * }
@@ -38,32 +39,40 @@ type
     FProjectAbbreviationNoSpaces: string;
     FUpdatedOnAtFieldname: string;
     FUpdateCounterFieldname: string;
+    FCounter: Integer;
+    FFieldsPerRowInInstantForm: Integer;
     FAttributeParser: TAttributeParser;
     procedure WebAppUpdate(Sender: TObject);
   private
     FDatabaseIterator: TwhDatabaseIterator;
   private
     procedure MacroLabelsForFields(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure MacroPKsForTables(const currTable: string;
       const primaryKeyFieldname: string; out Value: string);
     procedure FieldListForImport(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure SelectSQLDroplet(const currTable: string;
       const primaryKeyFieldname: string; out Value: string);
     procedure UpdateSQLDropletA(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure UpdateSQLDropletB(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure InstantFormReadonly(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure InstantFormEdit(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
   public
     { Public declarations }
@@ -71,8 +80,11 @@ type
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
       const CodeGenPattern: TCodeGenPattern): string;
     function ProjectAbbrevForCodeGen: string;
+    property Counter: Integer read FCounter write FCounter;
     property DatabaseIterator: TwhDatabaseIterator read FDatabaseIterator
       write FDatabaseIterator;
+    property FieldsPerRowInInstantForm: Integer read FFieldsPerRowInInstantForm
+      write FFieldsPerRowInInstantForm;
     property ProjectAbbreviationNoSpaces: string
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
     property UpdatedOnAtFieldname: string
@@ -222,6 +234,7 @@ end;
 procedure TDMIBObjCodeGen.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
+  FFieldsPerRowInInstantForm := 1;
   FAttributeParser := nil;
   FUpdatedOnAtFieldname := 'UpdatedOnAt';
   FUpdateCounterFieldname := 'UpdateCounter';
@@ -233,16 +246,16 @@ begin
 end;
 
 procedure TDMIBObjCodeGen.FieldListForImport(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
-  out Value: string);
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
 begin
   // f1, f2, f3, f4
   Value := Format('f%d=%s', [FieldNum+1, CurrentFieldname]) + sLineBreak;
 end;
 
 procedure TDMIBObjCodeGen.InstantFormEdit(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
-  out Value: string);
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
 const cFn = 'InstantFormEdit';
 var
   Size: Integer;
@@ -250,17 +263,33 @@ var
   ThisFieldType: string;
   ThisFieldTypeRaw: Integer;
 begin
+
+  if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
+    FCounter := 0
+  else
+    Inc(FCounter);
+
+  if (FCounter = 0) then
+    Value := '  <tr>' + sLineBreak
+   else
+     Value := '';
+
   if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
     { primary key field: readonly }
     { UpdatedOnAt field: set by trigger }
-    InstantFormReadonly(CurrentTable, FieldNum, CurrentFieldname, Cursor, Value)
+    Value := Value +
+      '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
+      sLineBreak +
+      '    <td>(~readonly-' + CurrentTable + '-' + CurrentFieldname + '~)' +
+      '</td>' + sLineBreak;
   end
   else
   if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
   begin
     { pass through the UpdateCounter for optimal multi-user editing }
-    Value := '  <input type="hidden" name="edit-' + CurrentTable + '-' +
+    Value := Value +
+      '  <input type="hidden" name="edit-' + CurrentTable + '-' +
       FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
       CurrentTable + '-' +
       FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
@@ -270,10 +299,10 @@ begin
     Size := -1;
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-    LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
+   // LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
    // LogSendInfo('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
 
-    Value := '  <tr>' + sLineBreak +
+     value := Value +
       '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
       CurrentFieldname + MacroEnd + '</th>' +
       sLineBreak +
@@ -288,7 +317,7 @@ begin
         '<textarea name="txt-edit-' + CurrentTable + '-' +
         CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
         MacroStart + 'edit-' + CurrentTable + '-' +
-        CurrentFieldname + MacroEnd + '</textarea>' + sLineBreak;
+        CurrentFieldname + MacroEnd + '</textarea>';
     end
     else
     begin
@@ -320,16 +349,23 @@ begin
           '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
           SizeText + '/>';
     end;
-
-    Value := Value +
-        '    </td>' +
-        sLineBreak +
-      '  </tr>' + sLineBreak;
+    Value := Value + sLineBreak +
+        '    </td>' + sLineBreak;
+  end;
+  if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
+    ThisTableFieldCount - 2) then
+  begin
+    while FCounter < Pred(FFieldsPerRowInInstantForm) do
+    begin
+      Value := Value + '    <th></th><td></td>' + sLineBreak;
+      Inc(FCounter);
+    end;
+    Value := Value + '  </tr>' + sLineBreak;
   end;
 end;
 
 procedure TDMIBObjCodeGen.InstantFormReadonly(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 begin
   try
@@ -371,7 +407,7 @@ begin
 end;
 
 procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
-  const FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 var
   FieldDescription: string;
@@ -432,7 +468,7 @@ begin
 end;
 
 procedure TDMIBObjCodeGen.UpdateSQLDropletA(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
 var
   FlagSkip: Boolean;
@@ -467,7 +503,7 @@ begin
 end;
 
 procedure TDMIBObjCodeGen.UpdateSQLDropletB(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string;
+      const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
 begin
 
