@@ -2,6 +2,15 @@ unit whSchedule_fmCodeGen;
 
 { ---------------------------------------------------------------------------- }
 { * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * development license from HREF Tools Corp. before using this file, and    * }
+{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ *                                                                          * }
+{ ---------------------------------------------------------------------------- }
+
+{ ---------------------------------------------------------------------------- }
+{ * Requires WebHub v2.171+                                                  * }
 { ---------------------------------------------------------------------------- }
 
 interface
@@ -134,8 +143,12 @@ var
   DBName, DBUser, DBPass: string;
   Flag: Boolean;
   CodeContent: string;
+  x: Integer;
 begin
   inherited;
+
+//  {$IFDEF CodeSite}CodeSite.Send('4fields', Firebird_GetSQL_Fieldlist4Table);{$ENDIF}
+
   y := nil;
 
   Init;
@@ -145,10 +158,14 @@ begin
   Application.ProcessMessages;
   gCodeRageSchedule_Conn.Connect;
 
-
   try
     Firebird_GetTablesInDatabase(y, Flag, DBName,
       gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
+    x := y.IndexOf('Words');
+    y.Delete(x);  // no generation for Rubicon Words table.
+
+    {Set number of fields to prompt for per HTML row}
+    DMIBObjCodeGen.FieldsPerRowInInstantForm := 4;
 
     case cbCodeGenPattern.ItemIndex of
       0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
@@ -179,7 +196,6 @@ procedure TfmCodeGenerator.ActionExportExecute(Sender: TObject);
 var
   q: TIB_Cursor;
   ex: TIB_Export;
-  DBName, DBUser, DBPass: string;
 
   function Select_SQL_for_Export(const InTablename: string): string;
   begin
@@ -311,7 +327,6 @@ end;
 procedure TfmCodeGenerator.ActionImportExecute(Sender: TObject);
 var
   im: TIB_Import;
-  DBName, DBUser, DBPass: string;
 begin
   inherited;
   im := nil;
