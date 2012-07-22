@@ -27,7 +27,7 @@ uses
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
-    cgpInstantFormReadonly, cgpInstantFormEdit);
+    cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -45,6 +45,8 @@ type
     procedure WebAppUpdate(Sender: TObject);
   private
     FDatabaseIterator: TwhDatabaseIterator;
+    function RawTypeToHTMLSize(const RawFirebirdType: Integer;
+      Cursor: TIB_Cursor): Integer;
   private
     procedure MacroLabelsForFields(const CurrentTable: string;
       const ThisTableFieldCount, FieldNum: Integer;
@@ -71,6 +73,10 @@ type
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
     procedure InstantFormEdit(const CurrentTable: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+    procedure InstantFormEditLabelAbove(const CurrentTable: string;
       const ThisTableFieldCount, FieldNum: Integer;
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
@@ -128,7 +134,8 @@ begin
     cgpFieldListForImport: CodeContent := '';
     cgpSelectSQLDroplet: CodeContent := '';
     cgpUpdateSQLDroplet: CodeContent := '';
-    cgpInstantFormReadonly, cgpInstantFormEdit: CodeContent := '';
+    cgpInstantFormReadonly, cgpInstantFormEdit,
+      cgpInstantFormEditLabelAbove: CodeContent := '';
   end;
 
   for i := 0 to Pred(TableList.Count) do
@@ -168,18 +175,21 @@ begin
             UpdateSQLDropletB) +
           '</whdroplet>' + sLineBreak + sLineBreak;
 
-      cgpInstantFormReadonly, cgpInstantFormEdit:
+      cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove:
         begin
           CodeContent := CodeContent +
             '<whdroplet name="drInstantForm';
-          if CodeGenPattern = cgpInstantFormReadonly then
-            CodeContent := CodeContent + 'Readonly'
-          else
-            CodeContent := CodeContent + 'Edit';
+          case CodeGenPattern of
+            cgpInstantFormReadonly: CodeContent := CodeContent + 'Readonly';
+            cgpInstantFormEdit: CodeContent := CodeContent + 'Edit';
+            cgpInstantFormEditLabelAbove: CodeContent := CodeContent +
+              'EditLabelAbove';
+          end;
+
           CodeContent := CodeContent +
              TableList[i] + '" show="no">' +
              sLineBreak;
-          if CodeGenPattern = cgpInstantFormEdit then
+          if CodeGenPattern <> cgpInstantFormReadonly then
             CodeContent := CodeContent +
               '<!--- <form method="post" accept-charset="UTF-8" ' +
               'action="(~ACTIONR|~)"> -->' +
@@ -193,26 +203,43 @@ begin
               GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
               '">' +
           sLineBreak;
-          if CodeGenPattern = cgpInstantFormReadonly then
-            CodeContent := CodeContent +
+
+          case CodeGenPattern of
+            cgpInstantFormReadonly: CodeContent := CodeContent +
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                InstantFormReadonly)
-          else
-          begin
-            CodeContent := CodeContent +
-              Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                InstantFormEdit) +
-            '  <tr class="' +
-              LowerCase(
-                GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
-              'Submit">' + sLineBreak +
-            '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
-             'value="Save" /></td>' +
-            sLineBreak +
-            '  </tr>' + sLineBreak;
+                InstantFormReadonly);
+            cgpInstantFormEdit:
+              begin
+                CodeContent := CodeContent +
+                  Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                    InstantFormEdit) +
+                '  <tr class="' +
+                  LowerCase(
+                    GetEnumName(TypeInfo(TCodeGenPattern),
+                    Ord(CodeGenPattern))) +
+                  'Submit">' + sLineBreak +
+                '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
+                 'value="Save" /></td>' +
+                sLineBreak +
+                '  </tr>' + sLineBreak;
+              end;
+            cgpInstantFormEditLabelAbove:
+              begin
+                CodeContent := CodeContent +
+                  Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                    InstantFormEditLabelAbove) +
+                '  <tr class="' +
+                  LowerCase(
+                    GetEnumName(TypeInfo(TCodeGenPattern),
+                    Ord(CodeGenPattern))) +
+                  'Submit">' + sLineBreak +
+                '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
+                 'value="Save" /></td>' +
+                sLineBreak +
+                '  </tr>' + sLineBreak;
+              end;
           end;
-          CodeContent := CodeContent + '  </table>' + sLineBreak;
-          if CodeGenPattern = cgpInstantFormEdit then
+          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
             CodeContent := CodeContent +
               '<!--- </form> -->' + sLineBreak;
           CodeContent := CodeContent +
@@ -296,7 +323,6 @@ begin
   end
   else
   begin
-    Size := -1;
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
    // LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
@@ -321,23 +347,101 @@ begin
     end
     else
     begin
-      case ThisFieldTypeRaw of
-        blr_text: Size := 1; // char
-        blr_short: Size := 4;
-        blr_long,
-        blr_quad,
-        blr_float,
-        blr_double,
-        blr_d_float: Size := 12;
-        blr_int64: Size := 16;
-        blr_Varying:
-          begin
-            Size := Cursor.FieldByName('field_length').AsInteger; // varchar
-            Size := Size Div 4;  // UTF-8 charset !!!
-          end;
-        blr_sql_date: Size := 12;
-        blr_timestamp: Size := 20;  // datetime
-      end;
+      Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+      if Size <> -1 then
+      begin
+        SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+      end
+      else
+        SizeText := '';
+      Value := Value +
+        '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
+          '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
+          SizeText + '/>';
+    end;
+    Value := Value + sLineBreak +
+        '    </td>' + sLineBreak;
+  end;
+  if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
+    ThisTableFieldCount - 2) then
+  begin
+    while FCounter < Pred(FFieldsPerRowInInstantForm) do
+    begin
+      Value := Value + '    <th></th><td></td>' + sLineBreak;
+      Inc(FCounter);
+    end;
+    Value := Value + '  </tr>' + sLineBreak;
+  end;
+end;
+
+procedure TDMIBObjCodeGen.InstantFormEditLabelAbove(const CurrentTable: string;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
+const cFn = 'InstantFormEditLabelAbove';
+var
+  Size: Integer;
+  SizeText: string;
+  ThisFieldType: string;
+  ThisFieldTypeRaw: Integer;
+begin
+
+  if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
+    FCounter := 0
+  else
+    Inc(FCounter);
+
+  if (FCounter = 0) then
+    Value := '  <tr>' + sLineBreak
+   else
+     Value := '';
+
+  if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
+  begin
+    { primary key field: readonly }
+    { UpdatedOnAt field: set by trigger }
+    Value := Value +
+      '    <td><div class="labelCell">' +
+      '(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</div>' +
+      '(~readonly-' + CurrentTable + '-' + CurrentFieldname + '~)' +
+      '</td>' + sLineBreak;
+  end
+  else
+  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
+  begin
+    { pass through the UpdateCounter for optimal multi-user editing }
+    Value := Value +
+      '  <input type="hidden" name="edit-' + CurrentTable + '-' +
+      FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
+      CurrentTable + '-' +
+      FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
+  end
+  else
+  begin
+    ThisFieldType := Cursor.FieldByName('field_type').AsString;
+    ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+   // LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
+   // LogSendInfo('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+
+     value := Value +
+      '    <td><div class="labelCell">' + MacroStart + 'mcLabel-' +
+      CurrentTable + '-' +
+      CurrentFieldname + MacroEnd + '</div>' +
+      '<!--- ' + ThisFieldType +
+        ' Raw#' + IntToStr(ThisFieldTypeRaw) +
+        ' -->';
+
+    if ThisFieldTypeRaw = blr_blob then
+    begin
+      // blob textarea
+      Value := Value +
+        '<textarea name="txt-edit-' + CurrentTable + '-' +
+        CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
+        MacroStart + 'edit-' + CurrentTable + '-' +
+        CurrentFieldname + MacroEnd + '</textarea>';
+    end
+    else
+    begin
+      Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
       if Size <> -1 then
       begin
         SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
@@ -461,6 +565,30 @@ function TDMIBObjCodeGen.ProjectAbbrevForCodeGen: string;
 begin
   Result := FProjectAbbreviationNoSpaces;
   Result := StringReplaceAll(Result, 'LOCAL', '');
+end;
+
+function TDMIBObjCodeGen.RawTypeToHTMLSize(
+  const RawFirebirdType: Integer; Cursor: TIB_Cursor): Integer;
+begin
+  Result := -1;
+      case RawFirebirdType of
+        blr_text: Result := 1; // char
+        blr_short: Result := 4;
+        blr_long,
+        blr_quad,
+        blr_float,
+        blr_double,
+        blr_d_float: Result := 12;
+        blr_int64: Result := 16;
+        blr_Varying:
+          begin
+            Result := Cursor.FieldByName('field_length').AsInteger; // varchar
+            Result := Result Div 4;  // UTF-8 charset !!!
+          end;
+        blr_sql_date: Result := 12;
+        blr_timestamp: Result := 20;  // datetime
+      end;
+
 end;
 
 procedure TDMIBObjCodeGen.SelectSQLDroplet(const currTable,
