@@ -435,10 +435,13 @@ begin
 end;
 
 procedure TDMCodeRageActions.waPKtoStringVarsExecute(Sender: TObject);
+  { Find the record matching querying pk value
+    Return results in edit or view mode
+  }
 var
-  CurrentTable: string;
-  CurrentPK: string;
-  CurrentFieldname: string;
+  CurrentTable: string;  { table of entities }
+  CurrentPK: string;  { table pri key }
+  CurrentFieldname: string;   
   PKValue: string;
   q: TIB_Cursor;
   i: Integer;
