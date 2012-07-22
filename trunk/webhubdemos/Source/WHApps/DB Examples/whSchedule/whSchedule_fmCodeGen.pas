@@ -162,7 +162,8 @@ begin
     Firebird_GetTablesInDatabase(y, Flag, DBName,
       gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
     x := y.IndexOf('Words');
-    y.Delete(x);  // no generation for Rubicon Words table.
+    if x > -1 then
+      y.Delete(x);  // no generation for Rubicon Words table.
 
     {Set number of fields to prompt for, per HTML row}
     DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
