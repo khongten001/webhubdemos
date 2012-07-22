@@ -4,6 +4,7 @@ unit whSchedule_dmKeywordSearch;
 { * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
 { *                                                                          * }
 { * WebHub datamodule for searching the keyword index using Rubicon.         * }
+{ * Shared by WebHub Demo and Code News Fast web application.                * }
 { *                                                                          * }
 { * Requires: Firebird SQL                                                   * }
 { *           Rubicon components from HREF Tools Corp.                       * }
@@ -59,7 +60,7 @@ uses
   TypInfo, Character,
   ucCodeSiteInterface, ucString,
   webApp, htWebApp, whMacroAffixes, webSend,
-  uFirebird_Connect_CodeRageSchedule;
+  uFirebird_Connect_CodeRageSchedule, tpFirebirdCredentials;
 
 { TDMRubiconSearch }
 
@@ -86,11 +87,30 @@ begin
 end;
 
 function TDMRubiconSearch.Init(out ErrorText: string): Boolean;
+var
+  ProjectAbbrev: string;
+  DBName, DBUser, DBPass: string;
 begin
   ErrorText := '';
   Result := FlagInitDone;
   // reserved for code that should run once, after AppID set
   if Result then Exit;
+
+  if pWebApp.ZMDefaultMapContext = 'ultraann' then
+    ProjectAbbrev := 'CodeRageScheduleLOCAL'
+  else
+    ProjectAbbrev := 'CodeRageSchedule';
+  ZMLookup_Firebird_Credentials(ProjectAbbrev, DBName, DBUser, DBPass);
+  CreateifNil(DBName, DBUser, DBPass);
+  try
+    gCodeRageSchedule_Conn.Connect;
+  except
+    on E: Exception do
+    begin
+      ErrorText := E.Message;
+      Exit;                    // cannot continue if database connection fails
+    end;
+  end;
 
   if NOT Assigned(rbCache1) then
   begin
@@ -124,7 +144,8 @@ begin
     rbSearch1 := TrbSearch.Create(Self);
     rbSearch1.Name := 'rbSearch1';
     rbSearch1.International := True;
-    rbSearch1.SearchLogic := slOr;
+    rbSearch1.SearchLogic := slSmart;
+    rbSearch1.SearchOptions := [soNavNatural, soNavReverse];
 
     with rbSearch1 do
     begin
@@ -231,7 +252,9 @@ var
 begin
   with TwhRubiconSearch(Sender) do
   begin
-    SearchValue := pWebApp.StringVar['inKeywords'];
+    S := Uppercase(pWebApp.StringVar['inKeywords']);
+    S := StringReplaceAll(S, '  ', ' ');
+    SearchValue := S;
     {$IFDEF CodeSite}CodeSite.Send('SearchValue', SearchValue);{$ENDIF}
     rbSearch1.SearchLogic := slSmart;
     for i := slAnd to slSmart do
