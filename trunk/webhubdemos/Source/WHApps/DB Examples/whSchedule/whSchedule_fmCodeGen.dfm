@@ -181,7 +181,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
             object cbCodeGenPattern: TComboBox
               Left = 8
               Top = 3
-              Width = 259
+              Width = 345
               Height = 30
               TabOrder = 0
               Text = 'Macros for Field Labels'
@@ -192,10 +192,11 @@ inherited fmCodeGenerator: TfmCodeGenerator
                 'Droplets with Select SQL for each table'
                 'Droplets with Update SQL for each table'
                 'Readonly Form for each table'
-                'Editable Form for each table')
+                'Editable Form for each table'
+                'Editable Form, labels above, for each table')
             end
             object Button1: TButton
-              Left = 288
+              Left = 384
               Top = 8
               Width = 105
               Height = 25
@@ -205,7 +206,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
           end
         end
       end
-      object Memo1: TMemo
+      object mOutput: TMemo
         Left = 0
         Top = 193
         Width = 572
@@ -223,7 +224,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
         Font.Style = []
         Font.Quality = fqClearType
         Lines.Strings = (
-          'Memo1')
+          'mOutput')
         ParentFont = False
         ScrollBars = ssBoth
         TabOrder = 1

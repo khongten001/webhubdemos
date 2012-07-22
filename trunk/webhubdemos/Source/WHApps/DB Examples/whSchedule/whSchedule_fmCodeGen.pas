@@ -46,7 +46,7 @@ type
     tpToolBar4: TtpToolBar;
     tpToolButton15: TtpToolButton;
     tpToolButton16: TtpToolButton;
-    Memo1: TMemo;
+    mOutput: TMemo;
     LabelDBInfo: TLabel;
     LabeledEditProjectAbbrev: TLabeledEdit;
     TabSheet4: TTabSheet;
@@ -67,6 +67,8 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
+    FProjectConnection: TIB_Connection;
+    FProjectTransaction: TIB_Transaction;
     procedure TranslateOutgoingStringBreaks( var AString: string );
 (*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
@@ -112,7 +114,7 @@ begin
   inherited;
   { Bootstrap step must be done once at the beginning, to create the unit that
     is subsequently used for all connections to the firebird database. }
-  Memo1.Clear;
+  mOutput.Clear;
   if DirectoryExists(cPASOutputRoot) then
   begin
     BootstrapFilespec := cPASOutputRoot +
@@ -128,7 +130,7 @@ begin
     if NOT FileExists(BootstrapFilespec) then
     begin
       Firebird_GenPAS_Connect(cProjectAbbrev, BootstrapFilespec);
-      Memo1.Lines.Text := StringLoadFromFile(BootstrapFilespec);
+      mOutput.Lines.Text := StringLoadFromFile(BootstrapFilespec);
       MsgInfoOk('Done. Contents are displayed in memo now.');
     end;
   end
@@ -153,14 +155,14 @@ begin
 
   Init;
 
-  Memo1.Lines.Text := DBName;
-  Memo1.Lines.Add('connecting...');
+  mOutput.Lines.Text := DBName;
+  mOutput.Lines.Add('connecting...');
   Application.ProcessMessages;
-  gCodeRageSchedule_Conn.Connect;
+  FProjectConnection.Connect;
 
   try
     Firebird_GetTablesInDatabase(y, Flag, DBName,
-      gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, DBUser, DBPass);
+      FProjectConnection, FProjectTransaction, DBUser, DBPass);
     x := y.IndexOf('Words');
     if x > -1 then
       y.Delete(x);  // no generation for Rubicon Words table.
@@ -169,28 +171,30 @@ begin
     DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
 
     case cbCodeGenPattern.ItemIndex of
-      0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpMacroLabelsForFields);
-      1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpMacroPKsForTables);
-      2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpFieldListForImport);
-      3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpSelectSQLDroplet);
-      4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpUpdateSQLDroplet);
-      5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpInstantFormReadonly);
-      6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(gCodeRageSchedule_Conn,
+      6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpInstantFormEdit);
+      7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
+        y, cgpInstantFormEditLabelAbove);
     end;
   finally
     FreeAndNil(y);
   end;
 
   Application.ProcessMessages;
-  Memo1.Lines.Text := CodeContent;
-  gCodeRageSchedule_Conn.DisconnectToPool;
+  mOutput.Lines.Text := CodeContent;
+  FProjectConnection.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.ActionExportExecute(Sender: TObject);
@@ -221,28 +225,28 @@ var
       Q.Unprepare;
     end;
     q.SQL.Text := Select_SQL_for_Export(InTablename);
-    Memo1.Lines.Add(q.SQL.Text);
+    mOutput.Lines.Add(q.SQL.Text);
     ex.Filename := 'D:\Projects\webhubdemos\Live\Database\whSchedule\backup\' +
       InTablename + '.csv';
-    Memo1.Lines.Add(ex.Filename);
+    mOutput.Lines.Add(ex.Filename);
     q.Open;
     ex.Execute;
-    Memo1.Lines.Add('Done with ' + InTablename);
-    Memo1.Lines.Add('');
+    mOutput.Lines.Add('Done with ' + InTablename);
+    mOutput.Lines.Add('');
   end;
 
 begin
   inherited;
 
   Init;
-  gCodeRageSchedule_Conn.Connect;
+  FProjectConnection.Connect;
 
   ex := nil;
   q := nil;
   try
     q := TIB_Cursor.Create(Self);
-    q.IB_Connection := gCodeRageSchedule_Conn;
-    q.IB_Transaction := gCodeRageSchedule_Tr;
+    q.IB_Connection := FProjectConnection;
+    q.IB_Transaction := FProjectTransaction;
     q.Name := 'q4export';
     ex := TIB_Export.Create(Self);
     ex.Dataset := q;
@@ -250,7 +254,7 @@ begin
 
     ex.IncludeHeaders := False;
     ex.OnTranslateString := TranslateOutgoingStringBreaks;
-    Memo1.Clear;
+    mOutput.Clear;
     Export_1_Table('ABOUT');
     Export_1_Table('XPRODUCT');
     Export_1_Table('SCHEDULE');
@@ -258,7 +262,7 @@ begin
     FreeAndNil(ex);
     FreeAndNil(q);
   end;
-  gCodeRageSchedule_Conn.DisconnectToPool;
+  FProjectConnection.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.ActionGenPASandSQLExecute(Sender: TObject);
@@ -270,59 +274,59 @@ var
 begin
   inherited;
   y := nil;
-  Memo1.Lines.Clear;
-  Memo1.Lines.Add('Starting... takes time depending on connection speed');
-  Memo1.Lines.Add('');
+  mOutput.Lines.Clear;
+  mOutput.Lines.Add('Starting... takes time depending on connection speed');
+  mOutput.Lines.Add('');
 
   Init;
-  Memo1.Lines.Add(FBDB);
-  Memo1.Lines.Add(FBUsername + #9 + FBPassword);
-  Memo1.Lines.Add('');
+  mOutput.Lines.Add(FBDB);
+  mOutput.Lines.Add(FBUsername + #9 + FBPassword);
+  mOutput.Lines.Add('');
 
-  gCodeRageSchedule_Conn.Connect;
+  FProjectConnection.Connect;
 
   Firebird_GetTablesInDatabase(y, Flag, FBDB,
-    gCodeRageSchedule_Conn, gCodeRageSchedule_Tr, FBUsername, FBPassword);
+    FProjectConnection, FProjectTransaction, FBUsername, FBPassword);
 
   if Assigned(y) then
   begin
     Filespec :=
       cSQLOutputRoot + 'CodeRageSchedule_Triggers.sql';
-    Firebird_GenSQL_TriggersFor3UpdateFields(y, gCodeRageSchedule_Conn,
+    Firebird_GenSQL_TriggersFor3UpdateFields(y, FProjectConnection,
       Filespec);
-    Memo1.Lines.Add(Filespec);
-    Memo1.Lines.Add('');
+    mOutput.Lines.Add(Filespec);
+    mOutput.Lines.Add('');
 
     Filespec :=
       cPASOutputRoot +
       'uStructureClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen +
       '.pas';
-    Firebird_GenPAS_StructureClientDatasets(y, gCodeRageSchedule_Conn,
+    Firebird_GenPAS_StructureClientDatasets(y, FProjectConnection,
       DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    Memo1.Lines.Add(Filespec);
-    Memo1.Lines.Add('');
+    mOutput.Lines.Add(Filespec);
+    mOutput.Lines.Add('');
 
     Filespec :=
       cPASOutputRoot +
       'uFirebird_SQL_Snippets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
-    Firebird_GenPAS_SQL_Snippets(y, gCodeRageSchedule_Conn,
+    Firebird_GenPAS_SQL_Snippets(y, FProjectConnection,
       DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    Memo1.Lines.Add(Filespec);
-    Memo1.Lines.Add('');
+    mOutput.Lines.Add(Filespec);
+    mOutput.Lines.Add('');
 
     // Order Head and Detail need to be live datasets, not cached
     // BUT: it helps to have the Fill code for copy and paste samples
     Filespec :=
       cPASOutputRoot +
       'uFillClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
-    Firebird_GenPAS_FillClientDatasets(y, gCodeRageSchedule_Conn,
+    Firebird_GenPAS_FillClientDatasets(y, FProjectConnection,
       DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    Memo1.Lines.Add(Filespec);
-    Memo1.Lines.Add('');
+    mOutput.Lines.Add(Filespec);
+    mOutput.Lines.Add('');
   end;
   FreeAndNil(y);
-  gCodeRageSchedule_Conn.DisconnectToPool;
-  Memo1.Lines.Add('Done! ' + FormatDateTime('dddd hh:nn:ss', Now));
+  FProjectConnection.DisconnectToPool;
+  mOutput.Lines.Add('Done! ' + FormatDateTime('dddd hh:nn:ss', Now));
 end;
 
 procedure TfmCodeGenerator.ActionImportExecute(Sender: TObject);
@@ -331,47 +335,47 @@ var
 begin
   inherited;
   im := nil;
-  Memo1.Clear;
+  mOutput.Clear;
 
   Init;
-  gCodeRageSchedule_Conn.Connect;
+  FProjectConnection.Connect;
 
   try
     im := TIB_Import.Create(Self);
     im.Name := 'import4coderage';
-    im.IB_Connection := gCodeRageSchedule_Conn;
-    im.IB_Transaction := gCodeRageSchedule_Tr;
+    im.IB_Connection := FProjectConnection;
+    im.IB_Transaction := FProjectTransaction;
     im.ImportFormat := ifUTF8;
     try
       // XProduct table
       im.IniFile := cCSVIniRoot + 'ImportSpec_001_XProduct.ini';
-      Memo1.Lines.Add(im.IniFile);
+      mOutput.Lines.Add(im.IniFile);
       im.ImportMode := mCopy;
       im.Execute;
       // schedule table
       im.IniFile := cCSVIniRoot + 'ImportSpec_002_schedule.ini';
-      Memo1.Lines.Add(im.IniFile);
+      mOutput.Lines.Add(im.IniFile);
       im.ImportMode := mCopy;  // erase first then import
       //im.OnParse := TranslateIncomingStringBreaks;
       im.Execute;
 
       // About table (requires the above 2 present, first)
       im.IniFile := cCSVIniRoot + 'ImportSpec_003_about.ini';
-      Memo1.Lines.Add(im.IniFile);
+      mOutput.Lines.Add(im.IniFile);
       im.ImportMode := mCopy;  // erase first then import
       im.Execute;
-      Memo1.Lines.Add('Done');
+      mOutput.Lines.Add('Done');
     except
       on E: Exception do
       begin
         {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-        Memo1.Lines.Add(E.Message);
+        mOutput.Lines.Add(E.Message);
       end;
     end;
   finally
     FreeAndNil(im);
   end;
-  gCodeRageSchedule_Conn.DisconnectToPool;
+  FProjectConnection.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.FormCreate(Sender: TObject);
@@ -403,6 +407,8 @@ begin
     DBName, DBUser, DBPass);
   LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
   CreateIfNil(DBName, DBUser, DBPass);
+  FProjectConnection := gCodeRageSchedule_Conn;
+  FProjectTransaction := gCodeRageSchedule_Tr;
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
