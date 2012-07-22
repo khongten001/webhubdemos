@@ -403,6 +403,12 @@ begin
 
     FlagInitDone := True;
     Result := True;
+  end
+  else
+  begin
+    { when running in an EXE that does not have a WebHub app object}
+    FlagInitDone := True;
+    Result := True;
   end;
 end;
 
