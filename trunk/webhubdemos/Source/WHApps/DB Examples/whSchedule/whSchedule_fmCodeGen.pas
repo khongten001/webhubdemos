@@ -167,9 +167,6 @@ begin
     if x > -1 then
       y.Delete(x);  // no generation for Rubicon Words table.
 
-    {Set number of fields to prompt for, per HTML row}
-    DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
-
     case cbCodeGenPattern.ItemIndex of
       0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpMacroLabelsForFields);
@@ -409,6 +406,10 @@ begin
   CreateIfNil(DBName, DBUser, DBPass);
   FProjectConnection := gCodeRageSchedule_Conn;
   FProjectTransaction := gCodeRageSchedule_Tr;
+
+  {Set number of fields to prompt for, per HTML row}
+  DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
+
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;
