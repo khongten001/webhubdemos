@@ -87,6 +87,7 @@ begin
 end;
 
 function TDMRubiconSearch.Init(out ErrorText: string): Boolean;
+const cFn = 'Init';
 var
   ProjectAbbrev: string;
   DBName, DBUser, DBPass: string;
@@ -96,7 +97,7 @@ begin
   // reserved for code that should run once, after AppID set
   if Result then Exit;
 
-  if pWebApp.ZMDefaultMapContext = 'ultraann' then
+  if (pWebApp.ZMDefaultMapContext = 'ultraann') then
     ProjectAbbrev := 'CodeRageScheduleLOCAL'
   else
     ProjectAbbrev := 'CodeRageSchedule';
@@ -107,6 +108,8 @@ begin
   except
     on E: Exception do
     begin
+      LogSendInfo('ProjectAbbrev', ProjectAbbrev, cFn);
+      LogSendInfo(DBName, DBUser, cFn);
       ErrorText := E.Message;
       Exit;                    // cannot continue if database connection fails
     end;
@@ -166,6 +169,7 @@ begin
       OnExecute := waRubiSearchExecute;
       OnNotify := waRubiSearchNotify;
       OnColStart := waRubiSearchColStart;
+      Tr := '<tr>';
       RecordLimit := 1500;
     end;
   end;
@@ -300,10 +304,14 @@ begin
     case Event of
 //    wsBefore:
     wsBeforeCol:
-      if Row mod 2 = 0 then
-        td := '<td class="alteven">'
-      else
-        td := '<td class="altodd">';
+      begin
+        if Row mod 2 = 0 then
+          pWebApp.StringVar['_mod'] := 'Even'
+        else
+          pWebApp.StringVar['_mod'] := 'Odd';
+        td := '<td class="alt(~_mod~)">'
+      end;
+
     wsBeforeRow:
       begin
         IBOQueryText.Close;
@@ -317,11 +325,13 @@ begin
         TABLE:='<table class="' + waRubiSearch.ClassName + '">';
 //    wsAfter:
     wsAfterCol: ;
-    wsAfterRow: ;
+    wsAfterRow:
+      LogSendInfo('afterrow');
     wsAfterScan: ;
     //
     wsAfterInit: ;
-    wsAfterExecute:;
+    wsAfterExecute:
+      pWebApp.Session.DeleteStringVarByName('_mod');
     //
     wsBeforeButtons:
       //SendLine('<hr><center>')
