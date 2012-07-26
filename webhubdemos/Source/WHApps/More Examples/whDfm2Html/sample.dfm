@@ -2,8 +2,8 @@ object sampleFrm: TsampleFrm
   Left = 194
   Top = 157
   Caption = 'This is not a Delphi form ... but it looks like one !'
-  ClientHeight = 512
-  ClientWidth = 530
+  ClientHeight = 557
+  ClientWidth = 566
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -557,8 +557,8 @@ object sampleFrm: TsampleFrm
     Caption = 'A memo:'
   end
   object labRO: TLabel
-    Left = 33
-    Top = 380
+    Left = 35
+    Top = 396
     Width = 114
     Height = 16
     Margins.Left = 4
@@ -569,8 +569,8 @@ object sampleFrm: TsampleFrm
     FocusControl = editRO
   end
   object labPass: TLabel
-    Left = 290
-    Top = 402
+    Left = 295
+    Top = 418
     Width = 63
     Height = 16
     Margins.Left = 4
@@ -599,8 +599,8 @@ object sampleFrm: TsampleFrm
     Transparent = True
   end
   object butSubmit: TButton
-    Left = 48
-    Top = 463
+    Left = 50
+    Top = 495
     Width = 116
     Height = 31
     Margins.Left = 4
@@ -611,8 +611,8 @@ object sampleFrm: TsampleFrm
     TabOrder = 0
   end
   object butReset: TButton
-    Left = 364
-    Top = 463
+    Left = 366
+    Top = 495
     Width = 116
     Height = 31
     Margins.Left = 4
@@ -626,7 +626,7 @@ object sampleFrm: TsampleFrm
     Left = 26
     Top = 80
     Width = 236
-    Height = 292
+    Height = 308
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
@@ -701,9 +701,9 @@ object sampleFrm: TsampleFrm
     end
     object grpFonts: TGroupBox
       Left = 15
-      Top = 203
-      Width = 173
-      Height = 79
+      Top = 216
+      Width = 202
+      Height = 81
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -773,7 +773,7 @@ object sampleFrm: TsampleFrm
     end
     object chkColor: TCheckBox
       Left = 37
-      Top = 143
+      Top = 155
       Width = 108
       Height = 21
       Margins.Left = 4
@@ -784,8 +784,8 @@ object sampleFrm: TsampleFrm
       TabOrder = 3
     end
     object ediColor: TEdit
-      Left = 42
-      Top = 169
+      Left = 37
+      Top = 184
       Width = 112
       Height = 24
       Margins.Left = 4
@@ -906,8 +906,8 @@ object sampleFrm: TsampleFrm
     TabOrder = 4
   end
   object editRO: TEdit
-    Left = 26
-    Top = 399
+    Left = 31
+    Top = 415
     Width = 231
     Height = 24
     Margins.Left = 4
@@ -918,8 +918,8 @@ object sampleFrm: TsampleFrm
     Text = 'Try the read-only checkbox...'
   end
   object ediPass: TEdit
-    Left = 354
-    Top = 399
+    Left = 359
+    Top = 415
     Width = 144
     Height = 24
     Margins.Left = 4
@@ -931,8 +931,8 @@ object sampleFrm: TsampleFrm
     TabOrder = 6
   end
   object butResetData: TButton
-    Left = 207
-    Top = 463
+    Left = 209
+    Top = 495
     Width = 115
     Height = 31
     Margins.Left = 4
@@ -944,7 +944,7 @@ object sampleFrm: TsampleFrm
   end
   object chkReadOnly: TCheckBox
     Left = 33
-    Top = 430
+    Top = 454
     Width = 120
     Height = 20
     Margins.Left = 4
