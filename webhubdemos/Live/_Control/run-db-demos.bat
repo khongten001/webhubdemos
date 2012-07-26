@@ -57,17 +57,17 @@ if "%demodbhtml%"=="yes" start whLoadFromDB.exe
 if "%demodbhtml%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
 if "%demodbhtml%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dbhtml /minutes=%covermin% /reason=%coverreason%
 
-::08Jan2011 OFF start whQuery1.exe    
-::08Jan2011 OFF d:\Apps\HREFTools\miscutil\wait.exe 14
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq1 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
+if "%demohtq1%"=="yes" start whQuery1.exe    
+if "%demohtq1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq1%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq1 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 ::08Jan2011 OFF start whQuery2.exe  
 ::08Jan2011 OFF d:\Apps\HREFTools\miscutil\wait.exe 14
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq2 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
-::08Jan2011 OFF start whQuery3.exe   
-::08Jan2011 OFF d:\Apps\HREFTools\miscutil\wait.exe 14
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq3 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
+if "%demohtq3%"=="yes" start whQuery3.exe   
+if "%demohtq3%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq3%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq3 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 ::08Jan2011 OFF start whQuery4.exe   
 ::08Jan2011 OFF d:\Apps\HREFTools\miscutil\wait.exe 14

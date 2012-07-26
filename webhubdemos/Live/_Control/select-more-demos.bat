@@ -11,11 +11,9 @@ echo ***
 echo .
 
 :: htcv includes file upload feature
-if "%whipc%"=="old" set demohtcv=yes
-if "%whipc%"=="x"    set demohtcv=yes
+set demohtcv=yes
 
-if "%whipc%"=="old" set demohtun=yes
-if "%whipc%"=="x" set demohtun=yes
+set demohtun=yes
 
 if "%whipc%"=="old" set demohtasync=no
 if "%whipc%"=="x"    set demohtasync=no
@@ -23,8 +21,7 @@ if "%whipc%"=="x"    set demohtasync=no
 if "%whipc%"=="old" set democom=no
 if "%whipc%"=="x"    set democom=no
 
-if "%whipc%"=="old" set demodfm2html=yes
-if "%whipc%"=="x" set demodfm2html=no
+set demodfm2html=yes
 
 if "%whipc%"=="old" set demohtdr=yes
 if "%whipc%"=="x" set demohtdr=no
@@ -35,8 +32,7 @@ if "%whipc%"=="x" set demohtob=no
 if "%whipc%"=="old" set demohtol=yes
 if "%whipc%"=="x" set demohtol=no
 
-if "%whipc%"=="old" set demohtem=yes
-if "%whipc%"=="x" set demohtem=yes
+set demohtem=yes
 
 if "%whipc%"=="old" set demohtgr=yes
 if "%whipc%"=="x" set demohtgr=no
