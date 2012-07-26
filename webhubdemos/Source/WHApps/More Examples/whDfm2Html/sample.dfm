@@ -1,24 +1,29 @@
 object sampleFrm: TsampleFrm
   Left = 194
   Top = 157
-  Width = 436
-  Height = 437
   Caption = 'This is not a Delphi form ... but it looks like one !'
+  ClientHeight = 512
+  ClientWidth = 530
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
+  Font.Height = -14
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   OldCreateOrder = True
+  Scaled = False
   OnCreate = FormCreate
-  PixelsPerInch = 96
-  TextHeight = 13
+  PixelsPerInch = 120
+  TextHeight = 16
   object ImgWH: TImage
-    Left = 273
-    Top = 11
+    Left = 336
+    Top = 14
     Width = 135
     Height = 39
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     AutoSize = True
     Picture.Data = {
       07544269746D61705E3E0000424D5E3E00000000000036000000280000008700
@@ -523,124 +528,171 @@ object sampleFrm: TsampleFrm
       040400040D070D000000}
   end
   object Label3: TLabel
-    Left = 24
-    Top = 9
-    Width = 138
-    Height = 20
+    Left = 30
+    Top = 11
+    Width = 164
+    Height = 24
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'TWHForm2HTML'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -16
+    Font.Height = -20
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
     Transparent = True
   end
   object Label7: TLabel
-    Left = 233
-    Top = 208
-    Width = 41
-    Height = 13
+    Left = 287
+    Top = 256
+    Width = 53
+    Height = 16
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'A memo:'
   end
   object labRO: TLabel
-    Left = 27
-    Top = 309
-    Width = 89
-    Height = 13
+    Left = 33
+    Top = 380
+    Width = 114
+    Height = 16
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Read-only support:'
     FocusControl = editRO
   end
   object labPass: TLabel
-    Left = 236
-    Top = 327
-    Width = 49
-    Height = 13
+    Left = 290
+    Top = 402
+    Width = 63
+    Height = 16
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Password:'
     FocusControl = ediPass
   end
   object Label9: TLabel
-    Left = 80
-    Top = 33
-    Width = 133
-    Height = 20
+    Left = 98
+    Top = 41
+    Width = 155
+    Height = 24
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'interactive demo'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clBlue
-    Font.Height = -16
+    Font.Height = -20
     Font.Name = 'MS Sans Serif'
     Font.Style = [fsBold]
     ParentFont = False
     Transparent = True
   end
   object butSubmit: TButton
-    Left = 39
-    Top = 376
-    Width = 94
-    Height = 25
+    Left = 48
+    Top = 463
+    Width = 116
+    Height = 31
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Submit Form'
     TabOrder = 0
   end
   object butReset: TButton
-    Left = 296
-    Top = 376
-    Width = 94
-    Height = 25
+    Left = 364
+    Top = 463
+    Width = 116
+    Height = 31
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Reset Form'
     TabOrder = 1
   end
   object Panel1: TPanel
-    Left = 21
-    Top = 65
-    Width = 192
-    Height = 237
+    Left = 26
+    Top = 80
+    Width = 236
+    Height = 292
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = ' '
     TabOrder = 2
     object Label4: TLabel
-      Left = 8
-      Top = 6
-      Width = 110
-      Height = 13
+      Left = 10
+      Top = 7
+      Width = 134
+      Height = 16
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Rendering Options:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object Label8: TLabel
-      Left = 8
-      Top = 39
-      Width = 71
-      Height = 13
+      Left = 10
+      Top = 48
+      Width = 91
+      Height = 16
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Border options:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -12
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsUnderline]
       ParentFont = False
     end
     object Label6: TLabel
-      Left = 8
-      Top = 88
-      Width = 83
-      Height = 20
+      Left = 10
+      Top = 108
+      Width = 96
+      Height = 24
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'BGColor:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clRed
-      Font.Height = -16
+      Font.Height = -20
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold, fsItalic]
       ParentFont = False
     end
     object lboBorder: TListBox
-      Left = 106
-      Top = 30
-      Width = 73
-      Height = 49
-      ItemHeight = 13
+      Left = 130
+      Top = 37
+      Width = 90
+      Height = 60
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Items.Strings = (
         'Titlebar'
         'Border'
@@ -648,37 +700,52 @@ object sampleFrm: TsampleFrm
       TabOrder = 0
     end
     object grpFonts: TGroupBox
-      Left = 12
-      Top = 165
-      Width = 141
-      Height = 64
+      Left = 15
+      Top = 203
+      Width = 173
+      Height = 79
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = ' Fonts settings '
       TabOrder = 1
       object rdoDFonts: TRadioButton
-        Left = 8
-        Top = 20
-        Width = 126
-        Height = 17
+        Left = 10
+        Top = 25
+        Width = 155
+        Height = 21
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
         Caption = '&Original Delphi fonts'
         Checked = True
         TabOrder = 0
         TabStop = True
       end
       object rdoBFonts: TRadioButton
-        Left = 8
-        Top = 41
-        Width = 126
-        Height = 17
+        Left = 10
+        Top = 50
+        Width = 155
+        Height = 21
+        Margins.Left = 4
+        Margins.Top = 4
+        Margins.Right = 4
+        Margins.Bottom = 4
         Caption = '&Browser'#39's font'
         TabOrder = 1
       end
     end
     object cboBGColor: TComboBox
-      Left = 106
-      Top = 88
-      Width = 75
-      Height = 21
-      ItemHeight = 13
+      Left = 130
+      Top = 108
+      Width = 93
+      Height = 24
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       TabOrder = 2
       Text = '[Same]'
       Items.Strings = (
@@ -705,129 +772,185 @@ object sampleFrm: TsampleFrm
         'Yellow')
     end
     object chkColor: TCheckBox
-      Left = 30
-      Top = 116
-      Width = 88
-      Height = 17
+      Left = 37
+      Top = 143
+      Width = 108
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Custom color:'
       TabOrder = 3
     end
     object ediColor: TEdit
-      Left = 34
-      Top = 137
-      Width = 91
-      Height = 21
+      Left = 42
+      Top = 169
+      Width = 112
+      Height = 24
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       TabOrder = 4
       Text = 'Wheat'
     end
   end
   object panBrowsers: TPanel
-    Left = 224
-    Top = 65
-    Width = 185
-    Height = 136
+    Left = 276
+    Top = 80
+    Width = 227
+    Height = 167
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     TabOrder = 3
     object Label5: TLabel
-      Left = 12
-      Top = 6
-      Width = 132
-      Height = 13
+      Left = 15
+      Top = 7
+      Width = 161
+      Height = 16
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Choose target browser:'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = [fsBold]
       ParentFont = False
     end
     object bfIE4: TRadioButton
-      Left = 12
-      Top = 28
-      Width = 155
-      Height = 17
+      Left = 15
+      Top = 34
+      Width = 191
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Internet Explorer 4.x'
       TabOrder = 0
     end
     object bfIE3: TRadioButton
-      Left = 12
-      Top = 49
-      Width = 155
-      Height = 17
+      Left = 15
+      Top = 60
+      Width = 191
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Internet Explorer 3.x'
       Checked = True
       TabOrder = 1
       TabStop = True
     end
     object bfNS4: TRadioButton
-      Left = 12
-      Top = 69
-      Width = 155
-      Height = 17
+      Left = 15
+      Top = 85
+      Width = 191
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Netscape Navigator 4.x'
       TabOrder = 2
     end
     object bfNS3: TRadioButton
-      Left = 12
-      Top = 90
-      Width = 155
-      Height = 17
+      Left = 15
+      Top = 111
+      Width = 191
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Netscape Navigator 3.x'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -11
+      Font.Height = -15
       Font.Name = 'MS Sans Serif'
       Font.Style = []
       ParentFont = False
       TabOrder = 3
     end
     object bfDefault: TRadioButton
-      Left = 12
-      Top = 110
-      Width = 155
-      Height = 17
+      Left = 15
+      Top = 135
+      Width = 191
+      Height = 21
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
       Caption = 'Other browser(s)'
       TabOrder = 4
     end
   end
   object Memo1: TMemo
-    Left = 228
-    Top = 224
-    Width = 181
-    Height = 71
+    Left = 281
+    Top = 276
+    Width = 222
+    Height = 87
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Lines.Strings = (
       'Containers may be nested !')
     TabOrder = 4
   end
   object editRO: TEdit
-    Left = 21
-    Top = 324
-    Width = 188
-    Height = 21
+    Left = 26
+    Top = 399
+    Width = 231
+    Height = 24
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     TabOrder = 5
     Text = 'Try the read-only checkbox...'
   end
   object ediPass: TEdit
-    Left = 288
-    Top = 324
-    Width = 117
-    Height = 21
+    Left = 354
+    Top = 399
+    Width = 144
+    Height = 24
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     MaxLength = 8
     PasswordChar = '%'
     TabOrder = 6
   end
   object butResetData: TButton
-    Left = 168
-    Top = 376
-    Width = 94
-    Height = 25
+    Left = 207
+    Top = 463
+    Width = 115
+    Height = 31
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Reset Data'
     TabOrder = 7
   end
   object chkReadOnly: TCheckBox
-    Left = 27
-    Top = 349
-    Width = 97
-    Height = 17
+    Left = 33
+    Top = 430
+    Width = 120
+    Height = 20
+    Margins.Left = 4
+    Margins.Top = 4
+    Margins.Right = 4
+    Margins.Bottom = 4
     Caption = 'Read-only'
     TabOrder = 8
   end
@@ -839,7 +962,7 @@ object sampleFrm: TsampleFrm
     ExportWHChunkFName = 'D:\PM\Frm2HTML\webdemo\chReset.txt'
     MainContainer = Owner
     SetFonts = True
-    Version = '1.06'
+    Version = '1.10'
     WHChunkOutputScope = cosAll
     OnBeforeRendering = WHForm2HTML1BeforeRendering
     Left = 393
@@ -860,7 +983,7 @@ object sampleFrm: TsampleFrm
         'Method'
         'post'
         'WHAction'
-        '(~ACTIONR|(~PAGEID~),.CKB~)'
+        '(~ACTION|(~PAGEID~),.CKB~)'
         'WHCbk'
         'True'
         'WHTargetPageID'
@@ -904,7 +1027,7 @@ object sampleFrm: TsampleFrm
         'Type'
         'image'
         'WHAnchorMacro'
-
+        
           '(~HREF|http://webhub.com|<IMG Height="39" Src="http://www.href.c' +
           'om/img256/whlogo.jpg" Width="135">~)'
         'WHAnchorType'
@@ -922,7 +1045,7 @@ object sampleFrm: TsampleFrm
         'Href'
         'http://www.href.com/hrefsite:dfm2html:(~SessionID~)'
         'WHAnchorMacro'
-
+        
           '<FONT Face="MS Sans Serif" Size="3" Color="#0000FF"><B>(~HREF|ht' +
           'tp://www.href.com/hrefsite:dfm2html:(~SessionID~)|TWHForm2HTML~)'
         'WHAnchorType'
@@ -1140,7 +1263,7 @@ object sampleFrm: TsampleFrm
         'Value'
         'rdoBFonts'
         'WHAnchorMacro'
-
+        
           '<FONT Face="MS Sans Serif" Size="1" Color="#000000">(~GO|(~PAGEI' +
           'D~),BFonts|Browser'#39's font~)'
         'WHAnchorType'
@@ -1436,7 +1559,7 @@ object sampleFrm: TsampleFrm
         'Value'
         'YES'
         'WHAnchorMacro'
-
+        
           '<FONT Face="MS Sans Serif" Size="1" Color="#000000">(~GO|(~PAGEI' +
           'D~),chkReadOnly|Read-only~)'
         'WHAnchorType'

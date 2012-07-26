@@ -1,7 +1,5 @@
 object whDataModule: TwhDataModule
   OldCreateOrder = True
-  Left = 187
-  Top = 176
   Height = 179
   Width = 581
   object CentralInfo: TwhCentralInfo

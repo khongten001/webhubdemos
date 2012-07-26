@@ -158,13 +158,14 @@ procedure TsampleFrm.FormCreate(Sender: TObject);
 var
   AttrObject : THAttrObject;
 begin
+  Self.Scaled := False;
     with pWebapp, WHForm2HTML1 do begin
       attrObject := HMainContainer.FindHObjectByName('labCompare');
       if assigned(attrObject) then
-         attrObject.Attributes['HREF'].Value := '/f2h/' + extractFileName(AppSetting['ScreenShotJPEG']);
+         attrObject.Attributes['HREF'].Value := '/f2h/' +
+           extractFileName(AppSetting['ScreenShotJPEG']);
     end;
 end;
-
 
 end.
 
