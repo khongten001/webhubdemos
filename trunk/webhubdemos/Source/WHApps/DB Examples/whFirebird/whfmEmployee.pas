@@ -25,7 +25,7 @@ uses
 {$ENDIF}
   toolbar, utPanFrm, tpMemo, restorer, tpStatus, tpCompPanel, updateOK,
   tpAction,
-  webTypes, webLink, wdbLink, wdbSSrc, wdbScan, whibds;
+  webTypes, webLink, wdbLink, wdbSSrc, wdbScan, wdbIBObjNSource;
 
 type
   TfmEmployee = class(TutParentForm)

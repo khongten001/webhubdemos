@@ -99,7 +99,7 @@
 				<Form>DMForWHFirebird</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
-			<DCCReference Include="h:\whibds.pas">
+			<DCCReference Include="h:\wdbIBObjNSource.pas">
 				<Form>$R *.res</Form>
 			</DCCReference>
 			<BuildConfiguration Include="Base">
