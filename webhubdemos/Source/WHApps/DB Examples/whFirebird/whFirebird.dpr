@@ -24,7 +24,7 @@ uses
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   webLink in 'h:\webLink.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
-  whibds in 'h:\whibds.pas';
+  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
@@ -32,11 +32,11 @@ uses
 {$R HTGLYPHS.RES}
 
 (* when compiling with full source:
-  whibds in 'K:\WebHub\lib\whibds.pas',
+  wdbIBObjNSource in 'K:\WebHub\lib\wdbIBObjNSource.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas';
 
   else:
-  whibds in 'h:\whibds.pas';
+  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas';
 *)
 
 

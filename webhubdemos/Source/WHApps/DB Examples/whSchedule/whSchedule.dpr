@@ -21,7 +21,7 @@ uses
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
-  whibds in 'h:\whibds.pas',
+  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas',
   uLingvoCodePoints in '..\..\Common\uLingvoCodePoints.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
