@@ -1,6 +1,6 @@
 unit scanfm;
 (*
-Copyright (c) 1997 HREF Tools Corp.
+Copyright (c) 1997-2012 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
@@ -27,7 +27,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, ExtCtrls, StdCtrls, DB, DBTables, DBClient, Buttons, Grids,
-  DBGrids, DBCtrls, MidasLib, Provider, SimpleDS, 
+  DBGrids, DBCtrls, MidasLib, Provider, SimpleDS,
   Toolbar, {}tpCompPanel, ucstring, UTPANFRM, tpTable, updateOk,
   tpAction, tpStatus, TxtGrid,
   wbdeForm, wbdeSource, webTypes, webLink, wdbLink, wdbScan, wbdeGrid, webMemo,
@@ -52,7 +52,7 @@ type
     GroupBox3: TGroupBox;
     cbUseBDE: TCheckBox;
     Table1: TtpTable;
-    DataSource2: TDataSource;
+    DataSourceBDE: TDataSource;
     procedure tpToolButton1Click(Sender: TObject);
     procedure BrowseScanRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -76,11 +76,16 @@ implementation
 {$R *.DFM}
 
 uses
+  {Reference http://www.codenewsfast.com/cnf/article/0/waArticleBookmark.7311195
+   Exception "unknown driver Firebird" exception is raised if DBXFirebird unit
+   omitted from uses clause. }
+  DBXFirebird,
   MultiTypeApp,
+  tpFirebirdCredentials,
   webApp,    // global pointer pWebApp is in this unit
   webSend,   // declaration of drBeforeTag
   whdemo_ViewSource,  // getHtDemoDataRoot is in this unit.
-  ucDlgs;    // ucDlgs is part of TPack. msgErrorOk is in this unit.
+  ucDlgs;  // ucDlgs is part of TPack. msgErrorOk is in this unit.
 
 //------------------------------------------------------------------------------
 //------------------------------------------------------------------------------
@@ -91,6 +96,7 @@ var
 function TfmDBPanel.Init: Boolean;
 var
   Flex: TwhdbSourceBase;
+  DBName, DBUser, DBPass: string;
 begin
   Result:= inherited Init;
   if not Result then
@@ -98,7 +104,8 @@ begin
   if FlagDone then Exit;
 
   (* There is a lot of code here purely for testing for differences between
-     BDE and dbExpress.  Please excuse the mess.  11-Dec-2008 *)
+     BDE and dbExpress.  Please excuse the mess.  BDE is off by default as
+     of July 2012 but you can toggle the checkbox on to test it yourself. *)
   try
     with Table1 do
     begin
@@ -113,12 +120,21 @@ begin
     end;
   end;
 
+  { Reference restore-whScanTable-to-FirebirdSQL.bat for making yourself a local
+    copy of the little graphics database for this demo. }
+   
   sdsScanDemo.Close;  // in case it was left open in the DFM
-
+  ZMLookup_Firebird_Credentials('WebHubDemo-scan', DBName, DBUser, DBPass);
+  Assert(DBName <> '', 'blank DBName after ZMLookup');
+  sdsScanDemo.Connection.Params.Values['Database'] := DBName;
+  sdsScanDemo.Connection.Params.Values['UserName'] := DBUser;
+  sdsScanDemo.Connection.Params.Values['Password'] := DBPass;
+  sdsScanDemo.Connection.Params.Values['ServerCharSet'] := 'UTF8';
+  
   Flex := disabledBDE;
   with TwhbdeSource(Flex) do
   begin
-    DataSource := DataSource2;  // TTable
+    DataSource := DataSourceBDE;  // TTable
     UsingIndexFieldNames := True;
     Name := 'Browse';
     KeyFieldNames := 'FileID';
@@ -139,7 +155,8 @@ begin
     Name := 'disabledDBX';
   end;
 
-  ToggleUseBDE(True);
+
+  ToggleUseBDE(False);
 
   { Note. The PageHeight is set to 3 initially, just so that the grid is not
     too large/slow for downloaders on overseas connections. 7-Jun-1998. }
@@ -217,21 +234,32 @@ begin
   // controls.
   if NOT Assigned(dbNavigator2.DataSource) then
   begin
-    dbNavigator2.DataSource:=DataSource1;
-    dbGrid2.DataSource:=DataSource1;
-    if Assigned(dbGrid2.DataSource.DataSet) then
+    if NOT cbUseBDE.Checked then
     begin
-      if dbGrid2.DataSource.DataSet is TSimpleDataSet then
+    
+      dbNavigator2.DataSource:=DataSource1;
+      dbGrid2.DataSource:=DataSource1;
+      if Assigned(DataSource1.DataSet) then
       begin
-        MsgInfoOk(Format('Filename: %s',
-          [TSimpleDataSet(dbGrid2.DataSource.DataSet).FileName]));
+        if DataSource1.DataSet is TSimpleDataSet then
+        begin
+          MsgInfoOk(Format('Connection Params: %s',
+            [TSimpleDataSet(dbGrid2.DataSource.DataSet).Connection.Params.Text
+            ]));
+        end
+        else
+          MsgWarningOk(Format('DataSet.ClassName is %s',
+            [DataSource1.DataSet.ClassName]));
+        DataSource1.DataSet.Active := True;
       end
       else
-        MsgWarningOk(Format('DataSet.ClassName is %s',
-          [dbGrid2.DataSource.DataSet.ClassName]));
+        MsgWarningOk('dbGrid2.DataSource.DataSet is nil');
     end
     else
-      MsgWarningOk('dbGrid2.DataSource.DataSet is nil');
+    begin
+      dbNavigator2.DataSource:=DataSourceBDE;
+      dbGrid2.DataSource:=DataSourceBDE;
+    end;
   end
   else
   begin
@@ -305,5 +333,29 @@ begin
   inherited;
   ToggleUseBDE(cbUseBDE.Checked);
 end;
+
+(*
+    Connection.ConnectionName = 'FBConnection'
+    Connection.DriverName = 'Firebird'
+    Connection.GetDriverFunc = 'getSQLDriverINTERBASE'
+    Connection.LibraryName = 'dbxfb.dll'
+    Connection.LoginPrompt = False
+    Connection.Params.Strings = (
+      'DriverName=Firebird'
+      'Database=database.gdb'
+      'RoleName=RoleName'
+      'User_Name=sysdba'
+      'Password=masterkey'
+      'ServerCharSet='
+      'SQLDialect=3'
+      'ErrorResourceFile='
+      'LocaleCode=0000'
+      'BlobSize=-1'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'IsolationLevel=ReadCommitted'
+      'Trim Char=False')
+    Connection.VendorLib = 'fbclient.dll'
+*)
 
 end.
