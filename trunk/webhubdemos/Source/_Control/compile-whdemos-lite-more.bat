@@ -57,8 +57,8 @@ copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 if %comp3%==D15 cd %droot%\More Examples\whCOM
 if %comp3%==D15 call %cbat% whCOM
 
-cd %droot%\More Examples\whASyncDemo
-call %cbat% whASyncDemo
+:: not suitable for new-ipc cd %droot%\More Examples\whASyncDemo
+:: not suitable for new-ipc call %cbat% whASyncDemo
 
 cd %droot%\More Examples\whDfm2html
 call %cbat% f2hdemo
