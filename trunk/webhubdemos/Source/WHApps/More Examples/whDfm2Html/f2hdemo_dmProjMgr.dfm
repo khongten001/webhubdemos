@@ -1,7 +1,5 @@
 object PMforF2H: TPMforF2H
   OldCreateOrder = False
-  Left = 259
-  Top = 142
   Height = 150
   Width = 215
   object ProjMgr: TtpProject

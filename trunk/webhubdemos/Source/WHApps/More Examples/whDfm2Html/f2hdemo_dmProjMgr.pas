@@ -36,8 +36,9 @@ implementation
 
 uses
   MultiTypeApp,
-  whdemo_Initialize, whDM, fmf2h, sample, whsample_EvtHandlers,
-  whdemo_ViewSource, f2hf;
+  htWebApp,
+  whdemo_Initialize, whdemo_ViewSource,
+  whDM, fmf2h, sample, f2hf;
 
 {$R *.dfm}
 

@@ -3,11 +3,11 @@ unit whDM;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Forms, Windows, Messages, SysUtils, Classes, Graphics, Controls, Dialogs,
   ApiBuilt, ApiCall, WebCall, CGiVarS, APiStat, WebBase, WebCore, WebSend,
   WebApp, htWebApp, WebTypes, WebVars, HtmlBase, HtmlCore, HtmlSend,
   WebInfoU, CGiServ, WebServ, IniLink,   UpdateOk, tpAction,
-  WebLink, f2h, WebCycle;
+  WebLink, f2h, WebCycle, webInfoBase;
 
 type
   TwhDataModule = class(TDataModule)
