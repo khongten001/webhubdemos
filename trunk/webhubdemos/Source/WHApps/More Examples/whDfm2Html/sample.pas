@@ -158,7 +158,7 @@ procedure TsampleFrm.FormCreate(Sender: TObject);
 var
   AttrObject : THAttrObject;
 begin
-  Self.Scaled := False;
+  Self.Scaled := True;
     with pWebapp, WHForm2HTML1 do begin
       attrObject := HMainContainer.FindHObjectByName('labCompare');
       if assigned(attrObject) then
