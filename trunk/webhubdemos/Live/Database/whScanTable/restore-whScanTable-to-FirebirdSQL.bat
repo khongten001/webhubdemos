@@ -11,7 +11,7 @@ SETLOCAL
 call %ZaphodsMap%zmset.bat dbname UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan database localhost:whdemoscan"
 if errorlevel 1 pause
 call %ZaphodsMap%zmset.bat u UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan user SYSDBA"
-call %ZaphodsMap%zmset.bat p UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan pass SYSDBA"
+call %ZaphodsMap%zmset.bat p UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan pass masterkey"
 
 @echo off
 cls
