@@ -173,7 +173,8 @@ WebHub demo files.
 <li> The about-whQuery1.whteko file had to contain the standard pieces of information for a WebHub demo.</li>
 <li> The whQuery1.whteko file had to contain the pages particular to this demo.  That meant, the entrance page prompting for MemberID and Password, and the result page (Page2) with error message handling.</li>
 
-<li> The AppID had to be set to HTQ2 so that the application-level INI file would be found.
+<li> The AppID had to be set to 'htq1' (lowercase - important) 
+so that the application-level configuration file would be found.
 Because this was a demo, this was done by calling a special routine from the DPR, which
 configures a number of defaults and sets the AppID. </li>
 </ul></li>
@@ -184,7 +185,7 @@ configures a number of defaults and sets the AppID. </li>
 so that we could use the debugger.  Once the EXE was running, we checked the HTML > Pages panel
 to make sure that our entrance and results pages were listed.</li>
 
-<li> We tested using a web browser and requesting ...?HTQ2:pgWelcome. </li>
+<li> We tested using a web browser and requesting ...?htq1:pgWelcome. </li>
 
 <li> We went back into the Delphi IDE. There, on a starter panel (which could have equally well
 been a datamodule), we added a TQuery, a TDatasource, a TwhdbSource and a TwhdbGrid
