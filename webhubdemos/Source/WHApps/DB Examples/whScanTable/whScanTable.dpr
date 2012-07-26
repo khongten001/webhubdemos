@@ -32,9 +32,9 @@ THE SOFTWARE.
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -47,21 +47,13 @@ uses
   scanfm in 'scanfm.pas' {fmDBPanel},
   importfm in 'importfm.pas' {FormImport},
   ucScnDir in 'ucScnDir.pas',
-  whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule};
+  whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
+  tpFirebirdCredentials in 'H:\tpFirebirdCredentials.pas';
 
-{
-  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
-  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
-  wdbxSource in 'K:\WebHub\lib\whdb\wdbxSource.pas',
-  webScan in 'K:\WebHub\lib\whplus\webScan.pas',
-  htWebApp in 'K:\WebHub\lib\htWebApp.pas',
-  webLink in 'k:\webhub\lib\webLink.pas',
-  htmlBase in 'K:\WebHub\lib\whvcl\htmlBase.pas';
-}
 {$R *.RES}
-{$R HTDEMOS.RES}     // main icon for WebHub demos
-{..$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
-{..$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
+{$R HTDEMOS.RES}   // main icon for WebHub demos
+{$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
+{$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
 
 begin
   {M}Application.Initialize;
