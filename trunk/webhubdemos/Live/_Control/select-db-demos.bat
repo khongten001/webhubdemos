@@ -23,7 +23,7 @@ set demohtq3=yes
 set demohtq4=yes
 set demohtru=no
 set demojpeg=yes
-set demoscan=no
+set demoscan=yes
 set demoshop1=no
 set demostore000=no
 
@@ -40,7 +40,7 @@ set compilehtq3=yes
 set compilehtq4=yes
 set compilehtru=no
 set compilejpeg=yes
-set compilescan=no
+set compilescan=yes
 set compileshop1=yes
 set compilestore000=no
 
