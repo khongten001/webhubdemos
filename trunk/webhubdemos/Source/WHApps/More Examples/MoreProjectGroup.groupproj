@@ -18,6 +18,9 @@
 			<Projects Include="whExpertInstall\whExpertInstall.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whDfm2Html\f2hdemo.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -71,14 +74,23 @@
 		<Target Name="whExpertInstall:Make">
 			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="f2hdemo">
+			<MSBuild Projects="whDfm2Html\f2hdemo.dproj"/>
+		</Target>
+		<Target Name="f2hdemo:Clean">
+			<MSBuild Projects="whDfm2Html\f2hdemo.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="f2hdemo:Make">
+			<MSBuild Projects="whDfm2Html\f2hdemo.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall"/>
+			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall;f2hdemo"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean"/>
+			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean;f2hdemo:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make"/>
+			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make;f2hdemo:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
