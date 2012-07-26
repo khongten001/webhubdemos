@@ -8,7 +8,7 @@ uses
   sample in 'sample.pas' {sampleFrm},
   whDM in 'whDM.pas' {whDataModule: TDataModule},
   fmf2h in 'fmf2h.pas' {fmF2HDemo},
-  f2h,
+  f2h in 'h:\f2h.pas',
   f2hf {f2hFrm},
   webapp,
   webcall,
