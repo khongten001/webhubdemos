@@ -25,10 +25,10 @@ if "%whipc%"=="old" set demobrnd=no
 if "%whipc%"=="x"    set demobrnd=no
 
 if "%whipc%"=="old" set demohtfd=yes
-if "%whipc%"=="x" set demohtfd=no
+if "%whipc%"=="x" set demohtfd=yes
 
 if "%whipc%"=="old" set demoform=yes
-if "%whipc%"=="x" set demoform=no
+if "%whipc%"=="x" set demoform=yes
 
 if "%whipc%"=="old" set demofast=yes
 if "%whipc%"=="x" set demofast=yes
@@ -40,6 +40,6 @@ if "%whipc%"=="old" set demohtsc=yes
 if "%whipc%"=="x" set demohtsc=yes
 
 if "%whipc%"=="old" set demojoke=no
-if "%whipc%"=="x" set demojoke=no
+if "%whipc%"=="x" set demojoke=yes
 
 :end
