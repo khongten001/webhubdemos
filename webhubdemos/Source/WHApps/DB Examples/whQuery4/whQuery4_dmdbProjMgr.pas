@@ -44,7 +44,7 @@ begin
   inherited;
   // call initialization methods for custom data module
   DataModuleGrid2.Init;
-  DataModuleHTQ4.Init;
+  Continue := DataModuleHTQ4.Init(ErrorText);
 end;
 
 end.

@@ -32,16 +32,7 @@
 <table>
 <tr>
 <td align="center">Employee works in which department?</td>
-<td>
- (~<select name="Dept">
- (~<option value="Sales"> Sales</option>
- (~<option value="Admin"> Administration</option>
- (~<option value="HR"> Human Resources</option>
- (~<option value="MIS"> MIS</option>
- (~<option value="Research"> Research</option>
- (~<option value="Accounting"> Accounting </option>
- </select>
-</td>
+<td>(~selectDepartment.Execute|~)</td>
 </tr>
 <tr>
 <td align="center">Employee's salary is more than:</td>
