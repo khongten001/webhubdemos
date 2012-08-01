@@ -23,18 +23,21 @@ type
     TableFishCostPassword: TStringField;
     TableFishCostShippingNotes: TMemoField;
     waSaveCurrentFish: TwhWebActionEx;
-    HTFS_ADMIN: TwhPage;
     procedure TableFishCostBeforePost(DataSet: TDataSet);
     procedure gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
       var s: string);
     procedure HTFS_ADMINSection(Sender: TObject; Section: Integer;
       var Chunk, Options: string);
     procedure waSaveCurrentFishExecute(Sender: TObject);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     procedure initDB;
+  published
+    HTFS_ADMIN: TwhPage;
   end;
 
 var
@@ -96,6 +99,18 @@ end;
 
 {------------------------------------------------------------------------------}
 
+procedure TDataModuleAdmin.DataModuleCreate(Sender: TObject);
+begin
+  HTFS_ADMIN := TwhPage.Create(pWebApp);
+  HTFS_ADMIN.Name := 'htfs_ADMIN';
+  HTFS_ADMIN.PageID := 'ADMIN';
+end;
+
+procedure TDataModuleAdmin.DataModuleDestroy(Sender: TObject);
+begin
+  FreeAndNil(HTFS_ADMIN);
+end;
+
 procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
   var s: string);
 begin
@@ -155,7 +170,6 @@ begin
     end;
   end;
 end;
-
 
 end.
 
