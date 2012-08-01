@@ -1,7 +1,7 @@
 object DataModuleAdmin: TDataModuleAdmin
   OldCreateOrder = True
-  Left = 374
-  Top = 130
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 243
   Width = 441
   object gfAdmin: TwhbdeGrid
@@ -68,12 +68,6 @@ object DataModuleAdmin: TDataModuleAdmin
       BlobType = ftMemo
       Size = 1
     end
-  end
-  object HTFS_ADMIN: TwhPage
-    ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
-    PageID = 'ADMIN'
-    Left = 42
-    Top = 79
   end
   object waSaveCurrentFish: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet]
