@@ -1,6 +1,6 @@
 program whQuery4; {Query example, multiple grids on same web page.}
 (*
-Copyright (c) 1999 HREF Tools Corp.
+Copyright (c) 1999-2012 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -29,8 +29,8 @@ uses
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -42,7 +42,8 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htqry4DM in 'htqry4DM.PAS' {DataModuleHTQ4: TDataModule},
   grid2DM in 'grid2DM.pas' {DataModuleGrid2: TDataModule},
-  whQuery4_dmdbProjMgr in 'whQuery4_dmdbProjMgr.pas' {DMForWHQuery4: TDataModule};
+  whQuery4_dmdbProjMgr in 'whQuery4_dmdbProjMgr.pas' {DMForWHQuery4: TDataModule},
+  wdbLstBx in 'H:\wdbLstBx.pas';
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

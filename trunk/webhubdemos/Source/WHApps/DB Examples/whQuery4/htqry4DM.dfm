@@ -1,13 +1,12 @@
 object DataModuleHTQ4: TDataModuleHTQ4
   OldCreateOrder = True
-  Left = 380
-  Top = 120
-  Height = 283
+  OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
+  Height = 399
   Width = 492
   object grid1: TwhbdeGrid
     ComponentOptions = [tpUpdateOnLoad]
     DirectCallOk = True
-    WebDataSource = WebDataSource1
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 3
     ScanMode = dsByKey
@@ -17,19 +16,20 @@ object DataModuleHTQ4: TDataModuleHTQ4
     TD = '<td>'
     Preformat = False
     OnHotField = grid1HotField
+    WebDataSource = WebDataSource1
     Left = 128
     Top = 52
   end
   object WebDataSource1: TwhbdeSource
     ComponentOptions = [tpUpdateOnGet, tpStatusPanel]
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    MaxOpenDataSets = 20
     BendPointers = True
     GotoMode = wgGotoKey
+    KeyFieldNames = 'EmpNo'
+    MaxOpenDataSets = 20
+    OpenDataSets = 0
+    OpenDataSetRetain = 600
     SaveTableName = False
     DataSource = DataSource1
-    KeyFieldNames = 'EmpNo'
     Left = 128
     Top = 100
   end
@@ -54,10 +54,10 @@ object DataModuleHTQ4: TDataModuleHTQ4
   end
   object WebDataSourceEmp: TwhbdeSource
     ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 1
     OpenDataSets = 0
     OpenDataSetRetain = 600
-    MaxOpenDataSets = 1
-    GotoMode = wgGotoKey
     SaveTableName = False
     DataSource = DataSourceEmp
     Left = 320
@@ -80,5 +80,14 @@ object DataModuleHTQ4: TDataModuleHTQ4
     DirectCallOk = True
     Left = 24
     Top = 104
+  end
+  object DataSourceDept: TDataSource
+    DataSet = QueryDept
+    Left = 320
+    Top = 236
+  end
+  object QueryDept: TQuery
+    Left = 320
+    Top = 292
   end
 end

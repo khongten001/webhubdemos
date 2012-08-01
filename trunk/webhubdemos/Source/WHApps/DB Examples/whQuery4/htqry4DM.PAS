@@ -1,7 +1,7 @@
 unit htqry4dm;
 
 (*
-Copyright (c) 1999 HREF Tools Corp.
+Copyright (c) 1999-2012 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -30,8 +30,8 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DBTables, DB, 
   UpdateOk, tpAction, 
-  WebTypes, wbdeSource, wbdeForm, 
-  WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan;
+  WebTypes, wbdeSource, wbdeForm,
+  WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan, wdbLstBx, wdbSSrc;
 
 type
   TDataModuleHTQ4 = class(TDataModule)
@@ -44,16 +44,22 @@ type
     DataSourceEmp: TDataSource;
     TableEmp: TTable;
     WebAction1: TwhWebAction;
-    procedure grid1HotField(Sender: TwhdbScan; aField: TField;
+    DataSourceDept: TDataSource;
+    QueryDept: TQuery;
+    procedure grid1HotField(Sender: TwhbdeGrid; aField: TField;
       var s: string);
     procedure WebAction1Execute(Sender: TObject);
     procedure Query1BeforeOpen(DataSet: TDataSet);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    procedure Init;
+    function Init(out ErrorText: string): Boolean;
     procedure WebAppUpdate(Sender: TObject);
+  published
+    selectDepartment: TwhdbListBox;
   end;
 
 var
@@ -61,32 +67,73 @@ var
 
 implementation
 
-uses 
-  webApp, htWebApp, whdemo_ViewSource, whMacroAffixes, grid2DM;
+uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ucCodeSiteInterface,
+  webApp, htWebApp, whMacroAffixes,
+  whdemo_ViewSource, grid2DM;
 
 {$R *.DFM}
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-procedure TDataModuleHTQ4.Init;
+function TDataModuleHTQ4.Init(out ErrorText: string): Boolean;
+const cFn = 'Init';
 begin
+  ErrorText := '';
+  Result := False;
+
   Query1.Databasename := getHtDemoDataRoot + 'whQuery4\';
   TableEmp.Databasename := getHtDemoDataRoot + 'whQuery4\';
-  RefreshWebActions(DataModuleHTQ4);
+
+  if NOT Assigned(selectDepartment) then
+  begin
+    selectDepartment := TwhdbListBox.Create(Self);
+    selectDepartment.Name := 'selectDepartment';  // name as used in WHTEKO
+    selectDepartment.DataSource := DataSourceDept;
+    selectDepartment.Size := 1;
+    selectDepartment.StringVarName := 'Dept';
+    selectDepartment.DataField := 'DepartmentFull';
+    selectDepartment.ValueField := 'DeptShort';
+    selectDepartment.BlankItem := True;
+    selectDepartment.BlankText := '--select--';
+    selectDepartment.MultiSelect := False;
+    QueryDept.Databasename := getHtDemoDataRoot + 'whQuery4\';
+    QueryDept.SQL.Text := 'select distinct DeptShort, DepartmentFull ' +
+      'from department';
+    try
+      QueryDept.Prepare;
+      QueryDept.Open;
+    except
+      on E: Exception do
+      begin
+        {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+        ErrorText := E.Message;
+        Exit;
+      end;
+    end;
+    DataSourceDept.DataSet := QueryDept;
+  end;
+  RefreshWebActions(Self);
 
   WebDataSource1.MaxOpenDataSets := 20;
   WebDataSource1.BendPointers := False;
   grid1.Border := '';
   grid1.SetCaptions2004;
   grid1.SetButtonSpecs2012;
-  grid1.Captions.Values['Redraw'] := '<input type="submit" value="X">';
+  grid1.Captions.Values['Redraw'] := '<input type="submit" value="X"/>';
 
   if assigned(pWebApp) then
   begin
     AddAppUpdateHandler(WebAppUpdate);
     WebAppUpdate(pWebApp);
   end;
+
+  Result := grid1.IsUpdated and selectDepartment.IsUpdated;
+  if NOT Result then
+    ErrorText :=
+      'grid1 AND selectDepartment must Refresh fully for this demo to work';
 end;
 
 //------------------------------------------------------------------------------
@@ -115,7 +162,17 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure TDataModuleHTQ4.grid1HotField(Sender: TwhdbScan;
+procedure TDataModuleHTQ4.DataModuleCreate(Sender: TObject);
+begin
+  selectDepartment := nil;
+end;
+
+procedure TDataModuleHTQ4.DataModuleDestroy(Sender: TObject);
+begin
+  FreeAndNil(selectDepartment);
+end;
+
+procedure TDataModuleHTQ4.grid1HotField(Sender: TwhbdeGrid;
   aField: TField; var s: string);
 begin
   if comparetext(aField.fieldname,'empno')=0 then
