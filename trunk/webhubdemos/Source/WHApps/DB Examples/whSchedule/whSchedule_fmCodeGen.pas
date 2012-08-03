@@ -249,6 +249,12 @@ begin
     ex.Dataset := q;
     ex.ExportFormat := efText_Delimited;
 
+    {While humans like to see headers in the CSV file, they did not prove 
+    to be machine readable in this particular case of the schedule database. 
+    They were turned off here to avoid having to chase down the root cause. 
+    Headers probably work fine in many other projects.  You will find out 
+    during export and/or when you try to import.}
+
     ex.IncludeHeaders := False;
     ex.OnTranslateString := TranslateOutgoingStringBreaks;
     mOutput.Clear;
