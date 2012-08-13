@@ -22,6 +22,7 @@ where Department='MIS'</code>
 </p>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|result,.new~)">
 <p>Enter SQL:(~INPUTTEXT|SQL,30,80~)</p>
+<p>Enter field number to keep invisible (blank for none): (~INPUTTEXT|inHideFieldNum~)</p>
 <p><input type="submit" value="Submit Query" /></p>
 </form>
 </div>  <!--- demopagecontent -->
