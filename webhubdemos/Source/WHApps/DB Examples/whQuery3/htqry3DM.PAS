@@ -79,6 +79,7 @@ end;
 procedure TDataModuleQ3.Query1AfterOpen(DataSet: TDataSet);
 var
   HideFieldNum: Integer;
+  i: Integer;
 begin
   {hide one field from the grid by setting Visible False on the DataSet.}
   HideFieldNum := StrToIntDef(pWebApp.StringVar['inHideFieldNum'], -1);
@@ -87,6 +88,10 @@ begin
     if HideFieldNum < DataSet.FieldCount then
       DataSet.Fields[HideFieldNum].Visible := False;
   end;
+  {enable use of OnHotLabel and OnHotField event for all fields even though
+   that feature is not currently used in this demo.}
+  for i := 0 to Pred(DataSet.FieldCount) do
+    DataSet.Fields[i].Tag := HotLabelTag + HotFieldTag;
 end;
 
 procedure TDataModuleQ3.Query1BeforeOpen(DataSet: TDataSet);
