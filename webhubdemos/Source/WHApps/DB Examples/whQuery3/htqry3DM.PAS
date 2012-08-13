@@ -26,7 +26,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DB, DBTables, wbdeSource, WdbLink, WdbScan, wbdeGrid, UpdateOk, tpAction,
-  WebTypes,   WebLink, WebPage, WebPHub, webScan;
+  WebTypes,   WebLink, WebPage, WebPHub, webScan, wdbSSrc;
 
 type
   TDataModuleQ3 = class(TDataModule)
@@ -36,6 +36,7 @@ type
     Query1: TQuery;
     procedure Query1BeforeOpen(DataSet: TDataSet);
     procedure DataModuleQ3Create(Sender: TObject);
+    procedure Query1AfterOpen(DataSet: TDataSet);
   private
     { Private declarations }
   public
@@ -74,6 +75,19 @@ begin
 end;
 
 // -----------------------------------------------------------------------------
+
+procedure TDataModuleQ3.Query1AfterOpen(DataSet: TDataSet);
+var
+  HideFieldNum: Integer;
+begin
+  {hide one field from the grid by setting Visible False on the DataSet.}
+  HideFieldNum := StrToIntDef(pWebApp.StringVar['inHideFieldNum'], -1);
+  if HideFieldNum > -1 then
+  begin
+    if HideFieldNum < DataSet.FieldCount then
+      DataSet.Fields[HideFieldNum].Visible := False;
+  end;
+end;
 
 procedure TDataModuleQ3.Query1BeforeOpen(DataSet: TDataSet);
 var

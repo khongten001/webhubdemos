@@ -1,13 +1,10 @@
 object DataModuleQ3: TDataModuleQ3
   OldCreateOrder = True
   OnCreate = DataModuleQ3Create
-  Left = 266
-  Top = 113
   Height = 297
   Width = 381
   object WebDataGrid1: TwhbdeGrid
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    WebDataSource = WebDataSource1
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonAutoHide = False
@@ -17,15 +14,16 @@ object DataModuleQ3: TDataModuleQ3
     TD = '<td>'
     ShowRecno = False
     Preformat = False
+    WebDataSource = WebDataSource1
     Left = 109
     Top = 12
   end
   object WebDataSource1: TwhbdeSource
     ComponentOptions = [tpStatusPanel]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 20
     OpenDataSets = 0
     OpenDataSetRetain = 600
-    MaxOpenDataSets = 20
-    GotoMode = wgGotoKey
     SaveTableName = False
     DataSource = DataSource1
     Left = 109
@@ -37,6 +35,7 @@ object DataModuleQ3: TDataModuleQ3
     Top = 108
   end
   object Query1: TQuery
+    AfterOpen = Query1AfterOpen
     DatabaseName = 'WebHubDemoData'
     Left = 109
     Top = 156

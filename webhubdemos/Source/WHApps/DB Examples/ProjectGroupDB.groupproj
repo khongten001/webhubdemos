@@ -36,6 +36,9 @@
 			<Projects Include="whQuery4\whQuery4.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whQuery3\whQuery3.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -143,14 +146,23 @@
 		<Target Name="whQuery4:Make">
 			<MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whQuery3">
+			<MSBuild Projects="whQuery3\whQuery3.dproj"/>
+		</Target>
+		<Target Name="whQuery3:Clean">
+			<MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whQuery3:Make">
+			<MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4"/>
+			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean"/>
+			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make"/>
+			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
