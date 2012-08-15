@@ -149,10 +149,10 @@ mcPromptsFieldSet=<b>Field Set</b>:
 <div id="ScanEmployee3-buttons" class="whdbScanBase-buttons">
 <!-- changing:start-->
 <ul>
-  <li class="whdbScanBase-firstbutton">(~ScanEmployee3|ButtonFirst|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</A>||<span class="disabled">first</span>~)</li>
-  <li>(~ScanEmployee3|ButtonPrior|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</A>||<span class="disabled">previous</span>~)</li>
-  <li>(~ScanEmployee3|ButtonNext|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</A>||<span class="disabled">next</span>~)</li>
-  <li>(~ScanEmployee3|ButtonLast|<A HREF="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</A>||<span class="disabled">last</span>~)</li>
+  <li class="whdbScanBase-firstbutton">(~ScanEmployee3|ButtonFirst|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</a>||<span class="disabled">first</span>~)</li>
+  <li>(~ScanEmployee3|ButtonPrior|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</a>||<span class="disabled">previous</span>~)</li>
+  <li>(~ScanEmployee3|ButtonNext|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</a>||<span class="disabled">next</span>~)</li>
+  <li>(~ScanEmployee3|ButtonLast|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</a>||<span class="disabled">last</span>~)</li>
 </ul>
 <!-- changing:stop-->
 </div>
