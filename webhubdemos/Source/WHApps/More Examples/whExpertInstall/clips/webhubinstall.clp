@@ -39,7 +39,7 @@
   (declare (salience 10000))
   =>
   (set-fact-duplication TRUE)
-  (focus QUESTIONS CHOOSE-PLATFORM-REASONABLE PRINT-RESULTS))
+  (focus QUESTIONS CHOOSE-PLATFORM-REASONABLE COMPUTERPLATFORMS PRINT-RESULTS))
 
 (defrule MAIN::combine-certainties ""
   (declare (salience 100)
@@ -102,8 +102,9 @@
 (defmodule WEBHUBRUNTIME-QUESTIONS (import QUESTIONS ?ALL))
 
 (deffacts WEBHUBRUNTIME-QUESTIONS::question-attributes
-  (question (attribute user-objective)
+  (question (attribute use-case)
             (the-question "Do you wish to run web applications on this computer? ")
+            (precursors computer-platform is supported)
             (valid-answers yes no))
   (question (attribute computer-bitness)
             (the-question "What type of CPU is here?")
@@ -184,13 +185,34 @@
   ; Rules for assessing the overall computer platform
 
   (rule (if computer-operating-system is Linux)
-        (then computer-platform is unsupported))
+        (then computerplatform is unsupported))
   (rule (if computer-operating-system is MacOS)
-        (then computer-platform is unsupported))
+        (then computerplatform is unsupported))
   (rule (if computer-operating-system is Win2003)
-        (then computer-platform is supported))
+        (then computerplatform is supported))
   (rule (if computer-operating-system is Windows7)
-        (then computer-platform is supported)))
+        (then computerplatform is supported))
+  (rule (if computer-operating-system is Windows7)
+        (then computerplatform is supported))
+  (rule (if user-objective is yes and computer-platform is supported)
+	(then should-install httpServer should-install WebHubRuntimeSetup)))
+
+;;************************
+;;* CUSTOM SELECTION RULES *
+;;************************
+
+(defmodule COMPUTERPLATFORMS (import MAIN ?ALL))
+
+(deffacts any-attributes
+  (attribute (name x-operating-system) (value any))
+  (attribute (name x-operating-system-bitness) (value any))
+  (attribute (name x-use-case) (value any)))
+
+(deftemplate COMPUTERPLATFORMS::computerplatform
+  (slot name (default ?NONE))
+  (multislot operating-system (default any))
+  (multislot operating-system-bitness (default any))
+  (multislot use-case (default any)))
 
 ;;*****************************
 ;;* PRINT SOMETHING *
