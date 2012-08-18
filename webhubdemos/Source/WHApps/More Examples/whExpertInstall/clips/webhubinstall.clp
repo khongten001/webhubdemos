@@ -39,7 +39,7 @@
   (declare (salience 10000))
   =>
   (set-fact-duplication TRUE)
-  (focus QUESTIONS CHOOSE-QUALITIES WINES PRINT-RESULTS))
+  (focus QUESTIONS CHOOSE-PLATFORM-REASONABLE PRINT-RESULTS))
 
 (defrule MAIN::combine-certainties ""
   (declare (salience 100)
@@ -51,6 +51,7 @@
   (retract ?rem1)
   (modify ?rem2 (certainty (/ (- (* 100 (+ ?per1 ?per2)) (* ?per1 ?per2)) 100))))
   
+
 ;;******************
 ;;* QUESTION RULES *
 ;;******************
@@ -183,7 +184,24 @@
   ; Rules for assessing the overall computer platform
 
   (rule (if computer-operating-system is Linux)
-        (then computer-platform is unsupported)))
+        (then computer-platform is unsupported))
+  (rule (if computer-operating-system is MacOS)
+        (then computer-platform is unsupported))
+  (rule (if computer-operating-system is Win2003)
+        (then computer-platform is supported))
+  (rule (if computer-operating-system is Windows7)
+        (then computer-platform is supported)))
+
+;;*****************************
+;;* PRINT SOMETHING *
+;;*****************************
+
+(defmodule PRINT-RESULTS (import MAIN ?ALL))
+
+(defrule PRINT-RESULTS::header ""
+   (declare (salience 10))
+   =>
+   (printout t "ok" crlf))
 
 
 ;;(deffacts startup
