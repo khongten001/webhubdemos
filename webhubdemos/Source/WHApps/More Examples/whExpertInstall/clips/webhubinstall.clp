@@ -5,9 +5,6 @@
 ;;;     This example guides someone to install
 ;;;     WebHub Runtime including all pre-requisites.
 ;;;
-;;;     Copyright (c) 2012 HREF Tools Corp. 
-;;;     All Rights Reserved Worldwide.
-;;;
 ;;;     CLIPS Version 6.0 
 ;;;
 ;;;     To execute, merely load, reset and run.
@@ -96,19 +93,112 @@
     then (modify ?f (precursors (rest$ ?rest)))
     else (modify ?f (precursors ?rest))))
 
-(deffacts startup
- (operating-system-list WinXP Windows7 Windows8 Win2003 Win2008 Win2012)
- (operating-system-bitness-list 32-bit 64-bit))
 
-(defrule MAIN::wishToRunWebAppsHere
-   (wish-run-web-applications-here yes)
-   =>
-   (assert (should-install httpServer)
-           (should-install WebHubRuntime)))
+;;***************************
+;;* WEBHUBRUNTIME QUESTIONS *
+;;***************************
 
-(defrule MAIN::willNOTRunWebAppsHere
-   (wish-run-web-applications-here no)
-   =>
-   (assert (should-not-install httpServer)
-           (should-not-install WebHubRuntime)))
+(defmodule WEBHUBRUNTIME-QUESTIONS (import QUESTIONS ?ALL))
+
+(deffacts WEBHUBRUNTIME-QUESTIONS::question-attributes
+  (question (attribute user-objective)
+            (the-question "Do you wish to run web applications on this computer? ")
+            (valid-answers yes no))
+  (question (attribute computer-bitness)
+            (the-question "What type of CPU is here?")
+            (valid-answers 32-bit 64-bit))
+  (question (attribute computer-operating-system)
+            (the-question "What operating system runs here? ")
+            (valid-answers WinXP Windows7 Windows8 Win2003 Win2008 Win2012 Linux MacOS)))
+ 
+;;******************
+;; The RULES module
+;;******************
+
+(defmodule RULES (import MAIN ?ALL) (export ?ALL))
+
+(deftemplate RULES::rule
+  (slot certainty (default 100.0))
+  (multislot if)
+  (multislot then))
+
+(defrule RULES::throw-away-ands-in-antecedent
+  ?f <- (rule (if and $?rest))
+  =>
+  (modify ?f (if ?rest)))
+
+(defrule RULES::throw-away-ands-in-consequent
+  ?f <- (rule (then and $?rest))
+  =>
+  (modify ?f (then ?rest)))
+
+(defrule RULES::remove-is-condition-when-satisfied
+  ?f <- (rule (certainty ?c1) 
+              (if ?attribute is ?value $?rest))
+  (attribute (name ?attribute) 
+             (value ?value) 
+             (certainty ?c2))
+  =>
+  (modify ?f (certainty (min ?c1 ?c2)) (if ?rest)))
+
+(defrule RULES::remove-is-not-condition-when-satisfied
+  ?f <- (rule (certainty ?c1) 
+              (if ?attribute is-not ?value $?rest))
+  (attribute (name ?attribute) (value ~?value) (certainty ?c2))
+  =>
+  (modify ?f (certainty (min ?c1 ?c2)) (if ?rest)))
+
+(defrule RULES::perform-rule-consequent-with-certainty
+  ?f <- (rule (certainty ?c1) 
+              (if) 
+              (then ?attribute is ?value with certainty ?c2 $?rest))
+  =>
+  (modify ?f (then ?rest))
+  (assert (attribute (name ?attribute) 
+                     (value ?value)
+                     (certainty (/ (* ?c1 ?c2) 100)))))
+
+(defrule RULES::perform-rule-consequent-without-certainty
+  ?f <- (rule (certainty ?c1)
+              (if)
+              (then ?attribute is ?value $?rest))
+  (test (or (eq (length$ ?rest) 0)
+            (neq (nth 1 ?rest) with)))
+  =>
+  (modify ?f (then ?rest))
+  (assert (attribute (name ?attribute) (value ?value) (certainty ?c1))))
+
+;;*******************************
+;;* CUSTOM RULES *
+;;*******************************
+
+(defmodule CHOOSE-PLATFORM-REASONABLE (import RULES ?ALL)
+                            (import QUESTIONS ?ALL)
+                            (import MAIN ?ALL))
+
+(defrule CHOOSE-PLATFORM-REASONABLE::startit => (focus RULES))
+
+(deffacts the-platform-rules
+
+  ; Rules for assessing the overall computer platform
+
+  (rule (if computer-operating-system is Linux)
+        (then computer-platform is unsupported)))
+
+
+;;(deffacts startup
+;; (operating-system-list WinXP Windows7 Windows8 Win2003 Win2008 Win2012)
+;; (operating-system-bitness-list 32-bit 64-bit))
+
+;;(defrule MAIN::wishToRunWebAppsHere
+;;   (wish-run-web-applications-here yes)
+;;   =>
+;;   (assert (should-install httpServer)
+;;           (should-install WebHubRuntime)))
+
+;;(defrule MAIN::willNOTRunWebAppsHere
+;;   (wish-run-web-applications-here no)
+;;   =>
+;;   (assert (should-not-install httpServer)
+;;           (should-not-install WebHubRuntime)))
 
