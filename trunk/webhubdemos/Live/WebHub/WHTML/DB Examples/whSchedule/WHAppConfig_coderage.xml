@@ -51,7 +51,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
 	<AppSettings>
-		<AppSetting name="DemoGraphic" value="no" />
+		<AppSetting name="DemoGraphic" value="yes" />
 		<AppSetting name="LiveNow" value="no" />
 	</AppSettings>
     <RemoteDesignDefaultInterface>
