@@ -17,10 +17,12 @@ type
     btnTest: TBitBtn;
     btnClose: TBitBtn;
     BtnShowResult: TBitBtn;
+    BitBtnTestString: TBitBtn;
     procedure btnTestClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure BtnShowResultClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure BitBtnTestStringClick(Sender: TObject);
   private
     { Private declarations }
     FTestHtmlFilespec: string;
@@ -37,9 +39,21 @@ implementation
 {$R *.dfm}
 
 uses
-  ucShell, ucLogFil, ucString, ucFile, uCode;
+  ucShell, ucLogFil, ucString, ucFile, uCode, ucDlgs;
 
 { TfrmSlowSpamClient }
+
+procedure TfrmSlowSpamClient.BitBtnTestStringClick(Sender: TObject);
+var
+  Answer: string;
+begin
+  Answer := GetIwaSlowSpam.TestStringTransfer(128);
+  MsgInfoOk(Answer);
+  if Pos(sLineBreak, Answer) > 0 then
+    MsgInfoOk('CRLFs preserved')
+  else
+    MsgErrorOk('CRLFs lost');
+end;
 
 procedure TfrmSlowSpamClient.BtnShowResultClick(Sender: TObject);
 begin
@@ -89,6 +103,9 @@ begin
   {To test your own server, change the URLs here. Leave commented-out to test
    against http://more.demos.href.com.
    See initialization of soap_waSlowSpam.pas for the default values.}
+
+  SetURLs('http://local32/win32/runisa_d16_win32_debug.dll/htun/wsdl/waSlowSpam',
+    'http://local32/win32/runisa_d16_win32_debug.dll/htun/soap/waSlowSpam');
 
 //  SetURLs('http://localhost/scripts/runisa.dll/htun/wsdl/waSlowSpam',
 //    'http://localhost/scripts/runisa.dll/htun/soap/waSlowSpam');
