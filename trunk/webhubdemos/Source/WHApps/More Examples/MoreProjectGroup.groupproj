@@ -21,6 +21,9 @@
 			<Projects Include="whDfm2Html\f2hdemo.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whStopSpam\soapclient\SlowSpamClient.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -83,14 +86,23 @@
 		<Target Name="f2hdemo:Make">
 			<MSBuild Projects="whDfm2Html\f2hdemo.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="SlowSpamClient">
+			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj"/>
+		</Target>
+		<Target Name="SlowSpamClient:Clean">
+			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SlowSpamClient:Make">
+			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall;f2hdemo"/>
+			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall;f2hdemo;SlowSpamClient"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean;f2hdemo:Clean"/>
+			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean;f2hdemo:Clean;SlowSpamClient:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make;f2hdemo:Make"/>
+			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make;f2hdemo:Make;SlowSpamClient:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>

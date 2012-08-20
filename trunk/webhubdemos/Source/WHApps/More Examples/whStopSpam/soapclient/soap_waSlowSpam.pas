@@ -44,6 +44,8 @@ type
     function  MailtoStrObfuscate(var ProcessID: Cardinal;
       var SessionID: Cardinal; const input: WideString;
       const MakeResultReadyToCopyFromWeb: Boolean): WideString; stdcall;
+    function TestStringTransfer(const MakeStringThisLong: Integer): string;
+      stdcall;
   end;
 
 function GetIwaSlowSpam(UseWSDL: Boolean=System.False; Addr: string=''; HTTPRIO: THTTPRIO = nil): IwaSlowSpam;

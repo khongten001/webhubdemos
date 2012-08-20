@@ -15,6 +15,8 @@ type
     ['{5ED74DF5-6E8E-4593-A89A-606D5EEF9AE1}']
     function MailtoStrObfuscate(const input:string;
       const MakeResultReadyToCopyFromWeb: Boolean): string; stdcall;
+    function TestStringTransfer(const MakeStringThisLong: Integer): string;
+      stdcall;
   end;
 
 type
@@ -22,6 +24,8 @@ type
   public
     function MailtoStrObfuscate(const input:string;
       const MakeResultReadyToCopyFromWeb: Boolean): string; stdcall;
+    function TestStringTransfer(const MakeStringThisLong: Integer): string;
+      stdcall;
     procedure Execute; override;
   end;
 
@@ -132,6 +136,19 @@ begin
   begin
     c := input[i];
     result := result + amp + '#' + IntToStr(Ord(c)) + ';';
+  end;
+end;
+
+function TWebMailtoObfuscate.TestStringTransfer(
+  const MakeStringThisLong: Integer): string;
+var
+  x: Integer;
+begin
+  Result := 'hello' + sLineBreak + '//world' + sLineBreak;
+  while Length(Result) < MakeStringThisLong do
+  begin
+    x := 40 + Random(50);  // range 40 to 90
+    Result := Result + Chr(x);
   end;
 end;
 
