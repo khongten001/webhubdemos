@@ -104,8 +104,8 @@ begin
    against http://more.demos.href.com.
    See initialization of soap_waSlowSpam.pas for the default values.}
 
-  SetURLs('http://local32/win32/runisa_d16_win32_debug.dll/htun/wsdl/waSlowSpam',
-    'http://local32/win32/runisa_d16_win32_debug.dll/htun/soap/waSlowSpam');
+//  SetURLs('http://local32/win32/runisa_d16_win32_debug.dll/htun/wsdl/waSlowSpam',
+//    'http://local32/win32/runisa_d16_win32_debug.dll/htun/soap/waSlowSpam');
 
 //  SetURLs('http://localhost/scripts/runisa.dll/htun/wsdl/waSlowSpam',
 //    'http://localhost/scripts/runisa.dll/htun/soap/waSlowSpam');
