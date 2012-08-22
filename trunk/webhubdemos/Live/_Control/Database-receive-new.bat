@@ -4,6 +4,9 @@ d:\Apps\HREFTools\WebHub\bin\ShutdownWHApps.exe
 rem wait until all demos are out of memory
 pause
 
+cd /d %~dp0
+call .\select-db-demos.bat
+
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=demos /minutes=10 "/reason=upgrading web application"
 
 cd /d %~dp0
@@ -20,7 +23,7 @@ if errorlevel 1 pause
 
 call %ZaphodsMap%zmset.bat flagdemosdsp UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
 
-if "%flagdemosdsp%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-dsp.7z -aoa
+if "%demodsp%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-dsp.7z -aoa
 if errorlevel 1 pause
 
 
