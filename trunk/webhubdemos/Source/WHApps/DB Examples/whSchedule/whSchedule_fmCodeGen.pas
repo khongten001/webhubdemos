@@ -295,7 +295,7 @@ begin
   begin
     Filespec :=
       cSQLOutputRoot + 'CodeRageSchedule_Triggers.sql';
-    Firebird_GenSQL_TriggersFor3UpdateFields(y, FProjectConnection,
+    Firebird_GenSQL_TriggersForUpdateFields(y, FProjectConnection,
       Filespec);
     mOutput.Lines.Add(Filespec);
     mOutput.Lines.Add('');
