@@ -150,8 +150,9 @@ begin
   except
     on E: Exception do
     begin
+      LogSendInfo('Prepare failed. Here is q.SQL.Text', q.SQL.Text, cFn);
+      LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-      LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
     end;
   end;
 
@@ -169,8 +170,9 @@ begin
   except
     on E: Exception do
     begin
+      LogSendInfo('Prepare failed. Here is c.SQL.Text', c.SQL.Text, cFn);
+      LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-      LogSendInfo('c.SQL.Text', c.SQL.Text, cFn);
     end;
   end;
 
@@ -203,8 +205,9 @@ begin
   except
     on E: Exception do
     begin
+      LogSendInfo('Prepare failed. Here is qA.SQL.Text', qA.SQL.Text, cFn);
+      LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-      LogSendInfo('qA.SQL.Text', qA.SQL.Text, cFn);
     end;
   end;
 
@@ -591,22 +594,23 @@ begin
         q.SQL.Text := pWebApp.Expand(UpdateSQL);
 
         try
-          q.Prepare;
+          q.Prepare;  // not worried about an error in SQL.Text itself
           for i := 0 to Pred(q.ParamCount) do
           begin
             FldName := q.Params[i].FieldName;
             q.Params[i].AsString := pWebApp.StringVar['edit-' +
               CurrentTableName + '-' + FldName];
+            //LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, cFn);
           end;
         except
           on E: Exception do
           begin
+            LogSendError(E.Message, cFn);
             LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
             for i := 0 to Pred(q.ParamCount) do
             begin
-              LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, '');
+              LogSendWarning('Parameter ' + IntToStr(i) + '=' + q.Params[i].AsString, cFn);
             end;
-            LogSendError(E.Message, cFn);
             {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
@@ -622,6 +626,12 @@ begin
           except
             on E: Exception do
             begin
+              LogSendError(E.Message, cFn);  // log -- serious problem
+              for i := 0 to Pred(q.ParamCount) do
+              begin
+                // log each parameter as a string
+                LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, '');
+              end;
               {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
               q.IB_Transaction.Rollback;
               pWebApp.Debug.AddPageError(E.Message);
