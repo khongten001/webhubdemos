@@ -153,6 +153,7 @@ begin
       LogSendInfo('Prepare failed. Here is q.SQL.Text', q.SQL.Text, cFn);
       LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      Exit; // no point to continue if SQL is wrong
     end;
   end;
 
@@ -173,6 +174,7 @@ begin
       LogSendInfo('Prepare failed. Here is c.SQL.Text', c.SQL.Text, cFn);
       LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      Exit; // no point to continue if SQL is wrong
     end;
   end;
 
@@ -208,6 +210,7 @@ begin
       LogSendInfo('Prepare failed. Here is qA.SQL.Text', qA.SQL.Text, cFn);
       LogSendError(E.Message, cFn);
       {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      Exit; // no point to continue if SQL is wrong
     end;
   end;
 
@@ -373,6 +376,7 @@ begin
           E.Message);
         LogSendInfo('HtmlParam', TwhWebAction(Sender).HtmlParam, cFn);
         LogSendInfo('SelectSQL', SelectSQL, cFn);
+        Exit; // no point to continue if SQL is wrong
       end;
     end;
 
@@ -477,6 +481,7 @@ begin
         begin
           {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
           LogSendInfo(q.Name, q.SQL.Text, TwhWebAction(Sender).Name);
+          Exit; // no point to continue if SQL is wrong
         end;
       end;
       q.Params[0].AsString := PKValue;
@@ -611,6 +616,7 @@ begin
             {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
+            if NOT q.Prepared then Exit;
           end;
         end;
         if FlagFwd then
