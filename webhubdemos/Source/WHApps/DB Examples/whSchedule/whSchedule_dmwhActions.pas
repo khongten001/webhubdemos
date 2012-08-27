@@ -605,12 +605,9 @@ begin
         except
           on E: Exception do
           begin
-            LogSendError(E.Message, cFn);
+            LogSendError(E.Message, cFn);  // log -- serious problem
             LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
-            for i := 0 to Pred(q.ParamCount) do
-            begin
-              LogSendWarning('Parameter ' + IntToStr(i) + '=' + q.Params[i].AsString, cFn);
-            end;
+            LogSendInfo('q.ParamCount', S(q.ParamCount), cFn);
             {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
@@ -630,7 +627,7 @@ begin
               for i := 0 to Pred(q.ParamCount) do
               begin
                 // log each parameter as a string
-                LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, '');
+                LogSendWarning('Parameter ' + IntToStr(i) + '=' + q.Params[i].AsString, cFn);
               end;
               {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
               q.IB_Transaction.Rollback;
