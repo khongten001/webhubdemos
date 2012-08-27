@@ -559,6 +559,7 @@ begin
 end;
 
 procedure TDMCodeRageActions.waUpdateFromStringVarsExecute(Sender: TObject);
+const cFn = 'waUpdateFromStringVarsExecute';
 var
   q: TIB_DSQL;
   UpdateSQL: string;
@@ -600,6 +601,12 @@ begin
         except
           on E: Exception do
           begin
+            LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
+            for i := 0 to Pred(q.ParamCount) do
+            begin
+              LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, '');
+            end;
+            LogSendError(E.Message, cFn);
             {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
