@@ -494,7 +494,7 @@ you win, because it requires so much time, energy and financial resources.</p>
 </whpage>
 
 <whpage pageid="remoterefresh" desc="-Refresh WebHub Demo Application">
-<!---(~waDemoRefresh.execute|3~)-->
+<!--- (~waDemoRefresh.execute|3~) use this to cause ALL demos to refresh at same time -->
 (~app.Refresh~)
 </whpage>
 
