@@ -37,6 +37,7 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     FProjectAbbreviationNoSpaces: string;
+    FUpdatedByFieldname: string;
     FUpdatedOnAtFieldname: string;
     FUpdateCounterFieldname: string;
     FCounter: Integer;
@@ -45,6 +46,7 @@ type
     procedure WebAppUpdate(Sender: TObject);
   private
     FDatabaseIterator: TwhDatabaseIterator;
+    FActiveConn: TIB_Connection;
     function RawTypeToHTMLSize(const RawFirebirdType: Integer;
       Cursor: TIB_Cursor): Integer;
   private
@@ -93,6 +95,8 @@ type
       write FFieldsPerRowInInstantForm;
     property ProjectAbbreviationNoSpaces: string
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
+    property UpdatedByFieldname: string read FUpdatedByFieldname
+      write FUpdatedByFieldname;
     property UpdatedOnAtFieldname: string
       read FUpdatedOnAtFieldname write FUpdatedOnAtFieldname;
     property UpdateCounterFieldname: string read FUpdateCounterFieldname
@@ -124,6 +128,7 @@ var
 begin
   inherited;
   Result := '';
+  FActiveConn := conn;
 
   FlagWasConnected := conn.Connected;
   if NOT FlagWasConnected then conn.Connect;
@@ -263,6 +268,7 @@ begin
   FlagInitDone := False;
   FFieldsPerRowInInstantForm := 1;
   FAttributeParser := nil;
+  FUpdatedByFieldname := 'UpdatedBy';
   FUpdatedOnAtFieldname := 'UpdatedOnAt';
   FUpdateCounterFieldname := 'UpdateCounter';
 end;
@@ -285,8 +291,8 @@ procedure TDMIBObjCodeGen.InstantFormEdit(const CurrentTable: string;
   Cursor: TIB_Cursor; out Value: string);
 const cFn = 'InstantFormEdit';
 var
-  Size: Integer;
-  SizeText: string;
+  ISize, IMaxLength: Integer;
+  SizeMaxLengthText: string;
   ThisFieldType: string;
   ThisFieldTypeRaw: Integer;
 begin
@@ -347,20 +353,25 @@ begin
     end
     else
     begin
-      Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
-      if Size <> -1 then
+      IMaxLength := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+      if IMaxLength <> -1 then
       begin
-        SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+        ISize := IMaxLength;
+        if Assigned(FDatabaseIterator.OnDecideHTMLSize) then
+          FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
+            FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
+
+        SizeMaxLengthText := Format('size="%d" maxlength="%d"', [ISize,
+          IMaxLength])
       end
       else
-        SizeText := '';
+        SizeMaxLengthText := '';
       Value := Value +
-        '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
-          '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
-          SizeText + '/>';
+        '<input type="text" name="edit-' + CurrentTable + '-' +
+          CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
+          CurrentFieldname + '~)" ' + SizeMaxLengthText + '/>';
     end;
-    Value := Value + sLineBreak +
-        '    </td>' + sLineBreak;
+    Value := Value + sLineBreak + '    </td>' + sLineBreak;
   end;
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
     ThisTableFieldCount - 2) then
@@ -524,13 +535,13 @@ var
   FieldLabel: string;
 begin
   FieldLabel := '';
-  if IsEqual(CurrentFieldname, 'UpdatedBy') then
+  if IsEqual(CurrentFieldname, FUpdatedByFieldname) then
     FieldLabel := 'Updated By'
   else
-  if IsEqual(CurrentFieldname, 'UpdatedOnAt') then
+  if IsEqual(CurrentFieldname, FUpdatedOnAtFieldname) then
     FieldLabel := 'Last Mod'
   else
-  if IsEqual(CurrentFieldname, 'UpdateCounter') then
+  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
     {nothing} // no macro desired
   else
   begin
@@ -583,7 +594,8 @@ begin
         blr_Varying:
           begin
             Result := Cursor.FieldByName('field_length').AsInteger; // varchar
-            Result := Result Div 4;  // UTF-8 charset !!!
+            if Assigned(FActiveConn) and (FActiveConn.CharSet = 'UTF8') then
+              Result := Result Div 4;  // field_length is 4 times longer
           end;
         blr_sql_date: Result := 12;
         blr_timestamp: Result := 20;  // datetime
