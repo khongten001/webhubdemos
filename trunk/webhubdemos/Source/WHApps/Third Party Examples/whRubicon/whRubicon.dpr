@@ -20,6 +20,7 @@ uses
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
+  dmBasic in '..\whDSP\dmBasic.pas' {dmBasicDatamodule: TDataModule},
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htRubiC in 'htRubiC.pas' {fmHTRUPanel},
