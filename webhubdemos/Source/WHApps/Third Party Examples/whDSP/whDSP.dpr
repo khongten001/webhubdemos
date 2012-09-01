@@ -27,6 +27,7 @@ uses
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {dmWebHubCore: TDataModule},
+  dmBasic in '..\whDSP\dmBasic.pas' {dmBasicDatamodule: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whHtml in 'h:\whHtml.pas' {fmAppHTML},
