@@ -1,0 +1,18 @@
+Please define an alias, or "virtual path", in your web server software such that
+
+	http://localhost/webhub/index.html
+
+brings up the index.html document in this directory.
+
+and
+
+	http://localhost/webhub/demos/c/whdemos.css
+
+brings up a style sheet (no 404 error).
+
+
+If necessary, replace "localhost" with your domain name or IP number, and port. 
+
+Example:
+
+	http://192.168.0.15:8000/webhub/index.htm
