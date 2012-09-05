@@ -21,7 +21,8 @@ if "%whipc%"=="x"    set demohtasync=no
 if "%whipc%"=="old" set democom=no
 if "%whipc%"=="x"    set democom=no
 
-set demodfm2html=yes
+:: 4-Sep-2012 Form2Html is just not the WebHub way of doing things
+set demodfm2html=no
 
 if "%whipc%"=="old" set demohtdr=yes
 if "%whipc%"=="x" set demohtdr=no
