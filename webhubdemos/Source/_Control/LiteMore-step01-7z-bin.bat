@@ -25,11 +25,11 @@ d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z f2hdemo.exe
 d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z whAsyncDemo.exe
 
 set t=LiteMore-Library-bin.7z
-set sdir=h:\pkg_d16_win32
+set sdir=h:\pkg_d17_win32
 
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d16_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d16_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d16_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d17_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d17_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d17_win32.bpl
 
 pause
 

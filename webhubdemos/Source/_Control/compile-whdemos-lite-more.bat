@@ -1,7 +1,7 @@
 @echo off
 if NOT "%comp3%%bits%"=="" goto DServerContinue00
 
-set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D16) :   
+set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D17) :   
 if %comp3%=="" goto end
 if %comp3%==D15 set bits=32
 if %comp3%==D15 goto DServerContinue00
@@ -42,14 +42,14 @@ copy h:\WebHub_Comms.inc h:\WebHub_Comms.txt
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d16_win32_source.bat DServer
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d17_win32_source.bat DServer
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc k:\webhub\lib\WebHub_Comms.inc
 if errorlevel 1 pause
 copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc h:\WebHub_Comms.inc
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_old_d16_win32_source.bat DServer
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_old_d17_win32_source.bat DServer
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
