@@ -81,7 +81,7 @@ uses
    omitted from uses clause. }
   DBXFirebird,
   MultiTypeApp,
-  tpFirebirdCredentials,
+  ucIbAndFbCredentials,
   webApp,    // global pointer pWebApp is in this unit
   webSend,   // declaration of drBeforeTag
   whdemo_ViewSource,  // getHtDemoDataRoot is in this unit.

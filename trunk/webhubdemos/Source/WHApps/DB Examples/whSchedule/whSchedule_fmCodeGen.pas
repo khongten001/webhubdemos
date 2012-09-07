@@ -90,7 +90,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Export, IB_Import,
   ucLogFil, ucDlgs, ucString, ucAnsiUtil,
-  tpFirebirdCredentials, tpIBObjCodeGen_Bootstrap, tpIBObjCodeGen,
+  ucIbAndFbCredentials, ucIBObjCodeGen_Bootstrap, ucIBObjCodeGen,
   webApp, webLink,
   uFirebird_Connect_CodeRageSchedule, uFirebird_SQL_Snippets_CodeRageSchedule,
   whdemo_DMIBObjCodeGen;
@@ -295,7 +295,7 @@ begin
   begin
     Filespec :=
       cSQLOutputRoot + 'CodeRageSchedule_Triggers.sql';
-    Firebird_GenSQL_TriggersForUpdateFields(y, FProjectConnection,
+    IbAndFb_GenSQL_Triggers(y, FProjectConnection,
       Filespec);
     mOutput.Lines.Add(Filespec);
     mOutput.Lines.Add('');

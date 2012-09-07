@@ -78,7 +78,7 @@ uses
   webApp, htWebApp, webSend,
   //CodeRage_dmCommon,
   ucCalifTime, uFirebird_Connect_CodeRageSchedule,
-  whdemo_DMIBObjCodeGen, tpFirebirdCredentials;
+  whdemo_DMIBObjCodeGen, ucIbAndFbCredentials;
 
 { TDMCodeRageActions }
 

@@ -60,7 +60,7 @@ uses
   TypInfo, Character,
   ucCodeSiteInterface, ucString,
   webApp, htWebApp, whMacroAffixes, webSend,
-  uFirebird_Connect_CodeRageSchedule, tpFirebirdCredentials;
+  uFirebird_Connect_CodeRageSchedule, ucIbAndFbCredentials;
 
 { TDMRubiconSearch }
 
