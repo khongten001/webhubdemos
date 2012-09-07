@@ -94,7 +94,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucString, ZaphodsMap, tpFirebirdCredentials;
+  ucString, ZaphodsMap, ucIbAndFbCredentials;
 
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------

@@ -59,7 +59,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   webLink,
-  tpFirebirdCredentials, uFirebird_Connect_CodeRageSchedule,
+  ucIbAndFbCredentials, uFirebird_Connect_CodeRageSchedule,
   ucCodeSiteInterface,
   whdemo_DMIBObjCodeGen;
 

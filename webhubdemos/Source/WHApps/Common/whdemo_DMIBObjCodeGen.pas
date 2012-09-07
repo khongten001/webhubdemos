@@ -115,7 +115,7 @@ uses
   IB_Header,
   TypInfo,
   webApp, htWebApp, whMacroAffixes,
-  ucString, ucCodeSiteInterface, tpFirebirdCredentials, tpIBObjCodeGen;
+  ucString, ucCodeSiteInterface, ucIbAndFbCredentials, ucIBObjCodeGen;
 
 { TDMIBObjCodeGen }
 
