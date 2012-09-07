@@ -48,7 +48,7 @@ uses
   importfm in 'importfm.pas' {FormImport},
   ucScnDir in 'ucScnDir.pas',
   whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
-  tpFirebirdCredentials in 'H:\tpFirebirdCredentials.pas';
+  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas';
 
 {$R *.RES}
 {$R HTDEMOS.RES}   // main icon for WebHub demos
