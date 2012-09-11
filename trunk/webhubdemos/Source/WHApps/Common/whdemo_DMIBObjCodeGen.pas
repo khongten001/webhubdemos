@@ -178,6 +178,7 @@ begin
             '  WHERE ' + sLineBreak +
           Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
             UpdateSQLDropletB) +
+          sLineBreak +
           '</whdroplet>' + sLineBreak + sLineBreak;
 
       cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove:
