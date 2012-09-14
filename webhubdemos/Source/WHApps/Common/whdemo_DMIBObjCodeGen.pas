@@ -296,6 +296,8 @@ var
   SizeMaxLengthText: string;
   ThisFieldType: string;
   ThisFieldTypeRaw: Integer;
+  ThisFieldDesc: string;
+  ThisPlaceholder: string;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -332,9 +334,14 @@ begin
   begin
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+    ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+    ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+      ThisFieldDesc);
     CSSend(CurrentFieldname, ThisFieldType);
     CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
     // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+    if ThisPlaceholder <> '' then
+      CSSend('ThisPlaceholder', ThisPlaceholder);
 
      value := Value +
       '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
@@ -369,7 +376,10 @@ begin
       Value := Value +
         '<input type="text" name="edit-' + CurrentTable + '-' +
           CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
-          CurrentFieldname + '~)" ' + SizeMaxLengthText + '/>';
+          CurrentFieldname + '~)" ' + SizeMaxLengthText;
+      if ThisPlaceholder <> '' then
+        Value := Value + ' placeholder="' + ThisPlaceholder + '"';
+      Value := Value + '/>';
     end;
     Value := Value + sLineBreak + '    </td>' + sLineBreak;
   end;
@@ -532,7 +542,6 @@ procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
   const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
 var
-  FieldDescription: string;
   FieldLabel: string;
 begin
   FieldLabel := '';
