@@ -527,6 +527,7 @@ begin
   end;
 end;
 
+
 procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
   const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
   out Value: string);
@@ -545,14 +546,8 @@ begin
     {nothing} // no macro desired
   else
   begin
-    if NOT Assigned(FAttributeParser) then
-    begin
-      FAttributeParser := TAttributeParser.Create(' ');
-    end;
-    // Example: pk="autoincrement" label="ok dokie" otherAttrib="abc"
-    FieldDescription := Cursor.FieldByName('field_description').AsString;
-    FAttributeParser.SetPairs(FieldDescription);
-    FieldLabel := FAttributeParser.Value('label');  // case sensitive
+    FieldLabel := RegExParseAttribute(FAttributeParser, 
+      Cursor.FieldByName('field_description').AsString, 'label');
     if FieldLabel = '' then
     begin
       if FieldNum = 0 then
