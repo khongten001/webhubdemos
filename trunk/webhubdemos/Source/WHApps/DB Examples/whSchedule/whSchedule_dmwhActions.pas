@@ -76,8 +76,8 @@ uses
   DateUtils,
   ucLogFil, ucCodeSiteInterface, ucString,
   webApp, htWebApp, webSend,
-  //CodeRage_dmCommon,
-  ucCalifTime, uFirebird_Connect_CodeRageSchedule,
+  ucCalifTime,
+  uFirebird_Connect_CodeRageSchedule,
   whdemo_DMIBObjCodeGen, ucIbAndFbCredentials;
 
 { TDMCodeRageActions }
