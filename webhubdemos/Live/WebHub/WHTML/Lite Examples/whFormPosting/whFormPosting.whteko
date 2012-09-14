@@ -56,7 +56,7 @@ To participate, fill in this form to describe your real or imaginary pet...
 	Name:
 	</td>
 </tr>
-<tr><td>(~inputtext|inPetname,15,25," placeholder="Jett~)</td></tr>
+<tr><td>(~inputtext|inPetname,15,25,placeholder="Jett"~)</td></tr>
 <tr>
 	<td class="prompt">
 	<!---The surfer can make a single selection from this drop-down list.
