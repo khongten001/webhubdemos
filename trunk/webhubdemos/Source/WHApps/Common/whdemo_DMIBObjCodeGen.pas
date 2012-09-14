@@ -333,7 +333,7 @@ begin
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
     CSSend(CurrentFieldname, ThisFieldType);
-    CSSend('ThisFieldTypeRaw', ThisFieldTypeRaw);
+    CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
     CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
 
      value := Value +
@@ -357,7 +357,7 @@ begin
       if IMaxLength <> -1 then
       begin
         ISize := IMaxLength;
-        if Assigned(FDatabaseIterator.OnDecideHTMLSize) then
+        if Assigned(FDatabaseIterator) and Assigned(FDatabaseIterator.OnDecideHTMLSize) then
           FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
             FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
 
