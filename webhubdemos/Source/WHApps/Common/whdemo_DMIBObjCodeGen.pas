@@ -332,16 +332,15 @@ begin
   begin
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-   // LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
-   // LogSendInfo('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+    CSSend(CurrentFieldname, ThisFieldType);
+    CSSend('ThisFieldTypeRaw', ThisFieldTypeRaw);
+    CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
 
      value := Value +
       '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
       CurrentFieldname + MacroEnd + '</th>' +
       sLineBreak +
-      '    <td>' + '<!--- ' + ThisFieldType +
-        ' Raw#' + IntToStr(ThisFieldTypeRaw) +
-        ' -->';
+      '    <td>';
 
     if ThisFieldTypeRaw = blr_blob then
     begin
