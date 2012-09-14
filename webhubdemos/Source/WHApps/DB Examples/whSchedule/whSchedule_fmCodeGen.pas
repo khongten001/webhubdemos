@@ -129,7 +129,7 @@ begin
     end;
     if NOT FileExists(BootstrapFilespec) then
     begin
-      Firebird_GenPAS_Connect(cProjectAbbrev, BootstrapFilespec);
+      IbAndFb_GenPAS_Connect(False, cProjectAbbrev, BootstrapFilespec);
       mOutput.Lines.Text := StringLoadFromFile(BootstrapFilespec);
       MsgInfoOk('Done. Contents are displayed in memo now.');
     end;
