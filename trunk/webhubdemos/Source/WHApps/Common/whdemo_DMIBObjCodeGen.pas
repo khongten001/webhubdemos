@@ -334,7 +334,7 @@ begin
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
     CSSend(CurrentFieldname, ThisFieldType);
     CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
-    CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+    // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
 
      value := Value +
       '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
