@@ -3,23 +3,23 @@ inherited fmCodeGenerator: TfmCodeGenerator
   Top = 146
   Caption = '&Code-Generator'
   ClientHeight = 406
-  ClientWidth = 742
+  ClientWidth = 824
   OnCreate = FormCreate
-  ExplicitWidth = 760
+  ExplicitWidth = 842
   ExplicitHeight = 451
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
-    Width = 742
+    Width = 824
     Height = 406
     Font.Height = -18
     ParentFont = False
-    ExplicitWidth = 742
+    ExplicitWidth = 824
     ExplicitHeight = 406
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 732
+      Width = 814
       BorderWidth = 5
       TabOrder = 0
       object LabelDBInfo: TLabel
@@ -53,7 +53,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
     object Panel: TPanel
       Left = 161
       Top = 45
-      Width = 576
+      Width = 658
       Height = 356
       Align = alClient
       BevelOuter = bvNone
@@ -62,7 +62,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
       object PageControl1: TPageControl
         Left = 0
         Top = 0
-        Width = 572
+        Width = 654
         Height = 193
         ActivePage = TabSheet4
         Align = alTop
@@ -82,7 +82,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object tpToolBar2: TtpToolBar
             Left = 0
             Top = 0
-            Width = 564
+            Width = 646
             TabOrder = 0
             object tpToolButton5: TtpToolButton
               Left = 1
@@ -108,7 +108,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object tpToolBar3: TtpToolBar
             Left = 0
             Top = 0
-            Width = 564
+            Width = 646
             TabOrder = 0
             object tpToolButton10: TtpToolButton
               Left = 6
@@ -142,7 +142,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object tpToolBar4: TtpToolBar
             Left = 0
             Top = 0
-            Width = 564
+            Width = 646
             TabOrder = 0
             object tpToolButton15: TtpToolButton
               Left = 6
@@ -165,42 +165,36 @@ inherited fmCodeGenerator: TfmCodeGenerator
         object TabSheet4: TTabSheet
           Caption = 'By Pattern'
           ImageIndex = 3
-          object Label3: TLabel
-            Left = 8
-            Top = 56
-            Width = 408
-            Height = 44
-            Caption = 'Generate a variety of useful items for WebHub applications...'
-            WordWrap = True
-          end
           object tpToolBar1: TtpToolBar
             Left = 0
             Top = 0
-            Width = 564
+            Width = 646
+            Height = 113
             TabOrder = 0
-            object cbCodeGenPattern: TComboBox
-              Left = 8
-              Top = 3
-              Width = 345
-              Height = 30
-              TabOrder = 0
-              Text = 'Macros for Field Labels'
-              Items.Strings = (
-                'Macros for Field Labels'
-                'Macros for Primary Keys'
-                'Field List for IBObjects Import'
-                'Droplets with Select SQL for each table'
-                'Droplets with Update SQL for each table'
-                'Readonly Form for each table'
-                'Editable Form for each table'
-                'Editable Form, labels above, for each table')
-            end
             object Button1: TButton
-              Left = 384
+              Left = 408
               Top = 8
-              Width = 105
-              Height = 25
+              Width = 169
+              Height = 42
               Action = ActionCodeGenForPattern
+              TabOrder = 0
+            end
+            object lbCodeGenPattern: TListBox
+              Left = 8
+              Top = 8
+              Width = 370
+              Height = 97
+              ItemHeight = 22
+              Items.Strings = (
+                'Whteko: Macros for Field Labels'
+                'Whteko: Macros for Primary Keys'
+                'Ini: Field List for IBObjects Import'
+                'Whteko: Droplets with Select SQL for each table'
+                'Whteko: Droplets with Update SQL for each table'
+                'Whteko: Readonly Form for each table'
+                'Whteko: Editable Form for each table'
+                'Whteko: Editable Form, labels above, for each table')
+              MultiSelect = True
               TabOrder = 1
             end
           end
@@ -209,7 +203,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
       object mOutput: TMemo
         Left = 0
         Top = 193
-        Width = 572
+        Width = 654
         Height = 159
         Margins.Left = 6
         Margins.Top = 6
@@ -252,7 +246,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
       OnExecute = ActionImportExecute
     end
     object ActionCodeGenForPattern: TAction
-      Caption = 'Generate'
+      Caption = 'Generate Selected'
       OnExecute = ActionCodeGenForPatternExecute
     end
   end

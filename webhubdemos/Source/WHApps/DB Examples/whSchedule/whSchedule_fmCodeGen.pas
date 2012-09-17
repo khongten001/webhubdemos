@@ -51,13 +51,12 @@ type
     LabeledEditProjectAbbrev: TLabeledEdit;
     TabSheet4: TTabSheet;
     tpToolBar1: TtpToolBar;
-    cbCodeGenPattern: TComboBox;
     Button1: TButton;
     ActionCodeGenForPattern: TAction;
     Label1: TLabel;
     Label2: TLabel;
-    Label3: TLabel;
     Label4: TLabel;
+    lbCodeGenPattern: TListBox;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
@@ -146,6 +145,7 @@ var
   Flag: Boolean;
   CodeContent: string;
   x: Integer;
+  listIdx: Integer;
 begin
   inherited;
 
@@ -155,19 +155,26 @@ begin
 
   Init;
 
-  mOutput.Lines.Text := DBName;
-  mOutput.Lines.Add('connecting...');
+  mOutput.Clear;
+  mOutput.Lines.Add('<whdoc for="' + FProjectConnection.DatabaseName + '">');
+  mOutput.Lines.Add('Content based on Firebird SQL meta data');
+  mOutput.Lines.Add('As of ' + FormatDateTime('dddd dd-MMM-yyyy hh:nn', Now));
+  mOutput.Lines.Add('</whdoc>');
   Application.ProcessMessages;
   FProjectConnection.Connect;
+  mOutput.Lines.Add('');
 
   try
     Firebird_GetTablesInDatabase(y, Flag, DBName,
       FProjectConnection, FProjectTransaction, DBUser, DBPass);
-    x := y.IndexOf('Words');
+    x := y.IndexOf(Uppercase('Words'));
     if x > -1 then
       y.Delete(x);  // no generation for Rubicon Words table.
 
-    case cbCodeGenPattern.ItemIndex of
+    for listIdx := 0 to Pred(lbCodeGenPattern.Count) do
+    begin
+      if lbCodeGenPattern.Selected[listIdx] then
+      case listIdx of
       0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpMacroLabelsForFields);
       1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
@@ -184,13 +191,18 @@ begin
         y, cgpInstantFormEdit);
       7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
         y, cgpInstantFormEditLabelAbove);
+      else
+        MsgErrorOk('Unsupported selection in ' + lbCodeGenPattern.ClassName);
+      end;
+      mOutput.Lines.Add( CodeContent );
+      mOutput.Lines.Add('');
     end;
+    Application.ProcessMessages;
+    Application.ProcessMessages;
   finally
     FreeAndNil(y);
   end;
 
-  Application.ProcessMessages;
-  mOutput.Lines.Text := CodeContent;
   FProjectConnection.DisconnectToPool;
 end;
 
@@ -395,7 +407,7 @@ begin
   if NOT FlagInitDone then
   begin
     PageControl1.ActivePage := tsCodeGenBasics;
-    cbCodeGenPattern.ItemIndex := 0;
+    lbCodeGenPattern.ItemIndex := 0;
     FlagInitDone := True;
   end;
 
