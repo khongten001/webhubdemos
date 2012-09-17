@@ -11,7 +11,7 @@ unit whdemo_DMIBObjCodeGen;
 { ---------------------------------------------------------------------------- }
 { * Requires IBObjects from www.ibobjects.com                                * }
 { * Requires Firebird SQL Database                                           * }
-{ * Requires WebHub v2.171+                                                  * }
+{ * Requires WebHub v2.175+                                                  * }
 { *                                                                          * }
 { * EXTREMELY EXPERIMENTAL !                                                 * }
 { *                                                                          * }
