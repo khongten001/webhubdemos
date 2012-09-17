@@ -298,6 +298,7 @@ var
   ThisFieldTypeRaw: Integer;
   ThisFieldDesc: string;
   ThisPlaceholder: string;
+  ThisInputType: string;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -337,6 +338,10 @@ begin
     ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
     ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
       ThisFieldDesc);
+    ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
+      ThisFieldDesc);  // e.g. type="hidden"
+    if ThisInputType = '' then
+      ThisInputType := 'text';
     CSSend(CurrentFieldname, ThisFieldType);
     CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
     // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
@@ -374,7 +379,7 @@ begin
       else
         SizeMaxLengthText := '';
       Value := Value +
-        '<input type="text" name="edit-' + CurrentTable + '-' +
+        '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
           CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
           CurrentFieldname + '~)" ' + SizeMaxLengthText;
       if ThisPlaceholder <> '' then
@@ -404,6 +409,9 @@ var
   SizeText: string;
   ThisFieldType: string;
   ThisFieldTypeRaw: Integer;
+  ThisFieldDesc: string;
+  ThisPlaceholder: string;
+  ThisInputType: string;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -440,8 +448,17 @@ begin
   begin
     ThisFieldType := Cursor.FieldByName('field_type').AsString;
     ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-   // LogSendInfo(CurrentFieldname, ThisFieldType, cFn);
-   // LogSendInfo('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+    ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+
+    ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+      ThisFieldDesc);
+    if ThisPlaceholder <> '' then
+      CSSend('ThisPlaceholder', ThisPlaceholder);
+
+    ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
+      ThisFieldDesc);  // e.g. type="hidden"
+    if ThisInputType = '' then
+      ThisInputType := 'text';
 
      value := Value +
       '    <td><div class="labelCell">' + MacroStart + 'mcLabel-' +
@@ -470,9 +487,13 @@ begin
       else
         SizeText := '';
       Value := Value +
-        '<input type="text" name="edit-' + CurrentTable + '-' + CurrentFieldname +
+        '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
+          CurrentFieldname +
           '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
-          SizeText + '/>';
+          SizeText;
+      if ThisPlaceholder <> '' then
+        Value := Value + ' placeholder="' + ThisPlaceholder + '"';
+      Value := Value + '/>';
     end;
     Value := Value + sLineBreak +
         '    </td>' + sLineBreak;
