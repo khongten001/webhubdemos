@@ -10,7 +10,7 @@ set dcc=%d17%bin\dcc32.exe
 if not exist %dcc% pause
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
-set libsearchpath="h:\;h:\dcu_d17_win32;h:\pkg_d17_win32;k:\Rubicon\source;%ibopath%;%d17%\lib\win32\release;"
+set libsearchpath="h:\;h:\dcu_d17_win32;h:\pkg_d17_win32;k:\webhub\lib\whplus\rubi;k:\Rubicon\source;%ibopath%;%d17%\lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB"
 set compilerflags=PREVENTSVCMGR;use_IBO
