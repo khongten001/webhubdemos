@@ -322,71 +322,82 @@ begin
       '</td>' + sLineBreak;
   end
   else
-  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
   begin
-    { pass through the UpdateCounter for optimal multi-user editing }
-    Value := Value +
-      '  <input type="hidden" name="edit-' + CurrentTable + '-' +
-      FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
-      CurrentTable + '-' +
-      FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
-  end
-  else
-  begin
-    ThisFieldType := Cursor.FieldByName('field_type').AsString;
-    ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
     ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-    ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
-      ThisFieldDesc);
     ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
       ThisFieldDesc);  // e.g. type="hidden"
     if ThisInputType = '' then
       ThisInputType := 'text';
-    CSSend(CurrentFieldname, ThisFieldType);
-    CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
-    // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
-    if ThisPlaceholder <> '' then
-      CSSend('ThisPlaceholder', ThisPlaceholder);
 
-     value := Value +
-      '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
-      CurrentFieldname + MacroEnd + '</th>' +
-      sLineBreak +
-      '    <td>';
-
-    if ThisFieldTypeRaw = blr_blob then
+    if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
     begin
-      // blob textarea
+      ThisInputType := 'hidden';
+      { pass through the UpdateCounter for optimal multi-user editing }
       Value := Value +
-        '<textarea name="txt-edit-' + CurrentTable + '-' +
-        CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
-        MacroStart + 'edit-' + CurrentTable + '-' +
-        CurrentFieldname + MacroEnd + '</textarea>';
+        '  <input type="' + ThisInputType + '" name="edit-' + CurrentTable +
+        '-' + FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
+        CurrentTable + '-' +
+        FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
     end
     else
     begin
-      IMaxLength := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
-      if IMaxLength <> -1 then
-      begin
-        ISize := IMaxLength;
-        if Assigned(FDatabaseIterator) and Assigned(FDatabaseIterator.OnDecideHTMLSize) then
-          FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
-            FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
+      ThisFieldType := Cursor.FieldByName('field_type').AsString;
+      ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+      ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+        ThisFieldDesc);
+      CSSend(CurrentFieldname, ThisFieldType);
+      CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
+      // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
+      if ThisPlaceholder <> '' then
+        CSSend('ThisPlaceholder', ThisPlaceholder);
 
-        SizeMaxLengthText := Format('size="%d" maxlength="%d"', [ISize,
-          IMaxLength])
+     if ThisInputType <> 'hidden' then
+     begin
+       value := Value +
+        '    <th>' + MacroStart + 'mcLabel-' + CurrentTable + '-' +
+        CurrentFieldname + MacroEnd + '</th>' +
+        sLineBreak +
+        '    <td>';
+     end;
+
+      if ThisFieldTypeRaw = blr_blob then
+      begin
+        // blob textarea
+        Value := Value +
+          '<textarea name="txt-edit-' + CurrentTable + '-' +
+          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
+          MacroStart + 'edit-' + CurrentTable + '-' +
+          CurrentFieldname + MacroEnd + '</textarea>';
       end
       else
-        SizeMaxLengthText := '';
-      Value := Value +
-        '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
-          CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
-          CurrentFieldname + '~)" ' + SizeMaxLengthText;
-      if ThisPlaceholder <> '' then
-        Value := Value + ' placeholder="' + ThisPlaceholder + '"';
-      Value := Value + '/>';
+      begin
+        IMaxLength := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+        if IMaxLength <> -1 then
+        begin
+          ISize := IMaxLength;
+          if Assigned(FDatabaseIterator) and Assigned(FDatabaseIterator.OnDecideHTMLSize) then
+            FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
+              FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
+
+          SizeMaxLengthText := Format('size="%d" maxlength="%d"', [ISize,
+            IMaxLength])
+        end
+        else
+          SizeMaxLengthText := '';
+        Value := Value +
+          '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
+            CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
+            CurrentFieldname + '~)" ' + SizeMaxLengthText;
+        if ThisPlaceholder <> '' then
+          Value := Value + ' placeholder="' + ThisPlaceholder + '"';
+        Value := Value + '/>';
+      end;
+      Value := Value + sLineBreak;
+      if ThisInputType <> 'hidden' then
+        Value := Value + '    </td>' + sLineBreak;
     end;
-    Value := Value + sLineBreak + '    </td>' + sLineBreak;
+    if ThisInputType = 'hidden' then
+      Dec(FCounter);  // only count visible fields
   end;
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
     ThisTableFieldCount - 2) then
@@ -435,68 +446,82 @@ begin
       '</td>' + sLineBreak;
   end
   else
-  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
   begin
-    { pass through the UpdateCounter for optimal multi-user editing }
-    Value := Value +
-      '  <input type="hidden" name="edit-' + CurrentTable + '-' +
-      FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
-      CurrentTable + '-' +
-      FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
-  end
-  else
-  begin
-    ThisFieldType := Cursor.FieldByName('field_type').AsString;
-    ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
     ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-
-    ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
-      ThisFieldDesc);
-    if ThisPlaceholder <> '' then
-      CSSend('ThisPlaceholder', ThisPlaceholder);
-
     ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
       ThisFieldDesc);  // e.g. type="hidden"
     if ThisInputType = '' then
       ThisInputType := 'text';
-
-     value := Value +
-      '    <td><div class="labelCell">' + MacroStart + 'mcLabel-' +
-      CurrentTable + '-' +
-      CurrentFieldname + MacroEnd + '</div>' +
-      '<!--- ' + ThisFieldType +
-        ' Raw#' + IntToStr(ThisFieldTypeRaw) +
-        ' -->';
-
-    if ThisFieldTypeRaw = blr_blob then
+    if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
     begin
-      // blob textarea
+      ThisInputType := 'hidden';
+      { pass through the UpdateCounter for optimal multi-user editing }
       Value := Value +
-        '<textarea name="txt-edit-' + CurrentTable + '-' +
-        CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
-        MacroStart + 'edit-' + CurrentTable + '-' +
-        CurrentFieldname + MacroEnd + '</textarea>';
+        '  <input type="' + ThisInputType + '" name="edit-' + CurrentTable +
+        '-' + FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
+        CurrentTable + '-' +
+        FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
     end
     else
     begin
-      Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
-      if Size <> -1 then
+      ThisFieldType := Cursor.FieldByName('field_type').AsString;
+      ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+      ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+
+      ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+        ThisFieldDesc);
+      if ThisPlaceholder <> '' then
+        CSSend('ThisPlaceholder', ThisPlaceholder);
+
+      ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
+        ThisFieldDesc);  // e.g. type="hidden"
+      if ThisInputType = '' then
+        ThisInputType := 'text';
+
+      if ThisInputType <> 'hidden' then
       begin
-        SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+        value := Value +
+          '    <td><div class="labelCell">' + MacroStart + 'mcLabel-' +
+          CurrentTable + '-' +
+          CurrentFieldname + MacroEnd + '</div>' { +
+          '<!--- ' + ThisFieldType +
+            ' Raw#' + IntToStr(ThisFieldTypeRaw) +
+            ' -->'};
+      end;
+
+      if ThisFieldTypeRaw = blr_blob then
+      begin
+        // blob textarea
+        Value := Value +
+          '<textarea name="txt-edit-' + CurrentTable + '-' +
+          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
+          MacroStart + 'edit-' + CurrentTable + '-' +
+          CurrentFieldname + MacroEnd + '</textarea>';
       end
       else
-        SizeText := '';
-      Value := Value +
-        '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
-          CurrentFieldname +
-          '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
-          SizeText;
-      if ThisPlaceholder <> '' then
-        Value := Value + ' placeholder="' + ThisPlaceholder + '"';
-      Value := Value + '/>';
+      begin
+        Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+        if Size <> -1 then
+        begin
+          SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+        end
+        else
+          SizeText := '';
+        Value := Value +
+          '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
+            CurrentFieldname +
+            '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
+            SizeText;
+        if ThisPlaceholder <> '' then
+          Value := Value + ' placeholder="' + ThisPlaceholder + '"';
+        Value := Value + '/>';
+      end;
+      Value := Value + sLineBreak;
+      if ThisInputType <> 'hidden' then
+        Value := Value + '    </td>' + sLineBreak;
     end;
-    Value := Value + sLineBreak +
-        '    </td>' + sLineBreak;
+    if ThisInputType = 'hidden' then
+      Dec(FCounter);  // only count visible fields
   end;
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
     ThisTableFieldCount - 2) then
