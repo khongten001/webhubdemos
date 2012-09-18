@@ -41,6 +41,7 @@ type
     FUpdatedOnAtFieldname: string;
     FUpdateCounterFieldname: string;
     FCounter: Integer;
+    FLastFieldWasHidden: Boolean;
     FFieldsPerRowInInstantForm: Integer;
     FAttributeParser: TAttributeParser;
     procedure WebAppUpdate(Sender: TObject);
@@ -183,6 +184,7 @@ begin
 
       cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove:
         begin
+          FLastFieldWasHidden := False;
           CodeContent := CodeContent +
             '<whdroplet name="drInstantForm';
           case CodeGenPattern of
@@ -302,14 +304,17 @@ var
   ThisInputType: string;
   HideThisField: Boolean;
   Prefix: string;
+  FieldNumStopHere: Integer;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
-    FCounter := 0
+  begin
+    FCounter := 0;
+  end
   else
     Inc(FCounter);
 
-  if (FCounter = 0) then
+  if (FCounter = 0) and (NOT FLastFieldWasHidden) then
     Value := '  <tr>' + sLineBreak
    else
      Value := '';
@@ -378,19 +383,21 @@ begin
       end
       else
       begin
-        IMaxLength := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
-        if IMaxLength <> -1 then
+        SizeMaxLengthText := '';
+        if NOT HideThisField then
         begin
-          ISize := IMaxLength;
-          if Assigned(FDatabaseIterator) and Assigned(FDatabaseIterator.OnDecideHTMLSize) then
-            FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
-              FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
+          IMaxLength := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+          if IMaxLength <> -1 then
+          begin
+            ISize := IMaxLength;
+            if Assigned(FDatabaseIterator) and Assigned(FDatabaseIterator.OnDecideHTMLSize) then
+              FDatabaseIterator.OnDecideHTMLSize(FDatabaseIterator, Cursor,
+                FieldNum, ThisFieldTypeRaw, iMaxLength, iSize);
 
-          SizeMaxLengthText := Format('size="%d" maxlength="%d"', [ISize,
-            IMaxLength])
-        end
-        else
-          SizeMaxLengthText := '';
+            SizeMaxLengthText := Format('size="%d" maxlength="%d"', [ISize,
+              IMaxLength])
+          end;
+        end;
         if FieldNum = 0 then
           Prefix := 'readonly'  // primary key
         else
@@ -410,8 +417,13 @@ begin
   end;
   if HideThisField then
     Dec(FCounter);  // only count visible fields
+  FLastFieldWasHidden := HideThisField;
+  if (UpdateCounterFieldname = '') then
+    FieldNumStopHere := Pred(ThisTableFieldCount)
+  else
+    FieldNumStopHere := Pred(Pred(ThisTableFieldCount));
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
-    ThisTableFieldCount - 2) then
+    FieldNumStopHere) then
   begin
     while FCounter < Pred(FFieldsPerRowInInstantForm) do
     begin
@@ -436,6 +448,7 @@ var
   ThisInputType: string;
   HideThisField: Boolean;
   Prefix: string;
+  FieldNumStopHere: Integer;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -443,7 +456,7 @@ begin
   else
     Inc(FCounter);
 
-  if (FCounter = 0) then
+  if (FCounter = 0) and (NOT FLastFieldWasHidden) then
     Value := '  <tr>' + sLineBreak
    else
      Value := '';
@@ -517,13 +530,15 @@ begin
       end
       else
       begin
-        Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
-        if Size <> -1 then
+        SizeText := '';
+        if NOT HideThisField then
         begin
-          SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
-        end
-        else
-          SizeText := '';
+          Size := RawTypeToHTMLSize(ThisFieldTypeRaw, Cursor);
+          if Size <> -1 then
+          begin
+            SizeText := Format('size="%d" maxlength="%d"', [Size, Size])
+          end
+        end;
         if FieldNum = 0 then
           Prefix := 'readonly'
         else
@@ -543,8 +558,15 @@ begin
   end;
   if HideThisField then
     Dec(FCounter);  // only count visible fields
+  FLastFieldWasHidden := HideThisField;
+
+  if (UpdateCounterFieldname = '') then
+    FieldNumStopHere := Pred(ThisTableFieldCount)
+  else
+    FieldNumStopHere := Pred(Pred(ThisTableFieldCount));
+
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
-    ThisTableFieldCount - 2) then
+    FieldNumStopHere) then
   begin
     while FCounter < Pred(FFieldsPerRowInInstantForm) do
     begin
