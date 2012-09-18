@@ -408,8 +408,9 @@ begin
           Prefix := 'edit';
         Value := Value +
           '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
-            CurrentTable + '-' + CurrentFieldname + '" value="(~edit-' +
-            CurrentTable + '-' + CurrentFieldname + '~)" ' + SizeMaxLengthText;
+            CurrentTable + '-' + CurrentFieldname + '" value="' + MacroStart +
+            Prefix + '-' + CurrentTable + '-' + CurrentFieldname + MacroEnd +
+            '" ' + SizeMaxLengthText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
@@ -549,8 +550,9 @@ begin
           Prefix := 'edit';
         Value := Value +
           '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
-            CurrentTable + '-' + CurrentFieldname + '" value="(~edit-' +
-            CurrentTable + '-' + CurrentFieldname + '~)" ' + SizeText;
+            CurrentTable + '-' + CurrentFieldname + '" value="' + MacroStart +
+            Prefix + '-' + CurrentTable + '-' + CurrentFieldname + MacroEnd +
+            '" ' + SizeText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
