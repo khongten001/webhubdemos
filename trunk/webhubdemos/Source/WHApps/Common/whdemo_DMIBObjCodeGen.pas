@@ -202,6 +202,8 @@ begin
               '<!--- <form method="post" accept-charset="UTF-8" ' +
               'action="(~ACTIONR|~)"> -->' +
               sLineBreak;
+          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
+            CodeContent := CodeContent + '<!--- ';
           CodeContent := CodeContent +
           '  <table id="' +
             LowerCase(
@@ -209,8 +211,10 @@ begin
               '-' + TableList[i] + '" class="' +
               LowerCase(
               GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
-              '">' +
-          sLineBreak;
+              '">';
+          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
+            CodeContent := CodeContent + ' -->';
+          CodeContent := CodeContent + sLineBreak;
 
           case CodeGenPattern of
             cgpInstantFormReadonly: CodeContent := CodeContent +
