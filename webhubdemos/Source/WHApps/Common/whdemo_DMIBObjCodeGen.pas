@@ -239,7 +239,8 @@ begin
                     GetEnumName(TypeInfo(TCodeGenPattern),
                     Ord(CodeGenPattern))) +
                   'Submit">' + sLineBreak +
-                '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
+                '    <td colspan="' + IntToStr(FFieldsPerRowInInstantForm) +
+                '"><input type="submit" name="btnInstantForm" ' +
                  'value="Save" /></td>' +
                 sLineBreak +
                 '  </tr>' + sLineBreak;
