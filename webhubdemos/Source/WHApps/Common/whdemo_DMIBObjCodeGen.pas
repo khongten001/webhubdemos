@@ -301,6 +301,7 @@ var
   ThisPlaceholder: string;
   ThisInputType: string;
   HideThisField: Boolean;
+  Prefix: string;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -390,10 +391,14 @@ begin
         end
         else
           SizeMaxLengthText := '';
+        if FieldNum = 0 then
+          Prefix := 'readonly'  // primary key
+        else
+          Prefix := 'edit';
         Value := Value +
-          '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
-            CurrentFieldname + '" value="(~edit-' + CurrentTable + '-' +
-            CurrentFieldname + '~)" ' + SizeMaxLengthText;
+          '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
+            CurrentTable + '-' + CurrentFieldname + '" value="(~edit-' +
+            CurrentTable + '-' + CurrentFieldname + '~)" ' + SizeMaxLengthText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
@@ -430,6 +435,7 @@ var
   ThisPlaceholder: string;
   ThisInputType: string;
   HideThisField: Boolean;
+  Prefix: string;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -518,11 +524,14 @@ begin
         end
         else
           SizeText := '';
+        if FieldNum = 0 then
+          Prefix := 'readonly'
+        else
+          Prefix := 'edit';
         Value := Value +
-          '<input type="' + ThisInputType + '" name="edit-' + CurrentTable + '-' +
-            CurrentFieldname +
-            '" value="(~edit-' + CurrentTable + '-' + CurrentFieldname + '~)" ' +
-            SizeText;
+          '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
+            CurrentTable + '-' + CurrentFieldname + '" value="(~edit-' +
+            CurrentTable + '-' + CurrentFieldname + '~)" ' + SizeText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
