@@ -322,7 +322,7 @@ begin
 
   HideThisField := (ThisInputType='hidden') or (FieldNum = 0);
 
-  if ((FieldNum = 0) and (NOT HideThisField=False)) or
+  if ((FieldNum = 0) and (NOT HideThisField)) or
     IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
     { primary key field: readonly and developer wants it shown}
@@ -456,7 +456,7 @@ begin
 
   HideThisField := (ThisInputType='hidden') or (FieldNum = 0);
 
-  if ((FieldNum = 0) and (NOT HideThisField=False)) or
+  if ((FieldNum = 0) and (NOT HideThisField)) or
     IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
     { primary key field: readonly and developer wants it shown}
