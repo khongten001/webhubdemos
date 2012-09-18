@@ -300,6 +300,7 @@ var
   ThisFieldDesc: string;
   ThisPlaceholder: string;
   ThisInputType: string;
+  HideThisField: Boolean;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -312,9 +313,18 @@ begin
    else
      Value := '';
 
-  if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
+  ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+  ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
+    ThisFieldDesc);  // e.g. type="hidden"
+  if ThisInputType = '' then
+    ThisInputType := 'text';
+
+  HideThisField := (ThisInputType='hidden') or (FieldNum = 0);
+
+  if ((FieldNum = 0) and (NOT HideThisField=False)) or
+    IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
-    { primary key field: readonly }
+    { primary key field: readonly and developer wants it shown}
     { UpdatedOnAt field: set by trigger }
     Value := Value +
       '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
@@ -324,14 +334,9 @@ begin
   end
   else
   begin
-    ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-    ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
-      ThisFieldDesc);  // e.g. type="hidden"
-    if ThisInputType = '' then
-      ThisInputType := 'text';
-
     if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
     begin
+      HideThisField := True;
       ThisInputType := 'hidden';
       { pass through the UpdateCounter for optimal multi-user editing }
       Value := Value +
@@ -397,9 +402,9 @@ begin
       if ThisInputType <> 'hidden' then
         Value := Value + '    </td>' + sLineBreak;
     end;
-    if ThisInputType = 'hidden' then
-      Dec(FCounter);  // only count visible fields
   end;
+  if HideThisField then
+    Dec(FCounter);  // only count visible fields
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
     ThisTableFieldCount - 2) then
   begin
@@ -424,6 +429,7 @@ var
   ThisFieldDesc: string;
   ThisPlaceholder: string;
   ThisInputType: string;
+  HideThisField: Boolean;
 begin
 
   if (FieldNum = 0) or (FCounter = Pred(FFieldsPerRowInInstantForm)) then
@@ -436,9 +442,18 @@ begin
    else
      Value := '';
 
-  if (FieldNum = 0) or IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
+  ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+  ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
+    ThisFieldDesc);  // e.g. type="hidden"
+  if ThisInputType = '' then
+    ThisInputType := 'text';
+
+  HideThisField := (ThisInputType='hidden') or (FieldNum = 0);
+
+  if ((FieldNum = 0) and (NOT HideThisField=False)) or
+    IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
-    { primary key field: readonly }
+    { primary key field: readonly and developer wants it shown}
     { UpdatedOnAt field: set by trigger }
     Value := Value +
       '    <td><div class="labelCell">' +
@@ -448,13 +463,9 @@ begin
   end
   else
   begin
-    ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-    ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
-      ThisFieldDesc);  // e.g. type="hidden"
-    if ThisInputType = '' then
-      ThisInputType := 'text';
     if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
     begin
+      HideThisField := True;
       ThisInputType := 'hidden';
       { pass through the UpdateCounter for optimal multi-user editing }
       Value := Value +
@@ -467,7 +478,6 @@ begin
     begin
       ThisFieldType := Cursor.FieldByName('field_type').AsString;
       ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-      ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
 
       ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
         ThisFieldDesc);
@@ -479,7 +489,7 @@ begin
       if ThisInputType = '' then
         ThisInputType := 'text';
 
-      if ThisInputType <> 'hidden' then
+      if NOT HideThisField then
       begin
         value := Value +
           '    <td><div class="labelCell">' + MacroStart + 'mcLabel-' +
@@ -521,9 +531,9 @@ begin
       if ThisInputType <> 'hidden' then
         Value := Value + '    </td>' + sLineBreak;
     end;
-    if ThisInputType = 'hidden' then
-      Dec(FCounter);  // only count visible fields
   end;
+  if HideThisField then
+    Dec(FCounter);  // only count visible fields
   if (FCounter = Pred(FFieldsPerRowInInstantForm)) or (FieldNum =
     ThisTableFieldCount - 2) then
   begin
