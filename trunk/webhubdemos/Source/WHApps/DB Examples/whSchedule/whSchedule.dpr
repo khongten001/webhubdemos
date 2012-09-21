@@ -29,6 +29,7 @@ uses
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_DMIBObjCodeGen in '..\..\Common\whdemo_DMIBObjCodeGen.pas' {DMIBObjCodeGen: TDataModule},
+  whdemo_IbObjCodeGenGUI in '..\..\Common\whdemo_IbObjCodeGenGUI.pas',
   whSchedule_dmdbProjMgr in 'whSchedule_dmdbProjMgr.pas' {DMForWHSchedule: TDataModule},
   whSchedule_dmKeywordSearch in 'whSchedule_dmKeywordSearch.pas' {DMRubiconSearch: TDataModule},
   whSchedule_dmwhActions in 'whSchedule_dmwhActions.pas' {DMCodeRageActions: TDataModule},
