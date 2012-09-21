@@ -10,7 +10,7 @@ unit whSchedule_fmCodeGen;
 { ---------------------------------------------------------------------------- }
 
 { ---------------------------------------------------------------------------- }
-{ * Requires WebHub v2.171+                                                  * }
+{ * Requires WebHub v2.176+                                                  * }
 { ---------------------------------------------------------------------------- }
 
 interface
@@ -231,8 +231,14 @@ begin
 
   DMIBObjCodeGen.GenPASandSQL('CodeRageSchedule', False,  // Firebird not IB
     DMIBObjCodeGen.ActiveConn, DMIBObjCodeGen.ActiveSess,
-    DMIBObjCodeGen.ActiveTr, cSQLOutputRoot, MemoAddUserMessage,
-    CodeRageSkipWordsTable);
+    DMIBObjCodeGen.ActiveTr, cPASOutputRoot, cSQLOutputRoot, 
+    MemoAddUserMessage,     {anonymous method to give user some feedback}
+    CodeRageSkipWordsTable, {anonymous method to skip table(s)}
+    {anonymous method to invent the generator name}
+    function (const TblName: string): string
+    begin
+      Result := 'Gen' + TblName + 'No';
+    end);
 end;
 
 procedure TfmCodeGenerator.ActionImportExecute(Sender: TObject);
