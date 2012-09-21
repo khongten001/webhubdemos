@@ -100,6 +100,7 @@ begin
     DBName, DBUser, DBPass);
 
   CreateifNil(DBName, DBUser, DBPass);
+  gCodeRageSchedule_Conn.CharSet := 'UTF8';
   try
     gCodeRageSchedule_Conn.Connect;
   except
