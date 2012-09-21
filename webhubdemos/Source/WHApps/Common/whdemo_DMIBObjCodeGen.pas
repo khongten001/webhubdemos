@@ -20,9 +20,14 @@ unit whdemo_DMIBObjCodeGen;
 interface
 
 uses
-  SysUtils, Classes,
+  SysUtils, Classes, StdCtrls,
   IB_Components,
   webLink, whutil_RegExParsing, whCodeGenIBObj;
+
+type
+  TGUIWriteInfoProc = reference to procedure(const MesssageToUser: string);
+type
+  TAdjustTableListProc = reference to procedure(var y: TStringList);
 
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
@@ -48,6 +53,8 @@ type
   private
     FDatabaseIterator: TwhDatabaseIterator;
     FActiveConn: TIB_Connection;
+    FActiveTr: TIB_Transaction;
+    FActiveSess: TIB_Session;
     function RawTypeToHTMLSize(const RawFirebirdType: Integer;
       Cursor: TIB_Cursor): Integer;
   private
@@ -88,7 +95,17 @@ type
     function Init(out ErrorText: string): Boolean;
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
       const CodeGenPattern: TCodeGenPattern): string;
+    procedure GenPASandSQL(inProjectAbbrev: string; const IsInterbase: Boolean;
+      conn: TIB_Connection; sess: TIB_Session; tr: TIB_Transaction;
+      const OutputFolder: string; GUIWriteInfoProc: TGUIWriteInfoProc;
+      AdjustTableListProc: TAdjustTableListProc);
+    function ProcessCodeGenForPattern(AListBox: TListBox; conn: TIB_Connection;
+      GUIWriteInfoProc: TGUIWriteInfoProc;
+      AdjustTableListProc: TAdjustTableListProc): string;
     function ProjectAbbrevForCodeGen: string;
+    property ActiveConn: TIB_Connection read FActiveConn write FActiveConn;
+    property ActiveTr: TIB_Transaction read FActiveTr write FActiveTr;
+    property ActiveSess: TIB_Session read FActiveSess write FActiveSess;
     property Counter: Integer read FCounter write FCounter;
     property DatabaseIterator: TwhDatabaseIterator read FDatabaseIterator
       write FDatabaseIterator;
@@ -114,11 +131,153 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Header,
-  TypInfo,
+  TypInfo, Forms,
   webApp, htWebApp, whMacroAffixes,
   ucString, ucCodeSiteInterface, ucIbAndFbCredentials, ucIBObjCodeGen;
 
 { TDMIBObjCodeGen }
+
+procedure TDMIBObjCodeGen.GenPASandSQL(inProjectAbbrev: string;
+  const IsInterbase: Boolean; conn: TIB_Connection; sess: TIB_Session;
+  tr: TIB_Transaction; const OutputFolder: string;
+  GUIWriteInfoProc: TGUIWriteInfoProc;
+  AdjustTableListProc: TAdjustTableListProc);
+const cFn = 'GenPASandSQL';
+var
+  Flag: Boolean;
+  y: TStringList;
+  Filespec: string;
+begin
+  inherited;
+  y := nil;
+
+  if Assigned(conn) and Assigned(tr) and Assigned(sess) then
+  begin
+    FActiveConn := conn;
+    GUIWriteInfoProc('Starting... takes time depending on connection speed');
+    GUIWriteInfoProc('');
+    GUIWriteInfoProc('DatabaseName: ' + conn.DatabaseName);
+    GUIWriteInfoProc('Credentials: ' + conn.Username + #9 + conn.Password);
+    GUIWriteInfoProc('');
+
+    conn.Connect;
+
+    try
+      Firebird_GetTablesInDatabase(y, Flag, conn.DatabaseName, conn, tr,
+        conn.Username, conn.Password);
+
+      if Assigned(y) then
+      begin
+        AdjustTableListProc(y);
+        Filespec :=
+          OutputFolder + InProjectAbbrev + '_Triggers.sql';
+        IbAndFb_GenSQL_Triggers(y, conn, Filespec, UpdatedOnAtFieldname,
+          UpdateCounterFieldName);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+
+        Filespec :=
+          OutputFolder +
+          'uStructureClientDataSets_' + InProjectAbbrev + '.pas';
+        Firebird_GenPAS_StructureClientDatasets(y, conn, InProjectAbbrev,
+          Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+
+        Filespec := OutputFolder + 'u';
+        if IsInterbase then
+          Filespec := Filespec + 'Interbase'
+        else
+          Filespec := Filespec + 'Firebird';
+        Filespec := Filespec + '_SQL_Snippets_' + InProjectAbbrev + '.pas';
+        Firebird_GenPAS_SQL_Snippets(y, conn, InProjectAbbrev, Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+
+        // The project may never use TClientDataSet
+        // BUT: it helps to have the Fill code for copy and paste samples
+        Filespec := OutputFolder + 'uFillClientDataSets_' + InProjectAbbrev +
+          '.pas';
+        Firebird_GenPAS_FillClientDatasets(y, conn, InProjectAbbrev, Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+      end;
+    finally
+      FreeAndNil(y);
+    end;
+    conn.DisconnectToPool;
+    GUIWriteInfoProc(cFn + ' Done! ' + FormatDateTime('dddd hh:nn:ss', Now));
+  end
+  else
+    GUIWriteInfoProc('Programmer Error: connection, transaction and session ' +
+      'must be assigned and ready to use.');
+end;
+
+function TDMIBObjCodeGen.ProcessCodeGenForPattern(AListBox: TListBox;
+  conn: TIB_Connection;
+  GUIWriteInfoProc: TGUIWriteInfoProc;
+  AdjustTableListProc: TAdjustTableListProc): string;
+var
+  y: TStringList;
+  Flag: Boolean;
+  CodeContent: string;
+  listIdx: Integer;
+begin
+  inherited;
+  y := nil;
+
+  if Assigned(conn) then
+  begin
+    FActiveConn := conn;
+
+    GUIWriteInfoProc('<whdoc for="' + FActiveConn.DatabaseName +
+      '">');
+    GUIWriteInfoProc('Content based on Firebird SQL meta data');
+    GUIWriteInfoProc('As of ' + FormatDateTime('dddd dd-MMM-yyyy hh:nn', Now));
+    GUIWriteInfoProc('</whdoc>');
+    Application.ProcessMessages;
+    FActiveConn.Connect;
+    GUIWriteInfoProc('');
+
+    try
+      Firebird_GetTablesInDatabase(y, Flag, FActiveConn.DatabaseName,
+        FActiveConn, FActiveTr, FActiveConn.Username, FActiveConn.Password);
+      AdjustTableListProc(y);
+
+      for listIdx := 0 to Pred(AListBox.Count) do
+      begin
+        if AListBox.Selected[listIdx] then
+        case listIdx of
+        0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpMacroLabelsForFields);
+        1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpMacroPKsForTables);
+        2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpFieldListForImport);
+        3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpSelectSQLDroplet);
+        4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpUpdateSQLDroplet);
+        5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpInstantFormReadonly);
+        6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpInstantFormEdit);
+        7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpInstantFormEditLabelAbove);
+        else
+          GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
+        end;
+        GUIWriteInfoProc( CodeContent );
+        GUIWriteInfoProc('');
+      end;
+      Application.ProcessMessages;
+    finally
+      FreeAndNil(y);
+    end;
+
+    FActiveConn.DisconnectToPool;
+  end;
+end;
 
 function TDMIBObjCodeGen.CodeGenForPattern(conn: TIB_Connection;
   TableList: TStringList; const CodeGenPattern: TCodeGenPattern): string;

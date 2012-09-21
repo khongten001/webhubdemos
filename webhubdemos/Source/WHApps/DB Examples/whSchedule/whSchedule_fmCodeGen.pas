@@ -20,10 +20,10 @@ interface
 
 uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
-  SysUtils, Classes, ActnList, Vcl.Buttons, Vcl.ComCtrls,
+  SysUtils, Classes, ActnList, Buttons, ComCtrls,
   IB_Components,
   toolbar, utPanFrm, restorer, tpCompPanel,
-  whutil_RegExParsing;
+  whutil_RegExParsing, whdemo_IbObjCodeGenGUI;
 
 type
   TfmCodeGenerator = class(TutParentForm)
@@ -56,18 +56,19 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label4: TLabel;
-    lbCodeGenPattern: TListBox;
     procedure ActionBootstrapExecute(Sender: TObject);
     procedure ActionGenPASandSQLExecute(Sender: TObject);
     procedure ActionExportExecute(Sender: TObject);
     procedure ActionImportExecute(Sender: TObject);
     procedure ActionCodeGenForPatternExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    FProjectConnection: TIB_Connection;
-    FProjectTransaction: TIB_Transaction;
+    lbCodeGenPattern: TListBox;
+    procedure MemoAddUserMessage(const S: string);
+    procedure CodeRageSkipWordsTable(var y: TStringList);
     procedure TranslateOutgoingStringBreaks( var AString: string );
 (*    procedure TranslateIncomingStringBreaks(Sender: TObject;
                          var InputFields: TStrings;
@@ -139,71 +140,12 @@ begin
 end;
 
 procedure TfmCodeGenerator.ActionCodeGenForPatternExecute(Sender: TObject);
-var
-  y: TStringList;
-  DBName, DBUser, DBPass: string;
-  Flag: Boolean;
-  CodeContent: string;
-  x: Integer;
-  listIdx: Integer;
 begin
   inherited;
-
-//  {$IFDEF CodeSite}CodeSite.Send('4fields', Firebird_GetSQL_Fieldlist4Table);{$ENDIF}
-
-  y := nil;
-
   Init;
-
   mOutput.Clear;
-  mOutput.Lines.Add('<whdoc for="' + FProjectConnection.DatabaseName + '">');
-  mOutput.Lines.Add('Content based on Firebird SQL meta data');
-  mOutput.Lines.Add('As of ' + FormatDateTime('dddd dd-MMM-yyyy hh:nn', Now));
-  mOutput.Lines.Add('</whdoc>');
-  Application.ProcessMessages;
-  FProjectConnection.Connect;
-  mOutput.Lines.Add('');
-
-  try
-    Firebird_GetTablesInDatabase(y, Flag, DBName,
-      FProjectConnection, FProjectTransaction, DBUser, DBPass);
-    x := y.IndexOf(Uppercase('Words'));
-    if x > -1 then
-      y.Delete(x);  // no generation for Rubicon Words table.
-
-    for listIdx := 0 to Pred(lbCodeGenPattern.Count) do
-    begin
-      if lbCodeGenPattern.Selected[listIdx] then
-      case listIdx of
-      0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpMacroLabelsForFields);
-      1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpMacroPKsForTables);
-      2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpFieldListForImport);
-      3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpSelectSQLDroplet);
-      4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpUpdateSQLDroplet);
-      5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpInstantFormReadonly);
-      6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpInstantFormEdit);
-      7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(FProjectConnection,
-        y, cgpInstantFormEditLabelAbove);
-      else
-        MsgErrorOk('Unsupported selection in ' + lbCodeGenPattern.ClassName);
-      end;
-      mOutput.Lines.Add( CodeContent );
-      mOutput.Lines.Add('');
-    end;
-    Application.ProcessMessages;
-    Application.ProcessMessages;
-  finally
-    FreeAndNil(y);
-  end;
-
-  FProjectConnection.DisconnectToPool;
+  DMIBObjCodeGen.ProcessCodeGenForPattern(lbCodeGenPattern,
+    gCodeRageSchedule_Conn, MemoAddUserMessage, CodeRageSkipWordsTable);
 end;
 
 procedure TfmCodeGenerator.ActionExportExecute(Sender: TObject);
@@ -248,14 +190,15 @@ begin
   inherited;
 
   Init;
-  FProjectConnection.Connect;
+  DMIBObjCodeGen.ActiveConn.Connect;
 
   ex := nil;
   q := nil;
   try
     q := TIB_Cursor.Create(Self);
-    q.IB_Connection := FProjectConnection;
-    q.IB_Transaction := FProjectTransaction;
+    q.IB_Connection := DMIBObjCodeGen.ActiveConn;
+    q.IB_Session := DMIBObjCodeGen.ActiveSess;
+    q.IB_Transaction := DMIBObjCodeGen.ActiveTr;
     q.Name := 'q4export';
     ex := TIB_Export.Create(Self);
     ex.Dataset := q;
@@ -277,71 +220,19 @@ begin
     FreeAndNil(ex);
     FreeAndNil(q);
   end;
-  FProjectConnection.DisconnectToPool;
+  DMIBObjCodeGen.ActiveConn.DisconnectToPool;
 end;
 
 procedure TfmCodeGenerator.ActionGenPASandSQLExecute(Sender: TObject);
-var
-  Flag: Boolean;
-  y: TStringList;
-  Filespec: string;
-  FBDB, FBUsername, FBPassword: string;
 begin
   inherited;
-  y := nil;
   mOutput.Lines.Clear;
-  mOutput.Lines.Add('Starting... takes time depending on connection speed');
-  mOutput.Lines.Add('');
-
   Init;
-  mOutput.Lines.Add(FBDB);
-  mOutput.Lines.Add(FBUsername + #9 + FBPassword);
-  mOutput.Lines.Add('');
 
-  FProjectConnection.Connect;
-
-  Firebird_GetTablesInDatabase(y, Flag, FBDB,
-    FProjectConnection, FProjectTransaction, FBUsername, FBPassword);
-
-  if Assigned(y) then
-  begin
-    Filespec :=
-      cSQLOutputRoot + 'CodeRageSchedule_Triggers.sql';
-    IbAndFb_GenSQL_Triggers(y, FProjectConnection,
-      Filespec);
-    mOutput.Lines.Add(Filespec);
-    mOutput.Lines.Add('');
-
-    Filespec :=
-      cPASOutputRoot +
-      'uStructureClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen +
-      '.pas';
-    Firebird_GenPAS_StructureClientDatasets(y, FProjectConnection,
-      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    mOutput.Lines.Add(Filespec);
-    mOutput.Lines.Add('');
-
-    Filespec :=
-      cPASOutputRoot +
-      'uFirebird_SQL_Snippets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
-    Firebird_GenPAS_SQL_Snippets(y, FProjectConnection,
-      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    mOutput.Lines.Add(Filespec);
-    mOutput.Lines.Add('');
-
-    // Order Head and Detail need to be live datasets, not cached
-    // BUT: it helps to have the Fill code for copy and paste samples
-    Filespec :=
-      cPASOutputRoot +
-      'uFillClientDataSets_' + DMIBObjCodeGen.ProjectAbbrevForCodeGen + '.pas';
-    Firebird_GenPAS_FillClientDatasets(y, FProjectConnection,
-      DMIBObjCodeGen.ProjectAbbrevForCodeGen, Filespec);
-    mOutput.Lines.Add(Filespec);
-    mOutput.Lines.Add('');
-  end;
-  FreeAndNil(y);
-  FProjectConnection.DisconnectToPool;
-  mOutput.Lines.Add('Done! ' + FormatDateTime('dddd hh:nn:ss', Now));
+  DMIBObjCodeGen.GenPASandSQL('CodeRageSchedule', False,  // Firebird not IB
+    DMIBObjCodeGen.ActiveConn, DMIBObjCodeGen.ActiveSess,
+    DMIBObjCodeGen.ActiveTr, cSQLOutputRoot, MemoAddUserMessage,
+    CodeRageSkipWordsTable);
 end;
 
 procedure TfmCodeGenerator.ActionImportExecute(Sender: TObject);
@@ -353,13 +244,13 @@ begin
   mOutput.Clear;
 
   Init;
-  FProjectConnection.Connect;
+  DMIBObjCodeGen.ActiveConn.Connect;
 
   try
     im := TIB_Import.Create(Self);
     im.Name := 'import4coderage';
-    im.IB_Connection := FProjectConnection;
-    im.IB_Transaction := FProjectTransaction;
+    im.IB_Connection := DMIBObjCodeGen.ActiveConn;
+    im.IB_Transaction := DMIBObjCodeGen.ActiveTr;
     im.ImportFormat := ifUTF8;
     try
       // XProduct table
@@ -390,13 +281,30 @@ begin
   finally
     FreeAndNil(im);
   end;
-  FProjectConnection.DisconnectToPool;
+  DMIBObjCodeGen.ActiveConn.DisconnectToPool;
+end;
+
+procedure TfmCodeGenerator.CodeRageSkipWordsTable(var y: TStringList);
+var
+  x: Integer;
+begin
+  x := y.IndexOf(Uppercase('Words'));
+  if x > -1 then
+    y.Delete(x);  // no generation for Rubicon Words table.
 end;
 
 procedure TfmCodeGenerator.FormCreate(Sender: TObject);
 begin
   inherited;
   FlagInitDone := False;
+  lbCodeGenPattern := nil;
+  CreateCodeGenPatternListbox(lbCodeGenPattern, tpToolbar1);
+end;
+
+procedure TfmCodeGenerator.FormDestroy(Sender: TObject);
+begin
+  FreeAndNil(lbCodeGenPattern);
+  inherited;
 end;
 
 function TfmCodeGenerator.Init: Boolean;
@@ -418,16 +326,27 @@ begin
     LabeledEditProjectAbbrev.Text :=
       DMIBObjCodeGen.ProjectAbbreviationNoSpaces;
 
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
-    DBName, DBUser, DBPass);
-  LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
-  CreateIfNil(DBName, DBUser, DBPass);
-  FProjectConnection := gCodeRageSchedule_Conn;
-  FProjectTransaction := gCodeRageSchedule_Tr;
+  if gCodeRageSchedule_Conn = nil then
+  begin
+    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+      DBName, DBUser, DBPass);
+    LabelDBInfo.Caption := DBName + ' ' + DBUser + ' ' + DBPass;
+    CreateIfNil(DBName, DBUser, DBPass);
+    gCodeRageSchedule_Conn.CharSet := 'UTF8';
+  end;
+
+  DMIBObjCodeGen.ActiveConn := gCodeRageSchedule_Conn;
+  DMIBObjCodeGen.ActiveSess := gCodeRageSchedule_Sess;
+  DMIBObjCodeGen.ActiveTr := gCodeRageSchedule_Tr;
 
   {Set number of fields to prompt for, per HTML row}
   DMIBObjCodeGen.FieldsPerRowInInstantForm := 1;
 
+end;
+
+procedure TfmCodeGenerator.MemoAddUserMessage(const S: string);
+begin
+  mOutput.Lines.Add(S);
 end;
 
 function TfmCodeGenerator.RestorerActiveHere: Boolean;

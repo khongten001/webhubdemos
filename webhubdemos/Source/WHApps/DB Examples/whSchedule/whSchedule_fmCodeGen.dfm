@@ -5,6 +5,7 @@ inherited fmCodeGenerator: TfmCodeGenerator
   ClientHeight = 406
   ClientWidth = 824
   OnCreate = FormCreate
+  OnDestroy = FormDestroy
   ExplicitWidth = 842
   ExplicitHeight = 451
   PixelsPerInch = 120
@@ -72,11 +73,11 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object Label1: TLabel
             Left = 16
             Top = 56
-            Width = 428
-            Height = 44
+            Width = 609
+            Height = 66
             Caption = 
-              'BootStrap ONCE to make the unit containing the TIB_Connection an' +
-              'd TIB_Transaction.'
+              'BootStrap ONCE to make the unit containing the TIB_Connection, T' +
+              'IB_Session and TIB_Transaction.'
             WordWrap = True
           end
           object tpToolBar2: TtpToolBar
@@ -178,24 +179,6 @@ inherited fmCodeGenerator: TfmCodeGenerator
               Height = 42
               Action = ActionCodeGenForPattern
               TabOrder = 0
-            end
-            object lbCodeGenPattern: TListBox
-              Left = 8
-              Top = 8
-              Width = 370
-              Height = 97
-              ItemHeight = 22
-              Items.Strings = (
-                'Whteko: Macros for Field Labels'
-                'Whteko: Macros for Primary Keys'
-                'Ini: Field List for IBObjects Import'
-                'Whteko: Droplets with Select SQL for each table'
-                'Whteko: Droplets with Update SQL for each table'
-                'Whteko: Readonly Form for each table'
-                'Whteko: Editable Form for each table'
-                'Whteko: Editable Form, labels above, for each table')
-              MultiSelect = True
-              TabOrder = 1
             end
           end
         end
