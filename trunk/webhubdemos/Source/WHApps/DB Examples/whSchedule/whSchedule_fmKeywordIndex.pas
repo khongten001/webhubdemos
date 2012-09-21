@@ -58,7 +58,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  webLink, webApp,
+  webLink, webApp, htWebApp,
   ucIbAndFbCredentials, uFirebird_Connect_CodeRageSchedule,
   ucCodeSiteInterface,
   whdemo_DMIBObjCodeGen;
@@ -68,6 +68,7 @@ uses
 procedure TfmRubiconIndex.ActionCreateIndexExecute(Sender: TObject);
 var
   DBName, DBUser, DBPass: string;
+  ACoverPageFilespec: string;
 begin
   inherited;
   if gCodeRageSchedule_Conn = nil then
@@ -80,8 +81,12 @@ begin
     CreateIfNil(DBName, DBUser, DBPass);
   end;
 
-  if NOT gCodeRageSchedule_Conn.Connected then
-    gCodeRageSchedule_Conn.Connect;
+  CoverApp(pWebApp.AppID, 5, 'Recreating index for training archive',
+    False, ACoverPageFilespec);
+
+  // Stop all use of the WORDS table temporarily
+  gCodeRageSchedule_Conn.DisconnectToPool;
+  gCodeRageSchedule_Conn.Connect;
 
   Assert(SameText(gCodeRageSchedule_Conn.CharSet, 'UTF8'),
     gCodeRageSchedule_Conn.DatabaseName + ' charset!');
@@ -149,6 +154,7 @@ begin
       Memo1.Lines.Add(E.Message);
     end;
   end;
+  UncoverApp(pWebApp.AppID, ACoverPageFilespec);
 end;
 
 procedure TfmRubiconIndex.FormCreate(Sender: TObject);
