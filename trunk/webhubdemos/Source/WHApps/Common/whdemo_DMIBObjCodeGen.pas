@@ -22,6 +22,7 @@ interface
 uses
   SysUtils, Classes, StdCtrls,
   IB_Components,
+  ucIBObjCodeGen,
   webLink, whutil_RegExParsing, whCodeGenIBObj;
 
 type
@@ -97,8 +98,10 @@ type
       const CodeGenPattern: TCodeGenPattern): string;
     procedure GenPASandSQL(inProjectAbbrev: string; const IsInterbase: Boolean;
       conn: TIB_Connection; sess: TIB_Session; tr: TIB_Transaction;
-      const OutputFolder: string; GUIWriteInfoProc: TGUIWriteInfoProc;
-      AdjustTableListProc: TAdjustTableListProc);
+      const PASOutputFolder, SQLOutputFolder: string;
+      GUIWriteInfoProc: TGUIWriteInfoProc;
+      AdjustTableListProc: TAdjustTableListProc;
+      GeneratorNameFn: TtpcgGeneratorNameFn);
     function ProcessCodeGenForPattern(AListBox: TListBox; conn: TIB_Connection;
       GUIWriteInfoProc: TGUIWriteInfoProc;
       AdjustTableListProc: TAdjustTableListProc): string;
@@ -133,15 +136,16 @@ uses
   IB_Header,
   TypInfo, Forms,
   webApp, htWebApp, whMacroAffixes,
-  ucString, ucCodeSiteInterface, ucIbAndFbCredentials, ucIBObjCodeGen;
+  ucString, ucCodeSiteInterface, ucIbAndFbCredentials;
 
 { TDMIBObjCodeGen }
 
 procedure TDMIBObjCodeGen.GenPASandSQL(inProjectAbbrev: string;
   const IsInterbase: Boolean; conn: TIB_Connection; sess: TIB_Session;
-  tr: TIB_Transaction; const OutputFolder: string;
+  tr: TIB_Transaction; const PASOutputFolder, SQLOutputFolder: string;
   GUIWriteInfoProc: TGUIWriteInfoProc;
-  AdjustTableListProc: TAdjustTableListProc);
+  AdjustTableListProc: TAdjustTableListProc;
+  GeneratorNameFn: TtpcgGeneratorNameFn);
 const cFn = 'GenPASandSQL';
 var
   Flag: Boolean;
@@ -169,22 +173,22 @@ begin
       if Assigned(y) then
       begin
         AdjustTableListProc(y);
-        Filespec :=
-          OutputFolder + InProjectAbbrev + '_Triggers.sql';
-        IbAndFb_GenSQL_Triggers(y, conn, Filespec, UpdatedOnAtFieldname,
-          UpdateCounterFieldName);
+        Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
+          InProjectAbbrev + '_Triggers.sql';
+        IbAndFb_GenSQL_Triggers(y, conn, Filespec,
+          GeneratorNameFn,
+          UpdatedOnAtFieldname, UpdateCounterFieldName);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
-        Filespec :=
-          OutputFolder +
+        Filespec := IncludeTrailingPathDelimiter(PASOutputFolder) +
           'uStructureClientDataSets_' + InProjectAbbrev + '.pas';
         Firebird_GenPAS_StructureClientDatasets(y, conn, InProjectAbbrev,
           Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
-        Filespec := OutputFolder + 'u';
+        Filespec := IncludeTrailingPathDelimiter(PASOutputFolder) + 'u';
         if IsInterbase then
           Filespec := Filespec + 'Interbase'
         else
@@ -196,8 +200,8 @@ begin
 
         // The project may never use TClientDataSet
         // BUT: it helps to have the Fill code for copy and paste samples
-        Filespec := OutputFolder + 'uFillClientDataSets_' + InProjectAbbrev +
-          '.pas';
+        Filespec := IncludeTrailingPathDelimiter(PASOutputFolder) +
+          'uFillClientDataSets_' + InProjectAbbrev + '.pas';
         Firebird_GenPAS_FillClientDatasets(y, conn, InProjectAbbrev, Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
