@@ -58,7 +58,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  webLink,
+  webLink, webApp,
   ucIbAndFbCredentials, uFirebird_Connect_CodeRageSchedule,
   ucCodeSiteInterface,
   whdemo_DMIBObjCodeGen;
@@ -70,14 +70,21 @@ var
   DBName, DBUser, DBPass: string;
 begin
   inherited;
-  ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
-    DBName, DBUser, DBPass);
-  Memo1.Lines.Text := DBName;
-
-  CreateIfNil(DBName, DBUser, DBPass);
+  if gCodeRageSchedule_Conn = nil then
+  begin
+    Memo1.Lines.Text := 'Project: ' +
+      DMIBObjCodeGen.ProjectAbbreviationNoSpaces;
+    ZMLookup_Firebird_Credentials(DMIBObjCodeGen.ProjectAbbreviationNoSpaces,
+      DBName, DBUser, DBPass);
+    Memo1.Lines.Add(DBName);
+    CreateIfNil(DBName, DBUser, DBPass);
+  end;
 
   if NOT gCodeRageSchedule_Conn.Connected then
     gCodeRageSchedule_Conn.Connect;
+
+  Assert(SameText(gCodeRageSchedule_Conn.CharSet, 'UTF8'),
+    gCodeRageSchedule_Conn.DatabaseName + ' charset!');
 
   if NOT Assigned(makewordslink) then
   begin
@@ -87,7 +94,7 @@ begin
 
     rbMake1 := TrbMake.Create(Self);
     rbMake1.Name := 'rbMake1';
-    rbMake1.Ansi := False;  // UTF16
+    rbMake1.Ansi := False;  // very important! Unicode! UTF16!
 
     rbAccept1 := TrbAccept.Create(Self);
     rbAccept1.Name := 'rbAccept1';
@@ -133,6 +140,8 @@ begin
   try
     rbMake1.Execute;
     Memo1.Lines.Add('Done. ' + FormatDateTime('dddd hh:nn:mm', Now));
+    gCodeRageSchedule_Conn.DisconnectToPool;
+    gCodeRageSchedule_Conn.Connect;
   except
     on E: Exception do
     begin
