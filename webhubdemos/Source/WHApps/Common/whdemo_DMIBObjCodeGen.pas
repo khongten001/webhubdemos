@@ -194,7 +194,8 @@ begin
         else
           Filespec := Filespec + 'Firebird';
         Filespec := Filespec + '_SQL_Snippets_' + InProjectAbbrev + '.pas';
-        Firebird_GenPAS_SQL_Snippets(y, conn, InProjectAbbrev, Filespec);
+        Firebird_GenPAS_SQL_Snippets(y, conn, InProjectAbbrev, Filespec,
+          FUpdatedOnAtFieldname, FUpdateCounterFieldname);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
