@@ -470,6 +470,7 @@ var
   ThisFieldDesc: string;
   ThisPlaceholder: string;
   ThisInputType: string;
+  ThisReadonly: string;
   HideThisField: Boolean;
   Prefix: string;
   FieldNumStopHere: Integer;
@@ -525,6 +526,10 @@ begin
       ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
       ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
         ThisFieldDesc);
+      ThisReadonly := RegExParseAttribute(FAttributeParser, 'readonly',
+        ThisFieldDesc);
+      if ThisReadonly <> '' then
+        ThisReadonly := 'readonly=' + ThisReadonly + ' ';  // readonly="readonly"
       CSSend(CurrentFieldname, ThisFieldType);
       CSSend('ThisFieldTypeRaw', S(ThisFieldTypeRaw));
       // field not found! CSSend('charset', Cursor.FieldByName('CHARACTER_SET_ID').AsString);
@@ -545,7 +550,8 @@ begin
         // blob textarea
         Value := Value +
           '<textarea name="txt-edit-' + CurrentTable + '-' +
-          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
+          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob" ' +
+          ThisReadonly + '>' +
           MacroStart + 'edit-' + CurrentTable + '-' +
           CurrentFieldname + MacroEnd + '</textarea>';
       end
@@ -574,7 +580,7 @@ begin
           '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
             CurrentTable + '-' + CurrentFieldname + '" value="' + MacroStart +
             Prefix + '-' + CurrentTable + '-' + CurrentFieldname + MacroEnd +
-            '" ' + SizeMaxLengthText;
+            '" ' + ThisReadonly + SizeMaxLengthText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
@@ -614,6 +620,7 @@ var
   ThisFieldTypeRaw: Integer;
   ThisFieldDesc: string;
   ThisPlaceholder: string;
+  ThisReadonly: string;
   ThisInputType: string;
   HideThisField: Boolean;
   Prefix: string;
@@ -666,6 +673,8 @@ begin
     begin
       ThisFieldType := Cursor.FieldByName('field_type').AsString;
       ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
+      ThisReadonly := RegExParseAttribute(FAttributeParser, 'readonly',
+        ThisFieldDesc);
 
       ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
         ThisFieldDesc);
@@ -693,7 +702,8 @@ begin
         // blob textarea
         Value := Value +
           '<textarea name="txt-edit-' + CurrentTable + '-' +
-          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob">' +
+          CurrentFieldname + '" id="' + CurrentFieldname + '-Blob" ' +
+          ThisReadonly + '>' +
           MacroStart + 'edit-' + CurrentTable + '-' +
           CurrentFieldname + MacroEnd + '</textarea>';
       end
@@ -716,7 +726,7 @@ begin
           '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
             CurrentTable + '-' + CurrentFieldname + '" value="' + MacroStart +
             Prefix + '-' + CurrentTable + '-' + CurrentFieldname + MacroEnd +
-            '" ' + SizeText;
+            '" ' + ThisReadonly + SizeText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
