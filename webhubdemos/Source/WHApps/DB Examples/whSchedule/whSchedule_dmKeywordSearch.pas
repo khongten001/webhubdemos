@@ -375,8 +375,14 @@ var
   PrevLetter, ThisLetter: char;
   ThisWord: string;
 begin
-  if NOT gCodeRageSchedule_Conn.Connected then
-    gCodeRageSchedule_Conn.Connect;
+
+//  if NOT gCodeRageSchedule_Conn.Connected then
+//    gCodeRageSchedule_Conn.Connect;
+  if gCodeRageSchedule_Conn.ConnectionWasLost then
+    LogSendWarning('gCodeRageSchedule_Conn.ConnectionWasLost True', Self.Name);
+
+  gCodeRageSchedule_Conn.DisconnectToPool;
+  gCodeRageSchedule_Conn.Connect;
 
   if SplitString(waShowIndex.HtmlParam, ',', DrLetterName, DrWordName) then
   begin
