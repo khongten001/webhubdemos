@@ -33,7 +33,8 @@ type
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
-    cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove);
+    cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
+    cgpTableHeaderCells, cgpTableRowCells);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -91,6 +92,11 @@ type
       const ThisTableFieldCount, FieldNum: Integer;
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
+    procedure TableHeaderCells(const CurrentTable: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -102,6 +108,9 @@ type
       GUIWriteInfoProc: TGUIWriteInfoProc;
       AdjustTableListProc: TAdjustTableListProc;
       GeneratorNameFn: TtpcgGeneratorNameFn);
+    function LabelForField(const CurrentTable: string;
+      const FieldNum: Integer; const CurrentFieldname: string; 
+      Cursor: TIB_Cursor): string;
     function ProcessCodeGenForPattern(AListBox: TListBox; conn: TIB_Connection;
       GUIWriteInfoProc: TGUIWriteInfoProc;
       AdjustTableListProc: TAdjustTableListProc): string;
@@ -269,11 +278,20 @@ begin
           FActiveConn, y, cgpInstantFormEdit);
         7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpInstantFormEditLabelAbove);
+        8: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpTableHeaderCells);
+        9: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpTableRowCells);
         else
           GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
+        end
+        else
+          CodeContent := '';
+        if CodeContent <> '' then
+        begin
+          GUIWriteInfoProc( CodeContent );
+          GUIWriteInfoProc('');
         end;
-        GUIWriteInfoProc( CodeContent );
-        GUIWriteInfoProc('');
       end;
       Application.ProcessMessages;
     finally
@@ -298,14 +316,10 @@ begin
   FlagWasConnected := conn.Connected;
   if NOT FlagWasConnected then conn.Connect;
 
+  CodeContent := '';
   case CodeGenPattern of
     cgpMacroLabelsForFields,
     cgpMacroPKsForTables: CodeContent := '<whmacros>' + sLineBreak;
-    cgpFieldListForImport: CodeContent := '';
-    cgpSelectSQLDroplet: CodeContent := '';
-    cgpUpdateSQLDroplet: CodeContent := '';
-    cgpInstantFormReadonly, cgpInstantFormEdit,
-      cgpInstantFormEditLabelAbove: CodeContent := '';
   end;
 
   for i := 0 to Pred(TableList.Count) do
@@ -394,8 +408,9 @@ begin
                     GetEnumName(TypeInfo(TCodeGenPattern),
                     Ord(CodeGenPattern))) +
                   'Submit">' + sLineBreak +
-                '    <td colspan="2"><input type="submit" name="btnInstantForm" ' +
-                 'value="Save" /></td>' +
+                '    <td colspan="2"><input type="submit" ' +
+                'name="btnInstantForm" ' +
+                'value="Save" /></td>' +
                 sLineBreak +
                 '  </tr>' + sLineBreak;
               end;
@@ -422,6 +437,18 @@ begin
           CodeContent := CodeContent +
             '</whdroplet>' + sLineBreak + sLineBreak;
         end;
+        cgpTableHeaderCells:
+        begin
+          CodeContent := CodeContent +
+            '<whdroplet name="' + Format('drDataSetHeader-%s', [TableList[i]]) +
+            '">' + sLineBreak;
+          CodeContent := CodeContent +
+              Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                TableHeaderCells);
+          CodeContent := CodeContent +
+            '</whdroplet>' + sLineBreak + sLineBreak;
+        end;
+        cgpTableRowCells: ;
     end;
   end;
 
@@ -489,8 +516,9 @@ begin
      Value := '';
 
   ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-  ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
-    ThisFieldDesc);  // e.g. type="hidden"
+  // e.g. type="hidden"
+  ThisInputType := RegExParseAttribute(FAttributeParser, 'type', ThisFieldDesc);
+
   if ThisInputType = '' then
     ThisInputType := 'text';
 
@@ -524,9 +552,11 @@ begin
     begin
       ThisFieldType := Cursor.FieldByName('field_type').AsString;
       ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-      ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+      ThisPlaceholder := RegExParseAttribute(FAttributeParser,
+        'placeholder',
         ThisFieldDesc);
-      ThisReadonly := RegExParseAttribute(FAttributeParser, 'readonly',
+      ThisReadonly := RegExParseAttribute(FAttributeParser,
+        'readonly',
         ThisFieldDesc);
       if ThisReadonly <> '' then
         ThisReadonly := 'readonly=' + ThisReadonly + ' ';  // readonly="readonly"
@@ -638,8 +668,11 @@ begin
      Value := '';
 
   ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
-  ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
-    ThisFieldDesc);  // e.g. type="hidden"
+
+  // e.g. type="hidden"
+  ThisInputType := RegExParseAttribute(FAttributeParser,
+    'type',
+    ThisFieldDesc);
   if ThisInputType = '' then
     ThisInputType := 'text';
 
@@ -673,16 +706,19 @@ begin
     begin
       ThisFieldType := Cursor.FieldByName('field_type').AsString;
       ThisFieldTypeRaw := Cursor.FieldByName('field_type_raw').AsInteger;
-      ThisReadonly := RegExParseAttribute(FAttributeParser, 'readonly',
+      ThisReadonly := RegExParseAttribute(FAttributeParser,
+        'readonly',
         ThisFieldDesc);
 
-      ThisPlaceholder := RegExParseAttribute(FAttributeParser, 'placeholder',
+      ThisPlaceholder := RegExParseAttribute(FAttributeParser,
+        'placeholder',
         ThisFieldDesc);
       if ThisPlaceholder <> '' then
         CSSend('ThisPlaceholder', ThisPlaceholder);
 
-      ThisInputType := RegExParseAttribute(FAttributeParser, 'type',
-        ThisFieldDesc);  // e.g. type="hidden"
+      ThisInputType := RegExParseAttribute(FAttributeParser,
+        'type',  // e.g. type="hidden"
+        ThisFieldDesc);
       if ThisInputType = '' then
         ThisInputType := 'text';
 
@@ -805,6 +841,36 @@ begin
   end;
 end;
 
+function TDMIBObjCodeGen.LabelForField(const CurrentTable: string;
+  const FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor): string;
+const cFn = 'LabelForField';
+var
+  FldDesc: string;
+begin
+  {$IFDEF LogLabel}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  Result := '';
+  FldDesc := Cursor.FieldByName('field_description').AsString;
+  CSSend('FldDesc', FldDesc);
+  Result := RegExParseAttribute(FAttributeParser, 'label', FldDesc);
+  if Result = '' then
+  begin
+    if FieldNum = 0 then
+      Result := CurrentTable + ' PK'
+    else
+    if IsEqual(CurrentFieldname, FUpdatedByFieldname) then
+      Result := 'Updated By'
+    else
+    if IsEqual(CurrentFieldname, FUpdatedOnAtFieldname) then
+      Result := 'Last Mod'
+    else
+    if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
+      Result := 'Update Count'
+    else
+      Result := CurrentFieldname;  // default to actual field name
+  end;
+  {$IFDEF LogLabel}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
 
 procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
   const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
@@ -812,27 +878,7 @@ procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
 var
   FieldLabel: string;
 begin
-  FieldLabel := '';
-  if IsEqual(CurrentFieldname, FUpdatedByFieldname) then
-    FieldLabel := 'Updated By'
-  else
-  if IsEqual(CurrentFieldname, FUpdatedOnAtFieldname) then
-    FieldLabel := 'Last Mod'
-  else
-  if IsEqual(CurrentFieldname, FUpdateCounterFieldname) then
-    {nothing} // no macro desired
-  else
-  begin
-    FieldLabel := RegExParseAttribute(FAttributeParser, 
-      Cursor.FieldByName('field_description').AsString, 'label');
-    if FieldLabel = '' then
-    begin
-      if FieldNum = 0 then
-        FieldLabel := CurrentTable + ' PK'
-      else
-        FieldLabel := CurrentFieldname;  // default to actual field name
-    end;
-  end;
+  FieldLabel := LabelForField(CurrentTable, FieldNum, CurrentFieldname, Cursor);
   if FieldLabel <> '' then
     Value := 'mcLabel' + '-' + CurrentTable + '-' + CurrentFieldName + '=' +
       FieldLabel + sLineBreak;
@@ -883,6 +929,35 @@ begin
   Value := Value +
     'select * from ' + currTable + sLineBreak +
     '</whdroplet>' + sLineBreak + sLineBreak;
+end;
+
+procedure TDMIBObjCodeGen.TableHeaderCells(const CurrentTable: string;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
+var
+  ThisFieldDesc: string;
+  ThisInputType: string;
+  HideThisField: Boolean;
+begin
+  ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+  // e.g. type="hidden"
+  ThisInputType := RegExParseAttribute(FAttributeParser,
+    'type',
+    ThisFieldDesc);
+  HideThisField := (ThisInputType='hidden'); // or
+    //(CurrentFieldName = UpdateCounterFieldName);
+
+  if FieldNum = 0 then
+    Value := '<tr>' + sLineBreak
+  else
+    Value := '';
+  if (NOT HideThisField) then
+  begin
+    Value := Value + '  <th>' + LabelForField(CurrentTable, FieldNum,
+      CurrentFieldname, Cursor) + '</th>' + sLineBreak;
+  end;
+  if FieldNum = Pred(ThisTableFieldCount) then
+    Value := Value + '</tr>' + sLineBreak;
 end;
 
 procedure TDMIBObjCodeGen.UpdateSQLDropletA(const CurrentTable: string;
