@@ -319,4 +319,56 @@ mcLabel-ABOUT-UPDATEDONAT=Last Mod
 </whdroplet>
 
 
+<whdoc for="drDataSetHeader-SCHEDULE">
+Content based on Firebird SQL meta data
+As of Friday 05-Oct-2012 02:05
+
+These DataSetHeader droplets are currently unused except for reference/testing purposes.
+</whdoc>
+
+<whdroplet name="drDataSetHeader-SCHEDULE">
+<tr>
+  <th>SCHEDULE PK</th>
+  <th>Presentation Title</th>
+  <th>Live presentation time (PDT)</th>
+  <th>Duration</th>
+  <th>Presenter</th>
+  <th>Organization</th>
+  <th>Location</th>
+  <th>Presentation Description</th>
+  <th>SCHREPEATOF</th>
+  <th>SCHTAGC</th>
+  <th>SCHTAGD</th>
+  <th>SCHTAGPRISM</th>
+  <th>Replay Download URL</th>
+  <th>Watch Replay Now URL</th>
+  <th>CodeRage Conference Number</th>
+  <th>Updated By</th>
+  <th>Last Mod</th>
+  <th>Update Count</th>
+</tr>
+</whdroplet>
+
+<whdroplet name="drDataSetHeader-XPRODUCT">
+<tr>
+  <th>XPRODUCT PK</th>
+  <th>Abbreviation</th>
+  <th>Full Product Name</th>
+  <th>Updated By</th>
+  <th>Last Mod</th>
+  <th>Update Count</th>
+</tr>
+</whdroplet>
+
+<whdroplet name="drDataSetHeader-ABOUT">
+<tr>
+  <th>ABOUT PK</th>
+  <th>SCHNO</th>
+  <th>PRODUCTNO</th>
+  <th>Updated By</th>
+  <th>Last Mod</th>
+  <th>Update Count</th>
+</tr>
+</whdroplet>
+
 </whteko>
