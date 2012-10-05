@@ -9,8 +9,8 @@ call %ZaphodsMap%zmset.bat d17 UsingKey2Folder "HREFTools\Production\cv001 Delph
 set dcc=%d17%bin\dcc32.exe
 if not exist %dcc% pause
 
-set raizelib=K:\Vendors\Raize\CodeSite5\Source\VCL\Indy;K:\Vendors\Raize\CodeSite5\Source\VCL
-set libsearchpath="h:\;h:\dcu_d17_win32;h:\pkg_d17_win32;%raizelib%;%d17%\lib\win32\debug;"
+set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
+set libsearchpath=h:\;h:\dcu_d17_win32;h:\pkg_d17_win32;%raizelib%;%d17%\lib\win32\debug;
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
 set compilerflags=
@@ -28,7 +28,7 @@ ren %1.cfg %1.off
 echo 1demo as-service d17_win32 %1
 
 @echo on
-"%dcc%"  -w -h -b %1.dpr  -n%dcu% -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%respath%;%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  -w -h -b %1.dpr  -n%dcu% -E%outputroot% -D%compilerflags% -LU%pkg% "-u%libsearchpath%" "-R%respath%;%libsearchpath%" -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause
 
 @echo off

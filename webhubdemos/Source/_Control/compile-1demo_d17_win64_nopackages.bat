@@ -9,7 +9,7 @@ call %ZaphodsMap%zmset.bat d17 UsingKey2Folder "HREFTools\Production\cv001 Delph
 set dcc=%d17%bin\dcc64.exe
 if not exist %dcc% pause
 
-set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSite4\Source\VCL
+set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
 set libsearchpath="h:\;h:\dcu_d17_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%d17%\lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
