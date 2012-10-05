@@ -27,14 +27,12 @@ uses
 
 type
   TGUIWriteInfoProc = reference to procedure(const MesssageToUser: string);
-type
-  TAdjustTableListProc = reference to procedure(var y: TStringList);
 
 type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
     cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
-    cgpTableHeaderCells, cgpTableRowCells);
+    cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -96,12 +94,19 @@ type
       const ThisTableFieldCount, FieldNum: Integer;
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
+    procedure TableRowCells(const CurrentTable: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
 
+    procedure TableDropletForScan(const currTable: string;
+      const primaryKeyFieldname: string; out Value: string);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
-      const CodeGenPattern: TCodeGenPattern): string;
+      const CodeGenPattern: TCodeGenPattern;
+      AdjustTableListProc: TAdjustTableListProc = nil): string;
     procedure GenPASandSQL(inProjectAbbrev: string; const IsInterbase: Boolean;
       conn: TIB_Connection; sess: TIB_Session; tr: TIB_Transaction;
       const PASOutputFolder, SQLOutputFolder: string;
@@ -109,7 +114,7 @@ type
       AdjustTableListProc: TAdjustTableListProc;
       GeneratorNameFn: TtpcgGeneratorNameFn);
     function LabelForField(const CurrentTable: string;
-      const FieldNum: Integer; const CurrentFieldname: string; 
+      const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor): string;
     function ProcessCodeGenForPattern(AListBox: TListBox; conn: TIB_Connection;
       GUIWriteInfoProc: TGUIWriteInfoProc;
@@ -256,32 +261,35 @@ begin
     try
       Firebird_GetTablesInDatabase(y, Flag, FActiveConn.DatabaseName,
         FActiveConn, FActiveTr, FActiveConn.Username, FActiveConn.Password);
-      AdjustTableListProc(y);
+      if Assigned(AdjustTableListProc) then
+        AdjustTableListProc(y);
 
       for listIdx := 0 to Pred(AListBox.Count) do
       begin
         if AListBox.Selected[listIdx] then
         case listIdx of
-        0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         0: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpMacroLabelsForFields);
-        1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         1: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpMacroPKsForTables);
-        2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         2: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpFieldListForImport);
-        3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         3: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpSelectSQLDroplet);
-        4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         4: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpUpdateSQLDroplet);
-        5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         5: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpInstantFormReadonly);
-        6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         6: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpInstantFormEdit);
-        7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpInstantFormEditLabelAbove);
-        8: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         8: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpTableHeaderCells);
-        9: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+         9: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpTableRowCells);
+        10: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpTableDropletForScan, AdjustTableListProc);
         else
           GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
         end
@@ -303,7 +311,8 @@ begin
 end;
 
 function TDMIBObjCodeGen.CodeGenForPattern(conn: TIB_Connection;
-  TableList: TStringList; const CodeGenPattern: TCodeGenPattern): string;
+  TableList: TStringList; const CodeGenPattern: TCodeGenPattern;
+  AdjustTableListProc: TAdjustTableListProc = nil): string;
 var
   i: Integer;
   CodeContent: string;
@@ -333,7 +342,8 @@ begin
       cgpMacroPKsForTables:
         if i = 0 then  // no additional table looping
           CodeContent := CodeContent +
-            Firebird_GenPAS_For_Each_Table(conn, MacroPKsForTables);
+            Firebird_GenPAS_For_Each_Table(conn, MacroPKsForTables,
+              AdjustTableListProc);
 
       cgpFieldListForImport:
         CodeContent := CodeContent + ';; ' + TableList[i] + sLineBreak +
@@ -344,7 +354,8 @@ begin
       cgpSelectSQLDroplet:
         if i = 0 then  // no additional table looping
           CodeContent := CodeContent +
-            Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet);
+            Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet,
+              AdjustTableListProc);
 
       cgpUpdateSQLDroplet:
         CodeContent := CodeContent +
@@ -448,7 +459,24 @@ begin
           CodeContent := CodeContent +
             '</whdroplet>' + sLineBreak + sLineBreak;
         end;
-        cgpTableRowCells: ;
+        cgpTableRowCells:
+        begin
+          CodeContent := CodeContent +
+            '<whdroplet name="' + Format('drDataSetRow-%s', [TableList[i]]) +
+            '">' + sLineBreak;
+          CodeContent := CodeContent +
+              Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+                TableRowCells);
+          CodeContent := CodeContent +
+            '</whdroplet>' + sLineBreak + sLineBreak;
+        end;
+        cgpTableDropletForScan:
+        begin
+          if i = 0 then  // no additional table looping
+            CodeContent := CodeContent +
+              Firebird_GenPAS_For_Each_Table(conn, TableDropletForScan,
+                AdjustTableListProc);
+        end;
     end;
   end;
 
@@ -851,7 +879,7 @@ begin
   {$IFDEF LogLabel}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   Result := '';
   FldDesc := Cursor.FieldByName('field_description').AsString;
-  CSSend('FldDesc', FldDesc);
+  {$IFDEF LogLabel}CSSend('FldDesc', FldDesc);{$ENDIF}
   Result := RegExParseAttribute(FAttributeParser, 'label', FldDesc);
   if Result = '' then
   begin
@@ -931,6 +959,21 @@ begin
     '</whdroplet>' + sLineBreak + sLineBreak;
 end;
 
+procedure TDMIBObjCodeGen.TableDropletForScan(const currTable: string;
+      const primaryKeyFieldname: string; out Value: string);
+begin
+  Value :=
+    '<whdroplet name="' + Format('drScan-%s', [currTable]) + '">' + sLineBreak;
+  Value := Value +
+    '<table class="whScan-table">' + sLineBreak +
+    MacroStart + 'drDataSetHeader-' + currTable + MacroEnd + sLineBreak +
+    '<whrow>' + sLineBreak +
+    MacroStart + 'drDataSetRow-' + currTable + MacroEnd + sLineBreak +
+    '</whrow>' + sLineBreak +
+    '</table>' + sLineBreak +
+    '</whdroplet>' + sLineBreak + sLineBreak;
+end;
+
 procedure TDMIBObjCodeGen.TableHeaderCells(const CurrentTable: string;
   const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
   Cursor: TIB_Cursor; out Value: string);
@@ -955,6 +998,31 @@ begin
   begin
     Value := Value + '  <th>' + LabelForField(CurrentTable, FieldNum,
       CurrentFieldname, Cursor) + '</th>' + sLineBreak;
+  end;
+  if FieldNum = Pred(ThisTableFieldCount) then
+    Value := Value + '</tr>' + sLineBreak;
+end;
+
+procedure TDMIBObjCodeGen.TableRowCells(const CurrentTable: string;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
+var
+  ThisFieldDesc: string;
+  ThisInputType: string;
+  HideThisField: Boolean;
+begin
+  ThisFieldDesc := Cursor.FieldByName('field_description').AsString;
+  ThisInputType := RegExParseAttribute(FAttributeParser, 'type', ThisFieldDesc);
+  HideThisField := (ThisInputType='hidden');
+
+  if FieldNum = 0 then
+    Value := '<tr>' + sLineBreak
+  else
+    Value := '';
+  if (NOT HideThisField) then
+  begin
+    Value := Value + '  <td>' + MacroStart + 'readonly-' + CurrentTable +
+      '-' + CurrentFieldName + MacroEnd + '</td>' + sLineBreak;
   end;
   if FieldNum = Pred(ThisTableFieldCount) then
     Value := Value + '</tr>' + sLineBreak;

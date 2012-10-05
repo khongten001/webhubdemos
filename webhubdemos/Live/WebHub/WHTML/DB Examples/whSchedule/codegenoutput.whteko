@@ -371,4 +371,81 @@ These DataSetHeader droplets are currently unused except for reference/testing p
 </tr>
 </whdroplet>
 
+
+
+<whdroplet name="drDataSetRow-SCHEDULE">
+<tr>
+  <td>(~readonly-SCHEDULE-SCHNO~)</td>
+  <td>(~readonly-SCHEDULE-SCHTITLE~)</td>
+  <td>(~readonly-SCHEDULE-SCHONATPDT~)</td>
+  <td>(~readonly-SCHEDULE-SCHMINUTES~)</td>
+  <td>(~readonly-SCHEDULE-SCHPRESENTERFULLNAME~)</td>
+  <td>(~readonly-SCHEDULE-SCHPRESENTERORG~)</td>
+  <td>(~readonly-SCHEDULE-SCHLOCATION~)</td>
+  <td>(~readonly-SCHEDULE-SCHBLURB~)</td>
+  <td>(~readonly-SCHEDULE-SCHREPEATOF~)</td>
+  <td>(~readonly-SCHEDULE-SCHTAGC~)</td>
+  <td>(~readonly-SCHEDULE-SCHTAGD~)</td>
+  <td>(~readonly-SCHEDULE-SCHTAGPRISM~)</td>
+  <td>(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)</td>
+  <td>(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)</td>
+  <td>(~readonly-SCHEDULE-SCHCODERAGECONFNO~)</td>
+  <td>(~readonly-SCHEDULE-UPDATEDBY~)</td>
+  <td>(~readonly-SCHEDULE-UPDATEDONAT~)</td>
+  <td>(~readonly-SCHEDULE-UPDATECOUNTER~)</td>
+</tr>
+</whdroplet>
+
+<whdroplet name="drDataSetRow-XPRODUCT">
+<tr>
+  <td>(~readonly-XPRODUCT-PRODUCTNO~)</td>
+  <td>(~readonly-XPRODUCT-PRODUCTABBREV~)</td>
+  <td>(~readonly-XPRODUCT-PRODUCTNAME~)</td>
+  <td>(~readonly-XPRODUCT-UPDATEDBY~)</td>
+  <td>(~readonly-XPRODUCT-UPDATEDONAT~)</td>
+  <td>(~readonly-XPRODUCT-UPDATECOUNTER~)</td>
+</tr>
+</whdroplet>
+
+<whdroplet name="drDataSetRow-ABOUT">
+<tr>
+  <td>(~readonly-ABOUT-ABOUTNO~)</td>
+  <td>(~readonly-ABOUT-SCHNO~)</td>
+  <td>(~readonly-ABOUT-PRODUCTNO~)</td>
+  <td>(~readonly-ABOUT-UPDATEDBY~)</td>
+  <td>(~readonly-ABOUT-UPDATEDONAT~)</td>
+  <td>(~readonly-ABOUT-UPDATECOUNTER~)</td>
+</tr>
+</whdroplet>
+
+
+
+<whdroplet name="drScan-SCHEDULE">
+<table class="whScan-table">
+(~drDataSetHeader-SCHEDULE~)
+<whrow>
+(~drDataSetRow-SCHEDULE~)
+</whrow>
+</table>
+</whdroplet>
+
+<whdroplet name="drScan-XPRODUCT">
+<table class="whScan-table">
+(~drDataSetHeader-XPRODUCT~)
+<whrow>
+(~drDataSetRow-XPRODUCT~)
+</whrow>
+</table>
+</whdroplet>
+
+<whdroplet name="drScan-ABOUT">
+<table class="whScan-table">
+(~drDataSetHeader-ABOUT~)
+<whrow>
+(~drDataSetRow-ABOUT~)
+</whrow>
+</table>
+</whdroplet>
+
+
 </whteko>
