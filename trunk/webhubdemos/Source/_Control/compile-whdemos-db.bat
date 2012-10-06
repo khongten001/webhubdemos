@@ -97,7 +97,7 @@ call %cbat% whDSP
 goto end
 
 :dspx
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_d17_win32.bat whDSP
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_d16_win32.bat whDSP
 ::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d17_win32_source.bat whDSP
 ::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d15_win32_source.bat whDSP
 ::copy %~dp0\..\..\Live\WebHub\Apps\whDSP_x_d17_win32.exe %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
