@@ -1,0 +1,16 @@
+CREATE PROCEDURE AutoFill_About( LastSchNoDone INTEGER)
+AS
+declare variable SchNo integer;
+BEGIN
+  for select SchNo 
+    from Schedule
+    where (SchNo > :LastSchNoDone) and (SchCodeRageConfNo = 7)
+    into :SchNo
+  do
+  begin
+    insert into About values (
+      -1, :SchNo, 7, 'AML', CURRENT_TIMESTAMP, 0);
+    insert into About values (
+      -1, :SchNo, 13, 'AML', CURRENT_TIMESTAMP, 0);
+  end
+END
