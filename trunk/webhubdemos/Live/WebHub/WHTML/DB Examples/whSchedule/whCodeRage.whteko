@@ -7,7 +7,7 @@
 (~JUMP|pgSearch|Search Replays~)
 <br/>
 At Embarcadero: 
-<a href="http://conferences.embarcadero.com/coderage/sessions">Official Schedule</a>, <a href="http://conferences.embarcadero.com/coderage">Register</a>
+<a href="http://www.embarcadero.com/coderage/coderage-7-delphi-sessions">Official Schedule</a>, <a href="http://www.embarcadero.com/coderage">Register</a>
 </whdroplet>
 
 <whpage pageid="pgEnterCodeRage" desc="Code Rage Conference Assistant">
@@ -26,7 +26,7 @@ At Embarcadero:
 (~MATCH|(~AppSetting.LiveNow~)=yes|
 <p>This application aims to help everyone who wants to attend 
 a Embarcadero Code Rage conference and 
-lives outside of the PDT time zone (Pacific Daylight Time, California).</p>
+lives outside of the California time zone.</p>
 ||
 <p>This application aims to help people learn about 
 Embarcadero products. It provides a search engine for 
@@ -171,7 +171,7 @@ Enter your GMT offset, in hours:
 <whrow>
 <tr>
   <td class="nowrap-td">(~IF|FlagA|(~waOnAt.Execute|dd-MMM~)&nbsp;<span class="time-span">(~waOnAt.Execute|hh:nn~)</span>~)(~CLEAR|FlagA~)</td>
-  <td class="nowrap-td">(~FIELD|wds|SchLocation~)</td>
+  
   <td colspan="2" class="nowrap-td"><span style="font-weight:900;">(~FIELD|wds|SchTitle~)</span>
   </td>
 </tr>
@@ -191,8 +191,8 @@ Enter your GMT offset, in hours:
 </table>
 </whdroplet>
 
-<p>*Times are displayed in GMT plus your time offset ((~inOffset~) hours), Examples: enter 10 for Sydney. Enter -4 for Boston. 
-<a target="_blank" href="http://www.worldtimeserver.com/">Find your GMT offset</a></p>
+<p>*Times are displayed in GMT plus your time offset ((~inOffset~) hours).
+(~JUMP|tzhelp|title="time zone assistance"|Find your GMT offset~)</p>
 <p>
 <a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img border="0" src="/ftdesign/img/ds-firebird-logo-16.png" alt="Firebird Open Source Relational Database Management System" /></a>
 </p>
@@ -211,7 +211,7 @@ Enter your GMT offset, in hours:
 </div>
 </whdroplet>
 
-<whpage pageid="tzhelp" desc="Help with Time Zones">
+<whpage pageid="tzhelp" desc="Help with Time Zones in November 2012">
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -233,31 +233,37 @@ Enter your GMT offset, in hours:
 <tr>
   <th>Location</th>
   <th>Offset</th>
+  <th>Authoritative Source</th>
 </tr>
 <tr>
   <td>GMT (U.K.)</td>
   <td>0</td>
+  <td>0 by definition!</td>
 </tr>
 <tr>
   <td>Frankfurt, Germany</td>
-  <td>+2</td>
+  <td>+1</td>
+  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_DE.aspx">world time DE</a></td>
 </tr>
 <tr>
   <td>New York, USA</td>
-  <td>-3</td>
+  <td>-5</td>
+  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_US-NY.aspx">world time NY</a></td>
 </tr>
 <tr>
   <td>San Francisco, USA</td>
-  <td>-7</td>
+  <td>-8</td>
+  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_US-CA.aspx">world time CA</a></td>
 </tr>
 <tr>
   <td>Sydney, Australia</td>
-  <td>+10</td>
+  <td>+11</td>
+  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_AU-NSW.aspx">world time NSW AU</a></td>
 </tr>
 </table>
 
-<p>You can also use the <a target="_blank" href="http://www.worldtimeserver.com/">World Time Server Site</a>
-to look up your country and find your GMT offset number.</p>
+<p>Use the <a target="_blank" href="http://www.worldtimeserver.com/">World Time Server Site</a>
+to look up any other location and find your GMT offset number.</p>
 <br/><br/><br/>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)

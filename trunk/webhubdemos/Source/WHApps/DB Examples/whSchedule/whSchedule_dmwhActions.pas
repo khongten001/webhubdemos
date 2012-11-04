@@ -1,7 +1,10 @@
 unit whSchedule_dmwhActions;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this file *)
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2008-2012 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub Demos.                           * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
@@ -15,6 +18,9 @@ uses
 {$ENDIF}
   wdbIBObjNSource, webLink, updateOK, tpAction, webTypes,
   wdbLink, wdbSSrc, wdbScan, webScan;
+
+const
+  cCalifOffset = 8;  // for Code Rage November 2012  (use 7 during PDT in 2008)
 
 type
   TDMCodeRageActions = class(TDataModule)
@@ -119,8 +125,9 @@ begin
   q.BeforeOpen := IBNativeQuery1BeforeOpen;
   q.SQL.Text := 'select distinct ' +
       'S.SCHNo, S.SCHTITLE, S.SCHONATPDT, ' +
-      'DATEADD(hour, 7, S.SCHONATPDT) as GMT, ' +
-      'DATEADD(hour, 7 + :OFFSET, S.SCHONATPDT) as LocalTime, ' +
+      'DATEADD(hour, ' + IntToStr(cCalifOffset) + ', S.SCHONATPDT) as GMT, ' +
+      'DATEADD(hour, ' + IntToStr(cCalifOffset) +
+      ' + :OFFSET, S.SCHONATPDT) as LocalTime, ' +
       'S.SCHMINUTES, S.SCHPRESENTERFULLNAME, ' +
       'S.SCHPRESENTERORG, S.SCHLOCATION, S.SCHBLURB, ' +
       'S.UPDATECOUNTER, S.UPDATEDONAT, ' +
@@ -146,14 +153,14 @@ begin
       ') ' + sLineBreak +
       'and (SCHONATPDT >= :Recently) ' +  // '9/8/2009 15:00'
       'order by S.SchOnAtPDT, S.SchLocation ';
+    CSSend(q.Name, S(q.SQL));
   try
     q.Prepare;
   except
     on E: Exception do
     begin
-      LogSendInfo('Prepare failed. Here is q.SQL.Text', q.SQL.Text, cFn);
-      LogSendError(E.Message, cFn);
-      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      LogSendError('Prepare failed. Here is q.SQL.Text', cFn);
+      LogSendException(E);
       Exit; // no point to continue if SQL is wrong
     end;
   end;
@@ -163,8 +170,11 @@ begin
   c.IB_Connection := gCodeRageSchedule_Conn;
   c.SQL.Text := 'select ' +
      'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' +
-     'DATEADD(hour, 7, A.SCHONATPDT) as GMT, ' +
-     'DATEADD(hour, 7 + :OFFSET, A.SCHONATPDT) as LocalTime ' +
+     'DATEADD(hour, ' +
+       IntToStr(cCalifOffset) + ', ' + // Code Rage #7 in November thus PST
+       'A.SCHONATPDT) as GMT, ' +
+     'DATEADD(hour, ' + IntToStr(cCalifOffset) + ' + ' +
+       ':OFFSET, A.SCHONATPDT) as LocalTime ' +
      'from schedule A ' +
      'where (A.SchNo = :ID) ';
   try

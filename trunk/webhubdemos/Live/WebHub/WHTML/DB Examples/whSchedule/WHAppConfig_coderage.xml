@@ -52,7 +52,7 @@
     </AppProperties>
 	<AppSettings>
 		<AppSetting name="DemoGraphic" value="yes" />
-		<AppSetting name="LiveNow" value="no" />
+		<AppSetting name="LiveNow" value="yes" />
 	</AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
