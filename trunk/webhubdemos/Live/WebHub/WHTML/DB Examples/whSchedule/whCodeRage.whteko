@@ -60,7 +60,7 @@ the "session replays" from past Code Rage Conferences (2009-2011).</p>
 
 <whpage pageid="pgReadonly1" desc="Query CodeRage Schedule for Your Time Zone">
 <whprep>
-(~NOTASSIGNED|inOffset|(~SET|inOffset=10~)(~drCheckDefault~)(~wds.Close|~)~)
+(~NOTASSIGNED|inOffset|(~SET|inOffset=-8~)(~drCheckDefault~)(~wds.Close|~)~)
 (~CMDHAS|wds.reset|(~wds.Close|~)~)
 (~CHECK|FlagB~)
 </whprep>
