@@ -1,6 +1,6 @@
 unit whSendmail_dmWhQuote;   {custom code for emailing a quote - WebHub demo.}
 (*
-Copyright (c) 2003-2010 HREF Tools Corp.
+Copyright (c) 2003-2012 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person

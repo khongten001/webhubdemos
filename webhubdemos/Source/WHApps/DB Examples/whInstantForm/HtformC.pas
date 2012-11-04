@@ -1,7 +1,7 @@
 unit htformc;
 
 (*
-  Copyright (c) 1999-2011 HREF Tools Corp.
+  Copyright (c) 1999-2012 HREF Tools Corp.
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
