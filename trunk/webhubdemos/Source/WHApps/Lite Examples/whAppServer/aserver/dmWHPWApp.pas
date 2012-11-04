@@ -133,7 +133,7 @@ end;
 procedure TdmWebHubPowerApp.appNewSession(Sender: TObject;
   Session: Cardinal; const Command: String);
 begin
-  (* testing 02-Oct-2008
+  (* example for testing the bounce of a newly arrived surfer to a different page
   if (Session mod 3) = 0 then
   begin
     pWebApp.Response.SendBounceToPage('pgBounceTestA2', '');

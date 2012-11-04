@@ -1,6 +1,6 @@
 unit whParadox_fmWhProcess;
 (*
-Copyright (c) 2008 HREF Tools Corp.
+Copyright (c) 2008-2012 HREF Tools Corp.
 Author: Ann Lynnworth
 *)
 

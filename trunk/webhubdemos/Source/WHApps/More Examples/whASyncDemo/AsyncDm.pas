@@ -399,7 +399,7 @@ begin
           DeleteTask; // remove thread result
           SurfersObject := nil;
           SurfersThread := nil;
-          AsyncState := AsInit; // was AsNone until 18-Jun-2008
+          AsyncState := AsInit; 
         end;
 
     // translate the state to a string for easy access
