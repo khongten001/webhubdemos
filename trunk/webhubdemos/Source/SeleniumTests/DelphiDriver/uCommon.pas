@@ -1,6 +1,6 @@
 unit uCommon;  
 (*
-Copyright (c) 2009-2010 HREF Tools Corp.
+Copyright (c) 2009-2012 HREF Tools Corp.
 
 Permission is hereby granted, on 9-Jun-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

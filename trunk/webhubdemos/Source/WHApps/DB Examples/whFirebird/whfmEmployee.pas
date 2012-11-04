@@ -1,6 +1,6 @@
 unit whfmEmployee;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2010 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2012 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //

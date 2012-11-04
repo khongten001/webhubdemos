@@ -1,6 +1,6 @@
 unit AsyncDm;
 (*
-  Copyright (c) 1999-2011 HREF Tools Corp.
+  Copyright (c) 1999-2012 HREF Tools Corp.
   Original Author: Michael Ax
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person

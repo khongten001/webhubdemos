@@ -1,7 +1,7 @@
 unit whInstantForm_dmdbProjMgr;
 
 (*
-  Copyright (c) 2007-2011 HREF Tools Corp.
+  Copyright (c) 2007-2012 HREF Tools Corp.
 
   Permission is hereby granted, on 19-May-2011, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
