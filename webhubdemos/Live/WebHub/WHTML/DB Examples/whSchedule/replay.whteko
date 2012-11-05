@@ -1,6 +1,9 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
+<whmacros>
+mcChannelELinksDead=(~MATCH|channel-e[(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)|onclick="alert('Ask Embarcadero why channel-e not working!'); return false;"~)
+</whmacros>
 <whpage pageid="pgSearch" desc="Search Embarcadero Code Rage Presentation Archive">
 <whprep>
 (~NOTASSIGNED|inSearchLogic|(~SET|inSearchLogic=slSmart~)~)
@@ -79,9 +82,6 @@ Code Rage (~readonly-SCHEDULE-SchCodeRageConfNo~), (~readonly-SCHEDULE-SCHONATPD
 (~ASSIGNED|readonly-SCHEDULE-SCHREPLAYDOWNLOADURL|
 <a target="_blank" href="(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)" title="Download from EDN">Download</a>
 ~)
-(~ASSIGNED|readonly-SCHEDULE-SCHREPLAYWATCHNOWURL|~ <a target="_blank" href="(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)" title="Watch Now on Embarcadero Web Site">Watch Now</a>
-~)
-
 </div>
 </blockquote>
 </whdroplet>
