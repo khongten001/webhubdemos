@@ -195,7 +195,7 @@ Enter your GMT offset, in hours:
 <p>*Times are displayed in GMT plus your time offset ((~inOffset~) hours).
 (~JUMP|tzhelp|title="time zone assistance"|Find your GMT offset~)</p>
 <p>
-<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img border="0" src="/ftdesign/img/ds-firebird-logo-16.png" alt="Firebird Open Source Relational Database Management System" /></a>
+<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img border="0" src="http://web.firebirdsql.org/images/firebird-logo/firebird-logo-16.png" alt="Firebird Open Source Relational Database Management System" /></a>
 </p>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
