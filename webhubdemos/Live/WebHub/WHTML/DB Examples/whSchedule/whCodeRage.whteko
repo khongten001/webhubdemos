@@ -114,7 +114,7 @@ function setAllCheckboxes(b)
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<p style="background-color:#FFFF33;">Data Entry in process for Code Rage 7. Please check back later.</p>
+
 <div id="offset-div" style="margin: 0 0 2em 0;">
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgReadonly1,.ckb,wds.reset~)">
 <a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a> 
