@@ -120,25 +120,25 @@ function setAllCheckboxes(b)
 <a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a> 
 <table id="checker-table">
 <tr>
-  <td>(~INPUTCHECKBOX|inProd1~) All-Access</td>
-  <td>(~INPUTCHECKBOX|inProd2~) Blackfish SQL</td>
+  <td><!--- (~INPUTCHECKBOX|inProd1~) All-Access--></td>
+  <td><!--- (~INPUTCHECKBOX|inProd2~) Blackfish SQL--></td>
   <td>(~INPUTCHECKBOX|inProd3~) C++Builder</td>
-  <td>(~INPUTCHECKBOX|inProd4~) Change Manager</td>
-  <td>(~INPUTCHECKBOX|inProd5~) DB Optimizer</td>
+  <td><!--- (~INPUTCHECKBOX|inProd4~) Change Manager --></td>
+  <td><!--- (~INPUTCHECKBOX|inProd5~) DB Optimizer --></td>
 </tr>
 <tr>
-  <td>(~INPUTCHECKBOX|inProd6~) DBArtisan</td>
+  <td><!---(~INPUTCHECKBOX|inProd6~) DBArtisan--></td> 
   <td>(~INPUTCHECKBOX|inProd7~) Delphi</td>
   <td>(~INPUTCHECKBOX|inProd8~) Delphi for PHP</td>
   <td>(~INPUTCHECKBOX|inProd9~) Delphi Prism</td>
-  <td>(~INPUTCHECKBOX|inProd10~) ERStudio</td>
+  <td><!---(~INPUTCHECKBOX|inProd10~) ERStudio--></td>
 </tr>
 <tr>
   <td>(~INPUTCHECKBOX|inProd11~) InterBase SMP</td>
-  <td>(~INPUTCHECKBOX|inProd12~) JBuilder</td>
+  <td><!--- (~INPUTCHECKBOX|inProd12~) JBuilder --></td>
   <td>(~INPUTCHECKBOX|inProd13~) RAD Studio</td>
-  <td>(~INPUTCHECKBOX|inProd14~) Rapid SQL</td>
-  <td>(~INPUTCHECKBOX|inProd15~) Schema Examiner</td>
+  <td><!--- (~INPUTCHECKBOX|inProd14~) Rapid SQL --></td>
+  <td><!--- (~INPUTCHECKBOX|inProd15~) Schema Examiner --></td>
 </tr>
 </table>
 <p>
