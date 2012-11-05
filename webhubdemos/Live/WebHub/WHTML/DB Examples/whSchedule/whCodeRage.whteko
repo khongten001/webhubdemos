@@ -54,9 +54,11 @@ the "session replays" from past Code Rage Conferences (2009-2011).</p>
 </whpage>
 
 <whdroplet name="drCheckDefault">
-(~CHECK|inProd3~)<!--- delphi -->
-(~CLEAR|inProd7~)<!--- c++builder -->
-(~CHECK|inProd13~)<!--- rad studio -->
+(~CLEAR|inProd3~)<!--- c++builder -->
+(~CHECK|inProd7~)<!--- delphi -->
+(~CHECK|inProd8~)<!--- delphi PHP -->
+(~CHECK|inProd9~)<!--- delphi Prism -->
+(~CLEAR|inProd13~)<!--- rad studio -->
 </whdroplet>
 
 <whpage pageid="pgReadonly1" desc="Query CodeRage Schedule for Your Time Zone">
