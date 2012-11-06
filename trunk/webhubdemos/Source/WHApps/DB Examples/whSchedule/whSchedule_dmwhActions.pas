@@ -273,8 +273,8 @@ begin
     TheOffsetInHours :=
       StrToIntDef(pWebApp.StringVar['inOffset'], 0);
     Params[0].AsInteger := TheOffsetInHours;
-    //HREFTestLog('info', 'paramcount', IntToStr(ParamCount)); //16
-    //HREFTestLog('sql', SQL.Text, '');
+    CSSend('paramcount', IntToStr(ParamCount)); //16
+    CSSend('sql', S(SQL));
     for j := 1 to 15 do
     begin
       if pWebApp.BoolVar['inProd' + IntToStr(j)] then
@@ -285,7 +285,7 @@ begin
     // '9/8/2009 15:00'
     Recently := FormatDateTime('m/d/yyyy hh:nn',
       IncMinute(NowCalifornia, -75));
-    Recently := FormatDateTime('m/d/yyyy hh:nn', IncYear(Now, -3));
+    //Recently := FormatDateTime('m/d/yyyy hh:nn', IncYear(Now, -3));
     Params[16].AsString := Recently;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
