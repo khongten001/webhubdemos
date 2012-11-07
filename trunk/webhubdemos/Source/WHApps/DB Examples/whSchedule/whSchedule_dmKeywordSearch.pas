@@ -326,7 +326,8 @@ begin
 //    wsAfter:
     wsAfterCol: ;
     wsAfterRow:
-      LogSendInfo('afterrow');
+      //LogSendInfo('afterrow')
+      ;
     wsAfterScan: ;
     //
     wsAfterInit: ;
