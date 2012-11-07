@@ -110,6 +110,7 @@ function setAllCheckboxes(b)
 	#checker-table td {
 	  padding-right: 1.4em;
 	 }
+#clocktable td.city {font-size: smaller; text-align:center;}
 	</style>
 </head>
 <body>
@@ -159,18 +160,20 @@ Enter your GMT offset, in hours:
 </td>
 <td>&nbsp; &nbsp; &nbsp;</td>
 <td>
-<table border="0" cellspacing="0" cellpadding="0">
+<table id="clocktable" border="0" cellspacing="0" cellpadding="0">
 <tr>
 <td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
 <td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=BR-SP" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
 <td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
-<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=AU-NSW" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td>
 </tr>
 <tr>
-<td>Scotts Valley</td><td>&nbsp;</td>
-<td>Sao Paulo</td><td>&nbsp;</td>
-<td>London</td><td>&nbsp;</td>
-<td>Singapore</td>
+<td class="city">Scotts Valley</td><td>&nbsp;</td>
+<td class="city">Sao Paulo</td><td>&nbsp;</td>
+<td class="city">London</td><td>&nbsp;</td>
+<td class="city">Singapore</td><td>&nbsp;</td>
+<td class="city">Sydney</td>
 </tr>
 </table>
 
