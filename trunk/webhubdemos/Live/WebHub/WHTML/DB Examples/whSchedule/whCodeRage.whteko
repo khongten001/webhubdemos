@@ -160,14 +160,17 @@ Enter your GMT offset, in hours:
 <td>&nbsp; &nbsp; &nbsp;</td>
 <td>
 <table border="0" cellspacing="0" cellpadding="0">
-<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
-<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
-<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<tr>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=BR-SP" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
 </tr>
 <tr>
-<td>California</td>
-<td>London</td>
-<td>Singapore</td>
+<td>Scotts Valley</td><td>&nbsp;</td>
+<td>London</td><td>&nbsp;</td>
+<td>Singapore</td><td>&nbsp;</td>
+<td>Sao Paulo</td>
 </tr>
 </table>
 
