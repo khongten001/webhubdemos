@@ -118,8 +118,12 @@ function setAllCheckboxes(b)
 <h1>(~pagedesc~)</h1>
 
 <div id="offset-div" style="margin: 0 0 2em 0;">
+<table id="lr">
+<td>
+
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgReadonly1,.ckb,wds.reset~)">
 <a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a> 
+
 <table id="checker-table">
 <tr>
   <td>(~INPUTCHECKBOX|inProd7~) Delphi</td>
@@ -151,13 +155,14 @@ Enter your GMT offset, in hours:
 <input type="submit" value="adjust schedule" />
 
 </form>
-</div>
 
-<div style="text-align:center;">
+</td>
+<td>&nbsp; &nbsp; &nbsp;</td>
+<td>
 <table border="0" cellspacing="0" cellpadding="0">
 <tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
-<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
-<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
 </tr>
 <tr>
 <td>California</td>
@@ -165,7 +170,11 @@ Enter your GMT offset, in hours:
 <td>Singapore</td>
 </tr>
 </table>
+
+</td></tr></table>
 </div>
+
+
 
 (~ScanSchedule.Execute|drDisplayScanScheduleTable~)
 <whdroplet name="drStartDate" show="no">
