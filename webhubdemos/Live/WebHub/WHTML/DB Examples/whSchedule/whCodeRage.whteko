@@ -152,6 +152,21 @@ Enter your GMT offset, in hours:
 
 </form>
 </div>
+
+<div style="text-align:center;">
+<table border="0" cellspacing="0" cellpadding="0">
+<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=GB" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+<tr><td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=SG" width="80" height="80" wmode="transparent" type="application/x-shockwave-flash" /></td>
+</tr>
+<tr>
+<td>California</td>
+<td>London</td>
+<td>Singapore</td>
+</tr>
+</table>
+</div>
+
 (~ScanSchedule.Execute|drDisplayScanScheduleTable~)
 <whdroplet name="drStartDate" show="no">
 (~IFNOT|FlagB|(~drStartTime~)||(~CLEAR|FlagB~)~)
