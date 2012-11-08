@@ -17,7 +17,7 @@ uses
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
   wdbIBObjNSource, webLink, updateOK, tpAction, webTypes,
-  wdbLink, wdbSSrc, wdbScan, webScan;
+  wdbLink, wdbSSrc, wdbScan, webScan, ucIBObjPrepare;
 
 const
   cCalifOffset = 8;  // for Code Rage November 2012  (use 7 during PDT in 2008)
@@ -121,7 +121,7 @@ begin
 
   q := TIB_Query.Create(Self);
   q.Name := 'q';
-  q.IB_Connection := gCodeRageSchedule_Conn;
+  q.ReadOnly := True;
   q.BeforeOpen := IBNativeQuery1BeforeOpen;
   q.SQL.Text := 'select distinct ' +
       'S.SCHNo, S.SCHTITLE, S.SCHONATPDT, ' +
@@ -153,21 +153,11 @@ begin
       ') ' + sLineBreak +
       'and (SCHONATPDT >= :Recently) ' +  // '9/8/2009 15:00'
       'order by S.SchOnAtPDT, S.SchLocation ';
-    CSSend(q.Name, S(q.SQL));
-  try
-    q.Prepare;
-  except
-    on E: Exception do
-    begin
-      LogSendError('Prepare failed. Here is q.SQL.Text', cFn);
-      LogSendException(E);
-      Exit; // no point to continue if SQL is wrong
-    end;
-  end;
+  CSSend(q.Name, S(q.SQL));
 
   c := TIB_Cursor.Create(Self);
   c.Name := 'c';
-  c.IB_Connection := gCodeRageSchedule_Conn;
+  c.ReadOnly := True;
   c.SQL.Text := 'select ' +
      'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' +
      'DATEADD(hour, ' +
@@ -177,14 +167,22 @@ begin
        ':OFFSET, A.SCHONATPDT) as LocalTime ' +
      'from schedule A ' +
      'where (A.SchNo = :ID) ';
+
+  qA := TIB_Query.Create(Self);
+  qA.Name := 'qA';
+  qA.ReadOnly := True;
+  qA.BeforeOpen := IBNativeQueryAboutBeforeOpen;
+  qA.SQL.Text := 'select distinct P.ProductName ' +
+    'from ABOUT A, XPRODUCT P ' +
+    'where (A.ProductNo = P.ProductNo) ' +
+    'and (A.SchNo = :Event) ';
+
   try
-    c.Prepare;
+    IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
+      gCodeRageSchedule_Tr, gCodeRageSchedule_Sess);
   except
     on E: Exception do
     begin
-      LogSendInfo('Prepare failed. Here is c.SQL.Text', c.SQL.Text, cFn);
-      LogSendError(E.Message, cFn);
-      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
       Exit; // no point to continue if SQL is wrong
     end;
   end;
@@ -203,27 +201,6 @@ begin
   ScanSchedule.PageHeight := 0;
   ScanSchedule.ControlsWhere := dsNone;
   ScanSchedule.ButtonsWhere := dsNone;
-
-
-  qA := TIB_Query.Create(Self);
-  qA.Name := 'qA';
-  qA.IB_Connection := gCodeRageSchedule_Conn;
-  qA.BeforeOpen := IBNativeQueryAboutBeforeOpen;
-  qA.SQL.Text := 'select distinct P.ProductName ' +
-    'from ABOUT A, XPRODUCT P ' +
-    'where (A.ProductNo = P.ProductNo) ' +
-    'and (A.SchNo = :Event) ';
-  try
-    qA.Prepare;
-  except
-    on E: Exception do
-    begin
-      LogSendInfo('Prepare failed. Here is qA.SQL.Text', qA.SQL.Text, cFn);
-      LogSendError(E.Message, cFn);
-      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-      Exit; // no point to continue if SQL is wrong
-    end;
-  end;
 
 
   dsA := TIB_DataSource.Create(Self);
@@ -377,6 +354,7 @@ begin
     SelectSQL := TwhWebAction(Sender).HtmlParam;
     SelectSQL := pWebApp.Expand(SelectSQL);
     q.SQL.Text := SelectSQL;
+    q.ReadOnly := True;
     try
       q.Prepare;
     except
@@ -485,6 +463,7 @@ begin
       q.IB_Connection := gCodeRageSchedule_Conn;
       q.SQL.Text := Format('select * from %s where (%s=:PK)',
         [CurrentTable, CurrentPK]);
+      q.ReadOnly := True;
       try
         q.Prepare;
       except
@@ -607,6 +586,7 @@ begin
         q := TIB_DSQL.Create(Self);
         q.IB_Connection := gCodeRageSchedule_Conn;
         q.IB_Transaction := gCodeRageSchedule_Tr;
+        q.IB_Session := gCodeRageSchedule_Sess;
         q.SQL.Text := pWebApp.Expand(UpdateSQL);
 
         try

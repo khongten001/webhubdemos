@@ -16,7 +16,8 @@ uses
   SysUtils, Classes,
   IB_Components, IBODataSet,
   rbBridge_i_ibobjects, rbCache, rbSearch, rbRank,
-  webLink, webRubi, updateOK, tpAction, webTypes, webScan, webScanKeys, webGrid;
+  webLink, webRubi, updateOK, tpAction, webTypes, webScan, webScanKeys, webGrid,
+  ucIBObjPrepare;
 
 type
   TDMRubiconSearch = class(TDataModule)
@@ -124,7 +125,15 @@ begin
     IBOQueryText.Name := 'IBOQueryText';
     IBOQueryText.IB_Connection := gCodeRageSchedule_Conn;
     IBOQueryText.SQL.Text := 'select * from schedule';
-    IBOQueryText.Prepare;
+
+    IBOQueryWords := TIBOQuery.Create(Self);
+    IBOQueryWords.Name := 'IBOQueryWords';
+    IBOQueryWords.Tag := 1; // prepare later
+    IBOQueryWords.ReadOnly := True;
+
+    IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
+      gCodeRageSchedule_Tr, gCodeRageschedule_Sess);
+
     IBOQueryText.Open;
 
     rbTextIBOLink1 := TrbTextIBOLink.Create(Self);
@@ -134,10 +143,6 @@ begin
     rbTextIBOLink1.OnMaxIndex := ScheduleMaxIndex;
     rbTextIBOLink1.SelectAll := True;
 
-    IBOQueryWords := TIBOQuery.Create(Self);
-    IBOQueryWords.Name := 'IBOQueryWords';
-    IBOQueryWords.IB_Connection := gCodeRageSchedule_Conn;
-    IBOQueryWords.ReadOnly := True;
 
     rbWordsIBOLink1 := TrbWordsIBOLink.Create(Self);
     rbWordsIBOLink1.Name := 'rbWordsIBOLink1';
@@ -390,6 +395,7 @@ begin
     try
       Q := TIB_Cursor.Create(Self);
       Q.Name := 'QWordList';
+      Q.ReadOnly := True;
       Q.IB_Connection := gCodeRageSchedule_Conn;
       Q.IB_Session := gCodeRageSchedule_Sess;
       Q.SQL.Text := 'SELECT RbWord, RbCount from Words order by RbWord';
@@ -454,6 +460,7 @@ begin
       Q := TIB_Cursor.Create(Self);
       Q.Name := 'QGENSCHEDULENO';
       Q.IB_Connection := gCodeRageSchedule_Conn;
+      Q.IB_Transaction := gCodeRageSchedule_Tr;
       Q.IB_Session := gCodeRageSchedule_Sess;
       Q.ReadOnly := True;
       Q.SQL.Text := 'SELECT GEN_ID(GENSCHEDULENO, 0) FROM RDB$DATABASE';

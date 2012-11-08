@@ -40,7 +40,8 @@ uses
   ucIBObjCodeGen in 'h:\ucIBObjCodeGen.pas',
   ucIbAndFbCredentials in 'h:\ucIbAndFbCredentials.pas',
   uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
-  uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas';
+  uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
+  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas';
 
 (* when compiling with source use these:
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
