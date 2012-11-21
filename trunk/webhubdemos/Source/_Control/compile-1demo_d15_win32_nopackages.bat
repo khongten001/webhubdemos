@@ -11,7 +11,7 @@ set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSit
 set libsearchpath=h:\;h:\dcu_d15_win32;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
-set compilerflags=PREVENTSVCMGR;use_IBO;CodeSite;LOGIPC
+set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;CodeSite;LOGIPC
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v4.9.11
 
 ren %1.cfg %1.off
