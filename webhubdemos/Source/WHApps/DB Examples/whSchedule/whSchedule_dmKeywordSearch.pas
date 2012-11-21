@@ -112,6 +112,7 @@ begin
       LogSendInfo('ProjectAbbrev', ProjectAbbrev, cFn);
       LogSendInfo(DBName, DBUser, cFn);
       ErrorText := E.Message;
+      Result := False;
       Exit;                    // cannot continue if database connection fails
     end;
   end;
@@ -123,7 +124,6 @@ begin
 
     IBOQueryText := TIBOQuery.Create(Self);
     IBOQueryText.Name := 'IBOQueryText';
-    IBOQueryText.IB_Connection := gCodeRageSchedule_Conn;
     IBOQueryText.SQL.Text := 'select * from schedule';
 
     IBOQueryWords := TIBOQuery.Create(Self);
@@ -401,16 +401,8 @@ begin
       Q.SQL.Text := 'SELECT RbWord, RbCount from Words order by RbWord';
       if gCodeRageSchedule_Conn.ConnectionWasLost then
         gCodeRageSchedule_Conn.Connect;
-      try
-        Q.Prepare;
-        Q.Open;
-      except
-        on E: Exception do
-        begin
-          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-          LogSendInfo(Q.Name, Q.SQL.Text);
-        end;
-      end;
+      IbObj_Prepare(Q);
+      Q.Open;
       pWebApp.SendDroplet(DrWordName, drBeforeWhrow);
       Q.First;
       PrevLetter := #0;
@@ -448,12 +440,11 @@ begin
 end;
 
 function TDMRubiconSearch.ScheduleMaxIndex(Sender: TObject): Integer;
-//const cFn = 'ScheduleMaxIndex';
+const cFn = 'ScheduleMaxIndex';
 var
   Q: TIB_Cursor;
 begin
   Q := nil;
-///  FScheduleGeneratorNumber := 200;  // !!! code below fails. not sure why yet.
   if FScheduleGeneratorNumber = -1 then
   begin
     try
@@ -466,16 +457,8 @@ begin
       Q.SQL.Text := 'SELECT GEN_ID(GENSCHEDULENO, 0) FROM RDB$DATABASE';
       if NOT gCodeRageSchedule_Conn.Connected then
         gCodeRageSchedule_Conn.Connect;
-      try
-        Q.Prepare;
-        Q.Open;
-      except
-        on E: Exception do
-        begin
-          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-          LogSendInfo(Q.Name, Q.SQL.Text);
-        end;
-      end;
+      IbObj_Prepare(Q);
+      Q.Open;
       FScheduleGeneratorNumber := Q.Fields[0].AsInteger;
       Q.Close;
     finally

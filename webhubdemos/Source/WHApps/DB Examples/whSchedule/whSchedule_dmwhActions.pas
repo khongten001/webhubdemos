@@ -153,7 +153,6 @@ begin
       ') ' + sLineBreak +
       'and (SCHONATPDT >= :Recently) ' +  // '9/8/2009 15:00'
       'order by S.SchOnAtPDT, S.SchLocation ';
-  CSSend(q.Name, S(q.SQL));
 
   c := TIB_Cursor.Create(Self);
   c.Name := 'c';
@@ -183,6 +182,7 @@ begin
   except
     on E: Exception do
     begin
+      Result := False;
       Exit; // no point to continue if SQL is wrong
     end;
   end;
@@ -356,15 +356,13 @@ begin
     q.SQL.Text := SelectSQL;
     q.ReadOnly := True;
     try
-      q.Prepare;
+      IbObj_Prepare(q);
     except
       on E: Exception do
       begin
-        {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
         pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name + Chr(183) +
           E.Message);
         LogSendInfo('HtmlParam', TwhWebAction(Sender).HtmlParam, cFn);
-        LogSendInfo('SelectSQL', SelectSQL, cFn);
         Exit; // no point to continue if SQL is wrong
       end;
     end;
@@ -458,22 +456,13 @@ begin
 
     if NOT gCodeRageSchedule_Conn.Connected then gCodeRageSchedule_Conn.Connect;
     try
-      q := TIB_Cursor.Create(Self);
+      q := TIB_Cursor.Create(gCodeRageSchedule_Sess);
       q.Name := 'q' + CurrentTable;
       q.IB_Connection := gCodeRageSchedule_Conn;
       q.SQL.Text := Format('select * from %s where (%s=:PK)',
         [CurrentTable, CurrentPK]);
       q.ReadOnly := True;
-      try
-        q.Prepare;
-      except
-        on E: Exception do
-        begin
-          {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-          LogSendInfo(q.Name, q.SQL.Text, TwhWebAction(Sender).Name);
-          Exit; // no point to continue if SQL is wrong
-        end;
-      end;
+      IbObj_Prepare(q);
       q.Params[0].AsString := PKValue;
       Q.Open;
       for i := 0 to Pred(q.FieldCount) do
@@ -522,7 +511,7 @@ function TDMCodeRageActions.ResetDBConnection: Boolean;
 begin
   wds.Close;
   wds.HouseClean;
-  c.Prepare;
+  IbObj_Prepare(c);
   Result := True;
 end;
 
@@ -590,21 +579,21 @@ begin
         q.SQL.Text := pWebApp.Expand(UpdateSQL);
 
         try
-          q.Prepare;  // not worried about an error in SQL.Text itself
+          IbObj_Prepare(q);
           for i := 0 to Pred(q.ParamCount) do
           begin
             FldName := q.Params[i].FieldName;
             q.Params[i].AsString := pWebApp.StringVar['edit-' +
               CurrentTableName + '-' + FldName];
-            //LogSendInfo('Parameter ' + IntToStr(i), q.Params[i].AsString, cFn);
+            CSSend('Parameter ' + IntToStr(i), q.Params[i].AsString);
           end;
         except
           on E: Exception do
           begin
             LogSendError(E.Message, cFn);  // log -- serious problem
-            LogSendInfo('q.SQL.Text', q.SQL.Text, cFn);
+            LogSendInfo('q.SQL.Text', S(q.SQL), cFn);
             LogSendInfo('q.ParamCount', S(q.ParamCount), cFn);
-            {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+            LogSendException(E);
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
             if NOT q.Prepared then Exit;
@@ -620,13 +609,13 @@ begin
           except
             on E: Exception do
             begin
-              LogSendError(E.Message, cFn);  // log -- serious problem
+              LogSendException(E);
               for i := 0 to Pred(q.ParamCount) do
               begin
                 // log each parameter as a string
-                LogSendWarning('Parameter ' + IntToStr(i) + '=' + q.Params[i].AsString, cFn);
+                LogSendWarning('Parameter ' + IntToStr(i) + '=' +
+                  q.Params[i].AsString, cFn);
               end;
-              {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
               q.IB_Transaction.Rollback;
               pWebApp.Debug.AddPageError(E.Message);
             end;
