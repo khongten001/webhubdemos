@@ -13,7 +13,7 @@ set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 set libsearchpath="h:\;h:\dcu_d17_win32;k:\Rubicon\source;%d17%\lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
-set compilerflags=PREVENTSVCMGR;use_IBO
+set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset
 set includepath=h:\;k:\Rubicon\source\inc;
 
 :: extra parameters for Delphi XE2

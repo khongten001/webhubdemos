@@ -10,7 +10,7 @@ set raizelib=K:\Vendors\Raize\CodeSite4\Source\VCL\Indy;K:\Vendors\Raize\CodeSit
 set libsearchpath=h:\;h:\dcu_d15_win32;h:\pkg_d15_win32;%raizelib%
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;"
-set compilerflags=CodeSite
+set compilerflags=CodeSite;USE_TIBODataset
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 
