@@ -120,11 +120,13 @@ begin
     QMake := TIBOQuery.Create(Self);
     QMake.Name := 'QMake';
     QMake.IB_Connection := gCodeRageSchedule_Conn;
+    QMake.IB_Session := gCodeRageSchedule_Sess;
     QMake.IB_Transaction := gCodeRageschedule_Tr;
 
     QData := TIBOQuery.Create(Self);
     QData.Name := 'QData';
     QData.IB_Connection := gCodeRageSchedule_Conn;
+    QData.IB_Session := gCodeRageSchedule_Sess;
     QData.IB_Transaction := gCodeRageschedule_Tr;
     makewordslink.IBOQuery := QData;
 
