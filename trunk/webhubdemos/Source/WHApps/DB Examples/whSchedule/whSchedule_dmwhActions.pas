@@ -344,98 +344,121 @@ var
   SelectSQL: string;
   i: Integer;
   FieldContent: string;
+  FlagFwd: Boolean;
 begin
+  CodeSite.Category := TwhWebAction(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSSend('HtmlParam', TwhWebAction(Sender).HtmlParam);
+
+  FlagFwd := True;
   q := nil;
   try
     q := TIB_Cursor.Create(Self);
     q.Name := 'qScheduleFind';
     q.IB_Connection := gCodeRageSchedule_Conn;
-    if NOT gCodeRageSchedule_Conn.Connected then gCodeRageSchedule_Conn.Connect;
+    if NOT gCodeRageSchedule_Conn.Connected then
+      gCodeRageSchedule_Conn.Connect;
     SelectSQL := TwhWebAction(Sender).HtmlParam;
     SelectSQL := pWebApp.Expand(SelectSQL);
     q.SQL.Text := SelectSQL;
     q.ReadOnly := True;
     try
-      IbObj_Prepare(q);
+      IbObj_PrepareEx(q, gCodeRageSchedule_Conn, gCodeRageSchedule_Tr,
+        gCodeRageSchedule_Sess);
     except
       on E: Exception do
       begin
         pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name + Chr(183) +
           E.Message);
-        LogSendInfo('HtmlParam', TwhWebAction(Sender).HtmlParam, cFn);
-        Exit; // no point to continue if SQL is wrong
+        FlagFwd := False; // no point to continue if SQL is wrong
       end;
     end;
 
-    q.First;
-    pWebApp.SendStringImm('<table class="' +
-      lowercase(TwhWebAction(Sender).Name) + '-table">' +
-      sLineBreak);
-    pWebApp.SendStringImm('<tr>' + sLineBreak);
-    for i := 0 to Pred(q.FieldCount) do
+    if FlagFwd then
     begin
-      pWebApp.SendStringImm(' <th>');
-      pWebApp.SendMacro('mcLabel-' + 'Schedule' + '-' + q.Fields[i].FieldName);
-      pWebApp.SendStringImm(' </th>' + sLineBreak);
-    end;
-    pWebApp.SendStringImm('</tr>' + sLineBreak);
-    while not q.eof do
-    begin
+      q.First;
+      pWebApp.SendStringImm('<table class="' +
+        lowercase(TwhWebAction(Sender).Name) + '-table">' +
+        sLineBreak);
       pWebApp.SendStringImm('<tr>' + sLineBreak);
       for i := 0 to Pred(q.FieldCount) do
       begin
-        pWebApp.SendStringImm(' <td>');
-        FieldContent := q.Fields[i].AsString;
-        if i = 0 then
-        begin
-          pWebApp.SendMacro(Format('JUMP|pgEditScheduleLayout1,%s|%s',
-            [FieldContent, FieldContent]));
-        end
-        else
-          pWebApp.SendStringImm(FieldContent);
-        pWebApp.SendStringImm(' </td>' + sLineBreak);
+        pWebApp.SendStringImm(' <th>');
+        pWebApp.SendMacro('mcLabel-' + 'Schedule' + '-' + q.Fields[i].FieldName);
+        pWebApp.SendStringImm(' </th>' + sLineBreak);
       end;
       pWebApp.SendStringImm('</tr>' + sLineBreak);
-      q.Next;
+      CSSend('RecordCount', S(q.RecordCount));
+      while not q.eof do
+      begin
+        pWebApp.SendStringImm('<tr>' + sLineBreak);
+        for i := 0 to Pred(q.FieldCount) do
+        begin
+          pWebApp.SendStringImm(' <td>');
+          FieldContent := q.Fields[i].AsString;
+          CSSend(FieldContent);
+          if i = 0 then
+          begin
+            pWebApp.SendMacro(Format('JUMP|pgEditScheduleLayout1,%s|%s',
+              [FieldContent, FieldContent]));
+          end
+          else
+            pWebApp.SendStringImm(FieldContent);
+          pWebApp.SendStringImm(' </td>' + sLineBreak);
+        end;
+        pWebApp.SendStringImm('</tr>' + sLineBreak);
+        q.Next;
+      end;
+      pWebApp.SendStringImm('</table>' + sLineBreak);
     end;
-    pWebApp.SendStringImm('</table>' + sLineBreak);
 
-    q.Unprepare;
     q.Close;
+    q.Unprepare;
   finally
     FreeAndNil(q);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CodeSite.Category := '';
 end;
 
 procedure TDMCodeRageActions.waOnAtExecute(Sender: TObject);
+const cFn = 'waOnAtExecute';
 var
   dt: TDateTime;
   useFormat: string;
+  s1: string;
 begin
+  CodeSite.Category := TwhWebAction(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with Sender as TwhWebAction do
   begin
     useFormat := HtmlParam;
+    CSSend('useFormat', useFormat);
     dt := wds.DataSet.FieldByName('LocalTime').asDateTime;
 
     if useFormat = '' then
-      WebApp.SendStringImm(
-        Format('<span class="day-span">%s</span> ' +
+      s1 := Format('<span class="day-span">%s</span> ' +
         '<span class="time-span">%s</span>',
         [FormatDateTime('dd-MMM', dt),
-        FormatDateTime('hh:nn', dt)]))
+        FormatDateTime('hh:nn', dt)])
     else
-      WebApp.SendStringImm(FormatDateTime(useFormat, dt));
+      S1 := FormatDateTime(useFormat, dt);
+    CSSend('S1', S1);
+    WebApp.SendStringImm(S1);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CodeSite.Category := '';
 end;
 
 procedure TDMCodeRageActions.waPKtoStringVarsExecute(Sender: TObject);
+const cFn = 'waPKtoStringVarsExecute';
   { Find the record matching querying pk value
     Return results in edit or view mode
   }
 var
   CurrentTable: string;  { table of entities }
   CurrentPK: string;  { table pri key }
-  CurrentFieldname: string;   
+  CurrentFieldname: string;
   PKValue: string;
   q: TIB_Cursor;
   i: Integer;
@@ -443,26 +466,29 @@ var
   ThisFieldTypeRaw: Integer;
   HumanReadable: string;
 begin
+  CodeSite.Category := TwhWebAction(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   q := nil;
   if SplitThree(TwhWebAction(Sender).HtmlParam, ',', CurrentTable, CurrentPK,
     PKValue)
   then
   begin
     PKValue := pWebApp.MoreIfParentild(PKValue);
-    {$IFDEF CodeSite}CodeSite.Send('CurrentTable', CurrentTable);
-    CodeSite.Send('CurrentPK', CurrentPK);
-    CodeSite.Send('PKValue', PKValue);
-    {$ENDIF}
+    CSSend('CurrentTable', CurrentTable);
+    CSSend('CurrentPK', CurrentPK);
+    CSSend('PKValue', PKValue);
 
-    if NOT gCodeRageSchedule_Conn.Connected then gCodeRageSchedule_Conn.Connect;
+    if NOT gCodeRageSchedule_Conn.Connected then
+      gCodeRageSchedule_Conn.Connect;
     try
       q := TIB_Cursor.Create(gCodeRageSchedule_Sess);
       q.Name := 'q' + CurrentTable;
-      q.IB_Connection := gCodeRageSchedule_Conn;
       q.SQL.Text := Format('select * from %s where (%s=:PK)',
         [CurrentTable, CurrentPK]);
+      CSSend(q.Name, S(q.SQL));
       q.ReadOnly := True;
-      IbObj_Prepare(q);
+      IbObj_PrepareEx(q, gCodeRageSchedule_Conn, gCodeRageSchedule_Tr,
+        gCodeRageSchedule_Sess);
       q.Params[0].AsString := PKValue;
       Q.Open;
       for i := 0 to Pred(q.FieldCount) do
@@ -500,6 +526,8 @@ begin
       FreeAndNil(q);
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CodeSite.Category := '';
 end;
 
 procedure TDMCodeRageActions.ScanScheduleExecute(Sender: TObject);
@@ -508,11 +536,14 @@ begin
 end;
 
 function TDMCodeRageActions.ResetDBConnection: Boolean;
+const cFn = 'ResetDBConnection';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   wds.Close;
   wds.HouseClean;
   IbObj_Prepare(c);
   Result := True;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMCodeRageActions.waRepeatOfExecute(Sender: TObject);
@@ -557,6 +588,8 @@ var
   a1, a2: string;
   FlagFwd: Boolean;
 begin
+  CodeSite.Category := TwhWebAction(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   q := nil;
   FlagFwd := True; // forward
   DrName := TwhWebAction(Sender).HtmlParam;
@@ -573,13 +606,13 @@ begin
 
       try
         q := TIB_DSQL.Create(Self);
-        q.IB_Connection := gCodeRageSchedule_Conn;
-        q.IB_Transaction := gCodeRageSchedule_Tr;
-        q.IB_Session := gCodeRageSchedule_Sess;
+        q.Name := 'qUpdateSchedule';
         q.SQL.Text := pWebApp.Expand(UpdateSQL);
+        CSSend(q.Name, S(q.SQL));
 
         try
-          IbObj_Prepare(q);
+          IbObj_PrepareEx(q, gCodeRageSchedule_Conn, gCodeRageSchedule_Tr,
+            gCodeRageSchedule_Sess);
           for i := 0 to Pred(q.ParamCount) do
           begin
             FldName := q.Params[i].FieldName;
@@ -590,13 +623,9 @@ begin
         except
           on E: Exception do
           begin
-            LogSendError(E.Message, cFn);  // log -- serious problem
-            LogSendInfo('q.SQL.Text', S(q.SQL), cFn);
-            LogSendInfo('q.ParamCount', S(q.ParamCount), cFn);
             LogSendException(E);
             FlagFwd := False;
             pWebApp.Debug.AddPageError(E.Message);
-            if NOT q.Prepared then Exit;
           end;
         end;
         if FlagFwd then
@@ -627,6 +656,8 @@ begin
     end;
   end;
   pWebApp.Response.SendBounceToPageR('pgAdminMenu', '');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CodeSite.Category := '';
 end;
 
 procedure TDMCodeRageActions.DataModuleDestroy(Sender: TObject);
@@ -639,23 +670,31 @@ end;
 
 procedure TDMCodeRageActions.ScanAboutRowStart(Sender: TwhdbScanBase;
   aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+const cFn = 'ScanAboutRowStart';
 var
   dn: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam;  // droplet name to base off
+    CSSend('about to SendDroplet', dn);
     WebApp.SendDroplet(dn, drWithinWhrow);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMCodeRageActions.IBNativeQueryAboutBeforeOpen(
   DataSet: TIB_DataSet);
+const cFn = 'IBNativeQueryAboutBeforeOpen';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSSend('ActiveScheduleID', S(ActiveScheduleID));
   with DataSet as TIB_Query do
   begin
     Params[0].asInteger := ActiveScheduleID;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 end.
