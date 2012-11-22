@@ -54,10 +54,10 @@ the "session replays" from past Code Rage Conferences (2009-2011).</p>
 </whpage>
 
 <whdroplet name="drCheckDefault">
-(~CLEAR|inProd3~)<!--- c++builder -->
+(~CHECK|inProd3~)<!--- c++builder -->
 (~CHECK|inProd7~)<!--- delphi -->
-(~CHECK|inProd8~)<!--- delphi PHP -->
-(~CHECK|inProd9~)<!--- delphi Prism -->
+(~CLEAR|inProd8~)<!--- delphi PHP -->
+(~CLEAR|inProd9~)<!--- delphi Prism -->
 (~CLEAR|inProd13~)<!--- rad studio -->
 </whdroplet>
 
