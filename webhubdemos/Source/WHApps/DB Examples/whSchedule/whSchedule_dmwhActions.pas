@@ -250,8 +250,8 @@ begin
     TheOffsetInHours :=
       StrToIntDef(pWebApp.StringVar['inOffset'], 0);
     Params[0].AsInteger := TheOffsetInHours;
-    CSSend('paramcount', IntToStr(ParamCount)); //16
-    CSSend('sql', S(SQL));
+    //CSSend('paramcount', IntToStr(ParamCount)); //16
+    //CSSend('sql', S(SQL));
     for j := 1 to 15 do
     begin
       if pWebApp.BoolVar['inProd' + IntToStr(j)] then
@@ -269,9 +269,13 @@ begin
 end;
 
 procedure TDMCodeRageActions.ScanScheduleInit(Sender: TObject);
+const cFn = 'ScanScheduleInit';
 var
   dn: string;
 begin
+  //FSavCat := CodeSite.Category;
+  CodeSite.Category := TComponent(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam;  // droplet name to base off
@@ -282,6 +286,8 @@ begin
     priorDate := 0;
     priorTime := 0;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  //CodeSite.Category := FSavCat;
 end;
 
 procedure TDMCodeRageActions.ScanScheduleRowStart(Sender: TwhdbScanBase;
@@ -312,14 +318,19 @@ begin
 end;
 
 procedure TDMCodeRageActions.ScanScheduleFinish(Sender: TObject);
+const cFn = 'ScanScheduleFinish';
 var
   dn: string;
 begin
+  CodeSite.Category := TComponent(Sender).Name;
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam;  // droplet name to base off
     WebApp.SendDroplet(dn, drAfterWhrow);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CodeSite.Category := '';
 end;
 
 procedure TDMCodeRageActions.waDownloadExecute(Sender: TObject);
@@ -345,9 +356,12 @@ var
   i: Integer;
   FieldContent: string;
   FlagFwd: Boolean;
+  FSavCat: string;
 begin
+  FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSSend('Name', TwhWebAction(Sender).Name);
   CSSend('HtmlParam', TwhWebAction(Sender).HtmlParam);
 
   FlagFwd := True;
@@ -396,7 +410,7 @@ begin
         begin
           pWebApp.SendStringImm(' <td>');
           FieldContent := q.Fields[i].AsString;
-          CSSend(FieldContent);
+          //CSSend(FieldContent);
           if i = 0 then
           begin
             pWebApp.SendMacro(Format('JUMP|pgEditScheduleLayout1,%s|%s',
@@ -418,7 +432,7 @@ begin
     FreeAndNil(q);
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-  CodeSite.Category := '';
+  CodeSite.Category := FSavCat;
 end;
 
 procedure TDMCodeRageActions.waOnAtExecute(Sender: TObject);
@@ -428,12 +442,13 @@ var
   useFormat: string;
   s1: string;
 begin
-  CodeSite.Category := TwhWebAction(Sender).Name;
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  //FSavCat := CodeSite.Category;
+  //CodeSite.Category := TwhWebAction(Sender).Name;
+  //{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with Sender as TwhWebAction do
   begin
     useFormat := HtmlParam;
-    CSSend('useFormat', useFormat);
+    //CSSend('useFormat', useFormat);
     dt := wds.DataSet.FieldByName('LocalTime').asDateTime;
 
     if useFormat = '' then
@@ -443,11 +458,11 @@ begin
         FormatDateTime('hh:nn', dt)])
     else
       S1 := FormatDateTime(useFormat, dt);
-    CSSend('S1', S1);
+    //CSSend('S1', S1);
     WebApp.SendStringImm(S1);
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-  CodeSite.Category := '';
+  //{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  //CodeSite.Category := FSavCat;
 end;
 
 procedure TDMCodeRageActions.waPKtoStringVarsExecute(Sender: TObject);
@@ -465,7 +480,9 @@ var
   SVName: string;
   ThisFieldTypeRaw: Integer;
   HumanReadable: string;
+  FSavCat: string;
 begin
+  FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   q := nil;
@@ -527,7 +544,7 @@ begin
     end;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-  CodeSite.Category := '';
+  CodeSite.Category := FSavCat;
 end;
 
 procedure TDMCodeRageActions.ScanScheduleExecute(Sender: TObject);
@@ -587,7 +604,9 @@ var
   FldName: string;
   a1, a2: string;
   FlagFwd: Boolean;
+  FSavCat: string;
 begin
+  FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   q := nil;
@@ -657,7 +676,7 @@ begin
   end;
   pWebApp.Response.SendBounceToPageR('pgAdminMenu', '');
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-  CodeSite.Category := '';
+  CodeSite.Category := FSavCat;
 end;
 
 procedure TDMCodeRageActions.DataModuleDestroy(Sender: TObject);
@@ -678,7 +697,7 @@ begin
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam;  // droplet name to base off
-    CSSend('about to SendDroplet', dn);
+    //CSSend('about to SendDroplet', dn);
     WebApp.SendDroplet(dn, drWithinWhrow);
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
