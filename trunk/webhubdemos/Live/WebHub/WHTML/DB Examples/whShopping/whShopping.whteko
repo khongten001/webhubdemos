@@ -3,7 +3,8 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whdroplet name="drDemoSpeedbarForshop1">
-<!-- speedbar for SHOP1 demo could be here -->
+<!-- speedbar for SHOP1 demo -->
+(~MATCH|(~request.scheme~)~https|<a target="_blank" href="http://www.cacert.org/"><img src="http://www.cacert.org/logos/cacert-free-certificates2.png" alt="cacert.org" /></a>~)
 </whdroplet>
 
 <whpage pageid="pgEnterSHOP1" desc="Welcome to the WebHub Shopping Demo" remap="(apphttp)">
