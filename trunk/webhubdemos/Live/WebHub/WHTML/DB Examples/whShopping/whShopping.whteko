@@ -107,9 +107,7 @@ this feature has been left as an exercise for the reader.)</p>
 </form>
 
 </div>  <!--- demopagecontent -->
-<div id="sslcert">
-	<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
-</div>
+
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -126,9 +124,6 @@ this feature has been left as an exercise for the reader.)</p>
 <p>You did not enter enough information for us to send you the order.</p>
 <p>Please (~JUMP|confirm|go back~) and enter your <b>email address and shipping city</b>.</p>
 </div>  <!--- demopagecontent -->
-<div id="sslcert">
-	<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
-</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -155,9 +150,6 @@ this feature has been left as an exercise for the reader.)</p>
 <p><b>If we have any problems with your order, we will contact you at:</b><br />
 (~custEmail~)</p>
 </div>  <!--- demopagecontent -->
-<div id="sslcert">
-	<script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
-</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
