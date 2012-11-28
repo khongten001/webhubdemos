@@ -21,17 +21,17 @@ program whShopping;     { Shopping Cart - Simplest Example }
   THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
   Forms,
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
-  utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -40,10 +40,12 @@ uses
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
-  dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
+  dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   HtShopC in 'HtShopC.pas' {fmShopPanel},
-  whShopping_dmdbProjMgr in 'whShopping_dmdbProjMgr.pas' {DMForWHShopping: TDataModule};
+  whShopping_dmdbProjMgr in 'whShopping_dmdbProjMgr.pas' {DMForWHShopping: TDataModule},
+  htadoWApp in 'K:\WebHub\lib\htadoWApp.pas',
+  whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
@@ -52,8 +54,9 @@ uses
 
 begin
   {M}Application.Initialize;
-  {M}Application.CreateForm(TDMForWHShopping, DMForWHShopping);
+  Application.CreateForm(TDMForWHShopping, DMForWHShopping);
   DMForWHShopping.SetDemoFacts('shop1', 'DB Examples', True);
   DMForWHShopping.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
+

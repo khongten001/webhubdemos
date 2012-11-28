@@ -1,31 +1,28 @@
 inherited fmShopPanel: TfmShopPanel
   Left = 433
   Top = 239
-  Width = 486
-  Height = 293
   Caption = '&Shopping'
-  PixelsPerInch = 96
-  TextHeight = 13
-  object Label7: TLabel [0]
-    Left = 16
-    Top = 144
-    Width = 58
-    Height = 13
-    Caption = 'E-Mail From:'
-  end
+  ClientHeight = 450
+  ClientWidth = 883
+  ExplicitWidth = 901
+  ExplicitHeight = 495
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 478
-    Height = 236
+    Width = 883
+    Height = 431
+    ExplicitWidth = 883
+    ExplicitHeight = 431
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 468
+      Width = 873
       TabOrder = 0
       LeaveSpace = True
       object tpToolButton1: TtpToolButton
         Left = 6
         Top = 1
-        Width = 111
+        Width = 179
         Hint = 'Toggle table display'
         Caption = 'Display the parts table'
         ParentShowHint = False
@@ -37,34 +34,26 @@ inherited fmShopPanel: TfmShopPanel
     object tpComponentPanel2: TtpComponentPanel
       Left = 5
       Top = 45
-      Width = 156
-      Height = 186
+      Width = 204
+      Height = 381
       TabOrder = 1
       object GroupBox1: TGroupBox
         Left = 1
-        Top = 97
-        Width = 154
-        Height = 72
+        Top = 1
+        Width = 202
+        Height = 104
         Align = alTop
         Caption = 'EMail Feature'
         TabOrder = 0
-      end
-      object GroupBox2: TGroupBox
-        Left = 1
-        Top = 1
-        Width = 154
-        Height = 96
-        Align = alTop
-        Caption = 'Shopping Cart'
-        TabOrder = 1
+        ExplicitTop = 201
       end
     end
     object PageControl1: TPageControl
-      Left = 161
+      Left = 209
       Top = 45
-      Width = 312
-      Height = 186
-      ActivePage = TabSheet1
+      Width = 669
+      Height = 381
+      ActivePage = tsEConfig
       Align = alClient
       TabOrder = 2
       object TabSheet1: TTabSheet
@@ -72,22 +61,23 @@ inherited fmShopPanel: TfmShopPanel
         object DBGrid1: TDBGrid
           Left = 0
           Top = 0
-          Width = 304
-          Height = 133
+          Width = 661
+          Height = 323
           Align = alClient
           TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
-          TitleFont.Height = -11
-          TitleFont.Name = 'MS Sans Serif'
+          TitleFont.Height = -15
+          TitleFont.Name = 'Lucida Sans Unicode'
           TitleFont.Style = []
         end
         object DBNavigator1: TDBNavigator
           Left = 0
-          Top = 133
-          Width = 304
+          Top = 323
+          Width = 661
           Height = 25
           Align = alBottom
+          Kind = dbnHorizontal
           TabOrder = 1
         end
       end
@@ -96,63 +86,63 @@ inherited fmShopPanel: TfmShopPanel
         object Label4: TLabel
           Left = 16
           Top = 16
-          Width = 58
-          Height = 13
+          Width = 94
+          Height = 18
           Caption = 'E-Mail From:'
         end
         object Label5: TLabel
           Left = 16
           Top = 40
-          Width = 48
-          Height = 13
+          Width = 76
+          Height = 18
           Caption = 'E-Mail To:'
         end
         object Label6: TLabel
           Left = 24
           Top = 64
-          Width = 45
-          Height = 13
+          Width = 71
+          Height = 18
           Caption = 'Mail host:'
         end
         object Label8: TLabel
           Left = 32
           Top = 88
-          Width = 22
-          Height = 13
+          Width = 36
+          Height = 18
           Caption = 'Port:'
         end
         object Label9: TLabel
           Left = 24
           Top = 112
-          Width = 39
-          Height = 13
+          Width = 60
+          Height = 18
           Caption = 'Subject:'
         end
         object EditEMailFrom: TEdit
-          Left = 88
-          Top = 16
+          Left = 144
+          Top = 13
           Width = 121
-          Height = 21
+          Height = 26
           ParentShowHint = False
           ShowHint = True
           TabOrder = 0
           Text = 'EditEMailFrom'
         end
         object EditEMailTo: TEdit
-          Left = 88
-          Top = 38
+          Left = 144
+          Top = 37
           Width = 121
-          Height = 21
+          Height = 26
           ParentShowHint = False
           ShowHint = True
           TabOrder = 1
           Text = 'EditEMailTo'
         end
         object EditMailhost: TEdit
-          Left = 88
-          Top = 60
+          Left = 144
+          Top = 61
           Width = 121
-          Height = 21
+          Height = 26
           Hint = 'e.g. mail.sonic.net'
           ParentShowHint = False
           ShowHint = True
@@ -160,20 +150,20 @@ inherited fmShopPanel: TfmShopPanel
           Text = 'EditMailhost'
         end
         object EditSubject: TEdit
-          Left = 88
-          Top = 104
+          Left = 144
+          Top = 109
           Width = 121
-          Height = 21
+          Height = 26
           ParentShowHint = False
           ShowHint = True
           TabOrder = 3
           Text = 'EditSubject'
         end
         object EditMailPort: TEdit
-          Left = 89
-          Top = 83
+          Left = 144
+          Top = 85
           Width = 121
-          Height = 21
+          Height = 26
           Hint = 'Port 25 is usually right.'
           ParentShowHint = False
           ShowHint = True
@@ -185,108 +175,22 @@ inherited fmShopPanel: TfmShopPanel
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 236
-    Width = 478
+    Top = 431
+    Width = 883
     Height = 19
     Panels = <
       item
+        Text = 'whdbScan2: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
     ShowHint = True
     PanelStatusIndex = 0
   end
-  object waScrollGrid: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad]
-    OnExecute = waScrollGridExecute
-    Left = 86
-    Top = 102
-  end
-  object WebDataGrid1: TwhbdeGrid
-    ComponentOptions = [tpUpdateOnGet, tpStatusPanel]
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    Border = 'BORDER'
-    TR = '<TR>'
-    TD = '<TD>'
-    ShowRecno = False
-    Preformat = False
-    WebDataSource = WebDataSource1
-    Left = 16
-    Top = 68
-  end
-  object WebActionOrderList: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad]
-    OnExecute = WebActionOrderListExecute
-    Left = 16
-    Top = 100
-  end
-  object WebActionPostLit: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad]
-    OnExecute = WebActionPostLitExecute
-    Left = 48
-    Top = 100
-  end
-  object WebDataSource1: TwhbdeSource
-    ComponentOptions = [tpUpdateOnGet, tpStatusPanel]
-    GotoMode = wgGotoKey
-    KeyFieldNames = 'PartNo'
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = DataSource1
-    Left = 48
-    Top = 68
-  end
-  object DataSource1: TDataSource
-    DataSet = Table1
-    Left = 80
-    Top = 68
-  end
-  object Table1: TTable
-    TableName = 'PARTS.DB'
-    Left = 112
-    Top = 68
-    object Table1PartNo: TFloatField
-      Alignment = taLeftJustify
-      FieldName = 'PartNo'
-      DisplayFormat = 'PN-00000'
-    end
-    object Table1VendorNo: TFloatField
-      FieldName = 'VendorNo'
-      DisplayFormat = 'VN 0000'
-      MaxValue = 9999.000000000000000000
-      MinValue = 1000.000000000000000000
-    end
-    object Table1Description: TStringField
-      FieldName = 'Description'
-      Size = 30
-    end
-    object Table1OnHand: TFloatField
-      FieldName = 'OnHand'
-    end
-    object Table1OnOrder: TFloatField
-      FieldName = 'OnOrder'
-    end
-    object Table1Cost: TCurrencyField
-      FieldName = 'Cost'
-    end
-    object Table1ListPrice: TCurrencyField
-      FieldName = 'ListPrice'
-    end
-    object Table1Qty: TSmallintField
-      FieldKind = fkCalculated
-      FieldName = 'Qty'
-      OnGetText = Table1QtyGetText
-      Calculated = True
-    end
-  end
   object WebActionMailer: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = WebActionMailerExecute
-    Left = 43
-    Top = 164
+    Left = 67
+    Top = 89
   end
 end
