@@ -21,39 +21,21 @@ unit htshopc;
   THE SOFTWARE.
 *)
 
-// The WebDataGrid1.DataScanOptions were changed from the default settings.
-
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ExtCtrls, StdCtrls, Buttons, DBTables, DB, Grids, DBGrids, ComCtrls,
-  DBCtrls,
-  tpStatus, UTPANFRM, UpdateOk, tpAction, tpMemo, toolbar, {} tpCompPanel,
-  webMail, webSock, wbdeSource, webTypes, webLink, webScan, wdbLink, wdbScan,
-  wbdeGrid, webMemo, wdbSSrc;
+  DBCtrls, ADODB,
+  tpStatus, utPanFrm, updateOk, tpAction, tpMemo, toolbar, tpCompPanel,
+  webMail, webSock, webTypes, webLink;
 
 type
   TfmShopPanel = class(TutParentForm)
     toolbar: TtpToolBar;
-    WebDataGrid1: TwhbdeGrid;
-    WebActionOrderList: TwhWebActionEx;
-    WebActionPostLit: TwhWebActionEx;
-    WebDataSource1: TwhbdeSource;
-    DataSource1: TDataSource;
-    Table1: TTable;
-    Table1PartNo: TFloatField;
-    Table1VendorNo: TFloatField;
-    Table1Description: TStringField;
-    Table1OnHand: TFloatField;
-    Table1OnOrder: TFloatField;
-    Table1Cost: TCurrencyField;
-    Table1ListPrice: TCurrencyField;
-    Table1Qty: TSmallintField;
     WebActionMailer: TwhWebActionEx;
     tpStatusBar1: TtpStatusBar;
     tpToolButton1: TtpToolButton;
-    Label7: TLabel;
     tpComponentPanel2: TtpComponentPanel;
     PageControl1: TPageControl;
     TabSheet1: TTabSheet;
@@ -71,18 +53,9 @@ type
     EditSubject: TEdit;
     EditMailPort: TEdit;
     GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
-    waScrollGrid: TwhWebActionEx;
-    procedure Table1QtyGetText(Sender: TField; var Text: string;
-      DisplayText: Boolean);
-    procedure WebActionPostLitExecute(Sender: TObject);
-    procedure WebActionOrderListExecute(Sender: TObject);
     procedure WebActionMailerExecute(Sender: TObject);
     procedure tpToolButton1Click(Sender: TObject);
-    procedure waScrollGridExecute(Sender: TObject);
   private
-    { Private declarations }
-    procedure getOrderList(sList: TStringList);
     procedure ConfigEMail;
   public
     { Public declarations }
@@ -97,7 +70,8 @@ implementation
 {$R *.DFM}
 
 uses
-  WebApp, ucString, whMail, whdemo_ViewSource;
+  ucString,
+  webApp, whMail, whdemo_ViewSource, whShopping_dmShop;
 
 function TfmShopPanel.Init: Boolean;
 begin
@@ -105,36 +79,8 @@ begin
   if not Result then
     Exit;
 
-  with Table1 do
-  begin
-    DatabaseName := getHtDemoDataRoot + 'whShopping\';
-    TableName := 'PARTS.DB';
-  end;
-
-  WebDataGrid1.DataScanOptions := [dsbFirst, dsbPrior, dsbNext, dsbLast,
-    dsbCheckBoxes, dsbInputFields];
-  WebDataGrid1.ControlsWhere := dsNone;
-  WebDataGrid1.ButtonsWhere := dsAbove;
-
-  RefreshWebActions(Self);
-
   DataModuleWhMail.webMail.Subject := '';
-
-  { Other required settings:
-    TwhbdeGrid
-    datascanoptions        all set to true, except refresh and checkboxes
-    buttonsWhere           above
-    controlsWhere          none
-
-    TwhbdeSource
-    maxOpenDataSets        1 (no cloning)
-    displaySets            defined in .ini file
-
-    TTable
-    add fields using Delphi field editor
-    add calculated field called Qty, type integer
-  }
-  Result := WebDataGrid1.IsUpdated;
+  Result := True;
 end;
 
 
@@ -166,90 +112,6 @@ end;
 
 { ------------------------------------------------------------------------- }
 
-{ To see what webhub is doing with your data, add (~chDebugInfo~) to the
-  bottom of the homepage and/or confirm pages.  That will display some
-  essential arrays: Request.dbFields, Request.FormLiterals and Session.StringVars.
-
-  The data entered by the surfer into the webdatagrid is posted to the
-  dbFields array.  We need to jump in and copy that to the StringVars array,
-  because dbFields is cleared at the end of the page.  Since we don't have
-  a real table to post to, we are using the StringVars array as temporary
-  storage.  (Yes, you could add a temporary order table and post Qty there.)
-}
-procedure TfmShopPanel.WebActionPostLitExecute(Sender: TObject);
-var
-  a1, a2: string;
-  i: integer;
-begin
-  // WebDataSource1.Qty@1316=35
-  with TwhWebActionEx(Sender).WebApp do
-  begin
-    for i := 0 to pred(Request.dbFields.count) do
-    begin
-      SplitString(Request.dbFields[i], '=', a1, a2);
-      if a2 <> '' then
-        StringVar[a1] := a2; { post single entry to StringVars array }
-    end;
-  end;
-end;
-
-{ ------------------------------------------------------------------------- }
-
-{ Illusion central:
-  Make the table act multi-surfer by defining the calculated field as equal to
-  the current surfer's StringVars. }
-procedure TfmShopPanel.Table1QtyGetText(Sender: TField; var Text: string;
-  DisplayText: Boolean);
-begin
-  Text := pWebApp.StringVar['webdatasource1.Qty@' + Sender.DataSet.FieldByName
-    ('PartNo').asString];
-end;
-
-{ ------------------------------------------------------------------------- }
-{ ------------------------------------------------------------------------- }
-
-{ Fill a stringlist with the current order.
-  Loop thru the StringVars[] array looking for items with @ which come from the
-  data entry session. }
-procedure TfmShopPanel.getOrderList(sList: TStringList);
-var
-  a1, a2: string;
-  i: integer;
-begin
-  sList.clear;
-  with pWebApp.Session do
-  begin
-    for i := 0 to pred(StringVars.count) do
-    begin
-      a1 := LeftOfEqual(StringVars[i]);
-      if pos('@', a1) > 0 then
-      begin
-        // WebDataSource1.Qty@1316=35
-        SplitString(StringVars[i], '=', a1, a2);
-        // SplitString is in the ucString unit
-        sList.add('Qty ' + a2 + ' of Product #' + RightOf('@', a1));
-      end;
-    end;
-  end;
-end;
-
-{ ------------------------------------------------------------------------- }
-
-{ this is one way to echo the current order. }
-procedure TfmShopPanel.WebActionOrderListExecute(Sender: TObject);
-var
-  sList: TStringList;
-begin
-  sList := nil;
-  try
-    sList := TStringList.create;
-    getOrderList(sList);
-    // send out the order, with a <BR> at end of each line
-    TwhWebActionEx(Sender).WebApp.Response.SendStringListBR(sList);
-  finally
-    sList.free;
-  end;
-end;
 
 { ------------------------------------------------------------------------- }
 
@@ -274,7 +136,7 @@ begin
     sList := nil;
     try
       sList := TStringList.create;
-      getOrderList(sList);
+      DMShop1.getOrderList(sList);
       Lines.AddStrings(sList);
     finally
       sList.free;
@@ -292,8 +154,8 @@ begin
   with DBGrid1 do
     if DataSource = nil then
     begin
-      DataSource := DataSource1;
-      DBNavigator1.DataSource := DataSource1;
+      DataSource := DMShop1.DataSource1;
+      DBNavigator1.DataSource := DMShop1.DataSource1;
       DataSource.DataSet.Open;
     end
     else
@@ -301,21 +163,6 @@ begin
       DataSource := nil;
       DBNavigator1.DataSource := nil;
     end
-end;
-
-procedure TfmShopPanel.waScrollGridExecute(Sender: TObject);
-var
-  a1, a2: string;
-begin
-  inherited;
-  with TwhWebActionEx(Sender).WebApp do
-  begin
-    SplitString(StringVar['BtnShop'], ' ', a1, a2); // e.g. Next Page
-    if a1 = 'Save' then
-      a1 := 'This'; // save but do not scroll anywhere.
-    WebDataGrid1.Command := a1;
-    // Make the grid scroll by setting its command, e.g. Next
-  end;
 end;
 
 end.

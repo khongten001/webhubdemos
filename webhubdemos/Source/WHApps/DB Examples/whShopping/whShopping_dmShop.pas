@@ -1,24 +1,52 @@
 unit whShopping_dmShop;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this file *)
+(*
+  Copyright (c) 2012 HREF Tools Corp.
+
+  Permission is hereby granted, on 28-Nov-2012, free of charge, to any person
+  obtaining a copy of this file (the "Software"), to deal in the Software
+  without restriction, including without limitation the rights to use, copy,
+  modify, merge, publish, distribute, sublicense, and/or sell copies of the
+  Software, and to permit persons to whom the Software is furnished to do so,
+  subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
+*)
 
 interface
 
 uses
   SysUtils, Classes, ADODB, Data.DB,
   updateOK, tpAction,
-  webLink, wdbLink, wdbScan, wbdeGrid, webTypes, wdbSSrc, wbdeSource;
+  webLink, webTypes, wdbLink, wdbScan, wbdeGrid, wdbSSrc, wbdeSource;
 
 type
   TDMShop1 = class(TDataModule)
-    WebDataSource1: TwhbdeSource;
     WebDataGrid1: TwhbdeGrid;
     DataSource1: TDataSource;
     WebActionOrderList: TwhWebActionEx;
     WebActionPostLit: TwhWebActionEx;
     waScrollGrid: TwhWebActionEx;
     ADOConnectionShop1: TADOConnection;
+    ADOTable1: TADOTable;
+    ADOTable1PartNo: TFloatField;
+    ADOTable1VendorNo: TFloatField;
+    ADOTable1Description: TWideStringField;
+    ADOTable1OnHand: TFloatField;
+    ADOTable1OnOrder: TFloatField;
+    ADOTable1Cost: TFloatField;
+    ADOTable1ListPrice: TFloatField;
+    ADOTable1QTY: TSmallintField;
+    WebDataSource1: TwhbdeSource;
     procedure Table1QtyGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
     procedure WebActionPostLitExecute(Sender: TObject);
@@ -29,9 +57,7 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    //ADOConnectionShop1: TADOConnection;
-    TableShop1: TADOTable;
-    Table1Qty: TSmallintField;
+    function CreateTableDefinition(out ErrorText: string): Boolean;
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
@@ -48,12 +74,76 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ActiveX, // CoInitialize
   ucString, ucCodeSiteInterface,
   webApp, htWebApp, webScan,
   whdemo_ViewSource;
 
 { TDMShop1 }
+
+function TDMShop1.CreateTableDefinition(out ErrorText: string): Boolean;
+const cFn = 'CreateTableDefinition';
+var
+  fld: TField;
+  {$IFDEF CodeSite}i: Integer;{$ENDIF}
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  ErrorText := '';
+
+  try
+
+    ADOTable1PartNo.Alignment := taLeftJustify;
+    ADOTable1PartNo.DisplayFormat := 'PN-00000';
+    ADOTable1Qty.OnGetText := Table1QtyGetText;
+
+    {Table1VendorNo := TFloatField.Create(Self);
+    Table1VendorNo.Name := 'Table1VendorNo';
+    Table1VendorNo.DataSet := Table1;
+
+    Table1Description := TStringField.Create(Self);
+    Table1Description.Name := 'Table1Description';
+    Table1Description.FieldName := 'Description';
+
+    Table1OnHand := TFloatField.Create(Self);
+    Table1OnHand.Name := 'Table1OnHand';
+    Table1OnHand.FieldName := 'OnHand';
+
+    Table1OnOrder := TFloatField.Create(Self);
+    Table1OnOrder.Name := 'Table1OnOrder';
+    Table1OnOrder.FieldName := 'OnOrder';
+
+    Table1Cost: TCurrencyField;
+    Table1ListPrice: TCurrencyField;}
+
+    DataSource1.DataSet.Open;
+    CSSend('DataSource1.DataSet.FieldCount', S(DataSource1.DataSet.FieldCount));
+    {$IFDEF CodeSite}
+    for I := 0 to Pred(DataSource1.DataSet.FieldCount) do
+    begin
+      fld := DataSource1.DataSet.Fields[i];
+      CSSend(S(I), fld.FieldName);
+    end;
+    {$ENDIF}
+
+    (*Table1Qty := TSmallintField.Create(TableShop1);
+    Table1Qty.Name := 'TableShop1QTY';
+    Table1Qty.FieldKind := fkCalculated;
+    Table1Qty.FieldName := 'QTY';
+    Table1Qty.Calculated := True;
+    //Table1Qty.OnGetText := Table1QtyGetText;
+    CSSend('TableShop1 FieldCount', S(TableShop1.FieldCount));*)
+
+    fld := DataSource1.DataSet.FieldByName('QTY');
+    Result := Assigned(fld);
+
+  except
+    on E: Exception do
+    begin
+      ErrorText := E.Message;
+      Result := False;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
 
 procedure TDMShop1.DataModuleCreate(Sender: TObject);
 const cFn = 'DataModuleCreate';
@@ -64,42 +154,15 @@ begin
   ADOConnectionShop1.Name := 'ADOConnectionShop1';}
   ADOConnectionShop1.LoginPrompt := False;
 
-  TableShop1 := TADOTable.Create(Self);
-  TableShop1.Name := 'TableShop1';
-
-  (*
-  Table1PartNo := TFloatField.Create(Self);
-  Table1PartNo.Name := 'Table1PartNo';
-  Table1PartNo.DataSet := Table1;
-
-  Table1VendorNo := TFloatField.Create(Self);
-  Table1VendorNo.Name := 'Table1VendorNo';
-  Table1VendorNo.DataSet := Table1;
-
-  Table1Description := TStringField.Create(Self);
-  Table1Description.Name := 'Table1Description';
-  Table1Description.DataSet := Table1;
-
-  Table1OnHand := TFloatField.Create(Self);
-  Table1OnHand.Name := 'Table1OnHand';
-  Table1OnHand.DataSet := Table1;
-
-  Table1OnOrder := TFloatField.Create(Self);
-  Table1OnOrder.Name := 'Table1OnOrder';
-  Table1OnOrder.DataSet := Table1;
-  *)
-//    Table1Cost: TCurrencyField;
-//    Table1ListPrice: TCurrencyField;
-  Table1Qty := TSmallintField.Create(Self);
-  Table1Qty.Name := 'Table1Qty';
-  Table1Qty.OnGetText := Table1QtyGetText;
+  //TableShop1 := TADOTable.Create(Self);
+  //TableShop1.Name := 'TableShop1';
 
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMShop1.DataModuleDestroy(Sender: TObject);
 begin
-  FreeAndNil(TableShop1);
+  //FreeAndNil(TableShop1);
   //FreeAndNil(ADOConnectionShop1);
 end;
 
@@ -118,7 +181,9 @@ begin
   begin
     FlagFwd := True;
 
+    ADOConnectionShop1.Connected := False;
     ADOConnectionShop1.Provider := 'Microsoft.Jet.OLEDB.4.0';
+    ADOConnectionShop1.Mode := cmShareDenyNone;
     s1 := getHtDemoDataRoot;
     s1 := Uppercase(Copy(getHtDemoDataRoot, 1, 1)) +
       Copy(getHtDemoDataRoot, 2, MaxInt);  // D: not d:
@@ -139,17 +204,22 @@ begin
     end;
     if FlagFwd then
     begin
-      TableShop1.Connection := ADOConnectionShop1;
+      {TableShop1.Connection := ADOConnectionShop1;
       TableShop1.TableName := 'Parts';
-      DataSource1.DataSet := TableShop1;
-      Table1Qty.DataSet := TableShop1;
-      Table1Qty.Calculated := True;
-      Table1Qty.Visible := True;
+      DataSource1.DataSet := TableShop1;}
+      DataSource1.DataSet := ADOTable1;
 
+      FlagFwd := CreateTableDefinition(ErrorText);
+    end;
+
+    if FlagFwd then
+    begin
       WebDataGrid1.DataScanOptions := [dsbFirst, dsbPrior, dsbNext, dsbLast,
         dsbCheckBoxes, dsbInputFields];
       WebDataGrid1.ControlsWhere := dsNone;
-      WebDataGrid1.ButtonsWhere := dsAbove;
+      WebDataGrid1.ButtonsWhere := dsNone;
+      WebDataSource1.KeyFieldNames := 'PartNo';
+      WebDataSource1.ValidateConfig := True;
 
       RefreshWebActions(Self);
     end;
@@ -161,16 +231,14 @@ begin
     controlsWhere          none
 
     TwhbdeSource
-    maxOpenDataSets        1 (no cloning)
-    displaySets            defined in .ini file
+    maxOpenDataSets        1 or more
+    displaySets            defined in application-level config file
 
     TTable
     add fields using Delphi field editor
-    add calculated field called Qty, type integer
+    add calculated field called Qty, type short integer
   }
 
-    // helpful to know that WebAppUpdate will be called whenever the
-    // WebHub app is refreshed.
     if FlagFwd then
     begin
       AddAppUpdateHandler(WebAppUpdate);
@@ -187,7 +255,7 @@ begin
   // e.g. to make adjustments because the config changed.
 end;
 
-{ To see what webhub is doing with your data, add (~chDebugInfo~) to the
+{ To see what webhub is doing with your data, add (~stringvars~) to the
   bottom of the homepage and/or confirm pages.  That will display some
   essential arrays: Request.dbFields, Request.FormLiterals and Session.StringVars.
 
@@ -198,10 +266,12 @@ end;
   storage.  (Yes, you could add a temporary order table and post Qty there.)
 }
 procedure TDMShop1.WebActionPostLitExecute(Sender: TObject);
+const cFn = 'WebActionPostLitExecute';
 var
   a1, a2: string;
   i: integer;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   // WebDataSource1.Qty@1316=35
   with TwhWebActionEx(Sender).WebApp do
   begin
@@ -212,6 +282,7 @@ begin
         StringVar[a1] := a2; { post single entry to StringVars array }
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 { ------------------------------------------------------------------------- }
@@ -221,9 +292,11 @@ end;
   the current surfer's StringVars. }
 procedure TDMShop1.Table1QtyGetText(Sender: TField; var Text: string;
   DisplayText: Boolean);
+const cFn = 'Table1QtyGetText';
 begin
   Text := pWebApp.StringVar['webdatasource1.Qty@' + Sender.DataSet.FieldByName
     ('PartNo').asString];
+  CSSend(cFn + ' Text', Text);
 end;
 
 
@@ -231,6 +304,7 @@ end;
   Loop thru the StringVars[] array looking for items with @ which come from the
   data entry session. }
 procedure TDMShop1.getOrderList(sList: TStringList);
+const cFn = 'getOrderList';
 var
   a1, a2: string;
   i: integer;
@@ -250,15 +324,18 @@ begin
       end;
     end;
   end;
+  CSSend(cFn, S(sList));
 end;
 
 { ------------------------------------------------------------------------- }
 
 { this is one way to echo the current order. }
 procedure TDMShop1.WebActionOrderListExecute(Sender: TObject);
+const cFn = 'WebActionOrderListExecute';
 var
   sList: TStringList;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   sList := nil;
   try
     sList := TStringList.create;
@@ -268,25 +345,28 @@ begin
   finally
     FreeAndNil(sList);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMShop1.waScrollGridExecute(Sender: TObject);
+const cFn = 'waScrollGridExecute';
 var
   a1, a2: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   with TwhWebActionEx(Sender).WebApp do
   begin
-    SplitString(StringVar['BtnShop'], ' ', a1, a2); // e.g. Next Page
-    if a1 = 'Save' then
-      a1 := 'This'; // save but do not scroll anywhere.
-    WebDataGrid1.Command := a1;
-    // Make the grid scroll by setting its command, e.g. Next
+    if SplitString(StringVar['BtnShop'], ' ', a1, a2) then // e.g. Next Page
+    begin
+      if a1 = 'Save' then
+        a1 := 'This'; // save but do not scroll anywhere.
+      CSSend('a1', a1);
+      WebDataGrid1.Command := a1;
+      // Make the grid scroll by setting its command, e.g. Next
+    end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
-
-
-initialization
-//  CoInitialize(nil);  // ADO / COM
 
 end.
