@@ -4,10 +4,10 @@
 <whmacros>
 mcWhDemoOneLinerSHOP1=Shopping Cart - Simplest
 mcWhDemoCreditIdeaSHOP1=Ann Lynnworth
-mcWhDemoCreditFirstDraftSHOP1=Ann Lynnworth and Peter Hyde
+mcWhDemoCreditFirstDraftSHOP1=Peter Hyde
 mcWhDemoCreditGraphicsSHOP1=Rob Daniels
 mcWhDemoCreditCopySHOP1=Rob Daniels and Martha V. Moore
-mcWhDemoUpdatedSHOP1=21-Sep-1998
+mcWhDemoUpdatedSHOP1=28-Nov-2012
 mcWhDemoKeywordsSHOP1=beginner shopping cart
 mcWhDemoLiteSHOP1=No
 </whmacros>
@@ -16,12 +16,8 @@ mcWhDemoLiteSHOP1=No
 <ol>
 <li> (~mcWhDemoVCLIcon~) Requires whShopping.exe</li>
 <li> Be sure to set the e-mail settings on the Shopping|Configure panel.</li>
-<li> If you need a complete, well-tested, generic but sophisticated
-shopping cart application which logs transactions to a database,
-the full-source <a href="http://www.href.com/shopcart/">WebHub
-shopping cart application</a> might be for you.  It can be
-readily configured for any store's catalog, and also supports
-"mall-style" collections of shops running on a single server.</li>
+<li> Microsoft Access database containing the parts table, e.g. dbdemos.mdb from Embarcadero</li>
+<li> Delphi ADO components are used: TADOConnection, TADOTable.</li>
 </ol>
 </whdroplet>
 
@@ -32,56 +28,12 @@ with WebHub.  It includes a scrollable catalog table, and data entry of the
 order.  The order can be confirmed to the customer on the web or by email.
 </whtranslation>
 
-
 <whtranslation key="~whDemoLongDescSHOP1">
 <h3>Overview</h3>
 This app shows the easiest possible way
 to set up a shopping cart.  Data is kept in
-the surfer's Literal array; orders are not posted
-to a database.  Completed orders are sent
-by e-mail.
-<p>This is a free starting point for people interested
-in exploring the issues of save-state in shopping
-cart apps.</p>
+the surfer's StringVars array; orders are not posted
+to a database.  Completed orders are sent via e-mail.
 </whtranslation>
-
-
-<whdroplet name="drShopcartInformation">
-(~mcWhDemoDot~)
-<b>Shopping Cart Jump Start Package</b>
-<blockquote>
-The Shopping Cart Jump Start Project gives you the source code to an application server for online,
-                          database-driven stores. The store works &quot;out of the box&quot; (after you compile the EXE). You can then modify the
-                          database contents, the graphics, the page layout, and so on. If you intend to build a shopping site with WebHub,
-                          this product will save you days, if not weeks, of development time.
-<table border="0" cellpadding="2" cellspacing="0">
-<tr>
-	<td style="width:30px;">&nbsp;</td>
-	<td valign="bottom" style="font-size:.8em;color:#666666;">
-	Requires
-	</td>
-	<td valign="bottom" style="font-size:.8em;color:#666666;">
-	store.exe (for sale through HREFShop) 
-	</td>
-</tr>
-
-<tr>
-	<td style="width:30px;">&nbsp;</td>
-	<td valign="bottom" style="font-size:.8em;color:#666666;">Product Spec Page</td>
-	<td valign="bottom" style="font-size:.8em;color:#666666;"><a href="http://www.href.com/shopcart">Shopcart</a></td>
-</tr>
-
-<tr>
-<td style="width:30px;">&nbsp;</td>
-<td valign="bottom" style="font-size:.8em;color:#666666;">
-Installation
-</td>
-<td valign="bottom" style="font-size:.8em;color:#666666;">
-Run store.exe; see Shopping Cart Jump Start Package Manual.
-</td></tr>
-
-</table>
-</blockquote>
-</whdroplet>
 
 </whteko>
