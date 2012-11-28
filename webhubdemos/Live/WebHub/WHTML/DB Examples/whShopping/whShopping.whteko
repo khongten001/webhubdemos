@@ -20,8 +20,7 @@
 <p>Big parts. Small parts. Parts for just about everything.</p>
 <p>Don't you think you need anything?
 Browse through our extensive list of parts
-and we bet you'll find something
-you didn't know you needed.</p>
+and we bet you will find something to buy.</p>
 
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~actionr|poster~)"><!-- changing:stop-->
 (~webdatagrid1.execute~)
