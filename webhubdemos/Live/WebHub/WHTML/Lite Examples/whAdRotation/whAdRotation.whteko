@@ -7,6 +7,7 @@
 	designdynsrc="adv-live"  
 	designmode="code">
  
+
 <whdroplet name="drDemoSpeedbarForADV">
 [(~GO|Cycle2|Internal Workings~)]<br />
 [(~GO|Cycle2A|Cycle List Navigation Bar~)]<br />
@@ -283,7 +284,7 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<p>Before: (~centralinfo.webtimegmt~)</p>
+<p>Before: (~CentralInfo.WebTimeGMT~)</p>
 (~waDelaySec.Execute|3~)
 <p>After: (~centralinfo.webtimegmt~)</p>
 </div>  <!--- demopagecontent -->
