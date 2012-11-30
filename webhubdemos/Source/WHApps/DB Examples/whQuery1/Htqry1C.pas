@@ -57,7 +57,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucLogFil, ucDlgs,
+  ucLogFil, ucDlgs, ucCodeSiteInterface,
   webApp, whdemo_ViewSource, whdemo_Initialize;
 
 //------------------------------------------------------------------------------
@@ -88,13 +88,13 @@ begin
       'AND (d1.MemberID=:wwwMemberID) ' +
       'AND (d1.Passwd= :wwwPword ) ';
     try
-      Prepare;
+      Prepare; // Delphi TQuery
     except
-      on e: exception do
+      on E: exception do
       begin
         {in case the table becomes corrupt or some other unexpected condition
          arises... catch the error and prevent use of the components}
-        HREFTestLog('ERROR', 'query1', SQL.Text + sLineBreak + e.Message);
+        LogSendError(SQL.Text + sLineBreak + e.Message, query1.Name);
         MsgErrorOk(e.Message);
         FreeAndNil(answergrid);
         FreeAndNil(WebDatasource1);
