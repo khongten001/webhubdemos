@@ -128,7 +128,7 @@ begin
 
     IBOQueryWords := TIBOQuery.Create(Self);
     IBOQueryWords.Name := 'IBOQueryWords';
-    IBOQueryWords.Tag := 1; // prepare later
+    IBOQueryWords.Tag := 1; // delay preparation
     IBOQueryWords.ReadOnly := True;
 
     IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
