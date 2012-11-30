@@ -98,7 +98,6 @@ begin
   qEmployee := TIB_Query.Create(Self);
   qEmployee.Name := 'qEmployee';
   qEmployee.SQL.Text := 'select * from employee where (SALARY < 80000.0)';
-  qEmployee.Prepare;
 
   dsEmployee := TIB_DataSource.Create(Self);
   dsEmployee.Name := 'dsEmployee';
