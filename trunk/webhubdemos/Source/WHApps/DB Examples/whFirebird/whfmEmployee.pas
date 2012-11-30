@@ -52,7 +52,6 @@ type
     whdsEmployee: TwhdbSourceIB;
     dsEmployee: TIB_DataSource;
     qEmployee: TIB_Query;
-    IBConnectEmployee: TIB_Connection;
     function Init: Boolean; override;
   end;
 
@@ -64,15 +63,15 @@ implementation
 {$R *.dfm}
 
 uses
-  ucString, ucLogFil,
-  webApp, webSend, webScan;
+  ucString, ucLogFil, ucCodeSiteInterface, ucIbObjPrepare,
+  webApp, webSend, webScan,
+  uFirebird_Connect_Employee;
 
 { TfmAppPanel }
 
 procedure TfmEmployee.FormCreate(Sender: TObject);
 begin
   inherited;
-  IBConnectEmployee := nil;
   whdsEmployee := nil;
   dsEmployee := nil;
   qEmployee := nil;
@@ -84,7 +83,6 @@ begin
   FreeAndNil(whdsEmployee);
   FreeAndNil(dsEmployee);
   FreeAndNil(qEmployee);
-  FreeAndNil(IBConnectEmployee);
 end;
 
 function TfmEmployee.Init: Boolean;
@@ -93,16 +91,12 @@ begin
   if not Result then
     Exit;
 
-  IBConnectEmployee := TIB_Connection.Create(Self);
-  IBConnectEmployee.Name := 'IBConnectEmployee';
-  IBConnectEmployee.DatabaseName := 'demos.href.com:employee';  // alias name
-  IBConnectEmployee.Username := 'WebHubDemo';
-  IBConnectEmployee.Password := 'WHDemo';
-  IBConnectEmployee.Connect;
+  CreateIfNil('db.demos.href.com:employee',  // server:alias 
+    'WebHubDemo', 'WHDemo');
+  gEmployee_Conn.Connect;
 
   qEmployee := TIB_Query.Create(Self);
   qEmployee.Name := 'qEmployee';
-  qEmployee.IB_Connection := IBConnectEmployee;
   qEmployee.SQL.Text := 'select * from employee where (SALARY < 80000.0)';
   qEmployee.Prepare;
 
@@ -134,6 +128,7 @@ begin
   ScanEmployee3.ButtonsWhere := dsNone;
   ScanEmployee3.OnBeginTable := ScanEmployeeBeginTable;
 
+  IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr, gEmployee_Sess);
   RefreshWebActions(Self);
 end;
 
@@ -167,7 +162,7 @@ begin
           Response.Send(fld.AsString)
         else
         begin
-          HREFTestLog('WARNING', cFn, 'Invalid fieldname: ' + FldName);
+          LogSendWarning('Invalid fieldname: ' + FldName, cFn);
           Response.Send(FldName);
         end;
       end;

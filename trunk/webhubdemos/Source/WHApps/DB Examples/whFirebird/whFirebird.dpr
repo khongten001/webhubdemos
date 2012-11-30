@@ -23,6 +23,7 @@ uses
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   webLink in 'h:\webLink.pas',
+  uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
   wdbIBObjNSource in 'h:\wdbIBObjNSource.pas';
 
