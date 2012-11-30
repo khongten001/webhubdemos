@@ -115,7 +115,7 @@ end;
 
 { ------------------------------------------------------------------------- }
 
-{ Prepare and send mail message. }
+{ Prepare-and-send mail message. }
 procedure TfmShopPanel.WebActionMailerExecute(Sender: TObject);
 var
   sList: TStringList;
