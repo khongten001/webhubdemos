@@ -101,7 +101,7 @@ begin
 
     with fQuery do
     begin
-      if Active then Close; if NOT Prepared then Prepare;
+      if Active then Close; if NOT Prepared then Prepare; // Delphi TQuery
       Params[0].asString := HtmlParam;
       Open;
       fCurrentDropletKey := FieldByName('Code').asString;

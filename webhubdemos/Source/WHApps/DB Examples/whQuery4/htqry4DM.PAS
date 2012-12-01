@@ -103,12 +103,12 @@ begin
     QueryDept.SQL.Text := 'select distinct DeptShort, DepartmentFull ' +
       'from department';
     try
-      QueryDept.Prepare;
+      QueryDept.Prepare; // Delphi TQuery
       QueryDept.Open;
     except
       on E: Exception do
       begin
-        {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+        LogSendException(E);
         ErrorText := E.Message;
         Exit;
       end;
