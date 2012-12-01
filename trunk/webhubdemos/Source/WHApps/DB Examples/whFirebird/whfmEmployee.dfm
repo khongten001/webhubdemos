@@ -1,16 +1,20 @@
 inherited fmEmployee: TfmEmployee
   Left = 522
   Top = 368
-  Width = 321
-  Height = 245
   Caption = '&Employee'
+  ClientHeight = 200
+  ClientWidth = 303
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  PixelsPerInch = 96
-  TextHeight = 13
+  ExplicitWidth = 321
+  ExplicitHeight = 245
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 313
-    Height = 188
+    Width = 303
+    Height = 181
+    ExplicitWidth = 313
+    ExplicitHeight = 188
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
@@ -31,17 +35,18 @@ inherited fmEmployee: TfmEmployee
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 188
-    Width = 313
+    Top = 181
+    Width = 303
     Height = 19
     Panels = <
       item
-        Text = ''
         Width = 50
       end>
     ParentShowHint = False
     ShowHint = True
     PanelStatusIndex = 0
+    ExplicitTop = 188
+    ExplicitWidth = 313
   end
   object ScanEmployee3: TwhdbScan
     ComponentOptions = [tpStatusPanel]
