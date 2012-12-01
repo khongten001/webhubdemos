@@ -39,6 +39,12 @@
 			<Projects Include="whQuery3\whQuery3.dproj">
 				<Dependencies/>
 			</Projects>
+			<Projects Include="whFirebird\whFirebird.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="whFirebird\IbObj_Bootstrap.dproj">
+				<Dependencies/>
+			</Projects>
 		</ItemGroup>
 		<ProjectExtensions>
 			<Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -155,14 +161,32 @@
 		<Target Name="whQuery3:Make">
 			<MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Make"/>
 		</Target>
+		<Target Name="whFirebird">
+			<MSBuild Projects="whFirebird\whFirebird.dproj"/>
+		</Target>
+		<Target Name="whFirebird:Clean">
+			<MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="whFirebird:Make">
+			<MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="IbObj_Bootstrap">
+			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj"/>
+		</Target>
+		<Target Name="IbObj_Bootstrap:Clean">
+			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="IbObj_Bootstrap:Make">
+			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Make"/>
+		</Target>
 		<Target Name="Build">
-			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3"/>
+			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap"/>
 		</Target>
 		<Target Name="Clean">
-			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean"/>
+			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean"/>
 		</Target>
 		<Target Name="Make">
-			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make"/>
+			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make"/>
 		</Target>
 		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
 	</Project>
