@@ -13,7 +13,7 @@ uses
   whMain in 'H:\whMain.pas' {fmWebHubMainForm},
   dmWHApp in 'H:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
-  whHTML in 'h:\whHtml.pas' {fmAppHTML},
+  whHtml in 'h:\whHtml.pas' {fmAppHTML},
   whfmEmployee in 'whfmEmployee.pas' {fmEmployee},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
@@ -25,7 +25,8 @@ uses
   webLink in 'h:\webLink.pas',
   uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
-  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas';
+  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas' {$R *.res},
+  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

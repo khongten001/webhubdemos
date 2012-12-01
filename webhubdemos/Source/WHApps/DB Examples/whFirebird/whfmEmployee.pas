@@ -10,7 +10,7 @@ unit whfmEmployee;
 interface
 
 {$I hrefdefines.inc}
-{$I IB_Directives.INC}
+{$I IB_Directives.INC} // IbObjects source\common
 
 uses
   SysUtils, Classes,
@@ -65,7 +65,7 @@ implementation
 uses
   ucString, ucLogFil, ucCodeSiteInterface, ucIbObjPrepare,
   webApp, webSend, webScan,
-  uFirebird_Connect_Employee;
+  uFirebird_Connect_Employee, ucIbAndFbCredentials;
 
 { TfmAppPanel }
 
@@ -86,13 +86,15 @@ begin
 end;
 
 function TfmEmployee.Init: Boolean;
+var
+  DBName, DBUser, DBPass: string;
 begin
   Result := inherited Init;
   if not Result then
     Exit;
 
-  CreateIfNil('db.demos.href.com:employee',  // server:alias 
-    'WebHubDemo', 'WHDemo');
+  ZMLookup_Firebird_Credentials('WebHubDemo-fire', DBName, DBUser, DBPass);
+  CreateIfNil(DBName, DBUser, DBPass);
   gEmployee_Conn.Connect;
 
   qEmployee := TIB_Query.Create(Self);
@@ -101,7 +103,6 @@ begin
 
   dsEmployee := TIB_DataSource.Create(Self);
   dsEmployee.Name := 'dsEmployee';
-  dsEmployee.Dataset := qEmployee;
 
   whdsEmployee := TwhdbSourceIB.Create(Self);
   whdsEmployee.Name := 'wdsEmployee';
@@ -127,8 +128,22 @@ begin
   ScanEmployee3.ButtonsWhere := dsNone;
   ScanEmployee3.OnBeginTable := ScanEmployeeBeginTable;
 
-  IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr, gEmployee_Sess);
-  RefreshWebActions(Self);
+  try
+    IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn,
+      gEmployee_Tr, gEmployee_Sess);
+    Result := qEmployee.Prepared and Assigned(qEmployee.IB_Session);
+    if NOT (gEmployee_Conn.IB_Session = gEmployee_Sess) then
+      CSSendWarning('NOT (gEmployee_Conn.IB_Session = gEmployee_Sess)');
+    dsEmployee.Dataset := qEmployee;
+  except
+    on E: Exception do
+    begin
+      Result := False;
+    end;
+  end;
+
+  if Result then
+    RefreshWebActions(Self);
 end;
 
 procedure TfmEmployee.ScanEmployee1RowStart(Sender: TwhdbScanBase;
