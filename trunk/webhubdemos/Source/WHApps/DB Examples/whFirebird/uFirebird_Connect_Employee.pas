@@ -2,7 +2,7 @@
 unit uFirebird_Connect_Employee;
 // database engine: Firebird
 // project abbreviation: Employee
-// generated 01-Dec-2012 01:47
+// generated 01-Dec-2012 01:59
 // by IbAndFb_GenPAS_Connect
 
 interface 
@@ -34,19 +34,16 @@ begin
   begin
     gEmployee_Sess := TIB_Session.Create(nil);
     gEmployee_Sess.Name := 'gEmployee_Sess';
-
     gEmployee_Conn := TIB_Connection.Create(nil);
     gEmployee_Conn.Name := 'gEmployee_Conn';
-
     gEmployee_Tr := TIB_Transaction.Create(nil);
     gEmployee_Tr.Name := 'gEmployee_Tr';
-
     with gEmployee_Conn do
     begin
+      IB_Session := gEmployee_Sess;
       Database := FullDatabaseName;
       Username := InUsername;
       Password := InPassword;
-      IB_Session := gEmployee_Sess;
       CharSet := 'UTF8';
     end;
     with gEmployee_Tr do
