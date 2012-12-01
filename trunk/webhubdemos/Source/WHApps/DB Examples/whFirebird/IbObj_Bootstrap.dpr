@@ -1,9 +1,11 @@
 program IbObj_Bootstrap;
 
+// use with WebHub v2.181+ or v3.181+
+
 uses
   Vcl.Forms,
-  IbObj_Bootstrap_fmMain in 'IbObj_Bootstrap_fmMain.pas' {Form2},
-  ucIBObjCodeGen_Bootstrap in 'K:\WebHub\tpack\ucIBObjCodeGen_Bootstrap.pas';
+  ucIBObjCodeGen_Bootstrap,
+  IbObj_Bootstrap_fmMain in 'IbObj_Bootstrap_fmMain.pas' {Form2};
 
 {$R *.res}
 
