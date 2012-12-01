@@ -50,13 +50,14 @@ begin
       findprod.SQL.Text := 'select * ' +
         'from xproduct where ' +
         '(ProductName = :ProdName) ';
-      findprod.Prepare;
+      IbObj_PrepareEx(findprod, dmCommon.cn1, dmCommon.tr1, dmCommon.sess1);
+
       findevent := TIB_Cursor.Create(nil);
       findevent.IB_Connection := dmCommon.cn1;
       findevent.SQL.Text := 'select * from schedule ' +
         'where ' +
         '(SchTitle starting with :Something)';
-      findevent.Prepare;
+      IbObj_PrepareEx(findevent, dmCommon.cn1, dmCommon.tr1, dmCommon.sess1);
 
       y.Text := FileContents;
       for i := 0 to pred(y.Count) do
@@ -92,8 +93,7 @@ begin
             if findevent.RecordCount = 0 then
             begin
               Result := False;
-              HREFTestLog('error', EventTitle,
-                IntToStr(findevent.RecordCount));
+              LogSendError(IntToStr(findevent.RecordCount), EventTitle);
               MsgErrorOk('not found' + sLineBreak +
                 EventTitle + sLineBreak +
                 IntToStr(findevent.RecordCount));
