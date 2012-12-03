@@ -634,18 +634,13 @@ begin
           try
             q.IB_Transaction.StartTransaction;
             q.ExecSQL;
+            CSSend('RowsAffected', S(q.RowsAffected)); 
             q.IB_Transaction.Commit;
             q.Unprepare;
           except
             on E: Exception do
             begin
               LogSendException(E);
-              for i := 0 to Pred(q.ParamCount) do
-              begin
-                // log each parameter as a string
-                LogSendWarning('Parameter ' + IntToStr(i) + '=' + q.Params[i]
-                  .AsString, cFn);
-              end;
               q.IB_Transaction.Rollback;
               pWebApp.Debug.AddPageError(E.Message);
             end;
