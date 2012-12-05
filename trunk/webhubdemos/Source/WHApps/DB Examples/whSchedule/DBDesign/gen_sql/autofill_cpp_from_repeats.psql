@@ -1,0 +1,15 @@
+CREATE PROCEDURE AutoFill_AboutRepeats
+AS
+declare variable SchNo integer;
+BEGIN
+  for select SchNo
+    from schedule where (SchCodeRageConfNo=7) and
+      (SchRepeatOf is not Null) and
+      (SchOnAtPDT > DATE '12/1/2012')
+      into :SchNo
+  do
+  begin
+    insert into About values (
+      -1, :SchNo, 7, 'RPT', CURRENT_TIMESTAMP, 0);
+  end
+END
