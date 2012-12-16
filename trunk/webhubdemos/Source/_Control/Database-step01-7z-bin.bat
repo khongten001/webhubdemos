@@ -48,14 +48,5 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d1?_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d1?_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d1?_win32.bpl
 
-set t=Database-Library-bin.7z
-set sdir=h:\pkg_d16_win32
-
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d1?_win32.bpl
-
 pause
 
