@@ -17,7 +17,7 @@
 <h1>(~pagedesc~)</h1>
 <ul>
 <li> (~JUMPR|pgMaintReplayInfo|Maintain Replay URLs~) </li>
-
+<li> (~JUMPR|pgBrowseSchedule|Browse~)</li>
 </ul>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
@@ -45,6 +45,7 @@
 <tr><th>Presentation Title</th>
 <td>(~INPUTTEXT|findSCHEDULE-SCHTITLE~)</td>
 </tr>
+<tr><td colspan="2"><input type="reset" /></td></tr>
 <tr><td colspan="2"><input type="submit" value="Find" /></td></tr>
 </table>
 </form>
@@ -56,7 +57,34 @@
 </whoutput>
 </whpage>
 
-
+<whpage pageid="pgBrowseSchedule" desc="Browse Schedule Records">
+<whprep>
+(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<style type="text/css">
+	.wafindschedule-table { border: solid 1px #667;  }
+	.wafindschedule-table th { border: solid 1px #667; padding: 0.2em; background-color: #66FF99;}
+	.wafindschedule-table td { padding: 0.2em; }
+	</style>
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+<p>Code Rage Conference #7:</p>
+(~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHCODERAGECONFNO from SCHEDULE where (SchCodeRageConfNo = 7) ~)
+</div>  <!--- whdemopagecontent -->
+<p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
+(~drPageEnd~)
+</body>
+</html>
+</whoutput>
+</whpage>
 
 <whpage pageid="pgSelectSchedulePK" desc="Select Schedule Record to Maintain">
 <whprep>
