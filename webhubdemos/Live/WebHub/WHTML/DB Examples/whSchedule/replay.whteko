@@ -21,7 +21,7 @@ mcChannelELinksDead=(~MATCH|channel-e[(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<h2>Code Rage 4 through Code Rage 6</h2>
+<h2>Code Rage 4 through Code Rage 7</h2>
 <p><i>(~JUMP|pgTrainingKeywordIndex|Keyword Index~)</i></p>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgSearchResult~)">
 
