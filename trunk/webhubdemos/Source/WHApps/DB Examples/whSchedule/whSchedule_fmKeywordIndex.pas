@@ -14,10 +14,10 @@ interface
 {$I hrefdefines.inc}
 
 uses
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ActnList, Vcl.Buttons,
-  SysUtils, Classes,
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ActnList, Buttons,
+  SysUtils, Classes, Actions, DB,
   IB_Components, IBODataSet,
-  rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache,
+  rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache, rbBase,
   toolbar, utPanFrm, restorer, tpCompPanel,
   uLingvoCodePoints;
 
@@ -43,6 +43,10 @@ type
     rbCache1: TrbCache;
     QMake: TIBOQuery;
     QData: TIBOQuery;
+    function ScheduleAcceptWord(Sender: TObject; const Word: String) : Boolean;
+    procedure ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
+    procedure ScheduleProcessField(Sender: TObject; Engine: TrbEngine; Field:
+    TField);
   public
     { Public declarations }
     function Init: Boolean; override;
@@ -100,6 +104,7 @@ begin
     rbMake1 := TrbMake.Create(Self);
     rbMake1.Name := 'rbMake1';
     rbMake1.Ansi := False;  // very important! Unicode! UTF16!
+    rbMake1.OnAcceptWord := ScheduleAcceptWord;
 
     rbAccept1 := TrbAccept.Create(Self);
     rbAccept1.Name := 'rbAccept1';
@@ -129,6 +134,7 @@ begin
     QData.IB_Session := gCodeRageSchedule_Sess;
     QData.IB_Transaction := gCodeRageschedule_Tr;
     makewordslink.IBOQuery := QData;
+    makewordslink.AfterSQL := ScheduleAfterSQL;
 
     rbMakeTextLink1 := TrbMakeTextIBOLink.Create(Self);
     rbMakeTextLink1.Name := 'rbMakeTextLink1';
@@ -137,8 +143,9 @@ begin
     rbMakeTextLink1.FieldNames.Text :=
       'SchTitle' + sLineBreak +
       'SchPresenterFullName' + sLineBreak +
-      'SchPresenterOrg' + sLineBreak + 'SchBlurb';
+      'SchPresenterOrg' + sLineBreak + 'SchBlurb' + sLineBreak + 'SchRepeatOf';
     rbMakeTextLink1.IBOQuery := QMake;
+    rbMakeTextLink1.OnProcessField := ScheduleProcessField;
     rbMake1.TextLink := rbMakeTextLink1;
     rbMake1.WordsLink := makewordslink;
   end;
@@ -194,6 +201,24 @@ end;
 function TfmRubiconIndex.RestorerActiveHere: Boolean;
 begin
   Result := False;
+end;
+
+function TfmRubiconIndex.ScheduleAcceptWord(Sender: TObject;
+  const Word: String): Boolean;
+begin
+  Result := True;
+end;
+
+procedure TfmRubiconIndex.ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
+begin
+  CSSend('SQL', S(SQL));
+end;
+
+procedure TfmRubiconIndex.ScheduleProcessField(Sender: TObject;
+  Engine: TrbEngine; Field: TField);
+begin
+  if Field.DataSet.FieldByName('SchRepeatOf').AsString = '' then
+    Engine.ProcessString(Field.AsString);
 end;
 
 end.
