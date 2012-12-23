@@ -1,192 +1,192 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-		<PropertyGroup>
-			<ProjectGuid>{73F902ED-FC0C-481A-94E9-A2B5B773289D}</ProjectGuid>
-		</PropertyGroup>
-		<ItemGroup>
-			<Projects Include="whClone\whClone.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whLoadFromDB\whLoadFromDB.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whInstantForm\whInstantForm.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whShopping\whShopping.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whScanTable\whScanTable.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whFishStore\whFishStore.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="..\Third Party Examples\whDSP\whDSP.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whSchedule\whSchedule.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whQuery4\whQuery4.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whQuery3\whQuery3.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whFirebird\whFirebird.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whFirebird\IbObj_Bootstrap.dproj">
-				<Dependencies/>
-			</Projects>
-		</ItemGroup>
-		<ProjectExtensions>
-			<Borland.Personality>Default.Personality.12</Borland.Personality>
-			<Borland.ProjectType/>
-			<BorlandProject>
-				<Default.Personality/>
-			</BorlandProject>
-		</ProjectExtensions>
-		<Target Name="whClone">
-			<MSBuild Projects="whClone\whClone.dproj"/>
-		</Target>
-		<Target Name="whClone:Clean">
-			<MSBuild Projects="whClone\whClone.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whClone:Make">
-			<MSBuild Projects="whClone\whClone.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whLoadFromDB">
-			<MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj"/>
-		</Target>
-		<Target Name="whLoadFromDB:Clean">
-			<MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whLoadFromDB:Make">
-			<MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whInstantForm">
-			<MSBuild Projects="whInstantForm\whInstantForm.dproj"/>
-		</Target>
-		<Target Name="whInstantForm:Clean">
-			<MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whInstantForm:Make">
-			<MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whShopping">
-			<MSBuild Projects="whShopping\whShopping.dproj"/>
-		</Target>
-		<Target Name="whShopping:Clean">
-			<MSBuild Projects="whShopping\whShopping.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whShopping:Make">
-			<MSBuild Projects="whShopping\whShopping.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whScanTable">
-			<MSBuild Projects="whScanTable\whScanTable.dproj"/>
-		</Target>
-		<Target Name="whScanTable:Clean">
-			<MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whScanTable:Make">
-			<MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whFishStore">
-			<MSBuild Projects="whFishStore\whFishStore.dproj"/>
-		</Target>
-		<Target Name="whFishStore:Clean">
-			<MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whFishStore:Make">
-			<MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whDSP">
-			<MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj"/>
-		</Target>
-		<Target Name="whDSP:Clean">
-			<MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whDSP:Make">
-			<MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whDynamicJPEG">
-			<MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj"/>
-		</Target>
-		<Target Name="whDynamicJPEG:Clean">
-			<MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whDynamicJPEG:Make">
-			<MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whSchedule">
-			<MSBuild Projects="whSchedule\whSchedule.dproj"/>
-		</Target>
-		<Target Name="whSchedule:Clean">
-			<MSBuild Projects="whSchedule\whSchedule.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whSchedule:Make">
-			<MSBuild Projects="whSchedule\whSchedule.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="Project2">
-			<MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj"/>
-		</Target>
-		<Target Name="Project2:Clean">
-			<MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="Project2:Make">
-			<MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whQuery4">
-			<MSBuild Projects="whQuery4\whQuery4.dproj"/>
-		</Target>
-		<Target Name="whQuery4:Clean">
-			<MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whQuery4:Make">
-			<MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whQuery3">
-			<MSBuild Projects="whQuery3\whQuery3.dproj"/>
-		</Target>
-		<Target Name="whQuery3:Clean">
-			<MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whQuery3:Make">
-			<MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whFirebird">
-			<MSBuild Projects="whFirebird\whFirebird.dproj"/>
-		</Target>
-		<Target Name="whFirebird:Clean">
-			<MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whFirebird:Make">
-			<MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="IbObj_Bootstrap">
-			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj"/>
-		</Target>
-		<Target Name="IbObj_Bootstrap:Clean">
-			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="IbObj_Bootstrap:Make">
-			<MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="Build">
-			<CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap"/>
-		</Target>
-		<Target Name="Clean">
-			<CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean"/>
-		</Target>
-		<Target Name="Make">
-			<CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make"/>
-		</Target>
-		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
-	</Project>
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{73F902ED-FC0C-481A-94E9-A2B5B773289D}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="whClone\whClone.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whLoadFromDB\whLoadFromDB.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whInstantForm\whInstantForm.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whShopping\whShopping.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whScanTable\whScanTable.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whFishStore\whFishStore.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\Third Party Examples\whDSP\whDSP.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whSchedule\whSchedule.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whQuery4\whQuery4.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whQuery3\whQuery3.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whFirebird\whFirebird.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whFirebird\IbObj_Bootstrap.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="whClone">
+        <MSBuild Projects="whClone\whClone.dproj"/>
+    </Target>
+    <Target Name="whClone:Clean">
+        <MSBuild Projects="whClone\whClone.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whClone:Make">
+        <MSBuild Projects="whClone\whClone.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whLoadFromDB">
+        <MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj"/>
+    </Target>
+    <Target Name="whLoadFromDB:Clean">
+        <MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whLoadFromDB:Make">
+        <MSBuild Projects="whLoadFromDB\whLoadFromDB.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whInstantForm">
+        <MSBuild Projects="whInstantForm\whInstantForm.dproj"/>
+    </Target>
+    <Target Name="whInstantForm:Clean">
+        <MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whInstantForm:Make">
+        <MSBuild Projects="whInstantForm\whInstantForm.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whShopping">
+        <MSBuild Projects="whShopping\whShopping.dproj"/>
+    </Target>
+    <Target Name="whShopping:Clean">
+        <MSBuild Projects="whShopping\whShopping.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whShopping:Make">
+        <MSBuild Projects="whShopping\whShopping.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whScanTable">
+        <MSBuild Projects="whScanTable\whScanTable.dproj"/>
+    </Target>
+    <Target Name="whScanTable:Clean">
+        <MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whScanTable:Make">
+        <MSBuild Projects="whScanTable\whScanTable.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whFishStore">
+        <MSBuild Projects="whFishStore\whFishStore.dproj"/>
+    </Target>
+    <Target Name="whFishStore:Clean">
+        <MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whFishStore:Make">
+        <MSBuild Projects="whFishStore\whFishStore.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whDSP">
+        <MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj"/>
+    </Target>
+    <Target Name="whDSP:Clean">
+        <MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whDSP:Make">
+        <MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whDynamicJPEG">
+        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj"/>
+    </Target>
+    <Target Name="whDynamicJPEG:Clean">
+        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whDynamicJPEG:Make">
+        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whSchedule">
+        <MSBuild Projects="whSchedule\whSchedule.dproj"/>
+    </Target>
+    <Target Name="whSchedule:Clean">
+        <MSBuild Projects="whSchedule\whSchedule.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whSchedule:Make">
+        <MSBuild Projects="whSchedule\whSchedule.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Project2">
+        <MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj"/>
+    </Target>
+    <Target Name="Project2:Clean">
+        <MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project2:Make">
+        <MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whQuery4">
+        <MSBuild Projects="whQuery4\whQuery4.dproj"/>
+    </Target>
+    <Target Name="whQuery4:Clean">
+        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whQuery4:Make">
+        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whQuery3">
+        <MSBuild Projects="whQuery3\whQuery3.dproj"/>
+    </Target>
+    <Target Name="whQuery3:Clean">
+        <MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whQuery3:Make">
+        <MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whFirebird">
+        <MSBuild Projects="whFirebird\whFirebird.dproj"/>
+    </Target>
+    <Target Name="whFirebird:Clean">
+        <MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whFirebird:Make">
+        <MSBuild Projects="whFirebird\whFirebird.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="IbObj_Bootstrap">
+        <MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj"/>
+    </Target>
+    <Target Name="IbObj_Bootstrap:Clean">
+        <MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="IbObj_Bootstrap:Make">
+        <MSBuild Projects="whFirebird\IbObj_Bootstrap.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -623,9 +623,17 @@ begin
         for i := 0 to Pred(q.ParamCount) do
         begin
           FldName := q.Params[i].FieldName;
-          q.Params[i].AsString := pWebApp.StringVar
-            ['edit-' + CurrentTableName + '-' + FldName];
-          CSSend('Parameter ' + IntToStr(i), q.Params[i].AsString);
+          case q.Params[i].SQLType of
+            521:
+              q.Params[i].AsString := pWebApp.Session.TxtVars.List[
+                'txt-edit-' + CurrentTableName + '-' + FldName].Text
+            else
+              q.Params[i].AsString := pWebApp.StringVar
+                ['edit-' + CurrentTableName + '-' + FldName];
+          end;
+
+          CSSend('Parameter ' + IntToStr(i) + ' SQLType ' +
+            IntToStr(q.Params[i].SQLType), q.Params[i].AsString);
         end;
         if NOT FlagFwd then
           pWebApp.Debug.AddPageError(q.Name)
