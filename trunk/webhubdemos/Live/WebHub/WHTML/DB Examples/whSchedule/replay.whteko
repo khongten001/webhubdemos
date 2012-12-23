@@ -79,6 +79,8 @@ Code Rage (~readonly-SCHEDULE-SchCodeRageConfNo~), (~readonly-SCHEDULE-SCHONATPD
 <blockquote>
 (~readonly-SCHEDULE-SCHBlurb~)
 <div style="text-align:center;">
+(~ASSIGNED|readonly-SCHEDULE-SCHREPLAYWATCHNOWURL|(~NOMATCH|channel-e[(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)|<a href="(~readonly-SCHEDULE-SCHREPLAYWATCHNOWURL~)">Watch Now</a> &nbsp;&nbsp; ~)~)
+
 (~ASSIGNED|readonly-SCHEDULE-SCHREPLAYDOWNLOADURL|
 <a target="_blank" href="(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)" title="Download from EDN">Download</a>
 ~)
