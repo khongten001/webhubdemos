@@ -27,7 +27,7 @@ type
     webCycle: TwhCycle;
     waVersionInfo: TwhWebAction;
     waGetExename: TwhWebAction;
-    waLSec: TwhWebAction;
+    waLSec: TwhWebAction;  // secure link feature
     waDelaySec: TwhWebAction;
     waDemoCaptcha: TwhCaptcha;
     waImgSrc: TwhWebAction;
@@ -556,17 +556,18 @@ procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
 begin
   if NOT pWebApp.IsWebRobotRequest then
   begin
-    if IsEqual(Sender.AppID, 'showcase') and (NOT IsHREFToolsQATestAgent) then
+    if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and 
+      (NOT IsHREFToolsQATestAgent) then
     begin
-      { do not allow blank referer within the showcase demo unless on the
-        home page }
+      { do not allow blank referer within the showcase or htsc demos 
+        unless on the home page }
       if (Sender.Request.Referer = '') and
         (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
         (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) then
       begin
-        if NOT HonorLowerSecurity then
+        if (NOT HonorLowerSecurity) then
         begin
-          Sender.RejectSession('Blank referer', False);
+          Sender.RejectSession('Blank referer, without security token', False);
         end;
       end;
     end;
@@ -574,9 +575,5 @@ begin
 end;
 
 initialization
-
-{$IFNDEF UNICODE}
-  whConst.isDelphi7UTF8 := True; // all demos assume UTF-8 encoding
-{$ENDIF}
 
 end.
