@@ -1,9 +1,6 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whmacros>
-mcChannelELinksDead=(~MATCH|channel-e[(~readonly-SCHEDULE-SCHREPLAYDOWNLOADURL~)|onclick="alert('Ask Embarcadero why channel-e not working!'); return false;"~)
-</whmacros>
 <whpage pageid="pgSearch" desc="Search Embarcadero Code Rage Presentation Archive">
 <whprep>
 (~NOTASSIGNED|inSearchLogic|(~SET|inSearchLogic=slSmart~)~)
