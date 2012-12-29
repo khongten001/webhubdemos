@@ -565,9 +565,9 @@ accept cookies.</p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <p>Utilization of HTTPS requires a financial investment;  you need to buy a secure
-certificate and install that into your web server software.  The actual
+certificate and install that into your web server software, and pay annual renewal fees.  The actual
 implementation of HTTPS is the job of the web server, rather than WebHub itself.
-WebHub works with a variety of  popular web servers on the NT platform, and
+WebHub works with a variety of  popular web servers on the Windows platform, and
 is compatible with their HTTPS modes.</p>
 
 <p>Here is a good synopsis of HTTPS taken from the book WebSite Professional
@@ -596,10 +596,9 @@ prticular page <b>pgHTTPS</b> run as secure, you
 would define your WebHub ServerID as (SECURE)  [or (SSL) or whatever
 you wish], and define the page as follows:</p>
 
-<p><code>Page:pgHTTPS=(SECURE),,,About HTTPS</code></p>
+<p><code>&lt;whpage pageid="pgHTTPS" remap="(SECURE)" desc="About HTTPS"&gt;</code></p>
 
-<p>The use of ServerProfileIDs with WebHub is the focus of the (~JUMP|FAST:pgWelcome| FAST demo~),
-and further information on ServerIDs can be found in the webhub.hlp file.</p>
+<p>The use of ServerProfileIDs with WebHub is the focus of the (~JUMP|FAST:pgWelcome| FAST demo~).</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
