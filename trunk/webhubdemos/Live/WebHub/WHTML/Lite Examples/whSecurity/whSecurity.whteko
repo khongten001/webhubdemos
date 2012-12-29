@@ -27,7 +27,6 @@ UnderLogin=yes
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
-
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -1318,6 +1317,53 @@ page is recreated dynamically with accurate data.
 (~drPageEnd~)
 </body></html>
 </whoutput>
+</whpage>
+
+<whpage pageid="pgInstallCerts" desc="How and Why to Install Extra Certificates">
+<whpagesettings inherit="public">
+</whpagesettings>
+<whprep>
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~pagedesc~)</h1>
+
+<h2>How</h2>
+<p>To use the https pages within the WebHub demos, you will need 1 free certificates
+from <b>www.cacert.org</b>, the so-called <code>root</code> certificate.</p>
+<p>For easiest use on Windows, download the certificate in PEM format and save to a file 
+ending in .cer such as cacert-root.cer.  Then you can open the CER file 
+and Windows will run the Install Certificate Wizard.  </p>
+<p>All www.cacert.org 
+certificates are available for <a target="_blank" href="https://secure.cacert.org/index.php?id=3">download here</a>.</p>
+<p>Of course you can also tell Chrome or Firefox to proceed without any extra certificates installed, but you may see 
+scary icons or receive troubling messages from your anti-malware software.</p>
+
+<h2>Why</h2>
+<p>Only the major SSL vendors such as Verisign/Thawte, DigiCert and Comodo have been able to convince all 
+operating systems and 
+browsers to stay up-to-date with automatic trust of their root and intermediate certificates for years and years 
+(i.e. since 1994).  As of December 2012, HREF Tools is choosing to support www.cacert.org because they offer an alternative 
+to expensive annual fees: a free 6-month SSL certificate. 
+That means HREF Tools has to reinstall a certificate on the server every 6 months.  
+You only need to trust the www.cacert.org certificates once (per machine).</p>
+<p>If more people support www.cacert.org, eventually it may be possible for all small businesses to obtain 
+free extended-validation SSL certificates without compromising the international trust chain.</p>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whoutput>
+
+
 </whpage>
 
 </whteko>
