@@ -1339,9 +1339,16 @@ page is recreated dynamically with accurate data.
 <h2>How</h2>
 <p>To use the https pages within the WebHub demos, you will need 1 free certificates
 from <b>www.cacert.org</b>, the so-called <code>root</code> certificate.</p>
-<p>For easiest use on Windows, download the certificate in PEM format and save to a file 
+<p>Firefox uses its own CA manager so if you are using Firefox, please read 
+all instructions carefully.</p>
+<p>For easiest use on Windows with IE and Chrome, 
+download the certificate in PEM format and save to a file 
 ending in .cer such as cacert-root.cer.  Then you can open the CER file 
 and Windows will run the Install Certificate Wizard.  </p>
+<p>The full instructions for all operating systems and all browsers (including Firefox) 
+are <a target="_blank" href="http://wiki.cacert.org/FAQ/BrowserClients">here on wiki.cacert.org</a>.
+</p>
+
 <p>All www.cacert.org 
 certificates are available for <a target="_blank" href="https://secure.cacert.org/index.php?id=3">download here</a>.</p>
 <p>Of course you can also tell Chrome or Firefox to proceed without any extra certificates installed, but you may see 
