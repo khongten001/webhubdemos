@@ -95,6 +95,7 @@ mctimeout=2
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForHTSC">
+(~GO|pgInstallCerts|Certificates for https~)<br/>
 (~GO|pgAboutBasics|Security Basics~)<br />
 (~GO|pgLogin|Login Page~) <br />
 <!--- Define some conditional extra speedbars for certain sections of the demo. -->
