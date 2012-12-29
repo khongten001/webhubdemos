@@ -112,7 +112,7 @@ end their session (or do it automatically at a certain point.)
 </table>
 
 <div class="dcenter">
- (~GO|pgAboutLogin|Next step: find out details about setting up login procedures!~)
+ (~GO|pgAboutLogin,(~waLSec.execute|out,15~)|Next step: find out details about setting up login procedures!~)
 </div>
 
 </div>  <!--- demopagecontent -->
@@ -175,7 +175,7 @@ and a variable is set to True or False to let you know what happened.</p>
 
 <p>Once the surfer logs in successfully, the TwhLogin
 component is synchronized up to that particular user entry, and all the
-(~JUMP|pgAboutUserList| extra data fields~) connected with that particular
+(~JUMP|pgAboutUserList,(~waLSec.execute|out,15~)| extra data fields~) connected with that particular
 user (such as Access Level)  are pulled in and stored in the surfer's session
 object.  The developer can thus use any of these fields as criteria for routing the surfer--
 specifying varying response pages based on the login result.</p>
