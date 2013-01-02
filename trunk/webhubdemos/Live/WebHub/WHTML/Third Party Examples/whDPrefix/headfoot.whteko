@@ -3,8 +3,7 @@
 <whteko designmode="code">
 
 <whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">]]>
-mcdoctypehtmlGOAL=<![CDATA[<!DOCTYPE html>]]>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 </whmacros>
 
 <whdroplet name="chAdminFooterLinks">
