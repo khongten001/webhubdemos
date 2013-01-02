@@ -3,7 +3,7 @@
 <whteko designmode="code">
 
 <whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
 mcxmlns=xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)"
 </whmacros>
 

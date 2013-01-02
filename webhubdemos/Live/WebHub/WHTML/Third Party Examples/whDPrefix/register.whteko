@@ -10,7 +10,7 @@ mcLangRus=ru
 </whmacros>
 
 <whpage pageid="pgregister" desc="Registration Form">
-(~mcDocTypeHTML~)(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+(~mcDocTypeHTML~)
 <html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
@@ -26,6 +26,7 @@ mcLangRus=ru
 </span>
 <div style="text-align:center;"><hr style="width:72%;"></div>
 <h2>Prefix Registration Details</h2>
+<p><i>ALERT: This feature needs work. Please check back later in 2013.</i></p>
 
 <P>To register your component prefix preferences, please enter the following
 details and submit the form! Thank you!</p>
