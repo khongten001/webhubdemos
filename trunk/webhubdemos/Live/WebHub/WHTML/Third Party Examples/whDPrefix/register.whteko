@@ -24,7 +24,7 @@ mcLangRus=ru
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
 </span>
-<hr align=left width="72%">
+<div style="text-align:center;"><hr width="72%"></div>
 <h2>Prefix Registration Details</h2>
 
 <P>To register your component prefix preferences, please enter the following

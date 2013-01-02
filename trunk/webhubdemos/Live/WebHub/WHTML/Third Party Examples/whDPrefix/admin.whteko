@@ -41,13 +41,13 @@ Ok, those records have been deleted.
 </whpagesettings>
 <!--- from admin--->
 (~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="dpr" />~)
-<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+<br><FONT SIZE=-1 COLOR="#000000">
 (~JUMP|pgHomePage|Homepage~) 
 |&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;all&nbsp;records~) 
 |&nbsp;(~GOR|pgLogout|Logout~)
-</FONT><hr align=left width="72%">
-<FONT FACE="Verdana" SIZE="+1">Welcome Administrator.</FONT>
+</FONT>
+<FONT SIZE="+1">Welcome Administrator.</FONT>
 <br>&nbsp;
 //(~chGraphicalBanner~)<br>
 <center>
@@ -103,10 +103,9 @@ Status codes: A=Approved, P=BoolVarsPending, D=Deleted. Only records marked A ar
 (~JUMP|pgHomePage|Return to the Homepage~) 
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</FONT><hr align=left width="72%">
-<FONT FACE="Verdana" SIZE="+1">Your session data has been deleted.</FONT>
-<br>&nbsp;
-//
+</FONT><hr width="72%"/>
+<p>Your session data has been deleted.</p>
+
 <center>
 <table width="72%"><tr><td>
 Thanks for increasing security by logging out.
