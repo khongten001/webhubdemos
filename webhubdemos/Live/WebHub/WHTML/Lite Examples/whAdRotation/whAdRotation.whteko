@@ -17,7 +17,7 @@
 <whpage pageid="pgEnterADV" desc="Overview of the WebHub Component Named WebCycle">
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" (~ASSIGNED|guestlingvo| lang="(~guestlingvo~)"~)>
+<html (~mcxmlns~)>
 <head>
 	(~drHead~)
 <whdroplet name="drStyleBookAds" show="yes">

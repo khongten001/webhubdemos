@@ -11,7 +11,7 @@ mcLangRus=ru
 
 <whpage pageid="pgregister" desc="Registration Form">
 (~mcDocTypeHTML~)(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)">
+<html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
@@ -37,48 +37,48 @@ details and submit the form! Thank you!</p>
 <form action="(~ACTION|pgRegThx~)" method="post">
 <TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 >
 <TR>
-<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>
-Person&nbsp;to&nbsp;contact&nbsp;:</FONT></FONT></FONT></TD>
+<TD align=right><FONT COLOR="#000000">
+Person&nbsp;to&nbsp;contact&nbsp;:</FONT></TD>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Contact" VALUE="(~Mpf Contact~)"/></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000">
 Company&nbsp;name&nbsp;:
-</FONT></FONT></FONT></TD>
+</FONT></FONT></TD>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Company" VALUE="(~Mpf Company~)"/></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000"><FONT SIZE=-1>E-mail&nbsp;address&nbsp;:</FONT></FONT></TD>
+<TD align=right><FONT COLOR="#000000">E-mail&nbsp;address&nbsp;:</FONT></TD>
 
 <TD><INPUT TYPE=TEXT SIZE=60 NAME="Mpf Email" VALUE="(~Mpf EMail~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000"><FONT SIZE=-1>Web&nbsp;Page&nbsp;:</FONT></FONT></TD>
+<TD align=right><FONT COLOR="#000000">Web&nbsp;Page&nbsp;:</FONT></TD>
 
 <TD><INPUT TYPE="TEXT" SIZE=60  NAME="Mpf Webpage" VALUE="(~Mpf Webpage~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000"><FONT SIZE=-1>Component&nbsp;name&nbsp;:</FONT></FONT></TD>
+<TD align=right><FONT COLOR="#000000">Component&nbsp;name&nbsp;:</FONT></TD>
 
 <TD><INPUT TYPE=TEXT SIZE=40  NAME="Mpf Package Name" VALUE="(~Mpf Package Name~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT <FONT COLOR="#000000"><FONT SIZE=-1>Component&nbsp;prefix&nbsp;:</FONT></FONT></TD>
+<TD align=right><FONT <FONT COLOR="#000000">Component&nbsp;prefix&nbsp;:</FONT></TD>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Prefix" VALUE="(~Mpf Prefix~)"></TD>
 </TR>
 
 <TR VALIGN=TOP>
-<TD align=right><FONT COLOR="#000000"><FONT SIZE=-1>Comments&nbsp;:</FONT></FONT></TD>
+<TD align=right><FONT COLOR="#000000">Comments&nbsp;:</FONT></TD>
 
-<TD><TextArea NAME="txtComments" ROWS=6 COLS=40 WRAP=PHYSICAL>(~txtComments~)</TextArea></TD>
+<TD><textarea name="txtComments" rows="6" cols="40" wrap="physical">(~txtComments~)</textarea></TD>
 </TR>
 </TABLE>
 <p style="text-align:center;">
@@ -94,7 +94,7 @@ Company&nbsp;name&nbsp;:
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)">
+<html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)

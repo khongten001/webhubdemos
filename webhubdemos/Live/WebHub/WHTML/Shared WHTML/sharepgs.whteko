@@ -35,7 +35,7 @@
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 (~drHead~)
 </head>
@@ -109,7 +109,7 @@
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -131,7 +131,7 @@ Note: these instructions assume that you know how to run WebHub application serv
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -160,7 +160,7 @@ different machine and request the same demo with the same session #.
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -191,7 +191,7 @@ customizing the onBadIP event of the TwhAppBase.</p>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -230,7 +230,7 @@ customizing the onBadIP event of the TwhAppBase.</p>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -256,7 +256,7 @@ mcHdrOff=</h2>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -368,7 +368,7 @@ and Delphi Form (.DFM) files.</i>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -508,7 +508,7 @@ you win, because it requires so much time, energy and financial resources.</p>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -701,7 +701,7 @@ data: (~INPUTTEXT|data,30~)<br/>
 <whpage pageid="pgLinkTest" desc="Test Outbound Links from this Demo">
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -776,7 +776,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestA" desc="Link Test Page A">
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -797,7 +797,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestB" desc="Link Test Page B">
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
@@ -818,7 +818,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestC" desc="Link Test Page C">
 <whoutput>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html (~mcxmlns~)>
 <head>
 (~drHead~)
 </head>
