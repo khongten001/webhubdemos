@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration200811b.xsd">
+  <Startup>
+    <MenuEnabled value="true"/>
+    <MenuEnabled value="false" context="DEMOS"/>
+    <SplashEnabled value="true"/>
+    <StartMinimized value="false"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <TrayIconEnabled value="true"/>
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="enabled-gui"/>
+          <Module name="dreamweaver" status="enabled-gui"/>
+        </GUIOptional>
+        <GUI>
+          <Module name="appin" status="enabled-gui"/>
+          <Module name="appout" status="enabled-gui"/>
+          <Module name="decode" status="enabled-gui"/>
+          <Module name="googlesitemap" status="disabled"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
+  </Startup>
+  <Application>
+    <AppProperties>
+      <DynURLConfig>
+        <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="shortdpr" context="DEMOS"/>
+        <UseAppID value="true"/>
+        <UseAppID value="false" context="DEMOS"/>
+      </DynURLConfig>
+      <ProjectSyntax value="0214"/>
+    </AppProperties>
+    <AppSettings>
+      <AppSetting name="AlphaLetters" value="26"/>
+      <AppSetting name="ManPrefAdminZipDir" value="d:\projects\DelphiPrefixRegistry\live\database\public\"/>
+      <AppSetting name="ManPrefDatabase" value="d:\projects\DelphiPrefixRegistry\Live\Database\"/>
+    </AppSettings>
+    <PageGeneration>
+      <AutoPageFooter dropletName="None"/>
+      <AutoPageHeader dropletName="None"/>
+    </PageGeneration>
+    <Situations>
+      <FrontDoor pageID="pgHomepage"/>
+      <Home pageID="pgHomepage"/>
+      <Invalid pageID="pgHomePage"/>
+    </Situations>
+    <Static>
+      <AppRoot value="http://delphiprefix.href.com/" />
+      <AppRoot value="/" context="DEMOS"/>
+      <BrandFolder value="d:\temp\"/>
+    </Static>
+    <StreamCatcherInterface>
+      <WebRobotIniFilespec value="" />
+      <WebRobotIniFilespec value="D:\Projects\DelphiPrefixRegistry\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="DEMOS"/>
+      <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
+    </StreamCatcherInterface>
+    <TekoFiles>
+      <File id="f01" filename="about.whteko"/>
+      <File id="f02" filename="admin.whteko"/>
+      <File id="f03" filename="headfoot.whteko"/>
+      <File id="f04" filename="home.whteko"/>
+      <File id="f05" filename="login.whteko"/>
+      <File id="f06" filename="pages.whteko"/>
+      <File id="f07" filename="register.whteko"/>
+      <File id="f08" filename="scan.whteko"/>
+    </TekoFiles>
+  </Application>
+  <ComponentConfig>
+    <whdbScan componentName="ManPref">
+      <ButtonSpecs macroPrefix="mcManPrefButtonSpecs"/>
+      <Captions macroPrefix="mcManPrefCaptions"/>
+    </whdbScan>
+    <whdbSource componentName="wdsManPref">
+      <IndexOrders>
+        <Item id="By-Prefix" value="prefix"/>
+        <Item id="By-Company" value="company"/>
+        <Item id="By-Application" value="application"/>
+      </IndexOrders>
+    </whdbSource>
+    <whdbSource componentName="wdsAdmin">
+      <IndexOrders>
+        <Item id="By-Application" value="application"/>
+        <Item id="By-Company" value="company"/>
+        <Item id="By-Prefix" value="prefix"/>
+      </IndexOrders>
+    </whdbSource>
+    <whMailForm componentName="WebMailForm">
+      <Item name="NoticeNew">
+        <Host value="mail.href.com"/>
+        <Port value="25"/>
+        <From value="info@href.com"/>
+        <To value="ann@href.com"/>
+        <Subject value="Registering for DPxR"/>
+        <Template value="newreg.txt"/>
+      </Item>
+    </whMailForm>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="c:\temp\"/>
+      <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" context="DEMOS"/>
+    </whWebAction>
+  </ComponentConfig>
+</WebHubAppConfiguration>

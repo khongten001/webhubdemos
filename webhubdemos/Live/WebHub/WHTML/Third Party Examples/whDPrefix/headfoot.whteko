@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whmacros>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">]]>
+mcdoctypehtmlGOAL=<![CDATA[<!DOCTYPE html>]]>
+</whmacros>
+
+<whdroplet name="chAdminFooterLinks">
+<!--- from headfoot--->
+<p>
+Administration Shortcuts: 
+[ (~GOR|pgAdminMenu|Menu~) ] &nbsp;
+[ (~GOR|pgAdminBrowse|Browse~) ] &nbsp;
+[ (~GOR|pgLogout|Logout~) ] &nbsp;
+</whdroplet>
+
+<whdroplet name="chGraphicalBanner">
+<img src="(~mcImageDir~)dpr.gif" height="90" width="649" alt="Delphi Prefix Registry Logo"/>&nbsp; &nbsp; &nbsp; 
+<img src="(~mcImageDir~)dprlogo.gif" height="84" width="126" alt="logo" />
+</whdroplet>
+
+<whdroplet name="chNavigation">
+<!--- from headfoot--->
+[ (~GO|pgHomepage|Home~) ] &nbsp;
+[ (~GOR|pgPrefix|View the Registry~) ] &nbsp;
+[ (~GOR|pgRegister|Register your own Prefix~) ] &nbsp;
+[ (~GO|pgThanks|Credits~) ] &nbsp;
+// if BoolVar[name]=true | thenexpression || elseexpression
+(~IF|_bLoginOk|(~chAdminFooterLinks~)
+|| [ (~GOR|pgLogin|Login~) ]~)
+</whdroplet>
+
+<whdroplet name="drSharedFooter">
+&nbsp;<p>
+<hr width="72%"/><center>
+(~chNavigation~)
+<p>
+<p>
+(~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
+<br>
+<font color="#666667" size="-1">
+<p>Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
+All data originates in a Paradox table and is served through the Borland Database Engine.<br>
+Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
+(~JUMP|(~PageID~),#top|Return to top~)</p>
+<p>(~drLinkW3Org~)</p>
+</font></center>
+(~ISWEBROBOTREQUEST| ||
+	<div id="divcount">
+	human visitor count: <span id="fillin">
+	<object height="1em" id="foo" name="foo" type="text/html" data="http://support.href.com/scripts/runisa.dll?htcount:work::demos-dpr-any"></object></span>
+	</div>~)
+</whdroplet>
+
+<whdroplet name="drLinkW3Org">
+  (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
+  <a onclick="window.open(this.href);return false;" href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)&charset=%28detect+automatically%29&doctype=Inline&group=0">validator.w3.org</a>
+</whdroplet>
+
+<whdroplet name="chPageFooter">
+(~drSharedFooter~)
+</body></html>
+</whdroplet>
+
+<whdroplet name="drSharedHead">
+(~MATCH|(~PageSetting.secure~)=1|(~chCheckpoint~)~)
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+    <style type="text/css">
+    body {
+  	  font-family:Verdana, Arial, Helvetica, sans-serif;
+      background-color:white;}
+    </style>
+</whdroplet>
+
+<whdroplet name="chPageHeader">
+<html>
+<head>
+	<title>Delphi Prefix Registry</title>
+	(~drSharedHead~)
+</head>
+<body>
+</whdroplet>
+
+</whteko>
