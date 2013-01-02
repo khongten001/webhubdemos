@@ -1,0 +1,110 @@
+﻿<whteko designmode="code" 
+  designpage="pghomepage">
+
+<whpage pageid="pghomepage" desc="Delphi Prefix Registry Home" exportfilename="" remap="">
+(~mcdoctypehtml~)
+<html>
+<head>
+	<title>Delphi Prefix Registry</title>
+	(~drSharedHead~)
+</head>
+<body>
+
+(~JUMP|pgPrefix|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="DPR" />~)
+<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+(~IF|_bLoginOk|(~GOR|pgAdminMenu|Administer~) | ~)
+(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
+|&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
+|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
+</FONT>
+<hr align=left width="72%">
+<FONT FACE="Verdana" SIZE="+1">Welcome to the Delphi Prefix Registry</FONT>
+<br>&nbsp;
+
+<center>
+<table width="72%"><tr>
+<td><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+
+<IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="delphi2" />
+<IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
+
+The growing number of components
+and component suppliers has given rise to conflicts in component 
+<FONT COLOR="#FF0000">NAMES.&nbsp;</FONT>
+
+<p>If you publish components, then please register your preferences
+here and add a link to the http://www.delphiprefixregistry.net
+from your site.
+
+<P>The DELPHI PREFIX REGISTRY (DPxR) has been designed
+to LIST component creators, the PREFIXES they use and contact details.
+
+<P>DPxR gives no warranty express or implied on any component or vendor
+that registers their prefix preferences here. <p>
+
+
+(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126 BORDER=0 align=left vspace=5 alt="DPR" />~)
+
+<P>In no way do we wish to impose component naming upon ANYONE,
+we simply provide the information to help you to choose&nbsp; component
+names which do not conflict with those in use by other deveopers.
+
+<P><FONT COLOR="#009900">
+There is nothing more soul destroying for either application developer or component 
+developer than to find that when loaded into the delphi ide there is a naming conflict.
+</FONT>
+
+<P>The inspiration for this site came from seeing a wonderful calendar component,
+downloading it and not being able to install the package because it had ONE unit 
+which used the EXACT same name as a very popular Email Suite which we use.
+(the wonderful calendar now sits quite happily in my ide and i am about to register it
+ - all's well that ends well - thanks to aguado)
+
+<P>If every developer used a prefix from AAA through ZZZ then most problems would be solved -
+so instead of plain DBSORTGRID use ADQDBSORTGRID, and check here beforehand to 
+see if anyone else uses ADQ first!
+
+<P>The whole aim of this site is to detect current naming conflicts 
+and play some part in preventing future conflicts. 
+"Space for Intelligent Collaboration"
+
+<P>It is not always necessary to adopt
+a prefix to maintain unique component naming - many established component
+builders have used the uniqueness of the task that their component performs
+as the basis of naming.
+
+<P>At the end of the day what matters is that names are
+<FONT COLOR="#993366">UNIQUE</FONT>
+and that components can live harmony within the IDE.
+
+<P>We shall be logging all known major components and will advise all parties 
+should a conflict be found. It is then up to the parties to decide whether their 
+components are likely to reside on a system one day and what action needs to be taken.
+
+<P><FONT COLOR="#CC6600">
+Nobody has a divine right to assign or control component names,
+and we do not lay down the law.
+</FONT>
+
+<IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="Delphi" />
+<IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
+
+<P><FONT COLOR="#009900">
+Freedom of choice Rules!
+</FONT>
+
+<P>Should you have any comments, then please contact me.
+
+<p>Steven Healey</p>
+<p>As it turns out, Steven Healey is no longer working on 
+this web site but we have decided to keep it going as 
+delphiprefix.href.com.  <a href="http://www.href.com/contact">Contact Webmaster</a> as of July-2009</p>
+
+</FONT>
+</td></tr></table>
+</center>
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+</whteko>
