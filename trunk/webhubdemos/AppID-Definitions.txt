@@ -123,6 +123,15 @@ Can be pasted into WHCentralInfo.xml
           <ShareByFile value="true"/>
           <SessionCookieName value="session"/>
         </WebHubApp>
+        <WebHubApp appID="dpr">
+          <Nickname value="Delphi Prefix Registry"/>
+          <ConfigFolder value="D:\Projects\WebHubDemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\"/>
+          <ConfigFilename value="WHAppConfig_dpr.xml"/>
+          <ErrorLogFolder value="c:\temp\whErrorLogs\"/>
+          <ShareSessions value="true"/>
+          <ShareByFile value="true"/>
+          <SessionCookieName value="session"/>
+        </WebHubApp>
         <WebHubApp appID="dsp">
           <Nickname value="DSP Search Engine"/>
           <ConfigFolder value="D:\Projects\WebHubDemos\Live\WebHub\WHTML\Third Party Examples\whDSP\"/>
