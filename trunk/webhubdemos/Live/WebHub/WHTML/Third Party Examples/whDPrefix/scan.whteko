@@ -11,16 +11,15 @@ mcManPrefCaptionsFirst=First Page
 mcManPrefCaptionsPrior=Prior Page
 mcManPrefCaptionsNext=Next Page
 mcManPrefCaptionsLast=Last Page
-mcB
 </whmacros>
 
 <whdroplet name="chScan">
 <!--- from scan--->
 <table border="0" width="100%" cellpadding="0">
 <tr><td>
-(~GO|(~IF|_bAdminMode|pgAdminMenu||pgHomePage~)|<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126 BORDER=0>~)
+(~GO|(~IF|_bAdminMode|pgAdminMenu||pgHomePage~)|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
 </td><td>&nbsp;&nbsp;</td><td width=90%>
-//
+
 (~IF|_bAdminMode|
 <form method=post action="(~where~).ckb">
 <b>Administrator View of BoolVarsPending records:</b><br>
@@ -38,8 +37,8 @@ mcB
 ~)
 //
 </td></tr></table>
-<FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
-//
+<FONT SIZE=-1 COLOR="#000000">
+
 (~IF|_bAdminMode|
 (~GOR|pgAdminMenu|Administer~)&nbsp;
 |&nbsp;(~JUMP|pgHomePage|Return to the Homepage~) 
