@@ -4,6 +4,7 @@
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
+mcxmlns=xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)"
 </whmacros>
 
 <whdroplet name="chAdminFooterLinks">
@@ -71,7 +72,7 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
 </whdroplet>
 
 <whdroplet name="chPageHeader">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<html (~mcxmlns~)>
 <head>
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
