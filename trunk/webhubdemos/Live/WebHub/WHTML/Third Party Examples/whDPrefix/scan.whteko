@@ -61,6 +61,7 @@ mcManPrefCaptionsLast=Last Page
 <whpage pageid="pgprefix" desc="pgPrefix">
 <whprep>
 (~CLEAR|_bAdminMode~)
+(~NOTASSIGNED|wdsManPref.Keys|(~SET|wdsManPref.Keys=A~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
