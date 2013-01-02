@@ -49,9 +49,7 @@
       <Invalid pageID="pgHomePage"/>
     </Situations>
     <Static>
-      <AppRoot value="http://delphiprefix.href.com/" />
-      <AppRoot value="/" context="DEMOS"/>
-      <BrandFolder value="d:\temp\"/>
+      <AppRoot value="/" />
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="" />
