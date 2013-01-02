@@ -46,6 +46,7 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton4: TtpToolButton
         Left = 263
         Top = 6
+        Width = 119
         Caption = 'Create Indices'
         OnClick = tpToolButton4Click
         MinWidth = 28
@@ -57,15 +58,6 @@ inherited fmWhActions: TfmWhActions
       Width = 244
       Height = 412
       TabOrder = 1
-      object GroupBox1: TGroupBox
-        Left = 1
-        Top = 337
-        Width = 242
-        Height = 64
-        Align = alTop
-        Caption = 'Download ZIP'
-        TabOrder = 0
-      end
       object GroupBox3: TGroupBox
         Left = 1
         Top = 1
@@ -73,7 +65,7 @@ inherited fmWhActions: TfmWhActions
         Height = 88
         Align = alTop
         Caption = 'View-only DB Display'
-        TabOrder = 1
+        TabOrder = 0
       end
       object GroupBox4: TGroupBox
         Left = 1
@@ -82,7 +74,7 @@ inherited fmWhActions: TfmWhActions
         Height = 80
         Align = alTop
         Caption = 'Admin Browse'
-        TabOrder = 2
+        TabOrder = 1
       end
       object GroupBox5: TGroupBox
         Left = 1
@@ -91,7 +83,7 @@ inherited fmWhActions: TfmWhActions
         Height = 64
         Align = alTop
         Caption = 'Secure Login '
-        TabOrder = 3
+        TabOrder = 2
       end
       object GroupBox6: TGroupBox
         Left = 1
@@ -100,7 +92,7 @@ inherited fmWhActions: TfmWhActions
         Height = 104
         Align = alTop
         Caption = 'Editing + Posting + Deleting'
-        TabOrder = 4
+        TabOrder = 3
       end
     end
     object Panel1: TPanel
@@ -226,16 +218,10 @@ inherited fmWhActions: TfmWhActions
     Left = 134
     Top = 294
   end
-  object waAdminDownload: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waAdminDownloadExecute
-    Left = 54
-    Top = 406
-  end
   object waAdminDelete: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAdminDeleteExecute
-    Left = 166
+    Left = 190
     Top = 334
   end
 end

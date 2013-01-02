@@ -19,7 +19,6 @@ type
   TfmWhActions = class(TutParentForm)
     ToolBar: TtpToolBar;    tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
-    GroupBox1: TGroupBox;
     wdsManPref: TwhbdeSource;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
@@ -39,7 +38,6 @@ type
     dsAdmin: TDataSource;
     waAdd: TwhWebActionEx;
     GroupBox6: TGroupBox;
-    waAdminDownload: TwhWebActionEx;
     waAdminDelete: TwhWebActionEx;
     tpToolButton3: TtpToolButton;
     tpToolButton4: TtpToolButton;
@@ -55,7 +53,6 @@ type
       var Text, Value: String);
     procedure waModifyExecute(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
-    procedure waAdminDownloadExecute(Sender: TObject);
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -328,34 +325,6 @@ begin
     end;
 end;
 
-procedure TfmWhActions.waAdminDownloadExecute(Sender: TObject);
-const cFn = 'waAdminDownloadExecute';
-var
-  aTargetDir: string;
-  commandstr, parameters: string;
-  ErrorMessage: string;
-begin
-  inherited;
-  with TwhWebActionEx(Sender) do
-  begin
-    aTargetDir:=TrailingBackSlash(WebApp.AppSetting[cManPrefDatabase])+'admin\';
-    ForceDirectories(aTargetDir);
-    //
-    DMNexus.CopyTable(DMNexus.table1, aTargetDir+'manpref.nx1');
-    Commandstr := 'pkzip.exe';
-    Parameters:=TrailingBackSlash(WebApp.AppSetting['ManPrefAdminZipDir'])
-        +'mpfadmin.zip'
-        +' '+aTargetDir+'manpref.*'
-        +' -o';
-    Launch(Commandstr, Parameters, '', False, 30000, ErrorMessage);
-    if ErrorMessage <> '' then
-    begin
-      LogSendError(ErrorMessage, cFn);
-      Response.Send(ErrorMessage);
-    end;
-  end;
-end;
-
 procedure TfmWhActions.waAdminDeleteExecute(Sender: TObject);
 begin
   inherited;
@@ -373,23 +342,11 @@ end;
 
 //------------------------------------------------------------------------------
 
-(* bde tables
-procedure TfmWhActions.Flush(tbl:TTable);
-begin
-  with tbl do
-    if State = dsBrowse then
-      Check(DbiSaveChanges(Handle)); //table.handle
-end;
-*)
-
-//------------------------------------------------------------------------------
-
 procedure TfmWhActions.WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
   const ADesiredPageID: string);
 begin
-  //aDesiredPage := pWebApp.Session.PriorPageID;  // this is the page the user agent requested
   if (pWebApp.SessionNumber = pWebApp.WebRobotSession) and
-    AnsiSameText(aDesiredPageID, 'pgWebEye') then
+    SameText(aDesiredPageID, 'pgWebEye') then
     pWebApp.PageID := aDesiredPageID;  // this reroutes the request to run aDesiredPageID
 end;
 
