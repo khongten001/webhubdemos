@@ -4,7 +4,7 @@
   designpage="pgregister">
 
 <whpage pageid="pgregister" desc="Registration Form">
-(~mcDocType~)
+(~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
@@ -91,7 +91,7 @@ Company&nbsp;name&nbsp;:
 </whpage>
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
-(~mcDocType~)
+(~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
