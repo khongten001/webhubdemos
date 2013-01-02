@@ -1,0 +1,41 @@
+﻿<whteko designmode="code" designpage="ERRORS">
+
+<whpage pageid="ERRORS" desc="ERRORS" exportfilename="" remap="">
+(~PAGE|pgHomePage~)
+</whpage>
+
+<whpage pageid="INDEX" desc="INDEX" exportfilename="" remap="">
+(~PAGE|pgHomePage~)
+</whpage>
+
+<whpage pageid="pgwebeye" desc="-For WebEye Robot Checkup">
+(~FLUSH|~)
+<whprep>
+(~SESSION|Delete~)
+</whprep>
+<html>
+<head>
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+Blink (~appid~), (~PageID~)
+
+<h2>Application Test</h2>
+<p>(~AppID~) is running under (~version~) 
+as at (~CentralInfo.WebTimeGMT~). Your ip# is (~Request.RemoteAddress~).
+Your user agent is "(~Request.UserAgent~)". 
+(~ISWEBROBOTREQUEST|You have been classified as a web robot.||You have not been classified as a web robot.~)
+</p>
+
+<h2>Session Data Cleared</h2>
+<p>Session data for session #(~RawSessionNumber~) deleted.</p>
+<form id="sessionform" method="post" action="(~ACTIONR|pgmonitor~)">
+data: (~INPUTTEXT|data,30~)<br/>
+<input type="submit" name="btnMonitor(~RawSessionNumber~)" value="(~RawSessionNumber~)" />
+</form>
+
+</body>
+</html><!--- do not send the page footer with the link exchange hit counter! -->(~CLOSE|~)
+</whpage>
+
+</whteko>
