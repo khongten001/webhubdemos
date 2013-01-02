@@ -41,6 +41,7 @@ type
     waAdminDelete: TwhWebActionEx;
     tpToolButton3: TtpToolButton;
     tpToolButton4: TtpToolButton;
+    tpToolButton5: TtpToolButton;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -57,6 +58,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tpToolButton4Click(Sender: TObject);
+    procedure tpToolButton5Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -243,9 +245,29 @@ begin
   inherited;
   DMNexus.TableAdmin.Close;
   DMNexus.Table1.Close;
- // DMNexus.Table1.AddIndex('Alphabetized', 'MpfFirstLetter', []);
-  DMNexus.Table1.IndexName := 'Alphabetized';
-  DMNexus.Table1.Open;
+  DMNexus.Table1.AddIndex('Prefix', 'Mpf Prefix', [], 'Mpf Prefix');
+end;
+
+procedure TfmWhActions.tpToolButton5Click(Sender: TObject);
+var
+  ACap: string;
+begin
+  inherited;
+  with DMNexus.Table1 do
+  begin
+    First;
+    while not EOF do
+    begin
+      ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
+      if FieldByName('MpfFirstLetter').asString <> ACap then
+      begin
+        Edit;
+        FieldByName('MpfFirstLetter').asString := ACap;
+        Post;
+      end;
+      Next;
+    end;
+  end;
 end;
 
 procedure TfmWhActions.WebDataFormField(Sender:TwhbdeForm;aField:TField;var Text,Value:String);

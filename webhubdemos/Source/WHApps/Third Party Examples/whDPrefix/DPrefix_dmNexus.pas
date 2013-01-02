@@ -102,7 +102,7 @@ begin
     OnFilterRecord := Table1FilterRecord;
     TableName := 'manpref.nx1';
   end;
-  Table1.IndexName := 'Alphabetized';
+  Table1.IndexName := 'Prefix';
   TableAdmin := TnxTable.Create(Self);
   TableAdmin.Name := 'TableAdmin';
   TableAdmin.TableName := Table1.TableName;
