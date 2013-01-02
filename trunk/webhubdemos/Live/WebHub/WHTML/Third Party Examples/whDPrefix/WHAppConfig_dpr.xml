@@ -59,7 +59,7 @@
       <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
-      <File id="f01" filename="about.whteko"/>
+      <File id="f01" filename="..\..\Shared WHTML\about\about-whDPrefix.whteko"/>
       <File id="f02" filename="admin.whteko"/>
       <File id="f03" filename="headfoot.whteko"/>
       <File id="f04" filename="home.whteko"/>
