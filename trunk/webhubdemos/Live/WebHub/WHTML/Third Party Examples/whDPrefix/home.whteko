@@ -3,7 +3,7 @@
 
 <whpage pageid="pghomepage" desc="Delphi Prefix Registry Home" exportfilename="" remap="">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)

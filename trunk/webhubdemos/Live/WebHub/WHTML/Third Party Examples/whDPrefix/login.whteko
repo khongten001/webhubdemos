@@ -21,7 +21,7 @@ component to make the Usr* properties active. -->
 
 
 <whpage pageid="PGLOGIN" desc="-Login page for Administrators">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
@@ -55,7 +55,7 @@ component to make the Usr* properties active. -->
 </whpage>
 
 <whpage pageid="PGLOGINCONFIRM" desc="pgLoginConfirm" exportfilename="" remap="">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)

@@ -71,7 +71,7 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
 </whdroplet>
 
 <whdroplet name="chPageHeader">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)

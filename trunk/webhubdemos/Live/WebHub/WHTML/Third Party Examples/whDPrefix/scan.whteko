@@ -66,7 +66,7 @@ mcManPrefCaptionsLast=Last Page
 (~NOTASSIGNED|wdsManPref.Keys|(~SET|wdsManPref.Keys=A~)~)
 </whprep>
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
