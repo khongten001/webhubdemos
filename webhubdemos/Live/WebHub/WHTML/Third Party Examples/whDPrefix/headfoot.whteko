@@ -64,8 +64,10 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
     <style type="text/css">
     body {
-  	  font-family:Verdana, Arial, Helvetica, sans-serif;
-      background-color:white;}
+      font-family:Verdana, Arial, Helvetica, sans-serif;
+      background-color:white;
+    }
+    table {empty-cells: show;}
     </style>
 </whdroplet>
 
