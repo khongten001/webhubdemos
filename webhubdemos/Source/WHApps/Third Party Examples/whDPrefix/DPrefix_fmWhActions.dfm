@@ -18,7 +18,7 @@ inherited fmWhActions: TfmWhActions
   inherited pa: TPanel
     Width = 970
     Height = 462
-    ExplicitWidth = 525
+    ExplicitWidth = 970
     ExplicitHeight = 462
     object ToolBar: TtpToolBar
       Left = 5
@@ -26,7 +26,6 @@ inherited fmWhActions: TfmWhActions
       Width = 960
       BorderWidth = 5
       TabOrder = 0
-      ExplicitWidth = 515
       object tpToolButton1: TtpToolButton
         Left = 11
         Top = 6
@@ -41,23 +40,16 @@ inherited fmWhActions: TfmWhActions
         Top = 6
         Width = 90
         Caption = 'Create IDs'
+        Enabled = False
         OnClick = tpToolButton2Click
         MinWidth = 28
       end
-      object tpToolButton4: TtpToolButton
+      object tpToolButton5: TtpToolButton
         Left = 263
         Top = 6
-        Width = 119
-        Caption = 'Create Indices'
+        Width = 193
+        Action = ActDeleteStatusD
         Enabled = False
-        OnClick = tpToolButton4Click
-        MinWidth = 28
-      end
-      object tpToolButton5: TtpToolButton
-        Left = 383
-        Top = 6
-        Caption = 'Set 1st Letter'
-        OnClick = tpToolButton5Click
         MinWidth = 28
       end
     end
@@ -111,7 +103,6 @@ inherited fmWhActions: TfmWhActions
       Height = 412
       Align = alClient
       TabOrder = 2
-      ExplicitWidth = 271
       object DBGrid1: TDBGrid
         Left = 1
         Top = 1
@@ -132,7 +123,6 @@ inherited fmWhActions: TfmWhActions
         Height = 25
         Align = alBottom
         TabOrder = 1
-        ExplicitWidth = 269
       end
     end
   end
@@ -149,7 +139,6 @@ inherited fmWhActions: TfmWhActions
     ShowHint = True
     SimpleText = ''
     PanelStatusIndex = 0
-    ExplicitWidth = 525
   end
   object wdsManPref: TwhbdeSource
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
@@ -235,5 +224,29 @@ inherited fmWhActions: TfmWhActions
     OnExecute = waAdminDeleteExecute
     Left = 190
     Top = 334
+  end
+  object ActionList1: TActionList
+    Left = 40
+    Top = 400
+    object ActCleanURL: TAction
+      Caption = 'Clean URL'
+      OnExecute = ActCleanURLExecute
+    end
+    object Act1stLetter: TAction
+      Caption = 'Set 1st Letter'
+      OnExecute = Act1stLetterExecute
+    end
+    object ActUpcaseStatus: TAction
+      Caption = 'Upcase Status'
+      OnExecute = ActUpcaseStatusExecute
+    end
+    object ActDeleteStatusD: TAction
+      Caption = 'Delete where Status is D'
+      OnExecute = ActDeleteStatusDExecute
+    end
+    object ActCreateIndices: TAction
+      Caption = 'Create Indices'
+      OnExecute = ActCreateIndicesExecute
+    end
   end
 end

@@ -13,7 +13,7 @@ uses
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
   webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
   wnxdbAlpha,
-  wbdeForm, wbdePost, wdbSSrc;
+  wbdeForm, wbdePost, wdbSSrc, System.Actions, Vcl.ActnList;
 
 type
   TfmWhActions = class(TutParentForm)
@@ -40,8 +40,13 @@ type
     GroupBox6: TGroupBox;
     waAdminDelete: TwhWebActionEx;
     tpToolButton3: TtpToolButton;
-    tpToolButton4: TtpToolButton;
     tpToolButton5: TtpToolButton;
+    ActionList1: TActionList;
+    ActCleanURL: TAction;
+    Act1stLetter: TAction;
+    ActUpcaseStatus: TAction;
+    ActDeleteStatusD: TAction;
+    ActCreateIndices: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -57,8 +62,11 @@ type
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure tpToolButton4Click(Sender: TObject);
-    procedure tpToolButton5Click(Sender: TObject);
+    procedure Act1stLetterExecute(Sender: TObject);
+    procedure ActCleanURLExecute(Sender: TObject);
+    procedure ActUpcaseStatusExecute(Sender: TObject);
+    procedure ActDeleteStatusDExecute(Sender: TObject);
+    procedure ActCreateIndicesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -91,6 +99,112 @@ uses
 {$R *.DFM}
 
 //------------------------------------------------------------------------------
+
+procedure TfmWhActions.Act1stLetterExecute(Sender: TObject);
+var
+  ACap: string;
+begin
+  inherited;
+  with DMNexus.TableAdmin do
+  begin
+    First;
+    while not EOF do
+    begin
+      ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
+      if FieldByName('MpfFirstLetter').asString <> ACap then
+      begin
+        Edit;
+        FieldByName('MpfFirstLetter').asString := ACap;
+        Post;
+      end;
+      Next;
+    end;
+  end;
+end;
+
+procedure TfmWhActions.ActCleanURLExecute(Sender: TObject);
+var
+  AURL: string;
+begin
+  inherited;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      AURL := FieldByName('Mpf WebPage').AsString;
+      if Copy(AURL, 1, 7) = 'http://' then
+      begin
+        Edit;
+        FieldByName('Mpf WebPage').asString := Copy(AURL, 8, MaxInt);
+        Post;
+      end;
+      Next;
+    end;
+  end;
+end;
+
+procedure TfmWhActions.ActCreateIndicesExecute(Sender: TObject);
+begin
+  inherited;
+  DMNexus.TableAdmin.Close;
+  DMNexus.Table1.Close;
+  DMNexus.Table1.AddIndex('Prefix', 'Mpf Prefix', [], 'Mpf Prefix');
+end;
+
+procedure TfmWhActions.ActDeleteStatusDExecute(Sender: TObject);
+var
+  AStatus: string;
+  n: Integer;
+begin
+  inherited;
+  n := 0;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      AStatus := FieldByName('Mpf Status').AsString;
+      if AStatus = 'D' then
+      begin
+        Delete;
+        Inc(n);
+      end
+      else
+        Next;
+    end;
+  end;
+  MsgInfoOk('Deleted ' + IntToStr(n) + ' records');
+end;
+
+procedure TfmWhActions.ActUpcaseStatusExecute(Sender: TObject);
+var
+  AStatus: string;
+  n: Integer;
+begin
+  inherited;
+  n := 0;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      AStatus := FieldByName('Mpf Status').AsString;
+      if AStatus <> Uppercase(AStatus) then
+      begin
+        Edit;
+        FieldByName('Mpf Status').asString := Uppercase(AStatus);
+        Post;
+        Inc(n);
+      end;
+      Next;
+    end;
+  end;
+  MsgInfoOk('Cleaned ' + IntToStr(n) + ' records');
+end;
 
 procedure TfmWhActions.FormCreate(Sender: TObject);
 begin
@@ -169,8 +283,8 @@ begin
   //use dis/en-ablecontrols!
   with DBGrid1 do
     if DataSource=nil then begin
-      DataSource:=DataSource1;
-      DBNavigator1.DataSource:=DataSource1;
+      DataSource:=dsAdmin;
+      DBNavigator1.DataSource:=dsAdmin;
       end
     else begin
       DataSource:=nil;
@@ -238,36 +352,6 @@ begin
     //Table1.Flush;
     filtered:=true;
     end;
-end;
-
-procedure TfmWhActions.tpToolButton4Click(Sender: TObject);
-begin
-  inherited;
-  DMNexus.TableAdmin.Close;
-  DMNexus.Table1.Close;
-  DMNexus.Table1.AddIndex('Prefix', 'Mpf Prefix', [], 'Mpf Prefix');
-end;
-
-procedure TfmWhActions.tpToolButton5Click(Sender: TObject);
-var
-  ACap: string;
-begin
-  inherited;
-  with DMNexus.Table1 do
-  begin
-    First;
-    while not EOF do
-    begin
-      ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
-      if FieldByName('MpfFirstLetter').asString <> ACap then
-      begin
-        Edit;
-        FieldByName('MpfFirstLetter').asString := ACap;
-        Post;
-      end;
-      Next;
-    end;
-  end;
 end;
 
 procedure TfmWhActions.WebDataFormField(Sender:TwhbdeForm;aField:TField;var Text,Value:String);
