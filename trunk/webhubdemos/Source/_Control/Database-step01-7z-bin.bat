@@ -20,6 +20,8 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whLite.exe
 if errorlevel 1 pause
 d:\Apps\Utilities\7Zip\7z.exe a %t% whDSP.exe
 if errorlevel 1 pause
+d:\Apps\Utilities\7Zip\7z.exe a %t% whDPrefix.exe
+if errorlevel 1 pause
 
 set t=Database-bin.7z
 
