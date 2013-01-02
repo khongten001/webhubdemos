@@ -5,7 +5,7 @@
 
 <whpage pageid="pgregister" desc="Registration Form">
 (~mcDocType~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
@@ -92,7 +92,7 @@ Company&nbsp;name&nbsp;:
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
 (~mcDocType~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
