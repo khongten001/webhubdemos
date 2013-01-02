@@ -3,15 +3,15 @@
 <whteko designmode="code" designpage="PGPREFIX">
 
 <whmacros>
-<!--- used for customization of ScanEmployee2 - example #2 -->
-mcManPrefButtonSpecsFirst=<A HREF="(~where~)ManPref.First">First Page</A>
-mcManPrefButtonSpecsPrior=<A HREF="(~where~)ManPref.Prior">Prior Page</A>
-mcManPrefButtonSpecsNext=<A HREF="(~where~)ManPref.Next">Next Page</A>
-mcManPrefButtonSpecsLast=<A HREF="(~where~)ManPref.Last">Last Page</A>
+mcManPrefButtonSpecsFirst=<a href="(~where~)ManPref.First">First Page</a>
+mcManPrefButtonSpecsPrior=<a href="(~where~)ManPref.Prior">Prior Page</a>
+mcManPrefButtonSpecsNext=<a href="(~where~)ManPref.Next">Next Page</a>
+mcManPrefButtonSpecsLast=<a href="(~where~)ManPref.Last">Last Page</a>
 mcManPrefCaptionsFirst=First Page
 mcManPrefCaptionsPrior=Prior Page
 mcManPrefCaptionsNext=Next Page
 mcManPrefCaptionsLast=Last Page
+mcB
 </whmacros>
 
 <whdroplet name="chScan">
@@ -29,7 +29,10 @@ mcManPrefCaptionsLast=Last Page
 </form>
 ||
 <b>Quick Alphabetical Search:</b>
-<br>
+<br>&#x2758;
+ <a href="(~DynURL.ToSessionIDW~)1">1</a> &#x2758;
+ <a href="(~DynURL.ToSessionIDW~)2">2</a> &#x2758;
+ <a href="(~DynURL.ToSessionIDW~)3">3</a> 
 (~WebDBAlphabet.alphabet~)
 (~WebDBAlphabet.execute|~)
 ~)
@@ -112,19 +115,19 @@ mcManPrefCaptionsLast=Last Page
 
 <whdroplet name="ScanApprovedFinish">
 <!--- from scan--->
-</TABLE>
+</table>
 </whdroplet>
 
 <whdroplet name="ScanApprovedInit">
 <!--- from scan--->
 (~clear|bColor~)
 <p>
-<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='2' HSPACE='0' VSPACE='0' BGCOLOR='Bisque' width="100%">
+<table style="border: solid 1px; padding: 1px; background-color: Bisque; width:100%;">
 <TR>
   <TH><FONT FACE='Verdana' COLOR='Crimson'>Prefix</FONT></TH>
   <TH><FONT FACE='Verdana' COLOR='Crimson'>Company</FONT></TH>
   <TH><FONT FACE='Verdana' COLOR='Crimson'>Package Name</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Contact</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Web Site</FONT></TH>
   <TH><FONT FACE='Verdana' COLOR='Crimson'>Application</FONT></TH>
 </TR>
 </whdroplet>
@@ -132,12 +135,12 @@ mcManPrefCaptionsLast=Last Page
 <whdroplet name="ScanApprovedRow">
 <!--- from scan--->
 (~TR~)
-(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Company~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)&nbsp;</TD>
-(~TD~)
-<font size=-1>(~HREF|(~FIELD|wdsManPref|Mpf WebPage~)~)&nbsp;</font></TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Application~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</TD>
+(~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)<!-- [(~prefurl~)] -->
+(~NOMATCH|(~prefurl~)=""|(~HREF|(~FIELD|wdsManPref|Mpf WebPage~)~)~)</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Application~)</TD>
 </TR>
 </whdroplet>
 
