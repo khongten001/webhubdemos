@@ -11,7 +11,7 @@
     <Modules>
       <StandardModules>
         <GUIOptional>
-          <Module name="email" status="enabled-gui"/>
+          <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
         </GUIOptional>
         <GUI>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code"  designpage="PGLOGIN">
+
+<whdroplet name="chCheckpoint">
+(~EXPIRES|-1~)
+(~IfInactiveForSec|600|(~CLEAR|_bLoginOk~)~)
+(~REQUIRES|BoolVar._bLoginOk|pgHomepage~)
+<!---Otherwise, update the TwhLogin 
+component to make the Usr* properties active. -->
+(~WebLogin.Update~)
+(~NOMATCH|(~weblogin.usrAccess~)[1|(~PAGE|pgLogin~)~)
+</whdroplet>
+
+<whdroplet name="chLoginPassPhrase">
+<!--- if a passphrase is there, show it in an addtl row. -->
+<tr><td (~mcTDc~)><font color="#FF0000">Hint!</font></td>
+<td (~mcTDc~)><B>(~WebLogin.UsrPassPhrase~)</B></td>
+</tr>
+</whdroplet>
+
+
+<whpage pageid="PGLOGIN" desc="-Login page for Administrators">
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+(~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+</head>
+<body>
+
+(~chGraphicalBanner~)
+<p>
+(~weblogin.update~)
+
+(~inputform|pgLoginConfirm~)
+<table width="100%">
+<tr><td width=33%>&nbsp;</td><td width=33% valign=center>
+<table border="1" width="100%">
+<tr><th (~mcTDc~) colspan=2 align=center>DPR Login</th></tr>
+<tr><td (~mcTDc~)>Name:</td>
+<td (~mcTDc~)>(~inputtext|LoginUser,20,20~)</td>
+</tr>
+<tr><td (~mcTDc~)>Password:</td>
+<td (~mcTDc~)>(~inputpassword|LoginPass,20,20~)</td>
+</tr>
+
+(~MATCH|(~WebLogin.UsrPassPhrase~)!*|(~chLoginPassPhrase~)~)
+
+<tr><td  (~mcTDc~) colspan="2" align="center">
+(~inputsubmit|submit,Continue~)</td></tr>
+</table>&nbsp;<br /></td><td width="33%">&nbsp;</td></tr></table>
+(~inputform|close~)
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="PGLOGINCONFIRM" desc="pgLoginConfirm" exportfilename="" remap="">
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+(~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+</head>
+<body>
+
+<!--- confirm accuracy of log-in info using  the WebLogin component: -->
+(~WebLogin.execute|LoginUser,LoginPass,_bLoginOk~)
+(~IFNOT|BoolVar._bLoginOk|(~BOUNCE|PgLogin~)~)
+
+<!--- Boolean variables:<br /> -->
+<!--- (~BoolVars~) -->
+
+<!--- pass phrase: (~webLogin.UsrPassPhrase~) -->
+
+<!--- clear the user ID (name) & password immediately -->
+(~CLEAR|LoginPass,LoginUser~)
+
+<!--- and determine access level: -->
+(~MATCH|(~weblogin.UsrAccess~)=1|(~BOUNCE|PgAdminMenu~)~)
+Sorry, your access level is (~weblogin.usrAccess~) and that is not sufficient.
+(~drSharedFooter~)
+</body></html>
+</whpage>
+</whteko>

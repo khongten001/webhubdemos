@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" notes="File #1"
+  designpage="PGADMINMENU">
+
+<whpagesettingslist id="admin">
+secure=1
+</whpagesettingslist>
+
+<whpage pageid="PGADMINBROWSE" desc="Browse with the ability to edit entries">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~CHECK|_bAdminMode~)
+(~chScan~)
+</whpage>
+
+<whpage pageid="PGADMINDELETE" desc="Confirmation" exportfilename="" remap="">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+Ok this is your last chance!
+<p>
+(~JUMP|pgAdminDeleteYes|Delete Now~)
+&nbsp; &nbsp;
+(~JUMP|pgAdminMenu|Cancel - return to menu~)
+</whpage>
+
+<whpage pageid="PGADMINDELETEYES" desc="Deleting records marked D" exportfilename="" remap="">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~waAdminDelete.execute~)
+Ok, those records have been deleted. 
+<p><p>
+(~JUMP|pgAdminMenu|Return to the admin menu.~)
+</whpage>
+
+<whpage pageid="PGADMINMENU" desc="Admin Menu" exportfilename="" remap="">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="dpr" />~)
+<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+(~JUMP|pgHomePage|Homepage~) 
+|&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
+|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;all&nbsp;records~) 
+|&nbsp;(~GOR|pgLogout|Logout~)
+</FONT><hr align=left width="72%">
+<FONT FACE="Verdana" SIZE="+1">Welcome Administrator.</FONT>
+<br>&nbsp;
+//(~chGraphicalBanner~)<br>
+<center>
+<table width="72%"><tr><td>
+//
+<FONT FACE="Verdana" COLOR="#000000">
+<font size="-1">
+<ul>
+<li>(~JUMP|pgAdminBrowse|Browse through the table~)
+<li>(~JUMP|pgAdminDelete|Delete all marked records (status=D)~)
+<li>(~JUMPR|pgDoRefresh|Refresh the app after posting new W-HTML files~)
+<li> (~JUMPR|pgLogout|Log out (to erase your session data)~)
+<p>
+</ul>
+</font></font>
+//
+</td></tr></table>
+</center>
+</whpage>
+
+<whpage pageid="pgdorefresh" desc="Refresh the App after changing the W-HTML">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~app.Refresh~)
+</whpage>
+
+<whpage pageid="PGEDIT" desc="Edit one record in the table" exportfilename="" remap="">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~chGraphicalBanner~)
+<p>
+(~waLocate.execute~)
+//
+<form method=post action="(~ACTION|pgPost~)">
+(~webDataForm.execute|edit~)
+<BR>
+Status codes: A=Approved, P=BoolVarsPending, D=Deleted. Only records marked A are shown to the public.<BR>
+<input type=submit value="Save">
+</form>
+</whpage>
+
+<whpage pageid="PGLOGOUT" desc="Automatic Logout page">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~CLEAR|_bLoginOk~)
+(~Session|Delete~)
+//
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="DPR" />~)
+<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+(~JUMP|pgHomePage|Return to the Homepage~) 
+|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
+|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
+</FONT><hr align=left width="72%">
+<FONT FACE="Verdana" SIZE="+1">Your session data has been deleted.</FONT>
+<br>&nbsp;
+//
+<center>
+<table width="72%"><tr><td>
+Thanks for increasing security by logging out.
+</td></tr></table>
+</center>
+</whpage>
+
+<whpage pageid="PGPOST" desc="pgpost" exportfilename="" remap="">
+<whpagesettings inherit="admin">
+</whpagesettings>
+<!--- from admin--->
+(~waModify.execute~)
+Data has been posted... 
+(~JUMP|pgAdminBrowse|Admin Browse~)
+<p>
+</whpage>
+
+</whteko>
