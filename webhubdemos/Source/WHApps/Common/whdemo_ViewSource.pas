@@ -50,7 +50,6 @@ type
       var ThisCommand: string);
   private
     { Private declarations }
-    FIsDemoRootKnown: Boolean;
     fpaslist: TStringlist;
     fformlist: Tstringlist;
     foutputlist: TStringlist;
@@ -64,12 +63,11 @@ type
     { Public declarations }
     property DelphiSourcePath: string read fDelphiSourcePath
       write fDelphiSourcePath;
-    property IsDemoRootKnown: Boolean read FIsDemoRootKnown
-      write FIsDemoRootKnown;
   end;
 
 var
   DemoViewSource: TDemoViewSource = nil;
+  IsDemoRootKnown: Boolean;
 
 function getWebHubDemoInstallRoot: string;
 function getHtDemoCodeRoot: string;     // default is c:\projects\WebHubDemos\Source\WhApps\
@@ -126,7 +124,7 @@ begin
     'folder', 'c:\projects\WebHubDemos\', Warning);
   if Warning = '' then
   begin
-    DemoViewSource.IsDemoRootKnown := True;
+    IsDemoRootKnown := True;
     Result := IncludeTrailingPathDelimiter(Result);
   end;
 end;
@@ -154,7 +152,7 @@ end;
 
 procedure TDemoViewSource.DataModuleCreate(Sender: TObject);
 begin
-  FIsDemoRootKnown := False;
+  IsDemoRootKnown := False;
   fProjectFilename := ChangeFileExt(ExtractFilename(Paramstr(0)), '.dpr');
   fpaslist := TStringList.Create;
   fformlist := TStringList.Create;
@@ -187,7 +185,7 @@ begin
   with TwhWebActionEx(Sender) do
   begin
 
-    if NOT FIsDemoRootKnown then
+    if NOT IsDemoRootKnown then
     begin
       WebApp.SendStringImm(
         'Error: the root folder for the demos has not been configured.');
