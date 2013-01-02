@@ -108,6 +108,7 @@ begin
   TableAdmin.TableName := Table1.TableName;
   TableAdmin.Database := Table1.Database;
   TableAdmin.Filtered := False;
+  TableAdmin.IndexName := Table1.IndexName;
 end;
 
 procedure TDMNexus.DataModuleDestroy(Sender: TObject);
