@@ -17,13 +17,13 @@
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
 </FONT>
-<hr align=left width="72%">
-<FONT FACE="Verdana" SIZE="+1">Welcome to the Delphi Prefix Registry</FONT>
+<div style="text-align:center;"><hr width="72%"></div>
+<FONT SIZE="+1">Welcome to the Delphi Prefix Registry</FONT>
 <br>&nbsp;
 
 <center>
 <table width="72%"><tr>
-<td><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+<td><FONT SIZE=-1 COLOR="#000000">
 
 <IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="delphi2" />
 <IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
