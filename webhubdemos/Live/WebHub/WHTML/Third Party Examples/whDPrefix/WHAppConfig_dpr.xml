@@ -36,8 +36,6 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="AlphaLetters" value="26"/>
-      <AppSetting name="ManPrefAdminZipDir" value="d:\projects\DelphiPrefixRegistry\live\database\public\"/>
-      <AppSetting name="ManPrefDatabase" value="d:\projects\DelphiPrefixRegistry\Live\Database\"/>
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
@@ -53,7 +51,7 @@
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="" />
-      <WebRobotIniFilespec value="D:\Projects\DelphiPrefixRegistry\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="DEMOS"/>
       <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
