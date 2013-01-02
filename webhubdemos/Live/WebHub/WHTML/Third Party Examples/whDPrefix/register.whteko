@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" 
+  designpage="pgregister">
+
+<whpage pageid="pgregister" desc="Registration Form">
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+	(~drSharedHead~)
+</head>
+<body>
+
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" BORDER="0" />~)
+<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+(~JUMP|pgHomePage|Return to the Homepage~) 
+|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
+|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
+</FONT>
+<hr align=left width="72%">
+<FONT FACE="Verdana" SIZE="+1">Prefix Registration Details</FONT><br>
+
+<P><FONT FACE="Verdana"><FONT SIZE="-1">To register your component
+prefix preferences please enter the following
+details and submit the form! Thank you!</FONT></FONT>
+
+<p><center>
+<table width="72%"><tr>
+<td>
+
+<FORM ACTION="(~ACTION|pgRegThx~)" METHOD=POST>
+<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 >
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>
+Person&nbsp;to&nbsp;contact&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Contact" VALUE="(~Mpf Contact~)"/></TD>
+</TR>
+
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>
+Company&nbsp;name&nbsp;:
+</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Company" VALUE="(~Mpf Company~)"/></TD>
+</TR>
+
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>E-mail&nbsp;address&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE=TEXT SIZE=60 NAME="Mpf Email" VALUE="(~Mpf EMail~)"></TD>
+</TR>
+
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>Web&nbsp;Page&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE="TEXT" SIZE=60  NAME="Mpf Webpage" VALUE="(~Mpf Webpage~)"></TD>
+</TR>
+
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>Component&nbsp;name&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE=TEXT SIZE=40  NAME="Mpf Package Name" VALUE="(~Mpf Package Name~)"></TD>
+</TR>
+
+<TR>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>Component&nbsp;prefix&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Prefix" VALUE="(~Mpf Prefix~)"></TD>
+</TR>
+
+<TR VALIGN=TOP>
+<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000"><FONT SIZE=-1>Comments&nbsp;:</FONT></FONT></FONT></TD>
+
+<TD><TextArea NAME="txtComments" ROWS=6 COLS=40 WRAP=PHYSICAL>(~txtComments~)</TextArea></TD>
+</TR>
+</TABLE>
+<p>
+<center>
+<INPUT TYPE=SUBMIT VALUE="Submit">
+<INPUT type="reset" value="Reset form">
+</center>
+<BR>
+</FORM>
+
+</td></tr></table>
+</center>
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="PGREGTHX" desc="Thanks for Registering">
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+(~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+</head>
+<body>
+
+(~waAdd.execute~)
+
+<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649/>
+<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126/>
+<p>
+<font size="+1">Thanks for registering!!</font>
+<br />
+Your data has been added to the registry and will be visible to the public 
+as soon as an administrator approves the entries.  Thank you.
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+</whteko>
