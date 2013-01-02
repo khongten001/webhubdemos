@@ -49,9 +49,9 @@ Ok, those records have been deleted.
 </FONT>
 <FONT SIZE="+1">Welcome Administrator.</FONT>
 <br>&nbsp;
-//(~chGraphicalBanner~)<br>
+
 <center>
-<table width="72%"><tr><td>
+<table style="width:72%;"><tr><td>
 //
 <FONT FACE="Verdana" COLOR="#000000">
 <font size="-1">
@@ -63,7 +63,7 @@ Ok, those records have been deleted.
 <p>
 </ul>
 </font></font>
-//
+
 </td></tr></table>
 </center>
 </whpage>
@@ -107,7 +107,7 @@ Status codes: A=Approved, P=BoolVarsPending, D=Deleted. Only records marked A ar
 <p>Your session data has been deleted.</p>
 
 <center>
-<table width="72%"><tr><td>
+<table style="width:72%;"><tr><td>
 Thanks for increasing security by logging out.
 </td></tr></table>
 </center>
