@@ -20,7 +20,7 @@ htmlFilename=3Frame.whteko
 <DIV ALIGN=CENTER><CENTER>
 <SMALL><b>Frame A</b></SMALL><br />
 <table CELLPADDING=10 CELLSPACING=0 BORDER=0>
-<tr VALIGN=TOP ALIGN=CENTER>
+<tr style="vertical-align:top; text-align:center;">
 <td>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageB-FB~)">
 Please choose an Icon:<br /><SMALL>

@@ -34,19 +34,17 @@ Administration Shortcuts:
 
 <whdroplet name="drSharedFooter">
 &nbsp;<p>
-<hr width="72%"/><center>
+<hr style="width:72%;"/><div style="text-align:center;">
 (~chNavigation~)
 <p>
-<p>
 (~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
-<br>
-<font color="#666667" size="-1">
-<p>Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
+</p>
+<p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a NexusDB table.<br>
 Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
-(~JUMP|(~PageID~),#top|Return to top~)</p>
-<p>(~drLinkW3Org~)</p>
-</font></center>
+(~JUMP|(~PageID~),#top|Return to top~)<br/>
+(~drLinkW3Org~)</p>
+</div>
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">

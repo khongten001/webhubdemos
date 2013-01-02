@@ -31,7 +31,7 @@ mcLangRus=ru
 details and submit the form! Thank you!</p>
 
 <p><div style="text-align:center;">
-<table width="72%"><tr>
+<table style="width:72%;"><tr>
 <td>
 
 <form action="(~ACTION|pgRegThx~)" method="post">
@@ -75,10 +75,10 @@ E-mail&nbsp;address&nbsp;:</td>
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Prefix" VALUE="(~Mpf Prefix~)"></TD>
 </TR>
 
-<TR VALIGN=TOP>
+<TR style="vertical-align:top;">
 <td style="text-align:right; color: #000000;">Comments&nbsp;:</td>
 
-<td><textarea name="txtComments" rows="6" cols="40" wrap="physical">(~txtComments~)</textarea></td>
+<td><textarea name="txtComments" rows="6" cols="40">(~txtComments~)</textarea></td>
 </TR>
 </table>
 <p style="text-align:center;">
