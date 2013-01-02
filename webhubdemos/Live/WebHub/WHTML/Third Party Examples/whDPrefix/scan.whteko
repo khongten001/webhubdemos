@@ -37,7 +37,7 @@ mcManPrefCaptionsLast=Last Page
 ~)
 //
 </td></tr></table>
-<FONT SIZE=-1 COLOR="#000000">
+<span style="font-size: smaller; color: #000000;">
 
 (~IF|_bAdminMode|
 (~GOR|pgAdminMenu|Administer~)&nbsp;
@@ -54,8 +54,8 @@ mcManPrefCaptionsLast=Last Page
 ~)
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</FONT>
-<hr>
+</span>
+<hr/>
 (~ManPref.execute|Approved~)
 ~)
 </whdroplet>
@@ -70,6 +70,10 @@ mcManPrefCaptionsLast=Last Page
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
+	<style>
+	#approvedPrefixesTable th {color: Crimson;}
+	#adminTable th {color: Crimson;}
+	</style>
 </head>
 <body>
 (~chScan~)
@@ -79,37 +83,37 @@ mcManPrefCaptionsLast=Last Page
 
 <whdroplet name="ScanAdminFinish">
 <!--- from scan--->
-</TABLE>
+</table>
 </whdroplet>
 
 <whdroplet name="ScanAdminInit">
 <!--- from scan--->
 (~clear|bColor~)
-<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='2' HSPACE='0' VSPACE='0' BGCOLOR='Bisque'>
-<TR>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Prefix</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Company</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Package Name</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>WebPage</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Contact</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Email</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Application</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Status</FONT></TH>
-</TR>
+<table id="adminTable" style="border: solid 1px; padding: 0.1em; background-color: bisque;">
+<tr>
+  <th>Prefix</th>
+  <th>Company</th>
+  <th>Package Name</th>
+  <th>WebPage</th>
+  <th>Contact</th>
+  <th>Email</th>
+  <th>Application</th>
+  <th>Status</th>
+</tr>
 </whdroplet>
 
 <whdroplet name="ScanAdminRow">
 <!--- from scan--->
 (~TR~)
-(~TD~)(~waPrefixLink.execute~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Company~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf WebPage~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Contact~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf EMail~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Application~)&nbsp;</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Status~)&nbsp;</TD>
-</TR>
+(~TD~)(~waPrefixLink.execute~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf EMail~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Status~)</td>
+</tr>
 </whdroplet>
 
 <whdroplet name="ScanApprovedFinish">
@@ -120,32 +124,31 @@ mcManPrefCaptionsLast=Last Page
 <whdroplet name="ScanApprovedInit">
 <!--- from scan--->
 (~clear|bColor~)
-<p>
-<table style="border: solid 1px; padding: 1px; background-color: Bisque; width:100%;">
-<TR>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Prefix</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Company</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Package Name</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Web Site</FONT></TH>
-  <TH><FONT FACE='Verdana' COLOR='Crimson'>Application</FONT></TH>
-</TR>
+<table id="approvedPrefixesTable" style="margin-top: 1.4em; border: solid 1px; padding: 1px; background-color: Bisque; width:100%;">
+<tr>
+  <th>Prefix</th>
+  <th>Company</th>
+  <th>Package Name</th>
+  <th>Web Site</th>
+  <th>Application</th>
+</tr>
 </whdroplet>
 
 <whdroplet name="ScanApprovedRow">
 <!--- from scan--->
 (~TR~)
-(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Company~)</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</TD>
-(~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)<!-- [(~prefurl~)] -->
-(~NOMATCH|(~prefurl~)=""|(~HREF|(~FIELD|wdsManPref|Mpf WebPage~)~)~)</TD>
-(~TD~)(~FIELD|wdsManPref|Mpf Application~)</TD>
-</TR>
+(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
+(~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
+(~NOMATCH|(~prefurl~)=""|<a target="_blank" href="(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
+</tr>(~CLEAR|prefurl~)
 </whdroplet>
 
 <whdroplet name="td">
 <!--- from scan--->
-<TD (~color~)>
+<td (~color~)>
 </whdroplet>
 
 <whdroplet name="tr">
@@ -153,7 +156,7 @@ mcManPrefCaptionsLast=Last Page
 (~IF|bColor|
 (~clear|bColor~)(~set|Color=BGCOLOR="#EEEEEE"~)
 ||(~check|bColor~)(~set|Color=BGCOLOR="#FFFFFF"~)~)
-<TR>
+<tr>
 </whdroplet>
 
 </whteko>
