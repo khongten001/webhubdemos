@@ -3,9 +3,15 @@
 <whteko designmode="code" 
   designpage="pgregister">
 
+<whmacros>
+mcLangEng=en
+mcLangFra=fr
+mcLangRus=ru
+</whmacros>
+
 <whpage pageid="pgregister" desc="Registration Form">
 (~mcDocTypeHTML~)(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)">
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
@@ -88,7 +94,7 @@ Company&nbsp;name&nbsp;:
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~guestlingvo~)">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)">
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
