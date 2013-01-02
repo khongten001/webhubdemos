@@ -2,19 +2,24 @@ inherited fmWhActions: TfmWhActions
   Left = 298
   Top = 150
   Caption = '&ManPref Database'
-  ClientHeight = 438
+  ClientHeight = 481
   ClientWidth = 525
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   ExplicitWidth = 543
-  ExplicitHeight = 483
+  ExplicitHeight = 526
   PixelsPerInch = 120
   TextHeight = 18
+  object tpToolButton3: TtpToolButton [0]
+    Left = 256
+    Top = 248
+    MinWidth = 28
+  end
   inherited pa: TPanel
     Width = 525
-    Height = 419
+    Height = 462
     ExplicitWidth = 525
-    ExplicitHeight = 419
+    ExplicitHeight = 462
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
@@ -38,80 +43,78 @@ inherited fmWhActions: TfmWhActions
         OnClick = tpToolButton2Click
         MinWidth = 28
       end
+      object tpToolButton4: TtpToolButton
+        Left = 263
+        Top = 6
+        Caption = 'Create Indices'
+        OnClick = tpToolButton4Click
+        MinWidth = 28
+      end
     end
     object tpComponentPanel2: TtpComponentPanel
       Left = 5
       Top = 45
-      Width = 212
-      Height = 369
+      Width = 244
+      Height = 412
       TabOrder = 1
       object GroupBox1: TGroupBox
         Left = 1
-        Top = 321
-        Width = 210
+        Top = 337
+        Width = 242
         Height = 64
         Align = alTop
         Caption = 'Download ZIP'
         TabOrder = 0
       end
-      object GroupBox2: TGroupBox
-        Left = 1
-        Top = 1
-        Width = 210
-        Height = 64
-        Align = alTop
-        Caption = 'Required WebHub Components'
-        TabOrder = 1
-      end
       object GroupBox3: TGroupBox
         Left = 1
-        Top = 65
-        Width = 210
-        Height = 64
+        Top = 1
+        Width = 242
+        Height = 88
         Align = alTop
         Caption = 'View-only DB Display'
-        TabOrder = 2
+        TabOrder = 1
       end
       object GroupBox4: TGroupBox
         Left = 1
-        Top = 193
-        Width = 210
-        Height = 64
+        Top = 153
+        Width = 242
+        Height = 80
         Align = alTop
         Caption = 'Admin Browse'
-        TabOrder = 3
+        TabOrder = 2
       end
       object GroupBox5: TGroupBox
         Left = 1
-        Top = 129
-        Width = 210
+        Top = 89
+        Width = 242
         Height = 64
         Align = alTop
         Caption = 'Secure Login '
-        TabOrder = 4
+        TabOrder = 3
       end
       object GroupBox6: TGroupBox
         Left = 1
-        Top = 257
-        Width = 210
-        Height = 64
+        Top = 233
+        Width = 242
+        Height = 104
         Align = alTop
         Caption = 'Editing + Posting + Deleting'
-        TabOrder = 5
+        TabOrder = 4
       end
     end
     object Panel1: TPanel
-      Left = 217
+      Left = 249
       Top = 45
-      Width = 303
-      Height = 369
+      Width = 271
+      Height = 412
       Align = alClient
       TabOrder = 2
       object DBGrid1: TDBGrid
         Left = 1
         Top = 1
-        Width = 301
-        Height = 342
+        Width = 269
+        Height = 385
         Align = alClient
         TabOrder = 0
         TitleFont.Charset = DEFAULT_CHARSET
@@ -122,8 +125,8 @@ inherited fmWhActions: TfmWhActions
       end
       object DBNavigator1: TDBNavigator
         Left = 1
-        Top = 343
-        Width = 301
+        Top = 386
+        Width = 269
         Height = 25
         Align = alBottom
         TabOrder = 1
@@ -132,7 +135,7 @@ inherited fmWhActions: TfmWhActions
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 419
+    Top = 462
     Width = 525
     Height = 19
     Panels = <
@@ -152,21 +155,12 @@ inherited fmWhActions: TfmWhActions
     OpenDataSetRetain = 600
     SaveTableName = False
     DataSource = DataSource1
-    Left = 54
-    Top = 134
+    Left = 86
+    Top = 78
   end
   object DataSource1: TDataSource
-    DataSet = Table1
-    Left = 94
-    Top = 134
-  end
-  object Table1: TTable
-    Filtered = True
-    FilterOptions = [foCaseInsensitive]
-    OnFilterRecord = Table1FilterRecord
-    TableName = 'MANPREF.DB'
-    Left = 126
-    Top = 134
+    Left = 166
+    Top = 78
   end
   object ManPref: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
@@ -179,20 +173,20 @@ inherited fmWhActions: TfmWhActions
     OnInit = ManPrefInit
     OnFinish = ManPrefFinish
     WebDataSource = wdsManPref
-    Left = 14
-    Top = 132
+    Left = 22
+    Top = 68
   end
   object WebLogin: TwhLogin
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     UserIndex = -1
-    Left = 22
-    Top = 198
+    Left = 126
+    Top = 150
   end
   object waPrefixLink: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waPrefixLinkExecute
-    Left = 118
-    Top = 254
+    Left = 150
+    Top = 214
   end
   object WebDataForm: TwhbdeForm
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
@@ -202,13 +196,13 @@ inherited fmWhActions: TfmWhActions
     SkipBlank = False
     WebDataSource = wdsAdmin
     OnField = WebDataFormField
-    Left = 22
-    Top = 326
+    Left = 30
+    Top = 310
   end
   object waModify: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waModifyExecute
-    Left = 62
+    Left = 86
     Top = 326
   end
   object wdsAdmin: TwhbdeSource
@@ -220,34 +214,28 @@ inherited fmWhActions: TfmWhActions
     SaveTableName = False
     DataSource = dsAdmin
     Left = 22
-    Top = 254
+    Top = 222
   end
   object dsAdmin: TDataSource
-    DataSet = TableAdmin
-    Left = 54
-    Top = 254
-  end
-  object TableAdmin: TTable
-    TableName = 'MANPREF.DB'
-    Left = 86
-    Top = 254
+    Left = 78
+    Top = 222
   end
   object waAdd: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAddExecute
-    Left = 102
-    Top = 326
+    Left = 134
+    Top = 294
   end
   object waAdminDownload: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAdminDownloadExecute
-    Left = 22
-    Top = 382
+    Left = 54
+    Top = 406
   end
   object waAdminDelete: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAdminDeleteExecute
-    Left = 142
-    Top = 326
+    Left = 166
+    Top = 334
   end
 end
