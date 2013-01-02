@@ -12,6 +12,7 @@ echo .
 
 set demodbhtml=no
 set demodsp=no
+set demodpr=no
 set democoderage=yes
 set demofire=no
 set demohtcl=no
@@ -29,6 +30,7 @@ set demostore000=no
 
 set compiledbhtml=no
 set compiledsp=yes
+set compiledpr=yes
 set compilecoderage=yes
 set compilefire=yes
 set compilehtcl=no
@@ -52,6 +54,7 @@ echo flagdemosdsp is %flagdemosdsp%
 
 set demodsp=no
 if "%flagdemosdsp%"=="yes" set demodsp=yes
+if "%flagdemosdsp%"=="yes" set demodpr=yes
 
 call %ZaphodsMap%zmset.bat flagdemosdb UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdb"
 echo flagdemosdb is %flagdemosdb%
