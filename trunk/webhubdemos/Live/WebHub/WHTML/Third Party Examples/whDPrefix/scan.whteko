@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designpage="PGPREFIX">
+
+<whmacros>
+<!--- used for customization of ScanEmployee2 - example #2 -->
+mcManPrefButtonSpecsFirst=<A HREF="(~where~)ManPref.First">First Page</A>
+mcManPrefButtonSpecsPrior=<A HREF="(~where~)ManPref.Prior">Prior Page</A>
+mcManPrefButtonSpecsNext=<A HREF="(~where~)ManPref.Next">Next Page</A>
+mcManPrefButtonSpecsLast=<A HREF="(~where~)ManPref.Last">Last Page</A>
+mcManPrefCaptionsFirst=First Page
+mcManPrefCaptionsPrior=Prior Page
+mcManPrefCaptionsNext=Next Page
+mcManPrefCaptionsLast=Last Page
+</whmacros>
+
+<whdroplet name="chScan">
+<!--- from scan--->
+<table border="0" width="100%" cellpadding="0">
+<tr><td>
+(~GO|(~IF|_bAdminMode|pgAdminMenu||pgHomePage~)|<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126 BORDER=0>~)
+</td><td>&nbsp;&nbsp;</td><td width=90%>
+//
+(~IF|_bAdminMode|
+<form method=post action="(~where~).ckb">
+<b>Administrator View of BoolVarsPending records:</b><br>
+(~INPUTCHECKBOX|bShowAll~) Show ALL records
+<input type=submit value="Toggle">
+</form>
+||
+<b>Quick Alphabetical Search:</b>
+<br>
+(~WebDBAlphabet.alphabet~)
+(~WebDBAlphabet.execute|~)
+~)
+//
+</td></tr></table>
+<FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+//
+(~IF|_bAdminMode|
+(~GOR|pgAdminMenu|Administer~)&nbsp;
+|&nbsp;(~JUMP|pgHomePage|Return to the Homepage~) 
+|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;all&nbsp;records~) 
+|&nbsp;(~JUMP|pgRegister|Register&nbsp;new&nbsp;prefix~)&nbsp;
+|&nbsp;(~GOR|pgLogout|Logout~)
+<hr>
+(~ManPref.execute|Admin~)
+||
+(~JUMP|pgHomePage|Return to the Homepage~) 
+(~IF|_bLoginOk|
+|&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
+~)
+|&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
+|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
+</FONT>
+<hr>
+(~ManPref.execute|Approved~)
+~)
+</whdroplet>
+
+<whpage pageid="pgprefix" desc="pgPrefix">
+<whprep>
+(~CLEAR|_bAdminMode~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+	(~drSharedHead~)
+</head>
+<body>
+(~chScan~)
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+<whdroplet name="ScanAdminFinish">
+<!--- from scan--->
+</TABLE>
+</whdroplet>
+
+<whdroplet name="ScanAdminInit">
+<!--- from scan--->
+(~clear|bColor~)
+<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='2' HSPACE='0' VSPACE='0' BGCOLOR='Bisque'>
+<TR>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Prefix</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Company</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Package Name</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>WebPage</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Contact</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Email</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Application</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Status</FONT></TH>
+</TR>
+</whdroplet>
+
+<whdroplet name="ScanAdminRow">
+<!--- from scan--->
+(~TR~)
+(~TD~)(~waPrefixLink.execute~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf WebPage~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Contact~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf EMail~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Application~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Status~)&nbsp;</TD>
+</TR>
+</whdroplet>
+
+<whdroplet name="ScanApprovedFinish">
+<!--- from scan--->
+</TABLE>
+</whdroplet>
+
+<whdroplet name="ScanApprovedInit">
+<!--- from scan--->
+(~clear|bColor~)
+<p>
+<TABLE BORDER='1' CELLPADDING='1' CELLSPACING='2' HSPACE='0' VSPACE='0' BGCOLOR='Bisque' width="100%">
+<TR>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Prefix</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Company</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Package Name</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Contact</FONT></TH>
+  <TH><FONT FACE='Verdana' COLOR='Crimson'>Application</FONT></TH>
+</TR>
+</whdroplet>
+
+<whdroplet name="ScanApprovedRow">
+<!--- from scan--->
+(~TR~)
+(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)&nbsp;</TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)&nbsp;</TD>
+(~TD~)
+<font size=-1>(~HREF|(~FIELD|wdsManPref|Mpf WebPage~)~)&nbsp;</font></TD>
+(~TD~)(~FIELD|wdsManPref|Mpf Application~)&nbsp;</TD>
+</TR>
+</whdroplet>
+
+<whdroplet name="td">
+<!--- from scan--->
+<TD (~color~)>
+</whdroplet>
+
+<whdroplet name="tr">
+<!--- from scan--->
+(~IF|bColor|
+(~clear|bColor~)(~set|Color=BGCOLOR="#EEEEEE"~)
+||(~check|bColor~)(~set|Color=BGCOLOR="#FFFFFF"~)~)
+<TR>
+</whdroplet>
+
+</whteko>
