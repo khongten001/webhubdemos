@@ -3,10 +3,10 @@ inherited fmWhActions: TfmWhActions
   Top = 150
   Caption = '&ManPref Database'
   ClientHeight = 481
-  ClientWidth = 525
+  ClientWidth = 970
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitWidth = 543
+  ExplicitWidth = 988
   ExplicitHeight = 526
   PixelsPerInch = 120
   TextHeight = 18
@@ -16,16 +16,17 @@ inherited fmWhActions: TfmWhActions
     MinWidth = 28
   end
   inherited pa: TPanel
-    Width = 525
+    Width = 970
     Height = 462
     ExplicitWidth = 525
     ExplicitHeight = 462
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 515
+      Width = 960
       BorderWidth = 5
       TabOrder = 0
+      ExplicitWidth = 515
       object tpToolButton1: TtpToolButton
         Left = 11
         Top = 6
@@ -48,7 +49,15 @@ inherited fmWhActions: TfmWhActions
         Top = 6
         Width = 119
         Caption = 'Create Indices'
+        Enabled = False
         OnClick = tpToolButton4Click
+        MinWidth = 28
+      end
+      object tpToolButton5: TtpToolButton
+        Left = 383
+        Top = 6
+        Caption = 'Set 1st Letter'
+        OnClick = tpToolButton5Click
         MinWidth = 28
       end
     end
@@ -98,14 +107,15 @@ inherited fmWhActions: TfmWhActions
     object Panel1: TPanel
       Left = 249
       Top = 45
-      Width = 271
+      Width = 716
       Height = 412
       Align = alClient
       TabOrder = 2
+      ExplicitWidth = 271
       object DBGrid1: TDBGrid
         Left = 1
         Top = 1
-        Width = 269
+        Width = 714
         Height = 385
         Align = alClient
         TabOrder = 0
@@ -118,17 +128,18 @@ inherited fmWhActions: TfmWhActions
       object DBNavigator1: TDBNavigator
         Left = 1
         Top = 386
-        Width = 269
+        Width = 714
         Height = 25
         Align = alBottom
         TabOrder = 1
+        ExplicitWidth = 269
       end
     end
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
     Top = 462
-    Width = 525
+    Width = 970
     Height = 19
     Panels = <
       item
@@ -138,6 +149,7 @@ inherited fmWhActions: TfmWhActions
     ShowHint = True
     SimpleText = ''
     PanelStatusIndex = 0
+    ExplicitWidth = 525
   end
   object wdsManPref: TwhbdeSource
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
