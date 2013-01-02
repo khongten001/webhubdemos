@@ -42,14 +42,16 @@ Administration Shortcuts:
 <p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a NexusDB table.<br>
 Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
-(~JUMP|(~PageID~),#top|Return to top~)<br/>
+(~JUMP|(~PageID~),#top|Return to top~)
 (~drLinkW3Org~)</p>
 </div>
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">
-  (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
+<div style="margin-top: 2em;">
+(~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
   <a onclick="window.open(this.href);return false;" href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)&charset=%28detect+automatically%29&doctype=Inline&group=0">validator.w3.org</a>
+</div>
 </whdroplet>
 
 <whdroplet name="chPageFooter">
