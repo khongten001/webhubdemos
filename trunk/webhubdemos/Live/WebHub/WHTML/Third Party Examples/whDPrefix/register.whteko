@@ -24,7 +24,7 @@ mcLangRus=ru
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
 </span>
-<div style="text-align:center;"><hr width="72%"></div>
+<div style="text-align:center;"><hr style="width:72%;"></div>
 <h2>Prefix Registration Details</h2>
 
 <P>To register your component prefix preferences, please enter the following
@@ -35,52 +35,52 @@ details and submit the form! Thank you!</p>
 <td>
 
 <form action="(~ACTION|pgRegThx~)" method="post">
-<TABLE BORDER=0 CELLSPACING=0 CELLPADDING=0 >
-<TR>
-<TD align=right><FONT COLOR="#000000">
-Person&nbsp;to&nbsp;contact&nbsp;:</FONT></TD>
+<table style="border:none; padding: 0;">
+<tr>
+<td style="text-align:right; color: #000000;">
+Person&nbsp;to&nbsp;contact&nbsp;:</td>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Contact" VALUE="(~Mpf Contact~)"/></TD>
-</TR>
+</tr>
 
 <TR>
-<TD align=right><FONT FACE="Verdana"><FONT COLOR="#000000">
-Company&nbsp;name&nbsp;:
-</FONT></FONT></TD>
+<td style="text-align:right; color: #000000;">
+Company&nbsp;name&nbsp;:</td>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Company" VALUE="(~Mpf Company~)"/></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000">E-mail&nbsp;address&nbsp;:</FONT></TD>
+<td style="text-align:right; color: #000000;">
+E-mail&nbsp;address&nbsp;:</td>
 
 <TD><INPUT TYPE=TEXT SIZE=60 NAME="Mpf Email" VALUE="(~Mpf EMail~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000">Web&nbsp;Page&nbsp;:</FONT></TD>
+<td style="text-align:right; color: #000000;">Web&nbsp;Page&nbsp;:</td>
 
 <TD><INPUT TYPE="TEXT" SIZE=60  NAME="Mpf Webpage" VALUE="(~Mpf Webpage~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT COLOR="#000000">Component&nbsp;name&nbsp;:</FONT></TD>
+<td style="text-align:right; color: #000000;">Component&nbsp;name&nbsp;:</td>
 
 <TD><INPUT TYPE=TEXT SIZE=40  NAME="Mpf Package Name" VALUE="(~Mpf Package Name~)"></TD>
 </TR>
 
 <TR>
-<TD align=right><FONT <FONT COLOR="#000000">Component&nbsp;prefix&nbsp;:</FONT></TD>
+<td style="text-align:right; color: #000000;">Component&nbsp;prefix&nbsp;:</td>
 
 <TD><INPUT TYPE=TEXT SIZE=40 NAME="Mpf Prefix" VALUE="(~Mpf Prefix~)"></TD>
 </TR>
 
 <TR VALIGN=TOP>
-<TD align=right><FONT COLOR="#000000">Comments&nbsp;:</FONT></TD>
+<td style="text-align:right; color: #000000;">Comments&nbsp;:</td>
 
-<TD><textarea name="txtComments" rows="6" cols="40" wrap="physical">(~txtComments~)</textarea></TD>
+<td><textarea name="txtComments" rows="6" cols="40" wrap="physical">(~txtComments~)</textarea></td>
 </TR>
-</TABLE>
+</table>
 <p style="text-align:center;">
 <input type="submit" />
 </p>
@@ -106,7 +106,7 @@ Company&nbsp;name&nbsp;:
 <IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649/>
 <IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126/>
 <p>
-<font size="+1">Thanks for registering!!</font>
+<h1>Thanks for registering!!</h1>
 <br />
 Your data has been added to the registry and will be visible to the public 
 as soon as an administrator approves the entries.  Thank you.
