@@ -1,4 +1,4 @@
-unit wdbAlpha; {TWebDBAlphabet, a web action component for use with WebHub}
+unit wnxdbAlpha; {TWebnxdbAlphabet, a web action component for use with WebHub}
 
 { The 2003 BDE version of this file is at http://www.href.com/pub/WebAct/db }
 
@@ -37,7 +37,7 @@ uses
   webTypes, webLink, wbdeSource;
 
 type
-  TWebDBAlphabet = class(TwhWebAction)
+  TWebnxdbAlphabet = class(TwhWebAction)
   private
     { Private declarations }
     fWebDataSource: TwhbdeSource;   //where the data comes from
@@ -70,23 +70,23 @@ uses
   nxdb, // TnxTable
   whMacroAffixes;
 
-constructor TWebDBAlphabet.Create(AOwner: TComponent);
+constructor TWebnxdbAlphabet.Create(AOwner: TComponent);
 begin
   inherited Create(AOwner);
   fNumPerRow := 26;
   fLinkMacro := 'JUMPR';
 end;
 
-destructor TWebDBAlphabet.Destroy;
+destructor TWebnxdbAlphabet.Destroy;
 begin
   inherited Destroy;
 end;
 
-procedure TWebDBAlphabet.SetNoString(const Value: string);
+procedure TWebnxdbAlphabet.SetNoString(const Value: string);
 begin
 end;
 
-procedure TWebDBAlphabet.Notification(AComponent: TComponent; Operation: TOperation);
+procedure TWebnxdbAlphabet.Notification(AComponent: TComponent; Operation: TOperation);
 begin
   inherited Notification(AComponent, Operation);
   if (csUpdating in ComponentState) then
@@ -101,7 +101,7 @@ begin
     end;
 end;
 
-procedure TWebDBAlphabet.SetNumPerRow(Value: Integer);
+procedure TWebnxdbAlphabet.SetNumPerRow(Value: Integer);
 begin
   fNumPerRow := Value;
   if fNumPerRow < 1 then
@@ -110,7 +110,7 @@ begin
     fNumPerRow := 26;
 end;
 
-function TWebDBAlphabet.getAlphabet;
+function TWebnxdbAlphabet.getAlphabet;
 var
   a0,a1,a2,a3: String;
   i:integer;
@@ -139,7 +139,7 @@ begin
   result:=a1;
 end;
 
-procedure TWebDBAlphabet.DoExecute;
+procedure TWebnxdbAlphabet.DoExecute;
 var
   S: String;
   svName: string;
@@ -157,7 +157,7 @@ begin
   end;
 end;
 
-function TWebDBAlphabet.DoUpdate: boolean;
+function TWebnxdbAlphabet.DoUpdate: boolean;
 begin
   cx.MakeIfNil(fWebDataSource,TwhbdeSource);
   Result := inherited DoUpdate

@@ -8,22 +8,20 @@ unit DPrefix_fmWhActions; // custom web actions for the Delphi Prefix program.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UTPANFRM, ExtCtrls, StdCtrls, TpMenu, UpdateOk, tpAction, IniLink,
-  Toolbar, tpCompPanel, Restorer, ComCtrls, tpStatus, WebTypes, WebLink,
-  DBCtrls, Grids, DBGrids, Db, DBTables, wbdeSource, WdbLink, WdbScan,
-  webCall,
-  wbdeGrid, wdbAlpha, Buttons, WebLogin, wbdeForm, wbdePost, wdbSSrc;
+  Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
+  utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
+  webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
+  wnxdbAlpha,
+  wbdeForm, wbdePost, wdbSSrc;
 
 type
   TfmWhActions = class(TutParentForm)
     ToolBar: TtpToolBar;    tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
     GroupBox1: TGroupBox;
-    GroupBox2: TGroupBox;
     wdsManPref: TwhbdeSource;
     DataSource1: TDataSource;
-    Table1: TTable;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
     tpStatusBar1: TtpStatusBar;
@@ -39,16 +37,16 @@ type
     GroupBox5: TGroupBox;
     wdsAdmin: TwhbdeSource;
     dsAdmin: TDataSource;
-    TableAdmin: TTable;
     waAdd: TwhWebActionEx;
     GroupBox6: TGroupBox;
     waAdminDownload: TwhWebActionEx;
     waAdminDelete: TwhWebActionEx;
+    tpToolButton3: TtpToolButton;
+    tpToolButton4: TtpToolButton;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
     procedure ManPrefFinish(Sender: TObject);
-    procedure Table1FilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure tpToolButton1Click(Sender: TObject);
     procedure waPrefixLinkExecute(Sender: TObject);
     procedure WebDataFormSetCommand(Sender: TObject; var Command: String);
@@ -61,14 +59,13 @@ type
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure tpToolButton4Click(Sender: TObject);
   private
     { Private declarations }
-    procedure CopyTable(srcTbl:TTable; const Destination: string);
-    procedure Flush(tbl:TTable);
   public
     { Public declarations }
-    WebDBAlphabet: TWebDBAlphabet;
-    function Init: Boolean; override;
+    WebDBAlphabet: TWebnxdbAlphabet;
+    function Init: boolean; override;
     procedure WebAppOutputClose(Sender: TObject);
     procedure WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
       const ADesiredPageID: string);
@@ -80,19 +77,17 @@ var
 implementation
 
 uses
-  BDE,      //Copy and Flush Tables
-  DBConsts,  //Copy and Flush Tables
+  nxDB,
+//  DBConsts,  //Copy and Flush Tables
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
   ucFile,   //ForceDirectories insures that a legal path exists
   ucDlgs,   //admin/non-web confirmation questions
   ucShell,
   ucLogFil,
+  ucCodeSiteInterface,
   webapp,   //access to pWebApp which points to the currently active app object for th duration of the page
-  webScan;
-
-const
-  cManPrefDatabase='ManPrefDatabase';
+  webScan, DPrefix_dmNexus;
 
 {$R *.DFM}
 
@@ -101,14 +96,13 @@ const
 procedure TfmWhActions.FormCreate(Sender: TObject);
 begin
   inherited;
-  WebDBAlphabet := TWebDBAlphabet.Create(TForm(Sender));
+  WebDBAlphabet := TWebnxdbAlphabet.Create(TForm(Sender));
   with WebDBAlphabet do
   begin
     Name := 'WebDBAlphabet';
     WebDataSource := wdsManPref;
     if Assigned(pWebApp) then
     begin
-      (* off v2.054 31-Mar-2006 WebIni := pWebApp.WebIni; *)
       // let the webmaster adjust the # of alphabet letters on a row.
       NumPerRow:=StrToIntDef(pWebApp.AppSetting['AlphaLetters'],26);
     end;
@@ -125,33 +119,20 @@ end;
 
 //------------------------------------------------------------------------------
 
-function TfmWhActions.Init:Boolean;
-var
-  a1:string;
+function TfmWhActions.Init: boolean;
 begin
-  Result:= inherited Init;
-  if not result then
-    exit;
-  with Table1 do begin
-    close;
-    a1:=pWebApp.AppSetting[cManPrefDatabase];
-    databasename:=a1;
-    filtered:=true;
-    open;
-    end;
-  with TableAdmin do begin
-    close;
-    a1:=pWebApp.AppSetting[cManPrefDatabase];
-    databasename:=a1;
-    filtered:=false;
-    open;
-    end;
-  ManPref.ButtonsWhere := dsNone;
-  ManPref.PageHeight := 115;  // max for single letter as of 11-Dec-2008 AML
-  ManPref.ControlsWhere := dsNone;
-end;
+  Result := inherited Init;
+  if Result then
+  begin
+    wdsManPref.KeyFieldNames := 'MpfID';
+    DataSource1.DataSet := DMNexus.Table1;
+    dsAdmin.DataSet := DMNexus.TableAdmin;
 
-//------------------------------------------------------------------------------
+    ManPref.ButtonsWhere := dsNone;
+    ManPref.PageHeight := 115;  // max for single letter as of 11-Dec-2008 AML
+    ManPref.ControlsWhere := dsNone;
+  end;
+end;
 
 procedure TfmWhActions.ManPrefInit(Sender: TObject);
 begin
@@ -175,27 +156,6 @@ begin
   inherited;
   with TwhdbScan(Sender) do
     WebApp.SendMacro('Scan'+HtmlParam+'Finish');
-end;
-
-procedure TfmWhActions.Table1FilterRecord(DataSet:TDataSet; var Accept:Boolean);
-var
-  aStatus: String;
-begin
-  inherited;
-  //improvements to do:
-  //get the checked values before the scan (onexecute) and put them into vars.
-  //use pre-instantiated fields or get a field pointer ahead of time
-  with pWebApp do
-  begin
-    aStatus := UpperCase(DataSet.FieldByName('Mpf Status').asString);
-    if BoolVar['_bAdminMode'] then
-      if BoolVar['bShowAll'] then
-        Accept:=true
-      else
-        Accept:=(aStatus='P')  //pending
-    else
-      Accept:=(aStatus='A');   //approved
-  end;
 end;
 
 procedure TfmWhActions.WebAppOutputClose(Sender: TObject);
@@ -225,8 +185,10 @@ var
   a1,a2:string;
 begin
   inherited;
-  with TwhWebActionEx(Sender) do begin
-    with TTable(wdsManPref.DataSet) do begin
+  with TwhWebActionEx(Sender) do
+  begin
+    with wdsManPref.DataSet do
+    begin
       a1:=fieldByName('MpfID').asString;
       a2:=fieldByName('Mpf Prefix').asString;
       end;
@@ -242,7 +204,7 @@ begin
   inherited;
   SplitString(Command,'.',Command,a1);
   a1:=Uncode64String(a1);
-  with pWebApp.Response, TTable(wdsAdmin.DataSet) do
+  with pWebApp.Response, wdsAdmin.DataSet do
     if Locate('MpfID',StrToIntDef(a1,-1),[]) then
       SendComment('found ok')
     else
@@ -262,7 +224,8 @@ begin
   if NOT askQuestionOk('Are you utterly sure that you want to create new ' +
    'sequential IDs for the primary key field in the ManPref.db?') then
     exit;
-  with table1 do begin
+  with DMNexus.Table1 do
+  begin
     filtered:=false;
     i:=1;
     while true do begin
@@ -272,10 +235,20 @@ begin
       fields[0].asInteger:=i;
       inc(i);
       post;
-      end;
-    flush(table1);
+    end;
+    //Table1.Flush;
     filtered:=true;
     end;
+end;
+
+procedure TfmWhActions.tpToolButton4Click(Sender: TObject);
+begin
+  inherited;
+  DMNexus.TableAdmin.Close;
+  DMNexus.Table1.Close;
+ // DMNexus.Table1.AddIndex('Alphabetized', 'MpfFirstLetter', []);
+  DMNexus.Table1.IndexName := 'Alphabetized';
+  DMNexus.Table1.Open;
 end;
 
 procedure TfmWhActions.WebDataFormField(Sender:TwhbdeForm;aField:TField;var Text,Value:String);
@@ -296,7 +269,8 @@ var
 begin
   inherited;
   iKey:=-1; //
-  with TwhWebActionEx(Sender), wdsAdmin, TTable(DataSet) do begin
+  with TwhWebActionEx(Sender), wdsAdmin, DataSet do
+  begin
     for i:=0 to pred(pWebApp.Request.dbFields.count) do
       if SplitString(LeftOfEqual(pWebApp.Request.dbFields[i]),'@',a1,aKey)
       and SplitString(a1,'.',a1,aFieldname)
@@ -307,11 +281,12 @@ begin
             raise exception.create('no such MpfID '+aKey);
           Edit;
           end;
-        FieldByName(aFieldName).asString:=RightOfEqual(pWebApp.Request.dbFields[i]);
+        FieldByName(aFieldName).asString:=
+          RightOfEqual(pWebApp.Request.dbFields[i]);
         end;
     //if editmode then
     Post;
-    Flush(TTable(DataSet));
+    //!!!Flush(TnxTable(DataSet));
     end;
 end;
 
@@ -322,7 +297,7 @@ var
 begin
   inherited;
   //example literal syntax: Mpf EMail=info@href.com
-  with TwhWebActionEx(Sender), Table1 do
+  with TwhWebActionEx(Sender), DMNexus.Table1 do
   begin
     Filtered:=false;
     //if IndexName<>'' then begin
@@ -347,13 +322,14 @@ begin
           RightOfEqual(pWebApp.Session.StringVars[i]);
       end;
     Post;
-    Flush(Table1);
+    //Flush(Table1);
     IndexName:= PriorIndex;
     Filtered:=true;
     end;
 end;
 
 procedure TfmWhActions.waAdminDownloadExecute(Sender: TObject);
+const cFn = 'waAdminDownloadExecute';
 var
   aTargetDir: string;
   commandstr, parameters: string;
@@ -365,7 +341,7 @@ begin
     aTargetDir:=TrailingBackSlash(WebApp.AppSetting[cManPrefDatabase])+'admin\';
     ForceDirectories(aTargetDir);
     //
-    CopyTable(table1,aTargetDir+'manpref.db');
+    DMNexus.CopyTable(DMNexus.table1, aTargetDir+'manpref.nx1');
     Commandstr := 'pkzip.exe';
     Parameters:=TrailingBackSlash(WebApp.AppSetting['ManPrefAdminZipDir'])
         +'mpfadmin.zip'
@@ -374,7 +350,7 @@ begin
     Launch(Commandstr, Parameters, '', False, 30000, ErrorMessage);
     if ErrorMessage <> '' then
     begin
-      tpLogMessage(ErrorMessage);
+      LogSendError(ErrorMessage, cFn);
       Response.Send(ErrorMessage);
     end;
   end;
@@ -383,11 +359,12 @@ end;
 procedure TfmWhActions.waAdminDeleteExecute(Sender: TObject);
 begin
   inherited;
-  with TQuery.create(nil) do try
-    Databasename:=pWebApp.AppSetting[cManPrefDatabase];
+  with TnxQuery.create(nil) do
+  try
+    Database:=DMNexus.nxDatabase1;
     sql.text:='DELETE'
-      +' FROM "Manpref.db"'
-      +' WHERE ("Manpref.db"."Mpf Status" = ''D'')';
+      +' FROM Manpref'
+      +' WHERE ("Mpf Status" = ''D'')';
     ExecSql;
   finally
     free;
@@ -396,33 +373,14 @@ end;
 
 //------------------------------------------------------------------------------
 
+(* bde tables
 procedure TfmWhActions.Flush(tbl:TTable);
 begin
   with tbl do
     if State = dsBrowse then
       Check(DbiSaveChanges(Handle)); //table.handle
 end;
-
-procedure TfmWhActions.CopyTable(srcTbl:TTable; const Destination: string);
-var
-  szCopyFrom,
-  szCopyTo: DBITBLNAME;
-begin
-  with srcTbl do begin
-    if State = dsInactive then
-      DatabaseError(SDataSetClosed);
-    LockTable(ltReadLock);
-    try
-      AnsiToNative(Locale, AnsiString(Destination), szCopyTo,
-        sizeof(szCopyTo)-1);
-      AnsiToNative(Locale, AnsiString(TableName), szCopyFrom,
-        sizeof(szCopyFrom)-1);
-      Check(DbiCopyTable(Database.Handle, True, szCopyFrom, nil, szCopyTo));
-    finally
-      UnLockTable(ltReadLock);
-      end;
-    end;
-end;
+*)
 
 //------------------------------------------------------------------------------
 
