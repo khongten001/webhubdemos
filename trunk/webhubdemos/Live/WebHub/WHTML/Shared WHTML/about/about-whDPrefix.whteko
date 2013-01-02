@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" 
+  designpage="PGTHANKS">
+
+<whmacros>
+mcImageDir=(~Static.AppRoot~)webhub/demos/whDPrefix/
+</whmacros>
+
+<whpage pageid="pgthanks" desc="Thanks">
+<html>
+<head>
+<title>Delphi Prefix Registry</title>
+	(~drSharedHead~)
+</head>
+<body>
+
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" BORDER="0"/>~)
+<br/>
+<FONT SIZE="-1" COLOR="#000000">
+(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
+</FONT>
+<hr align="left" width="72%"/>
+<FONT SIZE="+1">About This Site</FONT><br/>
+<br/>
+<FONT FACE="Verdana">
+
+<hr/>
+<font color="red">Attention...</font>
+(~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.gif" BORDER="0" HEIGHT="31" WIDTH="88" align="left" hspace="10"/>~)
+<font size="-1">
+Please link to (~HREF|http://delphiprefix.href.com|http://delphiprefix.href.com~)
+and have (~HREF|(~mcImageDir~)dprbut.gif|this handy button~) as our thanks!
+</font>
+<hr/>
+
+<p>
+Firstly Component Builders are truly the salt of the earth - they provide ready
+to use solutions to all manner of application programming problems and provide 
+us with the tools to repeatedly furnish end users with what they really want.</p>
+</FONT>
+
+<p><FONT COLOR="#CC33CC">Special mention with regard
+to the project goes to Ray Konopka, author of Developing Custom Delphi
+3 Components, who has tirelessly promoted the use of prefixes (long before
+this site existed).</FONT></p>
+
+<p><FONT FACE="Verdana">This project would not have got off the ground
+without help and encouragement ,
+<br/>the following people provided the motivation :</FONT></p>
+<br/>&nbsp;
+
+<TABLE BORDER="1">
+<TR>
+<TD><FONT FACE="Verdana">bob swart</FONT></TD>
+
+<TD><FONT FACE="Verdana">- international delphi guru</FONT></TD>
+
+<TD><FONT FACE="Verdana">(in london may see ukbug)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">marco cantu</FONT></TD>
+
+<TD><FONT FACE="Verdana">- international delphi guru</FONT></TD>
+
+<TD><FONT FACE="Verdana">(mastering delphi 1/2/3)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">david clark</FONT></TD>
+
+<TD><FONT FACE="Verdana">- infinity software</FONT></TD>
+
+<TD><FONT FACE="Verdana">(the best in security components)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">chriz frizell&nbsp;</FONT></TD>
+
+<TD><FONT FACE="Verdana">- itec uk - delphi magazine</FONT></TD>
+
+<TD><FONT FACE="Verdana">(subscribe now)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">tomasz stanczak</FONT></TD>
+
+<TD><FONT FACE="Verdana">- r &amp; t</FONT></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">nick hodges</FONT></TD>
+
+<TD><FONT FACE="Verdana">- teamb</FONT></TD>
+
+<TD><FONT FACE="Verdana">(teamb - programmers godsend)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">duncan mcormack</FONT></TD>
+
+<TD><FONT FACE="Verdana">- addrock</FONT></TD>
+
+<TD><FONT FACE="Verdana">(time &amp; date gurus)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">brian lowe</FONT></TD>
+
+<TD><FONT FACE="Verdana">- acro tchnology</FONT></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">greg lief&nbsp;</FONT></TD>
+
+<TD><FONT FACE="Verdana">- glad components</FONT></TD>
+
+<TD><FONT FACE="Verdana">(must have toolkit)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">robert m. czerwinski</FONT></TD>
+
+<TD><FONT FACE="Verdana">- delphi super page</FONT></TD>
+
+<TD><FONT FACE="Verdana">(the definitive delphi shareware page)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">mark miller</FONT></TD>
+
+<TD><FONT FACE="Verdana">- eagle software</FONT></TD>
+
+<TD><FONT FACE="Verdana">(cdk - a MUST)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">brett liddicoet</FONT></TD>
+
+<TD><FONT FACE="Verdana">- opaque software</FONT></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">gerald nunn</FONT></TD>
+
+<TD><FONT FACE="Verdana">- gexperts</FONT></TD>
+
+<TD><FONT FACE="Verdana">(freeware tools for the serious developer)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">artchil gogova</FONT></TD>
+
+<TD><FONT FACE="Verdana">- internet mailsuite</FONT></TD>
+
+<TD><FONT FACE="Verdana">(premier internet tools)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">roman eremin</FONT></TD>
+
+<TD><FONT FACE="Verdana">- rsd software</FONT></TD>
+
+<TD></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">david f schrader</FONT></TD>
+
+<TD><FONT FACE="Verdana">- delphi user</FONT></TD>
+
+
+<TD><FONT FACE="Verdana">(just like me)</FONT></TD>
+</TR>
+
+<TR>
+<TD><FONT FACE="Verdana">the graphical gnome</FONT></TD>
+
+<TD><FONT FACE="Verdana">- graphics specialist</FONT></TD>
+
+<TD></TD>
+</TR>
+</TABLE>
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+
+</whteko>
