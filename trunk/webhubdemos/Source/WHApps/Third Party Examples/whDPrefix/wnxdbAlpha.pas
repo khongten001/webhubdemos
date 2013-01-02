@@ -114,15 +114,14 @@ function TWebnxdbAlphabet.getAlphabet;
 var
   a0,a1,a2,a3: String;
   i:integer;
+const
+  cLightBar = #$2758;
 begin
   a0:=DefaultsTo(Command,HtmlParam);
-  a1:='| ';
-  if not assigned(WebApp) then
-  begin
-    result:='(no WebApp)';
-    exit;
-  end;
-  a2:=WebApp.PageID;
+  a1:=cLightBar + ' ';
+  Assert(assigned(WebApp), '(no WebApp)');
+
+  a2 := WebApp.PageID;
   if a2='' then a2:='PageID';
 
   for i:=ord('A') to ord('Z') do
@@ -131,9 +130,10 @@ begin
       a3:=fLinkMacro   // option for GO or HIDE on current letter
     else
       a3:='JUMP';      // otherwise we better use JUMP... linking to same page!
-    a1:=a1+ MacroStart + a3+'|'+a2+','+chr(i)+'|'+chr(i)+ MacroEnd + ' | ';
+    a1:=a1+ MacroStart + a3+'|'+a2+','+chr(i)+ '|' +chr(i)+ MacroEnd + ' ' +
+      cLightBar + ' ';
     if (i<ord('Z')) AND ((i-ord('A')+1) mod fNumPerRow = 0) then
-      a1:=a1+'<br />| ';
+      a1:=a1+'<br />' + cLightBar + ' ';
     end;
   fAlphabet:=a1;
   result:=a1;
@@ -146,7 +146,7 @@ var
 begin
   inherited DoExecute;
   S := Uppercase(DefaultsTo(Command,HtmlParam));
-  if (length(S)=1) and CharInSet(S[1], ['A'..'Z']) then
+  if (length(S)=1) and CharInSet(S[1], ['0'..'9','A'..'Z']) then
   begin
     with TnxTable(WebDataSource.Dataset) do
     begin
