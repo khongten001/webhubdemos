@@ -87,6 +87,12 @@ echo ipc is %whipc%
 echo ***
 echo .
 
+del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe
+if "%compiledpr%"=="no" goto dspstart
+cd %droot%\Third Party Examples\whDPrefix
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_d17_win32.bat whDPrefix
+
+:dspstart
 del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
 if "%compiledsp%"=="no" goto end
 cd %droot%\Third Party Examples\whDSP
