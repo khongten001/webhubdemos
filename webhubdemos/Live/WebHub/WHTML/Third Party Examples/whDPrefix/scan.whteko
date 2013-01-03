@@ -71,7 +71,7 @@ mcManPrefCaptionsLast=Last Page
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
 
-  <link rel="canonical" href="(Request.Scheme~)://(~Request.Host~)/pgPrefix(~NOMATCH|"(~Command~)"=""|//(~Command~)~)" />
+  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgPrefix(~NOMATCH|"(~Command~)"=""|//(~Command~)~)" />
 
 	<style>
 	#approvedPrefixesTable th {color: Crimson;}
