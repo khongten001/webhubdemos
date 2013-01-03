@@ -44,6 +44,7 @@ type
     fNumPerRow:integer;
     fAlphabet:string;
     fLinkMacro:string;
+    fSeparator: string;
   protected
     { Protected declarations }
     procedure   DoExecute; override;
@@ -62,6 +63,7 @@ type
     property WebDataSource: TwhbdeSource read fWebDataSource write fWebDataSource;
     property Alphabet: String read getAlphabet write SetNoString stored False;
     property LinkMacro: String read fLinkMacro write fLinkMacro;
+    property Separator: string read FSeparator write FSeparator;
   end;
 
 implementation
@@ -75,6 +77,7 @@ begin
   inherited Create(AOwner);
   fNumPerRow := 26;
   fLinkMacro := 'JUMPR';
+  fSeparator := #$2758;  // light vertical bar
 end;
 
 destructor TWebnxdbAlphabet.Destroy;
@@ -114,11 +117,9 @@ function TWebnxdbAlphabet.getAlphabet;
 var
   a0,a1,a2,a3: String;
   i:integer;
-const
-  cLightBar = #$2758;
 begin
   a0:=DefaultsTo(Command,HtmlParam);
-  a1:=cLightBar + ' ';
+  a1:=fSeparator + ' ';
   Assert(assigned(WebApp), '(no WebApp)');
 
   a2 := WebApp.PageID;
@@ -130,10 +131,10 @@ begin
       a3:=fLinkMacro   // option for GO or HIDE on current letter
     else
       a3:='JUMP';      // otherwise we better use JUMP... linking to same page!
-    a1:=a1+ MacroStart + a3+'|'+a2+','+chr(i)+ '|' +chr(i)+ MacroEnd + ' ' +
-      cLightBar + ' ';
+    a1:=a1+ MacroStart + a3+'|'+a2+','+chr(i)+ '|itemprop="url"|' +chr(i)+
+      MacroEnd + ' ' + fSeparator + ' ';
     if (i<ord('z')) AND ((i-ord('a')+1) mod fNumPerRow = 0) then
-      a1:=a1+'<br />' + cLightBar + ' ';
+      a1:=a1+'<br />' + fSeparator + ' ';
     end;
   fAlphabet:=a1;
   result:=a1;

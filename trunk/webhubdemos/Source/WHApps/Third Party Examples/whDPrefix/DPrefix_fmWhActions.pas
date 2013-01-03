@@ -245,6 +245,7 @@ begin
   with WebDBAlphabet do
   begin
     Name := 'WebDBAlphabet';
+    Separator := '.';
     WebDataSource := wdsManPref;
     if Assigned(pWebApp) then
     begin

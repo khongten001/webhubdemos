@@ -20,17 +20,18 @@ component to make the Usr* properties active. -->
 </whdroplet>
 
 
-<whpage pageid="PGLOGIN" desc="-Login page for Administrators">
+<whpage pageid="pglogin" desc="-Login page for Administrators">
 <html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
-(~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+  (~drSharedHead~)
+  <meta name="robots" content="noindex,nofollow" />
   <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
+<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />
+<br/><br/>
 
-(~chGraphicalBanner~)
-<p>
 (~weblogin.update~)
 
 (~inputform|pgLoginConfirm~)

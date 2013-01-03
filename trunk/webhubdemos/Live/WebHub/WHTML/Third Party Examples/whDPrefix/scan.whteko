@@ -15,10 +15,10 @@ mcManPrefCaptionsLast=Last Page
 
 <whdroplet name="chScan">
 <!--- from scan--->
-<table border="0" width="100%" cellpadding="0">
-<tr><td>
+<table style="border: none; width:100%;">
+<tr><td style="padding-right:2em;">
 (~GO|(~IF|_bAdminMode|pgAdminMenu||pgHomePage~)|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
-</td><td>&nbsp;&nbsp;</td><td width=90%>
+</td></td><td style="width:90%;">
 
 (~IF|_bAdminMode|
 <form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~).ckb">
@@ -28,11 +28,12 @@ mcManPrefCaptionsLast=Last Page
 </form>
 ||
 <b>Quick Alphabetical Search:</b>
-<br>
-&#x2758; <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
+<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="font-size:larger;">
+. <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
+</div>
 (~WebDBAlphabet.execute|~)
 ~)
-//
+
 </td></tr></table>
 <span style="font-size: smaller; color: #000000;">
 
@@ -75,7 +76,7 @@ mcManPrefCaptionsLast=Last Page
 	#adminTable th {color: Crimson;}
 	</style>
 </head>
-<body>
+<body itemscope itemtype="http://www.schema.org/SearchResultsPage">
 (~chScan~)
 (~drSharedFooter~)
 </body></html>
