@@ -14,12 +14,12 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    nxServerEngine1: TnxServerEngine;
-    nxSession1: TnxSession;
     procedure Table1FilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
+    nxServerEngine1: TnxServerEngine;
+    nxSession1: TnxSession;
     nxDatabase1: TnxDatabase;
     Table1: TnxTable;
     TableAdmin: TnxTable;
@@ -39,6 +39,7 @@ implementation
 
 uses
   DBConsts,  //Copy and Flush Tables
+  ucCodeSiteInterface,
   webApp, htWebApp, whdemo_ViewSource;
 
 
@@ -101,6 +102,7 @@ begin
     FilterOptions := [foCaseInsensitive];
     OnFilterRecord := Table1FilterRecord;
     TableName := 'manpref.nx1';
+    ReadOnly := True;
   end;
   Table1.IndexName := 'Prefix';
   TableAdmin := TnxTable.Create(Self);
@@ -108,7 +110,6 @@ begin
   TableAdmin.TableName := Table1.TableName;
   TableAdmin.Database := Table1.Database;
   TableAdmin.Filtered := False;
-  TableAdmin.IndexName := Table1.IndexName;
 end;
 
 procedure TDMNexus.DataModuleDestroy(Sender: TObject);
@@ -134,7 +135,17 @@ begin
       nxDatabase1.AliasPath := getHtDemoDataRoot + 'whDPrefix';
       nxDatabase1.Active := True;
       Table1.Filtered := True;
-      Table1.Open;
+      try
+        Table1.Open;
+      except
+        on E: Exception do
+        begin
+          LogSendException(E);
+          Table1.IndexName := '';
+          Table1.Open;
+        end;
+      end;
+      TableAdmin.IndexName := Table1.IndexName;
       TableAdmin.Open;
       RefreshWebActions(Self);
 

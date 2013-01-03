@@ -21,18 +21,15 @@ mcManPrefCaptionsLast=Last Page
 </td><td>&nbsp;&nbsp;</td><td width=90%>
 
 (~IF|_bAdminMode|
-<form method=post action="(~where~).ckb">
+<form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~).ckb">
 <b>Administrator View of BoolVarsPending records:</b><br>
 (~INPUTCHECKBOX|bShowAll~) Show ALL records
 <input type=submit value="Toggle">
 </form>
 ||
 <b>Quick Alphabetical Search:</b>
-<br>&#x2758;
- <a href="(~DynURL.ToSessionIDW~)1">1</a> &#x2758;
- <a href="(~DynURL.ToSessionIDW~)2">2</a> &#x2758;
- <a href="(~DynURL.ToSessionIDW~)3">3</a> 
-(~WebDBAlphabet.alphabet~)
+<br>
+&#x2758; <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
 (~WebDBAlphabet.execute|~)
 ~)
 //

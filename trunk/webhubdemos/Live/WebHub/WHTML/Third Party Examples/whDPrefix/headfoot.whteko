@@ -67,14 +67,8 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
 
 <whdroplet name="drSharedHead">
 (~MATCH|(~PageSetting.secure~)=1|(~chCheckpoint~)~)
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
-    <style type="text/css">
-    body {
-      font-family:Verdana, Arial, Helvetica, sans-serif;
-      background-color:white;
-    }
-    table {empty-cells: show;}
-    </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+  <link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdprefix.css" />
 </whdroplet>
 
 <whdroplet name="chPageHeader">

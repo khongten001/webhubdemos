@@ -48,8 +48,7 @@ inherited fmWhActions: TfmWhActions
         Left = 263
         Top = 6
         Width = 193
-        Action = ActDeleteStatusD
-        Enabled = False
+        Action = ActCreateIndices
         MinWidth = 28
       end
     end
