@@ -42,7 +42,7 @@ Administration Shortcuts:
 </p>
 <p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a NexusDB table.<br>
-Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
+Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a><br/>
 (~JUMP|(~PageID~),#top|Return to top~)</p>
 (~drLinkW3Org~)
 </div>
@@ -74,7 +74,7 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by HREF Tools Corp.<br>
 <whdroplet name="chPageHeader">
 <html (~mcxmlns~)>
 <head>
-	<title>Delphi Prefix Registry</title>
+	<title>(~PageDesc~)</title>
 	(~drSharedHead~)
 </head>
 <body>

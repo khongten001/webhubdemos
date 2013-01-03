@@ -9,7 +9,7 @@ mcLangFra=fr
 mcLangRus=ru
 </whmacros>
 
-<whpage pageid="pgregister" desc="Registration Form">
+<whpage pageid="pgregister" desc="Registration Form for New Prefix">
 (~mcDocTypeHTML~)
 <html (~mcxmlns~)>
 <head>

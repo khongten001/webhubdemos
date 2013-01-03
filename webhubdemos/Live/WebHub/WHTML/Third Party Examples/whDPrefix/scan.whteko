@@ -54,11 +54,14 @@ mcManPrefCaptionsLast=Last Page
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
 </span>
 <hr/>
+<div itemscope itemtype="http://schema.org/Table">
+  <meta itemprop="mainContentOfPage" content="true"/>
 (~ManPref.execute|Approved~)
+</div>
 ~)
 </whdroplet>
 
-<whpage pageid="pgprefix" desc="pgPrefix">
+<whpage pageid="pgprefix" desc="Delphi Prefix Registry">
 <whprep>
 (~CLEAR|_bAdminMode~)
 (~NOTASSIGNED|wdsManPref.Keys|(~SET|wdsManPref.Keys=A~)~)
@@ -66,7 +69,7 @@ mcManPrefCaptionsLast=Last Page
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
 <head>
-<title>Delphi Prefix Registry</title>
+<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with (~Command~)~)</title>
 	(~drSharedHead~)
 
   <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURLConfig.Delimiter~)(~DynURLConfig.Delimiter~)(~Command~)~)" />
