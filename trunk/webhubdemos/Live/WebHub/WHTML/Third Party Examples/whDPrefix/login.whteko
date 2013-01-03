@@ -20,7 +20,7 @@ component to make the Usr* properties active. -->
 </whdroplet>
 
 
-<whpage pageid="pglogin" desc="-Login page for Administrators">
+<whpage pageid="pglogin" desc="-Login Page for Administrators">
 <html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
