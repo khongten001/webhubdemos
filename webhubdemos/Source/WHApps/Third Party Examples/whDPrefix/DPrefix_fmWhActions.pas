@@ -1,9 +1,18 @@
-/////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1999-2012 HREF Tools Corp.  All Rights Reserved.         //
-//  Author: Ann Lynnworth                                       March 1999 //
-/////////////////////////////////////////////////////////////////////////////
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 1999-2013 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of the Delphi Prefix Registry.             * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
 
-unit DPrefix_fmWhActions; // custom web actions for the Delphi Prefix program.
+unit DPrefix_fmWhActions; // custom web actions with GUI
 
 interface
 
@@ -17,7 +26,8 @@ uses
 
 type
   TfmWhActions = class(TutParentForm)
-    ToolBar: TtpToolBar;    tpComponentPanel2: TtpComponentPanel;
+    ToolBar: TtpToolBar;   
+    tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
     wdsManPref: TwhbdeSource;
     DataSource1: TDataSource;
@@ -84,8 +94,8 @@ var
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxDB,
-//  DBConsts,  //Copy and Flush Tables
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
   ucFile,   //ForceDirectories insures that a legal path exists
@@ -150,7 +160,29 @@ begin
   inherited;
   DMNexus.TableAdmin.Close;
   DMNexus.Table1.Close;
+  try
+    DMNexus.Table1.DeleteIndex('Prefix');
+  except
+    on E: Exception do
+    begin
+      LogSendException(E);
+    end;
+  end;
   DMNexus.Table1.AddIndex('Prefix', 'Mpf Prefix', [], 'Mpf Prefix');
+  MsgInfoOk('Prefix index has been created');
+  (*try
+    DMNexus.Table1.DeleteIndex('MpfID');
+  except
+    on E: Exception do
+    begin
+      LogSendException(E);
+    end;
+  end;*)
+  // NexusDB does not allow deletion when there is a primary key ??!!
+  //DMNexus.Table1.AddIndex('MpfID', 'MpfID', [ixPrimary, ixUnique], '', '', True);
+  MsgInfoOk('Indexing complete.');
+  DMNexus.TableAdmin.Open;
+  DMNexus.Table1.Open;
 end;
 
 procedure TfmWhActions.ActDeleteStatusDExecute(Sender: TObject);
@@ -394,41 +426,63 @@ begin
 end;
 
 procedure TfmWhActions.waAddExecute(Sender: TObject);
+const cFn = 'waAddExecute';
 var
-  PriorIndex, aFieldname:string;
-  i,iKey:integer;
+  aFieldname: string;
+  i,iKey: integer;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  //example literal syntax: Mpf EMail=info@href.com
-  with TwhWebActionEx(Sender), DMNexus.Table1 do
+
+  iKey := 0;
+  with DMNexus.TableAdmin do
   begin
-    Filtered:=false;
-    //if IndexName<>'' then begin
-    //close;
-    PriorIndex:=IndexName;
-    IndexName:='';  // must be by primary key to get next id
-    //open;
-    //end;
-    Last;
-    iKey:=fieldByName('MpfID').asInteger+1; //autoinc would help..
-    Append;
+    First;
+    while not EOF do
+    begin
+      if FieldByName('MpfID').AsInteger > iKey then
+        iKey := FieldByName('MpfID').AsInteger;
+      Next;
+    end;
+  end;
+
+  Inc(iKey);
+  CSSend('iKey', S(iKey));
+
+  with TwhWebActionEx(Sender), DMNexus.TableAdmin do
+  begin
+    Filtered := False;
+    Insert;
     FieldByName('MpfID').asInteger:=iKey;
-    FieldByName('Mpf Status').asString:='P';
+    FieldByName('Mpf Status').asString:='P';  // pending
     FieldByName('Mpf Date Registered').asDateTime:=now;
     FieldByName('Mpf Notes').asString :=
       pWebApp.Session.TxtVars.List['txtComment'].text;
-    for i:=0 to pred(pWebApp.Session.StringVars.count) do begin
+    CSSend('Mpf Notes', FieldByName('Mpf Notes').asString);
+
+    for i:=0 to Pred(pWebApp.Session.StringVars.count) do
+    begin
+      //example stringvar: Mpf EMail=info@href.com
       aFieldName:=LeftOfEqual(pWebApp.Session.StringVars[i]);
+      CSSend(S(i) + ' aFieldName', aFieldName);
       if StartsWith(aFieldName,'Mpf ') //ucstring
       and (FindField(aFieldName)<>nil) then
         FieldByName(aFieldName).asString :=
           RightOfEqual(pWebApp.Session.StringVars[i]);
-      end;
-    Post;
-    //Flush(Table1);
-    IndexName:= PriorIndex;
-    Filtered:=true;
     end;
+    if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
+      FieldByName('Mpf Webpage').AsString := Copy(
+        FieldByName('Mpf Webpage').AsString, 8, MaxInt);
+    try
+      Post;
+    except
+      on E: Exception do
+      begin
+        LogSendException(E);
+      end;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhActions.waAdminDeleteExecute(Sender: TObject);
