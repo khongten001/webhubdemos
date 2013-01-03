@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration200811b.xsd">
   <Startup>
@@ -13,7 +13,7 @@
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-	  <Module name="w3validation" status="enabled" />
+          <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
@@ -43,15 +43,15 @@
       <AutoPageHeader dropletName="None"/>
     </PageGeneration>
     <Situations>
-      <FrontDoor pageID="pgHomepage"/>
+      <FrontDoor pageID=""/>
       <Home pageID="pgHomepage"/>
       <Invalid pageID="pgHomePage"/>
     </Situations>
     <Static>
-      <AppRoot value="/" />
+      <AppRoot value="/"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="" />
+      <WebRobotIniFilespec value=""/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="DEMOS"/>
       <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
     </StreamCatcherInterface>
