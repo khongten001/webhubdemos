@@ -11,7 +11,6 @@ mcManPrefCaptionsFirst=First Page
 mcManPrefCaptionsPrior=Prior Page
 mcManPrefCaptionsNext=Next Page
 mcManPrefCaptionsLast=Last Page
-mcSlashSlash=//
 </whmacros>
 
 <whdroplet name="chScan">
@@ -72,7 +71,7 @@ mcSlashSlash=//
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
 
-  <link rel="canonical" href="(~Request.Scheme~):(~mcSlashSlash~)(~Request.Host~)/pgPrefix(~NOMATCH|"(~Command~)"=""|(~mcSlashSlash~)(~Command~)~)" />
+  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgPrefix(~NOMATCH|"(~Command~)"=""|(~DynURLConfig.Delimiter~)(~DynURLConfig.Delimiter~)(~Command~)~)" />
 
 	<style>
 	#approvedPrefixesTable th {color: Crimson;}
