@@ -25,6 +25,7 @@ component to make the Usr* properties active. -->
 <head>
 <title>Delphi Prefix Registry</title>
 (~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+  <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
 
@@ -54,7 +55,7 @@ component to make the Usr* properties active. -->
 </body></html>
 </whpage>
 
-<whpage pageid="PGLOGINCONFIRM" desc="pgLoginConfirm" exportfilename="" remap="">
+<whpage pageid="pgLoginConfirm" desc="-confirm">
 <html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
