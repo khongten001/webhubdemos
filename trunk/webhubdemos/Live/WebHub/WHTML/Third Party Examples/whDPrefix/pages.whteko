@@ -1,12 +1,4 @@
-﻿<whteko designmode="code" designpage="ERRORS">
-
-<whpage pageid="ERRORS" desc="ERRORS" exportfilename="" remap="">
-(~PAGE|pgHomePage~)
-</whpage>
-
-<whpage pageid="INDEX" desc="INDEX" exportfilename="" remap="">
-(~PAGE|pgHomePage~)
-</whpage>
+﻿<whteko designmode="code">
 
 <whpage pageid="pgwebeye" desc="-For WebEye Robot Checkup">
 (~FLUSH|~)
