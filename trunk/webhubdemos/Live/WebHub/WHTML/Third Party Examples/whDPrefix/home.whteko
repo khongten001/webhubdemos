@@ -7,6 +7,7 @@
 <head>
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
+  <link rel="canonical" href="(~DynURL.ToPageID~)" />
 </head>
 <body>
 
