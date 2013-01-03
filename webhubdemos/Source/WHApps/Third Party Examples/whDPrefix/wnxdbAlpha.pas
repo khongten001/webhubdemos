@@ -124,7 +124,7 @@ begin
   a2 := WebApp.PageID;
   if a2='' then a2:='PageID';
 
-  for i:=ord('A') to ord('Z') do
+  for i:=ord('a') to ord('z') do  // lowercase for URLs
   begin
     if chr(i)=a0 then
       a3:=fLinkMacro   // option for GO or HIDE on current letter
@@ -132,7 +132,7 @@ begin
       a3:='JUMP';      // otherwise we better use JUMP... linking to same page!
     a1:=a1+ MacroStart + a3+'|'+a2+','+chr(i)+ '|' +chr(i)+ MacroEnd + ' ' +
       cLightBar + ' ';
-    if (i<ord('Z')) AND ((i-ord('A')+1) mod fNumPerRow = 0) then
+    if (i<ord('z')) AND ((i-ord('a')+1) mod fNumPerRow = 0) then
       a1:=a1+'<br />' + cLightBar + ' ';
     end;
   fAlphabet:=a1;
