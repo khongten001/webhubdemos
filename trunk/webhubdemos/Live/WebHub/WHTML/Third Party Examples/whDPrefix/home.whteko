@@ -9,99 +9,101 @@
 	(~drSharedHead~)
   <link rel="canonical" href="http://delphiprefix.href.com/" />
 </head>
-<body>
+<body itemscope itemtype="http://www.schema.org/WebPage">
+<meta itemprop="audience" content="Delphi developers" />
 
-(~JUMP|pgPrefix|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="DPR" />~)
-<br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
+(~JUMP|pgPrefix|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="DPR" />~)
+<br><span style="font-size:smaller; color: black;">
 (~IF|_bLoginOk|(~GOR|pgAdminMenu|Administer~) | ~)
 (~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</FONT>
+</span>
 <div style="text-align:center;"><hr style="width:72%"></div>
-<FONT SIZE="+1">Welcome to the Delphi Prefix Registry</FONT>
-<br>&nbsp;
+<h1>Welcome to the Delphi Prefix Registry</h1>
 
 <center>
 <table style="width:72%;"><tr>
-<td><FONT SIZE=-1 COLOR="#000000">
+<td style="color:#000000; font-size:smaller;">
 
 <IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="delphi2" />
 <IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
 
-The growing number of components
+<p>The growing number of components
 and component suppliers has given rise to conflicts in component 
-<FONT COLOR="#FF0000">NAMES.&nbsp;</FONT>
+<span style="color:#FF0000;">NAMES.</span></p>
 
 <p>If you publish components, then please register your preferences
-here and add a link to the http://www.delphiprefixregistry.net
-from your site.
+here and add a link to the http://delphiprefix.href.com
+from your site.</p>
 
-<P>The DELPHI PREFIX REGISTRY (DPxR) has been designed
+<p>The DELPHI PREFIX REGISTRY (DPxR) has been designed
 to LIST component creators, the PREFIXES they use and contact details.
+(EMail addresses are no longer shown.)</p>
 
-<P>DPxR gives no warranty express or implied on any component or vendor
+<p>DPxR gives no warranty express or implied on any component or vendor
 that registers their prefix preferences here. <p>
 
 
 (~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126 BORDER=0 align=left vspace=5 alt="DPR" />~)
 
-<P>In no way do we wish to impose component naming upon ANYONE,
+<p>In no way do we wish to impose component naming upon ANYONE,
 we simply provide the information to help you to choose&nbsp; component
-names which do not conflict with those in use by other deveopers.
+names which do not conflict with those in use by other developers.</p>
 
-<P><FONT COLOR="#009900">
+<p style="color:#009900;">
 There is nothing more soul destroying for either application developer or component 
 developer than to find that when loaded into the delphi ide there is a naming conflict.
-</FONT>
+</p>
 
-<P>The inspiration for this site came from seeing a wonderful calendar component,
+<p>The inspiration for this site came from seeing a wonderful calendar component,
 downloading it and not being able to install the package because it had ONE unit 
 which used the EXACT same name as a very popular Email Suite which we use.
 (the wonderful calendar now sits quite happily in my ide and i am about to register it
- - all's well that ends well - thanks to aguado)
+ - all's well that ends well - thanks to aguado)</p>
 
-<P>If every developer used a prefix from AAA through ZZZ then most problems would be solved -
+<p>If every developer used a prefix from AAA through ZZZ then most problems would be solved -
 so instead of plain DBSORTGRID use ADQDBSORTGRID, and check here beforehand to 
-see if anyone else uses ADQ first!
+see if anyone else uses ADQ first!</p>
 
-<P>The whole aim of this site is to detect current naming conflicts 
+<p>The whole aim of this site is to detect current naming conflicts 
 and play some part in preventing future conflicts. 
-"Space for Intelligent Collaboration"
+"Space for Intelligent Collaboration"</p>
 
-<P>It is not always necessary to adopt
+<p>It is not always necessary to adopt
 a prefix to maintain unique component naming - many established component
 builders have used the uniqueness of the task that their component performs
-as the basis of naming.
+as the basis of naming.</p>
 
-<P>At the end of the day what matters is that names are
-<FONT COLOR="#993366">UNIQUE</FONT>
-and that components can live harmony within the IDE.
+<p>At the end of the day what matters is that names are
+<span style="color:#993366;">UNIQUE</span>
+and that components can live harmony within the IDE.</p>
 
-<P>We shall be logging all known major components and will advise all parties 
+<p>We shall be logging all known major components and will advise all parties 
 should a conflict be found. It is then up to the parties to decide whether their 
-components are likely to reside on a system one day and what action needs to be taken.
+components are likely to reside on a system one day and what action needs to be taken.</p>
 
-<P><FONT COLOR="#CC6600">
+<p style="color:#CC6600;">
 Nobody has a divine right to assign or control component names,
 and we do not lay down the law.
-</FONT>
+</p>
 
 <IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="Delphi" />
 <IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
 
-<P><FONT COLOR="#009900">
+<p style="color:#009900">
 Freedom of choice Rules!
-</FONT>
+</p>
 
-<P>Should you have any comments, then please contact me.
+<p>Should you have any comments, then please contact me.</p>
 
 <p>Steven Healey</p>
 <p>As it turns out, Steven Healey is no longer working on 
 this web site but we have decided to keep it going as 
-delphiprefix.href.com.  <a href="http://www.href.com/contact">Contact Webmaster</a> as of July-2009</p>
+delphiprefix.href.com.  <a href="http://www.href.com/contact">Contact Webmaster</a> as of July-2009<br/>
+Volunteers welcome!
+</p>
 
-</FONT>
 </td></tr></table>
 </center>
 (~drSharedFooter~)
