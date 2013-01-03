@@ -70,8 +70,8 @@ mcManPrefCaptionsLast=Last Page
 <head>
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
-
-  <link rel="canonical" href="(~DynURL.RawToActiveAuthority~)(~DynURL.ToPageID~)(~NOMATCH|"(~Command~)"=""|//(~Command~)~)" />
+<!-- (~DynURL.RawToActiveAuthority~) -->
+  <link rel="canonical" href="(~DynURL.ToAppID~)pgPrefix(~NOMATCH|"(~Command~)"=""|//(~Command~)~)" />
 
 	<style>
 	#approvedPrefixesTable th {color: Crimson;}
