@@ -1,6 +1,5 @@
-# robots.txt for http://www.delphiprefixregistry.net
+# robots.txt for http://delphiprefix.href.com
 #
 User-agent: *
 
-Allow: /index-robots.htm
-Disallow: /
+Allow: /
