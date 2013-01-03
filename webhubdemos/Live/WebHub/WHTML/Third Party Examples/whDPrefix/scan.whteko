@@ -55,7 +55,6 @@ mcManPrefCaptionsLast=Last Page
 </span>
 <hr/>
 <div itemscope itemtype="http://schema.org/Table">
-  <meta itemprop="mainContentOfPage" content="true"/>
 (~ManPref.execute|Approved~)
 </div>
 ~)
