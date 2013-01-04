@@ -26,6 +26,8 @@ inherited fmWhActions: TfmWhActions
       Width = 960
       BorderWidth = 5
       TabOrder = 0
+      ExplicitLeft = 141
+      ExplicitTop = 0
       object tpToolButton1: TtpToolButton
         Left = 11
         Top = 6
@@ -35,21 +37,21 @@ inherited fmWhActions: TfmWhActions
         LeaveSpace = True
         MinWidth = 28
       end
-      object tpToolButton2: TtpToolButton
-        Left = 172
+      object tpToolButton5: TtpToolButton
+        Left = 177
         Top = 6
-        Width = 90
-        Caption = 'Create IDs'
-        Enabled = False
-        OnClick = tpToolButton2Click
+        Width = 119
+        Action = ActCreateIndices
+        LeaveSpace = True
         MinWidth = 28
       end
-      object tpToolButton5: TtpToolButton
-        Left = 263
+      object cbShowOnlyPending: TCheckBox
+        Left = 344
         Top = 6
-        Width = 193
-        Action = ActCreateIndices
-        MinWidth = 28
+        Width = 201
+        Height = 28
+        Caption = 'Show Only Pending'
+        TabOrder = 0
       end
     end
     object tpComponentPanel2: TtpComponentPanel
@@ -211,12 +213,6 @@ inherited fmWhActions: TfmWhActions
   object dsAdmin: TDataSource
     Left = 78
     Top = 222
-  end
-  object waAdd: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waAddExecute
-    Left = 134
-    Top = 294
   end
   object waAdminDelete: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]

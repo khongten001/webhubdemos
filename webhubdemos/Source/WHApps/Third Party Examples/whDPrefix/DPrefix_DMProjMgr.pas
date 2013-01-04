@@ -65,7 +65,7 @@ uses
   ucLogFil,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
   dmWHApp, whAppOut,
-  DPrefix_dmNexus,
+  DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
   DPrefix_fmWhActions, whsample_EvtHandlers;
 
@@ -117,6 +117,9 @@ begin
   //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
     Application.CreateForm(TDMNexus, DMNexus);
 
+  //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
+    Application.CreateForm(TDMDPRWebAct, DMDPRWebAct);
+
   { Special Comment for DataModules - do not delete!
 
     This comment is used by the WebHub Wizard to position non-gui CreateForm
@@ -132,6 +135,8 @@ begin
   InitCoreWebHubDataModule;
   InitStandardWHModules;
   Continue := DMNexus.Init(ErrorText);
+  if Continue then
+    Continue := DMDPRWebAct.Init(ErrorText);
 end;
 
 procedure TDMSampleForWHProject.ProjMgrGUICreate(Sender: TtpProject;

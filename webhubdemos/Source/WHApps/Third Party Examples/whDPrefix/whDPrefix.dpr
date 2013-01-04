@@ -18,7 +18,8 @@ uses
   DPrefix_fmWhActions in 'DPrefix_fmWhActions.pas' {fmWhActions},
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
-  whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule};
+  whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
+  DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule};
 
 (* search path for debugging
 k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
