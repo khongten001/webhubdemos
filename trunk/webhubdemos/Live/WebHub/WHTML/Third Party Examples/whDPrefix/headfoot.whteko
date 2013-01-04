@@ -8,8 +8,7 @@ mcxmlns=xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLa
 </whmacros>
 
 <whdroplet name="chAdminFooterLinks">
-<!--- from headfoot--->
-<p>
+<br/><br/>
 Administration Shortcuts: 
 [ (~GOR|pgAdminMenu|Menu~) ] &nbsp;
 [ (~GOR|pgAdminBrowse|Browse~) ] &nbsp;
@@ -22,14 +21,11 @@ Administration Shortcuts:
 </whdroplet>
 
 <whdroplet name="chNavigation">
-<!--- from headfoot--->
 [ (~GO|pgHomepage|Home~) ] &nbsp;
-[ (~GOR|pgPrefix|View the Registry~) ] &nbsp;
-[ (~GOR|pgRegister|Register your own Prefix~) ] &nbsp;
+[ (~GO|pgPrefix|View the Registry~) ] &nbsp;
+[ (~GO|pgRegister|Register your own Prefix~) ] &nbsp;
 [ (~GO|pgThanks|Credits~) ] &nbsp;
-// if BoolVar[name]=true | thenexpression || elseexpression
-(~IF|_bLoginOk|(~chAdminFooterLinks~)
-|| [ (~GOR|pgLogin|Login~) ]~)
+(~IF|_bLoginOk|(~chAdminFooterLinks~)~)
 </whdroplet>
 
 <whdroplet name="drSharedFooter">
@@ -37,7 +33,7 @@ Administration Shortcuts:
 <hr style="width:72%;"/>
 <div style="text-align:center;">
 (~chNavigation~)
-<p>
+<p itemscope itemtype="http://www.schema.org/WPAdBlock">
 (~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
 </p>
 <p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
