@@ -31,7 +31,6 @@ data: (~INPUTTEXT|data,30~)<br/>
 </whpage>
 
 <whpage pageid="pgCountPending" desc="-Remote monitor of pending requests">
-</whpage>
 <html (~mcxmlns~)>
 <head>
   <title>(~PageDesc~)</title>
@@ -43,5 +42,6 @@ Blink (~appid~), (~PageID~)
 <p>Count = (~waCountPending.Execute|~)</p>
 </body>
 </html>
+</whpage>
 
 </whteko>
