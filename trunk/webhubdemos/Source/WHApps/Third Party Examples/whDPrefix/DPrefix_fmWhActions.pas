@@ -312,7 +312,7 @@ end;
 procedure TfmWhActions.WebAppOutputClose(Sender: TObject);
 begin
   inherited;
-  pWebApp.Response.Headers.Add('Cache-Control: no-cache');
+  // be careful not to add something to ALL pages that is only suitable for SOME pages
 end;
 
 procedure TfmWhActions.tpToolButton1Click(Sender: TObject);
