@@ -11,6 +11,7 @@ uses
   whappin in 'h:\whappin.pas' {fmAppIn},
   whappout in 'h:\whappout.pas' {fmAppOut},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
+  whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   wnxdbAlpha in 'wnxdbAlpha.pas',
   whcfg_App in 'h:\whcfg_App.pas',
@@ -18,7 +19,6 @@ uses
   DPrefix_fmWhActions in 'DPrefix_fmWhActions.pas' {fmWhActions},
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
-  whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule};
 
 (* search path for debugging

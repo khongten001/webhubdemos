@@ -56,6 +56,7 @@ type
     ActDeleteStatusD: TAction;
     ActCreateIndices: TAction;
     cbShowOnlyPending: TCheckBox;
+    ActCountPending: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -74,6 +75,7 @@ type
     procedure ActUpcaseStatusExecute(Sender: TObject);
     procedure ActDeleteStatusDExecute(Sender: TObject);
     procedure ActCreateIndicesExecute(Sender: TObject);
+    procedure ActCountPendingExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -150,6 +152,12 @@ begin
       Next;
     end;
   end;
+end;
+
+procedure TfmWhActions.ActCountPendingExecute(Sender: TObject);
+begin
+  inherited;
+  MsgInfoOk('Number Pending = ' + IntToStr(DMNexus.CountPending));
 end;
 
 procedure TfmWhActions.ActCreateIndicesExecute(Sender: TObject);

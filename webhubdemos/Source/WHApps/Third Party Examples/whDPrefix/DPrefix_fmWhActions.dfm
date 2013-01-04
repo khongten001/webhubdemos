@@ -26,8 +26,6 @@ inherited fmWhActions: TfmWhActions
       Width = 960
       BorderWidth = 5
       TabOrder = 0
-      ExplicitLeft = 141
-      ExplicitTop = 0
       object tpToolButton1: TtpToolButton
         Left = 11
         Top = 6
@@ -41,7 +39,7 @@ inherited fmWhActions: TfmWhActions
         Left = 177
         Top = 6
         Width = 119
-        Action = ActCreateIndices
+        Action = ActCountPending
         LeaveSpace = True
         MinWidth = 28
       end
@@ -242,6 +240,10 @@ inherited fmWhActions: TfmWhActions
     object ActCreateIndices: TAction
       Caption = 'Create Indices'
       OnExecute = ActCreateIndicesExecute
+    end
+    object ActCountPending: TAction
+      Caption = 'Count Pending'
+      OnExecute = ActCountPendingExecute
     end
   end
 end
