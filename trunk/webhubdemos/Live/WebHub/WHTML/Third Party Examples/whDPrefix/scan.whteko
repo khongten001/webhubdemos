@@ -144,7 +144,7 @@ mcManPrefCaptionsLast=Last Page
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
 (~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
-(~NOMATCH|(~prefurl~)=""|<a target="_blank" href="(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
+(~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
 </tr>(~CLEAR|prefurl~)
 </whdroplet>
