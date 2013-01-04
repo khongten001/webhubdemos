@@ -56,25 +56,27 @@ component to make the Usr* properties active. -->
 </body></html>
 </whpage>
 
-<whpage pageid="pgLoginConfirm" desc="-confirm">
+<whpage pageid="pgLoginConfirm" desc="-Confirm Login">
+<whprep>
+(~REQUIRES|LoginUser|pgLogin~)
+(~REQUIRES|LoginPass|pgLogin~)
+</whprep>
 <html (~mcxmlns~)>
 <head>
 <title>Delphi Prefix Registry</title>
-(~MATCH|(~PageDefault.secure~)=1|(~chCheckpoint~)~)
+  (~drSharedHead~)
 </head>
 <body>
 
 <!--- confirm accuracy of log-in info using  the WebLogin component: -->
 (~WebLogin.execute|LoginUser,LoginPass,_bLoginOk~)
-(~IFNOT|BoolVar._bLoginOk|(~BOUNCE|PgLogin~)~)
-
-<!--- Boolean variables:<br /> -->
-<!--- (~BoolVars~) -->
+(~IFNOT|_bLoginOk|(~BOUNCE|pgLogin~)~)
 
 <!--- pass phrase: (~webLogin.UsrPassPhrase~) -->
 
 <!--- clear the user ID (name) & password immediately -->
-(~CLEAR|LoginPass,LoginUser~)
+(~CLEAR|LoginPass~)
+(~CLEAR|LoginUser~)
 
 <!--- and determine access level: -->
 (~MATCH|(~weblogin.UsrAccess~)=1|(~BOUNCE|PgAdminMenu~)~)
