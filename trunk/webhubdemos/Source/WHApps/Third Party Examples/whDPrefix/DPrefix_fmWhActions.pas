@@ -12,7 +12,7 @@
 { * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
 { ---------------------------------------------------------------------------- }
 
-unit DPrefix_fmWhActions; // custom web actions with GUI
+unit DPrefix_fmWhActions; // GUI
 
 interface
 
@@ -42,11 +42,9 @@ type
     GroupBox4: TGroupBox;
     WebDataForm: TwhbdeForm;
     waModify: TwhWebActionEx;
-    tpToolButton2: TtpToolButton;
     GroupBox5: TGroupBox;
     wdsAdmin: TwhbdeSource;
     dsAdmin: TDataSource;
-    waAdd: TwhWebActionEx;
     GroupBox6: TGroupBox;
     waAdminDelete: TwhWebActionEx;
     tpToolButton3: TtpToolButton;
@@ -57,6 +55,7 @@ type
     ActUpcaseStatus: TAction;
     ActDeleteStatusD: TAction;
     ActCreateIndices: TAction;
+    cbShowOnlyPending: TCheckBox;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -64,11 +63,9 @@ type
     procedure tpToolButton1Click(Sender: TObject);
     procedure waPrefixLinkExecute(Sender: TObject);
     procedure WebDataFormSetCommand(Sender: TObject; var Command: String);
-    procedure tpToolButton2Click(Sender: TObject);
     procedure WebDataFormField(Sender: TwhbdeForm; aField: TField;
       var Text, Value: String);
     procedure waModifyExecute(Sender: TObject);
-    procedure waAddExecute(Sender: TObject);
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -315,14 +312,22 @@ begin
   inherited;
   //use dis/en-ablecontrols!
   with DBGrid1 do
-    if DataSource=nil then begin
+    if DataSource=nil then
+    begin
       DataSource:=dsAdmin;
       DBNavigator1.DataSource:=dsAdmin;
-      end
-    else begin
+      if cbShowOnlyPending.Checked then
+        DMNexus.TableAdminOnlyPending
+      else
+        DMNexus.TableAdminUnfiltered;
+    end
+    else
+    begin
+      dsAdmin.DataSet.Filtered := False;
+      dsAdmin.DataSet.OnFilterRecord := nil;
       DataSource:=nil;
       DBNavigator1.DataSource:=nil;
-      end;
+    end;
 end;
 
 
@@ -358,33 +363,6 @@ begin
   // edit.key syntax does not work in v1.713 version of wbdeForm.pas. AML 22-Mar-1999
   //a1:=Command+'.'+a1;
   //Command:=a1;
-end;
-
-procedure TfmWhActions.tpToolButton2Click(Sender: TObject);
-var
-  i:integer;
-begin
-  //concept code... disabled for your own good.
-  exit;
-  //
-  if NOT askQuestionOk('Are you utterly sure that you want to create new ' +
-   'sequential IDs for the primary key field in the ManPref.db?') then
-    exit;
-  with DMNexus.Table1 do
-  begin
-    filtered:=false;
-    i:=1;
-    while true do begin
-      first;
-      if fields[0].asInteger>0 then break;
-      edit;
-      fields[0].asInteger:=i;
-      inc(i);
-      post;
-    end;
-    //Table1.Flush;
-    filtered:=true;
-    end;
 end;
 
 procedure TfmWhActions.WebDataFormField(Sender:TwhbdeForm;aField:TField;var Text,Value:String);
@@ -424,66 +402,6 @@ begin
     Post;
     //!!!Flush(TnxTable(DataSet));
     end;
-end;
-
-procedure TfmWhActions.waAddExecute(Sender: TObject);
-const cFn = 'waAddExecute';
-var
-  aFieldname: string;
-  i,iKey: integer;
-begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-  inherited;
-
-  iKey := 0;
-  with DMNexus.TableAdmin do
-  begin
-    First;
-    while not EOF do
-    begin
-      if FieldByName('MpfID').AsInteger > iKey then
-        iKey := FieldByName('MpfID').AsInteger;
-      Next;
-    end;
-  end;
-
-  Inc(iKey);
-  CSSend('iKey', S(iKey));
-
-  with TwhWebActionEx(Sender), DMNexus.TableAdmin do
-  begin
-    Filtered := False;
-    Insert;
-    FieldByName('MpfID').asInteger:=iKey;
-    FieldByName('Mpf Status').asString:='P';  // pending
-    FieldByName('Mpf Date Registered').asDateTime:=now;
-    FieldByName('Mpf Notes').asString :=
-      pWebApp.Session.TxtVars.List['txtComment'].text;
-    CSSend('Mpf Notes', FieldByName('Mpf Notes').asString);
-
-    for i:=0 to Pred(pWebApp.Session.StringVars.count) do
-    begin
-      //example stringvar: Mpf EMail=info@href.com
-      aFieldName:=LeftOfEqual(pWebApp.Session.StringVars[i]);
-      CSSend(S(i) + ' aFieldName', aFieldName);
-      if StartsWith(aFieldName,'Mpf ') //ucstring
-      and (FindField(aFieldName)<>nil) then
-        FieldByName(aFieldName).asString :=
-          RightOfEqual(pWebApp.Session.StringVars[i]);
-    end;
-    if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
-      FieldByName('Mpf Webpage').AsString := Copy(
-        FieldByName('Mpf Webpage').AsString, 8, MaxInt);
-    try
-      Post;
-    except
-      on E: Exception do
-      begin
-        LogSendException(E);
-      end;
-    end;
-  end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhActions.waAdminDeleteExecute(Sender: TObject);

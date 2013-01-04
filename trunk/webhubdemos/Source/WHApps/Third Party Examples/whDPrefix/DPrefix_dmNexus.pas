@@ -14,7 +14,9 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    procedure Table1FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure TableFilterPendingApprovedRecord(DataSet: TDataSet;
+      var Accept: Boolean);
+    procedure TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
@@ -25,6 +27,9 @@ type
     TableAdmin: TnxTable;
     procedure CopyTable(srcTbl:TnxTable; const Destination: string);
     function Init(out ErrorText: string): Boolean;
+    procedure TableAdminOnlyPending;
+    procedure TableAdminUnfiltered;
+    function CountPending: Integer;
   end;
 
 var
@@ -67,6 +72,19 @@ begin
      *)
 end;
 
+function TDMNexus.CountPending: Integer;
+begin
+  TableAdminOnlyPending;
+  Result := 0;
+  TableAdmin.First;
+  while NOT TableAdmin.EOF do
+  begin
+    inc(Result);
+    TableAdmin.Next;
+  end;
+  TableAdminUnfiltered;
+end;
+
 procedure TDMNexus.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
@@ -100,7 +118,7 @@ begin
     Database := nxDatabase1;
     Filtered := True;
     FilterOptions := [foCaseInsensitive];
-    OnFilterRecord := Table1FilterRecord;
+    OnFilterRecord := TableFilterPendingApprovedRecord;
     TableName := 'manpref.nx1';
     ReadOnly := True;
   end;
@@ -158,7 +176,30 @@ begin
   Result := FlagInitDone;
 end;
 
-procedure TDMNexus.Table1FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+procedure TDMNexus.TableAdminOnlyPending;
+begin
+  with TableAdmin do
+  begin
+    if Filtered then
+      Filtered := False;
+    OnFilterRecord := TableFilterPending;
+    Filtered := True;
+  end;
+end;
+
+procedure TDMNexus.TableAdminUnfiltered;
+begin
+  TableAdmin.Filtered := False;
+  TableAdmin.OnFilterRecord := nil;
+end;
+
+procedure TDMNexus.TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
+begin
+  Accept := (DataSet.FieldByName('Mpf Status').AsString = 'P');
+end;
+
+procedure TDMNexus.TableFilterPendingApprovedRecord(DataSet: TDataSet;
+  var Accept: Boolean);
 var
   aStatus: string;
 begin
