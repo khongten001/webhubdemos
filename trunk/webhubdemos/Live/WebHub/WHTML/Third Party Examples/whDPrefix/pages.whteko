@@ -27,7 +27,21 @@ data: (~INPUTTEXT|data,30~)<br/>
 </form>
 
 </body>
-</html><!--- do not send the page footer with the link exchange hit counter! -->(~CLOSE|~)
+</html>
 </whpage>
+
+<whpage pageid="pgCountPending" desc="-Remote monitor of pending requests">
+</whpage>
+<html (~mcxmlns~)>
+<head>
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+Blink (~appid~), (~PageID~)
+
+<h2>Pending Prefix Requests</h2>
+<p>Count = (~waCountPending.Execute|~)</p>
+</body>
+</html>
 
 </whteko>

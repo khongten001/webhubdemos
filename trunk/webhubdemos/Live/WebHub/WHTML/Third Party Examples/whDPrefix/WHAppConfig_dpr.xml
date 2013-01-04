@@ -64,6 +64,7 @@
       <File id="f06" filename="pages.whteko"/>
       <File id="f07" filename="register.whteko"/>
       <File id="f08" filename="scan.whteko"/>
+      <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
