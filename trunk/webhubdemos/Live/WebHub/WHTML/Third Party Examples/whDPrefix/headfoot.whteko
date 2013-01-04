@@ -37,7 +37,7 @@ Administration Shortcuts:
 (~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
 </p>
 <p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
-All data is stored in a NexusDB table.<br>
+All data is stored in a <a target="_blank" href="http://www.nexusdb.com/">NexusDB</a> table.<br>
 Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a><br/>
 (~JUMP|(~PageID~),#top|Return to top~)</p>
 (~drLinkW3Org~)
