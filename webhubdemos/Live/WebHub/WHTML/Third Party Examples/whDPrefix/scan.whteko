@@ -61,6 +61,11 @@ mcManPrefCaptionsLast=Last Page
 </whdroplet>
 
 <whpage pageid="pgprefix" desc="Delphi Prefix Registry">
+<whpagesettings>
+googlesitemap=include
+googlechangefreq=monthly
+googlepriority=0.7
+</whpagesettings>
 <whprep>
 (~CLEAR|_bAdminMode~)
 (~NOTASSIGNED|wdsManPref.Keys|(~SET|wdsManPref.Keys=A~)~)

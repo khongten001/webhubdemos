@@ -2,6 +2,11 @@
   designpage="pghomepage">
 
 <whpage pageid="pghomepage" desc="Delphi Prefix Registry Home" exportfilename="" remap="">
+<whpagesettings>
+googlesitemap=include
+googlechangefreq=yearly
+googlepriority=0.9
+</whpagesettings>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
 <head>
