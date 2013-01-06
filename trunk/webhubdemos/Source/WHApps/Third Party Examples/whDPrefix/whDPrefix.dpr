@@ -13,6 +13,7 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
+  whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
   wnxdbAlpha in 'wnxdbAlpha.pas',
   whcfg_App in 'h:\whcfg_App.pas',
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
