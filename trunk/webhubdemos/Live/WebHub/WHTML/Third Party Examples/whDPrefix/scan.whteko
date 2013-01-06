@@ -76,7 +76,7 @@ googlepriority=0.7
 <title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with (~Command~)~)</title>
 	(~drSharedHead~)
 
-  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURLConfig.Delimiter~)(~DynURLConfig.Delimiter~)(~Command~)~)" />
+  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURLConfig.Delimiter~)0(~DynURLConfig.Delimiter~)(~Command~)~)" />
 
 	<style>
 	#approvedPrefixesTable th {color: Crimson;}
