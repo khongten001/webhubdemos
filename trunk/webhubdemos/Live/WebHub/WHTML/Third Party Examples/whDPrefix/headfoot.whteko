@@ -36,10 +36,13 @@ Administration Shortcuts:
 <p itemscope itemtype="http://www.schema.org/WPAdBlock">
 (~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
 </p>
-<p style="color:#666667; font-size: smaller;">Running (~version~) compiled with (~CentralInfo.PascalCompilerCode~). <br>
+<p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
+Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
+compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a <a target="_blank" href="http://www.nexusdb.com/">NexusDB</a> table.<br>
-Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a><br/>
-(~JUMP|(~PageID~),#top|Return to top~)</p>
+Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a>
+</p>
+<p>Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webrobot||human~) --></p>
 (~drLinkW3Org~)
 </div>
 </whdroplet>
