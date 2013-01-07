@@ -69,7 +69,9 @@ type
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxdb, // TnxTable
+  ucCodeSiteInterface,
   whMacroAffixes;
 
 constructor TWebnxdbAlphabet.Create(AOwner: TComponent);
@@ -114,10 +116,12 @@ begin
 end;
 
 function TWebnxdbAlphabet.getAlphabet;
+const cFn = 'getAlphabet';
 var
   a0,a1,a2,a3: String;
   i:integer;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   a0:=DefaultsTo(Command,HtmlParam);
   a1:=fSeparator + ' ';
   Assert(assigned(WebApp), '(no WebApp)');
@@ -138,6 +142,8 @@ begin
     end;
   fAlphabet:=a1;
   result:=a1;
+  CSSend('fAlphabet', fAlphabet);
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TWebnxdbAlphabet.DoExecute;
