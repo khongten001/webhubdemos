@@ -17,7 +17,7 @@ googlepriority=0.9
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
 
-(~JUMP|pgPrefix|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="DPR" />~)
+(~JUMP||<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="DPR" />~)
 <br><span style="font-size:smaller; color: black;">
 (~IF|_bLoginOk|(~GOR|pgAdminMenu|Administer~) | ~)
 (~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
