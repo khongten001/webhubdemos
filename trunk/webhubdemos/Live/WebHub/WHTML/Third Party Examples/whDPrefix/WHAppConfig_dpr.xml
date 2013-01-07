@@ -89,16 +89,6 @@
         <Item id="By-Prefix" value="prefix"/>
       </IndexOrders>
     </whdbSource>
-    <whMailForm componentName="WebMailForm">
-      <Item name="NoticeNew">
-        <Host value="mail.href.com"/>
-        <Port value="25"/>
-        <From value="info@href.com"/>
-        <To value="ann@href.com"/>
-        <Subject value="Registering for DPxR"/>
-        <Template value="newreg.txt"/>
-      </Item>
-    </whMailForm>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="c:\temp\"/>
       <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" context="DEMOS"/>
