@@ -47,8 +47,8 @@
     </PageGeneration>
     <Situations>
       <FrontDoor pageID=""/>
-      <Home pageID="pgHomepage"/>
-      <Invalid pageID="pgHomePage"/>
+      <Home pageID="pghomepage"/>
+      <Invalid pageID="pghomePage"/>
     </Situations>
     <Static>
       <AppRoot value="/"/>
