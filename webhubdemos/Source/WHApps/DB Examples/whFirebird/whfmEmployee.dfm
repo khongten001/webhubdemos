@@ -78,7 +78,6 @@ inherited fmEmployee: TfmEmployee
     OverlapScroll = False
     OnRowStart = ScanEmployee1RowStart
     OnFinish = ScanEmployee1Finish
-    PageHeight = 0
     Left = 29
     Top = 13
   end
