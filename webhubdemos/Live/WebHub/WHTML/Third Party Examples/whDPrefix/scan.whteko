@@ -73,10 +73,10 @@ googlepriority=0.7
 (~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with (~Command~)~)</title>
+<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with Letter (~Command~)~)</title>
 	(~drSharedHead~)
 
-  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURLConfig.Delimiter~)0(~DynURLConfig.Delimiter~)(~Command~)~)" />
+  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURL.W~)0(~DynURL.W~)(~Command~)~)" />
 
 	<style>
 	#approvedPrefixesTable th {color: Crimson;}
