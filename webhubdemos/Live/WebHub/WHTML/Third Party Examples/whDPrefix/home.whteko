@@ -8,8 +8,8 @@ googlechangefreq=yearly
 googlepriority=0.9
 </whpagesettings>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
   <link rel="canonical" href="http://delphiprefix.href.com/" />

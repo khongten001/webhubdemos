@@ -21,8 +21,8 @@ component to make the Usr* properties active. -->
 
 
 <whpage pageid="pglogin" desc="-Login Page for Administrators">
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -61,8 +61,8 @@ component to make the Usr* properties active. -->
 (~REQUIRES|LoginUser|pgLogin~)
 (~REQUIRES|LoginPass|pgLogin~)
 </whprep>
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
 </head>

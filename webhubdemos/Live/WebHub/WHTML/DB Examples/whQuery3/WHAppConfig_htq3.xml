@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration201301.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
@@ -10,19 +10,19 @@
     <StartMinimized value="true" context="DEMOS"/>
     <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
-	<Modules>
-		<StandardModules>
-			<GUIOptional>
-				<Module name="email" status="disabled" />
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
           <Module name="dreamweaver" status="enabled" context="DEMOS"/>
           <Module name="dreamweaver" status="enabled" context="DORIS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled" context="DORIS"/>
-	<Module name="w3validation" status="enabled" />
-			</GUIOptional>
-			<GUI>
+          <Module name="w3validation" status="enabled"/>
+        </GUIOptional>
+        <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appin" status="disabled" context="DEMOS"/>
           <Module name="appin" status="disabled" context="DORIS"/>
@@ -32,43 +32,43 @@
           <Module name="decode" status="enabled-gui"/>
           <Module name="decode" status="disabled" context="DEMOS"/>
           <Module name="decode" status="disabled" context="DORIS"/>
-				<Module name="googlesitemap" status="disabled" />
-				<Module name="whteko" status="enabled-gui" />
-			</GUI>
-		</StandardModules>
-	</Modules>
+          <Module name="googlesitemap" status="disabled"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
   </Startup>
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="defprofile" />
+        <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="db" context="DEMOS"/>
         <ServerProfileIDStandard value="db" context="DORIS"/>
-        <ServerProfileIDStandard value="defprofile" context="qa" />
+        <ServerProfileIDStandard value="defprofile" context="qa"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <RemoteDesignDefaultInterface>
-	  <AllowedSessionIDRange value="1800-1900" />
-	  <RemoteAccessPages>
-	    <Page function="design" pageID="remotedesign" />
-	    <Page function="preview" pageID="remotepreview" />
-	    <Page function="refresh" pageID="remoterefresh" />
-	  </RemoteAccessPages>
-	  <AllowedIPRange value="192.168.1.*;127.0.0.1" />
+      <AllowedSessionIDRange value="1800-1900"/>
+      <RemoteAccessPages>
+        <Page function="design" pageID="remotedesign"/>
+        <Page function="preview" pageID="remotepreview"/>
+        <Page function="refresh" pageID="remoterefresh"/>
+      </RemoteAccessPages>
+      <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
       <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
-	<Security>
-		<AdminSessionNumber value="1800"/>
-		<AdminSessionNumber value="1204" context="DEMOS" />
-		<AdminSessionNumber value="1204" context="DORIS" />
-	</Security>
+    <Security>
+      <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="DORIS"/>
+    </Security>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="" />
+      <WebRobotIniFilespec value=""/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
-      <WebRobotIniSection value="" />
+      <WebRobotIniSection value=""/>
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
       <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
     </StreamCatcherInterface>

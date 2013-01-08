@@ -71,8 +71,8 @@ googlepriority=0.7
 (~NOTASSIGNED|wdsManPref.Keys|(~SET|wdsManPref.Keys=A~)~)
 </whprep>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with (~Command~)~)</title>
 	(~drSharedHead~)
 

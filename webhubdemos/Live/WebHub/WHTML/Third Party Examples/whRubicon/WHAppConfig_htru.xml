@@ -1,28 +1,28 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration201301.xsd">
   <Startup>
-	<Modules>
-		<StandardModules>
-			<GUIOptional>
-				<Module name="email" status="disabled" />
-				<Module name="dreamweaver" status="enabled-gui" />
-				<Module name="dwsecurity" status="enabled-gui" />
-			</GUIOptional>
-			<GUI>
-				<Module name="appin" status="enabled-gui" />
-				<Module name="appout" status="enabled-gui" />
-				<Module name="decode" status="enabled-gui" />
-				<Module name="googlesitemap" status="disabled" />
-				<Module name="whteko" status="enabled-gui" />
-			</GUI>
-		</StandardModules>
-	</Modules>
+    <Modules>
+      <StandardModules>
+        <GUIOptional>
+          <Module name="email" status="disabled"/>
+          <Module name="dreamweaver" status="enabled-gui"/>
+          <Module name="dwsecurity" status="enabled-gui"/>
+        </GUIOptional>
+        <GUI>
+          <Module name="appin" status="enabled-gui"/>
+          <Module name="appout" status="enabled-gui"/>
+          <Module name="decode" status="enabled-gui"/>
+          <Module name="googlesitemap" status="disabled"/>
+          <Module name="whteko" status="enabled-gui"/>
+        </GUI>
+      </StandardModules>
+    </Modules>
   </Startup>
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="defprofile" />
+        <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="db" context="DEMOS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -38,20 +38,20 @@
       <YesNoString value="Yes,No"/>
     </PageGeneration>
     <RemoteDesignDefaultInterface>
-	  <AllowedSessionIDRange value="1800-1900" />
-	  <RemoteAccessPages>
-	    <Page function="design" pageID="remotedesign" />
-	    <Page function="preview" pageID="remotepreview" />
-	    <Page function="refresh" pageID="remoterefresh" />
-	  </RemoteAccessPages>
-	  <AllowedIPRange value="192.168.1.*;127.0.0.1" />
+      <AllowedSessionIDRange value="1800-1900"/>
+      <RemoteAccessPages>
+        <Page function="design" pageID="remotedesign"/>
+        <Page function="preview" pageID="remotepreview"/>
+        <Page function="refresh" pageID="remoterefresh"/>
+      </RemoteAccessPages>
+      <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
       <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
-	<Security>
-		<AdminSessionNumber value="1800"/>
-		<AdminSessionNumber value="1204" context="DEMOS" />
+    <Security>
+      <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
-	</Security>
+    </Security>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whRubicon.whteko"/>
       <File id="content" filename="whRubicon.whteko"/>
@@ -69,8 +69,8 @@
   </Application>
   <ComponentConfig>
     <whdbScan componentName="dgMsgs">
-      <Delimiters macroPrefix="mcdg" />
-      <ButtonSpecs macroPrefix="mcdg" />
+      <Delimiters macroPrefix="mcdg"/>
+      <ButtonSpecs macroPrefix="mcdg"/>
     </whdbScan>
     <whdbSource componentName="wdsWords">
       <DisplaySets>

@@ -23,15 +23,13 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
 <whpage pageid="temp" mode="scaffold">
 
 <whdroplet name="drSharedDSPHeadTags" show="no">
-<!---(~ANCHORMODIFY|metatags|-->
   <meta name="robots" content="(~pagesetting.metarobot~)" />
   <meta name="description" content="(~pagesetting.metadescription~)" />
   <meta name="keywords" content="(~pagesetting.metakeywords~)" />
-<!---~) -->
 (~ANCHORMODIFY|style|  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />~)
 </whdroplet>
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 (~drSharedDSPHeadTags~)
@@ -105,8 +103,8 @@ metarobot=noindex,nofollow
 metadescription=Error: bad ip number
 </whpagesettings>
 (~mcdoctypehtml~)
-<html>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 (~drHead~)
 (~drSharedDSPHeadTags~)
 </head>
@@ -127,8 +125,8 @@ metarobot=noindex,nofollow
 metadescription=Error: changed web browser
 </whpagesettings>
 (~mcdoctypehtml~)
-<html>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 (~drHead~)
 (~drSharedDSPHeadTags~)
 </head>

@@ -11,7 +11,7 @@ metadescription=Feedback and Suggestions for the Delphi Super Page Search Engine
 metakeywords=Feedback,suggestions
 </whpagesettings>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 (~drSharedDSPHeadTags~)
@@ -49,7 +49,7 @@ metadescription=test exception handler
 metakeywords=error,exception
 </whpagesettings>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 (~drSharedDSPHeadTags~)
