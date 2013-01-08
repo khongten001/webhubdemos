@@ -17,6 +17,7 @@
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="lingvo" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>

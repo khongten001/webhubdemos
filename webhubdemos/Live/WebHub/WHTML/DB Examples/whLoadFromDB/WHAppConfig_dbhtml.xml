@@ -20,6 +20,7 @@
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled" context="DORIS"/>
+          <Module name="lingvo" status="enabled"/>
           <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
