@@ -8,8 +8,9 @@ mcImageDir=(~Static.AppRoot~)webhub/demos/whDPrefix/
 </whmacros>
 
 <whpage pageid="pgthanks" desc="Thanks">
-<html>
-<head>
+(~mcDocTypeHtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
 </head>
@@ -45,14 +46,14 @@ to the project goes to Ray Konopka, author of Developing Custom Delphi
 3 Components, who has tirelessly promoted the use of prefixes (long before
 this site existed).</FONT></p>
 
-<p><FONT FACE="Verdana">This project would not have got off the ground
+<p>This project would not have got off the ground
 without help and encouragement ,
-<br/>the following people provided the motivation :</FONT></p>
+<br/>the following people provided the motivation :</p>
 <br/>&nbsp;
 
 <TABLE BORDER="1">
 <TR>
-<TD><FONT FACE="Verdana">bob swart</FONT></TD>
+<TD>bob swart</TD>
 
 <TD><FONT FACE="Verdana">- international delphi guru</FONT></TD>
 
