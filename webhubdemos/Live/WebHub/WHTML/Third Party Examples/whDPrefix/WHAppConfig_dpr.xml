@@ -13,8 +13,9 @@
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="disabled"/>
-          <Module name="w3validation" status="enabled"/>
           <Module name="dwsecurity" status="disabled"/>
+          <Module name="lingvo" status="enabled"/>
+          <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>

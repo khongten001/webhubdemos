@@ -17,6 +17,7 @@
           <Module name="dreamweaver" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled" context="DEMOS"/>
+          <Module name="lingvo" status="enabled"/>
           <Module name="shareint" status="disabled"/>
           <Module name="w3validation" status="enabled"/>
         </GUIOptional>
