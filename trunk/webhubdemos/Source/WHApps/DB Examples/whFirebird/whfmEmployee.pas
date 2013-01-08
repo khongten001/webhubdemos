@@ -110,7 +110,7 @@ begin
   whdsEmployee.MaxOpenDataSets := 1;
 
   ScanEmployee1.WebDataSource := whdsEmployee;
-  ScanEmployee1.PageHeight := 10;  {number of records to display initially}
+  ScanEmployee1.PageHeight := 0;  {number of records to display initially}
   ScanEmployee1.ButtonsWhere := dsBelow;
   ScanEmployee1.OnBeginTable := ScanEmployeeBeginTable;
   ScanEmployee1.SetDelimiters2012;
