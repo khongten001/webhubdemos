@@ -39,10 +39,6 @@ if "%democom%"=="yes" start whCOM.exe
 if "%democom%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%democom%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=com /minutes=999999 /reason="COM demo not ready for new-ipc; may not be converted; talk to us if you need it"
 
-if "%demodfm2html%"=="yes" start f2hdemo.exe 
-if "%demodfm2html%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
-if "%demodfm2html%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dfm2html /minutes=%covermin% /reason=%coverreason% 
-
 if "%demohtdr%"=="yes" start whDropdown.exe 
 if "%demohtdr%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%demohtdr%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htdr /minutes=%covermin% /reason=%coverreason% 
