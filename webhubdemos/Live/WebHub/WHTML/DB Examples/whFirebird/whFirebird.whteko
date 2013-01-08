@@ -115,12 +115,11 @@ mcEmployee2ButtonSpecsFirst=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW
 mcEmployee2ButtonSpecsPrior=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Prior">PRIOR</A><!-- changing:stop-->
 mcEmployee2ButtonSpecsNext=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Next">NEXT</A><!-- changing:stop-->
 mcEmployee2ButtonSpecsLast=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Last">LAST</A><!-- changing:stop-->
-mcEmployee2ButtonSpecsRedraw=<input type="submit" name="redrawBtn" class="whdbScan-redraw" value="Redraw" />
 mcEmployee2CaptionsFirst=FIRST
 mcEmployee2CaptionsPrior=PRIOR
 mcEmployee2CaptionsNext=NEXT
 mcEmployee2CaptionsLast=LAST
-mcEmployee2CaptionsRedraw=Redraw
+mcEmployee2CaptionsRedraw=<input type="submit" name="redrawBtn" class="whdbScan-redraw" value="Redraw" />
 mcPromptsArrangement=<b>Arrangement</b>:
 mcPromptsIndexOrder=<b>Index Order</b>:
 mcPromptsDisplaySet=<b>Display Set</b>:
