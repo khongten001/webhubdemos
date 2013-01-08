@@ -172,12 +172,12 @@ It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.<br />
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">
-(~MATCH|(~waLinkW3Validation.execute|active~)=true|
+(~IsWebRobotRequest|<!-- w3.org --> || (~MATCH|(~waLinkW3Validation.execute|active~)=true|
 <span class="changing">
   (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
 </span>
   <a onclick="window.open(this.href);return false;" href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)&charset=%28detect+automatically%29&doctype=Inline&group=0">validator.w3.org</a>
-~)
+~)~)
 </whdroplet>
 
 <whdroplet name="drAboutLiteDemo" show="no">
