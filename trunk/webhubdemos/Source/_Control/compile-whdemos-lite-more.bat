@@ -60,9 +60,6 @@ if %comp3%==D15 call %cbat% whCOM
 :: not suitable for new-ipc cd %droot%\More Examples\whASyncDemo
 :: not suitable for new-ipc call %cbat% whASyncDemo
 
-if "%demodfm2html%"=="yes" cd %droot%\More Examples\whDfm2html
-if "%demodfm2html%"=="yes" call %cbat% f2hdemo
-
 cd %droot%\More Examples\whDropdown
 call %cbat% whDropdown
 
