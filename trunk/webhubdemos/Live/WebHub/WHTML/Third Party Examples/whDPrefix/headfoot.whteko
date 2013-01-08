@@ -3,8 +3,7 @@
 <whteko designmode="code">
 
 <whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-mcxmlns=xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="(~DYNCHUNK|mcLang,(~guestlingvo~)~)"
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 </whmacros>
 
 <whdroplet name="chAdminFooterLinks">
@@ -66,13 +65,12 @@ Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools 
 
 <whdroplet name="drSharedHead">
 (~MATCH|(~PageSetting.secure~)=1|(~chCheckpoint~)~)
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
   <link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdprefix.css" />
 </whdroplet>
 
 <whdroplet name="chPageHeader">
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 	<title>(~PageDesc~)</title>
 	(~drSharedHead~)
 </head>

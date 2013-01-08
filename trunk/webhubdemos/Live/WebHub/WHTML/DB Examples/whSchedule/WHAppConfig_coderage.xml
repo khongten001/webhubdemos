@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration200811b.xsd">
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration201301.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
@@ -50,10 +50,10 @@
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
-	<AppSettings>
-		<AppSetting name="DemoGraphic" value="yes" />
-		<AppSetting name="LiveNow" value="no" />
-	</AppSettings>
+    <AppSettings>
+      <AppSetting name="DemoGraphic" value="yes"/>
+      <AppSetting name="LiveNow" value="no"/>
+    </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
       <RemoteAccessPages>

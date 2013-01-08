@@ -24,7 +24,7 @@ mcdgDelimitersAfter=||
 
 <whpage pageid="pgEnterHTRU">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -50,7 +50,7 @@ mcdgDelimitersAfter=||
 
 <whpage pageid="Search">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -74,7 +74,7 @@ component executes.</p>
 
 <whpage pageid="RubiconWords">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -95,7 +95,7 @@ Rubicon Words Table
 
 <whpage pageid="Contents">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -124,7 +124,7 @@ Rubicon Messages Table
 
 <whpage pageid="BrowseWords" desc="Browse the WORDS table">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>

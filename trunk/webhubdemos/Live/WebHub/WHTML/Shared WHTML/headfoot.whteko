@@ -30,7 +30,7 @@ mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 
 <whpage pageid="temp1" mode="scaffold" desc="-for use in Dreamweaver design mode">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -47,11 +47,10 @@ siteroot is (~mcSiteRoot~)<br />
 
 <whpage pageid="temp2" mode="scaffold" desc="-for use in Dreamweaver design mode">
 (~mcdoctypehtml~)
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
 <head>
 <whdroplet name="drHead" show="yes">
-(~ANCHOR|anRefresh~) (~waLingvo.execute~)
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
 <meta name="generator" content="(~version~)" />
 (~NOMATCH|(~AppID~)=dsp|
 <meta name="description" content="This demo page is summarized as (~pagedesc~)" />

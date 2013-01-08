@@ -5,8 +5,8 @@
 <whprep>
 (~SESSION|Delete~)
 </whprep>
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>(~PageDesc~)</title>
 </head> 
 <body>
@@ -31,8 +31,8 @@ data: (~INPUTTEXT|data,30~)<br/>
 </whpage>
 
 <whpage pageid="pgCountPending" desc="-Remote monitor of pending requests">
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>(~PageDesc~)</title>
 </head> 
 <body>

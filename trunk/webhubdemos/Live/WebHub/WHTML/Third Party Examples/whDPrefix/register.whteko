@@ -16,8 +16,8 @@ googlechangefreq=yearly
 googlepriority=0.8
 </whpagesettings>
 (~mcDocTypeHTML~)
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
   <meta name="robots" content="nofollow" />
@@ -83,8 +83,8 @@ details and submit the form! Thank you!</p>
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
 (~mcDocTypeHTML~)
-<html (~mcxmlns~)>
-<head>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
 </head>
