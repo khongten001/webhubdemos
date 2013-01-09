@@ -117,7 +117,6 @@ mcEmployee2ButtonSpecsNext=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~
 mcEmployee2ButtonSpecsLast=<!-- changing:start--><A HREF="(~DynURL.ToSessionIDW~)ScanEmployee2.Last">LAST</A><!-- changing:stop-->
 mcEmployee2CaptionsFirst=FIRST
 mcEmployee2CaptionsPrior=PRIOR
-mcEmployee2CaptionsNext=NEXT
 mcEmployee2CaptionsLast=LAST
 mcEmployee2CaptionsRedraw=<input type="submit" name="redrawBtn" class="whdbScan-redraw" value="Redraw" />
 mcPromptsArrangement=<b>Arrangement</b>:
@@ -126,6 +125,9 @@ mcPromptsDisplaySet=<b>Display Set</b>:
 mcPromptsFieldSet=<b>Field Set</b>:
 </whmacros>
 
+<whdoc for="test without a customized Next caption">
+mcEmployee2CaptionsNext=NEXT
+</whdoc>
 
 <whpage pageid="pgReadonly3" desc="Example 3">
 <whoutput>
