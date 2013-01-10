@@ -65,7 +65,26 @@ The details in the javascript below are for use with the webhubdemos account onl
 </whpage>
 
 <whpage pageid="pgprocess" desc="-process openid token etc">
+<whprep>
 (~waJanrain.Execute|~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Hello!</h1>
+<h2>(~Request.Referer~)</h2>
+(~stringvars~)
+
+<div id="janrainEngageEmbed"></div>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
 </whpage>
 
 </whteko>
