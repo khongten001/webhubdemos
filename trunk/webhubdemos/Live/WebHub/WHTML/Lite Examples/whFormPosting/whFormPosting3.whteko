@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designpage="Param"
+  designmode="code"
+  showdoc="no"
+  showsketch="no"
+  notes="Additional advanced content for the FORM demo -- specifically about checkboxes.">
+
+<whpage pageid="pgcheck01" desc="Test the CHECKBOX processing">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02,.CKB~)">
+<!-- changing:stop-->
+
+(~InputCheckBox|bAAA~) I like the letter A<br />
+(~InputCheckBox|bBBB~) I like the letter B<br />
+<input type="submit" />
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+<whpage pageid="pgcheck02" desc="Test the CHECKBOX processing">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Your boolvars so far</h2>
+(~boolvars~)
+
+<h2>Continue with some more</h2>
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03,.CKB~)">
+<!-- changing:stop-->
+
+(~InputCheckBox|bCCC~) I like the letter C<br />
+(~InputCheckBox|bDDD~) I like the letter D<br />
+<input type="submit" />
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgcheck03" desc="Test the CHECKBOX processing">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Your boolvars so far</h2>
+(~boolvars~)
+
+<h2>Again?</h2>
+(~JUMPR|pgcheck01~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>
