@@ -305,10 +305,10 @@ Can be pasted into WHCentralInfo.xml
           <SessionCookieName value="session"/>
           <SessionNumberLocation value="CookieFixedDomain"/>
         </WebHubApp>
-        <WebHubApp appID="dfm2html">
-          <Nickname value="DFM to HTML"/>
-          <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whDfm2Html\"/>
-          <ConfigFilename value="WHAppConfig_dfm2html.xml"/>
+        <WebHubApp appID="htoi">
+          <Nickname value="OpenID"/>
+          <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOpenID\"/>
+          <ConfigFilename value="WHAppConfig_htoi.xml"/>
           <ErrorLogFolder value="d:\temp\wherrorlogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
