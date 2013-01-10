@@ -7,6 +7,7 @@
   </Variables>
   <Situations>
     <AllSituationsDefault appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
+    <AllSituationsDefault appID="dpr" value="{WebHubDemoMsgRoot}allsituations-dpr.whmsg"/>
     <AppCoverPage appID="" value="{WebHubDemoMsgRoot}appcoverpage-whdemo.whmsg"/>
     <AppCoverPage appID="htun" value="{WebHubDemoMsgRoot}appcoverpage-htun.whmsg"/>
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
