@@ -80,8 +80,6 @@ The details in the javascript below are for use with the webhubdemos account onl
 <h2>(~Request.Referer~)</h2>
 (~stringvars~)
 
-<div id="janrainEngageEmbed"></div>
-
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 </body></html>
