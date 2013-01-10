@@ -27,7 +27,7 @@ The details in the javascript below are for use with the webhubdemos account onl
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     
-    janrain.settings.tokenUrl = '(~Request.Scheme~)://(~Request.Host~)(~ToAppID~)(~DynURL.W~)(~SessionID~)';
+    janrain.settings.tokenUrl = '(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~)(~DynURL.W~)(~SessionID~)';
 
     function isReady() { janrain.ready = true; };
     if (document.addEventListener) {
