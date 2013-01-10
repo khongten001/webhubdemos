@@ -138,28 +138,6 @@ begin
   {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
-(*    not ready yet
-function HTTPSPost(const URL: string; const values: string): string;
-var
-  IdHTTP: TIdHTTP;
-  IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
-begin
-  IdHTTP := nil;
-  IdSSLIOHandlerSocket := nil;
-  try
-    IdHTTP := TIdHTTP.Create(nil);
-    IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
-    IdHTTP.IOHandler := IdSSLIOHandlerSocket;
-    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
-    IdHTTP.Request.UserAgent := 'HREFTools (http://www.href.com/)';
-    IdHTTP.Request.CharSet := 'UTF-8';
-    Result := IdHTTP.Post
-  finally
-    FreeAndNil(IdSSLIOHandlerSocket);
-    FreeAndNil(IdHTTP);
-  end;
-end;
-*)
 
 procedure TDMWHOpenIDviaJanrain.waJanrainExecute(Sender: TObject);
 var
@@ -176,11 +154,6 @@ var
 begin
   json := nil;
   jsonProfile := nil;
-
-  {$IFDEF CodeSite}
-  //Some output to help debugging
-  LogToCodeSiteKeepCRLF('StringVars', pWebApp.Session.StringVars.Text);
-  {$ENDIF}
 
   (* STEP 1: Extract token POST parameter *)
   token := pWebApp.StringVar['token'];
@@ -201,7 +174,7 @@ begin
         URLEncode('json', False),
         URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
       CSSend('SRequest', SRequest);
-      SResponse := HTTPSGet(SRequest);    // should convert this to a POST
+      SResponse := HTTPSGet(SRequest);    
       CSSend('SResponse', SResponse);
     finally
       Free;
