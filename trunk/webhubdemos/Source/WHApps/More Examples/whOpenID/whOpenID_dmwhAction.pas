@@ -172,12 +172,29 @@ begin
     end;
 
    (* STEP 3: Parse the JSON auth_info response *)
-
     try
       json := TJSONObject.Create;
-      //pair := json.ParseJSONValue(SResponse);
-      pair := TJSONPair.Create(SResponse);
-      pWebApp.SendStringImm(ldiFormatJSONString(json2, jfBoldNameFormat));
+
+      if (json.Parse(BytesOf(SResponse), 0) >= 0) then
+      begin
+
+(*  sample JSON response:
+{
+  'stat': 'ok',
+  'profile': {
+    'identifier': 'http://user.myopenid.com/',
+    'email': 'user@example.com',
+    'preferredUsername': 'Joe User'
+   }
+}
+*)
+
+        pWebApp.SendStringImm(ldiFormatJSONString(json, jfBoldNameFormat));
+//         if ($auth_info['stat'] == 'ok') {
+
+      end
+      else
+        pWebApp.Debug.AddPageError('Unable to parse JSON response');
     finally
       FreeAndNil(json);
       FreeAndNil(json2);
