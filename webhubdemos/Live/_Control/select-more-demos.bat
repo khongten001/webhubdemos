@@ -35,4 +35,6 @@ set demohtem=yes
 if "%whipc%"=="old" set demohtgr=yes
 if "%whipc%"=="x" set demohtgr=no
 
+set demohtoi=yes
+
 :end
