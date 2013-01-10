@@ -59,6 +59,7 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DBXJSON, DBXJSONReflect,
   ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
   webApp, htWebApp, whdemo_ViewSource;
@@ -111,21 +112,30 @@ begin
 end;
 
 function HTTPSGet(const URL: string): string;
+const cFn = 'HTTPSGet';
 var
   IdHTTP: TIdHTTP;
   IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   IdHTTP := nil;
   IdSSLIOHandlerSocket := nil;
   try
+    IdHTTP := TIdHTTP.Create(nil);
     IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
     IdHTTP.IOHandler := IdSSLIOHandlerSocket;
     IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
     Result := IdHTTP.Get(URL);
+    {$IFDEF CodeSite}
+    LogToCodeSiteKeepCRLF('Result', Result);
+    {$ENDIF}
   finally
     FreeAndNil(IdSSLIOHandlerSocket);
+    if Assigned(IdHTTP) and Assigned(IdHTTP.IOHandler) then
+      IdHTTP.IOHandler := nil;
     FreeAndNil(IdHTTP);
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 (*    not ready yet
@@ -143,7 +153,7 @@ begin
     IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
     IdHTTP.Request.UserAgent := 'HREFTools (http://www.href.com/)';
     IdHTTP.Request.CharSet := 'UTF-8';
-    Result := IdHTTP.Get(URL);
+    Result := IdHTTP.Post
   finally
     FreeAndNil(IdSSLIOHandlerSocket);
     FreeAndNil(IdHTTP);
