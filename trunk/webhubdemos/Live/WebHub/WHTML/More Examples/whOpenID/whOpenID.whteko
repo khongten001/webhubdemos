@@ -27,7 +27,7 @@ The details in the javascript below are for use with the webhubdemos account onl
     if (typeof window.janrain !== 'object') window.janrain = {};
     if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
     
-    janrain.settings.tokenUrl = '(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~)(~DynURL.W~)(~SessionID~)';
+    janrain.settings.tokenUrl = '(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~)(~DynURL.W~)pgProcess(~DynURL.W~)(~SessionID~)';
 
     function isReady() { janrain.ready = true; };
     if (document.addEventListener) {
@@ -62,6 +62,10 @@ The details in the javascript below are for use with the webhubdemos account onl
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 </body></html>
+</whpage>
+
+<whpage pageid="pgprocess" desc="-process openid token etc">
+(~waJanrain.Execute|~)
 </whpage>
 
 </whteko>
