@@ -64,7 +64,7 @@
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
+        <URLDelimiter value="/"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
