@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+<whmacros>
+mcWhDemoOneLinerHTOI=OpenID Integration
+mcWhDemoCreditIdeaHTOI=Delphi Prefix Registry
+mcWhDemoCreditFirstDraftHTOI=Ann Lynnworth
+mcWhDemoCreditGraphicsHTOI=none
+mcWhDemoCreditCopyHTOI=Ann Lynnworth 
+mcWhDemoUpdatedHTOI=10-Jan-2013
+mcWhDemoKeywordsHTOI=OpenID, Delphi, JSON
+mcWhDemoLiteHTOI=No
+</whmacros>
+
+<whdroplet name="drDemoSetupHTOI">
+<ol>
+<li> If you want to run this demo yourself, you will need 
+a free basic account at janrain.com</li>
+
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescHTOI">
+This demo shows how Delphi and WebHub can integrate with the online 
+OpenID service provided by janrain.com.
+</whtranslation>
+
+
+<whtranslation key="~whDemoLongDescHTOI">
+( work in progress )
+</whtranslation>
+
+</whteko>
