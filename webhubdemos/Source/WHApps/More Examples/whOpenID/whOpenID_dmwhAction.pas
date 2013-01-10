@@ -1,22 +1,38 @@
 unit whOpenID_dmwhAction;
 
 (* this unit is essentially a port from
-   https://github.com/janrain/Janrain-Sample-Code/blob/master/php/
-   rpx-token-url.php
+https://github.com/janrain/Janrain-Sample-Code/blob/master/php/rpx-token-url.php
 *)
-(* no copyright claimed for this file *)
 
-(* URLs of note
-https://developers.google.com/accounts/docs/OpenID#settingup
-https://sites.google.com/site/oauthgoog/UXFedLogin/summary
-http://www.puffypoodles.com/lso2
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2013 HREF Tools Corp.                                      * }
+{ *                                                                          * }
+{ * WebHub datamodule login via the janrain.com OpenID system                * }
+{ *                                                                          * }
+{ * This works only on whitelisted domains e.g. more.demos.href.com          * }
+{ *                                                                          * }
+{ ---------------------------------------------------------------------------- }
+
+(* download SSL libraries from here for use with Indy:
+   http://indy.fulgan.com/SSL/
+   as of 13-Jun-2011, suitable for Delphi XE...
+   as of  3-Jan-2013, latests ones for win32 are working with XE3
+*)
+
+
+(* URLs of note as of 10-January-2013:
+   https://developers.google.com/accounts/docs/OpenID#settingup
+   https://sites.google.com/site/oauthgoog/UXFedLogin/summary
+   http://www.puffypoodles.com/lso2
+
+   https://rpxnow.com/relying_parties/webhubdemos  -- used by HREF Tools demos
 *)
 
 interface
 
 uses
   SysUtils, Classes,
-  IdHTTP, IdSSLOpenSSL, {$IFDEF UNICODE}IdSSL,{$ENDIF}
+  IdHTTP, IdSSLOpenSSL, IdSSL,
   webLink, webTelnt, updateOK, tpAction, webTypes;
 
 type
@@ -30,7 +46,6 @@ type
     FlagInitDone: Boolean;
     FAPIKey: string;
     FEngage_Pro: Boolean;
-    procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -45,8 +60,8 @@ implementation
 
 uses
   DBXJSON, DBXJSONReflect,
-  ucLogFil, ucCodeSiteInterface, ucURLEncode,
-  webApp, htWebApp, whdemo_ViewSource, ldiJSONFormatter;
+  ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
+  webApp, htWebApp, whdemo_ViewSource;
 
 { TDMWHOpenIDviaJanrain }
 
@@ -85,12 +100,7 @@ begin
       //test the length of the API ID; it should be 40 characters
       if Length(FAPIKey) = 40 then
       begin
-
         RefreshWebActions(Self);
-
-        // helpful to know that WebAppUpdate will be called whenever the
-        // WebHub app is refreshed.
-        AddAppUpdateHandler(WebAppUpdate);
         FlagInitDone := True;
       end
       else
@@ -100,30 +110,45 @@ begin
   Result := FlagInitDone;
 end;
 
-function HTTPSGet(URL: string): string; overload;
+function HTTPSGet(const URL: string): string;
 var
   IdHTTP: TIdHTTP;
   IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
 begin
-  IdHTTP := TIdHTTP.Create(nil);
+  IdHTTP := nil;
+  IdSSLIOHandlerSocket := nil;
   try
     IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
-    try
-      IdHTTP.IOHandler := IdSSLIOHandlerSocket;
-      IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
-      Result := IdHTTP.Get(URL);
-    finally
-      IdSSLIOHandlerSocket.Free;
-    end;
+    IdHTTP.IOHandler := IdSSLIOHandlerSocket;
+    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
+    Result := IdHTTP.Get(URL);
   finally
-    IdHTTP.Free;
+    FreeAndNil(IdSSLIOHandlerSocket);
+    FreeAndNil(IdHTTP);
   end;
 end;
 
-(* download SSL libraries from here for use with Indy:
-http://indy.fulgan.com/SSL/
-as of 13-Jun-2011, suitable for Delphi XE...
-as of  3-Jan-2013, latests ones for win32 are working with XE3
+(*    not ready yet
+function HTTPSPost(const URL: string; const values: string): string;
+var
+  IdHTTP: TIdHTTP;
+  IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
+begin
+  IdHTTP := nil;
+  IdSSLIOHandlerSocket := nil;
+  try
+    IdHTTP := TIdHTTP.Create(nil);
+    IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+    IdHTTP.IOHandler := IdSSLIOHandlerSocket;
+    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
+    IdHTTP.Request.UserAgent := 'HREFTools (http://www.href.com/)';
+    IdHTTP.Request.CharSet := 'UTF-8';
+    Result := IdHTTP.Get(URL);
+  finally
+    FreeAndNil(IdSSLIOHandlerSocket);
+    FreeAndNil(IdHTTP);
+  end;
+end;
 *)
 
 procedure TDMWHOpenIDviaJanrain.waJanrainExecute(Sender: TObject);
@@ -132,16 +157,19 @@ var
   SRequest: string;
   SResponse: string;
   json: TJSONObject;
-  json2: TJSONObject;
+  jsonProfile: TJSONObject;
   pair: TJSONPair;
+  i: Integer;
+  S1: string;
+  identifier, email, preferredUsername, providerName: string;
+  LeftKey: string;
 begin
   json := nil;
-  json2 := nil;
-  pair := nil;
+  jsonProfile := nil;
 
   {$IFDEF CodeSite}
   //Some output to help debugging
-  LogToCodeSiteKeepCRLF('StringVars', pWebApp.StringVars.Text);
+  LogToCodeSiteKeepCRLF('StringVars', pWebApp.Session.StringVars.Text);
   {$ENDIF}
 
   (* STEP 1: Extract token POST parameter *)
@@ -163,7 +191,7 @@ begin
         URLEncode('json', False),
         URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
       CSSend('SRequest', SRequest);
-      SResponse := HTTPSGet(SRequest);
+      SResponse := HTTPSGet(SRequest);    // should convert this to a POST
       CSSend('SResponse', SResponse);
     finally
       Free;
@@ -176,35 +204,62 @@ begin
       if (json.Parse(BytesOf(SResponse), 0) >= 0) then
       begin
 
-(*  sample JSON response:
-{
-  'stat': 'ok',
-  'profile': {
-    'identifier': 'http://user.myopenid.com/',
-    'email': 'user@example.com',
-    'preferredUsername': 'Joe User'
-   }
-}
-*)
-
-        pWebApp.SendStringImm(ldiFormatJSONString(json, jfBoldNameFormat));
-//         if ($auth_info['stat'] == 'ok') {
-
+        CSSend('json.Size', S(json.Size));
+        if (json.Size >= 2) then
+        begin
+          pair := json.Get(0);
+          CSSend('0 pair.JsonString', pair.JsonString.ToString);
+          CSSend('0 pair.JsonValue', pair.JsonValue.ToString);
+          if (NoQuotes(pair.JsonString.ToString) = 'stat') and
+            (NoQuotes(pair.JsonValue.ToString) = 'ok') then
+          begin
+            jsonProfile := TJSONObject.Create;
+            S1 := json.Get(1).JSONValue.ToString;
+            //CSSend('json.Get(1).JSONValue', json.Get(1).JSONValue.ToString);
+            jsonProfile.Parse(BytesOf(S1), 0); // 0-based parsing ! ! !
+            CSSend('jsonProfile.Size', S(json.Size));
+            for I := 0 to Pred(jsonProfile.Size) do
+            begin
+              pair := jsonProfile.Get(i);
+              LeftKey := NoQuotes(pair.JsonString.ToString);
+              //CSSend('i ' + S(i), LeftKey);
+              //CSSend('i ' + S(i) + ' pair.JsonValue',  pair.JsonValue.ToString);
+              if LeftKey = 'identifier' then
+              begin
+                identifier := NoQuotes(pair.JsonValue.ToString);
+                CSSend('identifier', identifier);
+              end
+              else
+              if LeftKey = 'email' then
+                email := NoQuotes(pair.JsonValue.ToString)
+              else
+              if LeftKey = 'preferredUsername' then
+                preferredUsername := NoQuotes(pair.JsonValue.ToString)
+              else
+              if LeftKey = 'providerName' then
+                providerName := NoQuotes(pair.JsonValue.ToString);
+            end;
+            pWebApp.StringVar['identifier'] := identifier;
+            pWebApp.StringVar['email'] := email;
+            pWebApp.StringVar['preferredUsername'] := preferredUsername;
+            pWebApp.StringVar['providerName'] := providerName;
+            pWebApp.Session.DeleteStringVarByName('token');
+          end
+          else
+          begin
+            pWebApp.StringVar['ErrorMessage'] := 'status is not ok';
+          end;
+        end;
       end
       else
+      begin
         pWebApp.Debug.AddPageError('Unable to parse JSON response');
+      end;
     finally
       FreeAndNil(json);
-      FreeAndNil(json2);
-      FreeAndNil(pair);
+      FreeAndNil(jsonProfile);
     end;
   end;
-end;
-
-procedure TDMWHOpenIDviaJanrain.WebAppUpdate(Sender: TObject);
-begin
-  // reserved for when the WebHub application object refreshes
-  // e.g. to make adjustments because the config changed.
 end;
 
 end.
