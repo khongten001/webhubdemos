@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/webhubappconfiguration201301.xsd">
+<WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201301b.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
@@ -14,6 +14,7 @@
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="lingvo" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
