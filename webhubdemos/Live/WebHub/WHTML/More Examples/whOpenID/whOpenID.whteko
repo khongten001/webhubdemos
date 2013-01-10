@@ -77,7 +77,7 @@ The details in the javascript below are for use with the webhubdemos account onl
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Hello!</h1>
-<h2>(~Request.Referer~)</h2>
+<h2>StringVars</h2>
 (~stringvars~)
 
 </div>  <!--- whdemopagecontent -->
