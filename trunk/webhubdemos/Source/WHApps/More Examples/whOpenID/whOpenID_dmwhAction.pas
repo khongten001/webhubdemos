@@ -28,8 +28,6 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    IdHTTP: TIdHTTP;
-    IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
     FAPIKey: string;
     FEngage_Pro: Boolean;
     procedure WebAppUpdate(Sender: TObject);
