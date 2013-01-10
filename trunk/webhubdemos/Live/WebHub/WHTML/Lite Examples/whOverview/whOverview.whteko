@@ -74,23 +74,6 @@
 (~INC|tempCounter~)
 </whdroplet>
 
-<whdroplet name="drDemoLinkForDFM2HTML" show="no">
-<tr><td>(~tempCounter~)</td>
-<td class="oneliner">(~JUMP|dfm2html:|F2H Demo~)</td>
-<td></td>
-<td align="right"><a name="DFM2HTML">DFM2HTML</a></td>
-</tr>
-<tr><td></td><td colspan="2">A demo showing how the DFM to HTML Converter (&quot;F2H&quot; component's output can be used as the basis for the WebHub application.
-</td>
-<td class="updatedon">06-Sep-2007</td>
-</tr>
-<tr><td></td><td colspan="2" class="keywords">Keywords: F2H, Form conversion</td>
-<td></td>
-</tr>
-<tr><td colspan="4"></td></tr>
-(~INC|tempCounter~)
-</whdroplet>
-
 <whdroplet name="drDemoLink" show="no">
 <whdoc for="drDemoLink">
 DYN1 = AppID in lowercase
@@ -248,15 +231,15 @@ or not (i.e. your local computer) -->
 <!--- These are in alphabetical order based on the "one liner" description. -->
 <![CDATA[
 (~PARAMS|drDemoLink|htasync,more~)
-(~drDemoLinkForDFM2HTML~)
 (~PARAMS|drDemoLink|htdr,more~)
 (~PARAMS|drDemoLink|htem,more~)
 (~PARAMS|drDemoLink|htcv,more~)
 (~PARAMS|drDemoLink|com,more~)
 (~PARAMS|drDemoLink|htun,more~)
 (~PARAMS|drDemoLink|HTGR,more~)
-(~PARAMS|drDemoLink|HTOL,more~)
-(~PARAMS|drDemoLink|HTOB,more~)
+(~PARAMS|drDemoLink|htoi,more~)
+(~PARAMS|drDemoLink|htol,more~)
+(~PARAMS|drDemoLink|htob,more~)
 ]]>
 </table>
 <br />
