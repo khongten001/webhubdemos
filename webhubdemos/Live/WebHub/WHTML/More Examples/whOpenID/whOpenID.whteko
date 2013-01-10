@@ -2,38 +2,63 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
-<whdroplet name="drDemoSpeedbarForjpeg">
-<!-- speedbar for JPEG demo could appear here -->
+<whdroplet name="drDemoSpeedbarForhtoi">
+<!--- speedbar for HTOI demo -->
+<a target="_blank" href="http://openid.net">OpenID Foundation</a><br/>
+<a target="_blank" href="http://janrain.com/">janrain engage</a>
 </whdroplet>
 
-<whpage pageid="pgEnterJPEG" desc="Main page for dynamic JPEG demo">
+<whdoc for="janrain">
+As of January 2013, janrain.com offers a free basic service plus 
+reasonably priced upgrades to support more users. 
+The details in the javascript below are for use with the webhubdemos account only.
+</whdoc>
+
+<whpage pageid="pgEnterHTOI" desc="Main page for OpenID demo">
 <whprep>
-(~expires|-1~)
-(~waAnimalNav.Execute~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
 (~drHead~)
+
+<script type="text/javascript">
+(function() {
+    if (typeof window.janrain !== 'object') window.janrain = {};
+    if (typeof window.janrain.settings !== 'object') window.janrain.settings = {};
+    
+    janrain.settings.tokenUrl = '(~Request.Scheme~)://(~Request.Host~)(~ToAppID~)(~DynURL.W~)(~SessionID~)';
+
+    function isReady() { janrain.ready = true; };
+    if (document.addEventListener) {
+      document.addEventListener("DOMContentLoaded", isReady, false);
+    } else {
+      window.attachEvent('onload', isReady);
+    }
+
+    var e = document.createElement('script');
+    e.type = 'text/javascript';
+    e.id = 'janrainAuthWidget';
+
+    if (document.location.protocol === 'https:') {
+      e.src = 'https://rpxnow.com/js/lib/webhubdemos/engage.js';
+    } else {
+      e.src = 'http://widget-cdn.rpxnow.com/js/lib/webhubdemos/engage.js';
+    }
+
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(e, s);
+})();
+</script>
+
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<h1>Dynamically modified images from the ANIMALS table</h1>
+<h1>OpenID Authentication and Authorization</h1>
 
-<h2>Example 1 at 100 percent</h2>
-<img src="(~ACTION|do,waJPEG.100~)" height="(~waJPEG.100|height~)" width="(~waJPEG.100|height~)" alt="example 1" /><br />
+<div id="janrainEngageEmbed"></div>
 
-<h2>Example 2 at 50 percent</h2>
-<img src="(~ACTION|do,waJPEG.50~)" height="(~waJPEG.50|height~)" width="(~waJPEG.50|height~)" alt="example 2" /><br />
-
-<h2>Example 3 at 20 percent</h2>
-<img src="(~ACTION|do,waJPEG.20~)" height="(~waJPEG.20|height~)" width="(~waJPEG.20|height~)" alt="example 3" />
-<br /><br />
-<span class="changing">
-(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous Animal~) &nbsp;&nbsp;&nbsp;
-(~JUMPR|(~PageID~)|Next Animal~)
-</span>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 </body></html>
