@@ -43,7 +43,7 @@ uses
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whOpenID_dmProjMgr in 'whOpenID_dmProjMgr.pas' {DMProjForWHOpenID: TDataModule},
-  webTelnt in 'K:\WebHub\lib\whplus\webTelnt.pas',
+  whOpenID_dmwhAction in 'whOpenID_dmwhAction.pas',
   ucURLEncode in 'K:\WebHub\tpack\ucURLEncode.pas';
 
 {$R *.RES}
