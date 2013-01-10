@@ -69,6 +69,9 @@ call %cbat% whConverter
 cd %droot%\More Examples\whOutline
 call %cbat% whOutline
 
+cd %droot%\More Examples\whOpenID
+call %cbat% whOpenID
+
 cd %droot%\More Examples\whObjectInspector
 call %cbat% whObjectInspector
 
