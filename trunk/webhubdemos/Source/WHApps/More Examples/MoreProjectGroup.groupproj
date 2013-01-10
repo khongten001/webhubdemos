@@ -1,120 +1,108 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-		<PropertyGroup>
-			<ProjectGuid>{B9FF623B-9594-458B-84CE-96DFC5C18749}</ProjectGuid>
-		</PropertyGroup>
-		<ItemGroup>
-			<Projects Include="whASyncDemo\whAsyncDemo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whConverter\whConverter.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="..\..\DelphiApps\CharReplace\CharReplace.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whStopSpam\whStopSpam.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whExpertInstall\whExpertInstall.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whDfm2Html\f2hdemo.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whStopSpam\soapclient\SlowSpamClient.dproj">
-				<Dependencies/>
-			</Projects>
-			<Projects Include="whSendmail\whSendmail.dproj">
-				<Dependencies/>
-			</Projects>
-		</ItemGroup>
-		<ProjectExtensions>
-			<Borland.Personality>Default.Personality.12</Borland.Personality>
-			<Borland.ProjectType/>
-			<BorlandProject>
-				<Default.Personality/>
-			</BorlandProject>
-		</ProjectExtensions>
-		<Target Name="whAsyncDemo">
-			<MSBuild Projects="whASyncDemo\whAsyncDemo.dproj"/>
-		</Target>
-		<Target Name="whAsyncDemo:Clean">
-			<MSBuild Projects="whASyncDemo\whAsyncDemo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whAsyncDemo:Make">
-			<MSBuild Projects="whASyncDemo\whAsyncDemo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whConverter">
-			<MSBuild Projects="whConverter\whConverter.dproj"/>
-		</Target>
-		<Target Name="whConverter:Clean">
-			<MSBuild Projects="whConverter\whConverter.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whConverter:Make">
-			<MSBuild Projects="whConverter\whConverter.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="CharReplace">
-			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj"/>
-		</Target>
-		<Target Name="CharReplace:Clean">
-			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="CharReplace:Make">
-			<MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whStopSpam">
-			<MSBuild Projects="whStopSpam\whStopSpam.dproj"/>
-		</Target>
-		<Target Name="whStopSpam:Clean">
-			<MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whStopSpam:Make">
-			<MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whExpertInstall">
-			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj"/>
-		</Target>
-		<Target Name="whExpertInstall:Clean">
-			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whExpertInstall:Make">
-			<MSBuild Projects="whExpertInstall\whExpertInstall.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="f2hdemo">
-			<MSBuild Projects="whDfm2Html\f2hdemo.dproj"/>
-		</Target>
-		<Target Name="f2hdemo:Clean">
-			<MSBuild Projects="whDfm2Html\f2hdemo.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="f2hdemo:Make">
-			<MSBuild Projects="whDfm2Html\f2hdemo.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="SlowSpamClient">
-			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj"/>
-		</Target>
-		<Target Name="SlowSpamClient:Clean">
-			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="SlowSpamClient:Make">
-			<MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="whSendmail">
-			<MSBuild Projects="whSendmail\whSendmail.dproj"/>
-		</Target>
-		<Target Name="whSendmail:Clean">
-			<MSBuild Projects="whSendmail\whSendmail.dproj" Targets="Clean"/>
-		</Target>
-		<Target Name="whSendmail:Make">
-			<MSBuild Projects="whSendmail\whSendmail.dproj" Targets="Make"/>
-		</Target>
-		<Target Name="Build">
-			<CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whExpertInstall;f2hdemo;SlowSpamClient;whSendmail"/>
-		</Target>
-		<Target Name="Clean">
-			<CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whExpertInstall:Clean;f2hdemo:Clean;SlowSpamClient:Clean;whSendmail:Clean"/>
-		</Target>
-		<Target Name="Make">
-			<CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whExpertInstall:Make;f2hdemo:Make;SlowSpamClient:Make;whSendmail:Make"/>
-		</Target>
-		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
-	</Project>
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{B9FF623B-9594-458B-84CE-96DFC5C18749}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="whASyncDemo\whAsyncDemo.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whConverter\whConverter.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\DelphiApps\CharReplace\CharReplace.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whStopSpam\whStopSpam.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whOpenID\whOpenID.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whStopSpam\soapclient\SlowSpamClient.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whSendmail\whSendmail.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="whAsyncDemo">
+        <MSBuild Projects="whASyncDemo\whAsyncDemo.dproj"/>
+    </Target>
+    <Target Name="whAsyncDemo:Clean">
+        <MSBuild Projects="whASyncDemo\whAsyncDemo.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whAsyncDemo:Make">
+        <MSBuild Projects="whASyncDemo\whAsyncDemo.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whConverter">
+        <MSBuild Projects="whConverter\whConverter.dproj"/>
+    </Target>
+    <Target Name="whConverter:Clean">
+        <MSBuild Projects="whConverter\whConverter.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whConverter:Make">
+        <MSBuild Projects="whConverter\whConverter.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CharReplace">
+        <MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj"/>
+    </Target>
+    <Target Name="CharReplace:Clean">
+        <MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CharReplace:Make">
+        <MSBuild Projects="..\..\DelphiApps\CharReplace\CharReplace.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whStopSpam">
+        <MSBuild Projects="whStopSpam\whStopSpam.dproj"/>
+    </Target>
+    <Target Name="whStopSpam:Clean">
+        <MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whStopSpam:Make">
+        <MSBuild Projects="whStopSpam\whStopSpam.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whOpenID">
+        <MSBuild Projects="whOpenID\whOpenID.dproj"/>
+    </Target>
+    <Target Name="whOpenID:Clean">
+        <MSBuild Projects="whOpenID\whOpenID.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whOpenID:Make">
+        <MSBuild Projects="whOpenID\whOpenID.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SlowSpamClient">
+        <MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj"/>
+    </Target>
+    <Target Name="SlowSpamClient:Clean">
+        <MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SlowSpamClient:Make">
+        <MSBuild Projects="whStopSpam\soapclient\SlowSpamClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whSendmail">
+        <MSBuild Projects="whSendmail\whSendmail.dproj"/>
+    </Target>
+    <Target Name="whSendmail:Clean">
+        <MSBuild Projects="whSendmail\whSendmail.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whSendmail:Make">
+        <MSBuild Projects="whSendmail\whSendmail.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="whAsyncDemo;whConverter;CharReplace;whStopSpam;whOpenID;SlowSpamClient;whSendmail"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="whAsyncDemo:Clean;whConverter:Clean;CharReplace:Clean;whStopSpam:Clean;whOpenID:Clean;SlowSpamClient:Clean;whSendmail:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="whAsyncDemo:Make;whConverter:Make;CharReplace:Make;whStopSpam:Make;whOpenID:Make;SlowSpamClient:Make;whSendmail:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
