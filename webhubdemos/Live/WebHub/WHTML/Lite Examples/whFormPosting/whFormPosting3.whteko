@@ -20,7 +20,7 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02,.CKB~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02,.CKB,.KEEPCKB~)">
 <!-- changing:stop-->
 
 (~InputCheckBox|bAAA~) I like the letter A<br />
@@ -50,7 +50,7 @@
 (~boolvars~)
 
 <h2>Continue with some more</h2>
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03,.CKB~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03,.CKB,.KEEPCKB~)">
 <!-- changing:stop-->
 
 (~InputCheckBox|bCCC~) I like the letter C<br />
@@ -78,7 +78,39 @@
 <h2>Your boolvars so far</h2>
 (~boolvars~)
 
+<h2>Continue with some more</h2>
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck04,.CKB,.KEEPCKB#skip~)">
+<!-- changing:stop-->
+
+(~InputCheckBox|bEEE~) I like the letter E<br />
+(~InputCheckBox|bFFF~) I like the letter F<br />
+<input type="submit" />
+</form>
+
 <h2>Again?</h2>
+(~JUMPR|pgcheck01~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgcheck04" desc="Test the CHECKBOX processing">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Your boolvars so far</h2>
+(~boolvars~)
+
+<a name="skip"></a><h2>Again?</h2>
 (~JUMPR|pgcheck01~)
 
 </div>  <!--- whdemopagecontent -->
