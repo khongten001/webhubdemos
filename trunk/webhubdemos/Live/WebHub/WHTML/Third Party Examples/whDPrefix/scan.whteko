@@ -11,6 +11,7 @@ mcManPrefCaptionsFirst=First Page
 mcManPrefCaptionsPrior=Prior Page
 mcManPrefCaptionsNext=Next Page
 mcManPrefCaptionsLast=Last Page
+mcManPrefCaptionsRedraw=Redraw
 </whmacros>
 
 <whdroplet name="chScan">
