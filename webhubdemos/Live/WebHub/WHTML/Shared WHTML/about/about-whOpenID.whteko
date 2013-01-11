@@ -16,19 +16,23 @@ mcWhDemoLiteHTOI=No
 <ol>
 <li> If you want to run this demo yourself, you will need 
 a free basic account at janrain.com</li>
-
 </ol>
 </whdroplet>
 
 
 <whtranslation key="~whDemoShortDescHTOI">
-This demo shows how Delphi and WebHub can integrate with the online 
-OpenID service provided by janrain.com.
+This demo shows how Delphi and WebHub can provide login based on OpenID. 
 </whtranslation>
 
 
 <whtranslation key="~whDemoLongDescHTOI">
-( work in progress )
+<p>OpenID is a safe, faster, and easier way to log in to web sites.
+OpenID is a decentralized authentication protocol that makes it easy for people to sign up and access web accounts. 
+There are many <a target="_blank" href="http://openid.net/get-an-openid/individuals/">benefits to individuals</a> 
+and <a target="_blank" href="http://openid.net/add-openid/">to developers</a>. </p>
+<p>This demo shows how Delphi (XE3 as of January 2013) can be used to 
+take advantage of this widely popular standard, via the free basic online 
+integration service provided by <a target="_blank" href="http://www.janrain.com">janrain.com</a>.</p>
 </whtranslation>
 
 </whteko>
