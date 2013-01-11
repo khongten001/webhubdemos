@@ -57,6 +57,12 @@ The details in the javascript below are for use with the webhubdemos account onl
 <div id="whdemopagecontent">
 <h1>OpenID Authentication and Authorization</h1>
 
+<p>Welcome! This is a minimalist demo that shows how a web application written in Delphi can 
+converse with the OpenID system in order to know that a visitor is arriving with a valid 
+email address... (and more, depending on which level of service you subscribe to, and how much 
+JSON parsing you care to do).</p>
+<p>After logging in, you will see the 3 basic facts gleaned from the janrain.com service. </p>
+
 <div id="janrainEngageEmbed"></div>
 
 </div>  <!--- whdemopagecontent -->
