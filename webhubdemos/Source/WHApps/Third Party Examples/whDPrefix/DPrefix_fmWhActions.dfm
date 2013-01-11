@@ -38,8 +38,8 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 119
-        Action = ActCountPending
+        Width = 124
+        Action = ActCheckURLs
         LeaveSpace = True
         MinWidth = 28
       end
@@ -244,6 +244,10 @@ inherited fmWhActions: TfmWhActions
     object ActCountPending: TAction
       Caption = 'Count Pending'
       OnExecute = ActCountPendingExecute
+    end
+    object ActCheckURLs: TAction
+      Caption = 'Check URLs'
+      OnExecute = ActCheckURLsExecute
     end
   end
 end
