@@ -29,6 +29,7 @@ type
     function Init(out ErrorText: string): Boolean;
     procedure TableAdminOnlyPending;
     procedure TableAdminUnfiltered;
+    procedure Stamp(DS: TDataSet; const UpdatedBy: string);
     function CountPending: Integer;
   end;
 
@@ -44,7 +45,7 @@ implementation
 
 uses
   DBConsts,  //Copy and Flush Tables
-  ucCodeSiteInterface,
+  ucCodeSiteInterface, ucMsTime,
   webApp, htWebApp, whdemo_ViewSource;
 
 
@@ -174,6 +175,17 @@ begin
     end;
   end;
   Result := FlagInitDone;
+end;
+
+procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);
+begin
+  DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
+  DS.FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
+  if DS.FieldByName('UpdateCounter').IsNull then
+    DS.FieldByName('UpdateCounter').AsInteger := 0
+  else
+    DS.FieldByName('UpdateCounter').AsInteger :=
+      DS.FieldByName('UpdateCounter').AsInteger + 1;
 end;
 
 procedure TDMNexus.TableAdminOnlyPending;
