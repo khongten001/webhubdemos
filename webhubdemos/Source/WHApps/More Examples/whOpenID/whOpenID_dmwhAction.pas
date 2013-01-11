@@ -60,7 +60,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  DBXJSON, DBXJSONReflect,
+  DBXJSON,
   ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
   webApp, htWebApp, whdemo_ViewSource;
 
