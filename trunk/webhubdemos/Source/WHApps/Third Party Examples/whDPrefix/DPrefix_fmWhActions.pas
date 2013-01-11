@@ -57,6 +57,7 @@ type
     ActCreateIndices: TAction;
     cbShowOnlyPending: TCheckBox;
     ActCountPending: TAction;
+    ActCheckURLs: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -76,6 +77,7 @@ type
     procedure ActDeleteStatusDExecute(Sender: TObject);
     procedure ActCreateIndicesExecute(Sender: TObject);
     procedure ActCountPendingExecute(Sender: TObject);
+    procedure ActCheckURLsExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -95,12 +97,13 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxDB,
+  IdHTTP,
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
   ucFile,   //ForceDirectories insures that a legal path exists
   ucDlgs,   //admin/non-web confirmation questions
   ucShell,
-  ucLogFil,
+  ucLogFil, ucMsTime,
   ucCodeSiteInterface,
   webapp,   //access to pWebApp which points to the currently active app object for th duration of the page
   webScan, DPrefix_dmNexus;
@@ -129,6 +132,108 @@ begin
       Next;
     end;
   end;
+end;
+
+procedure TfmWhActions.ActCheckURLsExecute(Sender: TObject);
+var
+  AURL: string;
+  iStatusCode: Integer;
+  //Count: Integer;
+
+  function HTTPGet(const URL: string; out HTTPStatusCode: Integer): string;
+  const cFn = 'HTTPGet';
+  var
+    IdHTTP: TIdHTTP;
+  begin
+    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+    CSSend('URL', URL);
+    IdHTTP := nil;
+    HTTPStatusCode := 0;
+    try
+      IdHTTP := TIdHTTP.Create(nil);
+      IdHTTP.Request.UserAgent := 'HREFTools (http://delphiprefix.href.com/)';
+      try
+        Result := IdHTTP.Get(URL);
+        HTTPStatusCode := IdHTTP.Response.ResponseCode;
+      except
+        on E: Exception do
+        begin
+          {$IFDEF CodeSite}
+          CodeSite.SendException(E);
+          {$ENDIF}
+          if Pos('Host not found.', E.Message) > 0 then
+            HTTPStatusCode := 500
+          else
+          begin
+            if Assigned(IdHTTP) and Assigned(IdHTTP.Response) then
+              HTTPStatusCode := IdHTTP.Response.ResponseCode;
+          end;
+        end;
+      end;
+      CSSend('HTTPStatusCode', S(HTTPStatusCode));
+      {$IFDEF CodeSite}
+      LogToCodeSiteKeepCRLF('Result', Result);
+      {$ENDIF}
+    finally
+      FreeAndNil(IdHTTP);
+    end;
+    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+  end;
+
+  procedure IncUpdateCounter(DS: TDataSet);
+  begin
+    if DS.FieldByName('UpdateCounter').IsNull then
+      DS.FieldByName('UpdateCounter').AsInteger := 0
+    else
+      DS.FieldByName('UpdateCounter').AsInteger :=
+        DS.FieldByName('UpdateCounter').AsInteger + 1;
+  end;
+begin
+  inherited;
+  //Count := 0;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while (not EOF) do // and (Count < 5) do
+    begin
+      begin
+        AURL := FieldByName('Mpf WebPage').AsString;
+        if AURL <> '' then
+        begin
+          //Inc(Count);
+          AURL := 'http://' + AURL;
+          HTTPGet(AURL, iStatusCode);
+          if iStatusCode > 0 then
+          begin
+            Edit;
+            FieldByName('MpfURLStatus').AsInteger := iStatusCode;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('UpdatedBy').AsString := 'htc';
+            FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
+            IncUpdateCounter(DMNexus.TableAdmin);
+            Post;
+          end;
+        end
+        else
+        begin
+          if (NOT FieldByName('MpfURLStatus').IsNull) and
+            (FieldByName('MpfURLStatus').AsInteger <> -1) then
+          begin
+            Edit;
+            FieldByName('MpfURLStatus').AsInteger := -1;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('UpdatedBy').AsString := 'htc';
+            FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
+            IncUpdateCounter(DMNexus.TableAdmin);
+            Post;
+          end;
+        end;
+      end;
+      Next;
+    end;
+  end;
+
 end;
 
 procedure TfmWhActions.ActCleanURLExecute(Sender: TObject);
