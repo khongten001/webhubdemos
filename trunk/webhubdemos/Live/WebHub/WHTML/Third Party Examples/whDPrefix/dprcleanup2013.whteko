@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpagesettingslist id="cleanup">
+secure=2
+</whpagesettingslist>
+
+<whpage pageid="cleanup2013" desc="-Database Cleanup 2013 January">
+<whpagesettings inherit="cleanup">
+</whpagesettings>
+
+</whpage>
+
+
+</whteko>
