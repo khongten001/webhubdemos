@@ -90,12 +90,7 @@ googlepriority=0.7
 </body></html>
 </whpage>
 
-<whdroplet name="ScanAdminFinish">
-<!--- from scan--->
-</table>
-</whdroplet>
-
-<whdroplet name="ScanAdminInit">
+<whdroplet name="ScanAdmin">
 <!--- from scan--->
 (~clear|bColor~)
 <table id="adminTable" style="border: solid 1px; padding: 0.1em; background-color: bisque;">
@@ -109,10 +104,7 @@ googlepriority=0.7
   <th>Application</th>
   <th>Status</th>
 </tr>
-</whdroplet>
-
-<whdroplet name="ScanAdminRow">
-<!--- from scan--->
+<whrow>
 (~TR~)
 (~TD~)(~waPrefixLink.execute~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
@@ -123,14 +115,11 @@ googlepriority=0.7
 (~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Status~)</td>
 </tr>
-</whdroplet>
-
-<whdroplet name="ScanApprovedFinish">
-<!--- from scan--->
+</whrow>
 </table>
 </whdroplet>
 
-<whdroplet name="ScanApprovedInit">
+<whdroplet name="ScanApproved">
 <!--- from scan--->
 (~clear|bColor~)
 <table id="approvedPrefixesTable" style="margin-top: 1.4em; border: solid 1px; padding: 1px; background-color: Bisque; width:100%;">
@@ -141,10 +130,7 @@ googlepriority=0.7
   <th>Web Site</th>
   <th>Application</th>
 </tr>
-</whdroplet>
-
-<whdroplet name="ScanApprovedRow">
-<!--- from scan--->
+<whrow>
 (~TR~)
 (~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
@@ -153,6 +139,8 @@ googlepriority=0.7
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
 </tr>(~CLEAR|prefurl~)
+</whrow>
+</table>
 </whdroplet>
 
 <whdroplet name="td">
