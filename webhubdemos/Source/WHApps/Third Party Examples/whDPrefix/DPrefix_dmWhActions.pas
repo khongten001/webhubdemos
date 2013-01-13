@@ -18,21 +18,26 @@ interface
 
 uses
   SysUtils, Classes,
+  wnxdbAlpha,
   webLink, updateOK, tpAction, webTypes;
 
 type
   TDMDPRWebAct = class(TDataModule)
     waAdd: TwhWebAction;
     waCountPending: TwhWebAction;
+    waCleanup2013Login: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
     procedure waCountPendingExecute(Sender: TObject);
+    procedure waCleanup2013LoginExecute(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
+    WebDBAlphabet: TWebnxdbAlphabet;
     function Init(out ErrorText: string): Boolean;
   end;
 
@@ -45,7 +50,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface, ucString,
+  ucCodeSiteInterface, ucString, ucMsTime,
   webApp, htWebApp, DPrefix_dmNexus;
 
 { TDMDPRWebAct }
@@ -53,6 +58,23 @@ uses
 procedure TDMDPRWebAct.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
+  WebDBAlphabet := TWebnxdbAlphabet.Create(Self);
+  with WebDBAlphabet do
+  begin
+    Name := 'WebDBAlphabet';
+    Separator := '.';
+    WebDataSource := nil; //wdsManPref;
+    if Assigned(pWebApp) then
+    begin
+      // let the webmaster adjust the # of alphabet letters on a row.
+      NumPerRow:=StrToIntDef(pWebApp.AppSetting['AlphaLetters'],26);
+    end;
+  end;
+end;
+
+procedure TDMDPRWebAct.DataModuleDestroy(Sender: TObject);
+begin
+  FreeAndNil(WebDBAlphabet);
 end;
 
 function TDMDPRWebAct.Init(out ErrorText: string): Boolean;
@@ -134,6 +156,38 @@ begin
     end;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMDPRWebAct.waCleanup2013LoginExecute(Sender: TObject);
+var
+  DPREmail, DPRPassword: string;
+  bFound: Boolean;
+begin
+  bFound := False;
+  DPREmail := pWebApp.StringVar['DPREmail'];
+  DPRPassword := pWebApp.StringVar['DPRPassword'];
+
+  with DMNexus.TableAdmin do
+  begin
+    First;
+    while NOT EOF do
+    begin
+      if (FieldByName('Mpf Email').AsString = DPREmail) and
+        (FieldByName('MpfPassToken').AsString = DPRPassword) then
+      begin
+        if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
+          bFound := True
+        else
+          pWebApp.StringVar['ErrorMessage'] := 'expired password';
+        break;
+      end
+      else
+        Next;
+    end;
+  end;
+  pWebApp.BoolVar['_bCleanupOk'] := bFound;
+  if NOT bFound then
+    pWebApp.Response.SendBounceToPage('cleanup2013error', '');
 end;
 
 procedure TDMDPRWebAct.waCountPendingExecute(Sender: TObject);

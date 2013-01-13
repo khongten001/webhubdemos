@@ -4,7 +4,6 @@ inherited fmWhActions: TfmWhActions
   Caption = '&ManPref Database'
   ClientHeight = 481
   ClientWidth = 970
-  OnCreate = FormCreate
   OnDestroy = FormDestroy
   ExplicitWidth = 988
   ExplicitHeight = 526
@@ -38,7 +37,7 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 124
+        Width = 99
         Action = ActCheckURLs
         LeaveSpace = True
         MinWidth = 28
@@ -132,6 +131,7 @@ inherited fmWhActions: TfmWhActions
     Height = 19
     Panels = <
       item
+        Text = 'ManPref: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
@@ -156,6 +156,7 @@ inherited fmWhActions: TfmWhActions
   end
   object ManPref: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    OnExecute = ManPrefExecute
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 10
     ScanMode = dsByKey
@@ -248,6 +249,14 @@ inherited fmWhActions: TfmWhActions
     object ActCheckURLs: TAction
       Caption = 'Check URLs'
       OnExecute = ActCheckURLsExecute
+    end
+    object ActAssignPasswords: TAction
+      Caption = 'Assign Passwords'
+      OnExecute = ActAssignPasswordsExecute
+    end
+    object ActExportToCSV: TAction
+      Caption = 'ActExportToCSV'
+      OnExecute = ActExportToCSVExecute
     end
   end
 end
