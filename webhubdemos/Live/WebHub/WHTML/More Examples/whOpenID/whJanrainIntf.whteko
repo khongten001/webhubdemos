@@ -41,7 +41,7 @@ DYN1 = pageid for the janrain.settings.tokenUrl
 (~COOKIECLEAR|login_tab~)
 (~COOKIECLEAR|expected_tab~)
 (~COOKIECLEAR|welcome_info_name~)
-
+(~HEADER|Set-Cookie: login_tab=;~)
 (~mcdoctypehtml~)
 <html>
 <head>
