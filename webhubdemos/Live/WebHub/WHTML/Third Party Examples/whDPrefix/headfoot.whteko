@@ -32,9 +32,6 @@ Administration Shortcuts:
 <hr style="width:72%;"/>
 <div style="text-align:center;">
 (~chNavigation~)
-<p itemscope itemtype="http://www.schema.org/WPAdBlock">
-(~HREF|http://www.CodeNewsFast.com|Search Delphi Newsgroups~)
-</p>
 <p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
 compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
