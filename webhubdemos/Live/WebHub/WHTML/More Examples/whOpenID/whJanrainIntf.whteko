@@ -41,7 +41,22 @@ DYN1 = pageid for the janrain.settings.tokenUrl
 (~COOKIECLEAR|login_tab~)
 (~COOKIECLEAR|expected_tab~)
 (~COOKIECLEAR|welcome_info_name~)
-(~BOUNCE|(~PriorPageID~)~)
+
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Cookies Have Been Cleared</h1>
+<p>
+(~JUMPR|(~PriorPageID~)|Back~)
+</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
 </whpage>
 
 </whteko>
