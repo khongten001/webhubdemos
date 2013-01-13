@@ -36,6 +36,9 @@ JSON parsing you care to do).</p>
 
 <div id="janrainEngageEmbed"></div>
 
+<h2>Optionally Clear Cookies</h2>
+<p>(~JUMPR|resetopenidcookies|Clear 3 cookies and Return Here~)</p>
+
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 </body></html>
