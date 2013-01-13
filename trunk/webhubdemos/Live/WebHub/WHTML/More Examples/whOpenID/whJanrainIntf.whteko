@@ -38,10 +38,9 @@ DYN1 = pageid for the janrain.settings.tokenUrl
 
 <whpage pageid="resetopenidcookies" desc="Reset OpenID Cookies">
 <whprep>
-(~COOKIECLEAR|login_tab~)
-(~COOKIECLEAR|expected_tab~)
-(~COOKIECLEAR|welcome_info_name~)
-(~HEADER|Set-Cookie: login_tab=;~)
+(~HEADER|Set-Cookie: login_tab=; Domain=more.demos.href.com; Path=/;~)
+(~HEADER|Set-Cookie: expected_tab=; Domain=more.demos.href.com; Path=/;~)
+(~HEADER|Set-Cookie: welcome_info_name=; Domain=more.demos.href.com; Path=/;~)
 (~mcdoctypehtml~)
 <html>
 <head>
