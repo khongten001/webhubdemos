@@ -36,4 +36,12 @@ DYN1 = pageid for the janrain.settings.tokenUrl
 </script>
 </whdroplet>
 
+<whpage pageid="resetopenidcookies" desc="Reset OpenID Cookies">
+<whprep>
+(~COOKIECLEAR|login_tab~)
+(~COOKIECLEAR|expected_tab~)
+(~COOKIECLEAR|welcome_info_name~)
+(~BOUNCE|(~PriorPageID~)~)
+</whpage>
+
 </whteko>
