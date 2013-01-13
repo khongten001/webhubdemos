@@ -45,6 +45,7 @@ type
     fAlphabet:string;
     fLinkMacro:string;
     fSeparator: string;
+    FActiveChar: char;
   protected
     { Protected declarations }
     procedure   DoExecute; override;
@@ -57,6 +58,7 @@ type
     constructor Create(AOwner: TComponent); override;
     destructor  Destroy; override;
     procedure   Notification(AComponent: TComponent; Operation: TOperation); override;
+    property ActiveChar: Char read FActiveChar write FActiveChar;
   published
     { Published declarations }
     property NumPerRow: integer read fNumPerRow write setNumPerRow;
@@ -147,30 +149,38 @@ begin
 end;
 
 procedure TWebnxdbAlphabet.DoExecute;
+const cFn = 'DoExecute';
 var
-  S: String;
+  S1: String;
   svName: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited DoExecute;
-  S := Uppercase(DefaultsTo(Command,HtmlParam));
-  if (length(S)=1) and CharInSet(S[1], ['0'..'9','A'..'Z']) then
+  CSSend('Command', Command);
+  CSSend('HtmlParam', HtmlParam);
+  S1 := Uppercase(DefaultsTo(Command, HtmlParam));
+  CSSend('S1', S1);
+  if (length(S1)=1) and CharInSet(S1[1], ['0'..'9','A'..'Z']) then
   begin
+    FActiveChar := S1[1];
+    if Assigned(WebDataSource) then
     with TnxTable(WebDataSource.Dataset) do
     begin
-      FindNearest([S]);
+      FindNearest([S1]);
       svName := WebDataSource.Name+'.Keys';
       WebApp.StringVar[svName] := WebDataSource.keys;
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 function TWebnxdbAlphabet.DoUpdate: boolean;
 begin
-  cx.MakeIfNil(fWebDataSource,TwhbdeSource);
-  Result := inherited DoUpdate
-    and (WebDataSource.ComponentUpdated)
-    and assigned(WebDataSource.DataSet)
-    and (WebDataSource.DataSet is TnxTable);
+  //cx.MakeIfNil(fWebDataSource,TwhbdeSource);
+  Result := inherited DoUpdate;
+  //  and (WebDataSource.ComponentUpdated)
+  //  and assigned(WebDataSource.DataSet)
+  //  and (WebDataSource.DataSet is TnxTable);
 end;
 
 end.
