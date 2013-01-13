@@ -68,30 +68,23 @@ inherited fmWhActions: TfmWhActions
       end
       object GroupBox4: TGroupBox
         Left = 1
-        Top = 153
+        Top = 89
         Width = 242
         Height = 80
         Align = alTop
         Caption = 'Admin Browse'
         TabOrder = 1
-      end
-      object GroupBox5: TGroupBox
-        Left = 1
-        Top = 89
-        Width = 242
-        Height = 64
-        Align = alTop
-        Caption = 'Secure Login '
-        TabOrder = 2
+        ExplicitTop = 153
       end
       object GroupBox6: TGroupBox
         Left = 1
-        Top = 233
+        Top = 169
         Width = 242
         Height = 104
         Align = alTop
         Caption = 'Editing + Posting + Deleting'
-        TabOrder = 3
+        TabOrder = 2
+        ExplicitTop = 233
       end
     end
     object Panel1: TPanel
@@ -169,59 +162,27 @@ inherited fmWhActions: TfmWhActions
     Left = 22
     Top = 68
   end
-  object WebLogin: TwhLogin
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    UserIndex = -1
-    Left = 126
-    Top = 150
-  end
   object waPrefixLink: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waPrefixLinkExecute
-    Left = 150
-    Top = 214
-  end
-  object WebDataForm: TwhbdeForm
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnSetCommand = WebDataFormSetCommand
-    Border = 'BORDER'
-    WrapMemo = False
-    SkipBlank = False
-    WebDataSource = wdsAdmin
-    OnField = WebDataFormField
-    Left = 30
-    Top = 310
+    Left = 118
+    Top = 254
   end
   object waModify: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waModifyExecute
-    Left = 86
-    Top = 326
-  end
-  object wdsAdmin: TwhbdeSource
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    GotoMode = wgGotoKey
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = dsAdmin
-    Left = 22
-    Top = 222
-  end
-  object dsAdmin: TDataSource
-    Left = 78
-    Top = 222
+    Left = 30
+    Top = 262
   end
   object waAdminDelete: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAdminDeleteExecute
-    Left = 190
-    Top = 334
+    Left = 198
+    Top = 262
   end
   object ActionList1: TActionList
-    Left = 40
-    Top = 400
+    Left = 64
+    Top = 344
     object ActCleanURL: TAction
       Caption = 'Clean URL'
       OnExecute = ActCleanURLExecute

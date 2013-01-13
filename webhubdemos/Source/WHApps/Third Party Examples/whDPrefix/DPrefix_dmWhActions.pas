@@ -17,8 +17,8 @@ unit DPrefix_dmWhActions;
 interface
 
 uses
-  SysUtils, Classes,
-  wnxdbAlpha,
+  SysUtils, Classes, DB,
+  wnxdbAlpha, wdbForm, wdbSource,
   webLink, updateOK, tpAction, webTypes;
 
 type
@@ -27,17 +27,23 @@ type
     waCountPending: TwhWebAction;
     waCleanup2013Login: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
     procedure waCountPendingExecute(Sender: TObject);
     procedure waCleanup2013LoginExecute(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
+    procedure WebDataFormSetCommand(Sender: TObject; var Command: String);
+    procedure WebDataFormField(Sender: TwhdbForm; aField: TField;
+      var Text, Value: String);
   public
     { Public declarations }
     WebDBAlphabet: TWebnxdbAlphabet;
+    WebDataForm: TwhdbForm;
+    dsAdmin: TDataSource;
+    wdsAdmin: TwhdbSource;
     function Init(out ErrorText: string): Boolean;
   end;
 
@@ -50,8 +56,9 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface, ucString, ucMsTime,
-  webApp, htWebApp, DPrefix_dmNexus;
+  ucCodeSiteInterface, ucString, ucMsTime, ucBase64,
+  webApp, htWebApp, wdbSSrc,
+  DPrefix_dmNexus;
 
 { TDMDPRWebAct }
 
@@ -70,11 +77,42 @@ begin
       NumPerRow:=StrToIntDef(pWebApp.AppSetting['AlphaLetters'],26);
     end;
   end;
+
+  dsAdmin := TDataSource.Create(Self);
+  dsAdmin.Name := 'dsAdmin';
+  dsAdmin.DataSet := DMNexus.TableAdmin;
+
+  wdsAdmin := TwhdbSource.Create(Self);
+  with wdsAdmin do
+  begin
+    Name := 'wdsAdmin';
+    ComponentOptions := [];
+    GotoMode := wgGotoKey;
+    MaxOpenDataSets := 1;
+    OpenDataSets := 0;
+    SaveTableName := False;
+    DataSource := dsAdmin;
+  end;
+
+  WebDataForm := TwhdbForm.Create(Self);
+  with WebDataForm do
+  begin
+    Name := 'WebDataForm';
+    ComponentOptions := [];
+    OnSetCommand := WebDataFormSetCommand;
+    WrapMemo := False;
+    SkipBlank := False;
+    WebDataSource := wdsAdmin;
+    OnField := WebDataFormField;
+  end;
+
 end;
 
 procedure TDMDPRWebAct.DataModuleDestroy(Sender: TObject);
 begin
   FreeAndNil(WebDBAlphabet);
+  FreeAndNil(dsAdmin);
+  FreeAndNil(wdsAdmin);
 end;
 
 function TDMDPRWebAct.Init(out ErrorText: string): Boolean;
@@ -203,5 +241,46 @@ begin
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
 end;
+
+procedure TDMDPRWebAct.WebDataFormField(Sender: TwhdbForm; aField: TField;
+  var Text, Value: String);
+begin
+  inherited;
+  // indicate that the primary key is off limits
+  if aField.fieldname='MpfID' then begin
+    text:='ID*';
+    value:='<span style="color:#666667; font-weight: 900;">'+aField.asString+
+      '</span>';
+    end;
+end;
+
+procedure TDMDPRWebAct.WebDataFormSetCommand(Sender: TObject;
+  var Command: String);
+var
+  a1:string;
+begin
+  inherited;
+  SplitString(Command,'.',Command,a1);
+  a1:=Uncode64String(a1);
+  with pWebApp.Response, wdsAdmin.DataSet do
+    if Locate('MpfID',StrToIntDef(a1,-1),[]) then
+      SendComment('found ok')
+    else
+      SendHdr('2','Error - MpfID '+a1+' not found.');
+end;
+
+(*
+object WebDataForm: TwhdbForm
+  ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+  OnSetCommand = WebDataFormSetCommand
+  Border = 'BORDER'
+  WrapMemo = False
+  SkipBlank = False
+  WebDataSource = wdsAdmin
+  OnField = WebDataFormField
+  Left = 30
+  Top = 310
+end
+*)
 
 end.
