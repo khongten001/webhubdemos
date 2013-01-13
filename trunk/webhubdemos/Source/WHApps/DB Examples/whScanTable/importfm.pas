@@ -29,7 +29,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, ExtCtrls, StdCtrls, DB, DBTables,
   UTPANFRM, tpMemo, tpTable, UpdateOk, tpAction, 
-  wbdeForm,
+  wdbForm,
   wbdeSource, WebTypes,
   WebLink, WdbLink, WdbScan, wbdeGrid, WebMemo, Buttons, Toolbar, {}tpCompPanel,
   Grids, TxtGrid, DBGrids, DBCtrls, tpStatus, 

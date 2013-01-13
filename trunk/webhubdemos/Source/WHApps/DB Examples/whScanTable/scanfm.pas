@@ -30,7 +30,7 @@ uses
   DBGrids, DBCtrls, MidasLib, Provider, SimpleDS,
   Toolbar, {}tpCompPanel, ucstring, UTPANFRM, tpTable, updateOk,
   tpAction, tpStatus, TxtGrid,
-  wbdeForm, wbdeSource, webTypes, webLink, wdbLink, wdbScan, wbdeGrid, webMemo,
+  wdbForm, wbdeSource, webTypes, webLink, wdbLink, wdbScan, wbdeGrid, webMemo,
   webPage, webPHub, wdbSSrc, webScan, wdbxSource;
 
 type

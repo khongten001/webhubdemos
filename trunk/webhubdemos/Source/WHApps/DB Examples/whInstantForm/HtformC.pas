@@ -22,17 +22,12 @@ unit htformc;
   THE SOFTWARE.
 *)
 
-(*
-  The TwhbdeForm component is able to FINDKEY because it is working with
-  a TTable.
-*)
-
 interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, ExtCtrls, StdCtrls, DB, DBTables, DBGrids, DBCtrls,
-  wbdeForm, wbdeSource, WebTypes, wdbSSrc, WebLink, WdbLink, WdbScan,
+  wdbForm, wbdeSource, WebTypes, wdbSSrc, WebLink, WdbLink, WdbScan,
   wbdeGrid, WebMemo, webScan,
   Toolbar, {} tpCompPanel, Grids,
   TpMemo, TpTable, UpdateOk, tpAction, TxtGrid, tpStatus,
@@ -45,7 +40,7 @@ type
     DataSource1: TDataSource;
     Table1: TtpTable;
     waPost: TwhWebActionEx;
-    WebDataForm1: TwhbdeForm;
+    WebDataForm1: TwhdbForm;
     tpStatusBar1: TtpStatusBar;
     tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
