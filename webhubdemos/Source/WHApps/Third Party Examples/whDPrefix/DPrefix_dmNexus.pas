@@ -17,6 +17,7 @@ type
     procedure TableFilterPendingApprovedRecord(DataSet: TDataSet;
       var Accept: Boolean);
     procedure TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
+    procedure TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
@@ -29,6 +30,8 @@ type
     function Init(out ErrorText: string): Boolean;
     procedure TableAdminOnlyPending;
     procedure TableAdminUnfiltered;
+    procedure Table1OnlyMaintain;
+    procedure Table1OnlyApproved;
     procedure Stamp(DS: TDataSet; const UpdatedBy: string);
     function CountPending: Integer;
   end;
@@ -44,9 +47,10 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DBConsts,  //Copy and Flush Tables
   ucCodeSiteInterface, ucMsTime,
-  webApp, htWebApp, whdemo_ViewSource;
+  webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions;
 
 
 { TDMNexus }
@@ -188,37 +192,81 @@ begin
       DS.FieldByName('UpdateCounter').AsInteger + 1;
 end;
 
+procedure TDMNexus.Table1OnlyApproved;
+const cFn = 'Table1OnlyApproved';
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  with Table1 do
+  begin
+    //if OnFilterRecord <> TableFilterPendingApprovedRecord then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterPendingApprovedRecord;
+      Filtered := True;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMNexus.Table1OnlyMaintain;
+const cFn = 'Table1OnlyMaintain';
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  with Table1 do
+  begin
+    //if OnFilterRecord <> TableFilterEMail then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterEMail;
+      Filtered := True;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
 procedure TDMNexus.TableAdminOnlyPending;
+const cFn = 'TableAdminOnlyPending';
 begin
   with TableAdmin do
   begin
-    if Filtered then
-      Filtered := False;
-    OnFilterRecord := TableFilterPending;
-    Filtered := True;
+    //if OnFilterRecord <> TableFilterPending then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterPending;
+      Filtered := True;
+    end;
   end;
 end;
 
 procedure TDMNexus.TableAdminUnfiltered;
+const cFn = 'TableAdminUnfiltered';
 begin
   TableAdmin.Filtered := False;
   TableAdmin.OnFilterRecord := nil;
 end;
 
+procedure TDMNexus.TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
+begin
+  Accept := (DataSet.FieldByName('Mpf EMail').AsString = pWebApp.StringVar['DPREmail']);
+end;
+
 procedure TDMNexus.TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
+const cFn = 'TableFilterPending';
 begin
   Accept := (DataSet.FieldByName('Mpf Status').AsString = 'P');
+  //CSSend(cFn + ' Accept', S(Accept));
 end;
 
 procedure TDMNexus.TableFilterPendingApprovedRecord(DataSet: TDataSet;
   var Accept: Boolean);
+const cFn = 'TableFilterPendingApprovedRecord';
 var
   aStatus: string;
 begin
   inherited;
-  //improvements to do:
-  //get the checked values before the scan (onexecute) and put them into vars.
-  //use pre-instantiated fields or get a field pointer ahead of time
   with pWebApp do
   begin
     aStatus := UpperCase(DataSet.FieldByName('Mpf Status').asString);
@@ -228,8 +276,12 @@ begin
       else
         Accept:=(aStatus='P')  //pending
     else
-      Accept:=(aStatus='A');   //approved
+    begin
+      Accept := (DataSet.FieldByname('MpfFirstLetter').AsString =
+        DMDPRWebAct.WebDBAlphabet.ActiveChar) and (aStatus='A');   //approved
+    end;
   end;
+  //CSSend(cFn + ' Accept', S(Accept));
 end;
 
 procedure TDMNexus.WebAppUpdate(Sender: TObject);
