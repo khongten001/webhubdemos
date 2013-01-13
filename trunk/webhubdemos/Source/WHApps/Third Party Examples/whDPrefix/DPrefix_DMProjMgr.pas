@@ -67,7 +67,7 @@ uses
   dmWHApp, whAppOut,
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
-  DPrefix_fmWhActions, whsample_EvtHandlers;
+  DPrefix_fmWhActions, whsample_EvtHandlers, whOpenID_dmwhAction;
 
 procedure TDMSampleForWHProject.ProjMgrBeforeFirstCreate(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
@@ -117,6 +117,8 @@ begin
   //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
     Application.CreateForm(TDMNexus, DMNexus);
 
+    Application.CreateForm(TDMWHOpenIDviaJanrain, DMWHOpenIDviaJanrain);
+
   //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
     Application.CreateForm(TDMDPRWebAct, DMDPRWebAct);
 
@@ -137,6 +139,8 @@ begin
   Continue := DMNexus.Init(ErrorText);
   if Continue then
     Continue := DMDPRWebAct.Init(ErrorText);
+  if Continue then
+    Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
 end;
 
 procedure TDMSampleForWHProject.ProjMgrGUICreate(Sender: TtpProject;

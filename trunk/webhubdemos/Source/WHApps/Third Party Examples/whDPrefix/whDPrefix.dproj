@@ -119,6 +119,7 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
+        <DCCReference Include="K:\WebHub\lib\whplus\webScan.pas"/>
         <DCCReference Include="h:\whdm_Lingvo.pas"/>
         <DCCReference Include="h:\whcfg_App.pas"/>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
@@ -131,10 +132,12 @@
         </DCCReference>
         <DCCReference Include="h:\whsample_GoogleSitemap.pas">
             <Form>fmwhGoogleSitemap</Form>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="wnxdbAlpha.pas"/>
         <DCCReference Include="h:\whutil_ZaphodsMap.pas"/>
+        <DCCReference Include="h:\whutil_ValidEmail.pas"/>
+        <DCCReference Include="k:\webhub\tpack\ucURLEncode.pas"/>
+        <DCCReference Include="..\..\More Examples\whOpenID\whOpenID_dmwhAction.pas"/>
         <DCCReference Include="DPrefix_fmWhActions.pas">
             <Form>fmWhActions</Form>
         </DCCReference>
@@ -181,7 +184,7 @@
                     <VersionInfo Name="MajorVer">1</VersionInfo>
                     <VersionInfo Name="MinorVer">3</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">26</VersionInfo>
+                    <VersionInfo Name="Build">28</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -193,7 +196,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Delphi Prefix Registry WebHub application</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">1.3.0.26</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.3.0.28</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>

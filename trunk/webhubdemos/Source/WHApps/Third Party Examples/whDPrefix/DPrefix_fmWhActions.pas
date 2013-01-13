@@ -21,12 +21,11 @@ uses
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
   webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
-  wnxdbAlpha,
   wbdeForm, wbdePost, wdbSSrc, System.Actions, Vcl.ActnList;
 
 type
   TfmWhActions = class(TutParentForm)
-    ToolBar: TtpToolBar;   
+    ToolBar: TtpToolBar;
     tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
     wdsManPref: TwhbdeSource;
@@ -58,6 +57,8 @@ type
     cbShowOnlyPending: TCheckBox;
     ActCountPending: TAction;
     ActCheckURLs: TAction;
+    ActAssignPasswords: TAction;
+    ActExportToCSV: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -69,7 +70,6 @@ type
       var Text, Value: String);
     procedure waModifyExecute(Sender: TObject);
     procedure waAdminDeleteExecute(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Act1stLetterExecute(Sender: TObject);
     procedure ActCleanURLExecute(Sender: TObject);
@@ -78,11 +78,13 @@ type
     procedure ActCreateIndicesExecute(Sender: TObject);
     procedure ActCountPendingExecute(Sender: TObject);
     procedure ActCheckURLsExecute(Sender: TObject);
+    procedure ActAssignPasswordsExecute(Sender: TObject);
+    procedure ActExportToCSVExecute(Sender: TObject);
+    procedure ManPrefExecute(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    WebDBAlphabet: TWebnxdbAlphabet;
     function Init: boolean; override;
     procedure WebAppOutputClose(Sender: TObject);
     procedure WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
@@ -98,15 +100,14 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxDB,
   IdHTTP,
+  DateUtils,
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
   ucFile,   //ForceDirectories insures that a legal path exists
   ucDlgs,   //admin/non-web confirmation questions
-  ucShell,
-  ucLogFil, ucMsTime,
-  ucCodeSiteInterface,
-  webapp,   //access to pWebApp which points to the currently active app object for th duration of the page
-  webScan, DPrefix_dmNexus;
+  ucShell, ucPos, ucLogFil, ucMsTime, ucCodeSiteInterface,
+  webapp,   //access to pWebApp
+  webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail;
 
 {$R *.DFM}
 
@@ -134,11 +135,60 @@ begin
   end;
 end;
 
+procedure TfmWhActions.ActAssignPasswordsExecute(Sender: TObject);
+var
+  AEMail: string;
+const
+  cLettersDigits = 'zqLvXuX8hZhJlYGq0wcsYUZn2jVKKrQs1AozWqsc3weKnJdA4itkexzcmFBAP94';
+
+  function RandomPasswordString: string;
+  var
+    i, j, n: Integer;
+  begin
+    Result := '';
+    n := 12; // length of password
+    for i := 1 to n do
+    begin
+      j := Random(61);
+      Result := Result + cLettersDigits[Succ(j)];
+    end;
+  end;
+begin
+  inherited;
+  Randomize;
+  with DMNexus.TableAdmin do
+  begin
+    First;
+    while not EOF do
+    begin
+      AEMail := FieldByName('Mpf EMail').AsString;
+      if StrIsEMail(AEMail) then
+      begin
+        Edit;
+        FieldByName('MpfPassToken').asString := RandomPasswordString;
+        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, 10);
+        DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
+        Post;
+      end
+      else
+      begin
+        Edit;
+        FieldByName('MpfPassToken').asString := 'no';
+        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -10);
+        DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
+        Post;
+      end;
+      Next;
+    end;
+  end;
+  MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+end;
+
 procedure TfmWhActions.ActCheckURLsExecute(Sender: TObject);
 var
   AURL: string;
   iStatusCode: Integer;
-  //Count: Integer;
+  Count: Integer;
 
   function HTTPGet(const URL: string; out HTTPStatusCode: Integer): string;
   const cFn = 'HTTPGet';
@@ -180,28 +230,28 @@ var
     {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
   end;
 
-  procedure IncUpdateCounter(DS: TDataSet);
-  begin
-    if DS.FieldByName('UpdateCounter').IsNull then
-      DS.FieldByName('UpdateCounter').AsInteger := 0
-    else
-      DS.FieldByName('UpdateCounter').AsInteger :=
-        DS.FieldByName('UpdateCounter').AsInteger + 1;
-  end;
 begin
   inherited;
-  //Count := 0;
+  Count := 0;
   with DMNexus.TableAdmin do
   begin
     Assert(NOT Filtered);
     First;
     while (not EOF) do // and (Count < 5) do
     begin
+      Application.ProcessMessages;
+      (*if CheckBox1.Checked then
+      begin
+        CSSendWarning('break');
+        break;
+      end;*)
+      if (NOT FieldByName('MpfURLStatus').IsNull) then
       begin
         AURL := FieldByName('Mpf WebPage').AsString;
         if AURL <> '' then
         begin
-          //Inc(Count);
+          Inc(Count);
+          CSSend('Count', S(Count));
           AURL := 'http://' + AURL;
           HTTPGet(AURL, iStatusCode);
           if iStatusCode > 0 then
@@ -209,9 +259,7 @@ begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := iStatusCode;
             FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
-            FieldByName('UpdatedBy').AsString := 'htc';
-            FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
-            IncUpdateCounter(DMNexus.TableAdmin);
+            DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
             Post;
           end;
         end
@@ -223,9 +271,7 @@ begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := -1;
             FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
-            FieldByName('UpdatedBy').AsString := 'htc';
-            FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
-            IncUpdateCounter(DMNexus.TableAdmin);
+            DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
             Post;
           end;
         end;
@@ -321,6 +367,90 @@ begin
   MsgInfoOk('Deleted ' + IntToStr(n) + ' records');
 end;
 
+type TMarketingRec = record
+  Contact: string;
+  Company: string;
+  Package: string;
+  Prefix: string;
+  FirstLetter: string;
+  Webpage: string;
+  email: string;
+  RegisteredOn: TDateTime;
+  URLStatus: Integer;
+  URLTestOnAt: TDateTime;
+  PassToken: string;
+  PassUntil: TDateTime;
+  Beneficiary: string;
+end;
+
+procedure TfmWhActions.ActExportToCSVExecute(Sender: TObject);
+var
+  Data: TMarketingRec;
+  Filespec8, Filespec16: string;
+  CSVContents: string;
+
+  function QthenTab(const S1: string): string;
+  begin
+    Result := '"' + S1 + '"' + #9;
+  end;
+
+begin
+  inherited;
+  Filespec8 := 'd:\DelphiPrefixRegistry_Marketing.utf8.csv';
+  Filespec16 := 'd:\DelphiPrefixRegistry_Marketing.utf16.csv';
+  CSVContents := '';
+  with DMNexus.TableAdmin do
+  begin
+    First;
+    while not EOF do
+    begin
+      Data.EMail := FieldByName('Mpf EMail').AsString;
+      if StrIsEMail(Data.EMail) then
+      begin
+        Data.PassToken := FieldByName('MpfPassToken').asString;
+        Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
+        Data.Contact := FieldByName('Mpf Contact').asString;
+        Data.Package := FieldByName('Mpf Package Name').AsString;
+        Data.Prefix := FieldByName('Mpf Prefix').AsString;
+        Data.FirstLetter := FieldByName('MpfFirstLetter').AsString;
+        Data.Webpage := FieldByName('Mpf Webpage').AsString;
+        Data.RegisteredOn :=
+          FieldByName('Mpf Date Registered').AsDateTime;
+        //Data.RegisteredOn := StrToDateDef(
+        //  FieldByName('Mpf Date Registered').AsString, IncDay(Now, -(113*365)));
+        Data.URLStatus := FieldByName('MpfURLStatus').AsInteger;
+        Data.URLTestOnAt := FieldByName('MpfURLTestOnAt').AsDateTime;
+        if Data.Package <> '' then
+          Data.Beneficiary := Data.Package
+        else
+        if Data.Company <> '' then
+          Data.Beneficiary := Data.Company
+        else
+          Data.Beneficiary := Data.Contact;
+        CSVContents := CSVContents +
+          QthenTab(Data.Email) +
+          QthenTab(FormatDateTime('dd-MMM-yyyy', data.RegisteredOn)) +
+          QthenTab(Data.Contact) +
+          QthenTab(Data.Company) +
+          QthenTab(Data.Package) +
+          QthenTab(Data.Prefix) +
+          QthenTab(Data.FirstLetter) +
+          QthenTab(Data.WebPage) +
+          QthenTab(Data.Beneficiary) +
+          QthenTab(IntToStr(data.URLStatus)) +
+          QthenTab(FormatDateTime('dd-MMM-yyyy hh:nn', data.URLTestOnAt) + ' gmt') +
+          QthenTab(Data.PassToken) +
+          QthenTab(FormatDateTime('dd-MMM-yyyy hh:nn', data.PassUntil) + ' gmt') +
+          sLineBreak;
+      end;
+      Next;
+    end;
+  end;
+  UTF8StringWriteToFile(Filespec8, UTF8String(CSVContents));
+  StringWriteToFile(Filespec16, CSVContents);
+  MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+end;
+
 procedure TfmWhActions.ActUpcaseStatusExecute(Sender: TObject);
 var
   AStatus: string;
@@ -348,28 +478,9 @@ begin
   MsgInfoOk('Cleaned ' + IntToStr(n) + ' records');
 end;
 
-procedure TfmWhActions.FormCreate(Sender: TObject);
-begin
-  inherited;
-  WebDBAlphabet := TWebnxdbAlphabet.Create(TForm(Sender));
-  with WebDBAlphabet do
-  begin
-    Name := 'WebDBAlphabet';
-    Separator := '.';
-    WebDataSource := wdsManPref;
-    if Assigned(pWebApp) then
-    begin
-      // let the webmaster adjust the # of alphabet letters on a row.
-      NumPerRow:=StrToIntDef(pWebApp.AppSetting['AlphaLetters'],26);
-    end;
-    Refresh;
-  end;
-end;
-
 procedure TfmWhActions.FormDestroy(Sender: TObject);
 begin
   inherited;
-  FreeAndNil(WebDBAlphabet);
   fmWhActions := nil;
 end;
 
@@ -388,15 +499,24 @@ begin
     ManPref.PageHeight := 115;  // max for single letter as of 11-Dec-2008 AML
     ManPref.ControlsWhere := dsNone;
   end;
+  RefreshWebActions(Self);
 end;
 
 procedure TfmWhActions.ManPrefInit(Sender: TObject);
+const cFn = 'ManPrefInit';
+var
+  dropletName: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   with TwhdbScan(Sender) do
+  begin
     // HtmlParam is used to differentiate one grid from another.
     // e.g. %=manPref.execute|Approved=%
-    WebApp.SendMacro('Scan'+HtmlParam+'Init');
+    dropletName := 'Scan' + HtmlParam;
+    WebApp.SendDroplet(dropletName, drBeforeWhrow);
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhActions.ManPrefRowStart(Sender:TwhdbScanBase;
@@ -404,14 +524,34 @@ procedure TfmWhActions.ManPrefRowStart(Sender:TwhdbScanBase;
 begin
   inherited;
   with Sender do
-    WebApp.SendMacro('Scan'+HtmlParam+'Row');
+    WebApp.SendDroplet('Scan'+HtmlParam, drWithinWhrow);
+end;
+
+procedure TfmWhActions.ManPrefExecute(Sender: TObject);
+const cFn = 'ManPrefExecute';
+var
+  DropletKeyword: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  CSSend('PageID', pWebApp.PageID);
+  DropletKeyword := ManPref.HtmlParam;
+  CSSend('DropletKeyword', DropletKeyword);
+  if DropletKeyword = 'Maintain' then
+    DMNexus.Table1OnlyMaintain
+  else
+    DMNexus.Table1OnlyApproved;
+  //WebDBAlphabet.Execute;  // repeat the GotoNearest step after filter change!
+  if Assigned(ManPref) and Assigned(ManPref.WebDataSource) then
+    CSSend('DataSetIsActive', S(ManPref.WebDataSource.DataSetIsActive));
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhActions.ManPrefFinish(Sender: TObject);
 begin
   inherited;
   with TwhdbScan(Sender) do
-    WebApp.SendMacro('Scan'+HtmlParam+'Finish');
+    WebApp.SendDroplet('Scan'+HtmlParam, drAfterWhrow);
 end;
 
 procedure TfmWhActions.WebAppOutputClose(Sender: TObject);

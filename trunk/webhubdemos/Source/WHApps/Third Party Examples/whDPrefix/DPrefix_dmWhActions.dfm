@@ -1,8 +1,9 @@
 object DMDPRWebAct: TDMDPRWebAct
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 236
-  Width = 224
+  OnDestroy = DataModuleDestroy
+  Height = 306
+  Width = 448
   object waAdd: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waAddExecute
@@ -14,5 +15,11 @@ object DMDPRWebAct: TDMDPRWebAct
     OnExecute = waCountPendingExecute
     Left = 72
     Top = 104
+  end
+  object waCleanup2013Login: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waCleanup2013LoginExecute
+    Left = 72
+    Top = 168
   end
 end
