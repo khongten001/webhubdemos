@@ -69,6 +69,7 @@
       <File id="f07" filename="register.whteko"/>
       <File id="f08" filename="scan.whteko"/>
       <File id="f09" filename="dprcleanup2013.whteko"/>
+      <File id="j01" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
   </Application>
