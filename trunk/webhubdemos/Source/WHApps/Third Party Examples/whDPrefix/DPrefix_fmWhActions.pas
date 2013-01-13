@@ -21,7 +21,7 @@ uses
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
   webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
-  wbdeForm, wbdePost, wdbSSrc, System.Actions, Vcl.ActnList;
+  wdbForm, wbdePost, wdbSSrc, System.Actions, Vcl.ActnList;
 
 type
   TfmWhActions = class(TutParentForm)
@@ -36,14 +36,9 @@ type
     ManPref: TwhdbScan;
     tpToolButton1: TtpToolButton;
     GroupBox3: TGroupBox;
-    WebLogin: TwhLogin;
     waPrefixLink: TwhWebActionEx;
     GroupBox4: TGroupBox;
-    WebDataForm: TwhbdeForm;
     waModify: TwhWebActionEx;
-    GroupBox5: TGroupBox;
-    wdsAdmin: TwhbdeSource;
-    dsAdmin: TDataSource;
     GroupBox6: TGroupBox;
     waAdminDelete: TwhWebActionEx;
     tpToolButton3: TtpToolButton;
@@ -65,9 +60,6 @@ type
     procedure ManPrefFinish(Sender: TObject);
     procedure tpToolButton1Click(Sender: TObject);
     procedure waPrefixLinkExecute(Sender: TObject);
-    procedure WebDataFormSetCommand(Sender: TObject; var Command: String);
-    procedure WebDataFormField(Sender: TwhbdeForm; aField: TField;
-      var Text, Value: String);
     procedure waModifyExecute(Sender: TObject);
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -107,7 +99,7 @@ uses
   ucDlgs,   //admin/non-web confirmation questions
   ucShell, ucPos, ucLogFil, ucMsTime, ucCodeSiteInterface,
   webapp,   //access to pWebApp
-  webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail;
+  webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail, DPrefix_dmWhActions;
 
 {$R *.DFM}
 
@@ -493,7 +485,6 @@ begin
   begin
     wdsManPref.KeyFieldNames := 'MpfID';
     DataSource1.DataSet := DMNexus.Table1;
-    dsAdmin.DataSet := DMNexus.TableAdmin;
 
     ManPref.ButtonsWhere := dsNone;
     ManPref.PageHeight := 115;  // max for single letter as of 11-Dec-2008 AML
@@ -567,8 +558,8 @@ begin
   with DBGrid1 do
     if DataSource=nil then
     begin
-      DataSource:=dsAdmin;
-      DBNavigator1.DataSource:=dsAdmin;
+      DataSource:=DMDPRWebAct.dsAdmin;
+      DBNavigator1.DataSource:=DMDPRWebAct.dsAdmin;
       if cbShowOnlyPending.Checked then
         DMNexus.TableAdminOnlyPending
       else
@@ -576,8 +567,8 @@ begin
     end
     else
     begin
-      dsAdmin.DataSet.Filtered := False;
-      dsAdmin.DataSet.OnFilterRecord := nil;
+      DMDPRWebAct.dsAdmin.DataSet.Filtered := False;
+      DMDPRWebAct.dsAdmin.DataSet.OnFilterRecord := nil;
       DataSource:=nil;
       DBNavigator1.DataSource:=nil;
     end;
@@ -601,33 +592,6 @@ begin
     end;
 end;
 
-procedure TfmWhActions.WebDataFormSetCommand(Sender:TObject;var Command:String);
-var
-  a1:string;
-begin
-  inherited;
-  SplitString(Command,'.',Command,a1);
-  a1:=Uncode64String(a1);
-  with pWebApp.Response, wdsAdmin.DataSet do
-    if Locate('MpfID',StrToIntDef(a1,-1),[]) then
-      SendComment('found ok')
-    else
-      SendHdr('2','Error - prefix '+a1+' not found.');
-  // edit.key syntax does not work in v1.713 version of wbdeForm.pas. AML 22-Mar-1999
-  //a1:=Command+'.'+a1;
-  //Command:=a1;
-end;
-
-procedure TfmWhActions.WebDataFormField(Sender:TwhbdeForm;aField:TField;var Text,Value:String);
-begin
-  inherited;
-  // indicate that the primary key is off limits
-  if aField.fieldname='MpfID' then begin
-    text:='ID*';
-    value:='<b><font color="#666667">'+aField.asString+'</font></b>';
-    end;
-end;
-
 procedure TfmWhActions.waModifyExecute(Sender: TObject);
 //field-data comes in looking like this: wdsAdmin.Mpf Status@46=A
 var
@@ -636,7 +600,7 @@ var
 begin
   inherited;
   iKey:=-1; //
-  with TwhWebActionEx(Sender), wdsAdmin, DataSet do
+  with TwhWebActionEx(Sender), DMDPRWebAct.wdsAdmin, DataSet do
   begin
     for i:=0 to pred(pWebApp.Request.dbFields.count) do
       if SplitString(LeftOfEqual(pWebApp.Request.dbFields[i]),'@',a1,aKey)
