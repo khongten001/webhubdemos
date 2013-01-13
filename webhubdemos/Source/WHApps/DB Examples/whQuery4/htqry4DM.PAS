@@ -30,7 +30,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DBTables, DB, 
   UpdateOk, tpAction, 
-  WebTypes, wbdeSource, wbdeForm,
+  WebTypes, wbdeSource, wdbForm,
   WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan, wdbLstBx, wdbSSrc;
 
 type
@@ -39,7 +39,7 @@ type
     WebDataSource1: TwhbdeSource;
     DataSource1: TDataSource;
     Query1: TQuery;
-    WebDataForm1: TwhbdeForm;
+    WebDataForm1: TwhdbForm;
     WebDataSourceEmp: TwhbdeSource;
     DataSourceEmp: TDataSource;
     TableEmp: TTable;

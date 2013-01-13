@@ -8,7 +8,7 @@ uses
   UTPANFRM, ExtCtrls, StdCtrls, TpMemo, DBCtrls, Grids, DBGrids,
   WebScan, WebGrid, WebRubi,
   WdbLink, WdbScan, wbdeGrid, DBTables, TpTable, DB, wbdeSource,
-  wbdeForm, UpdateOk, tpAction, WebTypes,   WebLink,
+  wdbForm, UpdateOk, tpAction, WebTypes,   WebLink,
   tpStatus, Toolbar, {}tpCompPanel, rbBase, rbSearch, rbLogic, rbRank,
   rbDS, rbTable, rbBridge_b_bde, wdbSSrc;
 
@@ -32,7 +32,7 @@ Rubicon2 directory.
 
 type
   TfmHTRUPanel = class(TutParentForm)
-    Msg: TwhbdeForm;
+    Msg: TwhdbForm;
     wdsMessage: TwhbdeSource;
     dsMessage: TDataSource;
     qMessage: TQuery;
@@ -339,7 +339,8 @@ var
   b:boolean;
 begin
   inherited;
-  with TwhbdeForm(Sender) do begin//TwhbdeForm(Sender).Command
+  with TwhdbForm(Sender) do 
+  begin
     b:=StrToIntDef(Command,0)>0;
     with WebDataSource.DataSet do begin
       Fields[2].visible:=b;
