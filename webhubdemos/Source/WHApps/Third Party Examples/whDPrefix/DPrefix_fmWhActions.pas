@@ -56,6 +56,7 @@ type
     ActCheckURLs: TAction;
     ActAssignPasswords: TAction;
     ActExportToCSV: TAction;
+    ActionPurpose: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -74,6 +75,7 @@ type
     procedure ActAssignPasswordsExecute(Sender: TObject);
     procedure ActExportToCSVExecute(Sender: TObject);
     procedure ManPrefExecute(Sender: TObject);
+    procedure ActionPurposeExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -363,7 +365,7 @@ end;
 type TMarketingRec = record
   Contact: string;
   Company: string;
-  Package: string;
+  Purpose: string;
   Prefix: string;
   FirstLetter: string;
   Webpage: string;
@@ -403,7 +405,7 @@ begin
         Data.PassToken := FieldByName('MpfPassToken').asString;
         Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
         Data.Contact := FieldByName('Mpf Contact').asString;
-        Data.Package := FieldByName('Mpf Package Name').AsString;
+        Data.Purpose := FieldByName('MpfPurpose').AsString;
         Data.Prefix := FieldByName('Mpf Prefix').AsString;
         Data.FirstLetter := FieldByName('MpfFirstLetter').AsString;
         Data.Webpage := FieldByName('Mpf Webpage').AsString;
@@ -413,8 +415,8 @@ begin
         //  FieldByName('Mpf Date Registered').AsString, IncDay(Now, -(113*365)));
         Data.URLStatus := FieldByName('MpfURLStatus').AsInteger;
         Data.URLTestOnAt := FieldByName('MpfURLTestOnAt').AsDateTime;
-        if Data.Package <> '' then
-          Data.Beneficiary := Data.Package
+        if Data.Purpose <> '' then
+          Data.Beneficiary := Data.Purpose
         else
         if Data.Company <> '' then
           Data.Beneficiary := Data.Company
@@ -425,7 +427,7 @@ begin
           QthenTab(FormatDateTime('dd-MMM-yyyy', data.RegisteredOn)) +
           QthenTab(Data.Contact) +
           QthenTab(Data.Company) +
-          QthenTab(Data.Package) +
+          QthenTab(Data.Purpose) +
           QthenTab(Data.Prefix) +
           QthenTab(Data.FirstLetter) +
           QthenTab(Data.WebPage) +
@@ -442,6 +444,44 @@ begin
   UTF8StringWriteToFile(Filespec8, UTF8String(CSVContents));
   StringWriteToFile(Filespec16, CSVContents);
   MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+end;
+
+procedure TfmWhActions.ActionPurposeExecute(Sender: TObject);
+var
+  s2, s3: string;
+  Purpose: string;
+begin
+  inherited;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      Purpose := FieldByName('Mpf Package Name').AsString;
+      s2 := FieldByName('MpfApplication').AsString;
+      s3 := FieldByName('MpfType').AsString;
+      if s2 <> '' then
+      begin
+        if Purpose <> '' then
+          Purpose := Purpose + '; ';
+        Purpose := Purpose + s2;
+      end;
+      if s3 <> '' then
+      begin
+        if Purpose <> '' then
+          Purpose := Purpose + '; ';
+        Purpose := Purpose + s3;
+      end;
+
+      Edit;
+      FieldByName('MpfPurpose').asString := Purpose;
+      DMNexus.Stamp(DMNexus.TableAdmin, 'pur');
+      Post;
+      Next;
+    end;
+  end;
+  MsgInfoOk('Purpose field is ready for use.');
 end;
 
 procedure TfmWhActions.ActUpcaseStatusExecute(Sender: TObject);

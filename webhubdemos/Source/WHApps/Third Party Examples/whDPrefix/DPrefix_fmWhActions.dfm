@@ -38,7 +38,7 @@ inherited fmWhActions: TfmWhActions
         Left = 177
         Top = 6
         Width = 99
-        Action = ActCheckURLs
+        Action = ActionPurpose
         LeaveSpace = True
         MinWidth = 28
       end
@@ -74,7 +74,6 @@ inherited fmWhActions: TfmWhActions
         Align = alTop
         Caption = 'Editing + Posting + Deleting'
         TabOrder = 1
-        ExplicitTop = 169
       end
     end
     object Panel1: TPanel
@@ -202,6 +201,10 @@ inherited fmWhActions: TfmWhActions
     object ActExportToCSV: TAction
       Caption = 'ActExportToCSV'
       OnExecute = ActExportToCSVExecute
+    end
+    object ActionPurpose: TAction
+      Caption = 'Purpose'
+      OnExecute = ActionPurposeExecute
     end
   end
 end

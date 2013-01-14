@@ -104,9 +104,7 @@
 <tr><th></th>
 <th>Prefix</th>
 <th>Registered</th>
-<th>Package Name</th>
-<th>Application</th>
-<th>Type</th>
+<th>Purpose/th>
 <th>Company</th><th>Contact</th><th>EMail</th><th>Web Page</th><th>Web Status</th><th>Updated</th>
 </tr></thead>
 <tbody>
@@ -115,9 +113,7 @@
 <td>(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|edit~)</td>
 <td>(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
-<td>(~FIELD|wdsManPref|Mpf Package Name~)</td>
-<td>(~FIELD|wdsManPref|MpfApplication~)</td>
-<td>(~FIELD|wdsManPref|MpfType~)</td>
+<td>(~FIELD|wdsManPref|MpfPurpose~)</td>
 <td>(~FIELD|wdsManPref|Mpf Company~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)</td>
 <td>(~FIELD|wdsManPref|Mpf EMail~)</td>
