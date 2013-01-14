@@ -29,7 +29,7 @@
 <td >(~inputtext|DPREMail,60,60~)</td>
 </tr>
 <tr><td>Password:</td>
-<td >(~inputpassword|DPRPassword,14,14~)<br/>
+<td>(~inputpassword|DPRPassword,60,14~)<br/>
 <span style="font-size:smaller;"><i>(as emailed from customerservice@href.com in January 2013</i></span></td>
 </tr>
 
@@ -62,6 +62,7 @@
 
 <h2>Sorry, No Go.</h2>
 <p>(~errormessage~)</p>
+<p>Sessions time out after 10 minutes of inactivity.</p>
 <p>(~JUMPR|cleanup2013|Login here~)</p>
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
 <a target="_blank" href="https://www.href.com/techhelp">www.href.com</a>
@@ -108,7 +109,7 @@
 <tbody>
 <whrow>
 <tr>
-<td>(~JUMP|cleanupd,(~FIELD|wdsManPref|MpfID~)|edit~)</td>
+<td>(~JUMP|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|edit~)</td>
 <td>(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 <td>(~FIELD|wdsManPref|Mpf Package Name~)</td>
@@ -136,6 +137,10 @@ You can create a free account at OpenID if necessary.</p>
 </body></html>
 </whpage>
 
+<whmacros>
+mcSubmitWebDataForm=<tr><th colspan="2"><input type="submit" value="Save to Database Now" /></td></th>
+</whmacros>
+
 <whpage pageid="cleanupd" desc="-Edit Registration Details">
 <whprep>
 (~drCleanupCheckpoint~)
@@ -145,12 +150,18 @@ You can create a free account at OpenID if necessary.</p>
 <title>(~pagedesc~)</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
+	<style>
+	#WebDataForm-table { border: solid 1px crimson; margin: 1em 2em 1em 2em; padding: 1em; }
+	#WebDataForm-table th {text-align: right; padding: 0.4em 1em;}
+	</style>
 </head>
 <body>
 <img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />
 
-<h2>Prefix (~readonly-mpf prefix~)</h2>
-
+<h2>Edit</h2>
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanup2013e~)">
+(~WebDataForm.Execute|~)
+</form>
 
 (~drSharedFooter~)
 </body></html>
