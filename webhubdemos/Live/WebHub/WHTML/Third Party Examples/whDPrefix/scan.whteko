@@ -126,7 +126,8 @@ googlepriority=0.7
   <th>Company</th>
   <th>Purpose</th>
   <th>Web Site</th>
-  <th>Application</th>
+  <th>Contact</th>
+	<th>Registered</th>
 </tr>
 <whrow>
 (~TR~)
@@ -135,6 +136,8 @@ googlepriority=0.7
 (~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
 (~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 </tr>(~CLEAR|prefurl~)
 </whrow>
 </table>
