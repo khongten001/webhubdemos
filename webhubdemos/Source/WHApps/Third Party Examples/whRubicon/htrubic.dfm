@@ -103,7 +103,6 @@ inherited fmHTRUPanel: TfmHTRUPanel
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = MsgExecute
     DirectCallOk = True
-    Border = 'border width="100%"'
     WrapMemo = False
     SkipBlank = False
     WebDataSource = wdsMessage

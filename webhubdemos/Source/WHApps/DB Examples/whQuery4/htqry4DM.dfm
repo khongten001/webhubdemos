@@ -45,7 +45,6 @@ object DataModuleHTQ4: TDataModuleHTQ4
   end
   object WebDataForm1: TwhdbForm
     ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
-    Border = 'cellspacing="0"'
     WrapMemo = False
     SkipBlank = False
     WebDataSource = WebDataSourceEmp
