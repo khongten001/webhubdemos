@@ -97,22 +97,20 @@ googlepriority=0.7
 <tr>
   <th>Prefix</th>
   <th>Company</th>
-  <th>Package Name</th>
+  <th>Purpose</th>
   <th>WebPage</th>
   <th>Contact</th>
   <th>Email</th>
-  <th>Application</th>
   <th>Status</th>
 </tr>
 <whrow>
 (~TR~)
 (~TD~)(~JUMPR|pgEdit,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
+(~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf EMail~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Status~)</td>
 </tr>
 </whrow>
@@ -126,7 +124,7 @@ googlepriority=0.7
 <tr>
   <th>Prefix</th>
   <th>Company</th>
-  <th>Package Name</th>
+  <th>Purpose</th>
   <th>Web Site</th>
   <th>Application</th>
 </tr>
@@ -134,10 +132,9 @@ googlepriority=0.7
 (~TR~)
 (~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
+(~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
 (~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Application~)</td>
 </tr>(~CLEAR|prefurl~)
 </whrow>
 </table>
