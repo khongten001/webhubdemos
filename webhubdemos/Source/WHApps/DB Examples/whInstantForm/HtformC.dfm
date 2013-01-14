@@ -112,7 +112,7 @@ inherited fmHTFMPanel: TfmHTFMPanel
     Left = 56
     Top = 12
   end
-  object WebDataForm1: TwhbdeForm
+  object WebDataForm1: TwhdbForm
     ComponentOptions = [tpStatusPanel]
     Border = 'cellspacing="0"'
     WrapMemo = False

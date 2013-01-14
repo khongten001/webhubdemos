@@ -99,7 +99,7 @@ inherited fmHTRUPanel: TfmHTRUPanel
     ShowHint = True
     PanelStatusIndex = 0
   end
-  object Msg: TwhbdeForm
+  object Msg: TwhdbForm
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = MsgExecute
     DirectCallOk = True
