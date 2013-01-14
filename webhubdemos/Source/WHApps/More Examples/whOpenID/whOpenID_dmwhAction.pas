@@ -160,6 +160,11 @@ begin
   if Length(token) = 40 then
   begin
 
+    pWebApp.Session.DeleteStringVarByName('_identifier');
+    pWebApp.Session.DeleteStringVarByName('_email');
+    pWebApp.Session.DeleteStringVarByName('_preferredUsername');
+    pWebApp.Session.DeleteStringVarByName('_providerName');
+
     (* STEP 2: Use the token to make the auth_info API call *)
     with TStringList.Create do
     try
@@ -222,15 +227,16 @@ begin
               if LeftKey = 'providerName' then
                 providerName := NoQuotes(pair.JsonValue.ToString);
             end;
-            pWebApp.StringVar['identifier'] := identifier;
-            pWebApp.StringVar['email'] := email;
-            pWebApp.StringVar['preferredUsername'] := preferredUsername;
-            pWebApp.StringVar['providerName'] := providerName;
+            pWebApp.StringVar['_identifier'] := identifier;
+            pWebApp.StringVar['_email'] := email;
+            pWebApp.StringVar['_preferredUsername'] := preferredUsername;
+            pWebApp.StringVar['_providerName'] := providerName;
             pWebApp.Session.DeleteStringVarByName('token');
           end
           else
           begin
-            pWebApp.StringVar['ErrorMessage'] := 'status is not ok';
+            pWebApp.StringVar[Self.Name + '.ErrorMessage'] :=
+              'status is not ok';
           end;
         end;
       end
