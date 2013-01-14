@@ -106,7 +106,7 @@ googlepriority=0.7
 </tr>
 <whrow>
 (~TR~)
-(~TD~)(~waPrefixLink.execute~)</td>
+(~TD~)(~JUMPR|pgEdit,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Package Name~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>

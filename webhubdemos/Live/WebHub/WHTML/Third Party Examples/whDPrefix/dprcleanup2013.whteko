@@ -9,12 +9,12 @@
 (~REQUIRES|BoolVar._bCleanupOk|cleanup2013~)
 </whdroplet>
 
-<whpage pageid="cleanup2013" desc="-Database Cleanup 2013 January">
+<whpage pageid="cleanup2013" desc="-Delphi Prefix Database Cleanup 2013 January">
 <whprep>
 </whprep>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-<title>Delphi Prefix Registry</title>
+<title>(~PageDesc~)</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
   <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
@@ -94,7 +94,8 @@
 <body>
 <img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />
 
-<h1>January 2013 Database Cleanup</h1>
+<h1>Delphi Prefix Database</h1>
+<h2>January 2013 Cleanup</h2>
 (~manpref.Execute|Maintain~)
 
 <whdroplet name="ScanMaintain" show="no">
@@ -104,20 +105,25 @@
 <th>Prefix</th>
 <th>Registered</th>
 <th>Package Name</th>
-<th>Company</th><th>Contact</th><th>EMail</th><th>Web Page</th><th>Web Status</th>
+<th>Application</th>
+<th>Type</th>
+<th>Company</th><th>Contact</th><th>EMail</th><th>Web Page</th><th>Web Status</th><th>Updated</th>
 </tr></thead>
 <tbody>
 <whrow>
 <tr>
-<td>(~JUMP|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|edit~)</td>
+<td>(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|edit~)</td>
 <td>(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 <td>(~FIELD|wdsManPref|Mpf Package Name~)</td>
+<td>(~FIELD|wdsManPref|MpfApplication~)</td>
+<td>(~FIELD|wdsManPref|MpfType~)</td>
 <td>(~FIELD|wdsManPref|Mpf Company~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)</td>
 <td>(~FIELD|wdsManPref|Mpf EMail~)</td>
 <td>(~FIELD|wdsManPref|Mpf WebPage~)</td>
 <td>(~FIELD|wdsManPref|MpfURLStatus~) as of (~FIELD|wdsManPref|MpfURLTestOnAt~)</td>
+<td>(~FIELD|wdsManPref|UpdatedOnAt~)</td>
 </tr>
 </whrow>
 </tbody>
@@ -159,12 +165,21 @@ mcSubmitWebDataForm=<tr><th colspan="2"><input type="submit" value="Save to Data
 <img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />
 
 <h2>Edit</h2>
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanup2013e~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanupe~)">
 (~WebDataForm.Execute|~)
 </form>
 
 (~drSharedFooter~)
 </body></html>
+</whpage>
+
+
+<whpage pageid="cleanupe" desc="-Post Registration Details">
+<whprep>
+(~drCleanupCheckpoint~)
+(~waModify.Execute|~)
+</whprep>
+(~BOUNCE|cleanup2013c~)
 </whpage>
 
 <whmacros>

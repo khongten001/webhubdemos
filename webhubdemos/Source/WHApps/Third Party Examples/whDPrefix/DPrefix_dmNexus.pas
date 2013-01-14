@@ -34,6 +34,7 @@ type
     procedure Table1OnlyApproved;
     procedure Stamp(DS: TDataSet; const UpdatedBy: string);
     function CountPending: Integer;
+    function IsAllowedRemoteDataEntryField(const AFieldName: string): Boolean;
   end;
 
 var
@@ -49,7 +50,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DBConsts,  //Copy and Flush Tables
-  ucCodeSiteInterface, ucMsTime,
+  ucCodeSiteInterface, ucMsTime, ucPos,
   webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions;
 
 
@@ -179,6 +180,16 @@ begin
     end;
   end;
   Result := FlagInitDone;
+end;
+
+function TDMNexus.IsAllowedRemoteDataEntryField(
+  const AFieldName: string): Boolean;
+begin
+  Result := PosCI(AFieldName, 'MpfID;Mpf Prefix;' +
+    ';UpdatedBy;UpdatedOnAt;UpdateCounter;' +
+    'Mpf Status;MpfFirstLetter;Mpf EMail;' +
+    'MpfURLStatus;MpfURLTestOnAt;MpfOpenIDOnAt;MpfOpenIDProviderName;' +
+    'MpfPassToken;MpfPassUntil;Mpf Date Registered') = 0;
 end;
 
 procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);

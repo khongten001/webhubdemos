@@ -14,14 +14,18 @@
 
 unit DPrefix_fmWhActions; // GUI
 
+{$I hrefdefines.inc}
+
 interface
 
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
+  //{$IFDEF Delphi17UP}System.Actions, Vcl.ActnList,{$ENDIF}
+  System.Actions, Vcl.ActnList,
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
   webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
-  wdbForm, wbdePost, wdbSSrc, System.Actions, Vcl.ActnList;
+  wdbSSrc;
 
 type
   TfmWhActions = class(TutParentForm)
@@ -36,8 +40,6 @@ type
     ManPref: TwhdbScan;
     tpToolButton1: TtpToolButton;
     GroupBox3: TGroupBox;
-    waPrefixLink: TwhWebActionEx;
-    GroupBox4: TGroupBox;
     waModify: TwhWebActionEx;
     GroupBox6: TGroupBox;
     waAdminDelete: TwhWebActionEx;
@@ -59,7 +61,6 @@ type
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
     procedure ManPrefFinish(Sender: TObject);
     procedure tpToolButton1Click(Sender: TObject);
-    procedure waPrefixLinkExecute(Sender: TObject);
     procedure waModifyExecute(Sender: TObject);
     procedure waAdminDeleteExecute(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -574,51 +575,67 @@ begin
     end;
 end;
 
-
-procedure TfmWhActions.waPrefixLinkExecute(Sender: TObject);
-var
-  a1,a2:string;
-begin
-  inherited;
-  with TwhWebActionEx(Sender) do
-  begin
-    with wdsManPref.DataSet do
-    begin
-      a1:=fieldByName('MpfID').asString;
-      a2:=fieldByName('Mpf Prefix').asString;
-      end;
-    WebApp.SendMacro('JUMP|pgEdit,'
-      +'webdataform.edit.'+Code64String(a1)+'|'+a2);
-    end;
-end;
-
 procedure TfmWhActions.waModifyExecute(Sender: TObject);
+const cFn = 'waModifyExecute';
 //field-data comes in looking like this: wdsAdmin.Mpf Status@46=A
 var
   a1,aKey,aFieldname:string;
-  i,iKey:integer;
+  i, iKey, iKeyDone: Integer;
+  bEditing: Boolean;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  iKey:=-1; //
-  with TwhWebActionEx(Sender), DMDPRWebAct.wdsAdmin, DataSet do
+  iKeyDone := -1;
+  bEditing := False;
+  with TwhWebActionEx(Sender), DMDPRWebAct.wdsAdmin.DataSet do
   begin
-    for i:=0 to pred(pWebApp.Request.dbFields.count) do
+    for i := 0 to Pred(pWebApp.Request.dbFields.Count) do
+    begin
       if SplitString(LeftOfEqual(pWebApp.Request.dbFields[i]),'@',a1,aKey)
       and SplitString(a1,'.',a1,aFieldname)
-      and IsEqual(a1,'wdsAdmin') then begin
-        if iKey=-1 then begin
-          iKey:=StrToIntDef(aKey,-1);
-          if not Locate('MpfID',iKey,[]) then
-            raise exception.create('no such MpfID '+aKey);
-          Edit;
+      and IsEqual(a1, DMDPRWebAct.wdsAdmin.Name) then
+      begin
+        if DMNexus.IsAllowedRemoteDataEntryField(a1) then
+        begin
+          iKey := StrToIntDef(aKey, -1);
+          CSSend('iKey', S(iKey));
+          if (iKeyDone = -1) or (iKeyDone <> iKey) then
+          begin
+            if not Locate('MpfID', iKey,[]) then
+              pWebApp.Debug.AddPageError('no such MpfID ' + aKey)
+            else
+            begin
+              CSSend('consider granting access to', pWebApp.StringVar['DPREMail']);
+              if IsEqual(FieldByName('Mpf EMail').AsString,
+                pWebApp.StringVar['DPREMail']) then
+              begin
+                // surfer has permission to work on this record
+                iKeyDone := iKey;
+                CSSend('iKeyDone', S(iKeyDone));
+                Edit;
+                bEditing := True;
+              end;
+            end;
           end;
-        FieldByName(aFieldName).asString:=
-          RightOfEqual(pWebApp.Request.dbFields[i]);
+        end
+        else
+          CSSendWarning('Disallow posting to ' + a1);
+        if bEditing then
+        begin
+          CSSend('aFieldName', aFieldName);
+          FieldByName(aFieldName).asString:=
+            RightOfEqual(pWebApp.Request.dbFields[i]);
         end;
-    //if editmode then
-    Post;
-    //!!!Flush(TnxTable(DataSet));
+      end;
     end;
+    if bEditing then
+    begin
+      DMNexus.Stamp(DMDPRWebAct.wdsAdmin.DataSet, 'srf');
+      CSSendnote('ready to post');
+      Post;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TfmWhActions.waAdminDeleteExecute(Sender: TObject);
@@ -649,3 +666,4 @@ end;
 //------------------------------------------------------------------------------
 
 end.
+

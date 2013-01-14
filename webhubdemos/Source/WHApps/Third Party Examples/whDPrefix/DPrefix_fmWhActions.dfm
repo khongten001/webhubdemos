@@ -66,25 +66,15 @@ inherited fmWhActions: TfmWhActions
         Caption = 'View-only DB Display'
         TabOrder = 0
       end
-      object GroupBox4: TGroupBox
-        Left = 1
-        Top = 89
-        Width = 242
-        Height = 80
-        Align = alTop
-        Caption = 'Admin Browse'
-        TabOrder = 1
-        ExplicitTop = 153
-      end
       object GroupBox6: TGroupBox
         Left = 1
-        Top = 169
+        Top = 89
         Width = 242
         Height = 104
         Align = alTop
         Caption = 'Editing + Posting + Deleting'
-        TabOrder = 2
-        ExplicitTop = 233
+        TabOrder = 1
+        ExplicitTop = 169
       end
     end
     object Panel1: TPanel
@@ -124,7 +114,7 @@ inherited fmWhActions: TfmWhActions
     Height = 19
     Panels = <
       item
-        Text = 'ManPref: Not Updated'
+        Text = 'whbdeGrid2: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
@@ -162,27 +152,21 @@ inherited fmWhActions: TfmWhActions
     Left = 22
     Top = 68
   end
-  object waPrefixLink: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waPrefixLinkExecute
-    Left = 118
-    Top = 254
-  end
   object waModify: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waModifyExecute
-    Left = 30
-    Top = 262
+    Left = 38
+    Top = 182
   end
   object waAdminDelete: TwhWebActionEx
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waAdminDeleteExecute
-    Left = 198
-    Top = 262
+    Left = 150
+    Top = 190
   end
   object ActionList1: TActionList
-    Left = 64
-    Top = 344
+    Left = 80
+    Top = 256
     object ActCleanURL: TAction
       Caption = 'Clean URL'
       OnExecute = ActCleanURLExecute

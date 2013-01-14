@@ -35,9 +35,12 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
-    procedure WebDataFormSetCommand(Sender: TObject; var Command: String);
+    procedure WebDataFormSetCommand(Sender: TObject; var Command: string);
     procedure WebDataFormField(Sender: TwhdbForm; aField: TField;
-      var Text, Value: String);
+      var THCellText, TDCellValue: string);
+    procedure WebDataFormSkipField(Sender: TwhdbForm; const iFieldNo: Integer;
+      const AFieldName: string; AField: TField; var Skip: Boolean);
+    procedure WebDataFormFooter(Sender: TwhdbForm; var Html: string);
   public
     { Public declarations }
     WebDBAlphabet: TWebnxdbAlphabet;
@@ -56,7 +59,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface, ucString, ucMsTime, ucBase64,
+  ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
   webApp, htWebApp, wdbSSrc,
   DPrefix_dmNexus;
 
@@ -92,6 +95,8 @@ begin
     OpenDataSets := 0;
     SaveTableName := False;
     DataSource := dsAdmin;
+    KeyFieldNames := 'MpfID';
+    //DisplaySet := 'ActiveFields';
   end;
 
   WebDataForm := TwhdbForm.Create(Self);
@@ -104,6 +109,8 @@ begin
     SkipBlank := False;
     WebDataSource := wdsAdmin;
     OnField := WebDataFormField;
+    OnSkipField := WebDataFormSkipField;
+    OnFooter := WebDataFormFooter;
   end;
 
 end;
@@ -167,9 +174,9 @@ begin
     FieldByName('MpfID').asInteger:=iKey;
     FieldByName('Mpf Status').asString:='P';  // pending
     FieldByName('Mpf Date Registered').asDateTime:=now;
-    FieldByName('Mpf Notes').asString :=
+    FieldByName('MpfNotes').asString :=
       pWebApp.Session.TxtVars.List['txtComment'].text;
-    CSSend('Mpf Notes', FieldByName('Mpf Notes').asString);
+    CSSend('MpfNotes', FieldByName('MpfNotes').asString);
 
     for i:=0 to Pred(pWebApp.Session.StringVars.count) do
     begin
@@ -243,44 +250,60 @@ begin
 end;
 
 procedure TDMDPRWebAct.WebDataFormField(Sender: TwhdbForm; aField: TField;
-  var Text, Value: String);
+  var THCellText, TDCellValue: string);
 begin
   inherited;
   // indicate that the primary key is off limits
-  if aField.fieldname='MpfID' then begin
-    text:='ID*';
-    value:='<span style="color:#666667; font-weight: 900;">'+aField.asString+
-      '</span>';
-    end;
+  THCellText := StringReplaceAll(THCellText, 'Mpf', ''); // strip from label
+  if (AField.fieldname='MpfID') or (AField.FieldName = 'Mpf Prefix') then
+  begin
+    TDCellValue := '<span style="color:#666; font-weight: 900;">' +
+      AField.AsString + '</span>';
+  end;
+end;
+
+procedure TDMDPRWebAct.WebDataFormFooter(Sender: TwhdbForm; var Html: string);
+begin
+  Html := '(~mcSubmitWebDataForm~)';
 end;
 
 procedure TDMDPRWebAct.WebDataFormSetCommand(Sender: TObject;
-  var Command: String);
+  var Command: string);
+const cFn = 'WebDataFormSetCommand';
 var
   a1:string;
+  ErrorText: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  SplitString(Command,'.',Command,a1);
-  a1:=Uncode64String(a1);
+  SplitString(Command, '.', Command, a1);
+  a1 := Uncode64String(a1);
   with pWebApp.Response, wdsAdmin.DataSet do
+  begin
     if Locate('MpfID',StrToIntDef(a1,-1),[]) then
-      SendComment('found ok')
+      CSSendNote('found ' + a1 + ' ok')
     else
-      SendHdr('2','Error - MpfID '+a1+' not found.');
+    begin
+      ErrorText := 'Error - MpfID '+a1+' not found.';
+      pWebApp.Debug.AddPageError(ErrorText);
+      pWebApp.StringVar[TwhWebAction(Sender).Name + '.ErrorMessage']
+        := ErrorText;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
-(*
-object WebDataForm: TwhdbForm
-  ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-  OnSetCommand = WebDataFormSetCommand
-  Border = 'BORDER'
-  WrapMemo = False
-  SkipBlank = False
-  WebDataSource = wdsAdmin
-  OnField = WebDataFormField
-  Left = 30
-  Top = 310
-end
-*)
+procedure TDMDPRWebAct.WebDataFormSkipField(Sender: TwhdbForm;
+  const iFieldNo: Integer; const AFieldName: string; AField: TField;
+  var Skip: Boolean);
+begin
+  if iFieldNo = 0 then
+    Skip := False // display primary key
+  else
+  if AFieldName = 'Mpf Prefix' then
+    Skip := False // display the prefix
+  else
+    Skip := NOT DMNexus.IsAllowedRemoteDataEntryField(AFieldName);
+end;
 
 end.
