@@ -37,7 +37,7 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 99
+        Width = 74
         Action = ActionPurpose
         LeaveSpace = True
         MinWidth = 28
@@ -122,7 +122,7 @@ inherited fmWhActions: TfmWhActions
     PanelStatusIndex = 0
   end
   object wdsManPref: TwhbdeSource
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    ComponentOptions = []
     GotoMode = wgGotoKey
     MaxOpenDataSets = 1
     OpenDataSets = 0
@@ -137,7 +137,7 @@ inherited fmWhActions: TfmWhActions
     Top = 78
   end
   object ManPref: TwhdbScan
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    ComponentOptions = []
     OnExecute = ManPrefExecute
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 10

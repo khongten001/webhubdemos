@@ -80,7 +80,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    function Init: boolean; override;
+    function Init: Boolean; override;
     procedure WebAppOutputClose(Sender: TObject);
     procedure WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
       const ADesiredPageID: string);
@@ -102,6 +102,7 @@ uses
   ucDlgs,   //admin/non-web confirmation questions
   ucShell, ucPos, ucLogFil, ucMsTime, ucCodeSiteInterface,
   webapp,   //access to pWebApp
+  wdbSource,
   webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail, DPrefix_dmWhActions;
 
 {$R *.DFM}
@@ -519,19 +520,25 @@ end;
 
 //------------------------------------------------------------------------------
 
-function TfmWhActions.Init: boolean;
+function TfmWhActions.Init: Boolean;
 begin
   Result := inherited Init;
   if Result then
   begin
-    wdsManPref.KeyFieldNames := 'MpfID';
-    DataSource1.DataSet := DMNexus.Table1;
-
+    ManPref.WebDataSource := wdsManPref;
     ManPref.ButtonsWhere := dsNone;
-    ManPref.PageHeight := 115;  // max for single letter as of 11-Dec-2008 AML
+    ManPref.PageHeight := 200;
     ManPref.ControlsWhere := dsNone;
+    wdsManPref.KeyFieldNames := 'MpfID';
+    TwhdbSource(ManPref.WebDataSource).DataSource := DataSource1;
+    DataSource1.DataSet := DMNexus.Table1;
+    DataSource1.DataSet.Open; // readonly, all records
   end;
   RefreshWebActions(Self);
+  Result := ManPref.WebDataSource.IsUpdated;
+  if NOT Result then
+    LogSendError('ManPref.WebDataSource.IsUpdated=' +
+      S(ManPref.WebDataSource.IsUpdated));
 end;
 
 procedure TfmWhActions.ManPrefInit(Sender: TObject);
