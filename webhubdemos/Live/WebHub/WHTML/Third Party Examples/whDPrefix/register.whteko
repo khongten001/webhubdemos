@@ -4,7 +4,7 @@
   designpage="pgregister">
 
 <whmacros>
-mcLangEng=en
+mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="D.P.R." />~)</div>
 mcLangFra=fr
 mcLangRus=ru
 </whmacros>
@@ -18,15 +18,14 @@ googlepriority=0.8
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-  <title>Delphi Prefix Registry</title>
+  <title>(~pagedesc~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="nofollow" />
   <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
-
-(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="D.P.R." />~)
-<br><span style="font-size: smaller; color: #000000;">
+(~mcDPRHomeGraphic~)
+<span style="font-size: smaller; color: #000000;">
 (~JUMP|pgHomePage|Return to the Homepage~) 
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
@@ -34,33 +33,33 @@ googlepriority=0.8
 <div style="text-align:center;"><hr style="width:72%;"></div>
 <h2>Prefix Registration Details</h2>
 
-<p>To register your component prefix preferences, please enter the following
+<p>To register your Delphi prefix preference, please enter the following
 details and submit the form! Thank you!</p>
 
 <form action="(~ACTION|pgRegThx~)" method="post">
 <table style="border:none; padding: 0;">
 <tr>
-<td style="text-align:right; color: #000000;">Person&nbsp;to&nbsp;contact&nbsp;:</td>
+<td style="text-align:right; color: #000000;">Person&nbsp;to&nbsp;contact:</td>
 <td>(~INPUTTEXT|Mpf Contact,60,40~)</td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">Company&nbsp;name&nbsp;:</td>
+<td style="text-align:right; color: #000000;">Company&nbsp;name:</td>
 <td>(~INPUTTEXT|Mpf Company,60,40~)</td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">E-mail&nbsp;address&nbsp;:</td>
+<td style="text-align:right; color: #000000;">OpenID E-mail&nbsp;address:</td>
 <td>(~INPUTTEXT|Mpf EMail,60,60~)</td>
 </tr>
 
-<tr><td style="text-align:right; color: #000000;">Web&nbsp;Page&nbsp;:</td>
+<tr><td style="text-align:right; color: #000000;">Web&nbsp;Page:</td>
 <td>(~INPUTTEXT|Mpf Webpage,60,60| placeholder="www.href.com/tpack" ~)</td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">Component&nbsp;name&nbsp;:</td>
-<td>(~INPUTTEXT|Mpf Package,60,60~)</td>
+<td style="text-align:right; color: #000000;">Purpose:</td>
+<td>(~INPUTTEXT|MpfPurpose,75,75~)</td>
 </tr>
 
 <tr>
