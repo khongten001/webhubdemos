@@ -9,15 +9,7 @@
 (~BOUNCE|pgEnterDPR~)
 </whdroplet>
 
-<whdroplet name="chLoginPassPhrase">
-<!--- if a passphrase is there, show it in an addtl row. -->
-<tr><td (~mcTDc~)><font color="#FF0000">Hint!</font></td>
-<td (~mcTDc~)><B>(~WebLogin.UsrPassPhrase~)</B></td>
-</tr>
-</whdroplet>
-
-
-<whpage pageid="pglogin" desc="-Login Page for Administrators">
+<whpage pageid="pglogin" desc="-Login Page for Administrators" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -34,7 +26,7 @@ googlepriority=0
 <img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />
 <br/><br/>
 
-(~weblogin.update~)
+<!--- (~weblogin.update~) -->
 
 (~inputform|pgLoginConfirm~)
 <table width="100%">
@@ -58,7 +50,7 @@ googlepriority=0
 </body></html>
 </whpage>
 
-<whpage pageid="pgLoginConfirm" desc="-Confirm Login">
+<whpage pageid="pgLoginConfirm" desc="-Confirm Login" mode="design">
 <whprep>
 (~REQUIRES|LoginUser|pgLogin~)
 (~REQUIRES|LoginPass|pgLogin~)
