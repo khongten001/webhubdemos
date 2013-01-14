@@ -61,7 +61,6 @@ Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webr
 </whdroplet>
 
 <whdroplet name="drSharedHead">
-(~MATCH|(~PageSetting.secure~)=1|(~chCheckpoint~)~)
   <link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdprefix.css" />
 </whdroplet>
 

@@ -10,6 +10,11 @@
 </whdroplet>
 
 <whpage pageid="cleanup2013" desc="-Delphi Prefix Database Cleanup 2013 January">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 </whprep>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -43,6 +48,11 @@
 </whpage>
 
 <whpage pageid="cleanup2013b" desc="-Process Login">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~drCleanupCheckpoint~)
 </whprep>
@@ -50,6 +60,11 @@
 </whpage>
 
 <whpage pageid="cleanup2013error" desc="-Database Cleanup Login Error">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Error Logging in to Delphi Prefix Registry</title>
@@ -74,6 +89,11 @@
 </whpage>
 
 <whpage pageid="cleanup2013c" desc="-Delphi Prefix(es) Registered">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~drCleanupCheckpoint~)
 (~CLEAR|_bAdminMode~)
@@ -144,6 +164,11 @@ mcSubmitWebDataForm=<tr><th colspan="2"><input type="submit" value="Save to Data
 </whmacros>
 
 <whpage pageid="cleanupd" desc="-Edit Registration Details">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~drCleanupCheckpoint~)
 </whprep>
@@ -171,6 +196,11 @@ mcSubmitWebDataForm=<tr><th colspan="2"><input type="submit" value="Save to Data
 
 
 <whpage pageid="cleanupe" desc="-Post Registration Details">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~drCleanupCheckpoint~)
 (~waModify.Execute|~)
@@ -182,7 +212,12 @@ mcSubmitWebDataForm=<tr><th colspan="2"><input type="submit" value="Save to Data
 mcYesNo=y-yes,n-no
 </whmacros>
 
-<whpage pageid="dpropenidprocess" desc="-process openid token for use with DPR">
+<whpage pageid="openidprocess" desc="-process openid token for use with DPR">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~waJanrain.Execute|~)
 </whprep>
@@ -209,6 +244,11 @@ Delphi Prefix Registry records:
 </whpage>
 
 <whpage pageid="openidconfirmed">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <whprep>
 (~waConfirmOpenID.execute|~)
 (~drCleanupCheckpoint~)
