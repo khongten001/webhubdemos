@@ -114,7 +114,6 @@ inherited fmHTFMPanel: TfmHTFMPanel
   end
   object WebDataForm1: TwhdbForm
     ComponentOptions = [tpStatusPanel]
-    Border = 'cellspacing="0"'
     WrapMemo = False
     SkipBlank = False
     WebDataSource = WebDataSource1
