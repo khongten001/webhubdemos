@@ -3,22 +3,25 @@
 <whteko designmode="code" notes="File #1"
   designpage="PGADMINMENU">
 
-<whpagesettingslist id="admin">
-secure=1
-</whpagesettingslist>
-
-<whpage pageid="PGADMINBROWSE" desc="Browse with the ability to edit entries">
-<whpagesettings inherit="admin">
+<whpage pageid="pgadminbrowse" desc="Browse with the ability to edit entries">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+(~drAdminCheckpoint~)
 (~CHECK|_bAdminMode~)
 (~chScan~)
 </whpage>
 
 <whpage pageid="PGADMINDELETE" desc="Confirmation" exportfilename="" remap="">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+
+(~drAdminCheckpoint~)
 Ok this is your last chance!
 <p>
 (~JUMP|pgAdminDeleteYes|Delete Now~)
@@ -27,9 +30,12 @@ Ok this is your last chance!
 </whpage>
 
 <whpage pageid="PGADMINDELETEYES" desc="Deleting records marked D" exportfilename="" remap="">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+(~drAdminCheckpoint~)
 (~waAdminDelete.execute~)
 Ok, those records have been deleted. 
 <p><p>
@@ -37,9 +43,12 @@ Ok, those records have been deleted.
 </whpage>
 
 <whpage pageid="PGADMINMENU" desc="Admin Menu" exportfilename="" remap="">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+(~drAdminCheckpoint~)
 (~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="dpr" />~)
 <br><FONT SIZE=-1 COLOR="#000000">
 (~JUMP|pgHomePage|Homepage~) 
@@ -68,17 +77,13 @@ Ok, those records have been deleted.
 </center>
 </whpage>
 
-<whpage pageid="pgdorefresh" desc="Refresh the App after changing the W-HTML">
-<whpagesettings inherit="admin">
-</whpagesettings>
-<!--- from admin--->
-(~app.Refresh~)
-</whpage>
-
 <whpage pageid="PGEDIT" desc="Edit one record in the table" exportfilename="" remap="">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+(~drAdminCheckpoint~)
 (~chGraphicalBanner~)
 <p>
 (~waLocate.execute~)
@@ -92,12 +97,15 @@ Status codes: A=Approved, P=BoolVarsPending, D=Deleted. Only records marked A ar
 </whpage>
 
 <whpage pageid="PGLOGOUT" desc="Automatic Logout page">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
-(~CLEAR|_bLoginOk~)
-(~Session|Delete~)
-//
+(~drAdminCheckpoint~)
+(~CLEAR|*~)
+(~SESSION|Delete~)
+
 (~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT=90 WIDTH=649 BORDER=0 alt="DPR" />~)
 <br><FONT SIZE=-1 FACE="Verdana" COLOR="#000000">
 (~JUMP|pgHomePage|Return to the Homepage~) 
@@ -114,9 +122,12 @@ Thanks for increasing security by logging out.
 </whpage>
 
 <whpage pageid="PGPOST" desc="pgpost" exportfilename="" remap="">
-<whpagesettings inherit="admin">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
 </whpagesettings>
-<!--- from admin--->
+(~drAdminCheckpoint~)
 (~waModify.execute~)
 Data has been posted... 
 (~JUMP|pgAdminBrowse|Admin Browse~)

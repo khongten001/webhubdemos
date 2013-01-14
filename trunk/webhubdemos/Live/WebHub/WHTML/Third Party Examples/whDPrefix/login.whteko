@@ -2,14 +2,11 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code"  designpage="PGLOGIN">
 
-<whdroplet name="chCheckpoint">
+<whdroplet name="drAdminCheckpoint">
 (~EXPIRES|-1~)
-(~IfInactiveForSec|600|(~CLEAR|_bLoginOk~)~)
-(~REQUIRES|BoolVar._bLoginOk|pgHomepage~)
-<!---Otherwise, update the TwhLogin 
-component to make the Usr* properties active. -->
-(~WebLogin.Update~)
-(~NOMATCH|(~weblogin.usrAccess~)[1|(~PAGE|pgLogin~)~)
+(~IfInactiveForSec|600|(~CLEAR|*~)~)
+<!--- to do: restrict admin by subnet -->
+(~BOUNCE|pgEnterDPR~)
 </whdroplet>
 
 <whdroplet name="chLoginPassPhrase">
@@ -21,6 +18,11 @@ component to make the Usr* properties active. -->
 
 
 <whpage pageid="pglogin" desc="-Login Page for Administrators">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Delphi Prefix Registry</title>
