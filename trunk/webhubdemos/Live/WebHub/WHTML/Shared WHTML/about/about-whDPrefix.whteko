@@ -7,6 +7,18 @@
 mcImageDir=(~Static.AppRoot~)webhub/demos/whDPrefix/
 </whmacros>
 
+<whmacros>
+mcWhDemoOneLinerDPR=Delphi Prefix Registry
+mcWhDemoCreditIdeaDPR=Stephen Healey, Ray Kanopka
+mcWhDemoCreditFirstDraftDPR=Stephen Healey
+mcWhDemoCreditGraphicsDPR=Stephen Healey
+mcWhDemoCreditCopyDPR=Stephen Healey
+mcWhDemoUpdatedDPR=10-Jan-2013
+mcWhDemoKeywordsDPR=Prefix,Component,Registry
+mcWhDemoLiteDPR=No
+</whmacros>
+
+
 <whpage pageid="pgthanks" desc="Thanks">
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -21,8 +33,8 @@ mcImageDir=(~Static.AppRoot~)webhub/demos/whDPrefix/
 <FONT SIZE="-1" COLOR="#000000">
 (~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 </FONT>
-<hr align="left" width="72%"/>
-<FONT SIZE="+1">About This Site</FONT><br/>
+
+<h2>About This Site</h2>
 <br/>
 <FONT FACE="Verdana">
 
@@ -55,136 +67,136 @@ without help and encouragement ,
 <TR>
 <TD>bob swart</TD>
 
-<TD><FONT FACE="Verdana">- international delphi guru</FONT></TD>
+<TD>- international delphi guru</TD>
 
-<TD><FONT FACE="Verdana">(in london may see ukbug)</FONT></TD>
+<TD>(in london may see ukbug)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">marco cantu</FONT></TD>
+<TD>marco cantu</TD>
 
-<TD><FONT FACE="Verdana">- international delphi guru</FONT></TD>
+<TD>- international delphi guru</TD>
 
-<TD><FONT FACE="Verdana">(mastering delphi 1/2/3)</FONT></TD>
+<TD>(mastering delphi 1/2/3)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">david clark</FONT></TD>
+<TD>david clark</TD>
 
-<TD><FONT FACE="Verdana">- infinity software</FONT></TD>
+<TD>- infinity software</TD>
 
-<TD><FONT FACE="Verdana">(the best in security components)</FONT></TD>
+<TD>(the best in security components)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">chriz frizell&nbsp;</FONT></TD>
+<TD>chriz frizell&nbsp;</TD>
 
-<TD><FONT FACE="Verdana">- itec uk - delphi magazine</FONT></TD>
+<TD>- itec uk - delphi magazine</TD>
 
-<TD><FONT FACE="Verdana">(subscribe now)</FONT></TD>
+<TD>(subscribe now)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">tomasz stanczak</FONT></TD>
+<TD>tomasz stanczak</TD>
 
-<TD><FONT FACE="Verdana">- r &amp; t</FONT></TD>
+<TD>- r &amp; t</TD>
 
 <TD></TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">nick hodges</FONT></TD>
+<TD>nick hodges</TD>
 
-<TD><FONT FACE="Verdana">- teamb</FONT></TD>
+<TD>- teamb</TD>
 
-<TD><FONT FACE="Verdana">(teamb - programmers godsend)</FONT></TD>
+<TD>(teamb - programmers godsend)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">duncan mcormack</FONT></TD>
+<TD>duncan mcormack</TD>
 
-<TD><FONT FACE="Verdana">- addrock</FONT></TD>
+<TD>- addrock</TD>
 
-<TD><FONT FACE="Verdana">(time &amp; date gurus)</FONT></TD>
+<TD>(time &amp; date gurus)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">brian lowe</FONT></TD>
+<TD>brian lowe</TD>
 
-<TD><FONT FACE="Verdana">- acro tchnology</FONT></TD>
+<TD>- acro tchnology</TD>
 
 <TD></TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">greg lief&nbsp;</FONT></TD>
+<TD>greg lief&nbsp;</TD>
 
-<TD><FONT FACE="Verdana">- glad components</FONT></TD>
+<TD>- glad components</TD>
 
-<TD><FONT FACE="Verdana">(must have toolkit)</FONT></TD>
+<TD>(must have toolkit)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">robert m. czerwinski</FONT></TD>
+<TD>robert m. czerwinski</TD>
 
-<TD><FONT FACE="Verdana">- delphi super page</FONT></TD>
+<TD>- delphi super page</TD>
 
-<TD><FONT FACE="Verdana">(the definitive delphi shareware page)</FONT></TD>
+<TD>(the definitive delphi shareware page)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">mark miller</FONT></TD>
+<TD>mark miller</TD>
 
-<TD><FONT FACE="Verdana">- eagle software</FONT></TD>
+<TD>- eagle software</TD>
 
-<TD><FONT FACE="Verdana">(cdk - a MUST)</FONT></TD>
+<TD>(cdk - a MUST)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">brett liddicoet</FONT></TD>
+<TD>brett liddicoet</TD>
 
-<TD><FONT FACE="Verdana">- opaque software</FONT></TD>
+<TD>- opaque software</TD>
 
 <TD></TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">gerald nunn</FONT></TD>
+<TD>gerald nunn</TD>
 
-<TD><FONT FACE="Verdana">- gexperts</FONT></TD>
+<TD>- gexperts</TD>
 
-<TD><FONT FACE="Verdana">(freeware tools for the serious developer)</FONT></TD>
+<TD>(freeware tools for the serious developer)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">artchil gogova</FONT></TD>
+<TD>artchil gogova</TD>
 
-<TD><FONT FACE="Verdana">- internet mailsuite</FONT></TD>
+<TD>- internet mailsuite</TD>
 
-<TD><FONT FACE="Verdana">(premier internet tools)</FONT></TD>
+<TD>(premier internet tools)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">roman eremin</FONT></TD>
+<TD>roman eremin</TD>
 
-<TD><FONT FACE="Verdana">- rsd software</FONT></TD>
+<TD>- rsd software</TD>
 
 <TD></TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">david f schrader</FONT></TD>
+<TD>david f schrader</TD>
 
-<TD><FONT FACE="Verdana">- delphi user</FONT></TD>
+<TD>- delphi user</TD>
 
 
-<TD><FONT FACE="Verdana">(just like me)</FONT></TD>
+<TD>(just like me)</TD>
 </TR>
 
 <TR>
-<TD><FONT FACE="Verdana">the graphical gnome</FONT></TD>
+<TD>the graphical gnome</TD>
 
-<TD><FONT FACE="Verdana">- graphics specialist</FONT></TD>
+<TD>- graphics specialist</TD>
 
 <TD></TD>
 </TR>
@@ -193,5 +205,20 @@ without help and encouragement ,
 </body></html>
 </whpage>
 
+<whdroplet name="drDemoSetupDPR">
+<ol>
+<li> NexusDB components are required </li>
+<li> OpenID processing account at janrain.com </li>
+</ol>
+</whdroplet>
+
+
+<whtranslation key="~whDemoShortDescDPR">
+This site publishes a simple table for use by the Delphi community to track 
+reserved prefixes for classes, components, etc.
+</whtranslation>
+
+<whtranslation key="~whDemoLongDescDPR">
+</whtranslation>
 
 </whteko>
