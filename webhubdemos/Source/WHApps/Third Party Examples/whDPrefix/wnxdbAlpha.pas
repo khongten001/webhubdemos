@@ -85,6 +85,7 @@ begin
   fNumPerRow := 26;
   fLinkMacro := 'JUMPR';
   fSeparator := #$2758; // light vertical bar
+  FActiveChar := 'A';
 end;
 
 destructor TWebnxdbAlphabet.Destroy;
