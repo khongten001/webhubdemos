@@ -5,13 +5,46 @@
 
 <whmacros>
 mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="D.P.R." />~)</div>
-mcLangFra=fr
-mcLangRus=ru
 </whmacros>
 
 <whpage pageid="pgregister" desc="Registration Form for New Prefix">
 <whpagesettings>
 googlesitemap=include
+googlechangefreq=yearly
+googlepriority=0.8
+</whpagesettings>
+(~mcDocTypeHTML~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+  <title>(~pagedesc~)</title>
+	(~drSharedHead~)
+  <meta name="robots" content="nofollow" />
+  <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+  (~PARAMS|drJanrainJavascript|pgregopenid~)
+</head>
+<body>
+(~mcDPRHomeGraphic~)
+
+<h2>Prefix Registration</h2>
+
+<p>To register your Delphi prefix preference, please start by 
+logging in with an OpenID email...</p>
+
+<div id="janrainEngageEmbed"></div>
+
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgregopenid">
+(~waJanrain.Execute|~)
+(~ASSIGNED|_email|(~BOUNCE|pgregisterc~)~)
+(~BOUNCE|pgRegister~)
+</whpage>
+
+<whpage pageid="pgregisterc" desc="Registration Form for New Prefix">
+<whpagesettings>
+googlesitemap=exclude
 googlechangefreq=yearly
 googlepriority=0.8
 </whpagesettings>
@@ -50,7 +83,7 @@ details and submit the form! Thank you!</p>
 
 <tr>
 <td style="text-align:right; color: #000000;">OpenID E-mail&nbsp;address:</td>
-<td>(~INPUTTEXT|Mpf EMail,60,60~)</td>
+<td>(~_EMail~)</td>
 </tr>
 
 <tr><td style="text-align:right; color: #000000;">Web&nbsp;Page:</td>
