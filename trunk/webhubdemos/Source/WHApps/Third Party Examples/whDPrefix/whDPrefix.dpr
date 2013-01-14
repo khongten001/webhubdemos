@@ -14,6 +14,7 @@ uses
   webScan in 'K:\WebHub\lib\whplus\webScan.pas',
   whdm_Lingvo in 'h:\whdm_Lingvo.pas',
   whcfg_App in 'h:\whcfg_App.pas',
+  htWebApp in 'k:\webhub\lib\htWebApp.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
@@ -25,7 +26,10 @@ uses
   DPrefix_fmWhActions in 'DPrefix_fmWhActions.pas' {fmWhActions},
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
-  DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule};
+  DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule},
+  wdbForm in 'k:\webhub\lib\wdbForm.pas',
+  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
+  wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';
 
 (* search path for debugging
 k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
