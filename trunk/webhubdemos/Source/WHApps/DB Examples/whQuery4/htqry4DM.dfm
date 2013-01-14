@@ -43,7 +43,7 @@ object DataModuleHTQ4: TDataModuleHTQ4
     Left = 128
     Top = 196
   end
-  object WebDataForm1: TwhbdeForm
+  object WebDataForm1: TwhdbForm
     ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
     Border = 'cellspacing="0"'
     WrapMemo = False
