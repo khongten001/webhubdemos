@@ -36,9 +36,9 @@ Administration Shortcuts:
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
 compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a <a target="_blank" href="http://www.nexusdb.com/">NexusDB</a> table.<br>
-Sponsored 1999-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a>
+Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</a><br/>
+Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webrobot||human~) -->
 </p>
-<p>Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webrobot||human~) --></p>
 (~drLinkW3Org~)
 </div>
 </whdroplet>
