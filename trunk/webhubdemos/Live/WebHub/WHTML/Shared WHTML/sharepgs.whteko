@@ -842,7 +842,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <html (~mcxmlns~)>
 <head>
 (~drHead~)
-  <link rel="canonical" href="http://lite.demos.href.com/demos/privacypage" />
+  <link rel="canonical" href="http://lite.demos.href.com/(~PageID~)" />
 </head>
 <body>
 (~drPageBegin~)
