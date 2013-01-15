@@ -67,7 +67,6 @@ googlepriority=0
 <ul>
 <li>(~JUMP|pgAdminBrowse|Browse through the table~)
 <li>(~JUMP|pgAdminDelete|Delete all marked records (status=D)~)
-<li>(~JUMPR|pgDoRefresh|Refresh the app after posting new W-HTML files~)
 <li> (~JUMPR|pgLogout|Log out (to erase your session data)~)
 <p>
 </ul>
@@ -91,7 +90,7 @@ googlepriority=0
 <form method=post action="(~ACTION|pgPost~)">
 (~webDataForm.execute|edit~)
 <BR>
-Status codes: A=Approved, P=BoolVarsPending, D=Deleted. Only records marked A are shown to the public.<BR>
+Status codes: A=Approved, P=Pending, D=Deleted. Only records marked A are shown to the public.<BR>
 <input type=submit value="Save">
 </form>
 </whpage>

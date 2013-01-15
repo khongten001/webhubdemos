@@ -26,14 +26,18 @@ type
     waAdd: TwhWebAction;
     waCountPending: TwhWebAction;
     waCleanup2013Login: TwhWebAction;
+    waDelete: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
     procedure waCountPendingExecute(Sender: TObject);
     procedure waCleanup2013LoginExecute(Sender: TObject);
+    procedure waDeleteExecute(Sender: TObject);
+    procedure waDeleteSetCommand(Sender: TObject; var ThisCommand: string);
   private
     { Private declarations }
     FlagInitDone: Boolean;
+    FMpfID: Integer;
     procedure WebAppUpdate(Sender: TObject);
     procedure WebDataFormSetCommand(Sender: TObject; var Command: string);
     procedure WebDataFormField(Sender: TwhdbForm; aField: TField;
@@ -172,25 +176,26 @@ begin
     Filtered := False;
     Insert;
     FieldByName('MpfID').asInteger:=iKey;
+    FieldByName('Mpf EMail').asString := pWebApp.StringVar['_email']; // OpenID
     FieldByName('Mpf Status').asString:='P';  // pending
     FieldByName('Mpf Date Registered').asDateTime:=now;
-    FieldByName('MpfNotes').asString :=
+    FieldByName('Mpf Notes').asString :=
       pWebApp.Session.TxtVars.List['txtComment'].text;
-    CSSend('MpfNotes', FieldByName('MpfNotes').asString);
+    CSSend('Mpf Notes', FieldByName('Mpf Notes').asString);
 
     for i:=0 to Pred(pWebApp.Session.StringVars.count) do
     begin
       //example stringvar: Mpf EMail=info@href.com
       aFieldName:=LeftOfEqual(pWebApp.Session.StringVars[i]);
       CSSend(S(i) + ' aFieldName', aFieldName);
-      if StartsWith(aFieldName,'Mpf ') //ucstring
-      and (FindField(aFieldName)<>nil) then
+      if StartsWith(aFieldName,'Mpf') and (FindField(aFieldName)<>nil) then
         FieldByName(aFieldName).asString :=
           RightOfEqual(pWebApp.Session.StringVars[i]);
     end;
     if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
       FieldByName('Mpf Webpage').AsString := Copy(
         FieldByName('Mpf Webpage').AsString, 8, MaxInt);
+    DMNexus.Stamp(DMNexus.TableAdmin, 'add');
     try
       Post;
     except
@@ -209,25 +214,34 @@ var
   bFound: Boolean;
 begin
   bFound := False;
-  DPREmail := pWebApp.StringVar['DPREmail'];
-  DPRPassword := pWebApp.StringVar['DPRPassword'];
-
-  with DMNexus.TableAdmin do
+  DPREmail := pWebApp.StringVar['_email'];
+  if DPREmail = '' then
   begin
-    First;
-    while NOT EOF do
+    DPREmail := pWebApp.StringVar['DPREmail'];
+    pWebApp.StringVar['_email'] := DPREMail;
+  end;
+  if DPREmail <> '' then
+  begin
+    DPRPassword := pWebApp.StringVar['DPRPassword'];
+
+    with DMNexus.TableAdmin do
     begin
-      if (FieldByName('Mpf Email').AsString = DPREmail) and
-        (FieldByName('MpfPassToken').AsString = DPRPassword) then
+      First;
+      while NOT EOF do
       begin
-        if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
-          bFound := True
+        if (FieldByName('Mpf Email').AsString = DPREmail) and
+          (FieldByName('MpfPassToken').AsString = DPRPassword) then
+        begin
+          if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
+            bFound := True
+          else
+            pWebApp.StringVar['ErrorMessage'] := 'expired password; ' +
+            'login using an OpenID provider that knows about ' + DPREmail;
+          break;
+        end
         else
-          pWebApp.StringVar['ErrorMessage'] := 'expired password';
-        break;
-      end
-      else
-        Next;
+          Next;
+      end;
     end;
   end;
   pWebApp.BoolVar['_bCleanupOk'] := bFound;
@@ -241,6 +255,54 @@ var
 begin
   n := DMNexus.CountPending;
   pWebApp.SendStringImm(IntToStr(N));
+end;
+
+procedure TDMDPRWebAct.waDeleteExecute(Sender: TObject);
+const cFn = 'waDeleteExecute';
+var
+  a1:string;
+  ErrorText: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  if FMpfID <> -1 then
+  begin
+    with pWebApp.Response, wdsAdmin.DataSet do
+    begin
+      if Locate('MpfID', fMpfID,[]) then
+      begin
+        CSSendNote('found ' + a1 + ' ok');
+        Edit;
+        FieldByName('Mpf Status').AsString := 'D';
+        DMNexus.Stamp(wdsAdmin.DataSet, 'srf');
+        Post;
+      end
+      else
+      begin
+        ErrorText := 'Error - MpfID '+ IntToStr(FMpfID) + ' not found.';
+        pWebApp.Debug.AddPageError(ErrorText);
+      end;
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMDPRWebAct.waDeleteSetCommand(Sender: TObject;
+  var ThisCommand: string);
+const cFn = 'waDeleteSetCommand';
+var
+  a1:string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  FMpfID := -1;
+
+  if ThisCommand <> '' then
+  begin
+    a1 := Uncode64String(ThisCommand);
+    fMpfID := StrToIntDef(a1, -1);
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMDPRWebAct.WebAppUpdate(Sender: TObject);

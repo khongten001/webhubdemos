@@ -38,7 +38,7 @@ inherited fmWhActions: TfmWhActions
         Left = 177
         Top = 6
         Width = 74
-        Action = ActionPurpose
+        Action = ActExportToCSV
         LeaveSpace = True
         MinWidth = 28
       end

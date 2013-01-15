@@ -22,4 +22,11 @@ object DMDPRWebAct: TDMDPRWebAct
     Left = 72
     Top = 168
   end
+  object waDelete: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waDeleteExecute
+    OnSetCommand = waDeleteSetCommand
+    Left = 208
+    Top = 136
+  end
 end
