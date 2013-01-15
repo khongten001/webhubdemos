@@ -17,7 +17,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, ExtCtrls, StdCtrls, ActnList, Buttons, 
   UTPANFRM, tpMemo, tpStatus, updateOk, tpAction, toolbar, {}tpCompPanel, 
-  webTypes, webLink;
+  webTypes, webLink, System.Actions;
 
 type
   TfmAppAboutPanel = class(TutParentForm)

@@ -62,11 +62,12 @@ implementation
 
 uses
   MultiTypeApp,
-  ucLogFil,
+  ucLogFil, ucCodeSiteInterface,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
   dmWHApp, whAppOut,
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
+  whdemo_About,
   DPrefix_fmWhActions, whsample_EvtHandlers, whOpenID_dmwhAction;
 
 procedure TDMSampleForWHProject.ProjMgrBeforeFirstCreate(
@@ -157,6 +158,7 @@ begin
     // create the main form which will hold the WebHub panels (GUI)
     Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm); // MultiTypeApp
     // after the main form, create GUI modules
+    Application.CreateForm(TfmAppAboutPanel, fmAppAboutPanel);
     CreateStandardWHModulesGUI;
 
     { Special Comment for Forms - do not delete!
@@ -197,7 +199,7 @@ end;
 procedure TDMSampleForWHProject.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  HREFTestLog('error', 'during startup', ErrorText);
+  CSSendError('during startup: ' + ErrorText);
 {$IFNDEF PREVENTGUI}
   MsgErrorOk(ErrorText);
 {$ENDIF}
