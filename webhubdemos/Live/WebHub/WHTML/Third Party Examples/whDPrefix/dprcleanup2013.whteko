@@ -60,7 +60,7 @@ googlepriority=0
 <whprep>
 (~drCleanupCheckpoint~)
 </whprep>
-(~BOUNCE|cleanupc~)
+(~BOUNCE|pgregisterb~)
 </whpage>
 
 <whpage pageid="cleanup2013error" desc="-Database Cleanup Login Error">
@@ -92,64 +92,16 @@ googlepriority=0
 </body></html>
 </whpage>
 
-<whpage pageid="cleanupc" desc="-Delphi Prefix(es) Registered">
-<whpagesettings>
-googlesitemap=exclude
-googlechangefreq=n/a
-googlepriority=0
-</whpagesettings>
-<whprep>
-(~drCleanupCheckpoint~)
-(~CLEAR|_bAdminMode~)
-</whprep>
+<whpage pageid="switchemail" desc="-Change email responsible for Delphi Prefix(es)">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~PageDesc~)</title>
   (~drSharedHead~)
-  <meta name="robots" content="noindex,nofollow" />
-  <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
-	(~PARAMS|drJanrainJavascript|cleanup2013d~)
 </head>
-<style>
-#maintain-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
-#maintain-table th {border-bottom: 2px solid black; margin: 0; padding: 10px 8px; text-align: left;}
-#maintain-table td {border-bottom: 1px solid crimson; margin: 0; padding: 6px 8px; }
-</style>
 <body>
 (~mcDPRHomeGraphic~)
 
-<h1>Delphi Prefix Database</h1>
-<h2>January 2013 Cleanup</h2>
-(~manpref.Execute|Maintain~)
-
-<whdroplet name="ScanMaintain" show="no">
-<table id="maintain-table">
-<thead>
-<tr><th></th>
-<th>Prefix</th>
-<th>Registered</th>
-<th>Purpose/th>
-<th>Company</th><th>Contact</th><th>EMail</th><th>Web Page</th><th>Web Status</th><th>Updated</th>
-</tr></thead>
-<tbody>
-<whrow>
-<tr>
-<td>(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|edit~)</td>
-<td>(~FIELD|wdsManPref|Mpf Prefix~)</td>
-<td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
-<td>(~FIELD|wdsManPref|MpfPurpose~)</td>
-<td>(~FIELD|wdsManPref|Mpf Company~)</td>
-<td>(~FIELD|wdsManPref|Mpf Contact~)</td>
-<td>(~FIELD|wdsManPref|Mpf EMail~)</td>
-<td>(~FIELD|wdsManPref|Mpf WebPage~)</td>
-<td>(~FIELD|wdsManPref|MpfURLStatus~) as of (~FIELD|wdsManPref|MpfURLTestOnAt~)</td>
-<td>(~FIELD|wdsManPref|UpdatedOnAt~)</td>
-</tr>
-</whrow>
-</tbody>
-</table>
-</whdroplet>
-
+<div id="dprmain">
 <h2 style="margin-top:2.5em;">Optionally Change (~DPREMail~)</h2>
 <p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>.</p>
 <p>If (~DPREMail~) is not already registered with one of the 
@@ -157,8 +109,7 @@ providers shown below, please change to an alternate email
 now by logging in with a provider in this system.
 You can create a free account at OpenID if necessary.</p>
 
-<div id="janrainEngageEmbed"></div>
-
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>
@@ -188,12 +139,14 @@ googlepriority=0
 </head>
 <body>
 (~mcDPRHomeGraphic~)
+(~drMaintainNav~)
 
+<div id="dprmain">
 <h2>Edit</h2>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanupe~)">
 (~WebDataForm.Execute|~)
 </form>
-
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>
@@ -209,7 +162,7 @@ googlepriority=0
 (~drCleanupCheckpoint~)
 (~waModify.Execute|~)
 </whprep>
-(~BOUNCE|cleanupc~)
+(~BOUNCE|pgregisterb~)
 </whpage>
 
 <whmacros>
@@ -231,8 +184,10 @@ googlepriority=0
 (~drHead~)
 </head>
 <body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
+(~mcDPRHomeGraphic~)
+(~drMaintainNav~)
+
+<div id="dprmain">
 <h1>Confirmation</h1>
 
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|openidconfirmed~)">
@@ -242,8 +197,8 @@ Delphi Prefix Registry records:
 <p><input type="select" /></p>
 </form>
 
-</div>  <!--- whdemopagecontent -->
-(~drPageEnd~)
+</div> 
+(~drSharedFooter~)
 </body></html>
 </whpage>
 
@@ -257,7 +212,7 @@ googlepriority=0
 (~waConfirmOpenID.execute|~)
 (~drCleanupCheckpoint~)
 </whprep>
-(~BOUNCE|cleanupc~)
+(~BOUNCE|pgregisterb~)
 </whpage>
 
 </whteko>

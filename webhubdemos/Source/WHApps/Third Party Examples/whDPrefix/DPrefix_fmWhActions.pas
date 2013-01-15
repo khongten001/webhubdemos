@@ -382,68 +382,99 @@ end;
 procedure TfmWhActions.ActExportToCSVExecute(Sender: TObject);
 var
   Data: TMarketingRec;
-  Filespec8, Filespec16: string;
+  Filespec8: string;
   CSVContents: string;
+  LastEMail: string;
+
+  function DateTimeNot1899(const D1: TDateTime): string;
+  begin
+    //30-Dec-1899
+    Result := FormatDateTime('dd-MMM-yyyy hh:nn', D1);
+    if Pos('30-Dec-1899', Result) = 1 then
+      Result := ''
+    else
+      Result := Result + ' gmt';
+  end;
+
+  function DateNot1899(const D1: TDateTime): string;
+  begin
+    //30-Dec-1899
+    Result := FormatDateTime('dd-MMM-yyyy', D1);
+    if Result = '30-Dec-1899' then
+      Result := '';
+  end;
 
   function QthenTab(const S1: string): string;
   begin
-    Result := '"' + S1 + '"' + #9;
+    Result := //'"' +
+      S1 +
+      //'"' +
+      #9;
   end;
 
 begin
   inherited;
   Filespec8 := 'd:\DelphiPrefixRegistry_Marketing.utf8.csv';
-  Filespec16 := 'd:\DelphiPrefixRegistry_Marketing.utf16.csv';
   CSVContents := '';
   with DMNexus.TableAdmin do
   begin
+    Close;
+    IndexName := 'EMail';
+    Open;
     First;
+    LastEMail := '';
     while not EOF do
     begin
       Data.EMail := FieldByName('Mpf EMail').AsString;
-      if StrIsEMail(Data.EMail) then
+      if Data.email <> LastEMail then
       begin
-        Data.PassToken := FieldByName('MpfPassToken').asString;
-        Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
-        Data.Contact := FieldByName('Mpf Contact').asString;
-        Data.Purpose := FieldByName('MpfPurpose').AsString;
-        Data.Prefix := FieldByName('Mpf Prefix').AsString;
-        Data.FirstLetter := FieldByName('MpfFirstLetter').AsString;
-        Data.Webpage := FieldByName('Mpf Webpage').AsString;
-        Data.RegisteredOn :=
-          FieldByName('Mpf Date Registered').AsDateTime;
-        //Data.RegisteredOn := StrToDateDef(
-        //  FieldByName('Mpf Date Registered').AsString, IncDay(Now, -(113*365)));
-        Data.URLStatus := FieldByName('MpfURLStatus').AsInteger;
-        Data.URLTestOnAt := FieldByName('MpfURLTestOnAt').AsDateTime;
-        if Data.Purpose <> '' then
-          Data.Beneficiary := Data.Purpose
-        else
-        if Data.Company <> '' then
-          Data.Beneficiary := Data.Company
-        else
-          Data.Beneficiary := Data.Contact;
-        CSVContents := CSVContents +
-          QthenTab(Data.Email) +
-          QthenTab(FormatDateTime('dd-MMM-yyyy', data.RegisteredOn)) +
-          QthenTab(Data.Contact) +
-          QthenTab(Data.Company) +
-          QthenTab(Data.Purpose) +
-          QthenTab(Data.Prefix) +
-          QthenTab(Data.FirstLetter) +
-          QthenTab(Data.WebPage) +
-          QthenTab(Data.Beneficiary) +
-          QthenTab(IntToStr(data.URLStatus)) +
-          QthenTab(FormatDateTime('dd-MMM-yyyy hh:nn', data.URLTestOnAt) + ' gmt') +
-          QthenTab(Data.PassToken) +
-          QthenTab(FormatDateTime('dd-MMM-yyyy hh:nn', data.PassUntil) + ' gmt') +
-          sLineBreak;
+        if StrIsEMail(Data.EMail) then
+        begin
+          Data.PassToken := FieldByName('MpfPassToken').asString;
+          Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
+          Data.Contact := FieldByName('Mpf Contact').asString;
+          Data.Purpose := FieldByName('MpfPurpose').AsString;
+          Data.Prefix := FieldByName('Mpf Prefix').AsString;
+          Data.FirstLetter := FieldByName('MpfFirstLetter').AsString;
+          Data.Webpage := FieldByName('Mpf Webpage').AsString;
+          Data.RegisteredOn :=
+            FieldByName('Mpf Date Registered').AsDateTime;
+          //Data.RegisteredOn := StrToDateDef(
+          //  FieldByName('Mpf Date Registered').AsString, IncDay(Now, -(113*365)));
+          Data.URLStatus := FieldByName('MpfURLStatus').AsInteger;
+          Data.URLTestOnAt := FieldByName('MpfURLTestOnAt').AsDateTime;
+          if Data.Purpose <> '' then
+            Data.Beneficiary := Data.Purpose
+          else
+          if Data.Company <> '' then
+            Data.Beneficiary := Data.Company
+          else
+            Data.Beneficiary := Data.Contact;
+          CSVContents := CSVContents +
+            QthenTab(Data.Email) +
+            QthenTab(DateNot1899(data.RegisteredOn)) +
+            QthenTab(Data.Contact) +
+            QthenTab(Data.Company) +
+            QthenTab(Data.Purpose) +
+            QthenTab(Data.Prefix) +
+            QthenTab(Data.FirstLetter) +
+            QthenTab(Data.WebPage) +
+            QthenTab(Data.Beneficiary) +
+            QthenTab(IntToStr(data.URLStatus)) +
+            QthenTab(DateTimeNot1899(data.URLTestOnAt)) +
+            QthenTab(Data.PassToken) +
+            DateTimeNot1899(data.PassUntil) +
+            sLineBreak;
+        end;
+        LastEMail := Data.email;
       end;
       Next;
     end;
+    Close;
+    IndexName := '';
   end;
+  // www.streamsend.com needs UTF-8 tab delimited, *no* quotes around text.
   UTF8StringWriteToFile(Filespec8, UTF8String(CSVContents));
-  StringWriteToFile(Filespec16, CSVContents);
   MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
 end;
 

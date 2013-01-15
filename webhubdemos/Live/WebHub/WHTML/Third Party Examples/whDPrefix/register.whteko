@@ -24,50 +24,121 @@ googlepriority=0.8
 </head>
 <body>
 (~mcDPRHomeGraphic~)
+<div id="dprmain-div">
 
 <h2>Prefix Registration</h2>
 
 <p>To register your Delphi prefix preference, please start by 
-logging in with an OpenID email... 
+logging in with an email known by one of these providers... 
 <!--- or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)... -->
 </p>
 (~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 <div id="janrainEngageEmbed"></div>
-
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>
 
 <whpage pageid="pgregopenid">
+<whprep>
 (~waJanrain.Execute|~)
 (~ASSIGNED|_email|(~SET|DPREMail=_email~)(~BOUNCE|pgregisterb~)~)
-(~BOUNCE|pgRegister~)
+</whprep>
 </whpage>
 
 <whpage pageid="pgregisterb" desc="Maintain Prefix Registrations">
 <whpagesettings>
 googlesitemap=exclude
-googlechangefreq=yearly
+googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
+<whprep>
+(~drCleanupCheckpoint~)
+(~CLEAR|_bAdminMode~)
+</whprep>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>(~pagedesc~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="nofollow" />
+<style>
+#maintain-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
+#maintain-table th {
+  border-bottom: 2px solid black; margin: 0; padding: 10px 8px; text-align: left; 
+  vertical-align: top;
+}
+#maintain-table td {border-bottom: 1px solid crimson; margin: 0; padding: 6px 8px; 
+  vertical-align: top;
+}
+</style>
 </head>
 <body>
 (~mcDPRHomeGraphic~)
+<div id="dprmain-div">
 
 <h1>(~PageDesc~)</h1>
 <h2>Existing Prefixes</h2>
+<p><i>managed by (~DPREMail~) [(~JUMPR|switchemail|change email~)]</i></p>
+(~manpref.Execute|Maintain~)
+<whdroplet name="ScanMaintain" show="no">
+<table id="maintain-table">
+<thead>
+<tr><th>Action</th>
+<th>Prefix</th>
+<th>Registered</th>
+<th>Status</th>
+<th>Purpose</th>
+<th>Contact<br/>Company</th>
+<th>Web Page</th>
+<th>URL Status</th><th>Updated</th>
+</tr></thead>
+<tbody>
+<whrow>
+<tr>(~SET|temps=(~FIELD|wdsManPref|Mpf Status~)~)
+<td>(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue; font-weight:700;"|&#x270e;~)
+&nbsp;
+(~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red; font-weight:700;"|&#x2717;~)~)
+</td>
+<td style="font-weight:900; font-size:larger;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
+<td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
+<td>
+(~MATCH|(~temps~)=A|Approved~)
+(~MATCH|(~temps~)=P|Pending~)
+(~MATCH|(~temps~)=D|<span style="color:red;background-color:yellow;">Delete</span>~)
+</td>
+<td>(~FIELD|wdsManPref|MpfPurpose~)</td>
+<td>(~FIELD|wdsManPref|Mpf Contact~)<br/>
+<!-- (~FIELD|wdsManPref|Mpf EMail~) -->(~FIELD|wdsManPref|Mpf Company~)</td>
+<td><a target="_blank" title="test web page" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a></td>
+<td>(~FIELD|wdsManPref|MpfURLStatus~)<br>
+<span style="font-size:smaller;">(~FIELD|wdsManPref|MpfURLTestOnAt~)</span></td>
+<td style="font-size:smaller;">(~FIELD|wdsManPref|UpdatedOnAt~)</td>
+</tr>(~CLEAR|temps~)
+</whrow>
+</tbody>
+</table>
+</whdroplet>
 
 <h2>Add New Prefix</h2>
-<p>(~JUMPR|pgRegister|Click to Create New Prefix~)</p>
+<p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
 
+</div>
 (~drSharedFooter~)
 </body></html>
+</whpage>
+
+<whpage pageid="delete" desc="-Mark registration for deletion">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=yearly
+googlepriority=0
+</whpagesettings>
+<whprep>
+(~drCleanupCheckpoint~)
+</whprep>
+(~waDelete.Execute|~)
+(~BOUNCE|pgregisterb~)
 </whpage>
 
 <whpage pageid="pgregisterc" desc="Registration Form for New Prefix">
@@ -76,16 +147,31 @@ googlesitemap=exclude
 googlechangefreq=yearly
 googlepriority=0
 </whpagesettings>
+<whprep>
+(~drCleanupCheckpoint~)
+</whprep>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>(~pagedesc~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="nofollow" />
+  <style>
+  #newprefix-table {border: solid 1px crimson; padding: 0.4em; 
+  }
+  #newprefix-table th {text-align:right; padding-right: 1em;
+    vertical-align: top;}
+  #newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
+  .example {font-size:smaller; color: #666666; }
+  </style>
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div>(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+<whdroplet name="drMaintainNav" show="yes">
+<div>(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+</whdroplet>
+
+<div id="dprmain-div">
 
 <h2>Prefix Registration Details</h2>
 
@@ -95,50 +181,59 @@ details and submit the form! Thank you!</p>
 <form action="(~ACTION|pgRegThx~)" method="post">
 <table id="newprefix-table">
 <tr>
-<td style="text-align:right; color: #000000;">Person&nbsp;to&nbsp;contact:</td>
+<th>E-mail address:</th>
+<td>(~_email~)</td>
+</tr>
+
+<tr>
+<th>Person to contact:</th>
 <td>(~INPUTTEXT|Mpf Contact,60,40~)</td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">Company&nbsp;name:</td>
+<th>Company name:</th>
 <td>(~INPUTTEXT|Mpf Company,60,40~)</td>
 </tr>
 
-<tr>
-<td style="text-align:right; color: #000000;">OpenID E-mail&nbsp;address:</td>
-<td>(~_email~)</td>
-</tr>
-
-<tr><td style="text-align:right; color: #000000;">Web&nbsp;Page:</td>
+<tr><th>Web Page:</th>(~CLEAR|Mpf Webpage~)
 <td>(~INPUTTEXT|Mpf Webpage,60,60| placeholder="www.href.com/tpack" ~)</td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">Purpose:</td>
-<td>(~INPUTTEXT|MpfPurpose,75,75~)</td>
+<th>Purpose:</th>(~CLEAR|MpfPurpose~)
+<td>(~INPUTTEXT|MpfPurpose,60,75~)<br/>
+<span class="example">e.g. class names, unit names, interface names</span></td>
 </tr>
 
 <tr>
-<td style="text-align:right; color: #000000;">Component&nbsp;prefix&nbsp;:</td>
-<td>(~INPUTTEXT|Mpf Prefix,60,10~)</td>
+<th>Component prefix:</th>(~CLEAR|Mpf Prefix~)
+<td>(~INPUTTEXT|Mpf Prefix,60,10~)<br/>
+<span class="example">e.g. 'abc' if your component classes have names <br/>
+like TabcQuery, TabcDatabase</span>
+</td>
 </tr>
 
 <tr style="vertical-align:top;">
-<td style="text-align:right; color: #000000;">Comments&nbsp;:</td>
-<td><textarea name="txtComment" rows="4" cols="50">(~txtComment~)</textarea></td>
+<th>Comments:</th>
+<td><textarea name="txtComment" rows="4" cols="42"></textarea></td>
 </tr>
 
-<tr><td colspan="2" style="text-align:right;"><input type="submit" /></td></tr>
+<tr><td colspan="2" style="text-align:right; padding-right:2em;"><input type="submit" value="Save to Registry Now" /></td></tr>
 </table>
 </form>
 
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>
 
-<whpage pageid="PGREGTHX" desc="Thanks for Registering">
+<whpage pageid="pgregthx" desc="Thanks for Registering">
 <whprep>
-(~REQUIRES|DPREMail|pgregister~)
+(~drCleanupCheckpoint~)
+(~REQUIRES|_email|pgregisterc~)
+(~REQUIRES|Mpf Contact|pgregisterc~)
+(~REQUIRES|Mpf Prefix|pgregisterc~)
+(~REQUIRES|MpfPurpose|pgregisterc~)
 (~waAdd.execute|~)
 </whprep>
 (~mcDocTypeHTML~)
@@ -150,12 +245,14 @@ details and submit the form! Thank you!</p>
 <body>
 (~mcDPRHomeGraphic~)
 <div>(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+<div id="dprmain-div">
 
 <h1>Thanks for registering!!</h1>
 <p>
 Your data has been added to the registry and will be visible to the public 
 as soon as an administrator approves the entries.  Thank you.</p>
 
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>

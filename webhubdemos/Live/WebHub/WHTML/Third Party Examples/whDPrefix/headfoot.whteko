@@ -28,9 +28,7 @@ Administration Shortcuts:
 </whdroplet>
 
 <whdroplet name="drSharedFooter">
-&nbsp;<p>
-<hr style="width:72%;"/>
-<div style="text-align:center;">
+<div style="text-align:center; margin-top: 2em;">
 (~chNavigation~)
 <p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
@@ -43,10 +41,6 @@ Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webr
 (~drLinkW3Org~)
 </div>
 </whdroplet>
-
-<whdoc for="unused url tail">
-&charset=%28detect+automatically%29&doctype=Inline&group=0
-</whdoc>
 
 <whdroplet name="drLinkW3Org">
 (~IsWebRobotRequest|<!-- w3.org -->||<div style="margin-top: 2em;">

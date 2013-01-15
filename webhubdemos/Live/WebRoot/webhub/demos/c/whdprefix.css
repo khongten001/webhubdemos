@@ -1,5 +1,6 @@
 body {
       font-family:Verdana, Arial, Helvetica, sans-serif;
       background-color:white;
-    }
+}
 table {empty-cells: show;}
+#dprmain-div {margin-left: 4em; padding-left: 4em;}
