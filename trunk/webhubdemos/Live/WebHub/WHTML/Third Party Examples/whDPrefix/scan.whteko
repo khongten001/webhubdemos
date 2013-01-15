@@ -40,16 +40,14 @@ mcManPrefCaptionsRedraw=Redraw
 
 (~IF|_bAdminMode|
 (~GOR|pgAdminMenu|Administer~)&nbsp;
-|&nbsp;(~JUMP||Return to the Homepage~) 
 |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;all&nbsp;records~) 
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;new&nbsp;prefix~)&nbsp;
 |&nbsp;(~GOR|pgLogout|Logout~)
 <hr>
 (~ManPref.execute|Admin~)
 ||
-(~JUMP||Return to the Homepage~) 
 (~IF|_bLoginOk|
-|&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
+|&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;Pending&nbsp;records~) 
 ~)
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
