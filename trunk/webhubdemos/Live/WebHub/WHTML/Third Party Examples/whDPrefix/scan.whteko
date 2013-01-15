@@ -15,48 +15,25 @@ mcManPrefCaptionsRedraw=Redraw
 </whmacros>
 
 <whdroplet name="chScan">
-<!--- from scan--->
 <table style="border: none; width:100%;">
 <tr><td style="padding-right:2em;">
-(~GO|(~IF|_bAdminMode|pgAdminMenu||pgHomePage~)|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
+(~GO|pgHomePage|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
 </td></td><td style="width:90%;">
 
-(~IF|_bAdminMode|
-<form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~).ckb">
-<b>Administrator View of BoolVarsPending records:</b><br>
-(~INPUTCHECKBOX|bShowAll~) Show ALL records
-<input type=submit value="Toggle">
-</form>
-||
 <b>Quick Alphabetical Search:</b>
 <div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="font-size:larger;">
 . <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
 </div>
 (~WebDBAlphabet.execute|~)
-~)
-
 </td></tr></table>
-<span style="font-size: smaller; color: #000000;">
 
-(~IF|_bAdminMode|
-(~GOR|pgAdminMenu|Administer~)&nbsp;
-|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;all&nbsp;records~) 
-|&nbsp;(~JUMP|pgRegister|Register&nbsp;new&nbsp;prefix~)&nbsp;
-|&nbsp;(~GOR|pgLogout|Logout~)
-<hr>
-(~ManPref.execute|Admin~)
-||
-(~IF|_bLoginOk|
-|&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;Pending&nbsp;records~) 
-~)
-|&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
-|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</span>
-<hr/>
+(~JUMP|pgRegister|Register YOUR prefix~) |&nbsp;(~Jump|pgThanks|About this site~)
+
+<div id="dprmain-div">
 <div itemscope itemtype="http://schema.org/Table">
 (~ManPref.execute|Approved~)
 </div>
-~)
+</div>
 </whdroplet>
 
 <whpage pageid="pgprefix" desc="Delphi Prefix Registry">
@@ -88,37 +65,9 @@ googlepriority=0.7
 </body></html>
 </whpage>
 
-<whdroplet name="ScanAdmin">
-<!--- from scan--->
-(~clear|bColor~)
-<table id="adminTable" style="border: solid 1px; padding: 0.1em; background-color: bisque;">
-<tr>
-  <th>Prefix</th>
-  <th>Company</th>
-  <th>Purpose</th>
-  <th>WebPage</th>
-  <th>Contact</th>
-  <th>Email</th>
-  <th>Status</th>
-</tr>
-<whrow>
-(~TR~)
-(~TD~)(~JUMPR|pgEdit,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
-(~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf EMail~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Status~)</td>
-</tr>
-</whrow>
-</table>
-</whdroplet>
-
 <whdroplet name="ScanApproved">
-<!--- from scan--->
 (~clear|bColor~)
-<table id="approvedPrefixesTable" style="margin-top: 1.4em; border: solid 1px; padding: 1px; background-color: Bisque; width:100%;">
+<table id="approvedPrefixesTable" style="margin-top: 1.4em; border: solid 1px; padding: 0.3em 0.1em; background-color: Bisque; width:100%;">
 <tr>
   <th>Prefix</th>
   <th>Company</th>
