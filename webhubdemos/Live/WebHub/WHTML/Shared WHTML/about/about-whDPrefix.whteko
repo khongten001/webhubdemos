@@ -28,42 +28,36 @@ mcWhDemoLiteDPR=No
 </head>
 <body>
 
-(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" BORDER="0"/>~)
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" style="border:none;"/>~)
 <br/>
-<FONT SIZE="-1" COLOR="#000000">
 (~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
-</FONT>
 
 <h2>About This Site</h2>
-<br/>
-<FONT FACE="Verdana">
 
 <hr/>
-<font color="red">Attention...</font>
+<span style="color:red;">Attention...</span>
 (~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.gif" BORDER="0" HEIGHT="31" WIDTH="88" align="left" hspace="10"/>~)
-<font size="-1">
 Please link to (~HREF|http://delphiprefix.href.com|http://delphiprefix.href.com~)
 and have (~HREF|(~mcImageDir~)dprbut.gif|this handy button~) as our thanks!
-</font>
 <hr/>
 
 <p>
 Firstly Component Builders are truly the salt of the earth - they provide ready
 to use solutions to all manner of application programming problems and provide 
 us with the tools to repeatedly furnish end users with what they really want.</p>
-</FONT>
 
-<p><FONT COLOR="#CC33CC">Special mention with regard
+
+<p style="color:#CC33CC;">Special mention with regard
 to the project goes to Ray Konopka, author of Developing Custom Delphi
 3 Components, who has tirelessly promoted the use of prefixes (long before
-this site existed).</FONT></p>
+this site existed).</p>
 
 <p>This project would not have got off the ground
 without help and encouragement ,
 <br/>the following people provided the motivation :</p>
 <br/>&nbsp;
 
-<TABLE BORDER="1">
+<TABLE style="border: solid 1px; padding: 0.4em 0.2em;">
 <TR>
 <TD>bob swart</TD>
 

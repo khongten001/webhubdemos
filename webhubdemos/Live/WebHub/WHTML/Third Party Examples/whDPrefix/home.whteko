@@ -18,15 +18,14 @@ googlepriority=0.9
 <meta itemprop="audience" content="Delphi developers" />
 
 (~JUMP||<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="DPR" />~)
-<br><span style="font-size:smaller; color: black;">
-(~IF|_bLoginOk|(~GOR|pgAdminMenu|Administer~) | ~)
+<br>
 (~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
 |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
 |&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</span>
-<div style="text-align:center;"><hr style="width:72%"></div>
+
 <h1>Welcome to the Delphi Prefix Registry</h1>
 
+<div id="dprmain-div">
 <center>
 <table style="width:72%;"><tr>
 <td style="color:#000000; font-size:smaller;">
@@ -111,6 +110,7 @@ Volunteers welcome!
 
 </td></tr></table>
 </center>
+</div>
 (~drSharedFooter~)
 </body></html>
 </whpage>

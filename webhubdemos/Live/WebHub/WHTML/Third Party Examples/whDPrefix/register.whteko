@@ -213,11 +213,6 @@ like TabcQuery, TabcDatabase</span>
 </td>
 </tr>
 
-<tr style="vertical-align:top;">
-<th>Comments:</th>
-<td><textarea name="txtComment" rows="4" cols="42"></textarea></td>
-</tr>
-
 <tr><td colspan="2" style="text-align:right; padding-right:2em;"><input type="submit" value="Save to Registry Now" /></td></tr>
 </table>
 </form>
@@ -244,7 +239,7 @@ like TabcQuery, TabcDatabase</span>
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div>(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+<div>(~JUMP|pgregisterb|Maintain Prefixes~)</div>
 <div id="dprmain-div">
 
 <h1>Thanks for registering!!</h1>

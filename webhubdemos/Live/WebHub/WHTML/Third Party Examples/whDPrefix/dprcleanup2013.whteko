@@ -101,7 +101,7 @@ googlepriority=0
 <body>
 (~mcDPRHomeGraphic~)
 
-<div id="dprmain">
+<div id="dprmain-div">
 <h2 style="margin-top:2.5em;">Optionally Change (~DPREMail~)</h2>
 <p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>.</p>
 <p>If (~DPREMail~) is not already registered with one of the 
@@ -141,7 +141,7 @@ googlepriority=0
 (~mcDPRHomeGraphic~)
 (~drMaintainNav~)
 
-<div id="dprmain">
+<div id="dprmain-div">
 <h2>Edit</h2>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanupe~)">
 (~WebDataForm.Execute|~)
@@ -187,7 +187,7 @@ googlepriority=0
 (~mcDPRHomeGraphic~)
 (~drMaintainNav~)
 
-<div id="dprmain">
+<div id="dprmain-div">
 <h1>Confirmation</h1>
 
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|openidconfirmed~)">
