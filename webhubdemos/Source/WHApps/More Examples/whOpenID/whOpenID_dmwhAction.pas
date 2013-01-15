@@ -235,7 +235,7 @@ begin
           end
           else
           begin
-            pWebApp.StringVar[Self.Name + '.ErrorMessage'] :=
+            pWebApp.StringVar[Self.Name + '-ErrorMessage'] :=
               'status is not ok';
           end;
         end;

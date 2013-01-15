@@ -16,6 +16,7 @@ uses
   whcfg_App in 'h:\whcfg_App.pas',
   htWebApp in 'k:\webhub\lib\htWebApp.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
+  whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
   wnxdbAlpha in 'wnxdbAlpha.pas',

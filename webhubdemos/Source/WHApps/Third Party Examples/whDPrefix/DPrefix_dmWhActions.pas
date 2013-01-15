@@ -286,7 +286,7 @@ begin
     begin
       ErrorText := 'Error - MpfID '+a1+' not found.';
       pWebApp.Debug.AddPageError(ErrorText);
-      pWebApp.StringVar[TwhWebAction(Sender).Name + '.ErrorMessage']
+      pWebApp.StringVar[TwhWebAction(Sender).Name + '-ErrorMessage']
         := ErrorText;
     end;
   end;

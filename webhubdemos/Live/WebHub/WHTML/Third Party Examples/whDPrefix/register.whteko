@@ -28,8 +28,10 @@ googlepriority=0.8
 <h2>Prefix Registration</h2>
 
 <p>To register your Delphi prefix preference, please start by 
-logging in with an OpenID email...</p>
-
+logging in with an OpenID email... 
+<!--- or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)... -->
+</p>
+(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 <div id="janrainEngageEmbed"></div>
 
 (~drSharedFooter~)
@@ -38,15 +40,15 @@ logging in with an OpenID email...</p>
 
 <whpage pageid="pgregopenid">
 (~waJanrain.Execute|~)
-(~ASSIGNED|_email|(~BOUNCE|pgregisterc~)~)
+(~ASSIGNED|_email|(~SET|DPREMail=_email~)(~BOUNCE|pgregisterb~)~)
 (~BOUNCE|pgRegister~)
 </whpage>
 
-<whpage pageid="pgregisterc" desc="Registration Form for New Prefix">
+<whpage pageid="pgregisterb" desc="Maintain Prefix Registrations">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=yearly
-googlepriority=0.8
+googlepriority=0
 </whpagesettings>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -54,23 +56,44 @@ googlepriority=0.8
   <title>(~pagedesc~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="nofollow" />
-  <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<span style="font-size: smaller; color: #000000;">
-(~JUMP|pgHomePage|Return to the Homepage~) 
-|&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) 
-|&nbsp;(~Jump|pgThanks|About&nbsp;this&nbsp;site~)
-</span>
-<div style="text-align:center;"><hr style="width:72%;"></div>
+
+<h1>(~PageDesc~)</h1>
+<h2>Existing Prefixes</h2>
+
+<h2>Add New Prefix</h2>
+<p>(~JUMPR|pgRegister|Click to Create New Prefix~)</p>
+
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+<whpage pageid="pgregisterc" desc="Registration Form for New Prefix">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=yearly
+googlepriority=0
+</whpagesettings>
+(~mcDocTypeHTML~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+  <title>(~pagedesc~)</title>
+	(~drSharedHead~)
+  <meta name="robots" content="nofollow" />
+</head>
+<body>
+(~mcDPRHomeGraphic~)
+<div>(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+
 <h2>Prefix Registration Details</h2>
 
 <p>To register your Delphi prefix preference, please enter the following
 details and submit the form! Thank you!</p>
 
 <form action="(~ACTION|pgRegThx~)" method="post">
-<table style="border:none; padding: 0;">
+<table id="newprefix-table">
 <tr>
 <td style="text-align:right; color: #000000;">Person&nbsp;to&nbsp;contact:</td>
 <td>(~INPUTTEXT|Mpf Contact,60,40~)</td>
@@ -83,7 +106,7 @@ details and submit the form! Thank you!</p>
 
 <tr>
 <td style="text-align:right; color: #000000;">OpenID E-mail&nbsp;address:</td>
-<td>(~_EMail~)</td>
+<td>(~_email~)</td>
 </tr>
 
 <tr><td style="text-align:right; color: #000000;">Web&nbsp;Page:</td>
@@ -114,6 +137,10 @@ details and submit the form! Thank you!</p>
 </whpage>
 
 <whpage pageid="PGREGTHX" desc="Thanks for Registering">
+<whprep>
+(~REQUIRES|DPREMail|pgregister~)
+(~waAdd.execute|~)
+</whprep>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
@@ -121,11 +148,8 @@ details and submit the form! Thank you!</p>
   (~drSharedHead~)
 </head>
 <body>
-
-(~waAdd.execute|~)
-
-<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px;" alt="Delphi Prefix Registry" />
-<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px;" alt="D.P.R." />
+(~mcDPRHomeGraphic~)
+<div>(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgregisterb|Maintain Prefixes~)</div>
 
 <h1>Thanks for registering!!</h1>
 <p>
