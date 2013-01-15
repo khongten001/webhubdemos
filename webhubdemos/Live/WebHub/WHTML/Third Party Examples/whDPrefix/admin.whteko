@@ -3,7 +3,7 @@
 <whteko designmode="code" notes="File #1"
   designpage="PGADMINMENU">
 
-<whpage pageid="pgadminbrowse" desc="Browse with the ability to edit entries">
+<whpage pageid="pgadminbrowse" desc="Browse with the ability to edit entries" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -14,7 +14,34 @@ googlepriority=0
 (~chScan~)
 </whpage>
 
-<whpage pageid="PGADMINDELETE" desc="Confirmation" exportfilename="" remap="">
+<whdroplet name="ScanAdmin">
+<!--- from scan--->
+(~clear|bColor~)
+<table id="adminTable" style="border: solid 1px; padding: 0.1em; background-color: bisque;">
+<tr>
+  <th>Prefix</th>
+  <th>Company</th>
+  <th>Purpose</th>
+  <th>WebPage</th>
+  <th>Contact</th>
+  <th>Email</th>
+  <th>Status</th>
+</tr>
+<whrow>
+(~TR~)
+(~TD~)(~JUMPR|pgEdit,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
+(~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf EMail~)</td>
+(~TD~)(~FIELD|wdsManPref|Mpf Status~)</td>
+</tr>
+</whrow>
+</table>
+</whdroplet>
+
+<whpage pageid="PGADMINDELETE" desc="Confirmation" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -29,7 +56,7 @@ Ok this is your last chance!
 (~JUMP|pgAdminMenu|Cancel - return to menu~)
 </whpage>
 
-<whpage pageid="PGADMINDELETEYES" desc="Deleting records marked D" exportfilename="" remap="">
+<whpage pageid="PGADMINDELETEYES" desc="Deleting records marked D" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -42,7 +69,7 @@ Ok, those records have been deleted.
 (~JUMP|pgAdminMenu|Return to the admin menu.~)
 </whpage>
 
-<whpage pageid="PGADMINMENU" desc="Admin Menu" exportfilename="" remap="">
+<whpage pageid="PGADMINMENU" desc="Admin Menu" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -76,7 +103,7 @@ googlepriority=0
 </center>
 </whpage>
 
-<whpage pageid="PGEDIT" desc="Edit one record in the table" exportfilename="" remap="">
+<whpage pageid="PGEDIT" desc="Edit one record in the table" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -119,7 +146,7 @@ Thanks for increasing security by logging out.
 </center>
 </whpage>
 
-<whpage pageid="PGPOST" desc="pgpost" exportfilename="" remap="">
+<whpage pageid="PGPOST" desc="pgpost" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
