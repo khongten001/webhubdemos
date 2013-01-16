@@ -69,6 +69,17 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
+      <ServerProfile id="dsp">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="dsp.href.com:80"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
