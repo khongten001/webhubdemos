@@ -92,6 +92,14 @@ googlepriority=0
 </whpage>
 
 <whpage pageid="switchemail" desc="-Change email responsible for Delphi Prefix(es)">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
+<whprep>
+(~SET|_wasEMail=(~_EMail~)~)
+</whprep>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~PageDesc~)</title>
@@ -100,7 +108,7 @@ googlepriority=0
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-(~SET|_wasEMail=(~_EMail~)~)
+(~drMaintainNav~)
 
 <h1>Change (~_EMail~)</h1>
 <div id="dprmain-div">
