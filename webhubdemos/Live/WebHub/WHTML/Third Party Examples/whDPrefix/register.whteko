@@ -7,12 +7,15 @@
 mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="D.P.R." />~)</div>
 </whmacros>
 
-<whpage pageid="pgregister" desc="Registration Form for New Prefix">
+<whpage pageid="pgregister" desc="Start Registering a Delphi Prefix">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
 googlepriority=0.8
 </whpagesettings>
+<whprep>
+(~ASSIGNED|_email|(~BOUNCE|pgregisterb~)~)
+</whprep>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
@@ -24,9 +27,9 @@ googlepriority=0.8
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div id="dprmain-div">
 
-<h2>Prefix Registration</h2>
+<h1>Prefix Registration</h1>
+<div id="dprmain-div">
 
 <p>To register your Delphi prefix preference, please start by 
 logging in with an email known by one of these providers... 
@@ -75,9 +78,9 @@ googlepriority=0
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div id="dprmain-div">
 
 <h1>(~PageDesc~)</h1>
+<div id="dprmain-div">
 <h2>Existing Prefixes</h2>
 <p><i>managed by (~DPREMail~) [(~JUMPR|switchemail|change email~)]</i></p>
 (~manpref.Execute|Maintain~)
@@ -122,6 +125,12 @@ googlepriority=0
 
 <h2>Add New Prefix</h2>
 <p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
+
+<h2>Help!</h2>
+<p>If you need assistance, please send a note via <a target="_blank" href="http://www.href.com/contact">www.href.com/contact</a> 
+or talk to us via Secure Live Chat, Monday to Friday, at approximately 4-5pm in California at 
+<a target="_blank" href="https://www.href.com/techhelp">www.href.com/techhelp</a>.
+</p>
 
 </div>
 (~drSharedFooter~)

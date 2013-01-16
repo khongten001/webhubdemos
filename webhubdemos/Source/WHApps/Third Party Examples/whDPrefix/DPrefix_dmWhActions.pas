@@ -27,6 +27,7 @@ type
     waCountPending: TwhWebAction;
     waCleanup2013Login: TwhWebAction;
     waDelete: TwhWebAction;
+    waConfirmOpenID: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
@@ -34,6 +35,7 @@ type
     procedure waCleanup2013LoginExecute(Sender: TObject);
     procedure waDeleteExecute(Sender: TObject);
     procedure waDeleteSetCommand(Sender: TObject; var ThisCommand: string);
+    procedure waConfirmOpenIDExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -63,9 +65,10 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  DateUtils,
   ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
   webApp, htWebApp, wdbSSrc,
-  DPrefix_dmNexus;
+  DPrefix_dmNexus, whutil_ValidEmail;
 
 { TDMDPRWebAct }
 
@@ -177,20 +180,27 @@ begin
     Insert;
     FieldByName('MpfID').asInteger:=iKey;
     FieldByName('Mpf EMail').asString := pWebApp.StringVar['_email']; // OpenID
+    FieldByName('MpfOpenIDOnAt').AsDateTime := NowGMT;
+    FieldByName('MpfOpenIDProviderName').AsString :=
+      pWebApp.StringVar['_providerName'];
+    FieldByName('Mpf Prefix').asString:= pWebApp.StringVar['Mpf Prefix'];
+    FieldByName('MpfFirstLetter').asString:=
+      UpperCase(Copy(pWebApp.StringVar['Mpf Prefix'], 1, 1));
     FieldByName('Mpf Status').asString:='P';  // pending
-    FieldByName('Mpf Date Registered').asDateTime:=now;
-    FieldByName('Mpf Notes').asString :=
-      pWebApp.Session.TxtVars.List['txtComment'].text;
-    CSSend('Mpf Notes', FieldByName('Mpf Notes').asString);
+    FieldByName('Mpf Date Registered').asDateTime := NowGMT;
 
     for i:=0 to Pred(pWebApp.Session.StringVars.count) do
     begin
       //example stringvar: Mpf EMail=info@href.com
       aFieldName:=LeftOfEqual(pWebApp.Session.StringVars[i]);
-      CSSend(S(i) + ' aFieldName', aFieldName);
-      if StartsWith(aFieldName,'Mpf') and (FindField(aFieldName)<>nil) then
-        FieldByName(aFieldName).asString :=
-          RightOfEqual(pWebApp.Session.StringVars[i]);
+      if DMNexus.IsAllowedRemoteDataEntryField(aFieldname) then
+      begin
+        CSSend(S(i) + ' aFieldName', aFieldName);
+        if {StartsWith(aFieldName,'Mpf') and }
+          (FindField(aFieldName)<>nil) then
+          FieldByName(aFieldName).asString :=
+            RightOfEqual(pWebApp.Session.StringVars[i]);
+      end;
     end;
     if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
       FieldByName('Mpf Webpage').AsString := Copy(
@@ -214,12 +224,7 @@ var
   bFound: Boolean;
 begin
   bFound := False;
-  DPREmail := pWebApp.StringVar['_email'];
-  if DPREmail = '' then
-  begin
-    DPREmail := pWebApp.StringVar['DPREmail'];
-    pWebApp.StringVar['_email'] := DPREMail;
-  end;
+  DPREmail := pWebApp.StringVar['DPREMail'];
   if DPREmail <> '' then
   begin
     DPRPassword := pWebApp.StringVar['DPRPassword'];
@@ -244,9 +249,55 @@ begin
       end;
     end;
   end;
-  pWebApp.BoolVar['_bCleanupOk'] := bFound;
-  if NOT bFound then
-    pWebApp.Response.SendBounceToPage('cleanup2013error', '');
+  //pWebApp.BoolVar['_bCleanupOk'] := bFound;
+  if bFound then
+  begin
+    pWebApp.StringVar['_email'] := DPREMail;
+    pWebApp.Response.SendBounceToPage('pgregisterb', '');
+  end
+  else
+    pWebApp.Response.SendBounceToPage('cleanup2013error', '')
+end;
+
+procedure TDMDPRWebAct.waConfirmOpenIDExecute(Sender: TObject);
+var
+  wasEMail, newEMail: string;
+begin
+
+  if pWebApp.IsWebRobotRequest then
+    pWebApp.Response.SendBounceToPage('pghomepage', '');
+
+  wasEMail := pWebApp.StringVar['_wasEMail'];
+  if (wasEMail = '') or (NOT StrIsEMail(wasEMail)) then
+    pWebApp.Response.SendBounceToPage('pghomepage', '');
+  newEMail := pWebApp.StringVar['_email']; // openid
+  if (newEMail = '') or (NOT StrIsEMail(newEMail)) then
+    pWebApp.Response.SendBounceToPage('pghomepage', '');
+
+  //rename _wasEMail -> _email and erase any pass token details
+  with DMNexus.TableAdmin do
+  begin
+    if NOT Filtered then
+    begin
+      First;
+      while NOT EOF do
+      begin
+        if IsEqual(FieldByName('Mpf Email').AsString, wasEMail) then
+        begin
+          Edit;
+          FieldByName('Mpf EMail').AsString := newEMail;
+          FieldByName('MpfPassToken').AsString := '';
+          FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -365);
+          DMNexus.Stamp(DMNexus.TableAdmin, 'oid');
+          Post;
+        end;
+        Next;
+      end;
+    end;
+  end;
+  pWebApp.Session.DeleteStringVarByName('_wasEMail');
+  pWebApp.StringVar['DPREMail'] := newEMail;
+  pWebApp.Response.SendBounceToPage('pgregisterb', '');
 end;
 
 procedure TDMDPRWebAct.waCountPendingExecute(Sender: TObject);

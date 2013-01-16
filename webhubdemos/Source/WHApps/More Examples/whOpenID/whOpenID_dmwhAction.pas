@@ -161,7 +161,7 @@ begin
   begin
 
     pWebApp.Session.DeleteStringVarByName('_identifier');
-    pWebApp.Session.DeleteStringVarByName('_email');
+    pWebApp.Session.DeleteStringVarByName('_email'); // not LinkedIn, Twitter, MySpace
     pWebApp.Session.DeleteStringVarByName('_preferredUsername');
     pWebApp.Session.DeleteStringVarByName('_providerName');
 

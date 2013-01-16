@@ -3,10 +3,9 @@
 <whteko designmode="code">
 
 <whdroplet name="drCleanupCheckpoint">
-(~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pgEnterDPR~)~)
-(~IfInactiveForSec|600|(~CLEAR|*~)~)
-(~waCleanup2013Login.Execute|~)
-(~REQUIRES|BoolVar._bCleanupOk|cleanup2013~)
+(~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pghomepage~)~)
+(~IfInactiveForSec|600|(~CLEAR|DPREMail~)~)
+(~REQUIRES|_email|pgregister~)
 </whdroplet>
 
 <whpage pageid="cleanup2013" desc="-Delphi Prefix Database Cleanup 2013 January">
@@ -58,9 +57,10 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 <whprep>
-(~drCleanupCheckpoint~)
+(~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pghomepage~)~)
+(~IfInactiveForSec|600|(~CLEAR|DPREMail~)~)
+(~waCleanup2013Login.Execute|~)
 </whprep>
-(~BOUNCE|pgregisterb~)
 </whpage>
 
 <whpage pageid="cleanup2013error" desc="-Database Cleanup Login Error">
@@ -97,17 +97,20 @@ googlepriority=0
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~PageDesc~)</title>
   (~drSharedHead~)
+  (~PARAMS|drJanrainJavascript|openidprocess~)
 </head>
 <body>
 (~mcDPRHomeGraphic~)
+(~SET|_wasEMail=(~DPREMail~)~)
 
+<h1>Change (~DPREMail~)</h1>
 <div id="dprmain-div">
-<h2 style="margin-top:2.5em;">Optionally Change (~DPREMail~)</h2>
-<p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>.</p>
-<p>If (~DPREMail~) is not already registered with one of the 
-providers shown below, please change to an alternate email 
-now by logging in with a provider in this system.
-You can create a free account at OpenID if necessary.</p>
+<p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>
+using the providers below.</p>
+<p>You may change all records managed by <span style="padding: 0 0.2em 0 0.2em; background-color: yellow;">(~DPREMail~)</span> 
+to reference a different email address.</p>
+<p>You can create a free account at OpenID or MyOpenID if necessary.</p>
+<div id="janrainEngageEmbed"></div>
 
 </div>
 (~drSharedFooter~)
@@ -176,26 +179,33 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 <whprep>
+(~drCleanupCheckpoint~)
+(~REQUIRES|_wasEMail|pghomepage~)
 (~waJanrain.Execute|~)
+(~NOTASSIGNED|_email|(~BOUNCE|pghomepage~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
-(~drHead~)
+(~drSharedHead~)
 </head>
 <body>
 (~mcDPRHomeGraphic~)
 (~drMaintainNav~)
 
+<h1>Are you sure?</h1>
 <div id="dprmain-div">
-<h1>Confirmation</h1>
 
+<div style="border: solid 1px crimson; padding: 0.4em; margin-left: 3em; margin-right: 3em;">
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|openidconfirmed~)">
-Use (~email~) confirmed by (~providerName~) for access to 
-Delphi Prefix Registry records:
+Use (~_email~)<br/>
+confirmed by (~_providerName~)<br/>
+for access to<br/>
+Delphi Prefix Registry records:<br/>
 (~INPUTSELECTRADIO|inConfirm,mcYesNo~)</p>
-<p><input type="select" /></p>
+<p><input type="submit" value="Save now" /></p>
 </form>
+</div>
 
 </div> 
 (~drSharedFooter~)
@@ -209,10 +219,9 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 <whprep>
-(~waConfirmOpenID.execute|~)
-(~drCleanupCheckpoint~)
+(~MATCH|(~inConfirm~)=y|(~waConfirmOpenID.execute|~)<!--- this will bounce surfer -->
+||(~BOUNCE|pghomepage~)~)
 </whprep>
-(~BOUNCE|pgregisterb~)
 </whpage>
 
 </whteko>

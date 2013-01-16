@@ -29,4 +29,10 @@ object DMDPRWebAct: TDMDPRWebAct
     Left = 208
     Top = 136
   end
+  object waConfirmOpenID: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waConfirmOpenIDExecute
+    Left = 248
+    Top = 216
+  end
 end
