@@ -3,4 +3,7 @@ body {
       background-color:white;
 }
 table {empty-cells: show;}
-#dprmain-div {margin-left: 4em; padding-left: 4em;}
+#dprmain-div {
+	margin-left: 4em; padding-left: 4em;
+	margin-right: 2em; padding-right: 2em;
+}
