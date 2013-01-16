@@ -37,8 +37,8 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 142
-        Action = ActAssignPasswords
+        Width = 137
+        Action = ActExportToCSV
         LeaveSpace = True
         MinWidth = 28
       end
