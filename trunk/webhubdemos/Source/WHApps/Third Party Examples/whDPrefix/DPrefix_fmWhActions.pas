@@ -57,6 +57,7 @@ type
     ActExportToCSV: TAction;
     ActionPurpose: TAction;
     ComboBoxStatus: TComboBox;
+    ActLowercaseEMail: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -76,6 +77,7 @@ type
     procedure ActExportToCSVExecute(Sender: TObject);
     procedure ManPrefExecute(Sender: TObject);
     procedure ActionPurposeExecute(Sender: TObject);
+    procedure ActLowercaseEMailExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -538,6 +540,34 @@ begin
     end;
   end;
   MsgInfoOk('Purpose field is ready for use.');
+end;
+
+procedure TfmWhActions.ActLowercaseEMailExecute(Sender: TObject);
+var
+  ale: string;
+  n: Integer;
+begin
+  inherited;
+  n := 0;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      ale := (FieldByName('Mpf EMail').AsString);
+      if ale <> Lowercase(ale) then
+      begin
+        Edit;
+        FieldByName('Mpf EMail').asString := Lowercase(ale);
+        DMNexus.Stamp(DMNexus.TableAdmin, 'low');
+        Post;
+        Inc(n);
+      end;
+      Next;
+    end;
+  end;
+  MsgInfoOk('Cleaned ' + IntToStr(n) + ' records');
 end;
 
 procedure TfmWhActions.ActUpcaseStatusExecute(Sender: TObject);

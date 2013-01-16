@@ -212,5 +212,9 @@ inherited fmWhActions: TfmWhActions
       Caption = 'Purpose'
       OnExecute = ActionPurposeExecute
     end
+    object ActLowercaseEMail: TAction
+      Caption = 'Lowercase EMail'
+      OnExecute = ActLowercaseEMailExecute
+    end
   end
 end
