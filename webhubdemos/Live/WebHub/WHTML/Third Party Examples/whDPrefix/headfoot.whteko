@@ -39,7 +39,7 @@ Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools 
 &nbsp; <a target="_blank" href="http://lite.demos.href.com/privacypolicy">Privacy</a><br/>
 Your http client: (~Request.UserAgent~) <!-- considered (~ISWebRobotRequest|webrobot||human~) -->
 </p>
-(~drLinkW3Org~)
+<!--- (~drLinkW3Org~) -->
 </div>
 </whdroplet>
 
