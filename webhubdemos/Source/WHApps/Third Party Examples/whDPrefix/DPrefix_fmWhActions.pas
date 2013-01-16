@@ -193,7 +193,8 @@ begin
       Next;
     end;
   end;
-  MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+  MsgInfoOk('Passwords assigned ' + FormatDateTime('dddd dd-MMM hh:nn',
+    NowGMT));
 end;
 
 procedure TfmWhActions.ActCheckURLsExecute(Sender: TObject);
@@ -393,6 +394,7 @@ type TMarketingRec = record
   PassToken: string;
   PassUntil: TDateTime;
   Beneficiary: string;
+  ListRadio: string;
 end;
 
 procedure TfmWhActions.ActExportToCSVExecute(Sender: TObject);
@@ -430,8 +432,11 @@ var
 
 begin
   inherited;
-  Filespec8 := 'd:\DelphiPrefixRegistry_Marketing.utf8.csv';
+  ActAssignPasswordsExecute(ActAssignPasswords);
+  Filespec8 := 'd:\DelphiPrefixRegistry_Marketing.' +
+    FormatDateTime('yyyy-mm-dd', NowGMT) + '.utf8.csv';
   CSVContents := '';
+  Data.ListRadio := 'yes';
   with DMNexus.TableAdmin do
   begin
     Close;
@@ -442,12 +447,13 @@ begin
     while not EOF do
     begin
       Data.EMail := FieldByName('Mpf EMail').AsString;
-      if Data.email <> LastEMail then
+      Data.PassToken := FieldByName('MpfPassToken').asString;
+      Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
+      if (Data.email <> LastEMail) and (Data.PassToken <> '') and
+        (Now < Data.PassUntil) then
       begin
         if StrIsEMail(Data.EMail) then
         begin
-          Data.PassToken := FieldByName('MpfPassToken').asString;
-          Data.PassUntil := FieldByName('MpfPassUntil').AsDateTime;
           Data.Contact := FieldByName('Mpf Contact').asString;
           Data.Purpose := FieldByName('MpfPurpose').AsString;
           Data.Prefix := FieldByName('Mpf Prefix').AsString;
@@ -468,6 +474,7 @@ begin
             Data.Beneficiary := Data.Contact;
           CSVContents := CSVContents +
             QthenTab(Data.Email) +
+            QthenTab(Data.ListRadio) +
             QthenTab(DateNot1899(data.RegisteredOn)) +
             QthenTab(Data.Contact) +
             QthenTab(Data.Company) +
@@ -491,7 +498,8 @@ begin
   end;
   // www.streamsend.com needs UTF-8 tab delimited, *no* quotes around text.
   UTF8StringWriteToFile(Filespec8, UTF8String(CSVContents));
-  MsgInfoOk('Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+  MsgInfoOk(Filespec8 + sLineBreak +
+    'Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
 end;
 
 procedure TfmWhActions.ActionPurposeExecute(Sender: TObject);
