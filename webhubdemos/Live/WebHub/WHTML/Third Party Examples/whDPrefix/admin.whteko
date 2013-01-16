@@ -122,7 +122,7 @@ Status codes: A=Approved, P=Pending, D=Deleted. Only records marked A are shown 
 </form>
 </whpage>
 
-<whpage pageid="PGLOGOUT" desc="Automatic Logout page">
+<whpage pageid="dprlogout" desc="Automatic Logout page" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a

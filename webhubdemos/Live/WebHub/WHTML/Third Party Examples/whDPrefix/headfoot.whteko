@@ -11,7 +11,6 @@ mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 Administration Shortcuts: 
 [ (~GOR|pgAdminMenu|Menu~) ] &nbsp;
 [ (~GOR|pgAdminBrowse|Browse~) ] &nbsp;
-[ (~GOR|pgLogout|Logout~) ] &nbsp;
 </whdroplet>
 
 <whdroplet name="chGraphicalBanner">
@@ -24,7 +23,9 @@ Administration Shortcuts:
 [ (~GO|pgHomepage| itemprop="url" |Home~) ] &nbsp;
 [ (~GO|pgPrefix| itemprop="url" |View the Registry~) ] &nbsp;
 [ (~GO|pgRegister| itemprop="url" |Add/Edit YOUR Prefix~) ] &nbsp;
-[ (~GO|pgThanks| itemprop="url" |About~) ] &nbsp;</span>
+[ (~GO|pgThanks| itemprop="url" |About~) ] &nbsp;
+</span>
+[ (~GOR|pgLogout|Logout~) ] &nbsp;
 </whdroplet>
 
 <whdroplet name="drSharedFooter">

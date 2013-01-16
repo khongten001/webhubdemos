@@ -141,6 +141,7 @@ end;
 
 procedure TDMWHOpenIDviaJanrain.waJanrainExecute(Sender: TObject);
 var
+  ErrorText: string;
   token: string;
   SRequest: string;
   SResponse: string;
@@ -151,103 +152,138 @@ var
   S1: string;
   identifier, email, preferredUsername, providerName: string;
   LeftKey: string;
+  cn: string;
 begin
   json := nil;
   jsonProfile := nil;
+  cn := TwhWebaction(Sender).Name;
 
-  (* STEP 1: Extract token POST parameter *)
-  token := pWebApp.StringVar['token'];
-  if Length(token) = 40 then
+  if TwhWebAction(Sender).HtmlParam = '' then
   begin
+    (* STEP 1: Extract token POST parameter *)
+    token := pWebApp.StringVar['token'];
+    if Length(token) = 40 then
+    begin
 
-    pWebApp.Session.DeleteStringVarByName('_identifier');
-    pWebApp.Session.DeleteStringVarByName('_email'); // not LinkedIn, Twitter, MySpace
-    pWebApp.Session.DeleteStringVarByName('_preferredUsername');
-    pWebApp.Session.DeleteStringVarByName('_providerName');
+      pWebApp.Session.DeleteStringVarByName('_identifier');
+      pWebApp.Session.DeleteStringVarByName('_email'); // not LinkedIn, Twitter, MySpace
+      pWebApp.Session.DeleteStringVarByName('_preferredUsername');
+      pWebApp.Session.DeleteStringVarByName('_providerName');
 
-    (* STEP 2: Use the token to make the auth_info API call *)
-    with TStringList.Create do
-    try
-      SRequest := Format(
-        'https://rpxnow.com/api/v2/auth_info?' +
-        'token=%s&' +
-        'apiKey=%s&' +
-        'format=&' +
-        'extended=%s', [
-        URLEncode(token, False),
-        URLEncode(FAPIKey, False),
-        URLEncode('json', False),
-        URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
-      CSSend('SRequest', SRequest);
-      SResponse := HTTPSGet(SRequest);    
-      CSSend('SResponse', SResponse);
-    finally
-      Free;
-    end;
+      (* STEP 2: Use the token to make the auth_info API call *)
+      with TStringList.Create do
+      try
+        SRequest := Format(
+          'https://rpxnow.com/api/v2/auth_info?' +
+          'token=%s&' +
+          'apiKey=%s&' +
+          'format=&' +
+          'extended=%s', [
+          URLEncode(token, False),
+          URLEncode(FAPIKey, False),
+          URLEncode('json', False),
+          URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
+        //CSSend('SRequest', SRequest);
+        SResponse := HTTPSGet(SRequest);
+        //CSSend('SResponse', SResponse);
+      finally
+        Free;
+      end;
 
-   (* STEP 3: Parse the JSON auth_info response *)
-    try
-      json := TJSONObject.Create;
+     (* STEP 3: Parse the JSON auth_info response *)
+      try
+        json := TJSONObject.Create;
 
-      if (json.Parse(BytesOf(SResponse), 0) >= 0) then
-      begin
-
-        CSSend('json.Size', S(json.Size));
-        if (json.Size >= 2) then
+        if (json.Parse(BytesOf(SResponse), 0) >= 0) then
         begin
-          pair := json.Get(0);
-          CSSend('0 pair.JsonString', pair.JsonString.ToString);
-          CSSend('0 pair.JsonValue', pair.JsonValue.ToString);
-          if (NoQuotes(pair.JsonString.ToString) = 'stat') and
-            (NoQuotes(pair.JsonValue.ToString) = 'ok') then
+
+          if (json.Size >= 2) then
           begin
-            jsonProfile := TJSONObject.Create;
-            S1 := json.Get(1).JSONValue.ToString;
-            //CSSend('json.Get(1).JSONValue', json.Get(1).JSONValue.ToString);
-            jsonProfile.Parse(BytesOf(S1), 0); // 0-based parsing ! ! !
-            CSSend('jsonProfile.Size', S(json.Size));
-            for I := 0 to Pred(jsonProfile.Size) do
+            pair := json.Get(0);
+            CSSend('0 pair.JsonString', pair.JsonString.ToString);
+            CSSend('0 pair.JsonValue', pair.JsonValue.ToString);
+            if (NoQuotes(pair.JsonString.ToString) = 'stat') and
+              (NoQuotes(pair.JsonValue.ToString) = 'ok') then
             begin
-              pair := jsonProfile.Get(i);
-              LeftKey := NoQuotes(pair.JsonString.ToString);
-              //CSSend('i ' + S(i), LeftKey);
-              //CSSend('i ' + S(i) + ' pair.JsonValue',  pair.JsonValue.ToString);
-              if LeftKey = 'identifier' then
+              jsonProfile := TJSONObject.Create;
+              S1 := json.Get(1).JSONValue.ToString;
+              //CSSend('json.Get(1).JSONValue', json.Get(1).JSONValue.ToString);
+              jsonProfile.Parse(BytesOf(S1), 0); // 0-based parsing ! ! !
+              CSSend('jsonProfile.Size', S(json.Size));
+              for I := 0 to Pred(jsonProfile.Size) do
               begin
-                identifier := NoQuotes(pair.JsonValue.ToString);
-                CSSend('identifier', identifier);
-              end
-              else
-              if LeftKey = 'email' then
-                email := NoQuotes(pair.JsonValue.ToString)
-              else
-              if LeftKey = 'preferredUsername' then
-                preferredUsername := NoQuotes(pair.JsonValue.ToString)
-              else
-              if LeftKey = 'providerName' then
-                providerName := NoQuotes(pair.JsonValue.ToString);
+                pair := jsonProfile.Get(i);
+                LeftKey := NoQuotes(pair.JsonString.ToString);
+                //CSSend('i ' + S(i), LeftKey);
+                //CSSend('i ' + S(i) + ' pair.JsonValue',  pair.JsonValue.ToString);
+                if LeftKey = 'identifier' then
+                begin
+                  identifier := NoQuotes(pair.JsonValue.ToString);
+                  CSSend('identifier', identifier);
+                end
+                else
+                if LeftKey = 'email' then
+                  email := NoQuotes(pair.JsonValue.ToString)
+                else
+                if LeftKey = 'preferredUsername' then
+                  preferredUsername := NoQuotes(pair.JsonValue.ToString)
+                else
+                if LeftKey = 'providerName' then
+                  providerName := NoQuotes(pair.JsonValue.ToString);
+              end;
+              pWebApp.StringVar['_identifier'] := identifier;
+              pWebApp.StringVar['_email'] := email;
+              pWebApp.StringVar['_preferredUsername'] := preferredUsername;
+              pWebApp.StringVar['_providerName'] := providerName;
+              pWebApp.Session.DeleteStringVarByName('token');
+            end
+            else
+            begin
+              ErrorTExt := 'status is not ok';
+              pWebApp.StringVar[cn + '-ErrorMessage'] := ErrorText;
+              LogSendError(ErrorText);
+              LogSendError(SResponse);
             end;
-            pWebApp.StringVar['_identifier'] := identifier;
-            pWebApp.StringVar['_email'] := email;
-            pWebApp.StringVar['_preferredUsername'] := preferredUsername;
-            pWebApp.StringVar['_providerName'] := providerName;
-            pWebApp.Session.DeleteStringVarByName('token');
           end
           else
           begin
-            pWebApp.StringVar[Self.Name + '-ErrorMessage'] :=
-              'status is not ok';
+            ErrorText := 'unexpected json.size';
+            LogSendWarning(ErrorText);
+            CSSend('json.Size', S(json.Size));
+            pWebApp.StringVar[cn + '-ErrorMessage'] := ErrorText;
           end;
+        end
+        else
+        begin
+          ErrorText := 'Unable to parse JSON response';
+          pWebApp.StringVar[cn + '-ErrorMessage'] := ErrorText;
+          pWebApp.Debug.AddPageError(cn + ': ' + ErrorText);
+          LogSendError(SResponse);
         end;
-      end
-      else
-      begin
-        pWebApp.Debug.AddPageError('Unable to parse JSON response');
+      finally
+        FreeAndNil(json);
+        FreeAndNil(jsonProfile);
       end;
-    finally
-      FreeAndNil(json);
-      FreeAndNil(jsonProfile);
+    end
+    else
+    begin
+      ErrorText := 'invalid token length';
+      pWebApp.StringVar[Self.Name + '-ErrorMessage'] := ErrorText;
+      pWebApp.Debug.AddPageError(TwhWebaction(Sender).Name + ': ' + ErrorText);
     end;
+  end
+  else
+  begin
+    // htmlparam cookieclear
+    pWebApp.SendMacro('COOKIECLEAR|login_tab');
+    pWebApp.SendMacro('COOKIECLEAR|expected_tab');
+    pWebApp.SendMacro('COOKIECLEAR|welcome_info_name');
+    pWebApp.SendMacro('HEADER|Set-Cookie: login_tab=; Domain=' +
+      pWebApp.Request.Host + '; Path=/;');
+    pWebApp.SendMacro('HEADER|Set-Cookie: expected_tab=; Domain=' +
+      pWebApp.Request.Host + '; Path=/;');
+    pWebApp.SendMacro('HEADER|Set-Cookie: welcome_info_name=; Domain=' +
+      pWebApp.Request.Host + '; Path=/;');
   end;
 end;
 
