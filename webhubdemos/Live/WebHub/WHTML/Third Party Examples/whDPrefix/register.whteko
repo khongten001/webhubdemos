@@ -31,7 +31,7 @@ googlepriority=0.8
 <h1>Prefix Registration</h1>
 <div id="dprmain-div">
 
-<p>To register your Delphi prefix preference, please start by 
+<p>To add/edit/delete your Delphi prefix preference, please start by 
 logging in with an email known by one of these providers... 
 <!--- or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)... -->
 </p>
@@ -45,7 +45,8 @@ logging in with an email known by one of these providers...
 <whpage pageid="pgregopenid">
 <whprep>
 (~waJanrain.Execute|~)
-(~ASSIGNED|_email|(~SET|DPREMail=_email~)(~BOUNCE|pgregisterb~)~)
+(~ASSIGNED|_email|(~BOUNCE|pgregisterb~)~)
+(~BOUNCE|cleanup2013error~)
 </whprep>
 </whpage>
 
