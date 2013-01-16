@@ -46,6 +46,7 @@ logging in with an email known by one of these providers...
 <whprep>
 (~waJanrain.Execute|~)
 (~ASSIGNED|_email|(~BOUNCE|pgmaintain~)~)
+(~SET|waJanrain-ErrorMessage=Sorry for some reason your email id is unknown. Please try again in a few days.~)
 (~BOUNCE|cleanup2013error~)
 </whprep>
 </whpage>
