@@ -61,6 +61,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DBXJSON,
+  IdSSLOpenSSLHeaders,
   ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
   webApp, htWebApp, whdemo_ViewSource;
 
@@ -77,11 +78,32 @@ begin
 end;
 
 function TDMWHOpenIDviaJanrain.Init(out ErrorText: string): Boolean;
+var
+  b: Boolean;
+const
+  cInstall = 'install libeay32 and ssleay32 DLLs';
 begin
   ErrorText := '';
+  b := True;
   // reserved for code that should run once, after AppID set
   if NOT FlagInitDone then
   begin
+
+    try
+      // libeay32 and ssleay32
+      if not IdSSLOpenSSLHeaders.Load then
+      begin
+        ErrorText := 'IdSSLOpenSSLHeaders.Load failed; ' + cInstall;
+        LogSendError(ErrorText);
+        b := False;
+      end;
+    except
+      on e: exception do
+      begin
+        ErrorText := E.Message + sLineBreak + cInstall;
+        b := False;
+      end;
+    end;
 
     (*
     Set this to true if your application is Pro or Enterprise.
@@ -89,7 +111,7 @@ begin
     *)
     FEngage_Pro := false;
 
-    if Assigned(pWebApp) and pWebApp.IsUpdated then
+    if b and Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
 // PATH_TO_API_KEY_FILE should contain a path to a plain text file containing only
@@ -118,17 +140,30 @@ var
   IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+  CSSend('URL', URL);
   IdHTTP := nil;
   IdSSLIOHandlerSocket := nil;
+  CSSend('01');
   try
-    IdHTTP := TIdHTTP.Create(nil);
-    IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
-    IdHTTP.IOHandler := IdSSLIOHandlerSocket;
-    IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
-    Result := IdHTTP.Get(URL);
-    {$IFDEF CodeSite}
-    LogToCodeSiteKeepCRLF('Result', Result);
-    {$ENDIF}
+    try
+      IdHTTP := TIdHTTP.Create(nil);
+  CSSend('02');
+      IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
+  CSSend('03');
+      IdHTTP.IOHandler := IdSSLIOHandlerSocket;
+  CSSend('04');
+      IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
+  CSSend('05');
+      Result := IdHTTP.Get(URL);
+      {$IFDEF CodeSite}
+      LogToCodeSiteKeepCRLF('Result', Result);
+      {$ENDIF}
+    except
+      on E: Exception do
+      begin
+        LogSendException(E, cFn);
+      end;
+    end;
   finally
     FreeAndNil(IdSSLIOHandlerSocket);
     if Assigned(IdHTTP) and Assigned(IdHTTP.IOHandler) then
