@@ -9,6 +9,7 @@ call %ZaphodsMap%zmset.bat d17 UsingKey2Folder "HREFTools\Production\cv001 Delph
 set dcc=%d17%bin\dcc32.exe
 if not exist %dcc% pause
 
+set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath="h:\;h:\dcu_d17_win32;h:\pkg_d17_win32;k:\webhub\lib\whplus\rubi;k:\Rubicon\source;%ibopath%;%d17%\lib\win32\release;D:\vcl\NexusDB3;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
@@ -23,8 +24,13 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 ren %1.cfg %1.off
 
 echo 1demo d17_win32 %1
+del %outputroot%\%1.exe %1.raize.bin
 @echo on
-"%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib -u%libsearchpath%;%raizepath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+if errorlevel 1 pause
+ren %outputroot%\%1.exe %1.raize.bin
+
+"%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause
 
 @echo off
