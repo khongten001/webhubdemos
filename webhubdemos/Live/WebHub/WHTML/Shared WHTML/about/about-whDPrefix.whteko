@@ -19,27 +19,38 @@ mcWhDemoLiteDPR=No
 </whmacros>
 
 
-<whpage pageid="pgthanks" desc="Thanks">
+<whpage pageid="pgthanks" desc="About the Delphi Prefix Registry">
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-<title>Delphi Prefix Registry</title>
+<title>About the Delphi Prefix Registry</title>
 	(~drSharedHead~)
+<style>
+#credits-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
+#credits-table th {
+  border-bottom: 1px solid #F08080; margin: 0; padding: 10px 8px; text-align: left; 
+  vertical-align: top;
+}
+#credits-table td {border-bottom: 1px solid #F08080; margin: 0; padding: 6px 8px; 
+  vertical-align: top;
+}
+</style>
 </head>
 <body>
 
 (~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" style="border:none;"/>~)
 <br/>
-(~JUMP|pgHomePage|Return to the Homepage~) |&nbsp;(~JUMP|pgPrefix|Browse&nbsp;the&nbsp;Delphi&nbsp;Prefix&nbsp;Registry~) |&nbsp;(~JUMP|pgRegister|Register&nbsp;YOUR&nbsp;prefix~)
+(~JUMP|pgPrefix|Browse the Delphi Prefix Registry~) |&nbsp;(~JUMP|pgRegister|Add/Edit YOUR Prefix~)
 
-<h2>About This Site</h2>
+<h1>(~pagedesc~)</h1>
 
-<hr/>
-<span style="color:red;">Attention...</span>
+<div id="dprmain-div">
+
+<p><span style="color:red;">Attention...</span>
 (~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.gif" BORDER="0" HEIGHT="31" WIDTH="88" align="left" hspace="10"/>~)
-Please link to (~HREF|http://delphiprefix.href.com|http://delphiprefix.href.com~)
+Please link your blogs etc to (~HREF|http://delphiprefix.href.com/|http://delphiprefix.href.com/~)
 and have (~HREF|(~mcImageDir~)dprbut.gif|this handy button~) as our thanks!
-<hr/>
+</p>
 
 <p>
 Firstly Component Builders are truly the salt of the earth - they provide ready
@@ -48,18 +59,17 @@ us with the tools to repeatedly furnish end users with what they really want.</p
 
 
 <p style="color:#CC33CC;">Special mention with regard
-to the project goes to Ray Konopka, author of Developing Custom Delphi
+to the project goes to <b>Ray Konopka</b>, author of Developing Custom Delphi
 3 Components, who has tirelessly promoted the use of prefixes (long before
 this site existed).</p>
 
 <p>This project would not have got off the ground
 without help and encouragement ,
 <br/>the following people provided the motivation :</p>
-<br/>&nbsp;
 
-<TABLE style="border: solid 1px; padding: 0.4em 0.2em;">
+<TABLE id="credits-table">
 <TR>
-<TD>bob swart</TD>
+<th>bob swart</th>
 
 <TD>- international delphi guru</TD>
 
@@ -67,7 +77,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>marco cantu</TD>
+<th>marco cantu</th>
 
 <TD>- international delphi guru</TD>
 
@@ -75,7 +85,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>david clark</TD>
+<th>david clark</th>
 
 <TD>- infinity software</TD>
 
@@ -83,15 +93,15 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>chriz frizell&nbsp;</TD>
+<th>chriz frizell</th>
 
 <TD>- itec uk - delphi magazine</TD>
 
-<TD>(subscribe now)</TD>
+<TD></TD>
 </TR>
 
 <TR>
-<TD>tomasz stanczak</TD>
+<th>tomasz stanczak</th>
 
 <TD>- r &amp; t</TD>
 
@@ -99,7 +109,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>nick hodges</TD>
+<th>nick hodges</th>
 
 <TD>- teamb</TD>
 
@@ -107,7 +117,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>duncan mcormack</TD>
+<th>duncan mcormack</th>
 
 <TD>- addrock</TD>
 
@@ -115,7 +125,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>brian lowe</TD>
+<th>brian lowe</th>
 
 <TD>- acro tchnology</TD>
 
@@ -123,7 +133,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>greg lief&nbsp;</TD>
+<th>greg lief&nbsp;</th>
 
 <TD>- glad components</TD>
 
@@ -131,7 +141,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>robert m. czerwinski</TD>
+<th>robert m. czerwinski</th>
 
 <TD>- delphi super page</TD>
 
@@ -139,7 +149,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>mark miller</TD>
+<th>mark miller</th>
 
 <TD>- eagle software</TD>
 
@@ -147,7 +157,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>brett liddicoet</TD>
+<th>brett liddicoet</th>
 
 <TD>- opaque software</TD>
 
@@ -155,7 +165,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>gerald nunn</TD>
+<th>gerald nunn</th>
 
 <TD>- gexperts</TD>
 
@@ -163,7 +173,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>artchil gogova</TD>
+<th>artchil gogova</th>
 
 <TD>- internet mailsuite</TD>
 
@@ -171,7 +181,7 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>roman eremin</TD>
+<th>roman eremin</th>
 
 <TD>- rsd software</TD>
 
@@ -179,22 +189,24 @@ without help and encouragement ,
 </TR>
 
 <TR>
-<TD>david f schrader</TD>
+<th>david f schrader</th>
 
 <TD>- delphi user</TD>
 
 
-<TD>(just like me)</TD>
+<TD></TD>
 </TR>
 
 <TR>
-<TD>the graphical gnome</TD>
+<th>the graphical gnome</th>
 
 <TD>- graphics specialist</TD>
 
 <TD></TD>
 </TR>
 </TABLE>
+</div>
+
 (~drSharedFooter~)
 </body></html>
 </whpage>
