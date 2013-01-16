@@ -162,6 +162,7 @@ begin
   begin
     (* STEP 1: Extract token POST parameter *)
     token := pWebApp.StringVar['token'];
+    LogSendInfo('token', token, cn);
     if Length(token) = 40 then
     begin
 
@@ -274,6 +275,7 @@ begin
   end
   else
   begin
+    LogSendInfo('htmlparam', TwhWebAction(Sender).HtmlParam, cn);
     // htmlparam cookieclear
     pWebApp.SendMacro('COOKIECLEAR|login_tab');
     pWebApp.SendMacro('COOKIECLEAR|expected_tab');
