@@ -268,7 +268,7 @@ begin
                   providerName := NoQuotes(pair.JsonValue.ToString);
               end;
               pWebApp.StringVar['_identifier'] := identifier;
-              pWebApp.StringVar['_email'] := email;
+              pWebApp.StringVar['_email'] := Lowercase(email); // avoid dupes
               pWebApp.StringVar['_preferredUsername'] := preferredUsername;
               pWebApp.StringVar['_providerName'] := providerName;
               pWebApp.Session.DeleteStringVarByName('token');

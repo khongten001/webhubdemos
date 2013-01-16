@@ -182,7 +182,7 @@ begin
     Filtered := False;
     Insert;
     FieldByName('MpfID').asInteger:=iKey;
-    FieldByName('Mpf EMail').asString := pWebApp.StringVar['_email']; // OpenID
+    FieldByName('Mpf EMail').asString := Lowercase(pWebApp.StringVar['_email']); // OpenID
     FieldByName('MpfOpenIDOnAt').AsDateTime := NowGMT;
     FieldByName('MpfOpenIDProviderName').AsString :=
       pWebApp.StringVar['_providerName'];
@@ -296,7 +296,7 @@ begin
         if IsEqual(FieldByName('Mpf Email').AsString, wasEMail) then
         begin
           Edit;
-          FieldByName('Mpf EMail').AsString := newEMail;
+          FieldByName('Mpf EMail').AsString := Lowercase(newEMail);
           FieldByName('MpfPassToken').AsString := '';
           FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -365);
           DMNexus.Stamp(DMNexus.TableAdmin, 'oid');
