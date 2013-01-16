@@ -20,15 +20,15 @@ Administration Shortcuts:
 </whdroplet>
 
 <whdroplet name="chNavigation">
-[ (~GO|pgHomepage|Home~) ] &nbsp;
-[ (~GO|pgPrefix|View the Registry~) ] &nbsp;
-[ (~GO|pgRegister|Register your own Prefix~) ] &nbsp;
-[ (~GO|pgThanks|Credits~) ] &nbsp;
-(~IF|_bLoginOk|(~chAdminFooterLinks~)~)
+<span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+[ (~GO|pgHomepage| itemprop="url" |Home~) ] &nbsp;
+[ (~GO|pgPrefix| itemprop="url" |View the Registry~) ] &nbsp;
+[ (~GO|pgRegister| itemprop="url" |Add/Edit YOUR Prefix~) ] &nbsp;
+[ (~GO|pgThanks| itemprop="url" |About~) ] &nbsp;</span>
 </whdroplet>
 
 <whdroplet name="drSharedFooter">
-<div style="text-align:center; margin-top: 2em;">
+<div style="text-align:center; margin-top: 3em;">
 (~chNavigation~)
 <p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 

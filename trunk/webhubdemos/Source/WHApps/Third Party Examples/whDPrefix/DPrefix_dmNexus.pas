@@ -17,6 +17,7 @@ type
     procedure TableFilterPendingApprovedRecord(DataSet: TDataSet;
       var Accept: Boolean);
     procedure TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
+    procedure TableFilterDelete(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
@@ -29,6 +30,7 @@ type
     procedure CopyTable(srcTbl:TnxTable; const Destination: string);
     function Init(out ErrorText: string): Boolean;
     procedure TableAdminOnlyPending;
+    procedure TableAdminOnlyDelete;
     procedure TableAdminUnfiltered;
     procedure Table1OnlyMaintain;
     procedure Table1OnlyApproved;
@@ -185,9 +187,10 @@ end;
 function TDMNexus.IsAllowedRemoteDataEntryField(
   const AFieldName: string): Boolean;
 begin
+  // prevent all of these from being posted-to from the web
   Result := PosCI(AFieldName, 'MpfID;Mpf Prefix;' +
     ';UpdatedBy;UpdatedOnAt;UpdateCounter;' +
-    'Mpf Status;MpfFirstLetter;Mpf EMail;' +
+    'Mpf Status;MpfFirstLetter;Mpf EMail;Mpf Notes;' +
     'MpfURLStatus;MpfURLTestOnAt;MpfOpenIDOnAt;MpfOpenIDProviderName;' +
     'MpfPassToken;MpfPassUntil;Mpf Date Registered') = 0;
 end;
@@ -237,6 +240,21 @@ begin
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
+procedure TDMNexus.TableAdminOnlyDelete;
+const cFn = 'TableAdminOnlyDelete';
+begin
+  with TableAdmin do
+  begin
+    //if OnFilterRecord <> TableFilterPending then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterDelete;
+      Filtered := True;
+    end;
+  end;
+end;
+
 procedure TDMNexus.TableAdminOnlyPending;
 const cFn = 'TableAdminOnlyPending';
 begin
@@ -259,9 +277,24 @@ begin
   TableAdmin.OnFilterRecord := nil;
 end;
 
-procedure TDMNexus.TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
+procedure TDMNexus.TableFilterDelete(DataSet: TDataSet; var Accept: Boolean);
+const cFn = 'TableFilterDelete';
 begin
-  Accept := (DataSet.FieldByName('Mpf EMail').AsString = pWebApp.StringVar['DPREmail']);
+  Accept := (DataSet.FieldByName('Mpf Status').AsString = 'D');
+  if Accept then
+  begin
+    CSSend(cFn + ' Accept', S(Accept));
+    CSSend(cFn + ' MpfID', DataSet.FieldByName('MpfID').AsString);
+  end;
+end;
+
+procedure TDMNexus.TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
+var
+  e1: string;
+begin
+  e1 := DataSet.FieldByName('Mpf EMail').AsString;
+  with pWebApp do
+    Accept := (e1 = StringVar['DPREmail']) or (e1 = StringVar['_email']);
 end;
 
 procedure TDMNexus.TableFilterPending(DataSet: TDataSet; var Accept: Boolean);

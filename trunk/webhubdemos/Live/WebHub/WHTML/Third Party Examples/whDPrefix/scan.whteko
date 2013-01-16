@@ -15,7 +15,7 @@ mcManPrefCaptionsRedraw=Redraw
 </whmacros>
 
 <whdroplet name="chScan">
-<table style="border: none; width:100%;">
+<table id="alphabet-table">
 <tr><td style="padding-right:2em;">
 (~GO|pgHomePage|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
 </td></td><td style="width:90%;">
@@ -27,7 +27,7 @@ mcManPrefCaptionsRedraw=Redraw
 (~WebDBAlphabet.execute|~)
 </td></tr></table>
 
-(~JUMP|pgRegister|Register YOUR prefix~) |&nbsp;(~Jump|pgThanks|About this site~)
+(~JUMP|pgRegister|Add/Edit YOUR Prefix~) |&nbsp;(~Jump|pgThanks|About this site~)
 
 <div id="dprmain-div">
 <div itemscope itemtype="http://schema.org/Table">
@@ -54,8 +54,17 @@ googlepriority=0.7
 
   <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURL.W~)0(~DynURL.W~)(~Command~)~)" />
 
-	<style>
-	#approvedPrefixesTable th {color: Crimson;}
+  <style>
+  #alphabet-table {
+	border: none; width:100%;
+  }
+	#approvedPrefixesTable th {
+		color: crimson;
+		text-align: left;
+	}
+  #approvedPrefixesTable th, #approvedPrefixesTable td {
+	padding: 0.3em 0 0 0.1em;
+  }
 	#adminTable th {color: Crimson;}
 	</style>
 </head>

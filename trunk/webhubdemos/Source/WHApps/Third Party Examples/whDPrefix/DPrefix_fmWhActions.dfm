@@ -37,18 +37,24 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 74
-        Action = ActExportToCSV
+        Width = 142
+        Action = ActAssignPasswords
         LeaveSpace = True
         MinWidth = 28
       end
-      object cbShowOnlyPending: TCheckBox
-        Left = 344
-        Top = 6
-        Width = 201
-        Height = 28
-        Caption = 'Show Only Pending'
+      object ComboBoxStatus: TComboBox
+        Left = 408
+        Top = 8
+        Width = 145
+        Height = 26
+        ItemIndex = 0
         TabOrder = 0
+        Text = '- All'
+        Items.Strings = (
+          '- All'
+          'P Pending'
+          'D Delete'
+          'A Approved')
       end
     end
     object tpComponentPanel2: TtpComponentPanel

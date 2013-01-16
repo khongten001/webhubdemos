@@ -51,12 +51,12 @@ type
     ActUpcaseStatus: TAction;
     ActDeleteStatusD: TAction;
     ActCreateIndices: TAction;
-    cbShowOnlyPending: TCheckBox;
     ActCountPending: TAction;
     ActCheckURLs: TAction;
     ActAssignPasswords: TAction;
     ActExportToCSV: TAction;
     ActionPurpose: TAction;
+    ComboBoxStatus: TComboBox;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -116,24 +116,32 @@ begin
   inherited;
   with DMNexus.TableAdmin do
   begin
-    First;
-    while not EOF do
+    if NOT Filtered then
     begin
-      ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
-      if FieldByName('MpfFirstLetter').asString <> ACap then
+      First;
+      while not EOF do
       begin
-        Edit;
-        FieldByName('MpfFirstLetter').asString := ACap;
-        Post;
+        ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
+        if FieldByName('MpfFirstLetter').asString <> ACap then
+        begin
+          Edit;
+          FieldByName('MpfFirstLetter').asString := ACap;
+          DMNexus.Stamp(DMNexus.TableAdmin, 'upc');
+          Post;
+        end;
+        Next;
       end;
-      Next;
-    end;
+      MsgInfoOk('all records reviewed');
+    end
+    else
+      MsgErrorOk('table filtered; not reviewed');
   end;
 end;
 
 procedure TfmWhActions.ActAssignPasswordsExecute(Sender: TObject);
 var
-  AEMail: string;
+  LastEMail, AEMail: string;
+  bGrant: Boolean;
 const
   cLettersDigits = 'zqLvXuX8hZhJlYGq0wcsYUZn2jVKKrQs1AozWqsc3weKnJdA4itkexzcmFBAP94';
 
@@ -152,25 +160,33 @@ const
 begin
   inherited;
   Randomize;
+  LastEMail := '';
   with DMNexus.TableAdmin do
   begin
+    Close;
+    IndexName := 'EMail';
+    Open;
     First;
     while not EOF do
     begin
+      bGrant := False;
       AEMail := FieldByName('Mpf EMail').AsString;
-      if StrIsEMail(AEMail) then
+      if Aemail <> LastEMail then
+        bGrant := StrIsEMail(AEMail);
+
+      if bGrant then
       begin
         Edit;
         FieldByName('MpfPassToken').asString := RandomPasswordString;
-        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, 10);
+        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, 14);
         DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
         Post;
       end
       else
       begin
         Edit;
-        FieldByName('MpfPassToken').asString := 'no';
-        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -10);
+        FieldByName('MpfPassToken').asString := '';
+        FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -365);
         DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
         Post;
       end;
@@ -639,10 +655,12 @@ begin
     begin
       DataSource:=DMDPRWebAct.dsAdmin;
       DBNavigator1.DataSource:=DMDPRWebAct.dsAdmin;
-      if cbShowOnlyPending.Checked then
-        DMNexus.TableAdminOnlyPending
-      else
-        DMNexus.TableAdminUnfiltered;
+      case ComboBoxStatus.ItemIndex of
+        0: DMNexus.TableAdminUnfiltered;
+        1: DMNexus.TableAdminOnlyPending;
+        2: DMNexus.TableAdminOnlyDelete;
+        // 3: DMNexus.TableAdminOnlyApproved;
+      end;
     end
     else
     begin
@@ -683,9 +701,12 @@ begin
               pWebApp.Debug.AddPageError('no such MpfID ' + aKey)
             else
             begin
-              CSSend('consider granting access to', pWebApp.StringVar['DPREMail']);
+              CSSend('DPREMail', pWebApp.StringVar['DPREMail']);
+              CSSend('_email', pWebApp.StringVar['_EMail']);
               if IsEqual(FieldByName('Mpf EMail').AsString,
-                pWebApp.StringVar['DPREMail']) then
+                pWebApp.StringVar['DPREMail']) or
+                IsEqual(FieldByName('Mpf EMail').AsString,
+                pWebApp.StringVar['_email']) then
               begin
                 // surfer has permission to work on this record
                 iKeyDone := iKey;
