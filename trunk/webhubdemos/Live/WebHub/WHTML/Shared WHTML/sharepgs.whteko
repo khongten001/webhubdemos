@@ -674,8 +674,11 @@ data: (~INPUTTEXT|data,30~)<br/>
 <whprep>
 (~SESSION|Delete~)
 (~COOKIECLEAR|SESSION~)
+(~COOKIECLEAR|WHSESSION~)
+(~COOKIECLEAR|DPRSESSION~)
 (~COOKIECLEAR|KEYCODE~)
 (~COOKIECLEAR|FRONTDOORSESSION~)
+(~drResetOpenIDCookies~)
 </whprep>
 (~mcdoctypehtml~)
 <html>

@@ -18,6 +18,7 @@ type
       var Accept: Boolean);
     procedure TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterDelete(DataSet: TDataSet; var Accept: Boolean);
+    procedure TableFilterBlankEmail(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
@@ -31,6 +32,7 @@ type
     function Init(out ErrorText: string): Boolean;
     procedure TableAdminOnlyPending;
     procedure TableAdminOnlyDelete;
+    procedure TableAdminOnlyBlankEMail;
     procedure TableAdminUnfiltered;
     procedure Table1OnlyMaintain;
     procedure Table1OnlyApproved;
@@ -240,6 +242,21 @@ begin
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
+procedure TDMNexus.TableAdminOnlyBlankEMail;
+const cFn = 'TableAdminOnlyBlankEMail';
+begin
+  with TableAdmin do
+  begin
+    //if OnFilterRecord <> TableFilterPending then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterBlankEMail;
+      Filtered := True;
+    end;
+  end;
+end;
+
 procedure TDMNexus.TableAdminOnlyDelete;
 const cFn = 'TableAdminOnlyDelete';
 begin
@@ -277,6 +294,12 @@ begin
   TableAdmin.OnFilterRecord := nil;
 end;
 
+procedure TDMNexus.TableFilterBlankEmail(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+  Accept := (DataSet.FieldByName('Mpf EMail').AsString = '');
+end;
+
 procedure TDMNexus.TableFilterDelete(DataSet: TDataSet; var Accept: Boolean);
 const cFn = 'TableFilterDelete';
 begin
@@ -294,7 +317,7 @@ var
 begin
   e1 := DataSet.FieldByName('Mpf EMail').AsString;
   with pWebApp do
-    Accept := (e1 = StringVar['DPREmail']) or (e1 = StringVar['_email']);
+    Accept := (e1 = StringVar['_email']);
 end;
 
 procedure TDMNexus.TableFilterPending(DataSet: TDataSet; var Accept: Boolean);

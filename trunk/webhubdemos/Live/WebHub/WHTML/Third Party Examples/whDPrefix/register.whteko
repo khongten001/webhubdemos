@@ -14,7 +14,7 @@ googlechangefreq=yearly
 googlepriority=0.8
 </whpagesettings>
 <whprep>
-(~ASSIGNED|_email|(~BOUNCE|pgregisterb~)~)
+(~ASSIGNED|_email|(~BOUNCE|pgmaintain~)~)
 </whprep>
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -45,12 +45,12 @@ logging in with an email known by one of these providers...
 <whpage pageid="pgregopenid">
 <whprep>
 (~waJanrain.Execute|~)
-(~ASSIGNED|_email|(~BOUNCE|pgregisterb~)~)
+(~ASSIGNED|_email|(~BOUNCE|pgmaintain~)~)
 (~BOUNCE|cleanup2013error~)
 </whprep>
 </whpage>
 
-<whpage pageid="pgregisterb" desc="Maintain Prefix Registrations">
+<whpage pageid="pgmaintain" desc="Maintain Prefix Registrations">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -83,7 +83,7 @@ googlepriority=0
 <h1>(~PageDesc~)</h1>
 <div id="dprmain-div">
 <h2>Existing Prefixes</h2>
-<p><i>managed by (~DPREMail~) [(~JUMPR|switchemail|change email~)]</i></p>
+<p><i>managed by (~_EMail~) [(~JUMPR|switchemail|change email~)]</i></p>
 (~manpref.Execute|Maintain~)
 <whdroplet name="ScanMaintain" show="no">
 <table id="maintain-table">
@@ -108,7 +108,7 @@ googlepriority=0
 <td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 <td>
 (~MATCH|(~temps~)=A|Approved~)
-(~MATCH|(~temps~)=P|Pending~)
+(~MATCH|(~temps~)=P|<span style="color:green;font-weight:900;">Pending</span>~)
 (~MATCH|(~temps~)=D|<span style="color:red;background-color:yellow;">Delete</span>~)
 </td>
 <td>(~FIELD|wdsManPref|MpfPurpose~)</td>
@@ -148,7 +148,7 @@ googlepriority=0
 (~drCleanupCheckpoint~)
 </whprep>
 (~waDelete.Execute|~)
-(~BOUNCE|pgregisterb~)
+(~BOUNCE|pgmaintain~)
 </whpage>
 
 <whpage pageid="pgregisterc" desc="Registration Form for New Prefix">
@@ -178,7 +178,7 @@ googlepriority=0
 <body>
 (~mcDPRHomeGraphic~)
 <whdroplet name="drMaintainNav" show="yes">
-<div>(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+<div>(~JUMP|pgmaintain|Maintain Prefixes~)</div>
 </whdroplet>
 
 <div id="dprmain-div">
@@ -249,7 +249,7 @@ like TabcQuery, TabcDatabase</span>
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div>(~JUMP|pgregisterb|Maintain Prefixes~)</div>
+<div>(~JUMP|pgmaintain|Maintain Prefixes~)</div>
 <div id="dprmain-div">
 
 <h1>Thanks for registering!!</h1>

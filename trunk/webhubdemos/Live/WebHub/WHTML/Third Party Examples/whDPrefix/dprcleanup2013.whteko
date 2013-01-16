@@ -4,7 +4,7 @@
 
 <whdroplet name="drCleanupCheckpoint">
 (~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pghomepage~)~)
-(~IfInactiveForSec|600|(~CLEAR|DPREMail~)~)
+<!--- (~IfInactiveForSec|600|(~CLEAR|DPREMail~)~) -->
 (~REQUIRES|_email|pgregister~)
 </whdroplet>
 
@@ -58,7 +58,6 @@ googlepriority=0
 </whpagesettings>
 <whprep>
 (~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pghomepage~)~)
-(~IfInactiveForSec|600|(~CLEAR|DPREMail~)~)
 (~waCleanup2013Login.Execute|~)
 </whprep>
 </whpage>
@@ -80,13 +79,13 @@ googlepriority=0
 (~mcDPRHomeGraphic~)
 
 <h2>Sorry, No Go.</h2>
-<p>(~errormessage~)</p>
-<p>Sessions time out after 10 minutes of inactivity.</p>
+(~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
+<!--- <p>Sessions time out after 10 minutes of inactivity.</p> -->
 <p>(~JUMPR|cleanup2013|Login here~)</p>
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
 <a target="_blank" href="https://www.href.com/techhelp">www.href.com</a>
 </p>
-(~CLEAR|errormessage~)
+(~CLEAR|waCleanup2013Login-errormessage~)
 
 (~drSharedFooter~)
 </body></html>
@@ -101,13 +100,13 @@ googlepriority=0
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-(~SET|_wasEMail=(~DPREMail~)~)
+(~SET|_wasEMail=(~_EMail~)~)
 
-<h1>Change (~DPREMail~)</h1>
+<h1>Change (~_EMail~)</h1>
 <div id="dprmain-div">
 <p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>
 using the providers below.</p>
-<p>You may change all records managed by <span style="padding: 0 0.2em 0 0.2em; background-color: yellow;">(~DPREMail~)</span> 
+<p>You may change all records managed by <span style="padding: 0 0.2em 0 0.2em; background-color: yellow;">(~_EMail~)</span> 
 to reference a different email address.</p>
 <p>You can create a free account at OpenID or MyOpenID if necessary.</p>
 <div id="janrainEngageEmbed"></div>
@@ -165,7 +164,7 @@ googlepriority=0
 (~drCleanupCheckpoint~)
 (~waModify.Execute|~)
 </whprep>
-(~BOUNCE|pgregisterb~)
+(~BOUNCE|pgmaintain~)
 </whpage>
 
 <whmacros>

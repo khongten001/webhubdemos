@@ -660,6 +660,7 @@ begin
         1: DMNexus.TableAdminOnlyPending;
         2: DMNexus.TableAdminOnlyDelete;
         // 3: DMNexus.TableAdminOnlyApproved;
+        4: DMNexus.TableAdminOnlyBlankEMail;
       end;
     end
     else
@@ -701,11 +702,8 @@ begin
               pWebApp.Debug.AddPageError('no such MpfID ' + aKey)
             else
             begin
-              CSSend('DPREMail', pWebApp.StringVar['DPREMail']);
               CSSend('_email', pWebApp.StringVar['_EMail']);
               if IsEqual(FieldByName('Mpf EMail').AsString,
-                pWebApp.StringVar['DPREMail']) or
-                IsEqual(FieldByName('Mpf EMail').AsString,
                 pWebApp.StringVar['_email']) then
               begin
                 // surfer has permission to work on this record

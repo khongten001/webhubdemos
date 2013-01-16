@@ -162,6 +162,9 @@ begin
   iKey := 0;
   with DMNexus.TableAdmin do
   begin
+    Close;
+    IndexName := 'MpfID';
+    Open;
     First;
     while not EOF do
     begin
@@ -172,7 +175,7 @@ begin
   end;
 
   Inc(iKey);
-  CSSend('iKey', S(iKey));
+  CSSend('New Primary Key iKey', S(iKey));
 
   with TwhWebActionEx(Sender), DMNexus.TableAdmin do
   begin
@@ -222,8 +225,10 @@ procedure TDMDPRWebAct.waCleanup2013LoginExecute(Sender: TObject);
 var
   DPREmail, DPRPassword: string;
   bFound: Boolean;
+  cn: string;
 begin
   bFound := False;
+  cn := TwhWebAction(Sender).Name;
   DPREmail := pWebApp.StringVar['DPREMail'];
   if DPREmail <> '' then
   begin
@@ -240,7 +245,7 @@ begin
           if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
             bFound := True
           else
-            pWebApp.StringVar['ErrorMessage'] := 'expired password; ' +
+            pWebApp.StringVar[cn + '-ErrorMessage'] := 'expired password; ' +
             'login using an OpenID provider that knows about ' + DPREmail;
           break;
         end
@@ -249,28 +254,34 @@ begin
       end;
     end;
   end;
-  //pWebApp.BoolVar['_bCleanupOk'] := bFound;
   if bFound then
   begin
     pWebApp.StringVar['_email'] := DPREMail;
-    pWebApp.Response.SendBounceToPage('pgregisterb', '');
+    pWebApp.Response.SendBounceToPage('pgmaintain', '');
   end
   else
     pWebApp.Response.SendBounceToPage('cleanup2013error', '')
 end;
 
 procedure TDMDPRWebAct.waConfirmOpenIDExecute(Sender: TObject);
+const cFn = 'waConfirmOpenIDExecute';
 var
   wasEMail, newEMail: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
 
   if pWebApp.IsWebRobotRequest then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
 
   wasEMail := pWebApp.StringVar['_wasEMail'];
+  CSSend('_wasEMail', wasEMail);
+
   if (wasEMail = '') or (NOT StrIsEMail(wasEMail)) then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
+
   newEMail := pWebApp.StringVar['_email']; // openid
+  CSSend('newEMail', newEMail);
+
   if (newEMail = '') or (NOT StrIsEMail(newEMail)) then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
 
@@ -293,11 +304,14 @@ begin
         end;
         Next;
       end;
-    end;
+    end
+    else
+      LogSendError('admin table filtered; cannot switch email');
   end;
   pWebApp.Session.DeleteStringVarByName('_wasEMail');
-  pWebApp.StringVar['DPREMail'] := newEMail;
-  pWebApp.Response.SendBounceToPage('pgregisterb', '');
+  pWebApp.Session.DeleteStringVarByName('DPREMail');
+  pWebApp.Response.SendBounceToPage('pgmaintain', '');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waCountPendingExecute(Sender: TObject);
