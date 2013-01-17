@@ -28,8 +28,8 @@ googlepriority=0.9
 <div id="dprmain-div">
 <div style="margin-right: 10em;">
 <whdroplet name="drDelphiVisigenic" show="yes">
-<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px text-align:right" alt="delphi2" />
-<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px text-align:right" alt="visigenic" />
+<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right" alt="delphi2" />
+<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right" alt="visigenic" />
 </whdroplet>
 
 <p>The growing number of components
