@@ -13,6 +13,9 @@ googlepriority=0.9
 	<title>Delphi Prefix Registry</title>
 	(~drSharedHead~)
   <link rel="canonical" href="http://delphiprefix.href.com/" />
+	<style>
+	img.float_right_img {float: right;}
+	</style>
 </head>
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
@@ -33,7 +36,7 @@ The growing number of components
 and component suppliers has given rise to conflicts in component 
 <span style="color:#FF0000;">NAMES.</span>
 <whdroplet name="drDelphiImage" show="yes">
-<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right; margin-left: 1em;" alt="delphi2" />
+<img class="float_right_img" src="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px; margin-left: 1em;" alt="delphi2" />
 </whdroplet>
 </p>
 
@@ -45,7 +48,7 @@ from your site.</p>
 <p>The DELPHI PREFIX REGISTRY (DPxR) has been designed
 to LIST component creators, the PREFIXES they use and sufficient contact details with disclosing email addresses.
 <whdroplet name="drVisigenicImage" show="yes">
-<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
+<img class="float_right_img" src="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px; margin-left: 1em;" alt="visigenic" />
 </whdroplet>
 </p>
 
