@@ -17,8 +17,8 @@ mcManPrefCaptionsRedraw=Redraw
 <whdroplet name="chScan">
 <table id="alphabet-table">
 <tr><td style="padding-right:2em;">
-(~GO|pgHomePage|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" />~)
-</td></td><td style="width:90%;">
+(~GO|pgHomePage|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" alt="D.P.R."/>~)
+</td><td style="width:90%;">
 
 <b>Quick Alphabetical Search:</b>
 <div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="font-size:larger;">
