@@ -29,24 +29,25 @@ googlepriority=0.9
 <div style="margin-right: 10em;">
 
 <p>
+The growing number of components
+and component suppliers has given rise to conflicts in component 
+<span style="color:#FF0000;">NAMES.</span>
 <whdroplet name="drDelphiImage" show="yes">
 <IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right; margin-left: 1em;" alt="delphi2" />
 </whdroplet>
-The growing number of components
-and component suppliers has given rise to conflicts in component 
-<span style="color:#FF0000;">NAMES.</span></p>
+</p>
 
 <p>
-<whdroplet name="drVisigenicImage" show="yes">
-<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
-</whdroplet>
 If you publish components, then please register your preferences
 here and add a link to the http://delphiprefix.href.com
 from your site.</p>
 
 <p>The DELPHI PREFIX REGISTRY (DPxR) has been designed
-to LIST component creators, the PREFIXES they use and contact details.
-(EMail addresses are no longer shown.)</p>
+to LIST component creators, the PREFIXES they use and sufficient contact details with disclosing email addresses.
+<whdroplet name="drVisigenicImage" show="yes">
+<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
+</whdroplet>
+</p>
 
 <p>DPxR gives no warranty express or implied on any component or vendor
 that registers their prefix preferences here. <p>
@@ -74,7 +75,7 @@ see if anyone else uses ADQ first!</p>
 
 <p>The whole aim of this site is to detect current naming conflicts 
 and play some part in preventing future conflicts. 
-"Space for Intelligent Collaboration"</p>
+&quot;Space for Intelligent Collaboration&quot;</p>
 
 <p>It is not always necessary to adopt
 a prefix to maintain unique component naming - many established component
@@ -83,13 +84,10 @@ as the basis of naming.</p>
 
 <p>At the end of the day what matters is that names are
 <span style="color:#993366;">UNIQUE</span>
-and that components can live harmony within the IDE.</p>
-
-<p>We shall be logging all known major components and will advise all parties 
-should a conflict be found. It is then up to the parties to decide whether their 
-components are likely to reside on a system one day and what action needs to be taken.
+and that components can live harmony within the IDE.
 (~drDelphiImage~)
 </p>
+
 
 <p style="color:#CC6600;">
 Nobody has a divine right to assign or control component names,
