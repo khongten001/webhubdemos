@@ -33,7 +33,6 @@
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortdpr" context="DEMOS"/>
         <UseAppID value="true"/>
-        <UseAppID value="false" context="DEMOS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
     </AppProperties>
