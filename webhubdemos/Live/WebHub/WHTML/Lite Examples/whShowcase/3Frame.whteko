@@ -112,7 +112,7 @@ Borderless<p>
 <td ALIGN=CENTER VALIGN=TOP>
 <img src="(~mcImgShowcaseDir~)(~litFrameIcon~).PNG" HEIGHT=(~litIconSize~) WIDTH=(~litIconSize~) BORDER=(~litIconBorder~)>
 </td>
-<td VALIGN=TOP ALIGN=RIGHT>
+<td style="vertical-align:top; text-align:right;">
 <form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <SMALL>Icon Border:<br />
 (~inputradio|litIconBorder,0~)<SMALL>0</SMALL><br />
