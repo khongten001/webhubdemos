@@ -27,8 +27,10 @@ googlepriority=0.9
 
 <div id="dprmain-div">
 <div style="margin-right: 10em;">
+<whdroplet name="drDelphiVisigenic" show="yes">
 <IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px text-align:right" alt="delphi2" />
 <IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px text-align:right" alt="visigenic" />
+</whdroplet>
 
 <p>The growing number of components
 and component suppliers has given rise to conflicts in component 
@@ -89,8 +91,7 @@ Nobody has a divine right to assign or control component names,
 and we do not lay down the law.
 </p>
 
-<IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="Delphi" />
-<IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
+(~drDelphiVisigenic~)
 
 <p style="color:#009900">
 Freedom of choice Rules!
