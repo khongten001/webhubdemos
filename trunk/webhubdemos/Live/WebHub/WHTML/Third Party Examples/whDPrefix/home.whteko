@@ -27,8 +27,8 @@ googlepriority=0.9
 
 <div id="dprmain-div">
 <div style="margin-right: 10em;">
-<IMG SRC="(~mcImageDir~)delphi2.gif" HEIGHT=115 WIDTH=125 align=right alt="delphi2" />
-<IMG SRC="(~mcImageDir~)visigenic2.gif" HEIGHT=64 WIDTH=80 align=right alt="visigenic" />
+<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px text-align:right" alt="delphi2" />
+<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px text-align:right" alt="visigenic" />
 
 <p>The growing number of components
 and component suppliers has given rise to conflicts in component 

@@ -262,7 +262,7 @@ begin
     wsBeforeCol:
       //this would be the place to set the TD property to change it for one cell.
       if col=1 then
-        td:='<TD ALIGN=RIGHT><FONT COLOR=green>'
+        td:='<TD style="text-align:right; color:green;">'
       else
         td:='<TD>';
     wsBeforeRow:;
@@ -272,9 +272,7 @@ begin
       else
         TABLE:='<TABLE BORDER>';
 //    wsAfter:
-    wsAfterCol:
-      if col=1 then
-        Send('</FONT>');
+    wsAfterCol:;
     wsAfterRow:;
     wsAfterScan:;
     //
