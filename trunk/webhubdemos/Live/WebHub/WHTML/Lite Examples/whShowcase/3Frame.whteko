@@ -98,7 +98,7 @@ Borderless<p>
 <SMALL><b>Frame B</b></SMALL><br />
 <table CELLPADDING=10 CELLSPACING=0 BORDER=0 WIDTH=80%>
 <tr>
-<td ALIGN=LEFT VALIGN=TOP>
+<td style="text-align:left; vertical-align:top;">
 <form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <SMALL>Icon Size:<br />
 (~inputradio|litIconSize,12~)<SMALL>12</SMALL><br />

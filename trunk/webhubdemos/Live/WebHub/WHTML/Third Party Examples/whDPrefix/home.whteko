@@ -46,7 +46,7 @@ to LIST component creators, the PREFIXES they use and contact details.
 that registers their prefix preferences here. <p>
 
 
-(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" HEIGHT=84 WIDTH=126 BORDER=0 align=left vspace=5 alt="DPR" />~)
+(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; text-align:left; margin: 5px 0 5px 0;" alt="DPR" />~)
 
 <p>In no way do we wish to impose component naming upon ANYONE,
 we simply provide the information to help you to choose&nbsp; component
