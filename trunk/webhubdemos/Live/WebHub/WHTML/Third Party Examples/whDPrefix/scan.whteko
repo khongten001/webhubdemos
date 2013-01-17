@@ -66,6 +66,8 @@ googlepriority=0.7
 	padding: 0.3em 0 0 0.1em;
   }
 	#adminTable th {color: Crimson;}
+	tr td.alt0 {background-color: #EEE;}
+	tr td.alt1 {background-color: #FFF;}
 	</style>
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
@@ -101,15 +103,13 @@ googlepriority=0.7
 
 <whdroplet name="td">
 <!--- from scan--->
-<td (~color~)>
+<td>
 </whdroplet>
 
 <whdroplet name="tr">
 <!--- from scan--->
-(~IF|bColor|
-(~clear|bColor~)(~set|Color=BGCOLOR="#EEEEEE"~)
-||(~check|bColor~)(~set|Color=BGCOLOR="#FFFFFF"~)~)
-<tr>
+(~IF|bColor|(~clear|bColor~)||(~check|bColor~)~)
+<tr (~IF|bColor|class="alt0"||class="alt1"~)>
 </whdroplet>
 
 </whteko>
