@@ -58,14 +58,21 @@ googlepriority=0.7
   #alphabet-table {
 	border: none; width:100%;
   }
+	#approvedPrefixesTable {
+    margin-top: 1.4em; border: solid 1px; 
+		padding: 0.3em 0.1em; 
+		width:100%;
+		border-collapse: collapse;
+	}
 	#approvedPrefixesTable th {
 		color: crimson;
 		text-align: left;
+		background-color: #EEE;
 	}
+	#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
+	#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
   #approvedPrefixesTable th, #approvedPrefixesTable td {
-	#approvedPrefixesTable tr.alt0 td {background-color: #EEE;}
-	#approvedPrefixesTable tr.alt1 td {background-color: #FFF;}
-	padding: 0.3em 0 0 0.1em;
+	padding: 0.5em 0.2em 0.5em 0.2em;
   }
 	#adminTable th {color: Crimson;}
 	</style>
@@ -78,7 +85,7 @@ googlepriority=0.7
 
 <whdroplet name="ScanApproved">
 (~clear|bColor~)
-<table id="approvedPrefixesTable" style="margin-top: 1.4em; border: solid 1px; padding: 0.3em 0.1em; background-color: Bisque; width:100%;">
+<table id="approvedPrefixesTable">
 <tr>
   <th>Prefix</th>
   <th>Company</th>
@@ -89,21 +96,16 @@ googlepriority=0.7
 </tr>
 <whrow>
 (~TR~)
-(~TD~)(~FIELD|wdsManPref|Mpf Prefix~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
-(~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
-(~TD~)(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
+<td style="font-weight:900;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
+<td>(~FIELD|wdsManPref|Mpf Company~)</td>
+<td>(~FIELD|wdsManPref|MpfPurpose~)</td>
+<td>(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Contact~)</td>
-(~TD~)(~FIELD|wdsManPref|Mpf Date Registered~)</td>
+<td>(~FIELD|wdsManPref|Mpf Contact~)</td>
+<td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 </tr>(~CLEAR|prefurl~)
 </whrow>
 </table>
-</whdroplet>
-
-<whdroplet name="td">
-<!--- from scan--->
-<td>
 </whdroplet>
 
 <whdroplet name="tr">
