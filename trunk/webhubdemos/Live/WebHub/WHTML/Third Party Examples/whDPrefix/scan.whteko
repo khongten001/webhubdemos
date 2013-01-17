@@ -63,11 +63,11 @@ googlepriority=0.7
 		text-align: left;
 	}
   #approvedPrefixesTable th, #approvedPrefixesTable td {
+	#approvedPrefixesTable tr.alt0 td {background-color: #EEE;}
+	#approvedPrefixesTable tr.alt1 td {background-color: #FFF;}
 	padding: 0.3em 0 0 0.1em;
   }
 	#adminTable th {color: Crimson;}
-	tr td.alt0 {background-color: #EEE;}
-	tr td.alt1 {background-color: #FFF;}
 	</style>
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
