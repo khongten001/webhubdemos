@@ -27,12 +27,13 @@ googlepriority=0.9
 
 <div id="dprmain-div">
 <div style="margin-right: 10em;">
-<whdroplet name="drDelphiVisigenic" show="yes">
-<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right" alt="delphi2" />
-<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right" alt="visigenic" />
-</whdroplet>
 
-<p>The growing number of components
+<p>
+<whdroplet name="drDelphiVisigenic" show="yes">
+<IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right; margin-left: 1em;" alt="delphi2" />
+<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
+</whdroplet>
+The growing number of components
 and component suppliers has given rise to conflicts in component 
 <span style="color:#FF0000;">NAMES.</span></p>
 
@@ -47,10 +48,9 @@ to LIST component creators, the PREFIXES they use and contact details.
 <p>DPxR gives no warranty express or implied on any component or vendor
 that registers their prefix preferences here. <p>
 
-
-(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; text-align:left; margin: 5px 0 5px 0;" alt="DPR" />~)
-
-<p>In no way do we wish to impose component naming upon ANYONE,
+<p>
+(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; float:left; margin: 5px 0 5px 0;" alt="DPR" />~)
+In no way do we wish to impose component naming upon ANYONE,
 we simply provide the information to help you to choose&nbsp; component
 names which do not conflict with those in use by other developers.</p>
 
@@ -89,9 +89,9 @@ components are likely to reside on a system one day and what action needs to be 
 <p style="color:#CC6600;">
 Nobody has a divine right to assign or control component names,
 and we do not lay down the law.
+(~drDelphiVisigenic~)
 </p>
 
-(~drDelphiVisigenic~)
 
 <p style="color:#009900">
 Freedom of choice Rules!
