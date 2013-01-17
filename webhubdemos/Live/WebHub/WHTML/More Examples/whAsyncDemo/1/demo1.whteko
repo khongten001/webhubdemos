@@ -88,7 +88,7 @@ taken to a page where you can view the results, and, if you wish, clear them and
 (~MATCH|(~AsyncState~)[Busy|<FONT SIZE="+1"><b>(~asResultPercentDone~)%</b> complete</FONT><br />(~chDemo1ProgressBar~)~)
 <!---and say something...-->
 <p>
-<table border=0 cellPadding=0 cellSpacing=0>
+<table style="border: none; padding: 0; margin: 0;">
 <tr><td>
 (~MATCH|(~AsyncState~)[Started|(~chDemo1StartedText~)~)
 (~MATCH|(~AsyncState~)[Busy|(~chDemo1BusyText~)~)
