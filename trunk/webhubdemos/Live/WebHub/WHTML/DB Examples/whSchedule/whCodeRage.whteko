@@ -160,7 +160,7 @@ Enter your GMT offset, in hours:
 </td>
 <td>&nbsp; &nbsp; &nbsp;</td>
 <td>
-<table id="clocktable" border="0" cellspacing="0" cellpadding="0">
+<table id="clocktable" style="border: none; padding: 0; margin: 0;">
 <tr>
 <td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=US-CA" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
 <td align="center"><embed src="http://www.worldtimeserver.com/clocks/wtsclock001.swf?color=87CEEB&wtsid=BR-SP" width="90" height="90" wmode="transparent" type="application/x-shockwave-flash" /></td><td>&nbsp;</td>
@@ -229,7 +229,7 @@ Enter your GMT offset, in hours:
 <p>*Times are displayed in GMT plus your time offset ((~inOffset~) hours).
 (~JUMP|tzhelp|title="time zone assistance"|Find your GMT offset~)</p>
 <p>
-<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img border="0" src="http://web.firebirdsql.org/images/firebird-logo/firebird-logo-16.png" alt="Firebird Open Source Relational Database Management System" /></a>
+<a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="http://web.firebirdsql.org/images/firebird-logo/firebird-logo-16.png" alt="Firebird Open Source Relational Database Management System" /></a>
 </p>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)

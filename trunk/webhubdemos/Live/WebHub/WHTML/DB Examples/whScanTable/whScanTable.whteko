@@ -224,7 +224,7 @@ whether you see all graphics or just links.</span>
 
 <whdroplet name="chDivider">
 <div class="dcenter" style="margin: 1em 0 1em 0;">
-  <img src="(~mcSiteRoot~)demos/whScanTable/divider.jpg" border="0" alt="----" />
+  <img src="(~mcSiteRoot~)demos/whScanTable/divider.jpg" alt="----" />
 </div>
 </whdroplet>
 

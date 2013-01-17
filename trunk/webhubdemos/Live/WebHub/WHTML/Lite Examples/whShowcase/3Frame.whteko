@@ -110,7 +110,7 @@ Borderless<p>
 </form>
 </td>
 <td ALIGN=CENTER VALIGN=TOP>
-<img src="(~mcImgShowcaseDir~)(~litFrameIcon~).PNG" HEIGHT=(~litIconSize~) WIDTH=(~litIconSize~) BORDER=(~litIconBorder~)>
+<img src="(~mcImgShowcaseDir~)(~litFrameIcon~).PNG" style="height:(~litIconSize~)px; width:(~litIconSize~)px; border: solid (~litIconBorder~)px;"/>
 </td>
 <td style="vertical-align:top; text-align:right;">
 <form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
