@@ -141,7 +141,7 @@ component.  The expiring page uses the EXPIRES macro.  The timeout area
 uses the IFINACTIVEFORSEC macro.</p>
 
 <div class="dcenter">
-<img src="(~mcSiteRoot~)demos/whSecurity/HTSC-Map.jpg" alt="Security Demo Site Map" border="2" />
+<img src="(~mcSiteRoot~)demos/whSecurity/HTSC-Map.jpg" alt="Security Demo Site Map" style="border: solid 2px;" />
 </div>
 
 </div>  <!--- demopagecontent -->

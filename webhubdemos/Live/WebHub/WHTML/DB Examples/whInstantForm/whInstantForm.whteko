@@ -178,7 +178,7 @@ remembering these from one page to the next.  (In the demo, the grid preferences
 
 <whdroplet name="chGridImagemap">
 <p>
-<img src="(~mcSiteRoot~)demos/whInstantForm/gridbtns.JPG" usemap="#GridButtons" ismap="ismap" border="0" alt="buttons for the grid" />
+<img src="(~mcSiteRoot~)demos/whInstantForm/gridbtns.JPG" usemap="#GridButtons" ismap="ismap" alt="buttons for the grid" />
 <map id="gridImageMap" name="GridButtons">
 <!-- #$-:Image Map file created by Map THIS! -->
 <!-- #$-:Map THIS! free image map editor by Todd C. Wilson -->
