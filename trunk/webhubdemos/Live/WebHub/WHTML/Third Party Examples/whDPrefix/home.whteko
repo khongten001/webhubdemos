@@ -29,15 +29,18 @@ googlepriority=0.9
 <div style="margin-right: 10em;">
 
 <p>
-<whdroplet name="drDelphiVisigenic" show="yes">
+<whdroplet name="drDelphiImage" show="yes">
 <IMG SRC="(~mcImageDir~)delphi2.gif" style="height:115px; width:125px float:right; margin-left: 1em;" alt="delphi2" />
-<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
 </whdroplet>
 The growing number of components
 and component suppliers has given rise to conflicts in component 
 <span style="color:#FF0000;">NAMES.</span></p>
 
-<p>If you publish components, then please register your preferences
+<p>
+<whdroplet name="drVisigenicImage" show="yes">
+<IMG SRC="(~mcImageDir~)visigenic2.gif" style="height:64px; width:80px float:right; margin-left: 1em;" alt="visigenic" />
+</whdroplet>
+If you publish components, then please register your preferences
 here and add a link to the http://delphiprefix.href.com
 from your site.</p>
 
@@ -49,7 +52,7 @@ to LIST component creators, the PREFIXES they use and contact details.
 that registers their prefix preferences here. <p>
 
 <p>
-(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; float:left; margin: 5px 0 5px 0;" alt="DPR" />~)
+(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; float:left; margin: 5px 1em 5px 0;" alt="DPR" />~)
 In no way do we wish to impose component naming upon ANYONE,
 we simply provide the information to help you to choose&nbsp; component
 names which do not conflict with those in use by other developers.</p>
@@ -84,12 +87,14 @@ and that components can live harmony within the IDE.</p>
 
 <p>We shall be logging all known major components and will advise all parties 
 should a conflict be found. It is then up to the parties to decide whether their 
-components are likely to reside on a system one day and what action needs to be taken.</p>
+components are likely to reside on a system one day and what action needs to be taken.
+(~drDelphiImage~)
+</p>
 
 <p style="color:#CC6600;">
 Nobody has a divine right to assign or control component names,
 and we do not lay down the law.
-(~drDelphiVisigenic~)
+(~drVisigenicImage~)
 </p>
 
 
