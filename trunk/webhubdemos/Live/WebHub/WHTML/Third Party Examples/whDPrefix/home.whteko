@@ -48,7 +48,7 @@ to LIST component creators, the PREFIXES they use and sufficient contact details
 </p>
 
 <p>DPxR gives no warranty express or implied on any component or vendor
-that registers their prefix preferences here. <p>
+that registers their prefix preferences here. </p>
 
 <p>
 (~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.png" style="height:84px; width:126px border: none; float:left; margin: 5px 1em 5px 0;" alt="DPR" />~)
@@ -59,6 +59,7 @@ names which do not conflict with those in use by other developers.</p>
 <p style="color:#009900;">
 There is nothing more soul destroying for either application developer or component 
 developer than to find that when loaded into the delphi ide there is a naming conflict.
+(See <a target="_blank" href="http://edn.embarcadero.com/article/10283">Charlie Calvert's discussion</a>.)
 </p>
 
 <p>The inspiration for this site came from seeing a wonderful calendar component,
