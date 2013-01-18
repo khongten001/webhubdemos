@@ -4,6 +4,7 @@
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
+mcDPRLogo=<img src="(~mcImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
 </whmacros>
 
 <whdroplet name="chAdminFooterLinks">
@@ -15,13 +16,13 @@ Administration Shortcuts:
 
 <whdroplet name="chGraphicalBanner">
 <img src="(~mcImageDir~)dpr.gif" height="90" width="649" alt="Delphi Prefix Registry Logo"/>&nbsp; &nbsp; &nbsp; 
-<img src="(~mcImageDir~)dprlogo.gif" height="84" width="126" alt="logo" />
+(~mcDPRLogo~)
 </whdroplet>
 
 <whdroplet name="chNavigation">
 <span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 [ (~GO|pgHomepage| itemprop="url" |Home~) ] &nbsp;
-[ (~GO|pgPrefix| itemprop="url" |View the Registry~) ] &nbsp;
+[ (~GO|pgPrefix| itemprop="url" |Browse the Registry~) ] &nbsp;
 [ (~GO|pgRegister| itemprop="url" |Add/Edit YOUR Prefix~) ] &nbsp;
 [ (~GO|pgThanks| itemprop="url" |About~) ] &nbsp;
 </span>
@@ -35,7 +36,7 @@ Administration Shortcuts:
 <p style="padding: 0 1em 0 1em; background-color: yellow; color: #ddf">Under construction - please check back in a few days if you want to add/edit your prefix registration(s).</p>
 -->
 
-<p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
+<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
 compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
 All data is stored in a <a target="_blank" href="http://www.nexusdb.com/">NexusDB</a> table.<br>

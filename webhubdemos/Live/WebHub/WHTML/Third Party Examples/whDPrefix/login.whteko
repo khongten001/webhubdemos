@@ -23,10 +23,8 @@ googlepriority=0
   <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
-<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" alt="D.P.R." />
-<br/><br/>
-
-<!--- (~weblogin.update~) -->
+(~mcDPRLogo~)
+<h1>(~pagedesc~)</h1>
 
 (~inputform|pgLoginConfirm~)
 <table width="100%">
