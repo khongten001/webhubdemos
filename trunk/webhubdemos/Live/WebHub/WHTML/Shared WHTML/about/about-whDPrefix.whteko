@@ -38,9 +38,14 @@ mcWhDemoLiteDPR=No
 </head>
 <body>
 
-(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" HEIGHT="90" WIDTH="649" style="border:none;"/>~)
-<br/>
-(~JUMP|pgPrefix|Browse the Delphi Prefix Registry~) |&nbsp;(~JUMP|pgRegister|Add/Edit YOUR Prefix~)
+<whdroplet name="drBannerThenNav" show="yes">
+(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; height:90px; width: 649px; "/>~)
+<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" >
+(~JUMP|pgPrefix|Browse the Delphi Prefix Registry~) 
+|&nbsp;(~JUMP|pgRegister|Add/Edit YOUR Prefix~)
+|&nbsp;(~HIDE|pgthanks|About this Site~)
+</div>
+</whdroplet>
 
 <h1>(~pagedesc~)</h1>
 
