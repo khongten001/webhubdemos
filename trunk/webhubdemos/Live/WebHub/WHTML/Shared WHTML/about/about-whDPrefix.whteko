@@ -40,6 +40,10 @@ mcWhDemoLiteDPR=No
 
 <whdroplet name="drBannerThenNav" show="yes">
 (~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; height:90px; width: 649px; "/>~)
+(~drSkipBannerThenNav~)
+</whdroplet>
+
+<whdroplet name="drSkipBannerThenNav" show="no">
 <div itemscope itemtype="http://www.schema.org/SiteNavigationElement" >
 (~JUMP|pgPrefix|Browse the Delphi Prefix Registry~) 
 |&nbsp;(~JUMP|pgRegister|Add/Edit YOUR Prefix~)

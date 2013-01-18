@@ -26,9 +26,7 @@ mcManPrefCaptionsRedraw=Redraw
 (~WebDBAlphabet.execute|~)
 </td></tr></table>
 
-<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="margin-top: 0.8em;">
-(~JUMP|pgRegister|Add/Edit YOUR Prefix~) |&nbsp;(~Jump|pgThanks|About this site~)
-</div>
+(~drSkipBannerThenNav~)
 
 <div id="dprmain-div">
 <div itemscope itemtype="http://schema.org/Table">
