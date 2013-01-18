@@ -35,6 +35,7 @@ googlepriority=0.8
 logging in with an email known by one of the following six providers... 
 or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)...
 </p>
+(~drMultipleOpenID~)
 (~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 <div id="janrainEngageEmbed"></div>
 </div>
@@ -87,7 +88,7 @@ googlepriority=0
 <h1>(~PageDesc~)</h1>
 <div id="dprmain-div">
 <h2>Existing Prefixes</h2>
-<p><i>managed by (~_EMail~) [(~JUMPR|switchemail|change email~)]</i></p>
+<p><i>managed by (~_EMail~)</i></p>
 (~manpref.Execute|Maintain~)
 <whdroplet name="ScanMaintain" show="no">
 <table id="maintain-table">
@@ -130,6 +131,15 @@ googlepriority=0
 
 <h2>Add New Prefix</h2>
 <p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
+
+<h2>Change EMail</h2>
+<p>You may (~JUMPR|switchemail|change the email address~) used for data entry. This is recommended if <b>(~_email~)</b> is 
+not authenticated at Google, Yahoo, OpenID, MyOpenID, WordPress or Microsoft. If you are not sure about this OpenID feature, 
+what you can do is (~JUMP|pgLogout| target="_blank" |log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
+If that works for you, you are all set.  If not, come back in via the special January 2013 link with your reserved password, 
+and then you can (~JUMPR|switchemail|switch email~).</p>
+<p>The reason for all this is to enable a one-time cleanup effort that does not depend on OpenID, while allowing 
+all future data entry to proceed without any site-specific passwords.</p>
 
 <h2>Help!</h2>
 <p>If you need assistance, please send a note via <a target="_blank" href="http://www.href.com/contact">www.href.com/contact</a> 

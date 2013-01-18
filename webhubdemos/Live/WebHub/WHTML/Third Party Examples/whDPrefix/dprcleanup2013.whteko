@@ -112,11 +112,17 @@ googlepriority=0
 
 <h1>Change (~_EMail~)</h1>
 <div id="dprmain-div">
-<p>Ongoing login after January 2013 will be via <a target="_blank" href="http://www.openid.net/">OpenID</a>
+<p>Ongoing login after January 2013 will be via 
+<a target="_blank" href="http://www.openid.net/">OpenID</a>
 using the providers below.</p>
 <p>You may change all records managed by <span style="padding: 0 0.2em 0 0.2em; background-color: yellow;">(~_EMail~)</span> 
 to reference a different email address.</p>
-<p>You can create a free account at OpenID or MyOpenID if necessary.</p>
+<p>You can create a free account at <a target="_blank" href="http://www.openid.net/">OpenID</a> 
+or 
+<a target="_blank" href="https://www.myopenid.com/">MyOpenID</a>
+if necessary.</p>
+(~drMultipleOpenID~)
+
 <div id="janrainEngageEmbed"></div>
 
 </div>

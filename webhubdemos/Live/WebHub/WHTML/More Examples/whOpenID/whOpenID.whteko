@@ -33,6 +33,7 @@ converse with the OpenID system in order to know that a visitor is arriving with
 email address... (and more, depending on which level of service you subscribe to, and how much 
 JSON parsing you care to do).</p>
 <p>After logging in, you will see the 3 basic facts gleaned from the janrain.com service. </p>
+(~drMultipleOpenID~)
 
 <div id="janrainEngageEmbed"></div>
 
