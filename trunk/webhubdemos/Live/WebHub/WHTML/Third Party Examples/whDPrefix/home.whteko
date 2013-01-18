@@ -28,8 +28,7 @@ googlepriority=0.9
 
 <h1>Welcome to the Delphi Prefix Registry</h1>
 
-<div id="dprmain-div">
-<div style="margin-right: 10em;">
+<div id="dprtext-div">
 
 <p>
 The growing number of components
@@ -56,7 +55,7 @@ to LIST component creators, the PREFIXES they use and sufficient contact details
 that registers their prefix preferences here. <p>
 
 <p>
-(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px border: none; float:left; margin: 5px 1em 5px 0;" alt="DPR" />~)
+(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.png" style="height:84px; width:126px border: none; float:left; margin: 5px 1em 5px 0;" alt="DPR" />~)
 In no way do we wish to impose component naming upon ANYONE,
 we simply provide the information to help you to choose&nbsp; component
 names which do not conflict with those in use by other developers.</p>
@@ -112,7 +111,7 @@ delphiprefix.href.com.  <a href="http://www.href.com/contact">Contact Webmaster<
 Volunteers welcome!
 </p>
 </div>
-</div><!--- dprmain-div -->
+
 (~drSharedFooter~)
 </body></html>
 </whpage>

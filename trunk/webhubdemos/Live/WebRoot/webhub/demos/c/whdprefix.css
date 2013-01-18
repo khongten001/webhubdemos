@@ -1,9 +1,14 @@
 body {
       font-family:Verdana, Arial, Helvetica, sans-serif;
-      background-color:white;
+      background-color: white;
+	margin-left: 3em; padding-left: 3em;
+	margin-right: 3em; padding-right: 3em;
+	margin-top: 0.8em;
 }
 table {empty-cells: show;}
 #dprmain-div {
-	margin-left: 4em; padding-left: 4em;
-	margin-right: 2em; padding-right: 2em;
+}
+
+#dprtext-div {
+	width: 60%;
 }

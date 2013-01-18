@@ -44,7 +44,7 @@ mcWhDemoLiteDPR=No
 
 <h1>(~pagedesc~)</h1>
 
-<div id="dprmain-div">
+<div id="dprtext-div">
 
 <p><span style="color:red;">Attention...</span>
 (~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.gif" BORDER="0" HEIGHT="31" WIDTH="88" align="left" hspace="10"/>~)

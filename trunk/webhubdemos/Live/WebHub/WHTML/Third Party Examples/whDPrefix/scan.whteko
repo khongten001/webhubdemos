@@ -16,18 +16,19 @@ mcManPrefCaptionsRedraw=Redraw
 
 <whdroplet name="chScan">
 <table id="alphabet-table">
-<tr><td style="padding-right:2em;">
-(~GO|pgHomePage|<img src="(~mcImageDir~)dprlogo.gif" style="height:84px; width:126px; border: none;" alt="D.P.R."/>~)
-</td><td style="width:90%;">
+<tr><td style="padding-right:2em;">(~GO|pgHomePage|(~mcDPRLogo~)~)</td>
+<td style="width:90%;">
 
 <b>Quick Alphabetical Search:</b>
-<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="font-size:larger;">
+<div id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 . <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
 </div>
 (~WebDBAlphabet.execute|~)
 </td></tr></table>
 
+<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="margin-top: 0.8em;">
 (~JUMP|pgRegister|Add/Edit YOUR Prefix~) |&nbsp;(~Jump|pgThanks|About this site~)
+</div>
 
 <div id="dprmain-div">
 <div itemscope itemtype="http://schema.org/Table">
@@ -58,6 +59,10 @@ googlepriority=0.7
   #alphabet-table {
 	border: none; width:100%;
   }
+  #alphabet-table td {
+		background-color: white;
+		vertical-align: bottom;
+	}
 	#approvedPrefixesTable {
     margin-top: 1.4em; border: solid 1px; 
 		padding: 0.3em 0.1em; 
@@ -72,9 +77,10 @@ googlepriority=0.7
 	#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
 	#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
   #approvedPrefixesTable th, #approvedPrefixesTable td {
-	padding: 0.5em 0.2em 0.5em 0.2em;
+	padding: 0.5em 0.9em 0.5em 0.9em;
   }
 	#adminTable th {color: Crimson;}
+	#alphabetNav-div a { padding: 0 0.2em 0 0.1em; font-size: 1.4em; font-weight:900; }
 	</style>
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
