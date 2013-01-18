@@ -76,6 +76,9 @@ googlepriority=0
 #maintain-table td {border-bottom: 1px solid crimson; margin: 0; padding: 6px 8px; 
   vertical-align: top;
 }
+#maintain-table td.action {
+	font-weight:700; font-size: 1.4em; white-space:nowrap;
+}
 </style>
 </head>
 <body>
@@ -101,11 +104,11 @@ googlepriority=0
 <tbody>
 <whrow>
 <tr>(~SET|temps=(~FIELD|wdsManPref|Mpf Status~)~)
-<td>(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue; font-weight:700;"|&#x270e;~)
+<td class="action">(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
 &nbsp;
-(~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red; font-weight:700;"|&#x2717;~)~)
+(~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)~)
 </td>
-<td style="font-weight:900; font-size:larger;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
+<td style="font-weight:900; font-size: 1.1em;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
 <td>
 (~MATCH|(~temps~)=A|Approved~)
