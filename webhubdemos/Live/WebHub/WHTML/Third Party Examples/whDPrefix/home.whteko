@@ -20,11 +20,7 @@ googlepriority=0.9
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
 
-(~JUMP||<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="DPR" />~)
-<br>
-(~JUMP|pgPrefix|Browse the Delphi Prefix Registry~) 
-|&nbsp;(~JUMP|pgRegister|Add/Edit YOUR Prefix~)
-|&nbsp;(~Jump|pgThanks|About this site~)
+(~drBannerThenNav~)
 
 <h1>Welcome to the Delphi Prefix Registry</h1>
 

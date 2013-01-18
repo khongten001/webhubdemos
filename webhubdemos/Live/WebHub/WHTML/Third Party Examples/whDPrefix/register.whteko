@@ -4,10 +4,10 @@
   designpage="pgregister">
 
 <whmacros>
-mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; border:none;" alt="D.P.R." />~)</div>
+mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
 </whmacros>
 
-<whpage pageid="pgregister" desc="Start Registering a Delphi Prefix">
+<whpage pageid="pgregister" desc="Add/Edit YOUR Delphi Prefix">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
@@ -26,14 +26,14 @@ googlepriority=0.8
   (~PARAMS|drJanrainJavascript|pgregopenid~)
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drBannerThenNav~)
 
-<h1>Prefix Registration</h1>
-<div id="dprmain-div">
+<h1>(~pagedesc~)</h1>
+<div id="dprtext-div">
 
 <p>To add/edit/delete your Delphi prefix preference, please start by 
-logging in with an email known by one of these providers... 
-<!--- or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)... -->
+logging in with an email known by one of the following six providers... 
+or (~JUMPR|cleanup2013|login with January 2013 Cleanup Password~)...
 </p>
 (~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 <div id="janrainEngageEmbed"></div>
