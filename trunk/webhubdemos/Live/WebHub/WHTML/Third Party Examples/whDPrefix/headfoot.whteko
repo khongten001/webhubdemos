@@ -31,7 +31,9 @@ Administration Shortcuts:
 <whdroplet name="drSharedFooter">
 <div style="text-align:center; margin-top: 3em;">
 (~chNavigation~)
+<!---
 <p style="padding: 0 1em 0 1em; background-color: yellow; color: #ddf">Under construction - please check back in a few days if you want to add/edit your prefix registration(s).</p>
+-->
 
 <p style="color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
