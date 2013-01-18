@@ -47,4 +47,11 @@ DYN1 = pageid for the janrain.settings.tokenUrl
 (~BOUNCE|(~PriorPageID~)~)
 </whpage>
 
+<whdroplet name="drMultipleOpenID">
+<p>If you find yourself <em>automatically</em> logged in to the <em>wrong</em> account (e.g. when you have 
+multiple google accounts), you can override this <em>feature</em> 
+by going to the provider in a separate window (e.g. google.com) and explicitly 
+signing out from their system before proceeding from here.</p>
+</whdroplet>
+
 </whteko>
