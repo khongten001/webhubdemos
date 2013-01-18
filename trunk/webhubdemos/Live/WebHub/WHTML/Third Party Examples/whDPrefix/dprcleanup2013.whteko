@@ -156,6 +156,7 @@ googlepriority=0
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanupe~)">
 (~WebDataForm.Execute|~)
 </form>
+(~ASSIGNED|WebDataForm-ErrorMessage|<span class="warning">(~WebDataForm-ErrorMessage~)</span>(~CLEAR|WebDataForm*~)~)
 </div>
 (~drSharedFooter~)
 </body></html>
