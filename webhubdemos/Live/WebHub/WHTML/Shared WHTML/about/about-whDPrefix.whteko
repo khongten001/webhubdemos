@@ -39,7 +39,7 @@ mcWhDemoLiteDPR=No
 <body>
 
 <whdroplet name="drBannerThenNav" show="yes">
-(~GO|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; height:90px; width: 649px; "/>~)
+(~GO|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~)
 (~drSkipBannerThenNav~)
 </whdroplet>
 
