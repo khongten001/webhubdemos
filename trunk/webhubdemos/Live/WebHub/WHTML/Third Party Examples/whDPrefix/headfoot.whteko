@@ -21,10 +21,10 @@ Administration Shortcuts:
 
 <whdroplet name="chNavigation">
 <span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-(~HIDE|pgHomepage| itemprop="url" |Home~) &nbsp;
-(~HIDE|pgPrefix| itemprop="url" |Browse~) &nbsp;
-(~HIDE|pgRegister| itemprop="url" |Add/Edit~) &nbsp;
-(~HIDE|pgThanks| itemprop="url" |About~) &nbsp;
+(~GO|pgHomepage| itemprop="url" |Home~) &nbsp;
+(~GO|pgPrefix| itemprop="url" |Browse~) &nbsp;
+(~GO|pgRegister| itemprop="url" |Add/Edit~) &nbsp;
+(~GO|pgThanks| itemprop="url" |About~) &nbsp;
 </span>
 (~GOR|pgLogout|Logout~) &nbsp;
 </whdroplet>
