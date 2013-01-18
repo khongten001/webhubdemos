@@ -400,18 +400,24 @@ const cFn = 'WebDataFormSetCommand';
 var
   a1:string;
   ErrorText: string;
+  b: Boolean;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   SplitString(Command, '.', Command, a1);
   a1 := Uncode64String(a1);
+  CSSend('a1', a1);
   with pWebApp.Response, wdsAdmin.DataSet do
   begin
-    if Locate('MpfID',StrToIntDef(a1,-1),[]) then
+    b := Locate('MpfID',StrToIntDef(a1,-1),[]);
+    WebDataForm.LocateResult := b;
+    CSSend('WebDataForm.LocateResult', S(WebDataForm.LocateResult));
+    if b then
       CSSendNote('found ' + a1 + ' ok')
     else
     begin
       ErrorText := 'Error - MpfID '+a1+' not found.';
+      CSSendError(ErrorText);
       pWebApp.Debug.AddPageError(ErrorText);
       pWebApp.StringVar[TwhWebAction(Sender).Name + '-ErrorMessage']
         := ErrorText;
