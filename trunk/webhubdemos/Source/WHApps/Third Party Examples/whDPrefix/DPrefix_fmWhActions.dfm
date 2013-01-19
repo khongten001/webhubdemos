@@ -48,6 +48,7 @@ inherited fmWhActions: TfmWhActions
         Top = 8
         Width = 145
         Height = 26
+        ItemIndex = 0
         TabOrder = 0
         Text = '- All'
         Items.Strings = (

@@ -549,7 +549,6 @@ begin
       b := DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
       if b then
       begin
-        Edit;
         DMNexus.Stamp(DMNexus.TableAdmin, 'amp');
         Post;
         Inc(n);
