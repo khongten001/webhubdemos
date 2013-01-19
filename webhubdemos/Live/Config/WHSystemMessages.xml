@@ -10,6 +10,7 @@
     <AllSituationsDefault appID="dpr" value="{WebHubDemoMsgRoot}allsituations-dpr.whmsg"/>
     <AppCoverPage appID="" value="{WebHubDemoMsgRoot}appcoverpage-whdemo.whmsg"/>
     <AppCoverPage appID="htun" value="{WebHubDemoMsgRoot}appcoverpage-htun.whmsg"/>
+    <AppCoverPage appID="dpr" value="{WebHubDemoMsgRoot}appcoverpage-dpr.whmsg"/>
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="coderage" value="{WebHubDemoMsgRoot}appnotrunning-coderage.whmsg"/>
