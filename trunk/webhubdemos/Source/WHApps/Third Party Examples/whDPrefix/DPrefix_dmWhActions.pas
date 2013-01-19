@@ -28,6 +28,7 @@ type
     waCleanup2013Login: TwhWebAction;
     waDelete: TwhWebAction;
     waConfirmOpenID: TwhWebAction;
+    waURL: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
@@ -36,6 +37,8 @@ type
     procedure waDeleteExecute(Sender: TObject);
     procedure waDeleteSetCommand(Sender: TObject; var ThisCommand: string);
     procedure waConfirmOpenIDExecute(Sender: TObject);
+    procedure waURLExecute(Sender: TObject);
+    procedure waURLSetCommand(Sender: TObject; var ThisCommand: string);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -54,6 +57,7 @@ type
     dsAdmin: TDataSource;
     wdsAdmin: TwhdbSource;
     function Init(out ErrorText: string): Boolean;
+    function TestURL(const InURL: string; out IStatusCode: Integer): Boolean;
   end;
 
 var
@@ -66,6 +70,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
+  IdHTTP,
   ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
   webApp, htWebApp, wdbSSrc,
   DPrefix_dmNexus, whutil_ValidEmail;
@@ -148,6 +153,56 @@ begin
     end;
   end;
   Result := FlagInitDone;
+end;
+
+function TDMDPRWebAct.TestURL(const InURL: string; out IStatusCode: Integer)
+  : Boolean;
+var
+  SResponse: string;
+
+  function HTTPGet(const URL: string; out HTTPStatusCode: Integer): string;
+  const cFn = 'HTTPGet';
+  var
+    IdHTTP: TIdHTTP;
+  begin
+    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+    CSSend('URL', URL);
+    IdHTTP := nil;
+    HTTPStatusCode := 0;
+    try
+      IdHTTP := TIdHTTP.Create(nil);
+      IdHTTP.Request.UserAgent := 'HREFTools (http://delphiprefix.href.com/)';
+      try
+        Result := IdHTTP.Get(URL);
+        HTTPStatusCode := IdHTTP.Response.ResponseCode;
+      except
+        on E: Exception do
+        begin
+          {$IFDEF CodeSite}
+          CodeSite.SendException(E);
+          {$ENDIF}
+          if Pos('Host not found.', E.Message) > 0 then
+            HTTPStatusCode := 500
+          else
+          begin
+            if Assigned(IdHTTP) and Assigned(IdHTTP.Response) then
+              HTTPStatusCode := IdHTTP.Response.ResponseCode;
+          end;
+        end;
+      end;
+      CSSend('HTTPStatusCode', S(HTTPStatusCode));
+      {$IFDEF CodeSite}
+      LogToCodeSiteKeepCRLF('Result', Result);
+      {$ENDIF}
+    finally
+      FreeAndNil(IdHTTP);
+    end;
+    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+  end;
+
+begin
+  SResponse := HTTPGet(InURL, iStatusCode);
+  Result := SResponse <> '';
 end;
 
 procedure TDMDPRWebAct.waAddExecute(Sender: TObject);
@@ -356,6 +411,82 @@ end;
 procedure TDMDPRWebAct.waDeleteSetCommand(Sender: TObject;
   var ThisCommand: string);
 const cFn = 'waDeleteSetCommand';
+var
+  a1:string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  FMpfID := -1;
+
+  if ThisCommand <> '' then
+  begin
+    a1 := Uncode64String(ThisCommand);
+    fMpfID := StrToIntDef(a1, -1);
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMDPRWebAct.waURLExecute(Sender: TObject);
+const cFn = 'waURLExecute';
+const cUpdatedBy = 'url';
+var
+  aURL: string;
+  iStatusCode: Integer;
+  ErrorText: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  if FMpfID <> -1 then
+  begin
+    with wdsAdmin.DataSet do
+    begin
+
+      if Locate('MpfID', fMpfID, []) then
+      begin
+        CSSendNote('found ' + IntToStr(fMpfID) + ' ok');
+
+        AURL := FieldByName('Mpf WebPage').AsString;
+        if AURL <> '' then
+        begin
+          AURL := 'http://' + AURL;
+          DMDPRWebAct.TestURL(AURL, iStatusCode);
+          if iStatusCode > 0 then
+          begin
+            Edit;
+            FieldByName('MpfURLStatus').AsInteger := iStatusCode;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
+            Post;
+          end;
+        end
+        else
+        begin
+          if (NOT FieldByName('MpfURLStatus').IsNull) and
+            (FieldByName('MpfURLStatus').AsInteger <> -1) then
+          begin
+            Edit;
+            FieldByName('MpfURLStatus').AsInteger := -1;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
+            Post;
+          end;
+        end;
+
+      end
+      else
+      begin
+        ErrorText := 'Error - MpfID '+ IntToStr(FMpfID) + ' not found.';
+        pWebApp.Debug.AddPageError(ErrorText);
+      end;
+    end;
+  end;
+  pWebApp.Response.SendBounceToPage('pgmaintain', '');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMDPRWebAct.waURLSetCommand(Sender: TObject;
+  var ThisCommand: string);
+const cFn = 'waURLSetCommand';
 var
   a1:string;
 begin

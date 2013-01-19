@@ -99,7 +99,7 @@ googlepriority=0
 <th>Purpose</th>
 <th>Contact<br/>Company</th>
 <th>Web Page</th>
-<th>URL Status</th><th>Updated</th>
+<th>URL <a target="_blank" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status</a></th><th>Updated</th>
 </tr></thead>
 <tbody>
 <whrow>
@@ -107,6 +107,8 @@ googlepriority=0
 <td class="action">(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
 &nbsp;
 (~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)~)
+&nbsp;
+(~JUMPR|pgtesturl,waurl.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="(re)test web page url -- caution -- will be slow if host not found" style="color: blue;"|&#x267b;~)
 </td>
 <td style="font-weight:900; font-size: 1.1em;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
@@ -279,4 +281,16 @@ as soon as an administrator approves the entries.  Thank you.</p>
 </body></html>
 </whpage>
 
+
+<whpage pageid="pgtesturl" desc="-Retest one URL (can be slow)">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=yearly
+googlepriority=0
+</whpagesettings>
+<whprep>
+(~waURL.Execute|~)
+</whprep>
+(~BOUNCE|pghomepage~)
+</whpage>
 </whteko>
