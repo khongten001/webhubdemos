@@ -13,7 +13,7 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   webScan in 'K:\WebHub\lib\whplus\webScan.pas',
   whdm_Lingvo in 'h:\whdm_Lingvo.pas',
-  whcfg_App in 'h:\whcfg_App.pas',
+  whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
   htWebApp in 'k:\webhub\lib\htWebApp.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
@@ -28,6 +28,7 @@ uses
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
   DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule},
+  webLink in 'k:\webhub\lib\webLink.pas',
   wdbForm in 'k:\webhub\lib\wdbForm.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
   wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';

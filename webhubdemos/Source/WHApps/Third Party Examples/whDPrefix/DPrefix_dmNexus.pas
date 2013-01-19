@@ -19,6 +19,7 @@ type
     procedure TableFilterPending(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterDelete(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterBlankEmail(DataSet: TDataSet; var Accept: Boolean);
+    procedure TableFilterAmpersand(DataSet: TDataSet; var Accept: Boolean);
     procedure TableFilterEMail(DataSet: TDataSet; var Accept: Boolean);
     procedure WebAppUpdate(Sender: TObject);
   public
@@ -34,11 +35,15 @@ type
     procedure TableAdminOnlyDelete;
     procedure TableAdminOnlyBlankEMail;
     procedure TableAdminUnfiltered;
+    procedure TableAdminOnlyAmpersand;
     procedure Table1OnlyMaintain;
     procedure Table1OnlyApproved;
     procedure Stamp(DS: TDataSet; const UpdatedBy: string);
     function CountPending: Integer;
     function IsAllowedRemoteDataEntryField(const AFieldName: string): Boolean;
+    function DataNoAmpersand(var AText: string; const ReplaceWith: string = '')
+      : Boolean;
+    function RecordNoAmpersand(DS: TDataSet): Boolean;
   end;
 
 var
@@ -54,7 +59,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DBConsts,  //Copy and Flush Tables
-  ucCodeSiteInterface, ucMsTime, ucPos,
+  ucCodeSiteInterface, ucMsTime, ucPos, ucString,
   webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions;
 
 
@@ -149,6 +154,18 @@ begin
   FreeAndNil(nxServerEngine1);
 end;
 
+function TDMNexus.DataNoAmpersand(var AText: string;
+  const ReplaceWith: string = ''): Boolean;
+begin
+  Result := Pos('&', AText) > 0;
+  if Result then
+  begin
+    AText := StringReplaceAll(AText, '&', ReplaceWith);
+    if ReplaceWith = ' and ' then
+      AText := StringReplaceAll(AText, '  and  ', ReplaceWith); // extra spaces
+  end;
+end;
+
 function TDMNexus.Init(out ErrorText: string): Boolean;
 var
   a1: string;
@@ -197,7 +214,36 @@ begin
     'MpfPassToken;MpfPassUntil;Mpf Date Registered') = 0;
 end;
 
+function TDMNexus.RecordNoAmpersand(DS: TDataSet): Boolean;
+var
+  AText: string;
+
+  function OneField(const AFieldName, ReplaceWith: string): Boolean;
+  begin
+    with DS do
+    begin
+      AText := FieldByName(AFieldName).AsString;
+      Result := DMNexus.DataNoAmpersand(AText, ReplaceWith);
+      if Result then
+        FieldByName(AFieldName).asString := AText;
+    end;
+  end;
+begin
+  inherited;
+  with DS do
+  begin
+    Result := False;
+    if OneField('Mpf Company', ' and ') then Result := True;
+    if OneField('Mpf Contact', ' and ') then Result := True;
+    if OneField('MpfPurpose', ' and ') then Result := True;
+    if OneField('Mpf Prefix', #$271A) then Result := True;
+    if OneField('Mpf WebPage', '') then Result := True;
+  end;
+end;
+
 procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);
+var
+  OpenIDProvider: string;
 begin
   DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
   DS.FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
@@ -206,6 +252,16 @@ begin
   else
     DS.FieldByName('UpdateCounter').AsInteger :=
       DS.FieldByName('UpdateCounter').AsInteger + 1;
+
+  OpenIDProvider := pWebApp.StringVar['_providerName'];
+  if OpenIDProvider <> '' then
+  begin
+    // non-blank only when surfer goes through OpenID process
+    DS.FieldByName('MpfOpenIDOnAt').AsDateTime := NowGMT;
+    DS.FieldByName('MpfOpenIDProviderName').AsString :=
+      OpenIDProvider;
+  end;
+
 end;
 
 procedure TDMNexus.Table1OnlyApproved;
@@ -240,6 +296,20 @@ begin
     end;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMNexus.TableAdminOnlyAmpersand;
+begin
+  with TableAdmin do
+  begin
+    //if OnFilterRecord <> TableFilterPending then
+    begin
+      if Filtered then
+        Filtered := False;
+      OnFilterRecord := TableFilterAmpersand;
+      Filtered := True;
+    end;
+  end;
 end;
 
 procedure TDMNexus.TableAdminOnlyBlankEMail;
@@ -292,6 +362,11 @@ const cFn = 'TableAdminUnfiltered';
 begin
   TableAdmin.Filtered := False;
   TableAdmin.OnFilterRecord := nil;
+end;
+
+procedure TDMNexus.TableFilterAmpersand(DataSet: TDataSet; var Accept: Boolean);
+begin
+  Accept := (DataSet.FieldByName('UpdatedBy').AsString = 'amp');
 end;
 
 procedure TDMNexus.TableFilterBlankEmail(DataSet: TDataSet;

@@ -86,7 +86,6 @@ googlepriority=0
 (~drBannerThenNav~)
 
 <h1>(~PageDesc~)</h1>
-<div id="dprmain-div">
 <h2>Existing Prefixes</h2>
 <p><i>managed by (~_EMail~)</i></p>
 (~manpref.Execute|Maintain~)
@@ -110,7 +109,7 @@ googlepriority=0
 (~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)~)
 </td>
 <td style="font-weight:900; font-size: 1.1em;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
-<td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
+<td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
 <td>
 (~MATCH|(~temps~)=A|Approved~)
 (~MATCH|(~temps~)=P|<span style="color:green;font-weight:900;">Pending</span>~)
@@ -120,15 +119,19 @@ googlepriority=0
 <td>(~FIELD|wdsManPref|Mpf Contact~)<br/>
 <!-- (~FIELD|wdsManPref|Mpf EMail~) -->(~FIELD|wdsManPref|Mpf Company~)</td>
 <td><a target="_blank" title="test web page" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a></td>
-<td>(~FIELD|wdsManPref|MpfURLStatus~)<br>
-<span style="font-size:smaller;">(~FIELD|wdsManPref|MpfURLTestOnAt~)</span></td>
-<td style="font-size:smaller;">(~FIELD|wdsManPref|UpdatedOnAt~)</td>
+<td>(~SET|temps=(~FIELD|wdsManPref|MpfURLStatus~)~)
+(~ASSIGNED|temps|(~temps~)<br>
+<span style="font-size:smaller;">(~FIELD|wdsManPref|MpfURLTestOnAt|dd-MMM-yyyy hh:nn~)</span>
+~)
+</td>
+<td style="font-size:smaller;">(~FIELD|wdsManPref|UpdatedOnAt|dd-MMM-yyy hh:nn~)</td>
 </tr>(~CLEAR|temps~)
 </whrow>
 </tbody>
 </table>
 </whdroplet>
 
+<div id="dprtext-div">
 <h2>Add New Prefix</h2>
 <p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
 

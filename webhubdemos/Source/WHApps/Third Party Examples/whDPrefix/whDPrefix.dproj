@@ -124,7 +124,7 @@
         </DCCReference>
         <DCCReference Include="K:\WebHub\lib\whplus\webScan.pas"/>
         <DCCReference Include="h:\whdm_Lingvo.pas"/>
-        <DCCReference Include="h:\whcfg_App.pas"/>
+        <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
         <DCCReference Include="k:\webhub\lib\htWebApp.pas"/>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
@@ -161,6 +161,7 @@
             <Form>DMDPRWebAct</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="k:\webhub\lib\webLink.pas"/>
         <DCCReference Include="k:\webhub\lib\wdbForm.pas"/>
         <DCCReference Include="K:\WebHub\lib\whdb\wdbSSrc.pas"/>
         <DCCReference Include="K:\WebHub\lib\whdb\wdbSource.pas"/>
@@ -195,7 +196,7 @@
                     <VersionInfo Name="MajorVer">1</VersionInfo>
                     <VersionInfo Name="MinorVer">3</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">36</VersionInfo>
+                    <VersionInfo Name="Build">37</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -207,7 +208,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">Delphi Prefix Registry WebHub application</VersionInfoKeys>
-                    <VersionInfoKeys Name="FileVersion">1.3.0.36</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.3.0.37</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>

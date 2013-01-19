@@ -107,7 +107,7 @@ googlepriority=0.7
 <td>(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)</td>
-<td>(~FIELD|wdsManPref|Mpf Date Registered~)</td>
+<td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
 </tr>(~CLEAR|prefurl~)
 </whrow>
 </table>
