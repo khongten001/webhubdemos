@@ -120,7 +120,6 @@ mcEmployee2CaptionsPrior=prior
 mcEmployee2CaptionsNext=next
 mcEmployee2CaptionsLast=last
 mcEmployee2CaptionsRedraw=<input type="submit" name="redrawBtn" class="whdbScan-redraw" value="Redraw" />
-mcPromptsArrangement=<b>Arrangement</b>:
 mcPromptsIndexOrder=<b>Index Order</b>:
 mcPromptsDisplaySet=<b>Display Set</b>:
 mcPromptsFieldSet=<b>Field Set</b>:
