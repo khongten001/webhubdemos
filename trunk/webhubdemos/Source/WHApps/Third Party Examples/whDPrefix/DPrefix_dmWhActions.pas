@@ -181,15 +181,15 @@ begin
   begin
     Filtered := False;
     Insert;
+    // process some fields by name, explicitly, to avoid garbage-in
     FieldByName('MpfID').asInteger:=iKey;
-    FieldByName('Mpf EMail').asString := Lowercase(pWebApp.StringVar['_email']); // OpenID
-    FieldByName('MpfOpenIDOnAt').AsDateTime := NowGMT;
-    FieldByName('MpfOpenIDProviderName').AsString :=
-      pWebApp.StringVar['_providerName'];
+    // Mpf Prefix is excluded from editing so process it here
     FieldByName('Mpf Prefix').asString:= pWebApp.StringVar['Mpf Prefix'];
+    FieldByName('Mpf EMail').asString := Lowercase(pWebApp.StringVar['_email']); // OpenID
+    // MpfOpenIDOnAt set during Stamp
     FieldByName('MpfFirstLetter').asString:=
       UpperCase(Copy(pWebApp.StringVar['Mpf Prefix'], 1, 1));
-    FieldByName('Mpf Status').asString:='P';  // pending
+    FieldByName('Mpf Status').AsString := 'P';  // new records always Pending
     FieldByName('Mpf Date Registered').asDateTime := NowGMT;
 
     for i:=0 to Pred(pWebApp.Session.StringVars.count) do
@@ -208,6 +208,7 @@ begin
     if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
       FieldByName('Mpf Webpage').AsString := Copy(
         FieldByName('Mpf Webpage').AsString, 8, MaxInt);
+    DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
     DMNexus.Stamp(DMNexus.TableAdmin, 'add');
     try
       Post;

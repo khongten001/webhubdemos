@@ -4,6 +4,7 @@ inherited fmWhActions: TfmWhActions
   Caption = '&ManPref Database'
   ClientHeight = 481
   ClientWidth = 970
+  OnCreate = FormCreate
   OnDestroy = FormDestroy
   ExplicitWidth = 988
   ExplicitHeight = 526
@@ -37,8 +38,8 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 137
-        Action = ActExportToCSV
+        Width = 123
+        Action = ActNoAmpersand
         LeaveSpace = True
         MinWidth = 28
       end
@@ -54,7 +55,8 @@ inherited fmWhActions: TfmWhActions
           'P Pending'
           'D Delete'
           'A Approved'
-          '! Blank EMails')
+          '! Blank EMails'
+          'ampersand')
       end
     end
     object tpComponentPanel2: TtpComponentPanel
@@ -127,17 +129,6 @@ inherited fmWhActions: TfmWhActions
     SimpleText = ''
     PanelStatusIndex = 0
   end
-  object wdsManPref: TwhbdeSource
-    ComponentOptions = []
-    GotoMode = wgGotoKey
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = DataSource1
-    Left = 86
-    Top = 78
-  end
   object DataSource1: TDataSource
     Left = 166
     Top = 78
@@ -153,7 +144,6 @@ inherited fmWhActions: TfmWhActions
     OnRowStart = ManPrefRowStart
     OnInit = ManPrefInit
     OnFinish = ManPrefFinish
-    WebDataSource = wdsManPref
     Left = 22
     Top = 68
   end
@@ -215,6 +205,10 @@ inherited fmWhActions: TfmWhActions
     object ActLowercaseEMail: TAction
       Caption = 'Lowercase EMail'
       OnExecute = ActLowercaseEMailExecute
+    end
+    object ActNoAmpersand: TAction
+      Caption = 'No Ampersand'
+      OnExecute = ActNoAmpersandExecute
     end
   end
 end

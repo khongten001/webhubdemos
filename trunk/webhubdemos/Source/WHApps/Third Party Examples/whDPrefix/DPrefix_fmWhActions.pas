@@ -24,15 +24,14 @@ uses
   //{$IFDEF Delphi17UP}System.Actions, Vcl.ActnList,{$ENDIF}
   System.Actions, Vcl.ActnList,
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
-  webTypes, webLink, webCall, webLogin, wbdeSource, wdbLink, wdbScan, wbdeGrid,
-  wdbSSrc;
+  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wbdeGrid,
+  wdbSSrc, wbdeSource;
 
 type
   TfmWhActions = class(TutParentForm)
     ToolBar: TtpToolBar;
     tpComponentPanel2: TtpComponentPanel;
     Panel1: TPanel;
-    wdsManPref: TwhbdeSource;
     DataSource1: TDataSource;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
@@ -58,6 +57,7 @@ type
     ActionPurpose: TAction;
     ComboBoxStatus: TComboBox;
     ActLowercaseEMail: TAction;
+    ActNoAmpersand: TAction;
     procedure ManPrefInit(Sender: TObject);
     procedure ManPrefRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -78,10 +78,13 @@ type
     procedure ManPrefExecute(Sender: TObject);
     procedure ActionPurposeExecute(Sender: TObject);
     procedure ActLowercaseEMailExecute(Sender: TObject);
+    procedure ActNoAmpersandExecute(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    wdsManPref: TwhdbSource;
     function Init: Boolean; override;
     procedure WebAppOutputClose(Sender: TObject);
     procedure WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
@@ -104,7 +107,6 @@ uses
   ucDlgs,   //admin/non-web confirmation questions
   ucShell, ucPos, ucLogFil, ucMsTime, ucCodeSiteInterface,
   webapp,   //access to pWebApp
-  wdbSource,
   webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail, DPrefix_dmWhActions;
 
 {$R *.DFM}
@@ -570,6 +572,33 @@ begin
   MsgInfoOk('Cleaned ' + IntToStr(n) + ' records');
 end;
 
+procedure TfmWhActions.ActNoAmpersandExecute(Sender: TObject);
+var
+  n: Integer;
+  b: Boolean;
+begin
+  inherited;
+  n := 0;
+  with DMNexus.TableAdmin do
+  begin
+    Assert(NOT Filtered);
+    First;
+    while not EOF do
+    begin
+      b := DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
+      if b then
+      begin
+        Edit;
+        DMNexus.Stamp(DMNexus.TableAdmin, 'amp');
+        Post;
+        Inc(n);
+      end;
+      Next;
+    end;
+  end;
+  MsgInfoOk('Cleaned ampersands from ' + IntToStr(n) + ' records');
+end;
+
 procedure TfmWhActions.ActUpcaseStatusExecute(Sender: TObject);
 var
   AStatus: string;
@@ -597,9 +626,28 @@ begin
   MsgInfoOk('Cleaned ' + IntToStr(n) + ' records');
 end;
 
+procedure TfmWhActions.FormCreate(Sender: TObject);
+begin
+  inherited;
+  wdsManPref := TwhdbSource.Create(Self);
+  with wdsmanPref do
+  begin
+    Name := 'wdsmanPref';  // required for all webactions
+    ComponentOptions := [];
+    GotoMode := wgGotoKey;
+    MaxOpenDataSets := 1;
+    OpenDataSets := 0;
+    OpenDataSetRetain := 600;
+    SaveTableName := False;
+    DataSource := DataSource1;
+  end;
+  ManPref.WebDataSource := wdsmanPref;
+end;
+
 procedure TfmWhActions.FormDestroy(Sender: TObject);
 begin
   inherited;
+  FreeAndNil(wdsManPref);
   fmWhActions := nil;
 end;
 
@@ -699,6 +747,9 @@ begin
         2: DMNexus.TableAdminOnlyDelete;
         // 3: DMNexus.TableAdminOnlyApproved;
         4: DMNexus.TableAdminOnlyBlankEMail;
+        5: DMNexus.TableAdminOnlyAmpersand;
+        else  MsgErrorOk('ComboBoxStatus.ItemIndex' +
+          IntToStr(ComboBoxStatus.ItemIndex) + ' not implemented');
       end;
     end
     else
@@ -766,6 +817,7 @@ begin
     end;
     if bEditing then
     begin
+      DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
       DMNexus.Stamp(DMDPRWebAct.wdsAdmin.DataSet, 'srf');
       CSSendnote('ready to post');
       Post;
@@ -798,8 +850,6 @@ begin
     SameText(aDesiredPageID, 'pgWebEye') then
     pWebApp.PageID := aDesiredPageID;  // this reroutes the request to run aDesiredPageID
 end;
-
-//------------------------------------------------------------------------------
 
 end.
 
