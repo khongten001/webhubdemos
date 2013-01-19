@@ -79,6 +79,7 @@ googlepriority=0
 }
 #maintain-table td.action {
 	font-weight:700; font-size: 1.4em; white-space:nowrap;
+	font-family: Code2000, DejaVu Sans Bold, EversonMono, GNU Unifont, LastResort, Quivira, Symbola, Unicode BMP Fallback SIL;
 }
 </style>
 </head>
