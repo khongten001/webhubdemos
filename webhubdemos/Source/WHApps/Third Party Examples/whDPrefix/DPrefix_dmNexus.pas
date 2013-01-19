@@ -194,28 +194,36 @@ end;
 function TDMNexus.RecordNoAmpersand(DS: TDataSet): Boolean;
 var
   AText: string;
+  b: Boolean;
 
   function OneField(const AFieldName, ReplaceWith: string): Boolean;
   begin
     with DS do
     begin
       AText := FieldByName(AFieldName).AsString;
-      Result := DMNexus.DataNoAmpersand(AText, ReplaceWith);
-      if Result then
+      if DMNexus.DataNoAmpersand(AText, ReplaceWith) then
+      begin
+        if NOT b then
+          Edit;
         FieldByName(AFieldName).asString := AText;
+        Result := True;
+      end
+      else
+        Result := False;
     end;
   end;
 begin
   inherited;
   with DS do
   begin
-    Result := False;
-    if OneField('Mpf Company', ' and ') then Result := True;
-    if OneField('Mpf Contact', ' and ') then Result := True;
-    if OneField('MpfPurpose', ' and ') then Result := True;
-    if OneField('Mpf Prefix', #$271A) then Result := True;
-    if OneField('Mpf WebPage', '') then Result := True;
+    b := False;
+    if OneField('Mpf Company', ' and ') then b := True;
+    if OneField('Mpf Contact', ' and ') then b := True;
+    if OneField('MpfPurpose', ' and ') then b := True;
+    if OneField('Mpf Prefix', #$271A) then b := True;
+    if OneField('Mpf WebPage', '') then b := True;
   end;
+  Result := b;
 end;
 
 procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);

@@ -285,10 +285,10 @@ var
 begin
   bFound := False;
   cn := TwhWebAction(Sender).Name;
-  DPREmail := pWebApp.StringVar['DPREMail'];
+  DPREmail := Trim(pWebApp.StringVar['DPREMail']);
   if DPREmail <> '' then
   begin
-    DPRPassword := pWebApp.StringVar['DPRPassword'];
+    DPRPassword := Trim(pWebApp.StringVar['DPRPassword']);
 
     with DMNexus.TableAdmin do
     begin
