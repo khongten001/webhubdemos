@@ -35,4 +35,11 @@ object DMDPRWebAct: TDMDPRWebAct
     Left = 248
     Top = 216
   end
+  object waURL: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waURLExecute
+    OnSetCommand = waURLSetCommand
+    Left = 328
+    Top = 48
+  end
 end

@@ -99,7 +99,6 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxDB,
-  IdHTTP,
   DateUtils, Character,
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
@@ -209,46 +208,6 @@ var
   iStatusCode: Integer;
   Count: Integer;
 
-  function HTTPGet(const URL: string; out HTTPStatusCode: Integer): string;
-  const cFn = 'HTTPGet';
-  var
-    IdHTTP: TIdHTTP;
-  begin
-    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
-    CSSend('URL', URL);
-    IdHTTP := nil;
-    HTTPStatusCode := 0;
-    try
-      IdHTTP := TIdHTTP.Create(nil);
-      IdHTTP.Request.UserAgent := 'HREFTools (http://delphiprefix.href.com/)';
-      try
-        Result := IdHTTP.Get(URL);
-        HTTPStatusCode := IdHTTP.Response.ResponseCode;
-      except
-        on E: Exception do
-        begin
-          {$IFDEF CodeSite}
-          CodeSite.SendException(E);
-          {$ENDIF}
-          if Pos('Host not found.', E.Message) > 0 then
-            HTTPStatusCode := 500
-          else
-          begin
-            if Assigned(IdHTTP) and Assigned(IdHTTP.Response) then
-              HTTPStatusCode := IdHTTP.Response.ResponseCode;
-          end;
-        end;
-      end;
-      CSSend('HTTPStatusCode', S(HTTPStatusCode));
-      {$IFDEF CodeSite}
-      LogToCodeSiteKeepCRLF('Result', Result);
-      {$ENDIF}
-    finally
-      FreeAndNil(IdHTTP);
-    end;
-    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
-  end;
-
 begin
   inherited;
   Count := 0;
@@ -272,7 +231,7 @@ begin
           Inc(Count);
           CSSend('Count', S(Count));
           AURL := 'http://' + AURL;
-          HTTPGet(AURL, iStatusCode);
+          DMDPRWebAct.TestURL(AURL, iStatusCode);
           if iStatusCode > 0 then
           begin
             Edit;
