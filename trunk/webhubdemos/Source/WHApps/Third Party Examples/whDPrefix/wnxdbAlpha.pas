@@ -166,18 +166,25 @@ begin
   CSSend('Command', Command);
   CSSend('HtmlParam', HtmlParam);
   S1 := Uppercase(DefaultsTo(Command, HtmlParam));
-  CSSend('S1', S1);
   if (length(S1) = 1) and CharInSet(S1[1], ['0' .. '9', 'A' .. 'Z']) then
   begin
     FActiveChar := S1[1];
+    CSSend('FActiveChar', FActiveChar);
     if Assigned(WebDataSource) then
+    begin
       with TnxTable(WebDataSource.Dataset) do
       begin
+        CSSend('about to call FindNearest');
         FindNearest([S1]);
         svName := WebDataSource.Name + '.Keys';
         WebApp.StringVar[svName] := WebDataSource.keys;
-	CSSend('stringvar ' + svName, WebDataSource.keys);
+	      CSSend('stringvar ' + svName, WebDataSource.keys);
       end;
+    end
+    else
+    begin
+      CSSend('webdatasource nil'); // this is a reasonable situation
+    end;
   end;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;

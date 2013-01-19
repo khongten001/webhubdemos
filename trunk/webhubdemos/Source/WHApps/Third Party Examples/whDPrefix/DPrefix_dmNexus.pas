@@ -29,7 +29,6 @@ type
     nxDatabase1: TnxDatabase;
     Table1: TnxTable;
     TableAdmin: TnxTable;
-    procedure CopyTable(srcTbl:TnxTable; const Destination: string);
     function Init(out ErrorText: string): Boolean;
     procedure TableAdminOnlyPending;
     procedure TableAdminOnlyDelete;
@@ -58,34 +57,12 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  DBConsts,  //Copy and Flush Tables
+  Character,
   ucCodeSiteInterface, ucMsTime, ucPos, ucString,
   webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions;
 
 
 { TDMNexus }
-
-procedure TDMNexus.CopyTable(srcTbl: TnxTable; const Destination: string);
-//!!!var
-  //!!!szCopyFrom,
-  //!!!szCopyTo: DBITBLNAME;
-begin
-(*!!!  with srcTbl do begin
-    if State = dsInactive then
-      DatabaseError(SDataSetClosed);
-    LockTable(ltReadLock);
-    try
-      AnsiToNative(Locale, AnsiString(Destination), szCopyTo,
-        sizeof(szCopyTo)-1);
-      AnsiToNative(Locale, AnsiString(TableName), szCopyFrom,
-        sizeof(szCopyFrom)-1);
-      Check(DbiCopyTable(Database.Handle, True, szCopyFrom, nil, szCopyTo));
-    finally
-      UnLockTable(ltReadLock);
-      end;
-    end;
-     *)
-end;
 
 function TDMNexus.CountPending: Integer;
 begin
@@ -243,6 +220,7 @@ end;
 
 procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);
 var
+  ACap: string;
   OpenIDProvider: string;
 begin
   DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
@@ -261,6 +239,12 @@ begin
     DS.FieldByName('MpfOpenIDProviderName').AsString :=
       OpenIDProvider;
   end;
+
+  ACap := Uppercase(Copy(DS.FieldByName('Mpf Prefix').AsString, 1, 1));
+  if IsDigit(ACap[1]) then
+    ACap := '1';
+  if DS.FieldByName('MpfFirstLetter').asString <> ACap then
+    DS.FieldByName('MpfFirstLetter').asString := ACap;
 
 end;
 
