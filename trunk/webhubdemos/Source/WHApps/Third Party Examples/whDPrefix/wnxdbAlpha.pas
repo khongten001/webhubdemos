@@ -4,7 +4,7 @@ unit wnxdbAlpha; { TWebnxdbAlphabet, a WebHub action component }
   http://www.href.com/pub/WebAct/db }
 
 (*
-  Copyright (c) 1995-2012 HREF Tools Corp.
+  Copyright (c) 1995-2013 HREF Tools Corp.
 
   Permission is hereby granted, on 27-Feb-2003, free of charge, to any person
   obtaining a copy of this software (the "Software"), to deal in the Software
@@ -176,6 +176,7 @@ begin
         FindNearest([S1]);
         svName := WebDataSource.Name + '.Keys';
         WebApp.StringVar[svName] := WebDataSource.keys;
+	CSSend('stringvar ' + svName, WebDataSource.keys);
       end;
   end;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
