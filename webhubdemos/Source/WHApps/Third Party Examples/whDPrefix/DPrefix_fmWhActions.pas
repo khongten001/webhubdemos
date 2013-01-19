@@ -100,7 +100,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   nxDB,
   IdHTTP,
-  DateUtils,
+  DateUtils, Character,
   ucBase64, //encoding and decoding the of the primary key of the component prefix.. not really needed in this case
   ucString, //string utilities, splitstring, startswith, isequal, etc..
   ucFile,   //ForceDirectories insures that a legal path exists
@@ -126,6 +126,8 @@ begin
       while not EOF do
       begin
         ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
+        if IsDigit(ACap[1]) then
+          ACap := '1';
         if FieldByName('MpfFirstLetter').asString <> ACap then
         begin
           Edit;
@@ -668,7 +670,7 @@ begin
     DataSource1.DataSet.Open; // readonly, all records
   end;
   RefreshWebActions(Self);
-  Result := ManPref.WebDataSource.IsUpdated;
+    Result := ManPref.WebDataSource.IsUpdated;
   if NOT Result then
     LogSendError('ManPref.WebDataSource.IsUpdated=' +
       S(ManPref.WebDataSource.IsUpdated));
