@@ -42,7 +42,7 @@ googlechangefreq=monthly
 googlepriority=0.7
 </whpagesettings>
 <whprep>
-(~CLEAR|_bAdminMode~)
+(~waCheckSubnet.Execute|(~CHECK|_bAdminRemote~)||(~CLEAR|_bAdminRemote~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -97,6 +97,7 @@ googlepriority=0.7
   <th>Web Site</th>
   <th>Contact</th>
 	<th>Registered</th>
+	(~IF|_bAdminRemote|<th>EMail</th><th>Token</th>~)
 </tr>
 <whrow>
 (~TR~)
@@ -107,6 +108,10 @@ googlepriority=0.7
 (~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
+(~IF|_bAdminRemote|
+<td>(~FIELD|wdsManPref|Mpf EMail~)</td>
+<td>(~FIELD|wdsManPref|MpfPassToken~)</td>
+~)
 </tr>(~CLEAR|prefurl~)
 </whrow>
 </table>
