@@ -45,6 +45,8 @@ type
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
+    FAdminIpNumber: string;
+    FServerIpNumber: string;
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -57,6 +59,7 @@ type
   public
     { Public declarations }
     function Init: Boolean;
+    function IsSuperuser(const InSurferIP: string): Boolean;
   end;
 
 var
@@ -81,8 +84,7 @@ var
   FlagBeenHere: Boolean = False;
 
 function TDemoExtensions.Init: Boolean;
-{$IFDEF CodeSite}const
-  cFn = 'Init'; {$ENDIF}
+const cFn = 'Init';
 {$IFNDEF WEBHUBACE}var inst: string;{$ENDIF}
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
@@ -115,6 +117,7 @@ begin
            [inst, GetCurrentProcessId]); {$ENDIF}
     end;
 {$ENDIF}
+
     FlagBeenHere := True;
   end;
   pWebApp.OnBadIP := DemoAppBadIP;
@@ -134,10 +137,43 @@ begin
       (Request.UserAgent = 'HREF Tools QA Test Agent');
 end;
 
+function TDemoExtensions.IsSuperuser(const InSurferIP: string): Boolean;
+const cFn = 'IsSuperuser';
+
+  function IP_ABC(const ipv4: string): string;
+  var
+    x: Integer;
+  begin
+    // A.B.C.D
+    x := StrRScanPos(ipv4, '.');  // from 123.123.22.1 to 123.123.22
+    Result := Copy(ipv4, 1, Pred(x));
+  end;
+
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+
+  if Assigned(pWebApp) and pWebApp.IsUpdated then
+  begin
+    // compare A.B.C without .D
+    Result := IP_ABC(InSurferIP) = IP_ABC(FServerIpNumber);
+  end
+  else
+    Result := False;
+
+  if (NOT Result) and (FAdminIpNumber <> '') then
+    Result := (InSurferIP = FAdminIpNumber) or  // extra WAN override
+      (InSurferIP = '127.0.0.1');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
 // ------------------------------------------------------------------------------
 
 procedure TDemoExtensions.DemoAppUpdate(Sender: TObject);
+const cFn = 'DemoAppUpdate';
+var
+  AdminFilespec: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
   // them because they are n/a.
@@ -148,6 +184,22 @@ begin
   if Assigned(webCycle) then
     // reload the cycle list information
     webCycle.Refresh;
+  AdminFilespec := getHtDemoWWWRoot + '..\Config\remoteadmin.txt';
+  if FileExists(AdminFilespec) then
+    FAdminIpNumber := Trim(StringLoadFromFile(AdminFilespec))
+  else
+    FAdminIpNumber := '';
+  if FAdminIpNumber <> '' then
+    CSSend('FAdminIpNumber', FAdminIpNumber)
+  else
+    LogSendError('File not found or empty: ' + AdminFilespec);
+  // requires WebHub v2.170+
+  CSSend('pWebApp.DynURL.CurrentServerProfile.Authority',
+    pWebApp.DynURL.CurrentServerProfile.Authority);
+  FServerIpNumber := HostToIPv4(LeftOf(':',
+      pWebApp.DynURL.CurrentServerProfile.Authority));
+  CSSend('FServerIpNumber', FServerIpNumber);
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.FEATUREExecute(Sender: TObject);
@@ -224,34 +276,45 @@ end;
 
 procedure TDemoExtensions.waCheckSubnetExecute(Sender: TObject);
 var
-  ServerIP: string;
   SurferIP: string;
   Flag: Boolean;
-  DestPageID: string;
-
-  function IP_ABC(const ipv4: string): string;
-  var
-    x: Integer;
-  begin
-    // A.B.C.D
-    x := StrRScanPos(ipv4, '.');  // from 123.123.22.1 to 123.123.22
-    Result := Copy(ipv4, 1, Pred(x));
-  end;
+  DestYesPageID, DestNoPageID: string;
 begin
-  ServerIP := HostToIPv4(pWebApp.Request.Host); // requires WebHub v2.170+
   SurferIP := pWebApp.Request.RemoteAddress;
 
-  Flag := IP_ABC(SurferIP) = IP_ABC(ServerIP);  // compare A.B.C without .D
+  Flag := IsSuperuser(SurferIP);
 
-  if NOT Flag then
+  if SplitString(TwhWebAction(Sender).HtmlParam, '||', DestYesPageID,
+    DestNoPageID) then
   begin
-    DestPageID := TwhWebAction(Sender).HtmlParam;
-    if DestPageID <> '' then
-      pWebApp.Response.SendBounceToPage(DestPageID, '')
+    if Flag then
+    begin
+      if DestYesPageID = 'just continue' then
+        // nothing
+      else
+      begin
+        if Copy(DestYesPageID, 1, 2) = MacroStart then
+          pWebApp.Response.Send(DestYesPageID)
+        else
+          pWebApp.Response.SendBounceToPage(DestYesPageID, '');
+      end;
+    end
     else
-      pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
-        ' requires 1 parameter equal to a PageID');
-  end;
+    begin
+      if DestNoPageID = 'just continue' then
+        // nothing
+      else
+      begin
+        if Copy(DestNoPageID, 1, 2) = MacroStart then
+          pWebApp.Response.Send(DestNoPageID)
+        else
+          pWebApp.Response.SendBounceToPage(DestNoPageID, '');
+      end;
+    end;
+  end
+  else
+    pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
+      ' requires 2 parameters such as PageID, a command, or "just continue"');
 end;
 
 procedure TDemoExtensions.waDelaySecExecute(Sender: TObject);

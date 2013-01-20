@@ -73,7 +73,7 @@ uses
   IdHTTP,
   ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
   webApp, htWebApp, wdbSSrc,
-  DPrefix_dmNexus, whutil_ValidEmail;
+  DPrefix_dmNexus, whutil_ValidEmail, whdemo_Extensions;
 
 { TDMDPRWebAct }
 
@@ -278,20 +278,29 @@ begin
 end;
 
 procedure TDMDPRWebAct.waCleanup2013LoginExecute(Sender: TObject);
+const cFn = 'waCleanup2013LoginExecute';
 var
   DPREmail, DPRPassword: string;
   bFound: Boolean;
   cn: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   bFound := False;
   cn := TwhWebAction(Sender).Name;
   DPREmail := Lowercase(Trim(pWebApp.StringVar['DPREMail']));
   if DPREmail <> '' then
   begin
     DPRPassword := Trim(pWebApp.StringVar['DPRPassword']);
-
+    CSSend('DPRPassword', DPRPassword);
+    if DemoExtensions.IsSuperuser(pWebApp.Request.RemoteAddress) then
+    begin
+      bFound := True;
+      CSSend('superuser');
+    end
+    else
     with DMNexus.TableAdmin do
     begin
+      CSSend('NOT superuser');
       First;
       while NOT EOF do
       begin
@@ -316,7 +325,8 @@ begin
     pWebApp.Response.SendBounceToPage('pgmaintain', '');
   end
   else
-    pWebApp.Response.SendBounceToPage('cleanup2013error', '')
+    pWebApp.Response.SendBounceToPage('cleanup2013error', '');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waConfirmOpenIDExecute(Sender: TObject);

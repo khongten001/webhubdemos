@@ -106,7 +106,8 @@ uses
   ucDlgs,   //admin/non-web confirmation questions
   ucShell, ucPos, ucLogFil, ucMsTime, ucCodeSiteInterface,
   webapp,   //access to pWebApp
-  webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail, DPrefix_dmWhActions;
+  webSend, webScan, DPrefix_dmNexus, whutil_ValidEmail, DPrefix_dmWhActions,
+  whdemo_Extensions;
 
 {$R *.DFM}
 
@@ -725,7 +726,7 @@ procedure TfmWhActions.waModifyExecute(Sender: TObject);
 const cFn = 'waModifyExecute';
 //field-data comes in looking like this: wdsAdmin.Mpf Status@46=A
 var
-  a1,aKey,aFieldname:string;
+  a1,aKey,aFieldname: string;
   i, iKey, iKeyDone: Integer;
   bEditing: Boolean;
 begin
@@ -777,6 +778,15 @@ begin
     end;
     if bEditing then
     begin
+      if pWebApp.StringVar['ReplaceWithEMail'] <> '' then
+      begin
+        if DemoExtensions.IsSuperUser(pWebApp.Request.RemoteAddress) then
+          FieldByName('Mpf EMail').AsString :=
+            pWebApp.StringVar['ReplaceWithEMail']
+        else
+          LogSendError('Bad ip. Rejected use of ' +
+            pWebApp.StringVar['ReplaceWithEMail'], cFn);
+      end;
       DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
       DMNexus.Stamp(DMDPRWebAct.wdsAdmin.DataSet, 'srf');
       CSSendnote('ready to post');
