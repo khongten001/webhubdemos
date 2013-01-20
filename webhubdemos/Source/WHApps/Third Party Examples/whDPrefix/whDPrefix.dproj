@@ -134,6 +134,10 @@
             <Form>fmAppAboutPanel</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\..\Common\whdemo_Extensions.pas">
+            <Form>DemoExtensions</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="h:\whsample_EvtHandlers.pas">
             <Form>whdmCommonEventHandlers</Form>
             <DesignClass>TDataModule</DesignClass>

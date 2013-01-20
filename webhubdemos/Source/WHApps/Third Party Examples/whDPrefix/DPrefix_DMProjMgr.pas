@@ -67,7 +67,7 @@ uses
   dmWHApp, whAppOut,
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
-  whdemo_About,
+  whdemo_About, whdemo_Extensions,
   DPrefix_fmWhActions, whsample_EvtHandlers, whOpenID_dmwhAction;
 
 procedure TDMSampleForWHProject.ProjMgrBeforeFirstCreate(
@@ -123,6 +123,8 @@ begin
   //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
     Application.CreateForm(TDMDPRWebAct, DMDPRWebAct);
 
+    Application.CreateForm(TDemoExtensions, DemoExtensions);
+
   { Special Comment for DataModules - do not delete!
 
     This comment is used by the WebHub Wizard to position non-gui CreateForm
@@ -142,6 +144,8 @@ begin
     Continue := DMDPRWebAct.Init(ErrorText);
   if Continue then
     Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
+  if Continue then
+    Continue := DemoExtensions.Init;
 end;
 
 procedure TDMSampleForWHProject.ProjMgrGUICreate(Sender: TtpProject;
