@@ -292,7 +292,8 @@ begin
   begin
     DPRPassword := Trim(pWebApp.StringVar['DPRPassword']);
     CSSend('DPRPassword', DPRPassword);
-    if DemoExtensions.IsSuperuser(pWebApp.Request.RemoteAddress) then
+    if (DPRPassword = '') and DemoExtensions.IsSuperuser(
+      pWebApp.Request.RemoteAddress) then
     begin
       bFound := True;
       CSSend('superuser');
@@ -300,18 +301,18 @@ begin
     else
     with DMNexus.TableAdmin do
     begin
-      CSSend('NOT superuser');
       First;
       while NOT EOF do
       begin
-        if (FieldByName('Mpf Email').AsString = DPREmail) and
+        if (Lowercase(Trim(FieldByName('Mpf Email').AsString)) = DPREmail) and
           (FieldByName('MpfPassToken').AsString = DPRPassword) then
         begin
           if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
             bFound := True
           else
             pWebApp.StringVar[cn + '-ErrorMessage'] := 'expired password; ' +
-            'login using an OpenID provider that knows about ' + DPREmail;
+            'please login via Add/Edit using an OpenID provider that knows about ' + 
+            DPREmail;
           break;
         end
         else
