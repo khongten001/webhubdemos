@@ -105,11 +105,14 @@ googlepriority=0
 <tbody>
 <whrow>
 <tr>(~SET|temps=(~FIELD|wdsManPref|Mpf Status~)~)
-<td class="action">(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
+<td class="action">
+(~NOMATCH|(~temps~)=D|
+(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
 &nbsp;
-(~NOMATCH|(~temps~)=D|(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)~)
+(~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)
 &nbsp;
 (~JUMPR|pgtesturl,waurl.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="(re)test web page url -- caution -- will be slow if host not found" style="color: blue;"|&#x267b;~)
+~)
 </td>
 <td style="font-weight:900; font-size: 1.1em;">(~FIELD|wdsManPref|Mpf Prefix~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
