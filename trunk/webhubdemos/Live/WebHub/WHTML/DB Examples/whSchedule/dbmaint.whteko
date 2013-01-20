@@ -3,7 +3,7 @@
 
 <whpage pageid="pgAdminMenu" desc="Database Administration Menu">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -28,7 +28,7 @@
 
 <whpage pageid="pgMaintReplayInfo" desc="Maintain Replay Info">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -59,7 +59,7 @@
 
 <whpage pageid="pgBrowseSchedule" desc="Browse Schedule Records">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -88,7 +88,7 @@
 
 <whpage pageid="pgSelectSchedulePK" desc="Select Schedule Record to Maintain">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -117,7 +117,7 @@
 
 <whpage pageid="pgEditScheduleLayout1" desc="Edit Schedule Replay Data">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 (~waPKtoStringVars.Execute|schedule,schno,(~command~)~)
 </whprep>
 <whoutput>
@@ -196,7 +196,7 @@
 
 <whpage pageid="pgPostSchLayout1" desc="-Post">
 <whprep>
-(~NOMATCH|101.161.10.133=(~Request.RemoteAddress~)|(~waCheckSubnet.Execute|pgAccessDenied~)~)
+(~waCheckSubnet.Execute|just continue||pgAccessDenied~)
 (~waUpdateFromStringVars.Execute|drUpdateSchLayout1~)
 </whprep>
 </whpage>
