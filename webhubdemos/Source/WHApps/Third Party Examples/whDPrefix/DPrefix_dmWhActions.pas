@@ -285,7 +285,7 @@ var
 begin
   bFound := False;
   cn := TwhWebAction(Sender).Name;
-  DPREmail := Trim(pWebApp.StringVar['DPREMail']);
+  DPREmail := Lowercase(Trim(pWebApp.StringVar['DPREMail']));
   if DPREmail <> '' then
   begin
     DPRPassword := Trim(pWebApp.StringVar['DPRPassword']);
