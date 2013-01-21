@@ -162,7 +162,7 @@ googlepriority=0
 <h2>Edit</h2>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanupe~)">
 (~WebDataForm.Execute|~)
-(~IF|_bAdminRemote|(~SET|ReplaceWithEMail=webmaster@href.com~)Replace with EMAIL: (~INPUTTEXT|ReplaceWithEMail,60,60~)~)
+<!--- (~IF|_bAdminRemote|(~SET|ReplaceWithEMail=webmaster@href.com~)Replace with EMAIL: (~INPUTTEXT|ReplaceWithEMail,60,60~)~) -->
 </form>
 (~ASSIGNED|WebDataForm-ErrorMessage|<span class="warning">(~WebDataForm-ErrorMessage~)</span>(~CLEAR|WebDataForm*~)~)
 </div>
