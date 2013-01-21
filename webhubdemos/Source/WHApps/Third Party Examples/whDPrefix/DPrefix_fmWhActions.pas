@@ -778,7 +778,7 @@ begin
     end;
     if bEditing then
     begin
-      if pWebApp.StringVar['ReplaceWithEMail'] <> '' then
+      (*if pWebApp.StringVar['ReplaceWithEMail'] <> '' then
       begin
         if DemoExtensions.IsSuperUser(pWebApp.Request.RemoteAddress) then
           FieldByName('Mpf EMail').AsString :=
@@ -786,7 +786,7 @@ begin
         else
           LogSendError('Bad ip. Rejected use of ' +
             pWebApp.StringVar['ReplaceWithEMail'], cFn);
-      end;
+      end;*)
       DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
       DMNexus.Stamp(DMDPRWebAct.wdsAdmin.DataSet, 'srf');
       CSSendnote('ready to post');
