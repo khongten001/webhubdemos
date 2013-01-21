@@ -4,7 +4,6 @@
 
 <whdroplet name="drCleanupCheckpoint">
 (~EXPIRES|-1~)(~IsWebRobotRequest|(~BOUNCE|pghomepage~)~)
-<!--- (~IfInactiveForSec|600|(~CLEAR|DPREMail~)~) -->
 (~REQUIRES|_email|pgregister~)
 </whdroplet>
 
@@ -80,7 +79,6 @@ googlepriority=0
 
 <h2>Sorry, No Go.</h2>
 (~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
-<!--- <p>Sessions time out after 10 minutes of inactivity.</p> -->
 <p>(~JUMPR|cleanup2013|Login here~)</p>
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
 <a target="_blank" href="https://www.href.com/techhelp">www.href.com</a>
@@ -165,6 +163,7 @@ googlepriority=0
 <!--- (~IF|_bAdminRemote|(~SET|ReplaceWithEMail=webmaster@href.com~)Replace with EMAIL: (~INPUTTEXT|ReplaceWithEMail,60,60~)~) -->
 </form>
 (~ASSIGNED|WebDataForm-ErrorMessage|<span class="warning">(~WebDataForm-ErrorMessage~)</span>(~CLEAR|WebDataForm*~)~)
+(~IF|_bAdminRemote|<p>(~JUMP|repeatblast~)</p>~)
 </div>
 (~drSharedFooter~)
 (~CLEAR|_bAdminRemote~)
@@ -239,6 +238,42 @@ googlepriority=0
 (~MATCH|(~inConfirm~)=y|(~waConfirmOpenID.execute|~)<!--- this will bounce surfer -->
 ||(~BOUNCE|pghomepage~)~)
 </whprep>
+</whpage>
+
+<whpage pageid="repeatblast" desc="Resend invitation via web site contact page">
+<whpagesettings>
+googlesitemap=exclude
+googlechangefreq=n/a
+googlepriority=0
+</whpagesettings>
+<whprep>
+(~waCheckSubnet.Execute|just continue||pghomepage~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drSharedHead~)
+</head>
+<body>
+(~mcDPRHomeGraphic~)
+<div id="dprtext-div">
+<h1>(~pagedesc~)
+<pre>
+Hi, Do you still use prefix "(~FIELD|wdsmanpref|mpf prefix~)" for Delphi work? 
+Just wondering because I am trying to clean up 
+the Delphi Prefix Registry.
+You can login and review/help at 
+http://delphiprefix.href.com/cleanup2013
+email (~FIELD|wdsmanpref|mpf email~)
+pass "(~FIELD|wdsmanpref|mpfPassToken~)"  without quotes
+Thank you.
+Ann Lynnworth
+HREF Tools Corp.
+www.href.com/contact
+</pre>
+</div> 
+(~drSharedFooter~)
+</body></html>
 </whpage>
 
 </whteko>
