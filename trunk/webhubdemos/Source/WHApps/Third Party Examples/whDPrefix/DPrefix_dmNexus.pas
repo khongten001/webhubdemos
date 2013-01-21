@@ -59,7 +59,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Character,
   ucCodeSiteInterface, ucMsTime, ucPos, ucString,
-  webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions;
+  webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions, whdemo_Extensions;
 
 
 { TDMNexus }
@@ -186,9 +186,14 @@ begin
   // prevent all of these from being posted-to from the web
   Result := PosCI(AFieldName, 'MpfID;Mpf Prefix;' +
     ';UpdatedBy;UpdatedOnAt;UpdateCounter;' +
-    'Mpf Status;MpfFirstLetter;Mpf EMail;Mpf Notes;' +
+    'Mpf Status;MpfFirstLetter;Mpf Notes;' +
     'MpfURLStatus;MpfURLTestOnAt;MpfOpenIDOnAt;MpfOpenIDProviderName;' +
     'MpfPassToken;MpfPassUntil;Mpf Date Registered') = 0;
+  if Result then
+  begin
+    if IsEqual(AFieldName, 'Mpf EMail') then
+      Result := DemoExtensions.IsSuperUser(pWebApp.Request.RemoteAddress);
+  end;
 end;
 
 function TDMNexus.RecordNoAmpersand(DS: TDataSet): Boolean;
@@ -238,6 +243,10 @@ begin
   else
     DS.FieldByName('UpdateCounter').AsInteger :=
       DS.FieldByName('UpdateCounter').AsInteger + 1;
+
+  if (Copy(DS.FieldByName('Mpf WebPage').AsString, 1, 7) = 'http://') then
+    DS.FieldByName('Mpf WebPage').AsString :=
+      Copy(DS.FieldByName('Mpf WebPage').AsString, 8, MaxInt);
 
   OpenIDProvider := pWebApp.StringVar['_providerName'];
   if OpenIDProvider <> '' then
