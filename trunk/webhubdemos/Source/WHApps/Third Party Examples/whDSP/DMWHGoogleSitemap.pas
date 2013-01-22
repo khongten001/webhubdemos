@@ -3,7 +3,9 @@ unit DMWHGoogleSitemap;
 interface
 
 uses
-  SysUtils, Classes, ActnList, updateOK, tpAction, webTypes, webLink;
+  SysUtils, Classes, 
+  {$I xe_actnlist}
+  updateOK, tpAction, webTypes, webLink;
 
 type
   TDataModuleGoogleSitemap = class(TDataModule)

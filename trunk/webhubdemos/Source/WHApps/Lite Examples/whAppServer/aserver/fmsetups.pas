@@ -31,8 +31,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
-    Toolbar, Restorer, Buttons,
+  {$I xe_actnlist.inc}
+  ExtCtrls, StdCtrls, Menus, Buttons,
+  UTPANFRM, UpdateOk, tpAction, IniLink, Toolbar, Restorer, 
 {$IFNDEF VER130}
 {$WARN UNIT_PLATFORM OFF}
 {$ENDIF}
@@ -41,7 +42,7 @@ uses
 {$WARN UNIT_PLATFORM ON}
 {$ENDIF}
   Grids,
-  DirOutln, ComCtrls, TxtGrid, Menus, ActnList, tpCompPanel, txtGridVCL;
+  DirOutln, ComCtrls, TxtGrid, tpCompPanel, txtGridVCL;
 
 type
   TfmAppsetups = class(TutParentForm)

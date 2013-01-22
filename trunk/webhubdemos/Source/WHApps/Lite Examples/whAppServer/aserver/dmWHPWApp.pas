@@ -25,11 +25,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  {$I xe_actnlist}
+  ExtCtrls, 
   whsample_EvtHandlers, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
   WebVars, WebBrows, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
-  WebCall, IniLink,   CGiServ, WebServ, HtmlBase, HtmlCore,
-  HtmlSend, WebLink, UpdateOk, tpAction{no-gui}, tpActionGUI, WebInfoU, 
-  webInfoBase, ExtCtrls, ActnList;
+  WebCall, CGiServ, WebServ, HtmlBase, HtmlCore,
+  htmlSend, webLink, UpdateOk, tpAction{no-gui}, tpActionGUI, WebInfoU, 
+  webInfoBase;
 
 procedure CreateCoreWebHubDataModule;
 procedure InitCoreWebHubDataModule;

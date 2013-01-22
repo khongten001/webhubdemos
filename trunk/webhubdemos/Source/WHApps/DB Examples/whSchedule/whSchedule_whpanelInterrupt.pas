@@ -15,10 +15,11 @@ uses
 {$IFDEF LINUX}
   QForms, QControls, QDialogs, QGraphics, QExtCtrls, QStdCtrls,
 {$ELSE}
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons,
 {$ENDIF}
   SysUtils, Classes,
-  toolbar, utPanFrm, restorer, tpCompPanel, ActnList, Buttons;
+  {$I xe_actnlist.inc}
+  toolbar, utPanFrm, restorer, tpCompPanel;
 
 type
   TfmAppDBInterrupt = class(TutParentForm)

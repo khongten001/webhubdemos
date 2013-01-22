@@ -19,8 +19,9 @@ interface
 {$DEFINE BootStrapDone}
 
 uses
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls,
-  SysUtils, Classes, ActnList, Buttons, ComCtrls,
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, SysUtils, Classes, 
+  Buttons, ComCtrls,
+  {$I xe_actnlist.inc}
   IB_Components,
   toolbar, utPanFrm, restorer, tpCompPanel,
   whutil_RegExParsing, whdemo_IbObjCodeGenGUI;
