@@ -29,6 +29,8 @@ THE SOFTWARE.
 
 interface
 
+{$I hrefdefines.inc}
+
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   {$I xe_actnlist.inc}
