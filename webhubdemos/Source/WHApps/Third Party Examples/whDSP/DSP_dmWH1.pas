@@ -89,7 +89,8 @@ end;
 
 function StringReplace2(const Value,sThis,sWith:String): String;
 // will completely remove a substring from the main string.
-// see http://www.href.com/pub/relnotes/v2-018.htm for notes about this function.
+// Look in http://www.href.com/pub/relnotes/ for WebHub v2-018 to find
+// notes about this function.
 var a1,a2:string;
 begin
    Result:=Value;
