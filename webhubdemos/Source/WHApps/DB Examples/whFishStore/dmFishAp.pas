@@ -24,6 +24,8 @@ THE SOFTWARE.
 
 interface
 
+{$I hrefdefines.inc}
+
 uses
   Forms, Classes, 
   {$I xe_actnlist.inc}
