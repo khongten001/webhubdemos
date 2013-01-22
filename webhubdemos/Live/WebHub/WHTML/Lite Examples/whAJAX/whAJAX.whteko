@@ -103,7 +103,7 @@ The event can be stopped and started with the links below.  (NB: if you click th
 
 
 <h1>Learning how to use AJAX with WebHub</h1>
-<ol>
+<ul>
 <li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
 <ul>
 <li style="list-style-type:disc">the JS command within the <i>&lt;head_tag&gt;</i> </li>
@@ -112,8 +112,7 @@ The event can be stopped and started with the links below.  (NB: if you click th
 <li style="list-style-type:disc">the page definitions for gettime1, AjaxObserverText1, gettime2, AjaxObserverText2</li>
 </ul>
 </li>
-<li> Ask HREF tech support for a copy of the spreadsheet which sketches out all the parameters for the commands.</li>
-</ol>
+</ul>
 
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
