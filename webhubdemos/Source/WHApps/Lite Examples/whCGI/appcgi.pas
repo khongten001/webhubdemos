@@ -28,12 +28,13 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  {$I xe_actnlist.inc}
+  StdActns, OleCtrls,
   GridRest, tpSysPop, tpTrayIc, tpAction, webinfou, UpdateOk,
   UTTRAYFM, HtmlBase, HtmlCore, tpApplic{non-gui}, WebBrows, CGiVarS, APiStat,
   ApiBuilt, ApiCall, WebCall, CGiServ, WebServ, WebLink,
   Menus, tpPopUp, Restorer, RestEdit, WebTypes, IniLink, ComCtrls,
-  tpStatus, Toolbar, ExtCtrls, Combobar, ActnList, StdActns, OleCtrls,
-  SHDocVw;
+  tpStatus, Toolbar, ExtCtrls, Combobar, SHDocVw;
 
 type
   TfmWebAppCGI = class(TForm)

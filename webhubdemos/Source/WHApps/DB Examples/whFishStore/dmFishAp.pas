@@ -25,7 +25,8 @@ THE SOFTWARE.
 interface
 
 uses
-  Forms, Classes, ActnList, 
+  Forms, Classes, 
+  {$I xe_actnlist.inc}
   tpApplic{non-gui}, updateok, tpAction{no-gui}, tpActionGUI, 
   webBrows, whsample_EvtHandlers, cgivars, apistat, apibuilt, apicall, 
   webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink, 

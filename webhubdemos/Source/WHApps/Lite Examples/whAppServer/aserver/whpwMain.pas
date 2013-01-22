@@ -34,7 +34,8 @@ uses
   QStdActns, QActnList,
 {$ELSE}
   Graphics, Controls, Forms, Dialogs, Menus, ComCtrls, ExtCtrls,
-  StdActns, ActnList,
+  {$I xe_actnlist.inc}
+  StdActns, 
 {$ENDIF}
   toolbar, utTrayFm, utMainFm, restorer, restEdit, gridRest, 
   updateOK{non-gui}, updateOKGUI,

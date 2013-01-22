@@ -14,8 +14,10 @@ interface
 {$I hrefdefines.inc}
 
 uses
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, ActnList, Buttons,
-  SysUtils, Classes, Actions, DB,
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons, SysUtils, 
+  Classes, DB,
+  {$I xe_actions.inc}
+  {$I xe_actnlist.inc}
   IB_Components, IBODataSet,
   rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache, rbBase,
   toolbar, utPanFrm, restorer, tpCompPanel,
