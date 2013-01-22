@@ -15,9 +15,11 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, ExtCtrls, StdCtrls, ActnList, Buttons, 
-  UTPANFRM, tpMemo, tpStatus, updateOk, tpAction, toolbar, {}tpCompPanel, 
-  webTypes, webLink, System.Actions;
+  ComCtrls, ExtCtrls, StdCtrls, Buttons, 
+  {$I xe_actnlist.inc}
+  {$I xe_actions.inc}
+  utPanFrm, tpMemo, tpStatus, updateOk, tpAction, toolbar, {}tpCompPanel, 
+  webTypes, webLink;
 
 type
   TfmAppAboutPanel = class(TutParentForm)
