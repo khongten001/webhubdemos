@@ -715,8 +715,7 @@ begin
     end
     else
     begin
-      DMDPRWebAct.dsAdmin.DataSet.Filtered := False;
-      DMDPRWebAct.dsAdmin.DataSet.OnFilterRecord := nil;
+      DMNexus.TableAdminUnfiltered;
       DataSource:=nil;
       DBNavigator1.DataSource:=nil;
     end;
