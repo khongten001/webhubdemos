@@ -21,8 +21,8 @@ interface
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
-  //{$IFDEF Delphi17UP}System.Actions, Vcl.ActnList,{$ENDIF}
-  System.Actions, Vcl.ActnList,
+  {$I xe_actions.inc}
+  {$I xe_actnlist.inc}
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
   webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wbdeGrid,
   wdbSSrc, wbdeSource;

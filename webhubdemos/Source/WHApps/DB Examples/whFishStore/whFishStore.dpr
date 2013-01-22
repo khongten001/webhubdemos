@@ -60,7 +60,10 @@ uses
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
 
+{$I WebHub_Comms.inc}
+
 begin
+  {$IFNDEF WEBHUBACE}wrong ipc!{$ENDIF}
   Application.Initialize;
   Application.CreateForm(TDMForWHFishStore, DMForWHFishStore);
   DMForWHFishStore.SetDemoFacts('htfs', 'DB Examples', True);
