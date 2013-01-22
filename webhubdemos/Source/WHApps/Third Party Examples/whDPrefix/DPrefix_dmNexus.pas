@@ -235,6 +235,7 @@ procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);
 var
   ACap: string;
   OpenIDProvider: string;
+  url: string;
 begin
   DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
   DS.FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
@@ -244,9 +245,11 @@ begin
     DS.FieldByName('UpdateCounter').AsInteger :=
       DS.FieldByName('UpdateCounter').AsInteger + 1;
 
-  if (Copy(DS.FieldByName('Mpf WebPage').AsString, 1, 7) = 'http://') then
-    DS.FieldByName('Mpf WebPage').AsString :=
-      Copy(DS.FieldByName('Mpf WebPage').AsString, 8, MaxInt);
+  url := Trim(DS.FieldByName('Mpf WebPage').AsString);
+  if (Copy(URL, 1, 7) = 'http://') then
+    URL := Copy(URL, 8, MaxInt);
+  if URL <> DS.FieldByName('Mpf WebPage').AsString then
+    DS.FieldByName('Mpf WebPage').AsString := URL;
 
   OpenIDProvider := pWebApp.StringVar['_providerName'];
   if OpenIDProvider <> '' then
