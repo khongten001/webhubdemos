@@ -20,6 +20,7 @@ object DataModuleAdmin: TDataModuleAdmin
     Left = 238
     Top = 12
   end
+ 
   object wdsAdmin: TwhbdeSource
     ComponentOptions = [tpStatusPanel]
     GotoMode = wgGotoNearest
@@ -70,7 +71,7 @@ object DataModuleAdmin: TDataModuleAdmin
     end
   end
   object waSaveCurrentFish: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet]
+    ComponentOptions = [tpUpdateOnGet]
     OnExecute = waSaveCurrentFishExecute
     Left = 40
     Top = 144
