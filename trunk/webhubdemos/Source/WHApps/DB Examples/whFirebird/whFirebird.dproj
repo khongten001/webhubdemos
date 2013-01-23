@@ -19,11 +19,6 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
-        <Base_Win64>true</Base_Win64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
         <Cfg_1>true</Cfg_1>
         <CfgParent>Base</CfgParent>
@@ -49,7 +44,7 @@
         <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=;FileVersion=1.0.0.8;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Build>8</VerInfo_Build>
-        <DCC_UnitSearchPath>k:\vendors\CPS\IBObjects\v5.x\source\common;k:\vendors\CPS\IBObjects\v5.x\source\core;k:\vendors\CPS\IBObjects\v5.x\source\tdataset;k:\vendors\CPS\IBObjects\v5.x\source\access;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>k:\vendors\CPS\IBObjects\v5.x\source\common;k:\vendors\CPS\IBObjects\v5.x\source\core;k:\vendors\CPS\IBObjects\v5.x\source\tdataset;k:\vendors\CPS\IBObjects\v5.x\source\access;h:\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_DependencyCheckOutputName>whFirebird.exe</DCC_DependencyCheckOutputName>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Platform>x86</DCC_Platform>
@@ -71,6 +66,8 @@
         <DCC_Define>DEBUG;CodeSite;LOGDETAIL;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_Build>0</VerInfo_Build>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
@@ -135,13 +132,17 @@
             <Form>DMForWHFirebird</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="whfmEmployee.pas">
-            <Form>fmEmployee</Form>
-        </DCCReference>
         <DCCReference Include="h:\wdbIBObjNSource.pas">
-            <Form>$R *.res</Form>
+            <Form>,
+  ucIbAndFbCredentials in &apos;H</Form>
+            <DesignClass>ucIbAndFbCredentials.pas&apos;,
+  whFirebird_dmEmployee in &apos;whFirebird_dmEmployee.pas&apos; {DMEmployeeFire: TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="H:\ucIbAndFbCredentials.pas"/>
+        <DCCReference Include="whFirebird_dmEmployee.pas">
+            <Form>DMEmployeeFire</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -195,6 +196,11 @@
                     <VersionInfoKeys Name="ProductVersion">1.0.0.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Raize\CS5\Bin\CodeSiteExpressPkg_Design170.bpl">CodeSite Express 5.1.2</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k170.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp170.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
                 <Platform value="OSX32">False</Platform>
@@ -206,3 +212,8 @@
     </ProjectExtensions>
     <Import Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')" Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj"/>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7001
+EurekaLog Last Line -->

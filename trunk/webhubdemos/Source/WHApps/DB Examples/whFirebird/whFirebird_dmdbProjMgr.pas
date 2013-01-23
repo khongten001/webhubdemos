@@ -8,8 +8,9 @@ uses
 
 type
   TDMForWHFirebird = class(TDMForWHDBDemo)
-    procedure ProjMgrGUICreate(Sender: TtpProject;
-      const ShouldEnableGUI: Boolean; var ErrorText: String;
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
   private
     { Private declarations }
@@ -25,15 +26,21 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whfmEmployee;
-  
-procedure TDMForWHFirebird.ProjMgrGUICreate(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: String;
-  var Continue: Boolean);
+  MultiTypeApp, whFirebird_dmEmployee;
+
+procedure TDMForWHFirebird.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
-  // create additional forms AFTER appid has been set.
-  {M}Application.CreateForm(TfmEmployee, fmEmployee);
+  {M}Application.CreateForm(TDMEmployeeFire, DMEmployeeFire);
+end;
+
+procedure TDMForWHFirebird.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := DMEmployeeFire.Init(ErrorText);
 end;
 
 end.
+
