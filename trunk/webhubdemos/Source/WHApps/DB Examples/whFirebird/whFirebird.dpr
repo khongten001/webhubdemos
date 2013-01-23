@@ -6,7 +6,6 @@ program whFirebird;  // Created 01-Nov-2006 by the WebHub New Project Wizard
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
@@ -14,7 +13,7 @@ uses
   dmWHApp in 'H:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whHtml in 'h:\whHtml.pas' {fmAppHTML},
-  whfmEmployee in 'whfmEmployee.pas' {fmEmployee},
+  webLink in 'h:\webLink.pas',
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
@@ -22,9 +21,10 @@ uses
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
-  webLink in 'h:\webLink.pas',
+  whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
+  whfmEmployee in 'whfmEmployee.pas' {fmEmployee},
   wdbIBObjNSource in 'h:\wdbIBObjNSource.pas' {$R *.res},
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas';
 
