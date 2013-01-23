@@ -29,9 +29,10 @@ uses
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
   DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule},
-  webLink in 'k:\webhub\lib\webLink.pas',
-  wdbForm in 'k:\webhub\lib\wdbForm.pas',
+  webLink in 'h:\webLink.pas',
+  wdbForm in 'h:\wdbForm.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
+  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
   wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';
 
 (* search path for debugging
