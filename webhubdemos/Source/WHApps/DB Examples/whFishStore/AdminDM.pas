@@ -5,15 +5,15 @@ unit admindm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DBTables, DB, TpTable, wbdeSource, UpdateOk, tpAction,
-  WebTypes,   WebLink, WdbLink, WdbScan, webScan, wbdeGrid, WebPage, WebPHub,
-  IniLink, wdbSSrc;
+  Windows, Messages, SysUtils, Classes, Forms, DBTables, DB, 
+  tpTable, updateOk, tpAction,
+  webTypes, webLink, wdbScan, webScan, wbdeGrid, webPage, webPHub,
+  wdbSSrc, wdbSource, wbdeSource, wdbLink;
 
 type
   TDataModuleAdmin = class(TDataModule)
     gfAdmin: TwhbdeGrid;
-    wdsAdmin: TwhbdeSource;
+ wdsAdmin: TwhbdeSource;
     DataSourceFishCost: TDataSource;
     TableFishCost: TtpTable;
     TableFishCostSpeciesNo: TFloatField;
@@ -45,8 +45,10 @@ var
 
 implementation
 
-uses WebApp, whdemo_ViewSource, whMacroAffixes,
-  ucString,
+uses 
+  ucString, ucCodeSiteInterface,
+  webApp, whMacroAffixes,
+  whdemo_ViewSource, 
   whFishStore_fmWhPanel, tFish;
 
 {$R *.DFM}
@@ -73,15 +75,15 @@ begin
     gfAdmin.SetCaptions2004;
     gfAdmin.SetButtonSpecs2012;
   end;
-
+  
 end;
 
 {------------------------------------------------------------------------------}
 
 procedure TDataModuleAdmin.TableFishCostBeforePost(DataSet: TDataSet);
 begin
-  if (TableFishCostPassword.Value<>'') and
-     (pWebApp.StringVar['Password']<>TableFishCostPassword.Value) then begin
+  if (TableFishCostPassword.Text<>'') and
+     (pWebApp.StringVar['Password']<>TableFishCostPassword.Text) then begin
     DataSet.cancel;
     with pWebApp.Response do begin
       SendHdr('2','Invalid Password');
@@ -89,11 +91,11 @@ begin
         MacroEnd );
       Close;
       end;
-    //raise exception.create('Invalid password');
+    LogSendError('Invalid password');
     end
   else begin
     TableFishCostUpdatedOn.Value:=now;
-    TableFishCostUpdatedBy.Value:=pWebApp.StringVar['SurferName'];
+    TableFishCostUpdatedBy.Value:=AnsiString(pWebApp.StringVar['SurferName']);
     end
 end;
 
