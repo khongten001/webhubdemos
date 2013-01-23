@@ -117,7 +117,7 @@ inherited fmBendFields: TfmBendFields
     Top = 176
   end
   object Scan2: TwhdbScan
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
     OnExecute = Scan2Execute
     AfterExecute = ScanAfterExecute
     DirectCallOk = True
@@ -133,7 +133,7 @@ inherited fmBendFields: TfmBendFields
     Top = 176
   end
   object WebDataGrid1: TwhbdeGrid
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundExactlyDuringUpdate]
     OnExecute = WebDataGrid1Execute
     AfterExecute = WebDataGrid1AfterExecute
     DirectCallOk = True
@@ -149,7 +149,7 @@ inherited fmBendFields: TfmBendFields
     Top = 232
   end
   object Scan1: TwhdbScan
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
     OnExecute = ScanOnExecute
     AfterExecute = ScanAfterExecute
     DirectCallOk = True
