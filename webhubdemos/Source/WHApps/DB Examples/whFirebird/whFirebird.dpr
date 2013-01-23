@@ -1,6 +1,6 @@
 program whFirebird;  // Created 01-Nov-2006 by the WebHub New Project Wizard
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
@@ -24,9 +24,9 @@ uses
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
-  whfmEmployee in 'whfmEmployee.pas' {fmEmployee},
-  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas' {$R *.res},
-  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas';
+  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas',
+  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
+  whFirebird_dmEmployee in 'whFirebird_dmEmployee.pas' {DMEmployeeFire: TDataModule};
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
