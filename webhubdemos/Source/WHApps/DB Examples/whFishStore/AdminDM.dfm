@@ -10,17 +10,17 @@ object DataModuleAdmin: TDataModuleAdmin
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
+    WebDataSource = wdsAdmin
     Border = 'cellspacing="0"'
     TR = '<tr>'
     TD = '<td>'
+    Caption = ''
     ShowRecno = False
     Preformat = False
     OnHotField = gfAdminHotField
-    WebDataSource = wdsAdmin
     Left = 238
     Top = 12
   end
- 
   object wdsAdmin: TwhbdeSource
     ComponentOptions = [tpStatusPanel]
     GotoMode = wgGotoNearest
