@@ -11,7 +11,7 @@ uses
 {$IFDEF IBO_49_OR_GREATER}
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
-  webLink, webTypes, wdbLink, wdbSSrc, wdbScan, wdbIBObjNSource,
+  webLink, webTypes, wdbLink, wdbSSrc, wdbScan, wdbIBObjOSource,
   updateOK, tpAction;
 
 type
@@ -35,9 +35,9 @@ type
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
-    whdsEmployee: TwhdbSourceIB;
-    dsEmployee: TIB_DataSource;
-    qEmployee: TIB_Query;
+    whdsEmployee: TwhdbSourceIBO;
+    dsEmployee: TIBODataSource;
+    qEmployee: TIBOQuery;
     function Init(out ErrorText: string): Boolean;
   end;
 
@@ -87,14 +87,14 @@ begin
       CreateIfNil(DBName, DBUser, DBPass);
       gEmployee_Conn.Connect;
 
-      qEmployee := TIB_Query.Create(Self);
+      qEmployee := TIBOQuery.Create(Self);
       qEmployee.Name := 'qEmployee';
       qEmployee.SQL.Text := 'select * from employee where (SALARY < 80000.0)';
 
-      dsEmployee := TIB_DataSource.Create(Self);
+      dsEmployee := TIBODataSource.Create(Self);
       dsEmployee.Name := 'dsEmployee';
 
-      whdsEmployee := TwhdbSourceIB.Create(Self);
+      whdsEmployee := TwhdbSourceIBO.Create(Self);
       whdsEmployee.Name := 'wdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
       whdsEmployee.MaxOpenDataSets := 1;
