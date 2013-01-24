@@ -126,7 +126,7 @@ begin
       HtmlParam := '';
     end;
 
-    with WebDataSource.DataSet do
+    with WebDataSourceBDE.DataSet do
       webapp.SendString('This table has ' + IntToStr(RecordCount) +
         ' records.<br /><br />');
   end;
