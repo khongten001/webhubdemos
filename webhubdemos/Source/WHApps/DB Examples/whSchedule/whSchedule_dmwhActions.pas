@@ -14,7 +14,7 @@ interface
 
 uses
   SysUtils, Classes, DB, Controls,
-  IB_Components,
+  IB_Components, IBODataset, 
 {$IFDEF IBO_49_OR_GREATER}
   IB_Access, // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
@@ -35,8 +35,8 @@ type
     waPKtoStringVars: TwhWebAction;
     waUpdateFromStringVars: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
-    procedure IBNativeQuery1BeforeOpen(DataSet: TIBODataSet);
-    procedure IBNativeQueryAboutBeforeOpen(DataSet: TIBODataSet);
+    procedure IBNativeQuery1BeforeOpen(DataSet: TDataSet);
+    procedure IBNativeQueryAboutBeforeOpen(DataSet: TDataSet);
     procedure ScanScheduleInit(Sender: TObject);
     procedure ScanScheduleRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
@@ -54,12 +54,12 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    wds: TwhdbSourceIBO;
-    ds: TIBODataSource;
+    wds: TwhbdeSourceIBO;
+    ds: TDataSource;
     q: TIBOQuery;
-    c: TIBOCursor;
-    wdsA: TwhdbSourceIBO;
-    dsA: TIBODataSource;
+    c: TIB_Cursor;
+    wdsA: TwhbdeSourceIBO;
+    dsA: TDataSource;
     qA: TIBOQuery;
     priorDate: TDate;
     priorTime: TTime;
@@ -147,7 +147,7 @@ begin
     'and (SCHONATPDT >= :Recently) ' + // '9/8/2009 15:00'
     'order by S.SchOnAtPDT, S.SchLocation ';
 
-  c := TIBOCursor.Create(Self);
+  c := TIB_Cursor.Create(Self);
   c.Name := 'c';
   c.ReadOnly := True;
   c.SQL.Text := 'select ' + 'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' + sLineBreak +
@@ -177,11 +177,11 @@ begin
     end;
   end;
 
-  ds := TIBODataSource.Create(Self);
+  ds := TDataSource.Create(Self);
   ds.Name := 'ds';
   ds.DataSet := q;
 
-  wds := TwhdbSourceIBO.Create(Self);
+  wds := TwhbdeSourceIBO.Create(Self);
   wds.Name := 'wds';
   wds.DataSource := ds;
   wds.MaxOpenDataSets := 1;
@@ -192,11 +192,11 @@ begin
   ScanSchedule.ControlsWhere := dsNone;
   ScanSchedule.ButtonsWhere := dsNone;
 
-  dsA := TIBODataSource.Create(Self);
+  dsA := TDataSource.Create(Self);
   dsA.Name := 'dsA';
   dsA.DataSet := qA;
 
-  wdsA := TwhdbSourceIBO.Create(Self);
+  wdsA := TwhbdeSourceIBO.Create(Self);
   wdsA.Name := 'wdsA';
   wdsA.DataSource := dsA;
   wdsA.MaxOpenDataSets := 1;
@@ -225,7 +225,7 @@ begin
   // e.g. to make adjustments because the config changed.
 end;
 
-procedure TDMCodeRageActions.IBNativeQuery1BeforeOpen(DataSet: TIBODataSet);
+procedure TDMCodeRageActions.IBNativeQuery1BeforeOpen(DataSet: TDataSet);
 const
   cFn = 'IBNativeQuery1BeforeOpen';
 var
@@ -341,7 +341,7 @@ procedure TDMCodeRageActions.waFindScheduleExecute(Sender: TObject);
 const
   cFn = 'waFindScheduleExecute';
 var
-  q: TIBOCursor;
+  q: TIB_Cursor;
   SelectSQL: string;
   i: Integer;
   FieldContent: string;
@@ -358,7 +358,7 @@ begin
   FlagFwd := True;
   q := nil;
   try
-    q := TIBOCursor.Create(Self);
+    q := TIB_Cursor.Create(Self);
     q.Name := 'qScheduleFind';
     q.IB_Connection := gCodeRageSchedule_Conn;
     if NOT gCodeRageSchedule_Conn.Connected then
@@ -463,7 +463,7 @@ var
   CurrentPK: string; { table pri key }
   CurrentFieldname: string;
   PKValue: string;
-  q: TIBOCursor;
+  q: TIB_Cursor;
   i: Integer;
   SVName: string;
   ThisFieldTypeRaw: Integer;
@@ -486,7 +486,7 @@ begin
     if NOT gCodeRageSchedule_Conn.Connected then
       gCodeRageSchedule_Conn.Connect;
     try
-      q := TIBOCursor.Create(gCodeRageSchedule_Sess);
+      q := TIB_Cursor.Create(gCodeRageSchedule_Sess);
       q.Name := 'q' + CurrentTable;
       q.SQL.Text := Format('select * from %s where (%s=:PK)',
         [CurrentTable, CurrentPK]);
@@ -585,7 +585,7 @@ procedure TDMCodeRageActions.waUpdateFromStringVarsExecute(Sender: TObject);
 const
   cFn = 'waUpdateFromStringVarsExecute';
 var
-  q: TIBODSQL;
+  q: TIB_DSQL;
   UpdateSQL: string;
   DrName: string;
   i: Integer;
@@ -613,7 +613,7 @@ begin
         gCodeRageSchedule_Conn.Connect;
 
       try
-        q := TIBODSQL.Create(Self);
+        q := TIB_DSQL.Create(Self);
         q.Name := 'qUpdateSchedule';
         q.SQL.Text := pWebApp.Expand(UpdateSQL);
         CSSend(q.Name, S(q.SQL));
@@ -689,7 +689,7 @@ begin
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
-procedure TDMCodeRageActions.IBNativeQueryAboutBeforeOpen(DataSet: TIBODataSet);
+procedure TDMCodeRageActions.IBNativeQueryAboutBeforeOpen(DataSet: TDataSet);
 const
   cFn = 'IBNativeQueryAboutBeforeOpen';
 begin
