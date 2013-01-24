@@ -7,7 +7,7 @@ interface
 
 uses
   SysUtils, Classes,
-  IB_Components,
+  IB_Components, IBODataset, 
 {$IFDEF IBO_49_OR_GREATER}
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
@@ -35,8 +35,8 @@ type
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
-    whdsEmployee: TwhdbSourceIBO;
-    dsEmployee: TIBODataSource;
+    whdsEmployee: TwhbdeSourceIBO;
+    dsEmployee: TDataSource;
     qEmployee: TIBOQuery;
     function Init(out ErrorText: string): Boolean;
   end;
@@ -91,10 +91,10 @@ begin
       qEmployee.Name := 'qEmployee';
       qEmployee.SQL.Text := 'select * from employee where (SALARY < 80000.0)';
 
-      dsEmployee := TIBODataSource.Create(Self);
+      dsEmployee := TDataSource.Create(Self);
       dsEmployee.Name := 'dsEmployee';
 
-      whdsEmployee := TwhdbSourceIBO.Create(Self);
+      whdsEmployee := TwhbdeSourceIBO.Create(Self);
       whdsEmployee.Name := 'wdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
       whdsEmployee.MaxOpenDataSets := 1;
