@@ -174,6 +174,7 @@ const
 var
   TblName, FldName: string;
   fld: TField;
+  Value: string;
 begin
   inherited;
   with TwhWebAction(Sender) do
@@ -185,13 +186,30 @@ begin
       begin
         fld := FindField(FldName);
         if Assigned(fld) then
-          Response.Send(fld.AsString)
+        begin
+          try
+            Value := fld.AsString;
+          except
+            on E: Exception do
+            begin
+              LogSendInfo('HtmlParam', HtmlParam, cFn);
+              LogSendException(E, cFn);
+              Value := '';
+            end;
+          end;
+          Response.Send(Value);
+        end
         else
         begin
           LogSendWarning('Invalid fieldname: ' + FldName, cFn);
           Response.Send(FldName);
         end;
       end;
+    end
+    else
+    begin
+      LogSendWarning('Invalid tablename: ' + TblName, cFn);
+      Response.Send(TblName);
     end;
   end;
 end;
@@ -199,13 +217,15 @@ end;
 procedure TDMEmployeeFire.waMoneyExecute(Sender: TObject);
 var
   m: Double;
+  s1: string;
 begin
   inherited;
   with TwhWebAction(Sender) do
   begin
     if HtmlParam = '' then Exit;
     m := StrToFloat(WebApp.Expand(HtmlParam));
-    Response.Send(Format('%m', [m]));
+    s1 := Format('%m', [m]);
+    Response.Send(S1);
   end;
 end;
 
