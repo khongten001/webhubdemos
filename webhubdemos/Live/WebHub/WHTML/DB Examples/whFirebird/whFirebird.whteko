@@ -66,7 +66,7 @@ view data from a Firebird SQL database.</p>
 </tr>
 <whrow>
 <tr>
-  <td>(~waFIELD.execute|Employee|EMP_NO~)</td>
+  <td>(~waFIELD.execute|Employee|EMP_NO~)(~FIELD|whdsEmployee|EMP_NO~)</td>
   <td>(~waFIELD.execute|Employee|FULL_NAME~)</td>
   <td>(~waFIELD.execute|Employee|JOB_COUNTRY~)</td>
   <td>USD (~waMoney.execute|(~waFIELD.execute|Employee|SALARY~)~)</td>
