@@ -24,7 +24,6 @@ uses
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
-  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas',
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
   whFirebird_dmEmployee in 'whFirebird_dmEmployee.pas' {DMEmployeeFire: TDataModule};
 
@@ -34,11 +33,11 @@ uses
 {$R HTGLYPHS.RES}
 
 (* when compiling with full source:
-  wdbIBObjNSource in 'K:\WebHub\lib\wdbIBObjNSource.pas',
-  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas';
+  webSend in 'k:\webhub\lib\whvcl\webSend.pas',
+  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
+  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
+  wdbIBObjOSource in 'k:\webhub\lib\wdbIBObjOSource.pas',
 
-  else:
-  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas';
 *)
 
 
