@@ -7,7 +7,7 @@ interface
 
 uses
   SysUtils, Classes, DB,
-  IB_Components, IBODataset, 
+  IB_Components, IBODataset,
 {$IFDEF IBO_49_OR_GREATER}
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
@@ -16,19 +16,15 @@ uses
 
 type
   TDMEmployeeFire = class(TDataModule)
-    waField: TwhWebAction;
-    waMoney: TwhWebAction;
     ScanEmployee3: TwhdbScan;
     ScanEmployee2: TwhdbScan;
     ScanEmployee1: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
-    procedure waFieldExecute(Sender: TObject);
     procedure ScanEmployee1Finish(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure ScanEmployeeBeginTable(Sender: TObject);
     procedure ScanEmployee1RowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-    procedure waMoneyExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -49,6 +45,7 @@ implementation
 {$R *.dfm}
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucString, ucLogFil, ucCodeSiteInterface, ucIbObjPrepare,
   webApp, webSend, webScan, htWebApp,
   uFirebird_Connect_Employee, ucIbAndFbCredentials;
@@ -95,12 +92,12 @@ begin
       dsEmployee.Name := 'dsEmployee';
 
       whdsEmployee := TwhbdeSourceIBO.Create(Self);
-      whdsEmployee.Name := 'wdsEmployee';
+      whdsEmployee.Name := 'whdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
       whdsEmployee.MaxOpenDataSets := 1;
 
       ScanEmployee1.WebDataSource := whdsEmployee;
-      ScanEmployee1.PageHeight := 0;  {number of records to display initially}
+      ScanEmployee1.PageHeight := 3;  {number of records to display initially}
       ScanEmployee1.ButtonsWhere := dsBelow;
       ScanEmployee1.OnBeginTable := ScanEmployeeBeginTable;
       ScanEmployee1.SetDelimiters2012;
@@ -215,18 +212,29 @@ begin
 end;
 
 procedure TDMEmployeeFire.waMoneyExecute(Sender: TObject);
+const cFn = 'waMoneyExecute';
 var
   m: Double;
   s1: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF};
   inherited;
   with TwhWebAction(Sender) do
   begin
-    if HtmlParam = '' then Exit;
-    m := StrToFloat(WebApp.Expand(HtmlParam));
-    s1 := Format('%m', [m]);
-    Response.Send(S1);
+    if Trim(HtmlParam) <> '' then
+    begin
+      CSSend('HTMLParam', HTMLParam);
+      s1 := WebApp.Expand(HtmlParam);
+      CSSend('s1', s1);
+      if Trim(s1) <> '' then
+      begin
+        m := StrToFloat(s1);
+        s1 := Format('%m', [m]);
+        Response.Send(S1);
+      end;
+    end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF};
 end;
 
 procedure TDMEmployeeFire.WebAppUpdate(Sender: TObject);
