@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201301b.xsd">
   <Startup>
@@ -95,7 +95,8 @@
       <ButtonSpecs macroPrefix="mcEmployee2ButtonSpecs"/>
       <Captions macroPrefix="mcEmployee2Captions"/>
     </whdbScan>
-    <whdbSource componentName="wdsEmployee">
+    <whdbSource componentName="whdsEmployee">
+      <KeyFields value="EMP_NO"/>
       <Prompts macroPrefix="mcPrompt"/>
     </whdbSource>
   </ComponentConfig>
