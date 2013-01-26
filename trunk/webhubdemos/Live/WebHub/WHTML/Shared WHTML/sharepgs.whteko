@@ -127,7 +127,7 @@ Note: these instructions assume that you know how to run WebHub application serv
 
 <whpage pageid="InvalidPage" desc="-Invalid Page">
 <whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
+(~SetHttpStatus|404|page not found~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
