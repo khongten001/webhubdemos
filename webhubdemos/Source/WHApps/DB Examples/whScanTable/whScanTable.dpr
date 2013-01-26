@@ -26,7 +26,7 @@ THE SOFTWARE.
 *)
 
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
@@ -46,9 +46,16 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   scanfm in 'scanfm.pas' {fmDBPanel},
   importfm in 'importfm.pas' {FormImport},
+  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
+  wdbxSource in 'k:\webhub\lib\whdb\wdbxSource.pas',
+  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
+  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
+  wbdeGrid in 'k:\webhub\lib\whdb\wbdeGrid.pas',
+  wbdeSource in 'k:\webhub\lib\whdb\wbdeSource.pas',
   ucScnDir in 'ucScnDir.pas',
   whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
-  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas';
+  ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
+  whScanTable_whdmData in 'whScanTable_whdmData.pas' {DMData: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}   // main icon for WebHub demos
@@ -62,3 +69,4 @@ begin
   DMForWHScanTable.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
+
