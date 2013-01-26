@@ -3,7 +3,7 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whmacros>
-mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|Browse|FileURLDir~)(~Field|Browse|Filename~).(~Field|Browse|FileExt~)
+mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|wdsDBX|FileURLDir~)(~Field|wdsDBX|Filename~).(~Field|wdsDBX|FileExt~)
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForscan">
@@ -11,7 +11,7 @@ mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|Browse|FileURLDir~)(~Field|Browse|Filen
 </whdroplet>
 
 <whdroplet name="chInitVarsSCAN">
-(~SET|Browse.IndexOrder=File Number~)
+(~SET|wdsDBX.IndexOrder=File Number~)
 (~SET|speed=fast~)
 (~SET|fontsize=.8~)
 (~CHECK|grey~)
@@ -99,11 +99,11 @@ see the range of layout options that have been prepared for you.</p>
 </tr>
 <whrow>
 <tr>
-<td>(~Field|Browse|FileID~)</td>
+<td>(~Field|wdsDBX|FileID~)</td>
 <td class="maybeGreyImg(~IF|constraint|Constrained||Normal~)">(~DYNCHUNK|chGraphic,(~speed~)~)</td>
-<td>(~Field|Browse|Filename~)</td>
-<td class="colorFor(~litExt~)">(~Field|Browse|FileExt~)</td>
-<td>(~Field|Browse|FileDesc~)</td>
+<td>(~Field|wdsDBX|Filename~)</td>
+<td class="colorFor(~litExt~)">(~Field|wdsDBX|FileExt~)</td>
+<td>(~Field|wdsDBX|FileDesc~)</td>
 </tr>
 </whrow>
 </table>
@@ -122,12 +122,12 @@ see the range of layout options that have been prepared for you.</p>
 </whpage>
 
 <whdroplet name="chGraphicSlow">
-<a href="(~mcGraphicSrc~)">(~Field|Browse|FileSize~) bytes</a>
+<a href="(~mcGraphicSrc~)">(~Field|wdsDBX|FileSize~) bytes</a>
 </whdroplet>
 
 <whdroplet name="chGraphicFast">
 <a href="(~mcGraphicSrc~)"><img src="(~mcGraphicSrc~)" alt="graphic for fast connection" /></a>
-<br />(~Field|Browse|FileSize~) bytes
+<br />(~Field|wdsDBX|FileSize~) bytes
 </whdroplet>
 
 
@@ -232,7 +232,7 @@ whether you see all graphics or just links.</span>
 <html><head><title>scan test</title></head>
 <body>
 <h2>data?</h2>
-(~browse.22~)(~browse.activate~)
+(~wdsDBX.22~)(~wdsDBX.activate~)
 (~browsescan.execute|drBrowseScan~)
  </body></html>
 </whpage>

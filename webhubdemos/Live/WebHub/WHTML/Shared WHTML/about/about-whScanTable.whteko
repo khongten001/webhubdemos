@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaSCAN=Michael S. Davis and Robert Martin
 mcWhDemoCreditFirstDraftSCAN=Suzanne Aldrich
 mcWhDemoCreditGraphicsSCAN=Rob Daniels
 mcWhDemoCreditCopySCAN=Ann Lynnworth 
-mcWhDemoUpdatedSCAN=18-Aug-2010
+mcWhDemoUpdatedSCAN=25-Jan-2013
 mcWhDemoKeywordsSCAN=Database,table,flat-file,display data,customize,skins
 mcWhDemoLiteSCAN=No
 </whmacros>
@@ -15,21 +15,20 @@ mcWhDemoLiteSCAN=No
 <whdroplet name="drDemoSetupSCAN">
 <ul>
 <li> Requires whScanTable.exe</li>
-<li> This demo is able to display data using the Borland Database Engine "BDE" 
-and/or dbExpress.  There is a toggle within the Pascal code to select the database 
-connection type, and there is a checkbox in the GUI to toggle as well.</li>
+<li> This demo displays data using Embarcadero dbExpress with the Firebird driver. </li>
 
-<li> When using the BDE, a table named graphics.db is required, and should be located in
-the projects\webhubdemos\Live\Database\whScanTable directory.</li>
-<li> When using dbExpress, the connection goes to a Firebird SQL table located  
-on the demos.href.com server and open to the public.</li>
+<li> By changing 3 ZaphodsMap settings, you can connect it to any single Firebird table.
+Those 3 settings define the database location, user and password. So you could connect it to 
+<code>localhost:whdemoscan with SYSDBA and mypassword</code>.  If you change tables, you may also 
+want to change some of the custom displays to suit your list of fields.</li>
+
 </ul>
 </whdroplet>
 
 
 <whtranslation key="~whDemoShortDescSCAN">
 This demo shows how to make a WebHub database application where the "look" of 
-the database display is defined in W-HTML and can be changed without recompiling.
+the database display is defined in WebHub-HTML and can be changed without recompiling.
 It uses the TwhdbScan component.  
 </whtranslation>
 
