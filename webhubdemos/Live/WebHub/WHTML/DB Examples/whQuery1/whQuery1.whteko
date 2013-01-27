@@ -8,12 +8,6 @@
 
 <whmacros>
 mcNameType=L-Language,LA-Language Alternate,D-Dialect,DA-Dialect Alternate,LP-Language Pejorative Alternate,DP-Dialect Pejorative Alternate
-mcNameTypeL=Language
-mcNameTypeLA=Language Alternate
-mcNameTypeD=Dialect
-mcNameTypeDA=Dialect Alternate
-mcNameTypeLP=Language Pejorative Alternate
-mcNameTypeDP=Dialect Pejorative Alternate
 </whmacros>
 
 <whpage pageid="pgEnterHTQ1" desc="Query Demo">
