@@ -63,8 +63,7 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~INPUTSELECT|litWallpaper,mcSelectWallpaper,1,No~)
 
 <h2>(~~HumanLanguage~)</h2>
-(~~SetPrefLingvo~):
-(~inputselect|guestlingvo,mclingvolist,1,no~)
+(~drLingvoLinkList~)
 
 <whdoc for="sessioncookie">
 Previously the surfer could toggle the session cookie on and off. 
