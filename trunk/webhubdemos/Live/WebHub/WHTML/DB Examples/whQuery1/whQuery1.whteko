@@ -6,10 +6,19 @@
 (~GO|History|title="Find out how this demo was created"|History~)
 </whdroplet>
 
-<whpage pageid="pgEnterHTQ1" desc="Password Query Demo">
+<whmacros>
+mcNameType=L-Language,LA-Language Alternate,D-Dialect,DA-Dialect Alternate,LP-Language Pejorative Alternate,DP-Dialect Pejorative Alternate
+mcNameTypeL=Language
+mcNameTypeLA=Language Alternate
+mcNameTypeD=Dialect
+mcNameTypeDA=Dialect Alternate
+mcNameTypeLP=Language Pejorative Alternate
+mcNameTypeDP=Dialect Pejorative Alternate
+</whmacros>
+
+<whpage pageid="pgEnterHTQ1" desc="Query Demo">
 <whprep>
-(~NOTASSIGNED|memberID|(~SET|Session['memberID']=STC~)~)
-(~NOTASSIGNED|pword|(~SET|Session['pword']=STC~)~)
+(~NOTASSIGNED|langID|(~SET|langID=eng~)~)
 (~NOTASSIGNED|flagGotData|(~SET|flagGotData=No~)~)
 </whprep>
 <whoutput>
@@ -45,30 +54,38 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <p>
-This demo shows how to do a simple query based
-on user ID and Password.</p>
+This demo shows how to show the results of a simple query based
+on two input fields.</p>
+<p>The most common two-field query is for site login by username 
+and password. However for privacy reasons, we are not publishing 
+a customer table. Instead this example uses the public ISO 639 tables 
+for country and language.</p>
 <whdroplet name="chSearchCriteria" show="yes">
 <form method="post" accept-charset="UTF-8" action="(~ACTION|Page2~)">
 <table id="searchCriteria" cellspacing="0">
 <tr>
 	<td class="empty">&nbsp;</td>
-	<td class="prompt">Enter your Member ID:</td>
-	<td class="datainput">(~INPUTTEXT|memberID,10,10~)</td>
+	<td class="prompt">Enter 3 letter language code:</td>
+	<td class="datainput">(~INPUTTEXT|LangID,3,3~)</td>
 	<td class="empty">&nbsp;</td>
 </tr>
 <tr>
 	<td class="empty2">&nbsp;</td>
-	<td class="prompt">Enter your Password:</td>
-	<td class="datainput">(~INPUTTEXT|pword,10,10~)</td>
+	<td class="prompt">Type of Name:</td>
+	<td class="datainput">(~INPUTSELECT|NameType,mcNameType,1,no~)</td>
 	<td class="empty2">&nbsp;</td>
 </tr>
+<tr>
+	<td class="empty2">&nbsp;</td>
+	<td class="prompt">&nbsp;</td>
+	<td class="prompt"><input type="submit" value="Submit Query" /></td>
+	<td class="empty2">&nbsp;</td>
 </table>
-<p><input type="submit" value="Submit Query" /></p>
 </form>
 <p>
-The valid logins are: "STC", "SDS" or "HR" (all caps) for your member ID
-and password.
-Use anything else to see what happens with an incorrect logon.
+Enter any human language code such as "eng", "deu", "fra", "spa" to 
+see where that type of language is spoken.
+Or enter nonsense letters and numbers to see what happens with invalid input.
 </p>
 </whdroplet>
 </div>  <!--- demopagecontent -->
@@ -126,7 +143,8 @@ input, select{
 </whdroplet>
 
 <whdroplet name="errMessage">
-<b>You have logged in incorrectly.</b> <br />
+<b>You have selected an invalid LangID or one that is 
+not used in that way.</b> <br />
 Please try again.
 </whdroplet>
 
@@ -142,8 +160,12 @@ Please try again.
 <div id="whdemopagecontent">
 <span class="changing">(~JUMPR|pgEnterHTQ1|Back~)</span>
 <h2>Search Result</h2>
+<h3>Language ID = (~LangID~)</h3>
+<h3>Name Type = (~DYNCHUNK|mcNameType,(~NameType~)~)</h3>
+(~ANCHOR|anchRecordCount~)
 (~answergrid.execute~)
-(~NOMATCH|(~flagGotData~)=Yes|(~errMessage~)~)
+(~MATCH|(~flagGotData~)=No|(~errMessage~)||(~ANCHORMODIFY|anchRecordCount|<p>Number of matches: (~RecordCount~)</p>~)
+~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 

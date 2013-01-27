@@ -1,6 +1,7 @@
 program whQuery1;       {Query example, hard coded.}
 (*
-Copyright (c) 1999 HREF Tools Corp.
+Copyright (c) 1999-2013 HREF Tools Corp.
+First author: Matt Marshall
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -21,16 +22,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -41,7 +42,9 @@ uses
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   Htqry1C in 'Htqry1C.pas' {fmHTQ1Panel},
-  whQuery1_dmdbProjMgr in 'whQuery1_dmdbProjMgr.pas' {DMForWHQuery1: TDataModule};
+  webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  whQuery1_dmdbProjMgr in 'whQuery1_dmdbProjMgr.pas' {DMForWHQuery1: TDataModule},
+  whQuery1_whdmData in 'whQuery1_whdmData.pas' {DMHTQ1: TDataModule};
 
 (* for debugging with source
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',

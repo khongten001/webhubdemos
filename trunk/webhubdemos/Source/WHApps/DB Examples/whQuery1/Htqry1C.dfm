@@ -1,34 +1,41 @@
 inherited fmHTQ1Panel: TfmHTQ1Panel
   Left = 235
   Top = 121
-  Width = 434
-  Height = 219
   Caption = 'HTQ1'
-  PixelsPerInch = 96
-  TextHeight = 13
+  ClientHeight = 174
+  ClientWidth = 416
+  ExplicitWidth = 434
+  ExplicitHeight = 219
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 426
-    Height = 162
+    Width = 416
+    Height = 155
+    ExplicitWidth = 416
+    ExplicitHeight = 155
     object CheckBox1: TCheckBox
       Left = 8
       Top = 46
-      Width = 129
+      Width = 209
       Height = 17
       Caption = 'Show SQL statement'
       TabOrder = 0
+      OnClick = CheckBox1Click
+      OnEnter = CheckBox1Enter
+      OnExit = CheckBox1Exit
     end
     object tpToolBar2: TtpToolBar
       Left = 5
       Top = 5
-      Width = 416
+      Width = 406
       Height = 28
       TabOrder = 1
     end
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 162
-    Width = 426
+    Top = 155
+    Width = 416
     Height = 19
     Panels = <
       item
@@ -37,53 +44,7 @@ inherited fmHTQ1Panel: TfmHTQ1Panel
       end>
     ParentShowHint = False
     ShowHint = True
+    SimpleText = ''
     PanelStatusIndex = 0
-  end
-  object Table1: TTable
-    DatabaseName = 'WebHubDemoData'
-    TableName = 'CONTRACT.DB'
-    Left = 328
-    Top = 60
-  end
-  object DataSource2: TDataSource
-    DataSet = Table1
-    Left = 296
-    Top = 60
-  end
-  object Query1: TQuery
-    AfterOpen = Query1AfterOpen
-    Left = 213
-    Top = 116
-  end
-  object DataSource1: TDataSource
-    DataSet = Query1
-    Left = 181
-    Top = 116
-  end
-  object WebDataSource1: TwhbdeSource
-    ComponentOptions = [tpStatusPanel]
-    GotoMode = wgGotoKey
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = DataSource1
-    Left = 149
-    Top = 116
-  end
-  object answergrid: TwhbdeGrid
-    ComponentOptions = [tpStatusPanel]
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    Border = 'cellspacing="0"'
-    TR = '<tr>'
-    TD = '<td>'
-    ShowRecJump = False
-    Preformat = False
-    WebDataSource = WebDataSource1
-    Left = 117
-    Top = 116
   end
 end
