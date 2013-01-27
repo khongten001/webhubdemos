@@ -113,14 +113,7 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 view links to all demos on
 <!--- link to public demos server -->
 (~drLinkToAllDemos~)<br />
-(~NOMATCH|(~pageid~)[ViewFiles,ViewWHTMLFile,VIEWDELPHIFILE,SetPref,SetPref2|lingvo:
-<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> &nbsp;
-<span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span> &nbsp;
-<span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span> &nbsp;
-(~MATCH|(~CentralInfo.PascalCompilerCode~)=d07_win32|&nbsp;||
-<span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span> &nbsp;
-<span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
-~)~)
+(~NOMATCH|(~pageid~)[ViewFiles,ViewWHTMLFile,VIEWDELPHIFILE,SetPref,SetPref2|lingvo:(~drLingvoLinkList~)~)
 </div>
 
 </div>  <!--- whDemoSectionNav -->
@@ -134,6 +127,15 @@ view links to all demos on
 <div class="whDemoSectionNav" style="border-color: darkgreen;">
 (~drCopyright~)
 </div>  <!--- whDemoSectionNav -->
+</whdroplet>
+
+<whdroplet name="drLingvoLinkList">
+lingvo:
+<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> &nbsp;
+<span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span> &nbsp;
+<span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span> &nbsp;
+<span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span> &nbsp;
+<span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
 </whdroplet>
 
 <whdroplet name="drConditionalSystemInfo" show="no">
