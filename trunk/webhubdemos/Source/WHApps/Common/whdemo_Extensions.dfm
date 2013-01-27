@@ -62,4 +62,10 @@ object DemoExtensions: TDemoExtensions
     Left = 520
     Top = 264
   end
+  object waFromList: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waFromListExecute
+    Left = 376
+    Top = 72
+  end
 end
