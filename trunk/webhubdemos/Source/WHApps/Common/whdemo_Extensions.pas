@@ -329,14 +329,15 @@ end;
 
 procedure TDemoExtensions.waFromListExecute(Sender: TObject);
 var
-  mcListName, InnerPairSeparator, OuterPairSeparator, Key: string;
+  mcListName, InnerPairSeparator, Key: string;
   s1, s2: string;
   sLeft, sRight: string;
+const
+  OuterPairSeparator = ',';   // required separator within Macro lists.
 begin
   with TwhWebAction(Sender) do
   begin
-    if SplitFour(HtmlParam, '|', mcListName, InnerPairSeparator,
-      OuterPairSeparator, Key) then
+    if SplitThree(HtmlParam, '|', mcListName, InnerPairSeparator, Key) then
     begin
       s2 := WebApp.Macros.Values[mcListName];
       Key := pWebApp.MoreIfParentild(Key);

@@ -161,7 +161,7 @@ Please try again.
 <span class="changing">(~JUMPR|pgEnterHTQ1|Back~)</span>
 <h2>Search Result</h2>
 <h3>Language ID = (~LangID~)</h3>
-<h3>Name Type = (~DYNCHUNK|mcNameType,(~NameType~)~)</h3>
+<h3>Name Type = (~waFromList.Execute|mcNameType|-|(~NameType~)~)</h3>
 (~ANCHOR|anchRecordCount~)
 (~answergrid.execute~)
 (~MATCH|(~flagGotData~)=No|(~errMessage~)||(~ANCHORMODIFY|anchRecordCount|<p>Number of matches: (~RecordCount~)</p>~)
