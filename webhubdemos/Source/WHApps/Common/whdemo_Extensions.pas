@@ -33,6 +33,7 @@ type
     waImgSrc: TwhWebAction;
     FEATURE: TwhWebAction;
     waCheckSubnet: TwhWebAction;
+    waFromList: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -42,6 +43,7 @@ type
     procedure waImgSrcExecute(Sender: TObject);
     procedure FEATUREExecute(Sender: TObject);
     procedure waCheckSubnetExecute(Sender: TObject);
+    procedure waFromListExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -323,6 +325,35 @@ var
 begin
   SecondsToDelay := StrToIntDef(TwhWebAction(Sender).HtmlParam, 0) * 1000;
   Sleep(SecondsToDelay);
+end;
+
+procedure TDemoExtensions.waFromListExecute(Sender: TObject);
+var
+  mcListName, InnerPairSeparator, OuterPairSeparator, Key: string;
+  s1, s2: string;
+  sLeft, sRight: string;
+begin
+  with TwhWebAction(Sender) do
+  begin
+    if SplitFour(HtmlParam, '|', mcListName, InnerPairSeparator,
+      OuterPairSeparator, Key) then
+    begin
+      s2 := WebApp.Macros.Values[mcListName];
+      Key := pWebApp.MoreIfParentild(Key);
+      while s2 <> '' do
+      begin
+        SplitString(s2, OuterPairSeparator, s1, s2);
+        if SplitString(s1, InnerPairSeparator, sLeft, sRight) then
+        begin
+          if sLeft = Key then
+          begin
+            Response.Send(sRight);
+            break;
+          end;
+        end;
+      end;
+    end;
+  end;
 end;
 
 procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
