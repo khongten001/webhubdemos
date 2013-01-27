@@ -52,6 +52,8 @@ uses
   wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
   wbdeGrid in 'k:\webhub\lib\whdb\wbdeGrid.pas',
   wbdeSource in 'k:\webhub\lib\whdb\wbdeSource.pas',
+  webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  htWebApp in 'k:\webhub\lib\htWebApp.pas',
   ucScnDir in 'ucScnDir.pas',
   whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
