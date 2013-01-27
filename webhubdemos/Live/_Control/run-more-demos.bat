@@ -35,10 +35,6 @@ if "%demohtasync%"=="yes" start whASyncDemo.exe
 if "%demohtasync%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%demohtasync%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htasync /minutes=999999 "/reason=async feature is not yet ready for use with new-ipc"
 
-if "%democom%"=="yes" start whCOM.exe 
-if "%democom%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
-if "%democom%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=com /minutes=999999 "/reason=COM demo will not be converted to new-ipc WebHub v3.x"
-
 if "%demohtdr%"=="yes" start whDropdown.exe 
 if "%demohtdr%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%demohtdr%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htdr /minutes=%covermin% /reason=%coverreason% 
