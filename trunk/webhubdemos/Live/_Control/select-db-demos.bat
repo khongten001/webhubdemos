@@ -10,6 +10,7 @@ echo ipc is %whipc%
 echo ***
 echo .
 
+:: init all to NO
 set demodbhtml=no
 set demodsp=no
 set demodpr=no
@@ -63,8 +64,7 @@ if "%flagdemosdb%"=="no" goto end
 
 set demofire=yes
 
-if "%whipc%"=="old" set demohtcl=yes
-if "%whipc%"=="x"   set demohtcl=no
+set demohtcl=yes
 
 if "%whipc%"=="old" set demohtfm=yes
 if "%whipc%"=="x"   set demohtfm=no
