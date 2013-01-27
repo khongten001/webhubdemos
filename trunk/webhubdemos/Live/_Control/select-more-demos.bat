@@ -18,9 +18,6 @@ set demohtun=yes
 if "%whipc%"=="old" set demohtasync=no
 if "%whipc%"=="x"    set demohtasync=no
 
-if "%whipc%"=="old" set democom=no
-if "%whipc%"=="x"    set democom=no
-
 if "%whipc%"=="old" set demohtdr=yes
 if "%whipc%"=="x" set demohtdr=no
 
