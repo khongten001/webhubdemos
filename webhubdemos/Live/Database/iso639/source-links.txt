@@ -6,4 +6,8 @@ http://www.ethnologue.com/codes/#downloading
 authoritative:
 http://www.loc.gov/standards/iso639-2/php/code_list.php
 
-as of 26-Jan-2013
+conversion to Access and Firebird done by Full Convert Pro 
+
+-HREF Tools Corp.
+ 26-Jan-2013
+
