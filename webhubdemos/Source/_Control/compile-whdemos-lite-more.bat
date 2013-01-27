@@ -54,9 +54,6 @@ call d:\projects\webhubdemos\Source\_Control\compile-1demo_old_d17_win32_source.
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 
-if %comp3%==D15 cd %droot%\More Examples\whCOM
-if %comp3%==D15 call %cbat% whCOM
-
 :: not suitable for new-ipc cd %droot%\More Examples\whASyncDemo
 :: not suitable for new-ipc call %cbat% whASyncDemo
 
