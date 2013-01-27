@@ -1,0 +1,9 @@
+useful:
+http://www.ethnologue.com/codes/#downloading
+  countrycodes, languagecodes and languageindex tables are 
+  from SIL International at www.ethnologue.com
+
+authoritative:
+http://www.loc.gov/standards/iso639-2/php/code_list.php
+
+as of 26-Jan-2013
