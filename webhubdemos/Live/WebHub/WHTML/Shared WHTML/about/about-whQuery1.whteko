@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaHTQ1=Robert Martin
 mcWhDemoCreditFirstDraftHTQ1=Ann Lynnworth
 mcWhDemoCreditGraphicsHTQ1=Rob Daniels
 mcWhDemoCreditCopyHTQ1=Rob Daniels
-mcWhDemoUpdatedHTQ1=May-1998
+mcWhDemoUpdatedHTQ1=Jan-2013
 mcWhDemoKeywordsHTQ1=database,query,sql,dynamic content,beginner
 mcWhDemoLiteHTQ1=No
 </whmacros>
@@ -16,7 +16,10 @@ mcWhDemoLiteHTQ1=No
 <ol>
 <li> Requires whQuery1.exe </li>
 <li> The Borland Database Engine is required</li>
-<li> The tables "contract.db" and "member.db" are required (included).</li>
+<li> The tables "countrycode.db", "languagecode.db" and "languageindex.db" are required.
+<a target="_blank" href="http://www.ethnologue.com/codes/#downloading">(source)</a>
+</li>
+
 <li> The table navigation is defined through a combination of answergrid.Captions, 
 answergrid.ButtonSpecs, and Cascading Style Sheet entries.</li>
 </ol>
@@ -30,8 +33,7 @@ This web application demonstrates (a) how to run a query that leads to an HTML t
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescHTQ1">
-The query will select all matches for the MemberID, as long as the correct 
-password is supplied.
+The query will select all matches for combination of LangID and NameType.
 </whtranslation>
 
 </whteko>

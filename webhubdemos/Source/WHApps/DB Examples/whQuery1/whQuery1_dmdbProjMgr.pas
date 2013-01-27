@@ -11,6 +11,10 @@ type
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
       var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
+      var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -25,8 +29,22 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, Htqry1C;
-  
+  MultiTypeApp, Htqry1C, whQuery1_whdmData;
+
+procedure TDMForWHQuery1.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Application.CreateForm(TDMHTQ1, DMHTQ1);
+end;
+
+procedure TDMForWHQuery1.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := DMHTQ1.Init(ErrorText);
+end;
+
 procedure TDMForWHQuery1.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
@@ -37,3 +55,4 @@ begin
 end;
 
 end.
+
