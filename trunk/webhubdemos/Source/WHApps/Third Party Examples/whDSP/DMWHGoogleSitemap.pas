@@ -4,7 +4,7 @@ interface
 
 uses
   SysUtils, Classes, 
-  {$I xe_actnlist}
+  {$I xe_actnlist.inc}
   updateOK, tpAction, webTypes, webLink;
 
 type

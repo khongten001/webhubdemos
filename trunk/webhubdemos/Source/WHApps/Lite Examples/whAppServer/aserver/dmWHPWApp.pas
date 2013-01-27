@@ -25,7 +25,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  {$I xe_actnlist}
+  {$I xe_actnlist.inc}
   ExtCtrls, 
   whsample_EvtHandlers, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
   WebVars, WebBrows, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
