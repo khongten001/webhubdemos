@@ -123,12 +123,8 @@ end;
 
 procedure TDMHTQ1.Query1AfterOpen(DataSet: TDataSet);
 begin
-  {see the HTML for Page2 to see how this literal is used to
-   conditionally bring in page sections.}
-  if (DataSet.recordcount = 0) then
-    pWebApp.StringVar['flagGotData'] := 'No'
-  else
-    pWebApp.StringVar['flagGotData'] := 'Yes';
+  {see the HTML for Page2 to see how this is used to
+   conditionally show warning message or record count.}
   pWebApp.StringVarInt['RecordCount'] := DataSet.RecordCount;
 
   {use this to output the query syntax for debugging purposes}
