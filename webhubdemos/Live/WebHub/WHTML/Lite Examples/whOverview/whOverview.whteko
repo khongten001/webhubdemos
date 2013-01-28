@@ -112,7 +112,7 @@ or not (i.e. your local computer) -->
 (~PARAMS|drDemoLink|jpeg,db~)
 (~PARAMS|drDemoLink|HTRU,db~)
 (~PARAMS|drDemoLink|SHOP1,db~)
-(~PARAMS|drDemoLink|STORE000,db~)
+<!--- (~PARAMS|drDemoLink|STORE000,db~) -->
 (~PARAMS|drDemoLink|HTQ3,db~)
 (~PARAMS|drDemoLink|HTQ4,db~)
 (~PARAMS|drDemoLink|HTQ2,db~)
