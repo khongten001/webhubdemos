@@ -66,8 +66,7 @@ set demofire=yes
 
 set demohtcl=yes
 
-if "%whipc%"=="old" set demohtfm=yes
-if "%whipc%"=="x"   set demohtfm=no
+set demohtfm=yes
 
 set demohtfs=yes
 set demojpeg=yes
