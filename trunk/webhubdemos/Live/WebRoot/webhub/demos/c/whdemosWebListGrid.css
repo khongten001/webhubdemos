@@ -1,14 +1,20 @@
 /* webListGrid control and button styles */
 
-.webListGrid-table {
-  border: 1px solid black;
+.whListGrid-table {
+  border: none;
+  border-collapse: collapse;
+  empty-cells: show;
 }
 
-.webListGrid-table td {
-  border: 1px solid black;
+.whListGrid-table td {
+  border-bottom: 1px solid green;
   padding: 6px;
 }
 
-.webListGrid-table th, caption {
+.whListGrid-table th, caption {
   background-color: #CCFF33;
+}
+
+.whListGrid-table th {
+	border-bottom: 2px solid blue;
 }
