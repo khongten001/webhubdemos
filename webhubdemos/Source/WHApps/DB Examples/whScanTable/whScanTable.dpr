@@ -45,7 +45,6 @@ uses
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   scanfm in 'scanfm.pas' {fmDBPanel},
-  importfm in 'importfm.pas' {FormImport},
   wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
   wdbxSource in 'k:\webhub\lib\whdb\wdbxSource.pas',
   wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
