@@ -69,16 +69,13 @@
       <AdminSessionNumber value="1204" context="DORIS"/>
     </Security>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value=""/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
-      <WebRobotIniSection value=""/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="aboutHTFS" filename="..\..\Shared WHTML\about\about-whFishStore.whteko"/>
       <File id="contentFish" filename="whFishStore.whteko"/>
+      <File id="maintFish" filename="maint.whteko"/>
       <File id="ceng" filename="whFishStore-eng.whteko"/>
       <File id="cdeu" filename="whFishStore-deu.whteko"/>
       <File id="cfra" filename="whFishStore-fra.whteko"/>

@@ -1,0 +1,42 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designmode="code"
+  notes="data entry of prices">
+
+<whpage pageid="adminp" desc="Fish Price Maintenance">
+<whprep>
+<!---(~waSaveCurrentFish.execute~)-->
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<p>(~JUMP|admin|back~)</p>
+
+<h1>Data Entry</h1>
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|admin,post,gfAdmin.this~)">
+Your name:(~inputtext|SurferName,20,20~)<br />
+Password: (~inputtext|Password,20,20~)<p>
+Species No: (~Field|wdsAdmin|Species No~)<br />
+Fish Cost: $(~inputtext|Price,10,10|wdsAdmin|Price~)<br />
+<br /><br />
+Shipping Notes:(~inputtextarea|txtShippingNotes,3,30|(~FIELD|wdsAdmin|ShippingNotes~)~)
+<br /><br />
+<input type="submit" value="Update Table">
+</form>
+
+</div> 
+(~drPageEnd~)
+</body></html>
+</whoutput>
+</whpage>
+
+
+</whteko>
