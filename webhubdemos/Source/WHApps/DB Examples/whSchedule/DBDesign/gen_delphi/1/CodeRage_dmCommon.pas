@@ -11,8 +11,7 @@ interface
 {$I IB_Directives.inc}
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Db, DBTables,
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs, DB, 
   IB_Access,  // part of IBObjects 4.9.9 but not part of v4.8.6
   IB_Components, IBODataset, 
 {$IFNDEF IBO_UseUnicode}  IB_StoredProc, {$ENDIF}
