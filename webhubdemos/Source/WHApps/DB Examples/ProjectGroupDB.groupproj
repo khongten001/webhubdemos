@@ -51,6 +51,9 @@
         <Projects Include="whDynamicJPEG\whDynamicJPEG.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="whFishStore\Paradox2Xml\Paradox2Xml.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -203,14 +206,23 @@
     <Target Name="whDynamicJPEG:Make">
         <MSBuild Projects="whDynamicJPEG\whDynamicJPEG.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Paradox2Xml">
+        <MSBuild Projects="whFishStore\Paradox2Xml\Paradox2Xml.dproj"/>
+    </Target>
+    <Target Name="Paradox2Xml:Clean">
+        <MSBuild Projects="whFishStore\Paradox2Xml\Paradox2Xml.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Paradox2Xml:Make">
+        <MSBuild Projects="whFishStore\Paradox2Xml\Paradox2Xml.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap;whDPrefix;whQuery1;whDynamicJPEG"/>
+        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap;whDPrefix;whQuery1;whDynamicJPEG;Paradox2Xml"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whQuery1:Clean;whDynamicJPEG:Clean"/>
+        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whQuery1:Clean;whDynamicJPEG:Clean;Paradox2Xml:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whQuery1:Make;whDynamicJPEG:Make"/>
+        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whQuery1:Make;whDynamicJPEG:Make;Paradox2Xml:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
