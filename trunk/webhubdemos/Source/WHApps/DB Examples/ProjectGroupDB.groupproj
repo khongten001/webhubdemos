@@ -24,9 +24,6 @@
         <Projects Include="..\Third Party Examples\whDSP\whDSP.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="whSchedule\whSchedule.dproj">
             <Dependencies/>
         </Projects>
@@ -49,6 +46,9 @@
             <Dependencies/>
         </Projects>
         <Projects Include="whQuery1\whQuery1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whDynamicJPEG\whDynamicJPEG.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -122,15 +122,6 @@
     <Target Name="whDSP:Make">
         <MSBuild Projects="..\Third Party Examples\whDSP\whDSP.dproj" Targets="Make"/>
     </Target>
-    <Target Name="whDynamicJPEG">
-        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj"/>
-    </Target>
-    <Target Name="whDynamicJPEG:Clean">
-        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="whDynamicJPEG:Make">
-        <MSBuild Projects="..\More Examples\whDynamicJPEG\whDynamicJPEG.dproj" Targets="Make"/>
-    </Target>
     <Target Name="whSchedule">
         <MSBuild Projects="whSchedule\whSchedule.dproj"/>
     </Target>
@@ -203,14 +194,23 @@
     <Target Name="whQuery1:Make">
         <MSBuild Projects="whQuery1\whQuery1.dproj" Targets="Make"/>
     </Target>
+    <Target Name="whDynamicJPEG">
+        <MSBuild Projects="whDynamicJPEG\whDynamicJPEG.dproj"/>
+    </Target>
+    <Target Name="whDynamicJPEG:Clean">
+        <MSBuild Projects="whDynamicJPEG\whDynamicJPEG.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whDynamicJPEG:Make">
+        <MSBuild Projects="whDynamicJPEG\whDynamicJPEG.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whDynamicJPEG;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap;whDPrefix;whQuery1"/>
+        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap;whDPrefix;whQuery1;whDynamicJPEG"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whDynamicJPEG:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whQuery1:Clean"/>
+        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whQuery1:Clean;whDynamicJPEG:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whDynamicJPEG:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whQuery1:Make"/>
+        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whQuery1:Make;whDynamicJPEG:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
