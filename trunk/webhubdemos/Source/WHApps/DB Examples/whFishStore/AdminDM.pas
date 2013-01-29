@@ -40,6 +40,7 @@ var
 implementation
 
 uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucString, ucCodeSiteInterface,
   webApp, whMacroAffixes,
   whdemo_ViewSource,
@@ -51,8 +52,9 @@ uses
 {------------------------------------------------------------------------------}
 
 function TDataModuleAdmin.Init(out ErrorText: string): Boolean;
-const cFn = 'initDB';
+const cFn = 'Init';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   ErrorText := '';
   gfAdmin.WebDataSource := wdsAdmin;
 
@@ -80,14 +82,19 @@ begin
     begin
       gfAdmin.SetCaptions2004;
       gfAdmin.SetButtonSpecs2012;
-    end;
+    end
+    else
+      ErrorText := gfAdmin.ClassName + ' gfAdmin is not usable';
   end;
-  Result := ErrorText = '';
+  Result := (ErrorText = '');
+  {$IFDEF CodeSite}CodeSite.Send('Result', Result);
+  CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 {------------------------------------------------------------------------------}
 
 procedure TDataModuleAdmin.TableFishCostBeforePost(DataSet: TDataSet);
+const cFn = 'TableFishCostBeforePost';
 begin
   with TableFishCost do
   begin
@@ -128,8 +135,12 @@ end;
 
 procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
   var s: string);
+const cFn = 'gfAdminHotField';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSSend('aField.FieldName', aField.FieldName);
   s:=MacroStart + 'JUMP|AdminP,'+aField.asString+'|'+aField.asString+MacroEnd;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDataModuleAdmin.HTFS_ADMINSection(Sender: TObject;
@@ -166,24 +177,29 @@ end;
 {------------------------------------------------------------------------------}
 
 procedure TDataModuleAdmin.waSaveCurrentFishExecute(Sender: TObject);
+const cFn = 'waSaveCurrentFishExecute';
 var
-  S: String;
+  S1: string;
   b: Boolean;
+  AWarning: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with TFishApp(TwhWebActionEx(Sender).WebApp) do
   begin
-    S := Command;
-    TFishSessionVars(Session.Vars).CurrentFish := StrToFloat(S);
-    if uppercase(PageID)='DETAIL' then
-      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S])
+    S1 := Command;
+    TFishSessionVars(Session.Vars).CurrentFish := StrToFloat(S1);
+    if SameText(PageID, 'DETAIL') then
+      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S1])
     else
-      b:=TableFishCost.FindKey([S]);
+      b:=TableFishCost.FindKey([S1]);
     if not b then
     begin
-      Response.SendComment('Could not locate fish #'+S);
-      exit;
+      AWarning := 'Could not locate fish #' + S1;
+      CSSendWarning(AWarning);
+      Response.SendComment(AWarning);
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 (*
