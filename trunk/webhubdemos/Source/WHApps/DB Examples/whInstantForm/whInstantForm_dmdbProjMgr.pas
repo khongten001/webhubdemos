@@ -25,13 +25,17 @@ unit whInstantForm_dmdbProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Windows, Messages, SysUtils, Variants, Classes,
   Dialogs, whdemo_DMDBProjMgr, tpProj;
 
 type
   TDMForWHInstantForm = class(TDMForWHDBDemo)
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
+      var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
   private
     { Private declarations }
@@ -47,13 +51,29 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, HtformC;
+  MultiTypeApp, HtformC, whInstantForm_whdmData;
+
+procedure TDMForWHInstantForm.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  {M}Application.CreateForm(TDMParts, DMParts);
+end;
+
+procedure TDMForWHInstantForm.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := DMParts.Init(ErrorText);
+end;
 
 procedure TDMForWHInstantForm.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  { M } Application.CreateForm(TfmHTFMPanel, fmHTFMPanel);
+  if ShouldEnableGUI then
+    {M}Application.CreateForm(TfmHTFMPanel, fmHTFMPanel);
 end;
 
 end.
+
