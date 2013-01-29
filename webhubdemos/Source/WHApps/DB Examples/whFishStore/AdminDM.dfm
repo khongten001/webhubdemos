@@ -34,6 +34,7 @@ object DataModuleAdmin: TDataModuleAdmin
     Top = 60
   end
   object DataSourceFishCost: TDataSource
+    DataSet = TableFishCost
     Left = 241
     Top = 112
   end
@@ -47,6 +48,7 @@ object DataModuleAdmin: TDataModuleAdmin
     Aggregates = <>
     FileName = 'D:\Projects\webhubdemos\Live\Database\whFishStore\fishcost.xml'
     Params = <>
+    BeforePost = TableFishCostBeforePost
     Left = 240
     Top = 176
   end
