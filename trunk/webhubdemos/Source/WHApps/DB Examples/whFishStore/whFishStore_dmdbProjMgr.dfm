@@ -1,8 +1,6 @@
 object DMForWHFishStore: TDMForWHFishStore
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 395
-  Top = 138
   Height = 150
   Width = 215
   object ProjMgr: TtpProject

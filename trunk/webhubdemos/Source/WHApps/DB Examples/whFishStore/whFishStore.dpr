@@ -33,21 +33,15 @@ changes:
 3. The datamodule was renamed to dmWebHubFishApp.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  tfish in 'tfish.pas',
-  uTranslations in 'uTranslations.pas',
-  whFishStore_dmdbProjMgr in 'whFishStore_dmdbProjMgr.pas' {DMForWHFishStore: TDataModule},
-  whFishStore_fmWhPanel in 'whFishStore_fmWhPanel.pas' {fmHTFSPanel},
-  AdminDM in 'AdminDM.pas' {DataModuleAdmin: TDataModule},
-  dmFishAp in 'dmFishAp.pas' {dmWebHubFishApp: TDataModule},
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   webLGrid in 'h:\webLGrid.pas',
   webLink in 'h:\webLink.pas',
@@ -55,7 +49,15 @@ uses
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
-  whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas';
+  whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
+  whJPEG in 'h:\whJPEG.pas',
+  tfish in 'tfish.pas',
+  uTranslations in 'uTranslations.pas',
+  AdminDM in 'AdminDM.pas' {DataModuleAdmin: TDataModule},
+  dmFishAp in 'dmFishAp.pas' {dmWebHubFishApp: TDataModule},
+  whFishStore_dmdbProjMgr in 'whFishStore_dmdbProjMgr.pas' {DMForWHFishStore: TDataModule},
+  whFishStore_fmWhPanel in 'whFishStore_fmWhPanel.pas' {fmHTFSPanel},
+  whFireStore_dmwhBiolife in 'whFireStore_dmwhBiolife.pas' {DMFishStoreBiolife: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
@@ -70,5 +72,4 @@ begin
   DMForWHFishStore.ProjMgr.ManageStartup;
   Application.Run;
 end.
-
 

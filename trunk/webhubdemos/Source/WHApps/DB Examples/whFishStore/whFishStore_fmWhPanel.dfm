@@ -11,73 +11,37 @@ inherited fmHTFSPanel: TfmHTFSPanel
   inherited pa: TPanel
     Width = 462
     Height = 389
-    ExplicitWidth = 472
-    ExplicitHeight = 390
+    ExplicitWidth = 462
+    ExplicitHeight = 389
     object Image1: TImage
       Left = 241
       Top = 47
-      Width = 226
-      Height = 338
+      Width = 216
+      Height = 337
       Align = alClient
+      ExplicitWidth = 226
+      ExplicitHeight = 338
     end
     object tpToolBar2: TtpToolBar
       Left = 5
       Top = 5
-      Width = 462
+      Width = 452
       Height = 42
       TabOrder = 0
+      object Label1: TLabel
+        Left = 8
+        Top = 12
+        Width = 208
+        Height = 18
+        Caption = 'Fish images will display here'
+      end
     end
     object tpComponentPanel2: TtpComponentPanel
       Left = 5
       Top = 47
       Width = 236
-      Height = 338
+      Height = 337
       TabOrder = 1
-      object GroupBox1: TGroupBox
-        Left = 1
-        Top = 225
-        Width = 234
-        Height = 56
-        Align = alTop
-        Caption = 'BMP to JPG conversion'
-        TabOrder = 0
-      end
-      object GroupBox3: TGroupBox
-        Left = 1
-        Top = 1
-        Width = 234
-        Height = 56
-        Align = alTop
-        Caption = 'Shipping Cost Grid'
-        TabOrder = 1
-      end
-      object GroupBox4: TGroupBox
-        Left = 1
-        Top = 57
-        Width = 234
-        Height = 56
-        Align = alTop
-        Caption = 'Grid of Fish (GF)'
-        TabOrder = 2
-      end
-      object GroupBox5: TGroupBox
-        Left = 1
-        Top = 113
-        Width = 234
-        Height = 56
-        Align = alTop
-        Caption = 'Grid of Fish -- Advanced (GFA1)'
-        TabOrder = 3
-      end
-      object GroupBox6: TGroupBox
-        Left = 1
-        Top = 169
-        Width = 234
-        Height = 56
-        Align = alTop
-        Caption = 'Put fish in cart'
-        TabOrder = 4
-      end
     end
   end
   object tpStatusBar1: TtpStatusBar
@@ -87,108 +51,18 @@ inherited fmHTFSPanel: TfmHTFSPanel
     Height = 19
     Panels = <
       item
+        Text = 'waFishPhoto: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
     ShowHint = True
+    SimpleText = ''
     PanelStatusIndex = 0
-    ExplicitTop = 390
-    ExplicitWidth = 472
-  end
-  object WebListGrid1: TwhListGrid
-    ComponentOptions = [tpUpdateOnGet]
-    CaptionDelimiter = '@'
-    LinesMode = wlgAsGrid
-    Left = 37
-    Top = 68
-  end
-  object gf: TwhbdeGrid
-    ComponentOptions = []
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    PageHeight = 3
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    Border = 'cellspacing="0"'
-    TR = '<tr>'
-    TD = '<td>'
-    ShowRecno = False
-    Preformat = False
-    WebDataSource = WebDataSourceBiolife
-    Left = 14
-    Top = 118
-  end
-  object WebDataSourceBiolife: TwhbdeSource
-    ComponentOptions = [tpUpdateOnGet]
-    GotoMode = wgGotoKey
-    KeyFieldNames = 'Species No'
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = DataSourceBiolife
-    Left = 49
-    Top = 118
-  end
-  object DataSourceBiolife: TDataSource
-    DataSet = TableBiolife
-    Left = 84
-    Top = 118
-  end
-  object TableBiolife: TTable
-    TableName = 'BIOLIFE.DB'
-    TableType = ttParadox
-    Left = 119
-    Top = 118
-  end
-  object DataSourceA1: TDataSource
-    Left = 92
-    Top = 177
-  end
-  object wdsa1: TwhbdeSource
-    ComponentOptions = [tpUpdateOnGet]
-    GotoMode = wgGotoKey
-    KeyFieldNames = 'Species No'
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSource = DataSourceA1
-    Left = 57
-    Top = 177
-  end
-  object gfa1: TwhbdeGrid
-    ComponentOptions = [tpUpdateOnGet]
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    TR = '<tr>'
-    TD = '<td>'
-    ShowRecno = False
-    Preformat = False
-    WebDataSource = wdsa1
-    Left = 22
-    Top = 177
   end
   object waFishPhoto: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnGet]
+    ComponentOptions = []
     OnExecute = waFishPhotoExecute
-    Left = 88
-    Top = 288
-  end
-  object waGrabFish: TwhWebAction
-    ComponentOptions = [tpUpdateOnGet]
-    OnExecute = waGrabFishExecute
-    Left = 88
-    Top = 288
-  end
-  object TableA1: TtpTable
-    TableMode = tmData
-    PostBeforeClose = False
-    HideLinkingKeys = False
-    LeaveOpen = False
-    Left = 128
-    Top = 177
+    Left = 80
+    Top = 72
   end
 end
