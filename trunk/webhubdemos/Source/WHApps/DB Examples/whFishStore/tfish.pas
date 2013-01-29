@@ -27,7 +27,7 @@ interface
 uses
   SysUtils, Windows, Classes,
   updateOK,
-  webTypes, webVars, webBase, webCore, webApp, htWebApp, //htbdeWApp,
+  webTypes, webVars, webBase, webCore, webApp, htWebApp,
   uTranslations;
 
 type
