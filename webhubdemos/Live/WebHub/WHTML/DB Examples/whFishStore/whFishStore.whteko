@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" designdynsrc="localdemohtfs"
   defaultlingvo="eng"
@@ -240,7 +240,7 @@ see, you can place an order.</p>
 <div id="whdemopagecontent">
 (~waSaveCurrentFish.execute~)
 <h1>Selected fish: (~FIELD|WebDataSourceBiolife|Common_Name~)</h1>
-<p>Here's your fish!!</p>
+<p>Here is your fish!!</p>
 (~waFishPhoto.execute~)
 <p><i>If you have any difficulty seeing the graphic, please view the HTML
 source.  A comment should indicate the local filename that the
@@ -345,6 +345,7 @@ set up a page which calls the grid, and you're READY.
 <head>
 	(~drHead~)
 	(~drStyleHTFSAdmin~)
+<link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdemosWebDataGrid.css" />
 </head>
 <body>
 (~drPageBegin~)
