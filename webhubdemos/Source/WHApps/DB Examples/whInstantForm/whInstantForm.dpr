@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
@@ -29,9 +29,10 @@ uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utmainfm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
+  wdbForm in 'k:\webhub\lib\wdbForm.pas',
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -42,7 +43,8 @@ uses
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TDataModule},
   whMain in 'h:\whMain.pas' {TfmWebHubMainForm},
   HtformC in 'HtformC.pas' {fmHTFMPanel},
-  whInstantForm_dmdbProjMgr in 'whInstantForm_dmdbProjMgr.pas' {DMForWHInstantForm: TDataModule};
+  whInstantForm_dmdbProjMgr in 'whInstantForm_dmdbProjMgr.pas' {DMForWHInstantForm: TDataModule},
+  whInstantForm_whdmData in 'whInstantForm_whdmData.pas' {DMParts: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
@@ -56,3 +58,4 @@ begin
   DMForWHInstantForm.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
+
