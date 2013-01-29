@@ -405,41 +405,6 @@ input, select{
 </style>
 </whdroplet>
 
-<whpage pageid="adminp" desc="Fish Price Maintenance">
-<whprep>
-<!---(~waSaveCurrentFish.execute~)-->
-</whprep>
-<whoutput>
-(~mcdoctypehtml~)
-<html>
-<head>
-(~drHead~)
-</head>
-<body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
-<p>(~JUMP|admin|back~)</p>
-<p>This data entry form has been commented out. The WebHub-html code is still available 
-in a comment in the whFishStore.whteko file. </p>
-<!---
-<h1>Data Entry</h1>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|admin,post,gfAdmin.this~)">
-Your name:(~inputtext|SurferName,20,20~)<br />
-Password: (~inputtext|Password,20,20~)<p>
-Species No: (~Field|wdsAdmin|Species No~)<br />
-Fish Cost: $(~inputtext|Price,10,10|wdsAdmin|Price~)<br />
-<br /><br />
-Shipping Notes:(~inputtextarea|txtShippingNotes,3,30|(~FIELD|wdsAdmin|ShippingNotes~)~)
-<br /><br />
-<input type="submit" value="Update Table">
-</form>
--->
-</div> 
-(~drPageEnd~)
-</body></html>
-</whoutput>
-</whpage>
-
 <whpage pageid="RemoteRefreshFishapp">
 <whdoc>
 Whereas the rest of the demos have an app object named "htwebapp",
