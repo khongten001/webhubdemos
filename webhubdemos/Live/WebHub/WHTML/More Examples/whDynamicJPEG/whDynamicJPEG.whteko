@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -21,18 +21,18 @@
 <div id="whdemopagecontent">
 <h1>Dynamically modified images from the ANIMALS table</h1>
 
-<h2>Example 1 at 100 percent</h2>
-<img src="(~ACTION|do,waJPEG.100~)" height="(~waJPEG.100|height~)" width="(~waJPEG.100|height~)" alt="example 1" /><br />
+<h2>Example at 100 percent</h2>
+<img src="(~ACTION|do,waJPEG.100~)" style="height:(~waJPEG.100|height~); width:(~waJPEG.100|height~);" alt="example at 100 percent" /><br />
 
-<h2>Example 2 at 50 percent</h2>
-<img src="(~ACTION|do,waJPEG.50~)" height="(~waJPEG.50|height~)" width="(~waJPEG.50|height~)" alt="example 2" /><br />
+<h2>Example at 50 percent</h2>
+<img src="(~ACTION|do,waJPEG.50~)" style="height:(~waJPEG.50|height~); width:(~waJPEG.50|height~);" alt="example at 50 percent" /><br />
 
-<h2>Example 3 at 20 percent</h2>
-<img src="(~ACTION|do,waJPEG.20~)" height="(~waJPEG.20|height~)" width="(~waJPEG.20|height~)" alt="example 3" />
+<h2>Example at 20 percent</h2>
+<img src="(~ACTION|do,waJPEG.20~)" style="height:(~waJPEG.20|height~); width:(~waJPEG.20|height~);" alt="example at 20 percent" />
 <br /><br />
 <span class="changing">
-(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous Animal~) &nbsp;&nbsp;&nbsp;
-(~JUMPR|(~PageID~)|Next Animal~)
+(~JUMPR|(~PageID~),waAnimalNav.Prev|Previous BioLife Animal~) &nbsp;&nbsp;&nbsp;
+(~JUMPR|(~PageID~)|Next BioLife Animal~)
 </span>
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaJPEG=Michael Ax
 mcWhDemoCreditFirstDraftJPEG=Michael Ax
 mcWhDemoCreditGraphicsJPEG=Michael Ax
 mcWhDemoCreditCopyJPEG=Ann Lynnworth
-mcWhDemoUpdatedJPEG=09-Jan-2011
+mcWhDemoUpdatedJPEG=29-Jan-2013
 mcWhDemoKeywordsJPEG=JPEG,dynamic,graphics
 mcWhDemoLiteJPEG=No
 </whmacros>
@@ -15,7 +15,8 @@ mcWhDemoLiteJPEG=No
 <whdroplet name="drDemoSetupJPEG">
 <ol>
 <li> Requires whDynamicJPEG.exe </li>
-<li> Requires Borland Database Engine (and that is why it was recategorized as a "db" demo, January 2011)</li>
+<li> Requires TClientDataSet</li>
+<li> Uses biolife.xml data as shipped by Embarcadero </li>
 </ol>
 </whdroplet>
 
@@ -25,6 +26,7 @@ of JPEG files on the fly.
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescJPEG">
+Graphics are loaded from a field in an XML database by Delphi TClientDataSet.
 </whtranslation>
 
 </whteko>

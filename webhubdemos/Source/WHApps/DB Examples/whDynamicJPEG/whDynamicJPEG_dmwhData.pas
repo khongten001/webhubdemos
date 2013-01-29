@@ -1,19 +1,37 @@
 unit whDynamicJPEG_dmwhData;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this WebHub sample file *)
+(*
+Copyright (c) 2003-2013 HREF Tools Corp.
+
+Permission is hereby granted, on 29-Jan-2013, free of charge, to any person
+obtaining a copy of this file (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*)
 
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, Xml.xmldom, Data.DB, Datasnap.Provider, Xmlxform, Datasnap.DBClient,
-  updateOK, tpAction, webTypes;
+  SysUtils, Classes, DB, DBClient,
+  updateOK, tpAction,
+  webLink, webTypes;
 
 type
   TDMBIOLIFE = class(TDataModule)
     ClientDataSet1: TClientDataSet;
-    XMLTransformProvider1: TXMLTransformProvider;
     DataSourceBiolife: TDataSource;
     waAnimalNav: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
@@ -43,10 +61,7 @@ uses
 procedure TDMBIOLIFE.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
-  XMLTransformProvider1.TransformRead.TransformationFile :=
-    getHtDemoDataRoot + 'embSample\BiolifeToDp.xtr';
-  XMLTransformProvider1.XMLDataFile := getHtDemoDataRoot + 'embSample\' +
-    'biolife.xml';
+  ClientDataSet1.Filename := getHtDemoDataRoot + 'embSample\' + 'biolife.xml';
   ClientDataSet1.ReadOnly := True;
 end;
 

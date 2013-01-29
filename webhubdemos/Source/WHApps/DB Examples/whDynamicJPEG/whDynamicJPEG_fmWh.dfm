@@ -11,15 +11,14 @@ inherited fmWhAnimals: TfmWhAnimals
   inherited pa: TPanel
     Width = 1052
     Height = 327
-    ExplicitWidth = 548
-    ExplicitHeight = 287
+    ExplicitWidth = 1052
+    ExplicitHeight = 327
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
       Width = 1042
       BorderWidth = 5
       TabOrder = 0
-      ExplicitWidth = 538
     end
     object Panel: TPanel
       Left = 5
@@ -30,8 +29,6 @@ inherited fmWhAnimals: TfmWhAnimals
       BevelOuter = bvNone
       BorderStyle = bsSingle
       TabOrder = 1
-      ExplicitWidth = 538
-      ExplicitHeight = 237
       object Splitter1: TSplitter
         Left = 352
         Top = 0
@@ -62,8 +59,6 @@ inherited fmWhAnimals: TfmWhAnimals
         DataField = 'Graphic'
         DataSource = DMBIOLIFE.DataSourceBiolife
         TabOrder = 1
-        ExplicitLeft = 592
-        ExplicitWidth = 446
       end
     end
   end
@@ -74,40 +69,13 @@ inherited fmWhAnimals: TfmWhAnimals
     Height = 19
     Panels = <
       item
-        Text = 'WebActionNoSaveState1: Not Updated'
+        Text = 'waJPEG: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
     ShowHint = True
     SimpleText = ''
     PanelStatusIndex = 0
-    ExplicitTop = 287
-    ExplicitWidth = 548
-  end
-  object Table1: TTable
-    IndexName = 'NAME'
-    TableName = 'animals.dbf'
-    Left = 100
-    Top = 204
-    object Table1NAME: TStringField
-      FieldName = 'NAME'
-      Size = 10
-    end
-    object Table1SIZE: TSmallintField
-      FieldName = 'SIZE'
-    end
-    object Table1WEIGHT: TSmallintField
-      FieldName = 'WEIGHT'
-    end
-    object Table1AREA: TStringField
-      FieldName = 'AREA'
-    end
-    object Table1BMP: TBlobField
-      FieldName = 'BMP'
-      Visible = False
-      BlobType = ftTypedBinary
-      Size = 1
-    end
   end
   object waJPEG: TwhWebActionEx
     OnUpdate = waJPEGUpdate

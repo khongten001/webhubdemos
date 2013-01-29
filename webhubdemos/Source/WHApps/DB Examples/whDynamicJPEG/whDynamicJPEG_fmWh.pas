@@ -1,4 +1,5 @@
 unit whDynamicJPEG_fmWh;
+
 (*
 Copyright (c) 2003 HREF Tools Corp.
 
@@ -24,10 +25,10 @@ THE SOFTWARE.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
-    Toolbar, Restorer, DBCtrls, WebTypes, weblink, Db, DBTables,
-  Grids, DBGrids, whJPEG, ComCtrls, tpStatus, tpCompPanel;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms,
+  ExtCtrls, StdCtrls, ComCtrls, DB, DBCtrls, Grids, DBGrids,
+  utPanFrm, UpdateOk, tpAction, Toolbar, Restorer, tpStatus, tpCompPanel,
+  webTypes, webLink, whJPEG;
 
 type
   TwhWebActionEx = class(TwhJPEG);
@@ -37,12 +38,6 @@ type
     ToolBar: TtpToolBar;
     Panel: TPanel;
     DBGrid1: TDBGrid;
-    Table1: TTable;
-    Table1NAME: TStringField;
-    Table1SIZE: TSmallintField;
-    Table1WEIGHT: TSmallintField;
-    Table1AREA: TStringField;
-    Table1BMP: TBlobField;
     waJPEG: TwhWebActionEx;
     DBImage: TDBImage;
     Splitter1: TSplitter;
@@ -73,14 +68,7 @@ begin
   Result:= inherited Init;
   if Result then
   begin
-    with Table1 do
-    begin
-      DatabaseName := getHtDemoDataRoot + 'whDynamicJPEG\';
-      TableName := 'animals.dbf';
-      Open;
-    end;
     RefreshWebActions(Self);
-    //waJPEGUpdate(waJPEG);
   end;
 end;
 
@@ -113,7 +101,8 @@ procedure TfmWhAnimals.waJPEGExecute(Sender: TObject);
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  {$IFDEF CodeSite}CodeSite.Send('Record #', Table1.RecNo);{$ENDIF}
+  {$IFDEF CodeSite}CodeSite.Send('DMBIOLIFE.ClientDataSet1.RecNo',
+    DMBIOLIFE.ClientDataSet1.RecNo);{$ENDIF}
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
