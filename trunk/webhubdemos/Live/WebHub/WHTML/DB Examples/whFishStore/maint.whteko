@@ -5,9 +5,84 @@
   designmode="code"
   notes="data entry of prices">
 
+<whpage pageid="admin" desc="Administrative Functions">
+<whprep>
+(~waPostPrice.Execute|~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	(~drStyleHTFSAdmin~)
+<link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdemosWebDataGrid.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Maintain Fish Prices</h1>
+<p>Select fish to update information on.  Change the display set
+to &quot;SeePassword&quot; to find out what the passwords are.</p>
+<p>You may create the password for any record where it is still 
+blank.</p>
+<p>(~gfAdmin.execute~)</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="drStyleHTFSAdmin">
+<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+<style type="text/css" media="screen">
+#gfAdmin-table {
+ clear: both;
+ margin: 0;
+ border: 1px solid #000;
+ }
+
+#gfAdmin-table td {
+ padding: 0.8em;
+ border-top: 1px solid #888;
+ border-right: 1px solid #bbb;
+ border-left: 1px solid #bbb;
+ border-bottom: 1px solid #888;
+ background-color: #fefeef;
+ }
+
+#gfAdmin-table th {
+ background-color: #2C42CC;
+ color: white;
+ font-weight: 700;
+ border-right: 1px solid #ccc;
+ padding: 0.8em;
+ }
+
+#gfAdmin-table th a{
+ color: white;
+ font-weight: 700;
+ text-decoration: none;
+ }
+
+#gfAdmin-table td:first-child a:hover {
+ color: #D00;
+ }
+
+a:hover {color: #CC6699;}
+
+input, select{
+ border: 1px solid;
+ margin: 0 4px;}
+
+.refresh {color:#0000aa;}
+
+</style>
+</whdroplet>
+
+
 <whpage pageid="adminp" desc="Fish Price Maintenance">
 <whprep>
-<!---(~waSaveCurrentFish.execute~)-->
+(~waSaveCurrentFish.execute~)
+(~SET|price=(~FIELD|wdsAdmin|Price~)~)
+(~CLEAR|password~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -23,13 +98,17 @@
 <h1>Data Entry</h1>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|admin,post,gfAdmin.this~)">
 Your name:(~inputtext|SurferName,20,20~)<br />
-Password: (~inputtext|Password,20,20~)<p>
-Species No: (~Field|wdsAdmin|Species No~)<br />
-Fish Cost: $(~inputtext|Price,10,10|wdsAdmin|Price~)<br />
+<!-- correct password is (~FIELD|wdsAdmin|Password~) -->
+Password: (~inputtext|Password,20,2~)<br/>
+
+Species No: <span style="color:darkslategray; font-weight: 900;">(~Field|wdsAdmin|Species No~)</span><br />
+Fish Cost: $(~inputtext|Price,10,10~)
 <br /><br />
-Shipping Notes:(~inputtextarea|txtShippingNotes,3,30|(~FIELD|wdsAdmin|ShippingNotes~)~)
-<br /><br />
-<input type="submit" value="Update Table">
+Shipping Notes: 
+<textarea name="txtShippingNotes" rows="2" cols="25">
+(~FIELD|wdsAdmin|ShippingNotes~)
+</textarea>
+<input style="margin-top: 2em;" type="submit" value="Save to FishCost Table" />
 </form>
 
 </div> 

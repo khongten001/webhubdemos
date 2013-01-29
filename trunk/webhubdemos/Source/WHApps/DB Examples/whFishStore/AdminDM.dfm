@@ -1,7 +1,5 @@
 object DataModuleAdmin: TDataModuleAdmin
   OldCreateOrder = True
-  OnCreate = DataModuleCreate
-  OnDestroy = DataModuleDestroy
   Height = 243
   Width = 441
   object gfAdmin: TwhbdeGrid
@@ -38,12 +36,6 @@ object DataModuleAdmin: TDataModuleAdmin
     Left = 241
     Top = 112
   end
-  object waSaveCurrentFish: TwhWebActionEx
-    ComponentOptions = []
-    OnExecute = waSaveCurrentFishExecute
-    Left = 72
-    Top = 56
-  end
   object TableFishCost: TClientDataSet
     Aggregates = <>
     FileName = 'D:\Projects\webhubdemos\Live\Database\whFishStore\fishcost.xml'
@@ -51,5 +43,11 @@ object DataModuleAdmin: TDataModuleAdmin
     BeforePost = TableFishCostBeforePost
     Left = 240
     Top = 176
+  end
+  object waPostPrice: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waPostPriceExecute
+    Left = 88
+    Top = 80
   end
 end
