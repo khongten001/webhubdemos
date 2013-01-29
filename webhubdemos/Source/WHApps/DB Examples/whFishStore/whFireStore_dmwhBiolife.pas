@@ -25,9 +25,11 @@ type
     TableBiolife: TClientDataSet;
     TableA1: TClientDataSet;
     waGrabFish: TwhWebAction;
+    waSaveCurrentFish: TwhWebActionEx;
     procedure DataModuleCreate(Sender: TObject);
     procedure TableBiolifeAfterOpen(DataSet: TDataSet);
     procedure waGrabFishExecute(Sender: TObject);
+    procedure waSaveCurrentFishExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -51,7 +53,7 @@ uses
   ucCodeSiteInterface, ucString,
   webApp, webScan, htWebApp, whMacroAffixes,
   whdemo_ViewSource,
-  tfish, uTranslations;
+  tfish, uTranslations, AdminDM;
 
 { TDM001 }
 
@@ -183,6 +185,34 @@ begin
   vp.fishList.Add(Desc);
 end;
 
+
+procedure TDMFishStoreBiolife.waSaveCurrentFishExecute(Sender: TObject);
+const cFn = 'waSaveCurrentFishExecute';
+var
+  S1: string;
+  b: Boolean;
+  AWarning: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  with TFishApp(TwhWebActionEx(Sender).WebApp) do
+  begin
+    S1 := Command;
+    CSSend('Command', Command);
+    TFishSessionVars(Session.Vars).CurrentFish := StrToFloatDef(S1, 0);
+    CSSend('PageID', PageID);
+    if SameText(PageID, 'DETAIL') then
+      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S1])
+    else
+      b:= DataModuleAdmin.TableFishCost.FindKey([S1]);
+    if not b then
+    begin
+      AWarning := 'Could not locate fish #' + S1;
+      CSSendWarning(AWarning);
+      Response.SendComment(AWarning);
+    end;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
 
 {------------------------------------------------------------------------------}
 {                          CODE FOR THE LOOKFISH PAGE                          }

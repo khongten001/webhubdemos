@@ -230,6 +230,9 @@ see, you can place an order.</p>
 </whpage>
 
 <whpage pageid="detail" desc="Fish Blowup">
+<whprep>
+(~waSaveCurrentFish.execute~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -238,7 +241,6 @@ see, you can place an order.</p>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-(~waSaveCurrentFish.execute~)
 <h1>Selected fish: (~FIELD|WebDataSourceBiolife|Common_Name~)</h1>
 <p>Here is your fish!!</p>
 (~waFishPhoto.execute~)
@@ -338,72 +340,6 @@ set up a page which calls the grid, and you're READY.
 </body></html>
 </whpage>
 
-
-<whpage pageid="admin" desc="Administrative Functions">
-(~mcdoctypehtml~)
-<html>
-<head>
-	(~drHead~)
-	(~drStyleHTFSAdmin~)
-<link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdemosWebDataGrid.css" />
-</head>
-<body>
-(~drPageBegin~)
-<div id="whdemopagecontent">
-<h1>Maintain Fish Prices</h1>
-<p>Select fish to update information on.  Change the display set
-to &quot;SeePassword&quot; to find out what the passwords are.</p>
-<p>(~gfAdmin.execute~)</p>
-</div>  <!--- demopagecontent -->
-(~drPageEnd~)
-</body></html>
-</whpage>
-
-<whdroplet name="drStyleHTFSAdmin">
-<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
-<style type="text/css" media="screen">
-#gfAdmin-table {
- clear: both;
- margin: 0;
- border: 1px solid #000;
- }
-
-#gfAdmin-table td {
- padding: 3px;
- border-top: 1px solid #888;
- border-right: 1px solid #bbb;
- border-left: 1px solid #bbb;
- border-bottom: 1px solid #888;
- background-color: #fefeef;
- }
-
-#gfAdmin-table th {
- background-color: #2C42CC;
- color: white;
- font-weight: 700;
- border-right: 1px solid #ccc;
- }
-
-#gfAdmin-table th a{
- color: white;
- font-weight: 700;
- text-decoration: none;
- }
-
-#gfAdmin-table td:first-child a:hover {
- color: #D00;
- }
-
-a:hover {color: #CC6699;}
-
-input, select{
- border: 1px solid;
- margin: 0 4px;}
-
-.refresh {color:#0000aa;}
-
-</style>
-</whdroplet>
 
 <whpage pageid="RemoteRefreshFishapp">
 <whdoc>

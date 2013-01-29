@@ -5,8 +5,8 @@ unit admindm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Forms, DB, Datasnap.DBClient,
-  tpTable, updateOk, tpAction,
+  SysUtils, Classes, Forms, DB, Datasnap.DBClient,
+  updateOk, tpAction,
   webTypes, webLink, wdbScan, webScan, wbdeGrid, webPage, webPHub,
   wdbSSrc, wdbSource, wbdeSource, wdbLink;
 
@@ -15,23 +15,18 @@ type
     gfAdmin: TwhbdeGrid;
     wdsAdmin: TwhbdeSource;
     DataSourceFishCost: TDataSource;
-    waSaveCurrentFish: TwhWebActionEx;
     TableFishCost: TClientDataSet;
+    waPostPrice: TwhWebAction;
     procedure TableFishCostBeforePost(DataSet: TDataSet);
     procedure gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
       var s: string);
-    procedure HTFS_ADMINSection(Sender: TObject; Section: Integer;
-      var Chunk, Options: string);
-    procedure waSaveCurrentFishExecute(Sender: TObject);
-    procedure DataModuleCreate(Sender: TObject);
-    procedure DataModuleDestroy(Sender: TObject);
+    procedure waPostPriceExecute(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
   published
-    HTFS_ADMIN: TwhPage;
   end;
 
 var
@@ -44,7 +39,7 @@ uses
   ucString, ucCodeSiteInterface,
   webApp, whMacroAffixes,
   whdemo_ViewSource,
-  whFishStore_fmWhPanel, tFish, whFireStore_dmwhBiolife;
+  whFishStore_fmWhPanel, tFish, whFireStore_dmwhBiolife, whdemo_Extensions;
 
 {$R *.DFM}
 
@@ -95,13 +90,19 @@ end;
 
 procedure TDataModuleAdmin.TableFishCostBeforePost(DataSet: TDataSet);
 const cFn = 'TableFishCostBeforePost';
+var
+  Allow: Boolean;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   with TableFishCost do
   begin
-    if (FieldByName('Password').AsString<>'') and
-       (pWebApp.StringVar['Password']<>FieldByName('Password').AsString) then
+    Allow := DemoExtensions.IsSuperUser(pWebApp.Request.RemoteAddress) or
+      (FieldByName('Password').AsString='') or
+      (pWebApp.StringVar['Password']= FieldByName('Password').AsString);
+    CSSend('Allow', S(Allow));
+    if NOT Allow then
     begin
-      DataSet.cancel;
+      DataSet.Cancel;
       with pWebApp.Response do
       begin
         SendHdr('2','Invalid Password');
@@ -109,7 +110,7 @@ begin
           MacroEnd );
         Close;
       end;
-      LogSendError('Invalid password');
+      LogSendWarning('Invalid password', cFn);
     end
     else
       begin
@@ -117,21 +118,55 @@ begin
         FieldByName('UpdatedBy').AsString := pWebApp.StringVar['SurferName'];
       end
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDataModuleAdmin.waPostPriceExecute(Sender: TObject);
+const cFn = 'waPostPriceExecute';
+var
+  iKey: Double;
+  dPrice: Currency;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+
+  if pos('post',lowercase(TwhPage(Sender).WebApp.Command))>0 then
+  begin
+    {post items to table}
+
+    {be careful not to trigger the edit verb built into
+     the tpUpdate component decendants from a cgi-call!}
+
+    with TwhPage(Sender).WebApp do
+    begin
+      iKey := TFishSessionVars(Session.Vars).currentFish;
+      with TableFishCost do
+      begin
+        if FindKey([iKey]) then
+        begin
+          dPrice := StrToFloatDef(StringVar['Price'], -999);
+          if dPrice <> -999 then
+          begin
+            TableFishCost.Edit;   {be careful! The Edit method applies to both the app & the table.}
+            FieldByName('Price').AsCurrency := dPrice;
+            FieldByName('ShippingNotes').AsString :=
+              Session.TxtVars.List['txtShippingNotes'].Text;
+            if FieldByName('Password').AsString = '' then
+              FieldByName('Password').AsString  := StringVar['Password'];
+            Post;
+          end
+          else
+            LogSendWarning('Invalid price: ' + StringVar['Price'], cFn);
+        end
+        else
+          LogSendWarning('Invalid primary key: ' + FloatToStr(iKey));
+      end;
+    end;
+  end;
+
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 {------------------------------------------------------------------------------}
-
-procedure TDataModuleAdmin.DataModuleCreate(Sender: TObject);
-begin
-  HTFS_ADMIN := TwhPage.Create(pWebApp);
-  HTFS_ADMIN.Name := 'htfs_ADMIN';
-  HTFS_ADMIN.PageID := 'ADMIN';
-end;
-
-procedure TDataModuleAdmin.DataModuleDestroy(Sender: TObject);
-begin
-  FreeAndNil(HTFS_ADMIN);
-end;
 
 procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
   var s: string);
@@ -142,100 +177,6 @@ begin
   s:=MacroStart + 'JUMP|AdminP,'+aField.asString+'|'+aField.asString+MacroEnd;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
-
-procedure TDataModuleAdmin.HTFS_ADMINSection(Sender: TObject;
-  Section: Integer; var Chunk, Options: string);
-begin
-  inherited;
-  if section>1 then exit;
-  if pos('post',lowercase(TwhPage(Sender).WebApp.Command))>0 then
-  begin
-    {post items to table}
-
-    {be careful not to trigger the edit verb built into
-     the tpUpdate component decendants from a cgi-call!
-     at present the code would inadvertently trigger an
-     idle event and RE-process the request in progress.}
-
-    with TwhPage(Sender).WebApp do
-    begin
-      with TableFishCost do
-      begin
-        FindKey([TFishSessionVars(Session.Vars).currentFish]);
-        edit;   {be careful! The Edit method applies to both the app & the table.}
-        //todoTableFishCostPrice.asString:=StringVar['Price'];
-        //todoTableFishCostShippingNotes.assign(Session.TxtVars.List['txtShippingNotes']);
-        post;
-      end;
-    end;
-  end;
-end;
-
-{------------------------------------------------------------------------------}
-{------------------------------------------------------------------------------}
-
-{------------------------------------------------------------------------------}
-
-procedure TDataModuleAdmin.waSaveCurrentFishExecute(Sender: TObject);
-const cFn = 'waSaveCurrentFishExecute';
-var
-  S1: string;
-  b: Boolean;
-  AWarning: string;
-begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-  with TFishApp(TwhWebActionEx(Sender).WebApp) do
-  begin
-    S1 := Command;
-    TFishSessionVars(Session.Vars).CurrentFish := StrToFloat(S1);
-    if SameText(PageID, 'DETAIL') then
-      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S1])
-    else
-      b:=TableFishCost.FindKey([S1]);
-    if not b then
-    begin
-      AWarning := 'Could not locate fish #' + S1;
-      CSSendWarning(AWarning);
-      Response.SendComment(AWarning);
-    end;
-  end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-end;
-
-(*
-object TableFishCost: TtpTable
-  BeforePost = TableFishCostBeforePost
-  TableName = 'FISHCOST.DB'
-  TableMode = tmData
-  PostBeforeClose = False
-  HideLinkingKeys = False
-  LeaveOpen = False
-  Left = 240
-  Top = 160
-  object TableFishCostSpeciesNo: TFloatField
-    FieldName = 'Species No'
-  end
-  object TableFishCostPrice: TFloatField
-    FieldName = 'Price'
-  end
-  object TableFishCostUpdatedOn: TDateTimeField
-    FieldName = 'UpdatedOn'
-  end
-  object TableFishCostUpdatedBy: TStringField
-    FieldName = 'UpdatedBy'
-    Size = 8
-  end
-  object TableFishCostPassword: TStringField
-    FieldName = 'Password'
-    Size = 2
-  end
-  object TableFishCostShippingNotes: TMemoField
-    FieldName = 'ShippingNotes'
-    BlobType = ftMemo
-    Size = 1
-  end
-end
-*)
 
 end.
 

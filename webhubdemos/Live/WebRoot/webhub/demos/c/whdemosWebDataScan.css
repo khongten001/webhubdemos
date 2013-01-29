@@ -6,11 +6,12 @@
 
 .whdbScanBase-table td {
   border: 1px solid black;
-  padding: 6px;
+  padding: 0.8em;
 }
 
 .whdbScanBase-table th, caption {
   background-color: yellow;
+  padding: 0.8em;
 }
 
 

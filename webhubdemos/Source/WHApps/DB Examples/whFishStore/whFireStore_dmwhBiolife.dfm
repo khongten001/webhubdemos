@@ -97,4 +97,10 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 56
     Top = 284
   end
+  object waSaveCurrentFish: TwhWebActionEx
+    ComponentOptions = []
+    OnExecute = waSaveCurrentFishExecute
+    Left = 176
+    Top = 288
+  end
 end
