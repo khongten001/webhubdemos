@@ -19,11 +19,6 @@
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
-        <Base_Win64>true</Base_Win64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_1)'!=''">
         <Cfg_1>true</Cfg_1>
         <CfgParent>Base</CfgParent>
@@ -130,12 +125,12 @@
         <DCCReference Include="h:\whJPEG.pas"/>
         <DCCReference Include="h:\htwebapp.pas"/>
         <DCCReference Include="h:\tpProj.pas"/>
-        <DCCReference Include="whDynamicJPEG_fmWh.pas">
-            <Form>fmWhAnimals</Form>
-        </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
             <Form>DMForWHDemo</Form>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="whDynamicJPEG_fmWh.pas">
+            <Form>fmWhAnimals</Form>
         </DCCReference>
         <DCCReference Include="whDynamicJPEG_dmProjMgr.pas">
             <Form>DMForWHDynamicJPEG</Form>

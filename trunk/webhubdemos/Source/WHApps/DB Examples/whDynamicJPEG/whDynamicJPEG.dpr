@@ -45,8 +45,8 @@ uses
   whJPEG in 'h:\whJPEG.pas',
   htwebapp in 'h:\htwebapp.pas',
   tpProj in 'h:\tpProj.pas',
-  whDynamicJPEG_fmWh in 'whDynamicJPEG_fmWh.pas' {fmWhAnimals},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
+  whDynamicJPEG_fmWh in 'whDynamicJPEG_fmWh.pas' {fmWhAnimals},
   whDynamicJPEG_dmProjMgr in 'whDynamicJPEG_dmProjMgr.pas' {DMForWHDynamicJPEG: TDataModule},
   whDynamicJPEG_dmwhData in 'whDynamicJPEG_dmwhData.pas' {DMBIOLIFE: TDataModule};
 

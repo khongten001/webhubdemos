@@ -4,21 +4,12 @@ object DMBIOLIFE: TDMBIOLIFE
   Height = 262
   Width = 538
   object ClientDataSet1: TClientDataSet
-    Active = True
     Aggregates = <>
+    FileName = 'D:\Projects\webhubdemos\Live\Database\embSample\biolife.xml'
     Params = <>
-    ProviderName = 'XMLTransformProvider1'
     ReadOnly = True
     Left = 112
     Top = 104
-  end
-  object XMLTransformProvider1: TXMLTransformProvider
-    TransformRead.TransformationFile = 
-      'D:\Projects\webhubdemos\Live\Database\radstudio10\BiolifeToDp.xt' +
-      'r'
-    XMLDataFile = 'D:\Projects\webhubdemos\Live\Database\radstudio10\biolife.xml'
-    Left = 112
-    Top = 176
   end
   object DataSourceBiolife: TDataSource
     DataSet = ClientDataSet1
