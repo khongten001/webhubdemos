@@ -5,10 +5,10 @@
 mcWhDemoOneLinerJPEG=JPEG Image Streaming
 mcWhDemoCreditIdeaJPEG=Michael Ax
 mcWhDemoCreditFirstDraftJPEG=Michael Ax
-mcWhDemoCreditGraphicsJPEG=Michael Ax
+mcWhDemoCreditGraphicsJPEG=Borland
 mcWhDemoCreditCopyJPEG=Ann Lynnworth
 mcWhDemoUpdatedJPEG=29-Jan-2013
-mcWhDemoKeywordsJPEG=JPEG,dynamic,graphics
+mcWhDemoKeywordsJPEG=JPEG,dynamic,graphics,xml
 mcWhDemoLiteJPEG=No
 </whmacros>
 
@@ -16,6 +16,7 @@ mcWhDemoLiteJPEG=No
 <ol>
 <li> Requires whDynamicJPEG.exe </li>
 <li> Requires TClientDataSet</li>
+<li> Requires midas.dll (licensed by Embarcadero)</li>
 <li> Uses biolife.xml data as shipped by Embarcadero </li>
 </ol>
 </whdroplet>
