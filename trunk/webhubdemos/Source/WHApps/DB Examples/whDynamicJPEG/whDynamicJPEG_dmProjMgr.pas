@@ -1,0 +1,69 @@
+unit whDynamicJPEG_dmProjMgr;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, whdemo_DMProjMgr, tpProj;
+
+type
+  TDMForWHDynamicJPEG = class(TDMForWHDemo)
+    procedure ProjMgrGUICreate(Sender: TtpProject;
+      const ShouldEnableGUI: Boolean; var ErrorText: String;
+      var Continue: Boolean);
+    procedure ProjMgrGUIInit(Sender: TtpProject;
+      const ShouldEnableGUI: Boolean; var ErrorText: String;
+      var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
+      var Continue: Boolean);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  DMForWHDynamicJPEG: TDMForWHDynamicJPEG;
+
+implementation
+
+{$R *.dfm}
+
+uses
+  MultiTypeApp, whDynamicJPEG_fmWh, whDynamicJPEG_dmwhData;
+
+procedure TDMForWHDynamicJPEG.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Application.CreateForm(TDMBIOLIFE, DMBIOLIFE);
+end;
+
+procedure TDMForWHDynamicJPEG.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := DMBIOLIFE.Init(ErrorText);
+end;
+
+procedure TDMForWHDynamicJPEG.ProjMgrGUICreate(Sender: TtpProject;
+  const ShouldEnableGUI: Boolean; var ErrorText: String;
+  var Continue: Boolean);
+begin
+  inherited;
+  {M}Application.CreateForm(TfmWhAnimals, fmWhAnimals);
+
+end;
+
+procedure TDMForWHDynamicJPEG.ProjMgrGUIInit(Sender: TtpProject;
+  const ShouldEnableGUI: Boolean; var ErrorText: String;
+  var Continue: Boolean);
+begin
+  inherited;
+  fmWhAnimals.Init;
+end;
+
+end.
+
