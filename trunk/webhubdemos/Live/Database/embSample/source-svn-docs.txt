@@ -1,2 +1,0 @@
-Embarcadero sample files are in subversion and included when you install Delphi.
-http://docwiki.embarcadero.com/CodeExamples/XE3/en/Category:Sample
