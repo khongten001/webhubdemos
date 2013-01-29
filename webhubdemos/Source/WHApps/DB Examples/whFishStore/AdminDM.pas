@@ -5,7 +5,7 @@ unit admindm;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Forms, DBTables, DB, 
+  Windows, Messages, SysUtils, Classes, Forms, DB, Datasnap.DBClient,
   tpTable, updateOk, tpAction,
   webTypes, webLink, wdbScan, webScan, wbdeGrid, webPage, webPHub,
   wdbSSrc, wdbSource, wbdeSource, wdbLink;
@@ -13,16 +13,10 @@ uses
 type
   TDataModuleAdmin = class(TDataModule)
     gfAdmin: TwhbdeGrid;
- wdsAdmin: TwhbdeSource;
+    wdsAdmin: TwhbdeSource;
     DataSourceFishCost: TDataSource;
-    TableFishCost: TtpTable;
-    TableFishCostSpeciesNo: TFloatField;
-    TableFishCostPrice: TFloatField;
-    TableFishCostUpdatedOn: TDateTimeField;
-    TableFishCostUpdatedBy: TStringField;
-    TableFishCostPassword: TStringField;
-    TableFishCostShippingNotes: TMemoField;
     waSaveCurrentFish: TwhWebActionEx;
+    TableFishCost: TClientDataSet;
     procedure TableFishCostBeforePost(DataSet: TDataSet);
     procedure gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
       var s: string);
@@ -35,7 +29,7 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure initDB;
+    function Init(out ErrorText: string): Boolean;
   published
     HTFS_ADMIN: TwhPage;
   end;
@@ -45,58 +39,77 @@ var
 
 implementation
 
-uses 
+uses
   ucString, ucCodeSiteInterface,
   webApp, whMacroAffixes,
-  whdemo_ViewSource, 
-  whFishStore_fmWhPanel, tFish;
+  whdemo_ViewSource,
+  whFishStore_fmWhPanel, tFish, whFireStore_dmwhBiolife;
 
 {$R *.DFM}
 
 {------------------------------------------------------------------------------}
 {------------------------------------------------------------------------------}
 
-procedure TDataModuleAdmin.initDB;
+function TDataModuleAdmin.Init(out ErrorText: string): Boolean;
+const cFn = 'initDB';
 begin
+  ErrorText := '';
   gfAdmin.WebDataSource := wdsAdmin;
-
-  RefreshWebActions(DataModuleAdmin);
 
   with TableFishCost do
   begin
     if Active then Close;
-    DatabaseName := getHtDemoDataRoot + 'whFishStore\';
-    Open;
+    FileName := getHtDemoDataRoot + 'whFishStore\' + 'fishcost.xml';
+    try
+      Active := True;
+    except
+      on E: Exception do
+      begin
+        ErrorText := E.Message;
+        LogSendException(E, cFn);
+      end;
+    end;
   end;
 
-  {set up some captions and button specs that are easily styled}
-  if gfAdmin.IsUpdated then
+  if ErrorText = '' then
   begin
-    gfAdmin.SetCaptions2004;
-    gfAdmin.SetButtonSpecs2012;
+    RefreshWebActions(Self);
+
+    {set up some captions and button specs that are easily styled}
+    if gfAdmin.IsUpdated then
+    begin
+      gfAdmin.SetCaptions2004;
+      gfAdmin.SetButtonSpecs2012;
+    end;
   end;
-  
+  Result := ErrorText = '';
 end;
 
 {------------------------------------------------------------------------------}
 
 procedure TDataModuleAdmin.TableFishCostBeforePost(DataSet: TDataSet);
 begin
-  if (TableFishCostPassword.Text<>'') and
-     (pWebApp.StringVar['Password']<>TableFishCostPassword.Text) then begin
-    DataSet.cancel;
-    with pWebApp.Response do begin
-      SendHdr('2','Invalid Password');
-      Send( 'Please try again. ' + MacroStart + 'JUMP|admin|Admin page' +
-        MacroEnd );
-      Close;
+  with TableFishCost do
+  begin
+    if (FieldByName('Password').AsString<>'') and
+       (pWebApp.StringVar['Password']<>FieldByName('Password').AsString) then
+    begin
+      DataSet.cancel;
+      with pWebApp.Response do
+      begin
+        SendHdr('2','Invalid Password');
+        Send( 'Please try again. ' + MacroStart + 'JUMP|admin|Admin page' +
+          MacroEnd );
+        Close;
       end;
-    LogSendError('Invalid password');
+      LogSendError('Invalid password');
     end
-  else begin
-    TableFishCostUpdatedOn.Value:=now;
-    TableFishCostUpdatedBy.Value:=AnsiString(pWebApp.StringVar['SurferName']);
-    end
+    else
+      begin
+        FieldByName('UpdatedOn').AsDateTime := Now;
+        FieldByName('UpdatedBy').AsString := pWebApp.StringVar['SurferName'];
+      end
+  end;
 end;
 
 {------------------------------------------------------------------------------}
@@ -139,8 +152,8 @@ begin
       begin
         FindKey([TFishSessionVars(Session.Vars).currentFish]);
         edit;   {be careful! The Edit method applies to both the app & the table.}
-        TableFishCostPrice.asString:=StringVar['Price'];
-        TableFishCostShippingNotes.assign(Session.TxtVars.List['txtShippingNotes']);
+        //todoTableFishCostPrice.asString:=StringVar['Price'];
+        //todoTableFishCostShippingNotes.assign(Session.TxtVars.List['txtShippingNotes']);
         post;
       end;
     end;
@@ -162,7 +175,7 @@ begin
     S := Command;
     TFishSessionVars(Session.Vars).CurrentFish := StrToFloat(S);
     if uppercase(PageID)='DETAIL' then
-      b:=fmHTFSPanel.TableBiolife.FindKey([S])
+      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S])
     else
       b:=TableFishCost.FindKey([S]);
     if not b then
@@ -172,6 +185,41 @@ begin
     end;
   end;
 end;
+
+(*
+object TableFishCost: TtpTable
+  BeforePost = TableFishCostBeforePost
+  TableName = 'FISHCOST.DB'
+  TableMode = tmData
+  PostBeforeClose = False
+  HideLinkingKeys = False
+  LeaveOpen = False
+  Left = 240
+  Top = 160
+  object TableFishCostSpeciesNo: TFloatField
+    FieldName = 'Species No'
+  end
+  object TableFishCostPrice: TFloatField
+    FieldName = 'Price'
+  end
+  object TableFishCostUpdatedOn: TDateTimeField
+    FieldName = 'UpdatedOn'
+  end
+  object TableFishCostUpdatedBy: TStringField
+    FieldName = 'UpdatedBy'
+    Size = 8
+  end
+  object TableFishCostPassword: TStringField
+    FieldName = 'Password'
+    Size = 2
+  end
+  object TableFishCostShippingNotes: TMemoField
+    FieldName = 'ShippingNotes'
+    BlobType = ftMemo
+    Size = 1
+  end
+end
+*)
 
 end.
 

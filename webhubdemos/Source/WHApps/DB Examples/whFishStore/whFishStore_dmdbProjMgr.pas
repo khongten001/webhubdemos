@@ -55,7 +55,8 @@ uses
   MultiTypeApp, ucDlgs, ucLogFil,
   webApp, webBase, webSplat, dmFishAp, tfish, htWebApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
-  whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel;
+  whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel,
+  whFireStore_dmwhBiolife;
 
 { TDMForWHDemo }
 
@@ -117,7 +118,7 @@ end;
 procedure TDMForWHFishStore.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
-  // must create the DataModuleAdmin before the fmHTFSPanel - data dependency.
+  Application.CreateForm(TDMFishStoreBiolife, DMFishStoreBiolife);
   {M}Application.CreateForm(TDataModuleAdmin, DataModuleAdmin);
 end;
 
@@ -127,6 +128,9 @@ begin
   InitCoreWebHubDataModule;
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
+  Continue := DMFishStoreBiolife.Init(ErrorText);
+  if Continue then
+    Continue := DataModuleAdmin.Init(ErrorText);  // do this after ALL the modules in the project have been created.
 end;
 
 procedure TDMForWHFishStore.ProjMgrGUICreate(Sender: TtpProject;
@@ -186,3 +190,4 @@ begin
 end;
 
 end.
+

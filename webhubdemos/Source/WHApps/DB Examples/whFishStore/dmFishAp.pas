@@ -26,15 +26,16 @@ interface
 
 {$I hrefdefines.inc}
 
+//   {$I xe_actnlist.inc}
+
 uses
-  Forms, Classes, 
-  {$I xe_actnlist.inc}
-  tpApplic{non-gui}, updateok, tpAction{no-gui}, tpActionGUI, 
-  webBrows, whsample_EvtHandlers, cgivars, apistat, apibuilt, apicall, 
-  webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink, 
+  Forms, Classes,
+  tpApplic{non-gui}, updateok, tpAction{no-gui}, tpActionGUI,
+  webBrows, whsample_EvtHandlers, cgivars, apistat, apibuilt, apicall,
+  webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink,
   webTypes, webInfoU, webBase, webcore, webSend, webapp,
   htWebApp, htbdeWApp, webvars,
-  tFish, webInfoBase;
+  tFish, webInfoBase, System.Actions, Vcl.ActnList;
 
 procedure CreateCoreWebHubDataModule;
 procedure DestroyCoreWebHubDataModuleGUI;

@@ -34,46 +34,20 @@ object DataModuleAdmin: TDataModuleAdmin
     Top = 60
   end
   object DataSourceFishCost: TDataSource
-    DataSet = TableFishCost
     Left = 241
     Top = 112
   end
-  object TableFishCost: TtpTable
-    BeforePost = TableFishCostBeforePost
-    TableName = 'FISHCOST.DB'
-    TableMode = tmData
-    PostBeforeClose = False
-    HideLinkingKeys = False
-    LeaveOpen = False
-    Left = 240
-    Top = 160
-    object TableFishCostSpeciesNo: TFloatField
-      FieldName = 'Species No'
-    end
-    object TableFishCostPrice: TFloatField
-      FieldName = 'Price'
-    end
-    object TableFishCostUpdatedOn: TDateTimeField
-      FieldName = 'UpdatedOn'
-    end
-    object TableFishCostUpdatedBy: TStringField
-      FieldName = 'UpdatedBy'
-      Size = 8
-    end
-    object TableFishCostPassword: TStringField
-      FieldName = 'Password'
-      Size = 2
-    end
-    object TableFishCostShippingNotes: TMemoField
-      FieldName = 'ShippingNotes'
-      BlobType = ftMemo
-      Size = 1
-    end
-  end
   object waSaveCurrentFish: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnGet]
+    ComponentOptions = []
     OnExecute = waSaveCurrentFishExecute
-    Left = 40
-    Top = 144
+    Left = 72
+    Top = 56
+  end
+  object TableFishCost: TClientDataSet
+    Aggregates = <>
+    FileName = 'D:\Projects\webhubdemos\Live\Database\whFishStore\fishcost.xml'
+    Params = <>
+    Left = 240
+    Top = 176
   end
 end
