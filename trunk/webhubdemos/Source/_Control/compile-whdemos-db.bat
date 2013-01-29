@@ -67,7 +67,7 @@ if NOT "%compilescan%"=="no" cd %droot%\DB Examples\whScanTable
 if NOT "%compilescan%"=="no" call %cbat% whScanTable
 
 del %~dp0\..\..\Live\WebHub\Apps\whDynamicJPEG.exe
-if NOT "%compilejpeg%"=="no" cd %droot%\More Examples\whDynamicJPEG
+if NOT "%compilejpeg%"=="no" cd %droot%\DB Examples\whDynamicJPEG
 if NOT "%compilejpeg%"=="no" call %cbat% whDynamicJPEG
 
 ::whFirebird uses IBObjects 
