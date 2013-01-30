@@ -94,6 +94,7 @@ any applied Cascading Style Sheet definitions.
 <html>
 <head>
 (~drHead~)
+<link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdemosWebDataForm.css" />
 </head>
 <body>
 (~drPageBegin~)
@@ -131,9 +132,6 @@ and the list price.</p>
 <p>The TwhdbForm component is taking care of displaying the
 information you see below.  The list of fields is based on the current
 displaySet for the grid.  (~JUMP|pgEnterHTFM|Try Again~)</p>
-<p>(~mcBlueDot~) for Viewing<br />
-(~mcBlackDot~) for Editing
-</p>
 </whdroplet>
 
 <whdroplet name="chViewAction">

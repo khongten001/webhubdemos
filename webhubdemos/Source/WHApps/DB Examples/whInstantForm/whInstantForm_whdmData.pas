@@ -128,6 +128,7 @@ begin
       WebDataForm1.WebDataSource := WebDataSource1;
       grid.WebDataSource := WebDataSource1;
       WebDataSource1.DataSource := DataSource1;
+      WebDataSource1.KeyFieldNames := 'PartNo';
       DataSource1.DataSet := Table1;
       grid.Border := '';
 
