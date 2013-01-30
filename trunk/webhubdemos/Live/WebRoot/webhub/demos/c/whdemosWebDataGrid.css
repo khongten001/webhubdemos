@@ -1,5 +1,14 @@
 /* whdbGrid control and button styles */
 
+table.whdbGrid-table { 
+  padding: 0.6em; 
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+table.whdbGrid-table th { padding: 0.6em; }
+table.whdbGrid-table td { padding: 0.6em; }
+
 /* whdbGrid controls */ 
 
 .whdbGrid-controls {

@@ -6,8 +6,8 @@ object DMParts: TDMParts
   object waPost: TwhWebActionEx
     ComponentOptions = [tpStatusPanel]
     OnExecute = waPostExecute
-    Left = 56
-    Top = 12
+    Left = 336
+    Top = 100
   end
   object grid: TwhbdeGrid
     ComponentOptions = [tpStatusPanel]

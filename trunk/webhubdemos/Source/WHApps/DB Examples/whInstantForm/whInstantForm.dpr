@@ -44,7 +44,10 @@ uses
   whMain in 'h:\whMain.pas' {TfmWebHubMainForm},
   HtformC in 'HtformC.pas' {fmHTFMPanel},
   whInstantForm_dmdbProjMgr in 'whInstantForm_dmdbProjMgr.pas' {DMForWHInstantForm: TDataModule},
-  whInstantForm_whdmData in 'whInstantForm_whdmData.pas' {DMParts: TDataModule};
+  whInstantForm_whdmData in 'whInstantForm_whdmData.pas' {DMParts: TDataModule},
+  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
+  wbdeSource in 'K:\WebHub\lib\whdb\wbdeSource.pas',
+  wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

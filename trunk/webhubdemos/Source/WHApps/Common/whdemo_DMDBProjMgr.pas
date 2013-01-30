@@ -60,6 +60,9 @@ uses
 
 { TDMForWHDemo }
 
+{$I WebHub_Comms.inc}
+{$IFNDEF WEBHUBACE}wrong ipc{$ENDIF}
+
 procedure TDMForWHDBDemo.DataModuleCreate(Sender: TObject);
 begin
   FFixedAppID := '';
