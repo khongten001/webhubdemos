@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -17,11 +17,10 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataGrid.css" />
 <style type="text/css">
 #grid-table {
-  border: 0;
+  border: none;
 }
 #grid-table th, td {
   border: 1px solid;
-  padding: 4px;
   vertical-align: bottom;
 }
 #grid-table th {
@@ -40,6 +39,9 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 <head>
 	(~drHead~)
 	(~drStyleHTFM~)
+	<style type="text/css">
+	#gridImageMap-div { margin: 0.4em 0 1em 4em; }
+	</style>
 </head>
 <body>
 (~drPageBegin~)
@@ -175,7 +177,7 @@ remembering these from one page to the next.  (In the demo, the grid preferences
 </whpage>
 
 <whdroplet name="chGridImagemap">
-<p>
+<div id="gridImageMap-div">
 <img src="(~mcSiteRoot~)demos/whInstantForm/gridbtns.JPG" usemap="#GridButtons" ismap="ismap" alt="buttons for the grid" />
 <map id="gridImageMap" name="GridButtons">
 <!-- #$-:Image Map file created by Map THIS! -->
@@ -192,7 +194,7 @@ remembering these from one page to the next.  (In the demo, the grid preferences
 <area shape="rect" coords="157,1,203,42" href="(~DynURL.ToSessionIDW~)grid.last" alt="last" />
 <area shape="default" href="(~DynURL.ToSessionIDW~)grid.first" alt="first" />
 <!-- changing:stop-->
-</map></p>
+</map></div>
 </whdroplet>
 
 </whteko>

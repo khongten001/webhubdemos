@@ -176,7 +176,7 @@ procedure TDMParts.waPostExecute(Sender: TObject);
 // This action component takes care of posting the data from DBFIELDS array
 // to the current record.  The correct record has already been located by
 // this point, due to the %=webdatasource1.execute=% call.  A side effect
-// of executing the TwhbdeSource is that it will locate based on the KEYS
+// of executing the WebDataSource is that it will locate based on the KEYS
 // property.
 var
   a1: string;
@@ -190,7 +190,7 @@ begin
     aCurrentDisplaySet := WebDataSource1.displaySet;
     with Request.dbFields do
     begin
-      fieldByName('PartNo').asString := Values['WebDataSource1.PartNo@' + a1];
+      // never overwrite primary key !
       fieldByName('Description').asString :=
         Values['WebDataSource1.Description@' + a1];
       fieldByName('VendorNo').asString :=
