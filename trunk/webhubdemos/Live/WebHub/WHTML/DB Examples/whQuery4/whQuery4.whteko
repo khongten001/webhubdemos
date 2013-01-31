@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -9,6 +9,7 @@
 <whpage pageid="pgEnterHTQ4" desc="Employee Search Query Demo">
 <whprep>
 (~NOTASSIGNED|MinSalary|(~SET|Session['MinSalary']=30000~)~)
+(~NOTASSIGNED|Dept|(~SET|Dept=Sales~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
