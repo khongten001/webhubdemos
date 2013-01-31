@@ -45,7 +45,8 @@ implementation
 
 uses
   Math,
-  webApp, htqry2C;
+  webApp,
+  whQuery2_whdmData; // non-gui
 
 var
   aCounter:string;
@@ -96,8 +97,8 @@ begin
   // see the counter value on the panel, without looking into any component
   // properties.  The HTML calls editCounter.text to display the count.
 
-  if Assigned(fmHTQ2Panel) then
-    fmHTQ2Panel.WebAppNewSession(Sender, Session, Command);
+  if Assigned(DMQuery2) then
+    DMQuery2.WebAppNewSession(Sender, Session, Command);
 
 end;
 
