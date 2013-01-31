@@ -39,12 +39,6 @@ object DMQuery2: TDMQuery2
     Left = 221
     Top = 37
   end
-  object Query1: TQuery
-    BeforeOpen = Query1BeforeOpen
-    DatabaseName = 'WebHubDemoData'
-    Left = 296
-    Top = 45
-  end
   object wdsFull: TwhbdeSource
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     GotoMode = wgGotoKey
@@ -53,55 +47,59 @@ object DMQuery2: TDMQuery2
     OpenDataSetRetain = 600
     OpenDataSetVisual = False
     SaveTableName = False
-    DataSource = DataSourceForFullTable
+    DataSource = DataSourceFull
     Left = 120
-    Top = 124
+    Top = 220
   end
-  object DataSourceForFullTable: TDataSource
-    DataSet = TableComplete
-    Left = 221
-    Top = 124
+  object DataSourceFull: TDataSource
+    DataSet = ADOQueryFull
+    Left = 213
+    Top = 228
   end
-  object TableComplete: TTable
-    DatabaseName = 'WebHubDemoData'
-    Left = 432
-    Top = 324
-  end
-  object WebDataScan1: TwhdbScan
+  object WebDataScanAll: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
-    WebDataSource = whdbxSource2
-    OnRowStart = WebDataScan1RowStart
-    OnInit = WebDataScan1Init
-    OnFinish = WebDataScan1Finish
-    OnEmptyDataSet = WebDataScan1EmptyDataSet
+    WebDataSource = wdsFull
+    OnRowStart = WebDataScanAllRowStart
+    OnInit = WebDataScanAllInit
+    OnFinish = WebDataScanAllFinish
+    OnEmptyDataSet = WebDataScanAllEmptyDataSet
     Left = 40
     Top = 224
   end
-  object whdbxSource2: TwhdbxSource
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    GotoMode = wgGotoKey
-    MaxOpenDataSets = 1
-    OpenDataSets = 0
-    OpenDataSetRetain = 600
-    SaveTableName = False
-    DataSet = ADOQuery1
-    DataSource = DataSource2
-    Left = 136
-    Top = 224
-  end
-  object DataSource2: TDataSource
-    DataSet = ADOQuery1
-    Left = 229
-    Top = 229
-  end
-  object ADOQuery1: TADOQuery
-    OnFilterRecord = ADOQuery1FilterRecord
+  object Query1: TADOQuery
+    ConnectionString = 
+      'Provider=MSDASQL.1;Persist Security Info=False;Extended Properti' +
+      'es="DBQ=D:\Projects\webhubdemos\Live\Database\whQuery2\employee.' +
+      'mdb;DefaultDir=D:\Projects\webhubdemos\Live\Database\whQuery2;Dr' +
+      'iver={Driver do Microsoft Access (*.mdb)};DriverId=25;FIL=MS Acc' +
+      'ess;FILEDSN=D:\Projects\webhubdemos\Source\WHApps\DB Examples\wh' +
+      'Query2\employeeADO.dsn;MaxBufferSize=2048;MaxScanRows=8;PageTime' +
+      'out=5;SafeTransactions=0;Threads=3;UID=admin;UserCommitSync=Yes;' +
+      '";Initial Catalog=D:\Projects\webhubdemos\Live\Database\whQuery2' +
+      '\employee'
+    BeforeOpen = Query1BeforeOpen
     Parameters = <>
-    Left = 312
+    Left = 304
+    Top = 40
+  end
+  object ADOQueryFull: TADOQuery
+    ConnectionString = 
+      'Provider=MSDASQL.1;Persist Security Info=False;Extended Properti' +
+      'es="DBQ=D:\Projects\webhubdemos\Live\Database\whQuery2\employee.' +
+      'mdb;DefaultDir=D:\Projects\webhubdemos\Live\Database\whQuery2;Dr' +
+      'iver={Driver do Microsoft Access (*.mdb)};DriverId=25;FIL=MS Acc' +
+      'ess;FILEDSN=D:\Projects\webhubdemos\Source\WHApps\DB Examples\wh' +
+      'Query2\employeeADO.dsn;MaxBufferSize=2048;MaxScanRows=8;PageTime' +
+      'out=5;SafeTransactions=0;Threads=3;UID=admin;UserCommitSync=Yes;' +
+      '";Initial Catalog=D:\Projects\webhubdemos\Live\Database\whQuery2' +
+      '\employee'
+    BeforeOpen = Query1BeforeOpen
+    Parameters = <>
+    Left = 320
     Top = 224
   end
 end

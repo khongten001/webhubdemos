@@ -1,40 +1,58 @@
 unit whQuery2_whdmData;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this WebHub sample file *)
+(*
+Copyright (c) 1999-2013 HREF Tools Corp.
+
+Permission is hereby granted, on 30-Jan-2013, free of charge, to any person
+obtaining a copy of this file (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*)
+
 
 interface
 
 uses
   SysUtils, Classes,
-  webLink, Data.Win.ADODB, wdbxSource, wdbScan, Bde.DBTables, Data.DB, wdbSSrc,
+  webLink, Data.Win.ADODB, wdbxSource, wdbScan, Bde.DBTables, DB,
   ZaphodsMap,
-  wdbSource, wbdeSource, updateOK, tpAction, webTypes, wbdeGrid;
+  updateOK, tpAction,
+  wdbSSrc, wdbSource, wbdeSource, webTypes, wbdeGrid;
 
 type
   TDMQuery2 = class(TDataModule)
     grid: TwhbdeGrid;
     WebDataSource1: TwhbdeSource;
     DataSource1: TDataSource;
-    Query1: TQuery;
     wdsFull: TwhbdeSource;
-    DataSourceForFullTable: TDataSource;
-    TableComplete: TTable;
-    WebDataScan1: TwhdbScan;
-    whdbxSource2: TwhdbxSource;
-    DataSource2: TDataSource;
-    ADOQuery1: TADOQuery;
+    DataSourceFull: TDataSource;
+    WebDataScanAll: TwhdbScan;
+    Query1: TADOQuery;
+    ADOQueryFull: TADOQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure Query1BeforeOpen(DataSet: TDataSet);
     procedure gridHotField(Sender: TwhbdeGrid; AField: TField;
       var CellValue: string);
     procedure gridAfterExecute(Sender: TObject);
-    procedure WebDataScan1Init(Sender: TObject);
-    procedure WebDataScan1RowStart(Sender: TwhdbScanBase;
+    procedure WebDataScanAllInit(Sender: TObject);
+    procedure WebDataScanAllRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-    procedure WebDataScan1Finish(Sender: TObject);
-    procedure WebDataScan1EmptyDataSet(Sender: TObject);
-    procedure ADOQuery1FilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure WebDataScanAllFinish(Sender: TObject);
+    procedure WebDataScanAllEmptyDataSet(Sender: TObject);
+    procedure ADOQuery2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
     procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
@@ -43,7 +61,7 @@ type
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
   protected
-    procedure loadCustomSettings;
+    function loadCustomSettings(out ErrorText: string): Boolean;
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -65,7 +83,7 @@ uses
 
 { TDMQuery2 }
 
-procedure TDMQuery2.ADOQuery1FilterRecord(DataSet: TDataSet;
+procedure TDMQuery2.ADOQuery2FilterRecord(DataSet: TDataSet;
   var Accept: Boolean);
 begin
   if posci('e', DataSet.FieldByName('Firstname').asString) > 0 then
@@ -91,8 +109,11 @@ procedure TDMQuery2.gridAfterExecute(Sender: TObject);
 begin
   // Publish the sql code to the web, after the final page section.
   with WebDataSource1 do
-    pWebApp.Summary.Add('SQL for '+DataSet.Name+' is:<BR>'
-    +TQuery(dataset).sql.text);
+  begin
+    if DataSet is TADOQuery then
+      pWebApp.Summary.Add('SQL for '+DataSet.Name+' is:<br/>' +
+        TADOQuery(Dataset).SQL.Text);
+  end;
 end;
 
 {Hot field is set by putting :HF after the field name in the
@@ -125,17 +146,29 @@ begin
       http://www.codemaker.co.uk/it/tips/ado_conn.htm#ODBCDriverForParadox
       Note that DefaultDir means "working directory" i.e. location of *.db
       and Dbq means "private directory" i.e. location of paradox .net file.}
-      ADOQuery1.ConnectionString :=
-       'Driver={Microsoft Paradox Driver (*.db )};' +
-               'DriverID=538;' +
-               'Fil=Paradox 5.X;' +
-               'DefaultDir=d:\temp\pdoxnet\;' +
-               'Dbq=D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE\WHQUERY2\;' +
-               'CollatingSequence=ASCII';
+      Query1.ConnectionString :=
+        'Provider=MSDASQL.1;Persist Security Info=False;' +
+        'Extended Properties="'+
+        'DBQ=' + getHtDemoDataRoot + 'whQuery2\' +
+        'employee.mdb;DefaultDir=' + getHtDemoDataRoot + 'whQuery2;' +
+        'Driver={Driver do Microsoft Access (*.mdb)};' +
+        'DriverId=25;FIL=MS Access;' +
+      //FILEDSN=D:\Projects\webhubdemos\Source\WHApps\DB Examples\whQuery2\employeeADO.dsn;
+        'MaxBufferSize=2048;MaxScanRows=8;PageTimeout=5;SafeTransactions=0;' +
+        'Threads=3;UID=admin;UserCommitSync=Yes;";Initial Catalog=' +
+        getHtDemoDataRoot + 'whQuery2\employee';
+
+      ADOQueryFull.ConnectionString := Query1.ConnectionString;
+      ADOQueryFull.SQL.Text := 'select * from employee';
+      WebDataScanAll.WebDataSource.KeyFieldNames := 'EmpNo';
 
       RefreshWebActions(Self);
+      if NOT WebDataSource1.IsUpdated then
+        ErrorText := WebDataSource1.Name + ' failed to refresh. ';
       if NOT grid.IsUpdated then
-        ErrorText := grid.Name + ' failed to update';
+        ErrorText := ErrorText + grid.Name + ' failed to refresh. ';
+      if NOT WebDataScanAll.IsUpdated then
+        ErrorText := ErrorText + WebDataScanAll.Name + ' failed to refresh. ';
 
       if ErrorText = '' then
       begin
@@ -149,12 +182,13 @@ begin
             + 'whQuery2Spec.xml', 'whQuery2Configuration');
           ZMKey.KeyedFile.LoadFile;
         end;
-        loadCustomSettings;
+        loadCustomSettings(ErrorText);
+      end;
 
-        whdbxSource2.KeyFieldNames := 'EmpNo';
-        WebDataScan1.PageHeight := 2;
-        WebDataScan1.ButtonsWhere := dsBelow;
-        ADOQuery1.SQL.Text := 'select * from employee';
+      if ErrorText = '' then
+      begin
+        WebDataScanAll.PageHeight := 2;
+        WebDataScanAll.ButtonsWhere := dsBelow;
 
         // helpful to know that WebAppUpdate will be called whenever the
         // WebHub app is refreshed.
@@ -168,43 +202,46 @@ begin
   CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
-procedure TDMQuery2.loadCustomSettings;
+function TDMQuery2.loadCustomSettings(out ErrorText: string): Boolean;
 var
   S1: string;
 begin
-  // Set the database path...
-  // Note: you may override and set this to any database path.
-  S1:=getHtDemoDataRoot + 'whQuery2\';
-  Query1.Databasename := S1;
-  //Query2.Databasename := S1;
+  // Note: you may override database path
 
-  TableComplete.Databasename:=S1;
+  ErrorText := '';
+  Result := True;
+//////  TableComplete.Databasename:=S1;
   S1 := ZMKey.KeyedFile.ZNodeAttr(nil,
     ['QuerySpec/Item', '@name', 'Tablename'], cxOptional, '', 'value');
   if S1 = '' then
   begin
-    msgErrorOk(ZM.KeyLastError);
-    FreeAndNil(ZM);
-    FreeAndNil(ZMKey);
-    Exit;
-  end;
+    ErrorText := ZM.KeyLastError;
+    Result := False;
+  end
+  else
+  begin
 
-  TableComplete.Tablename:=S1;
-  try
-    TableComplete.open;
-    WebDataSource1.KeyFieldNames:= ZMKey.KeyedFile.ZNodeAttr(nil,
-    ['QuerySpec/Item', '@name', 'PrimaryKeyField'], cxOptional, '', 'value');
-  except on e: Exception do
-    msgErrorOk( S1 + ' failed to open. Error:'+e.message );
+///////    TableComplete.Tablename:=S1;
+    try
+///////      TableComplete.open;
+      WebDataSource1.KeyFieldNames := ZMKey.KeyedFile.ZNodeAttr(nil,
+      ['QuerySpec/Item', '@name', 'PrimaryKeyField'], cxOptional, '', 'value');
+      CSSend('WebDataSource1.KeyFieldNames', WebDataSource1.KeyFieldNames);
+    except on E: Exception do
+      begin
+        ErrorText := S1 + ' failed to open. Exception:' + E.message;
+        Result := False;
+      end;
+    end;
   end;
 
   {do not free the map or the key}
-//  FreeAndNil(ZM);
 end;
 
 procedure TDMQuery2.Query1BeforeOpen(DataSet: TDataSet);
 begin
-  with TQuery(Dataset) do
+  if Dataset is TADOQuery then
+  with TADOQuery(Dataset) do
   begin
     sql.text:=ZMKey.KeyedFile.ZNodeAttr(nil,
       ['QuerySpec/Item', '@name', 'SQL'], cxOptional, '', 'value')
@@ -212,7 +249,9 @@ begin
       + ZMKey.KeyedFile.ZNodeAttr(nil,
       ['QuerySpec/Item', '@name', 'SearchField'], cxOptional, '', 'value')
       + ' LIKE '''+pWebApp.StringVar['FindMe']+'%'')';
-  end;
+  end
+  else
+    LogSendWarning(DataSet.ClassName + ' class not supported; SQL not loaded');
 end;
 
 procedure TDMQuery2.WebAppNewSession(Sender: TObject; Session: Integer;
@@ -235,7 +274,7 @@ begin
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
-procedure TDMQuery2.WebDataScan1EmptyDataSet(Sender: TObject);
+procedure TDMQuery2.WebDataScanAllEmptyDataSet(Sender: TObject);
 begin
   {This is here to demonstrate what happens when the result set is empty. The
    SQL for query2 always returns an empty result set.}
@@ -244,33 +283,41 @@ begin
   +'</td></tr>');
 end;
 
-procedure TDMQuery2.WebDataScan1Finish(Sender: TObject);
+procedure TDMQuery2.WebDataScanAllFinish(Sender: TObject);
 begin
   inherited;
-  pWebApp.SendDroplet(WebDataScan1.HtmlParam, drAfterWhrow);
+  pWebApp.SendDroplet(WebDataScanAll.HtmlParam, drAfterWhrow);
   if True then
-    WebDataScan1.ButtonsWhere := dsBelow
+    WebDataScanAll.ButtonsWhere := dsBelow
   else
-    WebDataScan1.ButtonsWhere := dsNone;
+    WebDataScanAll.ButtonsWhere := dsNone;
 end;
 
-procedure TDMQuery2.WebDataScan1Init(Sender: TObject);
+procedure TDMQuery2.WebDataScanAllInit(Sender: TObject);
 begin
-  pWebApp.SendDroplet(WebDataScan1.HtmlParam, drBeforeWhrow);
+  pWebApp.SendDroplet(WebDataScanAll.HtmlParam, drBeforeWhrow);
 end;
 
-procedure TDMQuery2.WebDataScan1RowStart(Sender: TwhdbScanBase;
+procedure TDMQuery2.WebDataScanAllRowStart(Sender: TwhdbScanBase;
   aWebDataSource: TwhdbSourceBase; var ok: Boolean);
 begin
   inherited;
   pWebApp.SendString('<tr>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('EmpNo').asString
+  +'<td>' + TwhdbSource(aWebDataSource).DataSet.FieldByName('EmpNo').asString
   +'</td>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('Firstname').asString
+  +'<td>' + TwhdbSource(aWebDataSource).DataSet.FieldByName('Firstname').asString
   +'</td>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('Lastname').asString
+  +'<td>' + TwhdbSource(aWebDataSource).DataSet.FieldByName('Lastname').asString
   +'</td>'
   +'</tr>');
 end;
+
+(*
+object TableComplete: TTable
+  DatabaseName = 'WebHubDemoData'
+  Left = 432
+  Top = 324
+end
+*)
 
 end.
