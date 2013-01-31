@@ -2,7 +2,6 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <whQuery2Configuration>
   <QuerySpec>
-    <Item name="Tablename" value="employee.db" />
     <Item name="PrimaryKeyField" value="EmpNo" />
     <Item name="SearchField" value="Lastname" />
     <Item name="Label1" value="Emp#" />
