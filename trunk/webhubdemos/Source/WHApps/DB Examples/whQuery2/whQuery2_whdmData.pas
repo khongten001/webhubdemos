@@ -160,7 +160,12 @@ begin
 
       ADOQueryFull.ConnectionString := Query1.ConnectionString;
       ADOQueryFull.SQL.Text := 'select * from employee';
+      ADOQueryFull.BeforeOpen := nil;
       WebDataScanAll.WebDataSource.KeyFieldNames := 'EmpNo';
+      WebDataScanAll.PageHeight := 4; // enough data to be worth scrolling.
+      WebDataScanAll.ButtonsWhere := dsBelow;
+
+      grid.PageHeight := 0; // so few records, might as well show ALL.
 
       RefreshWebActions(Self);
       if NOT WebDataSource1.IsUpdated then
@@ -174,7 +179,6 @@ begin
       begin
         grid.SetCaptions2004;
         grid.SetButtonSpecs2012;
-        grid.PageHeight := 0; // so few records, might as well show ALL.
 
         if NOT Assigned(ZMKey) then
         begin
@@ -187,9 +191,6 @@ begin
 
       if ErrorText = '' then
       begin
-        WebDataScanAll.PageHeight := 2;
-        WebDataScanAll.ButtonsWhere := dsBelow;
-
         // helpful to know that WebAppUpdate will be called whenever the
         // WebHub app is refreshed.
         AddAppUpdateHandler(WebAppUpdate);

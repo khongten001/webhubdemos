@@ -2,45 +2,50 @@ inherited fmCounterPanel: TfmCounterPanel
   Left = 351
   Top = 151
   Caption = '&Counter'
-  ClientHeight = 200
-  ClientWidth = 303
+  ClientHeight = 243
+  ClientWidth = 397
   OnDestroy = FormDestroy
-  ExplicitWidth = 321
-  ExplicitHeight = 245
+  ExplicitWidth = 415
+  ExplicitHeight = 288
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
-    Width = 303
-    Height = 181
-    ExplicitWidth = 313
-    ExplicitHeight = 182
+    Width = 397
+    Height = 224
+    ExplicitWidth = 303
+    ExplicitHeight = 181
     object Panel1: TPanel
-      Left = 304
+      Left = 388
       Top = 45
       Width = 4
-      Height = 132
+      Height = 174
       Cursor = crHSplit
       Align = alRight
       BevelOuter = bvNone
       DragCursor = crHSplit
       TabOrder = 0
+      ExplicitLeft = 294
+      ExplicitHeight = 131
     end
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 303
+      Width = 387
       BorderWidth = 5
       TabOrder = 1
+      ExplicitWidth = 293
     end
     object Panel2: TPanel
       Left = 5
       Top = 45
-      Width = 299
-      Height = 132
+      Width = 383
+      Height = 174
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsSingle
       TabOrder = 2
+      ExplicitWidth = 289
+      ExplicitHeight = 131
       object Label1: TLabel
         Left = 16
         Top = 24
@@ -49,28 +54,35 @@ inherited fmCounterPanel: TfmCounterPanel
         Caption = 'Counter:'
       end
       object EditCounter: TEdit
-        Left = 64
-        Top = 19
-        Width = 73
-        Height = 21
+        Left = 104
+        Top = 21
+        Width = 145
+        Height = 26
         TabOrder = 0
       end
     end
   end
   object tpStatusBar1: TtpStatusBar
     Left = 0
-    Top = 181
-    Width = 303
+    Top = 224
+    Width = 397
     Height = 19
     Panels = <
       item
+        Text = 'whWebAction2: Not Updated'
         Width = 50
       end>
     ParentShowHint = False
     ShowHint = True
     SimpleText = ''
     PanelStatusIndex = 0
-    ExplicitTop = 182
-    ExplicitWidth = 313
+    ExplicitTop = 181
+    ExplicitWidth = 303
+  end
+  object waShowCounter: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    OnExecute = waShowCounterExecute
+    Left = 144
+    Top = 112
   end
 end

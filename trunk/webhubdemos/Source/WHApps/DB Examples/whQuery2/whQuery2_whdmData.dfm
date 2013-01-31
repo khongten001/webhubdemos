@@ -54,7 +54,7 @@ object DMQuery2: TDMQuery2
   object DataSourceFull: TDataSource
     DataSet = ADOQueryFull
     Left = 213
-    Top = 228
+    Top = 220
   end
   object WebDataScanAll: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
@@ -97,7 +97,6 @@ object DMQuery2: TDMQuery2
       'out=5;SafeTransactions=0;Threads=3;UID=admin;UserCommitSync=Yes;' +
       '";Initial Catalog=D:\Projects\webhubdemos\Live\Database\whQuery2' +
       '\employee'
-    BeforeOpen = Query1BeforeOpen
     Parameters = <>
     Left = 320
     Top = 224

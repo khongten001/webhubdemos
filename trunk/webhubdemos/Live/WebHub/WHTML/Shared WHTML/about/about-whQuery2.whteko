@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaHTQ2=Ann Lynnworth
 mcWhDemoCreditFirstDraftHTQ2=Ann Lynnworth
 mcWhDemoCreditGraphicsHTQ2=Rob Daniels
 mcWhDemoCreditCopyHTQ2=Rob Daniels
-mcWhDemoUpdatedHTQ2=24-Jul-2009
+mcWhDemoUpdatedHTQ2=30-Jan-2013
 mcWhDemoKeywordsHTQ2=database,query,sql,dynamic content,multi-query example
 mcWhDemoLiteHTQ2=No
 </whmacros>
@@ -15,20 +15,13 @@ mcWhDemoLiteHTQ2=No
 <whdroplet name="drDemoSetupHTQ2">
 <ol>
 <li> Requires whQuery2.exe </li>
-<li> The Borland Database Engine is required (incl. with Delphi).</li>
-<li> In the application's configuration file, make 
-sure the TablePath setting is valid for your system.  You can point to 
-any directory that contains tables.</li>
-<li> The default query goes against the Paradox table named Employee.db</li>
-<li> Check the [TwhAppBase.QuerySpec] section; that configures the query.
+<li> In PAS code, make sure the ConnectionString is valid for your system.  </li>
+<li> Note that FullConvert Pro was used in January 2013 to convert the employee.db from 
+Paradox format to Access/MDB format.</li>
+<li> Check the whQuery2Spec.whteko file; that configures the query.
 You can change it to anything valid on your system. </li>
-<li> To reset the counter of sessions, change the <code>CountHTQ2</code>
-setting under AppSettings.</li>
-<li> For the TestScan page which uses TADOQuery, the following is also required: 
-<ul>
-<li> ODBC Data Source named WebHubDemoHTQ2, being a Paradox driver. </li>
-<li> Make sure that the proper network directory is used (location of pdox.net file). </li>
-</ul>
+<li> To reset the counter of sessions, edit the file <code>whQuery2.hitcount.txt</code> in the 
+same folder as whQuery2.exe. </li>
 </li>
 </ol>
 </whdroplet>
@@ -43,45 +36,32 @@ so that you can make changes without recompiling; and (c) a visitor counter.
 
 <whtranslation key="~whDemoLongDescHTQ2">
 <h3>Delphi Project Notes</h3>
-<p>The databasename and tablename are specified in an INI file rather than hardcoded into the project.</p>
+<p>The databasename and tablename are specified in a configuration file rather than hardcoded into the project.</p>
 
 <p>Multiple open queries are handled automatically!  To prove this to yourself, run one query.  
 Then open another web browser and start again as a new surfer.  Notice that you can scroll resulting 
-grids independently. This &quot;cloning&quot; capability is handled by the TwhdbSource 
+grids independently. This &quot;cloning&quot; capability is handled by the WebDataSource 
 component.</p>
 
 <p>Precisely because this is a somewhat generic query example, the code is more advanced.  If you 
 are new to Delphi, start with one of the other query examples.</p>
 
-<p>To get oriented, look at the query configuration information in the INI file 
-under [TwhAppBase.QuerySpec].  This is what controls the query.</p>
+<p>To get oriented, look at the query configuration information in whQuery2Spec.xml. That controls the query.</p>
 
-<pre>
-[TwhAppBase.QuerySpec]
-Tablename=employee.db
-PrimaryKeyField=EmpNo
-SearchField=Lastname
-Label1=Emp#
-Label2=Last name
-Label3=First name
-Label4=Tel Extension
-SQL=Select Empno,Lastname,Firstname,PhoneExt from EMPLOYEE
-</pre>
-
-<p>You should be able to make this demo run with the employee.db file, and you should 
-be able to change the path, tablename and HTML droplet information to fit any other
+<p>You should be able to make this demo run with the employee.xml file available from Embarcadero Samples (subversion), 
+and you should be able to change the path, tablename and HTML droplet information to fit any other
 single-table query you want to do.</p>
 
 <p>The whole idea is to have the SQL statement built on the fly -- partly based
-on information in the htqry2.ini file, and partly based on surfer's form
-StringVars.  If this were not meant to be generic, different techniques would
+on information in the configuration file, and partly based on surfer's data entry. 
+If this were not meant to be generic, different techniques would
 be used for setting hot fields, etc.</p>
 
 <h3>What makes this project interesting and tricky?</h3>
 The reason this project is not straightforward is that we are building the SQL statement 
-on the fly based on settings in the .ini file.
+on the fly.
 <ul>
-<li>(~mcWhDemoDot~) Because we don't know the list of fields to select at design time,
+<li>(~mcWhDemoDot~) Because we do not know the list of fields to select at design time,
   we can not simply type in the SQL into QUERY1.SQL. Instead, that is done
   when the form activates.</li>
 
@@ -90,8 +70,6 @@ on the fly based on settings in the .ini file.
   makes things tricky because we have to adjust the StringVars on the
   fly.  i.e. if the surfer enters 'S' we want to change that to 'S%'.</li>
 </ul>
-
 </whtranslation>
-
 
 </whteko>
