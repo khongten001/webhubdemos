@@ -34,10 +34,10 @@ type
   private
     { Private declarations }
     function CounterFilespec: string;
-    function RestorerActiveHere: Boolean; override;
   public
     { Public declarations }
     function Init: Boolean; override;
+    function RestorerActiveHere: Boolean; override;
   end;
 
 var
@@ -89,8 +89,6 @@ end;
 
 procedure TfmCounterPanel.htWebAppNewSession(Sender: TObject;
   Session: Cardinal; const Command: String);
-var
-  i:integer;
 begin
   inherited;
   with pWebApp do
