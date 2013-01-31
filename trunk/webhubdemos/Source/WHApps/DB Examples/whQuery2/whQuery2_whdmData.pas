@@ -27,7 +27,7 @@ interface
 
 uses
   SysUtils, Classes,
-  webLink, Data.Win.ADODB, wdbxSource, wdbScan, Bde.DBTables, DB,
+  webLink, Data.Win.ADODB, wdbxSource, wdbScan, DB,
   ZaphodsMap,
   updateOK, tpAction,
   wdbSSrc, wdbSource, wbdeSource, webTypes, wbdeGrid;
