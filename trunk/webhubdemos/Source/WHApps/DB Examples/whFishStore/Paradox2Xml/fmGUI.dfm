@@ -21,7 +21,6 @@ object Form3: TForm3
     Width = 145
     Height = 338
     TabOrder = 0
-    ExplicitHeight = 293
   end
   object Panel1: TPanel
     Left = 145
@@ -30,9 +29,6 @@ object Form3: TForm3
     Height = 338
     Align = alClient
     TabOrder = 1
-    ExplicitLeft = 137
-    ExplicitWidth = 488
-    ExplicitHeight = 293
     object LabeledEditParadox: TLabeledEdit
       Left = 16
       Top = 32

@@ -65,11 +65,18 @@ procedure TForm3.ActionConvertExecute(Sender: TObject);
 begin
 //http://docwiki.embarcadero.com/Libraries/XE3/en/Datasnap.DBClient.TDataPacketFormat
   ClientDataSet1.SaveToFile(LabeledEditXML.Text, dfXml);
-  MsgInfoOk('Done');
+  if FileExists(LabeledEditXML.Text) then
+    MsgInfoOk('Done')
+  else
+    MsgErrorOk('Failed.' + sLineBreak + LabeledEditXML.Text + sLineBreak +
+      'does not exist.');
 end;
 
 procedure TForm3.Button2Click(Sender: TObject);
 begin
+  if LabeledEditParadox.Text <> '' then
+    FileOpenDialog1.DefaultFolder := ExtractFilepath(LabeledEditParadox.Text);
+
   if FileOpenDialog1.Execute then
   begin
     LabeledEditParadox.Text := FileOpenDialog1.FileName;
