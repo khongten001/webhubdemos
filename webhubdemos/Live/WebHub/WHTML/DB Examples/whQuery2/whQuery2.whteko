@@ -1,13 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
 <whdroplet name="drDemoSpeedbarForHTQ2">
-(~GO|TestScan|ADO Test~) &nbsp; 
-(~GO|Answer|Browse Answer Table~)<br />
+(~GO|TestScan|WebDataScan~) &nbsp; 
+(~GO|Answer|WebDataGrid~)<br />
+Count new surfer sessions: (~waShowCounter.execute|~)<br/>
 </whdroplet>
 
-<whpage pageid="pgEnterHTQ2" desc="Home Page for Demo">
+<whpage pageid="pgEnterHTQ2" desc="-Enter HTQ2 Demonstration">
 <whprep>
 (~NOTASSIGNED|findme|(~SET|Findme=S~)~)
 </whprep>
@@ -31,7 +32,7 @@ in testing):</p>
 
 <form method="post" accept-charset="UTF-8" action="(~ACTION|Answer,new~)">
 <p>Employee last name (starts with): (~INPUTTEXT|FINDME,10,10~)</p>
-<p>Hint: try the letter S, F, or B, or leave blank for all names.</p>
+<p>Hint: try the letter S, F, or B, or leave blank for all employee names.</p>
 <p>(~INPUTSUBMIT|submit,Try it~)</p>
 </form>
 </div>  <!--- demopagecontent -->
@@ -96,7 +97,8 @@ input, select{
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Result of Query</h1>
-<p>Here is the result of your query, searching for (~findme~):</p>
+<p>(~JUMPR|pgEnterHTQ2|Back~)<br/>
+Here is the result of your query, searching for (~findme~):</p>
 (~grid.execute~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
@@ -116,7 +118,8 @@ input, select{
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <hr />
-Here is further detail on the Employee you selected:
+<p>(~JUMPR|answer|Back~)<br/>
+Here is further detail on the Employee you selected:</p>
 <hr />
 <table>
 <tr>
@@ -143,12 +146,14 @@ Here is further detail on the Employee you selected:
 </body></html>
 </whpage>
 
-<whpage pageid="testscan" desc="Test Scan component using ADO">
+<whpage pageid="testscan" desc="Test WebDataScan component">
 (~mcdoctypehtml~)
 <html>
 <head>
 	(~drHead~)
 	(~drStyleHTQ2~)
+
+<link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdemosWebDataScan.css" />
 </head>
 <body>
 (~drPageBegin~)
@@ -156,12 +161,12 @@ Here is further detail on the Employee you selected:
 <h1>Using WebDataScan instead of WebDataGrid</h1>
 <h2>Uses TADOQuery, ODBC Paradox driver </h2>
 <whdroplet name="drScanner" show="no">
-<table id="something" cellspacing="4">
+<table id="something" class="whdbScanBase-table">
 <tr><th>Employee Number</th><th>Firstname</th><th>Lastname</th></tr>
 <whrow>data</whrow>
 </table>
 </whdroplet>
-(~webdatascan1.execute|drScanner~)
+(~webdatascanALL.execute|drScanner~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
