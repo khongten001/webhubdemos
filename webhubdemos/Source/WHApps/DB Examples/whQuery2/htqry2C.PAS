@@ -24,7 +24,7 @@ THE SOFTWARE.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, ComCtrls,
+  SysUtils, Classes, Graphics, Controls, Forms, ComCtrls,
   ExtCtrls, StdCtrls, Grids, DBGrids, Buttons,
   utPanFrm, tpStatus, UpdateOk, tpAction, toolbar, tpCompPanel;
 
@@ -66,10 +66,13 @@ end;
 
 //------------------------------------------------------------------------------
 
-function TfmHTQ2Panel.Init:Boolean;
+function TfmHTQ2Panel.Init: boolean;
 begin
   Result:= inherited Init;
   DBGrid1.enabled:=true;
+  if Assigned(DMQuery2.DataSourceFull.DataSet) then
+    tpToolButton1.Caption := 'Show Table (using ' +
+      DMQuery2.DataSourceFull.DataSet.ClassName + ')';
 end;
 
 (*procedure TfmHTQ2Panel.CloseAllDatasets(AWebDataSource: TwhbdeSource);
@@ -88,8 +91,8 @@ end;
 procedure TfmHTQ2Panel.tpToolButton1Click(Sender: TObject);
 begin
   inherited;
-  DBGrid1.DataSource := DMQuery2.DataSource2;
-  DMQuery2.ADOQuery1.Open;
+  DBGrid1.DataSource := DMQuery2.DataSourceFull;
+  DMQuery2.DataSourceFull.DataSet.Open;
 end;
 
 end.

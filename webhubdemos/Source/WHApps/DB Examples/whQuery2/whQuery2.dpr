@@ -21,16 +21,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -44,7 +44,8 @@ uses
   htqry2C in 'htqry2C.PAS' {fmHTQ2Panel},
   counter in 'counter.pas' {fmCounterPanel},
   ZaphodsMap in 'h:\ZaphodsMap.pas',
-  whQuery2_dmdbProjMgr in 'whQuery2_dmdbProjMgr.pas' {DMForWHQuery2: TDataModule};
+  whQuery2_dmdbProjMgr in 'whQuery2_dmdbProjMgr.pas' {DMForWHQuery2: TDataModule},
+  whQuery2_whdmData in 'whQuery2_whdmData.pas' {DMQuery2: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
@@ -56,6 +57,4 @@ begin
   DMForWHQuery2.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
-
-
 
