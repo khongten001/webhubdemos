@@ -24,56 +24,26 @@ THE SOFTWARE.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ComCtrls, DB, DBTables, ExtCtrls, StdCtrls, Grids, DBGrids, Buttons, ADODB,
-  ZaphodsMap,
-  UTPANFRM, tpStatus, UpdateOk, tpAction, toolbar, tpCompPanel,
-  webPage, webPHub, wdbLink, wdbScan, wbdeGrid, WebTypes, webScan, WebLink,
-  wbdeSource, wdbSSrc, wdbxSource;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, ComCtrls,
+  ExtCtrls, StdCtrls, Grids, DBGrids, Buttons,
+  utPanFrm, tpStatus, UpdateOk, tpAction, toolbar, tpCompPanel;
 
 type
   TfmHTQ2Panel = class(TutParentForm)
     DBGrid1: TDBGrid;
     tpStatusBar1: TtpStatusBar;
-    wdsFull: TwhbdeSource;
-    DataSourceForFullTable: TDataSource;
-    TableComplete: TTable;
-    WebDataSource1: TwhbdeSource;
-    DataSource1: TDataSource;
-    Query1: TQuery;
-    grid: TwhbdeGrid;
-    WebDataScan1: TwhdbScan;
-    DataSource2: TDataSource;
-    ADOQuery1: TADOQuery;
-    whdbxSource2: TwhdbxSource;
     Toolbar: TtpToolBar;
     tpToolButton1: TtpToolButton;
-    procedure Query1BeforeOpen(DataSet: TDataSet);
-    procedure gridHotField(Sender: TwhbdeGrid; aField: TField;
-      var CellValue: string);
-    procedure gridAfterExecute(Sender: TObject);
-    procedure WebDataScan1Init(Sender: TObject);
-    procedure WebDataScan1RowStart(Sender: TwhdbScanBase;
-      aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-    procedure WebDataScan1Finish(Sender: TObject);
-    procedure WebDataScan1EmptyDataSet(Sender: TObject);
-    procedure Query2FilterRecord(DataSet: TDataSet; var Accept: Boolean);
-    procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure tpToolButton1Click(Sender: TObject);
   private
     { Private declarations }
-    ZM: TZaphodsMap;
-    ZMKey: TZaphodKey;
   protected
-    procedure CloseAllDatasets(AWebDataSource: TwhbdeSource);
+    //procedure CloseAllDatasets(AWebDataSource: TwhbdeSource);
   public
     { Public declarations }
     function Init: Boolean; override;
-    procedure WebAppNewSession(Sender:TObject; Session:Integer;
-      const Command:String);
   protected
-    procedure loadCustomSettings;
   end;
 
 var
@@ -84,23 +54,13 @@ implementation
 {$R *.DFM}
 
 uses
-  webApp, webSend, whMacroAffixes, whdemo_ViewSource,
-  ucDlgs, ucPos, ucLogFil;
+  whQuery2_whdmData;
 
 //------------------------------------------------------------------------------
-
-procedure TfmHTQ2Panel.FormCreate(Sender: TObject);
-begin
-  inherited;
-  ZM := TZaphodsMap.Create(Self);
-  ZMKey := nil;
-end;
 
 procedure TfmHTQ2Panel.FormDestroy(Sender: TObject);
 begin
   inherited;
-  ZMKey := nil;
-  FreeAndNil(ZM);
   fmHTQ2Panel := nil;
 end;
 
@@ -109,187 +69,10 @@ end;
 function TfmHTQ2Panel.Init:Boolean;
 begin
   Result:= inherited Init;
-  if not Result then
-    Exit;
-
-  { The following works when compiled with Delphi XE and run on Windows 7.
-  Thanks to this web page for the documentation of the ConnectionString
-  syntax:
-  http://www.codemaker.co.uk/it/tips/ado_conn.htm#ODBCDriverForParadox
-  Note that DefaultDir means "working directory" i.e. location of *.db
-  and Dbq means "private directory" i.e. location of paradox .net file.}
-  ADOQuery1.ConnectionString :=
-   'Driver={Microsoft Paradox Driver (*.db )};' +
-           'DriverID=538;' +
-           'Fil=Paradox 5.X;' +
-           'DefaultDir=d:\temp\pdoxnet\;' +
-           'Dbq=D:\PROJECTS\WEBHUBDEMOS\LIVE\DATABASE\WHQUERY2\;' +
-           'CollatingSequence=ASCII';
-
-  RefreshWebActions(fmHTQ2Panel);
-  grid.SetCaptions2004;
-  grid.SetButtonSpecs2012;
-
-  if NOT Assigned(ZMKey) then
-  begin
-    ZMKey := ZM.ActivateTempKey(ExtractFilePath(pWebApp.ConfigFilespec)
-      + 'whQuery2Spec.xml', 'whQuery2Configuration');
-    ZMKey.KeyedFile.LoadFile;
-  end;
-  loadCustomSettings;
-
-  whdbxSource2.KeyFieldNames := 'EmpNo';
-  WebDataScan1.PageHeight := 2;
-  WebDataScan1.ButtonsWhere := dsBelow;
-  ADOQuery1.SQL.Text := 'select * from employee';
+  DBGrid1.enabled:=true;
 end;
 
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
-procedure TfmHTQ2Panel.WebAppNewSession(Sender:TObject; Session:Integer;
-  const Command:String);
-begin
-  // note this procedure is called from the OnNewSession event in counter.pas
-
-  // The purpose of this is to demonstrate that we can set the pageheight on
-  // a per-site-visitor basis.
-  // 0 gives all rows, so let's avoid that by adding 1.
-  pWebApp.StringVarInt['WebDataScan1.PageHeight'] := Random(14) + 1;
-end;
-
-// -----------------------------------------------------------------------------
-
-procedure TfmHTQ2Panel.loadCustomSettings;
-var
-  S: String;
-begin
-  // Set the database path...
-  // Note: you may override and set this to any database path.
-  S:=getHtDemoDataRoot + 'whQuery2\';
-  Query1.Databasename := S;
-  //Query2.Databasename := S;
-
-  TableComplete.Databasename:=S;
-  S := ZMKey.KeyedFile.ZNodeAttr(nil,
-    ['QuerySpec/Item', '@name', 'Tablename'], cxOptional, '', 'value');
-  if S = '' then
-  begin
-    msgErrorOk(ZM.KeyLastError);
-    FreeAndNil(ZM);
-    FreeAndNil(ZMKey);
-    Exit;
-  end;
-
-  TableComplete.Tablename:=S;
-  try
-    TableComplete.open;
-    WebDataSource1.KeyFieldNames:= ZMKey.KeyedFile.ZNodeAttr(nil,
-    ['QuerySpec/Item', '@name', 'PrimaryKeyField'], cxOptional, '', 'value');
-    DBGrid1.enabled:=true;
-  except on e: Exception do
-    msgErrorOk( S + ' failed to open. Error:'+e.message );
-  end;
-
-  {do not free the map or the key}
-//  FreeAndNil(ZM);
-end;
-
-{----------------------------------------------------------------------------}
-{----------------------------------------------------------------------------}
-
-procedure TfmHTQ2Panel.Query1BeforeOpen(DataSet: TDataSet);
-begin
-  inherited;
-  with TQuery(Dataset) do
-  begin
-    sql.text:=ZMKey.KeyedFile.ZNodeAttr(nil,
-      ['QuerySpec/Item', '@name', 'SQL'], cxOptional, '', 'value')
-      + ' WHERE ('
-      + ZMKey.KeyedFile.ZNodeAttr(nil,
-      ['QuerySpec/Item', '@name', 'SearchField'], cxOptional, '', 'value')
-      + ' LIKE '''+pWebApp.StringVar['FindMe']+'%'')';
-  end;
-end;
-
-{----------------------------------------------------------------------------}
-
-{Hot field is set by putting :HF after the field name in the
-displaySet.  See WebDataSource.displayset -- or just look in the
-htqry2.ini file.}
-procedure TfmHTQ2Panel.gridHotField(Sender: TwhbdeGrid; aField: TField;
-  var CellValue: string);
-begin
-  inherited;
-  {JUMP is a built-in WebHub macro. Syntax is: JUMP|pageId,command|visiblePhrase }
-  CellValue:=MacroStart + 'JUMP|detail,wdsFull.'+
-     aField.DataSet.fields[0].asString+  {command (4th param on URL)}
-     '|'+aField.asString+MacroEnd;  {command is passed to wdsFull which causes it to FindKey.}
-end;
-
-{----------------------------------------------------------------------------}
-{----------------------------------------------------------------------------}
-
-procedure TfmHTQ2Panel.gridAfterExecute(Sender: TObject);
-begin
-  inherited;
-  // Publish the sql code to the web, after the final page section.
-  with WebDataSource1 do
-    pWebApp.Summary.Add('SQL for '+DataSet.Name+' is:<BR>'
-    +TQuery(dataset).sql.text);
-end;
-
-procedure TfmHTQ2Panel.WebDataScan1Init(Sender: TObject);
-begin
-  inherited;
-  pWebApp.SendDroplet(WebDataScan1.HtmlParam, drBeforeWhrow); 
-end;
-
-procedure TfmHTQ2Panel.WebDataScan1RowStart(Sender: TwhdbScanBase;
-  aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-begin
-  inherited;
-  pWebApp.SendString('<tr>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('EmpNo').asString
-  +'</td>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('Firstname').asString
-  +'</td>'
-  +'<td>' + TQuery(TwhbdeSource(aWebDataSource).DataSet).FieldByName('Lastname').asString
-  +'</td>'
-  +'</tr>');
-end;
-
-procedure TfmHTQ2Panel.WebDataScan1Finish(Sender: TObject);
-begin
-  inherited;
-  pWebApp.SendDroplet(WebDataScan1.HtmlParam, drAfterWhrow);
-  if True then
-    WebDataScan1.ButtonsWhere := dsBelow
-  else
-    WebDataScan1.ButtonsWhere := dsNone;
-end;
-
-procedure TfmHTQ2Panel.WebDataScan1EmptyDataSet(Sender: TObject);
-begin
-  inherited;
-  {This is here to demonstrate what happens when the result set is empty. The
-   SQL for query2 always returns an empty result set.}
-  pWebApp.SendString('<tr><td>'
-  +'Hey there is no data in this result set!'
-  +'</td></tr>');
-end;
-
-procedure TfmHTQ2Panel.Query2FilterRecord(DataSet: TDataSet;
-  var Accept: Boolean);
-begin
-  inherited;
-  if posci('e', DataSet.FieldByName('Firstname').asString) > 0 then
-    Accept := True // (Random(1) = 1);
-  else
-    Accept := False;
-end;
-
-procedure TfmHTQ2Panel.CloseAllDatasets(AWebDataSource: TwhbdeSource);
+(*procedure TfmHTQ2Panel.CloseAllDatasets(AWebDataSource: TwhbdeSource);
 var
   n:integer;
 begin
@@ -300,12 +83,13 @@ begin
       Components[0].free;
   end;
 end;
+  *)
 
 procedure TfmHTQ2Panel.tpToolButton1Click(Sender: TObject);
 begin
   inherited;
-  DBGrid1.DataSource := DataSource2;
-  ADOQuery1.Open;
+  DBGrid1.DataSource := DMQuery2.DataSource2;
+  DMQuery2.ADOQuery1.Open;
 end;
 
 end.
