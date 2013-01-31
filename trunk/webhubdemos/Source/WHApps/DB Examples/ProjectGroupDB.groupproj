@@ -30,10 +30,16 @@
         <Projects Include="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="whQuery4\whQuery4.dproj">
+        <Projects Include="whQuery1\whQuery1.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whQuery2\whQuery2.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="whQuery3\whQuery3.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whQuery4\whQuery4.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="whFirebird\whFirebird.dproj">
@@ -45,16 +51,10 @@
         <Projects Include="..\Third Party Examples\whDPrefix\whDPrefix.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="whQuery1\whQuery1.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="whDynamicJPEG\whDynamicJPEG.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="whFishStore\Paradox2Xml\Paradox2Xml.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="whQuery2\whQuery2.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -146,14 +146,23 @@
     <Target Name="Project2:Make">
         <MSBuild Projects="whSchedule\EmbarcaderoPages\LoadViaRegex\Project2.dproj" Targets="Make"/>
     </Target>
-    <Target Name="whQuery4">
-        <MSBuild Projects="whQuery4\whQuery4.dproj"/>
+    <Target Name="whQuery1">
+        <MSBuild Projects="whQuery1\whQuery1.dproj"/>
     </Target>
-    <Target Name="whQuery4:Clean">
-        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Clean"/>
+    <Target Name="whQuery1:Clean">
+        <MSBuild Projects="whQuery1\whQuery1.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="whQuery4:Make">
-        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Make"/>
+    <Target Name="whQuery1:Make">
+        <MSBuild Projects="whQuery1\whQuery1.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whQuery2">
+        <MSBuild Projects="whQuery2\whQuery2.dproj"/>
+    </Target>
+    <Target Name="whQuery2:Clean">
+        <MSBuild Projects="whQuery2\whQuery2.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whQuery2:Make">
+        <MSBuild Projects="whQuery2\whQuery2.dproj" Targets="Make"/>
     </Target>
     <Target Name="whQuery3">
         <MSBuild Projects="whQuery3\whQuery3.dproj"/>
@@ -163,6 +172,15 @@
     </Target>
     <Target Name="whQuery3:Make">
         <MSBuild Projects="whQuery3\whQuery3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whQuery4">
+        <MSBuild Projects="whQuery4\whQuery4.dproj"/>
+    </Target>
+    <Target Name="whQuery4:Clean">
+        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whQuery4:Make">
+        <MSBuild Projects="whQuery4\whQuery4.dproj" Targets="Make"/>
     </Target>
     <Target Name="whFirebird">
         <MSBuild Projects="whFirebird\whFirebird.dproj"/>
@@ -191,15 +209,6 @@
     <Target Name="whDPrefix:Make">
         <MSBuild Projects="..\Third Party Examples\whDPrefix\whDPrefix.dproj" Targets="Make"/>
     </Target>
-    <Target Name="whQuery1">
-        <MSBuild Projects="whQuery1\whQuery1.dproj"/>
-    </Target>
-    <Target Name="whQuery1:Clean">
-        <MSBuild Projects="whQuery1\whQuery1.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="whQuery1:Make">
-        <MSBuild Projects="whQuery1\whQuery1.dproj" Targets="Make"/>
-    </Target>
     <Target Name="whDynamicJPEG">
         <MSBuild Projects="whDynamicJPEG\whDynamicJPEG.dproj"/>
     </Target>
@@ -218,23 +227,14 @@
     <Target Name="Paradox2Xml:Make">
         <MSBuild Projects="whFishStore\Paradox2Xml\Paradox2Xml.dproj" Targets="Make"/>
     </Target>
-    <Target Name="whQuery2">
-        <MSBuild Projects="whQuery2\whQuery2.dproj"/>
-    </Target>
-    <Target Name="whQuery2:Clean">
-        <MSBuild Projects="whQuery2\whQuery2.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="whQuery2:Make">
-        <MSBuild Projects="whQuery2\whQuery2.dproj" Targets="Make"/>
-    </Target>
     <Target Name="Build">
-        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whSchedule;Project2;whQuery4;whQuery3;whFirebird;IbObj_Bootstrap;whDPrefix;whQuery1;whDynamicJPEG;Paradox2Xml;whQuery2"/>
+        <CallTarget Targets="whClone;whLoadFromDB;whInstantForm;whShopping;whScanTable;whFishStore;whDSP;whSchedule;Project2;whQuery1;whQuery2;whQuery3;whQuery4;whFirebird;IbObj_Bootstrap;whDPrefix;whDynamicJPEG;Paradox2Xml"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whSchedule:Clean;Project2:Clean;whQuery4:Clean;whQuery3:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whQuery1:Clean;whDynamicJPEG:Clean;Paradox2Xml:Clean;whQuery2:Clean"/>
+        <CallTarget Targets="whClone:Clean;whLoadFromDB:Clean;whInstantForm:Clean;whShopping:Clean;whScanTable:Clean;whFishStore:Clean;whDSP:Clean;whSchedule:Clean;Project2:Clean;whQuery1:Clean;whQuery2:Clean;whQuery3:Clean;whQuery4:Clean;whFirebird:Clean;IbObj_Bootstrap:Clean;whDPrefix:Clean;whDynamicJPEG:Clean;Paradox2Xml:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whSchedule:Make;Project2:Make;whQuery4:Make;whQuery3:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whQuery1:Make;whDynamicJPEG:Make;Paradox2Xml:Make;whQuery2:Make"/>
+        <CallTarget Targets="whClone:Make;whLoadFromDB:Make;whInstantForm:Make;whShopping:Make;whScanTable:Make;whFishStore:Make;whDSP:Make;whSchedule:Make;Project2:Make;whQuery1:Make;whQuery2:Make;whQuery3:Make;whQuery4:Make;whFirebird:Make;IbObj_Bootstrap:Make;whDPrefix:Make;whDynamicJPEG:Make;Paradox2Xml:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
