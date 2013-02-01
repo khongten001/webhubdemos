@@ -31,7 +31,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DB, DBTables, wbdeSource, UpdateOk, WebTypes, WebLink, WdbLink, webScan,
-  WdbScan, wbdeGrid, tpAction;
+  WdbScan, wbdeGrid, tpAction, wdbSSrc, wdbSource;
 
 type
   TDataModuleGrid2 = class(TDataModule)
@@ -39,15 +39,15 @@ type
     WebDataSource2: TwhbdeSource;
     DataSource2: TDataSource;
     Query2: TQuery;
-    procedure grid2HotField(Sender: TwhdbScan; aField: TField;
-      var s: string);
     procedure Query2BeforeOpen(DataSet: TDataSet);
+    procedure grid2HotField(Sender: TwhbdeGrid; AField: TField;
+      var CellValue: string);
   private
     { Private declarations }
   public
     { Public declarations }
     function  getLastnameJump(aField:TField):string;
-    procedure Init;
+    function Init(out ErrorText: string): Boolean;
   end;
 
 var
@@ -55,7 +55,9 @@ var
 
 implementation
 
-uses 
+uses
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ucCodeSiteInterface,
   webApp, whMacroAffixes, whdemo_ViewSource;
 
 {$R *.DFM}
@@ -63,16 +65,33 @@ uses
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-procedure TDataModuleGrid2.Init;
+procedure TDataModuleGrid2.grid2HotField(Sender: TwhbdeGrid; AField: TField;
+  var CellValue: string);
 begin
+  {note the comma separating the target PageID (Detail) from the
+   optional command string (empno.asString) }
+  CellValue := getLastnameJump(aField);
+end;
+
+function TDataModuleGrid2.Init(out ErrorText: string): Boolean;
+const
+  cRecylingHtml = '&#x267b;';
+begin
+  ErrorText := '';
   Query2.databasename := getHtDemoDataRoot + 'whQuery4\';
   RefreshWebActions(DataModuleGrid2);
-  WebDataSource2.MaxOpenDataSets := 20;
-  WebDataSource2.BendPointers := False;
-  grid2.Border := '';
-  grid2.SetCaptions2004;
-  grid2.SetButtonSpecs2012;
-  grid2.Captions.Values['Redraw'] := '<input type="submit" value="X">';
+  if grid2.IsUpdated then
+  begin
+    WebDataSource2.MaxOpenDataSets := 20;
+    WebDataSource2.BendPointers := False;
+    grid2.Border := '';
+    grid2.SetCaptions2004;
+    grid2.SetButtonSpecs2012;
+    grid2.Captions.Values[cCapDraw] := MacroStart + 'mcRedrawSubmit' + MacroEnd;
+  end
+  else
+    ErrorText := grid2.Name + ' unable to update';
+  Result := ErrorText = '';
 end;
 
 // -----------------------------------------------------------------------------
@@ -92,14 +111,6 @@ begin
   Result := MacroStart + 'JUMP|detail,' +
     aField.DataSet.FieldByName('EmpNo').asString + '|' + aField.asString +
     MacroEnd;
-end;
-
-procedure TDataModuleGrid2.grid2HotField(Sender: TwhdbScan; aField: TField;
-  var s: string);
-begin
-  {note the comma separating the target PageID (Detail) from the
-   optional command string (empno.asString) }
-  s := getLastnameJump(aField);
 end;
 
 end.

@@ -81,6 +81,7 @@ uses
 
 function TDataModuleHTQ4.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
+const cRecylingHtml = '&#x267b;';
 begin
   ErrorText := '';
   Result := False;
@@ -123,7 +124,7 @@ begin
   grid1.Border := '';
   grid1.SetCaptions2004;
   grid1.SetButtonSpecs2012;
-  grid1.Captions.Values['Redraw'] := '<input type="submit" value="X"/>';
+  grid1.Captions.Values[cCapDraw] := MacroStart + 'mcRedrawSubmit' + MacroEnd;
 
   if assigned(pWebApp) then
   begin

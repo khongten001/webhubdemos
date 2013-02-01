@@ -1,15 +1,13 @@
 object DataModuleGrid2: TDataModuleGrid2
   OldCreateOrder = True
-  Left = 311
-  Top = 110
   Height = 254
   Width = 323
   object WebDataSource2: TwhbdeSource
     ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 1
     OpenDataSets = 0
     OpenDataSetRetain = 600
-    MaxOpenDataSets = 1
-    GotoMode = wgGotoKey
     SaveTableName = False
     DataSource = DataSource2
     Left = 104
@@ -17,14 +15,15 @@ object DataModuleGrid2: TDataModuleGrid2
   end
   object grid2: TwhbdeGrid
     ComponentOptions = [tpUpdateOnLoad]
-    WebDataSource = WebDataSource2
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 3
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
+    WebDataSource = WebDataSource2
     TR = '<tr>'
     TD = '<td>'
+    Caption = ''
     Preformat = False
     OnHotField = grid2HotField
     Left = 104
