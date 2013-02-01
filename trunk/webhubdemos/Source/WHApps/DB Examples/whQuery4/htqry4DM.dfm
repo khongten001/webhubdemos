@@ -45,15 +45,16 @@ object DataModuleHTQ4: TDataModuleHTQ4
     Top = 196
   end
   object WebDataForm1: TwhdbForm
-    ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
+    OnSetCommand = WebDataForm1SetCommand
     WrapMemo = False
     SkipBlank = False
     WebDataSource = WebDataSourceEmp
-    Left = 320
-    Top = 20
+    Left = 64
+    Top = 324
   end
   object WebDataSourceEmp: TwhbdeSource
-    ComponentOptions = [tpUpdateOnLoad, tpUpdateOnGet, tpStatusPanel]
+    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     GotoMode = wgGotoKey
     MaxOpenDataSets = 1
     OpenDataSets = 0

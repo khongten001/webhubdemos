@@ -32,7 +32,6 @@ uses
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utmainfm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
-  wdbForm in 'k:\webhub\lib\wdbForm.pas',
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -45,6 +44,7 @@ uses
   HtformC in 'HtformC.pas' {fmHTFMPanel},
   whInstantForm_dmdbProjMgr in 'whInstantForm_dmdbProjMgr.pas' {DMForWHInstantForm: TDataModule},
   whInstantForm_whdmData in 'whInstantForm_whdmData.pas' {DMParts: TDataModule},
+  wdbForm in 'k:\webhub\lib\wdbForm.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
   wbdeSource in 'K:\WebHub\lib\whdb\wbdeSource.pas',
   wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';

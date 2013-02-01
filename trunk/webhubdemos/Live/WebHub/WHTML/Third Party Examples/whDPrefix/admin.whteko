@@ -29,7 +29,7 @@ googlepriority=0
 </tr>
 <whrow>
 (~TR~)
-(~TD~)(~JUMPR|pgEdit,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
+(~TD~)(~JUMPR|pgEdit,webdataform.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)|(~FIELD|wdsManPref|Mpf Prefix~)~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf Company~)</td>
 (~TD~)(~FIELD|wdsManPref|MpfPurpose~)</td>
 (~TD~)(~FIELD|wdsManPref|Mpf WebPage~)</td>
