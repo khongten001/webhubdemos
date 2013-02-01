@@ -11,5 +11,15 @@ if errorlevel 1 pause
 %svnpath%\svn.exe export %urlroot%/Data/biolife.xml ./biolife.xml
 if errorlevel 1 pause
 
-endlocal
+:: cd ..\whInstantForm
+:: del parts.*
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.db ./parts.db
+:: if errorlevel 1 pause
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.px ./parts.px
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.VAL ./parts.VAL
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.x02 ./parts.x02
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.y02 ./parts.y02
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.xg0 ./parts.xg0
+:: %svnpath%\svn.exe export %urlroot%/Data/parts.yg0 ./parts.yg0
 
+endlocal

@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
+
 <whmacros>
 mcWhDemoOneLinerHTFM=Instant Data Entry Form
 mcWhDemoCreditIdeaHTFM=Ann Lynnworth
 mcWhDemoCreditFirstDraftHTFM=Ann Lynnworth
 mcWhDemoCreditGraphicsHTFM=Rob Daniels
 mcWhDemoCreditCopyHTFM=Rob Daniels
-mcWhDemoUpdatedHTFM=May-1998
+mcWhDemoUpdatedHTFM=1-Feb-2013
 mcWhDemoKeywordsHTFM=data entry,automatic form creation,instant form
 mcWhDemoLiteHTFM=No
 </whmacros>
 
 <whdroplet name="drDemoSetupHTFM">
 <ol>
-<li> The Borland Database Engine is required.</li>
-
-<li> Requires the DBDEMOS alias (installed with Delphi).</li>
-
-<li> Requires the Paradox table named parts.db (installed with Delphi).</li>
+<li> Requires whInstantForm.exe </li>
+<li> Requires the parts.xml as shipped by Embarcadero.</li>
+<li> Requires midas.dll </li>
 </ol>
 </whdroplet>
 
@@ -47,10 +46,10 @@ WebHub grids have more features than average:
 <li> They can be presented using HTML 3.0 tables, or &lt;pre> format</li>
 <li> They scroll -- the programmer (or the surfer) can set the number of records to display at a time; the scroll bar is created with
 a simple macro and the page up/down work is done entirely by WebHub -- no custom CGI required!  Look closely at the URL
-as you move your mouse over the [first] [next] etc. links.  The CGI QueryString sends a command (e.g. 'First') to WebHub to
+as you move your mouse over the [first] [next] etc. links.  The QueryString sends a command (e.g. 'First') to WebHub to
 request a particular scrolling behavior.</li>
 <li> They have "display sets."  A display set refers to the set of columns being displayed.  A single grid can have multiple display
-sets defined.  In the 'hrefsite' demo, you can change the current display set in the "preferences" section near the bottom of the page.
+sets defined.  
 </li>
 <li> They respect secondary indexes for sort order.  In the demo, you can also change the sort order.</li>
 </ol>
