@@ -129,13 +129,18 @@ keys: (~webdatasource1.keys~)
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-(~WebDataSourceEmp.execute~)
-(~webdataform1.execute~)
-<p>(~JUMP|Result|Go back to Result page~)</p>
+(~webdataform1.execute|view~)
+<p>(~JUMPR|Result|Go back to Result page~)</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
 </body></html>
+</whpage>
+
+<whpage pageid="pgLookupEmployee" desc="-locate employee">
+<whprep>
+(~BOUNCE|SearchResult,WebDataForm1.(~webDataSourceEmp.Keys~)~)
+</whprep>
 </whpage>
 
 <whpage pageid="TestSearch">
@@ -164,8 +169,8 @@ keys: (~webdatasource1.keys~)
 (~drPageBegin~)
 <div id="whdemopagecontent">
 (~chSearchForm~)
-(~WebDataSourceEmp.execute~)
-(~webdataform1.execute~)
+<!--- (~WebDataSourceEmp.execute~) -->
+(~webdataform1.execute|view~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
@@ -175,7 +180,7 @@ keys: (~webdatasource1.keys~)
 <h1>Search by Key Field</h1>
 <p>Try employee numbers 37, 94 and -1.</p>
 
-<form method="post" accept-charset="UTF-8" action="(~ACTION|SearchResult~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgLookupEmployee"~)">
 Find: (~INPUTTEXT|webDataSourceEmp.Keys~)
 <p><input type="submit" /></p>
 </form>

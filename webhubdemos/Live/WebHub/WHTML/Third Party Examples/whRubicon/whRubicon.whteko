@@ -106,7 +106,7 @@ Rubicon Words Table
 <center>
 Rubicon Messages Table
 <p>
-(~dgMsgs.execute~)
+(~dgMsgs.execute|~)
 <p>
 <b>Request.dbFields:</b>
 <br />

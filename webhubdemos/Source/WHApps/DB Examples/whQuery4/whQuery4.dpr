@@ -42,11 +42,14 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htqry4DM in 'htqry4DM.PAS' {DataModuleHTQ4: TDataModule},
   grid2DM in 'grid2DM.pas' {DataModuleGrid2: TDataModule},
+  wdbForm in 'k:\webhub\lib\wdbForm.pas',
   wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
   wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
+  wbdeSource in 'k:\webhub\lib\whdb\wbdeSource.pas',
   whQuery4_dmdbProjMgr in 'whQuery4_dmdbProjMgr.pas' {DMForWHQuery4: TDataModule},
   wdbLstBx in 'H:\wdbLstBx.pas',
-  webBase in 'K:\WebHub\lib\whvcl\webBase.pas';
+  webBase in 'K:\WebHub\lib\whvcl\webBase.pas',
+  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas';
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

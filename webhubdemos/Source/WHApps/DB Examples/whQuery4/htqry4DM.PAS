@@ -53,6 +53,7 @@ type
     procedure Query1BeforeOpen(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure WebDataForm1SetCommand(Sender: TObject; var ThisCommand: string);
   private
     { Private declarations }
   public
@@ -125,6 +126,7 @@ begin
   grid1.SetCaptions2004;
   grid1.SetButtonSpecs2012;
   grid1.Captions.Values[cCapDraw] := MacroStart + 'mcRedrawSubmit' + MacroEnd;
+  WebDataSourceEmp.KeyFieldNames := 'EmpNo';
 
   if assigned(pWebApp) then
   begin
@@ -132,10 +134,12 @@ begin
     WebAppUpdate(pWebApp);
   end;
 
-  Result := grid1.IsUpdated and selectDepartment.IsUpdated;
+  Result := grid1.IsUpdated and selectDepartment.IsUpdated and
+    WebDataSourceEmp.IsUpdated;
   if NOT Result then
     ErrorText :=
-      'grid1 AND selectDepartment must Refresh fully for this demo to work';
+      'grid1 AND selectDepartment AND WebDataSourceEmp must Refresh fully ' +
+      'for this demo to work';
 end;
 
 //------------------------------------------------------------------------------
@@ -149,6 +153,15 @@ begin
     Clear;
     Add('evLocate=x');
   end;
+end;
+
+procedure TDataModuleHTQ4.WebDataForm1SetCommand(Sender: TObject;
+  var ThisCommand: string);
+const cFn = 'WebDataForm1SetCommand';
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSSend('ThisCommand', ThisCommand);
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 //------------------------------------------------------------------------------

@@ -79,7 +79,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <DCC_UnitSearchPath>k:\webhub\ZaphodsMap;k:\webhub\tpack;k:\webhub\lib;k:\webhub\lib\whdb;k:\webhub\lib\whplus;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <DCC_Define>CodeSite;PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
+        <DCC_Define>CodeSite;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -103,7 +103,6 @@
         <DCCReference Include="h:\utTrayFm.pas">
             <Form>fmTrayForm</Form>
         </DCCReference>
-        <DCCReference Include="k:\webhub\lib\wdbForm.pas"/>
         <DCCReference Include="..\..\Common\whdemo_Initialize.pas"/>
         <DCCReference Include="..\..\Common\whdemo_About.pas">
             <Form>fmAppAboutPanel</Form>
@@ -146,6 +145,7 @@
             <Form>DMParts</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="k:\webhub\lib\wdbForm.pas"/>
         <DCCReference Include="K:\WebHub\lib\whdb\wdbSSrc.pas"/>
         <DCCReference Include="K:\WebHub\lib\whdb\wbdeSource.pas"/>
         <DCCReference Include="K:\WebHub\lib\whdb\wdbSource.pas"/>

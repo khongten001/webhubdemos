@@ -106,7 +106,7 @@ googlepriority=0
 <tr>(~SET|temps=(~FIELD|wdsManPref|Mpf Status~)~)
 <td class="action">
 (~NOMATCH|(~temps~)=D|
-(~JUMPR|cleanupd,webdataform.edit.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
+(~JUMPR|cleanupd,webdataform.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="edit" style="color: blue;"|&#x270e;~)
 &nbsp;
 (~JUMPR|delete,wadelete.(~Code64String|(~FIELD|wdsManPref|MpfID~)~)| title="delete" style="color:red;"|&#x2717;~)
 &nbsp;

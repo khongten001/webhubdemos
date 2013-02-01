@@ -138,13 +138,13 @@ displaySet for the grid.  (~JUMP|pgEnterHTFM|Try Again~)</p>
 
 <whdroplet name="chViewAction">
 (~webdatasource1.activate~)
-(~webdataform1.execute~)
+(~webdataform1.execute|view~)
 </whdroplet>
 
 <whdroplet name="chEditAction">
 (~webdatasource1.activate~)
 <form method="post" accept-charset="UTF-8" action="(~ACTION|PostData~)">
-(~webdataform1.execute~)
+(~webdataform1.execute|edit~)
 (~INPUTSUBMIT|submit,Click to Save Changes~)
 </form>
 </whdroplet>
