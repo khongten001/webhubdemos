@@ -134,12 +134,12 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>TfmWebHubMainForm</Form>
         </DCCReference>
-        <DCCReference Include="HtformC.pas">
-            <Form>fmHTFMPanel</Form>
-        </DCCReference>
         <DCCReference Include="whInstantForm_dmdbProjMgr.pas">
             <Form>DMForWHInstantForm</Form>
             <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="HtformC.pas">
+            <Form>fmHTFMPanel</Form>
         </DCCReference>
         <DCCReference Include="whInstantForm_whdmData.pas">
             <Form>DMParts</Form>

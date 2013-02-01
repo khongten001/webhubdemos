@@ -104,10 +104,10 @@ begin
     { enable View and Edit with InstantForm }
     CellValue := aField.DataSet.fieldByName(keyField).asString;
 
-    CellValue := MacroStart + 'JUMP|ViewDetail,WebDataForm1.View.' + CellValue +
+    CellValue := MacroStart + 'JUMP|ViewDetail,WebDataForm1.' + CellValue +
       '|' +
       MacroStart + 'mcBlueDot' + MacroEnd + MacroEnd + MacroStart +
-      'JUMP|EditDetail,WebDataForm1.Edit.' + CellValue + '|' + MacroStart +
+      'JUMP|EditDetail,WebDataForm1.' + CellValue + '|' + MacroStart +
       'mcBlackDot'
       + MacroEnd + MacroEnd + ' ' + CellValue;
   end;
