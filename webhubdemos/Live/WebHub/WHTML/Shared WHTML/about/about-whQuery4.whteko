@@ -8,7 +8,7 @@ mcWhDemoCreditIdeaHTQ4=Michael Ax
 mcWhDemoCreditFirstDraftHTQ4=Michael Ax and Ann Lynnworth
 mcWhDemoCreditGraphicsHTQ4=Rob Daniels
 mcWhDemoCreditCopyHTQ4=Rob Daniels
-mcWhDemoUpdatedHTQ4=May-1998
+mcWhDemoUpdatedHTQ4=1-Feb-2013
 mcWhDemoKeywordsHTQ4=database,query,sql,dynamic content,multi-table example
 mcWhDemoLiteHTQ4=No
 </whmacros>
@@ -16,8 +16,8 @@ mcWhDemoLiteHTQ4=No
 <whdroplet name="drDemoSetupHTQ4">
 <ol>
 <li> (~mcWhDemoVCLIcon~) Requires whQuery4.exe </li>
-<li> The Borland Database Engine is required. (incl. with Delphi)</li>
-<li> The Paradox table, employee.db, is required (incl. with WebHub VCL).</li>
+<li> The Borland Database Engine is required. </li>
+<li> The Paradox table, employee.db, is required. </li>
 </ol>
 </whdroplet>
 
