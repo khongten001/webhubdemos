@@ -31,7 +31,8 @@ uses
   DBTables, DB, 
   UpdateOk, tpAction, 
   WebTypes, wbdeSource, wdbForm,
-  WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan, wdbLstBx, wdbSSrc;
+  WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan, wdbLstBx, wdbSSrc,
+  wdbSource;
 
 type
   TDataModuleHTQ4 = class(TDataModule)
@@ -47,7 +48,7 @@ type
     DataSourceDept: TDataSource;
     QueryDept: TQuery;
     procedure grid1HotField(Sender: TwhbdeGrid; aField: TField;
-      var s: string);
+      var CellValue: string);
     procedure WebAction1Execute(Sender: TObject);
     procedure Query1BeforeOpen(DataSet: TDataSet);
     procedure DataModuleCreate(Sender: TObject);
@@ -173,21 +174,21 @@ begin
 end;
 
 procedure TDataModuleHTQ4.grid1HotField(Sender: TwhbdeGrid;
-  aField: TField; var s: string);
+  aField: TField; var CellValue: string);
 begin
   if comparetext(aField.fieldname,'empno')=0 then
   begin
     {This just drops a graphic into the 'hot' field for each record.
-     We are requesting the macro 'mcHotGif' which will get expanded
+     We are requesting the macro 'mcPersonIcon' which will get expanded
      based on its definition.  Of course we could also put the HTML
      in here directly, but the idea is to keep as much of the OUTSIDE
      the Delphi project as possible, to cut down on the need to recompile.}
-    s:=MacroStart + 'mcHotGif' + MacroEnd + s;
+    CellValue := MacroStart + 'mcPersonIcon' + MacroEnd + CellValue;
   end
   else
-  if comparetext(aField.fieldname,'lastname')=0 then
+  if SameText(aField.FieldName, 'lastname') then
   begin
-    s:=DataModuleGrid2.getLastnameJump(aField);
+    CellValue := DataModuleGrid2.getLastnameJump(aField);
   end;
 end;
 
