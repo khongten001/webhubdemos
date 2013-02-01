@@ -439,9 +439,9 @@
   </HubProcess>
   <Sessions>
     <SessionDebug value="false"/>
-    <SessionDigits value="10"/>
+    <SessionDigits value="3"/>
     <SessionFolder value="d:\temp\whSessions\"/>
-    <SessionLifeMinutes value="120"/>
+    <SessionLifeMinutes value="10"/>
     <SessionSweepIntervalMS value="120000"/>
   </Sessions>
   <RunnerConfiguration>
