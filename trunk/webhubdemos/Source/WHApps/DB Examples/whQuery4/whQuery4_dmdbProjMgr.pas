@@ -35,16 +35,15 @@ begin
   // create custom data modules
   {M}Application.CreateForm(TDataModuleHTQ4, DataModuleHTQ4);
   {M}Application.CreateForm(TDataModuleGrid2, DataModuleGrid2);
-
 end;
 
 procedure TDMForWHQuery4.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  // call initialization methods for custom data module
-  DataModuleGrid2.Init;
-  Continue := DataModuleHTQ4.Init(ErrorText);
+  Continue := DataModuleGrid2.Init(ErrorText);
+  if Continue then
+    Continue := DataModuleHTQ4.Init(ErrorText);
 end;
 
 end.

@@ -42,8 +42,11 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   htqry4DM in 'htqry4DM.PAS' {DataModuleHTQ4: TDataModule},
   grid2DM in 'grid2DM.pas' {DataModuleGrid2: TDataModule},
+  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
+  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
   whQuery4_dmdbProjMgr in 'whQuery4_dmdbProjMgr.pas' {DMForWHQuery4: TDataModule},
-  wdbLstBx in 'H:\wdbLstBx.pas';
+  wdbLstBx in 'H:\wdbLstBx.pas',
+  webBase in 'K:\WebHub\lib\whvcl\webBase.pas';
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

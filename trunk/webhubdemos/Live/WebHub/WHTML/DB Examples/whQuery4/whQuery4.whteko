@@ -4,6 +4,7 @@
 
 <whmacros>
 mcPersonIcon=<img src="(~mcSiteRoot~)/demos/img/misc/person_32.png" alt="person" />
+mcRedrawSubmit=<input style="font-weight:900; font-size: 1.1em; color: darkgreen; padding: 0; margin: 0;" type="submit" value="&#x267b;" />
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForHTQ4">

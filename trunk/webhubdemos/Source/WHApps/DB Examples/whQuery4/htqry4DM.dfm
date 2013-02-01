@@ -12,11 +12,12 @@ object DataModuleHTQ4: TDataModuleHTQ4
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
+    WebDataSource = WebDataSource1
     TR = '<tr>'
     TD = '<td>'
+    Caption = ''
     Preformat = False
     OnHotField = grid1HotField
-    WebDataSource = WebDataSource1
     Left = 128
     Top = 52
   end
