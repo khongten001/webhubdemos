@@ -2,6 +2,10 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
+<whmacros>
+mcPersonIcon=<img src="(~mcSiteRoot~)/demos/img/misc/person_32.png" alt="person" />
+</whmacros>
+
 <whdroplet name="drDemoSpeedbarForHTQ4">
 <span class="changing">(~GOR|testSearch|Search~)</span><br />
 </whdroplet>
