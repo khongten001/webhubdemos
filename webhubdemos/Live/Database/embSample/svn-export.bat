@@ -22,4 +22,12 @@ if errorlevel 1 pause
 :: %svnpath%\svn.exe export %urlroot%/Data/parts.xg0 ./parts.xg0 --non-interactive --force 
 :: %svnpath%\svn.exe export %urlroot%/Data/parts.yg0 ./parts.yg0 --non-interactive --force 
 
+cd ..\whQuery3
+del employee.*
+%svnpath%\svn.exe export %urlroot%/Data/employee.db  ./employee.db  --non-interactive --force 
+if errorlevel 1 pause
+%svnpath%\svn.exe export %urlroot%/Data/employee.px  ./employee.px  --non-interactive --force 
+%svnpath%\svn.exe export %urlroot%/Data/employee.xg0 ./employee.xg0 --non-interactive --force 
+%svnpath%\svn.exe export %urlroot%/Data/employee.yg0 ./employee.yg0 --non-interactive --force 
+
 endlocal
