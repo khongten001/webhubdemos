@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
@@ -45,7 +45,8 @@ uses
   whLoadFromDB_dmWhRetrieve in 'whLoadFromDB_dmWhRetrieve.pas' {dmWhRetrieve: TDataModule},
   whLoadFromDB_dmdbProjMgr in 'whLoadFromDB_dmdbProjMgr.pas' {DMForWHLoadFromDB: TDataModule},
   htbdeWApp in 'K:\WebHub\lib\htbdeWApp.pas',
-  htWebApp in 'K:\WebHub\lib\htWebApp.pas';
+  htWebApp in 'K:\WebHub\lib\htWebApp.pas',
+  whLoadFromDB_dmwhData in 'whLoadFromDB_dmwhData.pas' {DMContent: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}   // main icon for demos
@@ -59,3 +60,4 @@ begin
   DMForWHLoadFromDB.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
+
