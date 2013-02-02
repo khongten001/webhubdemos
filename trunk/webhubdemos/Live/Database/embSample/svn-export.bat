@@ -30,4 +30,8 @@ if errorlevel 1 pause
 %svnpath%\svn.exe export %urlroot%/Data/employee.xg0 ./employee.xg0 --non-interactive --force 
 %svnpath%\svn.exe export %urlroot%/Data/employee.yg0 ./employee.yg0 --non-interactive --force 
 
+copy employee.* ..\whQuery4
+cd ..\whQuery4
+:: dept.db made by HREF Tools not shipped by Embarcadero
+
 endlocal
