@@ -62,7 +62,7 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Icon_MainIcon>whLoadFromDB_Icon.ico</Icon_MainIcon>
@@ -152,6 +152,11 @@
         </DCCReference>
         <DCCReference Include="K:\WebHub\lib\htbdeWApp.pas"/>
         <DCCReference Include="K:\WebHub\lib\htWebApp.pas"/>
+        <DCCReference Include="whLoadFromDB_dmwhData.pas">
+            <Form>DMContent</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <None Include="..\..\..\..\Live\WebHub\WHTML\DB Examples\whLoadFromDB\WHAppConfig_dbhtml.xml"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
@@ -230,6 +235,7 @@ csoDisabledRenderMethods=-2
 csoShowWindowsThreads=1
 Email Address=""
 Email Object=""
+Encrypt Password=""
 Errors Number=32
 Errors Terminate=3
 Foreground Tab=0

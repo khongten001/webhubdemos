@@ -59,20 +59,16 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
-  Toolbar, {}tpCompPanel, Restorer, DBCtrls, Grids, DBGrids, Db, DBTables,
-  Buttons;
+  DBCtrls, Grids, DBGrids, DB, ExtCtrls, StdCtrls, Buttons,
+  utPanFrm, updateOk, tpAction,
+  toolbar, {}tpCompPanel, restorer;
 
 type
   TfmAppDBHTML = class(TutParentForm)
     ToolBar: TtpToolBar;
     Panel: TPanel;
     tpComponentPanel2: TtpComponentPanel;
-    Table1: TTable;
-    DataSource1: TDataSource;
-    EditPath: TEdit;
     tpToolBar2: TtpToolBar;
-    EditPageID: TEdit;
     btnPostOnePage: TButton;
     DBMemo1: TDBMemo;
     BtnLoad: TButton;
@@ -80,6 +76,7 @@ type
     Splitter1: TSplitter;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
+    EditPageID: TEdit;
     procedure BtnLoadClick(Sender: TObject);
     procedure btnPostOnePageClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
@@ -88,7 +85,7 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
-    fQuery: TQuery;
+    //fQuery: TQuery;
     procedure AddPage(const defaultlingvo: String;
       const pageid: String; const attributes: String; const pagecontent: String);
     procedure AddMacros(const defaultlingvo: String;
@@ -108,9 +105,10 @@ implementation
 {$R *.DFM}
 
 uses
+  Variants,
   webApp, htbdeWApp, webInfou, webPHub, whdemo_ViewSource, webRead, htmConst,
   webList,
-  ucDlgs;
+  ucDlgs, whLoadFromDB_dmwhData;
 
 //------------------------------------------------------------------------------
 
@@ -126,7 +124,7 @@ const
 procedure TfmAppDBHTML.FormCreate(Sender: TObject);
 begin
   inherited;
-  FQuery := nil;
+  //FQuery := nil;
 end;
 
 function TfmAppDBHTML.Init: Boolean;
@@ -137,19 +135,19 @@ begin
   with TwhbdeApplication(pWebApp) do
   begin
     OnSendBufferedString := SendBufferedStringFromDB;
-    DynContentDataSource := DataSource1;  // hook up the database
+    DynContentDataSource := DMContent.DataSource1;  // hook up the database
     IDFieldName := cIDField;
     DynContentFieldName := cTextField;
     CacheDbContent := True;  {enable some caching}
   end;
-  fQuery := TQuery.Create(Self);
+  //fQuery := TQuery.Create(Self);
   BtnLoadClick(nil);  // automatically load the database
 end;
 
 procedure TfmAppDBHTML.FormDestroy(Sender: TObject);
 begin
   inherited;
-  FreeAndNil(fQuery);
+  //FreeAndNil(fQuery);
 end;
 
 //------------------------------------------------------------------------------
@@ -162,7 +160,7 @@ var
   aTypeField: string;
 begin
   {assume that we are positioned on the database record to load}
-  with Table1 do
+  with DMContent.DataSource1.DataSet do
   begin
     aTypeField := FieldByName(cTypeField).asString;
     if (aTypeField = whMacrosTag) then
@@ -195,43 +193,29 @@ end;
 procedure TfmAppDBHTML.BtnLoadClick(Sender: TObject);
 begin
   inherited;
-  if editPath.text = '' then
+  if DMContent.DataSource1.DataSet.Active then
   begin
-    { The path to the database is set here, using a routine that is shared by
-      many of the demos. You could change how that's done for your own project.}
-    editPath.text := getHtDemoDataRoot + 'whLoadFromDB\';
-  end;
-
-  fQuery.DatabaseName := editPath.Text;
-
-  with pWebApp, table1 do
+    DMContent.DataSource1.DataSet.Close;
+  end
+  else
   begin
-    Close;
-    TableName := cTablename;
-    if DatabaseName <> editPath.text then
-    begin
-      DatabaseName := editPath.text;
-      try
-        Open;
-      except
-        on e: exception do
-        begin
-          DatabaseName := '';
-          ShowMessage(e.Message + 'Fix the path to the database and reload.');
-          Exit;
-        end;
+    try
+      DMContent.DataSource1.DataSet.Open;
+    except
+      on e: exception do
+      begin
+        MsgErrorOk(e.Message);
       end;
-    end
-    else
-    begin
-      Open;
     end;
-    //
-    First;
-    while not EOF do
+
+    if DMContent.DataSource1.DataSet.Active then
     begin
-      DatabaseToWebHubStructure;
-      Next;
+      DMContent.DataSource1.DataSet.First;
+      while not DMContent.DataSource1.DataSet.EOF do
+      begin
+        DatabaseToWebHubStructure;
+        DMContent.DataSource1.DataSet.Next;
+      end;
     end;
   end;
 end;
@@ -311,27 +295,30 @@ var
   aWhenToLoad: String;
 begin
   inherited;
-  if NOT Table1.Active then
+  if DMContent.DataSource1.DataSet.Active then
   begin
-    msgErrorOk('Load the database, first.');
-    Exit;
-  end;
+    DMContent.DataSource1.DataSet.Close;
+  end
+  else
+  begin
+    DMContent.DataSource1.DataSet.Open;
 
-  aTekeroID := EditPageID.text;
-  with table1 do
-  begin
-    if Locate(cIDField, aTekeroID, []) then
+    aTekeroID := EditPageID.text;
+    with DMContent.DataSource1.DataSet do
     begin
-      DatabaseToWebHubStructure;
-      aWhenToLoad := FieldByName(cWhenToLoadField).asString;
-      if (aWhenToLoad <> 'NoCache') and (aWhenToLoad <> 'n/a') then
+      if Locate(cIDField, aTekeroID, []) then
       begin
-        with pWebApp do
-          if (Tekero[aTekeroID]<>'') or // already cached
-             (FieldByName(cWhenToLoadField).asString = 'PreLoad') then
-          begin
-             Tekero[aTekeroID]:=FieldByName(cTextField).asString;
-          end;
+        DatabaseToWebHubStructure;
+        aWhenToLoad := FieldByName(cWhenToLoadField).asString;
+        if (aWhenToLoad <> 'NoCache') and (aWhenToLoad <> 'n/a') then
+        begin
+          with pWebApp do
+            if (Tekero[aTekeroID]<>'') or // already cached
+               (FieldByName(cWhenToLoadField).asString = 'PreLoad') then
+            begin
+               Tekero[aTekeroID]:=FieldByName(cTextField).asString;
+            end;
+        end;
       end;
     end;
   end;
@@ -366,48 +353,45 @@ begin
 
   with TwhbdeApplication(pWebApp) do
   begin
-    {exit if we already know that this Value cannot be found in our database}
-    if CacheDbContent and (pos('|'+uppercase(Value)+'|',CacheDbFail)>0) then
-      Exit;
-
-    {define the query statement to select based on Value}
-    fQuery.SQL.Text := 'Select * from "' + cTablename + '" where (' +
-      IDFieldName + '=''' + Value + ''')';
-    fQuery.Open;
-
-    if (fQuery.RecordCount = 1) then
+    {if we already know that this Value cannot be found in our database}
+    if (NOT CacheDbContent) or (pos('|'+uppercase(Value)+'|',CacheDbFail)=0)
+    then
     begin
-      {we found our match; grab the page/droplet content now}
-      a1 := fQuery.FieldByName(cTextField).asString;
-      aWhenToLoad := fQuery.FieldByname(cWhenToLoadField).asString;
 
-      {close the query before calling SendString, otherwise fQuery may be
-       referenced recursively, which is not allowed for. }
-      fQuery.Close;
-
-      {output the content now}
-      {Response.SendPChar(pchar(a1)); use SendPChar to ensure zero further expansion}
-      SendString(a1);         // SendString expands any macros contained within a1
-
-      {signal that we have handled this Value}
-      Handled := True;
-
-      {consider caching the content for next time}
-      if aWhenToLoad <> 'NoCache' then
+      {locate based on Value}
+      if DMContent.DataSource1.DataSet.Locate(IDFieldName, VarArrayOf([Value]), []) then
       begin
-        {Load the page or droplet content into memory. Both page and droplet
-         content are stored in the pWebApp.Droplets array.}
-        t:=TwhList.create;
-        t.text:=a1;
-        Tekeros.AddObject(Value+'='+Value,t);
-        {Reminder: do NOT free t. WebHub will free it when appropriate.}
+        {we found our match; grab the page/droplet content now}
+        with DMContent.DataSource1.DataSet do
+        begin
+          a1 := FieldByName(cTextField).asString;
+          aWhenToLoad := FieldByname(cWhenToLoadField).asString;
+        end;
+
+        {output the content now}
+        {Response.SendPChar(pchar(a1)); use SendPChar to ensure zero further expansion}
+        SendString(a1);         // SendString expands any macros contained within a1
+
+        {signal that we have handled this Value}
+        Handled := True;
+
+        {consider caching the content for next time}
+        if aWhenToLoad <> 'NoCache' then
+        begin
+          {Load the page or droplet content into memory. Both page and droplet
+           content are stored in the pWebApp.Droplets array.}
+          t:=TwhList.create;
+          t.text:=a1;
+          Tekeros.AddObject(Value+'='+Value,t);
+          {Reminder: do NOT free t. WebHub will free it when appropriate.}
+        end;
+      end
+      else
+      begin
+        {add Value to the list so we don't search for it next time around.}
+        CacheDbFail:=CacheDbFail+uppercase(Value)+'|';
+        CacheDbFailCount := CacheDbFailCount + 1;
       end;
-    end
-    else
-    begin
-      {add Value to the list so we don't search for it next time around.}
-      CacheDbFail:=CacheDbFail+uppercase(Value)+'|';
-      CacheDbFailCount := CacheDbFailCount + 1;
     end;
   end;
 end;

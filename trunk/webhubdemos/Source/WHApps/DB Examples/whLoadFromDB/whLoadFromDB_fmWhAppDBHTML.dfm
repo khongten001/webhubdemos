@@ -3,87 +3,82 @@ inherited fmAppDBHTML: TfmAppDBHTML
   Top = 158
   Caption = '&Database'
   ClientHeight = 551
-  ClientWidth = 563
+  ClientWidth = 720
   OnCreate = FormCreate
   OnDestroy = FormDestroy
-  ExplicitWidth = 581
+  ExplicitWidth = 738
   ExplicitHeight = 596
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
     Left = 41
-    Width = 522
+    Width = 679
     Height = 551
     ExplicitLeft = 41
-    ExplicitWidth = 532
-    ExplicitHeight = 552
+    ExplicitWidth = 522
+    ExplicitHeight = 551
     object ToolBar: TtpToolBar
       Left = 5
       Top = 45
-      Width = 522
+      Width = 669
       BorderWidth = 5
       TabOrder = 0
-      object EditPath: TEdit
-        Tag = 3
-        Left = 16
-        Top = 8
-        Width = 313
-        Height = 21
-        Hint = 'Enter the path to your WebHub asset table'
-        TabOrder = 0
-        Text = 'd:\Projects\WebHubDemos\Live\Database\whLoadFromDB\'
-      end
+      ExplicitWidth = 512
       object BtnLoad: TButton
-        Left = 344
-        Top = 7
-        Width = 139
+        Left = 11
+        Top = 6
+        Width = 193
         Height = 25
         Hint = 'Enter the path and then click this button.'
-        Caption = 'load pages from db'
-        TabOrder = 1
+        Caption = 'Toggle Open/Close DB'
+        TabOrder = 0
         OnClick = BtnLoadClick
       end
     end
     object Panel: TPanel
       Left = 5
       Top = 85
-      Width = 522
-      Height = 462
+      Width = 669
+      Height = 461
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsSingle
       TabOrder = 1
+      ExplicitWidth = 512
       object Splitter1: TSplitter
         Left = 0
-        Top = 49
-        Width = 518
+        Top = 97
+        Width = 665
         Height = 8
         Cursor = crVSplit
         Align = alTop
+        ExplicitTop = 49
+        ExplicitWidth = 518
       end
       object DBMemo1: TDBMemo
         Left = 0
         Top = 0
-        Width = 518
-        Height = 49
+        Width = 665
+        Height = 97
         Align = alTop
         DataField = 'Text'
-        DataSource = DataSource1
+        DataSource = DMContent.DataSource1
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
         Font.Name = 'MS Sans Serif'
         Font.Style = []
         ParentFont = False
+        ScrollBars = ssBoth
         TabOrder = 0
       end
       object DBGrid1: TDBGrid
         Left = 0
-        Top = 57
-        Width = 518
-        Height = 376
+        Top = 105
+        Width = 665
+        Height = 327
         Align = alClient
-        DataSource = DataSource1
+        DataSource = DMContent.DataSource1
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -93,46 +88,48 @@ inherited fmAppDBHTML: TfmAppDBHTML
       end
       object DBNavigator1: TDBNavigator
         Left = 0
-        Top = 433
-        Width = 518
+        Top = 432
+        Width = 665
         Height = 25
-        DataSource = DataSource1
         Align = alBottom
         TabOrder = 2
+        ExplicitWidth = 508
       end
     end
     object tpToolBar2: TtpToolBar
       Left = 5
       Top = 5
-      Width = 522
+      Width = 669
       TabOrder = 2
       LeaveSpace = True
+      ExplicitWidth = 512
       object btnRefresh: TtpToolButton
         Left = 11
         Top = 1
-        Width = 64
+        Width = 102
         Hint = 'Refresh the entire App'
         Caption = ' Refresh All '
         OnClick = btnRefreshClick
         LeaveSpace = True
         MinWidth = 28
       end
-      object EditPageID: TEdit
-        Left = 88
-        Top = 8
-        Width = 137
-        Height = 21
-        Hint = 'Enter DropletID or PageID, then press button.'
-        TabOrder = 0
-      end
       object btnPostOnePage: TButton
-        Left = 240
-        Top = 8
-        Width = 161
-        Height = 25
-        Caption = 'Update this Droplet or Page'
-        TabOrder = 1
+        Left = 286
+        Top = 7
+        Width = 123
+        Height = 24
+        Caption = 'Save 1 Page'
+        TabOrder = 0
         OnClick = btnPostOnePageClick
+      end
+      object EditPageID: TEdit
+        Tag = 3
+        Left = 128
+        Top = 6
+        Width = 137
+        Height = 26
+        TabOrder = 1
+        Text = 'cinnamon'
       end
     end
   end
@@ -142,17 +139,5 @@ inherited fmAppDBHTML: TfmAppDBHTML
     Width = 41
     Height = 551
     TabOrder = 1
-    ExplicitHeight = 552
-  end
-  object Table1: TTable
-    AfterPost = Table1AfterPost
-    TableName = 'whassets.db'
-    Left = 8
-    Top = 160
-  end
-  object DataSource1: TDataSource
-    DataSet = Table1
-    Left = 8
-    Top = 120
   end
 end

@@ -72,14 +72,8 @@ end;
 function TdmWhRetrieve.InitGUI(out ErrorText: string): Boolean;
 begin
   ErrorText := '';
-  Assert(Assigned(fmAppDBHTML));
-  fQuery.DatabaseName := fmAppDBHTML.Table1.DatabaseName;
+  Result := Assigned(fmAppDBHTML);
   RefreshWebActions(Self);
-  Result := FileExists(IncludeTrailingPathDelimiter(fQuery.DatabaseName) +
-    'whContent.db');
-  if NOT Result then
-    ErrorText := 'File not found: ' +
-      IncludeTrailingPathDelimiter(fQuery.DatabaseName) + 'whContent.db';
 end;
 
 procedure TdmWhRetrieve.DataModuleDestroy(Sender: TObject);

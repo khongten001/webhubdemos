@@ -32,20 +32,26 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whLoadFromDB_fmWhAppDBHTML, whLoadFromDB_dmWhRetrieve;
+  MultiTypeApp, whLoadFromDB_fmWhAppDBHTML, whLoadFromDB_dmWhRetrieve,
+  whLoadFromDB_dmwhData;
 
 procedure TDMForWHLoadFromDB.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TdmWhRetrieve, dmWhRetrieve);
+  {M}Application.CreateForm(TDMContent, DMContent);
+  if False then
+    {M}Application.CreateForm(TdmWhRetrieve, dmWhRetrieve);
 end;
 
 procedure TDMForWHLoadFromDB.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
-  Continue := dmWhRetrieve.Init(ErrorText);
+  Continue := DMContent.Init(ErrorText);
+  if False then
+    if Continue then
+      Continue := dmWhRetrieve.Init(ErrorText);
 end;
 
 procedure TDMForWHLoadFromDB.ProjMgrGUICreate(Sender: TtpProject;
@@ -61,7 +67,9 @@ procedure TDMForWHLoadFromDB.ProjMgrGUIInit(Sender: TtpProject;
   var Continue: Boolean);
 begin
   inherited;
-  Continue := dmWhRetrieve.InitGUI(ErrorText);
+  if Assigned(dmWhRetrieve) then
+    Continue := dmWhRetrieve.InitGUI(ErrorText);
 end;
 
 end.
+
