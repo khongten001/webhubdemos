@@ -21,8 +21,6 @@ inherited fmAppDBHTML: TfmAppDBHTML
       Width = 669
       BorderWidth = 5
       TabOrder = 0
-      ExplicitLeft = 6
-      ExplicitTop = 43
       object BtnLoad: TtpToolButton
         Left = 6
         Top = 6
@@ -106,23 +104,13 @@ inherited fmAppDBHTML: TfmAppDBHTML
       Width = 669
       TabOrder = 2
       LeaveSpace = True
-      ExplicitLeft = 6
-      object btnRefresh: TtpToolButton
-        Left = 11
-        Top = 1
-        Width = 102
-        Hint = 'Refresh the entire App'
-        Caption = ' Refresh All '
-        OnClick = btnRefreshClick
-        LeaveSpace = True
-        MinWidth = 28
-      end
       object btnPostOnePage: TButton
         Left = 286
         Top = 7
         Width = 123
         Height = 24
         Caption = 'Save 1 Page'
+        Enabled = False
         TabOrder = 0
         OnClick = btnPostOnePageClick
       end
@@ -132,6 +120,7 @@ inherited fmAppDBHTML: TfmAppDBHTML
         Top = 6
         Width = 137
         Height = 26
+        Enabled = False
         TabOrder = 1
         Text = 'cinnamon'
       end

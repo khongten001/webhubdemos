@@ -45,7 +45,9 @@ uses
   whLoadFromDB_dmdbProjMgr in 'whLoadFromDB_dmdbProjMgr.pas' {DMForWHLoadFromDB: TDataModule},
   htbdeWApp in 'K:\WebHub\lib\htbdeWApp.pas',
   htWebApp in 'K:\WebHub\lib\htWebApp.pas',
-  whLoadFromDB_dmwhData in 'whLoadFromDB_dmwhData.pas' {DMContent: TDataModule};
+  whLoadFromDB_dmwhData in 'whLoadFromDB_dmwhData.pas' {DMContent: TDataModule},
+  webCall in 'k:\webhub\lib\whvcl\webCall.pas',
+  whsample_DWSecurity in 'K:\WebHub\lib\whsample_DWSecurity.pas' {dmDWSecurity: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}   // main icon for demos
