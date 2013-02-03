@@ -21,8 +21,6 @@ object Form3: TForm3
     Width = 145
     Height = 744
     TabOrder = 0
-    ExplicitLeft = -2
-    ExplicitHeight = 361
   end
   object Panel1: TPanel
     Left = 145
@@ -31,7 +29,6 @@ object Form3: TForm3
     Height = 744
     Align = alClient
     TabOrder = 1
-    ExplicitHeight = 338
   end
   object PageControl1: TPageControl
     Left = 145
@@ -43,10 +40,6 @@ object Form3: TForm3
     TabOrder = 2
     object TabSheet1: TTabSheet
       Caption = 'Select'
-      ExplicitLeft = -81
-      ExplicitTop = 116
-      ExplicitWidth = 651
-      ExplicitHeight = 153
       object LabeledEditParadox: TLabeledEdit
         Left = 16
         Top = 32
@@ -78,18 +71,24 @@ object Form3: TForm3
       end
       object Button1: TButton
         Left = 16
-        Top = 144
+        Top = 176
         Width = 689
         Height = 49
         Action = ActionConvert
         TabOrder = 3
       end
+      object CheckBox1: TCheckBox
+        Left = 16
+        Top = 145
+        Width = 313
+        Height = 17
+        Caption = 'Write CDS to output folder'
+        TabOrder = 4
+      end
     end
     object TabSheet2: TTabSheet
       Caption = 'Source'
       ImageIndex = 1
-      ExplicitWidth = 715
-      ExplicitHeight = 329
       object LabelSource: TLabel
         Left = 0
         Top = 0
@@ -107,7 +106,6 @@ object Form3: TForm3
         DataSource = DataSource1
         Align = alTop
         TabOrder = 0
-        ExplicitTop = 8
       end
       object DBGrid1: TDBGrid
         Left = 0
@@ -127,7 +125,6 @@ object Form3: TForm3
     object TabSheet3: TTabSheet
       Caption = 'Target'
       ImageIndex = 2
-      ExplicitHeight = 321
       object LabelTarget: TLabel
         Left = 0
         Top = 0
@@ -159,8 +156,6 @@ object Form3: TForm3
         DataSource = DataSourceTarget
         Align = alTop
         TabOrder = 1
-        ExplicitLeft = 2
-        ExplicitTop = 19
       end
     end
   end
