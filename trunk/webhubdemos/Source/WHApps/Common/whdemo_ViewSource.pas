@@ -87,7 +87,7 @@ uses
   ZaphodsMap,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
   htmlBase,      // PrologueMode property
-  ucDlgs, ucLogFil, ucString;
+  ucDlgs, ucLogFil, ucString, ucCodeSiteInterface;
 
 //----------------------------------------------------------------------
 
@@ -470,12 +470,8 @@ var
 begin
   with TwhWebActionEx(Sender) do
   begin
-    {$IFNDEF CONFIGZAPHOD}
     { display a link to the application-level config file}
-    SendDottedFileLink(-1,ExtractFilename(WebApp.ConfigFilespec));
-    {$ELSE}
-    SendDottedFileLink(-1,WebApp.WebAppKey.KeyedFileName);
-    {$ENDIF}
+    SendDottedFileLink(-1, ExtractFilename(WebApp.WebAppKey.KeyedFileName));
 
     { display links for all files in the TwhAppBase.Files list}
     for i:= 0 to pred(WebApp.TekoFiles.Count) do
@@ -508,8 +504,9 @@ begin
     i := StrToIntDef(WebApp.Command,-99);
     if i = -1 then
     begin
-      S := WebApp.WebAppKey.KeyedFilePath + WebApp.WebAppKey.KeyedFileName;
+      S := WebApp.WebAppKey.KeyedFileName;
       SendFileIntro('application-level config file');
+      CSSend('WebApp.WebAppKey.KeyedFileName', S);
     end
     else
     begin
