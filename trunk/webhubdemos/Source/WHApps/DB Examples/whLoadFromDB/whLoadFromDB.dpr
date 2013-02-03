@@ -42,7 +42,6 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whdw_RemotePages in 'h:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whLoadFromDB_fmWhAppDBHTML in 'whLoadFromDB_fmWhAppDBHTML.pas' {fmAppDBHTML},
-  whLoadFromDB_dmWhRetrieve in 'whLoadFromDB_dmWhRetrieve.pas' {dmWhRetrieve: TDataModule},
   whLoadFromDB_dmdbProjMgr in 'whLoadFromDB_dmdbProjMgr.pas' {DMForWHLoadFromDB: TDataModule},
   htbdeWApp in 'K:\WebHub\lib\htbdeWApp.pas',
   htWebApp in 'K:\WebHub\lib\htWebApp.pas',

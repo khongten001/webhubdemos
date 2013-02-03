@@ -1,6 +1,6 @@
 unit whLoadFromDB_fmWhAppDBHTML;
 (*
-Copyright (c) 1999-2004 HREF Tools Corp.
+Copyright (c) 1999-2013 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -26,15 +26,15 @@ Guide to experimentation.
 
 Requires: whcontent table, or equivalent, and WebHub v2.037+.
 
-[ ] Make sure you have an AppID named DBHTML pointed to the whLoadFromDB.INI file.
+[ ] Make sure you have an AppID named 'dbhtml' pointed whLoadFromDB config
 
 [ ] Compile this program to create whLoadFromDB.exe
 
 [ ] Run whLoadFromDB.exe
 
-[ ] from your web browser, request ?DBHTML:pgWelcome. You should see some content.
+[ ] from your web browser, request ?dbhtml:pgWelcome. You should see some content.
 
-[ ] Enter the demo (?DBHTML:pgEnterDBHTML)
+[ ] Enter the demo (?dbhtml:pgEnterDBHTML)
 
 [ ] Using whLoadFromDB.exe, edit one of the database records and post the
     change. Notice that the edit box updates to show the id of the most recently
@@ -52,7 +52,7 @@ Requires: whcontent table, or equivalent, and WebHub v2.037+.
 
 [ ] Reload in your web browser.  You should see your change.
 
-Notes updated 29-Jun-2004
+Notes updated 2-Feb-2013
 *)
 
 interface
@@ -71,21 +71,18 @@ type
     tpToolBar2: TtpToolBar;
     btnPostOnePage: TButton;
     DBMemo1: TDBMemo;
-    BtnLoad: TButton;
     btnRefresh: TtpToolButton;
     Splitter1: TSplitter;
     DBGrid1: TDBGrid;
     DBNavigator1: TDBNavigator;
     EditPageID: TEdit;
+    BtnLoad: TtpToolButton;
     procedure BtnLoadClick(Sender: TObject);
     procedure btnPostOnePageClick(Sender: TObject);
     procedure btnRefreshClick(Sender: TObject);
     procedure Table1AfterPost(DataSet: TDataSet);
-    procedure FormDestroy(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
-    //fQuery: TQuery;
     procedure AddPage(const defaultlingvo: String;
       const pageid: String; const attributes: String; const pagecontent: String);
     procedure AddMacros(const defaultlingvo: String;
@@ -94,7 +91,8 @@ type
   public
     { Public declarations }
     function Init: Boolean; override;
-    procedure SendBufferedStringFromDB(Const Value: String; var Handled: Boolean);
+    procedure SendBufferedStringFromDB(const Value: string;
+      var Handled: Boolean);
     end;
 
 var
@@ -107,13 +105,12 @@ implementation
 uses
   Variants,
   webApp, htbdeWApp, webInfou, webPHub, whdemo_ViewSource, webRead, htmConst,
-  webList,
+  webList, webSplat,
   ucDlgs, whLoadFromDB_dmwhData;
 
 //------------------------------------------------------------------------------
 
 const
-  cTablename = 'whcontent.db';
   cIDField = 'Identifier';
   cTextField = 'Text';
   cTypeField = 'Type';
@@ -121,33 +118,22 @@ const
   cWhenToLoadField = 'WhenToLoad';
   cAttributesField = 'Attributes';
 
-procedure TfmAppDBHTML.FormCreate(Sender: TObject);
-begin
-  inherited;
-  //FQuery := nil;
-end;
-
 function TfmAppDBHTML.Init: Boolean;
 begin
   Result:= inherited Init;
-  if not result then
-    Exit;
-  with TwhbdeApplication(pWebApp) do
+  if Result then
   begin
-    OnSendBufferedString := SendBufferedStringFromDB;
-    DynContentDataSource := DMContent.DataSource1;  // hook up the database
-    IDFieldName := cIDField;
-    DynContentFieldName := cTextField;
-    CacheDbContent := True;  {enable some caching}
+    with TwhbdeApplication(pWebApp) do
+    begin
+      OnSendBufferedString := SendBufferedStringFromDB;
+      DynContentDataSource := DMContent.DataSource1;  // hook up the database
+      IDFieldName := cIDField;
+      DynContentFieldName := cTextField;
+      CacheDbContent := True;  {enable some caching}
+    end;
+    BtnLoadClick(nil);  // automatically load the database
+    DMContent.ClientDataSet1.AfterPost := Table1AfterPost;
   end;
-  //fQuery := TQuery.Create(Self);
-  BtnLoadClick(nil);  // automatically load the database
-end;
-
-procedure TfmAppDBHTML.FormDestroy(Sender: TObject);
-begin
-  inherited;
-  //FreeAndNil(fQuery);
 end;
 
 //------------------------------------------------------------------------------
@@ -184,8 +170,6 @@ begin
         // add to the app's pages list.
         pWebApp.Pages.Add(aPageID+'='+aPageID+',,,' + aPageDesc);
       end;
-      // note that the page sections will set themselves up when
-      // page is requested
     end;
   end;
 end;
@@ -193,6 +177,10 @@ end;
 procedure TfmAppDBHTML.BtnLoadClick(Sender: TObject);
 begin
   inherited;
+  (* excellent tutorial about TClientDataSet:
+  http://edn.embarcadero.com/article/29122
+  *)
+
   if DMContent.DataSource1.DataSet.Active then
   begin
     DMContent.DataSource1.DataSet.Close;
@@ -201,8 +189,24 @@ begin
   begin
     try
       DMContent.DataSource1.DataSet.Open;
+      // for some reason (bug) the TClientDataSet can have ReadOnly False
+      // yet need to have that property SET again to False.
+      // Confirmed in Delphi XE3 2-Feb-2013
+      if DMContent.ClientDataSet1.ReadOnly then
+      begin
+        // does not fire
+        MsgWarningOk('ClientDataSet1.ReadOnly ... reversing');
+        DMContent.ClientDataSet1.ReadOnly := False;
+      end;
+      if NOT DMContent.ClientDataSet1.CanModify then
+      begin
+        MsgWarningOk(DMContent.ClientDataSet1.Name + sLineBreak +
+          'CanModify = False' + sLineBreak + sLineBreak +
+          'Reversing so that you can do data entry now.');
+        DMContent.ClientDataSet1.ReadOnly := False;
+      end;
     except
-      on e: exception do
+      on E: Exception do
       begin
         MsgErrorOk(e.Message);
       end;
@@ -218,6 +222,7 @@ begin
       end;
     end;
   end;
+  WebMessage('');
 end;
 
 // -----------------------------------------------------------------------------
@@ -225,7 +230,7 @@ end;
 procedure TfmAppDBHTML.Table1AfterPost(DataSet: TDataSet);
 begin
   inherited;
-  EditPageID.text:=DataSet.fieldByName(cIDField).asString;
+  EditPageID.text := DataSet.fieldByName(cIDField).asString;
 end;
 
 // -----------------------------------------------------------------------------
@@ -238,26 +243,30 @@ var
 const
   cEq = '=';
 begin
-  ms := TMemoryStream.Create;
+  ms := nil;
+  try
+    ms := TMemoryStream.Create;
 
-  S := whTekoBegin + ' ' + clingvo + cEq + defaultlingvo + cEq + cGT + sLineBreak +
-    whFolioBegin + ' ' + cpageid + cEq + '"' + pageid + '" ' +
-    attributes + cGT + sLineBreak +
-    pagecontent + sLineBreak +
-    whFolioEnd + sLineBreak +
-    whTekoEnd;
+    S := whTekoBegin + ' ' + clingvo + cEq + defaultlingvo + cEq + cGT +
+      sLineBreak +
+      whFolioBegin + ' ' + cpageid + cEq + '"' + pageid + '" ' +
+      attributes + cGT + sLineBreak +
+      pagecontent + sLineBreak +
+      whFolioEnd + sLineBreak +
+      whTekoEnd;
 
-  ms.SetSize(Length(S));
-  ms.Seek(0, soFromBeginning);
-  ms.Write(S[1], Length(S));
+    ms.SetSize(Length(S));
+    ms.Seek(0, soFromBeginning);
+    ms.Write(S[1], Length(S));
 
-  WebRead.ReadChunksFromStream(pWebApp, ms,
-    'Expression #' + IntToStr(GetTickCount), 'Temp', '',
-     pWebApp.PageGeneration, pWebApp.Syntax0100,
-     pWebApp.Tekeros, pWebApp.Pages, pWebApp.Macros,
-     pWebApp.Debug.PageErrors, True, pWebApp.ProjectSyntax);
-
-  ms.Free;
+    WebRead.ReadChunksFromStream(pWebApp, ms,
+      'Expression #' + IntToStr(GetTickCount), 'Temp', '',
+       pWebApp.PageGeneration, pWebApp.Syntax0100,
+       pWebApp.Tekeros, pWebApp.Pages, pWebApp.Macros,
+       pWebApp.Debug.PageErrors, True, pWebApp.ProjectSyntax);
+  finally
+    FreeAndNil(ms);
+  end;
 end;
 
 procedure TfmAppDBHTML.AddMacros(const defaultlingvo: String;
@@ -268,25 +277,28 @@ var
 const
   cEq = '=';
 begin
-  ms := TMemoryStream.Create;
+  ms := nil;
+  try
+    ms := TMemoryStream.Create;
 
-  S := whTekoBegin + ' ' + clingvo + cEq + defaultlingvo + cEq + cGT + sLineBreak +
-    whMacrosTagBegin + cGT + sLineBreak +
-    macrocontent + sLineBreak +
-    whMacrosTagEnd + sLineBreak +
-    whTekoEnd;
+    S := whTekoBegin + ' ' + clingvo + cEq + defaultlingvo + cEq + cGT + sLineBreak +
+      whMacrosTagBegin + cGT + sLineBreak +
+      macrocontent + sLineBreak +
+      whMacrosTagEnd + sLineBreak +
+      whTekoEnd;
 
-  ms.SetSize(Length(S));
-  ms.Seek(0, soFromBeginning);
-  ms.Write(S[1], Length(S));
+    ms.SetSize(Length(S));
+    ms.Seek(0, soFromBeginning);
+    ms.Write(S[1], Length(S));
 
-  WebRead.ReadChunksFromStream(pWebApp, ms,
-    'Expression #' + IntToStr(GetTickCount), 'Temp', '',
-     pWebApp.PageGeneration, pWebApp.Syntax0100,
-     pWebApp.Tekeros, pWebApp.Pages, pWebApp.Macros,
-     pWebApp.Debug.PageErrors, True, pWebApp.ProjectSyntax);
-
-  ms.Free;
+    WebRead.ReadChunksFromStream(pWebApp, ms,
+      'Expression #' + IntToStr(GetTickCount), 'Temp', '',
+       pWebApp.PageGeneration, pWebApp.Syntax0100,
+       pWebApp.Tekeros, pWebApp.Pages, pWebApp.Macros,
+       pWebApp.Debug.PageErrors, True, pWebApp.ProjectSyntax);
+  finally
+    FreeAndNil(ms);
+  end;
 end;
 
 procedure TfmAppDBHTML.btnPostOnePageClick(Sender: TObject);
@@ -334,7 +346,7 @@ begin
   end;
 end;
 
-procedure TfmAppDBHTML.SendBufferedStringFromDB(Const Value: String;
+procedure TfmAppDBHTML.SendBufferedStringFromDB(const Value: string;
   var Handled: Boolean);
 var
   a1: String;
