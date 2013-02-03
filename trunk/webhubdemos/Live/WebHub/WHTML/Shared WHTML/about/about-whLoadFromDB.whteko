@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaDBHTML=Michael Ax
 mcWhDemoCreditFirstDraftDBHTML=Michael Ax
 mcWhDemoCreditGraphicsDBHTML=n/a
 mcWhDemoCreditCopyDBHTML=Martha V. Moore
-mcWhDemoUpdatedDBHTML=1999
+mcWhDemoUpdatedDBHTML=2-Feb-2013
 mcWhDemoKeywordsDBHTML=using database to store WebHub HTML
 mcWhDemoLiteDBHTML=No
 </whmacros>
@@ -15,21 +15,22 @@ mcWhDemoLiteDBHTML=No
 <whdroplet name="drDemoSetupDBHTML">
 <ol>
 <li> whLoadFromDB.exe</li>
-<li> Borland Database Engine</li>
-<li> A database containing the sample W-HTML (sample is provided by HREF).
-See: (~JUMP|pgCachingChoices|caching choices page~) for details on how to configure 
-the caching options.</li>
+<li> Recompilation requires Delphi with TClientDataSet from Embarcadero</li>
+<li> Deployment requires midas.dll or compilation with MidasLib.dcu (licensed by Embarcadero)</li>
+<li> A database containing the sample W-HTML (sample is provided by HREF in the whContent.xml  file).
+See: (~JUMP|pgCachingChoices|caching choices page~) for details on how to configure the caching options.
+You could hook the TClientDataSet up to another database as long as it has the minimal required structure.
+</li>
 </ol>
 </whdroplet>
 
 <whtranslation key="~whDemoShortDescDBHTML">
-This demo shows how to store some (or all) of your W-HTML code in a database. You 
-may extend the example to allow for multilingual text and other issues important to your application.
+This advanced demo shows how to store some (or all) of your WebHub-HTML code in a database. 
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescDBHTML">
-Be sure to look at the source code for the WebHub application object, in htDBWApp.pas, because that 
-code hooks the database to the rest of WebHub.
+The unique features are all in source files that are available to any WebHub developer, notably the 
+demo source itself plus the unit with the customized WebHub application object. 
 </whtranslation>
 
 </whteko>
