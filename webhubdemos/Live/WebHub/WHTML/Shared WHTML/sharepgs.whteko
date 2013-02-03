@@ -199,12 +199,17 @@ customizing the onBadIP event of the TwhAppBase.</p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~~About~)</h1>
+<p style="font-weight: 900; font-style: italics;">
+(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)</p>
 <ul>
-<li>Graphics: (~DYNCHUNK|mcWhDemoCreditGraphics,(~AppID~)~)</li>
+<li>Graphics/Logo: (~DYNCHUNK|mcWhDemoCreditGraphics,(~AppID~)~)</li>
 <li>Demo text: (~DYNCHUNK|mcWhDemoCreditCopy,(~AppID~)~)</li>
+<li>Compiled with: Embarcadero Delphi (~PascalCompilerCode~) and (~version~) from HREF Tools Corp.</li>
+<li>Compiles with FREE WebHub Lite: (~MATCH|(~DYNCHUNK|mcWhDemoLite,(~AppID~)~)=Lite| Yes! || No. ~)</li>
+<li>WebHub Syntax Stage: (~ProjectSyntax~)</li>
+<lI>Project Lingvo: (~ProjectLingvo~)</li>
+<li>Web Host: (~Request.Host~) </li>
 <li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~AppID~)~)</li>
-<li>Running: (~version~)</li>
-<li>Syntax Stage: (~ProjectSyntax~)</li>
 </ul>
 
 </div>  <!--- demopagecontent -->
