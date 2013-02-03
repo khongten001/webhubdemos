@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201111.xsd">
+<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201302.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
   </Variables>
@@ -442,6 +442,7 @@
     <SessionDigits value="3"/>
     <SessionFolder value="d:\temp\whSessions\"/>
     <SessionLifeMinutes value="10"/>
+    <SessionMaxActive value="0"/>
     <SessionSweepIntervalMS value="120000"/>
   </Sessions>
   <RunnerConfiguration>
