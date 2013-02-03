@@ -89,14 +89,17 @@ object Form3: TForm3
     object TabSheet2: TTabSheet
       Caption = 'Source'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object LabelSource: TLabel
         Left = 0
         Top = 0
-        Width = 765
+        Width = 95
         Height = 25
         Align = alTop
         Caption = 'LabelSource'
-        ExplicitWidth = 95
       end
       object DBNavigator1: TDBNavigator
         Left = 0
@@ -125,14 +128,17 @@ object Form3: TForm3
     object TabSheet3: TTabSheet
       Caption = 'Target'
       ImageIndex = 2
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object LabelTarget: TLabel
         Left = 0
         Top = 0
-        Width = 765
+        Width = 91
         Height = 25
         Align = alTop
         Caption = 'LabelTarget'
-        ExplicitWidth = 91
       end
       object DBGridTarget: TDBGrid
         Left = 0
