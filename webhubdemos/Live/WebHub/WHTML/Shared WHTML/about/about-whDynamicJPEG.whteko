@@ -16,7 +16,7 @@ mcWhDemoLiteJPEG=No
 <ol>
 <li> Requires whDynamicJPEG.exe </li>
 <li> Requires TClientDataSet</li>
-<li> Requires midas.dll (licensed by Embarcadero)</li>
+<li> Requires midas.dll or MidasLib.dcu (licensed by Embarcadero)</li>
 <li> Uses biolife.xml data as shipped by Embarcadero </li>
 </ol>
 </whdroplet>

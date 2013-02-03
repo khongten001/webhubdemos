@@ -17,7 +17,7 @@ mcWhDemoLiteHTFM=No
 <ol>
 <li> Requires whInstantForm.exe </li>
 <li> Requires the parts.xml as shipped by Embarcadero.</li>
-<li> Requires midas.dll </li>
+<li> Requires midas.dll or MidasLib.dcu (licensed by Embarcadero)</li>
 </ol>
 </whdroplet>
 

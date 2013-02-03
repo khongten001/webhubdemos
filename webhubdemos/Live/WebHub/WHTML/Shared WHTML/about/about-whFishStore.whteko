@@ -23,7 +23,7 @@ accessing MEMO and BLOB fields in XML using TClientDataSet.
 <li> This example uses the Borland/Embarcadero demo table named biolife.xml. 
 </li>
 <li> Use Delphi to compile whFishStore.dpr to whFishStore.exe and run that as your application server.</li>
-<li> The midas.dll (license from Embarcadero) is required. </li>
+<li> Requires midas.dll or MidasLib.dcu (licensed by Embarcadero)</li>
 </ol>
 </whdroplet>
 
