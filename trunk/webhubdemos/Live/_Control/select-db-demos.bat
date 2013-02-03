@@ -29,7 +29,7 @@ set demoscan=yes
 set demoshop1=yes
 set demostore000=no
 
-set compiledbhtml=no
+set compiledbhtml=yes
 set compiledsp=yes
 set compiledpr=yes
 set compilecoderage=yes
@@ -47,8 +47,7 @@ set compilescan=yes
 set compileshop1=yes
 set compilestore000=no
 
-if "%whipc%"=="old" set demodbhtml=yes
-if "%whipc%"=="x"    set demodbhtml=no
+set demodbhtml=yes
 
 call %ZaphodsMap%zmset.bat flagdemosdsp UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
 echo flagdemosdsp is %flagdemosdsp%
