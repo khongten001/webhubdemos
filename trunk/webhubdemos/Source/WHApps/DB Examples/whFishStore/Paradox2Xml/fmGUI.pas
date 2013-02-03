@@ -125,7 +125,7 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 begin
-  Self.Height := 310;
+  Self.Height := 340;
   PageControl1.ActivePage := TabSheet1;
 end;
 
