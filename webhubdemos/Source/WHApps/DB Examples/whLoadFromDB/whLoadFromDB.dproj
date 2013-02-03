@@ -65,10 +65,6 @@
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Icon_MainIcon>whLoadFromDB_Icon.ico</Icon_MainIcon>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <Icon_MainIcon>whLoadFromDB_Icon.ico</Icon_MainIcon>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -141,10 +137,6 @@
         </DCCReference>
         <DCCReference Include="whLoadFromDB_fmWhAppDBHTML.pas">
             <Form>fmAppDBHTML</Form>
-        </DCCReference>
-        <DCCReference Include="whLoadFromDB_dmWhRetrieve.pas">
-            <Form>dmWhRetrieve</Form>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="whLoadFromDB_dmdbProjMgr.pas">
             <Form>DMForWHLoadFromDB</Form>

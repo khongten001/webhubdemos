@@ -1,5 +1,27 @@
 unit whLoadFromDB_dmdbProjMgr;
 
+(*
+Copyright (c) 2004-2013 HREF Tools Corp.
+
+Permission is hereby granted, on 2-Feb-2013, free of charge, to any person
+obtaining a copy of this file (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*)
+
 interface
 
 uses
@@ -15,9 +37,6 @@ type
       var ErrorText: String; var Continue: Boolean);
     procedure ProjMgrDataModulesInit(Sender: TtpProject;
       var ErrorText: String; var Continue: Boolean);
-    procedure ProjMgrGUIInit(Sender: TtpProject;
-      const ShouldEnableGUI: Boolean; var ErrorText: String;
-      var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -32,7 +51,10 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whLoadFromDB_fmWhAppDBHTML, whLoadFromDB_dmWhRetrieve,
+  MultiTypeApp,
+  {$IFNDEF PREVENTGUI}
+  whLoadFromDB_fmWhAppDBHTML,
+  {$ENDIF}
   whLoadFromDB_dmwhData;
 
 procedure TDMForWHLoadFromDB.ProjMgrDataModulesCreate3(Sender: TtpProject;
@@ -40,8 +62,6 @@ procedure TDMForWHLoadFromDB.ProjMgrDataModulesCreate3(Sender: TtpProject;
 begin
   inherited;
   {M}Application.CreateForm(TDMContent, DMContent);
-  if False then
-    {M}Application.CreateForm(TdmWhRetrieve, dmWhRetrieve);
 end;
 
 procedure TDMForWHLoadFromDB.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -49,9 +69,6 @@ procedure TDMForWHLoadFromDB.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := DMContent.Init(ErrorText);
-  if False then
-    if Continue then
-      Continue := dmWhRetrieve.Init(ErrorText);
 end;
 
 procedure TDMForWHLoadFromDB.ProjMgrGUICreate(Sender: TtpProject;
@@ -59,16 +76,12 @@ procedure TDMForWHLoadFromDB.ProjMgrGUICreate(Sender: TtpProject;
   var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TfmAppDBHTML, fmAppDBHTML);
-end;
-
-procedure TDMForWHLoadFromDB.ProjMgrGUIInit(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: String;
-  var Continue: Boolean);
-begin
-  inherited;
-  if Assigned(dmWhRetrieve) then
-    Continue := dmWhRetrieve.InitGUI(ErrorText);
+  {$IFNDEF PREVENTGUI}
+  if ShouldEnableGUI then
+  begin
+    {M}Application.CreateForm(TfmAppDBHTML, fmAppDBHTML);
+  end;
+  {$ENDIF}
 end;
 
 end.

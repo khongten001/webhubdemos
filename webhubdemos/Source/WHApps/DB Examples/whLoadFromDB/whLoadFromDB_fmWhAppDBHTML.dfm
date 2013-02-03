@@ -4,8 +4,6 @@ inherited fmAppDBHTML: TfmAppDBHTML
   Caption = '&Database'
   ClientHeight = 551
   ClientWidth = 720
-  OnCreate = FormCreate
-  OnDestroy = FormDestroy
   ExplicitWidth = 738
   ExplicitHeight = 596
   PixelsPerInch = 120
@@ -15,7 +13,7 @@ inherited fmAppDBHTML: TfmAppDBHTML
     Width = 679
     Height = 551
     ExplicitLeft = 41
-    ExplicitWidth = 522
+    ExplicitWidth = 679
     ExplicitHeight = 551
     object ToolBar: TtpToolBar
       Left = 5
@@ -23,16 +21,15 @@ inherited fmAppDBHTML: TfmAppDBHTML
       Width = 669
       BorderWidth = 5
       TabOrder = 0
-      ExplicitWidth = 512
-      object BtnLoad: TButton
-        Left = 11
+      ExplicitLeft = 6
+      ExplicitTop = 43
+      object BtnLoad: TtpToolButton
+        Left = 6
         Top = 6
-        Width = 193
-        Height = 25
-        Hint = 'Enter the path and then click this button.'
+        Width = 186
         Caption = 'Toggle Open/Close DB'
-        TabOrder = 0
         OnClick = BtnLoadClick
+        MinWidth = 28
       end
     end
     object Panel: TPanel
@@ -44,7 +41,6 @@ inherited fmAppDBHTML: TfmAppDBHTML
       BevelOuter = bvNone
       BorderStyle = bsSingle
       TabOrder = 1
-      ExplicitWidth = 512
       object Splitter1: TSplitter
         Left = 0
         Top = 97
@@ -65,8 +61,8 @@ inherited fmAppDBHTML: TfmAppDBHTML
         DataSource = DMContent.DataSource1
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -15
-        Font.Name = 'MS Sans Serif'
+        Font.Height = -18
+        Font.Name = 'Lucida Sans Unicode'
         Font.Style = []
         ParentFont = False
         ScrollBars = ssBoth
@@ -79,6 +75,13 @@ inherited fmAppDBHTML: TfmAppDBHTML
         Height = 327
         Align = alClient
         DataSource = DMContent.DataSource1
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -17
+        Font.Name = 'Lucida Sans Unicode'
+        Font.Style = []
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        ParentFont = False
         TabOrder = 1
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
@@ -91,9 +94,10 @@ inherited fmAppDBHTML: TfmAppDBHTML
         Top = 432
         Width = 665
         Height = 25
+        DataSource = DMContent.DataSource1
+        VisibleButtons = [nbFirst, nbPrior, nbNext, nbLast, nbInsert, nbDelete, nbEdit, nbPost, nbCancel, nbRefresh, nbApplyUpdates, nbCancelUpdates]
         Align = alBottom
         TabOrder = 2
-        ExplicitWidth = 508
       end
     end
     object tpToolBar2: TtpToolBar
@@ -102,7 +106,7 @@ inherited fmAppDBHTML: TfmAppDBHTML
       Width = 669
       TabOrder = 2
       LeaveSpace = True
-      ExplicitWidth = 512
+      ExplicitLeft = 6
       object btnRefresh: TtpToolButton
         Left = 11
         Top = 1
