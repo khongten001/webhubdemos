@@ -42,6 +42,7 @@ type
     DBNavigatorTarget: TDBNavigator;
     LabelTarget: TLabel;
     LabelSource: TLabel;
+    CheckBox1: TCheckBox;
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ActionConvertExecute(Sender: TObject);
@@ -81,7 +82,12 @@ begin
 //http://docwiki.embarcadero.com/Libraries/XE3/en/Datasnap.DBClient.TDataPacketFormat
   ClientDataSetTarget.SaveToFile(LabeledEditXML.Text, dfXml);
   if FileExists(LabeledEditXML.Text) then
+  begin
+    if Checkbox1.Checked then
+      ClientDataSetTarget.SaveToFile(ChangeFileExt(LabeledEditXML.Text, '.CDS'),
+        dfBinary);
     MsgInfoOk('Done')
+  end
   else
     MsgErrorOk('Failed.' + sLineBreak + LabeledEditXML.Text + sLineBreak +
       'does not exist.');
