@@ -123,7 +123,6 @@ see whdsp.css file
 </whdoc>
 
 <whdroplet name="chSearchTable">
-(~NOTASSIGNED|WithSource|(~Check|WithSource~)(~CHECK|DelphiAll~)~)
 <table id="dspsearch">
 <tr>
 <td><h1>DSP Search Engine</h1></td>
