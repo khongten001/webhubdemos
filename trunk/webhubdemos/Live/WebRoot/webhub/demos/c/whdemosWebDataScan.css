@@ -1,15 +1,17 @@
 /* whdbScanBase table, control and button styles */
 
-.whdbScanBase-table {
+.whdbScan-table, .whdbScanBase-table {
   border: 1px solid black;
+  border-collapse: collapse;
+  empty-cells: show;
 }
 
-.whdbScanBase-table td {
+.whdbScan-table td, .whdbScanBase-table td {
   border: 1px solid black;
   padding: 0.8em;
 }
 
-.whdbScanBase-table th, caption {
+.whdbScan-table th, .whdbScanBase-table th, caption {
   background-color: yellow;
   padding: 0.8em;
 }
@@ -18,31 +20,31 @@
 
 /* whdbScanBase controls */ 
 
-.whdbScanBase-controls {
+.whdbScan-controls, .whdbScanBase-controls {
 	color:#0000aa;
 	margin-top: 1em;
 	clear: both;
 }
 
-.whdbScanBase-controls input {
+.whdbScan-controls input, .whdbScanBase-controls input {
   margin: 0 8px 0 4px;
   border: 1px solid;
 }
 
-.whdbScanBase-controls select {
+.whdbScan-controls select, .whdbScanBase-controls select {
   margin: 0 4px;
   border: 0;
  
 }
 
-.whdbScanBase-redraw{
+.whdbScan-redraw, .whdbScanBase-redraw{
 	background-color:#ffdd77;
 }
 
 
 /* webDataGrid buttons */
 
-.whdbScanBase-buttons {
+.whdbScan-buttons, .whdbScanBase-buttons {
 	clear: both;
 	height: 2em;
 	width: 95%; 
@@ -51,20 +53,20 @@
 	font-size: .7em;   
 }
 
-.whdbScanBase-buttons ul li em {
+.whdbScan-buttons ul li em, .whdbScanBase-buttons ul li em {
 	font-weight: 800;
 	font-size: .9em;   
 	color: #bbb;
 }
 
-.whdbScanBase-buttons ul li a em {
+.whdbScan-buttons ul li a em, .whdbScanBase-buttons ul li a em {
 	font-weight: 700;
 	font-size: .9em;   
 	color: midnightblue;
 }
 
 
-.whdbScanBase-buttons ul {
+.whdbScan-buttons ul, .whdbScanBase-buttons ul {
 	list-style-type: none;
 	clear: left;
 	border: 0;
@@ -73,9 +75,11 @@
 	text-align: center;
 	}
 	
-.whdbScanBase-firstbutton {border-left: 1px solid #999999}
+.whdbScan-firstbutton, .whdbScanBase-firstbutton {
+  border-left: 1px solid #999999
+}
 
-.whdbScanBase-buttons ul li {
+.whdbScan-buttons ul li, .whdbScanBase-buttons ul li {
 	display: inline; 
 	float: left;
 	width: 6em;
@@ -93,18 +97,18 @@
 	line-height: 2em; 
 	}
 
-.whdbScanBase-buttons ul li a {
+.whdbScan-buttons ul li a, .whdbScanBase-buttons ul li a {
 	display: block;
 	background-color: #eee; 
 	text-decoration: none;
 	}
 
-.whdbScanBase-buttons ul li a:hover {
+.whdbScan-buttons ul li a:hover, .whdbScanBase-buttons ul li a:hover {
 	background: #CC99CC;
 	color: #000;
 	}
 
-.whdbScanBase-buttons a:active	{
+.whdbScan-buttons a:active, .whdbScanBase-buttons a:active {
 	background: #c60;
 	color: #fff;
 	}	
