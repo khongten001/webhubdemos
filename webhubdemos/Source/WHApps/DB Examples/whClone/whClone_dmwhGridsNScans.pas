@@ -14,6 +14,8 @@ type
     Scan1: TwhdbScan;
     Scan2: TwhdbScan;
     WebDataGrid1: TwhbdeGrid;
+    ScanXML: TwhdbScan;
+    gridxml: TwhbdeGrid;
     procedure DataModuleCreate(Sender: TObject);
     procedure ScanOnExecutePageHeader(Sender: TObject);
     procedure ScanInit(Sender: TObject);
@@ -23,6 +25,7 @@ type
     procedure ScanAfterExecute(Sender: TObject);
     procedure WebDataGrid1AfterExecute(Sender: TObject);
     procedure WebDataGrid1Execute(Sender: TObject);
+    procedure ScanXMLEmptyDataSet(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -68,26 +71,38 @@ begin
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
-      Scan1.OnExecute := nil; // controlled from the form
+      Scan1.DirectCallOk := True;
+      Scan1.OnExecute := nil; // when controlled from the form
       Scan1.OnExecute := ScanOnExecutePageHeader;
       scan1.WebDataSource := DMData2Clone.WebDataSource1;
       scan1.OnRowStart := ScanRowStart;
 
-      Scan2.OnExecute := nil; // controlled from the form
+      Scan2.DirectCallOk := True;
+      Scan2.OnExecute := nil; // when controlled from the form
       Scan2.OnExecute := ScanOnExecutePageHeader;
       scan2.WebDataSource := DMData2Clone.WebDataSource2;
       scan2.OnRowStart := ScanRowStart;
       Scan2.ControlsWhere := dsBelow;
 
+      WebDataGrid1.DirectCallOk := True;
       WebDataGrid1.WebDataSource := DMData2Clone.WebDataSource1;
+
+      ScanXml.DirectCallOk := True;
+      ScanXML.WebDataSource := DMData2Clone.whdbxSourceXML;
 
       // Call RefreshWebActions here only if it is not called within a TtpProject event
       RefreshWebActions(Self);
 
-      // helpful to know that WebAppUpdate will be called whenever the
-      // WebHub app is refreshed.
-      AddAppUpdateHandler(WebAppUpdate);
-      FlagInitDone := True;
+      if NOT ScanXML.IsUpdated then
+        ErrorText := 'ScanXML would not update';
+
+      if (ErrorText = '') then
+      begin
+        // helpful to know that WebAppUpdate will be called whenever the
+        // WebHub app is refreshed.
+        AddAppUpdateHandler(WebAppUpdate);
+        FlagInitDone := True;
+      end;
     end;
   end;
   Result := FlagInitDone;
@@ -123,7 +138,7 @@ var
   i: Integer;
 begin
   TableHeader(Sender);
-  if Sender = scan1 then
+  (*if Sender = scan1 then
   begin
   writeln(
      '<tr>'
@@ -137,23 +152,23 @@ begin
   end
   else
   begin
-  begin
+  begin*)
     writeln(
        '<tr>'
       +'<th>DataSet Name</th>');
-    with TwhbdeSource(scan2.WebDataSource) do
+    with TwhbdeSource(TwhdbScan(Sender).WebDataSource) do
     for i := 0 to Pred(DataSet.FieldCount) do
     begin
       if (DataSet.Fields[i].DataType in
-        [ftSmallint, ftInteger, ftFloat, ftString]) then
+        [ftDate, ftDateTime, ftSmallint, ftInteger, ftFloat, ftString]) then
         WriteLn('<th>' + DataSet.Fields[i].FieldName + '</th>')
       else
         pWebApp.Response.SendComment(DataSet.Fields[i].FieldName + ' is ' +
           GetEnumName(TypeInfo(TFieldType), Ord(DataSet.Fields[i].DataType)));
     end;
     WriteLn('</tr>');
-  end;
-  end;
+  //end;
+  //end;
 end;
 
 procedure TDMGridsNScans.ScanRowStart(Sender: TwhdbScanBase;
@@ -161,54 +176,29 @@ procedure TDMGridsNScans.ScanRowStart(Sender: TwhdbScanBase;
 var
   i: Integer;
 begin
-  if Sender = scan1 then
-    writeln(
-     '<tr>'
-    +'<td>'
-    +DMData2Clone.Table1.Name+'</td>'
-    +'<td>'
-    +IntToStr(DMData2Clone.Table1.RecNo)+'</td>'
-    +'<td>'
-    +DMData2Clone.Table1ACCT_NBR.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table1SYMBOL.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table1SHARES.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table1PUR_PRICE.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table1PUR_DATE.AsString+'</td></tr>')
-  else
+  writeln(
+   '<tr>'
+  +'  <td>'
+  //  <- notice reference to table2
+  +TwhbdeSource(aWebDataSource).DataSet.Name +
+  //DMData2Clone.Table2.Name+
+  '</td>');
+  //      when this runs, that pointer (Table2.RecNo)
+  //      and all the field pointers (such as Table2SpeciesNo
+  //      will point to the clones!
+  with TwhbdeSource(aWebDataSource) do
+  for i := 0 to Pred(DataSet.FieldCount) do
   begin
-    writeln(
-     '<tr>'
-    +'  <td>'
-    //  <- notice reference to table2
-    +TwhbdeSource(aWebDataSource).DataSet.Name +
-    //DMData2Clone.Table2.Name+
-    '</td>');
-    //      when this runs, that pointer (Table2.RecNo)
-    //      and all the field pointers (such as Table2SpeciesNo
-    //      will point to the clones!
-    with TwhbdeSource(aWebDataSource) do
-    for i := 0 to Pred(DataSet.FieldCount) do
-    begin
-      if (DataSet.Fields[i].DataType in
-        [ftSmallint, ftInteger, ftFloat, ftString]) then
-        WriteLn('  <td>' + DataSet.Fields[i].AsString + '</td>');
-    end;
-    WriteLn('</tr>');
-(*
-    +'<td>'
-    +IntToStr(DMData2Clone.Table2.RecNo)+'</td>'
-    +'<td>'
-    +DMData2Clone.Table2SpeciesNo.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table2Category.AsString+'</td>'
-    +'<td>'
-    +DMData2Clone.Table2Common_Name.AsString+'</td></tr>');
-*)
+    if (DataSet.Fields[i].DataType in
+      [ftDate, ftDateTime, ftSmallint, ftInteger, ftFloat, ftString]) then
+      WriteLn('  <td>' + DataSet.Fields[i].AsString + '</td>');
   end;
+  WriteLn('</tr>');
+end;
+
+procedure TDMGridsNScans.ScanXMLEmptyDataSet(Sender: TObject);
+begin
+  pWebApp.Response.Send('empty dataset');
 end;
 
 procedure TDMGridsNScans.ScanOnExecutePageHeader(Sender: TObject);
@@ -226,6 +216,10 @@ const cCSSSuffix = '-table';
 var
   s1: string;
 begin
+  pWebApp.SendStringImm('<h1>' + TwhWebAction(Sender).Name + '</h1>');
+  if Sender is TwhdbScan then
+    pWebApp.SendStringImm('<h2>DataSet.Owner is ' +
+      TwhdbScan(Sender).WebDataSource.Name + '</h2>');
   s1 := TwhWebAction(Sender).Family;
   pWebApp.SendString('<table id="' + Self.Name + cCSSSuffix + '" class="' +
     S1 + cCSSSuffix + '">');

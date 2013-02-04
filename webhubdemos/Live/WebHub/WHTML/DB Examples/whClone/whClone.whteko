@@ -22,6 +22,8 @@
 
 <p>(~mcWhDemoDot~) (~JUMP|DO,webdatagrid1|Try the TwhdbGrid component~) (.dbf file)</p>
 
+<p>(~mcWhDemoDot~) (~JUMP|DO,scanxml|Try the scanxml component~) (TSimpleDataSet with .xml file)</p>
+
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>

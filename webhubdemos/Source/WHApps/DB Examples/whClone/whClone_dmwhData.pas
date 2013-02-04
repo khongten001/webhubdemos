@@ -27,7 +27,8 @@ interface
 uses
   SysUtils, Classes,
   webLink, Data.DB, wdbScan, wdbSSrc, wdbSource, wbdeSource, Bde.DBTables,
-  updateOK, tpAction, webTypes, wbdeGrid;
+  updateOK, tpAction, webTypes, wbdeGrid, Datasnap.DBClient, SimpleDS,
+  wdbxSource;
 
 type
   TDMData2Clone = class(TDataModule)
@@ -50,6 +51,9 @@ type
     Table1PUR_DATE: TDateField;
     DataSource1: TDataSource;
     WebDataSource1: TwhbdeSource;
+    whdbxSourceXML: TwhdbxSource;
+    SimpleDataSetXML: TSimpleDataSet;
+    DataSourceXML: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure WebDataSource1Execute(Sender: TObject);
     procedure WebDataSource1FindKeys(Sender: TwhdbSourceBase; var Value: string;
@@ -93,37 +97,48 @@ begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
-      WebDataSource1.DataSource := DataSource1;
-      DataSource1.DataSet := Table1;
-      WebDataSource1.KeyFieldNames := 'ACCT_NBR';
-      WebDataSource1.OpenDataSetVisual := True;
+      whdbxSourceXML.KeyFieldNames := 'CountryID';
+      whdbxSourceXML.MaxOpenDataSets := 3;
+      SimpleDataSetXML.Open;
+      if NOT whdbxSourceXML.IsUpdated then
+        ErrorText := whdbxSourceXML.Name + ' would not update';
 
-      WebDataSource2.DataSource := DataSource2;
-      DataSource2.DataSet := Table2;
-      WebDataSource2.KeyFieldNames := 'SpeciesNo';
-      WebDataSource2.OpenDataSetVisual := True;
-
-      with Table1 do
+      if ErrorText = '' then
       begin
-        DatabaseName := getHtDemoDataRoot + 'whClone\';
-        TableName := 'HOLDINGS.DBF';
-        Open;
+        WebDataSource1.DataSource := DataSource1;
+        DataSource1.DataSet := Table1;
+        WebDataSource1.KeyFieldNames := 'ACCT_NBR';
+        WebDataSource1.OpenDataSetVisual := True;
+
+        WebDataSource2.DataSource := DataSource2;
+        DataSource2.DataSet := Table2;
+        WebDataSource2.KeyFieldNames := 'SpeciesNo';
+        WebDataSource2.OpenDataSetVisual := True;
+
+        with Table1 do
+        begin
+          DatabaseName := getHtDemoDataRoot + 'whClone\';
+          TableName := 'HOLDINGS.DBF';
+          Open;
+        end;
+
+        with Table2 do
+        begin
+          DatabaseName := getHtDemoDataRoot + 'whClone\';
+          TableName := 'BIOLIFE.DB';
+          Open;
+        end;
       end;
 
-      with Table2 do
+      if ErrorText = '' then
       begin
-        DatabaseName := getHtDemoDataRoot + 'whClone\';
-        TableName := 'BIOLIFE.DB';
-        Open;
+        RefreshWebActions(Self);
+
+        // helpful to know that WebAppUpdate will be called whenever the
+        // WebHub app is refreshed.
+        AddAppUpdateHandler(WebAppUpdate);
+        FlagInitDone := True;
       end;
-
-      // Call RefreshWebActions here only if it is not called within a TtpProject event
-      RefreshWebActions(Self);
-
-      // helpful to know that WebAppUpdate will be called whenever the
-      // WebHub app is refreshed.
-      AddAppUpdateHandler(WebAppUpdate);
-      FlagInitDone := True;
     end;
   end;
   Result := FlagInitDone;
