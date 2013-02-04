@@ -3,23 +3,6 @@ object DMData2Clone: TDMData2Clone
   OnCreate = DataModuleCreate
   Height = 511
   Width = 653
-  object WebDataGrid1: TwhbdeGrid
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundExactlyDuringUpdate]
-    OnExecute = WebDataGrid1Execute
-    AfterExecute = WebDataGrid1AfterExecute
-    DirectCallOk = True
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    WebDataSource = WebDataSource1
-    TR = '<tr>'
-    TD = '<td>'
-    Caption = ''
-    Preformat = False
-    Left = 104
-    Top = 232
-  end
   object Table2: TTable
     TableName = 'BIOLIFE.DB'
     Left = 296
@@ -73,19 +56,6 @@ object DMData2Clone: TDMData2Clone
     Left = 96
     Top = 128
   end
-  object Scan2: TwhdbScan
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
-    DirectCallOk = True
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    PageHeight = 3
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    WebDataSource = WebDataSource2
-    OnRowStart = Scan2RowStart
-    Left = 16
-    Top = 128
-  end
   object Table1: TTable
     IndexName = 'ACCT_NBR'
     TableName = 'HOLDINGS.DBF'
@@ -126,23 +96,6 @@ object DMData2Clone: TDMData2Clone
     OnFindKeys = WebDataSource1FindKeys
     DataSource = DataSource1
     Left = 104
-    Top = 32
-  end
-  object Scan1: TwhdbScan
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
-    OnExecute = ScanOnExecute
-    AfterExecute = ScanAfterExecute
-    DirectCallOk = True
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    PageHeight = 3
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    WebDataSource = WebDataSource1
-    OnRowStart = Scan1RowStart
-    OnInit = ScanInit
-    OnFinish = ScanFinish
-    Left = 24
     Top = 32
   end
 end

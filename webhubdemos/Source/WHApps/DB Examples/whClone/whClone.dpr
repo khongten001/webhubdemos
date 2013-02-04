@@ -39,12 +39,16 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
+  uAutoDataModules in 'h:\uAutoDataModules.pas',
+  uAutoPanels in 'H:\uAutoPanels.pas',
+  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
+  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
+  wbdeSource in 'k:\webhub\lib\whdb\wbdeSource.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   fmclone in 'fmclone.pas' {fmBendFields},
   whClone_dmdbProjMgr in 'whClone_dmdbProjMgr.pas' {DMForWHClone: TDataModule},
-  uAutoDataModules in 'h:\uAutoDataModules.pas',
-  uAutoPanels in 'H:\uAutoPanels.pas',
-  whClone_dmwhData in 'whClone_dmwhData.pas' {DMData2Clone: TDataModule};
+  whClone_dmwhData in 'whClone_dmwhData.pas' {DMData2Clone: TDataModule},
+  whClone_dmwhGridsNScans in 'whClone_dmwhGridsNScans.pas' {DMGridsNScans: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
