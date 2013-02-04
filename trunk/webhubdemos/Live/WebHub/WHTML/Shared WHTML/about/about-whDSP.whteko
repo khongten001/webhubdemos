@@ -7,7 +7,7 @@ mcWhDemoCreditIdeaDSP=Michael Ax
 mcWhDemoCreditFirstDraftDSP=Michael Ax
 mcWhDemoCreditGraphicsDSP=Ran Zhang
 mcWhDemoCreditCopyDSP=Michael J. Kennedy and Ann Lynnworth
-mcWhDemoUpdatedDSP=23-May-2009
+mcWhDemoUpdatedDSP=3-Feb-2013
 mcWhDemoKeywordsDSP=Rubicon,full text search,search engine
 mcWhDemoLiteDSP=No
 </whmacros>
@@ -26,9 +26,9 @@ metakeywords=Delphi Super Page,Credits,Announcements
 <whdroplet name="drDemoSetupDSP">
 <ol>
 <li> Requires: dsp.exe</li>
-<li> You will need Rubicon and webRubi.pas from HREF Tools Corp. in order to compile DSP.EXE with Delphi.
-You can usee the free evaluation version of Rubicon for this.</li>
-<li> NB: The database is owned by Robert M. Czerwinski and is not distributed without his permission. (<a href="http://delphi.icm.edu.pl/">contact</a>)</li>
+<li> You will need Rubicon with webRubi.pas from HREF Tools Corp. 
+in order to compile whDsp.exe with Delphi.</li>
+<li> NB: The database is owned by Robert M. Czerwinski </li>
 </ol>
 </whdroplet>
 
@@ -51,6 +51,9 @@ Rubicon v(~waExtraInfo.Execute|RubiconVersion~) with Database Bridge
 (~waExtraInfo.Execute|RubiconBridge~). Most of the web page design was done with 
 Dreamweaver MX 2004 plus the WebHub Extension.  The site uses no Microsoft ASP, 
 no Visual Basic or javascript, and does not rely on cookies. </p>
+<p>In February 2013 the search-checkboxes were simplified to a choice between 
+Pascal and C++ languages, instead of individual versions of Delphi, Kylix and CPPBuilder.
+JBuilder searches have been discontinued.</p>
 
 <h2>WebHub? What's the deal?</h2>
 <p><img border="0" height="75" width="72" src="(~mcSiteRoot~)demos/whdsp/whbox.png" alt="WebHub Box" />

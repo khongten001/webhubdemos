@@ -17,7 +17,6 @@ program whDSP;
 *)
 
 uses
-  {$IFDEF EUREKALOG}ExceptionLog,{$ENDIF}
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',

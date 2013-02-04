@@ -129,9 +129,16 @@ var
    i,n: integer;
    StartTime: dword;
    FuzzLevel: TFuzzyness;
+   bDelphiAll: Boolean;
+   bCPPAll: Boolean;
 
    function GetBoolean(aChecked:String): String;
    begin
+     if pWebApp.BoolVar[aChecked] then
+       Result := 'zzz' + aChecked
+     else
+       Result := '';
+     Exit;
       //    if pWebApp.BoolVar[aChecked] then
       // 1-June-2001 AML: due to the use of frames, the Checked array stays empty.
       If pWebApp.Request.FormData.Count > 0 then
@@ -157,19 +164,39 @@ begin
    Inherited;
    Try
       With waResults do
-         begin
-            If (NOT FlagInitOnce) or (pWebApp.Request.FormData.Values['newsearch']='yes') then
-               begin
-                  {We have just started the app, or just started a new search}
-                  Update;
-                  RowKeys:='';
-                  RowCount:=0;
-                  Row := 0;   // doing this always makes it impossible to scroll forward
-                  PageRows:=10;
-                  FlagInitOnce := True;
-               end
-            Else Update;
-         end;
+       begin
+          If (NOT FlagInitOnce) or (pWebApp.Request.FormData.Values['newsearch']='yes') then
+           begin
+              {We have just started the app, or just started a new search}
+              Update;
+              RowKeys:='';
+              RowCount:=0;
+              Row := 0;   // doing this always makes it impossible to scroll forward
+              PageRows:=10;
+              FlagInitOnce := True;
+              bDelphiAll := pWebApp.BoolVar['DelphiAll'];
+              pWebApp.BoolVar['D10'] := bDelphiAll;
+              pWebApp.BoolVar['D20'] := bDelphiAll;
+              pWebApp.BoolVar['D30'] := bDelphiAll;
+              pWebApp.BoolVar['D40'] := bDelphiAll;
+              pWebApp.BoolVar['D50'] := bDelphiAll;
+              pWebApp.BoolVar['D60'] := bDelphiAll;
+              pWebApp.BoolVar['D70'] := bDelphiAll;
+              pWebApp.BoolVar['D80'] := bDelphiAll;
+              pWebApp.BoolVar['D2K5'] := bDelphiAll;
+              pWebApp.BoolVar['K10'] := bDelphiAll;
+              pWebApp.BoolVar['K20'] := bDelphiAll;
+              pWebApp.BoolVar['K30'] := bDelphiAll;
+              bCPPAll := pWebApp.BoolVar['CPPAll'];
+              pWebApp.BoolVar['C10'] := bCPPAll;
+              pWebApp.BoolVar['C20'] := bCPPAll;
+              pWebApp.BoolVar['C30'] := bCPPAll;
+              pWebApp.BoolVar['C40'] := bCPPAll;
+              pWebApp.BoolVar['C50'] := bCPPAll;
+              pWebApp.BoolVar['C60'] := bCPPAll;
+           end
+        Else Update;
+       end;
 
       With DSPdm,pWebApp do
          begin
