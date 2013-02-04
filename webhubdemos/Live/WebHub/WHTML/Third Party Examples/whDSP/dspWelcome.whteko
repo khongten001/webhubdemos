@@ -32,7 +32,7 @@ metadescription=Search the Delphi Super Page archive for freeware and utilities 
 metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologies, Utilities, Software, Freeware, Shareware, Search
 </whpagesettings>
 <whprep>
-(~CMDHAS|Advanced|(~CHECK|bAdvSearch~)~)
+(~chNewSession~)(~CMDHAS|Advanced|(~CHECK|bAdvSearch~)~)
 (~CMDHAS|Basic|(~CLEAR|bAdvSearch~)(~CLEAR|inExclude,SearchFuzziness,SearchGroup~)~)
 </whprep>
 (~mcDocTypeHtml~)
