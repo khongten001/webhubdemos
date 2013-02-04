@@ -98,4 +98,30 @@ object DMData2Clone: TDMData2Clone
     Left = 104
     Top = 32
   end
+  object whdbxSourceXML: TwhdbxSource
+    ComponentOptions = [tpUpdateOnLoad]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 1
+    OpenDataSets = 0
+    OpenDataSetRetain = 600
+    SaveTableName = False
+    DataSet = SimpleDataSetXML
+    DataSource = DataSourceXML
+    Left = 96
+    Top = 232
+  end
+  object SimpleDataSetXML: TSimpleDataSet
+    Aggregates = <>
+    DataSet.MaxBlobSize = -1
+    DataSet.Params = <>
+    FileName = 'D:\Projects\webhubdemos\Live\Database\iso639\xml\countrycode.xml'
+    Params = <>
+    Left = 312
+    Top = 240
+  end
+  object DataSourceXML: TDataSource
+    DataSet = SimpleDataSetXML
+    Left = 200
+    Top = 240
+  end
 end
