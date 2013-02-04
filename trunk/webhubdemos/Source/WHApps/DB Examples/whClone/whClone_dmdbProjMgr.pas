@@ -3,13 +3,17 @@ unit whClone_dmdbProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMDBProjMgr, tpProj;
+  SysUtils, Classes,
+  whdemo_DMDBProjMgr, tpProj;
 
 type
   TDMForWHClone = class(TDMForWHDBDemo)
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
+      var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
   private
     { Private declarations }
@@ -25,14 +29,34 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, fmclone;
+  MultiTypeApp,
+  {$IFNDEF PREVENTGUI}fmclone,{$ENDIF}
+  whClone_dmwhData;
+
+procedure TDMForWHClone.ProjMgrDataModulesCreate3(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  {M}Application.CreateForm(TDMData2Clone, DMData2Clone);
+end;
+
+procedure TDMForWHClone.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := DMData2Clone.Init(ErrorText);
+end;
 
 procedure TDMForWHClone.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
 begin
   inherited;
-  {M}Application.CreateForm(TfmBendFields, fmBendFields);
+  {$IFNDEF PREVENTGUI}
+  if ShouldEnableGUI then
+    {M}Application.CreateForm(TfmBendFields, fmBendFields);
+  {$ENDIF}
 end;
 
 end.
+
