@@ -2,7 +2,7 @@
 <whteko designmode="code" designdynsrc="localdsp">
 
 <whmacros>
-mcDebug=<hr />(~BoolVarsPending~)<hr />(~StringVars~)<br />(~Checked~)<hr />
+mcDebug=<hr />(~BoolVars~)<hr />(~StringVars~)<hr />
 </whmacros>
 
 <whdoc>
@@ -114,19 +114,27 @@ mcTD2=<![CDATA[<td valign=top bgcolor=#EEEEEE>]]>
 mcTD3=<![CDATA[<td valign=bottom bgcolor=#EEEEEE>]]>
 </whmacros>
 
+<whdoc for="CSS style">
+see whdsp.css file
+(~ANCHORMODIFY|style|
+<style type="text/css">
+</style>
+~)
+</whdoc>
 
 <whdroplet name="chSearchTable">
-<table id="dspsearch" border="0" cellpadding="5" cellspacing="0" width="100%">
+(~NOTASSIGNED|WithSource|(~Check|WithSource~)(~CHECK|DelphiAll~)~)
+<table id="dspsearch">
 <tr>
-<td class="head2">&nbsp;DSP Search Engine</td>
+<td><h1>DSP Search Engine</h1></td>
 </tr>
 <tr>
 <td>
-<table id="DSPQueryForm" border="0" cellpadding="0" cellspacing="0" width="100%">
+<table id="DSPQueryForm">
 <tr>
-<td align="right"><b>Enter resource keyword(s):</b>&nbsp; 
-(~INPUTTEXT|inSearch,35,200~) &nbsp; &nbsp;</td>
-<td align="right"> &nbsp;<input type="hidden" name="newsearch" value="yes" /> <input type="submit" value="Search DSP" />  &nbsp; </td>
+<td align="right"><b>Enter resource keyword(s):</b>
+(~INPUTTEXT|inSearch,40,200~)</td>
+<td style="text-align:right;"> <input type="hidden" name="newsearch" value="yes" /> <input type="submit" value="Search DSP" />  </td>
 </tr>
 </table>
 </td>
@@ -139,12 +147,14 @@ mcTD3=<![CDATA[<td valign=bottom bgcolor=#EEEEEE>]]>
 </table>
 </whdroplet>
 <whdroplet name="chSearchCheckboxes">
-<table id="DSPQueryCheckboxes" border="0" cellpadding="0" cellspacing="0">
+<table id="DSPQueryCheckboxes">
 <tr>
-<td><span style="font-weight:700">Search only:</span></td>
+<th style="text-align:left;">Search only:</th>
 <td rowspan="3"><img src="(~mcImgSrc~)clear.gif" width="15" height="1" border="0" alt=" "/></td>
-<td>Delphi</td>
-<td> &nbsp;
+<td>Delphi+Kylix</td>
+<td class="checkers"> 
+(~INPUTCHECKBOX|DelphiAll~)
+<!---
 (~INPUTCHECKBOX|D10~)1&nbsp;
 (~INPUTCHECKBOX|D20~)2&nbsp;
 (~INPUTCHECKBOX|D30~)3&nbsp;
@@ -154,32 +164,33 @@ mcTD3=<![CDATA[<td valign=bottom bgcolor=#EEEEEE>]]>
 (~INPUTCHECKBOX|D70~)7&nbsp;
 (~INPUTCHECKBOX|D80~)8&nbsp;
 (~INPUTCHECKBOX|D2K5~)2005&nbsp;
+-->
 </td>
 <td rowspan="2"><img src="(~mcImgSrc~)clear.gif" width="15" height="1" border="0" alt=" "/></td>
-<td><b>Options:</b></td>
+<th style="text-align:left;">Options:</th>
 <td rowspan="2"><img src="(~mcImgSrc~)clear.gif" width="8" height="1" border="0" alt=" "/></td>
 <td>(~INPUTCHECKBOX|WithSource~) With&nbsp;Source</td>
 <td rowspan="2"><img src="(~mcImgSrc~)clear.gif" width="6" height="1" border="0" alt=" "/></td>
 </tr>
 <tr>
-<td><font size="1">&nbsp;</font></td>
-<td>
-<font size="1">
-C++Builder</td><td><font size="1"> &nbsp;
+<td></td>
+<td>C++Builder</td>
+<td class="checkers"> 
+(~INPUTCHECKBOX|CPPAll~)
+<!---
 (~INPUTCHECKBOX|C10~)1&nbsp;
 (~INPUTCHECKBOX|C30~)3&nbsp;
 (~INPUTCHECKBOX|C40~)4&nbsp;
 (~INPUTCHECKBOX|C50~)5&nbsp;
 (~INPUTCHECKBOX|C60~)6&nbsp;
 &nbsp;
-</font>
+-->
 </td>
-&nbsp;
-</td>
-<td>&nbsp;</td>
+<td></td>
 <td>(~INPUTCHECKBOX|Free~)Free License</td>
 </tr>
 
+<!---
 <tr>
 <td colspan="2">&nbsp;</td>
 <td>Kylix</td><td>&nbsp;
@@ -189,60 +200,56 @@ C++Builder</td><td><font size="1"> &nbsp;
 </td>
 <td colspan="3">&nbsp;</td>
 </tr>
+-->
 
+<!---
 <tr>
-<td colspan=2><font size="1">&nbsp;</font></td>
-<td><font size="1">JBuilder</td><td><font size="1"> &nbsp;
+<td colspan=2></td>
+<td>JBuilder</td><td> &nbsp;
 (~INPUTCHECKBOX|J10~)1&nbsp;
 (~INPUTCHECKBOX|J20~)2&nbsp;
 (~INPUTCHECKBOX|J60~)6&nbsp;
 </font></td>
-<td colspan=3><font size="1">&nbsp;</font></td>
+<td colspan=3></td>
 </tr>
+-->
+
 </table>
 </whdroplet>
 
+<whmacros>
+mcFuzzinessList=0-Auto,1-None,2-Some,3-Fuzzy,4-Fuzzier
+mcSearchLimitList=25-25,50-50,100-100,150-150,200-200,300-300,500-500
+</whmacros>
+
 <whdroplet name="chSearchTableAdv">
-<table border="0" cellpadding="5" cellspacing="0" width="100%">
+<table id="dspadv-table">
 <tr>
 <td>
-<table id="dspsearch" border="0" cellpadding="0" cellspacing="0" width="100%">
+<table id="dspsearch">
 <tr>
-<td class="head2">&nbsp;DSP Search Engine</td>
+<td><h1>Advanced DSP Search</h1></td>
 <td><img src="(~mcImgSrc~)clear.gif" width="20" height="1" border="0"></td>
-<td align="right"><font size="1">Fuzziness:  
-(~<select name="SearchFuzziness" size=1>
-(~<option value=0>Auto
-(~<option value=1>None
-(~<option value=2>Some
-(~<option value=3>Fuzzy
-(~<option value=4>Fuzzier
-</select> &nbsp; &nbsp; Search Limit: 
-(~<select name="SearchLimit" size="1">
-(~<option value=25>25
-(~<option value=50>50
-(~<option value=100>100
-(~<option value=150>150
-(~<option value=200>200
-(~<option value=300>300
-(~<option value=500>500
-</select>  records &nbsp; </font></td>
+<td style="text-align:right;">Fuzziness: (~INPUTSELECT|SearchFuzziness,mcFuzzinessList,1~)
+&nbsp; &nbsp; Search Limit: (~INPUTSELECT|SearchLimit,mcSearchLimitList,1~) records </td>
 </tr>
 </table>
 </td>
 </tr>
 <tr>
 <td>
-<table id="DSPQueryForm" border="0" cellpadding="0" cellspacing="0" width="100%">
+<table id="DSPQueryForm">
 <tr>
-<td align="right"><b>Enter resource keyword(s):</b>&nbsp; 
-(~INPUTTEXT|inSearch,35,200~)
-</td>
-<td align="right" valign="bottom" rowspan="2"><font size="1"> &nbsp; <input type="hidden" name="newsearch" value="yes" /><input type="submit" value="Submit Query" /> &nbsp;</td>
+  <th style="text-align:right;">Enter resource keyword(s):</th>
+  <td>(~INPUTTEXT|inSearch,35,200~)</td>
+  <td style="text-align:right; vertical-align: bottom;" rowspan="2"> 
+	  <input type="hidden" name="newsearch" value="yes" /><input type="submit" value="Submit Query" /> 
+	</td>
 </tr>
 <tr>
-<td align="right"><b>But exclude:</b>&nbsp; 
-(~INPUTTEXT|inExclude,35,200~)</td>
+  <th style="text-align:right;">But exclude:</th>
+	<td>(~INPUTTEXT|inExclude,35,200~)</td>
+  <!--- note rowspan above -->
 </tr>
 </table>
 </td>
@@ -276,47 +283,13 @@ But exclude:<br />
 </td>
 </whdroplet>
 
-<whdroplet name="chSearchGroup">
-<whdoc>
-15-June-2001 Ann
- This list is always empty - so it is temporarily disabled. 
- Please save the droplet for later.
-
-Look in:<br />
-(~<select name="SearchGroup" size=1>
-(~chSearchGroupItems~)
-</select>
-</whdoc>
-</whdroplet>
-
-
-<whdroplet name="chSearchGroupItems">
-(~<option value=0>All Categories
-</whdroplet>
-
-
 <whdroplet name="chSearchFuzziness">
 Fuzziness:<br /> 
-(~<select name="SearchFuzziness" size="1" />
-(~<option value=0>Auto
-(~<option value=1>None
-(~<option value=2>Some
-(~<option value=3>Fuzzy
-(~<option value=4>Fuzzier
-</select>
+(~INPUTSELECT|SearchFuzziness,mcFuzzinessList,1~)
 </whdroplet>
 
 <whdroplet name="chSearchLimit">
-Search Limit:<br /> 
-(~<select name="SearchLimit" size="1" />
-(~<option value=25>25
-(~<option value=50>50
-(~<option value=100>100
-(~<option value=150>150
-(~<option value=200>200
-(~<option value=300>300
-(~<option value=500>500
-</select> records
+Search Limit:<br /> (~INPUTSELECT|SearchLimit,mcSearchLimitList,1~) records
 </whdroplet>
 
 <whdroplet name="chSearchNear">

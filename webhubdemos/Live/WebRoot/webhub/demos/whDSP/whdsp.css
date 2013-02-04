@@ -1,12 +1,6 @@
-bodyOFF {
-	font-family: Trebuchet-MS, Verdana, Arial, sans-serif; 
-	margin-left: 25px;
-	margin-right: 25px;
-	font-size: 80%;
-}
 h1 {  
 	font-size: 1.1em; 
-	color: #333366; //#666699; 
+	color: #333366; 
 	text-decoration: none; 
 }
 h2 {
@@ -16,28 +10,58 @@ h2 {
 }
 p { margin-top: .1em; }
 
-#dspsearch {
+table#dspsearch {
 	font-family: Trebuchet-MS, Verdana, Arial, sans-serif; 
 	font-size: 80%;
+	padding: 0.3em; margin: 0; width: 100%; 
 }
 
-#dspsearch .head2 {  
+table#dspsearch h1 {  
 	font-size: 1.1em; 
 	font-weight: 700; 
-	color: #000; 
+	color: indigo; 
 	text-decoration: none; 
 }
 
-#dspsearch td { 
+table#dspsearch td { 
 	font-style: normal; font-weight: normal; 
 }
 
-#DSPQueryCheckboxes td {
-	font-size: x-small; font-style: normal; font-weight: normal; 
+table#DSPQueryCheckboxes {
+	border: none; padding: 0; 
 }
 
-#DSPQueryForm td {
-	font-size: x-small; font-style: normal; font-weight: normal; 
+#DSPQueryCheckboxes td {
+	font-size: small; font-style: normal; font-weight: normal; 
+}
+#DSPQueryCheckboxes th {
+	font-size: small; 
+}
+
+
+
+table#DSPQueryForm {
+	border: none; padding: 0; width: 100%; 
+}
+
+table#DSPQueryForm td {
+	font-size: small; font-style: normal; font-weight: normal; 
+	padding-left: 1em;
+	padding-top: 0.2em;
+	padding-right: 1em;
+	padding-bottom: 0.2em;
+}
+
+table#DSPQueryForm th {
+	font-size: small; 
+	padding-left: 1em;
+	padding-top: 0.2em;
+	padding-right: 1em;
+	padding-bottom: 0.2em;
+}
+
+table#dspadv-table {
+  border: none; padding: 5px; width:100%;
 }
 
 .pro { 

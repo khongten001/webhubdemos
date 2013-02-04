@@ -1,4 +1,4 @@
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+﻿<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" designdynsrc="localdsp" designpage="temp">
 
 <whdroplet name="drDemoSpeedbarForDSP">
@@ -26,7 +26,7 @@ metakeywords=Delphi,Utilities,Software,Freeware,Shareware,Download
   <meta name="robots" content="(~pagesetting.metarobot~)" />
   <meta name="description" content="(~pagesetting.metadescription~)" />
   <meta name="keywords" content="(~pagesetting.metakeywords~)" />
-(~ANCHORMODIFY|style|  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />~)
+  <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/whdsp/whdsp.css" />
 </whdroplet>
 (~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>

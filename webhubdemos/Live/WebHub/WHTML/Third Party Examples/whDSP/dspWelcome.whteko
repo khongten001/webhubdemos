@@ -1,7 +1,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" designdynsrc="localdsp" designpage="pgEnterDSP"> 
 
-<whpage pageid="pgEnterDSPX">
+<whpage pageid="pgEnterDSPX" mode="design">
 <whprep>
 (~CMDHAS|Advanced|(~CHECK|bAdvSearch~)~)
 (~CMDHAS|Basic|(~CLEAR|bAdvSearch~)(~CLEAR|inExclude,SearchFuzziness,SearchGroup~)~)
