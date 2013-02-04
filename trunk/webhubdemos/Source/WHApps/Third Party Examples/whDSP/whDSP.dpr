@@ -49,7 +49,6 @@ uses
   ucString,
   ucVers,
   DSP_dmDisplayResults in 'DSP_dmDisplayResults.pas' {dmDisplayResults: TDataModule},
-  DSP_fmConfigure in 'DSP_fmConfigure.pas' {fmAppConfigure},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
