@@ -2,10 +2,13 @@
 <whteko designmode="code" designdynsrc="localdsp">
 
 <whdroplet name="chNewSession">
-(~NOTASSIGNED|SearchLimit|(~SET|SearchLimit=300~)~)
-(~NOTASSIGNED|SearchNear|(~SET|SearchNear=8~)~)
-(~NOTASSIGNED|SearchGroup|(~SET|SearchGroup=0~)~)
-(~NOTASSIGNED|SearchFuzziness|(~SET|SearchFuzziness=0~)~)
+(~NOMATCH|(~_DSPInit~)=Done|
+(~SET|SearchLimit=300~)
+(~SET|SearchNear=8~)
+(~SET|SearchFuzziness=0~)
+(~Check|WithSource~)(~CHECK|DelphiAll~)
+(~SET|_DSPInit=Done~)
+~)
 </whdroplet>
 
 <whpage pageid="pgLinkToDSP" desc="dsp.href.com: Recommended way to link to us">
