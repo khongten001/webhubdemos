@@ -439,7 +439,7 @@
   </HubProcess>
   <Sessions>
     <SessionDebug value="false"/>
-    <SessionDigits value="3"/>
+    <SessionDigits value="10"/>
     <SessionFolder value="d:\temp\whSessions\"/>
     <SessionLifeMinutes value="10"/>
     <SessionMaxActive value="0"/>
