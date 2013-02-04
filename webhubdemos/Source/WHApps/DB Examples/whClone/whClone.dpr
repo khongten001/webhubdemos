@@ -21,15 +21,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
@@ -43,7 +43,8 @@ uses
   fmclone in 'fmclone.pas' {fmBendFields},
   whClone_dmdbProjMgr in 'whClone_dmdbProjMgr.pas' {DMForWHClone: TDataModule},
   uAutoDataModules in 'h:\uAutoDataModules.pas',
-  uAutoPanels in 'H:\uAutoPanels.pas';
+  uAutoPanels in 'H:\uAutoPanels.pas',
+  whClone_dmwhData in 'whClone_dmwhData.pas' {DMData2Clone: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
