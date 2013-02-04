@@ -441,7 +441,7 @@
     <SessionDebug value="false"/>
     <SessionDigits value="10"/>
     <SessionFolder value="d:\temp\whSessions\"/>
-    <SessionLifeMinutes value="10"/>
+    <SessionLifeMinutes value="25"/>
     <SessionMaxActive value="0"/>
     <SessionSweepIntervalMS value="120000"/>
   </Sessions>
