@@ -16,11 +16,10 @@ type
    public
       procedure DSPAppUpdate(Sender: TObject);
       procedure DSPAppExecute(Sender: TObject);
-      procedure DSPAppNewSession(Sender:TObject;Session:Cardinal;const Command:String);
+      procedure DSPAppNewSession(Sender:TObject;InSessionNo:Cardinal;const Command:String);
       procedure DSPAppExecDone(Sender: TObject);
       procedure DSPAppEventMacro(Sender: TwhRespondingApp; const aMacro, aParams, aID: String);
       procedure DSPAppError(Sender: TObject; E: Exception; var Handled, ReDoPage: Boolean);
-      procedure DSPAppBadBrowser(Sender: TwhRespondingApp; var bContinue: Boolean);
       procedure DSPAppBadIP(Sender: TwhRespondingApp; var bContinue:Boolean);
       procedure DSPMacrosUpdate;
    end;
@@ -41,7 +40,8 @@ uses
    whsample_EvtHandlers,      // Request component is here
    ucPos,                     // posci
    webInfoU,                  // CentralInfo
-   ucvers                     // access file version information
+   ucVers,                    // access file version information
+   ucCodeSiteInterface
    ;
 
 
@@ -78,10 +78,12 @@ end;
 
 {-}
 procedure TDSPAppHandler.DSPAppUpdate(Sender: TObject);
+const cFn = 'DSPAppUpdate';
 var
    i,j:integer;
    a0,a1,a2:string;
 begin
+   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
    Inherited;
 
    LogInfo('DSPAppUpdate');
@@ -127,6 +129,7 @@ begin
             end;
       end;
    DSPMacrosUpdate;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDSPAppHandler.DSPMacrosUpdate;
@@ -146,29 +149,20 @@ end;
 var fNewSession: boolean;
 {-}
 procedure TDSPAppHandler.DSPAppExecute(Sender: TObject);
-var a1,a2:string;
+var
+  a1,a2:string;
 begin
-   //  with pWebApp, Request do
-   //    LogInfo('DSPAppExecute: ' +
-   //           QueryString +
-   //           ' PageID='+PageID +
-   //           ' UserAgent=' + TWhBrowserInfo(WebBrowserInfo).UserAgentHash +
-   //           ' IP# ' + RemoteAddress +
-   //           ' Session ' + SessionID);
-
    With pWebApp do
       begin
-         //if StringVar['DSPURLPrefix']='' then
-         //  StringVar['DSPURLPrefix'] := cDSP;
          a1:=Request.Referer;
          If fNewSession then
             begin
                If a1='' then a1:='a bookmark';
                StringVar['Referer']:=a1;
             end;
-         {if AnsiSameText(PageID,'getlost') then exit;}
 
-         If not assigned(DSPdm) or DSPdm.IsValidReferer(a1,a2) or OnHrefNetwork or (posCI('RefererOK',Command)>0) then
+         If not assigned(DSPdm) or DSPdm.IsValidReferer(a1,a2) or
+           OnHrefNetwork or (posCI('RefererOK',Command)>0) then
             If fNewSession and (a2<>'') then StringVar['DSPURLPrefix']:=a2
             Else
       end;
@@ -189,27 +183,27 @@ begin
 end; {-}
 
 {-}
-procedure TDSPAppHandler.DSPAppNewSession(Sender:TObject;Session:Cardinal;const Command:String);
+procedure TDSPAppHandler.DSPAppNewSession(Sender:TObject; InSessionNo:Cardinal;
+  const Command:String);
+const cFn = 'DSPAppNewSession';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
    Inherited;
-   If Session=0 then Exit;
-   With pWebApp, Request do
-      LogInfo('DSPAppNewSession: ' +
-            QueryString +
-            ' UserAgent=' + UserAgent +
-            ' IP# ' + RemoteAddress +
-            ' Session ' + SessionID);
-   With pWebApp, Request do
-      begin
-         If (pos(SessionID,QueryString)>0) and (posci(ServerDomain(Host)+'.',Referer)=0) then
-            begin
-               LogInfo('Would RejectSession. '+QueryString+' from referer '+Referer + ' and IP# '+RemoteAddress);
-               //RejectSession;
-            end;
-      end;
+   If InSessionNo <> 0 then
+   begin
+     With pWebApp, Request do
+     begin
+       If (pos(SessionID,QueryString)>0) and
+         (posci(ServerDomain(Host)+'.',Referer)=0) then
+       begin
+         LogInfo('Would RejectSession. '+QueryString+' from referer '+Referer +
+           ' and IP# '+RemoteAddress);
+         //RejectSession;
+       end;
+     end;
 
-   fNewSession := True;
-   With pWebApp do
+     fNewSession := True;
+     With pWebApp do
       begin
          StringVar['DSPURLPrefix'] := cDSP;
          BoolVar['bDebug'] := HaveParam('Debug');
@@ -220,23 +214,16 @@ begin
                +','+AddToString(pageid,command,':')
                +','+pWebApp.Request.ServerVariables.Values['Referer']
          );
-         //
-         (*if Session.LoadFromDisk then
-         begin
-            StringVar['liAppMsg']:=Macros.Values['mcAppReloaded'];
-            BoolVar['bLogin']:=False;
-            also check time-last activated and reject (bounce to hub) if expired
-            //also add check to prompt for a password
-         end;*)
       end;
-   pWebApp.SendMacro('chNewSession');
-   //LogInfo('Completed DSPAppNewSession for #'+SessionID);
+     pWebApp.SendMacro('chNewSession');
+   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 {-}
 procedure TDSPAppHandler.DSPAppExecDone(Sender: TObject);
 begin
-   fNewSession:=False;
+  fNewSession:=False;
 end;
 
 {-}
@@ -270,29 +257,11 @@ begin
          +','+e.classname
          +','+e.message;
     {$IFDEF CodeSite}
-    CodeSite.SendError(S);
+    CSSendError(S);
     {$ELSE}
       AppendToLog(DatedFileName(AppSetting['ErrorLog']), S);
     {$ENDIF}
   end;
-end;
-
-procedure TDSPAppHandler.DSPAppBadBrowser(Sender: TwhRespondingApp; var bContinue: Boolean);
-begin
-   Inherited;
-   bContinue:=True;
-
-   With Sender do
-      begin
-         //PageID:=AppDefault[cPageIDBadBrowser];
-         //RejectSession;
-         With pWebApp, Request do
-            LogInfo('DSPAppBadBrowser: ' +
-               QueryString +
-               ' UserAgent=' + UserAgent +
-               ' IP# ' + RemoteAddress +
-               ' Session ' + SessionID);
-      end;
 end;
 
 procedure TDSPAppHandler.DSPAppBadIP(Sender: TwhRespondingApp; var bContinue:Boolean);
