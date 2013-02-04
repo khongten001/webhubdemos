@@ -11,10 +11,8 @@ uses
 type
    TdmDSPWebSearch = class(TdmBasicDatamodule)
       waSearch: TwhWebActionEx;
-      waFeedback: TwhWebActionEx;
       procedure waExtraInfoExecute(Sender: TObject);
       procedure waSearchExecute(Sender: TObject);
-      procedure waFeedbackExecute(Sender: TObject);
       procedure waResultsExecute(Sender: TObject);
       procedure waResultsColStart(Sender: TwhScan; var ok: Boolean);
       procedure waResultsNotify(Sender: TObject; Event: TwhScanNotify);
@@ -383,22 +381,6 @@ begin
                                  SendMacro('mcNoMatch');
                               end;
          End;
-      end;
-end;
-
-procedure TdmDSPWebSearch.waFeedbackExecute(Sender: TObject);
-begin
-   Inherited;
-   LogInfo('waFeedbackExecute');
-   With pWebApp do
-      begin
-         AppendToLog(DatedFileName(AppSetting['FeedBackFile'])
-                  ,pWebApp.Request.RemoteAddress
-                  +','+SessionID
-                  +','+StringVar['firstname']
-                  +','+TrimLeft(StringVar['firstname']+' '+StringVar['lastname']+' <'+StringVar['email']+'>')
-                  +','+StringReplaceAll(Session.TxtVars.ListText['txtMessage'],#13#10,'\n')
-         );
       end;
 end;
 

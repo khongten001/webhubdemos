@@ -221,18 +221,17 @@ function TdmDisplayResults.FileDetails(bHTML:Boolean): String;
             a1:=DSPdm.fURL.AsString;
             If a1<>'' then
                begin
-                  Result:=Result+'&nbsp;&nbsp;'+'<A HREF="'+a1+'" TARGET="Other">'+'website</A>'+'&nbsp;&nbsp;'+sLineBreak;   // put in 2-July-2001 AML
+                  Result:=Result+'&nbsp;&nbsp;'+
+                  '<A HREF="'+a1+'" TARGET="Other">'+'website</A>'+
+                  '&nbsp;&nbsp;'+sLineBreak;   // put in 2-July-2001 AML
                end;
-            a1:=DSPdm.fEMail.AsString;
-            If a1<>'' then
-               begin
-                  Result := Result + ' ' + MacroStart+'MAILTO|' + a1 + '|email|true' + MacroEnd + sLineBreak;
-               end;
+            // a1:=DSPdm.fEMail.AsString; stop show email addresses 03-Feb-2013
          end
       Else Result := GetString(DSPdm.fAuthorName.AsString)
                      +GetString(DSPdm.fURL.AsString)
                      +GetString(DSPdm.fContact.AsString)
-                     +GetString(DSPdm.fEMail.AsString);
+                     //+GetString(DSPdm.fEMail.AsString)
+                     ;
    end;
 
    function GetAuthorInfo:String;
