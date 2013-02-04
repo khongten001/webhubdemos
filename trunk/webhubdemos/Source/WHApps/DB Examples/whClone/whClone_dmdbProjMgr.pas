@@ -31,13 +31,14 @@ implementation
 uses
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}fmclone,{$ENDIF}
-  whClone_dmwhData;
+  whClone_dmwhData, whClone_dmwhGridsNScans;
 
 procedure TDMForWHClone.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
   {M}Application.CreateForm(TDMData2Clone, DMData2Clone);
+  {M}Application.CreateForm(TDMGridsNScans, DMGridsNScans);
 end;
 
 procedure TDMForWHClone.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -45,6 +46,8 @@ procedure TDMForWHClone.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := DMData2Clone.Init(ErrorText);
+  if Continue then
+    Continue := DMGridsNScans.Init(ErrorText);
 end;
 
 procedure TDMForWHClone.ProjMgrGUICreate(Sender: TtpProject;

@@ -52,7 +52,7 @@ implementation
 uses
   ucHTML,
   webApp, wbdeSource,
-  whClone_dmwhData;
+  whClone_dmwhData, whClone_dmwhGridsNScans;
 
 //------------------------------------------------------------------------------
 
@@ -67,13 +67,21 @@ begin
 //you're using RTTI to access the value of database controls on a form, but that's
 //where you'd usually use the Field macro, so consider it a debugging property.
 //-Michael Ax.
+
+  if Result then
+  begin
+    //DMData2Clone.Scan1.OnExecute := Scan2Execute;
+    //DMData2Clone.Scan2.OnExecute := Scan2Execute;
+    DBGrid.DataSource := nil;  // non-gui operation to avoid threading errors.
+  end;
 end;
+
 
 procedure TfmBendFields.Scan2Execute(Sender: TObject);
 begin
   dbGrid.DataSource :=
     TwhbdeSource(TwhdbScan(Sender).WebDataSource).DataSource;
-  DMData2Clone.ScanOnExecute(Sender);
+  DMGridsNScans.ScanOnExecutePageHeader(Sender);
 end;
 
 end.

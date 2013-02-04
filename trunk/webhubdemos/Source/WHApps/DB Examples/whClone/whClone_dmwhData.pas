@@ -31,7 +31,6 @@ uses
 
 type
   TDMData2Clone = class(TDataModule)
-    WebDataGrid1: TwhbdeGrid;
     Table2: TTable;
     Table2SpeciesNo: TFloatField;
     Table2Category: TStringField;
@@ -43,7 +42,6 @@ type
     Table2Graphic: TGraphicField;
     DataSource2: TDataSource;
     WebDataSource2: TwhbdeSource;
-    Scan2: TwhdbScan;
     Table1: TTable;
     Table1ACCT_NBR: TFloatField;
     Table1SYMBOL: TStringField;
@@ -52,28 +50,13 @@ type
     Table1PUR_DATE: TDateField;
     DataSource1: TDataSource;
     WebDataSource1: TwhbdeSource;
-    Scan1: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
-    procedure ScanOnExecute(Sender: TObject);
-    procedure ScanAfterExecute(Sender: TObject);
-    procedure ScanInit(Sender: TObject);
-    procedure ScanFinish(Sender: TObject);
     procedure WebDataSource1Execute(Sender: TObject);
-    procedure Scan2RowStart(Sender: TwhdbScanBase;
-      aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-    procedure Scan1RowStart(Sender: TwhdbScanBase;
-      aWebDataSource: TwhdbSourceBase; var ok: Boolean);
     procedure WebDataSource1FindKeys(Sender: TwhdbSourceBase; var Value: string;
       var Handled: Boolean);
-    procedure WebDataGrid1AfterExecute(Sender: TObject);
-    procedure WebDataGrid1Execute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    procedure PageHeader;
-    procedure PageFooter;
-    procedure TableHeader(Sender: TObject);
-    procedure TableFooter;
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
@@ -110,19 +93,15 @@ begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
-      scan1.WebDataSource := WebDataSource1;
-      scan1.OnRowStart := Scan1RowStart;
-
-      scan2.WebDataSource := WebDataSource2;
-      scan2.OnRowStart := Scan2RowStart;
-
-      WebDataGrid1.WebDataSource := WebDataSource1;
-
       WebDataSource1.DataSource := DataSource1;
       DataSource1.DataSet := Table1;
+      WebDataSource1.KeyFieldNames := 'ACCT_NBR';
+      WebDataSource1.OpenDataSetVisual := True;
 
       WebDataSource2.DataSource := DataSource2;
       DataSource2.DataSet := Table2;
+      WebDataSource2.KeyFieldNames := 'SpeciesNo';
+      WebDataSource2.OpenDataSetVisual := True;
 
       with Table1 do
       begin
@@ -138,9 +117,8 @@ begin
         Open;
       end;
 
-
       // Call RefreshWebActions here only if it is not called within a TtpProject event
-      // RefreshWebActions(Self);
+      RefreshWebActions(Self);
 
       // helpful to know that WebAppUpdate will be called whenever the
       // WebHub app is refreshed.
@@ -153,111 +131,6 @@ begin
   CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
-//------------------------------------------------------------------------------
-//both datascan components deliver roughly the same look and here's the code
-//shared by both:
-
-procedure TDMData2Clone.PageFooter;
-begin
-  pWebApp.SendMacro('drPageFooterHTCL');
-end;
-
-procedure TDMData2Clone.PageHeader;
-begin
-  pWebApp.SendMacro('drPageHeaderHTCL');
-end;
-
-procedure TDMData2Clone.ScanInit(Sender: TObject);
-begin
-  TableHeader(Sender);
-  if Sender = scan1 then
-  begin
-  writeln(
-     '<tr>'
-    +'<th>TableName</th>'
-    +'<th>RecNo</th>'
-    +'<th>ACCT_NBR</th>'
-    +'<th>SYMBOL</th>'
-    +'<th>SHARES</th>'
-    +'<th>PUR_PRICE</th>'
-    +'<th>PUR_DATE</th></tr>');
-  end
-  else
-  begin
-  writeln(
-     '<tr>'
-    +'<th>TableName</th>'
-    +'<th>RecNo</th>'
-    +'<th>SpeciesNo</th>'
-    +'<th>Category</th>'
-    +'<th>Common_Name</th></tr>');
-  end;
-end;
-
-procedure TDMData2Clone.ScanFinish(Sender: TObject);
-begin
-  TableFooter;
-end;
-
-procedure TDMData2Clone.Scan1RowStart(Sender: TwhdbScanBase;
-  aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-begin
-  writeln(
-     '<tr>'
-    +'<td>'
-    +Table1.Name+'</td>'
-    +'<td>'
-    +IntToStr(Table1.RecNo)+'</td>'
-    +'<td>'
-    +Table1ACCT_NBR.AsString+'</td>'
-    +'<td>'
-    +Table1SYMBOL.AsString+'</td>'
-    +'<td>'
-    +Table1SHARES.AsString+'</td>'
-    +'<td>'
-    +Table1PUR_PRICE.AsString+'</td>'
-    +'<td>'
-    +Table1PUR_DATE.AsString+'</td></tr>');
-end;
-
-procedure TDMData2Clone.Scan2RowStart(Sender: TwhdbScanBase;
-  aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-begin
-  writeln(
-     '<tr>'
-    +'<td>'
-    +Table2.Name+'</td>'                     //  <- notice reference to table2
-    +'<td>'
-    +IntToStr(Table2.RecNo)+'</td>'             //      when this runs, that pointer
-    +'<td>'
-    +Table2SpeciesNo.AsString+'</td>'           //      and all the field pointers
-    +'<td>'
-    +Table2Category.AsString+'</td>'            //      will point to the clones!
-    +'<td>'
-    +Table2Common_Name.AsString+'</td></tr>');
-end;
-
-procedure TDMData2Clone.ScanAfterExecute(Sender: TObject);
-begin
-  PageFooter;
-end;
-
-procedure TDMData2Clone.ScanOnExecute(Sender: TObject);
-begin
-  PageHeader;
-end;
-
-procedure TDMData2Clone.TableFooter;
-begin
-  writeln('</table>');
-end;
-
-procedure TDMData2Clone.TableHeader(Sender: TObject);
-begin
-  pWebApp.SendString('<table id="' + Self.Name + '-table" class="' +
-    TwhdbScan(Sender).Family + '-table">');
-end;
-
 procedure TDMData2Clone.WebAppUpdate(Sender: TObject);
 const cFn = 'WebAppUpdate';
 begin
@@ -265,20 +138,6 @@ begin
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
-end;
-
-//------------------------------------------------------------------------------
-//this code is used by both webdatasources as they both demonstrate using
-//pre-instantiated fields:
-
-procedure TDMData2Clone.WebDataGrid1AfterExecute(Sender: TObject);
-begin
-  PageFooter;
-end;
-
-procedure TDMData2Clone.WebDataGrid1Execute(Sender: TObject);
-begin
-  PageHeader;
 end;
 
 procedure TDMData2Clone.WebDataSource1Execute(Sender: TObject);
@@ -302,11 +161,11 @@ procedure TDMData2Clone.WebDataSource1FindKeys(Sender: TwhdbSourceBase;
   var Value: string; var Handled: Boolean);
 begin
   //scrolling through the holdings table.
-  //we're not supporting 'finding' values here
+  //we are not supporting 'finding' values here
   //but simply signal that we're scrolling through
   //a cloned table that does not have a unique or primary index.
   //This would be the place to write code to locate items.
-  Handled:=true;
+  /////////////Handled:=true;
 end;
 
 end.
