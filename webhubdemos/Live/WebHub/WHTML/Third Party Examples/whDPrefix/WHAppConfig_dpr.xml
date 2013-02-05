@@ -78,18 +78,6 @@
       <ButtonSpecs macroPrefix="mcManPrefButtonSpecs"/>
       <Captions macroPrefix="mcManPrefCaptions"/>
     </whdbScan>
-    <whdbSource componentName="wdsManPref">
-      <IndexOrders>
-        <Item id="By-Prefix" value="prefix"/>
-      </IndexOrders>
-    </whdbSource>
-    <whdbSource componentName="wdsAdmin">
-      <IndexOrders>
-        <Item id="By-Application" value="application"/>
-        <Item id="By-Company" value="company"/>
-        <Item id="By-Prefix" value="prefix"/>
-      </IndexOrders>
-    </whdbSource>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="c:\temp\"/>
       <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" context="DEMOS"/>

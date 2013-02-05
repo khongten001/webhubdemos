@@ -59,6 +59,16 @@ begin
     FileName := getHtDemoDataRoot + 'whFishStore\' + 'fishcost.xml';
     try
       Active := True;
+
+(* IndexOrder not working; excerpt from config file
+      <IndexOrders>
+        <Item id="PrimaryKey" value="*"/>
+        <Item id="PriceIndexIO" value="priceindex"/>
+        <Item id="UpdatedOnIndexIO" value="Updatedonindex"/>
+        <Item id="UpdatedByIndexIO" value="updatedbyindex"/>
+      </IndexOrders>
+*)
+
     except
       on E: Exception do
       begin

@@ -95,11 +95,6 @@
   <ComponentConfig>
     <whdbSource componentName="Browse">
       <KeyFields value="FileID"/>
-      <IndexOrders>
-        <Item id="File-Type" value="FileExt"/>
-        <Item id="File-Name" value="FileName"/>
-        <Item id="File-Number" value="*"/>
-      </IndexOrders>
     </whdbSource>
   </ComponentConfig>
 </WebHubAppConfiguration>
