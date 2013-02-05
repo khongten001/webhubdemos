@@ -118,6 +118,7 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
+        <DCCReference Include="k:\webhub\lib\wdbIBObjOSource.pas"/>
         <DCCReference Include="htqry2C.PAS">
             <Form>fmHTQ2Panel</Form>
         </DCCReference>
@@ -131,7 +132,6 @@
         </DCCReference>
         <DCCReference Include="whQuery2_whdmData.pas">
             <Form>DMQuery2</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Debug">
