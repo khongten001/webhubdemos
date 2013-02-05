@@ -8,7 +8,7 @@ object DMQuery2: TDMQuery2
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     AfterExecute = gridAfterExecute
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    PageHeight = 2
+    PageHeight = 0
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False

@@ -56,6 +56,7 @@ type
     procedure WebDataForm1SetCommand(Sender: TObject; var ThisCommand: string);
   private
     { Private declarations }
+    FInitFlag: Boolean;
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -85,61 +86,66 @@ const cFn = 'Init';
 const cRecylingHtml = '&#x267b;';
 begin
   ErrorText := '';
-  Result := False;
-
-  Query1.Databasename := getHtDemoDataRoot + 'whQuery4\';
-  TableEmp.Databasename := getHtDemoDataRoot + 'whQuery4\';
-
-  if NOT Assigned(selectDepartment) then
+  if NOT FInitFlag then
   begin
-    selectDepartment := TwhdbListBox.Create(Self);
-    selectDepartment.Name := 'selectDepartment';  // name as used in WHTEKO
-    selectDepartment.DataSource := DataSourceDept;
-    selectDepartment.Size := 1;
-    selectDepartment.StringVarName := 'Dept';
-    selectDepartment.DataField := 'DepartmentFull';
-    selectDepartment.ValueField := 'DeptShort';
-    selectDepartment.BlankItem := True;
-    selectDepartment.BlankText := '--select--';
-    selectDepartment.MultiSelect := False;
-    QueryDept.Databasename := getHtDemoDataRoot + 'whQuery4\';
-    QueryDept.SQL.Text := 'select distinct DeptShort, DepartmentFull ' +
-      'from department';
-    try
-      QueryDept.Prepare; // Delphi TQuery
-      QueryDept.Open;
-    except
-      on E: Exception do
-      begin
-        LogSendException(E);
-        ErrorText := E.Message;
-        Exit;
+
+    Query1.Databasename := getHtDemoDataRoot + 'whQuery4\';
+    Query1.BeforeOpen := Query1BeforeOpen;
+    TableEmp.Databasename := getHtDemoDataRoot + 'whQuery4\';
+
+    if NOT Assigned(selectDepartment) then
+    begin
+      selectDepartment := TwhdbListBox.Create(Self);
+      selectDepartment.Name := 'selectDepartment';  // name as used in WHTEKO
+      selectDepartment.DataSource := DataSourceDept;
+      selectDepartment.Size := 1;
+      selectDepartment.StringVarName := 'Dept';
+      selectDepartment.DataField := 'DepartmentFull';
+      selectDepartment.ValueField := 'DeptNo';
+      selectDepartment.BlankItem := True;
+      selectDepartment.BlankText := '--select--';
+      selectDepartment.MultiSelect := False;
+      QueryDept.Databasename := getHtDemoDataRoot + 'whQuery4\';
+      QueryDept.SQL.Text := 'select distinct DeptNo, DepartmentFull ' +
+        'from department';
+      try
+        QueryDept.Prepare; // Delphi TQuery
+        QueryDept.Open;
+        DataSourceDept.DataSet := QueryDept;
+      except
+        on E: Exception do
+        begin
+          LogSendException(E);
+          ErrorText := E.Message;
+        end;
       end;
     end;
-    DataSourceDept.DataSet := QueryDept;
+    if ErrorText = '' then
+      RefreshWebActions(Self);
+
+    WebDataSource1.MaxOpenDataSets := 20;
+    WebDataSource1.BendPointers := False;
+    grid1.Border := '';
+    grid1.SetCaptions2004;
+    grid1.SetButtonSpecs2012;
+    grid1.Captions.Values[cCapDraw] := MacroStart + 'mcRedrawSubmit' + MacroEnd;
+    WebDataSourceEmp.KeyFieldNames := 'EmpNo';
+
+    if assigned(pWebApp) then
+    begin
+      AddAppUpdateHandler(WebAppUpdate);
+      WebAppUpdate(pWebApp);
+    end;
+
+    if grid1.IsUpdated and selectDepartment.IsUpdated and
+      WebDataSourceEmp.IsUpdated then
+      FInitFlag := True
+    else
+      ErrorText := ErrorText +
+        'grid1 AND selectDepartment AND WebDataSourceEmp must Refresh fully ' +
+        'for this demo to work';
   end;
-  RefreshWebActions(Self);
-
-  WebDataSource1.MaxOpenDataSets := 20;
-  WebDataSource1.BendPointers := False;
-  grid1.Border := '';
-  grid1.SetCaptions2004;
-  grid1.SetButtonSpecs2012;
-  grid1.Captions.Values[cCapDraw] := MacroStart + 'mcRedrawSubmit' + MacroEnd;
-  WebDataSourceEmp.KeyFieldNames := 'EmpNo';
-
-  if assigned(pWebApp) then
-  begin
-    AddAppUpdateHandler(WebAppUpdate);
-    WebAppUpdate(pWebApp);
-  end;
-
-  Result := grid1.IsUpdated and selectDepartment.IsUpdated and
-    WebDataSourceEmp.IsUpdated;
-  if NOT Result then
-    ErrorText :=
-      'grid1 AND selectDepartment AND WebDataSourceEmp must Refresh fully ' +
-      'for this demo to work';
+  Result := FInitFlag;
 end;
 
 //------------------------------------------------------------------------------
@@ -170,8 +176,11 @@ procedure TDataModuleHTQ4.Query1BeforeOpen(DataSet: TDataSet);
 begin
   with TQuery(DataSet) do
   begin
-    SQL.Text := 'select * from employee where Department=''' +
-      pWebApp.StringVar['Dept'] + '''';
+    SQL.Text := 'select E.*, D.DepartmentFull as Department ' +
+      'from employee E, department D, empdept ed ' +
+      'WHERE ' +
+      '(ED.DeptNo = ' + pWebApp.StringVar['Dept'] + ') ' +
+      'and (ED.EmpNo = E.EmpNo) and (ED.DeptNo = D.DeptNo) ';
   end;
 end;
 
@@ -179,6 +188,7 @@ end;
 
 procedure TDataModuleHTQ4.DataModuleCreate(Sender: TObject);
 begin
+  FInitFlag := False;
   selectDepartment := nil;
 end;
 
