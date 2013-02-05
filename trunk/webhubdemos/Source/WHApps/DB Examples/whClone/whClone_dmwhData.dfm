@@ -1,6 +1,7 @@
 object DMData2Clone: TDMData2Clone
   OldCreateOrder = False
   OnCreate = DataModuleCreate
+  OnDestroy = DataModuleDestroy
   Height = 511
   Width = 653
   object Table2: TTable
@@ -57,7 +58,8 @@ object DMData2Clone: TDMData2Clone
     Top = 128
   end
   object Table1: TTable
-    IndexName = 'ACCT_NBR'
+    DatabaseName = 'D:\Projects\webhubdemos\Live\Database\whClone'
+    IndexName = 'HOLDINGNO'
     TableName = 'HOLDINGS.DBF'
     Left = 296
     Top = 32
@@ -135,5 +137,57 @@ object DMData2Clone: TDMData2Clone
     DataSource = DataSourceXML
     Left = 96
     Top = 304
+  end
+  object whdbxSourceDBF: TwhdbxSource
+    ComponentOptions = [tpUpdateOnLoad]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 1
+    OpenDataSets = 0
+    OpenDataSetRetain = 600
+    SaveTableName = False
+    DataSet = ClientDataSetDBF
+    DataSource = DataSourceDBF4DBX
+    Left = 96
+    Top = 384
+  end
+  object DataSourceDBF4DBX: TDataSource
+    DataSet = ClientDataSetDBF
+    Left = 224
+    Top = 384
+  end
+  object ClientDataSetDBF: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'DataSetProviderDBF'
+    Left = 360
+    Top = 376
+  end
+  object DataSetProviderDBF: TDataSetProvider
+    DataSet = TableDBase
+    Options = [poReadOnly, poAutoRefresh, poUseQuoteChar]
+    Left = 476
+    Top = 376
+  end
+  object TableDBase: TTable
+    IndexName = 'ACCT_NBR'
+    TableName = 'HOLDINGS.DBF'
+    Left = 568
+    Top = 384
+    object FloatField1: TFloatField
+      FieldName = 'ACCT_NBR'
+    end
+    object StringField1: TStringField
+      FieldName = 'SYMBOL'
+      Size = 7
+    end
+    object FloatField2: TFloatField
+      FieldName = 'SHARES'
+    end
+    object FloatField3: TFloatField
+      FieldName = 'PUR_PRICE'
+    end
+    object DateField1: TDateField
+      FieldName = 'PUR_DATE'
+    end
   end
 end

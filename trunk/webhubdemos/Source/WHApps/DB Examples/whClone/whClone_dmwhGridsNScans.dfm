@@ -47,8 +47,8 @@ object DMGridsNScans: TDMGridsNScans
     TD = '<td>'
     Caption = ''
     Preformat = False
-    Left = 128
-    Top = 280
+    Left = 488
+    Top = 32
   end
   object ScanXML: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
@@ -94,5 +94,22 @@ object DMGridsNScans: TDMGridsNScans
     OnEmptyDataSet = ScanXMLEmptyDataSet
     Left = 64
     Top = 456
+  end
+  object ScanDBxDBf: TwhdbScan
+    ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
+    OnExecute = ScanOnExecutePageHeader
+    AfterExecute = ScanAfterExecute
+    DirectCallOk = True
+    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
+    ScanMode = dsByKey
+    ButtonAutoHide = False
+    OverlapScroll = False
+    WebDataSource = DMData2Clone.whdbxSourceDBF
+    OnRowStart = ScanRowStart
+    OnInit = ScanInit
+    OnFinish = ScanFinish
+    OnEmptyDataSet = ScanXMLEmptyDataSet
+    Left = 64
+    Top = 528
   end
 end

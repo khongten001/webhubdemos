@@ -28,24 +28,16 @@ uses
   SysUtils, Classes,
   webLink, Data.DB, wdbScan, wdbSSrc, wdbSource, wbdeSource, Bde.DBTables,
   updateOK, tpAction, webTypes, wbdeGrid, Datasnap.DBClient, SimpleDS,
-  wdbxSource;
+  wdbxSource, Datasnap.Provider;
 
 type
   TDMData2Clone = class(TDataModule)
+    Table1: TTable;
     Table2: TTable;
-    Table2SpeciesNo: TFloatField;
-    Table2Category: TStringField;
-    Table2Common_Name: TStringField;
-    Table2SpeciesName: TStringField;
-    Table2Lengthcm: TFloatField;
-    Table2Length_In: TFloatField;
-    Table2Notes: TMemoField;
-    Table2Graphic: TGraphicField;
+    TableDBase: TTable;
     DataSource2: TDataSource;
     WebDataSource2: TwhbdeSource;
-    Table1: TTable;
     Table1ACCT_NBR: TFloatField;
-    Table1SYMBOL: TStringField;
     Table1SHARES: TFloatField;
     Table1PUR_PRICE: TFloatField;
     Table1PUR_DATE: TDateField;
@@ -55,10 +47,15 @@ type
     SimpleDataSetXML: TSimpleDataSet;
     DataSourceXML: TDataSource;
     whdbxSourceXMLCloned: TwhdbxSource;
+    whdbxSourceDBF: TwhdbxSource;
+    DataSourceDBF4DBX: TDataSource;
+    ClientDataSetDBF: TClientDataSet;
+    DataSetProviderDBF: TDataSetProvider;
     procedure DataModuleCreate(Sender: TObject);
     procedure WebDataSource1Execute(Sender: TObject);
     procedure WebDataSource1FindKeys(Sender: TwhdbSourceBase; var Value: string;
       var Handled: Boolean);
+    procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -84,6 +81,17 @@ uses
 procedure TDMData2Clone.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
+end;
+
+procedure TDMData2Clone.DataModuleDestroy(Sender: TObject);
+begin
+  if NOT FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
+  begin
+    ClientDataSetDBF.Open;
+    ClientDataSetDBF.SaveToFile(getHtDemoDataRoot + 'whClone\holdings.cds',
+      dfBinary);
+    ClientDataSetDBF.Close;
+  end;
 end;
 
 function TDMData2Clone.Init(out ErrorText: string): Boolean;
@@ -116,15 +124,34 @@ begin
       begin
         WebDataSource1.DataSource := DataSource1;
         DataSource1.DataSet := Table1;
-        WebDataSource1.KeyFieldNames := 'ACCT_NBR';
-        WebDataSource1.OpenDataSetVisual := True;
+        WebDataSource1.KeyFieldNames := 'HOLDINGNO'; // 'ACCT_NBR;SYMBOL';
+        WebDataSource1.OpenDataSetVisual := False;
 
         WebDataSource2.DataSource := DataSource2;
         DataSource2.DataSet := Table2;
         WebDataSource2.KeyFieldNames := 'SpeciesNo';
-        WebDataSource2.OpenDataSetVisual := True;
+        WebDataSource2.OpenDataSetVisual := False;
 
         with Table1 do
+        begin
+          DatabaseName := getHtDemoDataRoot + 'whClone\';
+          TableName := 'HOLDINGS.DBF';
+          IndexName := '';
+          Open;
+//          FieldByName('HOLDINGNO').Visible := True;
+        end;
+
+        if FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
+        begin
+          FreeAndNil(DataSetProviderDBF);
+          FreeAndNil(TableDBase);
+          ClientDataSetDBF.ProviderName := '';
+          ClientDataSetDBF.FileName := getHtDemoDataRoot +
+            'whClone\holdings.cds';
+          whdbxSourceDBF.KeyFieldNames := 'HOLDINGNO';
+        end
+        else
+        with TableDBase do
         begin
           DatabaseName := getHtDemoDataRoot + 'whClone\';
           TableName := 'HOLDINGS.DBF';
@@ -192,4 +219,22 @@ begin
   /////////////Handled:=true;
 end;
 
+(*
+    Table2SpeciesNo: TFloatField;
+    Table2Category: TStringField;
+    Table2Common_Name: TStringField;
+    Table2SpeciesName: TStringField;
+    Table2Lengthcm: TFloatField;
+    Table2Length_In: TFloatField;
+    Table2Notes: TMemoField;
+    Table2Graphic: TGraphicField;
+
+        FloatField1: TFloatField;
+    StringField1: TStringField;
+    FloatField2: TFloatField;
+    FloatField3: TFloatField;
+    DateField1: TDateField;
+    Table1SYMBOL: TStringField;
+
+*)
 end.
