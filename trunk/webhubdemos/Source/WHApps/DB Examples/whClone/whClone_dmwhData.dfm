@@ -124,4 +124,16 @@ object DMData2Clone: TDMData2Clone
     Left = 200
     Top = 240
   end
+  object whdbxSourceXMLCloned: TwhdbxSource
+    ComponentOptions = [tpUpdateOnLoad]
+    GotoMode = wgGotoKey
+    MaxOpenDataSets = 3
+    OpenDataSets = 0
+    OpenDataSetRetain = 600
+    SaveTableName = False
+    DataSet = SimpleDataSetXML
+    DataSource = DataSourceXML
+    Left = 96
+    Top = 304
+  end
 end

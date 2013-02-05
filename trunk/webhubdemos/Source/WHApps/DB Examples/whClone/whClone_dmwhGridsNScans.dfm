@@ -1,7 +1,7 @@
 object DMGridsNScans: TDMGridsNScans
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 390
+  Height = 690
   Width = 691
   object Scan1: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
@@ -63,8 +63,8 @@ object DMGridsNScans: TDMGridsNScans
     OnInit = ScanInit
     OnFinish = ScanFinish
     OnEmptyDataSet = ScanXMLEmptyDataSet
-    Left = 128
-    Top = 216
+    Left = 64
+    Top = 392
   end
   object gridxml: TwhbdeGrid
     ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate, tpCXSetIfFoundExactlyDuringUpdate]
@@ -78,5 +78,21 @@ object DMGridsNScans: TDMGridsNScans
     Preformat = False
     Left = 328
     Top = 176
+  end
+  object ScanXMLCloned: TwhdbScan
+    ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
+    OnExecute = ScanOnExecutePageHeader
+    AfterExecute = ScanAfterExecute
+    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
+    ScanMode = dsByKey
+    ButtonAutoHide = False
+    OverlapScroll = False
+    WebDataSource = DMData2Clone.whdbxSourceXMLCloned
+    OnRowStart = ScanRowStart
+    OnInit = ScanInit
+    OnFinish = ScanFinish
+    OnEmptyDataSet = ScanXMLEmptyDataSet
+    Left = 64
+    Top = 456
   end
 end
