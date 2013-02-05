@@ -25,10 +25,10 @@ THE SOFTWARE.
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, Data.DB, wdbScan, wdbSSrc, wdbSource, wbdeSource, Bde.DBTables,
-  updateOK, tpAction, webTypes, wdbGrid, wbdeGrid{bde},, Datasnap.DBClient, SimpleDS,
-  wdbxSource, Datasnap.Provider;
+  SysUtils, Classes, DB, DBTables, Provider, DBClient, SimpleDS,
+  webLink, wdbScan, wdbSSrc, wdbSource, wbdeSource, 
+  updateOK, tpAction, webTypes, wdbGrid, wbdeGrid{bde}, 
+  wdbxSource;
 
 type
   TDMData2Clone = class(TDataModule)
