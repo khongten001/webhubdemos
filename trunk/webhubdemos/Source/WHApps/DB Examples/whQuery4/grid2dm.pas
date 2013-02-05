@@ -100,9 +100,13 @@ procedure TDataModuleGrid2.Query2BeforeOpen(DataSet: TDataSet);
 begin
   with TQuery(DataSet) do
   begin
-    SQL.Text := 'select * from employee';
+    SQL.Text := 'select E.*, D.DepartmentFull as Department ' +
+      'from employee E, department D, empdept ed ' +
+      'WHERE ' +
+      '(ED.EmpNo = E.EmpNo) and (ED.DeptNo = D.DeptNo) ';
     if (pWebApp.StringVar['MinSalary'] <> '') then
-      SQL.Text := SQL.Text + ' where salary > ' + pWebApp.StringVar['MinSalary'];
+      SQL.Text := SQL.Text + ' and (salary > ' +
+      pWebApp.StringVar['MinSalary'] + ')';
   end;
 end;
 
