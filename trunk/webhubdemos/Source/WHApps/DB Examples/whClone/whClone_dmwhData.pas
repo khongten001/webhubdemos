@@ -37,10 +37,6 @@ type
     TableDBase: TTable;
     DataSource2: TDataSource;
     WebDataSource2: TwhbdeSource;
-    Table1ACCT_NBR: TFloatField;
-    Table1SHARES: TFloatField;
-    Table1PUR_PRICE: TFloatField;
-    Table1PUR_DATE: TDateField;
     DataSource1: TDataSource;
     WebDataSource1: TwhbdeSource;
     whdbxSourceXML: TwhdbxSource;
@@ -51,6 +47,7 @@ type
     DataSourceDBF4DBX: TDataSource;
     ClientDataSetDBF: TClientDataSet;
     DataSetProviderDBF: TDataSetProvider;
+    DataSourceXmlCloned: TDataSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure WebDataSource1Execute(Sender: TObject);
     procedure WebDataSource1FindKeys(Sender: TwhdbSourceBase; var Value: string;
@@ -99,7 +96,11 @@ const cFn = 'Init';
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   ErrorText := '';
-  // reserved for code that should run once, after AppID set
+
+  { Note: sharing a TDataSet is okay in the datamodule. Sharing a TDataSource
+    causes changes in one Scan to show up in the other one -- not usually good.}
+
+
   if NOT FlagInitDone then
   begin
 
@@ -136,9 +137,9 @@ begin
         begin
           DatabaseName := getHtDemoDataRoot + 'whClone\';
           TableName := 'HOLDINGS.DBF';
-          IndexName := '';
+          IndexName := 'HoldingNo';
           Open;
-//          FieldByName('HOLDINGNO').Visible := True;
+          FieldByName('HOLDINGNO').Visible := True;
         end;
 
         if FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
