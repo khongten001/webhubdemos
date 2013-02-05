@@ -25,7 +25,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DB, DBTables, wbdeSource, WdbLink, WdbScan, wbdeGrid, UpdateOk, tpAction,
+  DB, DBTables, 
+  wdbSource, wbdeSource, wdbLink, wdbScan, wbdeGrid, 
+  UpdateOk, tpAction,
   WebTypes,   WebLink, WebPage, WebPHub, webScan, wdbSSrc;
 
 type
@@ -50,7 +52,8 @@ var
 implementation
 
 uses 
-  whdemo_ViewSource, webApp, ucPos;
+  ucPos, ucCodeSiteInterface,
+  whdemo_ViewSource, wdbGrid, webApp;
 
 {$R *.DFM}
 
