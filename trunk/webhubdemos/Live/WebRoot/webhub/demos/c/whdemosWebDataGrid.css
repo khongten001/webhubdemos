@@ -1,13 +1,22 @@
 /* whdbGrid control and button styles */
 
 table.whdbGrid-table { 
+  border: none;
   padding: 0.6em; 
   border-collapse: collapse;
   empty-cells: show;
 }
 
-table.whdbGrid-table th { padding: 0.6em; }
-table.whdbGrid-table td { padding: 0.6em; }
+table.whdbGrid-table th { 
+  border-bottom: solid 2px green;
+  padding: 0.6em; 
+  background-color: palegreen;
+}
+
+table.whdbGrid-table td { 
+  border-bottom: solid 1px slateblue;
+  padding: 0.6em; 
+}
 
 /* whdbGrid controls */ 
 
