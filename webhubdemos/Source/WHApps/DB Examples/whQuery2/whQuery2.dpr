@@ -41,6 +41,7 @@ uses
   dmwhBDEApp in 'h:\dmwhBDEApp.pas' {dmWebHubBDEApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   WebApp,
+  wdbIBObjOSource in 'k:\webhub\lib\wdbIBObjOSource.pas',
   htqry2C in 'htqry2C.PAS' {fmHTQ2Panel},
   counter in 'counter.pas' {fmCounterPanel},
   ZaphodsMap in 'h:\ZaphodsMap.pas',

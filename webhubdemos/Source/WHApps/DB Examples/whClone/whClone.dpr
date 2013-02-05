@@ -41,6 +41,8 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
+  wdbGrid in 'k:\webhub\lib\whdb\wdbGrid.pas',
+  wbdeGrid in 'k:\webhub\lib\whdb\wbdeGrid.pas',
   webLink in 'k:\webhub\lib\webLink.pas',
   wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
   wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
