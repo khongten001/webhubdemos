@@ -4,7 +4,7 @@ object DMQuery2: TDMQuery2
   OnDestroy = DataModuleDestroy
   Height = 395
   Width = 574
-  object grid: TwhbdeGrid
+  object grid: TwhdbGrid
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     AfterExecute = gridAfterExecute
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
@@ -22,7 +22,7 @@ object DMQuery2: TDMQuery2
     Left = 53
     Top = 36
   end
-  object WebDataSource1: TwhbdeSource
+  object WebDataSource1: TwhdbSource
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     GotoMode = wgGotoKey
     MaxOpenDataSets = 3
@@ -39,7 +39,7 @@ object DMQuery2: TDMQuery2
     Left = 221
     Top = 37
   end
-  object wdsFull: TwhbdeSource
+  object wdsFull: TwhdbSource
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     GotoMode = wgGotoKey
     MaxOpenDataSets = 1

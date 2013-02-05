@@ -30,21 +30,21 @@ uses
   webLink, Data.Win.ADODB, wdbxSource, wdbScan, DB,
   ZaphodsMap,
   updateOK, tpAction,
-  wdbSSrc, wdbSource, wbdeSource, webTypes, wbdeGrid;
+  wdbSSrc, wdbSource, webTypes, wdbGrid;
 
 type
   TDMQuery2 = class(TDataModule)
-    grid: TwhbdeGrid;
-    WebDataSource1: TwhbdeSource;
+    grid: TwhdbGrid;
+    WebDataSource1: TwhdbSource;
     DataSource1: TDataSource;
-    wdsFull: TwhbdeSource;
+    wdsFull: TwhdbSource;
     DataSourceFull: TDataSource;
     WebDataScanAll: TwhdbScan;
     Query1: TADOQuery;
     ADOQueryFull: TADOQuery;
     procedure DataModuleCreate(Sender: TObject);
     procedure Query1BeforeOpen(DataSet: TDataSet);
-    procedure gridHotField(Sender: TwhbdeGrid; AField: TField;
+    procedure gridHotField(Sender: TwhdbGrid; AField: TField;
       var CellValue: string);
     procedure gridAfterExecute(Sender: TObject);
     procedure WebDataScanAllInit(Sender: TObject);
@@ -119,7 +119,7 @@ end;
 {Hot field is set by putting :HF after the field name in the
 displaySet.  See WebDataSource.displayset -- or just look in the
 htqry2.ini file.}
-procedure TDMQuery2.gridHotField(Sender: TwhbdeGrid; AField: TField;
+procedure TDMQuery2.gridHotField(Sender: TwhdbGrid; AField: TField;
   var CellValue: string);
 begin
   {JUMP is a built-in WebHub macro. Syntax is: JUMP|pageId,command|visiblePhrase }
