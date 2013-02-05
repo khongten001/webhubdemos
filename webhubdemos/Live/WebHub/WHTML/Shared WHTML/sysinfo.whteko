@@ -72,9 +72,11 @@ Request.XForwardedFor = (~Request.XForwardedFor~)<br/>
 Port = (~Port~)<br />
  </td>
  <td>AppID: (~AppID~)<br/>
+ AppIDEx: (~AppIDEx~)<br/>
  PageID: (~PageID~)<br/>
  SessionID: (~SessionID~)<br/>
- SessionIDEx: (~SessionIDEx~)<br/>
+ SessionNumber: (~SessionNumber~)<br/>
+ SessionNumberEx: (~SessionNumberEx~)<br/>
  Command: (~Command~)
  </td>
 </tr>
