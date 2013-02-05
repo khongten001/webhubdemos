@@ -97,12 +97,6 @@
         <Item id="Basic" value="Species No:HF,Price,UpdatedOn,UpdatedBy,ShippingNotes"/>
         <Item id="SeePassword" value="Species No:HF,Price,UpdatedOn,UpdatedBy,Password,ShippingNotes"/>
       </DisplaySets>
-      <IndexOrders>
-        <Item id="PrimaryKey" value="*"/>
-        <Item id="PriceIndexIO" value="priceindex"/>
-        <Item id="UpdatedOnIndexIO" value="Updatedonindex"/>
-        <Item id="UpdatedByIndexIO" value="updatedbyindex"/>
-      </IndexOrders>
     </whdbSource>
     <whdbSource componentName="WebDataSourceBiolife">
       <DisplaySets>
