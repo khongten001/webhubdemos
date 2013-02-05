@@ -55,12 +55,10 @@
 </tr>
 <tr>
  <th >Other TwhRequest Properties</th>
-<th>App Properties</th>
+ <th>App Properties</th>
 </tr>
 <tr>
- <td>
-DynURL.RawToActiveAuthorityM = (~DynURL.RawToActiveAuthorityM~)<br />
-DynURL.ToAppID = (~DynURL.ToAppID~)<br />
+ <td><!--- column 1 TwhRequest -->
 Request.Host = (~Request.Host~)<br />
 Request.ProxyName = (~Request.ProxyName~)<br/>
 Request.RequestProtocol = (~Request.RequestProtocol~)<br />
@@ -76,10 +74,34 @@ Port = (~Port~)<br />
  <td>AppID: (~AppID~)<br/>
  PageID: (~PageID~)<br/>
  SessionID: (~SessionID~)<br/>
+ SessionIDEx: (~SessionIDEx~)<br/>
  Command: (~Command~)
  </td>
 </tr>
+
+<tr><th>App.DynURL</th><td></td></tr>
+<tr><td>
+<ul>
+<li> RawActiveAuthority: (~DynURL.RawActiveAuthority~) </li>
+<li> RawHost: (~DynURL.RawHost~) </li> 
+<li> RawToActiveAuthority: (~DynURL.RawToActiveAuthority~) </li> 
+<li> RawToActiveAuthorityM: (~DynURL.RawToActiveAuthorityM~) </li> 
+<li> ToAuthorityM: (~DynURL.ToAuthorityM~) </li> 
+<li> ToAppID: (~DynURL.ToAppID~) </li> 
+<li> ToPageID: (~DynURL.ToPageID~) </li> 
+<li> ToSessionID: (~DynURL.ToSessionID~) </li> 
+<li> ToSessionIDW: (~DynURL.ToSessionIDW~) </li> 
+<li> ToHomePageID: (~DynURL.ToHomePageID~) </li> 
+<li> Rand: (~DynURL.Rand~) </li> 
+<li> W: (~DynURL.W~) </li> 
+</ul>
+</td><td></td>
+</tr>
+
 </table>
+
+
+
 </whdroplet>
 
 </body></html>
