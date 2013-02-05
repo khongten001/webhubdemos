@@ -9,7 +9,7 @@ object DMParts: TDMParts
     Left = 336
     Top = 100
   end
-  object grid: TwhbdeGrid
+  object grid: TwhdbGrid
     ComponentOptions = [tpStatusPanel]
     OnExecute = gridExecute
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
@@ -36,7 +36,7 @@ object DMParts: TDMParts
     Left = 341
     Top = 28
   end
-  object WebDataSource1: TwhbdeSource
+  object WebDataSource1: TwhdbSource
     ComponentOptions = [tpStatusPanel]
     GotoMode = wgGotoKey
     KeyFieldNames = 'PartNo'
