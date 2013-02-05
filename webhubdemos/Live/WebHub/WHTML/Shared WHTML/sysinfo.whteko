@@ -75,7 +75,7 @@ Port = (~Port~)<br />
  AppIDEx: (~AppIDEx~)<br/>
  PageID: (~PageID~)<br/>
  SessionID: (~SessionID~)<br/>
- SessionNumber: (~SessionNumber~)<br/>
+ RawSessionNumber: (~RawSessionNumber~)<br/>
  SessionNumberEx: (~SessionNumberEx~)<br/>
  Command: (~Command~)
  </td>
