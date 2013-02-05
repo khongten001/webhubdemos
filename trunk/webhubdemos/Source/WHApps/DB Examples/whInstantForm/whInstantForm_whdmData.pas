@@ -27,18 +27,18 @@ interface
 uses
   SysUtils, Classes, Data.DB, Datasnap.DBClient,
   updateOK, tpAction,
-  webLink, wdbSSrc, wdbSource, wbdeSource, wdbForm, wdbScan, wbdeGrid, webTypes;
+  webLink, wdbSSrc, wdbSource, wdbForm, wdbScan, wdbGrid, webTypes;
 
 type
   TDMParts = class(TDataModule)
     waPost: TwhWebActionEx;
-    grid: TwhbdeGrid;
+    grid: TwhdbGrid;
     WebDataForm1: TwhdbForm;
-    WebDataSource1: TwhbdeSource;
+    WebDataSource1: TwhdbSource;
     DataSource1: TDataSource;
     Table1: TClientDataSet;
     procedure DataModuleCreate(Sender: TObject);
-    procedure gridHotField(Sender: TwhbdeGrid; AField: TField;
+    procedure gridHotField(Sender: TwhdbGrid; AField: TField;
       var CellValue: string);
     procedure gridExecute(Sender: TObject);
     procedure waPostExecute(Sender: TObject);
@@ -76,7 +76,7 @@ end;
 
 procedure TDMParts.gridExecute(Sender: TObject);
 begin
-  with TwhbdeGrid(Sender) do
+  with TwhdbGrid(Sender) do
   begin
     if CompareText(HtmlParam, 'bOn') = 0 then
     begin
@@ -89,13 +89,13 @@ begin
       HtmlParam := '';
     end;
 
-    with WebDataSourceBDE.DataSet do
+    with WebDataSourceDB.DataSet do
       webapp.SendString('This table has ' + IntToStr(RecordCount) +
         ' records.<br /><br />');
   end;
 end;
 
-procedure TDMParts.gridHotField(Sender: TwhbdeGrid; AField: TField;
+procedure TDMParts.gridHotField(Sender: TwhdbGrid; AField: TField;
   var CellValue: string);
 begin
   inherited;
@@ -134,6 +134,16 @@ begin
 
       try
         Table1.Open;
+
+        (* not supported in v3.184
+      <IndexOrders>
+        <Item id="Description" value="IdxDescription"/>
+        <Item id="Vendor" value="IdxVendorNo"/>
+      </IndexOrders>
+
+        Table1.AddIndex('IdxDescription', 'Description', []);
+        Table1.AddIndex('IdxVendorNo', 'VendorNo', []);
+        *)
       except
         on E: Exception do
         begin
@@ -146,13 +156,14 @@ begin
         RefreshWebActions(Self);
 
       if NOT webDataSource1.IsUpdated then
-        ErrorText := webDataSource1.ClassName + ' ' + webDataSource1.Name +
-          ' unable to update';
+        ErrorText := ErrorText + webDataSource1.ClassName + ' ' +
+          webDataSource1.Name + ' unable to update';
       if NOT grid.IsUpdated then
-        ErrorText := grid.ClassName + ' ' + grid.Name + ' unable to update';
-      if NOT webDataForm1.IsUpdated then
-        ErrorText := webDataForm1.ClassName + ' ' + webDataForm1.Name +
+        ErrorText := ErrorText + grid.ClassName + ' ' + grid.Name +
           ' unable to update';
+      if NOT webDataForm1.IsUpdated then
+        ErrorText := ErrorText + webDataForm1.ClassName + ' ' +
+          webDataForm1.Name + ' unable to update';
 
       if ErrorText = '' then
       begin
