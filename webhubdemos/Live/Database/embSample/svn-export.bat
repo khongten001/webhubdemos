@@ -34,4 +34,11 @@ copy employee.* ..\whQuery4
 cd ..\whQuery4
 :: dept.db made by HREF Tools not shipped by Embarcadero
 
+cd ..\whClone
+del biolife.*
+%svnpath%\svn.exe export %urlroot%/Data/biolife.db  ./biolife.db  --non-interactive --force 
+if errorlevel 1 pause
+%svnpath%\svn.exe export %urlroot%/Data/biolife.mb  ./biolife.mb  --non-interactive --force 
+%svnpath%\svn.exe export %urlroot%/Data/biolife.px  ./biolife.px  --non-interactive --force 
+
 endlocal
