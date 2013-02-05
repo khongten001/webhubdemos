@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -25,6 +25,8 @@
 <p>(~mcWhDemoDot~) (~JUMP|DO,scanxml|Try the scanxml component~) (TSimpleDataSet with .xml file)</p>
 
 <p>(~mcWhDemoDot~) (~JUMP|DO,scanxmlcloned|Try the ScanXmlCloned component~) (MaxOpenDataSets > 1)</p>
+
+<p>(~mcWhDemoDot~) (~JUMP|DO,ScanDBxDBf|Try the ScanDBxDBf component~) (DBExpress to DBase/CDS)</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)

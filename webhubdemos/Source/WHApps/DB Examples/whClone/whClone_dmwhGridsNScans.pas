@@ -17,6 +17,7 @@ type
     ScanXML: TwhdbScan;
     gridxml: TwhbdeGrid;
     ScanXMLCloned: TwhdbScan;
+    ScanDBxDBf: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
     procedure ScanOnExecutePageHeader(Sender: TObject);
     procedure ScanInit(Sender: TObject);
@@ -72,26 +73,21 @@ begin
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
-      Scan1.DirectCallOk := True;
       Scan1.OnExecute := nil; // when controlled from the form
       Scan1.OnExecute := ScanOnExecutePageHeader;
       scan1.WebDataSource := DMData2Clone.WebDataSource1;
       scan1.OnRowStart := ScanRowStart;
 
-      Scan2.DirectCallOk := True;
       Scan2.OnExecute := nil; // when controlled from the form
       Scan2.OnExecute := ScanOnExecutePageHeader;
       scan2.WebDataSource := DMData2Clone.WebDataSource2;
       scan2.OnRowStart := ScanRowStart;
       Scan2.ControlsWhere := dsBelow;
 
-      WebDataGrid1.DirectCallOk := True;
       WebDataGrid1.WebDataSource := DMData2Clone.WebDataSource1;
 
-      ScanXml.DirectCallOk := True;
       ScanXML.WebDataSource := DMData2Clone.whdbxSourceXML;
 
-      ScanXmlCloned.DirectCallOk := True;
       ScanXmlCloned.WebDataSource := DMData2Clone.whdbxSourceXMLCloned;
 
       // Call RefreshWebActions here only if it is not called within a TtpProject event
@@ -102,8 +98,9 @@ begin
 
       if (ErrorText = '') then
       begin
-        // helpful to know that WebAppUpdate will be called whenever the
-        // WebHub app is refreshed.
+        // allow all web actions to be called via DO page
+        // appid:DO::webactionname
+        DirectCallOk(Self, True);
         AddAppUpdateHandler(WebAppUpdate);
         FlagInitDone := True;
       end;
