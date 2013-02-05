@@ -82,6 +82,8 @@ end;
 
 procedure TDMData2Clone.DataModuleDestroy(Sender: TObject);
 begin
+  { This saves the .DBF to a ClientSet binary .CDS file for use the next time
+    the demo runs...  used for testing both ways }
   if NOT FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
   begin
     ClientDataSetDBF.Open;
@@ -111,14 +113,15 @@ begin
       whdbxSourceXML.MaxOpenDataSets := 1; // no cloning
       SimpleDataSetXML.Open;
       if NOT whdbxSourceXML.IsUpdated then
-        ErrorText := whdbxSourceXML.Name + ' would not update';
+        ErrorText := whdbxSourceXML.Name + ' would not update. ';
 
       if ErrorText = '' then
       begin
         whdbxSourceXMLCloned.KeyFieldNames := 'CountryID';
         whdbxSourceXMLCloned.MaxOpenDataSets := 3; // yes cloning
         if NOT whdbxSourceXMLCloned.IsUpdated then
-          ErrorText := whdbxSourceXMLCloned.Name + ' would not update';
+          ErrorText := ErrorText + whdbxSourceXMLCloned.Name +
+            ' would not update. ';
       end;
 
       if ErrorText = '' then
@@ -142,6 +145,7 @@ begin
           FieldByName('HOLDINGNO').Visible := True;
         end;
 
+        whdbxSourceDBF.KeyFieldNames := 'HOLDINGNO';
         if FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
         begin
           FreeAndNil(DataSetProviderDBF);
@@ -149,7 +153,6 @@ begin
           ClientDataSetDBF.ProviderName := '';
           ClientDataSetDBF.FileName := getHtDemoDataRoot +
             'whClone\holdings.cds';
-          whdbxSourceDBF.KeyFieldNames := 'HOLDINGNO';
         end
         else
         with TableDBase do
