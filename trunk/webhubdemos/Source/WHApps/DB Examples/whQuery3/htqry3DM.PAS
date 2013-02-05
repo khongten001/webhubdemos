@@ -28,7 +28,7 @@ uses
   DB, DBTables, 
   wdbSource, wbdeSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, 
   UpdateOk, tpAction,
-  WebTypes,   WebLink, WebPage, WebPHub, webScan, wdbSSrc;
+  WebTypes, WebLink, WebPage, WebPHub, webScan, wdbSSrc;
 
 type
   TDataModuleQ3 = class(TDataModule)
@@ -53,7 +53,7 @@ implementation
 
 uses 
   ucPos, ucCodeSiteInterface,
-  whdemo_ViewSource, wdbGrid, webApp;
+  whdemo_ViewSource, webApp;
 
 {$R *.DFM}
 
