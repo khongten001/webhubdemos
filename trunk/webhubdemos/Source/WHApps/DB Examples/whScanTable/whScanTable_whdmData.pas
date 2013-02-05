@@ -152,6 +152,15 @@ begin
 
       try
         sdsScanDemo.Open;
+
+(* temporarily removed from config file
+      <IndexOrders>
+        <Item id="File-Type" value="FileExt"/>
+        <Item id="File-Name" value="FileName"/>
+        <Item id="File-Number" value="*"/>
+      </IndexOrders>
+*)
+
         RefreshWebActions(Self);
         AddAppUpdateHandler(WebAppUpdate);
         FlagInitDone := True;

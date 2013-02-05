@@ -8,7 +8,7 @@ interface
 uses
   SysUtils, Classes, DB, DBClient,
   updateOK, tpAction, 
-  webLink, webLGrid, wdbScan, wdbGrid, wbdeGrid{bde}, wdbGrid, webTypes, wdbSSrc,
+  webLink, webLGrid, wdbScan, wdbGrid, wbdeGrid{bde}, webTypes, wdbSSrc,
   wdbSource, wbdeSource;
 
 const
