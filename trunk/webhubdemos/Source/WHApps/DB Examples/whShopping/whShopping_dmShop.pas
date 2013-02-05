@@ -27,7 +27,7 @@ interface
 uses
   SysUtils, Classes, ADODB, Data.DB,
   updateOK, tpAction,
-  webLink, webTypes, wdbLink, wdbScan, wbdeGrid, wdbSSrc, wbdeSource;
+  webLink, webTypes, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, wdbSSrc, wbdeSource;
 
 type
   TDMShop1 = class(TDataModule)

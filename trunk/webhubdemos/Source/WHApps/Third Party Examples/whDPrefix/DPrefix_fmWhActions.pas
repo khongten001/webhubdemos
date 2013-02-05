@@ -24,7 +24,7 @@ uses
   {$I xe_actions.inc}
   {$I xe_actnlist.inc}
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
-  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wbdeGrid,
+  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde},
   wdbSSrc, wbdeSource;
 
 type

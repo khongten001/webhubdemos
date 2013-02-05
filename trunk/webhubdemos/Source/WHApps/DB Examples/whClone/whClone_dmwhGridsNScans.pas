@@ -7,7 +7,7 @@ interface
 
 uses
   SysUtils, Classes,
-  webLink, wbdeGrid, updateOK, tpAction, webTypes, wdbScan, wdbSource, wdbSSrc;
+  webLink, wdbGrid, wbdeGrid{bde}, updateOK, tpAction, webTypes, wdbScan, wdbSource, wdbSSrc;
 
 type
   TDMGridsNScans = class(TDataModule)

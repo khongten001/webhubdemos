@@ -31,7 +31,7 @@ uses
   DBTables, DB, 
   UpdateOk, tpAction, 
   WebTypes, wbdeSource, wdbForm,
-  WebLink, WdbLink, WdbScan, wbdeGrid, WebSend, webScan, wdbLstBx, wdbSSrc,
+  WebLink, WdbLink, WdbScan, wdbGrid, wbdeGrid{bde}, WebSend, webScan, wdbLstBx, wdbSSrc,
   wdbSource;
 
 type
@@ -47,7 +47,7 @@ type
     WebAction1: TwhWebAction;
     DataSourceDept: TDataSource;
     QueryDept: TQuery;
-    procedure grid1HotField(Sender: TwhbdeGrid; aField: TField;
+    procedure grid1HotField(Sender: TwhdbGrid; aField: TField;
       var CellValue: string);
     procedure WebAction1Execute(Sender: TObject);
     procedure Query1BeforeOpen(DataSet: TDataSet);
@@ -187,7 +187,7 @@ begin
   FreeAndNil(selectDepartment);
 end;
 
-procedure TDataModuleHTQ4.grid1HotField(Sender: TwhbdeGrid;
+procedure TDataModuleHTQ4.grid1HotField(Sender: TwhdbGrid;
   aField: TField; var CellValue: string);
 begin
   if comparetext(aField.fieldname,'empno')=0 then

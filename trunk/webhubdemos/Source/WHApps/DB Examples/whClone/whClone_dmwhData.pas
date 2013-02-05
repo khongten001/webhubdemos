@@ -27,7 +27,7 @@ interface
 uses
   SysUtils, Classes,
   webLink, Data.DB, wdbScan, wdbSSrc, wdbSource, wbdeSource, Bde.DBTables,
-  updateOK, tpAction, webTypes, wbdeGrid, Datasnap.DBClient, SimpleDS,
+  updateOK, tpAction, webTypes, wdbGrid, wbdeGrid{bde},, Datasnap.DBClient, SimpleDS,
   wdbxSource, Datasnap.Provider;
 
 type

@@ -31,7 +31,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DB, DBTables, wbdeSource, UpdateOk, WebTypes, WebLink, WdbLink, webScan,
-  WdbScan, wbdeGrid, tpAction, wdbSSrc, wdbSource;
+  WdbScan, wdbGrid, wbdeGrid{bde}, tpAction, wdbSSrc, wdbSource;
 
 type
   TDataModuleGrid2 = class(TDataModule)
@@ -40,7 +40,7 @@ type
     DataSource2: TDataSource;
     Query2: TQuery;
     procedure Query2BeforeOpen(DataSet: TDataSet);
-    procedure grid2HotField(Sender: TwhbdeGrid; AField: TField;
+    procedure grid2HotField(Sender: TwhdbGrid; AField: TField;
       var CellValue: string);
   private
     { Private declarations }
@@ -65,7 +65,7 @@ uses
 // -----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
 
-procedure TDataModuleGrid2.grid2HotField(Sender: TwhbdeGrid; AField: TField;
+procedure TDataModuleGrid2.grid2HotField(Sender: TwhdbGrid; AField: TField;
   var CellValue: string);
 begin
   {note the comma separating the target PageID (Detail) from the
