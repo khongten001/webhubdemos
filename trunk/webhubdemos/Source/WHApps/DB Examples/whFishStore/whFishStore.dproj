@@ -111,7 +111,7 @@
         <DCCReference Include="whFishStore_fmWhPanel.pas">
             <Form>fmHTFSPanel</Form>
         </DCCReference>
-        <DCCReference Include="whFireStore_dmwhBiolife.pas">
+        <DCCReference Include="whFishStore_dmwhBiolife.pas">
             <Form>DMFishStoreBiolife</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>

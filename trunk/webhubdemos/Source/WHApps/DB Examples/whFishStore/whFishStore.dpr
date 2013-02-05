@@ -57,7 +57,7 @@ uses
   dmFishAp in 'dmFishAp.pas' {dmWebHubFishApp: TDataModule},
   whFishStore_dmdbProjMgr in 'whFishStore_dmdbProjMgr.pas' {DMForWHFishStore: TDataModule},
   whFishStore_fmWhPanel in 'whFishStore_fmWhPanel.pas' {fmHTFSPanel},
-  whFireStore_dmwhBiolife in 'whFireStore_dmwhBiolife.pas' {DMFishStoreBiolife: TDataModule};
+  whFishStore_dmwhBiolife in 'whFishStore_dmwhBiolife.pas' {DMFishStoreBiolife: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

@@ -56,7 +56,7 @@ uses
   webApp, webBase, webSplat, dmFishAp, tfish, htWebApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
   whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel,
-  whFireStore_dmwhBiolife;
+  whFishStore_dmwhBiolife;
 
 { TDMForWHDemo }
 
