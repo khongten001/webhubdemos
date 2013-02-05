@@ -81,20 +81,18 @@ Port = (~Port~)<br />
 
 <tr><th>App.DynURL</th><td></td></tr>
 <tr><td>
-<ul>
-<li> RawActiveAuthority: (~DynURL.RawActiveAuthority~) </li>
-<li> RawHost: (~DynURL.RawHost~) </li> 
-<li> RawToActiveAuthority: (~DynURL.RawToActiveAuthority~) </li> 
-<li> RawToActiveAuthorityM: (~DynURL.RawToActiveAuthorityM~) </li> 
-<li> ToAuthorityM: (~DynURL.ToAuthorityM~) </li> 
-<li> ToAppID: (~DynURL.ToAppID~) </li> 
-<li> ToPageID: (~DynURL.ToPageID~) </li> 
-<li> ToSessionID: (~DynURL.ToSessionID~) </li> 
-<li> ToSessionIDW: (~DynURL.ToSessionIDW~) </li> 
-<li> ToHomePageID: (~DynURL.ToHomePageID~) </li> 
-<li> Rand: (~DynURL.Rand~) </li> 
-<li> W: (~DynURL.W~) </li> 
-</ul>
+RawActiveAuthority: (~DynURL.RawActiveAuthority~) <br/>
+RawHost: (~DynURL.RawHost~) <br/>
+RawToActiveAuthority: (~DynURL.RawToActiveAuthority~) <br/>
+RawToActiveAuthorityM: (~DynURL.RawToActiveAuthorityM~) <br/>
+ToAuthorityM: (~DynURL.ToAuthorityM~) <br/>
+ToAppID: (~DynURL.ToAppID~) <br/> 
+ToPageID: (~DynURL.ToPageID~) <br/>
+ToSessionID: (~DynURL.ToSessionID~) <br/>
+ToSessionIDW: (~DynURL.ToSessionIDW~) <br/>
+ToHomePageID: (~DynURL.ToHomePageID~) <br/>
+Rand: (~DynURL.Rand~) <br/>
+W: (~DynURL.W~)
 </td><td></td>
 </tr>
 
