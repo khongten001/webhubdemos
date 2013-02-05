@@ -24,6 +24,8 @@
 
 <p>(~mcWhDemoDot~) (~JUMP|DO,scanxml|Try the scanxml component~) (TSimpleDataSet with .xml file)</p>
 
+<p>(~mcWhDemoDot~) (~JUMP|DO,scanxmlcloned|Try the ScanXmlCloned component~) (MaxOpenDataSets > 1)</p>
+
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>

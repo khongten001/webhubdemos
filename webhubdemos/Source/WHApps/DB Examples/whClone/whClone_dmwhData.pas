@@ -54,6 +54,7 @@ type
     whdbxSourceXML: TwhdbxSource;
     SimpleDataSetXML: TSimpleDataSet;
     DataSourceXML: TDataSource;
+    whdbxSourceXMLCloned: TwhdbxSource;
     procedure DataModuleCreate(Sender: TObject);
     procedure WebDataSource1Execute(Sender: TObject);
     procedure WebDataSource1FindKeys(Sender: TwhdbSourceBase; var Value: string;
@@ -78,7 +79,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   webApp, htWebApp, ucCodeSiteInterface, whdemo_ViewSource;
 
-{ TDM001 }
+{ TDMData2Clone }
 
 procedure TDMData2Clone.DataModuleCreate(Sender: TObject);
 begin
@@ -98,10 +99,18 @@ begin
     begin
 
       whdbxSourceXML.KeyFieldNames := 'CountryID';
-      whdbxSourceXML.MaxOpenDataSets := 3;
+      whdbxSourceXML.MaxOpenDataSets := 1; // no cloning
       SimpleDataSetXML.Open;
       if NOT whdbxSourceXML.IsUpdated then
         ErrorText := whdbxSourceXML.Name + ' would not update';
+
+      if ErrorText = '' then
+      begin
+        whdbxSourceXMLCloned.KeyFieldNames := 'CountryID';
+        whdbxSourceXMLCloned.MaxOpenDataSets := 3; // yes cloning
+        if NOT whdbxSourceXMLCloned.IsUpdated then
+          ErrorText := whdbxSourceXMLCloned.Name + ' would not update';
+      end;
 
       if ErrorText = '' then
       begin

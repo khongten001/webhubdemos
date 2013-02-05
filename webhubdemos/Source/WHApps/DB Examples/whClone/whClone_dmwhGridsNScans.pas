@@ -16,6 +16,7 @@ type
     WebDataGrid1: TwhbdeGrid;
     ScanXML: TwhdbScan;
     gridxml: TwhbdeGrid;
+    ScanXMLCloned: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
     procedure ScanOnExecutePageHeader(Sender: TObject);
     procedure ScanInit(Sender: TObject);
@@ -90,6 +91,9 @@ begin
       ScanXml.DirectCallOk := True;
       ScanXML.WebDataSource := DMData2Clone.whdbxSourceXML;
 
+      ScanXmlCloned.DirectCallOk := True;
+      ScanXmlCloned.WebDataSource := DMData2Clone.whdbxSourceXMLCloned;
+
       // Call RefreshWebActions here only if it is not called within a TtpProject event
       RefreshWebActions(Self);
 
@@ -136,39 +140,23 @@ end;
 procedure TDMGridsNScans.ScanInit(Sender: TObject);
 var
   i: Integer;
+  S1: string;
 begin
   TableHeader(Sender);
-  (*if Sender = scan1 then
+  writeln('<tr><th>DataSet Name</th>');
+  with TwhbdeSource(TwhdbScan(Sender).WebDataSource) do
+  for i := 0 to Pred(DataSet.FieldCount) do
   begin
-  writeln(
-     '<tr>'
-    +'<th>TableName</th>'
-    +'<th>RecNo</th>'
-    +'<th>ACCT_NBR</th>'
-    +'<th>SYMBOL</th>'
-    +'<th>SHARES</th>'
-    +'<th>PUR_PRICE</th>'
-    +'<th>PUR_DATE</th></tr>');
-  end
-  else
-  begin
-  begin*)
-    writeln(
-       '<tr>'
-      +'<th>DataSet Name</th>');
-    with TwhbdeSource(TwhdbScan(Sender).WebDataSource) do
-    for i := 0 to Pred(DataSet.FieldCount) do
-    begin
-      if (DataSet.Fields[i].DataType in
-        [ftDate, ftDateTime, ftSmallint, ftInteger, ftFloat, ftString]) then
-        WriteLn('<th>' + DataSet.Fields[i].FieldName + '</th>')
-      else
-        pWebApp.Response.SendComment(DataSet.Fields[i].FieldName + ' is ' +
-          GetEnumName(TypeInfo(TFieldType), Ord(DataSet.Fields[i].DataType)));
-    end;
-    WriteLn('</tr>');
-  //end;
-  //end;
+
+    S1 := GetEnumName(TypeInfo(TFieldType), Ord(DataSet.Fields[i].DataType));
+
+    if (DataSet.Fields[i].DataType in
+      [ftDate, ftDateTime, ftSmallint, ftInteger, ftFloat, ftString]) then
+      WriteLn('<th>' + DataSet.Fields[i].FieldName + '<br/>' + S1 + '</th>')
+    else
+      pWebApp.Response.SendComment(DataSet.Fields[i].FieldName + ' is ' + S1);
+  end;
+  WriteLn('</tr>');
 end;
 
 procedure TDMGridsNScans.ScanRowStart(Sender: TwhdbScanBase;
@@ -216,17 +204,24 @@ const cCSSSuffix = '-table';
 var
   s1: string;
 begin
-  pWebApp.SendStringImm('<h1>' + TwhWebAction(Sender).Name + '</h1>');
+  if Sender is TwhWebAction then
+  begin
+    pWebApp.SendStringImm('<h1>' + TwhWebAction(Sender).Name + '</h1>');
+    s1 := TwhWebAction(Sender).Family;
+  end;
+
   if Sender is TwhdbScan then
+  begin
     pWebApp.SendStringImm('<h2>DataSet.Owner is ' +
-      TwhdbScan(Sender).WebDataSource.Name + '</h2>');
-  s1 := TwhWebAction(Sender).Family;
-  pWebApp.SendString('<table id="' + Self.Name + cCSSSuffix + '" class="' +
+      TwhdbSource(TwhdbScan(Sender).WebDataSource).DataSource.DataSet.Owner.Name
+      + '</h2>');
+    pWebApp.SendStringImm('<p>MaxOpenDataSets is ' +
+      IntToStr(TwhdbScan(Sender).WebDataSource.MaxOpenDataSets) +
+      '. KeyFields = ' + TwhdbScan(Sender).WebDataSource.KeyFields + '.</p>');
+  end;
+
+  pWebApp.SendStringImm('<table id="' + Self.Name + cCSSSuffix + '" class="' +
     S1 + cCSSSuffix + '">');
-  pWebApp.Response.SendComment('KeyFields = ' +
-    TwhdbScan(Sender).WebDataSource.KeyFields);
-  pWebApp.Response.SendComment('KeyFieldNames = ' +
-    TwhdbScan(Sender).WebDataSource.KeyFieldNames);
 end;
 
 procedure TDMGridsNScans.WebAppUpdate(Sender: TObject);
