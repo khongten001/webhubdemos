@@ -124,22 +124,6 @@ object DMData2Clone: TDMData2Clone
     TableName = 'HOLDINGS.DBF'
     Left = 600
     Top = 384
-    object FloatField1: TFloatField
-      FieldName = 'ACCT_NBR'
-    end
-    object StringField1: TStringField
-      FieldName = 'SYMBOL'
-      Size = 7
-    end
-    object FloatField2: TFloatField
-      FieldName = 'SHARES'
-    end
-    object FloatField3: TFloatField
-      FieldName = 'PUR_PRICE'
-    end
-    object DateField1: TDateField
-      FieldName = 'PUR_DATE'
-    end
   end
   object DataSourceXmlCloned: TDataSource
     DataSet = SimpleDataSetXML
