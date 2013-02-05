@@ -55,7 +55,7 @@ implementation
 
 uses
   webApp, whConst, whJPEG, whdemo_ViewSource,
-  AdminDM, tfish, dmFishAp, uTranslations, whFireStore_dmwhBiolife;
+  AdminDM, tfish, dmFishAp, uTranslations, whFishStore_dmwhBiolife;
 
 
 //------------------------------------------------------------------------------

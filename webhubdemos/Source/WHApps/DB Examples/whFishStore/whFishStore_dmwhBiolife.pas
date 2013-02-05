@@ -1,4 +1,4 @@
-unit whFireStore_dmwhBiolife;
+unit whFishStore_dmwhBiolife;
 
 (* original filename: whsample_DMInit.pas *)
 (* no copyright claimed for this WebHub sample file *)
@@ -6,9 +6,10 @@ unit whFireStore_dmwhBiolife;
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, webLGrid, wdbScan, wbdeGrid, updateOK, tpAction, webTypes, wdbSSrc,
-  wdbSource, wbdeSource, Data.DB, Datasnap.DBClient;
+  SysUtils, Classes, DB, DBClient,
+  updateOK, tpAction, 
+  webLink, webLGrid, wdbScan, wbdeGrid, wdbGrid, webTypes, wdbSSrc,
+  wdbSource, wbdeSource;
 
 const
   FishKeyField='Species No';
@@ -33,7 +34,7 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    procedure gfHotField(Sender: TwhbdeGrid; aField: TField;
+    procedure gfHotField(Sender: TwhdbGrid; aField: TField;
       var CellValue: String);
     procedure WebAppUpdate(Sender: TObject);
   public
@@ -225,7 +226,7 @@ end;
   Our job here is to define variable 'CellValue' such that it will make sense
   when plugged into the overall table syntax.
 }
-procedure TDMFishStoreBiolife.gfHotField(Sender: TwhbdeGrid; aField: TField;
+procedure TDMFishStoreBiolife.gfHotField(Sender: TwhdbGrid; aField: TField;
   var CellValue: string);
 var
   desc: string;
