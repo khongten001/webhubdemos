@@ -15,7 +15,6 @@ type
     Scan2: TwhdbScan;
     WebDataGrid1: TwhbdeGrid;
     ScanXML: TwhdbScan;
-    gridxml: TwhbdeGrid;
     ScanXMLCloned: TwhdbScan;
     ScanDBxDBf: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
@@ -85,6 +84,7 @@ begin
       Scan2.ControlsWhere := dsBelow;
 
       WebDataGrid1.WebDataSource := DMData2Clone.WebDataSource1;
+      WebDataGrid1.ShowRecno := False;
 
       ScanXML.WebDataSource := DMData2Clone.whdbxSourceXML;
 

@@ -1,8 +1,8 @@
 object DMGridsNScans: TDMGridsNScans
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Height = 690
-  Width = 691
+  Height = 306
+  Width = 577
   object Scan1: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
     AfterExecute = ScanAfterExecute
@@ -15,8 +15,8 @@ object DMGridsNScans: TDMGridsNScans
     OnRowStart = ScanRowStart
     OnInit = ScanInit
     OnFinish = ScanFinish
-    Left = 128
-    Top = 32
+    Left = 64
+    Top = 24
   end
   object Scan2: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundDuringUpdate]
@@ -31,8 +31,8 @@ object DMGridsNScans: TDMGridsNScans
     OnRowStart = ScanRowStart
     OnInit = ScanInit
     OnFinish = ScanFinish
-    Left = 120
-    Top = 128
+    Left = 176
+    Top = 24
   end
   object WebDataGrid1: TwhbdeGrid
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel, tpCXSetIfFoundExactlyDuringUpdate]
@@ -47,8 +47,8 @@ object DMGridsNScans: TDMGridsNScans
     TD = '<td>'
     Caption = ''
     Preformat = False
-    Left = 488
-    Top = 32
+    Left = 440
+    Top = 24
   end
   object ScanXML: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
@@ -64,20 +64,7 @@ object DMGridsNScans: TDMGridsNScans
     OnFinish = ScanFinish
     OnEmptyDataSet = ScanXMLEmptyDataSet
     Left = 64
-    Top = 392
-  end
-  object gridxml: TwhbdeGrid
-    ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate, tpCXSetIfFoundExactlyDuringUpdate]
-    DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
-    ScanMode = dsByKey
-    ButtonAutoHide = False
-    OverlapScroll = False
-    TR = '<tr>'
-    TD = '<td>'
-    Caption = ''
-    Preformat = False
-    Left = 328
-    Top = 176
+    Top = 112
   end
   object ScanXMLCloned: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
@@ -92,8 +79,8 @@ object DMGridsNScans: TDMGridsNScans
     OnInit = ScanInit
     OnFinish = ScanFinish
     OnEmptyDataSet = ScanXMLEmptyDataSet
-    Left = 64
-    Top = 456
+    Left = 176
+    Top = 112
   end
   object ScanDBxDBf: TwhdbScan
     ComponentOptions = [tpUpdateOnLoad, tpCXSetIfFoundDuringUpdate]
@@ -110,6 +97,6 @@ object DMGridsNScans: TDMGridsNScans
     OnFinish = ScanFinish
     OnEmptyDataSet = ScanXMLEmptyDataSet
     Left = 64
-    Top = 528
+    Top = 200
   end
 end
