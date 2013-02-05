@@ -26,7 +26,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   DB, DBTables, 
-  wdbSource, wbdeSource, wdbLink, wdbScan, wbdeGrid, 
+  wdbSource, wbdeSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, 
   UpdateOk, tpAction,
   WebTypes,   WebLink, WebPage, WebPHub, webScan, wdbSSrc;
 

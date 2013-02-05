@@ -7,7 +7,7 @@ uses
   ComCtrls,
   UTPANFRM, ExtCtrls, StdCtrls, TpMemo, DBCtrls, Grids, DBGrids,
   WebScan, WebGrid, WebRubi,
-  WdbLink, WdbScan, wbdeGrid, DBTables, TpTable, DB, wbdeSource,
+  WdbLink, WdbScan, wdbGrid, wbdeGrid{bde}, DBTables, TpTable, DB, wbdeSource,
   wdbForm, UpdateOk, tpAction, WebTypes,   WebLink,
   tpStatus, Toolbar, {}tpCompPanel, rbBase, rbSearch, rbLogic, rbRank,
   rbDS, rbTable, rbBridge_b_bde, wdbSSrc;
@@ -66,7 +66,7 @@ type
     procedure dgMsgsExecute(Sender: TObject);
     procedure wdsContentsAdjDisplaySet(Sender: TwhdbSourceBase;
       const Value: ShortString);
-    procedure dgWordsBeginTable(Sender: TwhbdeGrid; var Value: String);
+    procedure dgWordsBeginTable(Sender: TwhdbGrid; var Value: String);
     procedure dgWordsAfterExecute(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -386,7 +386,7 @@ begin
     end;
 end;
 
-procedure TfmHTRUPanel.dgWordsBeginTable(Sender: TwhbdeGrid;
+procedure TfmHTRUPanel.dgWordsBeginTable(Sender: TwhdbGrid;
   var Value: String);
 var
   a1:string;

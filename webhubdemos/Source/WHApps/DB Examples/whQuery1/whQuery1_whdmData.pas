@@ -26,7 +26,7 @@ interface
 
 uses
   SysUtils, Classes,
-  webLink, wdbScan, wbdeGrid, updateOK, tpAction, webTypes, wdbSSrc, wdbSource,
+  webLink, wdbScan, wdbGrid, wbdeGrid{bde}, updateOK, tpAction, webTypes, wdbSSrc, wdbSource,
   wbdeSource, Bde.DBTables, Data.DB;
 
 type

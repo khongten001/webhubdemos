@@ -7,7 +7,7 @@ interface
 uses
   SysUtils, Classes, Forms, DB, Datasnap.DBClient,
   updateOk, tpAction,
-  webTypes, webLink, wdbScan, webScan, wbdeGrid, webPage, webPHub,
+  webTypes, webLink, wdbScan, webScan, wdbGrid, wbdeGrid{bde}, webPage, webPHub,
   wdbSSrc, wdbSource, wbdeSource, wdbLink;
 
 type
@@ -18,7 +18,7 @@ type
     TableFishCost: TClientDataSet;
     waPostPrice: TwhWebAction;
     procedure TableFishCostBeforePost(DataSet: TDataSet);
-    procedure gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
+    procedure gfAdminHotField(Sender: TwhdbGrid; aField: TField;
       var s: string);
     procedure waPostPriceExecute(Sender: TObject);
   private
@@ -168,7 +168,7 @@ end;
 
 {------------------------------------------------------------------------------}
 
-procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhbdeGrid; aField: TField;
+procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhdbGrid; aField: TField;
   var s: string);
 const cFn = 'gfAdminHotField';
 begin
