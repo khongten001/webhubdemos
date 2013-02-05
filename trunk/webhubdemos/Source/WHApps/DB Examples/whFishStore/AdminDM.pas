@@ -39,7 +39,7 @@ uses
   ucString, ucCodeSiteInterface,
   webApp, whMacroAffixes,
   whdemo_ViewSource,
-  whFishStore_fmWhPanel, tFish, whFireStore_dmwhBiolife, whdemo_Extensions;
+  whFishStore_fmWhPanel, tFish, whFishStore_dmwhBiolife, whdemo_Extensions;
 
 {$R *.DFM}
 
