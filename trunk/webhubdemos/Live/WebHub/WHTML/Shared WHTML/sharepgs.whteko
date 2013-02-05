@@ -629,6 +629,22 @@ you win, because it requires so much time, energy and financial resources.</p>
 <tr><td>HTTPS:</td><td>(~Request.HTTPS~)</td></tr>
 </table>
 
+<h3>App.DynURL</h3>
+<ul>
+<li> RawActiveAuthority: (~DynURL.RawActiveAuthority~) </li>
+<li> RawHost: (~DynURL.RawHost~) </li> 
+<li> RawToActiveAuthority: (~DynURL.RawToActiveAuthority~) </li> 
+<li> RawToActiveAuthorityM: (~DynURL.RawToActiveAuthorityM~) </li> 
+<li> ToAuthorityM: (~DynURL.ToAuthorityM~) </li> 
+<li> ToAppID: (~DynURL.ToAppID~) </li> 
+<li> ToPageID: (~DynURL.ToPageID~) </li> 
+<li> ToSessionID: (~DynURL.ToSessionID~) </li> 
+<li> ToSessionIDW: (~DynURL.ToSessionIDW~) </li> 
+<li> ToHomePageID: (~DynURL.ToHomePageID~) </li> 
+<li> Rand: (~DynURL.Rand~) </li> 
+<li> W: (~DynURL.W~) </li> 
+</ul>
+
 <h4>CGIValues</h4>
 (~Request.ServerVariables~)
 
