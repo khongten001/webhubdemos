@@ -83,13 +83,12 @@ if "%demoscan%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appi
 
 if "%demoshop1%"=="yes" start whShopping.exe  
 if "%demoshop1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
-::if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
-if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=99999 "/reason=access violation on startup of whShopping.exe; to be resolved; contact techsupport if important to you."
+if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
 
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=store000 /minutes=9999999 /reason="Shopping Cart Jump Start Project needs to be ported to Firebird SQL"
 
 ::start whRubicon.exe 
 ::d:\Apps\HREFTools\miscutil\wait.exe 15
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htru /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
+d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htru /minutes=9999999 /reason="disabled; see either of 2 Rubicon videos at <a href="http://www.href.com/rbnotes">www.href.com/rbnotes</a> "
 
 :end
