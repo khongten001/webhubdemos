@@ -1,2 +1,0 @@
-inherited DMForWHRubicon: TDMForWHRubicon
-end
