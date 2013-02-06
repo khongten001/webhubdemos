@@ -4,15 +4,17 @@ object DMShop1: TDMShop1
   OnDestroy = DataModuleDestroy
   Height = 335
   Width = 654
-  object WebDataGrid1: TwhbdeGrid
+  object WebDataGrid1: TwhdbGrid
     ComponentOptions = [tpStatusPanel]
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
-    Border = 'BORDER'
+    WebDataSource = WebDataSource1
+    OnEmptyDataSet = WebDataGrid1EmptyDataSet
     TR = '<TR>'
     TD = '<TD>'
+    Caption = ''
     ShowRecno = False
     Preformat = False
     Left = 32
@@ -90,9 +92,10 @@ object DMShop1: TDMShop1
       Calculated = True
     end
   end
-  object WebDataSource1: TwhbdeSource
+  object WebDataSource1: TwhdbSource
     ComponentOptions = [tpUpdateOnLoad]
     GotoMode = wgGotoKey
+    KeyFieldNames = 'PartNo'
     MaxOpenDataSets = 1
     OpenDataSets = 0
     OpenDataSetRetain = 600

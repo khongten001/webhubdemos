@@ -27,11 +27,11 @@ interface
 uses
   SysUtils, Classes, ADODB, Data.DB,
   updateOK, tpAction,
-  webLink, webTypes, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, wdbSSrc, wbdeSource;
+  webLink, webTypes, wdbLink, wdbScan, wdbGrid, wdbSSrc, wdbSource;
 
 type
   TDMShop1 = class(TDataModule)
-    WebDataGrid1: TwhbdeGrid;
+    WebDataGrid1: TwhdbGrid;
     DataSource1: TDataSource;
     WebActionOrderList: TwhWebActionEx;
     WebActionPostLit: TwhWebActionEx;
@@ -46,7 +46,7 @@ type
     ADOTable1Cost: TFloatField;
     ADOTable1ListPrice: TFloatField;
     ADOTable1QTY: TSmallintField;
-    WebDataSource1: TwhbdeSource;
+    WebDataSource1: TwhdbSource;
     procedure Table1QtyGetText(Sender: TField; var Text: string;
       DisplayText: Boolean);
     procedure WebActionPostLitExecute(Sender: TObject);
@@ -54,6 +54,7 @@ type
     procedure waScrollGridExecute(Sender: TObject);
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure WebDataGrid1EmptyDataSet(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -95,25 +96,6 @@ begin
     ADOTable1PartNo.DisplayFormat := 'PN-00000';
     ADOTable1Qty.OnGetText := Table1QtyGetText;
 
-    {Table1VendorNo := TFloatField.Create(Self);
-    Table1VendorNo.Name := 'Table1VendorNo';
-    Table1VendorNo.DataSet := Table1;
-
-    Table1Description := TStringField.Create(Self);
-    Table1Description.Name := 'Table1Description';
-    Table1Description.FieldName := 'Description';
-
-    Table1OnHand := TFloatField.Create(Self);
-    Table1OnHand.Name := 'Table1OnHand';
-    Table1OnHand.FieldName := 'OnHand';
-
-    Table1OnOrder := TFloatField.Create(Self);
-    Table1OnOrder.Name := 'Table1OnOrder';
-    Table1OnOrder.FieldName := 'OnOrder';
-
-    Table1Cost: TCurrencyField;
-    Table1ListPrice: TCurrencyField;}
-
     DataSource1.DataSet.Open;
     CSSend('DataSource1.DataSet.FieldCount', S(DataSource1.DataSet.FieldCount));
     {$IFDEF CodeSite}
@@ -123,14 +105,6 @@ begin
       CSSend(S(I), fld.FieldName);
     end;
     {$ENDIF}
-
-    (*Table1Qty := TSmallintField.Create(TableShop1);
-    Table1Qty.Name := 'TableShop1QTY';
-    Table1Qty.FieldKind := fkCalculated;
-    Table1Qty.FieldName := 'QTY';
-    Table1Qty.Calculated := True;
-    //Table1Qty.OnGetText := Table1QtyGetText;
-    CSSend('TableShop1 FieldCount', S(TableShop1.FieldCount));*)
 
     fld := DataSource1.DataSet.FieldByName('QTY');
     Result := Assigned(fld);
@@ -150,20 +124,13 @@ const cFn = 'DataModuleCreate';
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   FlagInitDone := False;
-  {ADOConnectionShop1 := TADOConnection(Self);
-  ADOConnectionShop1.Name := 'ADOConnectionShop1';}
   ADOConnectionShop1.LoginPrompt := False;
-
-  //TableShop1 := TADOTable.Create(Self);
-  //TableShop1.Name := 'TableShop1';
-
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMShop1.DataModuleDestroy(Sender: TObject);
 begin
-  //FreeAndNil(TableShop1);
-  //FreeAndNil(ADOConnectionShop1);
+  //
 end;
 
 function TDMShop1.Init(out ErrorText: string): Boolean;
@@ -204,16 +171,13 @@ begin
     end;
     if FlagFwd then
     begin
-      {TableShop1.Connection := ADOConnectionShop1;
-      TableShop1.TableName := 'Parts';
-      DataSource1.DataSet := TableShop1;}
       DataSource1.DataSet := ADOTable1;
-
       FlagFwd := CreateTableDefinition(ErrorText);
     end;
 
     if FlagFwd then
     begin
+      WebDataGrid1.WebDataSource := WebDataSource1;
       WebDataGrid1.DataScanOptions := [dsbFirst, dsbPrior, dsbNext, dsbLast,
         dsbCheckBoxes, dsbInputFields];
       WebDataGrid1.ControlsWhere := dsNone;
@@ -224,13 +188,16 @@ begin
       RefreshWebActions(Self);
     end;
 
+    if NOT WebDataGrid1.IsUpdated then
+      ErrorText := ErrorText + WebDataGrid1.Name + ' would not update';
+
   { Other required settings:
-    TwhbdeGrid
+    TwhdbGrid
     datascanoptions        all set to true, except refresh and checkboxes
     buttonsWhere           above
     controlsWhere          none
 
-    TwhbdeSource
+    TwhdbSource
     maxOpenDataSets        1 or more
     displaySets            defined in application-level config file
 
@@ -239,7 +206,7 @@ begin
     add calculated field called Qty, type short integer
   }
 
-    if FlagFwd then
+    if FlagFwd and (ErrorText = '') then
     begin
       AddAppUpdateHandler(WebAppUpdate);
       FlagInitDone := WebDataGrid1.IsUpdated;;
@@ -253,6 +220,13 @@ procedure TDMShop1.WebAppUpdate(Sender: TObject);
 begin
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
+end;
+
+procedure TDMShop1.WebDataGrid1EmptyDataSet(Sender: TObject);
+const cFn = 'WebDataGrid1EmptyDataSet';
+begin
+  CSSendWarning(cFn);
+  pWebApp.SendStringImm('<p>Empty</p>');
 end;
 
 { To see what webhub is doing with your data, add (~stringvars~) to the
