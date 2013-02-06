@@ -65,7 +65,7 @@
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="true"/>
         <URLDelimiter value="/"/>
-        <URLForceCase value="none"/>
+        <URLForceCase value="lower"/>
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
