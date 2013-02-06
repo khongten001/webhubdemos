@@ -41,4 +41,8 @@ if errorlevel 1 pause
 %svnpath%\svn.exe export %urlroot%/Data/biolife.mb  ./biolife.mb  --non-interactive --force 
 %svnpath%\svn.exe export %urlroot%/Data/biolife.px  ./biolife.px  --non-interactive --force 
 
+cd ..\whShopping
+%svnpath%\svn.exe export %urlroot%/Data/dbdemos.mdb  ./dbdemos.mdb  --non-interactive --force 
+if errorlevel 1 pause
+
 endlocal
