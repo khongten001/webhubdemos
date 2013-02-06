@@ -1,9 +1,9 @@
 {\rtf1\ansi\ansicpg1252\deff0\deflang1033{\fonttbl{\f0\fswiss\fprq2\fcharset0 Verdana;}{\f1\fswiss\fprq2 Verdana;}{\f2\fmodern\fprq1 Courier New;}{\f3\fmodern\fprq1\fcharset0 Courier New;}}
 {\colortbl ;\red0\green0\blue255;\red255\green0\blue0;\red0\green0\blue0;}
-{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\cf1\b\f0\fs28 How to Work with WebHub Demos\par
+{\*\generator Msftedit 5.41.21.2510;}\viewkind4\uc1\pard\cf1\b\f0\fs28 How to Work with WebHub Demos\par
 \cf2\f1\fs22\par
 Viewing WebHub Demos\par
-\cf3\b0 - Use \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com"}}{\fldrslt{\ul\cf1 http://demos.href.com}}}\cf3\f1\fs22  to view WebHub demos online.\par
+\cf3\b0 - Use \cf0{\field{\*\fldinst{HYPERLINK "http://lite.demos.href.com"}}{\fldrslt{\ul\cf1 http://\f0 lite.\f1 demos.href.com\f1 }}}\cf3\f1\fs22  to view WebHub demos online.\par
 \par
 - \f0 Make a n\f1 ote \f0 of \f1 "AppID" for any demo you wish to compile and run locally. The AppID is shown top-right of the welcome page for almost all demos. \f0  It is also used in the filename of the demo's configuration file, e.g. for the \ldblquote adv\rdblquote  demo, the configuration file is WHAppConfig_adv.xml.  This is a convention followed by the demos and does not need to be followed for your own applications.\par
 \par
@@ -11,21 +11,20 @@ Viewing WebHub Demos\par
 \f1\par
 \par
 \cf2\b Downloading Source\f0  to the Demos\f1\par
-\cf3\b0 - Download \f0 the source to all demos from \cf0\f1{\field{\*\fldinst{HYPERLINK "http://demos.href.com/download"}}{\fldrslt{\ul\cf1 http://demos.href.com/download}}}\cf3\f0\fs22 . Look for the file named whDemo_Complete-v2xxx.zip where "xxx" is the latest version of WebHub.\par
-\par
-- Or use Subversion.  Instructions are available by going into any demo at \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com"}}{\fldrslt{\ul\cf1 http://demos.href.com}}}\cf3\f0\fs22 , and in the page footer, clicking the [Download] link.\par
+\cf3\b0\f0 - Use Subversion.  Instructions are available by going into any demo at \cf0{\field{\*\fldinst{HYPERLINK "http://lite.demos.href.com"}}{\fldrslt{\ul\cf1 http://lite.demos.href.com}}}\cf3\f0\fs22 , and in the page footer, clicking the [Download] link.\par
 \par
 - Or view the source of one file at a time, by clicking the [Source] link in the page footer.  To see object pascal source, first click into the DPR file and then click into any PAS or DFM file.  You will find that the *.whteko and *.xml files are available for viewing, too.\par
 \par
 \par
-\cf2\b Unzipping\cf3\f1\par
-\b0 - \f0 Place files in \f1 any directory\f0 , ideally \f1 d:\\projects. All files will be placed into a subdirectory named "\f0 webhubdemos\f1 ".\f0   \f1\par
+\cf2\b Database Files\cf3\f1\par
+\b0 - \f0 In the Live\\Database\\embSample folder you will find a BAT file. Run that to download sample data files from the Embarcadero subversion repository. \par
+\f1\par
 \par
 \par
-\cf2\b\f0 HTTP\f1  Server Configuration\f0  (IIS, Sambar, Apache, etc.)\f1\par
+\cf2\b\f0 HTTP\f1  Server Configuration\f0  (IIS, Apache, etc.)\f1\par
 \cf3\b0 - Make sure the path \b /webhub/\b0  is a \b virtual root \b0 mapped to your actual ...\\WebHub Demos\\Live\\WebRoot\\\f0 webhub\\\f1  \f0 folder.\par
 \par
-- To test this, first view \cf0{\field{\*\fldinst{HYPERLINK "http://demos.href.com/webhub/demos/img/logos/adv.jpg"}}{\fldrslt{\ul\cf1 http://demos.href.com\b /webhub/\b0 demos/img/logos/adv.jpg}}}\cf3\f0\fs22  which shows you what should appear.\par
+- To test this, first view \cf0{\field{\*\fldinst{HYPERLINK "http://lite.demos.href.com/webhub/demos/img/logos/adv.jpg"}}{\fldrslt{\ul\cf1 http://lite.demos.href.com\b /webhub/\b0 demos/img/logos/adv.jpg}}}\cf3\f0\fs22  which shows you what should appear.\par
 Then try a corresponding URL on your own computer, e.g. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/webhub/demos/img/logos/adv.jpg"}}{\fldrslt{\ul\cf1 http://localhost\b /webhub/\b0 demos/img/logos/adv.jpg}}}\cf3\f0\fs22   -- if your vitual root definition is correct, you will see the same graphic.\f1\par
 \cf2\b\par
 \f0\par
@@ -34,25 +33,24 @@ WebHub Runtime System Installation\par
 \par
 - If you have not already done so, please make sure that the following URLs work for you before proceeding to try to make any of the demos run.\par
 \par
-\b\tab For testing on Microsoft IIS or Sambar Web server\b0\par
+\b\tab For testing on Microsoft IIS \b0\par
 \par
 \tab 1. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?echo"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?echo}}}\cf3\f0\fs22\par
-\tab\tab ( Look for any errors highlighted in red on the echo response page )\par
+\tab ( Look for any errors highlighted in red on the echo response page )\par
 \par
-\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?hubvers:pgversion"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?hubvers:pgversion}}}\cf3\f0\fs22\par
+\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/scripts/runisa.dll?h:vers"}}{\fldrslt{\ul\cf1 http://localhost/scripts/runisa.dll?h:vers}}}\cf3\f0\fs22\par
 \par
 \b\tab Alternative tests for Apache:\par
 \cf2\f1\par
 \cf3\b0\f0\tab 1. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/cgi-bin/runbin.exe?echo"}}{\fldrslt{\ul\cf1 http://localhost/cgi-bin/runbin.exe?echo}}}\cf3\f0\fs22\par
-\tab\tab ( Look for any errors highlighted in red on the echo response page )\par
+\tab ( Look for any errors highlighted in red on the echo response page )\par
 \par
-\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/cgi-bin/runbin.exe?hubvers:pgversion"}}{\fldrslt{\ul\cf1 http://localhost/cgi-bin/runbin.exe?hubvers:pgversion}}}\cf3\f0\fs22\par
+\tab 2. \cf0{\field{\*\fldinst{HYPERLINK "http://localhost/cgi-bin/runbin.exe?h:vers"}}{\fldrslt{\ul\cf1 http://localhost/cgi-bin/runbin.exe?h:vers}}}\cf3\f0\fs22\par
 \cf2\b\f1\par
 \par
 \par
 Compilation\cf3\par
-\b0 - \f0 The easiest thing is to substitute "drive"\f1  "H" \f0 so that it points \f1 to your "lib" directory \par
-\f0 (use the SUBST command.  e.g.  subst h: d:\\Apps\\HREFTools\\WebHub\\Lib  and be careful to avoid trailing path delimiter when using the SUBST command)\f1\par
+\b0 - \f0 The easiest way is to substitute "drive"\f1  "H" \f0 so that it points \f1 to your "lib" directory \f0 (use the SUBST command.  e.g.  subst h: d:\\Apps\\HREFTools\\WebHub\\Lib  and be careful to avoid trailing path delimiter when using the SUBST command)\f1\par
 \par
 \cf1 or \par
 \cf3\par
@@ -85,7 +83,7 @@ For example, if you wanted to run the demo named "\f0 adv\f1 ", you would need \
       <WebHubApps>\par
     <\f3 /\f2 WebHubAppGroup>\par
 \par
-\f0\fs22 After unzipping the demo source files, you will find a file D:\\Projects\\WebHub Demos\\Source\\Docs\\\b SampleForCentralInfo.txt \b0 which contains the \b definitions for ALL demos\b0 .  It is designed to be pasted into your copy of WHCentralInfo.xml, inside the WebHubAppGroups tag.  Be sure to adjust the ConfigFolder paths if you installed to a location other than d:\\Projects\\.\par
+\f0\fs22 After installing the demo source files, you will find the actual configuration files in the Live\\Config folder.  Look at WHCentralInfo.xml.  That defines the \b AppIDs for ALL demos\b0 .  You may copy and paste the list of demo AppIDs into your copy of WHCentralInfo.xml, inside the WebHubAppGroups tag.  You will need to adjust the ConfigFolder paths if you installed to a location other than d:\\Projects\\.\par
 \f1\par
 \f0 - Next, define the root folder for all demos.  Find your WebHubInstallationConfig.xml file (it will be under ZaphodsMap\\HREFTools\\Install).  Open it in Notepad or any editor.  Carefully add a \i <Product_tag>\i0  within the \i <InstallFolders_tag>\i0 , where you fill in the correct path to the demos for your system, as follows:\par
 \par
@@ -112,11 +110,11 @@ where you replace "appid" with the correct WebHub Application ID.\f0   The page 
 \par
 \f0 Important: on the demos.href.com server, the StreamCatcher ISAPI filter is used to enable the demos to run with "short URLs", basically skipping over the /scripts/runisa.dll? part of the syntax.  StreamCatcher is a separate product; see \cf0{\field{\*\fldinst{HYPERLINK "http://www.streamcatcher.com"}}{\fldrslt{\ul\cf1 http://www.streamcatcher.com}}}\cf3\f0\fs22 .\par
 \f1\par
-\f0 - Another test that you can do is to run Start > Programs > HREF Tools > WebHubView and look at the Connected panel.  The EXE that you just compiled should be listed as a process, and you should see its AppID.  Generally, you should not leave WebHubView running; it is designed for occasional troubleshooting, and for covering/uncovering applications (see its Tools menu).\f1\par
+\f0 - Another test that you can do is to run Start > Programs > HREF Tools > WebHubAdmin and look at the Connected panel.  The EXE that you just compiled should be listed as a process, and you should see its AppID. \f1\par
 \par
 \par
 \cf2\b\f0 Web Page Design with Dreamweaver\par
-\cf3\b0\i This requires the WebHub Designer for Dreamweaver (\cf0{\field{\*\fldinst{HYPERLINK "http://www.href.com/whdwmgr"}}{\fldrslt{\ul\cf1 http://www.href.com/whdwmgr}}}\cf3\f0\fs22 ).  If you do not have Dreamweaver, do not worry; you can use the built-in Html > Files panel to edit your .whteko files, or any other ascii file editor.  However, the features below do not apply to other editors.\f1\par
+\cf3\b0\i This requires the WebHub Designer for Dreamweaver (\cf0{\field{\*\fldinst{HYPERLINK "http://www.href.com/whdwmgr"}}{\fldrslt{\ul\cf1 http://www.href.com/whdwmgr}}}\cf3\f0\fs22 ).  If you do not have Dreamweaver, do not worry; you can use the built-in Html > Files panel to edit your .whteko files, or any other UTF-8 file editor.  However, the features below do not apply to other editors.\f1\par
 \b\i0\par
 \b0\f0 - Reference: whdemo_DWSecurity.pas, a Delphi source file which defines the security rules for the demos. These rules are more complicated than most sites require, because we try give full source to all demos without giving away write-rights on the public demos server.\par
 \b\f1\par
@@ -126,7 +124,7 @@ where you replace "appid" with the correct WebHub Application ID.\f0   The page 
 \f1\par
 - \f0 Add a \b DynSource \b0 definition like this, \b replacing demos.href.com with localhost\b0 :\par
 \par
-localdemoadv=http://demos.href.com:80/scripts/runisa.dll?adv|remotedesign|remoterefresh|1820\par
+localdemoadv=http://lite.demos.href.com:80/scripts/runisa.dll?adv|remotedesign|remoterefresh|1820\par
 \par
 - Open a .whteko file, e.g. D:\\Projects\\WebHub Demos\\Live\\WebHub\\WHTML\\Lite Examples\\whAdRotation\\whAdRotation.whteko.\par
 \par
@@ -145,7 +143,7 @@ and\par
 - Remember, you will need to add a DynSource for each AppID you want to work on.\par
 \f1\par
 \par
-\f0 [ updated 06-Jul-2010 00:30 GMT for WebHub v2.123 ]\f1\par
+\f0 [ updated 06-Feb-2013 05:30 GMT for WebHub v3.184 ]\f1\par
 \par
 ###\par
 }
