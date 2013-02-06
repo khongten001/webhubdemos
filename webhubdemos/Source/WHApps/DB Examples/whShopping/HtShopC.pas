@@ -24,9 +24,8 @@ unit htshopc;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  ExtCtrls, StdCtrls, Buttons, DBTables, DB, Grids, DBGrids, ComCtrls,
-  DBCtrls, ADODB,
+  Windows, SysUtils, Classes, Graphics, Controls, Forms, ExtCtrls, 
+  StdCtrls, Buttons, DB, Grids, DBGrids, ComCtrls, DBCtrls, ADODB,
   tpStatus, utPanFrm, updateOk, tpAction, tpMemo, toolbar, tpCompPanel,
   webMail, webSock, webTypes, webLink;
 
