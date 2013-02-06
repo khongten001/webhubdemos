@@ -16,8 +16,7 @@ uses
 
 The following was done in order to get this demonstration project started:
 
-1. Install Rubicon2 (from www.tamarakca.com) and TwhRubiconSearch
-(from www.href.com).
+1. Install Rubicon and TwhRubiconSearch
 
 2. Create a BDE Alias called Rubicon2 which points to the
 Rubicon examples\data directory, which is where the help.db
