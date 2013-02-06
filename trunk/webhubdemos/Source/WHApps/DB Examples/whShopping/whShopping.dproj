@@ -3,7 +3,7 @@
         <ProjectGuid>{5653C155-9103-431A-AEB9-1CFFE5CDEFC8}</ProjectGuid>
         <MainSource>whShopping.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
@@ -43,7 +43,7 @@
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;Bde;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DcuOutput>d:\Temp\DelphiTempDCU\</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
-        <DCC_UnitSearchPath>h:\;h:\dcu_d16_win32\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>h:\;h:\dcu_d17_win32\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whubd7;whubdbd7;whdemod7;Etk70;ldiRegExD7;maxCode;HubComponents;rb20r70r;HREFSite_Package;rb20b70r;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
         <DCC_MapFile>3</DCC_MapFile>
@@ -68,7 +68,6 @@
         <DCC_DebugInformation>false</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
-        <Manifest_File>None</Manifest_File>
         <DCC_Define>DEBUG;CodeSite;$(DCC_Define)</DCC_Define>
         <DCC_Optimize>false</DCC_Optimize>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
@@ -193,7 +192,8 @@
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclfmxstd160.bpl">Embarcadero FMX Standard Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k170.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp170.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
