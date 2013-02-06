@@ -98,31 +98,57 @@ end;
 
 function TDMData2Clone.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
+var
+  InitPosition: Integer;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   ErrorText := '';
+  InitPosition := 0;
 
   { Note: sharing a TDataSet is okay in the datamodule. Sharing a TDataSource
     causes changes in one Scan to show up in the other one -- not usually good.}
 
-
+  CSSend('InitPosition', S(InitPosition));
   if NOT FlagInitDone then
   begin
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
+      InitPosition := 1;
+      CSSend('InitPosition', S(InitPosition));
+
       whdbxSourceXML.KeyFieldNames := 'CountryID';
       whdbxSourceXML.MaxOpenDataSets := 1; // no cloning
-      SimpleDataSetXML.FileName = getHtDemoDataRoot + 'iso639\xml\' +
+      SimpleDataSetXML.FileName := getHtDemoDataRoot + 'iso639\xml\' +
         'countrycode.xml';
 
-      SimpleDataSetXML.Open;
+      InitPosition := 2;
+      CSSend('InitPosition', S(InitPosition));
+
+      try
+        SimpleDataSetXML.Open;
+      except
+        on E: Exception do
+        begin
+          if NOT FileExists(SimpleDataSetXML.FileName) then
+            CSSendError(SimpleDataSetXML.Name + '.FileName does not exist: ' +
+              SimpleDataSetXML.FileName);
+          LogSendException(E);
+          ErrorText := SimpleDataSetXML.Name + ' failed to open' + sLineBreak +
+            E.Message;
+        end;
+      end;
       if NOT whdbxSourceXML.IsUpdated then
-        ErrorText := whdbxSourceXML.Name + ' would not update. ';
+        ErrorText := ErrorText + whdbxSourceXML.Name + ' would not update. ';
+
+      InitPosition := 3;
+      CSSend('InitPosition', S(InitPosition));
 
       if ErrorText = '' then
       begin
+        InitPosition := 4;
+        CSSend('InitPosition', S(InitPosition));
         whdbxSourceXMLCloned.KeyFieldNames := 'CountryID';
         whdbxSourceXMLCloned.MaxOpenDataSets := 3; // yes cloning
         if NOT whdbxSourceXMLCloned.IsUpdated then
@@ -132,28 +158,48 @@ begin
 
       if ErrorText = '' then
       begin
+        InitPosition := 10;
+        CSSend('InitPosition', S(InitPosition));
         WebDataSource1.DataSource := DataSource1;
         DataSource1.DataSet := Table1;
         WebDataSource1.KeyFieldNames := 'HOLDINGNO'; // 'ACCT_NBR;SYMBOL';
         WebDataSource1.OpenDataSetVisual := False;
 
+        InitPosition := 11;
+        CSSend('InitPosition', S(InitPosition));
         WebDataSource2.DataSource := DataSource2;
         DataSource2.DataSet := Table2;
         WebDataSource2.KeyFieldNames := 'SpeciesNo';
         WebDataSource2.OpenDataSetVisual := False;
 
+        InitPosition := 12;
+        CSSend('InitPosition', S(InitPosition));
         with Table1 do
         begin
           DatabaseName := getHtDemoDataRoot + 'whClone\';
           TableName := 'HOLDINGS.DBF';
           IndexName := 'HoldingNo';
-          Open;
-          FieldByName('HOLDINGNO').Visible := True;
+          InitPosition := 13;
+          CSSend('InitPosition', S(InitPosition));
+          try
+            Open;
+          except
+            on E: Exception do
+            begin
+              LogSendException(E);
+              ErrorText := Table1.Name + ' failed to open' + sLineBreak +
+                E.Message;
+            end;
+          end;
         end;
+        InitPosition := 20;
+        CSSend('InitPosition', S(InitPosition));
 
         whdbxSourceDBF.KeyFieldNames := 'HOLDINGNO';
         if FileExists(getHtDemoDataRoot + 'whClone\holdings.cds') then
         begin
+          InitPosition := 21;
+          CSSend('InitPosition', S(InitPosition));
           FreeAndNil(DataSetProviderDBF);
           FreeAndNil(TableDBase);
           ClientDataSetDBF.ProviderName := '';
@@ -163,22 +209,48 @@ begin
         else
         with TableDBase do
         begin
+          InitPosition := 22;
+          CSSend('InitPosition', S(InitPosition));
           DatabaseName := getHtDemoDataRoot + 'whClone\';
           TableName := 'HOLDINGS.DBF';
-          Open;
+          try
+            Open;
+          except
+            on E: Exception do
+            begin
+              LogSendException(E);
+              ErrorText := TableDBase.Name + ' failed to open' + sLineBreak +
+                E.Message;
+            end;
+          end;
         end;
 
+        InitPosition := 23;
+        CSSend('InitPosition', S(InitPosition));
         with Table2 do
         begin
           DatabaseName := getHtDemoDataRoot + 'whClone\';
           TableName := 'BIOLIFE.DB';
-          Open;
+          try
+            Open;
+          except
+            on E: Exception do
+            begin
+              LogSendException(E);
+              ErrorText := Table2.Name + ' failed to open' + sLineBreak +
+                E.Message;
+            end;
+          end;
         end;
       end;
 
       if ErrorText = '' then
       begin
+        InitPosition := 30;
+        CSSend('InitPosition', S(InitPosition));
         RefreshWebActions(Self);
+        InitPosition := 31;
+        CSSend('InitPosition', S(InitPosition));
 
         // helpful to know that WebAppUpdate will be called whenever the
         // WebHub app is refreshed.
