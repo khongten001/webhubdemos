@@ -1,6 +1,6 @@
 program whShopping;     { Shopping Cart - Simplest Example }
 (*
-  Copyright (c) 1998-2011 HREF Tools Corp.
+  Copyright (c) 1998-2013 HREF Tools Corp.
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -42,9 +42,8 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  HtShopC in 'HtShopC.pas' {fmShopPanel},
   whShopping_dmdbProjMgr in 'whShopping_dmdbProjMgr.pas' {DMForWHShopping: TDataModule},
-  htadoWApp in 'K:\WebHub\lib\htadoWApp.pas',
+  HtShopC in 'HtShopC.pas' {fmShopPanel},
   whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule};
 
 {$R *.RES}
