@@ -76,8 +76,11 @@ uses
 { TDMData2Clone }
 
 procedure TDMData2Clone.DataModuleCreate(Sender: TObject);
+const cFn = 'DataModuleCreate';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   FlagInitDone := False;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMData2Clone.DataModuleDestroy(Sender: TObject);
@@ -111,6 +114,9 @@ begin
 
       whdbxSourceXML.KeyFieldNames := 'CountryID';
       whdbxSourceXML.MaxOpenDataSets := 1; // no cloning
+      SimpleDataSetXML.FileName = getHtDemoDataRoot + 'iso639\xml\' +
+        'countrycode.xml';
+
       SimpleDataSetXML.Open;
       if NOT whdbxSourceXML.IsUpdated then
         ErrorText := whdbxSourceXML.Name + ' would not update. ';
