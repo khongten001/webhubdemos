@@ -44,7 +44,6 @@ object DMData2Clone: TDMData2Clone
     OnExecute = WebDataSource1Execute
     BendPointers = True
     GotoMode = wgGotoKey
-    KeyFieldNames = 'ACCT_NBR'
     MaxOpenDataSets = 5
     OpenDataSets = 0
     OpenDataSetRetain = 600
@@ -69,7 +68,6 @@ object DMData2Clone: TDMData2Clone
     Aggregates = <>
     DataSet.MaxBlobSize = -1
     DataSet.Params = <>
-    FileName = 'D:\Projects\webhubdemos\Live\Database\iso639\xml\countrycode.xml'
     Params = <>
     Left = 384
     Top = 208

@@ -57,8 +57,11 @@ uses
 { TDMGridsNScans }
 
 procedure TDMGridsNScans.DataModuleCreate(Sender: TObject);
+const cFn = 'DataModuleCreate';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   FlagInitDone := False;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 function TDMGridsNScans.Init(out ErrorText: string): Boolean;
