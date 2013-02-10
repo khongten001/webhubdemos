@@ -165,7 +165,11 @@ this feature has been left as an exercise for the reader.)</p>
 <div id="whdemopagecontent">
 <h2>Number of Active Sessions in this Store</h2>
 <p>(~waCountActiveSessions.Execute|~)</p>
-<!--- <p>(~JUMPR|pgCountSurfers~)</p> -->
+<h2>Your Session Number</h2>
+<p>(~RawSessionNumber~)</p>
+<h2>Links for Testing</h2>
+<p>(~JUMPR|pgCountSurfers|repeat, stay in same session~)</p> 
+(~DynURL.ToPageID~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
