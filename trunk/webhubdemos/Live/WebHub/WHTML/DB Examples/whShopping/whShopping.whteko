@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
@@ -153,5 +153,23 @@ this feature has been left as an exercise for the reader.)</p>
 (~drPageEnd~)
 </body></html>
 </whpage>
+
+<whpage pageid="pgCountSurfers" desc="Count Active Surfers">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h2>Number of Active Sessions in this Store</h2>
+<p>(~waCountActiveSessions.Execute|~)</p>
+<!--- <p>(~JUMPR|pgCountSurfers~)</p> -->
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
 
 </whteko>
