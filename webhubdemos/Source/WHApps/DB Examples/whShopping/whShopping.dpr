@@ -40,11 +40,12 @@ uses
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
-  dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TdmWebHubApp},
+  dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TdmWebHubDBApp},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whShopping_dmdbProjMgr in 'whShopping_dmdbProjMgr.pas' {DMForWHShopping: TDataModule},
   HtShopC in 'HtShopC.pas' {fmShopPanel},
-  whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule};
+  whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule},
+  whShopping_dmwhSessionWatch in 'whShopping_dmwhSessionWatch.pas' {DMSessWatch: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

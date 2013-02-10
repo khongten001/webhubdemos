@@ -29,13 +29,14 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, HtShopC, whShopping_dmShop;
+  MultiTypeApp, HtShopC, whShopping_dmShop, whShopping_dmwhSessionWatch;
 
 procedure TDMForWHShopping.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
   {M}Application.CreateForm(TDMShop1, DMShop1);
+  {M}Application.CreateForm(TDMSessWatch, DMSessWatch);
 end;
 
 procedure TDMForWHShopping.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -43,6 +44,8 @@ procedure TDMForWHShopping.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := DMShop1.Init(ErrorText);
+  if Continue then
+    Continue := DMSessWatch.Init(ErrorText);
 end;
 
 procedure TDMForWHShopping.ProjMgrGUICreate(Sender: TtpProject;
