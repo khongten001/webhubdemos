@@ -1,6 +1,7 @@
 setlocal
 
 d:\Apps\HREFTools\WebHub\bin\ShutdownWHApps.exe
+start TaskMgr
 rem wait until all demos are out of memory
 pause
 
