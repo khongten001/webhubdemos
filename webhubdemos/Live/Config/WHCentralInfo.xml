@@ -149,7 +149,7 @@
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whsession"/>
-		  <SessionNumberLocation value="CookieFixedDomain" />
+	<SessionNumberLocation value="URL" />
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
