@@ -169,7 +169,7 @@ this feature has been left as an exercise for the reader.)</p>
 <p>(~RawSessionNumber~)</p>
 <h2>Links for Testing</h2>
 <p>(~JUMPR|pgCountSurfers|repeat, stay in same session~)</p> 
-(~DynURL.ToPageID~)
+<p>(~JUMPR|pgLogout|Logout~) to clear session cookie (or use a different web browser); then test with <a title="this link for starting as a new surfer" href="(~DynURL.ToPageID~)">(~DynURL.ToPageID~)</a></p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
