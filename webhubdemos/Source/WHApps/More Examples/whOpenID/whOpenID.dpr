@@ -26,6 +26,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
