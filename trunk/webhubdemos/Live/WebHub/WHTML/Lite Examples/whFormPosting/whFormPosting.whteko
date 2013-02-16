@@ -234,4 +234,33 @@ Note that WebHub allows you to track checkboxes and text fields separate from th
 </table>
 </whdroplet>
 
+<whpage pageid="pgTestVars01">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~pagedesc~)</h1>
+
+(~waMakeBadVars.Execute|~)
+<p>(~stringvars~)</p>
+<h2>Retrieve 1 StringVar by Name</h2>
+<div style="border: 1px solid blue;">
+<form method="post" action="(~ACTIONR|pgTestVars01~)" accept-charset="UTF-8" >
+Enter StringVar Name: (~INPUTTEXT|inVarName~)
+<input type="submit" />
+</form>
+</div>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
 </whteko>
