@@ -73,8 +73,8 @@ inherited fmCodeGenerator: TfmCodeGenerator
           object Label1: TLabel
             Left = 16
             Top = 56
-            Width = 609
-            Height = 66
+            Width = 573
+            Height = 44
             Caption = 
               'BootStrap ONCE to make the unit containing the TIB_Connection, T' +
               'IB_Session and TIB_Transaction.'

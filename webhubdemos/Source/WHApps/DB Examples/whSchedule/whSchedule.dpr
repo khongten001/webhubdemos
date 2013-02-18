@@ -20,7 +20,6 @@ uses
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver},
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdw_RemotePages in 'H:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModule},
-  wdbIBObjNSource in 'h:\wdbIBObjNSource.pas',
   uLingvoCodePoints in '..\..\Common\uLingvoCodePoints.pas',
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
@@ -36,12 +35,13 @@ uses
   whSchedule_whpanelInterrupt in 'whSchedule_whpanelInterrupt.pas' {fmAppDBInterrupt},
   whSchedule_fmCodeGen in 'whSchedule_fmCodeGen.pas' {fmCodeGenerator},
   whSchedule_fmKeywordIndex in 'whSchedule_fmKeywordIndex.pas' {fmRubiconIndex},
+  uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
+  uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
+  wdbIBObjOSource in 'h:\wdbIBObjOSource.pas',
   ucIBObjCodeGen_Bootstrap in 'h:\ucIBObjCodeGen_Bootstrap.pas',
   ucIBObjCodeGen in 'h:\ucIBObjCodeGen.pas',
   ucIbAndFbCredentials in 'h:\ucIbAndFbCredentials.pas',
-  uFirebird_Connect_CodeRageSchedule in 'uFirebird_Connect_CodeRageSchedule.pas',
-  uFirebird_SQL_Snippets_CodeRageSchedule in 'uFirebird_SQL_Snippets_CodeRageSchedule.pas',
-  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas';
+  ucIBObjPrepare in 'h:\ucIBObjPrepare.pas';
 
 (* when compiling with source use these:
   IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
@@ -54,6 +54,7 @@ uses
   webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas',
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
+  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas';
 *)
 
 begin
