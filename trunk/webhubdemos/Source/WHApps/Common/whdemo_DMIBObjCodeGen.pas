@@ -32,6 +32,7 @@ type
   TCodeGenPattern = (cgpMacroLabelsForFields, cgpMacroPKsForTables,
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
     cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
+    cgpInstantFormInsert,
     cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan);
 
 type
@@ -82,7 +83,18 @@ type
       const ThisTableFieldCount, FieldNum: Integer;
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
+
+    procedure InstantFormEditOrInsert(const FlagBlankValues: Boolean;
+      const CurrentTable: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+
     procedure InstantFormEdit(const CurrentTable: string;
+      const ThisTableFieldCount, FieldNum: Integer;
+      const CurrentFieldname: string;
+      Cursor: TIB_Cursor; out Value: string);
+    procedure InstantFormInsert(const CurrentTable: string;
       const ThisTableFieldCount, FieldNum: Integer;
       const CurrentFieldname: string;
       Cursor: TIB_Cursor; out Value: string);
@@ -285,10 +297,12 @@ begin
          7: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpInstantFormEditLabelAbove);
          8: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
-          FActiveConn, y, cgpTableHeaderCells);
+           FActiveConn, y, cgpInstantFormInsert);
          9: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
-          FActiveConn, y, cgpTableRowCells);
+          FActiveConn, y, cgpTableHeaderCells);
         10: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpTableRowCells);
+        11: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpTableDropletForScan, AdjustTableListProc);
         else
           GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
@@ -371,7 +385,9 @@ begin
           sLineBreak +
           '</whdroplet>' + sLineBreak + sLineBreak;
 
-      cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove:
+      cgpInstantFormReadonly,
+      cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
+      cgpInstantFormInsert:
         begin
           FLastFieldWasHidden := False;
           CodeContent := CodeContent +
@@ -381,6 +397,7 @@ begin
             cgpInstantFormEdit: CodeContent := CodeContent + 'Edit';
             cgpInstantFormEditLabelAbove: CodeContent := CodeContent +
               'EditLabelAbove';
+            cgpInstantFormInsert: CodeContent := CodeContent + 'Insert';
           end;
 
           CodeContent := CodeContent +
@@ -391,7 +408,8 @@ begin
               '<!--- <form method="post" accept-charset="UTF-8" ' +
               'action="(~ACTIONR|~)"> -->' +
               sLineBreak;
-          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
+          if CodeGenPattern in [cgpInstantFormEdit,
+            cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
             CodeContent := CodeContent + '<!--- ';
           CodeContent := CodeContent +
           '  <table id="' +
@@ -401,7 +419,8 @@ begin
               LowerCase(
               GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
               '">';
-          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
+          if CodeGenPattern in [cgpInstantFormEdit,
+            cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
             CodeContent := CodeContent + ' -->';
           CodeContent := CodeContent + sLineBreak;
 
@@ -409,6 +428,9 @@ begin
             cgpInstantFormReadonly: CodeContent := CodeContent +
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
                 InstantFormReadonly);
+            cgpInstantFormInsert: CodeContent := CodeContent +
+              Firebird_GenPas_For_Each_Field_in_1Table(conn, TableList[i],
+                InstantFormInsert);
             cgpInstantFormEdit:
               begin
                 CodeContent := CodeContent +
@@ -442,7 +464,8 @@ begin
                 '  </tr>' + sLineBreak;
               end;
           end;
-          if CodeGenPattern in [cgpInstantFormEdit, cgpInstantFormEditLabelAbove] then
+          if CodeGenPattern in [cgpInstantFormEdit,
+            cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
             CodeContent := CodeContent +
               '<!--- </form> -->' + sLineBreak;
           CodeContent := CodeContent +
@@ -513,9 +536,20 @@ begin
   Value := Format('f%d=%s', [FieldNum+1, CurrentFieldname]) + sLineBreak;
 end;
 
+
 procedure TDMIBObjCodeGen.InstantFormEdit(const CurrentTable: string;
   const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
   Cursor: TIB_Cursor; out Value: string);
+begin
+  InstantFormEditOrInsert(False, // Editing. Therefore do NOT use blank values.
+    CurrentTable, ThisTableFieldCount, FieldNum,
+    CurrentFieldname, Cursor, Value);
+end;
+
+procedure TDMIBObjCodeGen.InstantFormEditOrInsert(const FlagBlankValues:
+  Boolean; const CurrentTable: string; const ThisTableFieldCount, FieldNum:
+  Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
+  out Value: string);
 const cFn = 'InstantFormEdit';
 var
   ISize, IMaxLength: Integer;
@@ -553,15 +587,24 @@ begin
   HideThisField := (ThisInputType='hidden') or (FieldNum = 0);
 
   if ((FieldNum = 0) and (NOT HideThisField)) or
+    ((FieldNum = 0) and FlagBlankValues ) or
     IsEqual(CurrentFieldName, FUpdatedOnAtFieldname) then
   begin
-    { primary key field: readonly and developer wants it shown}
-    { UpdatedOnAt field: set by trigger }
-    Value := Value +
-      '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
-      sLineBreak +
-      '    <td>(~readonly-' + CurrentTable + '-' + CurrentFieldname + '~)' +
-      '</td>' + sLineBreak;
+    if (FieldNum = 0) and FlagBlankValues then
+    begin
+      Value := Value + '    ' + MacroStart + 'SET|readonly-' + CurrentTable +
+        '-' + CurrentFieldName + '=' + '-1' + MacroEnd + sLineBreak;
+    end
+    else
+    begin
+      { primary key field: readonly and developer wants it shown}
+      { UpdatedOnAt field: set by trigger }
+      Value := Value +
+        '    <th>(~mcLabel-' + CurrentTable + '-' + CurrentFieldname + '~)</th>' +
+        sLineBreak +
+        '    <td>(~readonly-' + CurrentTable + '-' + CurrentFieldname + '~)' +
+        '</td>' + sLineBreak;
+    end;
   end
   else
   begin
@@ -572,9 +615,13 @@ begin
       { pass through the UpdateCounter for optimal multi-user editing }
       Value := Value +
         '  <input type="' + ThisInputType + '" name="edit-' + CurrentTable +
-        '-' + FUpdateCounterFieldname + '" value="' + MacroStart + 'readonly-' +
-        CurrentTable + '-' +
-        FUpdateCounterFieldname + MacroEnd +'" />' + sLineBreak
+        '-' + FUpdateCounterFieldname + '" value="';
+      if NOT FlagBlankValues then
+      begin
+        Value := Value + MacroStart + 'readonly-' + CurrentTable + '-' +
+          FUpdateCounterFieldname + MacroEnd;
+      end;
+      Value := Value +'" />' + sLineBreak
     end
     else
     begin
@@ -609,9 +656,13 @@ begin
         Value := Value +
           '<textarea name="txt-edit-' + CurrentTable + '-' +
           CurrentFieldname + '" id="' + CurrentFieldname + '-Blob" ' +
-          ThisReadonly + '>' +
-          MacroStart + 'edit-' + CurrentTable + '-' +
-          CurrentFieldname + MacroEnd + '</textarea>';
+          ThisReadonly + '>';
+        if NOT FlagBlankValues then
+        begin
+          Value := Value + MacroStart + 'edit-' + CurrentTable + '-' +
+          CurrentFieldname + MacroEnd;
+        end;
+        Value := Value + '</textarea>';
       end
       else
       begin
@@ -636,9 +687,13 @@ begin
           Prefix := 'edit';
         Value := Value +
           '<input type="' + ThisInputType + '" name="' + Prefix + '-' +
-            CurrentTable + '-' + CurrentFieldname + '" value="' + MacroStart +
-            Prefix + '-' + CurrentTable + '-' + CurrentFieldname + MacroEnd +
-            '" ' + ThisReadonly + SizeMaxLengthText;
+            CurrentTable + '-' + CurrentFieldname + '" value="';
+        if NOT FlagBlankValues then
+        begin
+          Value := Value + MacroStart + Prefix + '-' + CurrentTable + '-' +
+            CurrentFieldname + MacroEnd;
+        end;
+        Value := Value + '" ' + ThisReadonly + SizeMaxLengthText;
         if ThisPlaceholder <> '' then
           Value := Value + ' placeholder="' + ThisPlaceholder + '"';
         Value := Value + '/>';
@@ -819,6 +874,15 @@ begin
     end;
     Value := Value + '  </tr>' + sLineBreak;
   end;
+end;
+
+procedure TDMIBObjCodeGen.InstantFormInsert(const CurrentTable: string;
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
+begin
+  InstantFormEditOrInsert(True, // Inserting. Therefore DO use blank values.
+    CurrentTable, ThisTableFieldCount, FieldNum,
+    CurrentFieldname, Cursor, Value);
 end;
 
 procedure TDMIBObjCodeGen.InstantFormReadonly(const CurrentTable: string;

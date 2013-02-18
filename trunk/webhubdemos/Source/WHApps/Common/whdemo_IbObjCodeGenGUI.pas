@@ -50,6 +50,7 @@ begin
   ListBox.Items.Add('Whteko: Readonly Form for each table');
   ListBox.Items.Add('Whteko: Editable Form for each table');
   ListBox.Items.Add('Whteko: Editable Form, labels above, for each table');
+  ListBox.Items.Add('Whteko: Insert Form for each table');
   ListBox.Items.Add('Whteko: TR with header cells, for each table');
   ListBox.Items.Add('Whteko: TR with data cells, for each table');
   ListBox.Items.Add('Whteko: Droplets for use with TwhScan, for each table');
