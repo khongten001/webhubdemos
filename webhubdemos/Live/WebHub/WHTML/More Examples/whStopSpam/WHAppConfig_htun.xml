@@ -15,6 +15,7 @@
           <Module name="dreamweaver" status="enabled-gui"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="lingvo" status="enabled"/>
+          <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
@@ -74,4 +75,9 @@
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
     </TekoFiles>
   </Application>
+  <ComponentConfig>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="D:\temp\w3validation\htcl\" context="DEMOS"/>
+    </whWebAction>
+  </ComponentConfig>
 </WebHubAppConfiguration>
