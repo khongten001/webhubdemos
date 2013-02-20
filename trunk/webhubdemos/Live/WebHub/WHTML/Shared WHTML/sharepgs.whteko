@@ -207,7 +207,7 @@ customizing the onBadIP event of the TwhAppBase.</p>
 <li>Compiled with: Embarcadero Delphi (~PascalCompilerCode~) and (~version~) from HREF Tools Corp.</li>
 <li>Compiles with FREE WebHub Lite: (~MATCH|(~DYNCHUNK|mcWhDemoLite,(~AppID~)~)=Lite| Yes! || No. ~)</li>
 <li>WebHub Syntax Stage: (~ProjectSyntax~)</li>
-<lI>Project Lingvo: (~ProjectLingvo~)</li>
+<li>Project Lingvo: (~ProjectLingvo~)</li>
 <li>Web Host: (~Request.Host~) </li>
 <li>Last significant update: (~DYNCHUNK|mcWhDemoUpdated,(~AppID~)~)</li>
 </ul>
