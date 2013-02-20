@@ -82,4 +82,9 @@
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
     </TekoFiles>
   </Application>
+  <ComponentConfig>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="D:\temp\w3validation\htcl\" context="DEMOS"/>
+    </whWebAction>
+  </ComponentConfig>
 </WebHubAppConfiguration>
