@@ -129,6 +129,13 @@ img {
   color: #99CC66;
 }
 
+div#w3-div {
+  text-align: left;
+  font-size: .8em;
+  color: #99CC66;
+}
+
+
 #whDemoLogo {
   position: absolute;
   top: 10px;

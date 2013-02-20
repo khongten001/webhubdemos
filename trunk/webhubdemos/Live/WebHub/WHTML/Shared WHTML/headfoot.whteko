@@ -164,13 +164,14 @@ Time taken to dynamically produce this web page: <span class="changing">(~Runtim
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span>; 
 (~IsWebRobotRequest| ||session number (~RawSessionNumber~);~)
 user agent is <span id="userAgentHere">(~Request.UserAgent~)</span>. 
-It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.<br />
+It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.
+</span>
 (~drLinkW3Org~)
-</span>~)
+~)
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">
-(~IsWebRobotRequest|<!-- w3.org --> || (~MATCH|(~waLinkW3Validation.execute|active~)=true|<div style="margin-top: 2em;">
+(~IsWebRobotRequest|<!-- w3.org --> || (~MATCH|(~waLinkW3Validation.execute|active~)=true|<div id="w3-div">
 <span class="changing">
   (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
 </span>
