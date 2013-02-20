@@ -16,6 +16,7 @@
 <whmacros>
 mcdoctypehtmlPRIOR=<![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">]]>
 mcdoctypehtml=<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">]]>
+mcdoctypehtml5=<![CDATA[<!DOCTYPE HTML>]]>
 mcxmlns=xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)
 mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
@@ -169,12 +170,13 @@ It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.<br />
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">
-(~IsWebRobotRequest|<!-- w3.org --> || (~MATCH|(~waLinkW3Validation.execute|active~)=true|
+(~IsWebRobotRequest|<!-- w3.org --> || (~MATCH|(~waLinkW3Validation.execute|active~)=true|<div style="margin-top: 2em;">
 <span class="changing">
   (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
 </span>
-  <a onclick="window.open(this.href);return false;" href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)&charset=%28detect+automatically%29&doctype=Inline&group=0">validator.w3.org</a>
-~)~)
+  <a onclick="window.open(this.href);return false;" 
+	href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)">validator.w3.org</a>
+</div>~)~)
 </whdroplet>
 
 <whdroplet name="drAboutLiteDemo" show="no">
