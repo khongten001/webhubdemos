@@ -22,7 +22,7 @@ mcEmDash=&#8212;
 
 <whmacros>
 <!--- Icons and Graphics -->
-mcWhDemoDot=<span style="color:mediumvioletred;">&#149;</span>
+mcWhDemoDot=<span style="color:mediumvioletred;">&#8226;</span>
 mcWhDemoVCLIcon=<img src="(~mcWhDemoMiscDir~)vcl.jpg" alt="VCL" />
 </whmacros>
 
