@@ -125,6 +125,11 @@ begin
       SeparatorCharsInRange(StrToInt('$0401'), StrToInt('$0451')) +
       SeparatorCharsInRange(StrToInt('$0E01'), StrToInt('$0E5B')) +
       SeparatorCharsInRange(StrToInt('$0600'), StrToInt('$06FF')) +
-      SeparatorCharsInRange(StrToInt('$30A0'), StrToInt('$30FF'));
+      SeparatorCharsInRange(StrToInt('$30A0'), StrToInt('$30FF')) +
+      { IB_SQL sometimes puts BOM before UTF8 data in memo fields }
+      #65279 +  // U-FEFF zero width non breaking space (BOM)
+      { these stylish double-quotes are not otherwise detected as separators }
+      #8220  +  // U-201C left  double-comma-quotation-mark
+      #8221;    // U-201D right double-comma-quotation-mark
 end;
 end.
