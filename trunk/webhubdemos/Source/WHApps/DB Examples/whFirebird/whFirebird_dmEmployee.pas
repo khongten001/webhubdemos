@@ -31,7 +31,7 @@ type
     procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
-    whdsEmployee: TwhbdeSourceIBO;
+    whdsEmployee: TwhdbSourceIBO;
     dsEmployee: TDataSource;
     qEmployee: TIBOQuery;
     function Init(out ErrorText: string): Boolean;
@@ -91,7 +91,7 @@ begin
       dsEmployee := TDataSource.Create(Self);
       dsEmployee.Name := 'dsEmployee';
 
-      whdsEmployee := TwhbdeSourceIBO.Create(Self);
+      whdsEmployee := TwhdbSourceIBO.Create(Self);
       whdsEmployee.Name := 'whdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
       whdsEmployee.MaxOpenDataSets := 1;
