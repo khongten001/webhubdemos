@@ -35,7 +35,7 @@ type
     waPKtoStringVars: TwhWebAction;
     waUpdateFromStringVars: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
-    procedure IBNativeQuery1BeforeOpen(DataSet: TDataSet);
+    procedure IBQuery1BeforeOpen(DataSet: TDataSet);
     procedure IBNativeQueryAboutBeforeOpen(DataSet: TDataSet);
     procedure ScanScheduleInit(Sender: TObject);
     procedure ScanScheduleRowStart(Sender: TwhdbScanBase;
@@ -54,11 +54,11 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    wds: TwhbdeSourceIBO;
+    wds: TwhdbSourceIBO;
     ds: TDataSource;
     q: TIBOQuery;
     c: TIB_Cursor;
-    wdsA: TwhbdeSourceIBO;
+    wdsA: TwhdbSourceIBO;
     dsA: TDataSource;
     qA: TIBOQuery;
     priorDate: TDate;
@@ -126,7 +126,7 @@ begin
   q := TIBOQuery.Create(Self);
   q.Name := 'q';
   q.ReadOnly := True;
-  q.BeforeOpen := IBNativeQuery1BeforeOpen;
+  q.BeforeOpen := IBQuery1BeforeOpen;
   q.SQL.Text := 'select distinct ' + 'S.SCHNo, S.SCHTITLE, S.SCHONATPDT, ' +
     'DATEADD(hour, ' + IntToStr(cCalifOffset) + ', S.SCHONATPDT) as GMT, ' +
     'DATEADD(hour, ' + IntToStr(cCalifOffset) +
@@ -146,6 +146,7 @@ begin
     ' (A.ProductNo = :p15) ' + ') ' + sLineBreak +
     'and (SCHONATPDT >= :Recently) ' + // '9/8/2009 15:00'
     'order by S.SchOnAtPDT, S.SchLocation ';
+  CSSend('q.SQL', S(q.SQL));
 
   c := TIB_Cursor.Create(Self);
   c.Name := 'c';
@@ -156,6 +157,7 @@ begin
     'A.SCHONATPDT) as GMT, ' + sLineBreak + 'DATEADD(hour, ' +
     IntToStr(cCalifOffset) + ' + ' + ':OFFSET, A.SCHONATPDT) as LocalTime ' +
     sLineBreak + 'from schedule A ' + sLineBreak + 'where (A.SchNo = :ID) ';
+  CSSend('c.SQL', S(c.SQL));
 
   qA := TIBOQuery.Create(Self);
   qA.Name := 'qA';
@@ -165,6 +167,7 @@ begin
     'from ABOUT A, XPRODUCT P ' + sLineBreak +
     'where (A.ProductNo = P.ProductNo) ' + sLineBreak +
     'and (A.SchNo = :Event) ';
+  CSSend('qA.SQL', S(qA.SQL));
 
   try
     IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
@@ -173,6 +176,7 @@ begin
     on E: Exception do
     begin
       Result := False;
+      ErrorText := E.Message;
       Exit; // no point to continue if SQL is wrong
     end;
   end;
@@ -181,7 +185,7 @@ begin
   ds.Name := 'ds';
   ds.DataSet := q;
 
-  wds := TwhbdeSourceIBO.Create(Self);
+  wds := TwhdbSourceIBO.Create(Self);
   wds.Name := 'wds';
   wds.DataSource := ds;
   wds.MaxOpenDataSets := 1;
@@ -196,7 +200,7 @@ begin
   dsA.Name := 'dsA';
   dsA.DataSet := qA;
 
-  wdsA := TwhbdeSourceIBO.Create(Self);
+  wdsA := TwhdbSourceIBO.Create(Self);
   wdsA.Name := 'wdsA';
   wdsA.DataSource := dsA;
   wdsA.MaxOpenDataSets := 1;
@@ -225,9 +229,9 @@ begin
   // e.g. to make adjustments because the config changed.
 end;
 
-procedure TDMCodeRageActions.IBNativeQuery1BeforeOpen(DataSet: TDataSet);
+procedure TDMCodeRageActions.IBQuery1BeforeOpen(DataSet: TDataSet);
 const
-  cFn = 'IBNativeQuery1BeforeOpen';
+  cFn = 'IBQuery1BeforeOpen';
 var
   TheOffsetInHours: Integer;
   j: Integer;
