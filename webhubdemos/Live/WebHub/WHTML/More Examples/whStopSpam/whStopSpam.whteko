@@ -8,7 +8,7 @@
 <whprep>
 (~NOTASSIGNED|edit1|(~SET|edit1=billgates@microsoft.com~)~)
 </whprep>
-(~mcdoctypehtml5~)
+(~mcdoctypehtml~)
 <html>
 <head>
 (~drHead~)
@@ -71,7 +71,7 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 </whpage>
 
 <whpage pageid="pgSoapClientTest" desc="How to test the SOAP server from a quick, free, web-based client">
-(~mcdoctypehtml5~)
+(~mcdoctypehtml~)
 <html>
 <head>
 (~drHead~)

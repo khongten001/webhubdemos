@@ -14,9 +14,8 @@
 
 
 <whmacros>
-mcdoctypehtmlPRIOR=<![CDATA[<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">]]>
-mcdoctypehtml=<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">]]>
-mcdoctypehtml5=<![CDATA[<!DOCTYPE HTML>]]>
+mcdoctypehtmlstrict=<![CDATA[<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">]]>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcxmlns=xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)
 mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
