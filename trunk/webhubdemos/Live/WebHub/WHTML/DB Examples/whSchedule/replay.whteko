@@ -73,7 +73,8 @@
 <b>(~readonly-SCHEDULE-SchTitle~)</b><br/>
 (~readonly-SCHEDULE-CalcPresenter~)<br/>
 Code Rage (~readonly-SCHEDULE-SchCodeRageConfNo~), (~readonly-SCHEDULE-SCHONATPDT~)<br/>
-DB #(~readonly-SCHEDULE-SchNo~)
+(~ASSIGNED|readonly-SCHEDULE-About|Product(s): (~readonly-SCHEDULE-About~)<br/>~)
+Internal SchNo: (~readonly-SCHEDULE-SchNo~) 
 <blockquote>
 (~readonly-SCHEDULE-SCHBlurb~)
 <div style="text-align:center;">

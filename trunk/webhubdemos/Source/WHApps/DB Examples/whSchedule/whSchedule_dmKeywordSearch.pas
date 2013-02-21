@@ -28,12 +28,13 @@ type
     procedure waRubiSearchExecute(Sender: TObject);
     procedure waSelectSearchLogicExecute(Sender: TObject);
     procedure waShowIndexExecute(Sender: TObject);
-  private
+  strict private
     { Private declarations }
     FlagInitDone: Boolean;
     FScheduleGeneratorNumber: Integer;
     IBOQueryText: TIBOQuery;
     IBOQueryWords: TIBOQuery;
+    cPresentationAbout: TIB_Cursor;
     rbCache1: TrbCache;
     rbSearch1: TrbSearch;
     rbTextIBOLink1: TrbTextIBOLink;
@@ -43,6 +44,8 @@ type
     procedure waRubiSearchNotify(Sender: TObject;
       Event: TwhScanNotify);
     function ScheduleMaxIndex(Sender: TObject): Integer;
+    function PresentationWasAbout(const InSchNo: Integer;
+      const InSeparator: string): string;
   public
     { Public declarations }
     waRubiSearch: TwhRubiconSearch;
@@ -72,6 +75,7 @@ begin
   IBOQueryWords := nil;
   rbTextIBOLink1 := nil;
   rbWordsIBOLink1 := nil;
+  cPresentationAbout := nil;
   rbCache1 := nil;
   waRubiSearch := nil;
   FScheduleGeneratorNumber := -1;
@@ -83,6 +87,7 @@ begin
   FreeAndNil(IBOQueryWords);
   FreeAndNil(rbTextIBOLink1);
   FreeAndNil(rbWordsIBOLink1);
+  FreeAndNil(cPresentationAbout);
   FreeAndNil(rbCache1);
   FreeAndNil(waRubiSearch);
 end;
@@ -94,101 +99,139 @@ var
   DBName, DBUser, DBPass: string;
 begin
   ErrorText := '';
-  Result := FlagInitDone;
-  // reserved for code that should run once, after AppID set
-  if Result then Exit;
+  if NOT FlagInitDone then
+  begin
+    // reserved for code that should run once, after AppID set
 
-  if (pWebApp.ZMDefaultMapContext = 'ultraann') then
-    ProjectAbbrev := 'CodeRageScheduleLOCAL'
-  else
-    ProjectAbbrev := 'CodeRageSchedule';
-  ZMLookup_Firebird_Credentials(ProjectAbbrev, DBName, DBUser, DBPass);
-  CreateifNil(DBName, DBUser, DBPass);
+    if (pWebApp.ZMDefaultMapContext = 'ultraann') then
+      ProjectAbbrev := 'CodeRageScheduleLOCAL'
+    else
+      ProjectAbbrev := 'CodeRageSchedule';
+    ZMLookup_Firebird_Credentials(ProjectAbbrev, DBName, DBUser, DBPass);
+    CreateifNil(DBName, DBUser, DBPass);
+    try
+      gCodeRageSchedule_Conn.Connect;
+    except
+      on E: Exception do
+      begin
+        LogSendInfo('ProjectAbbrev', ProjectAbbrev, cFn);
+        LogSendInfo(DBName, DBUser, cFn);
+        ErrorText := E.Message;
+        // will not (and should not) continue if database connection fails
+      end;
+    end;
+
+    if ErrorText = '' then
+    begin
+
+      if NOT Assigned(cPresentationAbout) then
+      begin
+        cPresentationAbout := TIB_Cursor.Create(Self);
+        cPresentationAbout.Name := 'cPresentationAbout';
+        cPresentationAbout.SQL.Text :=
+          'select P.ProductName from About A, XProduct P ' +
+          'where (P.ProductNo = A.ProductNo) and ' +
+          '(A.SchNo = :SchNo) ';
+        cPresentationAbout.ReadOnly := True;
+      end;
+
+      if NOT Assigned(rbCache1) then
+      begin
+        rbCache1 := TrbCache.Create(Self);
+        rbCache1.Name := 'rbCache1';
+
+        IBOQueryText := TIBOQuery.Create(Self);
+        IBOQueryText.Name := 'IBOQueryText';
+        IBOQueryText.SQL.Text := 'select * from schedule';
+
+        IBOQueryWords := TIBOQuery.Create(Self);
+        IBOQueryWords.Name := 'IBOQueryWords';
+        IBOQueryWords.Tag := 1; // delay preparation
+        IBOQueryWords.ReadOnly := True;
+
+        IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
+          gCodeRageSchedule_Tr, gCodeRageschedule_Sess);
+
+        IBOQueryText.Open;
+
+        rbTextIBOLink1 := TrbTextIBOLink.Create(Self);
+        rbTextIBOLink1.Name := 'rbTextIBOLink1';
+        rbTextIBOLink1.TableName := 'Schedule';
+        rbTextIBOLink1.IBOQuery := IBOQueryText;
+        rbTextIBOLink1.OnMaxIndex := ScheduleMaxIndex;
+        rbTextIBOLink1.SelectAll := True;
+
+
+        rbWordsIBOLink1 := TrbWordsIBOLink.Create(Self);
+        rbWordsIBOLink1.Name := 'rbWordsIBOLink1';
+        rbWordsIBOLink1.IBOQuery := IBOQueryWords;
+        rbWordsIBOLink1.TableName := 'WORDS';
+
+        rbSearch1 := TrbSearch.Create(Self);
+        rbSearch1.Name := 'rbSearch1';
+        rbSearch1.International := True;
+        rbSearch1.SearchLogic := slSmart;
+        rbSearch1.SearchOptions := [soNavNatural, soNavReverse];
+
+        with rbSearch1 do
+        begin
+          Cache := rbCache1;
+          TextLink := rbTextIBOLink1;
+          WordsLink := rbWordsIBOLink1;
+        end;
+
+        waRubiSearch := TwhRubiconSearch.Create(Self);
+        waRubiSearch.Name := 'waRubiSearch';
+        with waRubiSearch do
+        begin
+          Col := 1;
+          ColCount := 1;
+          ControlsPos := dsNone;
+          ButtonAutoHide := True;
+          SearchDictionary := rbSearch1;
+          OnExecute := waRubiSearchExecute;
+          OnNotify := waRubiSearchNotify;
+          OnColStart := waRubiSearchColStart;
+          Tr := '<tr>';
+          RecordLimit := 1500;
+        end;
+      end;
+
+      if Assigned(pWebApp) and pWebApp.IsUpdated then
+      begin
+
+        RefreshWebActions(Self);
+
+        // helpful to know that WebAppUpdate will be called whenever the
+        // WebHub app is refreshed.
+        AddAppUpdateHandler(WebAppUpdate);
+        FlagInitDone := True;
+      end;
+    end;
+  end;
+  Result := FlagInitDone;
+end;
+
+function TDMRubiconSearch.PresentationWasAbout(const InSchNo: Integer;
+  const InSeparator: string): string;
+begin
+  Result := '';
+  cPresentationAbout.Close;
   try
-    gCodeRageSchedule_Conn.Connect;
+    cPresentationAbout.Params[0].AsInteger := InSchNo;
+    cPresentationAbout.Open;
+    while NOT cPresentationAbout.EOF do
+    begin
+      if Result <> '' then Result := Result + InSeparator;
+      Result := Result + cPresentationAbout.Fields[0].AsString;
+      cPresentationAbout.Next;
+    end;
+    cPresentationAbout.Close;
   except
     on E: Exception do
     begin
-      LogSendInfo('ProjectAbbrev', ProjectAbbrev, cFn);
-      LogSendInfo(DBName, DBUser, cFn);
-      ErrorText := E.Message;
-      Result := False;
-      Exit;                    // cannot continue if database connection fails
+      LogSendException(E);
     end;
-  end;
-
-  if NOT Assigned(rbCache1) then
-  begin
-    rbCache1 := TrbCache.Create(Self);
-    rbCache1.Name := 'rbCache1';
-
-    IBOQueryText := TIBOQuery.Create(Self);
-    IBOQueryText.Name := 'IBOQueryText';
-    IBOQueryText.SQL.Text := 'select * from schedule';
-
-    IBOQueryWords := TIBOQuery.Create(Self);
-    IBOQueryWords.Name := 'IBOQueryWords';
-    IBOQueryWords.Tag := 1; // delay preparation
-    IBOQueryWords.ReadOnly := True;
-
-    IbObj_PrepareAllQueriesAndProcs(Self, gCodeRageSchedule_Conn,
-      gCodeRageSchedule_Tr, gCodeRageschedule_Sess);
-
-    IBOQueryText.Open;
-
-    rbTextIBOLink1 := TrbTextIBOLink.Create(Self);
-    rbTextIBOLink1.Name := 'rbTextIBOLink1';
-    rbTextIBOLink1.TableName := 'Schedule';
-    rbTextIBOLink1.IBOQuery := IBOQueryText;
-    rbTextIBOLink1.OnMaxIndex := ScheduleMaxIndex;
-    rbTextIBOLink1.SelectAll := True;
-
-
-    rbWordsIBOLink1 := TrbWordsIBOLink.Create(Self);
-    rbWordsIBOLink1.Name := 'rbWordsIBOLink1';
-    rbWordsIBOLink1.IBOQuery := IBOQueryWords;
-    rbWordsIBOLink1.TableName := 'WORDS';
-
-    rbSearch1 := TrbSearch.Create(Self);
-    rbSearch1.Name := 'rbSearch1';
-    rbSearch1.International := True;
-    rbSearch1.SearchLogic := slSmart;
-    rbSearch1.SearchOptions := [soNavNatural, soNavReverse];
-
-    with rbSearch1 do
-    begin
-      Cache := rbCache1;
-      TextLink := rbTextIBOLink1;
-      WordsLink := rbWordsIBOLink1;
-    end;
-
-    waRubiSearch := TwhRubiconSearch.Create(Self);
-    waRubiSearch.Name := 'waRubiSearch';
-    with waRubiSearch do
-    begin
-      Col := 1;
-      ColCount := 1;
-      ControlsPos := dsNone;
-      ButtonAutoHide := True;
-      SearchDictionary := rbSearch1;
-      OnExecute := waRubiSearchExecute;
-      OnNotify := waRubiSearchNotify;
-      OnColStart := waRubiSearchColStart;
-      Tr := '<tr>';
-      RecordLimit := 1500;
-    end;
-  end;
-
-  if Assigned(pWebApp) and pWebApp.IsUpdated then
-  begin
-
-    RefreshWebActions(Self);
-
-    // helpful to know that WebAppUpdate will be called whenever the
-    // WebHub app is refreshed.
-    AddAppUpdateHandler(WebAppUpdate);
-    FlagInitDone := True;
-    Result := True;
   end;
 end;
 
@@ -263,6 +306,7 @@ begin
       S := IBOQueryText.FieldByName('SCHREPLAYWATCHNOWURL').AsString;
       StringVar['readonly-SCHEDULE-SCHREPLAYWATCHNOWURL'] := S;
 
+      StringVar['readonly-SCHEDULE-About'] :=PresentationWasAbout(i, ', ');
       SendMacro('drReplayMatchCell');
     end;
   end
