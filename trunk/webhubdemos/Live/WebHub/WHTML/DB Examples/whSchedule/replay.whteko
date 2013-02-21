@@ -1,4 +1,4 @@
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+﻿<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
 <whpage pageid="pgSearch" desc="Search Embarcadero Code Rage Presentation Archive">
@@ -73,6 +73,7 @@
 <b>(~readonly-SCHEDULE-SchTitle~)</b><br/>
 (~readonly-SCHEDULE-CalcPresenter~)<br/>
 Code Rage (~readonly-SCHEDULE-SchCodeRageConfNo~), (~readonly-SCHEDULE-SCHONATPDT~)<br/>
+DB #(~readonly-SCHEDULE-SchNo~)
 <blockquote>
 (~readonly-SCHEDULE-SCHBlurb~)
 <div style="text-align:center;">
