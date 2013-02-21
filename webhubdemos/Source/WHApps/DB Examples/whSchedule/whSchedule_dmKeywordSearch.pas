@@ -218,6 +218,10 @@ begin
     begin
       StringVarInt['readonly-SCHEDULE-SchNo'] := i;
       StringVar['readonly-SCHEDULE-SchTitle'] := IBOQueryText.FieldByName('SchTitle').AsString;
+      StringVar['readonly-SCHEDULE-SCHPRESENTERFULLNAME'] := 
+        IBOQueryText.FieldByName('SCHPRESENTERFULLNAME').AsString; // for schema.org
+      StringVar['readonly-SCHEDULE-SCHPRESENTEROrg'] := 
+        IBOQueryText.FieldByName('SCHPRESENTEROrg').AsString;  // for schema.org
       StringVar['readonly-SCHEDULE-CalcPresenter'] :=
         IBOQueryText.FieldByName('SCHPRESENTERFULLNAME').AsString;
       S := IBOQueryText.FieldByName('SCHPRESENTEROrg').AsString;
@@ -231,6 +235,13 @@ begin
 
       StringVar['readonly-SCHEDULE-SCHONATPDT'] :=
        FormatDateTime('dd-MMM-yyyy',
+         IBOQueryText.FieldByName('SCHONATPDT').AsDateTime);
+         // http://en.wikipedia.org/wiki/ISO_8601
+      StringVar['readonly-SCHEDULE-SCHONATISO8601'] :=
+       FormatDateTime('yyyy-mm-dd',
+         IBOQueryText.FieldByName('SCHONATPDT').AsDateTime) +
+       'T' +  // avoid conflict with any special meaning for T in Format
+       FormatDateTime('hh:nn', 
          IBOQueryText.FieldByName('SCHONATPDT').AsDateTime);
 
       S := IBOQueryText.FieldByName('SCHBlurb').AsString;
