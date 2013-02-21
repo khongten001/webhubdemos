@@ -130,6 +130,8 @@ begin
       #65279 +  // U-FEFF zero width non breaking space (BOM)
       { these stylish double-quotes are not otherwise detected as separators }
       #8220  +  // U-201C left  double-comma-quotation-mark
-      #8221;    // U-201D right double-comma-quotation-mark
+      #8221  +  // U-201D right double-comma-quotation-mark
+      #8230     // U-2026 horizontal ellipsis ...
+      ;
 end;
 end.
