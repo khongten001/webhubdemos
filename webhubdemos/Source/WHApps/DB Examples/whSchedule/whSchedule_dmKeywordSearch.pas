@@ -216,6 +216,7 @@ begin
   begin
     with pWebApp do
     begin
+      StringVarInt['readonly-SCHEDULE-SchNo'] := i;
       StringVar['readonly-SCHEDULE-SchTitle'] := IBOQueryText.FieldByName('SchTitle').AsString;
       StringVar['readonly-SCHEDULE-CalcPresenter'] :=
         IBOQueryText.FieldByName('SCHPRESENTERFULLNAME').AsString;
@@ -234,7 +235,12 @@ begin
 
       S := IBOQueryText.FieldByName('SCHBlurb').AsString;
       if S <> '' then
+      begin
+        if S[1] = #65279 then
+          LogSendWarning(IntToStr(i) + ': Blurb starts with BOM!');
+          //S := '<span style="color:red;">leading BOM</span><br/>' + S;
         S := S + '<br/>';
+      end;
       StringVar['readonly-SCHEDULE-SCHBlurb'] := S;
 
       S := IBOQueryText.FieldByName('SCHREPLAYDOWNLOADURL').AsString;
