@@ -45,7 +45,7 @@ type
     rbCache1: TrbCache;
     QMake: TIBOQuery;
     QData: TIBOQuery;
-    function ScheduleAcceptWord(Sender: TObject; const Word: String) : Boolean;
+    function ScheduleAcceptWord(Sender: TObject; const InWord: string) : Boolean;
     procedure ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
     procedure ScheduleProcessField(Sender: TObject; Engine: TrbEngine; Field:
     TField);
@@ -114,7 +114,7 @@ begin
     rbAccept1.NoLeadingNumbers := True;
 
     rbMake1.WordDelims := DemoInternationalWordDelims;
-    rbMake1.MinWordLen := 4; // cCNFMinWordLen;
+    rbMake1.MinWordLen := 2; // cCNFMinWordLen;
 
     rbProgressDialog1 := TrbProgressDialog.Create(Self);
     rbProgressDialog1.Name := 'rbProgressDialog1';
@@ -206,9 +206,13 @@ begin
 end;
 
 function TfmRubiconIndex.ScheduleAcceptWord(Sender: TObject;
-  const Word: String): Boolean;
+  const InWord: string): Boolean;
 begin
-  Result := True;
+  Result := Length(InWord) >= 4;
+  if NOT Result then
+  begin
+    Result := SameText('XE', Copy(InWord, 1, 2)); // XE, XE2, XE3
+  end;
 end;
 
 procedure TfmRubiconIndex.ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
