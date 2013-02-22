@@ -15,12 +15,12 @@ set demoparams="/ID=%whappid%"
 
 echo Demo params: %demoparams%
 
-set /P isdebug=Debug version? (Y/N) :  
+set /P isdebug=Debug version? (y/n) :  
 if "%isdebug%"=="" goto end
-if "%isdebug%"=="Y" set exename=DServer_x_d16_win32_debug.exe
-if "%isdebug%"=="N" set exename=DServer_x_d16_win32.exe
+if "%isdebug%"=="y" set exename=DServer_x_d17_win32_debug.exe
+if "%isdebug%"=="n" set exename=DServer_x_d17_win32.exe
 
-echo %exename%
+echo exename is %exename%
 
 set /P qty=Enter Number of instances to start (eg. 1, 3, 5, 10, 20, 30) :  
 if "%qty%"=="" goto end
