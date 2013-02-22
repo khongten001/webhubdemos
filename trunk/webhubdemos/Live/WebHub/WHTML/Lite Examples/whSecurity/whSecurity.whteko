@@ -379,7 +379,8 @@ Here is a list of (~JUMP|pgWHSecBasics|built-in WebHub Security features~)</p>
 	#basicfeatures {
 		font-family: Arial; font-size: small; width: 100%; padding: 2px;
 	}
-	#basicfeatures th {text-align:center;font-weight:700;width:18%;}
+	#basicfeatures th {text-align:center;font-weight:700;width:18%; border-bottom: solid 2px blue;}
+	#basicfeatures td {border-bottom: solid 1px green;}
 	</style>
 </head>
 <body>
@@ -388,7 +389,7 @@ Here is a list of (~JUMP|pgWHSecBasics|built-in WebHub Security features~)</p>
 <p>Here is are several of the basic underlying features in WebHub that address security
 and flow control:</p>
 
-<table id="basicfeatures" cellspacing="2" >
+<table id="basicfeatures">
 <tr><th>Feature:</th>
 <th>Where/ how<br /> implemented:</th>
 <th>Purpose:</th>
