@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
-<whdoc for="macros">
-Dreamweaver MX 2004 has a bad habit of changing ( into ( which then 
+<whdoc for="mcMacroStart">
+Dreamweaver MX 2004 has a bad habit of changing ( into parentil which then 
 leads to WebHub expanding expressions.  Therefore the following macros link
 to AppSettings which are in the XML file and unlikely to be transformed.
 </whdoc>
@@ -72,7 +72,7 @@ a helpful overview of the site.
 </td>
 
 <td valign="top">
-<br /> It's essential to know which pages (or parts of pages) need to be
+<br /> It is essential to know which pages (or parts of pages) need to be
 protected, by what type(s) of protection and what the exceptions are.  Exceptions
 are not always obvious, and it can be helpful to think carefully about the
 functionality of the individual pieces, then look at them again as the whole.
@@ -354,7 +354,7 @@ censoring agent.  WebHub filters information because it monitors patterns that a
 observable (ie: changing IP numbers during a session), and allows you to
  program your desired response for each case; and it acts as a censoring agent because
 your HTML code is NOT VIEWABLE to the public--only the final rendered HTML is.
-Here is a list of (~JUMP|PgWHSecBasics|built-in WebHub Security features~)</p>
+Here is a list of (~JUMP|pgWHSecBasics|built-in WebHub Security features~)</p>
 
 <div class="dcenter"> (~JUMP|pgEnterHTSC|Back~)</div>
 
