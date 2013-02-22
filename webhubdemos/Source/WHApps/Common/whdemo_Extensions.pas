@@ -544,19 +544,19 @@ var
   bForceNewSession: Boolean;
   QueryStringWithoutCommand: string;
   x: Integer;
+  bKeepChecking: Boolean;
 const
   cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
   inherited;
-  if InSessionNumber = 0 then
-    Exit;
+  bKeepChecking := InSessionNumber <> 0;
+  bKeepChecking := bKeepChecking and Assigned(pWebApp) and pWebApp.IsUpdated;
+  bKeepChecking := bKeepChecking and (NOT IsHREFToolsQATestAgent);
 
-  if Assigned(pWebApp) and pWebApp.IsUpdated then
+  if bKeepChecking then
   begin
     with pWebApp do
     begin
-      if IsHREFToolsQATestAgent then
-        Exit;
 
       // implement new-session security.
       bForceNewSession := False;
@@ -655,14 +655,16 @@ begin
       (NOT IsHREFToolsQATestAgent) then
     begin
       { do not allow blank referer within the showcase or htsc demos 
-        unless on the home page }
+        unless on the home page  or  switching http/https }
       if (Sender.Request.Referer = '') and
         (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
-        (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) then
+        (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) and
+        (pWebApp.Session.PriorScheme = pWebApp.Request.Scheme) then
       begin
         if (NOT HonorLowerSecurity) then
         begin
-          Sender.RejectSession('Blank referer, without security token', False);
+          Sender.RejectSession('Blank referer, scheme ' +
+            pWebApp.Session.PriorScheme + ', without security token', False);
         end;
       end;
     end;
