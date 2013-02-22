@@ -939,7 +939,11 @@ user to a specific page</td>
 </whpagesettings>
 <whprep>
 (~Check|_bLoginOK~)
-(~chCheckTime~)
+<whdroplet name="drCheckTime" show="yes">
+(~IfInactiveForSec|(~mcLoginLifeSec~)|(~CLEAR|_bLoginOk~)~)
+(~REQUIRES|_bLoginOk|pgTimedOut~)
+(~WebLogin.Update~)
+</whdroplet>
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -950,7 +954,7 @@ user to a specific page</td>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-Fast clicking!  You made it under the timeout allowance!
+Congratulations -- that was very fast clicking!  You made it under the timeout allowance!
 <div class="dcenter">(~JUMP|pgAboutExpires|Now take a look at the EXPIRES macro~)</div>
 
 </div>  <!--- demopagecontent -->
@@ -964,7 +968,7 @@ Fast clicking!  You made it under the timeout allowance!
 <whpagesettings inherit="public">
 </whpagesettings>
 <whprep>
-(~chCheckTime~)
+<!--- must not call drCheckTime here because that goes in infinite loop -->
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)

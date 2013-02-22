@@ -125,11 +125,4 @@ mctimeout=2
 <br />
 </whdroplet>
 
-<whdroplet name="chCheckTime">
-<!---(~IfInactiveForSec|5|(~CLEAR|_bLoginOk~)(~PAGE|pgGoodby~)~)-->
-(~IfInactiveForSec|(~mcLoginLifeSec~)|(~CLEAR|_bLoginOk~)~)
-(~REQUIRES|_bLoginOk|pgTimedOut~)
-(~WebLogin.Update~)
-</whdroplet>
-
 </whteko>
