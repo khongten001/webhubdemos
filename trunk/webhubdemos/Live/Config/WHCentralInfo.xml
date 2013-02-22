@@ -277,7 +277,7 @@
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="WHSESSION"/>
-	  <SessionNumberLocation value="CookieFixedDomain" />
+	  <SessionNumberLocation value="URL" />
         </WebHubApp>
         <WebHubApp appID="joke">
           <Nickname value="Sequence"/>
