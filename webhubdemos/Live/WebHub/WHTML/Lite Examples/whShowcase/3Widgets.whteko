@@ -198,7 +198,7 @@ Watch the BoolVarsPending array below to see how WebHub checks the submitted dat
 
 
 
-<whpage pageid="pgTextBox" desc="Text Boxes (TextAreas)">
+<whpage pageid="pgTextBox" desc="Text Boxes (TextAreas or TxtVars)">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
@@ -224,13 +224,17 @@ entered in the text box.</p>
 <p>
 Here are all the ways you can republish the text box data:</p>
 <ul>
-<li><b>(~txtDescription~)</b>
-<p>
-<li><b>(~TxtVar.txtDescription~)</b>
-<p>
-<li><b> (~TextBR.txtDescription~)</b>
-<p>
-<li><b>(~TxtVar.txtDescription.Apples~)</b>
+<li><b>(~.txtDescription~):</b><br/>
+(~txtDescription~)</li>
+
+<li><b>(~.TxtVar.txtDescription~):</b><br/>
+(~TxtVar.txtDescription~)</li>
+
+<li><b>(~.TextBR.txtDescription~):</b><br/>
+(~TextBR.txtDescription~)</li>
+
+<li><b>(~.TxtVar.txtDescription.Apples~):</b><br/>
+(~TxtVar.txtDescription.Apples~)</li>
 
 </ul>
 
