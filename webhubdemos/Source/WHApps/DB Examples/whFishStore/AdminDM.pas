@@ -139,14 +139,14 @@ var
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
 
-  if pos('post',lowercase(TwhPage(Sender).WebApp.Command))>0 then
+  if pos('post',lowercase(pWebApp.Command))>0 then
   begin
     {post items to table}
 
     {be careful not to trigger the edit verb built into
      the tpUpdate component decendants from a cgi-call!}
 
-    with TwhPage(Sender).WebApp do
+    with pWebApp do
     begin
       iKey := TFishSessionVars(Session.Vars).currentFish;
       with TableFishCost do
@@ -159,7 +159,7 @@ begin
             TableFishCost.Edit;   {be careful! The Edit method applies to both the app & the table.}
             FieldByName('Price').AsCurrency := dPrice;
             FieldByName('ShippingNotes').AsString :=
-              Session.TxtVars.List['txtShippingNotes'].Text;
+              Session.TxtVars.ListText['txtShippingNotes'];
             if FieldByName('Password').AsString = '' then
               FieldByName('Password').AsString  := StringVar['Password'];
             Post;
