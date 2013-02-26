@@ -2,7 +2,7 @@
 <whteko designmode="code" designdynsrc="localdsp">
 
 <whdroplet name="chNewSession">
-(~NOMATCH|(~_DSPInit~)=Done|
+(~NOTASSIGNED|_DSPInit|
 (~SET|SearchLimit=300~)
 (~SET|SearchNear=8~)
 (~SET|SearchFuzziness=0~)
