@@ -310,7 +310,7 @@ begin
   end
   else
   begin
-    LogSendInfo('htmlparam', TwhWebAction(Sender).HtmlParam, cn);
+    CSSend('htmlparam', TwhWebAction(Sender).HtmlParam);
     // htmlparam cookieclear
     pWebApp.SendMacro('COOKIECLEAR|login_tab');
     pWebApp.SendMacro('COOKIECLEAR|expected_tab');
