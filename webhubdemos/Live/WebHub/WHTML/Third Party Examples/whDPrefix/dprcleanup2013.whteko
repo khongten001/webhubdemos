@@ -7,7 +7,15 @@
 (~REQUIRES|_email|pgregister~)
 </whdroplet>
 
-<whpage pageid="cleanup2013" desc="-Delphi Prefix Database Cleanup 2013 January" mode="design">
+<whdoc for="cleanup2013">
+This page was used for a cleanup effort in January 2013 
+in conjunction with a StreamSend mailout to everyone 
+with a registration.
+Passwords were valid until the end of January and then 
+they all expired.
+</whdoc>
+
+<whpage pageid="pgcleanup" desc="-Delphi Prefix Database Cleanup">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -79,7 +87,7 @@ googlepriority=0
 
 <h2>Sorry, No Go.</h2>
 (~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
-<p>(~JUMPR|cleanup2013|Login here~)</p>
+<p>(~JUMPR|pgcleanup|Login here~)</p>
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
 <a target="_blank" href="https://www.href.com/techhelp">www.href.com</a>
 </p>
@@ -248,7 +256,7 @@ Hi, Do you still use prefix "(~FIELD|wdsmanpref|mpf prefix~)" for Delphi work?
 Just wondering because I am trying to clean up 
 the Delphi Prefix Registry.
 You can login and review/help at 
-http://delphiprefix.href.com/cleanup2013
+http://delphiprefix.href.com/pgcleanup
 email (~FIELD|wdsmanpref|mpf email~)
 pass "(~FIELD|wdsmanpref|mpfPassToken~)"  without quotes
 Thank you.
