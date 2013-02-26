@@ -23,6 +23,7 @@ googlepriority=0
 </whpagesettings>
 <whprep>
 </whprep>
+(~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~PageDesc~)</title>
@@ -75,6 +76,7 @@ googlesitemap=exclude
 googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
+(~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>Error Logging in to Delphi Prefix Registry</title>
@@ -106,6 +108,7 @@ googlepriority=0
 <whprep>
 (~SET|_wasEMail=(~_EMail~)~)
 </whprep>
+(~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~PageDesc~)</title>
@@ -150,6 +153,7 @@ googlepriority=0
 (~drCleanupCheckpoint~)
 (~waCheckSubnet.Execute|(~CHECK|_bAdminRemote~)||(~CLEAR|_bAdminRemote~)~)
 </whprep>
+(~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>(~pagedesc~)</title>
