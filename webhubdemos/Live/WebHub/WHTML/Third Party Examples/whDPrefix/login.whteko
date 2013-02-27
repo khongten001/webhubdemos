@@ -48,7 +48,7 @@ googlepriority=0
 </body></html>
 </whpage>
 
-<whpage pageid="pgLoginConfirm" desc="-Confirm Login" mode="design">
+<whpage pageid="pgloginconfirm" desc="-Confirm Login" mode="design">
 <whprep>
 (~REQUIRES|LoginUser|pgLogin~)
 (~REQUIRES|LoginPass|pgLogin~)

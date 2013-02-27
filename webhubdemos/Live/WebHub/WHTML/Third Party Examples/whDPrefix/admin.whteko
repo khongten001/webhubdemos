@@ -41,7 +41,7 @@ googlepriority=0
 </table>
 </whdroplet>
 
-<whpage pageid="PGADMINDELETE" desc="Confirmation" mode="design">
+<whpage pageid="pgadmindelete" desc="Confirmation" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -56,7 +56,7 @@ Ok this is your last chance!
 (~JUMP|pgAdminMenu|Cancel - return to menu~)
 </whpage>
 
-<whpage pageid="PGADMINDELETEYES" desc="Deleting records marked D" mode="design">
+<whpage pageid="pgadmindeleteyes" desc="Deleting records marked D" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -69,7 +69,7 @@ Ok, those records have been deleted.
 (~JUMP|pgAdminMenu|Return to the admin menu.~)
 </whpage>
 
-<whpage pageid="PGADMINMENU" desc="Admin Menu" mode="design">
+<whpage pageid="pgadminmenu" desc="Admin Menu" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -103,7 +103,7 @@ googlepriority=0
 </center>
 </whpage>
 
-<whpage pageid="PGEDIT" desc="Edit one record in the table" mode="design">
+<whpage pageid="pgedit" desc="Edit one record in the table" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -143,7 +143,7 @@ Thanks for increasing security by logging out.
 </center>
 </whpage>
 
-<whpage pageid="PGPOST" desc="pgpost" mode="design">
+<whpage pageid="pgpost" desc="pgpost" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a

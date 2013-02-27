@@ -30,7 +30,7 @@ data: (~INPUTTEXT|data,30~)<br/>
 </html>
 </whpage>
 
-<whpage pageid="pgCountPending" desc="-Remote monitor of pending requests">
+<whpage pageid="pgcountpending" desc="-Remote monitor of pending requests">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
   <title>(~PageDesc~)</title>
