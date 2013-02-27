@@ -411,7 +411,7 @@ begin
       end
       else
       begin
-        ErrorText := 'Error - MpfID '+ IntToStr(FMpfID) + ' not found.';
+        ErrorText := 'Error - MpfID ['+ IntToStr(FMpfID) + '] not found.';
         pWebApp.Debug.AddPageError(ErrorText);
       end;
     end;
@@ -431,8 +431,11 @@ begin
 
   if ThisCommand <> '' then
   begin
+    LogSendInfo('ThisCommand', ThisCommand, cFn);
     a1 := Uncode64String(ThisCommand);
+    LogSendInfo('a1', a1, cFn);
     fMpfID := StrToIntDef(a1, -1);
+    LogSendInfo('fMpfID', S(fMpfID), cFn);
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
@@ -547,25 +550,29 @@ var
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
-  SplitString(Command, '.', Command, a1);
-  a1 := Uncode64String(a1);
+  Assert(Sender is TwhdbForm);
+  CSSend('Command', Command);
+
+  a1 := Uncode64String(Command);
   CSSend('a1', a1);
   with pWebApp.Response, wdsAdmin.DataSet do
   begin
-    b := Locate('MpfID',StrToIntDef(a1,-1),[]);
-    WebDataForm.LocateResult := b;
+    b := Locate('MpfID', StrToIntDef(a1,-1),[]);
+    (Sender as TwhdbForm).LocateResult := b;   // must tag both properties True
     CSSend('WebDataForm.LocateResult', S(WebDataForm.LocateResult));
+    CSSend('WebDataForm.AlreadyLocated', S(WebDataForm.AlreadyLocated));
     if b then
       CSSendNote('found ' + a1 + ' ok')
     else
     begin
-      ErrorText := 'Error - MpfID '+a1+' not found.';
+      ErrorText := 'Error - MpfID [' + a1 + '] not found.';
       CSSendError(ErrorText);
       pWebApp.Debug.AddPageError(ErrorText);
       pWebApp.StringVar[TwhWebAction(Sender).Name + '-ErrorMessage']
         := ErrorText;
     end;
   end;
+  (Sender as TwhdbForm).AlreadyLocated := True; // attempted.
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
