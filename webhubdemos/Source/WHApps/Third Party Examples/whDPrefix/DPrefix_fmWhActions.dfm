@@ -39,7 +39,7 @@ inherited fmWhActions: TfmWhActions
         Left = 177
         Top = 6
         Width = 123
-        Action = ActNoAmpersand
+        Action = ActDeleteStatusD
         LeaveSpace = True
         MinWidth = 28
       end
