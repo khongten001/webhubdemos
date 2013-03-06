@@ -11,12 +11,14 @@
 <html>
 <head>
 (~drHead~)
+<style type="text/css">
  #captchaNewQuote em {    /* TwhCaptcha generates all key digits with emphasis */
    /* color should be the same as in the instructions for filling  in the form */
    color: red;    
    font-style: normal;
    font-weight: 700;
  }
+ </style>
 </head>
 <body>
 (~drPageBegin~)
