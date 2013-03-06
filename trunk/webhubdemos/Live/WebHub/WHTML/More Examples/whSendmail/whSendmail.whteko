@@ -11,6 +11,12 @@
 <html>
 <head>
 (~drHead~)
+ #captchaNewQuote em {    /* TwhCaptcha generates all key digits with emphasis */
+   /* color should be the same as in the instructions for filling  in the form */
+   color: red;    
+   font-style: normal;
+   font-weight: 700;
+ }
 </head>
 <body>
 (~drPageBegin~)
@@ -29,6 +35,13 @@ and uses the resulting figures in automated e-mail response letter.</p>
 <tr>
 	<td>Enter your e-mail address:</td>
 	<td>(~INPUTTEXT|inSurferEMail,30,30~)</td>
+</tr>
+<tr>
+	<td>Enter security code<br/>
+Ahoy Humans!<br/>Please enter 
+the <span style="color: red; font-weight: 900;">red</span> security code.	
+	</td>
+	<td>(~waCaptcha.Execute|new,Quote~)<!--- Action=new and Keyword=Quote   --> (~INPUTTEXT|CaptchaQuote~) </td>
 </tr>
 <tr>
 	<td colspan="2">&nbsp;</td>
@@ -94,6 +107,10 @@ and uses the resulting figures in automated e-mail response letter.</p>
 </body></html>
 </whpage>
 
+<whdroplet name="drCaptchaErrorQuote">
+(~BOUNCE|pgRequired~)  
+</whdroplet>
+
 <whpage pageid="pgRequired" desc="Required Data Missing">
 (~mcdoctypehtml~)
 <html>
@@ -114,6 +131,9 @@ kittens, and the payment method.
 
 <whpage pageid="pgThankYou" desc="Thank you for the message!">
 <whprep>
+<!--- Now we call the SAME captcha web action, with 
+Action 'control' and the SAME keyword Quote. -->
+(~waCaptcha.Execute|control,Quote~)
 <!--- Check for required fields. -->
 (~REQUIRES|inQty1|pgRequired~)
 (~REQUIRES|inQty2|pgRequired~)
