@@ -39,11 +39,11 @@ and uses the resulting figures in automated e-mail response letter.</p>
 	<td>(~INPUTTEXT|inSurferEMail,30,30~)</td>
 </tr>
 <tr>
-	<td>Enter security code<br/>
-Ahoy Humans!<br/>Please enter 
+	<td>Ahoy Humans!<br/>Please enter 
 the <span style="color: red; font-weight: 900;">red</span> security code.	
 	</td>
-	<td>(~webmailCaptcha.Execute|new,Quote~)<!--- Action=new and Keyword=Quote   --> (~INPUTTEXT|CaptchaQuote~) </td>
+	<td>(~INPUTTEXT|CaptchaQuote~) <br/>
+	(~webmailCaptcha.Execute|new,Quote~)<!--- Action=new and Keyword=Quote   --></td>
 </tr>
 <tr>
 	<td colspan="2">&nbsp;</td>
