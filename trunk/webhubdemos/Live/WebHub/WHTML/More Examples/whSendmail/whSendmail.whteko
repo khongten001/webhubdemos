@@ -43,7 +43,7 @@ and uses the resulting figures in automated e-mail response letter.</p>
 Ahoy Humans!<br/>Please enter 
 the <span style="color: red; font-weight: 900;">red</span> security code.	
 	</td>
-	<td>(~waCaptcha.Execute|new,Quote~)<!--- Action=new and Keyword=Quote   --> (~INPUTTEXT|CaptchaQuote~) </td>
+	<td>(~webmailCaptcha.Execute|new,Quote~)<!--- Action=new and Keyword=Quote   --> (~INPUTTEXT|CaptchaQuote~) </td>
 </tr>
 <tr>
 	<td colspan="2">&nbsp;</td>
@@ -135,7 +135,7 @@ kittens, and the payment method.
 <whprep>
 <!--- Now we call the SAME captcha web action, with 
 Action 'control' and the SAME keyword Quote. -->
-(~waCaptcha.Execute|control,Quote~)
+(~webmailCaptcha.Execute|control,Quote~)
 <!--- Check for required fields. -->
 (~REQUIRES|inQty1|pgRequired~)
 (~REQUIRES|inQty2|pgRequired~)
