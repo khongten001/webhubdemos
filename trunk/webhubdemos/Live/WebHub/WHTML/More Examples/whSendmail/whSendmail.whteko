@@ -185,6 +185,14 @@ Your Purchase Order Reference: (~inPurchaseOrder~)
 <html>
 <head>
 (~drHead~)
+<style type="text/css">
+ #captchaNewQuick em {    /* TwhCaptcha generates all key digits with emphasis */
+   /* color should be the same as in the instructions for filling  in the form */
+   color: red;    
+   font-style: normal;
+   font-weight: 700;
+ }
+ </style>
 </head>
 <body>
 (~drPageBegin~)
@@ -200,6 +208,14 @@ Your message:
 <textarea name="txtMessage" rows="12" cols="70">
 (~txtMessage~)
 </textarea>
+
+<div>
+	Ahoy Humans!<br/>Please enter 
+the <span style="color: red; font-weight: 900;">red</span> security code.<br/>	
+(~INPUTTEXT|CaptchaQuick~) <br/>
+<span style="font-size:smaller;">(~webmailCaptcha.Execute|new,Quick~)<!--- Action=new and Keyword=Quick   --></span>
+</div>
+
 <input type="submit" />
 </form>
 
@@ -208,8 +224,15 @@ Your message:
 </body></html>
 </whpage>
 
+<whdroplet name="drCaptchaErrorQuick">
+(~BOUNCE|testwebmailform1~)  
+</whdroplet>
+
 <whpage pageid="testwebmailform2" desc="Test TwhMailForm component">
 <whprep>
+<!--- Now we call the SAME captcha web action, with 
+Action 'control' and the SAME keyword Quick. -->
+(~webmailCaptcha.Execute|control,Quick~)
 (~webmailform.execute|~)
 </whprep>
 (~mcdoctypehtml~)
