@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{917471D8-90E7-4229-9CCB-7C325FA6E37B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="SharedSender.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SharedReceiver.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="SharedSender">
+        <MSBuild Projects="SharedSender.dproj"/>
+    </Target>
+    <Target Name="SharedSender:Clean">
+        <MSBuild Projects="SharedSender.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SharedSender:Make">
+        <MSBuild Projects="SharedSender.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SharedReceiver">
+        <MSBuild Projects="SharedReceiver.dproj"/>
+    </Target>
+    <Target Name="SharedReceiver:Clean">
+        <MSBuild Projects="SharedReceiver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SharedReceiver:Make">
+        <MSBuild Projects="SharedReceiver.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="SharedSender;SharedReceiver"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="SharedSender:Clean;SharedReceiver:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="SharedSender:Make;SharedReceiver:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
