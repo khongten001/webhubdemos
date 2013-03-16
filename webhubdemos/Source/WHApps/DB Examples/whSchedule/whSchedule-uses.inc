@@ -12,7 +12,6 @@
   webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas',
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
-  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas';
-*)
+//  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas',
 
 {$ENDIF}
