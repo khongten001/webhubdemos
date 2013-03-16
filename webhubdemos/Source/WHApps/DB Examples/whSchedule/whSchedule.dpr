@@ -9,7 +9,7 @@ program whSchedule;
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  ucCalifTime in 'O:\WebApplication\project-hrefrack-d\trunk\meta\Source\SharedAll\ucCalifTime.pas',
+  {$I whSchedule-uses.inc}
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
@@ -43,19 +43,7 @@ uses
   ucIbAndFbCredentials in 'h:\ucIbAndFbCredentials.pas',
   ucIBObjPrepare in 'h:\ucIBObjPrepare.pas';
 
-(* when compiling with source use these:
-  IB_Import in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Import.pas',
-  IB_Export in 'K:\Vendors\CPS\IBObjects\v5.x\source\tools\IB_Export.pas',
-  rbMake in 'K:\Rubicon\source\rbMake.pas',
-  rbAccept in 'K:\Rubicon\source\rbAccept.pas',
-  rbPrgDlg in 'K:\Rubicon\source\rbPrgDlg.pas' {rbProgressDlg},
-  rbCache in 'K:\Rubicon\source\rbCache.pas',
-  rbSearch in 'K:\Rubicon\source\rbSearch.pas',
-  webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas',
-  whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
-  whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
-  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas';
-*)
+//   {$I whSchedule-uses.inc}
 
 begin
   {M}Application.Initialize;
