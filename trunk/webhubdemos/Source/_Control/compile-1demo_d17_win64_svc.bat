@@ -13,7 +13,7 @@ if not exist %dcc% pause
 set libsearchpath="h:\;h:\dcu_d17_win64;h:\pkg_d17_win64;%raizelib%;%d17%\lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
-set compilerflags=USE_TIBODataset
+set compilerflags=USE_TIBODataset;INHOUSE
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 
