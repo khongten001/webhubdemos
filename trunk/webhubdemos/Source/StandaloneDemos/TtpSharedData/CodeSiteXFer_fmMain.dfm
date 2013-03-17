@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   Caption = 'Transmit from TtpSharedBuf to CodeSite Logger'
-  ClientHeight = 167
+  ClientHeight = 310
   ClientWidth = 408
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -51,5 +51,15 @@ object Form3: TForm3
     Caption = 'Echo last message to GUI here'
     TabOrder = 0
     OnClick = CheckBox1Click
+  end
+  object Memo1: TMemo
+    Left = 0
+    Top = 160
+    Width = 408
+    Height = 150
+    Align = alBottom
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 1
   end
 end

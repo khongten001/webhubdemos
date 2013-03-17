@@ -4,7 +4,9 @@ uses
   CodeSiteLogging,
   Vcl.Forms,
   CodeSiteXFer_fmMain in 'CodeSiteXFer_fmMain.pas' {Form3},
-  ucCodeSiteInterface in 'K:\WebHub\tpack\ucCodeSiteInterface.pas';
+  ucCodeSiteInterface in 'K:\WebHub\tpack\ucCodeSiteInterface.pas',
+  tpStreams in 'K:\WebHub\tpack\tpStreams.pas',
+  tpShareB in 'K:\WebHub\tpack\tpShareB.pas';
 
 {$R *.res}
 

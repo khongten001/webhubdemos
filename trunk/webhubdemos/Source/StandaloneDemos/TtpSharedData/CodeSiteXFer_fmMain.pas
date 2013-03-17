@@ -14,6 +14,7 @@ type
     Label3: TLabel;
     LabelOnAt: TLabel;
     CheckBox1: TCheckBox;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure CheckBox1Click(Sender: TObject);
@@ -44,15 +45,20 @@ procedure TForm3.BufChanged(Sender: TObject);
 var
   s1, s2, s3: string;
   i: Integer;
+  Incoming: string;
 begin
   if FGuiActive then
     LabelOnAt.Caption := FormatDateTime('hh:nn:ss', Now);
 
+  Incoming := string(FSharedBuf.GlobalUTF8String);
+  if Incoming <> '' then
   try
-    if SplitThree(string(UTF8String(FSharedBuf.GlobalAnsiString)), '^^', s1, s2,
-      s3) then
+    if FGuiActive then
+      Memo1.Lines.Add(Incoming);
+
+    if SplitThree(Incoming, '^^', s1, s2, s3) then
     begin
-      FSharedBuf.GlobalAnsiString := '';
+      //FSharedBuf.GlobalAnsiString := '';
       if FGuiActive then
       begin
         Label1.Caption := s1;
@@ -134,6 +140,8 @@ end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 begin
+  top := 50;
+  left := 150;
   FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteFPC', 2048);
   FSharedBuf.Name := 'FSharedBuf';
   FSharedBuf.OnChange := BufChanged;
