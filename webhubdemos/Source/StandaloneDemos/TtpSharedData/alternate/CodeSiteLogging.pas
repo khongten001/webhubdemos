@@ -150,10 +150,11 @@ begin
   {$ENDIF}
 end;
 
-function ABC(const a: Integer; const b, c: string): AnsiString;
+function ABC(const a: Integer; const b, c: string): UTF8String;
 begin
-  Result := AnsiString(UTF8Encode(Copy(IntToStr(a) + '^^' + b + '^^' + c, 1,
-    2048)));
+  Result := UTF8Encode(IntToStr(a) + '^^' + b + '^^' + c);
+  if Length(Result) > 2048 then
+    Result := Copy(Result, 1, 2048);
 end;
 
 procedure TCodeSiteFake.EnterMethod(c: TObject; const S: string);
@@ -162,7 +163,7 @@ begin
   begin
     {$IFDEF XFER2CodeSite}
     ClearBuf;
-    FSharedBuf.GlobalAnsiString := ABC(6, TComponent(c).ClassName + '.' +
+    FSharedBuf.GlobalUTF8String := ABC(6, TComponent(c).ClassName + '.' +
       TComponent(c).Name, S);
     {$ELSE}
     HREFTestLog('>>', TComponent(c).ClassName + ' ' + TComponent(c).Name, S)
@@ -172,7 +173,7 @@ begin
   begin
     {$IFDEF XFER2CodeSite}
     ClearBuf;
-    FSharedBuf.GlobalAnsiString := ABC(6, S, '');
+    FSharedBuf.GlobalUTF8String := ABC(6, S, '');
     {$ELSE}
     HREFTestLog('>>', '', S);
     {$ENDIF}
@@ -183,7 +184,7 @@ procedure TCodeSiteFake.EnterMethod(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(6, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(6, S, '');
   {$ELSE}
   HREFTestLog('>>', '', S);
   {$ENDIF}
@@ -195,7 +196,7 @@ begin
   begin
     {$IFDEF XFER2CodeSite}
     ClearBuf;
-    FSharedBuf.GlobalAnsiString := ABC(7, TComponent(c).ClassName + '.' +
+    FSharedBuf.GlobalUTF8String := ABC(7, TComponent(c).ClassName + '.' +
       TComponent(c).Name, S);
     {$ELSE}
     HREFTestLog('<<', TComponent(c).ClassName + ' ' + TComponent(c).Name, S)
@@ -205,7 +206,7 @@ begin
   begin
     {$IFDEF XFER2CodeSite}
     ClearBuf;
-    FSharedBuf.GlobalAnsiString := ABC(7, S, '');
+    FSharedBuf.GlobalUTF8String := ABC(7, S, '');
     {$ELSE}
     HREFTestLog('<<', '', S);
     {$ENDIF}
@@ -215,7 +216,8 @@ end;
 procedure TCodeSiteFake.ClearBuf;
 begin
   {$IFDEF XFER2CodeSite}
-  FSharedBuf.GlobalAnsiString := '';
+//  if Self <> nil then
+//    FSharedBuf.GlobalUTF8String := '';
   {$ENDIF}
 end;
 
@@ -246,7 +248,7 @@ procedure TCodeSiteFake.ExitMethod(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(7, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(7, S, '');
   {$ELSE}
   HREFTestLog('<<', '', S);
   {$ENDIF}
@@ -256,7 +258,7 @@ procedure TCodeSiteFake.Send(const a1: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(1, a1, '');
+  FSharedBuf.GlobalUTF8String := ABC(1, a1, '');
   {$ELSE}
   HREFTestLog(1, a1, '');
   {$ENDIF}
@@ -266,7 +268,7 @@ procedure TCodeSiteFake.Send(const a1: string; const i2: Integer);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(1, a1, IntToStr(i2));
+  FSharedBuf.GlobalUTF8String := ABC(1, a1, IntToStr(i2));
   {$ELSE}
   HREFTestLog('info', a1, IntToStr(i2));
   {$ENDIF}
@@ -281,7 +283,7 @@ procedure TCodeSiteFake.Send(const a1, a2: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(1, a1, a2);
+  FSharedBuf.GlobalUTF8String := ABC(1, a1, a2);
   {$ELSE}
   HREFTestLog('info', a1, a2);
   {$ENDIF}
@@ -291,7 +293,7 @@ procedure TCodeSiteFake.SendError(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(3, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(3, S, '');
   {$ELSE}
   HREFTestLog('error', S, '');
   {$ENDIF}
@@ -301,7 +303,7 @@ procedure TCodeSiteFake.SendException(E: Exception);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(5, E.Message, '');
+  FSharedBuf.GlobalUTF8String := ABC(5, E.Message, '');
   {$ELSE}
   HREFTestLog('exception', E.Message, '');
   {$ENDIF}
@@ -311,7 +313,7 @@ procedure TCodeSiteFake.SendNote(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(4, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(4, S, '');
   {$ELSE}
   HREFTestLog('note', S, '');
   {$ENDIF}
@@ -321,7 +323,7 @@ procedure TCodeSiteFake.SendReminder(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(10, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(10, S, '');
   {$ELSE}
   HREFTestLog('reminder', S, '');
   {$ENDIF}
@@ -331,7 +333,7 @@ procedure TCodeSiteFake.SendWarning(const S: string);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
-  FSharedBuf.GlobalAnsiString := ABC(2, S, '');
+  FSharedBuf.GlobalUTF8String := ABC(2, S, '');
   {$ELSE}
   HREFTestLog('warning', S, '');
   {$ENDIF}
@@ -349,7 +351,7 @@ begin
       with Value do
       begin
         if (LogFile.FilePath <> '') and (LogFile.FileName <> '') then
-          FSharedBuf.GlobalAnsiString := ABC(8, LogFile.FilePath,
+          FSharedBuf.GlobalUTF8String := ABC(8, LogFile.FilePath,
             LogFile.FileName);
       end;
     end;
@@ -399,7 +401,7 @@ begin
     {$IFDEF XFER2CodeSite}
     if Assigned(CodeSite) and Assigned(CodeSite.SharedBuf) then
       CodeSite.ClearBuf;
-      CodeSite.SharedBuf.GlobalAnsiString := ABC(9, BoolToStr(Value, True), '');
+      CodeSite.SharedBuf.GlobalUTF8String := ABC(9, BoolToStr(Value, True), '');
     {$ENDIF}
     FEnabled := Value;
   end;
