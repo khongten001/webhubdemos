@@ -5,6 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs,
+  SyncObjs,
   tpShareB, Vcl.StdCtrls;
 
 type
@@ -22,6 +23,7 @@ type
     { Private declarations }
     FGuiActive: Boolean;
     FSharedBuf: TtpSharedBuf;
+    FCS: TCriticalSection;
     procedure BufChanged(Sender: TObject);
   public
     { Public declarations }
@@ -47,99 +49,113 @@ var
   i: Integer;
   Incoming: string;
 begin
-  if FGuiActive then
-    LabelOnAt.Caption := FormatDateTime('hh:nn:ss', Now);
-
-  Incoming := string(FSharedBuf.GlobalUTF8String);
-  if Incoming <> '' then
+  if FCS.TryEnter then
   try
     if FGuiActive then
-      Memo1.Lines.Add(Incoming);
+      LabelOnAt.Caption := FormatDateTime('hh:nn:ss', Now);
 
-    if SplitThree(Incoming, '^^', s1, s2, s3) then
-    begin
-      //FSharedBuf.GlobalAnsiString := '';
+    Incoming := string(FSharedBuf.GlobalUTF8String);
+    if Incoming <> '' then
+    try
       if FGuiActive then
+        Memo1.Lines.Add(Incoming);
+
+      if SplitThree(Incoming, '^^', s1, s2, s3) then
       begin
-        Label1.Caption := s1;
-        Label2.Caption := s2;
-        Label3.Caption := s3;
-      end;
+        //FSharedBuf.GlobalAnsiString := '';
+        if FGuiActive then
+        begin
+          Label1.Caption := s1;
+          Label2.Caption := s2;
+          Label3.Caption := s3;
+        end;
 
-      i := StrToIntDef(s1, -1);
-      case i of
-        1: // info
-        begin
-          CodeSite.Send(s2, s3);
-        end;
-        2: // warning
-        begin
-          CodeSite.SendWarning(s2);
-        end;
-        3: // error
-        begin
-          CodeSite.SendError(s2);
-        end;
-        4: // note
-        begin
-          CodeSite.SendNote(s2);
-        end;
-        5: // exception
-        begin
-          CodeSite.SendError('EXCEPTION: ' + s2);
-        end;
-        6: // EnterMethod
-        begin
-          CodeSite.EnterMethod(s2 + ' ' + s3);
-        end;
-        7: // ExitMethod
-        begin
-          CodeSite.ExitMethod(s2 + ' ' + s3);
-        end;
-        8: // Log file destination
-        begin
-          if CSLogFileDestination = nil then
+        i := StrToIntDef(s1, -1);
+        case i of
+          1: // info
           begin
-            CSLogFileDestination := TCodeSiteDestination.Create(nil);
+            CodeSite.Send(s2, s3);
           end;
-          CSLogFileDestination.LogFile.FilePath :=
-            IncludeTrailingPathDelimiter(S2);
-          CSLogFileDestination.LogFile.FileName := S3;
-          CodeSite.Destination := CSLogFileDestination;
-        end;
-        9: // Set Enabled
-        begin
-          CodeSiteManager.Enabled := SameText(s2, 'true');
-        end;
-        10: // Reminder
-        begin
-          CodeSite.SendReminder(s2);
+          2: // warning
+          begin
+            CodeSite.SendWarning(s2);
+          end;
+          3: // error
+          begin
+            CodeSite.SendError(s2);
+          end;
+          4: // note
+          begin
+            CodeSite.SendNote(s2);
+          end;
+          5: // exception
+          begin
+            CodeSite.SendError('EXCEPTION: ' + s2);
+          end;
+          6: // EnterMethod
+          begin
+            CodeSite.EnterMethod(s2 + ' ' + s3);
+          end;
+          7: // ExitMethod
+          begin
+            CodeSite.ExitMethod(s2 + ' ' + s3);
+          end;
+          8: // Log file destination
+          begin
+            if CSLogFileDestination = nil then
+            begin
+              CSLogFileDestination := TCodeSiteDestination.Create(nil);
+            end;
+            CSLogFileDestination.LogFile.FilePath :=
+              IncludeTrailingPathDelimiter(S2);
+            CSLogFileDestination.LogFile.FileName := S3;
+            CodeSite.Destination := CSLogFileDestination;
+          end;
+          9: // Set Enabled
+          begin
+            CodeSiteManager.Enabled := SameText(s2, 'true');
+          end;
+          10: // Reminder
+          begin
+            CodeSite.SendReminder(s2);
+          end;
         end;
       end;
+    except
+      on E: Exception do
+      begin
+        Label1.Caption := E.Message;
+        Label2.Caption := '';
+        Label3.Caption := '';
+      end;
     end;
-  except
-    on E: Exception do
-    begin
-      Label1.Caption := E.Message;
-      Label2.Caption := '';
-      Label3.Caption := '';
-    end;
+  finally
+    FCS.Release;
   end;
-
 end;
 
 
 procedure TForm3.CheckBox1Click(Sender: TObject);
 begin
-  FGuiActive := Checkbox1.Checked;
-  Label1.Caption := 'GUI Active: ' + BoolToStr(FGuiActive, True);
-  Label2.Caption := '';
-  Label3.Caption := '';
-  LabelOnAt.Caption := FormatDateTime('hh:nn:ss', Now);
+  Memo1.Clear;
+  if FCS.TryEnter then
+  begin
+    try
+      FGuiActive := Checkbox1.Checked;
+      Label1.Caption := 'GUI Active: ' + BoolToStr(FGuiActive, True);
+      Label2.Caption := '';
+      Label3.Caption := '';
+      LabelOnAt.Caption := FormatDateTime('hh:nn:ss', Now);
+    finally
+      FCS.Release;
+    end;
+  end;
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 begin
+  FCS := TCriticalSection.Create;
+
   top := 50;
   left := 150;
   FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteFPC', 2048);
@@ -158,6 +174,7 @@ end;
 procedure TForm3.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FSharedBuf);
+  FreeAndNil(FCS);
 end;
 
 initialization

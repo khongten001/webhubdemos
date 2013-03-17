@@ -218,6 +218,7 @@ begin
   {$IFDEF XFER2CodeSite}
 //  if Self <> nil then
 //    FSharedBuf.GlobalUTF8String := '';
+  Sleep(10);  // slow the stream to the TtpSharedBuf
   {$ENDIF}
 end;
 
