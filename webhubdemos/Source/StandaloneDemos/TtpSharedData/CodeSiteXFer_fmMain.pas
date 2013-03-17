@@ -105,6 +105,10 @@ begin
         begin
           CodeSiteManager.Enabled := SameText(s2, 'true');
         end;
+        10: // Reminder
+        begin
+          CodeSite.SendReminder(s2);
+        end;
       end;
     end;
   except
