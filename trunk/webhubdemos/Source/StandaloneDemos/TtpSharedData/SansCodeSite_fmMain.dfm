@@ -2,7 +2,7 @@ object Form5: TForm5
   Left = 0
   Top = 0
   Caption = 'Simulate having no real CodeSite units'
-  ClientHeight = 225
+  ClientHeight = 269
   ClientWidth = 518
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -27,17 +27,19 @@ object Form5: TForm5
     Left = 24
     Top = 24
     Width = 169
-    Height = 177
+    Height = 217
     ItemHeight = 20
     Items.Strings = (
       '1 Info'
       '2 Warning'
       '3 Error'
       '4 Note'
-      '5 Exception'
+      '5 (Exception)'
       '6 EnterMethod'
       '7 ExitMethod'
-      '8 Destination Logfile')
+      '8 (Destination Logfile)'
+      '9 (Enabled)'
+      '10 Reminder')
     TabOrder = 1
   end
   object LabeledEdit1: TLabeledEdit

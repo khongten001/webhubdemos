@@ -51,6 +51,8 @@ begin
     6: CodeSite.EnterMethod(Sender, s1);
     7: CodeSite.ExitMethod(Sender, s1);
     8: ; // CodeSite.LogFile.FilePath := ExtractFilePath(ParamStr(0));
+    9: CodeSiteManager.Enabled := SameText(s1, 'True');
+    10: CodeSite.SendReminder(s1);
   end;
   //CodeSite.ExitMethod(Self, cFn);
 end;

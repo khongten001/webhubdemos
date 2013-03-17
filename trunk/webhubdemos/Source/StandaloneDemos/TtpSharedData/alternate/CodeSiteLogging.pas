@@ -39,6 +39,8 @@ uses
 const
   csmGreen: Integer = 1;
   csmYellow: Integer = 1;
+const
+  CodeSite_Version = '5.1XFer';
 
 function InitCodeSiteTransfer: Boolean;
 
@@ -89,6 +91,7 @@ type
     procedure ExitMethod(const S: string); overload;
     procedure ExitMethod(c: TObject; const S: string); overload;
     procedure SendNote(const S: string);
+    procedure SendReminder(const S: string);
     procedure SendWarning(const S: string);
     procedure SendError(const S: string);
     procedure SendException(E: Exception);
@@ -311,6 +314,16 @@ begin
   FSharedBuf.GlobalAnsiString := ABC(4, S, '');
   {$ELSE}
   HREFTestLog('note', S, '');
+  {$ENDIF}
+end;
+
+procedure TCodeSiteFake.SendReminder(const S: string);
+begin
+  {$IFDEF XFER2CodeSite}
+  ClearBuf;
+  FSharedBuf.GlobalAnsiString := ABC(10, S, '');
+  {$ELSE}
+  HREFTestLog('reminder', S, '');
   {$ENDIF}
 end;
 
