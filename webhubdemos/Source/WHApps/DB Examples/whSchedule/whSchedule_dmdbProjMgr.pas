@@ -32,8 +32,10 @@ uses
   MultiTypeApp, uCode, ucString,
   webApp,
   whSchedule_dmwhActions,
-  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen,
-  whSchedule_fmKeywordIndex, whSchedule_dmKeywordSearch;
+  {$IFDEF INHOUSE}
+  whSchedule_fmKeywordIndex, whSchedule_dmKeywordSearch,  // Rubicon
+  {$ENDIF}
+  whSchedule_whpanelInterrupt, whSchedule_fmCodeGen, whdemo_DMIBObjCodeGen;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
@@ -51,7 +53,9 @@ begin
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageSchedule'
   else
     DMIBObjCodeGen.ProjectAbbreviationNoSpaces := 'CodeRageScheduleLOCAL';
+  {$IFDEF INHOUSE}
   Application.CreateForm(TDMRubiconSearch, DMRubiconSearch);
+  {$ENDIF}
 end;
 
 procedure TDMForWHSchedule.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -65,8 +69,10 @@ begin
   if Continue then
   begin
     Continue := DMIBObjCodeGen.Init(ErrorText);
+    {$IFDEF INHOUSE}
     if Continue then
       Continue := DMRubiconSearch.Init(ErrorText);
+    {$ENDIF}
   end;
 end;
 
@@ -83,10 +89,11 @@ begin
       {M}Application.CreateForm(TfmAppDBInterrupt, fmAppDBInterrupt);
     end;
     {M}Application.CreateForm(TfmCodeGenerator, fmCodeGenerator);
+    {$IFDEF INHOUSE}
     {M}Application.CreateForm(TfmRubiconIndex, fmRubiconIndex);
+    {$ENDIF}
   end;
 end;
-
 
 end.
 
