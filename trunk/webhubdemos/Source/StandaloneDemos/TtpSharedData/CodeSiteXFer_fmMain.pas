@@ -74,7 +74,10 @@ begin
         case i of
           1: // info
           begin
-            CodeSite.Send(s2, s3);
+            if s3 = '' then
+              CodeSite.Send(s2)
+            else
+              CodeSite.Send(s2, s3);
           end;
           2: // warning
           begin
