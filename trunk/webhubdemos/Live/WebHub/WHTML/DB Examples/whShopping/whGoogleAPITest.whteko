@@ -6,6 +6,7 @@
 <whprep>
 (~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Abraham Lincoln~)~)
 (~NOTASSIGNED|FreebaseFilter|(~SET|FreebaseFilter=(any type:/people/person)~)~)
+(~NOTASSIGNED|radioRunGeo|(~SET|radioRunGeo=no~)~)
 (~mcdoctypehtml~)
 <html>
 <head>
