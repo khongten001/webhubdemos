@@ -91,16 +91,17 @@ begin
       FreebaseQueryTerm := 'Lincoln';
 
     ResponseLimit := 10;
+
+    { NB: each (string) parameter *value* must be URLencoded separately }
+
     RequestURL := 'q=' +
-        FreebaseQueryTerm +
+        UrlEncode(FreebaseQueryTerm, True) +
         '&userIp=' + pWebApp.Request.RemoteAddress +
         '&limit=' + IntToStr(ResponseLimit) +
         '&indent=true' +
-        '&filter=(any type:/people/person)' +
+        '&filter=' + UrlEncode('(any type:/people/person)', True) +
         ''; // '&key=' + SimpleAPIKey,
     CSSend('RequestURL query portion', RequestURL);
-    RequestURL := UrlEncode(RequestURL, True);
-    CSSend('RequestURL encoded', RequestURL);
     RequestURL := cBaseURL + RequestURL ;
     CSSend('RequestURL final', RequestURL);
 
