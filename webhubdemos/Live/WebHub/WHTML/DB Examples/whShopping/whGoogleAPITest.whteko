@@ -50,9 +50,10 @@ function geoG() {
 </whsketch>
 
 <h1>Google Freebase Test</h1>
+<p>Reference: https://developers.google.com/freebase/v1/search-overview</p>
 <form method="post" action="(~ACTIONR|(~PageID~)~)">
 Search query term: (~INPUTTEXT|FreebaseQueryTerm~)<br/>
-Filter: (~INPUTTEXT|FreebaseFilter~)<br/>
+Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 <input type="submit" />
 </form>
 <h2>Result</h2>
