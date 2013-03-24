@@ -77,7 +77,7 @@ const
 var
   ClientID, ClientSecret, SimpleAPIKey: string;
   ResponseData: string;
-  FreebaseQueryTerm: string;
+  FreebaseQueryTerm, FreebaseFilter: string;
   ErrorText: string;
   RequestURL: string;
   ResponseLimit: Integer;
@@ -87,8 +87,7 @@ begin
     SimpleAPIKey) then
   begin
     FreebaseQueryTerm := pWebApp.StringVar['FreebaseQueryTerm'];
-    if FreebaseQueryTerm = '' then
-      FreebaseQueryTerm := 'Lincoln';
+    FreebaseFilter := pWebApp.StringVar['FreebaseFilter'];
 
     ResponseLimit := 10;
 
@@ -99,7 +98,7 @@ begin
         '&userIp=' + pWebApp.Request.RemoteAddress +
         '&limit=' + IntToStr(ResponseLimit) +
         '&indent=true' +
-        '&filter=' + UrlEncode('(any type:/people/person)', True) +
+        '&filter=' + UrlEncode(FreebaseFilter{'(any type:/people/person)'}, True) +
         ''; // '&key=' + SimpleAPIKey,
     CSSend('RequestURL query portion', RequestURL);
     RequestURL := cBaseURL + RequestURL ;

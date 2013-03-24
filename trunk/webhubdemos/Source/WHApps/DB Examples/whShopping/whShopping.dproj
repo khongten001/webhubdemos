@@ -155,12 +155,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="K:\WebHub\tpack\tpGoogle_ServiceResource.pas"/>
-        <DCCReference Include="K:\WebHub\tpack\ucHttps.pas"/>
-        <DCCReference Include="K:\WebHub\tpack\ucGoogleAPICredentials.pas"/>
         <DCCReference Include="dmwhGoogleAPIActions.pas">
             <Form>DMGAPI</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Debug">
