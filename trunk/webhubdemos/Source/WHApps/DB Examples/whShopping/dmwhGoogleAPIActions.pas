@@ -12,8 +12,10 @@ uses
 type
   TDMGAPI = class(TDataModule)
     waTestGeoLocation: TwhWebAction;
+    waTestFreebase: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure waTestGeoLocationExecute(Sender: TObject);
+    procedure waTestFreebaseExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -67,22 +69,68 @@ begin
   CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
+procedure TDMGAPI.waTestFreebaseExecute(Sender: TObject);
+const
+  cFn = 'waTestFreebaseExecute';
+var
+  ClientID, ClientSecret, SimpleAPIKey: string;
+  ResponseData: string;
+  FreebaseQueryTerm: string;
+  ErrorText: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  if ZMLookup_GoogleAPI_Credentials('WebHub Demo', ClientID, ClientSecret,
+    SimpleAPIKey) then
+  begin
+    FreebaseQueryTerm := pWebApp.StringVar['FreebaseQueryTerm'];
+    if FreebaseQueryTerm = '' then
+      FreebaseQueryTerm := 'Lincoln';
+
+    ResponseData :=
+      HTTPSGet('https://www.googleapis.com/freebase/v1/search?q=' +
+        FreebaseQueryTerm +
+        '&key=' +
+        SimpleAPIKey,
+        ErrorText,
+        'HREF Tools WebHub Demo Agent',
+        True);
+    if ErrorText <> '' then
+    begin
+      pWebApp.Debug.AddPageError(ErrorText);
+      pWebApp.SendStringImm('Error: ' + ErrorText);
+    end
+    else
+      pWebApp.SendStringImm('<pre>' + ResponseData + '</pre>');
+  end
+  else
+    pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
+      ': unable to look up GoogleAPI credentials');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
 procedure TDMGAPI.waTestGeoLocationExecute(Sender: TObject);
+const cFn = 'waTestGeoLocationExecute';
 var
   ClientID, ClientSecret, SimpleAPIKey: string;
   ResponseJSON: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   if ZMLookup_GoogleAPI_Credentials('WebHub Demo', ClientID, ClientSecret,
     SimpleAPIKey) then
   begin
-    ResponseJSON :=
+    ResponseJSON := // CodeSite logs 403 Forbidden exception
       HTTPSPost('https://www.googleapis.com/geolocation/v1/geolocate?key=' +
         SimpleAPIKey,
         getHtDemoCodeRoot + 'DB Examples\whShopping\google_geoloc_sample.json',
         'HREF Tools WebHub Demo Agent',
         'application/json', '', True);
+
     pWebApp.SendStringImm('<pre>' + ResponseJSON + '</pre>');
-  end;
+  end
+  else
+    pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
+      ': unable to look up GoogleAPI credentials');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMGAPI.WebAppUpdate(Sender: TObject);
