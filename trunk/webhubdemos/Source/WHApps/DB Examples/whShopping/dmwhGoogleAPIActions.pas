@@ -34,7 +34,8 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  webApp, htWebApp, ucCodeSiteInterface, ucHttps, ucGoogleAPICredentials,
+  webApp, htWebApp,
+  ucCodeSiteInterface, ucURLEncode, ucHttps, ucGoogleAPICredentials,
   whdemo_ViewSource;
 
 { TDMGAPI}
@@ -72,11 +73,14 @@ end;
 procedure TDMGAPI.waTestFreebaseExecute(Sender: TObject);
 const
   cFn = 'waTestFreebaseExecute';
+  cBaseURL = 'https://www.googleapis.com/freebase/v1/search?';
 var
   ClientID, ClientSecret, SimpleAPIKey: string;
   ResponseData: string;
   FreebaseQueryTerm: string;
   ErrorText: string;
+  RequestURL: string;
+  ResponseLimit: Integer;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   if ZMLookup_GoogleAPI_Credentials('WebHub Demo', ClientID, ClientSecret,
@@ -86,12 +90,23 @@ begin
     if FreebaseQueryTerm = '' then
       FreebaseQueryTerm := 'Lincoln';
 
-    ResponseData :=
-      HTTPSGet('https://www.googleapis.com/freebase/v1/search?q=' +
+    ResponseLimit := 10;
+    RequestURL := 'q=' +
         FreebaseQueryTerm +
         '&userIp=' + pWebApp.Request.RemoteAddress +
-        '&key=' +
-        SimpleAPIKey,
+        '&limit=' + IntToStr(ResponseLimit) +
+        '&indent=true' +
+        '&filter=(any type:/people/person)' +
+        ''; // '&key=' + SimpleAPIKey,
+    CSSend('RequestURL query portion', RequestURL);
+    RequestURL := UrlEncode(RequestURL, True);
+    CSSend('RequestURL encoded', RequestURL);
+    RequestURL := cBaseURL + RequestURL ;
+    CSSend('RequestURL final', RequestURL);
+
+    ResponseData :=
+      // v1sandbox gives status 200 ok with empty result - useless.
+      HTTPSGet(RequestURL,
         ErrorText,
         'HREF Tools WebHub Demo Agent',
         True);
