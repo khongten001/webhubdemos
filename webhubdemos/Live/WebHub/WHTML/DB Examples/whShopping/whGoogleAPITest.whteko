@@ -3,6 +3,9 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whpage pageid="pgTestGeoLocation">
+<whprep>
+(~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Lincoln~)~)
+(~NOTASSIGNED|FreebaseFilter|(~SET|FreebaseFilter=(any type:/people/person)~)~)
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -48,7 +51,8 @@ function geoG() {
 
 <h1>Google Freebase Test</h1>
 <form method="post" action="(~ACTIONR|(~PageID~)~)">
-Search term: (~INPUTTEXT|FreebaseQueryTerm~)
+Search query term: (~INPUTTEXT|FreebaseQueryTerm~)<br/>
+Filter: (~INPUTTEXT|FreebaseFilter~)<br/>
 <input type="submit" />
 </form>
 <h2>Result</h2>
