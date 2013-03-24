@@ -130,7 +130,6 @@ view links to all demos on
 </whdroplet>
 
 <whdroplet name="drLingvoLinkList">
-lingvo:
 <span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> &nbsp;
 <span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span> &nbsp;
 <span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span> &nbsp;
