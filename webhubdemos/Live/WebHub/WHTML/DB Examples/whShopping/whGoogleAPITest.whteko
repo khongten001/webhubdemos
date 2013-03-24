@@ -35,16 +35,19 @@ function geoG() {
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<h1>(~PageDesc~)</h1>
-<p>Press the button below to get your current location</p>
+<h1>Client-side GeoLocation</h1>
+<p>Press the button below to get your current location as determined by <b>(~Request.UserAgent~)</b>.</p>
 <p><button id="submit-button" onclick="geoG();">Get current location</button></p>
 <p id="out"></p>
+
+<h1>Google GeoLocation Sample Test</h1>
+<p>Reference: https://developers.google.com/maps/documentation/business/geolocation/#samples</p>
+(~waTestGeoLocation.Execute|~)
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
 </body></html>
-</whpage>
 </whpage>
 
 </whteko>
