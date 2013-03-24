@@ -46,10 +46,17 @@ function geoG() {
 
 <h1>Google GeoLocation Sample Test</h1>
 <p>Reference: https://developers.google.com/maps/documentation/business/geolocation/#samples</p>
+<!--- avoid running this too often because Google only grants 100 free uses per day. -->
+<p>Limit: 100 free uses per day</p>
+<form method="post" action="(~ACTIONR|(~PageID~)~)">
+Test fixed geolocation query: (~INPUTRADIO|radioRunGeo,yes~) yes or (~INPUTRADIO|radioRunGeo,no~) no
+<input type="submit" value="go" />
+</form>
+(~MATCH|(~radioRunGeo~)=yes|
 <p>The following result is fixed. It is based on the sample JSON provided by google, to simulate 
 a mobile device location. </p>
 (~waTestGeoLocation.Execute|~)
-
+~)
 
 <h1>Google Freebase Test</h1>
 <p>Reference: https://developers.google.com/freebase/v1/search-overview</p>
