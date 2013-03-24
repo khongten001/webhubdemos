@@ -46,6 +46,8 @@ function geoG() {
 
 <h1>Google GeoLocation Sample Test</h1>
 <p>Reference: https://developers.google.com/maps/documentation/business/geolocation/#samples</p>
+<p>The following result is fixed. It is based on the sample JSON provided by google, to simulate 
+a mobile device location. </p>
 (~waTestGeoLocation.Execute|~)
 
 
