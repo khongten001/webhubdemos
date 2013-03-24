@@ -98,8 +98,10 @@ begin
         '&userIp=' + pWebApp.Request.RemoteAddress +
         '&limit=' + IntToStr(ResponseLimit) +
         '&indent=true' +
-        '&filter=' + UrlEncode(FreebaseFilter, True) +
-        '&key=' + UrlEncode(SimpleAPIKey, True);
+        '&filter=' + UrlEncode(FreebaseFilter, True) //+
+        //'&key=' + UrlEncode(SimpleAPIKey, True)  ==> 403 Forbidden !
+        //'&key=' + SimpleAPIKey  ==> retest ?
+        ;
     CSSend('RequestURL query portion', RequestURL);
     RequestURL := cBaseURL + RequestURL ;
     CSSend('RequestURL final', RequestURL);
