@@ -80,6 +80,7 @@
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whShopping.whteko"/>
       <File id="content" filename="whShopping.whteko"/>
+	<File id="f03" filename="whGoogleAPITest.whteko" />
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
