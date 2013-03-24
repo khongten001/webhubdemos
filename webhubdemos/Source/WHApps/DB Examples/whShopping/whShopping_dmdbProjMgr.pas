@@ -29,7 +29,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, HtShopC, whShopping_dmShop, whShopping_dmwhSessionWatch;
+  MultiTypeApp, HtShopC, whShopping_dmShop, whShopping_dmwhSessionWatch,
+  dmwhGoogleAPIActions;
 
 procedure TDMForWHShopping.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
@@ -37,6 +38,7 @@ begin
   inherited;
   {M}Application.CreateForm(TDMShop1, DMShop1);
   {M}Application.CreateForm(TDMSessWatch, DMSessWatch);
+  {M}Application.CreateForm(TDMGAPI, DMGAPI);
 end;
 
 procedure TDMForWHShopping.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -46,6 +48,8 @@ begin
   Continue := DMShop1.Init(ErrorText);
   if Continue then
     Continue := DMSessWatch.Init(ErrorText);
+  if Continue then
+    Continue := DMGAPI.Init(ErrorText);
 end;
 
 procedure TDMForWHShopping.ProjMgrGUICreate(Sender: TtpProject;
