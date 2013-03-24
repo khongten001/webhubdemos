@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpage pageid="pgTestGeoLocation">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+
+ <script type="text/javascript">
+function geoG() {
+    if (!navigator.geolocation){
+        document.getElementById("#out").innerHTML = "Geolocation is not supported by your browser";
+        return;
+    }
+    document.getElementById("out").innerHTML = "<blink>Locating...</blink></p>";
+ 
+    navigator.geolocation.getCurrentPosition(function(position) {
+        var latitude = position.coords.latitude;
+        var longitude = position.coords.longitude;
+        document.getElementById("out").innerHTML = "Latitude is "+latitude+", longitude is "+longitude+"<br /><br />";
+  
+        var myImage = new Image;
+        myImage.src = "http://maps.googleapis.com/maps/api/staticmap?center="+latitude+","+longitude+"&zoom=10&size=300x300&sensor=false";
+        document.getElementById('out').appendChild(myImage);
+        myImage.align = "";
+    });
+}
+ 
+document.getElementById("submit-button").onclick = function() { geoG(); };
+</script>
+
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~PageDesc~)</h1>
+<p>Press the button below to get your current location</p>
+<p><button id="submit-button">Get current location</button></p>
+<p id="out"></p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+</whpage>
+
+</whteko>
