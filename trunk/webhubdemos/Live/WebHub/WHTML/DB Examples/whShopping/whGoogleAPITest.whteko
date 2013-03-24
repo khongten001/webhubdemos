@@ -4,7 +4,7 @@
 
 <whpage pageid="pgTestGeoLocation">
 <whprep>
-(~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Lincoln~)~)
+(~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Abraham Lincoln~)~)
 (~NOTASSIGNED|FreebaseFilter|(~SET|FreebaseFilter=(any type:/people/person)~)~)
 (~mcdoctypehtml~)
 <html>
@@ -43,14 +43,17 @@ function geoG() {
 <p><button id="submit-button" onclick="geoG();">Get current location</button></p>
 <p id="out"></p>
 
-<whsketch show="no">
+
 <h1>Google GeoLocation Sample Test</h1>
 <p>Reference: https://developers.google.com/maps/documentation/business/geolocation/#samples</p>
 (~waTestGeoLocation.Execute|~)
-</whsketch>
+
 
 <h1>Google Freebase Test</h1>
 <p>Reference: https://developers.google.com/freebase/v1/search-overview</p>
+<p>Example 1: q=Abraham Lincoln and filter=(any type:/people/person)</p>
+<p>Example 2: q=Hendrix and filter=(all type:/music/artist created:"Purple Haze")</p>
+
 <form method="post" action="(~ACTIONR|(~PageID~)~)">
 Search query term: (~INPUTTEXT|FreebaseQueryTerm~)<br/>
 Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
