@@ -98,8 +98,8 @@ begin
         '&userIp=' + pWebApp.Request.RemoteAddress +
         '&limit=' + IntToStr(ResponseLimit) +
         '&indent=true' +
-        '&filter=' + UrlEncode(FreebaseFilter, True) //+
-        //'&key=' + UrlEncode(SimpleAPIKey, True)  ==> 403 Forbidden !
+        '&filter=' + UrlEncode(FreebaseFilter, True) +
+        '&key=' + UrlEncode(SimpleAPIKey, True)  // ==> 403 Forbidden !
         //'&key=' + SimpleAPIKey  ==> retest ?
         ;
     CSSend('RequestURL query portion', RequestURL);
@@ -111,6 +111,7 @@ begin
       HTTPSGet(RequestURL,
         ErrorText,
         'HREF Tools WebHub Demo Agent',
+        pWebApp.Request.Referer, // forward the actual referer
         True);
     if ErrorText <> '' then
     begin
@@ -131,6 +132,7 @@ const cFn = 'waTestGeoLocationExecute';
 var
   ClientID, ClientSecret, SimpleAPIKey: string;
   ResponseJSON: string;
+  ErrorText: string;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   if ZMLookup_GoogleAPI_Credentials('WebHub Demo', ClientID, ClientSecret,
@@ -138,12 +140,16 @@ begin
   begin
     ResponseJSON := // CodeSite logs 403 Forbidden exception
       HTTPSPost('https://www.googleapis.com/geolocation/v1/geolocate?key=' +
-        SimpleAPIKey,
+        URLEncode(SimpleAPIKey, True),
+        ErrorText,
         getHtDemoCodeRoot + 'DB Examples\whShopping\google_geoloc_sample.json',
-        'HREF Tools WebHub Demo Agent',
+        'HREF Tools WebHub Demo Agent', pWebApp.Request.Referer,
         'application/json', '', True);
 
-    pWebApp.SendStringImm('<pre>' + ResponseJSON + '</pre>');
+    if ErrorText <> '' then
+      pWebApp.SendStringImm('Exception: ' + ErrorText)
+    else
+      pWebApp.SendStringImm('<h2>JSON</h2><pre>' + ResponseJSON + '</pre>');
   end
   else
     pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
