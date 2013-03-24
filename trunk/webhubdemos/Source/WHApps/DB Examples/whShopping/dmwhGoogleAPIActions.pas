@@ -98,8 +98,8 @@ begin
         '&userIp=' + pWebApp.Request.RemoteAddress +
         '&limit=' + IntToStr(ResponseLimit) +
         '&indent=true' +
-        '&filter=' + UrlEncode(FreebaseFilter{'(any type:/people/person)'}, True) +
-        ''; // '&key=' + SimpleAPIKey,
+        '&filter=' + UrlEncode(FreebaseFilter, True) +
+        '&key=' + UrlEncode(SimpleAPIKey, True);
     CSSend('RequestURL query portion', RequestURL);
     RequestURL := cBaseURL + RequestURL ;
     CSSend('RequestURL final', RequestURL);
