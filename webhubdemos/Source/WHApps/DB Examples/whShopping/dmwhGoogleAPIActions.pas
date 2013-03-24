@@ -89,6 +89,7 @@ begin
     ResponseData :=
       HTTPSGet('https://www.googleapis.com/freebase/v1/search?q=' +
         FreebaseQueryTerm +
+        '&userIp=' + pWebApp.Request.RemoteAddress +
         '&key=' +
         SimpleAPIKey,
         ErrorText,
