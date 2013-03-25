@@ -10,6 +10,9 @@ object DMMastDet: TDMMastDet
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
+    OnRowStart = ScanMasterDeptRowStart
+    OnBeginTable = ScanMasterDeptBeginTable
+    OnFinish = ScanMasterDeptFinish
     Left = 64
     Top = 48
   end
@@ -19,6 +22,9 @@ object DMMastDet: TDMMastDet
     ScanMode = dsByKey
     ButtonAutoHide = False
     OverlapScroll = False
+    OnRowStart = ScanDetailEmployeeRowStart
+    OnBeginTable = ScanDetailEmployeeBeginTable
+    OnFinish = ScanDetailEmployeeFinish
     Left = 64
     Top = 120
   end
