@@ -1,0 +1,27 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" designdynsrc="localdemoFire"
+  designpage="pgEnterFire">
+
+<whpage pageid="pgMastDet" desc="Master (Dept) to Detail (Employee)">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+(~scanMasterDept.execute|~)
+
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+</whteko>

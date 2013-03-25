@@ -78,6 +78,7 @@
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whFirebird.whteko"/>
       <File id="firebirdsql" filename="whFirebird.whteko"/>
+	<File id="f02" filename="whFirebirdMasterDetail.whteko" />
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
