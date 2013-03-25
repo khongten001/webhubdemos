@@ -25,7 +25,8 @@ uses
   uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
-  whFirebird_dmEmployee in 'whFirebird_dmEmployee.pas' {DMEmployeeFire: TDataModule};
+  whFirebird_dmEmployee in 'whFirebird_dmEmployee.pas' {DMEmployeeFire: TDataModule},
+  whFirebird_dmwhMasterDetail in 'whFirebird_dmwhMasterDetail.pas' {DMMastDet: TDataModule};
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos

@@ -26,13 +26,14 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whFirebird_dmEmployee;
+  MultiTypeApp, whFirebird_dmEmployee, whFirebird_dmwhMasterDetail;
 
 procedure TDMForWHFirebird.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
   {M}Application.CreateForm(TDMEmployeeFire, DMEmployeeFire);
+  {M}Application.CreateForm(TDMMastDet, DMMastDet);
 end;
 
 procedure TDMForWHFirebird.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -40,6 +41,8 @@ procedure TDMForWHFirebird.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := DMEmployeeFire.Init(ErrorText);
+  if Continue then
+    Continue := DMMastDet.Init(ErrorText);
 end;
 
 end.
