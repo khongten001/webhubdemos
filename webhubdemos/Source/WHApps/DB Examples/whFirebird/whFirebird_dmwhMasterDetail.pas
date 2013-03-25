@@ -14,24 +14,27 @@ uses
 {$IFDEF IBO_49_OR_GREATER}
   IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
-  webLink, wdbSSrc, wdbScan, wdbIBObjOSource;
+  webLink, wdbSSrc, wdbScan, wdbIBObjOSource, updateOK, tpAction, webTypes;
 
 type
   TDMMastDet = class(TDataModule)
+    ScanMasterDept: TwhdbScan;
+    ScanDetailEmployee: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
+    procedure QueryDetailBeforeOpen(DataSet: TDataSet);
   public
     { Public declarations }
-    whdsEmployee: TwhdbSourceIBO;
-    whdsDept: TwhdbSourceIBO;
-    dsDept: TDataSource;
-    qDept: TIBOQuery;
-    dsEmployee: TDataSource;
-    qEmployee: TIBOQuery;
+    whdsDetEmployee: TwhdbSourceIBO;
+    whdsMastDept: TwhdbSourceIBO;
+    dsMastDept: TDataSource;
+    qMastDept: TIBOQuery;
+    dsDetEmployee: TDataSource;
+    qDetEmployee: TIBOQuery;
     function Init(out ErrorText: string): Boolean;
   end;
 
@@ -45,29 +48,29 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   webApp, htWebApp, ucCodeSiteInterface,
-  uFirebird_Connect_Employee;
+  uFirebird_Connect_Employee, ucIBObjPrepare;
 
 { TDMMastDet }
 
 procedure TDMMastDet.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
-  whdsEmployee := nil;
-    whdsDept := nil;
-    dsDept := nil;
-    qDept := nil;
-    dsEmployee := nil;
-    qEmployee := nil;
+  whdsDetEmployee := nil;
+    whdsMastDept := nil;
+    dsMastDept := nil;
+    qMastDept := nil;
+    dsDetEmployee := nil;
+    qDetEmployee := nil;
 end;
 
 procedure TDMMastDet.DataModuleDestroy(Sender: TObject);
 begin
-  FreeAndNil(whdsEmployee);
-  FreeAndNil(whdsDept);
-  FreeAndNil(dsDept);
-  FreeAndNil(qDept);
-  FreeAndNil(dsEmployee);
-  FreeAndNil(qEmployee);
+  FreeAndNil(whdsDetEmployee);
+  FreeAndNil(whdsMastDept);
+  FreeAndNil(dsMastDept);
+  FreeAndNil(qMastDept);
+  FreeAndNil(dsDetEmployee);
+  FreeAndNil(qDetEmployee);
 end;
 
 function TDMMastDet.Init(out ErrorText: string): Boolean;
@@ -79,22 +82,51 @@ begin
   if NOT FlagInitDone then
   begin
 
-    if NOT Assigned(qDept) then
+    if NOT Assigned(qMastDept) then
     begin
-      qDept := TIBOQuery.Create(Self);
-      qDept.Name := 'qDept';
-      qDept.SQL.Text := 'select * from Dept order by Dept_No';
+      qMastDept := TIBOQuery.Create(Self);
+      qMastDept.Name := 'qMastDept';
+      qMastDept.SQL.Text := 'select * from Department order by Dept_No';
 
-      dsDept := TDataSource.Create(Self);
-      dsDept.Name := 'dsDept';
+      dsMastDept := TDataSource.Create(Self);
+      dsMastDept.Name := 'dsMastDept';
+      dsMastDept.DataSet := qMastDept;
+
+      whdsMastDept := TwhdbSourceIBO.Create(Self);
+      whdsMastDept.Name := 'whdsMastDept';
+      whdsMastDept.DataSource := dsMastDept;
+
+      ScanMasterDept.WebDataSource := whdsMastDept;
     end;
-    if NOT Assigned(qEmployee) then
+
+    if NOT Assigned(qDetEmployee) then
     begin
-      qEmployee := TIBOQuery.Create(Self);
-      qEmployee.Name := 'qEmployee';
-      qEmployee.SQL.Text := 'select * from Employee where (Dept_No=:Dept_No)';
-      dsEmployee := TDataSource.Create(Self);
-      dsEmployee.Name := 'dsEmployee';
+      qDetEmployee := TIBOQuery.Create(Self);
+      qDetEmployee.Name := 'qDetEmployee';
+      qDetEmployee.SQL.Text := 'select * from Employee where (Dept_No=:Dept_No)';
+      qDetEmployee.BeforeOpen := QueryDetailBeforeOpen; // essential
+
+      dsDetEmployee := TDataSource.Create(Self);
+      dsDetEmployee.Name := 'dsDetEmployee';
+      dsDetEmployee.DataSet := qDetEmployee;
+
+      whdsDetEmployee := TwhdbSourceIBO.Create(Self);
+      whdsDetEmployee.Name := 'whdsDetEmployee';
+      whdsDetEmployee.DataSource := dsDetEmployee;
+
+      ScanDetailEmployee.WebDataSource := whdsDetEmployee;
+    end;
+
+    if qMastDept.IB_Connection = nil then
+    try
+      IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
+        gEmployee_Sess);
+    except
+      on E: Exception do
+      begin
+        ErrorText := 'An error here probably indicates invalid SQL.Text' +
+          sLineBreak + E.Message;
+      end;
     end;
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
@@ -105,12 +137,25 @@ begin
       // helpful to know that WebAppUpdate will be called whenever the
       // WebHub app is refreshed.
       AddAppUpdateHandler(WebAppUpdate);
-      FlagInitDone := True;
+      FlagInitDone := qMastDept.Prepared;  // if False then TtpProject will stop.
     end;
   end;
   Result := FlagInitDone;
   {$IFDEF CodeSite}CodeSite.Send('Result', Result);
   CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMMastDet.QueryDetailBeforeOpen(DataSet: TDataSet);
+var
+  pk: Integer;
+begin
+  pk := pWebApp.StringVarInt['_ActiveDeptNo'];  // default -1
+
+  if Dataset is TIBOQuery then
+  with TIBOQuery(Dataset) do
+  begin
+    Params[0].AsInteger := pk;
+  end;
 end;
 
 procedure TDMMastDet.WebAppUpdate(Sender: TObject);
