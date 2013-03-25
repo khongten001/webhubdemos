@@ -50,7 +50,7 @@ uses
   webApp, webSend, webScan, htWebApp,
   uFirebird_Connect_Employee, ucIbAndFbCredentials;
 
-{ TDM001 }
+{ TDMEmployeeFire }
 
 procedure TDMEmployeeFire.DataModuleCreate(Sender: TObject);
 begin
