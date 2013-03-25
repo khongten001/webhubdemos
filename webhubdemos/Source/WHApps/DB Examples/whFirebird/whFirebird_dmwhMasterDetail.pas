@@ -22,6 +22,14 @@ type
     ScanDetailEmployee: TwhdbScan;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
+    procedure ScanDetailEmployeeBeginTable(Sender: TObject);
+    procedure ScanMasterDeptBeginTable(Sender: TObject);
+    procedure ScanMasterDeptRowStart(Sender: TwhdbScanBase;
+      aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+    procedure ScanMasterDeptFinish(Sender: TObject);
+    procedure ScanDetailEmployeeRowStart(Sender: TwhdbScanBase;
+      aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+    procedure ScanDetailEmployeeFinish(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -47,7 +55,8 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  webApp, htWebApp, ucCodeSiteInterface,
+  webApp, htWebApp, webSend,
+  ucCodeSiteInterface,
   uFirebird_Connect_Employee, ucIBObjPrepare;
 
 { TDMMastDet }
@@ -154,7 +163,69 @@ begin
   if Dataset is TIBOQuery then
   with TIBOQuery(Dataset) do
   begin
+    IB_Connection := gEmployee_Conn;
+    IB_Transaction := gEmployee_Tr;
+    IB_Session := gEmployee_Sess;
     Params[0].AsInteger := pk;
+  end;
+end;
+
+procedure TDMMastDet.ScanDetailEmployeeBeginTable(Sender: TObject);
+begin
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayEmployeeTable', drBeforeWhrow);
+  end;
+end;
+
+procedure TDMMastDet.ScanDetailEmployeeFinish(Sender: TObject);
+begin
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayEmployeeTable', drAfterWhrow);
+  end;
+end;
+
+procedure TDMMastDet.ScanDetailEmployeeRowStart(Sender: TwhdbScanBase;
+  aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+begin
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayEmployeeTable', drWithinWhrow);
+  end;
+end;
+
+procedure TDMMastDet.ScanMasterDeptBeginTable(Sender: TObject);
+begin
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayDepartmentTable', drBeforeWhrow);
+  end;
+end;
+
+procedure TDMMastDet.ScanMasterDeptFinish(Sender: TObject);
+begin
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayDepartmentTable', drAfterWhrow);
+  end;
+end;
+
+procedure TDMMastDet.ScanMasterDeptRowStart(Sender: TwhdbScanBase;
+  aWebDataSource: TwhdbSourceBase; var ok: Boolean);
+var
+  i: Integer;
+  DS: TDataSet;
+begin
+  DS := TwhdbSourceIBO(aWebdataSource).DataSource.DataSet;
+  for i := 0 to Pred(DS.FieldCount) do
+  begin
+    pWebApp.StringVar['Department_' + DS.Fields[i].FieldName] :=
+      DS.Fields[i].AsString;
+  end;
+  with TwhdbScan(Sender) do
+  begin
+    WebApp.SendDroplet('drDisplayDepartmentTable', drWithinWhrow);
   end;
 end;
 

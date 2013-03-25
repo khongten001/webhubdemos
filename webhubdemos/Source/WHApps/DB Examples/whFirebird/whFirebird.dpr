@@ -22,11 +22,12 @@ uses
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_DMDBProjMgr in '..\..\Common\whdemo_DMDBProjMgr.pas' {DMForWHDBDemo: TDataModule},
-  uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas',
   whFirebird_dmdbProjMgr in 'whFirebird_dmdbProjMgr.pas' {DMForWHFirebird: TDataModule},
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
   whFirebird_dmEmployee in 'whFirebird_dmEmployee.pas' {DMEmployeeFire: TDataModule},
-  whFirebird_dmwhMasterDetail in 'whFirebird_dmwhMasterDetail.pas' {DMMastDet: TDataModule};
+  whFirebird_dmwhMasterDetail in 'whFirebird_dmwhMasterDetail.pas' {DMMastDet: TDataModule},
+  ucIBObjPrepare in 'H:\ucIBObjPrepare.pas',
+  uFirebird_Connect_Employee in 'uFirebird_Connect_Employee.pas';
 
 {$R *.res}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
