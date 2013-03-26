@@ -1,0 +1,34 @@
+/* opacity.css */
+div#opacityLayer,
+div#opacityLayerClear,
+div#errorDialogContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin:0;
+	padding:0;
+	width: 100%;
+	height: 100%;
+	z-index: 40;
+	/*visibility: hidden;*/
+	display: none;
+	text-align: center;
+}
+div#errorDialogContainer {
+	z-index: 45;
+	}
+div#opacityLayer {
+	background-color: #000;	
+	-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=750)';
+	filter: alpha(opacity=750);
+	opacity: 0.75;
+	}	
+div#opacityLayerClear {
+	background-color: #000;
+	-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+	filter: alpha(opacity=0);
+	opacity: 0.;	
+	z-index: 105;
+	}
+
+/* end */
