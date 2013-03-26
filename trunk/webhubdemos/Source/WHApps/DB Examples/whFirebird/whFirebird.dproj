@@ -130,7 +130,6 @@
             <Form>DMForWHDBDemo</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="uFirebird_Connect_Employee.pas"/>
         <DCCReference Include="whFirebird_dmdbProjMgr.pas">
             <Form>DMForWHFirebird</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -145,6 +144,8 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="H:\ucIBObjPrepare.pas"/>
+        <DCCReference Include="uFirebird_Connect_Employee.pas"/>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -177,7 +178,7 @@
                     <VersionInfo Name="MajorVer">1</VersionInfo>
                     <VersionInfo Name="MinorVer">0</VersionInfo>
                     <VersionInfo Name="Release">0</VersionInfo>
-                    <VersionInfo Name="Build">15</VersionInfo>
+                    <VersionInfo Name="Build">18</VersionInfo>
                     <VersionInfo Name="Debug">False</VersionInfo>
                     <VersionInfo Name="PreRelease">False</VersionInfo>
                     <VersionInfo Name="Special">False</VersionInfo>
@@ -189,7 +190,7 @@
                 <VersionInfoKeys>
                     <VersionInfoKeys Name="CompanyName">HREF Tools Corp.</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription"/>
-                    <VersionInfoKeys Name="FileVersion">1.0.0.15</VersionInfoKeys>
+                    <VersionInfoKeys Name="FileVersion">1.0.0.18</VersionInfoKeys>
                     <VersionInfoKeys Name="InternalName"/>
                     <VersionInfoKeys Name="LegalCopyright"/>
                     <VersionInfoKeys Name="LegalTrademarks"/>

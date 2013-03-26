@@ -51,6 +51,26 @@
 </whsketch>
 </div>
 
+<whdroplet name="drDetailEmployeeTable" show="no">
+<table id="employee-table" class="whdbScanBase-table">
+<tr>
+  <th>Employee#</th>
+  <th>Full Name</th>
+  <th>Job Country</th>
+  <th>Salary</th>
+</tr>
+<whrow>
+<tr>
+  <td>(~FIELD|whdsDetEmployee|EMP_NO~)</td>
+  <td>(~FIELD|whdsDetEmployee|FULL_NAME~)</td>
+  <td>(~FIELD|whdsDetEmployee|JOB_COUNTRY~)</td>
+  <td>USD (~FIELD|whdsDetEmployee|SALARY|%m~)</td>
+</tr>
+</whrow>
+</table>
+</whdroplet>
+
+
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 
