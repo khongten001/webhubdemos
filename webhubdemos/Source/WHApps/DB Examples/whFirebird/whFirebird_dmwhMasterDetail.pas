@@ -189,7 +189,7 @@ procedure TDMMastDet.ScanDetailEmployeeBeginTable(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayEmployeeTable', drBeforeWhrow);
+    WebApp.SendDroplet('drDetailEmployeeTable', drBeforeWhrow);
   end;
 end;
 
@@ -197,7 +197,7 @@ procedure TDMMastDet.ScanDetailEmployeeFinish(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayEmployeeTable', drAfterWhrow);
+    WebApp.SendDroplet('drDetailEmployeeTable', drAfterWhrow);
   end;
 end;
 
@@ -206,7 +206,7 @@ procedure TDMMastDet.ScanDetailEmployeeRowStart(Sender: TwhdbScanBase;
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayEmployeeTable', drWithinWhrow);
+    WebApp.SendDroplet('drDetailEmployeeTable', drWithinWhrow);
   end;
 end;
 
