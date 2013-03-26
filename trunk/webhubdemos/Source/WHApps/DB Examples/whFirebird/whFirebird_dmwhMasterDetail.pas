@@ -12,7 +12,7 @@ uses
   SysUtils, Classes, DB,
   IB_Components, IBODataset,
 {$IFDEF IBO_49_OR_GREATER}
-  IB_Access,  // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
+  IB_Access, // part of IBObjects 4.9.5 and 4.9.9 but not part of v4.8.6
 {$ENDIF}
   webLink, wdbSSrc, wdbScan, wdbIBObjOSource, updateOK, tpAction, webTypes;
 
@@ -55,8 +55,8 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  webApp, htWebApp, webSend,
+{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
+  webApp, htWebApp, webSend, webScan,
   ucCodeSiteInterface,
   uFirebird_Connect_Employee, ucIBObjPrepare;
 
@@ -66,11 +66,11 @@ procedure TDMMastDet.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
   whdsDetEmployee := nil;
-    whdsMastDept := nil;
-    dsMastDept := nil;
-    qMastDept := nil;
-    dsDetEmployee := nil;
-    qDetEmployee := nil;
+  whdsMastDept := nil;
+  dsMastDept := nil;
+  qMastDept := nil;
+  dsDetEmployee := nil;
+  qDetEmployee := nil;
 end;
 
 procedure TDMMastDet.DataModuleDestroy(Sender: TObject);
@@ -84,9 +84,10 @@ begin
 end;
 
 function TDMMastDet.Init(out ErrorText: string): Boolean;
-const cFn = 'Init';
+const
+  cFn = 'Init';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   ErrorText := '';
   // reserved for code that should run once, after AppID set
   if NOT FlagInitDone then
@@ -114,7 +115,8 @@ begin
     begin
       qDetEmployee := TIBOQuery.Create(Self);
       qDetEmployee.Name := 'qDetEmployee';
-      qDetEmployee.SQL.Text := 'select * from Employee where (Dept_No=:Dept_No)';
+      qDetEmployee.SQL.Text :=
+        'select * from Employee where (Dept_No=:Dept_No)';
       qDetEmployee.BeforeOpen := QueryDetailBeforeOpen; // essential
 
       dsDetEmployee := TDataSource.Create(Self);
@@ -126,70 +128,69 @@ begin
       whdsDetEmployee.DataSource := dsDetEmployee;
 
       ScanDetailEmployee.WebDataSource := whdsDetEmployee;
+      ScanDetailEmployee.PageHeight := 0; // show all employees for department
+      ScanDetailEmployee.ControlsWhere := dsNone;  // uses webScan
+      ScanDetailEmployee.ButtonsWhere := dsNone;
     end;
 
     if qMastDept.IB_Connection = nil then
-    try
-      IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
-        gEmployee_Sess);
-    except
-      on E: Exception do
-      begin
-        ErrorText := 'An error here probably indicates invalid SQL.Text' +
-          sLineBreak + E.Message;
+      try
+        IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
+          gEmployee_Sess);
+      except
+        on E: Exception do
+        begin
+          ErrorText := 'An error here probably indicates invalid SQL.Text' +
+            sLineBreak + E.Message;
+        end;
       end;
-    end;
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
-      // Call RefreshWebActions here only if it is not called within a TtpProject event
-      // RefreshWebActions(Self);
-
-      // helpful to know that WebAppUpdate will be called whenever the
-      // WebHub app is refreshed.
+      RefreshWebActions(Self);
       AddAppUpdateHandler(WebAppUpdate);
-      FlagInitDone := qMastDept.Prepared;  // if False then TtpProject will stop.
+      FlagInitDone := qMastDept.Prepared; // if False then TtpProject will stop.
     end;
   end;
   Result := FlagInitDone;
-  {$IFDEF CodeSite}CodeSite.Send('Result', Result);
-  CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMMastDet.QueryDetailBeforeOpen(DataSet: TDataSet);
 var
   pk: Integer;
 begin
-  pk := pWebApp.StringVarInt['radioDept'];  // default -1
+  pk := pWebApp.StringVarInt['radioDept']; // default -1
   if pk = -1 then
-    pk := 115; // Japan -- sample data
+    pk := 115; // Japan -- sample data for use with whsketch
 
-  if Dataset is TIBOQuery then
-  with TIBOQuery(Dataset) do
-  begin
-    IB_Connection := gEmployee_Conn;
-    IB_Transaction := gEmployee_Tr;
-    IB_Session := gEmployee_Sess;
-    Params[0].AsInteger := pk;
-  end;
+  if DataSet is TIBOQuery then
+    with TIBOQuery(DataSet) do
+    begin
+      IB_Connection := gEmployee_Conn;
+      IB_Transaction := gEmployee_Tr;
+      IB_Session := gEmployee_Sess;
+      Params[0].AsInteger := pk;
+    end;
 end;
 
 procedure TDMMastDet.QueryMasterBeforeOpen(DataSet: TDataSet);
 begin
-  if Dataset is TIBOQuery then
-  with TIBOQuery(Dataset) do
-  begin
-    IB_Connection := gEmployee_Conn;
-    IB_Transaction := gEmployee_Tr;
-    IB_Session := gEmployee_Sess;
-  end;
+  if DataSet is TIBOQuery then
+    with TIBOQuery(DataSet) do
+    begin
+      IB_Connection := gEmployee_Conn;
+      IB_Transaction := gEmployee_Tr;
+      IB_Session := gEmployee_Sess;
+    end;
 end;
 
 procedure TDMMastDet.ScanDetailEmployeeBeginTable(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDetailEmployeeTable', drBeforeWhrow);
+    webApp.SendDroplet('drDetailEmployeeTable', drBeforeWhrow);
   end;
 end;
 
@@ -197,16 +198,17 @@ procedure TDMMastDet.ScanDetailEmployeeFinish(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDetailEmployeeTable', drAfterWhrow);
+    webApp.SendDroplet('drDetailEmployeeTable', drAfterWhrow);
   end;
 end;
 
 procedure TDMMastDet.ScanDetailEmployeeRowStart(Sender: TwhdbScanBase;
   aWebDataSource: TwhdbSourceBase; var ok: Boolean);
 begin
+  { demonstrate relying on the FIELD macro to load data from active record. }
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDetailEmployeeTable', drWithinWhrow);
+    webApp.SendDroplet('drDetailEmployeeTable', drWithinWhrow);
   end;
 end;
 
@@ -214,7 +216,7 @@ procedure TDMMastDet.ScanMasterDeptBeginTable(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayDepartmentTable', drBeforeWhrow);
+    webApp.SendDroplet('drDisplayDepartmentTable', drBeforeWhrow);
   end;
 end;
 
@@ -222,7 +224,7 @@ procedure TDMMastDet.ScanMasterDeptFinish(Sender: TObject);
 begin
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayDepartmentTable', drAfterWhrow);
+    webApp.SendDroplet('drDisplayDepartmentTable', drAfterWhrow);
   end;
 end;
 
@@ -231,26 +233,38 @@ procedure TDMMastDet.ScanMasterDeptRowStart(Sender: TwhdbScanBase;
 var
   i: Integer;
   DS: TDataSet;
+  s1: string;
 begin
-  DS := TwhdbSourceIBO(aWebdataSource).DataSource.DataSet;
+  { demonstrate pre-loading all field values for current record into stringvars
+    for use from WHTEKO within the <whrow_tag> }
+  DS := TwhdbSourceIBO(aWebDataSource).DataSource.DataSet;
   for i := 0 to Pred(DS.FieldCount) do
   begin
-    pWebApp.StringVar['Department_' + DS.Fields[i].FieldName] :=
-      DS.Fields[i].AsString;
+    s1 := Trim(DS.Fields[i].AsString);
+    if (s1='') then
+    begin
+      if (DS.Fields[i].DataType <> ftString) then
+        s1 := '(empty)'
+      else
+        s1 := ' ';
+    end;
+
+    pWebApp.StringVar['Department_' + DS.Fields[i].FieldName] := s1;
   end;
   with TwhdbScan(Sender) do
   begin
-    WebApp.SendDroplet('drDisplayDepartmentTable', drWithinWhrow);
+    webApp.SendDroplet('drDisplayDepartmentTable', drWithinWhrow);
   end;
 end;
 
 procedure TDMMastDet.WebAppUpdate(Sender: TObject);
-const cFn = 'WebAppUpdate';
+const
+  cFn = 'WebAppUpdate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 end.
