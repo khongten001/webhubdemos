@@ -2,6 +2,10 @@
 <whteko designmode="code" designdynsrc="localdemoFire"
   designpage="pgEnterFire">
 
+<whmacros>
+mcJQueryURL=/webhub/demos/js/jquery-1.9.1.js
+</whmacros>
+
 <whpage pageid="pgMastDet" desc="Master (Department) to Detail (Employee)">
 <whoutput>
 (~mcdoctypehtml~)
@@ -9,12 +13,13 @@
 <head>
 	(~drHead~)
 	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
+	(~JS|ScriptTag|src="(~mcJQueryURL~)"~)
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
-<p style="font-weight: 900;>This is under construction 26-March-2013. </p>
+<p style="font-weight: 900;">This is under construction 26-March-2013. </p>
 
 (~scanMasterDept.execute|~)
 <whdroplet name="drDisplayDepartmentTable" show="no">
