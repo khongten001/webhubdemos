@@ -28,4 +28,10 @@ object DMMastDet: TDMMastDet
     Left = 64
     Top = 120
   end
+  object waDeptLocation: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waDeptLocationExecute
+    Left = 256
+    Top = 128
+  end
 end
