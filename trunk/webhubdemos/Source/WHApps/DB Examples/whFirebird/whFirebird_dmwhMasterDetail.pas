@@ -20,6 +20,7 @@ type
   TDMMastDet = class(TDataModule)
     ScanMasterDept: TwhdbScan;
     ScanDetailEmployee: TwhdbScan;
+    waDeptLocation: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure ScanDetailEmployeeBeginTable(Sender: TObject);
@@ -30,9 +31,11 @@ type
     procedure ScanDetailEmployeeRowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
     procedure ScanDetailEmployeeFinish(Sender: TObject);
+    procedure waDeptLocationExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
+    crsLocation: TIB_Cursor;
     procedure WebAppUpdate(Sender: TObject);
     procedure QueryMasterBeforeOpen(DataSet: TDataSet);
     procedure QueryDetailBeforeOpen(DataSet: TDataSet);
@@ -71,6 +74,7 @@ begin
   qMastDept := nil;
   dsDetEmployee := nil;
   qDetEmployee := nil;
+  crsLocation := nil;
 end;
 
 procedure TDMMastDet.DataModuleDestroy(Sender: TObject);
@@ -81,6 +85,7 @@ begin
   FreeAndNil(qMastDept);
   FreeAndNil(dsDetEmployee);
   FreeAndNil(qDetEmployee);
+  FreeAndNil(crsLocation);
 end;
 
 function TDMMastDet.Init(out ErrorText: string): Boolean;
@@ -133,6 +138,14 @@ begin
       ScanDetailEmployee.ButtonsWhere := dsNone;
     end;
 
+    if NOT Assigned(crsLocation) then
+    begin
+      crsLocation := TIB_Cursor.Create(Self);
+      crsLocation.Name := 'crsLocation';
+      crsLocation.SQL.Text :=
+        'select Location from Department where (Dept_No=:Dept_No)';
+    end;
+
     if qMastDept.IB_Connection = nil then
       try
         IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
@@ -159,11 +172,11 @@ end;
 
 procedure TDMMastDet.QueryDetailBeforeOpen(DataSet: TDataSet);
 var
-  pk: Integer;
+  pk: string; // should be Integer but Embarcadero Department Dept_No is string!
 begin
-  pk := pWebApp.StringVarInt['radioDept']; // default -1
-  if pk = -1 then
-    pk := 115; // Japan -- sample data for use with whsketch
+  pk := pWebApp.StringVar['radioDept']; // default -1
+  if pk = '' then
+    pk := '-1';
 
   if DataSet is TIBOQuery then
     with TIBOQuery(DataSet) do
@@ -171,7 +184,7 @@ begin
       IB_Connection := gEmployee_Conn;
       IB_Transaction := gEmployee_Tr;
       IB_Session := gEmployee_Sess;
-      Params[0].AsInteger := pk;
+      Params[0].AsString := pk;
     end;
 end;
 
@@ -213,11 +226,20 @@ begin
 end;
 
 procedure TDMMastDet.ScanMasterDeptBeginTable(Sender: TObject);
+var
+  topPk: string;
 begin
   with TwhdbScan(Sender) do
   begin
     webApp.SendDroplet('drDisplayDepartmentTable', drBeforeWhrow);
+    // default to pk of top record
+    topPk :=
+      TwhdbSourceIBO(WebDataSource).DataSource.DataSet.FieldByName('Dept_No')
+        .AsString;
+    pWebApp.StringVar['radioDept'] := topPk;
+    pWebApp.Response.SendComment('Default radioDept is ' + topPK);
   end;
+
 end;
 
 procedure TDMMastDet.ScanMasterDeptFinish(Sender: TObject);
@@ -255,6 +277,21 @@ begin
   begin
     webApp.SendDroplet('drDisplayDepartmentTable', drWithinWhrow);
   end;
+end;
+
+procedure TDMMastDet.waDeptLocationExecute(Sender: TObject);
+var
+  s1: string;
+begin
+  crsLocation.Close;
+  s1 := pWebApp.StringVar['radioDept'];
+  crsLocation.Params[0].AsString := s1;
+  crsLocation.Open;
+  if crsLocation.EOF then
+    pWebApp.StringVar['maploc'] := 'Error: location not found for ' + s1
+  else
+    pWebApp.StringVar['maploc'] := crsLocation.Fields[0].AsString;
+  crsLocation.Close;
 end;
 
 procedure TDMMastDet.WebAppUpdate(Sender: TObject);

@@ -7,6 +7,8 @@ mcJQueryURL=/webhub/demos/js/jquery-1.9.1.js
 </whmacros>
 
 <whpage pageid="pgMastDet" desc="Master (Department) to Detail (Employee)">
+<whprep>
+(~CLEAR|radioDept~)
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -14,12 +16,128 @@ mcJQueryURL=/webhub/demos/js/jquery-1.9.1.js
 	(~drHead~)
 	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
 	(~JS|ScriptTag|src="(~mcJQueryURL~)"~)
+	(~JS|ScriptTag|src="/webhub/demos/js/jquery-webhub.js"~)
+
+<script type="text/javascript">
+/* requires 
+	jQuery  javascript library
+	jquery-webhub.js
+
+	optional (to do):
+	opacity layer div
+		opacitylayer
+  optional error div structure (to do):
+		div errorDialogContainer
+			div errorTitle
+			div errorSummary
+			div errorDetail
+			button btnErrorDismiss
+	
+	Error convention: 
+		if there is a problem retrieving html data for the ajax request, then the returning response must be just
+		Error=error message text here
+			
+	*/
+
+function showError(title, summary, detail, aFunction) {
+	$('#opacityLayer').show();
+	$('#errorTitle').html(title);
+	$('#errorSummary').html(summary);
+	$('#errorDetail').html(detail);
+	$('#btnErrorDismiss').click( function() { 	$('#errorDialogContainer').hide();	$('#opacityLayer').hide();	if (aFunction) aFunction(); } );
+	$('#errorDialogContainer').show();	
+}
+function showAjaxError(jqXHR, exception, errorTitle, aFunction) {
+	var ajaxErrorInfo = new AjaxErrorInfoObject();
+	getAJAXErrorInfo(jqXHR, exception, ajaxErrorInfo);
+	showError(errorTitle, ajaxErrorInfo.summary, ajaxErrorInfo.detail, aFunction);
+}
+
+
+function MasterKeyToDetailMap() {
+var
+	errorMessage;
+	
+	console.log('MasterKeyToDetailMap starting');
+
+	$.ajax( {
+		url: "(~ACTIONR|ajaxGoogleMap~)",
+		type: "GET",
+		headers: { "cache-control": "no-cache" },
+		dataType: "html",
+		success: function(data) {
+
+			/* if a data retrieval error message is returned then the expected format is 	Error=error message here~~~  */
+			if (data.substring(0, 5) == 'Error') {
+				errorMessage = data.substring(6, data.length);
+				showError('Data request Error',  'Unable to access map',  errorMessage);
+			}	else {
+				$('#detailMap-div').html(data); /*populate the div with the returned html */
+			}
+		},
+		error: function(jqXHR, exception) {
+			showAjaxError(jqXHR, exception, 'Data request Error', null);
+		}
+		}
+	);	
+
+}
+
+function postDepartmentInfo() {
+var
+	errorMessage;
+	
+	console.log('postDepartmentInfo starting');
+
+	$.ajax( {
+		url: "(~ACTIONR|ajaxDetailEmployee~)",
+		data:  $('#departmentform').serialize(),
+		type: "POST",
+		headers: { "cache-control": "no-cache" },
+		dataType: "html",
+		success: function(data) {
+
+			/* if a data retrieval error message is returned then the expected format is 	Error=error message here~~~  */
+			if (data.substring(0, 5) == 'Error') {
+				errorMessage = data.substring(6, data.length);
+				showError('Data request Error',  'Unable to access employee detail',  errorMessage);
+			}	else {
+				$('#detailEmployee-div').html(data); /*populate the div id="detailEmployee-div'" with the returned html */
+
+				MasterKeyToDetailMap();
+			}
+		},
+		error: function(jqXHR, exception) {
+			showAjaxError(jqXHR, exception, 'Data request Error', null);
+		}
+		}
+	);	
+
+}
+
+
+function init() {
+var
+	inputList,
+	i;
+
+	/* attach an onclick event to each radio button element in the table with id = "department" */
+	inputList = $('#department input');
+	for (i = 0; i < inputList.length; i++ ) {
+		if ( inputList[i].type == "radio" )
+  		inputList[i].onclick = postDepartmentInfo;
+	}
+}
+
+/* run init() after the page's DOM is ready */
+$(document).ready(function() { init() } );
+
+</script>
 
 <style type="text/css">
 div#children-div{
 	text-align: center;
 	width: 90%;
-	border: solid 1px blue;
 }
 div #detailEmployee-div {
 	border: solid 2px red;  /* make ajax target more obvious */
@@ -29,6 +147,11 @@ div #detailEmployee-div {
 	padding: 0.4em;
 	width: 45em;
 }
+div #detailMap-div {
+  border: solid 2px blue; /* make ajax target more obvious */
+	padding: 0.4em;
+}
+
 div.firstChild {
 	float: left;
 }
@@ -42,11 +165,10 @@ div.otherChild {
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
-<p style="font-weight: 900;">This is under construction 26-March-2013. </p>
 
 (~scanMasterDept.execute|~)
 <whdroplet name="drDisplayDepartmentTable" show="no">
-<form method="post" action="#"> <!--- form action is unused -->
+<form id="departmentform" name="departmentform" method="post" action="#"> <!--- form action is unused -->
 <table id="department" class="whdbScanBase-table">
 <tr>
   <th>Select</th>
@@ -60,7 +182,8 @@ div.otherChild {
 </tr>
 <whrow>
 <tr>
-  <td>(~INPUTRADIO|radioDept,(~Department_Dept_No~)| id="radio(~Department_Dept_No~)" onclick="" ~)</td>
+  <td>(~MATCH|(~Department_Dept_No~)=(~radioDept~)| (~SET|showdot=checked="checked"~) || (~CLEAR|showdot~)~)
+	(~INPUTRADIO|radioDept,(~Department_Dept_No~)| id="radio(~Department_Dept_No~)" (~showdot~) ~)</td>
   <td>(~Department_Dept_No~)</td>
   <td>(~Department_Department~)</td>
   <td>(~Department_Head_Dept~)</td>
@@ -78,15 +201,12 @@ div.otherChild {
 
 <div id="detailEmployee-div" class="firstChild">
 <!--- javascript should place linked employee grid here, based on selected master record -->
-<whsketch show="yes">
 (~ajaxDetailEmployee~)
-</whsketch>
 </div><!--- firstChild -->
 
 <div id="detailMap-div" class="otherChild">
-<whsketch show="yes">
+<!--- javascript should place linked map grid here, based on selected master record -->
 (~ajaxGoogleMap~)
-</whsketch>
 </div><!--- otherChild -->
 
 </div><!--- children-div -->
@@ -101,7 +221,11 @@ div.otherChild {
 </whpage>
 
 <whpage pageid="ajaxDetailEmployee" desc="-ajax response with employee data">
-<p style="color: green;">The following employee grid comes from an ajax page with PageID=(~PageID~).
+(~whdsDetEmployee.Close~) <!--- we want to re-run this query every time the page runs -->
+(~ASSIGNED|radioDept|
+
+<h3>Employees in Department #(~radioDept~)</h3>
+<p style="color: green; font-size: smaller;"><b>(~CentralInfo.WebTimeGMT~)</b><br/>The following employee list comes from an ajax page with PageID=(~PageID~).
 The content is ready-to-use HTML generated by a TwhdbScan component. There is zero JSON involved.</p>
 (~ScanDetailEmployee.execute|~)
 <whdroplet name="drDetailEmployeeTable" show="no">
@@ -122,11 +246,17 @@ The content is ready-to-use HTML generated by a TwhdbScan component. There is ze
 </whrow>
 </table>
 </whdroplet>
+
+~)
 </whpage>
 
 <whpage pageid="ajaxGoogleMap" desc="-ajax response with map for the department country">
+(~ASSIGNED|radioDept|
+(~waDeptLocation.Execute|~)
+<h3>Department #(~radioDept~) is in (~maploc~)</h3>
 <iframe width="300" height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
-src="https://maps.google.com.au/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=japan&amp;aq=&amp;sll=-33.796924,150.922433&amp;sspn=1.501819,2.754822&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Japan&amp;ll=36.173357,138.251953&amp;spn=21.226665,26.367188&amp;z=4&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.au/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=japan&amp;aq=&amp;sll=-33.796924,150.922433&amp;sspn=1.501819,2.754822&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Japan&amp;ll=36.173357,138.251953&amp;spn=21.226665,26.367188&amp;z=4" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=(~maploc~)&amp;aq=&amp;ie=UTF8&amp;output=embed"></iframe><br /><small><a href="https://maps.google.com.au/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=japan&amp;aq=&amp;sll=-33.796924,150.922433&amp;sspn=1.501819,2.754822&amp;t=h&amp;ie=UTF8&amp;hq=&amp;hnear=Japan&amp;ll=36.173357,138.251953&amp;spn=21.226665,26.367188&amp;z=4" style="color:#0000FF;text-align:left">View Larger Map</a></small>
+||please select department~)
 </whpage>
 
 </whteko>
