@@ -2,7 +2,7 @@
 <whteko designmode="code" designdynsrc="localdemoFire"
   designpage="pgEnterFire">
 
-<whpage pageid="pgMastDet" desc="Master (Dept) to Detail (Employee)">
+<whpage pageid="pgMastDet" desc="Master (Department) to Detail (Employee)">
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -15,13 +15,51 @@
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
 (~scanMasterDept.execute|~)
+<whdroplet name="drDisplayDepartmentTable" show="no">
+<form method="post" action="#"> <!--- form action is unused -->
+<table id="department" class="whdbScanBase-table">
+<tr>
+  <th>Select</th>
+  <th>Dept_No</th>
+  <th>Department</th>
+  <th>Head_Dept</th>
+  <th>Mngr_no</th>
+  <th>Budget</th>
+  <th>Location</th>
+  <th>Telephone</th>
+</tr>
+<whrow>
+<tr>
+  <td>(~INPUTRADIO|radioDept,(~Department_Dept_No~)| id="radio(~Department_Dept_No~)" ~)</td>
+  <td>(~Department_Dept_No~)</td>
+  <td>(~Department_Department~)</td>
+  <td>(~Department_Head_Dept~)</td>
+  <td>(~Department_Mngr_No~)</td>
+  <td>(~Department_Budget~)</td>
+  <td>(~Department_Location~)</td>
+  <td>(~Department_Telephone~)</td>
+</tr>
+</whrow>
+</table>
+</form>
+</whdroplet>
 
+<div id="detailEmployee-div">
+<!--- javascript should place linked employee grid here, based on selected master record -->
+<whsketch show="yes">
+(~ajaxDetailEmployee~)
+</whsketch>
+</div>
 
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)
 
 </body></html> 
 </whoutput>
+</whpage>
+
+<whpage pageid="ajaxDetailEmployee" desc="-ajax response with employee data">
+(~ScanDetailEmployee.execute|~)
 </whpage>
 
 </whteko>

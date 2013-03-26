@@ -34,6 +34,7 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
+    procedure QueryMasterBeforeOpen(DataSet: TDataSet);
     procedure QueryDetailBeforeOpen(DataSet: TDataSet);
   public
     { Public declarations }
@@ -96,6 +97,7 @@ begin
       qMastDept := TIBOQuery.Create(Self);
       qMastDept.Name := 'qMastDept';
       qMastDept.SQL.Text := 'select * from Department order by Dept_No';
+      qMastDept.BeforeOpen := QueryMasterBeforeOpen; // essential
 
       dsMastDept := TDataSource.Create(Self);
       dsMastDept.Name := 'dsMastDept';
@@ -158,7 +160,9 @@ procedure TDMMastDet.QueryDetailBeforeOpen(DataSet: TDataSet);
 var
   pk: Integer;
 begin
-  pk := pWebApp.StringVarInt['_ActiveDeptNo'];  // default -1
+  pk := pWebApp.StringVarInt['radioDept'];  // default -1
+  if pk = -1 then
+    pk := 115; // Japan -- sample data
 
   if Dataset is TIBOQuery then
   with TIBOQuery(Dataset) do
@@ -167,6 +171,17 @@ begin
     IB_Transaction := gEmployee_Tr;
     IB_Session := gEmployee_Sess;
     Params[0].AsInteger := pk;
+  end;
+end;
+
+procedure TDMMastDet.QueryMasterBeforeOpen(DataSet: TDataSet);
+begin
+  if Dataset is TIBOQuery then
+  with TIBOQuery(Dataset) do
+  begin
+    IB_Connection := gEmployee_Conn;
+    IB_Transaction := gEmployee_Tr;
+    IB_Session := gEmployee_Sess;
   end;
 end;
 
