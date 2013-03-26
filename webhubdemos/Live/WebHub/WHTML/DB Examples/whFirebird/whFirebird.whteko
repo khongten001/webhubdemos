@@ -4,6 +4,7 @@
 
 <whdroplet name="drDemoSpeedbarForfire">
 <!-- speedbar for FIRE demo could appear here -->
+(~JUMP|pgMastDet|Master-Detail~)
 </whdroplet>
 
 <whpage pageid="pgEnterFire" desc="WebHub Firebird SQL Database demo">
