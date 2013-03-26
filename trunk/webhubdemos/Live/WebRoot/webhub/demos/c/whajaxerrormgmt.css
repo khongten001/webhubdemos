@@ -1,0 +1,39 @@
+#errorDialog {
+	position: relative;
+	width: 25em;
+	margin: 10em auto 0 auto;
+	background-color: #006699;
+	border: 4px solid #CCCCCC;
+	padding: 1em;
+	border-radius: 1.0em 1.00em;
+	-moz-border-radius: 1.0em;
+	-webkit-border-radius: 1.0em;	
+}
+
+div.pcaDialogTitle,
+#errorTitle {
+	font-size: 1.3em;
+	font-weight: bold;
+		color: #FFFFCC;
+	}
+.pcaDialogTitle {
+	color:#EEEEEE;
+	}	
+#errorWrapper {
+	background-color:#FFFFCC;
+	padding: 0.5em 1em 1em 1em;
+	margin-top: 1em;
+	border-radius: 1.0em 1.00em;
+	-moz-border-radius: 1.0em;
+	-webkit-border-radius: 1.0em;			
+	}
+#errorSummary {
+	font-weight: 700;
+	font-size: 1.1em;
+	margin: 0.5em auto 1em auto;
+	color:#CC0000;
+	}
+#errorDetail {
+	margin-top: 1em;
+	}
+
