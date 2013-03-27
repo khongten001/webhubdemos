@@ -38,6 +38,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    procedure OverrideWebMailFormExecute(Sender: TObject);
     procedure Init;
   end;
 
@@ -58,6 +59,13 @@ const
 procedure TdmWhQuote.Init;
 begin
   ExtraOutput.GUI.SetShowResponse(outQuick);
+  DataModuleWhMail.WebMailForm.OnExecute := OverrideWebMailFormExecute;
+end;
+
+procedure TdmWhQuote.OverrideWebMailFormExecute(Sender: TObject);
+begin
+  DataModuleWhMail.WebMailForm.webMail.Headers.Text :=
+    'X-Priority: 1 (Highest)' + sLineBreak + 'X-Hello: Testing 1-2-3';
 end;
 
 procedure TdmWhQuote.waQuoteMessageExecute(Sender: TObject);
