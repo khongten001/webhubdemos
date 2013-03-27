@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201301b.xsd">
+  <Variables begin="{" end="}">
+    <Var name="EMailPort" value="25"/>
+  </Variables>
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
@@ -80,7 +83,7 @@
     <whMailForm componentName="WebMailForm">
       <Item name="FormLetter">
         <Host value="smtp^"/>
-        <Port value="25"/>
+        <Port value="{EMailPort}"/>
         <From value="info@href.com"/>
         <Name value="Someone on the Web"/>
         <To value="EMailTo^"/>
@@ -90,7 +93,7 @@
       </Item>
       <Item name="Feedback">
         <Host value="smtp^"/>
-        <Port value="25"/>
+        <Port value="{EMailPort}"/>
         <From value="EMail^"/>
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
@@ -102,7 +105,7 @@
       </Item>
       <Item name="SimpleForm">
         <Host value="smtp^"/>
-        <Port value="25"/>
+        <Port value="{EMailPort}"/>
         <From value="EMail^"/>
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
