@@ -94,6 +94,7 @@ begin
       Lines.text := pWebApp.Expand(MacroStart + 'chQuote' + MacroEnd);
       MailHost.Hostname := cOutgoingMailServer;
       MailHost.Port := 25;
+      DataModuleWhMail.WebMail.Headers.Text := 'X-Priority: 1 (Highest)';
       Files.Clear;
       Files.Add(pWebApp.AppPath + 'sampleattachment.txt');
       DataModuleWhMail.WebMail.execute;            // send the custom message
