@@ -94,7 +94,12 @@ const
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   ErrorText := '';
+
   // reserved for code that should run once, after AppID set
+
+  // NB: database initialization is done in the other datamodule
+  // within this demo, which runs before this point.
+
   if NOT FlagInitDone then
   begin
 
