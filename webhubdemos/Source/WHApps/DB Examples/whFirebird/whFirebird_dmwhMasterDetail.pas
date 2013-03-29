@@ -169,6 +169,8 @@ begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
       RefreshWebActions(Self);
+      Assert(ScanMasterDept.IsUpdated, ScanMasterDept.Name);
+      Assert(ScanDetailEmployee.IsUpdated, ScanDetailEmployee.Name);
       AddAppUpdateHandler(WebAppUpdate);
       FlagInitDone := qMastDept.Prepared; // if False then TtpProject will stop.
     end;
