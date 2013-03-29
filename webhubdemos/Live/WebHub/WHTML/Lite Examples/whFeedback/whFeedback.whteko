@@ -36,6 +36,9 @@ Try them out!
 </whpage>
 
 <whpage pageid="pgFeedback" desc="Feedback Message using a template and the WebMail Panel">
+<whprep>
+(~NOTASSIGNED|smtp|(~SET|smtp=smtplocal.href.com~)~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
