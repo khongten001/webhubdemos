@@ -96,6 +96,8 @@
       <Item name="Feedback">
         <Host value="smtp^"/>
         <Port value="{EMailPort}"/>
+        <SMTPUsername value="smtpusername^"/>
+        <SMTPPassword value="smtppassword^"/>
         <From value="EMail^"/>
         <Name value="FullName^"/>
         <To value="EMailTo^"/>

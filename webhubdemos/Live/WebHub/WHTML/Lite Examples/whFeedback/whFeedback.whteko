@@ -66,9 +66,9 @@ Try them out!
 
 <h2>Humans, please read this to understand how to test here</h2>
 <p>Of course we do not want people sending too much mail with our smtp server.</p>
-<p>The only way email will go out from the href.com smtp server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>.</p>
+<p>The only way email will go out from the <b>smtplocal.href.com</b> server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>.</p>
 <p>The port is currently fixed at 25. To use a different port, modify the settings in the application-level XML file.</p>
-<p>You are welcome to try to use a different smtp server by filling in its domain name below. If it uses a port other than 25 or requires login, it will not work here in this demo, as-is.</p>
+<p>You are welcome to try to use a different smtp server by filling in its domain name below. If it uses a port other than 25, it will not work here in this demo, as-is.</p>
 
  <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
@@ -85,7 +85,15 @@ Try them out!
  <td>(~INPUTTEXT|Fullname,40,80|placeholder="your name"~)</td>
 </tr>
 <tr>
- <td class="prompt">Send to (<i>required</i>)</td>
+ <td class="prompt">SMTP Username (<i>optional</i>)</td>
+ <td>(~INPUTTEXT|smtpusername,40,120|placeholder=""~)</td>
+</tr>
+<tr>
+ <td class="prompt">SMTP Password (<i>optional</i>)</td>
+ <td>(~INPUTTEXT|smtppassword,40,120|placeholder=""~)</td>
+</tr>
+<tr>
+ <td class="prompt">Recipient email address (<i>required</i>)</td>
  <td>(~INPUTTEXT|EMailTo,40,120|placeholder="youremail@gmail.com"~)</td>
 </tr>
 <tr>
