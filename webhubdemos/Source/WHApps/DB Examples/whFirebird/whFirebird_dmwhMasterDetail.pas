@@ -153,7 +153,9 @@ begin
 
     if qMastDept.IB_Connection = nil then
       try
-        { NB: must compile with -DUSE_TIBODataset for use with TIBOQuery }
+        { NB: must compile with -DUSE_TIBODataset for use with TIBOQuery 
+          Screenshot: http://screenshots.href.com/webhub/rsrcdef/snapProjectOptions_Use_TIBODataSet.png }
+
         IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
           gEmployee_Sess);
       except
