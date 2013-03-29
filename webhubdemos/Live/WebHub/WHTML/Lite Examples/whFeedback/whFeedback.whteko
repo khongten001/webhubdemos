@@ -97,7 +97,7 @@ Try them out!
 </tr>
 <tr>
  <td class="prompt">Recipient email address (<i>required</i>)</td>
- <td>(~INPUTTEXT|EMailTo,40,120|placeholder="youremail@gmail.com"~)</td>
+ <td>(~INPUTTEXT|EMailTo,40,120|placeholder="your.email@gmail.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">Subject (<i>required</i>)</td>
