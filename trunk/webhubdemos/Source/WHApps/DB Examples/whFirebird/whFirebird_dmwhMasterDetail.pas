@@ -153,6 +153,7 @@ begin
 
     if qMastDept.IB_Connection = nil then
       try
+        { NB: must compile with -DUSE_TIBODataset for use with TIBOQuery }
         IbObj_PrepareAllQueriesAndProcs(Self, gEmployee_Conn, gEmployee_Tr,
           gEmployee_Sess);
       except
