@@ -86,11 +86,11 @@ Try them out!
 </tr>
 <tr>
  <td class="prompt">SMTP Username (<i>optional</i>)</td>
- <td>(~INPUTTEXT|smtpusername,40,120|placeholder=""~)</td>
+ <td>(~INPUTTEXT|smtpusername,40,120|placeholder="~)</td>
 </tr>
 <tr>
  <td class="prompt">SMTP Password (<i>optional</i>)</td>
- <td>(~INPUTTEXT|smtppassword,40,120|placeholder=""~)</td>
+ <td>(~INPUTTEXT|smtppassword,40,120|placeholder="~)</td>
 </tr>
 <tr>
  <td class="prompt">Recipient email address (<i>required</i>)</td>
@@ -213,11 +213,11 @@ this application and your web server.
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<strong>You have not filled in all the required fields. Please try again.</strong>
-<p>This is what we do have:</p><p> (~Request.FormData~)</p>
+<strong>You have not filled in all the required fields. You may try again by returning to the data entry page.</strong>
+<p>This is what we do have from you:</p><p> (~Request.FormData~)</p>
 
 <hr />
-<p>(~pgEnterHTFD~)</p>
+<p>(~JUMP|pgFeedback|Feedback~)</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
