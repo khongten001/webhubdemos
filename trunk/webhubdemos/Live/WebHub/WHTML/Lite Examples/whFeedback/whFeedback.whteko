@@ -74,23 +74,23 @@ Try them out!
 <table id="feedbackmessage" cellspacing="0">
 <tr>
  <td class="prompt">SMTP Server (<i>required</i>)</td>
- <td>(~INPUTTEXT|smtp~)</td>
+ <td>(~INPUTTEXT|smtp,40,120|placeholder="smtplocal.href.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">Sender e-mail address (<i>required</i>)</td>
- <td>(~INPUTTEXT|EMail,40,120|placeholder="info@href.com"~)</td>
+ <td>(~INPUTTEXT|EMail,40,120|placeholder="instructions above"~)</td>
 </tr>
 <tr>
- <td class="prompt">Your name</td>
- <td>(~INPUTTEXT|Fullname~)</td>
+ <td class="prompt">Sender name</td>
+ <td>(~INPUTTEXT|Fullname,40,80|placeholder="your name"~)</td>
 </tr>
 <tr>
  <td class="prompt">Send to (<i>required</i>)</td>
- <td>(~INPUTTEXT|EMailTo~)</td>
+ <td>(~INPUTTEXT|EMailTo,40,120|placeholder="youremail@gmail.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">Subject (<i>required</i>)</td>
- <td>(~INPUTTEXT|Subject~)</td>
+ <td>(~INPUTTEXT|Subject,40,120|placeholder="testing"~)</td>
 </tr>
 <tr>
  <td class="prompt">Message</td>
@@ -103,7 +103,7 @@ Try them out!
 <tr>
  <td class="prompt">Security code:</td>
  <td>(~INPUTTEXT|CaptchaFeedback~)<br/>
- (~waCaptcha.Execute|new,Feedback~)<!--- Action=new and Keyword=Feedback   -->
+ (~webmailCaptcha.Execute|new,Feedback~)<!--- Action=new and Keyword=Feedback   -->
  </td>
 </tr>
 <tr>
@@ -131,7 +131,7 @@ Try them out!
 (~REQUIRES|Subject|STARTOVER~)
 <!--- Now we call the SAME captcha web action, with 
 Action 'control' and the SAME keyword Feedback. -->
-(~waCaptcha.Execute|control,Feedback~)
+(~webmailCaptcha.Execute|control,Feedback~)
 (~webmailform.execute|Feedback~)
 </whprep>
 <whoutput>
