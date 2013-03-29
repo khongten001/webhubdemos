@@ -10,7 +10,7 @@
 
 <whpage pageid="pgEnterHTFD" desc="Various ways to use the WebHub Mail Panel">
 <whprep>
-(~NOTASSIGNED|smtp|(~SET|smtp=mail.href.com~)~)
+(~NOTASSIGNED|smtp|(~SET|smtp=smtplocal.href.com~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -48,13 +48,27 @@ Try them out!
   font-weight:700;
  }
  </style>
+ <style>
+ #captchaNewFeedback em {    /* TwhCaptcha generates all key digits with emphasis */
+   color: red;    
+   font-style: normal;
+   font-weight: 700;
+ }
+</style>
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>2. Feedback Message</h1>
-This example uses a template file (feedback.txt) for the email message, which
+<p>This example uses a template file (feedback.txt) for the email message, which
  incorporates the StringVars from the following form with a slight amount of formatting.
+</p>
+
+<h2>Humans, please read this to understand how to test here</h2>
+<p>Of course we do not want people sending too much mail with our smtp server.</p>
+<p>The only way email will go out from the href.com smtp server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>.</p>
+<p>The port is currently fixed at 25. To use a different port, modify the settings in the application-level XML file.</p>
+<p>You are welcome to try to use a different smtp server by filling in its domain name below. If it uses a port other than 25 or requires login, it will not work here in this demo, as-is.</p>
 
  <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
@@ -63,8 +77,8 @@ This example uses a template file (feedback.txt) for the email message, which
  <td>(~INPUTTEXT|smtp~)</td>
 </tr>
 <tr>
- <td class="prompt">Your e-mail  (<i>required</i>)</td>
- <td>(~INPUTTEXT|EMail~)</td>
+ <td class="prompt">Sender e-mail address (<i>required</i>)</td>
+ <td>(~INPUTTEXT|EMail,40,120|placeholder="info@href.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">Your name</td>
@@ -87,6 +101,12 @@ This example uses a template file (feedback.txt) for the email message, which
  <td>(~INPUTTEXT|Telephone~)</td>
 </tr>
 <tr>
+ <td class="prompt">Security code:</td>
+ <td>(~INPUTTEXT|CaptchaFeedback~)<br/>
+ (~waCaptcha.Execute|new,Feedback~)<!--- Action=new and Keyword=Feedback   -->
+ </td>
+</tr>
+<tr>
  <td>&nbsp;</td>
  <td><input type="submit" value="Send Info" /></td>
 </tr>
@@ -99,12 +119,19 @@ This example uses a template file (feedback.txt) for the email message, which
 </whoutput>
 </whpage>
 
+<whdroplet name="drCaptchaErrorFeedback">
+(~BOUNCE|pgFeedback~)  
+</whdroplet>
+
 <whpage pageid="pgFeedbackResult">
 <whprep>
 (~REQUIRES|smtp|STARTOVER~)
 (~REQUIRES|Email|STARTOVER~)
 (~REQUIRES|EmailTo|STARTOVER~)
 (~REQUIRES|Subject|STARTOVER~)
+<!--- Now we call the SAME captcha web action, with 
+Action 'control' and the SAME keyword Feedback. -->
+(~waCaptcha.Execute|control,Feedback~)
 (~webmailform.execute|Feedback~)
 </whprep>
 <whoutput>
