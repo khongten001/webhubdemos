@@ -77,7 +77,7 @@ Try them out!
 <table id="feedbackmessage" cellspacing="0">
 <tr>
  <td class="prompt">SMTP Server (<i>required</i>)</td>
- <td>(~INPUTTEXT|smtp,40,120|placeholder="smtplocal.href.com"~)</td>
+ <td>(~INPUTTEXT|smtp,40,120|placeholder="smtp.gmail.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">Sender e-mail address (<i>required</i>)</td>
@@ -89,11 +89,11 @@ Try them out!
 </tr>
 <tr>
  <td class="prompt">SMTP Username (<i>optional</i>)</td>
- <td>(~INPUTTEXT|smtpusername,40,120|placeholder="~)</td>
+ <td>(~INPUTTEXT|smtpusername,40,120|placeholder="your.name@gmail.com"~)</td>
 </tr>
 <tr>
  <td class="prompt">SMTP Password (<i>optional</i>)</td>
- <td>(~INPUTTEXT|smtppassword,40,120|placeholder="~)</td>
+ <td>(~INPUTTEXT|smtppassword,40,120|placeholder="freedom"~)</td>
 </tr>
 <tr>
  <td class="prompt">Recipient email address (<i>required</i>)</td>
