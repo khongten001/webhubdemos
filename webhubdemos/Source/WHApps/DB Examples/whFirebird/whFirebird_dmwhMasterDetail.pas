@@ -117,6 +117,7 @@ begin
       whdsMastDept := TwhdbSourceIBO.Create(Self);
       whdsMastDept.Name := 'whdsMastDept';
       whdsMastDept.DataSource := dsMastDept;
+      whdsMastDept.ValidateConfig := True;
 
       ScanMasterDept.WebDataSource := whdsMastDept;
     end;
@@ -136,6 +137,7 @@ begin
       whdsDetEmployee := TwhdbSourceIBO.Create(Self);
       whdsDetEmployee.Name := 'whdsDetEmployee';
       whdsDetEmployee.DataSource := dsDetEmployee;
+      whdsDetEmployee.ValidateConfig := True;
 
       ScanDetailEmployee.WebDataSource := whdsDetEmployee;
       ScanDetailEmployee.PageHeight := 0; // show all employees for department
