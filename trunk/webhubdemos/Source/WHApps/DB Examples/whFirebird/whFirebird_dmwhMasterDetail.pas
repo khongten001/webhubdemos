@@ -117,6 +117,7 @@ begin
       whdsMastDept := TwhdbSourceIBO.Create(Self);
       whdsMastDept.Name := 'whdsMastDept';
       whdsMastDept.DataSource := dsMastDept;
+      whdsMastDept.KeyFieldNames := 'DEPT_NO';
       whdsMastDept.ValidateConfig := True;
 
       ScanMasterDept.WebDataSource := whdsMastDept;
@@ -137,6 +138,7 @@ begin
       whdsDetEmployee := TwhdbSourceIBO.Create(Self);
       whdsDetEmployee.Name := 'whdsDetEmployee';
       whdsDetEmployee.DataSource := dsDetEmployee;
+      whdsDetEmployee.KeyFieldNames := 'EMP_NO';
       whdsDetEmployee.ValidateConfig := True;
 
       ScanDetailEmployee.WebDataSource := whdsDetEmployee;
