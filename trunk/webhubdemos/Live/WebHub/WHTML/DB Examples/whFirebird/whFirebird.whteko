@@ -144,15 +144,20 @@ mcPromptsFieldSet=<b>Field Set</b>:
 <p>You do need to write out the html for each button yourself, as shown in the droplet named <code>drEmployeeButtons</code>.</p>
 
 (~ScanEmployee3.Execute~)
+<!--
+Requires v2.188+ or v3.188+
+Already on First Page: (~ScanEmployee3.FirstPage~)
+Already on Last Page: (~ScanEmployee3.LastPage~)
+-->
 
 <whdroplet name="drEmployeeButtons" show="yes">
 <div id="ScanEmployee3-buttons" class="whdbScanBase-buttons">
 <!-- changing:start-->
 <ul>
-  <li class="whdbScanBase-firstbutton">(~ScanEmployee3|ButtonFirst|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</a>||<span class="disabled">first</span>~)</li>
-  <li>(~ScanEmployee3|ButtonPrior|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</a>||<span class="disabled">previous</span>~)</li>
-  <li>(~ScanEmployee3|ButtonNext|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</a>||<span class="disabled">next</span>~)</li>
-  <li>(~ScanEmployee3|ButtonLast|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</a>||<span class="disabled">last</span>~)</li>
+  <li class="whdbScanBase-firstbutton">(~MATCH|(~ScanEmployee3.FirstPage~)=False|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.First">first</a>||<span class="disabled">first</span>~)</li>
+  <li>(~MATCH|(~ScanEmployee3.FirstPage~)=False|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Prior">previous</a>||<span class="disabled">previous</span>~)</li>
+  <li>(~MATCH|(~ScanEmployee3.LastPage~)=False|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Next">next</a>||<span class="disabled">next</span>~)</li>
+  <li>(~MATCH|(~ScanEmployee3.LastPage~)=False|<a href="(~DynURL.ToSessionIDW~)ScanEmployee3.Last">last</a>||<span class="disabled">last</span>~)</li>
 </ul>
 <!-- changing:stop-->
 </div>
