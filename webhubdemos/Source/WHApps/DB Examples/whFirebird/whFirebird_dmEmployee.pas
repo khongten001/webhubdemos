@@ -94,6 +94,7 @@ begin
       whdsEmployee := TwhdbSourceIBO.Create(Self);
       whdsEmployee.Name := 'whdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
+      whdsEmployee.KeyFieldNames := 'EMP_NO';
       whdsEmployee.MaxOpenDataSets := 1;
 
       ScanEmployee1.WebDataSource := whdsEmployee;
