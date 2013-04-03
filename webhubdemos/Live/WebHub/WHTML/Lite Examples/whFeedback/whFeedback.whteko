@@ -70,14 +70,18 @@ Try them out!
 <h2>Humans, please read this to understand how to test here</h2>
 <p>Of course we do not want people sending too much mail with our smtp server.</p>
 <p>The only way email will go out from the <b>smtplocal.href.com</b> server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>.</p>
-<p>The port is currently fixed at 25. To use a different port, modify the settings in the application-level XML file.</p>
 <p>You are welcome to try to use a different smtp server by filling in its domain name below. If it uses a port other than 25, it will not work here in this demo, as-is.</p>
+<p>This does <i>not</i> support TLS. </p>
 
  <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
 <table id="feedbackmessage" cellspacing="0">
 <tr>
  <td class="prompt">SMTP Server (<i>required</i>)</td>
  <td>(~INPUTTEXT|smtp,40,120|placeholder="smtp.gmail.com"~)</td>
+</tr>
+<tr>
+ <td class="prompt">SMTP Port (<i>required</i>)</td>
+ <td>(~INPUTTEXT|smtpport,10,10|placeholder="25"~)</td>
 </tr>
 <tr>
  <td class="prompt">Sender e-mail address (<i>required</i>)</td>
