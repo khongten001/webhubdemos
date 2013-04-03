@@ -69,7 +69,7 @@ Try them out!
 
 <h2>Humans, please read this to understand how to test here</h2>
 <p>Of course we do not want people sending too much mail with our smtp server.</p>
-<p>The only way email will go out from the <b>smtplocal.href.com</b> server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>.</p>
+<p>The only way email will go out from the <b>smtplocal.href.com</b> server is from a machine wired to it via LAN and, even then, only if a particular FROM address is used. That address is <b>info</b> at <i>href.com</i>. Port must be 25.</p>
 <p>You are welcome to try to use a different smtp server by filling in its domain name below. If it uses a port other than 25, it will not work here in this demo, as-is.</p>
 <p>This does <i>not</i> support TLS. </p>
 
@@ -116,7 +116,7 @@ Try them out!
  <td>(~INPUTTEXT|Telephone~)</td>
 </tr>
 <tr>
- <td class="prompt">Security code:</td>
+ <td class="prompt">Security code:<br/><span style="font-size:small;">enter red digits</span></td>
  <td>(~INPUTTEXT|CaptchaFeedback~)<br/>
  (~webmailCaptcha.Execute|new,Feedback~)<!--- Action=new and Keyword=Feedback   -->
  </td>
