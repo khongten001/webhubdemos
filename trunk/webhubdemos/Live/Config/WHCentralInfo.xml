@@ -430,6 +430,7 @@
   <Sessions>
     <SessionDebug value="false"/>
     <SessionDigits value="10"/>
+    <SessionFileMask value="*.var"/>
     <SessionFolder value="d:\temp\whSessions\"/>
     <SessionLifeMinutes value="25"/>
     <SessionMaxActive value="0"/>
