@@ -30,7 +30,7 @@ implementation
 
 uses
   MultiTypeApp, HtShopC, whShopping_dmShop, whShopping_dmwhSessionWatch,
-  dmwhGoogleAPIActions;
+  dmwhGoogleAPIActions, dmwhSoapActions;
 
 procedure TDMForWHShopping.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
@@ -39,6 +39,7 @@ begin
   {M}Application.CreateForm(TDMShop1, DMShop1);
   {M}Application.CreateForm(TDMSessWatch, DMSessWatch);
   {M}Application.CreateForm(TDMGAPI, DMGAPI);
+  {M}Application.CreateForm(TDMSOAPClient, DMSOAPClient);
 end;
 
 procedure TDMForWHShopping.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -50,6 +51,8 @@ begin
     Continue := DMSessWatch.Init(ErrorText);
   if Continue then
     Continue := DMGAPI.Init(ErrorText);
+  if Continue then
+    Continue := DMSOAPClient.Init(ErrorText);
 end;
 
 procedure TDMForWHShopping.ProjMgrGUICreate(Sender: TtpProject;

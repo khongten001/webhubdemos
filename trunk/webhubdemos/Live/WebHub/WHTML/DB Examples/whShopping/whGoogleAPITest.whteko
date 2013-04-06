@@ -7,6 +7,7 @@
 (~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Abraham Lincoln~)~)
 (~NOTASSIGNED|FreebaseFilter|(~SET|FreebaseFilter=(any type:/people/person)~)~)
 (~NOTASSIGNED|radioRunGeo|(~SET|radioRunGeo=no~)~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -44,6 +45,8 @@ function geoG() {
 <p><button id="submit-button" onclick="geoG();">Get current location</button></p>
 <p id="out"></p>
 
+<h1>Google IP location lookup test</h1>
+<p>Looking up (~Request.RemoteAddress~) ... (~waIp2Country.Execute|~).</p>
 
 <h1>Google GeoLocation Sample Test</h1>
 <p>Reference: https://developers.google.com/maps/documentation/business/geolocation/#samples</p>
