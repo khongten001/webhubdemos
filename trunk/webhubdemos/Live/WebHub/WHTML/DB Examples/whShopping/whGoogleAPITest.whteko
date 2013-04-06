@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
-<whpage pageid="pgTestGeoLocation">
+<whpage pageid="pgTestGeoLocation" desc="Tests relating to GeoLocation">
 <whprep>
 (~NOTASSIGNED|FreebaseQueryTerm|(~SET|FreebaseQueryTerm=Abraham Lincoln~)~)
 (~NOTASSIGNED|FreebaseFilter|(~SET|FreebaseFilter=(any type:/people/person)~)~)
@@ -62,8 +62,10 @@ a mobile device location. </p>
 (~waTestGeoLocation.Execute|~)
 ~)
 
+
 <h1>Google Freebase Test</h1>
 <p>Reference: https://developers.google.com/freebase/v1/search-overview</p>
+(~MATCH|(~Request.Host~)=db.demos.href.com|
 <p>Example 1: q=Abraham Lincoln and filter=(any type:/people/person)</p>
 <p>Example 2: q=Hendrix and filter=(all type:/music/artist created:"Purple Haze")</p>
 
@@ -74,6 +76,9 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 </form>
 <h2>Result</h2>
 (~waTestFreebase.Execute|~)
+|| <p style="color: #FF6633; font-style:italic;">not configured to run on (~Request.Host~)</p>
+~)
+
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
