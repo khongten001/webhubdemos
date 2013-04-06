@@ -4,7 +4,8 @@
 
 <whdroplet name="drDemoSpeedbarForshop1">
 <!-- speedbar for SHOP1 demo -->
-(~MATCH|(~request.scheme~)~https|<a target="_blank" href="http://www.cacert.org/"><img src="http://www.cacert.org/logos/cacert-free-certificates2.png" alt="cacert.org" /></a>~)
+(~MATCH|(~request.scheme~)~https|<a target="_blank" href="http://www.cacert.org/"><img src="http://www.cacert.org/logos/cacert-free-certificates2.png" alt="cacert.org" /></a><br/>~)
+(~JUMP|pgTestGeoLocation|Geo Location~)
 </whdroplet>
 
 <whpage pageid="pgEnterSHOP1" desc="Welcome to the WebHub Shopping Demo" remap="(apphttp)">

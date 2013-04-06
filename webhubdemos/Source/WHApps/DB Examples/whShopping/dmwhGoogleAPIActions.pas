@@ -13,9 +13,11 @@ type
   TDMGAPI = class(TDataModule)
     waTestGeoLocation: TwhWebAction;
     waTestFreebase: TwhWebAction;
+    waOAuth2Step1: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure waTestGeoLocationExecute(Sender: TObject);
     procedure waTestFreebaseExecute(Sender: TObject);
+    procedure waOAuth2Step1Execute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -36,7 +38,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   webApp, htWebApp,
   ucCodeSiteInterface, ucURLEncode, ucHttps, ucGoogleAPICredentials,
-  whdemo_ViewSource;
+  whdemo_ViewSource, tpGoogle_ServiceResource;
 
 { TDMGAPI}
 
@@ -68,6 +70,34 @@ begin
   Result := FlagInitDone;
   {$IFDEF CodeSite}CodeSite.Send('Result', Result);
   CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMGAPI.waOAuth2Step1Execute(Sender: TObject);
+const
+  cFn = 'waOAuth2Step1Execute';
+var
+  ClientID, ClientSecret, SimpleAPIKey: string;
+  AccessToken, TokenType: string;
+  ExpiresInMinutes: Integer;
+  IDToken, RefreshToken: string;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  if ZMLookup_GoogleAPI_Credentials('WebHub Demo', ClientID, ClientSecret,
+    SimpleAPIKey) then
+  begin
+    if ExchangeApiKeyForToken(SimpleAPIKey, pWebApp.DynURL.ToSessionIDW,
+      pWebApp.DynURL.ToAppID + pWebApp.DynURL.W + 'pgGoogleApiStep2' +
+      pWebApp.DynURL.W + pWebApp.SessionID,
+      ClientID, ClientSecret, AccessToken, TokenType, ExpiresInMinutes,
+      IDToken, RefreshToken) then
+    begin
+      pWebApp.SendStringImm('AccessToken=' + AccessToken);
+    end;
+  end
+  else
+    pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
+      ': unable to look up GoogleAPI credentials');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMGAPI.waTestFreebaseExecute(Sender: TObject);
