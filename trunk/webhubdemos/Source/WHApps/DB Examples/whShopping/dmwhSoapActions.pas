@@ -31,7 +31,7 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   NativeXml, ZaphodsMap,
   ucHttps, ucCodeSiteInterface,
   webApp, htWebApp;
@@ -44,9 +44,10 @@ begin
 end;
 
 function TDMSOAPClient.Init(out ErrorText: string): Boolean;
-const cFn = 'Init';
+const
+  cFn = 'Init';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   ErrorText := '';
   // reserved for code that should run once, after AppID set
   if NOT FlagInitDone then
@@ -63,12 +64,13 @@ begin
     end;
   end;
   Result := FlagInitDone;
-  {$IFDEF CodeSite}CodeSite.Send('Result', Result);
-  CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.Send('Result', Result);
+  CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMSOAPClient.waIp2CountryExecute(Sender: TObject);
-const cFn = 'waIp2CountryExecute';
+const
+  cFn = 'waIp2CountryExecute';
 var
   ADoc: TNativeXml;
   ANode: TXmlNode;
@@ -77,50 +79,51 @@ var
   CountryName: string;
   ErrorText: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-{PHP sample code
- $client = new SoapClient(null, array(
-   'location' => "http://www.itistimed.com/soap/whois.php",
-   'uri'      => "http://www.itistimed.com/soap/req"
-));
-
-$country_data = $client->ipToCountry($_SERVER["REMOTE_ADDR"]);}
-
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  { This does not require SOAP. it is simpler. Response can be JSON or XML.
+    We are using XML here. }
   ADoc := nil;
   try
     try
       S1 := HttpsGet('http://ip2country.sourceforge.net/ip2c.php?' +
-        'format=XML&' +
-        'ip=208.201.224.11', ErrorText, cDefaultUserAgentName,
-        pWebApp.Request.Referer,  // not required, but might as well send it
-        False,  // no use for headers
-        True);  // this one runs on http only
-      CSSend('S1', S1);
-      S1 := StringReplace(S1, '<?xml version="1.0"?>',
-        '<?xml version="1.0" encoding="UTF-8"?>', []);
-      CSSend('S1 with encoding', S1);
-
-      ADoc := TWideNativeXml.Create;
-
-      if Assigned(ADoc) then
+        'format=XML&' + 'ip=208.201.224.11', ErrorText, cDefaultUserAgentName,
+        pWebApp.DynURL.ToSessionID, // not required; seems friendly to include
+        False, // no use for headers
+        True); // this one runs on http only
+      if ErrorText <> '' then
       begin
-
-      ADoc.ReadFromUTF8String(UTF8String(S1));
-
-      ANode := ADoc.Root.FindNode('country_code');
-      if ANode <> nil then
-        CountryCode := ANode.ValueAsString
-      else
-        CountryCode := '';
-      ANode := ADoc.Root.FindNode('country_name');
-      if ANode <> nil then
-        CountryName := ANode.ValueAsString
-      else
-        CountryName := '';
-      pWebApp.SendStringImm(CountryCode + ' ' + CountryName);
+        LogSendError(ErrorText);
+        pWebApp.SendStringImm('ERROR: ' + ErrorText);
       end
       else
-        pWebApp.SendStringImm('ADoc nil');
+      begin
+        CSSend('S1', S1);
+        S1 := StringReplace(S1, '<?xml version="1.0"?>',
+          '<?xml version="1.0" encoding="UTF-8"?>', []);
+        CSSend('S1 with encoding', S1);
+
+        ADoc := TWideNativeXml.Create;
+
+        if Assigned(ADoc) then
+        begin
+
+          ADoc.ReadFromString(S1);
+
+          ANode := ADoc.Root.FindNode('country_code');
+          if ANode <> nil then
+            CountryCode := ANode.ValueAsString
+          else
+            CountryCode := '';
+          ANode := ADoc.Root.FindNode('country_name');
+          if ANode <> nil then
+            CountryName := ANode.ValueAsString
+          else
+            CountryName := '';
+          pWebApp.SendStringImm(CountryCode + ' ' + CountryName);
+        end
+        else
+          pWebApp.SendStringImm('ADoc nil');
+      end;
     except
       on E: Exception do
       begin
@@ -131,16 +134,17 @@ $country_data = $client->ipToCountry($_SERVER["REMOTE_ADDR"]);}
     FreeAndNil(ADoc);
   end;
 
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMSOAPClient.WebAppUpdate(Sender: TObject);
-const cFn = 'WebAppUpdate';
+const
+  cFn = 'WebAppUpdate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 end.
