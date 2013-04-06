@@ -102,7 +102,7 @@ begin
           '<?xml version="1.0" encoding="UTF-8"?>', []);
         CSSend('S1 with encoding', S1);
 
-        ADoc := TWideNativeXml.Create;
+        ADoc := TNativeXml.Create;
 
         if Assigned(ADoc) then
         begin
