@@ -102,7 +102,7 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 <a href="https://accounts.google.com/o/oauth2/auth?
 scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
 state=%2Fprofile&
-redirect_uri=https%3A%2F%2Fdb.demos.href.com/googleapi/shop1/oauth2callback&
+redirect_uri=https%3A%2F%2Fdb.demos.href.com/googleapi/shop1/oauth2callback:s=(~SessionID~)&
 response_type=code&
 client_id=196077577558.apps.googleusercontent.com&approval_prompt=force" title="testing">Go to google to start authorization process</a>
 
