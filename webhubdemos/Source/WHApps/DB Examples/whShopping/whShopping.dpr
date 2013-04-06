@@ -46,10 +46,10 @@ uses
   HtShopC in 'HtShopC.pas' {fmShopPanel},
   whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule},
   whShopping_dmwhSessionWatch in 'whShopping_dmwhSessionWatch.pas' {DMSessWatch: TDataModule},
-  //tpGoogle_ServiceResource in 'K:\WebHub\tpack\tpGoogle_ServiceResource.pas',
-  ucHttps,// in 'K:\WebHub\tpack\ucHttps.pas',
-  ucGoogleAPICredentials, // in 'K:\WebHub\tpack\ucGoogleAPICredentials.pas',
-  dmwhGoogleAPIActions in 'dmwhGoogleAPIActions.pas' {DMGAPI: TDataModule};
+  ucHttps,
+  ucGoogleAPICredentials,
+  dmwhGoogleAPIActions in 'dmwhGoogleAPIActions.pas' {DMGAPI: TDataModule},
+  dmwhSoapActions in 'dmwhSoapActions.pas' {DMSOAPClient: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
