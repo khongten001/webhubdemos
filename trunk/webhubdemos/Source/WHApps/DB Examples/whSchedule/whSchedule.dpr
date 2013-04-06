@@ -9,7 +9,7 @@ program whSchedule;
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  {$I whSchedule-uses.inc}
+  {$I whSchedule-uses.inc}  { links to source PAS requiring Rubicon components is here }
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
@@ -41,7 +41,8 @@ uses
   ucIbAndFbCredentials in 'h:\ucIbAndFbCredentials.pas',
   ucIBObjPrepare in 'h:\ucIBObjPrepare.pas';
 
-//   {$I whSchedule-uses.inc}
+// save the syntax for the Include line in case Delphi IDE erases it above.
+// {$I whSchedule-uses.inc}
 
 begin
   {M}Application.Initialize;
