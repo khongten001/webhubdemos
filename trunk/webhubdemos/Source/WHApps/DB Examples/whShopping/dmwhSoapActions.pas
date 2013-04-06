@@ -26,6 +26,9 @@ type
 var
   DMSOAPClient: TDMSOAPClient;
 
+function ConvertIPv4ToCountry(const InIPv4, InReferer: string;
+  out CountryCode, CountryName, ErrorText: string): Boolean;
+
 implementation
 
 {$R *.dfm}
@@ -68,32 +71,33 @@ begin
   CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
-procedure TDMSOAPClient.waIp2CountryExecute(Sender: TObject);
+function ConvertIPv4ToCountry(const InIPv4, InReferer: string;
+  out CountryCode, CountryName, ErrorText: string): Boolean;
 const
-  cFn = 'waIp2CountryExecute';
+  cFn = 'IP2Country';
 var
   ADoc: TNativeXml;
   ANode: TXmlNode;
   S1: string;
-  CountryCode: string;
-  CountryName: string;
-  ErrorText: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
+  Result := True;
+  ErrorText := '';
+
   { This does not require SOAP. it is simpler. Response can be JSON or XML.
     We are using XML here. }
   ADoc := nil;
   try
     try
       S1 := HttpsGet('http://ip2country.sourceforge.net/ip2c.php?' +
-        'format=XML&' + 'ip=208.201.224.11', ErrorText, cDefaultUserAgentName,
-        pWebApp.DynURL.ToSessionID, // not required; seems friendly to include
+        'format=XML&' + 'ip=' + InIPv4, ErrorText, cDefaultUserAgentName,
+        InReferer, // not required; seems friendly to include
         False, // no use for headers
         True); // this one runs on http only
       if ErrorText <> '' then
       begin
+        Result := False;
         LogSendError(ErrorText);
-        pWebApp.SendStringImm('ERROR: ' + ErrorText);
       end
       else
       begin
@@ -104,25 +108,18 @@ begin
 
         ADoc := TNativeXml.Create;
 
-        if Assigned(ADoc) then
-        begin
+        ADoc.ReadFromString(S1);
 
-          ADoc.ReadFromString(S1);
-
-          ANode := ADoc.Root.FindNode('country_code');
-          if ANode <> nil then
-            CountryCode := ANode.ValueAsString
-          else
-            CountryCode := '';
-          ANode := ADoc.Root.FindNode('country_name');
-          if ANode <> nil then
-            CountryName := ANode.ValueAsString
-          else
-            CountryName := '';
-          pWebApp.SendStringImm(CountryCode + ' ' + CountryName);
-        end
+        ANode := ADoc.Root.FindNode('country_code');
+        if ANode <> nil then
+          CountryCode := ANode.ValueAsString
         else
-          pWebApp.SendStringImm('ADoc nil');
+          CountryCode := '';
+        ANode := ADoc.Root.FindNode('country_name');
+        if ANode <> nil then
+          CountryName := ANode.ValueAsString
+        else
+          CountryName := '';
       end;
     except
       on E: Exception do
@@ -132,6 +129,32 @@ begin
     end;
   finally
     FreeAndNil(ADoc);
+  end;
+
+{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
+end;
+
+procedure TDMSOAPClient.waIp2CountryExecute(Sender: TObject);
+const
+  cFn = 'waIp2CountryExecute';
+var
+  CountryCode: string;
+  CountryName: string;
+  ErrorText: string;
+begin
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  { This does not require SOAP. it is simpler. Response can be JSON or XML.
+    We are using XML here. }
+
+  if ConvertIPv4ToCountry(pWebApp.Request.RemoteAddress,
+    pWebApp.DynURL.ToSessionID, CountryCode, CountryName, ErrorText) then
+  begin
+    pWebApp.SendStringImm('<b>Country Code:</b> ' + CountryCode +
+       ' <b>Name:</b> ' + CountryName);
+  end
+  else
+  begin
+    pWebApp.SendStringImm('ERROR: ' + ErrorText);
   end;
 
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
