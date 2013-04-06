@@ -86,4 +86,25 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 </body></html>
 </whpage>
 
+<whpage pageid="pgOAuth2Step1" desc="Test for Google OAuth2">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>Step 1</h1>
+(~waOAuth2Step1.Execute~)
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
 </whteko>
