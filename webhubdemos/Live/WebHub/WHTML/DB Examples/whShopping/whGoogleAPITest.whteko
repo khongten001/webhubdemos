@@ -99,7 +99,38 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 <div id="whdemopagecontent">
 
 <h1>Step 1</h1>
-(~waOAuth2Step1.Execute~)
+<a href="https://accounts.google.com/o/oauth2/auth?
+scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
+state=%2Fprofile&
+redirect_uri=https%3A%2F%2Fdb.demos.href.com/googleapi/shop1/oauth2callback&
+response_type=code&
+client_id=196077577558.apps.googleusercontent.com&approval_prompt=force" title="testing">Go to google to start authorization process</a>
+
+<!---
+(~waOAuth2Step1.Execute~) -->
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="oauth2callback" desc="Google Sends Surfer Back Here">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~PageDesc~)</h1>
+<p>Query String: (~Request.QueryString~)</p>
+<h2>StringVars</h2>
+(~StringVars~)
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
