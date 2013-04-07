@@ -126,8 +126,9 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 
 <h1>(~PageDesc~)</h1>
 <p>Query String (after remap by StreamCatcher): (~Request.QueryString~)</p>
-<h2>StringVars</h2>
-(~waOAuth2StepToken.Execute~)
+<h2>Continue</h2>
+<p>Usually this would happen automatically but for the sake of clarity,
+(~JUMP|pgOAuth2Step2|click to request token~).</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
@@ -149,6 +150,27 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 
 <h1>(~PageDesc~)</h1>
 <p>This is the end of the road for people who do not wish to log in through google.</p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgOAuth2Step2" desc="Web application asks google for token">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~PageDesc~)</h1>
+(~waOAuth2StepToken.Execute~)
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
