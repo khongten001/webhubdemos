@@ -125,10 +125,8 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 <div id="whdemopagecontent">
 
 <h1>(~PageDesc~)</h1>
-<p>Query String: (~Request.QueryString~)</p>
+<p>Query String (after remap by StreamCatcher): (~Request.QueryString~)</p>
 <h2>StringVars</h2>
-(~StringVars~)
-
 (~waOAuth2StepToken.Execute~)
 
 </div>  <!--- demopagecontent -->

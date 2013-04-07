@@ -15,9 +15,9 @@ object DMGAPI: TDMGAPI
     Left = 88
     Top = 128
   end
-  object waOAuth2Step1: TwhWebAction
+  object waOAuth2StepToken: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
-    OnExecute = waOAuth2Step1Execute
+    OnExecute = waOAuth2StepTokenExecute
     Left = 88
     Top = 272
   end
