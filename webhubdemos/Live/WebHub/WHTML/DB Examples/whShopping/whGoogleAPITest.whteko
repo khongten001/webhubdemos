@@ -128,7 +128,7 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 <p>Query String (after remap by StreamCatcher): (~Request.QueryString~)</p>
 <h2>Continue</h2>
 <p>Usually this would happen automatically but for the sake of clarity,
-(~JUMP|pgOAuth2Step2|click to request token~).</p>
+(~JUMP|pgOAuth2Step2,(~Command~)|click to request token~).</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
