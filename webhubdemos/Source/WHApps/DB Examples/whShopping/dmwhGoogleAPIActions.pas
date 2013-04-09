@@ -79,6 +79,7 @@ var
   ExpiresInMinutes: Integer;
   IDToken, RefreshToken: string;
   S1, S2: string;
+  ErrorText: string;
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   { this only makes sense AFTER the surfer has been to google and returned
@@ -112,7 +113,7 @@ begin
           pWebApp.Request.Authority + '/googleapi/shop1/oauth2token',
           // another pre-approved return URI
           FClientID, FClientSecret, AccessToken, TokenType, ExpiresInMinutes,
-          IDToken, RefreshToken) then
+          IDToken, RefreshToken, ErrorText) then
         begin
           pWebApp.SendStringImm('AccessToken=' + AccessToken);
         end
@@ -182,16 +183,24 @@ const
 var
   ResponseJSON: string;
   ErrorText: string;
+  InputFilespec: string;
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   if (FClientSecret <> '') then
   begin
-    ResponseJSON := // CodeSite logs 403 Forbidden exception
-      HTTPSPost('https://www.googleapis.com/geolocation/v1/geolocate?key=' +
-      UrlEncode(FSimpleAPIKey, True), ErrorText,
-      getHtDemoCodeRoot + 'DB Examples\whShopping\google_geoloc_sample.json',
-      'HREF Tools WebHub Demo Agent', pWebApp.Request.Referer,
-      'application/json', '', True);
+    InputFilespec := getHtDemoCodeRoot +
+      'DB Examples\whShopping\google_geoloc_sample.json';
+
+    ResponseJSON :=
+      HTTPSPost('https://www.googleapis.com/geolocation/v1/geolocate?' +
+        PctEncodeWWWFormPair2005('key', FSimpleAPIKey),
+        ErrorText,
+        InputFilespec, // using file as input
+        nil, // not using TMemoryStream as input
+        'HREF Tools WebHub Demo Agent',
+        pWebApp.Request.Scheme + '://' + pWebApp.Request.Authority +
+        pWebApp.DynURL.ToSessionIDW, // Current page as Referer for next page
+        cCTApplicationJson);
 
     if ErrorText <> '' then
       pWebApp.SendStringImm('Exception: ' + ErrorText)
