@@ -121,10 +121,7 @@ begin
       end
       else
         pWebApp.SendStringImm('code not found in callback url from google.');
-    end
-    else
-      pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
-        ': unable to look up GoogleAPI credentials');
+    end;
   end;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
