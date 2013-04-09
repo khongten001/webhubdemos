@@ -178,6 +178,30 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </body></html>
 </whpage>
 
+<whpage pageid="pgEchoPostData" desc="-Echo Posted Data">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h1>(~PageDesc~)</h1>
+<p style="font-weight:900;">(~Request.UserAgent~)<br/>(~Request.RemoteAddress~)<br/>(~Request.QueryString~)</p>
+<h2>StringVars</h2>
+(~StringVars~)
+<h2>BoolVars</h2>
+(~BoolVars~)
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+
+</body></html>
+</whpage>
 
 
 </whteko>
