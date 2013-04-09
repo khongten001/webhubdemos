@@ -3,7 +3,7 @@
         <ProjectGuid>{5653C155-9103-431A-AEB9-1CFFE5CDEFC8}</ProjectGuid>
         <MainSource>whShopping.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
@@ -157,6 +157,10 @@
         </DCCReference>
         <DCCReference Include="dmwhGoogleAPIActions.pas">
             <Form>DMGAPI</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="dmwhSoapActions.pas">
+            <Form>DMSOAPClient</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Debug">

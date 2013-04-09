@@ -1,4 +1,5 @@
 program whShopping;     { Shopping Cart - Simplest Example }
+
 (*
   Copyright (c) 1998-2013 HREF Tools Corp.
 
@@ -47,10 +48,11 @@ uses
   whShopping_dmShop in 'whShopping_dmShop.pas' {DMShop1: TDataModule},
   whShopping_dmwhSessionWatch in 'whShopping_dmwhSessionWatch.pas' {DMSessWatch: TDataModule},
   ucHttps,
+  ucUrlEncode,
   ucGoogleAPICredentials,
   dmwhGoogleAPIActions in 'dmwhGoogleAPIActions.pas' {DMGAPI: TDataModule},
   dmwhSoapActions in 'dmwhSoapActions.pas' {DMSOAPClient: TDataModule},
-  tpGoogle_ServiceResource in 'K:\WebHub\tpack\tpGoogle_ServiceResource.pas';
+  tpGoogle_ServiceResource;
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
