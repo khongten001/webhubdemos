@@ -100,7 +100,7 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 
 <h1>Step 1</h1>
 <a href="https://accounts.google.com/o/oauth2/auth?
-scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile&
+scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Flatitude.current.city&
 state=%2Fprofile(~SessionID~)&
 redirect_uri=https%3A%2F%2Fdb.demos.href.com/googleapi/shop1/oauth2callback&
 response_type=code&
