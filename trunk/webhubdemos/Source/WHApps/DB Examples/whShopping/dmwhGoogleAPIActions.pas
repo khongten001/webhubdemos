@@ -155,7 +155,7 @@ begin
         else
         begin
           pWebApp.Response.SendLines(['<h1>Bad News</h1>',
-          '<p>ExchangeApiKeyForToken failed.</p>']);
+          '<p>ExchangeApiKeyForToken failed.</p>', '<p>', ErrorText, '</p>']);
           pWebApp.Response.SendLines(['<h2>Raw Headers used on TIdHttp</h2>',
             '<pre>', RawHeadersUsed, '</pre>']);
           pWebApp.Response.SendLines(['<h2>Data Posted</h2>',
@@ -166,6 +166,7 @@ begin
             '<p>The authorization code is the one assigned to YOU by ' +
             'google, a few moments ago.</p>',
             '<p>', UnsecretDataUsed, '</p>']);
+
         end;
       end
       else
