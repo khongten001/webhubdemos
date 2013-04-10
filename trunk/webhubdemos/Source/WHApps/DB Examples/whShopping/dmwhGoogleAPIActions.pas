@@ -152,18 +152,18 @@ begin
           FClientID, FClientSecret, AccessToken, TokenType, ExpiresInSeconds,
           IDToken, RefreshToken, ErrorText, RawHeadersUsed, UnsecretDataUsed) then
         begin
-          pWebApp.SendStringImm('<pre>');
+          pWebApp.Response.SendLine('<pre>');
           pWebApp.StringVar['_access_token'] := AccessToken;  // save
-          pWebApp.SendStringImm('AccessToken=' + AccessToken);
+          pWebApp.Response.SendLine('AccessToken=' + AccessToken);
           pWebApp.StringVar['_id_token'] := IDToken;  // save
-          pWebApp.SendStringImm('IDToken=' + IDToken);
+          pWebApp.Response.SendLine('IDToken=' + IDToken);
           pWebApp.StringVar['_token_type'] := TokenType;  // save
-          pWebApp.SendStringImm('TokenType=' + TokenType);
+          pWebApp.Response.SendLine('TokenType=' + TokenType);
           ExpiresOnAt := IncSecond(NowGMT, ExpiresInSeconds - 45);
           pWebApp.StringVar['_expires_on_at'] := IntToStr(DateTimeToUnix(ExpiresOnAt));
-          pWebApp.SendStringImm('Expires approximately ' +
+          pWebApp.Response.SendLine('Expires approximately ' +
             FormatDateTime('dd-MMM hh:nn:ss', ExpiresOnAt) + ' gmt');
-          pWebApp.SendStringImm('</pre>');
+          pWebApp.Response.SendLine('</pre>');
         end
         else
         begin
