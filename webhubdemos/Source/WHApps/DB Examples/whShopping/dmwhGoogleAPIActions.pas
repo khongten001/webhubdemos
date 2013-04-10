@@ -39,8 +39,10 @@ implementation
 
 uses
 {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
+  DateUtils,
   webApp, htWebApp,
   ucString, ucCodeSiteInterface, ucURLEncode, ucHttps, ucGoogleAPICredentials,
+  ucMsTime,
   whdemo_ViewSource, tpGoogle_ServiceResource;
 
 { TDMGAPI }
@@ -106,11 +108,12 @@ const
   cFn = 'waOAuth2Step1Execute';
 var
   AccessToken, TokenType: string;
-  ExpiresInMinutes: Integer;
+  ExpiresInSeconds: Integer;
   IDToken, RefreshToken: string;
   S1, S2: string;
   ErrorText: string;
   RawHeadersUsed, UnsecretDataUsed: string;
+  ExpiresOnAt: TDateTime;
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   { this only makes sense AFTER the surfer has been to google and returned
@@ -139,18 +142,26 @@ begin
       begin
         if ExchangeAuthCodeForToken(
           S1, // this authorization code is returned via URL from google
-          pWebApp.Request.Scheme + '://' + pWebApp.Request.Authority +
-          pWebApp.DynURL.ToSessionIDW, // Referer
+
+          //redirect uri MUST be the SAME as when the code was requested !
+          // and it is NOT USED because we are requesting behind the scenes !
           pWebApp.Request.Scheme + '://' +
-          pWebApp.Request.Authority + '/googleapi/shop1/oauth2token', //redir to another pre-approved return URI
+          pWebApp.Request.Authority + '/googleapi/shop1/oauth2callback',
 
-          pWebApp.Request.UserAgent,
-          //'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0',
-
-          FClientID, FClientSecret, AccessToken, TokenType, ExpiresInMinutes,
+          'WebHub Demo', // any user agent is fine
+          FClientID, FClientSecret, AccessToken, TokenType, ExpiresInSeconds,
           IDToken, RefreshToken, ErrorText, RawHeadersUsed, UnsecretDataUsed) then
         begin
+          pWebApp.StringVar['_access_token'] := AccessToken;  // save
           pWebApp.SendStringImm('AccessToken=' + AccessToken);
+          pWebApp.StringVar['_id_token'] := IDToken;  // save
+          pWebApp.SendStringImm('IDToken=' + IDToken);
+          pWebApp.StringVar['_token_type'] := TokenType;  // save
+          pWebApp.SendStringImm('TokenType=' + TokenType);
+          ExpiresOnAt := IncSecond(NowGMT, ExpiresInSeconds - 45);
+          pWebApp.StringVar['_expires_on_at'] := IntToStr(DateTimeToUnix(ExpiresOnAt));
+          pWebApp.SendStringImm('Expires approximately ' +
+            FormatDateTime('dd-MMM hh:nn:ss', ExpiresOnAt) + ' gmt');
         end
         else
         begin
