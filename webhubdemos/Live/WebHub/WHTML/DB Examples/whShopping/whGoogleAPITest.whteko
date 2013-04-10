@@ -114,6 +114,12 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 
 <whpage pageid="oauth2callback" desc="Google Sends Surfer Back Here">
 <whprep>
+(~waOAuth2CallbackState.Execute|~) <!--- bounces to oauth2callback02 -->
+</whprep>
+</whpage>
+
+<whpage pageid="oauth2callback02" desc="-Callback plus use of state to reconnect with session">
+<whprep>
 </whprep>
 (~mcdoctypehtml~)
 <html>
