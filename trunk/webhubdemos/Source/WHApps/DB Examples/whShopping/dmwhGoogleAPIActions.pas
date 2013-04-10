@@ -14,10 +14,12 @@ type
     waTestGeoLocation: TwhWebAction;
     waTestFreebase: TwhWebAction;
     waOAuth2StepToken: TwhWebAction;
+    waOAuth2CallbackState: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure waTestGeoLocationExecute(Sender: TObject);
     procedure waTestFreebaseExecute(Sender: TObject);
     procedure waOAuth2StepTokenExecute(Sender: TObject);
+    procedure waOAuth2CallbackStateExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -71,6 +73,34 @@ begin
   CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
+procedure TDMGAPI.waOAuth2CallbackStateExecute(Sender: TObject);
+const cFn = 'waOAuth2CallbackStateExecute';
+var
+  a1, a2: string;
+  targetURL: string;
+begin
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+(*
+Query String (after remap by StreamCatcher): shop1:oauth2callback::state=/profile1294912795&code=4/lR5tzQlU83XlhOJmNmSYIqJlE2oy.QrarjwvN688cgrKXntQAax0uBr3iewI
+*)
+  LogSendInfo('QueryString', pWebApp.Request.QueryString);
+  SplitString(pWebApp.Request.QueryString, 'state=/profile', a1, a2);
+  SplitString(a2, '&code=', a1, a2);
+  { a1 now contains the session id for the surfer who started this }
+  LogSendInfo('session number in a1', a1);
+
+  { now bounce to a URL starting with http(s)
+    that includes the correct session number, keeping the
+    command string intact for subsequent use }
+  targetURL := pWebApp.Request.Scheme + '://' + pWebApp.Request.Authority +
+    pWebApp.DynURL.ToAppID + pWebApp.DynURL.W +
+    'oauth2callback02' + pWebApp.DynURL.W + a1 + pWebApp.DynURL.W +
+    pWebApp.Command;
+  pWebApp.Response.SendBounceTo(targetURL);
+
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+end;
+
 procedure TDMGAPI.waOAuth2StepTokenExecute(Sender: TObject);
 const
   cFn = 'waOAuth2Step1Execute';
@@ -80,6 +110,7 @@ var
   IDToken, RefreshToken: string;
   S1, S2: string;
   ErrorText: string;
+  RawHeadersUsed, UnsecretDataUsed: string;
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   { this only makes sense AFTER the surfer has been to google and returned
@@ -106,19 +137,36 @@ begin
       SplitString(S2, '&', S1, S2);
       if FClientSecret <> '' then
       begin
-        if ExchangeApiKeyForToken(S1,
-          // this code is returned via URL from google
+        if ExchangeAuthCodeForToken(
+          S1, // this authorization code is returned via URL from google
           pWebApp.Request.Scheme + '://' + pWebApp.Request.Authority +
-          pWebApp.DynURL.ToSessionIDW, pWebApp.Request.Scheme + '://' +
-          pWebApp.Request.Authority + '/googleapi/shop1/oauth2token',
-          // another pre-approved return URI
+          pWebApp.DynURL.ToSessionIDW, // Referer
+          pWebApp.Request.Scheme + '://' +
+          pWebApp.Request.Authority + '/googleapi/shop1/oauth2token', //redir to another pre-approved return URI
+
+          pWebApp.Request.UserAgent,
+          //'Mozilla/5.0 (Windows NT 6.1; WOW64; rv:21.0) Gecko/20100101 Firefox/21.0',
+
           FClientID, FClientSecret, AccessToken, TokenType, ExpiresInMinutes,
-          IDToken, RefreshToken, ErrorText) then
+          IDToken, RefreshToken, ErrorText, RawHeadersUsed, UnsecretDataUsed) then
         begin
           pWebApp.SendStringImm('AccessToken=' + AccessToken);
         end
         else
-          pWebApp.SendStringImm('ExchangeApiKeyForToken failed');
+        begin
+          pWebApp.Response.SendLines(['<h1>Bad News</h1>',
+          '<p>ExchangeApiKeyForToken failed.</p>']);
+          pWebApp.Response.SendLines(['<h2>Raw Headers used on TIdHttp</h2>',
+            '<pre>', RawHeadersUsed, '</pre>']);
+          pWebApp.Response.SendLines(['<h2>Data Posted</h2>',
+            '<p>', 'The following data was put into a Delphi UTF8String and ' +
+                   'sent through TIdHTTP using a TMemoryStream.', '</p>',
+            '<p>The client_id is the one from the google oauth2 playground. ' +
+            'The client_secret has been removed.</p>' +
+            '<p>The authorization code is the one assigned to YOU a few by ' +
+            'google, a few moments ago.</p>',
+            '<p>', UnsecretDataUsed, '</p>']);
+        end;
       end
       else
         pWebApp.SendStringImm('code not found in callback url from google.');
@@ -182,7 +230,7 @@ const
   cFn = 'waTestGeoLocationExecute';
 var
   ResponseJSON: string;
-  ErrorText: string;
+  ErrorText, RawHeadersUsed: string;
   InputFilespec: string;
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
@@ -194,8 +242,8 @@ begin
     ResponseJSON :=
       HTTPSPost('https://www.googleapis.com/geolocation/v1/geolocate?' +
         PctEncodeWWWFormPair2005('key', FSimpleAPIKey),
-        ErrorText,
-        InputFilespec, // using file as input
+        ErrorText, RawHeadersUsed,
+        InputFilespec, // using JSON file as input
         nil, // not using TMemoryStream as input
         'HREF Tools WebHub Demo Agent',
         pWebApp.Request.Scheme + '://' + pWebApp.Request.Authority +

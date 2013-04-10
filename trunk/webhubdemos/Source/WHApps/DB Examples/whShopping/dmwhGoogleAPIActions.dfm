@@ -21,4 +21,10 @@ object DMGAPI: TDMGAPI
     Left = 88
     Top = 272
   end
+  object waOAuth2CallbackState: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waOAuth2CallbackStateExecute
+    Left = 88
+    Top = 224
+  end
 end
