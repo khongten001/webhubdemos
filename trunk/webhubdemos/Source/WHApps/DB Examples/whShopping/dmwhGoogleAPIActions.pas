@@ -163,13 +163,17 @@ begin
                    'sent through TIdHTTP using a TMemoryStream.', '</p>',
             '<p>The client_id is the one from the google oauth2 playground. ' +
             'The client_secret has been removed.</p>' +
-            '<p>The authorization code is the one assigned to YOU a few by ' +
+            '<p>The authorization code is the one assigned to YOU by ' +
             'google, a few moments ago.</p>',
             '<p>', UnsecretDataUsed, '</p>']);
         end;
       end
       else
+      begin
+        // this does not happen in April 2013 but if google broke oauth2,
+        // perhaps it could occur.
         pWebApp.SendStringImm('code not found in callback url from google.');
+      end;
     end;
   end;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
