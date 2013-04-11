@@ -1,0 +1,19 @@
+<html><head><title>WebHub Ajax Demo</title></head>
+<style>
+  body {
+    font-family: Verdana;Arial;
+    font-size: 1em; 
+	margin-right: 5%;
+	margin-left: 5%;
+  }
+</style>
+<body>
+
+<div align="center">
+<h2>CLOSED</h2>
+</div>
+<p><i>(~NOWGMT~)</i></p>
+
+<p>The WebHub Ajax demo is on hold pending a rewrite with JQuery.</p>
+
+</body></html>

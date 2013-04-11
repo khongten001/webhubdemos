@@ -16,6 +16,7 @@
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="coderage" value="{WebHubDemoMsgRoot}appnotrunning-coderage.whmsg"/>
     <AppNotRunning appID="dsp" value="{WebHubDemoMsgRoot}appnotrunning-dsp.whmsg"/>
+    <AppNotRunning appID="htaj" value="{WebHubDemoMsgRoot}appnotrunning-htaj.whmsg"/>
     <HubNotFound appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <RequestTimeout appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
   </Situations>
