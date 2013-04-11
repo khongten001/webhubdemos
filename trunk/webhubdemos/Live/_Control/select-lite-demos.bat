@@ -18,8 +18,8 @@ if "%whipc%"=="x"    set demoadv=yes
 if "%whipc%"=="old" set demoshowcase=yes
 if "%whipc%"=="x" set demoshowcase=yes
 
-if "%whipc%"=="old" set demohtaj=yes
-if "%whipc%"=="x"    set demohtaj=yes
+if "%whipc%"=="old" set demohtaj=no
+if "%whipc%"=="x"    set demohtaj=no
 
 if "%whipc%"=="old" set demobrnd=no
 if "%whipc%"=="x"    set demobrnd=no
