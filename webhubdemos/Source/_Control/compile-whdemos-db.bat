@@ -1,6 +1,6 @@
 if NOT "%comp3%%bits%"=="" goto Continue00
 
-set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D17) :   
+set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or d18) :   
 if %comp3%=="" goto end
 
 :Continue00
@@ -90,7 +90,7 @@ echo .
 del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_d17_win32.bat whDPrefix
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_d18_win32.bat whDPrefix
 
 :dspstart
 del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
@@ -103,10 +103,10 @@ call %cbat% whDSP
 goto end
 
 :dspx
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_d17_win32.bat whDSP
-::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d17_win32_source.bat whDSP
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_d18_win32.bat whDSP
+::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d18_win32_source.bat whDSP
 ::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d15_win32_source.bat whDSP
-::copy %~dp0\..\..\Live\WebHub\Apps\whDSP_x_d17_win32.exe %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
+::copy %~dp0\..\..\Live\WebHub\Apps\whDSP_x_d18_win32.exe %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
 goto end
 
 :END
