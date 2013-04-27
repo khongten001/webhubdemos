@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko  
 	defaultlingvo="eng"  
@@ -189,7 +189,7 @@ and watch the URL (and therefore the command) change.</p>
 (~drCycleNavigation~)
 
 <p>The WebCycle index number started out at number <b>(~webcycle.ItemIndex~)</b>
-and the WebHub command was: <b>(~htWebApp.Command~)</b>.
+and the WebHub command was: <b>(~app.Command~)</b>.
 See below to see how the index number changes...</p>
 
 // Execute the component to show an advertisement....
