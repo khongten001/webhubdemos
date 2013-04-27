@@ -2,7 +2,7 @@ setlocal
 
 cd /d %~dp0
 
-set comp3=D17
+set comp3=d18
 set bits=32
 @echo off
 cls

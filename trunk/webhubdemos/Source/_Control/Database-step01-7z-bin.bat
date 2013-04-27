@@ -42,7 +42,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whScanTable.exe
 if errorlevel 1 pause
 
 set t=Database-Library-bin.7z
-set sdir=h:\pkg_d17_win32
+set sdir=h:\pkg_d18_win32
 
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d1?_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d1?_win32.bpl
