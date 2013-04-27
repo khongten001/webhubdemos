@@ -1,7 +1,7 @@
 unit whdemo_Extensions;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1998-2012 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1998-2013 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
@@ -19,6 +19,7 @@ uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   {$I xe_actnlist.inc}
   updateOk, tpAction, tpActionGUI, tpShareI,
+  webAjax,
   webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
@@ -49,6 +50,7 @@ type
     FMonitorFilespec: string; // for use with WebHubGuardian
     FAdminIpNumber: string;
     FServerIpNumber: string;
+    FAjaxEvent: TwhAjaxEventAction;
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -62,6 +64,7 @@ type
     { Public declarations }
     function Init: Boolean;
     function IsSuperuser(const InSurferIP: string): Boolean;
+    property AjaxEvent: TwhAjaxEventAction read FAjaxEvent;
   end;
 
 var
@@ -97,6 +100,10 @@ begin
 
   if NOT FlagBeenHere then
   begin
+    FAjaxEvent := TwhAjaxEventAction.Create(Self);
+    FAjaxEvent.Name := 'AjaxEvent';
+    FAjaxEvent.Refresh;
+
     AddAppUpdateHandler(DemoAppUpdate);
     // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
@@ -226,6 +233,7 @@ procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   FMonitorFilespec := ''; // for use with WebHubGuardian
+  FAjaxEvent := nil;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
@@ -236,6 +244,7 @@ begin
 {$IFDEF Delphi12Up}{$INLINE OFF}{$ENDIF}
     DeleteFile(FMonitorFilespec);
   end;
+  FreeAndNil(FAjaxEvent);
   DemoExtensions := nil;
 end;
 
