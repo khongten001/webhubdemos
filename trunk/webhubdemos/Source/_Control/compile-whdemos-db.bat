@@ -47,8 +47,10 @@ if NOT "%compilehtq4%"=="no" call %cbat% whQuery4
 del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
 ::whSchedule uses IBObjects and Rubicon
 if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
+if NOT "%compilecoderage%"=="no" set compilerdigits=17
 if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
+set compilerdigits=
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
 if NOT "%compilehtfs%"=="no" call %cbat% whFishStore
@@ -96,7 +98,7 @@ echo ipc is %whipc%
 echo ***
 echo .
 
-del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe
+@del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
 set compilerdigits=17
@@ -104,7 +106,7 @@ call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
 
 :dspstart
 set compilerdigits=
-del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
+@del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
 if "%compiledsp%"=="no" goto end
 cd %droot%\Third Party Examples\whDSP
 
