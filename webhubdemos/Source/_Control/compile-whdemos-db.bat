@@ -1,12 +1,14 @@
 if NOT "%comp3%%bits%"=="" goto Continue00
 
-set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or d18) :   
+set /P comp3=Enter Pascal Compiler Digits as Number (eg. 17 or 18) :   
 if %comp3%=="" goto end
+set compilerdigits=%comp3%
+set comp3=D%compilerdigits%
 
 :Continue00
 set droot=d:\projects\WebHubDemos\Source\WHApps
 if "%demonopackages%"=="yes" goto Continue01
-set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win32.bat
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat
 goto Continue02
 
 :Continue01
@@ -23,10 +25,13 @@ if "%compilehtq1%"=="" pause
 if NOT "%compilehtq1%"=="no" cd %droot%\DB Examples\whQuery1
 if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
 
+:: whQuery2 uses IBObjects
 del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
 if "%compilehtq2%"=="" pause
 if NOT "%compilehtq2%"=="no" cd %droot%\DB Examples\whQuery2
+if NOT "%compilehtq2%"=="no" set compilerdigits=17
 if NOT "%compilehtq2%"=="no" call %cbat% whQuery2
+set compilerdigits=
 
 del %~dp0\..\..\Live\WebHub\Apps\whQuery3.exe /q
 if NOT "%compilehtq3%"=="no" cd %droot%\DB Examples\whQuery3
@@ -73,7 +78,9 @@ if NOT "%compilejpeg%"=="no" call %cbat% whDynamicJPEG
 ::whFirebird uses IBObjects 
 del %~dp0\..\..\Live\WebHub\Apps\whFirebird.exe
 if NOT "%compilefire%"=="no" cd %droot%\DB Examples\whFirebird
+if NOT "%compilefire%"=="no" set compilerdigits=17
 if NOT "%compilefire%"=="no" call %cbat% whFirebird
+set compilerdigits=
 
 del %~dp0\..\..\Live\WebHub\Apps\whRubicon.exe
 if NOT "%compilehtru%"=="no" cd %droot%\Third Party Examples\whRubicon
@@ -90,23 +97,17 @@ echo .
 del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_d18_win32.bat whDPrefix
+set compilerdigits=17
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
 
 :dspstart
+set compilerdigits=
 del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
 if "%compiledsp%"=="no" goto end
 cd %droot%\Third Party Examples\whDSP
-goto dsp%whipc%
 
-:dspold
-call %cbat% whDSP
-goto end
-
-:dspx
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_d18_win32.bat whDSP
-::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d18_win32_source.bat whDSP
-::call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_d15_win32_source.bat whDSP
-::copy %~dp0\..\..\Live\WebHub\Apps\whDSP_x_d18_win32.exe %~dp0\..\..\Live\WebHub\Apps\whDSP.exe
+::dsp new-ipc
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDSP
 goto end
 
 :END

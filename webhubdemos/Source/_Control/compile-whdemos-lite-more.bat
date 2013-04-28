@@ -1,15 +1,17 @@
 @echo off
 if NOT "%comp3%%bits%"=="" goto DServerContinue00
 
-set /P comp3=Enter Pascal Compiler Code in UPPERCASE (eg. D15 or D18) :   
+set /P comp3=Enter Pascal Compiler Digits as NUMBER (eg. 17 or 18) :   
 if %comp3%=="" goto end
-if %comp3%==D15 set bits=32
-if %comp3%==D15 goto DServerContinue00
+set compilerdigits=%comp3%
+set comp3=D%compilerdigits%
+if %compilerdigits%==15 set bits=32
+if %compilerdigits%==15 goto DServerContinue00
 set /P bits=Enter 32 or 64 for win32 or win64 :   
 if %bits%=="" goto end
 
 :DServerContinue00
-set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%.bat
+set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
