@@ -9,10 +9,12 @@ set comp3=D%compilerdigits%
 set droot=d:\projects\WebHubDemos\Source\WHApps
 if "%demonopackages%"=="yes" goto Continue01
 set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat
+if NOT Exist %cbat% pause
 goto Continue02
 
 :Continue01
-set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_d15_win32_nopackages.bat
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win32_nopackages.bat
+if NOT Exist %cbat% pause
 
 
 :Continue02
