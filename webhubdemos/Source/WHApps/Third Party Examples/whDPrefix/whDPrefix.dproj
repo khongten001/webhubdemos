@@ -38,7 +38,6 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_Define>WEBHUBACE;PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
         <Manifest_File>None</Manifest_File>
-        <Icon_MainIcon>whDPrefix_icon.ico</Icon_MainIcon>
         <DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps</DCC_ExeOutput>
         <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=Delphi Prefix Registry WebHub application;FileVersion=1.3.0.18;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=dpr;ProductVersion=1.0.0.0;Comments=;ServiceName=dpr</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>

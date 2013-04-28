@@ -21,6 +21,7 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
+  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
   UTF8StringUtils in 'h:\UTF8StringUtils.pas';
 
 {$R dserver_version.RES}
@@ -37,7 +38,6 @@ uses
   webVars in 'k:\webhub\lib\webVars.pas',
   webSend in 'k:\webhub\lib\whvcl\webSend.pas',
   webApp in 'k:\webhub\lib\whvcl\webApp.pas',
-  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
 
   ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
   whAppOut in 'k:\webhub\lib\whAppOut.pas',
@@ -53,7 +53,7 @@ uses
   apiStat in 'K:\WebHub\lib\whrun\apiStat.pas',
   apiMail in 'k:\webhub\Lib\WHRun\apiMail.pas',
   ipcMail in 'K:\WebHub\lib\whrun\ipcMail.pas',
-  webAjax in 'K:\WebHub\lib\whvcl\webAjax.pas',
+  webAjax in 'K:\WebHub\lib\whplus\webAjax.pas',
   webTypes in 'K:\WebHub\lib\webTypes.pas',
   webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
   webBase in 'k:\webhub\Lib\WHVCL\webBase.pas',
