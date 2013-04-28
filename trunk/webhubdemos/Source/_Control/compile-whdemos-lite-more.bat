@@ -12,6 +12,7 @@ if %bits%=="" goto end
 
 :DServerContinue00
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
+if NOT Exist %cbat% pause
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
@@ -26,15 +27,17 @@ call %cbat% aserver
 cd "%droot%\Lite Examples\whAppServer\dserver"
 
 :: as-service
-set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_svc.bat
+set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_svc.bat
+if NOT exist %cbat% pause
 call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%svc.exe
 
 :DServerContinue01
-set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%.bat
+set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
+if NOT exist %cbat% pause
 call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%.exe
-call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_nopackages.bat dserver
+call D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_nopackages.bat dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%_win%bits%_NoPackages.exe
 if errorlevel 1 pause
 
@@ -78,7 +81,7 @@ cd %droot%\More Examples\whSendmail
 call %cbat% whSendmail
 
 cd %droot%\More Examples\whStopspam
-::call D:\Projects\webhubdemos\Source\_Control\compile-1demo_%comp3%_win%bits%_svc.bat whStopspam
+::call D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_svc.bat whStopspam
 call %cbat% whStopspam
 
 cd %droot%\More Examples\whText2Table
