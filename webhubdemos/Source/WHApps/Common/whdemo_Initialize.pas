@@ -41,7 +41,7 @@ uses
   MultiTypeApp, ucLogFil,
   whConst, webSplat,
   webApp, webInfoU, whMacroAffixes, htmConst, htWebApp,
-  whsample_DWSecurity,
+  whsample_DWSecurity, whsample_PrototypeJS,
   webCall, whdemo_Extensions, whdemo_ViewSource,
   ucPos, uCode, ucString, ucDlgs, whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About,
@@ -72,6 +72,7 @@ begin
   // on demos.href.com
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
+  {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
   {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
@@ -103,9 +104,12 @@ begin
 end;
 
 procedure whDemoInit;
+var
+  ErrorText: string;
 begin
   InitStandardWHModules;
   DemoExtensions.Init;  // initialize WebCycle, WebLogin
+  DMPrototypeJS.Init(ErrorText); 
 end;
 
 procedure TDemoHelperComponent.CalcDemoButtonLinks(Sender: TwhRespondingApp;

@@ -1,7 +1,7 @@
 unit whdemo_DMProjMgr;  { initialization shared by all webhub demos }
 
 (*
-Copyright (c) 2004-2012 HREF Tools Corp.
+Copyright (c) 2004-2013 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -77,6 +77,7 @@ uses
   ucCodeSiteInterface,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
+  whsample_PrototypeJS,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
