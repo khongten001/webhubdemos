@@ -222,9 +222,18 @@ Any WebHub expressions in the included file will be expanded.
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-Use the SENDFILE macro (on ISAPI only) to dynamically send files, of any MIME type.
+<p>Use the SENDFILE macro (on ISAPI only) to dynamically send files, of any MIME type.</p>
+<p>On (~Request.Host~), use short format: (~DynURLConfig.UseShortFormat~)</p>
 <p>
-See the WebHub Help file for syntax.
+(~MATCH|(~DynURLConfig.UseShortFormat~)=True|
+(~JUMP|pgSendFileSample,/whLite.exe|Try pgSendFileSample (StreamCatcher active)~)
+||
+<a href="(~Request.RawVMR~)/whLite.exe?(~AppID~):pgSendFileSample:(~SessionID~)">Try pgSendFileSample (StreamCatcher not active)</a>
+~)
+</p>
+<p>Syntax details for the SENDFILE command are in the <a target="_blank" href="http://webhub.com/dynhelp">WebHub Online Help Reference</a>. 
+</p>
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 

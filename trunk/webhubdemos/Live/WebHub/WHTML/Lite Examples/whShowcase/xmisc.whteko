@@ -1,4 +1,4 @@
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+﻿<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" 
 	notes="Use this file for pages which must never be sequenced.">
 
@@ -110,4 +110,9 @@ Nunc velit arcu, congue sit amet dapibus at, aliquam nec nisi. Nulla facilisi. D
 <p>
 Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod, tellus a dapibus vulputate, diam mauris pulvinar sapien, eget mattis turpis nulla id tortor. Maecenas ac ipsum diam, quis iaculis mauris. Duis vehicula odio vitae quam adipiscing convallis eu ac magna. Quisque eu nunc nisi, eu pretium nunc. Etiam varius consequat metus, semper dapibus felis dignissim at. In sollicitudin orci at mauris elementum tristique eget sit amet lacus. Ut ac massa eros, non adipiscing sem. Morbi quis odio libero, vitae auctor massa. Integer sodales sapien in nunc sollicitudin a feugiat massa pulvinar. Maecenas lacus urna, sollicitudin a sodales nec, euismod nec nisi. Curabitur ac enim quam. Nullam viverra lacinia tellus, eget tristique ipsum condimentum vitae. Ut ut urna eu turpis vestibulum malesuada. Mauris rutrum quam at ipsum mattis rhoncus scelerisque sem suscipit.</p>
 </whdroplet>
+
+<whpage pageid="pgSendFileSample">
+(~FLUSH|~)(~SENDFILE|D:\Projects\webhubdemos\Live\WebHub\Apps\whLite.exe,application/binary~)(~CLOSE|~)
+</whpage>
+
 </whteko>
