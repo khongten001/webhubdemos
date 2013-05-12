@@ -11,6 +11,11 @@ levelKeyword=Frame
 htmlFilename=3Frame.whteko
 </whpagesettingslist>
 
+<whmacros>
+mcIconList=Earth-Earth,Fair-Fair,new-New,Sold-Sold,wow-Wow
+mcCommandList=MATCH-The MATCH Command,PAGE-The PAGE Command,REQUIRES-The REQUIRES Command,INCLUDE-The INCLUDE Command,SENDFILE-The SENDFILE Command,SUMMARY-The SUMMARY Command
+</whmacros>
+
 <whpage pageid="FramePageA" desc="-Frame A">
 <whpagesettings inherit="a">
 </whpagesettings>
@@ -23,31 +28,21 @@ htmlFilename=3Frame.whteko
 <tr style="vertical-align:top; text-align:center;">
 <td>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageB-FB~)">
-Please choose an Icon:<br /><SMALL>
- (~<SELECT NAME="litFrameIcon">
- (~<OPTION VALUE="Earth">Earth
- (~<OPTION VALUE="Fair">Fair
- (~<OPTION VALUE="new">New
- (~<OPTION VALUE="Sold">Sold
- (~<OPTION VALUE="wow">Wow
- </SELECT><br />
+Please choose an Icon:<br />
+<span style="font-size:small;">
+(~INPUTSELECT|litFrameIcon, mcIconList,1~)<br />
 (~inputsubmit|submit,Post to Frame B~)
-</form></SMALL>
+</span>
+</form>
 </td>
 <td>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageC-FC~)">
-Please choose a Page:<br /><SMALL>
- (~<SELECT NAME="litFramePage">
- (~<OPTION VALUE="MATCH">The MATCH Macro
- (~<OPTION VALUE="PAGE">The PAGE Macro
- (~<OPTION VALUE="REQUIRES">The REQUIRES Macro
- (~<OPTION VALUE="INCLUDE">The INCLUDE Macro
- (~<OPTION VALUE="SENDFILE">The SENDFILE Macro
- (~<OPTION VALUE="SUMMARY">The SUMMARY Macro
- (~<OPTION VALUE="EXCEPT">The EXCEPT Macro
- </SELECT><br />
+Please choose a Page:<br />
+<span style="font-size:small;">
+(~INPUTSELECT|litFramePage, mcCommandList,1~)<br />
 (~inputsubmit|submit,Post to Frame C~)
-</form></SMALL>
+</span>
+</form>
 </td>
 </tr>
 </table><br />
