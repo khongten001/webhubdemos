@@ -13,6 +13,8 @@ unit uLingvoCodePoints;
 { *                                                                          * }
 { ---------------------------------------------------------------------------- }
 
+{$I hrefdefines.inc}
+
 interface
 
 function AlphabetCharsInRange(const iLow, iHigh: Integer;
@@ -46,7 +48,11 @@ begin
   for i := iLow to iHigh do
   begin
     c := Chr(i);
+    {$IFDEF Delphi18UP}
+    if c.IsUpper then
+    {$ELSE}
     if IsUpper(c) then
+    {$ENDIF}
     begin
       Result := Result + c;
       if (wrapAt <> 0) and ((Length(Result) mod wrapAt) = 0) then
@@ -74,7 +80,11 @@ begin
   for i := iLow to iHigh do
   begin
     c := Chr(i);
+    {$IFDEF Delphi18UP}
+    if c.IsSeparator or c.IsPunctuation or c.IsSymbol or c.IsControl then
+    {$ELSE}
     if IsSeparator(c) or IsPunctuation(c) or IsSymbol(c) or IsControl(c) then
+    {$ENDIF}
     begin
       Result := Result + c;
       if (wrapAt <> 0) and ((Length(Result) mod wrapAt) = 0) then
