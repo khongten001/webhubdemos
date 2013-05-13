@@ -1,7 +1,7 @@
 unit whSchedule_dmKeywordSearch;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ * Copyright (c) 2012-2013 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * WebHub datamodule for searching the keyword index using Rubicon.         * }
 { * Shared by WebHub Demo and Code News Fast web application.                * }
@@ -9,6 +9,8 @@ unit whSchedule_dmKeywordSearch;
 { * Requires: Firebird SQL                                                   * }
 { *           Rubicon components from HREF Tools Corp.                       * }
 { ---------------------------------------------------------------------------- }
+
+{$I hrefdefines.inc}
 
 interface
 
@@ -476,7 +478,12 @@ begin
           begin
             Thisletter := ThisWord[1];
             { be sure to skip the special __Properties__ entry in WORDS table }
-            if (NOT IsDigit(ThisLetter)) and (Ord(ThisLetter) <> 127) then
+            {$IFDEF Delphi18UP}
+            if (NOT ThisLetter.IsDigit) and
+            {$ELSE}
+            if (NOT IsDigit(ThisLetter)) and
+            {$ENDIF}
+              (Ord(ThisLetter) <> 127) then
             begin
               StringVar['readonly-WORDS-rbLetter'] := ThisLetter;
               if ThisLetter <> PrevLetter then
