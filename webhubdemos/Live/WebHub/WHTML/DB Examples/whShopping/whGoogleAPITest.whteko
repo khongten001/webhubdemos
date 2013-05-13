@@ -45,7 +45,7 @@ function geoG() {
 <p><button id="submit-button" onclick="geoG();">Get current location</button></p>
 <p id="out"></p>
 
-<h1>Google IP location lookup test</h1>
+<h1>IP location lookup test</h1>
 <p>Looking up (~Request.RemoteAddress~) ... (~waIp2Country.Execute|~).</p>
 
 <h1>Google GeoLocation Sample Test</h1>
@@ -57,7 +57,7 @@ Test fixed geolocation query: (~INPUTRADIO|radioRunGeo,yes~) yes or (~INPUTRADIO
 <input type="submit" value="go" />
 </form>
 (~MATCH|(~radioRunGeo~)=yes|
-<p>The following result is fixed. It is based on the sample JSON provided by google, to simulate 
+<p>The following result is fixed. It is based on the sample JSON provided by google, to <i>simulate</i> 
 a mobile device location. </p>
 (~waTestGeoLocation.Execute|~)
 ~)
@@ -78,7 +78,6 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 (~waTestFreebase.Execute|~)
 || <p style="color: #FF6633; font-style:italic;">not configured to run on (~Request.Host~)</p>
 ~)
-
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
@@ -209,5 +208,15 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </body></html>
 </whpage>
 
+<whsketch for="api ideas">
+<h1>Google Translation Test</h1>
+<form method="post" action="(~ACTIONR|(~PageID~)~)">
+Text in your own language: (~INPUTTEXT|inSampleUntranslated~)
+<input type="submit" />
+</form>
+<h2>Translates to English:</h2>
+<p style="background-color:#FFFF99;">
+(~waGoogleTranslate.execute|inSampleUntranslated~)</p>
+</whsketch>
 
 </whteko>
