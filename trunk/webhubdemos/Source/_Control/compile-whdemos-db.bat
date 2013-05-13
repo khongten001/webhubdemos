@@ -31,7 +31,7 @@ if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
 del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
 if "%compilehtq2%"=="" pause
 if NOT "%compilehtq2%"=="no" cd %droot%\DB Examples\whQuery2
-if NOT "%compilehtq2%"=="no" set compilerdigits=17
+if NOT "%compilehtq2%"=="no" set compilerdigits=18
 if NOT "%compilehtq2%"=="no" call %cbat% whQuery2
 set compilerdigits=
 
@@ -47,7 +47,7 @@ if NOT "%compilehtq4%"=="no" call %cbat% whQuery4
 del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
 ::whSchedule uses IBObjects and Rubicon
 if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
-if NOT "%compilecoderage%"=="no" set compilerdigits=17
+if NOT "%compilecoderage%"=="no" set compilerdigits=18
 if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
 set compilerdigits=
@@ -82,7 +82,7 @@ if NOT "%compilejpeg%"=="no" call %cbat% whDynamicJPEG
 ::whFirebird uses IBObjects 
 del %~dp0\..\..\Live\WebHub\Apps\whFirebird.exe
 if NOT "%compilefire%"=="no" cd %droot%\DB Examples\whFirebird
-if NOT "%compilefire%"=="no" set compilerdigits=17
+if NOT "%compilefire%"=="no" set compilerdigits=18
 if NOT "%compilefire%"=="no" call %cbat% whFirebird
 set compilerdigits=
 
@@ -101,7 +101,7 @@ echo .
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
-set compilerdigits=17
+set compilerdigits=18
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
 
 :dspstart
