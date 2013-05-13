@@ -126,7 +126,11 @@ begin
       while not EOF do
       begin
         ACap := Uppercase(Copy(FieldByName('Mpf Prefix').AsString, 1, 1));
+        {$IFDEF Delphi18UP}
+        if ACap[1].IsDigit then
+        {$ELSE}
         if IsDigit(ACap[1]) then
+        {$ENDIF}
           ACap := '1';
         if FieldByName('MpfFirstLetter').asString <> ACap then
         begin
