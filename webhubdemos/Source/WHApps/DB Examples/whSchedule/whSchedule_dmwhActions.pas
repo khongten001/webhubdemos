@@ -475,7 +475,7 @@ var
   SVName: string;
   ThisFieldTypeRaw: Integer;
   HumanReadable: string;
-  FSavCat: string;
+  {$IFDEF CodeSite}FSavCat: string;{$ENDIF}
 begin
 {$IFDEF CodeSite}
   FSavCat := CodeSite.Category;
@@ -600,7 +600,7 @@ var
   FldName: string;
   a1, a2: string;
   FlagFwd: Boolean;
-  FSavCat: string;
+  {$IFDEF CodeSite}FSavCat: string;{$ENDIF}
 begin
 {$IFDEF CodeSite}
   FSavCat := CodeSite.Category;

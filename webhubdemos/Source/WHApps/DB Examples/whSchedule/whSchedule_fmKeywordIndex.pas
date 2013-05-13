@@ -13,15 +13,18 @@ interface
 
 {$I hrefdefines.inc}
 
-uses
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons, SysUtils, 
-  Classes, DB,
+(*
   {$I xe_actions.inc}
   {$I xe_actnlist.inc}
+*)
+
+uses
+  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons, SysUtils,
+  Classes, DB,
   IB_Components, IBODataSet,
   rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache, rbBase,
   toolbar, utPanFrm, restorer, tpCompPanel,
-  uLingvoCodePoints;
+  uLingvoCodePoints, System.Actions, Vcl.ActnList;
 
 type
   TfmRubiconIndex = class(TutParentForm)
@@ -46,7 +49,7 @@ type
     QMake: TIBOQuery;
     QData: TIBOQuery;
     function ScheduleAcceptWord(Sender: TObject; const InWord: string) : Boolean;
-    procedure ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
+    procedure ScheduleAfterSQL(Sender: TObject; SQL: TStringBuilder);
     procedure ScheduleProcessField(Sender: TObject; Engine: TrbEngine; Field:
     TField);
   public
@@ -215,9 +218,9 @@ begin
   end;
 end;
 
-procedure TfmRubiconIndex.ScheduleAfterSQL(Sender: TObject; SQL: TStrings);
+procedure TfmRubiconIndex.ScheduleAfterSQL(Sender: TObject; SQL: TStringBuilder);
 begin
-  CSSend('SQL', S(SQL));
+  CSSend('SQL', SQL.ToString);
 end;
 
 procedure TfmRubiconIndex.ScheduleProcessField(Sender: TObject;
