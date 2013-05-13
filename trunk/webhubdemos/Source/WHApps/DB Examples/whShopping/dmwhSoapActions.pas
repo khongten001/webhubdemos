@@ -62,7 +62,7 @@ begin
 
       // helpful to know that WebAppUpdate will be called whenever the
       // WebHub app is refreshed.
-      // AddAppUpdateHandler(WebAppUpdate);  not needed yet
+      AddAppUpdateHandler(WebAppUpdate);  // placeholder - not used yet
       FlagInitDone := True;
     end;
   end;
