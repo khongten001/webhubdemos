@@ -49,10 +49,13 @@ uses
   whShopping_dmwhSessionWatch in 'whShopping_dmwhSessionWatch.pas' {DMSessWatch: TDataModule},
   ucHttps,
   ucUrlEncode,
-  ucGoogleAPICredentials,
+  ucGoogleAPICredentials in 'h:\ucGoogleAPICredentials.pas',
   dmwhGoogleAPIActions in 'dmwhGoogleAPIActions.pas' {DMGAPI: TDataModule},
   dmwhSoapActions in 'dmwhSoapActions.pas' {DMSOAPClient: TDataModule},
-  tpGoogle_ServiceResource; //  in 'k:\webhub\tpack\tpGoogle_ServiceResource.pas'; // TPack Source
+  tpGoogle_ServiceResource, //in 'k:\webhub\tpack\tpGoogle_ServiceResource.pas', // TPack Source
+  ucJSONWrapper; // in 'K:\WebHub\tpack\ucJSONWrapper.pas'; // TPack Source
+
+//
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
