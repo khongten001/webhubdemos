@@ -55,13 +55,15 @@ type
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppUpdate(Sender: TObject);
-    procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
     procedure DemoAppPageComplete(Sender: TwhRespondingApp;
       const PageContent: UTF8String);
   public
     { Public declarations }
+    procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
+    procedure DemoAppBadBrowser(Sender: TwhRespondingApp;
+      var bContinue: Boolean);
     function Init: Boolean;
     function IsSuperuser(const InSurferIP: string): Boolean;
     property AjaxEvent: TwhAjaxEventAction read FAjaxEvent;
@@ -129,6 +131,8 @@ begin
 
     FlagBeenHere := True;
   end;
+
+  pWebApp.OnBadBrowser := DemoAppBadBrowser;
   pWebApp.OnBadIP := DemoAppBadIP;
   pWebApp.OnNewSession := DemoAppNewSession;
   pWebApp.OnPageComplete := DemoAppPageComplete;
@@ -183,17 +187,22 @@ var
   AdminFilespec: string;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  pWebApp.Security.CheckSurferIP := True;
+  pWebApp.Security.CheckUserAgent := True;
+
+
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
   // them because they are n/a.
-  //
   if Assigned(webLogin) then
     // reload the user list based on the current AppID.
     webLogin.Refresh;
   if Assigned(webCycle) then
     // reload the cycle list information
     webCycle.Refresh;
+
   AdminFilespec := getHtDemoWWWRoot + '..\Config\remoteadmin.txt';
+
   if FileExists(AdminFilespec) then
     FAdminIpNumber := Trim(StringLoadFromFile(AdminFilespec))
   else
@@ -495,53 +504,147 @@ end;
 const
   cUnitName = 'whdemo_Extensions';
 
+procedure TDemoExtensions.DemoAppBadBrowser(Sender: TwhRespondingApp;
+  var bContinue: Boolean);
+const
+  cFn = 'DemoAppBadBrowser';
+begin
+{ processing to catch cases where a surfers changes browsers in mid-session.
+  while this may be a nice thing to do during development, we default this
+  to reject the session unconditionally. }
+
+  {$IFDEF LOGBAD}CodeSite.EnterMethod(cUnitName + ' ' + cFn);{$ENDIF}
+  inherited;
+
+  {NB: OnBadBrowser is NOT called when IsWebRobotRequest is True.}
+  //Assert(NOT Sender.IsWebRobotRequest);
+
+  { Sender is essentially pWebApp here. }
+
+  { bContinue defaults to false and will produce a fixed-format error
+    message unless we reset it here. resetting the value also allows
+    us to provide a custom message based on a page in app-defaults below: }
+  bContinue := True;
+
+  {$IFDEF LOGBAD}
+  CodeSite.Send(Format('PageID ?= Sender.Session.PriorPageID... (%s ?= %s)',
+    [Sender.PageID, Sender.Session.PriorPageID]),
+    Sender.PageID = Sender.Session.PriorPageID);
+
+  CodeSite.Send(Format('Command ?= Sender.Session.PriorCommand... (%s ?= %s)',
+    [Sender.Command, Sender.Session.PriorCommand]),
+    Sender.Command = Sender.Session.PriorCommand);
+
+  CodeSite.Send(Format(
+    'UserAgentHash(Request.UserAgent) ?= Session.UserAgentID... (%s ?= %s)',
+    [UserAgentHash(Sender.Request.UserAgent), Sender.Session.UserAgentID]),
+    UserAgentHash(Sender.Request.UserAgent) = Sender.Session.UserAgentID);
+  {$ENDIF}
+
+  //if (Session.UserAgentID = FHashGoogleMediaPartners) {1 request ago} then
+  //begin
+  //  { Do NOTHING because human was just interrupted by MediaPartner }
+  //  {$IFDEF CodeSite}CodeSite.Send('Allowing user agent change because ' +
+  //    'prior request was from a Google MediaPartner');{$ENDIF}
+  //end
+  //else
+  //if (PageID = Sender.Session.PriorPageID) and
+  //   (Command = Sender.Session.PriorCommand) and
+  //   (Request.UserAgent = 'Mediapartners-Google') {now} then
+  //begin
+    {When using Google Adsense, the bot will always echo the request of the
+     surfer, as the advertisement is being chosen.  For this reason,
+     Mediapartners-Google is no longer on the StreamCatcher list of webrobots.
+     Checking the prior PageID and Command increases security (good) but
+     cannot work reliably if your WebHub site is in a frameset (sorry). For
+     use within framesets, you will need to customize the if-statement above.
+     30-March-2011. }
+
+    {Do NOTHING -- do NOT reject the request.}
+  //  {$IFDEF CodeSite}CodeSite.Send('Allowing user agent change ' +
+  //    'to Google MediaPartner');{$ENDIF}
+
+  //end
+  //else
+  begin
+    if Sender.Situations.ChangedUserAgentPageID <> '' then
+      Sender.PageID := Sender.Situations.ChangedUserAgentPageID
+    else
+      Sender.PageID := Sender.Situations.HomePageID;
+    Sender.RejectSession(cUnitName + ', ' + cFn + '()');
+  end;
+  {$IFDEF LOGBAD}CodeSite.ExitMethod(cUnitName + ' ' + cFn);{$ENDIF}
+end;
+
 procedure TDemoExtensions.DemoAppBadIP(Sender: TwhRespondingApp;
   var bContinue: Boolean);
+const cFn = 'DemoAppBadIP';
+var
+  b: Boolean;
+begin
 { processing to catch cases where a surfers IP# changes in mid-session,
   it rejects continuation if the refering page is not in the same domain
   as the server producing this page. catches someone copying a session#
   This code is only called if TwhAppBase.Security.CheckSurferIP is true.
   It is false by default. }
-begin
+  {$IFDEF LOGBAD}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   // bContinue defaults to false and will produce a fixed-format error
   // message unless we reset it here. Resetting the value also allows
   // us to provide a custom message.
   bContinue := True;
-  if IsHREFToolsQATestAgent then
-    Exit;
 
-  with Sender, Request do
+  b := NOT IsHREFToolsQATestAgent;
+  if b then
   begin
-    // determine the domain
-    if PosCI(ExtractParentDomain(Request.Host) + '.', Referer) > 0 then
-      { The surfer's IP changed and the referer includes the domain
-        of this server. let it go by!
-
-        Please Note: The NT HOSTS file can make your browser believe that
-        it is a machine on an arbitrary domain. This makes this check
-        undesirable if you are positive that all your client machines
-        are going to be on static IPs.. for the general public though,
-        this is probably as good as you will get it without resorting
-        to storing a cookie on the user's machine. }
-      Exit;
-
-    if PosCI('AOL', Request.UserAgent) > 0 then
+    with Sender, Request do
     begin
-      { AOL has a long history of pooling requests by its users among many
-        IP numbers so it is very normal for an AOL browser to change IP numbers
-        in the middle of a session.  Allow this.
-        Reconfirmed 18-Apr-2008 }
-      Exit;
+      // determine the domain
+      if PosCI(ExtractParentDomain(Request.Host) + '.', Referer) > 0 then
+      begin
+        { The surfer's IP changed and the referer includes the domain
+          of this server. let it go by!
+
+          Please Note: The NT HOSTS file can make your browser believe that
+          it is a machine on an arbitrary domain. This makes this check
+          undesirable if you are positive that all your client machines
+          are going to be on static IPs.. for the general public though,
+          this is probably as good as you will get it without resorting
+          to storing a cookie on the user's machine. }
+        CSSend('allow based on referer');
+        b := False;
+      end;
+
+      if b and (PosCI('AOL', Request.UserAgent) > 0) then
+      begin
+        { AOL has a long history of pooling requests by its users among many
+          IP numbers so it is very normal for an AOL browser to change IP numbers
+          in the middle of a session.  Allow this.
+          Reconfirmed 18-Apr-2008 }
+        CSSend('AOL');
+        b := False;
+      end;
+
+      if b and HonorLowerSecurity then
+      begin
+        CSSend('HonorLowerSecurity');
+        b := False;
+      end;
+
+      if b then
+      begin
+        if Situations.ChangedIPPageID <> '' then
+          PageID := Situations.ChangedIPPageID
+        else
+          PageID := Situations.HomePageID;
+        CSSend('PageID', PageID);
+        RejectSession(cUnitName + ', ' + cFn + '()', False);
+      end;
     end;
-
-    if HonorLowerSecurity then
-      Exit;
-
-    if Situations.ChangedIPPageID <> '' then
-      PageID := Situations.ChangedIPPageID;
-    RejectSession(cUnitName + ', WebAppBadIP()', False);  // was True
-  end;
+  end
+  else
+    CSSend('Allow HREFTools Quality Assurance Agent');
+  {$IFDEF LOGBAD}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.DemoAppNewSession(Sender: TObject;

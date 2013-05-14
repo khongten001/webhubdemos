@@ -240,6 +240,11 @@ end;
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
 {$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
 begin
+  { override anything else that was in v3.189- and use these handlers }
+  pWebApp.Security.CheckSurferIP := True;
+  pWebApp.Security.CheckUserAgent := True;
+  pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
+  pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
   UncoverApp(Sender.Item);
   {$IFDEF CodeSite}CodeSite.Send(cFn + ' uncovered ' + Sender.Item);{$ENDIF}
 end;
