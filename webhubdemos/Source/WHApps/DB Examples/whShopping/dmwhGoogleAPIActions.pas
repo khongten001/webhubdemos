@@ -85,6 +85,10 @@ begin
 (*
 Query String (after remap by StreamCatcher): shop1:oauth2callback::state=/profile1294912795&code=4/lR5tzQlU83XlhOJmNmSYIqJlE2oy.QrarjwvN688cgrKXntQAax0uBr3iewI
 *)
+
+// reference required settings for use with GoogleAPI OAuth2
+// http://screenshots.href.com/webhub/rsrcdef/snapCodeGoogleAPISConsole.png
+
   LogSendInfo('QueryString', pWebApp.Request.QueryString);
   SplitString(pWebApp.Request.QueryString, 'state=/profile', a1, a2);
   SplitString(a2, '&code=', a1, a2);
