@@ -175,7 +175,7 @@ implementation
 uses
   uCode,
   ucString,
-  whsample_EvtHandlers,
+  whgui_Menu,
   WebCall,
   WebSplat,
   webinfou, webapp, ucDlgs, webcycle, weblogin,

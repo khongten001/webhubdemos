@@ -27,7 +27,7 @@ uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   {$I xe_actnlist.inc}
   ExtCtrls, 
-  whsample_EvtHandlers, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
+  whgui_Menu, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
   WebVars, WebBrows, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
   WebCall, CGiServ, WebServ, HtmlBase, HtmlCore,
   htmlSend, webLink, UpdateOk, tpAction{no-gui}, tpActionGUI, WebInfoU, 
@@ -80,7 +80,7 @@ begin
     choice of TwhApplication or TwhbdeApplication or a custom-derived class. If you make
     a custom-derived class, put this same procedure, CreateCoreWebHubDataModule,
     into your datamodule, and adjust the parameters on the next line. }
-  Application.CreateForm(TwhdmCommonEventHandlers,whdmCommonEventHandlers);
+  Application.CreateForm(TwhdmCommonMenu,whdmCommonMenu);
   Application.CreateForm(TdmWebHubPowerApp,dmWebHubPowerApp);
 end;
 
@@ -89,7 +89,7 @@ procedure InitCoreWebHubDataModule;
 begin
   { ditto }
 
-  whdmCommonEventHandlers.Init;
+  whdmCommonMenu.Init;
 end;
 
 procedure InitCoreWebHubDataModuleGUI;
@@ -98,11 +98,11 @@ begin
 
   fmWebHubPowerMainForm.Init;
 
-  whdmCommonEventHandlers.InitMenuActionsForApp(
+  whdmCommonMenu.InitMenuActionsForApp(
     dmWebHubPowerApp.tpActionListApp);
-  whdmCommonEventHandlers.InitMenuActionsForCentralInfo(
+  whdmCommonMenu.InitMenuActionsForCentralInfo(
     dmWebHubPowerApp.tpActionListCentralInfo);
-  whdmCommonEventHandlers.InitMenuActionsForConnection(
+  whdmCommonMenu.InitMenuActionsForConnection(
     dmWebHubPowerApp.tpActionListConnection);
 
   pWebApp.Refresh;

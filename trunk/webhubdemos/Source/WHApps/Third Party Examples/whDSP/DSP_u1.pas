@@ -37,7 +37,7 @@ uses
    whMacroAffixes,
    DSP_dmRubicon,             // DSPdm
    Weblist,                   // TwhList
-   whsample_EvtHandlers,      // Request component is here
+   whgui_Menu,      
    ucPos,                     // posci
    webInfoU,                  // CentralInfo
    ucVers,                    // access file version information

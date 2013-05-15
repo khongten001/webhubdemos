@@ -9,12 +9,12 @@ type
   TDataModuleDreamSecurity = class(TDataModule)
   private
     { Private declarations }
+  protected
+    procedure DSPNewSession(Sender: TObject; Session: Cardinal; const Command: string);
   public
     { Public declarations }
     procedure Init;
     procedure DesignPageCalled(var AllowAccess: Boolean; out ErrorText: String);
-    procedure NewSessionInURL(const Session: Cardinal;
-      var ForceNewSession: Boolean);
     procedure FrontDoorTriggered(Sender: TObject);
   end;
 
@@ -27,13 +27,13 @@ implementation
 
 uses
   webCall, whdw_RemotePages, webApp,
-  ucString, ucPos, dmWHApp, whsample_EvtHandlers;
+  ucString, ucPos, dmWHApp, whgui_Menu;
 
 procedure TDataModuleDreamSecurity.Init;
 begin
   pConnection.OnFrontDoorTriggered := FrontDoorTriggered;
   DataModuleDreamWeaver.OnDesignPage   := DesignPageCalled;
-  whdmCommonEventHandlers.OnNewSessionInURL := NewSessionInURL;
+  pWebApp.OnNewSession := DSPNewSession;
 end;
 
 //------------------------------------------------------------------------------
@@ -69,12 +69,28 @@ end;
 
 //------------------------------------------------------------------------------
 
-procedure TDataModuleDreamSecurity.NewSessionInURL(const Session: Cardinal;
-  var ForceNewSession: Boolean);
+procedure TDataModuleDreamSecurity.DSPNewSession(Sender: TObject; Session: Cardinal; const Command: string);
+{$IFDEF CodeSite}const cFn = 'DSPNewSession';{$ENDIF}
+var
+  x: Integer;
 begin
-  {Note ForceNewSession defaults to True}
-  if (Session >= 1870) and (Session <= 1875) then
-    ForceNewSession := False; 
+  inherited;
+  if (Session <> 0) then 
+  begin
+    if pWebApp.IsWebRobotRequest then
+      LogSendError('WebRobot in ' + cFn)
+    else
+    if (Session >= 1870) and (Session <= 1875) then
+      // nothing
+    else
+    begin
+      x := (Pos(pWebApp.SessionID, pWebApp.Request.QueryString) > 0) then
+      begin
+        { bounce surfer to same page but with a blank session number }
+        RejectSession(cFn + ': SessionID disallowed within starting URL');  // log reason
+      end;
+    end;
+  end;
 end;
 
 //------------------------------------------------------------------------------
