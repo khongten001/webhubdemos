@@ -79,6 +79,7 @@ end;
 procedure whDemoDestroySharedDataModules;
 begin
   DestroyStandardWHModules;
+  FreeAndNil(DMPrototypeJS);
   FreeAndNil(dmWhRefresh);
   FreeAndNil(DemoViewSource);
   FreeAndNil(DemoExtensions);
