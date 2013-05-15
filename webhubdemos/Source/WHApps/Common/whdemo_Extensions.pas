@@ -19,7 +19,7 @@ uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   {$I xe_actnlist.inc}
   updateOk, tpAction, tpActionGUI, tpShareI,
-  webAjax,
+  webAjax, whcfg_App,
   webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
@@ -59,6 +59,7 @@ type
       const Command: string);
     procedure DemoAppPageComplete(Sender: TwhRespondingApp;
       const PageContent: UTF8String);
+    procedure DemoAppPageErrors(Sender: TwhAppDebug; var Continue: Boolean);
   public
     { Public declarations }
     procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
@@ -80,7 +81,7 @@ uses
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo,
-  whdemo_ViewSource, whcfg_App;
+  whdemo_ViewSource;
 
 {$R *.DFM}
 
@@ -129,13 +130,13 @@ begin
     end;
 {$ENDIF}
 
+    pWebApp.OnBadBrowser := DemoAppBadBrowser;
+    pWebApp.OnBadIP := DemoAppBadIP;
+    pWebApp.OnNewSession := DemoAppNewSession;
+    pWebApp.OnPageComplete := DemoAppPageComplete;
+
     FlagBeenHere := True;
   end;
-
-  pWebApp.OnBadBrowser := DemoAppBadBrowser;
-  pWebApp.OnBadIP := DemoAppBadIP;
-  pWebApp.OnNewSession := DemoAppNewSession;
-  pWebApp.OnPageComplete := DemoAppPageComplete;
 
   DemoAppUpdate(nil);
   // do this once, in case the app has already been loaded - likely.
@@ -189,6 +190,7 @@ begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
+  pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
 
 
   // Note: the only likely reason these pointers would be nil
@@ -756,6 +758,16 @@ begin
     AFilename := Format('test%d.txt', [TestNumber]);
     UTF8StringWriteToFile(AFolder + AFilename, PageContent);
   end;
+end;
+
+procedure TDemoExtensions.DemoAppPageErrors(Sender: TwhAppDebug;
+  var Continue: Boolean);
+begin
+  LogSendInfo('QueryString', pWebApp.Request.QueryString);
+  LogSendInfo('SurferIP', pWebApp.Request.RemoteAddress);
+  LogSendInfo('UserAgent', pWebApp.Request.UserAgent);
+  if pWebApp.Request.CookiesIn.Count > 0 then
+    LogSendInfo('Cookies', pWebApp.Request.CookiesIn.Text);
 end;
 
 procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
