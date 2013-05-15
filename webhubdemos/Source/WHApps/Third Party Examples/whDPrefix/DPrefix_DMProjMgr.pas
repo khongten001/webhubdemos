@@ -68,7 +68,7 @@ uses
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
   whdemo_About, whdemo_Extensions,
-  DPrefix_fmWhActions, whsample_EvtHandlers, whOpenID_dmwhAction;
+  DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
 
 procedure TDMSampleForWHProject.ProjMgrBeforeFirstCreate(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
@@ -105,13 +105,13 @@ begin
 
   with pWebApp do
   begin
-    OnBadBrowser := whdmCommonEventHandlers.WebAppBadBrowser;
     AppID := 'dpr';
     Refresh;
     Response.HttpMinorVersion := 1;
-    Security.CheckUserAgent := True;
-    Security.CheckSurferIP := True;
     Security.BuiltInPagesEnabled := False;
+    //OnBadBrowser no longer used for DPrefix, 15-May-2013
+    //Security.CheckUserAgent := True;
+    //Security.CheckSurferIP := True;
   end;
 
   CreateStandardWHModules;

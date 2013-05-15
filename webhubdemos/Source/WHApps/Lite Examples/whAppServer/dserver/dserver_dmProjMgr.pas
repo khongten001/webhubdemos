@@ -50,7 +50,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
   ucDlgs, ucLogFil, ucCodeSiteInterface,
-  webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whsample_EvtHandlers,
+  webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whgui_Menu,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
   Forms,

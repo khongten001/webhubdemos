@@ -31,7 +31,7 @@ interface
 uses
   Forms, Classes,
   tpApplic{non-gui}, updateok, tpAction{no-gui}, tpActionGUI,
-  webBrows, whsample_EvtHandlers, cgivars, apistat, apibuilt, apicall,
+  webBrows, whgui_Menu, cgivars, apistat, apibuilt, apicall,
   webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink,
   webTypes, webInfoU, webBase, webcore, webSend, webapp,
   htWebApp, htbdeWApp, webvars,
@@ -95,7 +95,7 @@ begin
     choice of TwhApplication or TwhbdeApplication or a custom-derived class. If you make
     a custom-derived class, put this same procedure, CreateCoreWebHubDataModule,
     into your datamodule, and adjust the parameters on the next line. }
-  Application.CreateForm(TwhdmCommonEventHandlers, whdmCommonEventHandlers);
+  Application.CreateForm(TwhdmCommonMenu, whdmCommonMenu);
   Application.CreateForm(TdmWebHubFishApp, dmWebHubFishApp);
 end;
 
@@ -109,18 +109,18 @@ begin
   { This is another standard procedure. }
   if pWebApp.GUI = nil then
     MsgErrorOk('Inconceivable!?!');
-  whdmCommonEventHandlers.Init;
+  whdmCommonMenu.Init;
 end;
 
 procedure InitCoreWebHubDataModuleGUI;
 begin
   fmWebHubMainForm.Init;
 
-  whdmCommonEventHandlers.InitMenuActionsForApp(
+  whdmCommonMenu.InitMenuActionsForApp(
     dmWebHubFishApp.tpActionListApp);
-  whdmCommonEventHandlers.InitMenuActionsForCentralInfo(
+  whdmCommonMenu.InitMenuActionsForCentralInfo(
     dmWebHubFishApp.tpActionListCentralInfo);
-  whdmCommonEventHandlers.InitMenuActionsForConnection(
+  whdmCommonMenu.InitMenuActionsForConnection(
     dmWebHubFishApp.tpActionListConnection);
   WebMessage(''); // clear WebHub splash screen
 end;
