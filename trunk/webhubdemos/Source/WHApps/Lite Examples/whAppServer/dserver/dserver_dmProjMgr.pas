@@ -49,12 +49,12 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
-  ucDlgs, ucLogFil, ucCodeSiteInterface,
-  webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whgui_Menu,
+  ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime,
+  webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whxpCommTypes,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
   Forms,
-  whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain,
+  whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain, whgui_Menu,
   {$ENDIF}
   dserver_whdmGeneral, whdemo_ColorScheme;
 
@@ -107,8 +107,6 @@ begin
 
   whDemoSetAppId(UsedAppID);  // this refreshes the app
 
-  //Cover again after refresh
-  htWebApp.CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
   ProjMgr.Item := S;
 
   whDemoCreateSharedDataModules;
@@ -130,7 +128,6 @@ begin
   dmwhGeneral.Init;  {see also: TdmwhGeneral.WebAppUpdate}
   DemoExtensions.Init;
   DataModuleColorScheme.Init;
-  //pConnection.onBadPageID := nil;
 end;
 
 procedure TDMForDServer.ProjMgrGUICreate(Sender: TtpProject;
@@ -146,10 +143,9 @@ begin
       'in application-level XML file.';
     MsgWarningOk(ErrorText);
     Continue := False;
-    Exit;
   end;
 
-  if ShouldEnableGUI then
+  if Continue and ShouldEnableGUI then
   begin
     SplashMessage := 'Creating panels';
     WebMessage(SplashMessage);
@@ -184,13 +180,18 @@ end;
 procedure TDMForDServer.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  {$IFDEF CodeSite}CodeSite.SendError(ErrorText);
-  {$ELSE}HREFTestLog('error', 'during startup', ErrorText);{$ENDIF}
+  LogSendError(ErrorText, 'during startup');
 end;
 
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
 begin
-  htWebApp.UncoverApp(ProjMgr.Item);
+{$IFDEF WEBHUBACE}
+  pConnection.MarkReadyToWork;  // required final step for app to get to work
+{$ENDIF}
+  CSSend('Started instance ' + IntToStr(ProjMgr.InstanceSequence) +
+    ' ' + FormatDateTime('dddd dd-MMM hh:nn:ss', NowGMT) + ' gmt');
+  CSSend('pConnection.AvailableToCalc state',
+    WebHubAppState(pConnection.AvailableToCalc));
 end;
 
 end.
