@@ -68,4 +68,10 @@ object DemoExtensions: TDemoExtensions
     Left = 376
     Top = 72
   end
+  object waCauseAV: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waCauseAVExecute
+    Left = 504
+    Top = 376
+  end
 end

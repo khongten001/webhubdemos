@@ -304,4 +304,9 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 <p>(~JUMPR|(~PageID~)|Random, retest this page~)</p>
 </whpage>
 
+<whpage pageid="pgTestExceptionHandler" desc="-test exception handler">
+(~waCauseAV.Execute|~)
+hello (~CentralInfo.WebTimeGMT~)
+</whpage>
+
 </whteko>

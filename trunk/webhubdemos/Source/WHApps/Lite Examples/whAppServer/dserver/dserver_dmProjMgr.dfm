@@ -4,7 +4,7 @@ object DMForDServer: TDMForDServer
   Height = 150
   Width = 215
   object ProjMgr: TtpProject
-    InstanceMonitoringMode = simmIgnoreInstanceNum
+    InstanceMonitoringMode = simmAppendInstanceNumToServiceName
     OnBeforeFirstCreate = ProjMgrBeforeFirstCreate
     OnDataModulesCreate1 = ProjMgrDataModulesCreate1
     OnDataModulesCreate2 = ProjMgrDataModulesCreate2
