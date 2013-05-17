@@ -1,7 +1,7 @@
 unit whpwMain;
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2007 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2013 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
@@ -121,7 +121,6 @@ type
     procedure TrayIconMouseDown(Sender: TObject);
     procedure sysmiSuspendClick(Sender: TObject);
     procedure TrayToggleFormClick(Sender: TObject);
-    procedure FormTrayFormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
     procedure sysmiRefreshClick(Sender: TObject);
     procedure sysmiUseWebHubClick(Sender: TObject);
@@ -193,7 +192,9 @@ begin
   if assigned(MainMenu1)
   and HaveParam('/NoMenu') then
     FreeAndNil(MainMenu1);
-  //
+   
+  {$IFDEF WEBHUBACE}FreeAndNil(sysmiUseWebHub);{$ENDIF} // n/a for new-ipc
+
   //initialize the 'state-icons'.
   //if you get an exception, add {$R WHAPPICO.RES} to the project's dpr.
   fIconPing:= TIcon.Create;
@@ -251,11 +252,6 @@ end;
 
 //----------------------------------------------------------------------
 
-procedure TfmWebHubPowerMainForm.FormTrayFormClose(Sender:TObject; var Action:TCloseAction);
-begin
-  inherited;
-end;
-
 function TfmWebHubPowerMainForm.ConnectionStatus(
   const FlagMakeActive: Boolean): Boolean;
 begin
@@ -263,13 +259,21 @@ begin
   begin
     {becoming active}
     if not pConnection.Active then
+    {$IFDEF WEBHUBACE}
+      pConnection.MarkReadyToWork;
+    {$ELSE}
       pConnection.Active := True;
+    {$ENDIF}
   end
   else
   begin
     {becoming suspended}
     if pConnection.Active then
+    {$IFDEF WEBHUBACE}
+      pConnection.MarkSuspended;
+    {$ELSE}
       pConnection.Active := False;
+    {$ENDIF}
   end;
 
   Application.ProcessMessages;
@@ -319,7 +323,7 @@ begin
   if assigned(pConnection)
   and assigned(TrayIcon) then
   with TrayIcon, pConnection do
-    if Active and ConnectToHub then
+    if Active {$IFNDEF WEBHUBACE}and ConnectToHub{$ENDIF} then
       if IsFormShown then
         Icon := fIconRestored
       else
@@ -399,6 +403,7 @@ end;
 procedure TfmWebHubPowerMainForm.sysmiUseWebHubClick(Sender: TObject);
 begin
   inherited;
+{$IFNDEF WEBHUBACE}
   if Assigned(pWebApp) and Assigned(pConnection) then
   begin
     // toggle the original
@@ -409,12 +414,13 @@ begin
     SystemPopUp.SynchronizeMenus; // update system menu
     if Assigned(pWebApp) then
     begin
-      pWebApp.ConnectToHub := SysMiUseWebHub.Checked; // act on it.
+      pWebApp.ConnectToHub := SysMiUseWebHub.Checked; // act on it, v2.x only
       pWebApp.Refresh;
     end;
   end
   else
     MsgErrorOk('App and/or Connection is nil.  Feature is not applicable.');
+{$ENDIF}
 end;
 
 procedure TfmWebHubPowerMainForm.WebCommandLineSuspendResume(Sender: TObject);
