@@ -77,7 +77,7 @@ uses
   ucCodeSiteInterface,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
-  whsample_PrototypeJS,
+  whsample_PrototypeJS, 
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
@@ -143,9 +143,8 @@ begin
 
     whDemoSetAppId(UsedAppID);  // this refreshes the app
 
-    //Cover again after refresh
     { $ IFNDEF Delphi16UP}
-    CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
+    //CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
     { $ ENDIF}
     Sender.Item := S;
 
@@ -245,8 +244,11 @@ begin
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
-  UncoverApp(Sender.Item);
-  {$IFDEF CodeSite}CodeSite.Send(cFn + ' uncovered ' + Sender.Item);{$ENDIF}
+  //UncoverApp(Sender.Item);
+  //{$IFDEF CodeSite}CodeSite.Send(cFn + ' uncovered ' + Sender.Item);{$ENDIF}
+  {$IFDEF WEBHUBACE}
+  pConnection.MarkReadyToWork;
+  {$ENDIF}
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupError(Sender: TtpProject;
@@ -260,8 +262,6 @@ procedure TDMForWHDemo.ProjMgrStop(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   try
-    if Assigned(pConnection) then
-      pConnection.Active := False;
     FreeAndNil(fmWebHubMainForm);
     DestroyCoreWebHubDataModuleGUI;
     whDemoDestroySharedDataModules;

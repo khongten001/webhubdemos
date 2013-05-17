@@ -189,7 +189,7 @@ begin
   LabelDllCalls.Caption := '';
   LabelIdentification.Caption := 'AppID=' + pWebApp.AppID +
     ' and Handle=' + IntToStr(Application.Handle);
-  if pWebApp.ConnectToHub then
+  if pWebApp.ConnectToHub then  // v2.x only
     LabelAboutHarry.Caption := 'Connect to Hub = True'
   else
     LabelAboutHarry.Caption := 'Connect to Hub = False';

@@ -3,17 +3,18 @@ inherited fmWebHubPowerMainForm: TfmWebHubPowerMainForm
   Top = 260
   Caption = 'fmWebHubPowerMainForm'
   Menu = MainMenu1
-  PixelsPerInch = 96
-  TextHeight = 13
+  ExplicitHeight = 240
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited tpComboBar1: TtpComboBar
-    Width = 429
+    ExplicitWidth = 429
   end
   inherited tpComponentPanel2: TtpComponentPanel
-    Height = 170
+    ExplicitHeight = 170
   end
   inherited StatusBar: TtpStatusBar
-    Top = 208
-    Width = 429
+    ExplicitTop = 208
+    ExplicitWidth = 429
   end
   inherited Restorer: TtpGridRestorer
     Tag = -1
