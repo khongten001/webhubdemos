@@ -305,8 +305,28 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 </whpage>
 
 <whpage pageid="pgTestExceptionHandler" desc="-test exception handler">
-(~waCauseAV.Execute|~)
-hello (~CentralInfo.WebTimeGMT~)
+hello (~waCauseAV.Execute|~) (~CentralInfo.WebTimeGMT~)
 </whpage>
+
+<whpage pageid="pgTestIfBlankSV" desc="-test IfBlankSV command">
+(~CentralInfo.WebTimeGMT~)
+(~CLEAR|*~)
+(~SET|hello=guten tag~)
+(~PARAMS|drTest47|hello~)
+
+(~CLEAR|hello~)
+(~PARAMS|drTest47|hello~)
+
+<p>(~JUMP|(~pageid~)|redraw again~)</p>
+</whpage>
+
+<whdroplet name="drTest47">
+drTest48<br/>
+<b>dyn1=(~DYN1~)</b><br/>
+<p>ALL<br/>(~stringvars~)</p>
+(~IfNotBlankSV|(~DYN1~)|(~DYNCHUNK|(~DYN1~)~)||red~)
+<hr/>
+
+</whdroplet>
 
 </whteko>
