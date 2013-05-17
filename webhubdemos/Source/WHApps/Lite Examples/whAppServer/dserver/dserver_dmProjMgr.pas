@@ -29,10 +29,12 @@ type
       const ErrorText: String);
     procedure DataModuleCreate(Sender: TObject);
     procedure ProjMgrStartupComplete(Sender: TtpProject);
-  private
+  strict private
     { Private declarations }
     FSourceSubDir: string;
     FIsRelativePath: Boolean;
+    procedure DServerExceptionEvent(Sender: TObject; E: Exception;
+      var Handled, ReDoPage: Boolean);
   public
     { Public declarations }
     procedure SetDemoFacts(const DemoAppID, SourceSubdir: string;
@@ -49,7 +51,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
-  ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime,
+  ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime, ucPos,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whxpCommTypes,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
   {$IFNDEF PREVENTGUI}
@@ -76,6 +78,22 @@ begin
   ProjMgr.Identifier := DemoAppID;
   FSourceSubDir := SourceSubDir;
   FIsRelativePath := IsRelativePath;
+end;
+
+procedure TDMForDServer.DServerExceptionEvent(Sender: TObject; E: Exception;
+  var Handled, ReDoPage: Boolean);
+var
+  Temp: string;
+begin
+  if PosCi('violation', E.Message) > 0 then
+  begin
+    Handled := True;
+    htWebApp.CoverApp(Self.ProjMgr.Identifier, 10, E.Message, False, Temp);
+    pConnection.MarkTerminateASAP;
+    pWebApp.Response.SendBounceTo(pWebApp.DynURL.RawToActiveAuthorityM +
+      pWebApp.Request.RawVMR + '?' + pWebApp.AppID + pWebApp.DynURL.W +
+      pWebApp.Situations.HomePageID);
+  end;
 end;
 
 procedure TDMForDServer.ProjMgrBeforeFirstCreate(
@@ -128,6 +146,7 @@ begin
   dmwhGeneral.Init;  {see also: TdmwhGeneral.WebAppUpdate}
   DemoExtensions.Init;
   DataModuleColorScheme.Init;
+  pWebApp.OnError := DServerExceptionEvent;
 end;
 
 procedure TDMForDServer.ProjMgrGUICreate(Sender: TtpProject;

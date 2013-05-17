@@ -35,6 +35,7 @@ type
     FEATURE: TwhWebAction;
     waCheckSubnet: TwhWebAction;
     waFromList: TwhWebAction;
+    waCauseAV: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -45,6 +46,7 @@ type
     procedure FEATUREExecute(Sender: TObject);
     procedure waCheckSubnetExecute(Sender: TObject);
     procedure waFromListExecute(Sender: TObject);
+    procedure waCauseAVExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -286,6 +288,16 @@ begin
       (Format('%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
       [waVersionInfo.Name]));
   end;
+end;
+
+procedure TDemoExtensions.waCauseAVExecute(Sender: TObject);
+const cFn = 'waCauseAVExecute';
+var
+  y: TStringList;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  y.Add('abc');  // intentional access violation
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.waCheckSubnetExecute(Sender: TObject);
