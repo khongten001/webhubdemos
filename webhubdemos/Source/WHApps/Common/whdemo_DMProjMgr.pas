@@ -25,6 +25,7 @@ THE SOFTWARE.
 interface
 
 {$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
 
 uses
   SysUtils, Classes, tpProj;

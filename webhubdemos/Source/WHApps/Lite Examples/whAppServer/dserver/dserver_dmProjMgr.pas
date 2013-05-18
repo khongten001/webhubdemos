@@ -1,5 +1,8 @@
 unit dserver_dmProjMgr;
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 interface
 
 uses
