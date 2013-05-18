@@ -2,6 +2,9 @@ unit whdemo_DMDBProjMgr;
 
 // for use with demos that use the database layer
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 interface
 
 uses
@@ -32,6 +35,7 @@ type
     procedure ProjMgrStop(Sender: TtpProject; var ErrorText: String;
       var Continue: Boolean);
     procedure DataModuleCreate(Sender: TObject);
+    procedure ProjMgrStartupComplete(Sender: TtpProject);
   private
     { Private declarations }
     FFixedAppID: string;
@@ -53,14 +57,13 @@ implementation
 uses
   Forms,
   MultiTypeApp, ucDlgs, ucLogFil,
-  webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp,
+  webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
   whMain, htWebApp, whpanel_RemotePages,
   whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
 
-{$I WebHub_Comms.inc}
 {$IFNDEF WEBHUBACE}wrong ipc{$ENDIF}
 
 procedure TDMForWHDBDemo.DataModuleCreate(Sender: TObject);
@@ -186,11 +189,16 @@ begin
 
     InitCoreWebHubDataModuleGUI;
     InitStandardWHModulesGUI;
-    
+
     WebMessage('0');         // required to close splash screen
   end;
 
   UncoverApp(ACoverPageFilespec);
+end;
+
+procedure TDMForWHDBDemo.ProjMgrStartupComplete(Sender: TtpProject);
+begin
+  pConnection.MarkReadyToWork;  // required in v3.190+
 end;
 
 procedure TDMForWHDBDemo.ProjMgrStartupError(Sender: TtpProject;

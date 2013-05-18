@@ -2,6 +2,9 @@ unit whClone_dmdbProjMgr;
 
 interface
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 uses
   SysUtils, Classes,
   whdemo_DMDBProjMgr, tpProj;
@@ -15,6 +18,7 @@ type
       var ErrorText: string; var Continue: Boolean);
     procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
+    procedure ProjMgrStartupComplete(Sender: TtpProject);
   private
     { Private declarations }
   public
@@ -32,7 +36,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}fmclone,{$ENDIF}
-  whClone_dmwhData, whClone_dmwhGridsNScans;
+  webCall, whClone_dmwhData, whClone_dmwhGridsNScans;
 
 procedure TDMForWHClone.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
@@ -69,6 +73,14 @@ begin
     {M}Application.CreateForm(TfmBendFields, fmBendFields);
   {$ENDIF}
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMForWHClone.ProjMgrStartupComplete(Sender: TtpProject);
+begin
+  inherited;
+  {$IFDEF WEBHUBACE}
+  pConnection.MarkReadyToWork;
+  {$ENDIF}
 end;
 
 end.

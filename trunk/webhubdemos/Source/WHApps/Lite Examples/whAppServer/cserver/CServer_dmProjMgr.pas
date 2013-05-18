@@ -2,6 +2,9 @@ unit CServer_dmProjMgr;
 
 interface
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, whdemo_DMProjMgr, tpProj;
@@ -26,7 +29,7 @@ implementation
 {$R *.dfm}
 
 uses
-  ucLogFil,
+  ucLogFil, ucCodeSiteInterface,
   webApp,
   cfmwhCustom;
 
@@ -51,11 +54,15 @@ end;
 procedure TDMForWHDemoC.ProjMgrStartupComplete(Sender: TtpProject);
 begin
   inherited;
-  HREFTestLog('ProjMgrStartupComplete', 'my appid is', pWebApp.AppID);
+  LogSendInfo('ProjMgrStartupComplete', 'my appid is', pWebApp.AppID);
   if NOT pWebApp.IsUpdated then
-    HREFTestLog('info', 'refreshed', BoolToStr(pWebApp.IsUpdated, True));
+    LogSendWarning('refreshed: False');
+  {$IFDEF WEBHUBACE}
+  pConnection.MarkReadyToWork;
+  {$ELSE}
   if NOT pWebApp.ConnectToHub then
-    HREFTestLog('info', 'ConnectToHub', BoolToStr(pWebApp.ConnectToHub, True));
+    LogSendWarning('ConnectToHub: False');
+  {$ENDIF}
 end;
 
 end.
