@@ -15,6 +15,8 @@ type
       const ShouldEnableGUI: Boolean; var ErrorText: string;
       var Continue: Boolean);
     procedure ProjMgrStartupComplete(Sender: TtpProject);
+    procedure ProjMgrStop(Sender: TtpProject; var ErrorText: string;
+      var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -29,25 +31,27 @@ implementation
 {$R *.dfm}
 
 uses
-  ucLogFil, ucCodeSiteInterface,
-  webApp,
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ucCodeSiteInterface,
+  webCall, webApp,
   cfmwhCustom;
 
 procedure TDMForWHDemoC.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
+const cFn = 'ProjMgrGUICreate';
 begin
   inherited;
   if ShouldEnableGUI then
   begin
     // this is normal when starting as an app
-    HREFTestLog('info', 'ShouldEnableGUI', 'True');
+    LogSendInfo('ShouldEnableGUI', BoolToStr(ShouldEnableGUI, True), cFn);
     Application.CreateForm(TfmAppCustomPanel, fmAppCustomPanel);
   end
   else
   begin
     // this is normal when starting it as a service
     // e.g. net start webhubsample1
-    HREFTestLog('info', 'ShouldEnableGUI', 'False');
+    LogSendInfo('ShouldEnableGUI', BoolToStr(ShouldEnableGUI, True), cFn);
   end;
 end;
 
@@ -63,6 +67,16 @@ begin
   if NOT pWebApp.ConnectToHub then
     LogSendWarning('ConnectToHub: False');
   {$ENDIF}
+end;
+
+procedure TDMForWHDemoC.ProjMgrStop(Sender: TtpProject; var ErrorText: string;
+  var Continue: Boolean);
+const cFn = 'ProjMgrStop';
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  inherited;
+  CSSend('Stopping');
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 end.
