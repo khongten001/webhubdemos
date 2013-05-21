@@ -296,6 +296,7 @@ var
   y: TStringList;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  y := nil;
   y.Add('abc');  // intentional access violation
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
