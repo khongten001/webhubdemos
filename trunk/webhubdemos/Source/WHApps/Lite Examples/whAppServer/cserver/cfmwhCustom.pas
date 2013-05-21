@@ -19,7 +19,7 @@ uses
 {$ENDIF}
   SysUtils, Classes,
   toolbar, utPanFrm, tpMemo, restorer, ComCtrls, tpStatus, updateOK,
-  tpAction, webTypes, webLink;
+  tpAction, webTypes, webLink, tpCompPanel;
 
 type
   TfmAppCustomPanel = class(TutParentForm)
@@ -44,21 +44,15 @@ implementation
 
 {$R *.dfm}
 
-uses
-  webApp;
-
 function TfmAppCustomPanel.Init: Boolean;
 begin
   Result := inherited Init;
-  if not Result then
-    Exit;
 end;
-
 
 procedure TfmAppCustomPanel.waTestExecute(Sender: TObject);
 begin
   inherited;
-  pWebApp.SendString('ok this is a test');
+  TwhWebAction(Sender).Response.SendImm('ok this is a test');
 end;
 
 end.
