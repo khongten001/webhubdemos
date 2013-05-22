@@ -16,7 +16,7 @@ uses
   whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
   htWebApp in 'k:\webhub\lib\htWebApp.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
-  whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
+  whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel: TDataModule},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
@@ -26,7 +26,7 @@ uses
   ucURLEncode in 'k:\webhub\tpack\ucURLEncode.pas',
   whOpenID_dmwhAction in '..\..\More Examples\whOpenID\whOpenID_dmwhAction.pas',
   DPrefix_fmWhActions in 'DPrefix_fmWhActions.pas' {fmWhActions},
-  DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMSampleForWHProject: TDataModule},
+  DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMDPrefixProjMgr: TDataModule},
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
   DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule},
   webLink in 'h:\webLink.pas',
@@ -49,8 +49,8 @@ k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:
 
 begin
   {M}Application.Initialize;
-  {M}Application.CreateForm(TDMSampleForWHProject, DMSampleForWHProject);
-  DMSampleForWHProject.ProjMgr.ManageStartup;
+  {M}Application.CreateForm(TDMDPrefixProjMgr, DMDPrefixProjMgr);
+  DMDPrefixProjMgr.ProjMgr.ManageStartup;
   {M}Application.Run;
 end.
 
