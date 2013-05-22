@@ -19,6 +19,9 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
 interface
 
 uses
@@ -26,7 +29,7 @@ uses
   tpProj;
 
 type
-  TDMSampleForWHProject = class(TDataModule)
+  TDMDPrefixProjMgr = class(TDataModule)
     ProjMgr: TtpProject;
     procedure ProjMgrBeforeFirstCreate(Sender: TtpProject;
       var ErrorText: String; var Continue: Boolean);
@@ -47,6 +50,7 @@ type
       var Continue: Boolean);
     procedure ProjMgrStartupError(Sender: TtpProject;
       const ErrorText: String);
+    procedure ProjMgrStartupComplete(Sender: TtpProject);
   private
     { Private declarations }
   public
@@ -54,7 +58,7 @@ type
   end;
 
 var
-  DMSampleForWHProject: TDMSampleForWHProject;
+  DMDPrefixProjMgr: TDMDPrefixProjMgr;
 
 implementation
 
@@ -64,13 +68,13 @@ uses
   MultiTypeApp,
   ucLogFil, ucCodeSiteInterface,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
-  dmWHApp, whAppOut,
+  dmWHApp, whAppOut, 
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
   whdemo_About, whdemo_Extensions,
   DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
 
-procedure TDMSampleForWHProject.ProjMgrBeforeFirstCreate(
+procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
   { This event handler (BeforeFirstCreate) is reserved for logging, for example,
@@ -79,13 +83,13 @@ begin
     It is ok to ignore or delete this event handler.}
 end;
 
-procedure TDMSampleForWHProject.ProjMgrDataModulesCreate1(
+procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
   CreateCoreWebHubDataModule;
 end;
 
-procedure TDMSampleForWHProject.ProjMgrDataModulesCreate2(
+procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate2(
   Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
 begin
@@ -95,7 +99,7 @@ begin
   pWebApp.Refresh;
 end;
 
-procedure TDMSampleForWHProject.ProjMgrDataModulesCreate3(
+procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
   { This event handler, DataModulesCreate3, is reserved for the creation of
@@ -132,7 +136,7 @@ begin
     statements as well, either above or below this comment, as you wish. }
 end;
 
-procedure TDMSampleForWHProject.ProjMgrDataModulesInit(Sender: TtpProject;
+procedure TDMDPrefixProjMgr.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   { This event handler, DataModulesInit, is reserved for calling the Init method
@@ -148,7 +152,7 @@ begin
     Continue := DemoExtensions.Init;
 end;
 
-procedure TDMSampleForWHProject.ProjMgrGUICreate(Sender: TtpProject;
+procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
 var
@@ -179,7 +183,7 @@ begin
 {$ENDIF}
 end;
 
-procedure TDMSampleForWHProject.ProjMgrGUIInit(Sender: TtpProject;
+procedure TDMDPrefixProjMgr.ProjMgrGUIInit(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
 begin
@@ -200,7 +204,12 @@ begin
 {$ENDIF}
 end;
 
-procedure TDMSampleForWHProject.ProjMgrStartupError(Sender: TtpProject;
+procedure TDMDPrefixProjMgr.ProjMgrStartupComplete(Sender: TtpProject);
+begin
+  pConnection.MarkReadyToWork; // v3.190+
+end;
+
+procedure TDMDPrefixProjMgr.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
   CSSendError('during startup: ' + ErrorText);

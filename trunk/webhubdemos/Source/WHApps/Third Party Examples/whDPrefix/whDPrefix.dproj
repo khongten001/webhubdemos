@@ -4,7 +4,7 @@
         <MainSource>whDPrefix.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>14.4</ProjectVersion>
+        <ProjectVersion>14.6</ProjectVersion>
         <Base>True</Base>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -153,7 +153,7 @@
             <Form>fmWhActions</Form>
         </DCCReference>
         <DCCReference Include="DPrefix_DMProjMgr.pas">
-            <Form>DMSampleForWHProject</Form>
+            <Form>DMDPrefixProjMgr</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="DPrefix_dmNexus.pas">
@@ -248,6 +248,7 @@ CompatibilityMode=1
 csoAllowedRenderMethods=64
 csoDisabledRenderMethods=-2
 csoShowWindowsThreads=1
+DeleteMapAfterCompile=1
 Email Address=""
 Email Object=""
 Encrypt Password=""
