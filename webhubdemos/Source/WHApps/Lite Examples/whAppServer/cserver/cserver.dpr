@@ -1,17 +1,17 @@
-program cserver;  // Created 29-Jun-2006 by the WebHub New Project Wizard
+program cserver;  // Lite WebHub application server to be compiled as-service
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   MultiTypeAppSvc in 'h:\MultiTypeAppSvc.pas',
-  tpProj in 'h:\tpProj.pas',
+  tpProj in 'H:\tpProj.pas',
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
+  ucCodeSiteInterface in 'H:\ucCodeSiteInterface.pas',
   uAutoDataModules in 'H:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},
-  whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
@@ -25,12 +25,14 @@ uses
 {$R HTGLYPHS.RES}
 
 begin
-  Application.Initialize;
-  Application.CreateForm(TDMForWHDemoC, DMForWHDemoC);
+  {M}Application.Initialize;
+  {M}Application.CreateForm(TDMForWHDemoC, DMForWHDemoC);
   DMForWHDemoC.SetDemoFacts('appvers', 'Lite Examples\whAppServer\cserver',
     True);
   DMForWHDemoC.ProjMgr.ManageStartup;
-  Application.Run;
+  CSSend('about to Run');
+  {M}Application.Run;
+  CSSend('dpr ending');
 end.
 
 

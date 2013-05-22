@@ -8,11 +8,12 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
-  tpProj in 'h:\tpProj.pas',
+  tpProj in 'k:\webhub\tpack\tpProj.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   uCode,
+  htWebApp in 'k:\webhub\lib\htWebApp.pas',
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
@@ -21,8 +22,9 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
-  UTF8StringUtils in 'h:\UTF8StringUtils.pas';
+  webSend in 'k:\webhub\lib\whvcl\webSend.pas',
+  webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
 
 {$R dserver_version.RES}
 {$R WHDICON.RES}   // dserver tray icon

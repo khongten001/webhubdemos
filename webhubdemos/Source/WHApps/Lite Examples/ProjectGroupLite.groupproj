@@ -12,6 +12,9 @@
         <Projects Include="whAppServer\aserver\aserver.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="whAppServer\cserver\cserver.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="aserver:Make">
         <MSBuild Projects="whAppServer\aserver\aserver.dproj" Targets="Make"/>
     </Target>
+    <Target Name="cserver">
+        <MSBuild Projects="whAppServer\cserver\cserver.dproj"/>
+    </Target>
+    <Target Name="cserver:Clean">
+        <MSBuild Projects="whAppServer\cserver\cserver.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="cserver:Make">
+        <MSBuild Projects="whAppServer\cserver\cserver.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="dserver;whLite;aserver"/>
+        <CallTarget Targets="dserver;whLite;aserver;cserver"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="dserver:Clean;whLite:Clean;aserver:Clean"/>
+        <CallTarget Targets="dserver:Clean;whLite:Clean;aserver:Clean;cserver:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="dserver:Make;whLite:Make;aserver:Make"/>
+        <CallTarget Targets="dserver:Make;whLite:Make;aserver:Make;cserver:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
