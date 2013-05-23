@@ -56,16 +56,17 @@ begin
 end;
 
 procedure TDMForWHDemoC.ProjMgrStartupComplete(Sender: TtpProject);
+const cFn = 'ProjMgrStartupComplete';
 begin
   inherited;
-  LogSendInfo('ProjMgrStartupComplete', 'my appid is', pWebApp.AppID);
+  LogSendInfo('my appid', pWebApp.AppID, cFn);
   if NOT pWebApp.IsUpdated then
-    LogSendWarning('refreshed: False');
+    LogSendWarning('refreshed: False', cFn);
   {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
   {$ELSE}
   if NOT pWebApp.ConnectToHub then
-    LogSendWarning('ConnectToHub: False');
+    LogSendWarning('ConnectToHub: False', cFn);
   {$ENDIF}
 end;
 
