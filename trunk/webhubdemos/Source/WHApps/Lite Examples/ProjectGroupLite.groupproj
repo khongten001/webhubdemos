@@ -15,6 +15,9 @@
         <Projects Include="whAppServer\cserver\cserver.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="whAppServer\cserver\AppRoleTester.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="cserver:Make">
         <MSBuild Projects="whAppServer\cserver\cserver.dproj" Targets="Make"/>
     </Target>
+    <Target Name="AppRoleTester">
+        <MSBuild Projects="whAppServer\cserver\AppRoleTester.dproj"/>
+    </Target>
+    <Target Name="AppRoleTester:Clean">
+        <MSBuild Projects="whAppServer\cserver\AppRoleTester.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="AppRoleTester:Make">
+        <MSBuild Projects="whAppServer\cserver\AppRoleTester.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="dserver;whLite;aserver;cserver"/>
+        <CallTarget Targets="dserver;whLite;aserver;cserver;AppRoleTester"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="dserver:Clean;whLite:Clean;aserver:Clean;cserver:Clean"/>
+        <CallTarget Targets="dserver:Clean;whLite:Clean;aserver:Clean;cserver:Clean;AppRoleTester:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="dserver:Make;whLite:Make;aserver:Make;cserver:Make"/>
+        <CallTarget Targets="dserver:Make;whLite:Make;aserver:Make;cserver:Make;AppRoleTester:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

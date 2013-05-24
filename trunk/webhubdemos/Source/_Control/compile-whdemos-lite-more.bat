@@ -16,6 +16,8 @@ if NOT Exist %cbat% pause
 set droot=\projects\WebHubDemos\Source\WHApps
 d:
 
+DEL D:\Projects\webhubdemos\Live\WebHub\Apps\AServer*.exe /q
+DEL D:\Projects\webhubdemos\Live\WebHub\Apps\CServer*.exe /q
 DEL D:\Projects\webhubdemos\Live\WebHub\Apps\DServer*.exe /q
 
 cd "%droot%\Lite Examples\whAppServer\whLite"
@@ -31,6 +33,11 @@ set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_svc.bat
 if NOT exist %cbat% pause
 call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%svc.exe
+
+cd "%droot%\Lite Examples\whAppServer\cserver"
+call %cbat% cserver
+cd "%droot%\Lite Examples\whAppServer\dserver"
+
 
 :DServerContinue01
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
