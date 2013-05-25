@@ -91,7 +91,8 @@ begin
   if PosCi('violation', E.Message) > 0 then
   begin
     Handled := True;
-    htWebApp.CoverApp(Self.ProjMgr.Identifier, 10, E.Message, False, Temp);
+    htWebApp.CoverApp(Self.ProjMgr.Identifier, 10, E.Message,  // access violation
+      False, Temp);
     pConnection.MarkTerminateASAP;
     pWebApp.Response.SendBounceTo(pWebApp.DynURL.RawToActiveAuthorityM +
       pWebApp.Request.RawVMR + '?' + pWebApp.AppID + pWebApp.DynURL.W +
