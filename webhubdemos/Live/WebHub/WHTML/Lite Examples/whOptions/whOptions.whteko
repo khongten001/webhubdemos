@@ -2,13 +2,14 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designdynsrc="localdemoBW" designmode="code" designpage="pgWebHubTimes">
 
-<whmacros>
-<whdoc>
+<whdoc for="mcImgDir">
 The session variable "inSpeed" is defined based on surfer input via radio button--see below.
 This determines the name of the directory from which the images are taken.
 The color images are considered acceptable for fast connections, and the black and white 
 images are for slow connections.
 </whdoc>
+
+<whmacros>
 mcImgDir=(~mcSiteRoot~)demos/whOptions/(~inSpeed~)/
 </whmacros>
 
