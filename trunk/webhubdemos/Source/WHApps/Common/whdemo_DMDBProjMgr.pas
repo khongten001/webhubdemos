@@ -91,10 +91,6 @@ begin
   CreateCoreWebHubDataModule;
 end;
 
-
-var
-  ACoverPageFilespec: string = '';
-
 procedure TDMForWHDBDemo.ProjMgrDataModulesCreate2(
   Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
@@ -110,10 +106,6 @@ begin
   end;
 
   whDemoSetAppId(UsedAppID);  // this refreshes the app
-
-  //Cover again after refresh
-  CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False,
-    ACoverPageFilespec);
 
   // We want to let a parameter determine the AppID served by whLite.exe
   // See ucString.pas and uCode.pas for DefaultsTo and ParamString functions
@@ -193,7 +185,6 @@ begin
     WebMessage('0');         // required to close splash screen
   end;
 
-  UncoverApp(ACoverPageFilespec);
 end;
 
 procedure TDMForWHDBDemo.ProjMgrStartupComplete(Sender: TtpProject);
@@ -204,7 +195,7 @@ end;
 procedure TDMForWHDBDemo.ProjMgrStartupError(Sender: TtpProject;
   const ErrorText: String);
 begin
-  HREFTestLog('error', 'during startup', ErrorText);
+  LogSendError(ErrorText, 'during startup');
 {$IFNDEF PREVENTGUI}
   MsgErrorOk(ErrorText);
 {$ENDIF}
