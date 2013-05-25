@@ -27,10 +27,8 @@ uses
 begin
   {M}Application.Initialize;
   {M}Application.CreateForm(TDMForWHDemoC, DMForWHDemoC);
-  DMForWHDemoC.SetDemoFacts('appvers', 'Lite Examples\whAppServer\cserver',
-    True);
+  DMForWHDemoC.SetDemoFacts('bw', 'Lite Examples\whAppServer\cserver', True);
   DMForWHDemoC.ProjMgr.ManageStartup;
-  CSSend('about to Run');
   {M}Application.Run;
   CSSend('dpr ending');
 end.
