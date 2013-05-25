@@ -101,8 +101,9 @@ begin
   except
     on E: Exception do
     begin
-      {$IFDEF CodeSite}CodeSite.SendException(E);
-      {$ELSE}HREFTestLog('exception', E.Message, '');{$ENDIF}
+      LogSendException(E);
+      Continue := False;
+      ErrorText := E.Message;
     end;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
@@ -114,13 +115,12 @@ procedure TDMForWHDemo.ProjMgrDataModulesCreate2(
 const cFn = 'Create2';
 var
   UsedAppID: string;
-  S: string;
 begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
 
   try
     if (Sender.Identifier <> '') and (Sender.Identifier <> 'appvers') and
-       (SuggestedAppID <> '') then
+       (Sender.Identifier <> 'bw') and (SuggestedAppID <> '') then
     begin
       {This "error" is here primarily to enable easy testing of setting Continue
        to False.}
@@ -143,12 +143,6 @@ begin
     {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
 
     whDemoSetAppId(UsedAppID);  // this refreshes the app
-
-    { $ IFNDEF Delphi16UP}
-    //CoverApp(UsedAppID, 1, 'Loading WebHub Demo application', False, S);
-    { $ ENDIF}
-    Sender.Item := S;
-
     whDemoCreateSharedDataModules;
   except
     on E: Exception do
@@ -245,8 +239,6 @@ begin
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
-  //UncoverApp(Sender.Item);
-  //{$IFDEF CodeSite}CodeSite.Send(cFn + ' uncovered ' + Sender.Item);{$ENDIF}
   {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
   {$ENDIF}
