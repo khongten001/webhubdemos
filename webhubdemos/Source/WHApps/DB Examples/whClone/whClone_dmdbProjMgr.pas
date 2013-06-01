@@ -36,7 +36,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}fmclone,{$ENDIF}
-  whutil_ZaphodsMap,
+  whutil_ZaphodsMap, webApp, htWebApp,
   webCall, whClone_dmwhData, whClone_dmwhGridsNScans;
 
 procedure TDMForWHClone.ProjMgrDataModulesCreate3(Sender: TtpProject;
