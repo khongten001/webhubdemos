@@ -24,6 +24,7 @@ uses
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   webSend in 'k:\webhub\lib\whvcl\webSend.pas',
   webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  whcfg_App in 'K:\WebHub\lib\whcfg_App.pas',
   webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
 
 {$R dserver_version.RES}

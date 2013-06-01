@@ -77,6 +77,7 @@ uses
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
   ucCodeSiteInterface,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
+  whutil_ZaphodsMap,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
   whsample_PrototypeJS, 
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
@@ -233,6 +234,8 @@ end;
 
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
 {$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
+var
+  ACoverPageFilespec: string;
 begin
   { override anything else that was in v3.189- and use these handlers }
   pWebApp.Security.CheckSurferIP := True;
@@ -240,6 +243,8 @@ begin
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
   {$IFDEF WEBHUBACE}
+  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
+  UncoverApp(ACoverPageFilespec);
   pConnection.MarkReadyToWork;
   {$ENDIF}
 end;
