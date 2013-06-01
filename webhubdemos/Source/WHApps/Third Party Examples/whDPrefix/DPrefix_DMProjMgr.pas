@@ -71,7 +71,7 @@ uses
   dmWHApp, whAppOut, 
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
-  whdemo_About, whdemo_Extensions,
+  whdemo_About, whdemo_Extensions, whutil_ZaphodsMap,
   DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
 
 procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
@@ -205,7 +205,11 @@ begin
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrStartupComplete(Sender: TtpProject);
+var
+  ACoverPageFilespec: string;
 begin
+  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
+  UncoverApp(ACoverPageFilespec);
   pConnection.MarkReadyToWork; // v3.190+
 end;
 

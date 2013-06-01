@@ -57,6 +57,7 @@ implementation
 uses
   Forms,
   MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
+  whutil_ZaphodsMap,
   webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
   whMain, htWebApp, whpanel_RemotePages,
@@ -188,7 +189,11 @@ begin
 end;
 
 procedure TDMForWHDBDemo.ProjMgrStartupComplete(Sender: TtpProject);
+var
+  ACoverPageFilespec: string;
 begin
+  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
+  UncoverApp(ACoverPageFilespec);
   pConnection.MarkReadyToWork;  // required in v3.190+
 end;
 

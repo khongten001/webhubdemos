@@ -57,6 +57,7 @@ uses
   ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime, ucPos,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whxpCommTypes,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
+  whutil_ZaphodsMap,
   {$IFNDEF PREVENTGUI}
   Forms,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain, whgui_Menu,
@@ -207,7 +208,11 @@ begin
 end;
 
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
+var
+  ACoverPageFilespec: string;
 begin
+  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
+  UncoverApp(ACoverPageFilespec);
 {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;  // required final step for app to get to work
 {$ENDIF}

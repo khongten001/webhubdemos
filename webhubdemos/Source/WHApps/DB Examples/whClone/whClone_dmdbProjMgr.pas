@@ -36,6 +36,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}fmclone,{$ENDIF}
+  whutil_ZaphodsMap,
   webCall, whClone_dmwhData, whClone_dmwhGridsNScans;
 
 procedure TDMForWHClone.ProjMgrDataModulesCreate3(Sender: TtpProject;
@@ -76,8 +77,12 @@ begin
 end;
 
 procedure TDMForWHClone.ProjMgrStartupComplete(Sender: TtpProject);
+var
+  ACoverPageFilespec: string;
 begin
   inherited;
+  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
+  UncoverApp(pWebApp.AppID);
   {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
   {$ENDIF}
