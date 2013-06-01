@@ -34,7 +34,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucCodeSiteInterface,
   whutil_ZaphodsMap,
-  webCall, webApp,
+  htWebApp, webCall, webApp,
   cfmwhCustom;
 
 procedure TDMForWHDemoC.ProjMgrGUICreate(Sender: TtpProject;
