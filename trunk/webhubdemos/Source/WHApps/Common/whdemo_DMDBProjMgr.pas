@@ -56,7 +56,7 @@ implementation
 
 uses
   Forms,
-  MultiTypeApp, ucDlgs, ucLogFil,
+  MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
   webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
   whMain, htWebApp, whpanel_RemotePages,
