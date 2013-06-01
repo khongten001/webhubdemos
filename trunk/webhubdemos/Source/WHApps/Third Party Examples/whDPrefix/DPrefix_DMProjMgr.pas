@@ -71,7 +71,7 @@ uses
   dmWHApp, whAppOut, 
   DPrefix_dmNexus, DPrefix_dmWhActions,
   webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
-  whdemo_About, whdemo_Extensions, whutil_ZaphodsMap,
+  whdemo_About, whdemo_Extensions, whutil_ZaphodsMap, htWebApp,
   DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
 
 procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
