@@ -234,8 +234,6 @@ end;
 
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
 {$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
-var
-  ACoverPageFilespec: string;
 begin
   { override anything else that was in v3.189- and use these handlers }
   pWebApp.Security.CheckSurferIP := True;
@@ -243,8 +241,7 @@ begin
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
   {$IFDEF WEBHUBACE}
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(ACoverPageFilespec);
+  UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork;
   {$ENDIF}
 end;

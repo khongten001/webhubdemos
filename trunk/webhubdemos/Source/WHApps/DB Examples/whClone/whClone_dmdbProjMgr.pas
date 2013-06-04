@@ -77,12 +77,9 @@ begin
 end;
 
 procedure TDMForWHClone.ProjMgrStartupComplete(Sender: TtpProject);
-var
-  ACoverPageFilespec: string;
 begin
   inherited;
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(pWebApp.AppID);
+  UncoverAppOnStartup(pWebApp.AppID);
   {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
   {$ENDIF}

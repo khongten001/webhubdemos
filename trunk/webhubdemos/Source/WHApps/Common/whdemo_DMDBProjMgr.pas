@@ -189,11 +189,8 @@ begin
 end;
 
 procedure TDMForWHDBDemo.ProjMgrStartupComplete(Sender: TtpProject);
-var
-  ACoverPageFilespec: string;
 begin
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(ACoverPageFilespec);
+  UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork;  // required in v3.190+
 end;
 
