@@ -58,16 +58,13 @@ end;
 
 procedure TDMForWHDemoC.ProjMgrStartupComplete(Sender: TtpProject);
 const cFn = 'ProjMgrStartupComplete';
-var
-  ACoverPageFilespec: string;
 begin
   inherited;
   LogSendInfo('my appid', pWebApp.AppID, cFn);
   if NOT pWebApp.IsUpdated then
     LogSendWarning('refreshed: False', cFn);
   {$IFDEF WEBHUBACE}
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(ACoverPageFilespec);
+  UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork;
   {$ELSE}
   if NOT pWebApp.ConnectToHub then

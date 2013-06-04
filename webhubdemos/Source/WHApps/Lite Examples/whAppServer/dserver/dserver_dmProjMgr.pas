@@ -208,11 +208,8 @@ begin
 end;
 
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
-var
-  ACoverPageFilespec: string;
 begin
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(ACoverPageFilespec);
+  UncoverAppOnStartup(pWebApp.AppID);
 {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;  // required final step for app to get to work
 {$ENDIF}

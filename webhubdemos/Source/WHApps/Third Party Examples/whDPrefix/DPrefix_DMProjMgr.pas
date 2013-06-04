@@ -205,11 +205,8 @@ begin
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrStartupComplete(Sender: TtpProject);
-var
-  ACoverPageFilespec: string;
 begin
-  ACoverPageFilespec := GetCoverPageFilespec(pWebApp.AppID);
-  UncoverApp(ACoverPageFilespec);
+  UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork; // v3.190+
 end;
 
