@@ -240,8 +240,8 @@ begin
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
-  {$IFDEF WEBHUBACE}
   UncoverAppOnStartup(pWebApp.AppID);
+  {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
   {$ENDIF}
 end;
