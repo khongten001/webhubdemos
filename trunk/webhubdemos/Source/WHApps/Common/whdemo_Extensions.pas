@@ -669,6 +669,9 @@ const
 begin
   inherited;
   bKeepChecking := InSessionNumber <> 0;
+
+  { web robots are expected to come in with a (single) session number. }
+  bKeepChecking := bKeepChecking and (NOT pWebApp.IsWebRobotRequest);
   bKeepChecking := bKeepChecking and Assigned(pWebApp) and pWebApp.IsUpdated;
   bKeepChecking := bKeepChecking and (NOT IsHREFToolsQATestAgent);
 
@@ -680,53 +683,45 @@ begin
       // implement new-session security.
       bForceNewSession := False;
 
-      if IsWebRobotRequest then
+      // Avoid continuous loops which can occur when sessionid is also
+      // part of the command string, specifically when RejectSession(.., True)
+      // is called and waRSPrior is involved   06-Sep-2011
+      if pWebApp.Command = '' then
+        x := 0
+      else
+        x := pos(pWebApp.Command, Request.QueryString);
+      QueryStringWithoutCommand := Copy(Request.QueryString, 1,
+        IfThen(x > 0, Pred(x), MaxInt));
+      // Check the query string, avoiding the command portion
+      bNewSessionInURL := pos(IntToStr(InSessionNumber),
+        QueryStringWithoutCommand) > 0;
+      if HonorLowerSecurity then
       begin
-        // an already determined web robot session, therefore expected to
-        // come in with a session number.
+        // do nothing -- allow the page to run
       end
       else
       begin
-        // Avoid continuous loops which can occur when sessionid is also
-        // part of the command string, specifically when RejectSession(.., True)
-        // is called and waRSPrior is involved   06-Sep-2011
-        if pWebApp.Command = '' then
-          x := 0
-        else
-          x := pos(pWebApp.Command, Request.QueryString);
-        QueryStringWithoutCommand := Copy(Request.QueryString, 1,
-          IfThen(x > 0, Pred(x), MaxInt));
-        // Check the query string, avoiding the command portion
-        bNewSessionInURL := pos(IntToStr(InSessionNumber),
-          QueryStringWithoutCommand) > 0;
-        if HonorLowerSecurity then
+        if bNewSessionInURL then
         begin
-          // do nothing -- allow the page to run
+          {$IFDEF CodeSite}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
+          CodeSite.SendNote(Request.QueryString);{$ENDIF}
+          { user comes in from a bookmark or a search engine }
+          bForceNewSession :=
+            (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
+            Request.Referer) = 0);
         end
         else
         begin
-          if bNewSessionInURL then
+          {$IFDEF CodeSite}CodeSite.Send(Self.Name + #183 + cFn + #183 +
+            'HaveSessionCookie',
+            GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
+          {$ENDIF}
+          if (HaveSessionCookie = whsncPresent) then
           begin
-            {$IFDEF CodeSite}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
-            CodeSite.SendNote(Request.QueryString);{$ENDIF}
-            { user comes in from a bookmark or a search engine }
-            bForceNewSession :=
-              (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
-              Request.Referer) = 0);
-          end
-          else
-          begin
-            {$IFDEF CodeSite}CodeSite.Send(Self.Name + #183 + cFn + #183 + 
-              'HaveSessionCookie',
-              GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
-            {$ENDIF}
-            if (HaveSessionCookie = whsncPresent) then
-            begin
-              { worst case.. user fakes a cookie or comes back days later with the
-                non-stored session cookie still loaded in the browser }
-              {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie in ' + cFn);{$ENDIF}
-              bForceNewSession := True;
-            end;
+            { worst case.. user fakes a cookie or comes back days later with the
+              non-stored session cookie still loaded in the browser }
+            {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie in ' + cFn);{$ENDIF}
+            bForceNewSession := True;
           end;
         end;
       end;
