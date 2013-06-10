@@ -16,11 +16,10 @@ unit whdemo_Extensions;
 interface
 
 uses
-  Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Windows, SysUtils, Classes, Controls,
   {$I xe_actnlist.inc}
-  updateOk, tpAction, tpActionGUI, tpShareI,
-  whcfg_App,
-  webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
+  MultiTypeApp, updateOk, tpAction, tpActionGUI, tpShareI,
+  whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
   TDemoExtensions = class(TDataModule)
@@ -78,9 +77,9 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils, Math, TypInfo,
-  ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface,
+  ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  webSock, runConst, whcfg_AppInfo,
+  webSock, runConst, whcfg_AppInfo, whxpGlobal,
   whdemo_ViewSource;
 
 {$R *.DFM}
@@ -109,20 +108,26 @@ begin
 
 {$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
-    ForceDirectories(GetWHTemp + 'ipc');
+    ForceDirectories(GetIPCFolder);  // uses whxpGlobal
     if FMonitorFilespec = '' then
     begin
-      FMonitorFilespec := GetWHTemp + // e.g. c:\temp\webhub\
-        'ipc\http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
-      inst := IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
+      FMonitorFilespec := GetIPCFolder + 
+        'http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
+      if ({M}Application.ApplicationMode = mtamWinService) then // uses MultiTypeApp
+      begin
+        {When running as-service, the sequence must come from the service
+         number.}
+        ParamValue('num', inst); // uses ucode
+      end
+      else
+        inst := IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
 
       // report the combination of instance number and current Process ID
       // where instance number is critical only if running as service
       // write as Ansi for compatibility with non-Unicode Delphi
       StringWriteToFile(FMonitorFilespec,
         AnsiString(inst + '-' + IntToStr(GetCurrentProcessId)));
-{$IFDEF CodeSite}CodeSite.Send('Recording Instance #%s, PID %d',
-           [inst, GetCurrentProcessId]); {$ENDIF}
+      CSSend('Recording Instance #%s, PID %d', [inst, GetCurrentProcessId]);
     end;
 {$ENDIF}
 
