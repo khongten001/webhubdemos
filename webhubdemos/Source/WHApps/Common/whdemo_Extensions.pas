@@ -127,7 +127,7 @@ begin
       // write as Ansi for compatibility with non-Unicode Delphi
       StringWriteToFile(FMonitorFilespec,
         AnsiString(inst + '-' + IntToStr(GetCurrentProcessId)));
-      CSSend('Recording Instance #%s, PID %d', [inst, GetCurrentProcessId]);
+      CSSend(Format('Recording Instance #%s, PID %d', [inst, GetCurrentProcessId]));
     end;
 {$ENDIF}
 
@@ -390,7 +390,7 @@ end;
 procedure TDemoExtensions.waGetExenameExecute(Sender: TObject);
 begin
   inherited;
-  pWebApp.SendString(ExtractFilename(Application.ExeName));
+  pWebApp.SendString(ExtractFilename(FilePathAndNameForModule));
 end;
 
 procedure TDemoExtensions.waImgSrcExecute(Sender: TObject);
