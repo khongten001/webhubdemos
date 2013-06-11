@@ -17,9 +17,18 @@
     <AppNotRunning appID="coderage" value="{WebHubDemoMsgRoot}appnotrunning-coderage.whmsg"/>
     <AppNotRunning appID="dsp" value="{WebHubDemoMsgRoot}appnotrunning-dsp.whmsg"/>
     <AppNotRunning appID="htaj" value="{WebHubDemoMsgRoot}appnotrunning-htaj.whmsg"/>
+    <AppNotRunning appID="fire" value="{WebHubDemoMsgRoot}appnotrunning-fire.whmsg"/>
+    <AppNotRunning appID="htoi" value="{WebHubDemoMsgRoot}appnotrunning-htoi.whmsg"/>
     <HubNotFound appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <RequestTimeout appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
   </Situations>
+  <MsgContentTypes>
+    <MsgContentType appID="" value="text/html"/>
+  </MsgContentTypes>
+  <MsgContentTypeOverrides>
+    <Override id="demoajax" pageIDMatch="ajax" whmsgSuffix="_ajax" contentType="text/html"/>
+    <Override id="demojson" pageIDMatch="json" whmsgSuffix="_json" contentType="application/json"/>
+  </MsgContentTypeOverrides>
   <Text>
     <Asap value="as soon as possible"/>
     <AppCoverPage value="temporary admin mode"/>
