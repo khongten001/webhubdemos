@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<SystemMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubSystemMessages200808.xsd">
+<SystemMessages xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubSystemMessages201306.xsd">
   <Variables begin="{" end="}">
     <Var name="SysMsgRoot" value="d:\AppsData\WebHub\sysmsgs\"/>
     <Var name="WebHubDemoMsgRoot" value="D:\Projects\webhubdemos\Live\WebHub\whmsg\"/>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201212.xsd">
+<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201306.xsd">
   <Variables begin="{" end="}"/>
   <HttpServers>
     <HttpServer id="apache" nameStartsWith="Apache" sendHttpVersion="false" sendHttpColon="false" httpForceCase="none"/>
@@ -8,8 +8,8 @@
   </HttpServers>
   <LocalMachine>
   	<ConnectionLayer>
-		<SharedLogFolder value="d:\temp\whErrorLogs\" />
-		<WorkingFolder value="d:\temp\whIPC\" />
+	  <SharedLogFolder value="d:\temp\whErrorLogs\" />
+	  <WorkingFolder value="d:\temp\whIPC\" />
   	</ConnectionLayer>
     <Runners>
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">

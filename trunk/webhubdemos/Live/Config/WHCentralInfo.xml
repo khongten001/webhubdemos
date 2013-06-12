@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201302.xsd">
+<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201306.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
   </Variables>
@@ -424,6 +424,7 @@
     <ClusterID value=""/>
     <DefaultAppID value="appvers"/>
     <DefaultShutdownCommand value="SHUTDOWN"/>
+    <GuardianIntervalSeconds value="360" />
     <HubAppID value="hubvers"/>
     <RandomNextInstance value="false"/>
   </HubProcess>
