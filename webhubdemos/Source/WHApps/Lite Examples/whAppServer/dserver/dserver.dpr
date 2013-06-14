@@ -7,6 +7,7 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  whSharedLog in 'h:\whSharedLog.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'k:\webhub\tpack\tpProj.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},

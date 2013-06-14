@@ -79,7 +79,7 @@ uses
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  webSock, runConst, whcfg_AppInfo, 
+  webSock, runConst, whcfg_AppInfo, whSharedLog,
   whdemo_ViewSource;
 
 {$R *.DFM}
@@ -188,7 +188,14 @@ const cFn = 'DemoAppUpdate';
 var
   AdminFilespec: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
+
+  {$IFDEF CodeSite}
+  // requires WebHub v3.193+
+  // uses whSharedLog
+  CSSetLogFolder(GetConnLayerSharedLogFolder, cWebHubSharedLog);
+  {$ENDIF}
+
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
@@ -220,7 +227,7 @@ begin
   FServerIpNumber := HostToIPv4(LeftOf(':',
       pWebApp.DynURL.CurrentServerProfile.Authority));
   CSSend('FServerIpNumber', FServerIpNumber);
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.FEATUREExecute(Sender: TObject);
