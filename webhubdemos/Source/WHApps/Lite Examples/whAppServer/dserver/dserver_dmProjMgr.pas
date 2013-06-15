@@ -52,7 +52,8 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}  // Raize Software
+  {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF} // EurekaLabs
   MultiTypeApp,
   ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime, ucPos,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whxpCommTypes,
@@ -64,7 +65,7 @@ uses
   {$ENDIF}
   dserver_whdmGeneral, whdemo_ColorScheme;
 
-{ TDMForWHDemo }
+{ TDMForDServer }
 
 procedure TDMForDServer.DataModuleCreate(Sender: TObject);
 begin
@@ -86,19 +87,29 @@ end;
 
 procedure TDMForDServer.DServerExceptionEvent(Sender: TObject; E: Exception;
   var Handled, ReDoPage: Boolean);
-var
-  Temp: string;
+const cFn = 'DServerExceptionEvent';
 begin
+  CSEnterMethod(Self, cFn);
+
+  LogSendException(E);
+  Handled := True;
+
+  {$IFDEF EUREKALOG}
+  // uses ExceptionLog7, EExceptionManager
+  LogSendWarning('EurekaLog provides the following CallStack');
+  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  {$ENDIF}
+
   if PosCi('violation', E.Message) > 0 then
   begin
-    Handled := True;
-    htWebApp.CoverApp(Self.ProjMgr.Identifier, 10, E.Message,  // access violation
-      False, Temp);
+    {$IFDEF WEBHUBACE}
     pConnection.MarkTerminateASAP;
+    {$ENDIF}
     pWebApp.Response.SendBounceTo(pWebApp.DynURL.RawToActiveAuthorityM +
       pWebApp.Request.RawVMR + '?' + pWebApp.AppID + pWebApp.DynURL.W +
       pWebApp.Situations.HomePageID);
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForDServer.ProjMgrBeforeFirstCreate(
