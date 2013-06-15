@@ -1,6 +1,6 @@
 unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://lite.demos.href.com }
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1998-2012 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1998-2013 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v2.1x.  Please obtain a WebHub   //
 //  development license from HREF Tools Corp. before using this file, and     //
@@ -58,7 +58,7 @@ type
     fDelphiSourcePath: String;
     function GetWHTMLFilename(const i: Integer): string;
     function isEndOfUses(a1: string): Boolean;
-    function isInCurrentForm(aClassname: string): Boolean;
+    //function isInCurrentForm(aClassname: string): Boolean;
   public
     { Public declarations }
     property DelphiSourcePath: string read fDelphiSourcePath
@@ -179,7 +179,8 @@ var
   a1, a2, a3, a4 : string;
   aTemp, aCurrentLine, aHyperLine: string;
   i: Integer;
-  bOk, bDFM: Boolean;
+  bOk: Boolean;
+  //bDFM: Boolean;
 begin
 
   with TwhWebActionEx(Sender) do
@@ -230,21 +231,22 @@ begin
             aTemp:=a1 + cEq + aTemp;
             fPaslist.Add(aTemp);
             aTemp:=rightof('{',a3);         // e.g. utParentForm
-            bDFM:=isInCurrentForm(aTemp);
-            if bDFM or true then
+            //bDFM:=isInCurrentForm(aTemp);
+            //if bDFM or true then
               fformlist.Add(a1 + cEq + aTemp);
             aHyperLine := '  ' + a1 + ' in ' + MacroStart+'Jump|' + MacroStart +
               'PageID' + MacroEnd + ',waDemoViewSource.'
                + command
                + ',waDemoViewSourcePascalFile.' + a1 + '|' + leftof('{', a3)
                + MacroEnd + '  ';
-            if bDFM or true then
+            //if bDFM or true then
               aHyperLine:=aHyperLine+'{' + MacroStart + 'Jump|' + MacroStart +
                'PageID' + MacroEnd + ',waDemoViewSource.'
                + Command + ',waDemoViewSourcePascalFile.form!' + a1 + '|'
                + rightof('{',a3) + MacroEnd + '}'
-            else
-              aHyperLine:=aHyperLine+ '{' + rightof('{',a3) + '}';
+            //else
+              //aHyperLine:=aHyperLine+ '{' + rightof('{',a3) + '}'
+              ;
             if bOK then
               aHyperLine:=aHyperLine+','
             else
@@ -419,7 +421,7 @@ begin
      result:=true;
 end;
 
-function TDemoViewSource.isInCurrentForm(aClassname:string):boolean;
+(*function TDemoViewSource.isInCurrentForm(aClassname:string):boolean;
 var
   i,n:integer;
 begin
@@ -433,7 +435,7 @@ begin
       result:=True;
       break;
     end;
-end;
+end;*)
 
 function TDemoViewSource.GetWHTMLFilename(const i: Integer): String;
 var
