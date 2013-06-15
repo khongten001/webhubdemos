@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201306.xsd">
+  <Variables begin="{" end="}"/>
+  <!--- Windows Server 2012 win64 -->
+  <HttpServers>
+    <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
+  </HttpServers>
+  <LocalMachine>
+  	<ConnectionLayer>
+	  <SharedLogFolder value="d:\temp\whErrorLogs\" />
+	  <WorkingFolder value="d:\temp\whIPC\" />
+  	</ConnectionLayer>
+    <Runners>
+      <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
+        <Interface value="isapi"/>
+        <DelayMS value="0"/>
+        <UploadFolder value="D:\temp\whUpload\"/>
+        <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
+        <AdminAccess scheme="http" authority="w12.demos.href.com:80"/>
+	<AdvancedFlags value="none" />
+      </Runner>
+    </Runners>
+    <ServerProfiles>
+      <ServerProfile id="defprofile">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="w12.demos.href.com:80"/>
+        <AllowDynamicAuthority value="true"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="lite">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="w12.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+    </ServerProfiles>
+  </LocalMachine>
+  <OtherMachines>
+    <ServerProfiles>
+      <ServerProfile id="db">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="db.demos.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="dsp">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="dsp.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="dpr">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="delphiprefix.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="more">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="more.demos.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+    </ServerProfiles>
+  </OtherMachines>
+</WebHubNetworkInfo>
