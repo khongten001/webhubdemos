@@ -6,15 +6,20 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
    for information about "drives" H: and K:. *)
 
 uses
+  EMemLeaks,
+  EResLeaks,
+  EMapWin32,
+  EAppVCL,
+  ExceptionLog7,
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   whSharedLog in 'h:\whSharedLog.pas',
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'k:\webhub\tpack\tpProj.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
-  uCode,
-  htWebApp in 'k:\webhub\lib\htWebApp.pas',
+  htWebApp in 'h:\htWebApp.pas',
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
@@ -23,10 +28,8 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-  webSend in 'k:\webhub\lib\whvcl\webSend.pas',
-  webApp in 'k:\webhub\lib\whvcl\webApp.pas',
-  whcfg_App in 'K:\WebHub\lib\whcfg_App.pas',
-  webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
+  whcfg_App in 'h:\whcfg_App.pas',
+  uCode;
 
 {$R dserver_version.RES}
 {$R WHDICON.RES}   // dserver tray icon
@@ -37,6 +40,8 @@ uses
 
 // Search path for HREF Tools in-house usage:
 // k:\webhub\Lib;k:\webhub\Lib\whvcl;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\regex;
+
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
 
   webCore in 'k:\webhub\lib\whvcl\webCore.pas',
   webVars in 'k:\webhub\lib\webVars.pas',
