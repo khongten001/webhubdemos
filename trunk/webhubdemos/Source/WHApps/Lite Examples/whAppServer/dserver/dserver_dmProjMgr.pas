@@ -100,6 +100,10 @@ begin
   LogSendError(ExceptionManager.LastException.CallStack.ToString);
   {$ENDIF}
 
+  {$IFDEF CodeSite}
+  HREFTestLog('exception', S1, ''); // extra-obvious clue about the problem.
+  {$ENDIF}
+
   if PosCi('violation', E.Message) > 0 then
   begin
     {$IFDEF WEBHUBACE}
