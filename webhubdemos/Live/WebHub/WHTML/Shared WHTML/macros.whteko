@@ -8,20 +8,20 @@
   notes="Macros shared by many WebHub demos."
   copyright="1995-2004 HREF Tools Corp.">
 
-<whmacros>
 <!--- Directory Macros -->
+<whmacros>
 mcWhDemoLogoDir=(~mcSiteRoot~)demos/img/logos/
 mcWhDemoMiscDir=(~mcSiteRoot~)demos/img/misc/
 </whmacros>
 
-<whmacros>
 <!--- General Macros -->
+<whmacros>
 mcWhDemoOneLiner=(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)
 mcEmDash=&#8212;
 </whmacros>
 
-<whmacros>
 <!--- Icons and Graphics -->
+<whmacros>
 mcWhDemoDot=<span style="color:mediumvioletred;">&#8226;</span>
 mcWhDemoVCLIcon=<img src="(~mcWhDemoMiscDir~)vcl.jpg" alt="VCL" />
 </whmacros>
