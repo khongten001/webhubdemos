@@ -115,4 +115,23 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 (~FLUSH|~)(~SENDFILE|D:\Projects\webhubdemos\Live\WebHub\Apps\whLite.exe,application/binary~)(~CLOSE|~)
 </whpage>
 
+<whpage pageid="pgTestStripWhiteSpace" desc="Test whitespace nested inside IF command">
+<whprep>
+(~CHECK|tempBool~)
+</whprep>
+(~drShowcaseGlobalHeader~)
+<h1>Test PREFORMAT</h1>
+<pre>
+   Line1 with 3 spaces at the start.
+	Line2 with tab at the start.
+(~IF|tempBool|
+   Line4 (inside IF) with 3 spaces at the start.
+   Line5 (inside IF) with 3 spaces at the start.
+	Line6 (inside IF) with tab at the start.
+~)
+   Line 7 with 3 spaces at start.
+	Line 8 with tab at start.
+</pre>
+(~drShowcaseGlobalFooter~)
+</whpage>
 </whteko>
