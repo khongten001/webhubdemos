@@ -6,6 +6,7 @@
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="NYX"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
