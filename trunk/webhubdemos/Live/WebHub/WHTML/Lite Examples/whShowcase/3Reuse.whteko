@@ -143,6 +143,7 @@ Hey (~litSurferName~)! Wanna see another name? Submit the form with a new one! A
 <whpage pageid="pgTestInclude" desc="Demonstrate the file-include command">
 <whpagesettings inherit="a">
 bNoMore=true
+downlink=pgEnterShowcase
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 <p>The INCLUDE command can be used to include the contents of an arbitrary 
@@ -163,31 +164,15 @@ character set. The second one is encoded as UTF-8.</p>
 
 <h2>Lorem Ipsum</h2>
 <p><i>from <a href="http://www.lipsum.com/">http://www.lipsum.com</a>...</i></p>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
-<h3>again</h3>
-(~drLoremIpsum~)
+(~NOTASSIGNED|NLoremRepeats|(~SET|NLoremRepeats=12~)~)
+<form method="post" action="">
+Number of repeats: (~INPUTTEXT|NLoremRepeats~) <input type="submit" />
+</form>
+
+<h3>Repeating (~NLoremRepeats~) times...</h3>
+
+(~FOR|i,1,(~NLoremRepeats~)|<h4>(~i~)</h4>(~drLoremIpsum~)<hr/>~)
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 
