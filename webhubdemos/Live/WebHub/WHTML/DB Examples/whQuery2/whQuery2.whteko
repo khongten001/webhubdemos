@@ -98,7 +98,7 @@ input, select{
 <div id="whdemopagecontent">
 <h1>Result of Query</h1>
 <p>(~JUMPR|pgEnterHTQ2|Back~)<br/>
-Here is the result of your query, searching for (~findme~):</p>
+Here is the result of your query, searching for (~IfNotBlankSV|findme|(~findme~)||ALL employees~):</p>
 (~grid.execute~)
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
