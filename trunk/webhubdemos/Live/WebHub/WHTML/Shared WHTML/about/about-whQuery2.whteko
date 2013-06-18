@@ -7,8 +7,8 @@ mcWhDemoCreditIdeaHTQ2=Ann Lynnworth
 mcWhDemoCreditFirstDraftHTQ2=Ann Lynnworth
 mcWhDemoCreditGraphicsHTQ2=Rob Daniels
 mcWhDemoCreditCopyHTQ2=Rob Daniels
-mcWhDemoUpdatedHTQ2=30-Jan-2013
-mcWhDemoKeywordsHTQ2=database,query,sql,dynamic content,multi-query example
+mcWhDemoUpdatedHTQ2=17-Jun-2013
+mcWhDemoKeywordsHTQ2=ADO,database,query,sql,dynamic content,multi-query example
 mcWhDemoLiteHTQ2=No
 </whmacros>
 
@@ -22,7 +22,7 @@ Paradox format to Access/MDB format.</li>
 You can change it to anything valid on your system. </li>
 <li> To reset the counter of sessions, edit the file <code>whQuery2.hitcount.txt</code> in the 
 same folder as whQuery2.exe. </li>
-</li>
+<li> Note: BDE units are no longer compiled into this demo as of June 2013. </li> 
 </ol>
 </whdroplet>
 
