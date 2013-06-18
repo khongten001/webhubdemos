@@ -46,8 +46,7 @@ siteroot is (~mcSiteRoot~)<br />
 <whdroplet name="drHead" show="yes">
 (~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
 <meta name="generator" content="(~version~)" />
-(~NOMATCH|(~AppID~)=dsp|
-<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
+(~NOMATCH|(~AppID~)=dsp|<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
 <!--- the DSP demo does its own meta tags -->
 ~)
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
