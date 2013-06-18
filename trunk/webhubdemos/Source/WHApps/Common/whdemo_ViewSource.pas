@@ -189,7 +189,7 @@ begin
     if NOT IsDemoRootKnown then
     begin
       WebApp.SendStringImm(
-        'Error: the root folder for the demos has not been configured.');
+        'Error: the root folder for webhubdemos has not been configured.');
       Exit;
     end;
 
