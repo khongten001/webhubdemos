@@ -699,7 +699,8 @@ data: (~INPUTTEXT|data,30~)<br/>
 (~COOKIECLEAR|DPRSESSION~)
 (~COOKIECLEAR|KEYCODE~)
 (~COOKIECLEAR|FRONTDOORSESSION~)
-(~drResetOpenIDCookies~)
+<!--- extra step to erase cookies that are specific to OpenID -->
+(~MATCH|(~AppID~)=htoi|(~drResetOpenIDCookies~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
