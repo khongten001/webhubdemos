@@ -31,8 +31,9 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="lite" context="DEMOS"/>
-        <ServerProfileIDStandard context="ultraann" value="newipc"/>
+        <ServerProfileIDStandard value="newipc" context="ultraann" />
         <ServerProfileIDSecure value="ssl"/>
+        <ServerProfileIDSecure value="" context="NYX" />
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
