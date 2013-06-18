@@ -3,11 +3,11 @@ unit whQuery2_dmdbProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMDBProjMgr, tpProj;
+  Windows, Messages, SysUtils, Variants, Classes, Forms,
+  whdemo_DMProjMgr, tpProj;
 
 type
-  TDMForWHQuery2 = class(TDMForWHDBDemo)
+  TDMForWHQuery2 = class(TDMForWHDemo)
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
       var Continue: Boolean);

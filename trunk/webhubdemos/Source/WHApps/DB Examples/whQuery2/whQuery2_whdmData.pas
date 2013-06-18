@@ -26,11 +26,10 @@ THE SOFTWARE.
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, Data.Win.ADODB, wdbxSource, wdbScan, DB,
+  SysUtils, Classes, DB, Data.Win.ADODB,
   ZaphodsMap,
   updateOK, tpAction,
-  wdbSSrc, wdbSource, webTypes, wdbGrid;
+  webLink, wdbSource, wdbScan, wdbSSrc, webTypes, wdbGrid;
 
 type
   TDMQuery2 = class(TDataModule)

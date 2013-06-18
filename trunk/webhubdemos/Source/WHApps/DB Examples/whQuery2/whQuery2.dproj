@@ -7,7 +7,7 @@
         <AppType>Application</AppType>
         <FrameworkType>None</FrameworkType>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>14.4</ProjectVersion>
+        <ProjectVersion>14.6</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
     </PropertyGroup>
@@ -54,7 +54,6 @@
         <DCC_Namespace>System.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -74,10 +73,6 @@
         </DelphiCompile>
         <DCCReference Include="h:\MultiTypeApp.pas"/>
         <DCCReference Include="h:\tpProj.pas"/>
-        <DCCReference Include="..\..\Common\whdemo_DMDBProjMgr.pas">
-            <Form>DMForWHDBDemo</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="h:\utPanFrm.pas">
             <Form>utParentForm</Form>
         </DCCReference>
@@ -103,6 +98,10 @@
             <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
+            <Form>DMForWHDemo</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="h:\whpanel_RemotePages.pas">
             <Form>fmWhDreamweaver</Form>
             <DesignClass>TfmWhDreamweaver</DesignClass>
@@ -111,14 +110,13 @@
             <Form>whdmCommonEventHandlers</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="h:\dmwhBDEApp.pas">
-            <Form>dmWebHubBDEApp</Form>
+        <DCCReference Include="h:\dmWHApp.pas">
+            <Form>dmWebHubApp</Form>
             <DesignClass>TdmWebHubDBApp</DesignClass>
         </DCCReference>
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
-        <DCCReference Include="k:\webhub\lib\wdbIBObjOSource.pas"/>
         <DCCReference Include="htqry2C.PAS">
             <Form>fmHTQ2Panel</Form>
         </DCCReference>
@@ -201,4 +199,7 @@
 <!-- EurekaLog First Line
 [Exception Log]
 EurekaLog Version=7001
+Activate=0
+DeleteMapAfterCompile=1
+Encrypt Password=""
 EurekaLog Last Line -->
