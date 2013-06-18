@@ -6,12 +6,6 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
    for information about "drives" H: and K:. *)
 
 uses
-  EMemLeaks,
-  EResLeaks,
-  EMapWin32,
-  EAppVCL,
-  ExceptionLog7,
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   whSharedLog in 'h:\whSharedLog.pas',
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
@@ -43,6 +37,7 @@ uses
 
   webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
 
+  webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
   webCore in 'k:\webhub\lib\whvcl\webCore.pas',
   webVars in 'k:\webhub\lib\webVars.pas',
   webSend in 'k:\webhub\lib\whvcl\webSend.pas',
