@@ -137,11 +137,11 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 </whpage>
 
 <whdroplet name="drDCTest1" show="no">
-Test 1
+When your only tool is a hammer, all problems start looking like nails.
 </whdroplet>
 
 <whdroplet name="drDCTest2" show="no">
-Test 2
+Letting the cat out of the bag is a whole lot easier than putting it back in.
 </whdroplet>
 
 <whpage pageid="pgTestDynChunk" desc="Test DYNCHUNK command with PageSetting">
@@ -157,17 +157,20 @@ prefix2=drDCTest
 <h1>Test DynChunk Command</h1>
 <h2>A</h2>
 <p>
-(~DYNCHUNK|(~PageSetting.prefix1~)~)
+<!--- blank suffix -->
+(~DYNCHUNK|(~PageSetting.prefix1~),~)
 </p>
 
 <h2>B</h2>
 <p>
-(~DYNCHUNK|(~PageSetting.prefix2~),1~)
+<!--- blank suffix -->
+(~DYNCHUNK|(~PageSetting.prefix2~)1~)
 </p>
 
 <h2>C</h2>
 <p>
-(~DYNCHUNK|(~PageSetting.prefix2~),2~)
+<!--- blank suffix -->
+(~DYNCHUNK|(~PageSetting.prefix2~)2~)
 </p>
 
 (~drShowcaseGlobalFooter~)
