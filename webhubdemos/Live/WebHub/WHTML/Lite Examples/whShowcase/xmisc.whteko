@@ -132,6 +132,45 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
    Line 7 with 3 spaces at start.
 	Line 8 with tab at start.
 </pre>
+(~CLEAR|tempbool~)
 (~drShowcaseGlobalFooter~)
 </whpage>
+
+<whdroplet name="drDCTest1" show="no">
+Test 1
+</whdroplet>
+
+<whdroplet name="drDCTest2" show="no">
+Test 2
+</whdroplet>
+
+<whpage pageid="pgTestDynChunk" desc="Test DYNCHUNK command with PageSetting">
+<whpagesettings>
+prefix1=drDCTest1
+prefix2=drDCTest
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+<h1>Baseline</h1>
+<p>PageSetting.prefix1 is [(~PageSetting.prefix1~)]</p>
+<p>PageSetting.prefix2 is [(~PageSetting.prefix2~)]</p>
+
+<h1>Test DynChunk Command</h1>
+<h2>A</h2>
+<p>
+(~DYNCHUNK|(~PageSetting.prefix1~)~)
+</p>
+
+<h2>B</h2>
+<p>
+(~DYNCHUNK|(~PageSetting.prefix2~),1~)
+</p>
+
+<h2>C</h2>
+<p>
+(~DYNCHUNK|(~PageSetting.prefix2~),2~)
+</p>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
 </whteko>
