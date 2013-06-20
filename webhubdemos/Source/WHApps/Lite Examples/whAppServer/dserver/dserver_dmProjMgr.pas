@@ -147,7 +147,7 @@ begin
 
   ProjMgr.Item := S;
 
-  pWebApp.FlagRemoveCrLfAndLeadingSpaces := False;
+  pWebApp.KeepCrLfAndLeadingSpaces := True; // experimental v3.194
   whDemoCreateSharedDataModules;
 end;
 
