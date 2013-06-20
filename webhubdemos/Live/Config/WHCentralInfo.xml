@@ -303,7 +303,7 @@
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="DServer_x_d18_win64.exe"/>
             <DebugMode value="false"/>
-            <Instances numToRunMinimum="0" numToRunMaximum="20" delaySecBetween="3"/>
+            <Instances numToRunMinimum="0" numToRunMaximum="0" delaySecBetween="3"/>
 		  </Deployment>
         </WebHubApp>
       </WebHubApps>
