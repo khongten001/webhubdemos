@@ -165,7 +165,7 @@ character set. The second one is encoded as UTF-8.</p>
 <h2>Lorem Ipsum</h2>
 <p><i>from <a href="http://www.lipsum.com/">http://www.lipsum.com</a>...</i></p>
 (~NOTASSIGNED|NLoremRepeats|(~SET|NLoremRepeats=12~)~)
-<form method="post" action="">
+<form method="post" action="(~ACTIONR|pgTestInclude~)">
 Number of repeats: (~INPUTTEXT|NLoremRepeats~) <input type="submit" />
 </form>
 
