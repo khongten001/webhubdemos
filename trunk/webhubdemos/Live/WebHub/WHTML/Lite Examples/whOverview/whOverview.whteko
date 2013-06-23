@@ -334,4 +334,28 @@ AppID automatically because they are intended to serve only a single application
 </whoutput>
 </whpage>
 
+<whpage pageid="pgTestLoremIpsum" desc="Test Extra Large Page">
+<whprep>
+(~NOTASSIGNED|NLoremRepeats|(~SET|NLoremRepeats=40~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+<title>(~PageDesc~)</title>
+</head>
+<body>
+
+<h2>Lorem Ipsum</h2>
+<p><i>from <a href="http://www.lipsum.com/">http://www.lipsum.com</a>...</i></p>
+<form method="post" action="(~ACTIONR|pgTestLoremIpsum~)">
+Number of repeats: (~INPUTTEXT|NLoremRepeats~) <input type="submit" />
+</form>
+
+<h3>Repeating (~NLoremRepeats~) times...</h3>
+
+(~FOR|i,1,(~NLoremRepeats~)|<h4>(~i~)</h4>(~drLoremIpsum~)<hr/>~)
+
+</body></html>
+</whpage>
+
 </whteko>
