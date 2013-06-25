@@ -17,7 +17,7 @@ set compilerdigits=18
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 cd /d "D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite"
-call %~dp0\compile-1demo_x_win32_source.bat whlite
+call %~dp0\compile-1demo_x_source.bat whlite
 
 pause
 
