@@ -5,7 +5,7 @@ setlocal
 
 set compilerdigits=18
 set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS
-set newipcdebug=
+set newipcdebug=CodeSite;Log2CSL
 
 del d:\temp\DelphiTempDCU\*.dcu
 
