@@ -32,6 +32,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDSecure value="ssl" />
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
