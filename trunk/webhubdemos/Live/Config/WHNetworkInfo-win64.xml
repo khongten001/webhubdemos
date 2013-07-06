@@ -48,6 +48,19 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
+      <ServerProfile id="ssl">
+        <HttpServerID value="iis"/>
+        <Scheme value="https"/>
+        <Authority value="w12.demos.href.com:443"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="false"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
