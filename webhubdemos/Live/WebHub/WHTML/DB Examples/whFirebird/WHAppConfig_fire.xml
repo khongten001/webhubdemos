@@ -45,6 +45,7 @@
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="db" context="DEMOS"/>
         <ServerProfileIDStandard value="db" context="DORIS"/>
+        <ServerProfileIDSecure value="ssl" context="DORIS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>

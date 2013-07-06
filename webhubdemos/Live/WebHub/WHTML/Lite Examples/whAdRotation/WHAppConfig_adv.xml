@@ -35,6 +35,7 @@
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <ServerProfileIDStandard context="ultraann" value="newipc"/>
+        <ServerProfileIDSecure value="ssl" />
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>

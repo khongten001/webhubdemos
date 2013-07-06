@@ -47,6 +47,7 @@
         <ServerProfileIDStandard value="db" context="DORIS"/>
         <ServerProfileIDStandard value="defprofile" context="qa"/>
         <ServerProfileIDStandard context="ultraann" value="newipc64"/>
+        <ServerProfileIDSecure value="ssl" context="DORIS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
