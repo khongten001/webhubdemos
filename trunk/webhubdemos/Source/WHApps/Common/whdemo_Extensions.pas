@@ -79,7 +79,7 @@ uses
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  webSock, runConst, whcfg_AppInfo, whSharedLog,
+  webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal,
   whdemo_ViewSource;
 
 {$R *.DFM}
@@ -108,10 +108,10 @@ begin
 
 {$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
-    ForceDirectories(GetWHTemp + 'ipc\');  // old-ipc
+    ForceDirectories(GetIPCFolder);  // old-ipc
     if FMonitorFilespec = '' then
     begin
-      FMonitorFilespec := GetWHTemp + 'ipc\' + 
+      FMonitorFilespec := GetIPCFolder + 
         'http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
       if ({M}Application.ApplicationMode = mtamWinService) then // uses MultiTypeApp
       begin
