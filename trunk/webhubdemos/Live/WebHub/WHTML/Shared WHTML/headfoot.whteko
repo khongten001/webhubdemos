@@ -159,7 +159,7 @@ Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reser
 This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~).
 Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &nbsp; 
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span>; 
-(~IsWebRobotRequest| ||session number (~RawSessionNumber~);~)
+(~IsWebRobotRequest|R ||H (~AppProcessID~); session number (~RawSessionNumber~);~)
 user agent is <span id="userAgentHere">(~Request.UserAgent~)</span>. 
 It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.
 </span>
