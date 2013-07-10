@@ -15,6 +15,7 @@
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
+		<RequestValidation value="true" />
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
         <ErrorLogFolder value="d:\temp\whErrorlogs\"/>
         <AdminAccess scheme="http" authority="dsp.href.com:80"/>
@@ -84,6 +85,20 @@
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
+		<URLUseScheme value="false" />
+      </ServerProfile>
+ <ServerProfile id="ssl">
+        <HttpServerID value="iis"/>
+        <Scheme value="https"/>
+        <Authority value="dsp.href.com:443"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
       </ServerProfile>
     </ServerProfiles>
   </LocalMachine>
