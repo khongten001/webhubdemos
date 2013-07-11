@@ -25,10 +25,11 @@ type
     procedure ScanEmployeeBeginTable(Sender: TObject);
     procedure ScanEmployee1RowStart(Sender: TwhdbScanBase;
       aWebDataSource: TwhdbSourceBase; var ok: Boolean);
-  private
+  strict private
     { Private declarations }
     FlagInitDone: Boolean;
     procedure WebAppUpdate(Sender: TObject);
+    procedure GetScanPageHeight(Sender: TwhWebAction; var PageHeight: Integer);
   public
     { Public declarations }
     whdsEmployee: TwhdbSourceIBO;
@@ -48,7 +49,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucString, ucLogFil, ucCodeSiteInterface, ucIbObjPrepare,
   webApp, webSend, webScan, htWebApp,
-  uFirebird_Connect_Employee, ucIbAndFbCredentials;
+  uFirebird_Connect_Employee, ucIbAndFbCredentials, whFirebird_dmdbProjMgr;
 
 { TDMEmployeeFire }
 
@@ -80,6 +81,8 @@ begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
+      pWebApp.OnError := DMForWHFirebird.WHDBAppError;
+
       ZMLookup_Firebird_Credentials('WebHubDemo-fire', DBName, DBUser, DBPass);
       CreateIfNil(DBName, DBUser, DBPass);
       gEmployee_Conn.Connect;
@@ -94,25 +97,26 @@ begin
       whdsEmployee := TwhdbSourceIBO.Create(Self);
       whdsEmployee.Name := 'whdsEmployee';
       whdsEmployee.DataSource := dsEmployee;
-      whdsEmployee.KeyFieldNames := 'EMP_NO';
+      //whdsEmployee.KeyFieldNames := 'EMP_NO';  in application-level XML
       whdsEmployee.MaxOpenDataSets := 1;
 
       ScanEmployee1.WebDataSource := whdsEmployee;
       ScanEmployee1.PageHeight := 3;  {number of records to display initially}
       ScanEmployee1.ButtonsWhere := dsBelow;
       ScanEmployee1.OnBeginTable := ScanEmployeeBeginTable;
+      ScanEmployee1.OnGetPageHeight := GetScanPageHeight;
       ScanEmployee1.SetDelimiters2012;
       ScanEmployee1.SetCaptions2004;
       ScanEmployee1.SetButtonSpecs2012;
 
       ScanEmployee2.WebDataSource := whdsEmployee;
-      ScanEmployee2.PageHeight := 10;  {number of records to display initially}
+      ScanEmployee2.OnGetPageHeight := GetScanPageHeight;
       ScanEmployee2.ButtonsWhere := dsBelow;
       ScanEmployee2.OnBeginTable := ScanEmployeeBeginTable;
-      ScanEmployee1.SetDelimiters2012;
+      ScanEmployee2.SetDelimiters2012;
 
       ScanEmployee3.WebDataSource := whdsEmployee;
-      ScanEmployee3.PageHeight := 10;  {number of records to display initially}
+      ScanEmployee3.OnGetPageHeight := GetScanPageHeight;
       ScanEmployee3.ButtonsWhere := dsNone;
       ScanEmployee3.OnBeginTable := ScanEmployeeBeginTable;
 
@@ -140,6 +144,33 @@ begin
   end;
   Result := FlagInitDone;
 end;
+
+procedure TDMEmployeeFire.GetScanPageHeight(Sender: TwhWebAction;
+  var PageHeight: Integer);
+const cFn = 'GetScanPageHeight';
+begin
+  CSEnterMethod(Self, cFn);
+  //CSSend('Starting PageHeight', S(PageHeight));
+  //CSSend('pWebApp.IsWebRobotRequest', S(pWebApp.IsWebRobotRequest));
+  if pWebApp.IsWebRobotRequest then
+    PageHeight := 0 // show all to webrobots
+  else
+  begin
+    if pWebApp.StringVar['scanCategoryContents.PageHeight'] = '' then
+    begin
+      if Sender = ScanEmployee1 then
+        PageHeight := 3   {number of records to display initially}
+      else
+      if Sender = ScanEmployee2 then
+        PageHeight := 10  {number of records to display initially}
+      else
+        PageHeight := 10; // start low
+    end;
+  end;
+  //CSSend('Ending PageHeight', S(PageHeight));
+  CSExitMethod(Self, cFn);
+end;
+
 
 procedure TDMEmployeeFire.ScanEmployeeBeginTable(Sender: TObject);
 begin
