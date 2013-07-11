@@ -34,6 +34,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF}
    whMacroAffixes,
    DSP_dmRubicon,             // DSPdm
    Weblist,                   // TwhList
@@ -247,20 +248,27 @@ end;
 {-}
 procedure TDSPAppHandler.DSPAppError(Sender: TObject; E: Exception; var Handled, ReDoPage: Boolean);
 var
-  S: string;
+  S1: string;
 begin
-  With pWebApp do
+  Handled := True;
+  LogSendException(E);  // uses ucCodeSiteInterface and ucLogFil
+
+  {$IFDEF CodeSite}
+  HREFTestLog('exception', E.Message, '');
+  {$ENDIF}
+
+  {$IFDEF EUREKALOG}
+  // uses ExceptionLog7, EExceptionManager
+  LogSendWarning('EurekaLog provides the following CallStack');
+  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  {$ENDIF}
+
+  with pWebApp do
   begin
-    S := Request.RemoteAddress
-         +','+SessionID
-         +','+AddToString(pageid,command,':')  //ucstring
-         +','+e.classname
-         +','+e.message;
-    {$IFDEF CodeSite}
-    CSSendError(S);
-    {$ELSE}
-      AppendToLog(DatedFileName(AppSetting['ErrorLog']), S);
-    {$ENDIF}
+    S1 := 'Extra info: ' + Request.RemoteAddress
+         +','+Request.QueryString
+         +','+e.classname;
+    LogSendError(S1);
   end;
 end;
 
