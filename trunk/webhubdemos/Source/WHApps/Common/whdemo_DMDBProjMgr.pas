@@ -45,6 +45,8 @@ type
     { Public declarations }
     procedure SetDemoFacts(const DemoAppID, SourceSubdir: string;
       const IsRelativePath: Boolean);
+    procedure WHDBAppError(Sender: TObject; E: Exception; var Handled,
+      ReDoPage: Boolean);
   end;
 
 var
@@ -55,7 +57,10 @@ implementation
 {$R *.dfm}
 
 uses
-  Forms,
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  {$IFDEF EUREKALOG}
+  ExceptionLog7, EExceptionManager,
+  {$ENDIF}
   MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
   whutil_ZaphodsMap,
   webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
@@ -209,6 +214,28 @@ begin
   whDemoDestroySharedPanels;
   DestroyCoreWebHubDataModuleGUI;
   whDemoDestroySharedDataModules;
+end;
+
+procedure TDMForWHDBDemo.WHDBAppError(Sender: TObject; E: Exception;
+  var Handled, ReDoPage: Boolean);
+begin
+  { some database demos connect pWebApp.OnError to this event handler }
+  Handled := True;
+  LogSendException(E);  // uses ucCodeSiteInterface and ucLogFil
+
+  {$IFDEF CodeSite}
+  HREFTestLog('exception', E.Message, '');
+  {$ENDIF}
+
+  {$IFDEF EUREKALOG}
+  // uses ExceptionLog7, EExceptionManager
+  LogSendWarning('EurekaLog provides the following CallStack');
+  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  {$ENDIF}
+
+  if E is EAccessViolation then
+    pConnection.MarkTerminateASAP;
+  pWebApp.Response.SendBounceToPage('pgWelcome', '');
 end;
 
 end.
