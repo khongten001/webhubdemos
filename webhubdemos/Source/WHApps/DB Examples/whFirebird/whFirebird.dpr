@@ -4,6 +4,13 @@ program whFirebird;  // Created 01-Nov-2006 by the WebHub New Project Wizard
    for information about "drives" H: and K:. *)
 
 uses
+  {$IFDEF EurekaLog}
+  EMemLeaks,
+  EResLeaks,
+  EMapWin32,
+  EAppVCL,
+  ExceptionLog7,
+  {$ENDIF}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
