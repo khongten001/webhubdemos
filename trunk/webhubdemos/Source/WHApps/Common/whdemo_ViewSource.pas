@@ -93,7 +93,9 @@ uses
 
 procedure whDemoSetDelphiSourceLocation(const Path: String;
   const isRelativePath: Boolean);
+const cFn = 'whDemoSetDelphiSourceLocation';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   if Assigned(DemoViewSource) then
   begin
     if isRelativePath then
@@ -105,9 +107,8 @@ begin
         source here. }
       DemoViewSource.DelphiSourcePath := Path;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
-
-//----------------------------------------------------------------------
 
 function getWebHubDemoInstallRoot: string;
 var
@@ -151,13 +152,16 @@ end;
 //----------------------------------------------------------------------
 
 procedure TDemoViewSource.DataModuleCreate(Sender: TObject);
+const cFn = 'DataModuleCreate';
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   IsDemoRootKnown := False;
   fProjectFilename := ChangeFileExt(ExtractFilename(Paramstr(0)), '.dpr');
   fpaslist := TStringList.Create;
   fformlist := TStringList.Create;
   foutputlist := TStringList.Create;
   ftemplist := TStringList.Create;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
 end;
 
 //------------------------------------------------------------------------------
@@ -174,102 +178,102 @@ end;
 // -----------------------------------------------------------------------------
 
 procedure TDemoViewSource.waDemoViewSourceExecute(Sender: TObject);
+const cFn = 'waDemoViewSourceExecute';
 var
   aUnitName: string;
   a1, a2, a3, a4 : string;
   aTemp, aCurrentLine, aHyperLine: string;
   i: Integer;
   bOk: Boolean;
-  //bDFM: Boolean;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
 
-  with TwhWebActionEx(Sender) do
   begin
 
     if NOT IsDemoRootKnown then
     begin
-      WebApp.SendStringImm(
+      TwhWebActionEx(Sender).WebApp.SendStringImm(
         'Error: the root folder for webhubdemos has not been configured.');
-      Exit;
-    end;
-
-    // calculate every time so this works multi-surfer.
-    foutputlist.clear;
-    with ftemplist do
+    end
+    else
     begin
-      Clear;
-      LoadFromFile(DelphiSourcePath+fProjectFilename);
-      bOK:=True;
-      for i:=0 to pred(Count) do
+
+      // calculate every time so this works multi-surfer.
+      foutputlist.clear;
+      with ftemplist do
       begin
-        if NOT bOK then break;
-        aCurrentLine:=strings[i];
-        aHyperLine:=aCurrentLine;   // might not need any changes.
-        bOK:=(i=0) or NOT isEndOfUses(aCurrentLine);
-        //
-        if i=0 then
+        Clear;
+        if FileExists(DelphiSourcePath+fProjectFilename) then
+          LoadFromFile(DelphiSourcePath+fProjectFilename);
+        bOK:=True;
+        for i:=0 to pred(Count) do
         begin
-          // link project filename to display of self
-          SplitThree(aCurrentLine,' ',a1,a2,a3);  // program aunit; //comment
-          aHyperLine :=
-            Format('%s %sJUMP|%sPageID%s,waDemoViewSource.%s|%s%s; %s',
-              [a1, MacroStart, MacroStart, MacroEnd, fProjectFilename,
-               fProjectFilename, MacroEnd, a3]);
-        end;
-        if copy(aCurrentLine,1,2)='//' then
-        begin
-          aHyperLine:='';
-          continue;  // skip over comment lines when displaying the uses clause.
-        end;
-        if splitstring(aCurrentLine,' in ''',a1,a2) then
-        begin
-          a1 := Trimboth(a1);
-          if (splitstring(a2,'},',a3,a4)) or (splitstring(a2,'};',a3,a4)) then
+          if NOT bOK then break;
+          aCurrentLine:=strings[i];
+          aHyperLine:=aCurrentLine;   // might not need any changes.
+          bOK:=(i=0) or NOT isEndOfUses(aCurrentLine);
+          //
+          if i=0 then
           begin
-            //whAppOut in '\HT\HTFRM\WHAPPOUT.PAS' {fmAppOut},
-            aTemp:=leftof('''',a2);         // e.g. c:\ht\lib32\utPanForm.pas
-            aTemp:=a1 + cEq + aTemp;
-            fPaslist.Add(aTemp);
-            aTemp:=rightof('{',a3);         // e.g. utParentForm
-            //bDFM:=isInCurrentForm(aTemp);
-            //if bDFM or true then
-              fformlist.Add(a1 + cEq + aTemp);
-            aHyperLine := '  ' + a1 + ' in ' + MacroStart+'Jump|' + MacroStart +
-              'PageID' + MacroEnd + ',waDemoViewSource.'
-               + command
-               + ',waDemoViewSourcePascalFile.' + a1 + '|' + leftof('{', a3)
-               + MacroEnd + '  ';
-            //if bDFM or true then
+            // link project filename to display of self
+            SplitThree(aCurrentLine,' ',a1,a2,a3);  // program aunit; //comment
+            aHyperLine :=
+              Format('%s %sJUMP|%sPageID%s,waDemoViewSource.%s|%s%s; %s',
+                [a1, MacroStart, MacroStart, MacroEnd, fProjectFilename,
+                 fProjectFilename, MacroEnd, a3]);
+          end;
+          if copy(aCurrentLine,1,2)='//' then
+          begin
+            aHyperLine:='';
+            continue;  // skip over comment lines when displaying the uses clause.
+          end;
+          if splitstring(aCurrentLine,' in ''',a1,a2) then
+          begin
+            a1 := Trimboth(a1);
+            if (splitstring(a2,'},',a3,a4)) or (splitstring(a2,'};',a3,a4)) then
+            begin
+              aTemp:=leftof('''',a2);         // e.g. c:\ht\lib32\utPanForm.pas
+              aTemp:=a1 + cEq + aTemp;
+              fPaslist.Add(aTemp);
+              aTemp:=rightof('{',a3);         // e.g. utParentForm
+                fformlist.Add(a1 + cEq + aTemp);
+              aHyperLine := '  ' + a1 + ' in ' + MacroStart+'Jump|' + MacroStart +
+                'PageID' + MacroEnd + ',waDemoViewSource.'
+                 + TwhWebActionEx(Sender).Command
+                 + ',waDemoViewSourcePascalFile.' + a1 + '|' + leftof('{', a3)
+                 + MacroEnd + '  ';
               aHyperLine:=aHyperLine+'{' + MacroStart + 'Jump|' + MacroStart +
-               'PageID' + MacroEnd + ',waDemoViewSource.'
-               + Command + ',waDemoViewSourcePascalFile.form!' + a1 + '|'
-               + rightof('{',a3) + MacroEnd + '}'
-            //else
-              //aHyperLine:=aHyperLine+ '{' + rightof('{',a3) + '}'
-              ;
-            if bOK then
-              aHyperLine:=aHyperLine+','
+                 'PageID' + MacroEnd + ',waDemoViewSource.'
+                 + TwhWebActionEx(Sender).Command +
+                 ',waDemoViewSourcePascalFile.form!' + a1 + '|'
+                 + rightof('{',a3) + MacroEnd + '}'
+                ;
+              if bOK then
+                aHyperLine:=aHyperLine+','
+              else
+                aHyperLine:=aHyperLine+';';
+            end
             else
-              aHyperLine:=aHyperLine+';';
-          end
-          else
-          begin
-            aUnitName:=a1;
-            aTemp:=aUnitName + cEq + leftof('''',a2);
-            fPaslist.Add(aTemp);
-            fformlist.Add(aUnitName + cEq);
-            aHyperLine := '  ' + aUnitName + ' in ' + MacroStart + 'Jump|' +
-              MacroStart + 'PageID' + MacroEnd + ',waDemoViewSource.'
-               + command + ',waDemoViewSourcePascalFile.' + aUnitName + '|'
-               + a2 + MacroEnd;
+            begin
+              aUnitName:=a1;
+              aTemp:=aUnitName + cEq + leftof('''',a2);
+              fPaslist.Add(aTemp);
+              fformlist.Add(aUnitName + cEq);
+              aHyperLine := '  ' + aUnitName + ' in ' + MacroStart + 'Jump|' +
+                MacroStart + 'PageID' + MacroEnd + ',waDemoViewSource.'
+                 + TwhWebActionEx(Sender).Command +
+                 ',waDemoViewSourcePascalFile.' + aUnitName + '|'
+                 + a2 + MacroEnd;
+            end;
+          end;
+          if aHyperLine<>'' then
+            foutputlist.add(aHyperLine);  // hypertext version
           end;
         end;
-        if aHyperLine<>'' then
-          foutputlist.add(aHyperLine);  // hypertext version
-        end;
+        TwhWebActionEx(Sender).WebApp.Response.SendStringListNoBR(foutputlist);
       end;
-      WebApp.Response.SendStringListNoBR(foutputlist);
     end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 function fixFilename(const aProjectPath,aFilespec:string):string;
@@ -287,12 +291,14 @@ begin
 end;
 
 procedure TDemoViewSource.waDemoViewSourcePascalFileExecute(Sender: TObject);
+const cFn = 'waDemoViewSourcePascalFileExecute';
 var
   a1,a2: string;
   aFilename, aShowName: string;
   aFileContents: string;
   InfoMsg: string;
 begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   with TwhWebActionEx(Sender) do
   begin
@@ -305,108 +311,103 @@ begin
         Send('Full source viewing has not been configured. Required property, '+
         '"DelphiSourcePath", is blank.');
       end;
-      exit;
-    end;
-    a1:=command;
-    if a1 = '' then
-    begin
-      aFilename:=rightof('.',webapp.command);
-      aShowname:=aFilename;
-      aFilename:=fixFilename(DelphiSourcePath,aFilename);
-      if NOT FileExists(aFilename) then
-      begin
-        Response.SendHdr('2','Error');
-        InfoMsg := 'File does not exist: ' + aFilename;
-        Response.Send(InfoMsg);
-        {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
-          ' or garbage command');{$ENDIF}
-        Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
-        Exit;
-      end
-      else
-      begin
-        aFileContents := StringLoadFromFile(aFilename);
-        if aFileContents = '' then
-        begin
-          {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
-          pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
-        end;
-      end;
-    end
-    else
-    if not splitstring(command,'form!',a1,a2) then
-    begin
-      // This is a .pas or .dcu file.
-      aFilename:=fpaslist.values[command];
-      aFilename:=fixFilename(DelphiSourcePath,aFilename);
-      //aShowName:=command;
-      aShowName := ExtractFilename(aFilename);
-      if not fileExists(aFilename) then
-        aFileContents:='Source is not available here for ' + aFilename + '.'
-      else
-      begin
-        aFileContents := StringLoadFromFile(aFilename);
-        if aFileContents = '' then
-        begin
-          {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
-          pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
-        end;
-      end;
     end
     else
     begin
-      aShowName:=a2+'.dfm';
-      SplitString(uppercase(fPasList.values[a2]),'.PAS',a1,a2);
-      aFilename:=a1+'.dfm';
-      aFilename:=fixFilename(DelphiSourcePath,aFilename);
-      if NOT FileExists(aFilename) then
+      a1:=command;
+      if a1 = '' then
       begin
-        Response.SendHdr('2','Error');
-        InfoMsg := 'DFM File does not exists: ' + aFilename;
-        Response.Send(InfoMsg);
-        {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
-          ' or garbage command');{$ENDIF}
-        Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
-        Exit;
-      end
-      else
-      begin
-        try
-          aFileContents := htFormFileToString(aFilename);
-        except
-          on E: Exception do
+        aFilename:=rightof('.',webapp.command);
+        aShowname:=aFilename;
+        aFilename:=fixFilename(DelphiSourcePath,aFilename);
+        if NOT FileExists(aFilename) then
+        begin
+          Response.SendHdr('2','Error');
+          InfoMsg := 'File does not exist: ' + aFilename;
+          Response.Send(InfoMsg);
+          {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
+            ' or garbage command');{$ENDIF}
+          Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
+          Exit;
+        end
+        else
+        begin
+          aFileContents := StringLoadFromFile(aFilename);
+          if aFileContents = '' then
           begin
-            // modern DFM files are no longer binary so this is expected....
-            if (E.Message <> 'Invalid stream format') then
+            {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
+            pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
+          end;
+        end;
+      end
+      else
+      if not splitstring(command,'form!',a1,a2) then
+      begin
+        // This is a .pas or .dcu file.
+        aFilename:=fpaslist.values[command];
+        aFilename:=fixFilename(DelphiSourcePath,aFilename);
+        //aShowName:=command;
+        aShowName := ExtractFilename(aFilename);
+        if not fileExists(aFilename) then
+          aFileContents:='Source is not available here for ' + aFilename + '.'
+        else
+        begin
+          aFileContents := StringLoadFromFile(aFilename);
+          if aFileContents = '' then
+          begin
+            {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
+            pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
+          end;
+        end;
+      end
+      else
+      begin
+        aShowName:=a2+'.dfm';
+        SplitString(uppercase(fPasList.values[a2]),'.PAS',a1,a2);
+        aFilename:=a1+'.dfm';
+        aFilename:=fixFilename(DelphiSourcePath,aFilename);
+        if NOT FileExists(aFilename) then
+        begin
+          Response.SendHdr('2','Error');
+          InfoMsg := 'DFM File does not exists: ' + aFilename;
+          Response.Send(InfoMsg);
+          {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
+            ' or garbage command');{$ENDIF}
+          Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
+          Exit;
+        end
+        else
+        begin
+          try
+            aFileContents := htFormFileToString(aFilename);
+          except
+            on E: Exception do
             begin
-              {$IFDEF CodeSite}CodeSite.SendException(E);
-              CodeSite.Send('when loading', aFilename);
-              {$ENDIF}
-              pWebApp.Debug.AddPageError(E.Message);
-            end;
-            try
-              aFileContents:= StringLoadfromfile(aFilename);
-            except
-              on E: Exception do
+              // modern DFM files are no longer binary so this is expected....
+              if (E.Message <> 'Invalid stream format') then
               begin
-                {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
-                aFileContents := '';
+                {$IFDEF CodeSite}CodeSite.SendException(E);
+                CodeSite.Send('when loading', aFilename);
+                {$ENDIF}
+                pWebApp.Debug.AddPageError(E.Message);
               end;
+              aFileContents:= StringLoadfromfileDef(aFilename, '');
             end;
           end;
         end;
       end;
-    end;
-    with Response do
-    begin
-      SendLine('<h1>Full Source to '+aShowname+'</h1>');
-      SendLine('<form>');
-      SendLine('<textarea name="" cols="80" rows="30">');
-      Stream.writeS(aFileContents);
-      SendLine('</textarea>');
-      SendLine('</form>');
+      with Response do
+      begin
+        SendLine('<h1>Full Source to '+aShowname+'</h1>');
+        SendLine('<form>');
+        SendLine('<textarea name="" cols="80" rows="30">');
+        pWebApp.SendStringImm(aFileContents);
+        SendLine('</textarea>');
+        SendLine('</form>');
+      end;
     end;
   end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 function TDemoViewSource.isEndOfUses(a1: String): boolean;
