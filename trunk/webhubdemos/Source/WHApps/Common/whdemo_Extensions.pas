@@ -35,6 +35,7 @@ type
     waCheckSubnet: TwhWebAction;
     waFromList: TwhWebAction;
     waCauseAV: TwhWebAction;
+    waWaitSeconds: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -46,6 +47,7 @@ type
     procedure waCheckSubnetExecute(Sender: TObject);
     procedure waFromListExecute(Sender: TObject);
     procedure waCauseAVExecute(Sender: TObject);
+    procedure waWaitSecondsExecute(Sender: TObject);
   private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -300,6 +302,27 @@ begin
       (Format('%s Syntax: .execute|[ExeVersion|whSetupDate|version-property-name]',
       [waVersionInfo.Name]));
   end;
+end;
+
+procedure TDemoExtensions.waWaitSecondsExecute(Sender: TObject);
+const cFn = 'waWaitSecondsExecute';
+var
+  S1: string;
+  i, n: Integer;
+begin
+  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+
+  // use this to introduce an artifical delay into page processing
+  // see pgIntentionallySlow in webhubdemos
+  S1 := TwhWebAction(Sender).HtmlParam;
+  S1 := pWebApp.MoreIfParentild(S1);
+  n := StrToIntDef(s1, 5);
+  for i := 1 to n do
+  begin
+    Sleep(1000);
+    Application.ProcessMessages;
+  end;
+  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.waCauseAVExecute(Sender: TObject);

@@ -74,4 +74,10 @@ object DemoExtensions: TDemoExtensions
     Left = 504
     Top = 376
   end
+  object waWaitSeconds: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waWaitSecondsExecute
+    Left = 640
+    Top = 352
+  end
 end
