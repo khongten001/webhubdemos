@@ -14,6 +14,9 @@ uses
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   htWebApp in 'h:\htWebApp.pas',
+  {$IFDEF CPUX64}
+  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
+  {$ENDIF}
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
   dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
