@@ -935,5 +935,30 @@ ok
 </whoutput>
 </whpage>
 
+<whpage pageid="pgExtraordinarilySlow" desc="-Delay for 3 minutes">
+<whprep>
+(~NOTASSIGNED|nDelaySec|(~SET|nDelaySec=360~)~)
+(~waWaitSeconds.Execute|(~nDelaySec~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html (~mcxmlns~)>
+<head>
+(~drHead~)
+  <link rel="canonical" href="http://lite.demos.href.com/(~PageID~)" />
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+
+ok
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
 
 </whteko>
