@@ -43,9 +43,9 @@ cd "%droot%\Lite Examples\whAppServer\dserver"
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
 if NOT exist %cbat% pause
 call %cbat% dserver
-REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%.exe
+REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_%comp3%.exe
 call D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_nopackages.bat dserver
-REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%_win%bits%_NoPackages.exe
+REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_%comp3%_win%bits%_NoPackages.exe
 if errorlevel 1 pause
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
@@ -54,7 +54,13 @@ copy h:\WebHub_Comms.inc h:\WebHub_Comms.txt
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat DServer
+REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_x_%comp3%_win64.exe
+pause
+
+cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_win32_source.bat DServer
+
 
 copy k:\webhub\lib\whvcl\WebHub_Comms.old.inc k:\webhub\lib\WebHub_Comms.inc
 if errorlevel 1 pause
