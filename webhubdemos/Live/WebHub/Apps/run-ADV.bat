@@ -8,4 +8,4 @@ cd %~dp0
 
 ::start the WebHub advertising demo
 if     "%zmcontext%"=="NYX" start DServer_x_d18_win64.exe /ID=adv
-start whLite.exe /ID=adv
+if NOT "%zmcontext%"=="NYX" start whLite.exe /ID=adv
