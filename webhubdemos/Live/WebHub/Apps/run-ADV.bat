@@ -1,5 +1,11 @@
+setlocal
+
+:: set zmcontext variable
+call d:\AppsData\WinNT\bat\set-zmcontext.bat
+
 ::change to folder containing this bat file
 cd %~dp0
 
 ::start the WebHub advertising demo
-start whLite.exe /ID=adv /debug
+if     "%zmcontext%"=="NYX" start DServer_x_d18_win64.exe /ID=adv
+start whLite.exe /ID=adv
