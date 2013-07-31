@@ -3,7 +3,7 @@ unit dserver_whdmGeneral;
 interface
 
 uses
-  SysUtils, Classes, updateOK, tpAction, webTypes, webLink;
+  SysUtils, Classes, updateOK, tpAction, webTypes, webLink, webCall;
 
 type
   TdmwhGeneral = class(TDataModule)
@@ -13,9 +13,11 @@ type
     { Private declarations }
   public
     { Public declarations }
-    procedure Init;
+    function Init(out ErrorText: string): Boolean;
     procedure LoadProjectSyntax(Sender: TObject);
     procedure LoadProjectLingvo(Sender: TObject);
+    procedure ControlPageCalcTime(Sender: TwhConnection;
+      var ExecutionAverageMS: Integer);
   end;
 
 var
@@ -27,15 +29,32 @@ implementation
 
 uses
   Math,
-  webApp, webCall, htmConst, htWebApp,
-  ucString, ucPos;
+  ucString, ucPos,
+  webApp, htmConst, htWebApp;
 
-procedure TdmwhGeneral.Init;
+procedure TdmwhGeneral.ControlPageCalcTime(Sender: TwhConnection;
+  var ExecutionAverageMS: Integer);
 begin
+  {prevent testing of extraordinarily slow web pages from blocking further
+  requests}
+  ExecutionAverageMS := Math.Max(ExecutionAverageMS, 200);
+end;
+
+function TdmwhGeneral.Init(out ErrorText: string): Boolean;
+begin
+  ErrorText := '';
+  Result := False;
   if assigned(pWebApp) then
   begin
     pWebApp.OnLoadProjectSyntax := dmwhGeneral.LoadProjectSyntax;
     pWebApp.OnLoadProjectLingvo := dmwhGeneral.LoadProjectLingvo;
+    if Assigned(pConnection) then
+    begin
+      pConnection.OnPageCalcTime := ControlPageCalcTime;
+      Result := True;
+    end
+    else
+      ErrorText := 'nil pConnection';
   end;
 end;
 

@@ -164,10 +164,13 @@ begin
   InitCoreWebHubDataModule;
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
-  dmwhGeneral.Init;  {see also: TdmwhGeneral.WebAppUpdate}
-  DemoExtensions.Init;
-  DataModuleColorScheme.Init;
-  pWebApp.OnError := DServerExceptionEvent;
+  Continue := dmwhGeneral.Init(ErrorText);  {see also: TdmwhGeneral.WebAppUpdate}
+  if Continue then
+  begin
+    DemoExtensions.Init;
+    DataModuleColorScheme.Init;
+    pWebApp.OnError := DServerExceptionEvent;
+  end;
 end;
 
 procedure TDMForDServer.ProjMgrGUICreate(Sender: TtpProject;
