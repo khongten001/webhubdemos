@@ -5,28 +5,15 @@ program dserver;  { WebHub App EXE for use by HREF/inhouse with Dreamweaver }
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
+(*
+  preserve this line for when the Delphi IDE and/or EurekaLog wizard erases it
+  {$I dserver_uses.inc}
+*)
+
 uses
-  whSharedLog in 'h:\whSharedLog.pas',
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
-  MultiTypeApp in 'h:\MultiTypeApp.pas',
-  tpProj in 'k:\webhub\tpack\tpProj.pas',
-  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
-  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
-  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
-  htWebApp in 'h:\htWebApp.pas',
-  {$IFDEF CPUX64}
-  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
-  {$ENDIF}
+  {$I dserver-dpr.inc}
   dserver_whdmGeneral in 'dserver_whdmGeneral.pas' {dmwhGeneral: TDataModule},
-  dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule},
-  whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
-  whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas',
-  whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
-  whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
-  whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
-  whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
-  whcfg_App in 'h:\whcfg_App.pas',
-  uCode;
+  dserver_dmProjMgr in 'dserver_dmProjMgr.pas' {DMForDServer: TDataModule};
 
 {$R dserver_version.RES}
 {$R WHDICON.RES}   // dserver tray icon
