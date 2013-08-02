@@ -38,7 +38,7 @@
         <ServerProfileIDSecure value="ssl"/>
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
-        <UseAppProcessID value="true"/>
+        <UseAppProcessID value="false"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
