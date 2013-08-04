@@ -1,7 +1,0 @@
-WebHub Fish Store Demo
-
-AppID = htfs
-
-When testing from Selenium:
-
-Public Demo URL = http://demos.href.com/htfs::1204
