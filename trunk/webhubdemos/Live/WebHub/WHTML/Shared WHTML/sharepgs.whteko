@@ -960,5 +960,29 @@ ok
 </whoutput>
 </whpage>
 
+<whpage pageid="pgWhatIsMyIP" desc="What is my IP number">
+<whoutput>
+(~mcdoctypehtml~)
+<html (~mcxmlns~)>
+<head>
+(~drHead~)
+  <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+
+<p><span id="ip">(~Request.RemoteAddress~)</span></p>
+
+<h2>User Agent</h2>
+<p><span id="ua">(~Request.UserAgent~)</span></p>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
 
 </whteko>
