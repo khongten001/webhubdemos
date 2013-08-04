@@ -3,7 +3,10 @@ package advpackage;
 // useful http://www.guru99.com/introduction-to-selenium-grid.html
 // useful http://marakana.com/bookshelf/selenium_tutorial/selenium2.html#_api
 // very useful http://code.google.com/p/selenium/wiki/GettingStarted
+// essential reference http://code.google.com/p/selenium/wiki/Grid2
 // nice test example using WordPress target  http://testng.org/doc/selenium.html
+// testng docs http://testng.org/doc/documentation-main.html
+// well written http://www.packtpub.com/sites/default/files/downloads/Distributed_Testing_with_Selenium_Grid.pdf
 
 
 //import org.testng.annotations.Test;
@@ -26,37 +29,31 @@ public class TestADVPages {
 		
   @BeforeTest
   public void setUp() throws MalformedURLException {
-	  baseUrl = "http://w12.demos.href.com/scripts/runisa64.dll?adv:";
+	  baseUrl = "http://lite.demos.href.com";
 	  System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
 
-	  selenHub = "db.demos.href.com:4444";
-	  //selenHub = "localhost:4444";
+	  selenHub = "db.demos.href.com:4444"; // "localhost:4444";
 	  
 	  capability = DesiredCapabilities.htmlUnit();   
 	  // as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
 	  
 	  capability.setBrowserName(DesiredCapabilities.htmlUnit().getBrowserName());	  
-	  //capability.setVersion(DesiredCapabilities.htmlUnit().getVersion());	  
 	  //capability.setPlatform(org.openqa.selenium.Platform.WINDOWS);	  
-	  
-	  //capability.setJavascriptEnabled(false);
-	  
-	  capability.setPlatform(org.openqa.selenium.Platform.ANY);	  
-	  
-	  
   
+	  capability.setPlatform(org.openqa.selenium.Platform.ANY);	  
   }
 	
   @AfterTest
   public void afterTest() {
-//	     driver.quit();	  
   }
   
-  @Test(threadPoolSize = 4, invocationCount = 4,  timeOut = 45000)
+  @Test(threadPoolSize = 1, invocationCount = 1,  timeOut = 45000)
   public void verifyHomepageTitle() throws MalformedURLException {
-		Long IPort; 
-		WebDriver driver; // = new FirefoxDriver();
-		String gridURL;
+	Long IPort; 
+	WebDriver driver; 
+	String gridURL;
+	WebElement webElement;
+	
 
 	  //IPort = 4444; // - 10 + Thread.currentThread().getId();
 	  //System.out.println("IPort = " + String.valueOf(IPort));
@@ -69,8 +66,15 @@ public class TestADVPages {
 	  //System.out.println("01");
 	  driver.manage().deleteAllCookies();
 	  //System.out.println("02");
+
+    driver.get(baseUrl + "/scripts/runisa64.dll?demos:pgwhatismyip");
+    webElement = (driver.findElement(By.id("ip")));
+    System.out.println("remoteAddress = " + webElement.getText());
+    webElement = (driver.findElement(By.id("ua")));
+    System.out.println("userAgent = " + webElement.getText());
+    
+      driver.get(baseUrl + "/scripts/runisa64.dll?adv");
 	  
-	  driver.get(baseUrl);
 	  //System.out.println("03");
 	  String expectedTitle = "Page pgWelcome: Welcome Page for adv Demo (in the \"adv\" WebHub Demo)";
 	  String actualTitle = driver.getTitle();
@@ -94,6 +98,18 @@ public class TestADVPages {
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
+     }
+
+     
+     if (2==2) {
+   	    driver.get(baseUrl + "/scripts/runisa64.dll?demos");
+   	    actualTitle = driver.getTitle();
+   	    System.out.println(actualTitle);
+     	  expectedTitle = "Page pgWelcome: Welcome Page for demos Demo (in the \"demos\" WebHub Demo)";
+	    Assert.assertEquals(actualTitle, expectedTitle);
+   	    driver.findElement(By.id("a-pgenterdemos")).click();
+   	    driver.findElement(By.linkText("Lite Demos")).click();
+   	    driver.findElement(By.linkText("Source")).click();
      }
      
      driver.quit();
