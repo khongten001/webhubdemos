@@ -1,12 +1,12 @@
 package advpackage;
 
-// useful http://www.guru99.com/introduction-to-selenium-grid.html
-// useful http://marakana.com/bookshelf/selenium_tutorial/selenium2.html#_api
-// very useful http://code.google.com/p/selenium/wiki/GettingStarted
+// useful              http://www.guru99.com/introduction-to-selenium-grid.html
+// useful              http://marakana.com/bookshelf/selenium_tutorial/selenium2.html#_api
+// very useful         http://code.google.com/p/selenium/wiki/GettingStarted
 // essential reference http://code.google.com/p/selenium/wiki/Grid2
 // nice test example using WordPress target  http://testng.org/doc/selenium.html
-// testng docs http://testng.org/doc/documentation-main.html
-// well written http://www.packtpub.com/sites/default/files/downloads/Distributed_Testing_with_Selenium_Grid.pdf
+// Java "testng" docs  http://testng.org/doc/documentation-main.html
+// well written        http://www.packtpub.com/sites/default/files/downloads/Distributed_Testing_with_Selenium_Grid.pdf
 
 
 //import org.testng.annotations.Test;
@@ -29,10 +29,11 @@ public class TestADVPages {
 		
   @BeforeTest
   public void setUp() throws MalformedURLException {
-	  baseUrl = "http://lite.demos.href.com";
+	  baseUrl = "http://w12.demos.href.com";
 	  System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
 
-	  selenHub = "db.demos.href.com:4444"; // "localhost:4444";
+	  //selenHub = "db.demos.href.com:4444"; 
+	  selenHub = "localhost:4444";
 	  
 	  capability = DesiredCapabilities.htmlUnit();   
 	  // as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
@@ -47,7 +48,7 @@ public class TestADVPages {
   public void afterTest() {
   }
   
-  @Test(threadPoolSize = 1, invocationCount = 1,  timeOut = 45000)
+  @Test(threadPoolSize = 2, invocationCount = 4,  timeOut = 45000)
   public void verifyHomepageTitle() throws MalformedURLException {
 	Long IPort; 
 	WebDriver driver; 
