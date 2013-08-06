@@ -11,29 +11,53 @@ package advpackage;
 
 //import org.testng.annotations.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
-//import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.Assert;
-import org.testng.annotations.*;
 
+import org.testng.Assert;
+import org.testng.IAnnotationTransformer;
+import org.testng.TestNG;
+import org.testng.annotations.*;
+import org.testng.xml.XmlClass;
+import org.testng.xml.XmlSuite;
+import org.testng.xml.XmlTest;
 
 public class TestADVPages {
 	public String baseUrl, selenHub; 
 	public DesiredCapabilities capability;
+	
+@BeforeSuite
+  public void beforeSuite() {
+}
+	  
+@Parameters({ "authority", "inSelenHub", "zombieCount" })
+@BeforeTest
+  public void setUp(String authority ,  // default "lite.demos.href.com" 
+		   String inSelenHub, Integer zombieCount) throws MalformedURLException {
 		
-  @BeforeTest
-  public void setUp() throws MalformedURLException {
-	  baseUrl = "http://w12.demos.href.com";
+	System.out.println("authority = " + authority);
+	System.out.println("zombieCount = " + String.valueOf(zombieCount));
+	//TestNG.getDefault().setSuiteThreadPoolSize(zombieCount);
+	//TestNG.getDefault().setThreadCount(zombieCount);
+
+	  baseUrl = "http://" + authority; // w12.demos.href.com";
 	  System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
 
 	  //selenHub = "db.demos.href.com:4444"; 
-	  selenHub = "localhost:4444";
+	  //selenHub = "localhost:4444";
+	  selenHub = inSelenHub;
 	  
 	  capability = DesiredCapabilities.htmlUnit();   
 	  // as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
@@ -48,25 +72,35 @@ public class TestADVPages {
   public void afterTest() {
   }
   
-  @Test(threadPoolSize = 2, invocationCount = 4,  timeOut = 45000)
+
+  //@Test( threadPoolSize = 1, invocationCount = 1, timeOut = 45000)
+  @Test(timeOut = 45000, invocationCount = 1)
   public void verifyHomepageTitle() throws MalformedURLException {
 	Long IPort; 
 	WebDriver driver; 
 	String gridURL;
 	WebElement webElement;
+	Annotation[] annos;
 	
-
-	  //IPort = 4444; // - 10 + Thread.currentThread().getId();
-	  //System.out.println("IPort = " + String.valueOf(IPort));
+	/* System.out.println("Annotations?");
+	annos = Test.class.getAnnotations(); // this.getClass().getAnnotations();
+	
+	for(Annotation a : annos)
+	  System.out.println(a);
+    */
+	
+	
+	//IPort = 4444; // - 10 + Thread.currentThread().getId();
+	//System.out.println("IPort = " + String.valueOf(IPort));
   
-	  //nodeURL = "http://localhost:4444/wd/hub"; //" + String.valueOf(IPort) + "/wd/hub";
-	  gridURL = "http://" + selenHub + "/wd/hub";
-	  //System.out.println("gridURL = " + gridURL);
+	//nodeURL = "http://localhost:4444/wd/hub"; //" + String.valueOf(IPort) + "/wd/hub";
+	gridURL = "http://" + selenHub + "/wd/hub";
+	System.out.println("gridURL = " + gridURL);
 
-	  driver = new RemoteWebDriver(new URL(gridURL), capability);
-	  //System.out.println("01");
-	  driver.manage().deleteAllCookies();
-	  //System.out.println("02");
+	driver = new RemoteWebDriver(new URL(gridURL), capability);
+	//System.out.println("01");
+	driver.manage().deleteAllCookies();
+	//System.out.println("02");
 
     driver.get(baseUrl + "/scripts/runisa64.dll?demos:pgwhatismyip");
     webElement = (driver.findElement(By.id("ip")));
@@ -116,4 +150,7 @@ public class TestADVPages {
      driver.quit();
      
   }
+   
+ // when running As Application, this must use the static main method contained in the testng jar !!!
+  
 }
