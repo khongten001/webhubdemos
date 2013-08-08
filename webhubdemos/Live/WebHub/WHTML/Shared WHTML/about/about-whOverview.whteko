@@ -56,7 +56,7 @@ the use of ZaphodsMap Context.)</p>
 
 <p>We hope this drives home the point that WebHub applications are portable across web 
 servers -- without any modifications to the EXE file whatsoever.  
-In fact, on demos.href.com, all calls to a given demo end up served by the 
+In fact, on lite.demos.href.com, all calls to a given demo end up served by the 
 <i>same</i> EXE, in real time, with no loading and unloading.  </p>
 </whtranslation>
 </whteko>
