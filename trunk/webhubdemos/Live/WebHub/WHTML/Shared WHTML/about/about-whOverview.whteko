@@ -50,10 +50,9 @@ and then more fully experience the unique and fascinating part of each individua
 
 <p>There is one hidden layer of complexity... and that is that the demos are 
 designed to run: (a) on your machine so that you can study every line of code; 
-(b) on demos.href.com on Microsoft IIS; and (c) on demos.href.com on at least 
-one other web server, such as Netscape, Apache or WebSite.  If you look closely, 
+(b) on lite.demos.href.com on Microsoft IIS; and (c) on db.demos.href.com on IIS.  If you look closely, 
 you will discover a few aspects of syntax which are needed for this reason (such as 
-the use of SetupID.)</p>
+the use of ZaphodsMap Context.)</p>
 
 <p>We hope this drives home the point that WebHub applications are portable across web 
 servers -- without any modifications to the EXE file whatsoever.  
