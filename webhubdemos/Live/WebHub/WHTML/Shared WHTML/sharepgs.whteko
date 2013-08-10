@@ -1016,6 +1016,7 @@ ok
 </tr>
 
 (~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~)
+(~FOR|count,1,5|
 <tr>
 <th>(~testprefix~)
 <td><iframe src="(~testprefix~)?adv:pgenteradv"  ></iframe> </td>
@@ -1024,185 +1025,13 @@ ok
 <td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
-<td><iframe src="(~testprefix~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
 <td><iframe src="(~testprefix~)?demos:pgWelcome"  ></iframe> </td>
 <td rowspan="1"><iframe src="(~testprefix~)?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-<!---
-<tr>
-<th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr>
-<th>local32</th>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:version"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:vers"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr>
-<th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr>
-<th>local32</th>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:version"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:vers"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr>
-<th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr>
-<th><a href="http://local32/stress_teeny_nodebug.html">local32</a></th>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:version"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:vers"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr><th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr><th>local32</th>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:version"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:vers"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr><th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr><th>local32</th>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:version"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:vers"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local32/win32/runisa_x_d18_win32.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
-
-<tr><th>local64</th>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?adv:pgenteradv"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:vers"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:version"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:pcv"></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nct"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?h:nca-demos"></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:pcv"></iframe></td> 
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckVersion"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgRemoteCheckCompiler"  ></iframe> </td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?r:ipc" ></iframe></td>
-<td><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgWelcome"  ></iframe> </td>
-<td rowspan="1"><iframe src="http://local64/win64/runisa_x_d18_win64.dll?demos:pgTestLoremIpsum"  ></iframe> </td>
-</tr>
--->
+</tr>~)
 
 </table>
 
