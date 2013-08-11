@@ -1,25 +1,22 @@
 package advpackage;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
+//import java.lang.reflect.Field;
 
 import java.lang.reflect.Method;
 import java.util.Set;
 
 import org.testng.IAnnotationTransformer;
-import org.testng.IClass;
-import org.testng.IHookable;
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
-import org.testng.ITestContext;
 import org.testng.ITestNGMethod;
 import org.testng.ITestResult;
 import org.testng.TestNG;
 import org.testng.annotations.ITestAnnotation;
-import advpackage.TestADVPages;
 
 
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -27,7 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import org.xml.sax.SAXException;
+
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -37,16 +34,20 @@ import javax.xml.xpath.XPathFactory;
 */
 
 
-public class MyZombieAnnotationListener implements IAnnotationTransformer { //,ISuiteListener  {
+public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuiteListener  {
 
-/*	@Override
+	@Override
 	public void onStart(ISuite suite) {
-		// TODO Auto-generated method stub
-		System.out.println("zombie count parameter off Suite XML = " +	suite.getParameter("zombieCount").toString());
+		
+		
+		//System.out.println("getName of suite = " + suite.getName());
+		//System.out.println("onStart ISuite number from XML = " +	suite.getParameter("zombieCount").toString());
 		//suite.setAttribute("threadPoolSize", "7");
 		//suite.setSuiteThreadPoolSize
 		
-	} */
+		//suite.enabled = ("WebHubDemos Test Suite".equals(suite.getName()));
+				
+	} 
 
 	@Override
 	public void transform(ITestAnnotation annotation, Class testClass,
@@ -76,46 +77,35 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer { //,I
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
-		if (xmlDocument == null) {
-		  System.out.println("xmlDocument is null !!!");	
-		}
-		else {
-		System.out.println("getBaseURI = " + xmlDocument.getBaseURI());
-		System.out.println("getDocumentURI = " + xmlDocument.getDocumentURI());
-		System.out.println("getXmlVersion = " + xmlDocument.getXmlVersion());
-		}
 		
+		System.out.println("getXmlVersion = " + xmlDocument.getXmlVersion());
+		
+		
+		// http://docs.oracle.com/javase/tutorial/jaxp/xslt/xpath.html
+		// simple online xpath tester http://www.xpathtester.com/test
 		XPath xPath =  XPathFactory.newInstance().newXPath();
 		try {			
-			zc = (String)xPath.compile("/suite/parameter[@name=\"zombieCount\"]/@value").evaluate(xmlDocument);
+			zc = (String)xPath.compile("/suite/parameter[@name=\"specialZombieCount\"]/@value").evaluate(xmlDocument);
 			
 		} catch (XPathExpressionException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
 		}
 		
-		System.out.println("zc = " + zc);
-		
 		x =  Integer.parseInt(zc);
 		
-		
-		System.out.println("getName = " + testMethod.getName());
-		   if ( ("verifyHomepageTitle".equals(testMethod.getName())) ) {
-			     annotation.setInvocationCount(x);
-			     annotation.setThreadPoolSize(x);
-		   }
-		   else {
-			   System.out.println("different getName");
-		   }
-		   
+		//System.out.println("getName = " + testMethod.getName());
+		System.out.println("Setting Suite InvocationCount and ThreadPoolSize to " + zc);
+		annotation.setInvocationCount(x);
+	    annotation.setThreadPoolSize(x);
 		
 	}
 
-/*	@Override
+	@Override
 	public void onFinish(ISuite suite) {
 		// TODO Auto-generated method stub
 		
-	} */
+	}
 
 
 }

@@ -39,28 +39,45 @@ import org.testng.xml.XmlTest;
 public class TestADVPages {
 	public String baseUrl, selenHub; 
 	public DesiredCapabilities capability;
+	public String gridURL;
+	public String vmr;
+	public String threadRemoteIP;
+	public String threadUserAgent;
 	
 	
-@Parameters({ "zombieCount" })
+@Parameters({ "specialZombieCount", "inAuthority", "inSelenHub", "inVMR" })
 @BeforeSuite
-  public void beforeSuite(Integer inZombieCount) {
-	//System.out.println("inZombieCount = " + String.valueOf(inZombieCount));
-}
+public void beforeSuite(
+		  @Optional("1") String specialZombieCount, 
+		  @Optional("lite.demos.href.com") String inAuthority ,  // default "lite.demos.href.com" 
+		  @Optional("db.demos.href.com:4444") String inSelenHub,
+		  @Optional("") String inVMR) { // scripts/runisa.dll
+	
+	
+	  System.out.println("Suite Parameters follow...");
+	  System.out.println("inAuthority = " +  inAuthority);
+	  System.out.println("inSelenHub = " + inSelenHub);
+	  System.out.println("inVMR = " + inVMR);
+	  vmr = inVMR;
 	  
-@Parameters({ "authority", "inSelenHub" })
-@BeforeTest
-  public void setUp(String authority ,  // default "lite.demos.href.com" 
-		   String inSelenHub) throws MalformedURLException {
-		
-  System.out.println("authority = " + authority);
+	  System.out.println("Calculated testing values follow...");
 
-  baseUrl = "http://" + authority; 
-  //System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
+    baseUrl = "http://" + inAuthority; 
+    System.out.println("baseUrl = " + baseUrl);
 
 	//selenHub = "db.demos.href.com:4444"; 
 	selenHub = "localhost:4444";
 	//selenHub = inSelenHub;
+		  
+	gridURL = "http://" + selenHub + "/wd/hub";
+	System.out.println("gridURL = " + gridURL);
+	
+}
 	  
+
+@BeforeTest
+  public void setUp() throws MalformedURLException {
+		
 	capability = DesiredCapabilities.htmlUnit();   
 	// as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
 	  
@@ -74,34 +91,57 @@ public class TestADVPages {
   }
   	
 
-//@Test( threadPoolSize = 1, invocationCount = 1, timeOut = 45000)
-  @Test(timeOut = 45000)
-  public void verifyHomepageTitle() throws MalformedURLException {
-	Long IPort; 
+  @Test(timeOut = 45000, enabled = true)
+  public void verifyMyIP() throws MalformedURLException {
+	  
+	  if ("".equals(vmr)) {
+	  }
+	  else {
+		  System.out.println("test vmr = " + vmr);
+		WebDriver driver; 
+	
+		WebElement webElement;
+		
+		driver = new RemoteWebDriver(new URL(gridURL), capability);
+		driver.manage().deleteAllCookies();
+
+	    driver.get(baseUrl + "/" + vmr + "?demos:pgwhatismyip");
+	    webElement = (driver.findElement(By.id("ip")));
+	    threadRemoteIP = webElement.getText();
+	    System.out.println("remoteAddress = " + threadRemoteIP);
+	    webElement = (driver.findElement(By.id("ua")));
+	    threadUserAgent = webElement.getText(); 
+	    	    
+	    //System.out.println("userAgent = " + webElement.getText());
+	    
+     driver.quit();
+	  }
+	  }
+
+
+  @Test(timeOut = 45000, enabled = false)
+  public void verifyADVWalkthrough() throws MalformedURLException {
+	  
+	  if ("".equals(vmr)) {
+	  }
+	  else {
+	  
 	WebDriver driver; 
-	String gridURL;
 	
-	
-	//nodeURL = "http://localhost:4444/wd/hub"; //" + String.valueOf(IPort) + "/wd/hub";
-	gridURL = "http://" + selenHub + "/wd/hub";
-	//System.out.println("gridURL = " + gridURL);
-
 	driver = new RemoteWebDriver(new URL(gridURL), capability);
-	//System.out.println("01");
 	driver.manage().deleteAllCookies();
-	//System.out.println("02");
-
-      driver.get(baseUrl + "/scripts/runisa64.dll?adv");
+	
+    driver.get(baseUrl + "/" + vmr + "?adv");
 	  
-	  //System.out.println("03");
-	  String expectedTitle = "Page pgWelcome: Welcome Page for adv Demo (in the \"adv\" WebHub Demo)";
-	  String actualTitle = driver.getTitle();
-	  System.out.println(actualTitle);
+	//System.out.println("03");
+	String expectedTitle = "Page pgWelcome: Welcome Page for adv Demo (in the \"adv\" WebHub Demo)";
+	String actualTitle = driver.getTitle();
+	System.out.println(actualTitle);
 	  
-	  Assert.assertEquals(actualTitle, expectedTitle);
+	Assert.assertEquals(actualTitle, expectedTitle);
 	  
      driver.findElement(By.id("a-pgenteradv")).click();
-     if (1 == 1) {
+     
      driver.findElement(By.linkText("Internal Workings")).click();
      driver.findElement(By.linkText("Cycle List Navigation Bar")).click();
      driver.findElement(By.linkText("How to Use it")).click();
@@ -116,47 +156,68 @@ public class TestADVPages {
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
      driver.findElement(By.linkText("Click to Show Next Advertisement")).click();
-     }
-
      
-     if (2==2) {
-   	    driver.get(baseUrl + "/scripts/runisa64.dll?demos");
+
+     driver.quit();
+	} 
+  }
+
+  
+  @Test(timeOut = 45000, enabled = true)
+  public void verifyDemosWalkThrough() throws MalformedURLException {
+	  
+	  if ("".equals(vmr)) {
+	  }
+	  else {
+		  
+		  WebDriver driver;
+	  
+	String actualTitle;
+	String expectedTitle;
+	
+	driver = new RemoteWebDriver(new URL(gridURL), capability);
+	driver.manage().deleteAllCookies();
+
+   	    driver.get(baseUrl + "/" + vmr + "?demos");
    	    actualTitle = driver.getTitle();
    	    System.out.println(actualTitle);
      	  expectedTitle = "Page pgWelcome: Welcome Page for demos Demo (in the \"demos\" WebHub Demo)";
 	    Assert.assertEquals(actualTitle, expectedTitle);
    	    driver.findElement(By.id("a-pgenterdemos")).click();
-   	    driver.findElement(By.linkText("Lite Demos")).click();
-   	    driver.findElement(By.linkText("Source")).click();
-     }
+  	    driver.findElement(By.linkText("Lite Demos")).click();
+  	    driver.findElement(By.linkText("Source")).click();
      
      driver.quit();
-     
+	  }   
   }
 
   
-  @Test(timeOut = 45000)
-  public void verifyMyIP() throws MalformedURLException {
-		WebDriver driver; 
-		String gridURL;
-		WebElement webElement;
-		
-		gridURL = "http://" + selenHub + "/wd/hub";
-		//System.out.println("gridURL = " + gridURL);
+  @Test(timeOut = 45000, enabled = false)
+  public void verifyDemosStressFrame() throws MalformedURLException {
+	  if ("".equals(vmr)) {
+		  
+		  WebDriver driver;
 
-		driver = new RemoteWebDriver(new URL(gridURL), capability);
-		driver.manage().deleteAllCookies();
+	String actualTitle;
+	String expectedTitle;
+	
+	driver = new RemoteWebDriver(new URL(gridURL), capability);
+	driver.manage().deleteAllCookies();
 
-	    driver.get(baseUrl + "/scripts/runisa64.dll?demos:pgwhatismyip");
-	    webElement = (driver.findElement(By.id("ip")));
-	    System.out.println("remoteAddress = " + webElement.getText());
-	    webElement = (driver.findElement(By.id("ua")));
-	    //System.out.println("userAgent = " + webElement.getText());
-	    
+   	    driver.get(baseUrl + "/" + vmr + "?demos");
+   	    actualTitle = driver.getTitle();
+   	    System.out.println(actualTitle);
+     	  expectedTitle = "Page pgWelcome: Welcome Page for demos Demo (in the \"demos\" WebHub Demo)";
+	    Assert.assertEquals(actualTitle, expectedTitle);
+   	    driver.findElement(By.id("a-pgenterdemos")).click();
+  	    driver.findElement(By.linkText("Lite Demos")).click();
+  	    driver.findElement(By.linkText("Source")).click();
+     
      driver.quit();
-	  }
+	  }  
+  }
 
-	  
+  	  
  // when running As Application, this must use the static main method contained in the testng jar !!!
   
 }

@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="WebHubDemos Test Suite" parallel="tests" >
-<parameter name="authority"  value="w12.demos.href.com:80" />
-<parameter name="inSelenHub"  value="localhost:4444" />
-<parameter name="zombieCount"  value="4"/>
+<listeners>
+	<!-- http://testng.org/doc/documentation-main.html#listeners-testng-xml -->
+    <listener class-name="advpackage.MyZombieAnnotationListener" />
+  </listeners>
+<parameter name="specialZombieCount"  value="2"/>
+<parameter name="inAuthority"  value="w12.demos.href.com:80" />
+<parameter name="inSelenHub"  value="db.demos.href.com:4444" />
+<parameter name="inVMR"  value="scripts/runisa64.dll" />
   <test verbose="9" name="ok">
     <classes>
       <class name="advpackage.TestADVPages"/>
