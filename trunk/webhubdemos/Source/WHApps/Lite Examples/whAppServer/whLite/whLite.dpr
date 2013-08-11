@@ -35,6 +35,7 @@ THE SOFTWARE.
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  whSharedLog in 'h:\whSharedLog.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   uCode,
