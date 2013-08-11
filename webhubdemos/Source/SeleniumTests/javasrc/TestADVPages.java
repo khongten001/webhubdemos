@@ -66,8 +66,8 @@ public void beforeSuite(
     System.out.println("baseUrl = " + baseUrl);
 
 	//selenHub = "db.demos.href.com:4444"; 
-	selenHub = "localhost:4444";
-	//selenHub = inSelenHub;
+	//selenHub = "localhost:4444";
+	selenHub = inSelenHub;
 		  
 	gridURL = "http://" + selenHub + "/wd/hub";
 	System.out.println("gridURL = " + gridURL);
@@ -119,7 +119,7 @@ public void beforeSuite(
 	  }
 
 
-  @Test(timeOut = 45000, enabled = false)
+  @Test(timeOut = 45000, enabled = true)
   public void verifyADVWalkthrough() throws MalformedURLException {
 	  
 	  if ("".equals(vmr)) {
@@ -192,9 +192,10 @@ public void beforeSuite(
   }
 
   
-  @Test(timeOut = 45000, enabled = false)
+  @Test(timeOut = 45000, enabled = true)
   public void verifyDemosStressFrame() throws MalformedURLException {
 	  if ("".equals(vmr)) {
+	  } else {
 		  
 		  WebDriver driver;
 
@@ -204,15 +205,14 @@ public void beforeSuite(
 	driver = new RemoteWebDriver(new URL(gridURL), capability);
 	driver.manage().deleteAllCookies();
 
-   	    driver.get(baseUrl + "/" + vmr + "?demos");
+   	    driver.get(baseUrl + "/" + vmr + "?demos:pgStressTeenyPages");
    	    actualTitle = driver.getTitle();
    	    System.out.println(actualTitle);
-     	  expectedTitle = "Page pgWelcome: Welcome Page for demos Demo (in the \"demos\" WebHub Demo)";
+     	  expectedTitle = 
+     	 "Page pgStressTeenyPages: Stress Teeny Pages using FrameSet (in the \"demos\" WebHub Demo)";
+
 	    Assert.assertEquals(actualTitle, expectedTitle);
-   	    driver.findElement(By.id("a-pgenterdemos")).click();
-  	    driver.findElement(By.linkText("Lite Demos")).click();
-  	    driver.findElement(By.linkText("Source")).click();
-     
+	    driver.findElement(By.linkText("Lite Demos")).click();   	         
      driver.quit();
 	  }  
   }
