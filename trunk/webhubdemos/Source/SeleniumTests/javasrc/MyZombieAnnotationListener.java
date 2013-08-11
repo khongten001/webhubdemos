@@ -56,10 +56,7 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		Document xmlDocument = null;
 		String zc = null;
 		
-		//testConstructor.
-		//annotation.
-		//System.out.println("annotation = " + annotation.getParameters().toString());
-		
+	
 		DocumentBuilderFactory builderFactory =
 		        DocumentBuilderFactory.newInstance();
 		DocumentBuilder builder = null;
@@ -75,7 +72,14 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		} catch (SAXException e) {
 		    e.printStackTrace();
 		} catch (IOException e) {
-		    e.printStackTrace();
+			try {
+			    xmlDocument = builder.parse(
+			            new FileInputStream("D:\\Apps\\Selenium\\HREFTools\\testng-customsuite-adv.xml"));
+			} catch (SAXException e2) {
+			    e2.printStackTrace();
+			} catch (IOException e3) {
+			    e3.printStackTrace();
+			}
 		}
 		
 		System.out.println("getXmlVersion = " + xmlDocument.getXmlVersion());
