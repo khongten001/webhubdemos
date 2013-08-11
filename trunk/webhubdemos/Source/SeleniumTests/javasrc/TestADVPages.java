@@ -28,86 +28,69 @@ import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
 import org.testng.Assert;
 import org.testng.IAnnotationTransformer;
+import org.testng.ITest;
 import org.testng.TestNG;
 import org.testng.annotations.*;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
 import org.testng.xml.XmlTest;
 
+
 public class TestADVPages {
 	public String baseUrl, selenHub; 
 	public DesiredCapabilities capability;
 	
+	
+@Parameters({ "zombieCount" })
 @BeforeSuite
-  public void beforeSuite() {
+  public void beforeSuite(Integer inZombieCount) {
+	//System.out.println("inZombieCount = " + String.valueOf(inZombieCount));
 }
 	  
-@Parameters({ "authority", "inSelenHub", "zombieCount" })
+@Parameters({ "authority", "inSelenHub" })
 @BeforeTest
   public void setUp(String authority ,  // default "lite.demos.href.com" 
-		   String inSelenHub, Integer zombieCount) throws MalformedURLException {
+		   String inSelenHub) throws MalformedURLException {
 		
-	System.out.println("authority = " + authority);
-	System.out.println("zombieCount = " + String.valueOf(zombieCount));
-	//TestNG.getDefault().setSuiteThreadPoolSize(zombieCount);
-	//TestNG.getDefault().setThreadCount(zombieCount);
+  System.out.println("authority = " + authority);
 
-	  baseUrl = "http://" + authority; // w12.demos.href.com";
-	  System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
+  baseUrl = "http://" + authority; 
+  //System.out.println("setUp thread Id = " + String.valueOf(Thread.currentThread().getId()));
 
-	  //selenHub = "db.demos.href.com:4444"; 
-	  //selenHub = "localhost:4444";
-	  selenHub = inSelenHub;
+	//selenHub = "db.demos.href.com:4444"; 
+	selenHub = "localhost:4444";
+	//selenHub = inSelenHub;
 	  
-	  capability = DesiredCapabilities.htmlUnit();   
-	  // as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
+	capability = DesiredCapabilities.htmlUnit();   
+	// as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
 	  
-	  capability.setBrowserName(DesiredCapabilities.htmlUnit().getBrowserName());	  
-	  //capability.setPlatform(org.openqa.selenium.Platform.WINDOWS);	  
-  
-	  capability.setPlatform(org.openqa.selenium.Platform.ANY);	  
+	capability.setBrowserName(DesiredCapabilities.htmlUnit().getBrowserName());	  
+	//capability.setPlatform(org.openqa.selenium.Platform.WINDOWS);	  
+    capability.setPlatform(org.openqa.selenium.Platform.ANY);	  
   }
 	
   @AfterTest
   public void afterTest() {
   }
-  
+  	
 
-  //@Test( threadPoolSize = 1, invocationCount = 1, timeOut = 45000)
-  @Test(timeOut = 45000, invocationCount = 1)
+//@Test( threadPoolSize = 1, invocationCount = 1, timeOut = 45000)
+  @Test(timeOut = 45000)
   public void verifyHomepageTitle() throws MalformedURLException {
 	Long IPort; 
 	WebDriver driver; 
 	String gridURL;
-	WebElement webElement;
-	Annotation[] annos;
-	
-	/* System.out.println("Annotations?");
-	annos = Test.class.getAnnotations(); // this.getClass().getAnnotations();
-	
-	for(Annotation a : annos)
-	  System.out.println(a);
-    */
 	
 	
-	//IPort = 4444; // - 10 + Thread.currentThread().getId();
-	//System.out.println("IPort = " + String.valueOf(IPort));
-  
 	//nodeURL = "http://localhost:4444/wd/hub"; //" + String.valueOf(IPort) + "/wd/hub";
 	gridURL = "http://" + selenHub + "/wd/hub";
-	System.out.println("gridURL = " + gridURL);
+	//System.out.println("gridURL = " + gridURL);
 
 	driver = new RemoteWebDriver(new URL(gridURL), capability);
 	//System.out.println("01");
 	driver.manage().deleteAllCookies();
 	//System.out.println("02");
 
-    driver.get(baseUrl + "/scripts/runisa64.dll?demos:pgwhatismyip");
-    webElement = (driver.findElement(By.id("ip")));
-    System.out.println("remoteAddress = " + webElement.getText());
-    webElement = (driver.findElement(By.id("ua")));
-    System.out.println("userAgent = " + webElement.getText());
-    
       driver.get(baseUrl + "/scripts/runisa64.dll?adv");
 	  
 	  //System.out.println("03");
@@ -150,7 +133,30 @@ public class TestADVPages {
      driver.quit();
      
   }
-   
+
+  
+  @Test(timeOut = 45000)
+  public void verifyMyIP() throws MalformedURLException {
+		WebDriver driver; 
+		String gridURL;
+		WebElement webElement;
+		
+		gridURL = "http://" + selenHub + "/wd/hub";
+		//System.out.println("gridURL = " + gridURL);
+
+		driver = new RemoteWebDriver(new URL(gridURL), capability);
+		driver.manage().deleteAllCookies();
+
+	    driver.get(baseUrl + "/scripts/runisa64.dll?demos:pgwhatismyip");
+	    webElement = (driver.findElement(By.id("ip")));
+	    System.out.println("remoteAddress = " + webElement.getText());
+	    webElement = (driver.findElement(By.id("ua")));
+	    //System.out.println("userAgent = " + webElement.getText());
+	    
+     driver.quit();
+	  }
+
+	  
  // when running As Application, this must use the static main method contained in the testng jar !!!
   
 }
