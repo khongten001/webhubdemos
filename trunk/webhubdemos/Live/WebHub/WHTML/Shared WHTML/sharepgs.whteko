@@ -1033,6 +1033,24 @@ ok
 <td rowspan="1"><iframe src="(~testprefix~)?demos:pgTestLoremIpsum"  ></iframe> </td>
 </tr>~)
 
+
+(~FOR|count,1,5|
+<tr>
+<th>(~testprefix~)
+<td><iframe src="(~testprefix~)?adv:pgenteradv"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgpng"></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP"></iframe></td>
+<td><iframe src="(~testprefix~)?h:nct"></iframe></td>
+<td><iframe src="(~testprefix~)?h:nca-adv"></iframe></td> 
+<td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
+<td><iframe src="(~testprefix~)?demos:pgWelcome"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum"  ></iframe> </td>
+</tr>~)
+
 </table>
 
 </div>  <!--- demopagecontent -->
