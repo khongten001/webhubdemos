@@ -43,7 +43,7 @@
     <PropertyGroup Condition="'$(Base)'!=''">
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>whLite_Icon.ico</Icon_MainIcon>
-        <Manifest_File>None</Manifest_File>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Samples;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=;FileVersion=1.0.0.0;InternalName=whlite.exe;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WebHub Lite;ProductVersion=1.0.0.0;Comments=;ServiceName=Lite</VerInfo_Keys>
@@ -87,6 +87,7 @@
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -94,6 +95,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
+        <DCCReference Include="h:\whSharedLog.pas"/>
         <DCCReference Include="h:\MultiTypeApp.pas"/>
         <DCCReference Include="h:\tpProj.pas"/>
         <DCCReference Include="h:\utPanFrm.pas">
