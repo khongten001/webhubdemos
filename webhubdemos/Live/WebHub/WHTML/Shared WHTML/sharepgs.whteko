@@ -985,6 +985,9 @@ ok
 </whpage>
 
 <whpage pageid="pgStressTeenyPages" desc="-Stress Teeny Pages using FrameSet">
+<whprep>
+(~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -1002,7 +1005,6 @@ ok
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-(~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~)
 (~FOR|count,1,1|
 <whdroplet name="drStressRH" show="yes">
 <tr>
