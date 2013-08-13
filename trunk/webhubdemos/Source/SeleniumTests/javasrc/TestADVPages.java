@@ -45,10 +45,11 @@ public class TestADVPages {
 	public String threadUserAgent;
 	
 	
-@Parameters({ "specialZombieCount", "inAuthority", "inSelenHub", "inVMR" })
+@Parameters({ "suiteZombieCount", "suiteIterationCount", "inAuthority", "inSelenHub", "inVMR" })
 @BeforeSuite
 public void beforeSuite(
-		  @Optional("1") String specialZombieCount, 
+		  @Optional("1") String suiteZombieCount, 
+		  @Optional("1") String suiteIterationCount,
 		  @Optional("lite.demos.href.com") String inAuthority ,  // default "lite.demos.href.com" 
 		  @Optional("db.demos.href.com:4444") String inSelenHub,
 		  @Optional("") String inVMR) { // scripts/runisa.dll
@@ -81,9 +82,8 @@ public void beforeSuite(
 	capability = DesiredCapabilities.htmlUnit();   
 	// as htmlUnit, the user agent goes through as Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.0) 
 	  
-	capability.setBrowserName(DesiredCapabilities.htmlUnit().getBrowserName());	  
-	//capability.setPlatform(org.openqa.selenium.Platform.WINDOWS);	  
-    capability.setPlatform(org.openqa.selenium.Platform.ANY);	  
+	capability.setBrowserName(DesiredCapabilities.htmlUnit().getBrowserName());	  	  
+    //capability.setPlatform(org.openqa.selenium.Platform.ANY);  this is not picking up LINUX as usable	  
   }
 	
   @AfterTest
@@ -136,9 +136,9 @@ public void beforeSuite(
 	//System.out.println("03");
 	String expectedTitle = "Page pgWelcome: Welcome Page for adv Demo (in the \"adv\" WebHub Demo)";
 	String actualTitle = driver.getTitle();
-	System.out.println(actualTitle);
+	//System.out.println(actualTitle);
 	  
-	Assert.assertEquals(actualTitle, expectedTitle);
+	Assert.assertEquals(actualTitle.toLowerCase(), expectedTitle.toLowerCase());
 	  
      driver.findElement(By.id("a-pgenteradv")).click();
      
@@ -182,7 +182,7 @@ public void beforeSuite(
    	    actualTitle = driver.getTitle();
    	    System.out.println(actualTitle);
      	  expectedTitle = "Page pgWelcome: Welcome Page for demos Demo (in the \"demos\" WebHub Demo)";
-	    Assert.assertEquals(actualTitle, expectedTitle);
+	    Assert.assertEquals(actualTitle.toLowerCase(), expectedTitle.toLowerCase());
    	    driver.findElement(By.id("a-pgenterdemos")).click();
   	    driver.findElement(By.linkText("Lite Demos")).click();
   	    driver.findElement(By.linkText("Source")).click();

@@ -5,9 +5,10 @@
 	<!-- http://testng.org/doc/documentation-main.html#listeners-testng-xml -->
     <listener class-name="advpackage.MyZombieAnnotationListener" />
   </listeners>
-<parameter name="specialZombieCount"  value="2"/>
+<parameter name="suiteZombieCount"  value="2"/>
+<parameter name="suiteIterationCount"  value="1"/>
 <parameter name="inAuthority"  value="w12.demos.href.com:80" />
-<parameter name="inSelenHub"  value="db.demos.href.com:4444" />
+<parameter name="inSelenHub"  value="localhost:4444" />
 <parameter name="inVMR"  value="scripts/runisa64.dll" />
   <test verbose="9" name="ok">
     <classes>

@@ -44,6 +44,8 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		//System.out.println("onStart ISuite number from XML = " +	suite.getParameter("zombieCount").toString());
 		//suite.setAttribute("threadPoolSize", "7");
 		//suite.setSuiteThreadPoolSize
+
+		System.out.println("Suite " + suite.getName() + " threadPoolSize = " + suite.getAttribute("threadPoolSize"));
 		
 		//suite.enabled = ("WebHubDemos Test Suite".equals(suite.getName()));
 				
@@ -55,6 +57,7 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		Integer x;
 		Document xmlDocument = null;
 		String zc = null;
+		String ic = null;
 		
 	
 		DocumentBuilderFactory builderFactory =
@@ -89,18 +92,19 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		// simple online xpath tester http://www.xpathtester.com/test
 		XPath xPath =  XPathFactory.newInstance().newXPath();
 		try {			
-			zc = (String)xPath.compile("/suite/parameter[@name=\"specialZombieCount\"]/@value").evaluate(xmlDocument);
+			zc = (String)xPath.compile("/suite/parameter[@name=\"suiteZombieCount\"]/@value").evaluate(xmlDocument);
+			ic = (String)xPath.compile("/suite/parameter[@name=\"suiteIterationCount\"]/@value").evaluate(xmlDocument);
 			
 		} catch (XPathExpressionException e1) {
 			
 			e1.printStackTrace();
 		}
 		
-		x =  Integer.parseInt(zc);
-		
 		//System.out.println("getName = " + testMethod.getName());
-		System.out.println("Setting Suite InvocationCount and ThreadPoolSize to " + zc);
-		annotation.setInvocationCount(x);
+		System.out.println("Setting Suite InvocationCount to " + zc + " and ThreadPoolSize to " + ic);
+		annotation.setInvocationCount(Integer.parseInt(ic));
+
+		x =  Integer.parseInt(zc);
 	    annotation.setThreadPoolSize(x);
 		
 	}
