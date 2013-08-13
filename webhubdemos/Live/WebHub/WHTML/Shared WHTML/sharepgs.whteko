@@ -1000,11 +1000,14 @@ ok
 <h2>Rev 020 </h2>
 <table>
 
+<tr>
+<th colspan="13">(~testprefix~) session #(~SessionID~)</th>
+</tr>
 (~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~)
 (~FOR|count,1,1|
 <whdroplet name="drStressRH" show="yes">
 <tr>
-<th>(~testprefix~)
+<th style="background-color:#66FF66;">(~count~)
 <td><iframe src="(~testprefix~)?adv:pgenteradv:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?r:version"></iframe> </td>
@@ -1023,20 +1026,22 @@ ok
 
 (~FOR|count,1,5|
 <tr>
-<th>(~testprefix~)
+<th style="background-color:#FFCC99;">(~count~)
 <td><iframe src="(~testprefix~)?adv:pgenteradv:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng:(~SessionID~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nct"></iframe></td>
-<td><iframe src="(~testprefix~)?h:nca-adv"></iframe></td> 
+<td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td> 
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy:(~SessionID~)" ></iframe></td>
 <td><iframe src="(~testprefix~)?demos:pgWelcome"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
 </tr>~)
+
+(~FOR|count,1,1|(~drStressRH~)~)
 
 </table>
 (~CLEAR|testprefix~)
