@@ -994,6 +994,11 @@ ok
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
+	<style>
+		table {
+		border-collapse:collapse;
+		empty-cells:show;  }  
+	</style>
 </head>
 <body>
 (~drPageBegin~)
