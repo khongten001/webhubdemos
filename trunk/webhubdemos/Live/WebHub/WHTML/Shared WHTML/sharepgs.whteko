@@ -1009,23 +1009,24 @@ ok
 <whdroplet name="drStressRH" show="yes">
 <tr>
 <th style="background-color:#66FF66;">(~count~)
-<td><iframe src="(~testprefix~)?adv:pgenteradv:(~SessionID~)"  ></iframe> </td>
+<td> </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
-<td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?adv:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
+<td> </iframe> </td>
+<td> </iframe> </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
-<td><iframe src="(~testprefix~)?bw:pgWelcome::"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
+<td> </td>
+<td></td>
 </tr>
 </whdroplet>
 ~)
 
-(~FOR|count,1,6|
+(~FOR|count,1,8|
+<whdroplet name="drStress3MainAppIDs" show="yes">
 <tr>
 <th style="background-color:#FFCC99;">(~count~)
 <td><iframe src="(~testprefix~)?htfd:pgenteradv:(~SessionID~)"  ></iframe> </td>
@@ -1033,16 +1034,20 @@ ok
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng:(~SessionID~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?h:nct"></iframe></td>
+<td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?bw:privacepolicy:(~SessionID~)"></iframe></td> 
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy:(~SessionID~)" ></iframe></td>
 <td><iframe src="(~testprefix~)?bw:pgWelcome"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?bw:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
-</tr>~)
+</tr>
+</whdroplet>
+~)
 
 (~FOR|count,1,1|(~drStressRH~)~)
+
+(~FOR|count,1,8|(~drStress3MainAppIDs~)~)
 
 </table>
 (~CLEAR|testprefix~)
