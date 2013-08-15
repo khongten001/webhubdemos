@@ -5,10 +5,12 @@
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="DEMOS"/>
     <MenuEnabled context="ultraann" value="true"/>
+    <MenuEnabled context="NYX" value="false"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
     <StartMinimized context="ultraann" value="false"/>
+    <StartMinimized context="NYX" value="true"/>
     <TrayIconEnabled value="true"/>
     <TrayIconEnabled context="ultraann" value="false"/>
     <Modules>
