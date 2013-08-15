@@ -1040,7 +1040,7 @@ ok
 <td><iframe src="(~testprefix~)?demos:pgpng:(~SessionID~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?bw:privacepolicy:(~SessionID~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?bw:privacypolicy:(~SessionID~)"></iframe></td> 
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy:(~SessionID~)" ></iframe></td>
