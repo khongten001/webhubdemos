@@ -1014,18 +1014,18 @@ ok
 <whdroplet name="drStressRH" show="yes">
 <tr>
 <th style="background-color:#66FF66;">(~count~)
-<td> </td>
+<td> ok </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
-<td> </iframe> </td>
-<td> </iframe> </td>
+<td> ok </td>
+<td> ok  </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
-<td> </td>
-<td></td>
+<td> ok </td>
+<td> ok </td>
 </tr>
 </whdroplet>
 ~)
