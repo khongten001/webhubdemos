@@ -19,7 +19,7 @@ uses
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel};
 
-{$R *.res}
+{$R cserver_version.RES}
 {$R WHAPPICO.RES}
 {$R HTICONS.RES}
 {$R HTGLYPHS.RES}
@@ -30,7 +30,7 @@ begin
   DMForWHDemoC.SetDemoFacts('bw', 'Lite Examples\whAppServer\cserver', True);
   DMForWHDemoC.ProjMgr.ManageStartup;
   {M}Application.Run;
-  CSSend('dpr ending');
+  {$IFDEF LogInitFinal}CSSend('dpr ending');{$ENDIF}
 end.
 
 
