@@ -1,4 +1,6 @@
 @echo off
+echo "compile-1demo_win64_svc.bat here"
+
 if "%compilerdigits%"=="" set compilerdigits=18
 setlocal
 
@@ -7,11 +9,15 @@ del d:\temp\DelphiTempDCU\*.dcu
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
 call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Delphi D%compilerdigits%"
+echo droot %droot%
+
 set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
-if "%compilerdigits%"="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
-if "%compilerdigits%"="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
+if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
+if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
+
+echo raizelib %raizelib%
 
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;%raizelib%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
