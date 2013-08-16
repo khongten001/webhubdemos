@@ -203,7 +203,7 @@
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_adv.exe"/>
 			<ServiceName value="adv" />
-            <Instances numToRunMinimum="5" numToRunMaximum="5" delaySecBetween="4"/>
+            <Instances numToRunMinimum="5" numToRunMaximum="5" delaySecBetween="8"/>
 		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="brnd">
@@ -230,7 +230,7 @@
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_htfd.exe"/>
 			<ServiceName value="htfd" />
-            <Instances numToRunMinimum="2" numToRunMaximum="2" delaySecBetween="4"/>
+            <Instances numToRunMinimum="2" numToRunMaximum="2" delaySecBetween="8"/>
 		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="form">
@@ -277,7 +277,7 @@
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_demos.exe"/>
 			<ServiceName value="demos" />
-            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
+            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="8"/>
 		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="bw">
@@ -294,7 +294,7 @@
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_bw.exe"/>
 			<ServiceName value="bw" />
-            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
+            <Instances numToRunMinimum="1" numToRunMaximum="5" delaySecBetween="8"/>
 		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="htsc">
