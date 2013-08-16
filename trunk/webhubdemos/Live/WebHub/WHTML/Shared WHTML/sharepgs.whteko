@@ -973,7 +973,6 @@ ok
 
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
-
 <p><span id="ip">(~Request.RemoteAddress~)</span></p>
 
 <h2>User Agent</h2>
@@ -986,7 +985,8 @@ ok
 
 <whpage pageid="pgStressTeenyPages" desc="-Stress Teeny Pages using FrameSet">
 <whprep>
-(~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~)
+<!--- (~SET|testprefix=http://w12.demos.href.com/scripts/runisa64.dll~) -->
+(~SET|testprefix=(~Request.Scheme~)://(~Request.Authority~)/(~Request.RawVMR~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -1005,6 +1005,12 @@ ok
 
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
+<pre>
+Scheme: (~Request.Scheme~)
+Authority: (~Request.Authority~)
+RawVMR: (~Request.RawVMR~)
+</pre>
+
 <table>
 
 <tr>
