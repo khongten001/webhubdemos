@@ -218,6 +218,13 @@
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
 	  <SessionNumberLocation value="URL" />
+          <Deployment>
+            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
+            <ExecutableFilename value="CServer_htfd.exe"/>
+			<ServiceName value="htfd" />
+            <Instances numToRunMinimum="0" numToRunMaximum="2" delaySecBetween="4"/>
+		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="form">
           <Nickname value="Form Posting"/>
@@ -258,6 +265,13 @@
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
 		  <SessionNumberLocation value="URL" />
+          <Deployment>
+            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
+            <ExecutableFilename value="CServer_demos.exe"/>
+			<ServiceName value="demos" />
+            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
+		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="bw">
           <Nickname value="Options"/>
@@ -268,6 +282,13 @@
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
 		  <SessionNumberLocation value="URL" />
+          <Deployment>
+            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
+            <ExecutableFilename value="CServer_bw.exe"/>
+			<ServiceName value="bw" />
+            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
+		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="htsc">
           <Nickname value="Security"/>
