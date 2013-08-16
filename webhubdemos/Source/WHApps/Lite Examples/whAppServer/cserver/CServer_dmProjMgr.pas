@@ -32,7 +32,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  MultiTypeApp, ucCodeSiteInterface, uCode, 
+  MultiTypeApp, whSharedLog, ucCodeSiteInterface, uCode, 
   whutil_ZaphodsMap, htWebApp, webCall, webApp,
   cfmwhCustom;
 
