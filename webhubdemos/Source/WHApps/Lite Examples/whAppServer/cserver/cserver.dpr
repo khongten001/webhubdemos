@@ -1,13 +1,14 @@
 program cserver;  // Lite WebHub application server to be compiled as-service
 
 uses
+  whSharedLog in 'h:\whSharedLog.pas',
+  ucCodeSiteInterface in 'H:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   MultiTypeAppSvc in 'h:\MultiTypeAppSvc.pas',
   tpProj in 'H:\tpProj.pas',
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
-  ucCodeSiteInterface in 'H:\ucCodeSiteInterface.pas',
   uAutoDataModules in 'H:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
