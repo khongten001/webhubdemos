@@ -199,7 +199,7 @@
           <SessionCookieName value="whsession"/>
 		  <SessionNumberLocation value="CookieFixedDomain" />
           <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <DefaultStartup mode="service" stopWithHub="true" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_adv.exe"/>
 			<ServiceName value="adv" />
@@ -226,7 +226,7 @@
           <SessionCookieName value=""/>
 	  <SessionNumberLocation value="URL" />
           <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <DefaultStartup mode="service" stopWithHub="true" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_htfd.exe"/>
 			<ServiceName value="htfd" />
@@ -273,11 +273,11 @@
           <SessionCookieName value=""/>
 		  <SessionNumberLocation value="URL" />
           <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <DefaultStartup mode="service" stopWithHub="true" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_demos.exe"/>
 			<ServiceName value="demos" />
-            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="8"/>
+            <Instances numToRunMinimum="2" numToRunMaximum="5" delaySecBetween="8"/>
 		  </Deployment>
         </WebHubApp>
         <WebHubApp appID="bw">
@@ -290,7 +290,7 @@
           <SessionCookieName value=""/>
 		  <SessionNumberLocation value="URL" />
           <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <DefaultStartup mode="service" stopWithHub="true" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_bw.exe"/>
 			<ServiceName value="bw" />
