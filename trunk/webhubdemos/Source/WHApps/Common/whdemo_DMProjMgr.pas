@@ -269,7 +269,6 @@ begin
 end;
 
 initialization
-  ResetLogFilespec;
-  {$IFDEF CodeSite}CodeSite.Send('hello');{$ENDIF}
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
 end.

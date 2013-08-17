@@ -835,5 +835,7 @@ begin
 end;
 
 initialization
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
+
 
 end.
