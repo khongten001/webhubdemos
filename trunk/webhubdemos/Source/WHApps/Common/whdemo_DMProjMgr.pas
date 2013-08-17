@@ -75,7 +75,7 @@ uses
   Forms,
   MultiTypeApp,
   {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
-  ucCodeSiteInterface,
+  ucCodeSiteInterface, whSharedLog,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whutil_ZaphodsMap,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
@@ -269,6 +269,7 @@ begin
 end;
 
 initialization
+  ResetLogFilespec;
   {$IFDEF CodeSite}CodeSite.Send('hello');{$ENDIF}
 
 end.

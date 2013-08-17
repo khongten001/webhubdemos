@@ -220,15 +220,19 @@ begin
   else
     FAdminIpNumber := '';
   if FAdminIpNumber <> '' then
-    CSSend('FAdminIpNumber', FAdminIpNumber)
+    {$IFNDEF LogSTime}CSSend(cFn + ': FAdminIpNumber', FAdminIpNumber){$ENDIF}
   else
-    LogSendError('File not found or empty: ' + AdminFilespec);
-  // requires WebHub v2.170+
+    LogSendError(cFn + ': File not found or empty: ' + AdminFilespec);
+
+  {$IFNDEF LogSTime}
   CSSend('pWebApp.DynURL.CurrentServerProfile.Authority',
     pWebApp.DynURL.CurrentServerProfile.Authority);
+  {$ENDIF}
+
   FServerIpNumber := HostToIPv4(LeftOf(':',
       pWebApp.DynURL.CurrentServerProfile.Authority));
-  CSSend('FServerIpNumber', FServerIpNumber);
+  {$IFNDEF LogSTime}CSSend('FServerIpNumber', FServerIpNumber);{$ENDIF}
+
   CSExitMethod(Self, cFn);
 end;
 
@@ -738,8 +742,8 @@ begin
       begin
         if bNewSessionInURL then
         begin
-          {$IFDEF CodeSite}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
-          CodeSite.SendNote(Request.QueryString);{$ENDIF}
+          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
+          CodeSite.SendNote(Request.QueryString);{$IFEND}
           { user comes in from a bookmark or a search engine }
           bForceNewSession :=
             (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
@@ -747,10 +751,10 @@ begin
         end
         else
         begin
-          {$IFDEF CodeSite}CodeSite.Send(Self.Name + #183 + cFn + #183 +
+          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CodeSite.Send(Self.Name + #183 + cFn + #183 +
             'HaveSessionCookie',
             GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
-          {$ENDIF}
+          {$IFEND}
           if (HaveSessionCookie = whsncPresent) then
           begin
             { worst case.. user fakes a cookie or comes back days later with the
