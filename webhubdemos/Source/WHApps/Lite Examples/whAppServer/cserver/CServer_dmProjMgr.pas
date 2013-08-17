@@ -93,4 +93,7 @@ begin
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
 end;
 
+initialization
+  ResetLogFilespec;
+
 end.
