@@ -1036,17 +1036,17 @@ RawVMR: (~Request.RawVMR~)
 </whdroplet>
 ~)
 
-(~FOR|count,1,8|
+(~FOR|count,1,4|
 <whdroplet name="drStress3MainAppIDs" show="yes">
 <tr>
 <th style="background-color:#FFCC99;">(~count~)
-<td><iframe src="(~testprefix~)?htfd:pgenteradv:(~SessionID~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?htfd:pgwelcome:"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng:(~SessionID~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?bw:privacypolicy:(~SessionID~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?bw:privacypolicy:"></iframe></td> 
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy:(~SessionID~)" ></iframe></td>
@@ -1058,7 +1058,7 @@ RawVMR: (~Request.RawVMR~)
 
 (~FOR|count,1,1|(~drStressRH~)~)
 
-(~FOR|count,1,8|(~drStress3MainAppIDs~)~)
+(~FOR|count,1,4|(~drStress3MainAppIDs~)~)
 
 </table>
 (~CLEAR|testprefix~)
