@@ -23,6 +23,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.*;
 import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 
@@ -213,11 +214,89 @@ public void beforeSuite(
 
 	    Assert.assertEquals(actualTitle, expectedTitle);
 	    driver.findElement(By.linkText("Lite Demos")).click();   	         
-     driver.quit();
+   	    driver.get(baseUrl + "/" + vmr + "?adv:pgStressTeenyPages");
+   	    driver.findElement(By.linkText("Lite Demos")).click();   	         
+   	    driver.get(baseUrl + "/" + vmr + "?bw:pgStressTeenyPages");
+   	    driver.findElement(By.linkText("Lite Demos")).click();   	         
+	    driver.quit();
 	  }  
   }
 
-  	  
+
+  @Test(timeOut = 45000, enabled = true)
+  public void verifyBwWalkThrough() throws MalformedURLException {
+	  
+	  if ("".equals(vmr)) {
+	  }
+	  else {
+		  
+		  WebDriver driver;
+	  
+	String actualTitle;
+	String expectedTitle;
+	
+	driver = new RemoteWebDriver(new URL(gridURL), capability);
+	driver.manage().deleteAllCookies();
+
+   	    driver.get(baseUrl + "/" + vmr + "?bw:pgwelcome");
+   	    actualTitle = driver.getTitle();
+   	    System.out.println(actualTitle);
+     	  expectedTitle = "Page pgWelcome: Welcome Page for bw Demo (in the \"bw\" WebHub Demo)";
+	    Assert.assertEquals(actualTitle.toLowerCase(), expectedTitle.toLowerCase());
+   	    
+	    
+	    driver.findElement(By.id("a-pgsetup")).click();
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    driver.findElement(By.id("a-pgabout")).click();
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    driver.findElement(By.linkText("Download")).click();
+	    driver.findElement(By.linkText("Welcome")).click();
+	    driver.findElement(By.id("a-viewfiles")).click();
+	    driver.findElement(By.linkText("..\\..\\Shared WHTML\\headfoot.whteko")).click();
+	    driver.findElement(By.linkText("Back")).click();
+	    driver.findElement(By.linkText("..\\..\\Shared WHTML\\sysinfo.whteko")).click();
+	    driver.findElement(By.linkText("Back")).click();
+	    driver.findElement(By.linkText("Options")).click();
+	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Parchment");
+	    driver.findElement(By.name("showSystemInfo")).click();
+	    driver.findElement(By.name("BtnPref")).click();
+	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Textured White");
+	    driver.findElement(By.name("BtnPref")).click();
+	    driver.findElement(By.name("BtnPref")).click();
+	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Clouds");
+	    driver.findElement(By.name("BtnPref")).click();
+	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("None");
+	    driver.findElement(By.name("BtnPref")).click();
+	    driver.findElement(By.name("showSystemInfo")).click();
+	    driver.findElement(By.name("showSystemInfo")).click();
+	    driver.findElement(By.xpath("(//input[@name='BtnPref'])[2]")).click();
+	    driver.findElement(By.linkText("Welcome")).click();
+	    driver.findElement(By.id("a-pgenterbw")).click();
+	    driver.findElement(By.name("submit")).click();
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    driver.findElement(By.id("a-pgenterbw")).click();
+	    driver.findElement(By.linkText("RSS Example")).click();
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    driver.findElement(By.id("a-pgenterbw")).click();
+	    driver.findElement(By.linkText("Options")).click();
+	    driver.findElement(By.name("showSystemInfo")).click();
+	    driver.findElement(By.xpath("(//input[@name='BtnPref'])[2]")).click();
+	    driver.findElement(By.name("inSpeed")).click();
+	    driver.findElement(By.name("submit")).click();
+	    driver.findElement(By.linkText("Français")).click();
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    driver.findElement(By.linkText("English")).click();
+	    
+    
+     
+     driver.quit();
+	  }   
+  }
+
+  
+  
+  
+  
  // when running As Application, this must use the static main method contained in the testng jar !!!
   
 }
