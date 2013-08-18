@@ -213,11 +213,22 @@ public void beforeSuite(
      	 "Page pgStressTeenyPages: Stress Teeny Pages using FrameSet (in the \"demos\" WebHub Demo)";
 
 	    Assert.assertEquals(actualTitle, expectedTitle);
-	    driver.findElement(By.linkText("Lite Demos")).click();   	         
+	    driver.findElement(By.cssSelector("img[alt=\"Logo for demos WebHub demo\"]")).click();   
+	    System.out.println("stress 01");
+	    driver.findElement(By.id("a-pgabout")).click();
+	    System.out.println("stress 01a");
    	    driver.get(baseUrl + "/" + vmr + "?adv:pgStressTeenyPages");
-   	    driver.findElement(By.linkText("Lite Demos")).click();   	         
+   	 System.out.println("stress 02");
+     driver.findElement(By.cssSelector("img[alt=\"Logo for adv WebHub demo\"]")).click();
+     driver.findElement(By.id("a-pgabout")).click();
+     
+   	 System.out.println("stress 03");
    	    driver.get(baseUrl + "/" + vmr + "?bw:pgStressTeenyPages");
-   	    driver.findElement(By.linkText("Lite Demos")).click();   	         
+   	 System.out.println("stress 04");
+   	driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+    driver.findElement(By.id("a-pgabout")).click();
+    
+   	 System.out.println("stress 05");
 	    driver.quit();
 	  }  
   }
@@ -240,55 +251,72 @@ public void beforeSuite(
 
    	    driver.get(baseUrl + "/" + vmr + "?bw:pgwelcome");
    	    actualTitle = driver.getTitle();
-   	    System.out.println(actualTitle);
+   	    //System.out.println(actualTitle);
      	  expectedTitle = "Page pgWelcome: Welcome Page for bw Demo (in the \"bw\" WebHub Demo)";
 	    Assert.assertEquals(actualTitle.toLowerCase(), expectedTitle.toLowerCase());
-   	    
-	    
+   	       
 	    driver.findElement(By.id("a-pgsetup")).click();
+
 	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    
 	    driver.findElement(By.id("a-pgabout")).click();
+	    
 	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    
 	    driver.findElement(By.linkText("Download")).click();
+	    
 	    driver.findElement(By.linkText("Welcome")).click();
+	    	    
 	    driver.findElement(By.id("a-viewfiles")).click();
+	    	    
 	    driver.findElement(By.linkText("..\\..\\Shared WHTML\\headfoot.whteko")).click();
+	    
 	    driver.findElement(By.linkText("Back")).click();
 	    driver.findElement(By.linkText("..\\..\\Shared WHTML\\sysinfo.whteko")).click();
 	    driver.findElement(By.linkText("Back")).click();
-	    driver.findElement(By.linkText("Options")).click();
+	    driver.findElement(By.id("navOptions")).click();
 	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Parchment");
-	    driver.findElement(By.name("showSystemInfo")).click();
-	    driver.findElement(By.name("BtnPref")).click();
+
+	    driver.findElement(By.id("chkShowSystemInfo")).click();
+
+	    driver.findElement(By.id("btnPrefPreview")).click();
+
 	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Textured White");
-	    driver.findElement(By.name("BtnPref")).click();
-	    driver.findElement(By.name("BtnPref")).click();
+	    driver.findElement(By.id("btnPrefPreview")).click();
+
 	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("Clouds");
-	    driver.findElement(By.name("BtnPref")).click();
+	    driver.findElement(By.id("btnPrefPreview")).click();
+	    
 	    new Select(driver.findElement(By.name("litWallpaper"))).selectByVisibleText("None");
-	    driver.findElement(By.name("BtnPref")).click();
-	    driver.findElement(By.name("showSystemInfo")).click();
-	    driver.findElement(By.name("showSystemInfo")).click();
-	    driver.findElement(By.xpath("(//input[@name='BtnPref'])[2]")).click();
-	    driver.findElement(By.linkText("Welcome")).click();
+	    driver.findElement(By.id("btnPrefPreview")).click();
+	    
+	    driver.findElement(By.id("chkShowSystemInfo")).click();
+	    
+	    driver.findElement(By.id("btnPrefReturn")).click();
+	    
+	    driver.findElement(By.id("navWelcome")).click();
 	    driver.findElement(By.id("a-pgenterbw")).click();
 	    driver.findElement(By.name("submit")).click();
 	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
+	    
 	    driver.findElement(By.id("a-pgenterbw")).click();
 	    driver.findElement(By.linkText("RSS Example")).click();
 	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
 	    driver.findElement(By.id("a-pgenterbw")).click();
-	    driver.findElement(By.linkText("Options")).click();
-	    driver.findElement(By.name("showSystemInfo")).click();
-	    driver.findElement(By.xpath("(//input[@name='BtnPref'])[2]")).click();
+	    driver.findElement(By.id("navOptions")).click();
+	    
+	    driver.findElement(By.id("chkShowSystemInfo")).click();
+	    driver.findElement(By.id("btnPrefPreview")).click();
+	    driver.findElement(By.id("navEnter")).click();
+
 	    driver.findElement(By.name("inSpeed")).click();
 	    driver.findElement(By.name("submit")).click();
-	    driver.findElement(By.linkText("Français")).click();
+	    driver.findElement(By.linkText("Deutsch")).click();
+
 	    driver.findElement(By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]")).click();
 	    driver.findElement(By.linkText("English")).click();
-	    
-    
-     
+	    //System.out.println("bw 100");
+        
      driver.quit();
 	  }   
   }
