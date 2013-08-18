@@ -192,16 +192,9 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  {$IFDEF CodeSite}
-  // requires WebHub v3.193+
-  // uses whSharedLog
-  CSSetLogFolder(GetConnLayerSharedLogFolder, cWebHubSharedLog);
-  {$ENDIF}
-
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
-
 
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
@@ -835,7 +828,6 @@ begin
 end;
 
 initialization
-  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
-
+  //{$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
 end.
