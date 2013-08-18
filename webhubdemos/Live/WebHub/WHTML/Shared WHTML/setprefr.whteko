@@ -23,7 +23,7 @@
      come to the page and clicked on Return.
 
      2. The pushPrior macro saves the prior pageID into the
-     literal named PrePref.
+     StringVar named PrePref.
 
      3. The DynURL.ToSessionIDW macro brings the surfer back to where they
      are -- the current page.  The ,CKB command is required
@@ -78,7 +78,7 @@ or
 
 <h2>(~~Debugging~)</h2>
 (~inputcheckbox|showSystemInfo| id="chkShowSystemInfo" ~) Show System Info
- (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" border="0" />~)
+ (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" />~)
 <br />
 (~inputsubmit|BtnPref,Preview| id="btnPrefPreview" ~)
 (~inputsubmit|BtnPref,Return| id="btnPrefReturn" ~)
