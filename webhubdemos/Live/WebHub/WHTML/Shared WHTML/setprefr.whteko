@@ -77,11 +77,11 @@ or
 </whdoc>
 
 <h2>(~~Debugging~)</h2>
-(~inputcheckbox|showSystemInfo~) Show System Info
+(~inputcheckbox|showSystemInfo| id="chkShowSystemInfo" ~) Show System Info
  (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" border="0" />~)
 <br />
-(~inputsubmit|BtnPref,Preview~)
-(~inputsubmit|BtnPref,Return~)
+(~inputsubmit|BtnPref,Preview| id="btnPrefPreview" ~)
+(~inputsubmit|BtnPref,Return| id="btnPrefReturn" ~)
 (~~SetPrefReturn~)
 </form>
 </div>  <!--- demopagecontent -->
