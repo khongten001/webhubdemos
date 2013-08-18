@@ -91,13 +91,13 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <div id="menuThisWebHubDemoContainer">
 <div id="menuThisWebHubDemo">
 <ul>
-<li>(~GO|pgWelcome|title="Go back to the first page in this demo"|[~Welcome~]~)</li>
-<li>(~GO|pgEnter(~AppID~)|title="Go into the entrance page for this demo."|[~Entrance~]~)</li>
-<li>(~GO|ViewFiles,(~AppID~)|title="View HTML and Object Pascal Source code for this demo."|[~Source~]~)</li>
-<li>(~GO|pgDownload,(~AppID~)|title="Download Source for this demo."|[~Download~]~)</li>
-<li>(~GO|pgLogout| title="logout to clear session data" |[~Logout~]~)</li>
-<li>(~GO|SetPref|title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
-<li>(~GO|pgLinkTest| title="test a wide range of links" |Link-Tests~) </li>
+<li>(~GO|pgWelcome| id="navWelcome" title="Go to the first welcome page in this demo"|[~Welcome~]~)</li>
+<li>(~GO|pgEnter(~AppID~)| id="navEnter" title="Start this demo."|[~Entrance~]~)</li>
+<li>(~GO|ViewFiles,(~AppID~)| id="navSource" title="View source code for this demo."|[~Source~]~)</li>
+<li>(~GO|pgDownload,(~AppID~)| id="navDownload" title="Download Source for this demo."|[~Download~]~)</li>
+<li>(~GO|SetPref| id="navOptions" title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
+<!--- <li>(~GO|pgLinkTest| title="test a wide range of links" |Link-Tests~) </li> -->
+<li>(~GO|pgLogout| id="navLogout" title="logout to clear session data" |[~Logout~]~)</li>
 </ul>
 </div>
 </div>
