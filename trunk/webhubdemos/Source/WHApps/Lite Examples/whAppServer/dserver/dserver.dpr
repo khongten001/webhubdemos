@@ -25,7 +25,7 @@ uses
 // Search path for HREF Tools in-house usage:
 // k:\webhub\Lib;k:\webhub\Lib\whvcl;k:\webhub\Lib\WHRun;k:\webhub\Lib\WHRun\ISAPI;k:\webhub\Lib\WHEditors;k:\webhub\Lib\WHPlus;k:\webhub\Lib\WHDB;k:\webhub\TPack;k:\webhub\regex;
 
-  webCall in 'K:\WebHub\lib\whvcl\webCall.pas';
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas',
 
   webRead in 'K:\WebHub\lib\whvcl\webRead.pas',
   webCore in 'k:\webhub\lib\whvcl\webCore.pas',
