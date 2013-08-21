@@ -48,6 +48,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
+      <AppSetting name="StartupDelaySeconds" value="0" context="ultraann"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="Summary" value="true"/>

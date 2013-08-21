@@ -160,6 +160,8 @@ end;
 
 procedure TDMForDServer.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+var
+  iDelaySeconds: Integer;
 begin
   InitCoreWebHubDataModule;
   whDemoInit;
@@ -170,6 +172,9 @@ begin
     DemoExtensions.Init;
     DataModuleColorScheme.Init;
     pWebApp.OnError := DServerExceptionEvent;
+    iDelaySeconds := StrToIntDef(pWebApp.AppSetting['StartupDelaySeconds'], 0);
+    if iDelaySeconds > 0 then
+      Sleep(iDelaySeconds * 1000);  // simulate slow database initialization
   end;
 end;
 
