@@ -3,7 +3,9 @@ unit dserver_whdmGeneral;
 interface
 
 uses
-  SysUtils, Classes, updateOK, tpAction, webTypes, webLink, webCall;
+  SysUtils, Classes,
+  updateOK, tpAction,
+  webTypes, webLink, webCall, webSend;
 
 type
   TdmwhGeneral = class(TDataModule)
@@ -11,6 +13,9 @@ type
     procedure waMakeBadVarsExecute(Sender: TObject);
   private
     { Private declarations }
+    procedure DServerAppUpdate(Sender: TObject);
+    procedure DServerAppExecute(Sender: TwhRespondingApp;
+      var bContinue: Boolean);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -29,7 +34,7 @@ implementation
 
 uses
   Math,
-  ucString, ucPos,
+  ucString, ucPos, ucCodeSiteInterface,
   webApp, htmConst, htWebApp;
 
 procedure TdmwhGeneral.ControlPageCalcTime(Sender: TwhConnection;
@@ -40,6 +45,23 @@ begin
   ExecutionAverageMS := Math.Max(ExecutionAverageMS, 200);
 end;
 
+procedure TdmwhGeneral.DServerAppExecute(Sender: TwhRespondingApp;
+  var bContinue: Boolean);
+const cFn = 'DServerAppExecute';
+begin
+  // CSEnterMethod(Self, cFn);
+  // placeholder (runs for each page request)
+  // CSExitMethod(Self, cFn);
+end;
+
+procedure TdmwhGeneral.DServerAppUpdate(Sender: TObject);
+const cFn = 'DServerAppUpdate';
+begin
+  CSEnterMethod(Self, cFn);
+  // placeholder
+  CSExitMethod(Self, cFn);
+end;
+
 function TdmwhGeneral.Init(out ErrorText: string): Boolean;
 begin
   ErrorText := '';
@@ -48,6 +70,8 @@ begin
   begin
     pWebApp.OnLoadProjectSyntax := dmwhGeneral.LoadProjectSyntax;
     pWebApp.OnLoadProjectLingvo := dmwhGeneral.LoadProjectLingvo;
+    AddAppExecuteHandler(dmwhGeneral.DServerAppExecute);
+    AddAppUpdateHandler(dmwhGeneral.DServerAppUpdate);
     if Assigned(pConnection) then
     begin
       pConnection.OnPageCalcTime := ControlPageCalcTime;
