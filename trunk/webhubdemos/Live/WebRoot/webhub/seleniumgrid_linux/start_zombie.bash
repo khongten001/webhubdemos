@@ -18,6 +18,7 @@ fi
 # pipe relevant portion into an environment variable
 ec2publichost=`grep ^ec2*. public-hostname`
 
-# start zombie
-java -jar selenium-server-standalone-2.33.0.jar -role webdriver -hub http://db.demos.href.com:4444/grid/register -browser "browserName=htmlunit" -port $1 -host $ec2publichost
+# start zombie with trailing & so it is a background process
+nohup java -jar selenium-server-standalone-2.33.0.jar -role webdriver -hub http://db.demos.href.com:4444/grid/register -browser "browserName=htmlunit" -port $1 -host $ec2publichost &
+
 
