@@ -8,7 +8,7 @@ echo selenium grid call-back port will be $1
 
 # host has to be set to the current public dns entry
 # let Amazon tell us our current public hostname
-if [-e public-hostname];
+if [ -e ./public-hostname ];
 then
 cat public-hostname
 else
