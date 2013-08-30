@@ -12,8 +12,8 @@ set xlabel "WebHub AppID"
 set ylabel "Page Requests per Instance; Total per AppID"
 
 set boxwidth 0.8
-set yrange [0:1500]
+#set yrange [0:4000]
 
-plot for [i=3:6] 'WebHub_Traffic.dat' using i:xticlabels(1) with histogram notitle, '' using 0:2:2 with labels title "WebHub Traffic (by gnuplot)"
+plot for [i=3:65] 'WebHub_Traffic.dat' using i:xticlabels(1) with histogram notitle, '' using 0:2:2 with labels title "WebHub Traffic (by gnuplot)"
 
 #pause 10
