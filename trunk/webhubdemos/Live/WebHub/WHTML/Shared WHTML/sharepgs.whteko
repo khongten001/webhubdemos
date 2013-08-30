@@ -1016,8 +1016,9 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-(~FOR|count,1,1|
-<whdroplet name="drStressRH" show="yes">
+<!--- (~FOR|count,1,1|(~drStressRH~)~) -->
+
+<whdroplet name="drStressRH" show="no">
 <tr>
 <th style="background-color:#66FF66;">(~count~)
 <td> ok </td>
@@ -1034,32 +1035,30 @@ RawVMR: (~Request.RawVMR~)
 <td> ok </td>
 </tr>
 </whdroplet>
-~)
 
-(~FOR|count,1,4|
-<whdroplet name="drStress3MainAppIDs" show="yes">
+(~FOR|count,1,10|(~drStress3MainAppIDs~)~)
+<whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
-<th style="background-color:#FFCC99;">(~count~)
+<th style="background-color:#FFCC99;">(~litelitecount~)
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgpng:(~SessionID~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?bw:privacypolicy:"></iframe></td> 
-<td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion:(~SessionID~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgRemoteCheckCompiler:(~SessionID~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?adv:privacypolicy:(~SessionID~)" ></iframe></td>
+<td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
 <td><iframe src="(~testprefix~)?bw:pgWelcome"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?bw:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
 </tr>
 </whdroplet>
-~)
 
-(~FOR|count,1,1|(~drStressRH~)~)
+<!--- (~FOR|count,1,1|(~drStressRH~)~) 
 
 (~FOR|count,1,4|(~drStress3MainAppIDs~)~)
-
+-->
 </table>
 (~CLEAR|testprefix~)
 </div>  <!--- demopagecontent -->
