@@ -1,9 +1,8 @@
 # webhubdemos\Source\GnuPlot\show_webhub_traffic_data.txt
 # usage: gnuplot show_webhub_traffic_data.txt
 
-
 reset
-#set term png truecolor
+set term png truecolor
 set terminal pngcairo size 1024,768 enhanced font 'Segoe UI,10'
 set output "webhub_traffic.png"
 set style fill solid 1.00
@@ -11,8 +10,10 @@ set style histogram rowstacked
 set style data histograms
 set xlabel "WebHub AppID"
 set ylabel "Page Requests per Instance; Total per AppID"
-set boxwidth 0.8
-#set yrange [0:1500]
-plot 'WebHub_Traffic.dat' using 6 t "", '' using 5 t "", '' using 4 t "", '' using 3:xticlabels(1) title "Total"
 
-#pause 5
+set boxwidth 0.8
+set yrange [0:1500]
+
+plot for [i=3:6] 'WebHub_Traffic.dat' using i:xticlabels(1) with histogram notitle, '' using 0:2:2 with labels title "WebHub Traffic (by gnuplot)"
+
+#pause 10
