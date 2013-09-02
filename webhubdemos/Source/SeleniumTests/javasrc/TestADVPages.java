@@ -193,7 +193,7 @@ public class TestADVPages {
 	}
 
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 45000, enabled = false)
 	public void verifyDemosStressFrame() throws MalformedURLException {
 		if ("".equals(vmr)) {
 		} else {
@@ -232,6 +232,47 @@ public class TestADVPages {
 			driver.quit();
 		}  
 	}
+
+	@Test(timeOut = 45000, enabled = true)
+	public void TestRepeat() throws MalformedURLException {
+		if ("".equals(vmr)) {
+		} else {
+
+			WebDriver driver;
+			WebElement webElement;
+
+			String actualTitle;
+			String expectedTitle;
+			String mySessionID;
+			
+
+			driver = new RemoteWebDriver(new URL(gridURL), capability);
+			driver.manage().deleteAllCookies();
+
+		
+			driver.get(baseUrl + "/" + vmr + "?demos:pgabout::demos");
+			webElement = driver.findElement(By.id("sessionNumberHere"));
+			mySessionID = webElement.getText();
+			
+			for (int i = 0; i < 12; i = i+1) {
+			driver.get(baseUrl + "/" + vmr + "?htfd:pgwelcome:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?adv:pgwelcome:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?demos:pgwelcome:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?demos:pgabout:" + mySessionID + ":demos");
+			driver.get(baseUrl + "/" + vmr + "?adv:pgWhatIsMyIP:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?demos:privacypolicy:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?bw:privacypolicy:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?demos:pgRemoteCheckVersion");
+			driver.get(baseUrl + "/" + vmr + "?demos:pgpng:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?adv:privacypolicy:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?bw:pgwelcome:" + mySessionID);
+			driver.get(baseUrl + "/" + vmr + "?bw:pgTestLoremIpsum" + mySessionID);
+			}
+			
+			driver.quit();
+		}  
+	}
+
 
 
 	@Test(timeOut = 45000, enabled = true)
