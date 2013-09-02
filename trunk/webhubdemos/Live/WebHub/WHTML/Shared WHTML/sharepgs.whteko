@@ -1020,7 +1020,7 @@ RawVMR: (~Request.RawVMR~)
 
 <whdroplet name="drStressRH" show="no">
 <tr>
-<th style="background-color:#66FF66;">(~litecount~)
+<th style="background-color:#66FF66;">(~litecount~)</th>
 <td> ok </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome"></iframe> </td>
@@ -1039,7 +1039,7 @@ RawVMR: (~Request.RawVMR~)
 (~FOR|litecount,1,10|(~drStress3MainAppIDs~)~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
-<th style="background-color:#FFCC99;">(~litecount~)
+<th style="background-color:#FFCC99;">(~litecount~)</th>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
