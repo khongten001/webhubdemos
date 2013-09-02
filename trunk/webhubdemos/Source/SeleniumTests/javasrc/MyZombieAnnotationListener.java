@@ -54,7 +54,6 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 	@Override
 	public void transform(ITestAnnotation annotation, Class testClass,
 			Constructor testConstructor, Method testMethod) {
-		Integer x;
 		Document xmlDocument = null;
 		String zc = null;
 		String ic = null;
@@ -101,11 +100,10 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		}
 		
 		//System.out.println("getName = " + testMethod.getName());
-		System.out.println("Setting Suite InvocationCount to " + zc + " and ThreadPoolSize to " + ic);
+		System.out.println("Setting Suite InvocationCount to " + ic + " and ThreadPoolSize to " + zc);
 		annotation.setInvocationCount(Integer.parseInt(ic));
 
-		x =  Integer.parseInt(zc);
-	    annotation.setThreadPoolSize(x);
+		annotation.setThreadPoolSize(Integer.parseInt(zc));
 		
 	}
 
