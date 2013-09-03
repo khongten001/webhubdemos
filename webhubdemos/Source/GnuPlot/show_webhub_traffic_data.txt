@@ -12,8 +12,18 @@ set xlabel "WebHub AppID"
 set ylabel "Page Requests per Instance; Total per AppID"
 
 set boxwidth 0.8
-#set yrange [0:4000]
+set yrange [0:4000]
 
-plot for [i=3:65] 'WebHub_Traffic.dat' using i:xticlabels(1) with histogram notitle, '' using 0:2:2 with labels title "WebHub Traffic (by gnuplot)"
+
+# columns 3 to 65 have traffic data
+# data starts in row 1 (after the total)
+# AppID is in column 1 -- display that on x axis
+# Total for AppID also starts on row 1; display that at top of each bar
+
+plot for [i=3:65] 'WebHub_Traffic.dat' every ::1 using i:xticlabels(1) with histogram \
+notitle, '' \
+every ::1 using 0:2:2 \
+with labels \
+title "WebHub Traffic (by gnuplot)"
 
 #pause 10
