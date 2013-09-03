@@ -973,7 +973,7 @@ ok
 
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
-<p><i>As of (~CentralInfo.NowGMT~)</i><br/>
+<p><i>As of (~CentralInfo.WebTimeGMT~)</i><br/>
 <span id="ip">(~Request.RemoteAddress~)</span></p>
 
 <h2>User Agent</h2>
