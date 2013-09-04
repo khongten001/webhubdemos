@@ -84,7 +84,7 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 			}
 		}
 		
-		System.out.println("getXmlVersion = " + xmlDocument.getXmlVersion());
+		//System.out.println("getXmlVersion = " + xmlDocument.getXmlVersion());
 		
 		
 		// http://docs.oracle.com/javase/tutorial/jaxp/xslt/xpath.html
@@ -100,7 +100,7 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 		}
 		
 		//System.out.println("getName = " + testMethod.getName());
-		System.out.println("Setting Suite InvocationCount to " + ic + " and ThreadPoolSize to " + zc);
+		//System.out.println("Setting Suite InvocationCount to " + ic + " and ThreadPoolSize to " + zc);
 		annotation.setInvocationCount(Integer.parseInt(ic));
 
 		annotation.setThreadPoolSize(Integer.parseInt(zc));
