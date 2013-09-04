@@ -1048,11 +1048,11 @@ RawVMR: (~Request.RawVMR~)
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?bw:privacypolicy:"></iframe></td> 
-<td><iframe src="(~testprefix~)?demos:pgRemoteCheckVersion"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
 <td><iframe src="(~testprefix~)?bw:pgWelcome"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?bw:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
 </tr>
 </whdroplet>
 
