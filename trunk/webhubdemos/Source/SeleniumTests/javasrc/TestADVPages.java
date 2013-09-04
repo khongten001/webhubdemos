@@ -114,6 +114,7 @@ public class TestADVPages {
 			// System.out.println("userAgent = " + webElement.getText());
 
 			driver.quit();
+			//driver.close();
 		}
 	}
 
@@ -168,6 +169,7 @@ public class TestADVPages {
 					.click();
 
 			driver.quit();
+			//driver.close();
 		}
 	}
 
@@ -196,6 +198,7 @@ public class TestADVPages {
 			driver.findElement(By.linkText("Source")).click();
 
 			driver.quit();
+			//driver.close();
 		}
 	}
 
@@ -241,6 +244,7 @@ public class TestADVPages {
 
 			// System.out.println("stress 05");
 			driver.quit();
+			//driver.close();
 		}
 	}
 
@@ -252,8 +256,6 @@ public class TestADVPages {
 			WebDriver driver;
 			WebElement webElement;
 
-			String actualTitle;
-			String expectedTitle;
 			String mySessionID;
 			int iSessionID;
 			
@@ -341,10 +343,11 @@ public class TestADVPages {
 			
 			// System.out.println("stress 14. Sleeping for 250ms.");
 			
-			//Thread.sleep(250);
+			Thread.sleep(50);
 			}
 			
 			driver.quit();
+			//driver.close();
 			}
 		
 			
@@ -358,7 +361,7 @@ public class TestADVPages {
 	}
 
 	@Test(timeOut = 45000, enabled = true)
-	public void verifyBwWalkThrough() throws MalformedURLException {
+	public void verifyBwWalkThrough() throws MalformedURLException, InterruptedException {
 
 		if ("".equals(vmr)) {
 		} else {
@@ -380,25 +383,31 @@ public class TestADVPages {
 
 			driver.findElement(By.id("a-pgsetup")).click();
 
+			Thread.sleep(10);
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
 
 			driver.findElement(By.id("a-pgabout")).click();
-
+			Thread.sleep(10);
+			
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
 
 			driver.findElement(By.linkText("Download")).click();
 
+			Thread.sleep(10);
+			
 			driver.findElement(By.linkText("Welcome")).click();
-
+			Thread.sleep(10);
+			
 			driver.findElement(By.id("a-viewfiles")).click();
 
 			driver.findElement(
 					By.linkText("..\\..\\Shared WHTML\\headfoot.whteko"))
 					.click();
+			Thread.sleep(10);
 
 			driver.findElement(By.linkText("Back")).click();
 			driver.findElement(
@@ -410,13 +419,15 @@ public class TestADVPages {
 					.selectByVisibleText("Parchment");
 
 			driver.findElement(By.id("chkShowSystemInfo")).click();
-
+			Thread.sleep(10);
+			
 			driver.findElement(By.id("btnPrefPreview")).click();
 
 			new Select(driver.findElement(By.name("litWallpaper")))
 					.selectByVisibleText("Textured White");
 			driver.findElement(By.id("btnPrefPreview")).click();
-
+			Thread.sleep(10);
+			
 			new Select(driver.findElement(By.name("litWallpaper")))
 					.selectByVisibleText("Clouds");
 			driver.findElement(By.id("btnPrefPreview")).click();
@@ -428,7 +439,8 @@ public class TestADVPages {
 			driver.findElement(By.id("chkShowSystemInfo")).click();
 
 			driver.findElement(By.id("btnPrefReturn")).click();
-
+			Thread.sleep(10);
+			
 			driver.findElement(By.id("navWelcome")).click();
 			driver.findElement(By.id("a-pgenterbw")).click();
 			driver.findElement(By.name("submit")).click();
@@ -451,7 +463,8 @@ public class TestADVPages {
 			driver.findElement(By.name("inSpeed")).click();
 			driver.findElement(By.name("submit")).click();
 			driver.findElement(By.linkText("Deutsch")).click();
-
+			Thread.sleep(10);
+			
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
@@ -459,6 +472,9 @@ public class TestADVPages {
 			// System.out.println("bw 100");
 
 			driver.quit();
+			
+			// org.openqa.selenium.remote.SessionNotFoundException: Session ID is null caused by driver.close()
+			//driver.close();
 		}
 	}
 
