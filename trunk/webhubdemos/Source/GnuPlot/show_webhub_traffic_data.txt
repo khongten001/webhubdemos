@@ -11,9 +11,17 @@ set style data histograms
 set xlabel "WebHub AppID"
 set ylabel "Page Requests per Instance; Total per AppID"
 
-set boxwidth 0.8
-set yrange [0:4000]
+set key outside
+set key right top
 
+set boxwidth 0.8
+#set yrange [0:4000]
+
+# extract the 'total' cell
+# http://stackoverflow.com/questions/18583180/gnuplot-how-to-load-and-display-single-numeric-value-from-data-file/18587275
+
+stats 'WebHub_Traffic.dat' every ::::0 using 2 nooutput
+total = int(STATS_min)
 
 # columns 3 to 65 have traffic data
 # data starts in row 1 (after the total)
@@ -24,6 +32,6 @@ plot for [i=3:65] 'WebHub_Traffic.dat' every ::1 using i:xticlabels(1) with hist
 notitle, '' \
 every ::1 using 0:2:2 \
 with labels \
-title "WebHub Traffic (by gnuplot)"
+title sprintf("WebHub Traffic\nTotal Hits: %d", total)
 
 #pause 10
