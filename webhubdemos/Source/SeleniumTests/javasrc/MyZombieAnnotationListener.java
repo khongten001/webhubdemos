@@ -105,6 +105,8 @@ public class MyZombieAnnotationListener implements IAnnotationTransformer, ISuit
 
 		annotation.setThreadPoolSize(Integer.parseInt(zc));
 		
+		annotation.setTimeOut(45000 * Integer.parseInt(ic));
+		
 	}
 
 	@Override
