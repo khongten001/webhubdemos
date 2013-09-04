@@ -91,7 +91,7 @@ public class TestADVPages {
 	public void afterTest() {
 	}
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 55000, enabled = true)
 	public void verifyMyIP() throws MalformedURLException {
 
 		if ("".equals(vmr)) {
@@ -118,7 +118,7 @@ public class TestADVPages {
 		}
 	}
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 55000, enabled = true)
 	public void verifyADVWalkthrough() throws MalformedURLException {
 
 		if ("".equals(vmr)) {
@@ -173,7 +173,7 @@ public class TestADVPages {
 		}
 	}
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 55000, enabled = true)
 	public void verifyDemosWalkThrough() throws MalformedURLException {
 
 		if ("".equals(vmr)) {
@@ -248,7 +248,7 @@ public class TestADVPages {
 		}
 	}
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 120000, enabled = true)
 	public void TestRepeat() throws MalformedURLException {
 		if ("".equals(vmr)) {
 		} else {
@@ -360,7 +360,7 @@ public class TestADVPages {
 		
 	}
 
-	@Test(timeOut = 45000, enabled = true)
+	@Test(timeOut = 55000, enabled = true)
 	public void verifyBwWalkThrough() throws MalformedURLException, InterruptedException {
 
 		if ("".equals(vmr)) {
