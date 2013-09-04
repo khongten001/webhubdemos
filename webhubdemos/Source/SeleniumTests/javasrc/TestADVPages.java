@@ -119,7 +119,7 @@ public class TestADVPages {
 	}
 
 	@Test(timeOut = 55000, enabled = true)
-	public void verifyADVWalkthrough() throws MalformedURLException {
+	public void verifyADVWalkthrough() throws MalformedURLException, InterruptedException {
 
 		if ("".equals(vmr)) {
 		} else {
@@ -144,11 +144,15 @@ public class TestADVPages {
 			driver.findElement(By.linkText("Internal Workings")).click();
 			driver.findElement(By.linkText("Cycle List Navigation Bar"))
 					.click();
+			Thread.sleep(10);
+			
 			driver.findElement(By.linkText("How to Use it")).click();
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for adv WebHub demo\"]"))
 					.click();
 			driver.findElement(By.id("a-viewfiles")).click();
+			Thread.sleep(10);
+			
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for adv WebHub demo\"]"))
 					.click();
@@ -156,17 +160,23 @@ public class TestADVPages {
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for adv WebHub demo\"]"))
 					.click();
+			Thread.sleep(10);
+			
 			driver.findElement(By.id("a-pgenteradv")).click();
 			driver.findElement(By.linkText("Click to Show Next Advertisement"))
 					.click();
 			driver.findElement(By.linkText("Click to Show Next Advertisement"))
 					.click();
+			Thread.sleep(10);
+			
 			driver.findElement(By.linkText("Click to Show Next Advertisement"))
 					.click();
 			driver.findElement(By.linkText("Click to Show Next Advertisement"))
 					.click();
 			driver.findElement(By.linkText("Click to Show Next Advertisement"))
 					.click();
+			Thread.sleep(10);
+			
 
 			driver.quit();
 			//driver.close();
@@ -444,21 +454,27 @@ public class TestADVPages {
 			driver.findElement(By.id("navWelcome")).click();
 			driver.findElement(By.id("a-pgenterbw")).click();
 			driver.findElement(By.name("submit")).click();
+			Thread.sleep(10);
+			
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
 
 			driver.findElement(By.id("a-pgenterbw")).click();
 			driver.findElement(By.linkText("RSS Example")).click();
+			Thread.sleep(10);
+			
 			driver.findElement(
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
 			driver.findElement(By.id("a-pgenterbw")).click();
 			driver.findElement(By.id("navOptions")).click();
+			Thread.sleep(10);
 
 			driver.findElement(By.id("chkShowSystemInfo")).click();
 			driver.findElement(By.id("btnPrefPreview")).click();
 			driver.findElement(By.id("navEnter")).click();
+			Thread.sleep(10);
 
 			driver.findElement(By.name("inSpeed")).click();
 			driver.findElement(By.name("submit")).click();
@@ -469,6 +485,7 @@ public class TestADVPages {
 					By.cssSelector("img[alt=\"Logo for bw WebHub demo\"]"))
 					.click();
 			driver.findElement(By.linkText("English")).click();
+			Thread.sleep(10);
 			// System.out.println("bw 100");
 
 			driver.quit();
