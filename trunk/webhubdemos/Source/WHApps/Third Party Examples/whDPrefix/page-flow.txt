@@ -1,0 +1,34 @@
+{whpage} pgregister
+
+To register your Delphi prefix preference, please start by logging in with an OpenID email
+or JUMP|cleanup2013|login with January 2013 Cleanup Password
+
+(*) January 2013 cleanup
+requires password sent via email
+
+(*) sign in with OpenID email
+available to anyone
+
+
+--> cleanup2013
+--> pgregisterb
+
+_email === DPREMail 
+
+{whpage} pgmaintain
+
+Registered Prefixes
+edit / delete -- -- -- -- -- --
+create new
+logout
+
+{whpage} pgconfirmdata
+
+link available for testing
+
+{whpage} pgpost  post final changes to 1 record
+ --> return to pgmaintain
+
+generate csv - maximum 1 record per email address
+generate passtoken - maximum 1 per email address
+
