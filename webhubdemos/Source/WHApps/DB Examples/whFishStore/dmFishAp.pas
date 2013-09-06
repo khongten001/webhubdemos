@@ -31,7 +31,7 @@ interface
 uses
   Forms, Classes,
   tpApplic{non-gui}, updateok, tpAction{no-gui}, tpActionGUI,
-  webBrows, whgui_Menu, cgivars, apistat, apibuilt, apicall,
+  whgui_Menu, cgivars, apistat, apibuilt, apicall,
   webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink,
   webTypes, webInfoU, webBase, webcore, webSend, webapp,
   htWebApp, htbdeWApp, webvars,

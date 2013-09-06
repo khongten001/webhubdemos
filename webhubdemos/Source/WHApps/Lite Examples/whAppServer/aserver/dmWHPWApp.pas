@@ -28,7 +28,7 @@ uses
   {$I xe_actnlist.inc}
   ExtCtrls, 
   whgui_Menu, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
-  WebVars, WebBrows, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
+  WebVars, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
   WebCall, CGiServ, WebServ, HtmlBase, HtmlCore,
   htmlSend, webLink, UpdateOk, tpAction{no-gui}, tpActionGUI, WebInfoU, 
   webInfoBase;
