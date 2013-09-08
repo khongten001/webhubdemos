@@ -1,5 +1,5 @@
 @echo off
-P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe /note "compile-1demo_x_win32_source.bat [%1]"
+P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe /note "compile-1demo_x_source.bat [%1]"
 
 setlocal
 
@@ -17,7 +17,7 @@ if not exist "%droot%bin\dcc32.exe" pause
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;k:\Rubicon\source;%ibopath%"
-set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
+set outputroot=d:\Projects\WebHubDemos\Live\WebHub\Apps
 set pkg=
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;WEBHUBACE;INHOUSE
 
@@ -39,6 +39,7 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 :: off May-2013 set eurparams=
 
 @ren %1.cfg %1.off
+@ren %1.dproj %1.dproj_off
 
 del %outputroot%\%1_x_d%compilerdigits%_win32_debug.exe
 if NOT "%newipcdebug%"=="" echo 1demo x_d%compilerdigits%_win32_debug %1 "%eurparams%"
@@ -71,6 +72,8 @@ ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64.exe
 
 @echo off
 @ren %1.off %1.cfg
+@ren %1.dproj_off %1.dproj
+
 @cd /d %outputroot%
 ::eur off if NOT "%eurparams%"=="" del %1_x_d%compilerdigits%_win32_debug.exe
 ::eur off if "%eurparams%"=="" del %1_x_d%compilerdigits%_win32.exe
