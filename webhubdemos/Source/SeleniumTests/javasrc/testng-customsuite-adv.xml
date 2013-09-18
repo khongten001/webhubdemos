@@ -8,6 +8,7 @@
 <parameter name="suiteZombieCount"  value="10"/>
 <parameter name="suiteIterationCount"  value="10"/>
 <parameter name="inAuthority"  value="w12.demos.href.com:80" />
+<!-- localhost:4444 -->
 <parameter name="inSelenHub"  value="db.demos.href.com:4444" />
 <parameter name="inVMR"  value="scripts/runisa64.dll" />
   <test verbose="2" name="ok">
