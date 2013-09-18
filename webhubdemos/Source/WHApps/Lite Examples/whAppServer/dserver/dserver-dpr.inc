@@ -16,6 +16,7 @@
   {$IFDEF CPUX64}
   webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
   {$ENDIF}
+  whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas',
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
