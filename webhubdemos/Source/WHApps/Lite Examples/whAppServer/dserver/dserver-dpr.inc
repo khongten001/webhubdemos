@@ -13,9 +13,6 @@
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   htWebApp in 'h:\htWebApp.pas',
-  {$IFDEF CPUX64}
-  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
-  {$ENDIF}
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas',
@@ -37,6 +34,7 @@
   webVars in 'k:\webhub\lib\webVars.pas',
   webSend in 'k:\webhub\lib\whvcl\webSend.pas',
   webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
 
   ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
   whAppOut in 'k:\webhub\lib\whAppOut.pas',
