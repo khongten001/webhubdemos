@@ -75,7 +75,6 @@ inherited DSPdm: TDSPdm
     Top = 192
   end
   object rbCache: TrbCache
-    AltMemMgr = True
     MemoryLimit = 1000
     Version = 2.210000000000000000
     Left = 136
