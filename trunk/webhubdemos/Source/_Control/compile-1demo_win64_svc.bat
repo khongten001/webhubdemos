@@ -1,7 +1,7 @@
 @echo off
 echo "compile-1demo_win64_svc.bat here"
 
-if "%compilerdigits%"=="" set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 setlocal
 
 del d:\temp\DelphiTempDCU\*.dcu

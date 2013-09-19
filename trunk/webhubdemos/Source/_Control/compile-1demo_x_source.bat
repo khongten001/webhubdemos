@@ -3,7 +3,7 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 
 setlocal
 
-set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS
 set newipcdebug=CodeSite;Log2CSL
 
@@ -29,6 +29,7 @@ set flags=-b -W-SYMBOL_PLATFORM -W-UNIT_PLATFORM  -$O- -$W+ -$J+ -$Q+ -$C- -$Y- 
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
+if "%compilerdigits%"=="19" set raizelib=
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
@@ -41,6 +42,7 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 @ren %1.cfg %1.off
 @ren %1.dproj %1.dproj_off
 
+if "%raizelib%"=="" goto continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_debug.exe
 if NOT "%newipcdebug%"=="" echo 1demo x_d%compilerdigits%_win32_debug %1 "%eurparams%"
 if NOT "%newipcdebug%"=="" @echo on
@@ -48,6 +50,7 @@ if NOT "%newipcdebug%"=="" "%droot%bin\dcc32.exe"  %1.dpr  -nd:\temp\DelphiTempD
 if NOT "%newipcdebug%"=="" @if errorlevel 1 pause
 if NOT "%newipcdebug%"=="" ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_debug.exe
 
+:continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32.exe
 echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
 @echo on
@@ -55,12 +58,14 @@ echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
 @if errorlevel 1 pause
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32.exe
 
+if "%compilerdigits%"=="19" set raizelib=
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win64
 P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe raizelib "%raizelib%"
 
 ::win64
+if "%raizelib%"=="" goto continue041
 del %outputroot%\%1_x_d%compilerdigits%_win64.exe
 set objdir=K:\webhub\regex\Pcre-Delphi-Win64-msc
 echo 1demo x_d%compilerdigits%_win64_debug %1 
@@ -70,6 +75,7 @@ echo 1demo x_d%compilerdigits%_win64_debug %1
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64.exe
 
 
+:continue041
 @echo off
 @ren %1.off %1.cfg
 @ren %1.dproj_off %1.dproj

@@ -1,5 +1,5 @@
 @echo off
-if "%compilerdigits%"=="" set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 
 setlocal
 del d:\temp\DelphiTempDCU\*.dcu
@@ -10,6 +10,7 @@ call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Del
 set dcc=%droot%bin\dcc32.exe
 if not exist %dcc% pause
 
+if "%compilerdigits%"=="19" set raizepath=
 if "%compilerdigits%"=="18" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
@@ -26,13 +27,15 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 ren %1.cfg %1.off
 
+if "%raizepath%"=="" goto continue030
 echo 1demo d%compilerdigits%_win32 %1
-:: pending CS 5 for XE4 del %outputroot%\%1.exe %1.raize.bin
-:: pending CS 5 for XE4 @echo on
-:: pending CS 5 for XE4 "%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib -u%libsearchpath%;%raizepath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-:: pending CS 5 for XE4 if errorlevel 1 pause
-:: pending CS 5 for XE4 ren %outputroot%\%1.exe %1.raize.bin
+del %outputroot%\%1.exe %1.raize.bin
+@echo on
+"%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib -u%libsearchpath%;%raizepath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+if errorlevel 1 pause
+ren %outputroot%\%1.exe %1.raize.bin
 
+continue030:
 "%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause
 

@@ -101,7 +101,8 @@ echo .
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
-set compilerdigits=18
+set compilerdigits=
+call %~dp0\default-compilerdigits.bat
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
 
 :dspstart

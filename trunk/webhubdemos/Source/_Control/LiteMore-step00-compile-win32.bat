@@ -2,7 +2,7 @@ setlocal
 
 cd /d %~dp0
 
-set comp3=D18
+set comp3=D19
 set bits=32
 :: goto newipcWhLite
 
@@ -13,7 +13,9 @@ call "%~dp0\compile-1demo_old_win32_source.bat" whlite
 
 :: new ipc whLite.exe
 :newipcWhLite
-set compilerdigits=18
+set compilerdigits=
+call %~dp0\default-compilerdigits.bat
+
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
 copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
 cd /d "D:\Projects\webhubdemos\Source\WHApps\Lite Examples\whAppServer\whLite"
