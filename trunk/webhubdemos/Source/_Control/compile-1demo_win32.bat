@@ -35,7 +35,7 @@ del %outputroot%\%1.exe %1.raize.bin
 if errorlevel 1 pause
 ren %outputroot%\%1.exe %1.raize.bin
 
-continue030:
+:continue030
 "%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause
 
