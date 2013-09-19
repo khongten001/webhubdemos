@@ -1,5 +1,6 @@
 @echo off
-echo "compile-1demo_win64_svc.bat here"
+set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
+%CSSend% /note "compile-1demo_win64_svc.bat [%1]"
 
 call %~dp0\default-compilerdigits.bat
 setlocal
@@ -16,14 +17,15 @@ if not exist %dcc% pause
 
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
+if "%compilerdigits%"=="19" set raizelib=
 
 echo raizelib %raizelib%
 
-REM set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;%raizelib%;%droot%lib\win64\release;"
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
-set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE;CodeSite;Log2CSL;LogSTime;
+if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE
+if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE;CodeSite;Log2CSL;LogSTime;
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 set objpath=K:\WebHub\regex\Pcre-Delphi-Win64-msc
@@ -35,11 +37,14 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 if exist %1.cfg REN %1.cfg %1.off
 
-echo 1demo as-service d%compilerdigits%_win64 %1
+%CSSend% "1demo as-service d%compilerdigits%_win64 %1"
 
 @echo on
+set ok1=yes
 "%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
+if errorlevel 1 set ok1=no
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
+if "%ok1%"=="no" pause
 
 @echo off
 if exist %1.off REN %1.off %1.cfg
