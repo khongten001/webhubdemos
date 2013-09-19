@@ -126,5 +126,6 @@ if errorlevel 1 %CSSend% /error "%~dp0\compile-1demo_win32.bat failed for whDSP"
 goto end
 
 :END
-echo Complete
+%CSSend% "Complete"
+%CSSend% "intentional pause..."
 pause
