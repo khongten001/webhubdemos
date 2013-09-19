@@ -35,6 +35,7 @@
   webSend in 'k:\webhub\lib\whvcl\webSend.pas',
   webApp in 'k:\webhub\lib\whvcl\webApp.pas',
   webAjax in 'k:\webhub\lib\whplus\webAjax.pas',
+  webIList in 'k:\webhub\lib\whvcl\webIList.pas',
 
   ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',
   whAppOut in 'k:\webhub\lib\whAppOut.pas',
