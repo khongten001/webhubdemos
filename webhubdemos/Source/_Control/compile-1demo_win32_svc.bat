@@ -10,12 +10,13 @@ call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Del
 set dcc=%droot%bin\dcc32.exe
 if not exist %dcc% pause
 
-set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
+if "%compilerdigits%"=="19" set raizelib=
+if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizelib%;%droot%lib\win32\debug;
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
-:: LogInitFinal;LogAppTick;
-set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;LogTerminate;LogHelo
+:: LogInitFinal;LogAppTick;CodeSite;LogTerminate;LogHelo
+set compilerflags=USE_TIBODataset;INHOUSE
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 set respath=%droot%lib\win32\release
