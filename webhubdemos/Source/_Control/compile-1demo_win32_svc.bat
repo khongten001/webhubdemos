@@ -1,5 +1,5 @@
 @echo off
-if "%compilerdigits%"=="" set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 setlocal
 
 del d:\temp\DelphiTempDCU\*.dcu

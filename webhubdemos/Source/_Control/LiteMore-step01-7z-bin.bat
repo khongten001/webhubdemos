@@ -1,7 +1,7 @@
 :: use 7z utility to compress executable files
 :: 7z is free with open source
 
-if "%compilerdigits%"=="" set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 
 setlocal
 
