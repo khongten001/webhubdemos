@@ -5,7 +5,7 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 call %~dp0\default-compilerdigits.bat
 
 setlocal
-del d:\temp\DelphiTempDCU\*.dcu
+@del d:\temp\DelphiTempDCU\*.dcu
 
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
@@ -29,20 +29,26 @@ set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\c
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
-ren %1.cfg %1.off
+if exist %1.cfg REN %1.cfg %1.off
 
 if "%raizepath%"=="" %CSSend% "skip CodeSite here"
 if "%raizepath%"=="" goto continue030
 echo 1demo d%compilerdigits%_win32 %1
-del %outputroot%\%1.exe %1.raize.bin
+@del %outputroot%\%1.exe %1.raize.bin
+set ok1=yes
 @echo on
 "%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib -u%libsearchpath%;%raizepath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
-ren %outputroot%\%1.exe %1.raize.bin
+if errorlevel 1 set ok1=no
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite"
+if "%ok1%"=="no" pause
+if "%ok1%"=="yes" ren %outputroot%\%1.exe %1.raize.bin
 
 :continue030
+set ok1=yes
 "%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
+if errorlevel 1 set ok1=no
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
+if "%ok1%"=="no" pause
 
 @echo off
-ren %1.off %1.cfg
+if exist %1.off REN %1.off %1.cfg

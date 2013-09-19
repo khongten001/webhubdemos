@@ -26,7 +26,7 @@ set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collection
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
 
-ren %1.cfg %1.off
+if exist %1.cfg REN %1.cfg %1.off
 
 echo 1demo as-service d%compilerdigits%_win32 %1
 
@@ -35,6 +35,6 @@ echo 1demo as-service d%compilerdigits%_win32 %1
 if errorlevel 1 pause
 
 @echo off
-ren %1.off %1.cfg
+if exist %1.off REN %1.off %1.cfg
 
 endlocal
