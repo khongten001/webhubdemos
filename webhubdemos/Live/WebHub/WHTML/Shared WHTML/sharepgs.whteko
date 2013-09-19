@@ -299,7 +299,7 @@ Additional content may come from a database or other sources.</i></p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~~Download~)</h1>
-<p>The WebHub demos compile with Embarcadero Delphi XE and XE2 plus the
+<p>The WebHub demos compile with Embarcadero Delphi XE through XE5 plus the
 WebHub Components from HREF Tools Corp. </p>
 <p>It is a good idea to check which version of WebHub this page was created by.
 To do this, look for the version number in the page footer.  (The answer is (~version~) for this
@@ -312,7 +312,7 @@ delays in updating the demos.  </p>
 If you do not wish to map drive H:, edit the paths (to PAS files) in the project source (DPR file) for any demo you want to compile.</p>
 
 <h3>Access through SubVersion ("SVN")</h3>
-<p>If you have Delphi XE, you can open the demos from inside the Delphi IDE as follows:</p>
+<p>If you have Delphi XE5, you can open the demos from inside the Delphi IDE as follows:</p>
 <ol>
 <li> File > Open from Version Control </li>
 <li> URL: http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/ </li>
