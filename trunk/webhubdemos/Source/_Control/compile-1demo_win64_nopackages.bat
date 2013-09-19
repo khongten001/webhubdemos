@@ -29,8 +29,11 @@ if exist %1.cfg REN %1.cfg %1.off
 echo 1demo no-packages d%compilerdigits%_win64 %1
 
 @echo on
+set ok1=yes
 "%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%raizelib% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
+if errorlevel 1 set ok1=no
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
+if "%ok1%"=="no" pause
 
 @echo off
 if exist %1.off REN %1.off %1.cfg
