@@ -1,3 +1,6 @@
+set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
+%CSSend% /note "compile-1demo_win32.bat %1"
+
 @echo off
 call %~dp0\default-compilerdigits.bat
 
@@ -8,6 +11,7 @@ del d:\temp\DelphiTempDCU\*.dcu
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
 call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Delphi D%compilerdigits%"
 set dcc=%droot%bin\dcc32.exe
+if not exist %dcc% %CSSend% /error "Does not exist: [%dcc%]"
 if not exist %dcc% pause
 
 if "%compilerdigits%"=="19" set raizepath=
@@ -27,6 +31,7 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 ren %1.cfg %1.off
 
+if "%raizepath%"=="" %CSSend% "skip CodeSite here"
 if "%raizepath%"=="" goto continue030
 echo 1demo d%compilerdigits%_win32 %1
 del %outputroot%\%1.exe %1.raize.bin
