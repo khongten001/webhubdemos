@@ -1,4 +1,7 @@
 @echo off
+set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
+%CSSend% /note "compile-1demo_win32_nopackages.bat %1"
+
 call %~dp0\default-compilerdigits.bat
 
 setlocal
