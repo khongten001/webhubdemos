@@ -22,7 +22,7 @@ set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\c
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
-ren %1.cfg %1.off
+if exist %1.cfg REN %1.cfg %1.off
 
 echo 1demo d%compilerdigits%_win64 %1
 @echo on
@@ -30,4 +30,4 @@ echo 1demo d%compilerdigits%_win64 %1
 if errorlevel 1 pause
 
 @echo off
-ren %1.off %1.cfg
+if exist %1.off REN %1.off %1.cfg

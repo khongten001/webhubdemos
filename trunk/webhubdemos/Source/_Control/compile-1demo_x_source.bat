@@ -39,8 +39,8 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 :: --el_output=el6 --el_mode=delphi --el_verbose 
 :: off May-2013 set eurparams=
 
-@ren %1.cfg %1.off
-@ren %1.dproj %1.dproj_off
+if exist %1.cfg   REN %1.cfg %1.off
+if exist %1.dproj REN %1.dproj %1.dproj_off
 
 if "%raizelib%"=="" goto continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_debug.exe
@@ -77,8 +77,8 @@ ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64.exe
 
 :continue041
 @echo off
-@ren %1.off %1.cfg
-@ren %1.dproj_off %1.dproj
+if exist %1.off   REN %1.off %1.cfg
+if exist %1.dproj REN %1.dproj_off %1.dproj
 
 @cd /d %outputroot%
 ::eur off if NOT "%eurparams%"=="" del %1_x_d%compilerdigits%_win32_debug.exe
