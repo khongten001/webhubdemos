@@ -81,7 +81,7 @@ Port = (~Port~)<br />
  </td>
 </tr>
 
-<tr><th>App.DynURL</th><td></td></tr>
+<tr><th>App.DynURL</th><th>Session</th></tr>
 <tr><td>
 RawActiveAuthority: (~DynURL.RawActiveAuthority~) <br/>
 RawHost: (~DynURL.RawHost~) <br/>
@@ -96,7 +96,18 @@ ToSessionIDW: (~DynURL.ToSessionIDW~) <br/>
 ToHomePageID: (~DynURL.ToHomePageID~) <br/>
 Rand: (~DynURL.Rand~) <br/>
 W: (~DynURL.W~)
-</td><td></td>
+</td>
+<td>
+MacroCost: (~MacroCost~)<br/>
+PageCount: (~PageCount~)<br/>
+PageCost: (~PageCost~)<br/>
+SessionAverageIntervalMS: (~SessionAverageIntervalMS~)<br/>
+SessionCost: (~SessionCost~)<br/>
+SessionElapsedSec: (~SessionElapsedSec~)<br/>
+SessionFirstReferer: (~SessionFirstReferer~)<br/>
+SessionFirstIP: (~SessionFirstIP~)<br/>
+SessionLingvo: (~SessionLingvo~)
+</td>
 </tr>
 
 </table>
