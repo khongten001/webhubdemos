@@ -95,12 +95,18 @@
       </Item>
       <Item name="Feedback">
         <Host value="smtp^"/>
+        <Host context="NYX" value="email-smtp.us-east-1.amazonaws.com "/>
         <Port value="smtpport^"/>
+        <Port context="NYX" value="25"/>
         <SMTPUsername value="smtpusername^"/>
+        <SMTPUsername context="NYX" value="AKIAJHBTDNZZX6IJQAIQ"/>
         <SMTPPassword value="smtppassword^"/>
+        <SMTPPassword context="NYX" value="Am7mqx/M2MMy9EZ8/PvNz4++0Uud3Kwwgzly3fkzaOi2"/>
         <From value="EMail^"/>
+        <From context="NYX" value="webmaster@href.com"/>
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
+        <To context="NYX" value="ann@href.com"/>
         <Cc value="EMail^"/>
         <Subject value="WebHub HTFD demo: Feedback Letter"/>
         <Template value="letters\feedback.txt"/>
