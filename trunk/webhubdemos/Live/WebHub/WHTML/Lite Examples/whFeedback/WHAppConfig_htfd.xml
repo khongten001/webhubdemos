@@ -95,7 +95,7 @@
       </Item>
       <Item name="Feedback">
         <Host value="smtp^"/>
-        <Host context="NYX" value="email-smtp.us-east-1.amazonaws.com "/>
+        <Host context="NYX" value="email-smtp.us-east-1.amazonaws.com"/>
         <Port value="smtpport^"/>
         <Port context="NYX" value="25"/>
         <SMTPUsername value="smtpusername^"/>
