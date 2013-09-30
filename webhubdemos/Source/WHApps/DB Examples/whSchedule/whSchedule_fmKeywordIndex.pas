@@ -18,6 +18,8 @@ interface
   {$I xe_actnlist.inc}
 *)
 
+{$IFDEF INHOUSE}
+
 uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons, SysUtils,
   Classes, DB,
@@ -61,9 +63,13 @@ type
 var
   fmRubiconIndex: TfmRubiconIndex;
 
+{$ENDIF}
+
 implementation
 
 {$R *.dfm}
+
+{$IFDEF INHOUSE}
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
@@ -229,5 +235,7 @@ begin
   if Field.DataSet.FieldByName('SchRepeatOf').AsString = '' then
     Engine.ProcessString(Field.AsString);
 end;
+
+{$ENDIF}
 
 end.

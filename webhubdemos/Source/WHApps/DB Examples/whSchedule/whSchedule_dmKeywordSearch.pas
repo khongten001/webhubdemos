@@ -14,6 +14,8 @@ unit whSchedule_dmKeywordSearch;
 
 interface
 
+{$IFDEF INHOUSE}
+
 uses
   SysUtils, Classes,
   IB_Components, IBODataSet,
@@ -57,9 +59,13 @@ type
 var
   DMRubiconSearch: TDMRubiconSearch;
 
+{$ENDIF}
+
 implementation
 
 {$R *.dfm}
+
+{$IFDEF INHOUSE}
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
@@ -536,5 +542,7 @@ begin
 
   Result := FScheduleGeneratorNumber; // 200 as of 2011
 end;
+
+{$ENDIF}
 
 end.
