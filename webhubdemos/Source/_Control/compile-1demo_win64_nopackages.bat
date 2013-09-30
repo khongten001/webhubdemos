@@ -12,12 +12,13 @@ call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Del
 set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
-set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
+if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
+if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
-set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v4.9.11
+set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\
 
 :: extra parameters for Delphi XE2
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE

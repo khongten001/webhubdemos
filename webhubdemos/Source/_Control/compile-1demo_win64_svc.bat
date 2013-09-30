@@ -17,7 +17,7 @@ if not exist %dcc% pause
 
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
-if "%compilerdigits%"=="19" set raizelib=
+if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
 
 echo raizelib %raizelib%
 
