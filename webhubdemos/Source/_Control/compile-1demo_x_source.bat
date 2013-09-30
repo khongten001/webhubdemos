@@ -1,5 +1,6 @@
 @echo off
-P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe /note "compile-1demo_x_source.bat [%1]"
+set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
+%CSSend% /note "compile-1demo_x_source.bat [%1]"
 
 setlocal
 
@@ -33,7 +34,7 @@ if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\W
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
-P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe raizelib "%raizelib%"
+%CSSend% raizelib "%raizelib%"
 
 :: off May-2013 set eurparams=--el_pathK:\Vendors\EurekaLab\EurekaLog6\Delphi16  --el_config"k:\webhub\hub\d07\href_eurekalog_whsilent.eof"
 :: --el_output=el6 --el_mode=delphi --el_verbose 
@@ -66,13 +67,22 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 
 ::win64
 if "%raizelib%"=="" goto continue041
-del %outputroot%\%1_x_d%compilerdigits%_win64.exe
+@del %outputroot%\%1_x_d%compilerdigits%_win64.exe
 set objdir=K:\webhub\regex\Pcre-Delphi-Win64-msc
-echo 1demo x_d%compilerdigits%_win64_debug %1 
+%CSSend% win64 %1.dpr
+%CSSend% outputroot %outputroot%
+set okflag=yes
 @echo on
-"%droot%bin\dcc64.exe"  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags%;%newipcdebug% -LU%pkg% -u%libsearchpath%;%droot%\lib\win64\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
-@if errorlevel 1 pause
+%droot%bin\dcc64.exe  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags%;%newipcdebug% -LU%pkg% -u%libsearchpath%;%droot%\lib\win64\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
+if errorlevel 1 set okflag=no
+if "%okflag%"=="no" %CSSend% /error "Failed to compile %1.dpr for win64"
+if "%okflag%"=="no" pause
+
+set okflag=yes
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64.exe
+if errorlevel 1 set okflag=no
+if "%okflag%"=="no" %CSSend% /error "Failed to rename %1.exe"
+if "%okflag%"=="no" pause
 
 
 :continue041

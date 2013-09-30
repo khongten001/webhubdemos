@@ -14,7 +14,7 @@ if not exist %dcc% pause
 
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v4.9.11;%droot%lib\win64\release;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
@@ -31,10 +31,11 @@ echo 1demo no-packages d%compilerdigits%_win64 %1
 
 @echo on
 set ok1=yes
-"%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%raizelib% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  %1.dpr  -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%raizelib% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
 if "%ok1%"=="no" pause
+if "%ok1%"=="yes" cls
 
 @echo off
 if exist %1.off REN %1.off %1.cfg

@@ -65,10 +65,12 @@ cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat DServer
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_x_%comp3%_win64.exe
 if errorlevel 1 %CSSend% /error "[04] Rename dserver.exe failed"
-pause
 
 cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_win32_source.bat DServer
+
+%CSSend% /note "Intentional Pause when DServer files are ready"
+pause
 
 :: not suitable for new-ipc cd %droot%\More Examples\whASyncDemo
 :: not suitable for new-ipc call %cbat% whASyncDemo
