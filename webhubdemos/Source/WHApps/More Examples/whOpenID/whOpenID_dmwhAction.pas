@@ -33,7 +33,7 @@ interface
 uses
   SysUtils, Classes,
   IdHTTP, IdSSLOpenSSL, IdSSL,
-  webLink, webTelnt, updateOK, tpAction, webTypes;
+  webLink, updateOK, tpAction, webTypes;
 
 type
   TDMWHOpenIDviaJanrain = class(TDataModule)
