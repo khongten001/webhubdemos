@@ -29,7 +29,7 @@ set flags=-b -W-SYMBOL_PLATFORM -W-UNIT_PLATFORM  -$O- -$W+ -$J+ -$Q+ -$C- -$Y- 
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
-if "%compilerdigits%"=="19" set raizelib=
+if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
@@ -58,7 +58,7 @@ echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
 @if errorlevel 1 pause
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32.exe
 
-if "%compilerdigits%"=="19" set raizelib=
+if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win64
