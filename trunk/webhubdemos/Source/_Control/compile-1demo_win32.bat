@@ -14,7 +14,7 @@ set dcc=%droot%bin\dcc32.exe
 if not exist %dcc% %CSSend% /error "Does not exist: [%dcc%]"
 if not exist %dcc% pause
 
-if "%compilerdigits%"=="19" set raizepath=
+if "%compilerdigits%"=="19" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
 if "%compilerdigits%"=="18" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
