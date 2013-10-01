@@ -6,10 +6,15 @@ program whSchedule;
 {$R *.res}
 {$R *.dres}
 
+(*
+  For when the Delphi IDE erases this line, here is an extra copy...
+  {$I whSchedule-uses.inc}  { links to source PAS requiring Rubicon components }
+*)
+
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
-  {$I whSchedule-uses.inc}  { links to source PAS requiring Rubicon components is here }
+  {$I whSchedule-uses.inc}
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utMainFm in 'H:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
