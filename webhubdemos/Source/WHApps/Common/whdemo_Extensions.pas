@@ -48,14 +48,16 @@ type
     procedure waFromListExecute(Sender: TObject);
     procedure waCauseAVExecute(Sender: TObject);
     procedure waWaitSecondsExecute(Sender: TObject);
-  private
+  strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
     FAdminIpNumber: string;
     FServerIpNumber: string;
+    FDomainIDList: TStringList;
     function IsHREFToolsQATestAgent: Boolean;
   protected
-    procedure DemoAppExecute(Sender: TwhRespondingApp; var bContinue: Boolean);
+    procedure DemoAppExecute(Sender: TwhRespondingApp; // uses webSend
+      var bContinue: Boolean);
     procedure DemoAppUpdate(Sender: TObject);
     procedure DemoAppNewSession(Sender: TObject; InSessionNumber: Cardinal;
       const Command: string);
@@ -94,7 +96,9 @@ var
 
 function TDemoExtensions.Init: Boolean;
 const cFn = 'Init';
-{$IFNDEF WEBHUBACE}var inst: string;{$ENDIF}
+var
+  ExtraConfigFilespec: string;
+{$IFNDEF WEBHUBACE}inst: string;{$ENDIF}
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   Result := True;
@@ -108,12 +112,24 @@ begin
     // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
 
+    // Extra configuration path containing pairs of domain=id entries
+    // Example:  lite.demos.href.com=1
+    // Example:  db.demos.href.com=2
+    // Example:  dsp.href.com=3
+    ExtraConfigFilespec := pWebApp.AppPath + '..\Config\DomainIDList.ini';
+    if FileExists(ExtraConfigFilespec) then
+    begin
+      FDomainIDList := TStringList.Create;
+      FDomainIDList.LoadFromFile(pWebApp.AppPath + '..\Config\DomainIDList.ini');
+      FDomainIDList.Sorted := True;
+    end;
+
 {$IFNDEF WEBHUBACE}
     // for use with WebHubGuardian (old-ipc only)
     ForceDirectories(GetIPCFolder);  // old-ipc
     if FMonitorFilespec = '' then
     begin
-      FMonitorFilespec := GetIPCFolder + 
+      FMonitorFilespec := GetIPCFolder +
         'http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
       if ({M}Application.ApplicationMode = mtamWinService) then // uses MultiTypeApp
       begin
@@ -251,6 +267,7 @@ procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
 begin
 {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   FMonitorFilespec := ''; // for use with WebHubGuardian
+  FDomainIDList := nil;
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
@@ -261,6 +278,7 @@ begin
 {$IFDEF Delphi12Up}{$INLINE OFF}{$ENDIF}
     DeleteFile(FMonitorFilespec);
   end;
+  FreeAndNil(FDomainIDList);
   DemoExtensions := nil;
 end;
 
@@ -804,30 +822,42 @@ end;
 
 procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
   var bContinue: Boolean);
+var
+  SurferHostname: string;
+  SurferHostid: string;
 begin
-  if NOT pWebApp.IsWebRobotRequest then
+  if pWebApp.SessionNumber <> 0 then
   begin
-    if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and 
-      (NOT IsHREFToolsQATestAgent) then
+    if Assigned(FDomainIDList) then
     begin
-      { do not allow blank referer within the showcase or htsc demos 
-        unless on the home page  or  switching http/https }
-      if (Sender.Request.Referer = '') and
-        (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
-        (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) and
-        (pWebApp.Session.PriorScheme = pWebApp.Request.Scheme) then
+      if (pWebApp.StringVar['_hostID'] = '') or pWebApp.IsWebRobotRequest then
       begin
-        if (NOT HonorLowerSecurity) then
+        SurferHostname := pWebApp.Request.Host;
+        SurferHostid := FDomainIDList.Values[SurferHostname];
+        pWebApp.StringVar['_hostID'] := SurferHostid;  // remember
+      end;
+    end;
+    if NOT pWebApp.IsWebRobotRequest then
+    begin
+      if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and
+        (NOT IsHREFToolsQATestAgent) then
+      begin
+        { do not allow blank referer within the showcase or htsc demos
+          unless on the home page  or  switching http/https }
+        if (Sender.Request.Referer = '') and
+          (NOT IsEqual(Sender.PageID, Sender.Situations.HomePageID)) and
+          (NOT IsEqual(Sender.PageID, Sender.Situations.FrontDoorPageID)) and
+          (pWebApp.Session.PriorScheme = pWebApp.Request.Scheme) then
         begin
-          Sender.RejectSession('Blank referer, scheme ' +
-            pWebApp.Session.PriorScheme + ', without security token', False);
+          if (NOT HonorLowerSecurity) then
+          begin
+            Sender.RejectSession('Blank referer, scheme ' +
+              pWebApp.Session.PriorScheme + ', without security token', False);
+          end;
         end;
       end;
     end;
   end;
 end;
-
-initialization
-  //{$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
 end.
