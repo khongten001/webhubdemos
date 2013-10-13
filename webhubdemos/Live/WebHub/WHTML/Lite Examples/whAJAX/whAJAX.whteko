@@ -35,9 +35,6 @@ mcProtoList=14-v1.4.0,15-v1.5.1.2,16-v1.6.1,17-1.7.0.0
 			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
 			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
 			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
-			/* changing:start */
-			(~AJAXTimedEvent|name="timedevent1" frequency="2" stopid="stop" startid="start" autostart="false"|update="showtime2" position="" method="get" url="(~ACTIONR|gettime2~)"~)
-			/* changing:stop */
 		}
 		onload = setAJAXEvents
 	</script>
@@ -89,14 +86,6 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 
 
-<h2>3. AJAXTimedEvent</h2>
-<p>Use this command to create an independent timed event that fires with a specified frequency.  The event can be started and stopped with appropriate events.</p>
-<p>The following is an example of an event that fires every 2 seconds and retrieves the webserver date and time.  
-The event can be stopped and started with the links below.  (NB: if you click the start link twice, you will need to click stop twice as well.)</p>
-<p><a href="#" id="start">Start Time Update</a></p>
-<p><a href="#" id="stop">Stop Time Update</a></p>
-
-<div id="showtime2"></div>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -108,11 +97,10 @@ The event can be stopped and started with the links below.  (NB: if you click th
 <ul>
 <li style="list-style-type:disc">the JS command within the <i>&lt;head_tag&gt;</i> </li>
 <li style="list-style-type:disc">function setAJAXEvents within the <i>&lt;head_tag&gt;</i> </li>
-<li style="list-style-type:disc">the calls to AJAXEvent, AJAXObserver and AJAXTimedEvent.</li>
+<li style="list-style-type:disc">the calls to AJAXEvent, AJAXObserver.</li>
 <li style="list-style-type:disc">the page definitions for gettime1, AjaxObserverText1, gettime2, AjaxObserverText2</li>
 </ul>
 </li>
-<li> Ask HREF tech support for a copy of the spreadsheet (ajaxwhtmlsyntax.xls) which sketches out all the parameters for the commands.</li>
 </ol>
 
 </div>  <!--- whdemopagecontent -->
