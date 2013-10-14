@@ -29,8 +29,8 @@ AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
 <html>
 <head>
 	(~drHead~)
-	(~JS|ScriptTag|src="(~DYNCHUNK|mcProto,(~protoVers~)~)"~)
-    <script type="text/javascript">
+	<script src="(~DYNCHUNK|mcProto,(~protoVers~)~)"></script>
+  <script type="text/javascript">
 		function setAJAXEvents()
 		{
 			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
@@ -50,6 +50,7 @@ AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
 <div id="whdemopagecontent">
 <h1>Select Prototype Library to Test</h1>
 <p><i>These examples should work with ALL FOUR libraries.</i></p>
+<p>ProtoVers: (~protoVers~)</p>
 <p>Current library: <b><code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
 (~INPUTFORM|pgEnterHTAJ~)
 Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
