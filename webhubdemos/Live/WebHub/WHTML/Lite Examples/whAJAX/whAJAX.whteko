@@ -24,9 +24,9 @@ AJAXEvent is a TwhWebAction in whsample_PrototypeJS.pas
 AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas
 </whdoc>
 
-<whpage pageid="pgEnterHTAJ" desc="Using WebHub with AJAX">
+<whpage pageid="pgEnterHTAJ" desc="Using WebHub with Prototype library for AJAX">
 <whprep>
-(~NOTASSIGNED|protoVers|(~SET|protoVers=17~)~)
+(~NOTASSIGNED|protoVers|(~SET|protoVers=1701~)~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -91,12 +91,12 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 
 
-
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-
-
-<h1>Learning how to use AJAX with WebHub</h1>
+<h1 style="margin-top:2em;">Learning how to use AJAX with WebHub</h1>
+<i>The Prototype library has the advantage of being very stable and in wide use. Its features are limited however, 
+and most development stopped prior to year 2012. An alternative JavaScript library to consider using is <b>JQuery</b>.
+This decision of Prototype versus JQuery should be made <b>before</b> trying to learn any specific syntax that 
+combines that libraries function with WebHub techniques. Generally, for new projects, the use of JQuery is recommended.</i>
+<h2>WebHub wrappers for the Prototype JavaScript Library</h2>
 <ol>
 <li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
 <ul>
