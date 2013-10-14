@@ -53,7 +53,7 @@ siteroot is (~mcSiteRoot~)<br />
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
-(~MATCH|demos.href.com[(~Request.Host~)|<link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~guestlingvo~)/(~AppID~)/(~PageID~)" />~)
+(~MATCH|demos.href.com[(~Request.Host~)|<link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~SessionLingvo~)/(~AppID~)/(~PageID~)" />~)
 (~ASSIGNED|litWallpaper|<style type="text/css">
 body {
   background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;
