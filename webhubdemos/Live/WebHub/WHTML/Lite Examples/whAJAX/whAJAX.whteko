@@ -88,10 +88,12 @@ Example2: Type something into the input box below. Only when you exit the data e
 
 
 <h1 style="margin-top:2em;">Learning how to use AJAX with WebHub</h1>
-<i>The Prototype library has the advantage of being very stable and in wide use. Its features are limited however, 
-and most development stopped prior to year 2012. An alternative JavaScript library to consider using is <b>JQuery</b>.
-This decision of Prototype versus JQuery should be made <b>before</b> trying to learn any specific syntax that 
-combines that libraries function with WebHub techniques. Generally, for new projects, the use of JQuery is recommended.</i>
+<i>The <b>Prototype</b> library has the advantage of being very stable and in wide use. Its features are limited however.
+Most development on Prototype stopped prior to year 2012. An alternative JavaScript library to consider is called <b>JQuery</b>.
+This decision of <b>Prototype versus JQuery</b> should be made <i>before</i> trying to learn any specific syntax that 
+combines that libraries function with WebHub techniques. Generally, for new projects, the use of JQuery is recommended.
+At this time, there is no public WebHub demo that uses JQuery, and that is because there is no need to wrap JQuery into 
+specific WebHub webactions.</i>
 <h2>WebHub wrappers for the Prototype JavaScript Library</h2>
 <ol>
 <li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
