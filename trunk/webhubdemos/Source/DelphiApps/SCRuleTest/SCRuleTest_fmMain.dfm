@@ -129,6 +129,7 @@ object Form3: TForm3
         '/feedback')
       ScrollBars = ssVertical
       TabOrder = 0
+      WordWrap = False
     end
     object MemoMatchCount: TMemo
       Left = 473
@@ -138,9 +139,7 @@ object Form3: TForm3
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 1
-      ExplicitLeft = 265
-      ExplicitWidth = 366
-      ExplicitHeight = 178
+      WordWrap = False
     end
   end
   object Panel1: TPanel
@@ -151,7 +150,7 @@ object Form3: TForm3
     Align = alTop
     TabOrder = 3
     object Button1: TButton
-      Left = 264
+      Left = 352
       Top = 8
       Width = 433
       Height = 35
@@ -162,7 +161,7 @@ object Form3: TForm3
     object EditTestName: TEdit
       Left = 16
       Top = 10
-      Width = 201
+      Width = 330
       Height = 33
       Color = clActiveCaption
       Font.Charset = DEFAULT_CHARSET

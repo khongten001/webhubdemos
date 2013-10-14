@@ -135,6 +135,7 @@ begin
   FRegEx := TldiRegExMulti.Create(Self);
   Self.Top := 10;
   Self.Height := Screen.Height - 50;
+  Open1Click(Sender);
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
