@@ -30,9 +30,6 @@
 
 <whpage pageid="pgWelcome" desc="Welcome Page for (~AppID~) Demo">
 <!--- The contents of this page change depending on the current AppID. -->
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -105,9 +102,6 @@
 
 
 <whpage pageid="pgSetup" desc="Setup Instructions and/or Requirements for this Demo">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -156,9 +150,6 @@ application <code>(~AppID~)</code>.</p>
 To cause this error, start a demo, click into a page, note your session#, then go to a
 different machine and request the same demo with the same session #.
 </whdoc>
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -187,9 +178,6 @@ customizing the onBadIP event of the TwhAppBase.</p>
 </whpage>
 
 <whpage pageid="pgAbout" desc="About a WebHub Demo">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -231,9 +219,6 @@ customizing the onBadIP event of the TwhAppBase.</p>
 
 
 <whpage pageid="ViewWHTMLFile" desc="View WHTML File">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -257,9 +242,6 @@ mcHdrOff=</h2>
 </whmacros>
 
 <whpage pageid="ViewFiles" desc="View source files for this demo">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -369,9 +351,6 @@ and Delphi Form (.DFM) files.</i>
 </whpage>
 
 <whpage pageid="pgPNG" desc="PNG File Format">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
@@ -509,9 +488,6 @@ you win, because it requires so much time, energy and financial resources.</p>
 </whpage>
 
 <whpage pageid="WHProperties" desc="Display WebHub component properties">
-<whprep>
-(~NOTASSIGNED|guestlingvo|(~SET|guestlingvo=eng~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html (~mcxmlns~)>
