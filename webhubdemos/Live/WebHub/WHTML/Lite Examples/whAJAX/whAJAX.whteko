@@ -49,7 +49,14 @@ AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Select Prototype Library to Test</h1>
-<p><i>These examples should work with ALL FOUR libraries.</i></p>
+<p><i>These examples should work with ALL FOUR libraries.</i>
+<ul>
+<li> (~mcProto15~) </li>
+<li> (~mcProto16~) </li>
+<li> (~mcProto17~) </li>
+<li> (~mcProto1710~) </li>
+</ul>
+</p>
 <p>ProtoVers: (~protoVers~)</p>
 <p>Current library: <b><code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
 (~INPUTFORM|pgEnterHTAJ~)
