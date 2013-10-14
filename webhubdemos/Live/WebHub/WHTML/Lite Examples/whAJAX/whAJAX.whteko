@@ -8,10 +8,10 @@
 	designmode="code">
  
 <whmacros>
-mcProto15=//www.prototypejs.org/assets/2008/1/25/prototype-1.5.1.2.js
-mcProto16=//prototypejs.org/assets/2009/8/31/prototype.js
-mcProto17=//ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js
-mcProto1710=//ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js
+mcProto15=www.prototypejs.org/assets/2008/1/25/prototype-1.5.1.2.js
+mcProto16=prototypejs.org/assets/2009/8/31/prototype.js
+mcProto17=ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js
+mcProto1710=ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js
 mcProtoList=15-v1.5.1.2,16-v1.6.1,17-1.7.0.0,1710-1.7.1.0
 </whmacros>
 
@@ -29,7 +29,7 @@ AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
 <html>
 <head>
 	(~drHead~)
-	<script src="(~DYNCHUNK|mcProto,(~protoVers~)~)"></script>
+	<script src="//(~DYNCHUNK|mcProto,(~protoVers~)~)"></script>
   <script type="text/javascript">
 		function setAJAXEvents()
 		{
@@ -58,7 +58,7 @@ AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
 </ul>
 </p>
 <p>ProtoVers: (~protoVers~)</p>
-<p>Current library: <b><code>(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
+<p>Current library: <b><code>//(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
 (~INPUTFORM|pgEnterHTAJ~)
 Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
 <input type="submit" value="go" />
