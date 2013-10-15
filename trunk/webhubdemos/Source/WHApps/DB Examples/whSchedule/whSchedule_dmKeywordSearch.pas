@@ -177,7 +177,6 @@ begin
 
         rbSearch1 := TrbSearch.Create(Self);
         rbSearch1.Name := 'rbSearch1';
-        rbSearch1.International := True;
         rbSearch1.SearchLogic := slSmart;
         rbSearch1.SearchOptions := [soNavNatural, soNavReverse];
 
