@@ -18,7 +18,7 @@ object Form3: TForm3
   TextHeight = 25
   object Splitter2: TSplitter
     Left = 0
-    Top = 606
+    Top = 209
     Width = 941
     Height = 8
     Cursor = crVSplit
@@ -26,7 +26,18 @@ object Form3: TForm3
     Color = clMenuHighlight
     ParentColor = False
     ExplicitLeft = -8
-    ExplicitTop = 618
+    ExplicitTop = 201
+  end
+  object Splitter3: TSplitter
+    Left = 0
+    Top = 614
+    Width = 941
+    Height = 8
+    Cursor = crVSplit
+    Align = alTop
+    Color = clMenuHighlight
+    ParentColor = False
+    ExplicitTop = 622
   end
   object GroupBox1: TGroupBox
     Left = 0
@@ -61,12 +72,13 @@ object Form3: TForm3
   end
   object GroupBox2: TGroupBox
     Left = 0
-    Top = 209
+    Top = 217
     Width = 941
     Height = 72
     Align = alTop
     Caption = 'Regex'
     TabOrder = 1
+    ExplicitTop = 209
     object MemoRegex: TMemo
       Left = 2
       Top = 27
@@ -78,20 +90,19 @@ object Form3: TForm3
       Font.Height = -20
       Font.Name = 'Courier New'
       Font.Style = []
-      Lines.Strings = (
-        '^/'#171'pageid'#187'?([:/]'#171'sessionid'#187'?([:/]'#171'command'#187')?)?$')
       ParentFont = False
       TabOrder = 0
     end
   end
   object GroupBox3: TGroupBox
     Left = 0
-    Top = 361
+    Top = 369
     Width = 941
     Height = 245
     Align = alTop
     Caption = 'Target URLs'
     TabOrder = 2
+    ExplicitTop = 361
     object Splitter1: TSplitter
       Left = 465
       Top = 27
@@ -108,13 +119,6 @@ object Form3: TForm3
       Width = 463
       Height = 216
       Align = alLeft
-      Lines.Strings = (
-        '/contact'
-        '/'
-        '/contact:123'
-        '/?gclid=123xyz'
-        '/creditapp'
-        '/feedback')
       ScrollBars = ssVertical
       TabOrder = 0
       WordWrap = False
@@ -164,30 +168,34 @@ object Form3: TForm3
   end
   object GroupBox4: TGroupBox
     Left = 0
-    Top = 614
+    Top = 622
     Width = 941
-    Height = 173
+    Height = 165
     Align = alClient
     Caption = 'Groups Matched'
     TabOrder = 4
+    ExplicitTop = 614
+    ExplicitHeight = 173
     object MemoMatched: TMemo
       Left = 2
       Top = 27
       Width = 937
-      Height = 144
+      Height = 136
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
+      ExplicitHeight = 144
     end
   end
   object GroupBox5: TGroupBox
     Left = 0
-    Top = 281
+    Top = 289
     Width = 941
     Height = 80
     Align = alTop
     Caption = 'Expanded Regex'
     TabOrder = 5
+    ExplicitTop = 281
     object MemoExpandedRegex: TMemo
       Left = 2
       Top = 27
@@ -212,21 +220,29 @@ object Form3: TForm3
         Caption = 'Open'
         OnClick = Open2Click
       end
+      object LoadDefaults1: TMenuItem
+        Caption = 'Load &Defaults'
+        OnClick = LoadDefaults1Click
+      end
       object Save1: TMenuItem
         Caption = '&Save As'
         OnClick = Save1Click
+      end
+      object Exit1: TMenuItem
+        Caption = 'E&xit'
+        OnClick = Exit1Click
       end
     end
     object iming1: TMenuItem
       Caption = 'Timing'
       object m1x: TMenuItem
         Caption = '1x'
+        Checked = True
         RadioItem = True
         OnClick = m1xClick
       end
       object mi1000x: TMenuItem
         Caption = '1000x'
-        Checked = True
         RadioItem = True
         OnClick = mi1000xClick
       end
@@ -256,6 +272,19 @@ object Form3: TForm3
       end>
     Options = [fdoOverWritePrompt, fdoNoChangeDir, fdoPathMustExist, fdoFileMustExist]
     Left = 656
+    Top = 112
+  end
+  object FileSaveDialog1: TFileSaveDialog
+    DefaultExtension = '.swrt'
+    FavoriteLinks = <>
+    FileTypes = <
+      item
+        DisplayName = 'StreamCatcher WebHub Rule Test'
+        FileMask = '*.swrt'
+      end>
+    Options = [fdoOverWritePrompt, fdoStrictFileTypes, fdoNoChangeDir, fdoPathMustExist]
+    Title = 'Save As ... Rule Test'
+    Left = 416
     Top = 112
   end
 end
