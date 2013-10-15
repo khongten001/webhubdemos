@@ -89,7 +89,6 @@ inherited DSPdm: TDSPdm
   end
   object rbSearch: TrbSearch
     Cache = rbCache
-    International = False
     OnSearch = rbSearchSearch
     SearchOptions = []
     TextLink = rbMakeTextBDELink

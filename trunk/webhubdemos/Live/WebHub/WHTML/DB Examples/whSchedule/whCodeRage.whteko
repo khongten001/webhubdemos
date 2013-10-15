@@ -63,7 +63,7 @@ the "session replays" from past Code Rage Conferences (2009-2012).</p>
 
 <whpage pageid="pgReadonly1" desc="Query Code Rage Schedule for Your Time Zone">
 <whprep>
-(~NOTASSIGNED|inOffset|(~SET|inOffset=-8~)(~drCheckDefault~)(~wds.Close|~)~)
+(~NOTASSIGNED|inOffset|(~SET|inOffset=-7~)(~drCheckDefault~)(~wds.Close|~)~)
 (~CMDHAS|wds.reset|(~wds.Close|~)~)
 (~CHECK|FlagB~)
 </whprep>
@@ -197,12 +197,6 @@ Enter your GMT offset, in hours:
 </whdroplet>
 <whdroplet name="drDisplayScanScheduleTable" show="no">
 <table id="schedule-table" class="whdbScanBase-table">
-<!---<tr>
-  <th>Starts*</th>
-  <th>Location</th>
-  <th></th>
-  <th></th>
-</tr>-->
 <whrow>
 <tr>
   <td class="nowrap-td">(~IF|FlagA|(~waOnAt.Execute|dd-MMM~)&nbsp;<span class="time-span">(~waOnAt.Execute|hh:nn~)</span>~)(~CLEAR|FlagA~)</td>

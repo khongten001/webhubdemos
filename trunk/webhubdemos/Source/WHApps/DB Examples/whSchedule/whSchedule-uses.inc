@@ -13,6 +13,7 @@
   rbCache in 'K:\Rubicon\source\rbCache.pas',
   rbSearch in 'K:\Rubicon\source\rbSearch.pas',
   webRubi in 'K:\WebHub\lib\whplus\rubi\webRubi.pas',
+  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
   whCodeGenIBObj in 'K:\WebHub\lib\whplus\whCodeGenIBObj.pas',
   whutil_RegExParsing in 'K:\WebHub\lib\whplus\whutil_RegExParsing.pas',
 //  ucIBObjPrepare in 'K:\WebHub\tpack\ucIBObjPrepare.pas',
