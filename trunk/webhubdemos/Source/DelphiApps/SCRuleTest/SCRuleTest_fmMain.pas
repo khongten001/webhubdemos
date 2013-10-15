@@ -36,6 +36,10 @@ type
     m100000x: TMenuItem;
     FileOpenDialog1: TFileOpenDialog;
     Open2: TMenuItem;
+    FileSaveDialog1: TFileSaveDialog;
+    Exit1: TMenuItem;
+    LoadDefaults1: TMenuItem;
+    Splitter3: TSplitter;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Button1Click(Sender: TObject);
@@ -46,12 +50,18 @@ type
     procedure m1000000xClick(Sender: TObject);
     procedure m100000xClick(Sender: TObject);
     procedure Open2Click(Sender: TObject);
+    procedure Exit1Click(Sender: TObject);
+    procedure LoadDefaults1Click(Sender: TObject);
   strict private
     { Private declarations }
     FRegEx: TldiRegExMulti;
     FIterationHigh: Integer;
     function TestDataRegexFilespec: string;
     function TestDataURLsFilespec: string;
+    function LoadDefaultMacros: Boolean;
+    function LoadDefaultRegex: Boolean;
+    function LoadDefaultURLs: Boolean;
+    function LoadDefaults: Boolean;
   public
     { Public declarations }
   end;
@@ -65,9 +75,6 @@ implementation
 
 uses
   ucDlgs, ucString, ucLogFil, ucMsTime;
-
-const
-  cDefaultDataFile: string = 'vintage'; //'Lingvo-to-SEOTail';
 
 procedure TForm3.Button1Click(Sender: TObject);
 var
@@ -188,21 +195,75 @@ begin
   Self.Update;
 end;
 
+procedure TForm3.Exit1Click(Sender: TObject);
+begin
+  Self.Close;
+end;
+
 procedure TForm3.FormCreate(Sender: TObject);
 begin
   FRegEx := TldiRegExMulti.Create(Self);
   FIterationHigh := 1;
-  EditTestName.Text := cDefaultDataFile;
+  EditTestName.Text := '(default)';
   Self.Top := 10;
   Self.Height := Screen.Height - 50;
   FileOpenDialog1.DefaultFolder := ExtractFilePath(ParamStr(0));
   FileOpenDialog1.DefaultExtension := '*.swrt';
-//  Open1Click(Sender);
+  FileSaveDialog1.DefaultFolder := ExtractFilePath(ParamStr(0));
+  FileSaveDialog1.DefaultExtension := '*.swrt';
+  LoadDefaults;
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FRegex);
+end;
+
+function TForm3.LoadDefaultMacros: Boolean;
+begin
+  MemoMacros.Clear;
+  MemoMacros.Lines.Add('«lingvo»=([a-z]{2,3}(-[a-z]{2})?)');
+  MemoMacros.Lines.Add('«lingvow»=(([a-z]{2,3}(-[a-z]{2})?)/)');
+  MemoMacros.Lines.Add('«appid»=(adv|demos|htun)');
+  MemoMacros.Lines.Add('«pageid»=([a-zA-Z][^:/?-]{0,34})');
+  MemoMacros.Lines.Add('«sessionid»=([0-9]+(\.[0-9]+)?)');
+  MemoMacros.Lines.Add('«command»=([^?]*)');
+  MemoMacros.Lines.Add('«seotail»=(.*)');
+  Result := True;
+end;
+
+function TForm3.LoadDefaultRegex: Boolean;
+begin
+  MemoRegex.Lines.Text :=
+    '^(/)?«lingvow»?«appid»?[:/]{0,1}«pageid»?([:/]«sessionid»?([:/]«command»)?)?(\?«seotail»)?$';
+  Result := True;
+end;
+
+function TForm3.LoadDefaults: Boolean;
+begin
+  MemoMatched.Clear;
+  MemoExpandedRegex.Clear;
+  MemoMatchCount.Clear;
+  MemoRegex.Clear;
+  MemoURLs.Clear;
+  Result := LoadDefaultMacros and LoadDefaultRegex and LoadDefaultURLs;
+end;
+
+procedure TForm3.LoadDefaults1Click(Sender: TObject);
+begin
+  LoadDefaults;
+end;
+
+function TForm3.LoadDefaultURLs: Boolean;
+begin
+  MemoURLs.Clear;
+  MemoURLs.Lines.Add('/demos:pgwelcome');
+  MemoURLs.Lines.Add('/adv:pgwelcome');
+  MemoURLs.Lines.Add('/adv:pgenteradv:2000');
+  MemoURLs.Lines.Add('/adv:pgenteradv:2000:grid1.next');
+  MemoURLs.Lines.Add('/adv:pgwelcome?gclid=34');
+  MemoURLs.Lines.Add('/eng/demos:pgwelcome');
+  Result := True;
 end;
 
 procedure TForm3.m1000000xClick(Sender: TObject);
@@ -270,31 +331,47 @@ begin
   begin
     ChosenFilespec := FileOpenDialog1.FileName;
     Abbrev := ExtractFileNameNoExt(ChosenFilespec);
-    if AskQuestionYesNo('Load ' + Abbrev) then
+    EditTestName.Text := Abbrev;
+    Self.Update;
+    if FileExists(RegexMacrosFilespec) then
+      MemoMacros.Lines.Text := StringLoadFromFile(RegexMacrosFilespec)
+    else
     begin
-      EditTestName.Text := Abbrev;
-      Self.Update;
-      if FileExists(RegexMacrosFilespec) then
-        MemoMacros.Lines.Text := StringLoadFromFile(RegexMacrosFilespec)
-      else
-        MemoMacros.Lines.Text := RegexMacrosFilespec + ' not found';
-      if FileExists(ChosenFilespec) then
-        MemoRegex.Lines.Text := StringLoadFromFile(ChosenFilespec)
-      else
-        MemoRegex.Lines.Text := ChosenFilespec + ' not found';
-      if FileExists(TestDataURLsFilespec) then
-        MemoURLs.Lines.Text := StringLoadFromFile(TestDataURLsFilespec)
-      else
-        MemoURLs.Lines.Text := TestDataURLsFilespec + ' not found';
+      Beep;
+      LoadDefaultMacros;
+    end;
+    if FileExists(ChosenFilespec) then
+      MemoRegex.Lines.Text := StringLoadFromFile(ChosenFilespec)
+    else
+    begin
+      Beep;
+      LoadDefaultRegex;
+    end;
+    if FileExists(TestDataURLsFilespec) then
+      MemoURLs.Lines.Text := StringLoadFromFile(TestDataURLsFilespec)
+    else
+    begin
+      Beep;
+      LoadDefaultURLs;
     end;
   end;
 end;
 
 procedure TForm3.Save1Click(Sender: TObject);
+var
+  ChosenFilespec: string;
+  Abbrev: string;
 begin
-  StringWriteToFile(RegexMacrosFilespec,   MemoMacros.Lines.Text);
-  StringWriteToFile(TestDataRegexFilespec, MemoRegex.Lines.Text);
-  StringWriteToFile(TestDataURLsFilespec,  MemoURLs.Lines.Text);
+  if FileSaveDialog1.Execute then
+  begin
+    ChosenFilespec := FileSaveDialog1.FileName;
+    Abbrev := ExtractFileNameNoExt(ChosenFilespec);
+    EditTestName.Text := Abbrev;
+    Self.Update;
+    StringWriteToFile(RegexMacrosFilespec,   MemoMacros.Lines.Text);
+    StringWriteToFile(TestDataRegexFilespec, MemoRegex.Lines.Text);
+    StringWriteToFile(TestDataURLsFilespec,  MemoURLs.Lines.Text);
+  end;
 end;
 
 end.
