@@ -208,12 +208,12 @@ object Form3: TForm3
     Top = 112
     object File1: TMenuItem
       Caption = '&File'
-      object Open1: TMenuItem
-        Caption = 'L&oad'
-        OnClick = Open1Click
+      object Open2: TMenuItem
+        Caption = 'Open'
+        OnClick = Open2Click
       end
       object Save1: TMenuItem
-        Caption = '&Save'
+        Caption = '&Save As'
         OnClick = Save1Click
       end
     end
@@ -246,5 +246,16 @@ object Form3: TForm3
         OnClick = m1000000xClick
       end
     end
+  end
+  object FileOpenDialog1: TFileOpenDialog
+    FavoriteLinks = <>
+    FileTypes = <
+      item
+        DisplayName = 'Streamcatcher WebHub Rule Test'
+        FileMask = '*.swrt'
+      end>
+    Options = [fdoOverWritePrompt, fdoNoChangeDir, fdoPathMustExist, fdoFileMustExist]
+    Left = 656
+    Top = 112
   end
 end
