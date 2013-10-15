@@ -26,7 +26,6 @@ type
     MainMenu1: TMainMenu;
     File1: TMenuItem;
     Save1: TMenuItem;
-    Open1: TMenuItem;
     EditTestName: TEdit;
     Splitter2: TSplitter;
     iming1: TMenuItem;
@@ -35,16 +34,18 @@ type
     m1x: TMenuItem;
     m1000000x: TMenuItem;
     m100000x: TMenuItem;
+    FileOpenDialog1: TFileOpenDialog;
+    Open2: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Save1Click(Sender: TObject);
-    procedure Open1Click(Sender: TObject);
     procedure mi10000xClick(Sender: TObject);
     procedure mi1000xClick(Sender: TObject);
     procedure m1xClick(Sender: TObject);
     procedure m1000000xClick(Sender: TObject);
     procedure m100000xClick(Sender: TObject);
+    procedure Open2Click(Sender: TObject);
   strict private
     { Private declarations }
     FRegEx: TldiRegExMulti;
@@ -194,7 +195,9 @@ begin
   EditTestName.Text := cDefaultDataFile;
   Self.Top := 10;
   Self.Height := Screen.Height - 50;
-  Open1Click(Sender);
+  FileOpenDialog1.DefaultFolder := ExtractFilePath(ParamStr(0));
+  FileOpenDialog1.DefaultExtension := '*.swrt';
+//  Open1Click(Sender);
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
@@ -240,13 +243,12 @@ end;
 
 function TForm3.TestDataRegexFilespec: string;
 begin
-  Result := ExtractFilePath(ParamStr(0)) + 'SCRuleTest_' + EditTestName.Text +
-    '_regex.ini';
+  Result := ExtractFilePath(ParamStr(0)) + EditTestName.Text + '.swrt';
 end;
 
 function TForm3.TestDataURLsFilespec: string;
 begin
-  Result := ExtractFilePath(ParamStr(0)) + 'SCRuleTest_' + EditTestName.Text +
+  Result := ExtractFilePath(ParamStr(0)) + EditTestName.Text +
     '_urls.ini';
 end;
 
@@ -255,23 +257,37 @@ begin
   Result := ExtractFilePath(ParamStr(0)) + 'SCRuleTest_Macros.ini';
 end;
 
-procedure TForm3.Open1Click(Sender: TObject);
+procedure TForm3.Open2Click(Sender: TObject);
+var
+  ChosenFilespec: string;
+  Abbrev: string;
 begin
-  if FileExists(RegexMacrosFilespec) then
-    MemoMacros.Lines.Text := StringLoadFromFile(RegexMacrosFilespec)
-  else
-    MemoMacros.Lines.Text := RegexMacrosFilespec + ' not found';
-  if FileExists(TestDataRegexFilespec) then
-    MemoRegex.Lines.Text := StringLoadFromFile(TestDataRegexFilespec)
-  else
-    MemoRegex.Lines.Text := TestDataRegexFilespec + ' not found';
-  if FileExists(TestDataURLsFilespec) then
-    MemoURLs.Lines.Text := StringLoadFromFile(TestDataURLsFilespec)
-  else
-    MemoURLs.Lines.Text := TestDataURLsFilespec + ' not found';
   MemoMatched.Clear;
   MemoExpandedRegex.Clear;
   MemoMatchCount.Clear;
+
+  if FileOpenDialog1.Execute then
+  begin
+    ChosenFilespec := FileOpenDialog1.FileName;
+    Abbrev := ExtractFileNameNoExt(ChosenFilespec);
+    if AskQuestionYesNo('Load ' + Abbrev) then
+    begin
+      EditTestName.Text := Abbrev;
+      Self.Update;
+      if FileExists(RegexMacrosFilespec) then
+        MemoMacros.Lines.Text := StringLoadFromFile(RegexMacrosFilespec)
+      else
+        MemoMacros.Lines.Text := RegexMacrosFilespec + ' not found';
+      if FileExists(ChosenFilespec) then
+        MemoRegex.Lines.Text := StringLoadFromFile(ChosenFilespec)
+      else
+        MemoRegex.Lines.Text := ChosenFilespec + ' not found';
+      if FileExists(TestDataURLsFilespec) then
+        MemoURLs.Lines.Text := StringLoadFromFile(TestDataURLsFilespec)
+      else
+        MemoURLs.Lines.Text := TestDataURLsFilespec + ' not found';
+    end;
+  end;
 end;
 
 procedure TForm3.Save1Click(Sender: TObject);
