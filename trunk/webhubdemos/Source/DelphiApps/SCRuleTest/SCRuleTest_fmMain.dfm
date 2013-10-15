@@ -36,8 +36,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Regex Macros'
     TabOrder = 0
-    ExplicitTop = 41
-    ExplicitWidth = 633
     object MemoMacros: TMemo
       Left = 2
       Top = 27
@@ -46,9 +44,9 @@ object Form3: TForm3
       Align = alClient
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -15
+      Font.Height = -17
       Font.Name = 'Segoe UI'
-      Font.Style = []
+      Font.Style = [fsBold]
       Lines.Strings = (
         #171'sessionid'#187'=([0-9]+(\.[0-9]+)?)'
         #171'appid'#187'=(csweb|csorder)'
@@ -59,8 +57,6 @@ object Form3: TForm3
       ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitWidth = 629
-      ExplicitHeight = 174
     end
   end
   object GroupBox2: TGroupBox
@@ -71,8 +67,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Regex'
     TabOrder = 1
-    ExplicitTop = 201
-    ExplicitWidth = 633
     object MemoRegex: TMemo
       Left = 2
       Top = 27
@@ -88,10 +82,6 @@ object Form3: TForm3
         '^/'#171'pageid'#187'?([:/]'#171'sessionid'#187'?([:/]'#171'command'#187')?)?$')
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 224
-      ExplicitTop = 8
-      ExplicitWidth = 185
-      ExplicitHeight = 89
     end
   end
   object GroupBox3: TGroupBox
@@ -102,8 +92,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Target URLs'
     TabOrder = 2
-    ExplicitTop = 484
-    ExplicitWidth = 633
     object Splitter1: TSplitter
       Left = 465
       Top = 27
@@ -182,9 +170,6 @@ object Form3: TForm3
     Align = alClient
     Caption = 'Groups Matched'
     TabOrder = 4
-    ExplicitTop = 387
-    ExplicitWidth = 633
-    ExplicitHeight = 207
     object MemoMatched: TMemo
       Left = 2
       Top = 27
@@ -193,8 +178,6 @@ object Form3: TForm3
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitWidth = 629
-      ExplicitHeight = 178
     end
   end
   object GroupBox5: TGroupBox
@@ -205,8 +188,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Expanded Regex'
     TabOrder = 5
-    ExplicitTop = 273
-    ExplicitWidth = 633
     object MemoExpandedRegex: TMemo
       Left = 2
       Top = 27
@@ -220,10 +201,6 @@ object Form3: TForm3
       Font.Style = []
       ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 224
-      ExplicitTop = 8
-      ExplicitWidth = 185
-      ExplicitHeight = 89
     end
   end
   object MainMenu1: TMainMenu
@@ -238,6 +215,35 @@ object Form3: TForm3
       object Save1: TMenuItem
         Caption = '&Save'
         OnClick = Save1Click
+      end
+    end
+    object iming1: TMenuItem
+      Caption = 'Timing'
+      object m1x: TMenuItem
+        Caption = '1x'
+        RadioItem = True
+        OnClick = m1xClick
+      end
+      object mi1000x: TMenuItem
+        Caption = '1000x'
+        Checked = True
+        RadioItem = True
+        OnClick = mi1000xClick
+      end
+      object mi10000x: TMenuItem
+        Caption = '10,000x'
+        RadioItem = True
+        OnClick = mi10000xClick
+      end
+      object m100000x: TMenuItem
+        Caption = '100,000x'
+        RadioItem = True
+        OnClick = m100000xClick
+      end
+      object m1000000x: TMenuItem
+        Caption = '1,000,000x'
+        RadioItem = True
+        OnClick = m1000000xClick
       end
     end
   end
