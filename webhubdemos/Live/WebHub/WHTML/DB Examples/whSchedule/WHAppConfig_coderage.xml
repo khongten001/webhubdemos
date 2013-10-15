@@ -54,7 +54,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
-      <AppSetting name="LiveNow" value="no"/>
+      <AppSetting name="LiveNow" value="yes"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
@@ -72,12 +72,8 @@
       <AdminSessionNumber value="1204" context="DORIS"/>
     </Security>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value=""/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
-      <WebRobotIniSection value=""/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whSchedule.whteko"/>
