@@ -76,8 +76,8 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~pagedesc~)</h1>
-<p>Code Rage Conference #7:</p>
-(~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHREPLAYWATCHNOWURL, SCHCODERAGECONFNO from SCHEDULE where (SchCodeRageConfNo = 7) ~)
+<p>Code Rage Conference #8:</p>
+(~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHREPLAYWATCHNOWURL, SCHCODERAGECONFNO from SCHEDULE where (SchCodeRageConfNo = 8) ~)
 </div>  <!--- whdemopagecontent -->
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
