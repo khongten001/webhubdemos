@@ -1,7 +1,6 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'StreamCatcher / WebHub Rule Tester'
   ClientHeight = 787
   ClientWidth = 941
   Color = clBtnFace
@@ -12,6 +11,7 @@ object Form3: TForm3
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Position = poDesktopCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   PixelsPerInch = 120
@@ -78,7 +78,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Regex'
     TabOrder = 1
-    ExplicitTop = 209
     object MemoRegex: TMemo
       Left = 2
       Top = 27
@@ -102,7 +101,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Target URLs'
     TabOrder = 2
-    ExplicitTop = 361
     object Splitter1: TSplitter
       Left = 465
       Top = 27
@@ -142,28 +140,13 @@ object Form3: TForm3
     Align = alTop
     TabOrder = 3
     object Button1: TButton
-      Left = 352
+      Left = 16
       Top = 8
       Width = 433
       Height = 35
       Caption = 'Test'
       TabOrder = 0
       OnClick = Button1Click
-    end
-    object EditTestName: TEdit
-      Left = 16
-      Top = 10
-      Width = 330
-      Height = 33
-      Color = clActiveCaption
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clHighlightText
-      Font.Height = -18
-      Font.Name = 'Segoe UI'
-      Font.Style = []
-      ParentFont = False
-      TabOrder = 1
-      Text = 'StartWithPageID'
     end
   end
   object GroupBox4: TGroupBox
@@ -174,8 +157,6 @@ object Form3: TForm3
     Align = alClient
     Caption = 'Groups Matched'
     TabOrder = 4
-    ExplicitTop = 614
-    ExplicitHeight = 173
     object MemoMatched: TMemo
       Left = 2
       Top = 27
@@ -184,7 +165,6 @@ object Form3: TForm3
       Align = alClient
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitHeight = 144
     end
   end
   object GroupBox5: TGroupBox
@@ -195,7 +175,6 @@ object Form3: TForm3
     Align = alTop
     Caption = 'Expanded Regex'
     TabOrder = 5
-    ExplicitTop = 281
     object MemoExpandedRegex: TMemo
       Left = 2
       Top = 27
@@ -234,7 +213,7 @@ object Form3: TForm3
       end
     end
     object iming1: TMenuItem
-      Caption = 'Timing'
+      Caption = 'Timing Loops'
       object m1x: TMenuItem
         Caption = '1x'
         Checked = True

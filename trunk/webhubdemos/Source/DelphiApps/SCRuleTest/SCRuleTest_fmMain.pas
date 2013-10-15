@@ -26,7 +26,6 @@ type
     MainMenu1: TMainMenu;
     File1: TMenuItem;
     Save1: TMenuItem;
-    EditTestName: TEdit;
     Splitter2: TSplitter;
     iming1: TMenuItem;
     mi1000x: TMenuItem;
@@ -56,6 +55,7 @@ type
     { Private declarations }
     FRegEx: TldiRegExMulti;
     FIterationHigh: Integer;
+    FAbbrev: string;
     function TestDataRegexFilespec: string;
     function TestDataURLsFilespec: string;
     function LoadDefaultMacros: Boolean;
@@ -75,6 +75,9 @@ implementation
 
 uses
   ucDlgs, ucString, ucLogFil, ucMsTime;
+
+const
+  cAppTitle = 'StreamCatcher / WebHub Rule Tester';
 
 procedure TForm3.Button1Click(Sender: TObject);
 var
@@ -204,9 +207,11 @@ procedure TForm3.FormCreate(Sender: TObject);
 begin
   FRegEx := TldiRegExMulti.Create(Self);
   FIterationHigh := 1;
-  EditTestName.Text := '(default)';
-  Self.Top := 10;
-  Self.Height := Screen.Height - 50;
+  FAbbrev := '(default)';
+  Self.Height := Screen.WorkAreaHeight - 100;
+  Self.Width := Screen.WorkAreaWidth - 100;
+  Self.Caption := cAppTitle + ' ' + FAbbrev;
+  Position := poDesktopCenter;
   FileOpenDialog1.DefaultFolder := ExtractFilePath(ParamStr(0));
   FileOpenDialog1.DefaultExtension := '*.swrt';
   FileSaveDialog1.DefaultFolder := ExtractFilePath(ParamStr(0));
@@ -304,13 +309,12 @@ end;
 
 function TForm3.TestDataRegexFilespec: string;
 begin
-  Result := ExtractFilePath(ParamStr(0)) + EditTestName.Text + '.swrt';
+  Result := ExtractFilePath(ParamStr(0)) + FAbbrev + '.swrt';
 end;
 
 function TForm3.TestDataURLsFilespec: string;
 begin
-  Result := ExtractFilePath(ParamStr(0)) + EditTestName.Text +
-    '_urls.ini';
+  Result := ExtractFilePath(ParamStr(0)) + FAbbrev + '_urls.ini';
 end;
 
 function RegexMacrosFilespec: string;
@@ -321,7 +325,6 @@ end;
 procedure TForm3.Open2Click(Sender: TObject);
 var
   ChosenFilespec: string;
-  Abbrev: string;
 begin
   MemoMatched.Clear;
   MemoExpandedRegex.Clear;
@@ -330,9 +333,7 @@ begin
   if FileOpenDialog1.Execute then
   begin
     ChosenFilespec := FileOpenDialog1.FileName;
-    Abbrev := ExtractFileNameNoExt(ChosenFilespec);
-    EditTestName.Text := Abbrev;
-    Self.Update;
+    FAbbrev := ExtractFileNameNoExt(ChosenFilespec);
     if FileExists(RegexMacrosFilespec) then
       MemoMacros.Lines.Text := StringLoadFromFile(RegexMacrosFilespec)
     else
@@ -360,14 +361,12 @@ end;
 procedure TForm3.Save1Click(Sender: TObject);
 var
   ChosenFilespec: string;
-  Abbrev: string;
 begin
+  FileSaveDialog1.Filename := FAbbrev + '.swrt';
   if FileSaveDialog1.Execute then
   begin
     ChosenFilespec := FileSaveDialog1.FileName;
-    Abbrev := ExtractFileNameNoExt(ChosenFilespec);
-    EditTestName.Text := Abbrev;
-    Self.Update;
+    FAbbrev := ExtractFileNameNoExt(ChosenFilespec);
     StringWriteToFile(RegexMacrosFilespec,   MemoMacros.Lines.Text);
     StringWriteToFile(TestDataRegexFilespec, MemoRegex.Lines.Text);
     StringWriteToFile(TestDataURLsFilespec,  MemoURLs.Lines.Text);
