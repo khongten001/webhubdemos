@@ -22,7 +22,7 @@ uses
   wdbLink, wdbSSrc, wdbScan, webScan, ucIBObjPrepare;
 
 const
-  cCalifOffset = 8; // for Code Rage November 2012  (use 7 during PDT in 2008)
+  cCalifOffset = 7; // for Code Rage October 2013  (used 8 during PST in 2012)
 
 type
   TDMCodeRageActions = class(TDataModule)
@@ -153,7 +153,7 @@ begin
   c.ReadOnly := True;
   c.SQL.Text := 'select ' + 'A.SCHNo, A.SCHTITLE, A.SCHONATPDT, ' + sLineBreak +
     'DATEADD(hour, ' + IntToStr(cCalifOffset) + ', ' + sLineBreak +
-  // Code Rage #7 in November thus PST
+  // Code Rage #8 in October thus PDT
     'A.SCHONATPDT) as GMT, ' + sLineBreak + 'DATEADD(hour, ' +
     IntToStr(cCalifOffset) + ' + ' + ':OFFSET, A.SCHONATPDT) as LocalTime ' +
     sLineBreak + 'from schedule A ' + sLineBreak + 'where (A.SchNo = :ID) ';
@@ -190,6 +190,7 @@ begin
   wds.DataSource := ds;
   wds.MaxOpenDataSets := 1;
   wds.ValidateConfig := True;
+  wds.KeyFieldNames := 'SCHNo';
 
   ScanSchedule.WebDataSource := wds;
   ScanSchedule.PageHeight := 0;
@@ -205,6 +206,7 @@ begin
   wdsA.DataSource := dsA;
   wdsA.MaxOpenDataSets := 1;
   wdsA.ValidateConfig := True;
+  wdsA.KeyFieldNames := 'ProductName';
 
   ScanAbout.WebDataSource := wdsA;
   ScanAbout.PageHeight := 0;
@@ -518,6 +520,10 @@ begin
             SVName := 'edit-' + CurrentTable + '-' + CurrentFieldname;
 
           ThisFieldTypeRaw := q.Fields[i].SQLType;
+
+          LogSendInfo(CurrentFieldname, 'ThisFieldTypeRaw=' +
+            IntToStr(ThisFieldTypeRaw));
+
           case ThisFieldTypeRaw of
             blr_sql_date:
               HumanReadable := FormatDateTime('dd-MMM-yyyy',
