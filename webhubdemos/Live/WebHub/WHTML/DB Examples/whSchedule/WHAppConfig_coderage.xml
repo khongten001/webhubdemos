@@ -55,6 +55,7 @@
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="LiveNow" value="yes"/>
+	  <AppSetting name="CodeRageBooth" value="no" /><!-- no booth in October 2013 -->
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
