@@ -329,4 +329,8 @@ drTest48<br/>
 
 </whdroplet>
 
+<whpage pageid="pgTestBounceR" desc="-test bounce to random URL">
+(~BOUNCER|pgTestBounceR~)
+</whpage>
+
 </whteko>
