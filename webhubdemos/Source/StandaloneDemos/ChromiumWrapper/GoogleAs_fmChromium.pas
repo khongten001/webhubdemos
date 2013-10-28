@@ -25,6 +25,9 @@ type
     Help1: TMenuItem;
     miAbout: TMenuItem;
     GooglePlus1: TMenuItem;
+    SlowPageTest1: TMenuItem;
+    N2: TMenuItem;
+    LargePageTest1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -37,6 +40,8 @@ type
     procedure FormResize(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
     procedure GooglePlus1Click(Sender: TObject);
+    procedure SlowPageTest1Click(Sender: TObject);
+    procedure LargePageTest1Click(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -407,6 +412,14 @@ begin
   Result := FFlagInitOnce;
 end;
 
+procedure TfmChromiumWrapper.LargePageTest1Click(Sender: TObject);
+const
+  cSample = 'http://lite.demos.href.com/demos:pgTestLoremIpsum';
+begin
+  Self.Caption := cSample;
+  FChromium1.Load(cSample);
+end;
+
 (*
 procedure TfmChromiumWrapper.OnPressEvent(const AEvent: ICefDomEvent);
 const cFn = 'OnPressEvent';
@@ -444,6 +457,14 @@ begin
   end;
 
   CSExitMethod(Self, cFn);
+end;
+
+procedure TfmChromiumWrapper.SlowPageTest1Click(Sender: TObject);
+const
+  cSample = 'http://lite.demos.href.com/adv:pgSlowPage';
+begin
+  Self.Caption := cSample;
+  FChromium1.Load(cSample);
 end;
 
 procedure TfmChromiumWrapper.misureTreatClick(Sender: TObject);
