@@ -57,9 +57,20 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = 'Google Plus'
         OnClick = GooglePlus1Click
       end
+      object N2: TMenuItem
+        Caption = '-'
+      end
       object miTestVideo1: TMenuItem
         Caption = 'Test &Video'
         OnClick = TestVideo1Click
+      end
+      object SlowPageTest1: TMenuItem
+        Caption = 'Slow Page Test'
+        OnClick = SlowPageTest1Click
+      end
+      object LargePageTest1: TMenuItem
+        Caption = 'Large Page Test'
+        OnClick = LargePageTest1Click
       end
       object N1: TMenuItem
         Caption = '--'
