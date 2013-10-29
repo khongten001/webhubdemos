@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd"><whteko>
-<whpage pageid="pgCBCheck" desc="test">
+
+<whpage pageid="pgCBCheck" desc="-checkbox test">
 <whprep>
 (~NOTASSIGNED|cbCheckName1|(~SET|cbCheckName1=aaa~)~)
 (~NOTASSIGNED|cbCheckName2|(~SET|cbCheckName2=bbb~)~)
@@ -47,7 +48,6 @@
 (~drCBHeader~)
 <p><b>Form 1 page 1</b></p>
 <p>Name 1: (~cbCheckName1~)</p>
-<p>Check box test: <!---(~IF|cbCBCheckOne|Yes||NO~)--></p>
 
 <p><b>Form 1 page 2</b></p>
 <p>Name 2: (~cbCheckName2~)</p>
@@ -58,5 +58,6 @@
 <p>No check box and no .ckb on form tag</p>
 (~drCBFooter~)
 </whpage>
+
 
 </whteko>
