@@ -36,6 +36,7 @@ type
     waFromList: TwhWebAction;
     waCauseAV: TwhWebAction;
     waWaitSeconds: TwhWebAction;
+    waSimulateBadNews: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -48,6 +49,7 @@ type
     procedure waFromListExecute(Sender: TObject);
     procedure waCauseAVExecute(Sender: TObject);
     procedure waWaitSecondsExecute(Sender: TObject);
+    procedure waSimulateBadNewsExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -541,6 +543,29 @@ begin
   end;
 end;
 
+procedure TDemoExtensions.waSimulateBadNewsExecute(Sender: TObject);
+var
+  AKeyword: string;
+begin
+  AKeyword := TwhWebAction(Sender).HtmlParam;
+  if AKeyword = 'HubNotFound' then
+    pWebApp.Response.SimulateHubNotFound
+  else
+  if AKeyword = 'AppNotRunning' then
+    pWebApp.Response.SimulateAppNotRunning
+  else
+  if AKeyword = 'RequestTimeout' then
+    pWebApp.Response.SimulateRequestTimeout
+  else
+  if AKeyword = 'AppIDBusy' then
+    pWebApp.Response.SimulateAppIDBusy
+  else
+  if AKeyword = 'AppCoverPage' then
+    pWebApp.Response.SimulateAppCoverPage(5, 'testing system messages')
+  else
+    pWebApp.SendStringImm(Self.ClassName + ': invalid syntax');
+end;
+
 function HonorLowerSecurity: Boolean;
 begin
   Result := False;
@@ -717,13 +742,19 @@ var
 const
   cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
+  CSEnterMethod(Self, cFn);
   inherited;
   bKeepChecking := InSessionNumber <> 0;
 
   { web robots are expected to come in with a (single) session number. }
-  bKeepChecking := bKeepChecking and (NOT pWebApp.IsWebRobotRequest);
-  bKeepChecking := bKeepChecking and Assigned(pWebApp) and pWebApp.IsUpdated;
-  bKeepChecking := bKeepChecking and (NOT IsHREFToolsQATestAgent);
+  { v3.204: Security.ReadOnlySession }
+  if bKeepChecking then
+    bKeepChecking := NOT pWebApp.IsReadOnlySessionNumber(InSessionNumber);
+
+  if bKeepChecking then
+    bKeepChecking := Assigned(pWebApp) and pWebApp.IsUpdated;
+  if bKeepChecking then
+    bKeepChecking := NOT IsHREFToolsQATestAgent;
 
   if bKeepChecking then
   begin
@@ -780,6 +811,7 @@ begin
         RejectSession(cUnitName + ', ' + cFn + '()', False);  // was True
     end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 var
