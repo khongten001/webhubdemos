@@ -18,66 +18,72 @@ object DemoExtensions: TDemoExtensions
   object waVersionInfo: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waVersionInfoExecute
-    Left = 93
-    Top = 181
+    Left = 77
+    Top = 117
   end
   object waGetExename: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
     OnExecute = waGetExenameExecute
-    Left = 93
-    Top = 237
+    Left = 77
+    Top = 189
   end
   object waLSec: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waLSecExecute
-    Left = 96
-    Top = 312
+    Left = 32
+    Top = 408
   end
   object waDelaySec: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waDelaySecExecute
-    Left = 208
-    Top = 304
+    Left = 80
+    Top = 248
   end
   object waDemoCaptcha: TwhCaptcha
     ComponentOptions = [tpUpdateOnLoad]
-    Left = 280
-    Top = 200
+    Left = 288
+    Top = 88
   end
   object waImgSrc: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waImgSrcExecute
-    Left = 392
-    Top = 272
+    Left = 288
+    Top = 152
   end
   object FEATURE: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = FEATUREExecute
-    Left = 512
-    Top = 144
+    Left = 672
+    Top = 24
   end
   object waCheckSubnet: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waCheckSubnetExecute
-    Left = 520
-    Top = 264
+    Left = 288
+    Top = 216
   end
   object waFromList: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waFromListExecute
-    Left = 376
-    Top = 72
+    Left = 288
+    Top = 32
   end
   object waCauseAV: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waCauseAVExecute
-    Left = 504
-    Top = 376
+    Left = 248
+    Top = 416
   end
   object waWaitSeconds: TwhWebAction
     ComponentOptions = [tpUpdateOnLoad]
     OnExecute = waWaitSecondsExecute
-    Left = 640
-    Top = 352
+    Left = 80
+    Top = 312
+  end
+  object waSimulateBadNews: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waSimulateBadNewsExecute
+    Left = 288
+    Top = 280
   end
 end
