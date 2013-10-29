@@ -44,4 +44,39 @@ p { margin: 0; padding: 0; }
 </body></html>
 </whpage>
 
+<whpage pageid="pgtesthubdown" desc="-Simulate Hub Down">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|HubNotFound~)
+</whpage>
+
+<whpage pageid="pgtestappnotrunning" desc="-Simulate AppNotRunning">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppNotRunning~)
+</whpage>
+
+<whpage pageid="pgtestAppIDBusy" desc="-Simulate AppIDBusy">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppIDBusy~)
+</whpage>
+
+<whpage pageid="pgtestRequestTimeout" desc="-Simulate RequestTimeout">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|RequestTimeout~)
+</whpage>
+
+<whpage pageid="pgtestAppCoverPage" desc="-Simulate AppCoverPage">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppCoverPage~)
+</whpage>
+
 </whteko>
