@@ -92,7 +92,7 @@
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whAdRotation.whteko"/>
@@ -107,6 +107,7 @@
       <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+      <File id="M01" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
