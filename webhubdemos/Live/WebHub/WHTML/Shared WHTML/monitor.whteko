@@ -44,7 +44,7 @@ p { margin: 0; padding: 0; }
 </body></html>
 </whpage>
 
-<whpage pageid="pgtesthubdown" desc="-Simulate Hub Down">
+<whpage pageid="pgtestHubNotFound" desc="-Simulate HubNotFound">
 <whpagesettings>
 googlesitemap=exclude
 </whpagesettings>
