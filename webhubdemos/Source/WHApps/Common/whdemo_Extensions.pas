@@ -561,7 +561,7 @@ begin
     pWebApp.Response.SimulateAppIDBusy
   else
   if AKeyword = 'AppCoverPage' then
-    pWebApp.Response.SimulateAppCoverPage(5, 'testing system messages')
+    pWebApp.Response.SimulateAppCoverPage(Now, 5, 'testing system messages')
   else
     pWebApp.SendStringImm(Self.ClassName + ': invalid syntax');
 end;
