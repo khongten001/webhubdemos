@@ -79,11 +79,59 @@ googlesitemap=exclude
 (~waSimulateBadNews.Execute|AppCoverPage~)
 </whpage>
 
-<whpage pageid="jsontestAppCoverPage" desc="-Simulate AppCoverPage">
+<whpage pageid="jsontestAppCoverPage" desc="-Simulate JSON AppCoverPage">
 <whpagesettings>
 googlesitemap=exclude
 </whpagesettings>
 (~waSimulateBadNews.Execute|AppCoverPage~)
+</whpage>
+
+<whpage pageid="jsontestAppIDBusy" desc="-Simulate JSON AppIDBusy">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppIDBusy~)
+</whpage>
+
+<whpage pageid="jsontestRequestTimeout" desc="-Simulate JSON RequestTimeout">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|RequestTimeout~)
+</whpage>
+
+<whpage pageid="pgTestSimulatedErrors" desc="-Simulating 403 Conditions">
+<whoutput>
+(~mcdoctypehtml~)
+<html (~mcxmlns~)>
+<head>
+(~drHead~)
+  <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
+</head>
+<body>
+(~drPageBegin~)
+
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+<p>These links are for simulating an error condition.
+All should give status 403 with a visible response as HTML, JSON, etc., 
+depending on the PageID and configuration.</p>
+<ul>
+
+<li> (~JUMP|pgtestappcoverpage|AppCoverPage~) </li>
+<li> (~JUMP|pgtestappnotrunning|AppNotRunning~) </li>
+<li> (~JUMP|pgtestappidbusy|AppIDBusy~) </li>
+<li> (~JUMP|pgtesthubnotfound|HubNotFound~) </li>
+<li> (~JUMP|pgtestrequesttimeout|RequestTimeout~) </li>
+
+<li> (~JUMP|jsontestappcoverpage|JSON AppCoverPage~) </li>
+<li> (~JUMP|jsontestappidbusy|JSON AppIDBusy~) </li>
+<li> (~JUMP|jsontestrequesttimeout|JSON RequestTimeout~) </li>
+</ul>
+
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)</body></html>
+</whoutput>
 </whpage>
 
 </whteko>

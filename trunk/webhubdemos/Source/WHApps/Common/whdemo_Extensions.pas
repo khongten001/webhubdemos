@@ -555,7 +555,7 @@ begin
     pWebApp.Response.SimulateAppNotRunning
   else
   if AKeyword = 'RequestTimeout' then
-    pWebApp.Response.SimulateRequestTimeout
+    pWebApp.Response.SimulateRequestTimeout(35)
   else
   if AKeyword = 'AppIDBusy' then
     pWebApp.Response.SimulateAppIDBusy
