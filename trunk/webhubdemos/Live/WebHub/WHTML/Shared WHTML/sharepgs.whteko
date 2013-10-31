@@ -294,7 +294,7 @@ delays in updating the demos.  </p>
 If you do not wish to map drive H:, edit the paths (to PAS files) in the project source (DPR file) for any demo you want to compile.</p>
 
 <h3>Access through SubVersion ("SVN")</h3>
-<p>If you have Delphi XE5, you can open the demos from inside the Delphi IDE as follows:</p>
+<p>If you have a recent Delphi IDE, you can open the demos from inside Delphi as follows:</p>
 <ol>
 <li> File > Open from Version Control </li>
 <li> URL: http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/ </li>
@@ -320,6 +320,13 @@ actively maintained.  Another is
 
 <h3>Note for Delphi Programmers</h3>
 <p>To compile the Delphi source code for all the demos, <b>you will need to have drive H:\</b> pointing to your HREFTools\WebHub\lib\ folder.  Use the DOS SUBST command (type HELP SUBST at a command prompt for syntax). Or, search and replace H:\ with your lib folder path.</p>
+
+<h3>Docs for Delphi with SVN</h3>
+<p> Sean (of the Coding With The Enemy blog) published a series of articles 
+on SVN in general and TortoiseSVN in particular: 
+<a href="http://sourceitsoftware.blogspot.com/2008/07/starting-out-with-delphi-and-subversion.html">Starting out with Delphi and subversion</a>, <a href="http://sourceitsoftware.blogspot.com/2008/07/common-tasks-with-subversion.html">Common tasks with Subversion</a>, <a href="http://sourceitsoftware.blogspot.com/2008/08/subversion-add-ins-for-delphi.html">Subversion add-ins for Delphi</a>.
+</p>
+
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
