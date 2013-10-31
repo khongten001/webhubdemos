@@ -1,0 +1,5 @@
+{ "Error": "The application ((~APPID~)) has been intentionally covered." ,
+"CoveredOnAt": "(~COVEREDONAT~)",
+"ExpectedMinutes": "(~EXPECTEDMINUTES~)",
+"Reason": "(~REASON~)"
+}

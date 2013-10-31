@@ -79,4 +79,11 @@ googlesitemap=exclude
 (~waSimulateBadNews.Execute|AppCoverPage~)
 </whpage>
 
+<whpage pageid="jsontestAppCoverPage" desc="-Simulate AppCoverPage">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppCoverPage~)
+</whpage>
+
 </whteko>
