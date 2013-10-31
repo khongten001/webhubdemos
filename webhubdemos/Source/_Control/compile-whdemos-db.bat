@@ -104,12 +104,11 @@ echo ipc is %whipc%
 echo ***
 echo .
 
-::whDPrefix uses NexusDB which is not ready for D19 yet
+::whDPrefix uses NexusDB
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
-:: call %~dp0\default-compilerdigits.bat
-set compilerdigits=18
+call %~dp0\default-compilerdigits.bat
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
 
 :dspstart
@@ -123,6 +122,7 @@ if errorlevel 1 %CSSend% /error "invalid directory for whDSP"
 ::dsp new-ipc
 call %~dp0\compile-1demo_win32.bat whDSP
 if errorlevel 1 %CSSend% /error "%~dp0\compile-1demo_win32.bat failed for whDSP"
+
 goto end
 
 :END

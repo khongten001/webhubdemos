@@ -44,13 +44,13 @@ if errorlevel 1 pause
 set t=Database-Library-bin.7z
 
 :: previous compiler has nexusdb support
-set sdir=h:\pkg_d18_win32
+:: set sdir=h:\pkg_d18_win32
 
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d1?_win32.bpl
-d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d1?_win32.bpl
+:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d1?_win32.bpl
+:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d1?_win32.bpl
+:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d1?_win32.bpl
+:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d1?_win32.bpl
+:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d1?_win32.bpl
 
 call %~dp0\default-compilerdigits.bat
 set sdir=h:\pkg_d%compilerdigits%_win32
