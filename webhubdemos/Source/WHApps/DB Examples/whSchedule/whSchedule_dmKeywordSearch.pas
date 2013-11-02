@@ -47,7 +47,7 @@ type
     procedure waRubiSearchColStart(Sender: TwhScan; var ok: Boolean);
     procedure waRubiSearchNotify(Sender: TObject;
       Event: TwhScanNotify);
-    function ScheduleMaxIndex(Sender: TObject): NativeInt;
+    function ScheduleMaxIndex(Sender: TObject): Integer;
     function PresentationWasAbout(const InSchNo: Integer;
       const InSeparator: string): string;
   public
@@ -512,11 +512,12 @@ begin
   end;
 end;
 
-function TDMRubiconSearch.ScheduleMaxIndex(Sender: TObject): NativeInt;
+function TDMRubiconSearch.ScheduleMaxIndex(Sender: TObject): Integer;
 const cFn = 'ScheduleMaxIndex';
 var
   Q: TIB_Cursor;
 begin
+  { NB: Rubicon Int32 for Result, even on Win64 }
   Q := nil;
   if FScheduleGeneratorNumber = -1 then
   begin
