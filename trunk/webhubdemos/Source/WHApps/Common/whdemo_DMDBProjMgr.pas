@@ -230,7 +230,7 @@ begin
   {$IFDEF EUREKALOG}
   // uses ExceptionLog7, EExceptionManager
   LogSendWarning('EurekaLog provides the following CallStack');
-  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  LogSendError(ExceptionManager.LastThreadException.CallStack.ToString);
   {$ENDIF}
 
   if E is EAccessViolation then
