@@ -1,4 +1,5 @@
-inherited dmDSPWebSearch: TdmDSPWebSearch
+object dmDSPWebSearch: TdmDSPWebSearch
+  OldCreateOrder = True
   OnCreate = DataModuleCreate
   Height = 152
   Width = 263

@@ -3,15 +3,8 @@ unit DSP_dmWH1;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Controls, Forms,
-  OtlCommon,
-  OtlComm,
-  OtlSync,
-  OtlTask,
-  OtlTaskControl,
-  OtlCollections,
-  OtlParallel,
-  UpdateOk, tpAction,
+  SysUtils, Classes,
+  updateOk, tpAction,
   webTypes, webLink, webScan, webGrid, webScanKeys, webRubi,
   uDSPFuzziness;
 
@@ -24,9 +17,6 @@ type
       procedure waResultsColStart(Sender: TwhScan; var ok: Boolean);
       procedure waResultsNotify(Sender: TObject; Event: TwhScanNotify);
       procedure DataModuleCreate(Sender: TObject);
-  strict private
-    FCountJobsPending: Integer;
-    FBackgroundWorker: IOmniBackgroundWorker;
    private
       { Private declarations }
    public
@@ -41,8 +31,10 @@ var
 implementation
 
 uses
-   Math, ucWinAPI, ucPos, ucString, ucLogFil, ucInteg, ucMsTime,
-   webApp, htmConst, whMacroAffixes, DSP_dmRubicon, DSP_u1;
+   Math,
+   ucWinAPI, ucPos, ucString, ucLogFil, ucInteg, ucMsTime,
+   webApp, htmConst, whMacroAffixes,
+   DSP_dmRubicon, DSP_u1;
 
 {$R *.DFM}
 
@@ -143,38 +135,17 @@ var
    a0,a4,aFind,aExcl,aOr,aAnd: string;
    S: string;
    i,n: integer;
-   StartTime: dword;
+   StartTime: Cardinal;
    FuzzLevel: TFuzzyness;
    bDelphiAll: Boolean;
    bCPPAll: Boolean;
 
-   function GetBoolean(aChecked:String): String;
+   function GetBoolean(const InBoolVarName: string): string;
    begin
-     if pWebApp.BoolVar[aChecked] then
-       Result := 'zzz' + aChecked
+     if pWebApp.BoolVar[InBoolVarName] then
+       Result := 'zzz' + InBoolVarName
      else
        Result := '';
-     Exit;
-      //    if pWebApp.BoolVar[aChecked] then
-      // 1-June-2001 AML: due to the use of frames, the Checked array stays empty.
-      If pWebApp.Request.FormData.Count > 0 then
-         begin
-            If AnsiSameText(pWebApp.Request.FormData.Values[aChecked],'Yes') then
-               begin
-                  Result:= 'zzz'+aChecked;
-                  pWebApp.BoolVar[aChecked]:=true;   // try to remember the setting!
-               end
-            Else
-               begin
-                  Result:= '';
-                  pWebApp.BoolVar[aChecked]:=false;
-               end;
-         end
-      Else
-         begin
-            If pWebApp.BoolVar[aChecked] then Result := 'zzz' + aChecked
-            Else Result := '';
-         end;
    end;
 begin
    Inherited;
