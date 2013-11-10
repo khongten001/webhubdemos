@@ -55,8 +55,8 @@ You will be able to select:
 <li>The SystemInfo Display
 </ul>
 Use the <b>Preview</b> button to test out your settings.  When you are ready to
-continue where you left off, use the <b>Return</b> button to go back.  You will
-return to Page ID (~prePref~).
+continue where you left off, use the <b>Return</b> button to go back.  
+(~IfNotBlankSV|prePref|You will return to Page ID (~prePref~).~)
 <p>
 <b><span class="changing">(~JUMPR|SetPref|Set Your Preferences~)</span></b>
 <p>

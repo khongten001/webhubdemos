@@ -81,8 +81,9 @@ or
  (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" />~)
 <br />
 (~inputsubmit|BtnPref,Preview| id="btnPrefPreview" ~)
-(~inputsubmit|BtnPref,Return| id="btnPrefReturn" ~)
-(~~SetPrefReturn~)
+
+(~IfNotBlankSV|prePref|(~inputsubmit|BtnPref,Return| id="btnPrefReturn" ~)(~~SetPrefReturn~)~)
+
 </form>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
