@@ -1,8 +1,7 @@
-inherited DSPdm: TDSPdm
+object DSPdm: TDSPdm
+  OldCreateOrder = True
   OnCreate = DataModuleCreate
   OnDestroy = DSPdmDestroy
-  Left = 285
-  Top = 161
   Height = 479
   Width = 741
   object tblAuthors: TTable
@@ -66,9 +65,10 @@ inherited DSPdm: TDSPdm
     Cache = rbCache
     CounterLimit = 0
     FirstSegment = 0
+    International = False
     SegmentSize = 2147483647
     TextLink = rbMakeTextBDELink
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     WordsLink = rbMakeWordsBDELink
     WordDelims = ' ,.;:?![]{}()<>/+-*=\|_&#%$@^^~`"'#39'^M^J^I'
     Left = 48
@@ -76,14 +76,14 @@ inherited DSPdm: TDSPdm
   end
   object rbCache: TrbCache
     MemoryLimit = 1000
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     Left = 136
     Top = 192
   end
   object rbProgressDialog: TrbProgressDialog
     Expanded = False
     Engine = rbMake
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     Left = 208
     Top = 192
   end
@@ -99,7 +99,7 @@ inherited DSPdm: TDSPdm
       'not'
       'like'
       'near')
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     WordsLink = rbMakeWordsBDELink
     Left = 312
     Top = 192
@@ -111,7 +111,7 @@ inherited DSPdm: TDSPdm
     IndexFieldName = 'FileID'
     OnProcessField = rbMakeTextBDELinkProcessField
     Table = tblFiles
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     Left = 48
     Top = 248
   end
@@ -124,7 +124,7 @@ inherited DSPdm: TDSPdm
     ReverseField = False
     Table = tblWords
     Transactions = 0
-    Version = 2.210000000000000000
+    Version = 4.038000000000000000
     Left = 48
     Top = 296
   end

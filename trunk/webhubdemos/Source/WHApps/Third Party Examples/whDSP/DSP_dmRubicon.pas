@@ -128,8 +128,7 @@ type
       FilesDatabasename: String;
       WordsDatabasename: String;
 
-      constructor Create(aOwner:TComponent); override;
-      function Init(out ErrorText: string): Boolean; 
+      function Init(out ErrorText: string): Boolean;
       procedure DoMake;  // Rubicon 1.4 was DoMakeDictionary
       function WordCount(const SearchWord:String):Integer;
       function IsValidReferer(const Referer:String;var Prefix:String):Boolean;
@@ -160,14 +159,17 @@ implementation
 {$R *.DFM}
 
 uses
-   webApp, ucString, ucpos, ucfile, ucLogFil, HTMLText, DSP_dmDisplayResults, DSP_u1;
+  ucString, ucpos, ucfile, ucLogFil, ucCodeSiteInterface,
+  webApp,
+  HTMLText, DSP_dmDisplayResults, DSP_u1;
 
-{------------------------------------------------------------------------------}
-{ Group: Create, Init & Destroy Methods                                        }
-{------------------------------------------------------------------------------}
-{-}
-constructor TDSPdm.Create(aOwner:TComponent);
+
+{$REGION 'Create, Init and Destroy Methods'}
+procedure TDSPdm.DataModuleCreate(Sender: TObject);
+const cFn = 'DataModuleCreate';
 begin
+  CSEnterMethod(Self, cFn);
+
    fTimeOut := cTimeOut;
    fPlatFormList :=TStringList.Create;
    fGroupPrfxList := TStringList.Create;
@@ -176,13 +178,6 @@ begin
    fCatgDrop := TStringList.Create;
    fSearchWords := TStringList.Create;
    fImgExt := 'gif';
-   Inherited;
-end;
-
-{-}
-procedure TDSPdm.DataModuleCreate(Sender: TObject);
-begin
-   Inherited;
    LogInfo('TDSPdm.DataModuleCreate');
    With rbMake do
       begin
@@ -218,102 +213,119 @@ begin
          TextLink := rbMakeTextBDELink;
          WordsLink := rbMakeWordsBDELink;
       end;
+  CSExitMethod(Self, cFn);
 end;
 
 function TDSPdm.Init(out ErrorText: string): Boolean;
-   procedure SetDatabase(tbl:TTable; const bAlias:boolean; const pathValue:string; const tablenameValue:string);
-   begin
-      Try
-         If bAlias then
-            begin
-               tbl.DatabaseName := 'DSP';   // use connection through TDatabase component and Alias
-               tbl.TableName := tablenameValue;
-            end
-         Else
-            begin
-               tbl.DatabaseName := '';      // no Alias
-               tbl.Tablename := TrailingBackslash(pathValue) + tablenameValue;
-            end;
-         tbl.open;
-         LogInfo('Opened '+tbl.tablename);
-      Except
-         On e : exception do LogInfo(tbl.tablename+ ' error. '+e.message);
-      End;
-   end;
-var bAlias: boolean;
+  procedure SetDatabase(tbl: TTable; const bAlias: Boolean;
+    const pathValue: string; const tablenameValue: string);
+  begin
+    try
+      If bAlias then
+      begin
+        tbl.DatabaseName := 'DSP';
+        // use connection through TDatabase component and Alias
+        tbl.TableName := tablenameValue;
+      end
+      Else
+      begin
+        tbl.DatabaseName := ''; // no Alias
+        tbl.TableName := TrailingBackslash(pathValue) + tablenameValue;
+      end;
+      tbl.open;
+      LogInfo('Opened ' + tbl.TableName);
+    except
+      on e: Exception do
+      begin
+        LogSendInfo(tbl.TableName + ' error.');
+        LogSendException(E);
+      end;
+    end;
+  end;
+
+var
+  bAlias: Boolean;
 begin
   ErrorText := '';
   Result := fInit;
-  If fInit then Exit;
+  If NOT fInit then
+  begin
 
-   LogInfo('TDSPdm.Init');
-   fInit := true;
+    LogInfo('TDSPdm.Init');
+    fInit := true;
 
-   // Note that TfmWebAppMainForm.htWebAppUpdate sets FilesDatabasename
-   dbDSP.Connected:=False;
-   LogInfo('FilesDatabasename='+FilesDatabasename);
-   If FilesDatabasename='' then
+    // Note that TfmWebAppMainForm.htWebAppUpdate sets FilesDatabasename
+    dbDSP.Connected := False;
+    LogInfo('FilesDatabasename=' + FilesDatabasename);
+    If FilesDatabasename = '' then
+    begin
+      bAlias := true;
+      DSPdm.dbDSP.AliasName := '_DSP';
+      LogInfo('DSPdm.dbDSP.AliasName defaulted to ' + DSPdm.dbDSP.AliasName);
+    end
+    Else
+    begin
+      If (pos(':', FilesDatabasename) > 0) or (pos('\', FilesDatabasename) > 0)
+      then
       begin
-         bAlias := true;
-         DSPdm.dbDSP.AliasName:='_DSP';
-         LogInfo('DSPdm.dbDSP.AliasName defaulted to '+DSPdm.dbDSP.AliasName);
+        bAlias := False;
+        dbDSP.AliasName := '';
+        // dbDSP.Connected:=True;   // 18-June-2001 commented out
+        // dbDSP.Directory:=trailingbackslash(FilesDatabasename);
+        // LogInfo('dbDSP.Directory set to '+dbDSP.Directory);
       end
-   Else
+      Else
       begin
-         If (pos(':',FilesDatabasename)>0) or (pos('\',FilesDatabasename)>0) then
-            begin
-               bAlias := false;
-               dbDSP.AliasName:='';
-               //dbDSP.Connected:=True;   // 18-June-2001 commented out
-               //dbDSP.Directory:=trailingbackslash(FilesDatabasename);
-               //LogInfo('dbDSP.Directory set to '+dbDSP.Directory);
-            end
-         Else
-            begin
-               bAlias := true;
-               DSPdm.dbDSP.AliasName:=FilesDatabasename;
-               LogInfo('DSPdm.dbDSP.AliasName set to'+DSPdm.dbDSP.AliasName);
-            end;
+        bAlias := true;
+        DSPdm.dbDSP.AliasName := FilesDatabasename;
+        LogInfo('DSPdm.dbDSP.AliasName set to' + DSPdm.dbDSP.AliasName);
       end;
+    end;
 
-   If bAlias then
-      begin
-         LogInfo('About to connect dbDSP and use BDE Alias.');
-         dbDSP.Connected := True;
-         LogInfo('dbDSP connected.');
-      end;
+    If bAlias then
+    begin
+      LogInfo('About to connect dbDSP and use BDE Alias.');
+      dbDSP.Connected := true;
+      LogInfo('dbDSP connected.');
+    end;
 
-   With tblFiles do
-      begin
-         IndexFieldNames:='FileID';  // AML 22-April-2001 ???
-      end;
-   SetDatabase(tblFiles,bAlias,FilesDatabasename,'files.db');
-   SetDatabase(tblFilesAuth,bAlias,FilesDatabasename,'filesaut.db');
-   SetDatabase(tblAuthors,bAlias,FilesDatabasename,'authors.db');
-   SetDatabase(tblFilesPlt,bAlias,FilesDatabasename,'filesplt.db');
-   SetDatabase(tblFilesGroup,bAlias,FilesDatabasename,'filesgrp.db');
-   SetDatabase(tblFilesCat,bAlias,FilesDatabasename,'filescat.db');
+    With tblFiles do
+    begin
+      IndexFieldNames := 'FileID'; // AML 22-April-2001 ???
+    end;
+    SetDatabase(tblFiles, bAlias, FilesDatabasename, 'files.db');
+    SetDatabase(tblFilesAuth, bAlias, FilesDatabasename, 'filesaut.db');
+    SetDatabase(tblAuthors, bAlias, FilesDatabasename, 'authors.db');
+    SetDatabase(tblFilesPlt, bAlias, FilesDatabasename, 'filesplt.db');
+    SetDatabase(tblFilesGroup, bAlias, FilesDatabasename, 'filesgrp.db');
+    SetDatabase(tblFilesCat, bAlias, FilesDatabasename, 'filescat.db');
 
-   tblWords.Active := False;
-   If (WordsDatabasename='') then WordsDatabasename := pWebApp.AppSetting['WordsTablePath'];
-   If (WordsDatabasename='') then
-      begin
-         LogInfo('('+pWebApp.AppSetting['WordsTablePath']+') Define AppSetting of "WordsTablePath" e.g. WordsTablePath=d:\path\');
-         Raise exception.create('TDSPdm.Init: ERROR initializing WordsDatabasename.');
-         Result := False;
-         fInit := False;
-         Exit;
-      end;
-   tblWords.DatabaseName:='';
-   tblWords.TableName := TrailingBackslash(WordsDatabasename) + 'words.db';
+    tblWords.Active := False;
+    If (WordsDatabasename = '') then
+      WordsDatabasename := pWebApp.AppSetting['WordsTablePath'];
+    If (WordsDatabasename = '') then
+    begin
+      LogInfo('(' + pWebApp.AppSetting['WordsTablePath'] +
+        ') Define AppSetting of "WordsTablePath" e.g. WordsTablePath=d:\path\');
+      Raise Exception.Create
+        ('TDSPdm.Init: ERROR initializing WordsDatabasename.');
+      Result := False;
+      fInit := False;
+      Exit;
+    end;
+    tblWords.DatabaseName := '';
+    tblWords.TableName := TrailingBackslash(WordsDatabasename) + 'words.db';
 
-   LogInfo('WordsDatabasename='+WordsDatabasename);
-   LogInfo('tblWords.Tablename='+tblWords.Tablename);
-   If (NOT FileExists(tblWords.Tablename)) then
-      begin
-         LogInfo(tblWords.Tablename + ' does not exist. Will not be able to open Words table.');
-      end;
-   LogInfo('TDSPdm.Init complete.');
+    LogInfo('WordsDatabasename=' + WordsDatabasename);
+    LogInfo('tblWords.Tablename=' + tblWords.TableName);
+    If (NOT FileExists(tblWords.TableName)) then
+    begin
+      LogInfo(tblWords.TableName +
+        ' does not exist. Will not be able to open Words table.');
+    end;
+    LogInfo('TDSPdm.Init complete.');
+    Result := fInit;
+  end;
 end;
 
 {-}
@@ -327,6 +339,7 @@ begin
    FreeAndNil(fCatgDrop);
    FreeAndNil(fSearchWords);
 end;
+{$ENDREGION}
 
 
 {------------------------------------------------------------------------------}
@@ -696,4 +709,3 @@ begin
 end;
 
 end.
-
