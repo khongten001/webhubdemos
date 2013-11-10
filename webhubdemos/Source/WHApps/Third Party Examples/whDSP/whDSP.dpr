@@ -8,12 +8,12 @@ program whDSP;
 // Note that the LogInfo function does nothing, by default. It is enabled via
 // compiler directive.  It's okay to comment out all calls to LogInfo.
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 (* The webRubi and webScanKeys files are available with source.
-   The webRubi unit is included with Rubicon, and the webScanKeys unit is 
-   included when you license the WebHub "useful source." 
+   The webRubi unit is included with Rubicon, and the webScanKeys unit is
+   included when you license the WebHub "useful source."
 *)
 
 uses
@@ -26,7 +26,6 @@ uses
   utPanFrm in 'H:\utPanFrm.pas' {utParentForm},
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {dmWebHubCore: TDataModule},
-  dmBasic in '..\whDSP\dmBasic.pas' {dmBasicDatamodule: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whHtml in 'h:\whHtml.pas' {fmAppHTML},

@@ -3,8 +3,8 @@ unit DSP_dmRubicon;
 interface
 
 uses
-   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-   dmBasic, UpdateOk, tpAction, IniLink, {} DBTables, Db,
+   Windows, Messages, SysUtils, Classes, Forms,
+   UpdateOk, tpAction, DBTables, DB,
    rbBase, rbDS, rbTable, rbBridge_b_bde, rbSearch, rbLogic,
    rbRank, rbPrgDlg, rbCache, rbMake, rbMatch;
 
@@ -16,7 +16,7 @@ type
    ESearchTimeout = class(Exception);
 
 type
-   TDSPdm = class(TdmBasicDatamodule)
+   TDSPdm = class(TDatamodule)
       tblAuthors: TTable;
       tblFiles: TTable;
       dbDSP: TDatabase;
@@ -129,7 +129,7 @@ type
       WordsDatabasename: String;
 
       constructor Create(aOwner:TComponent); override;
-      function Init: Boolean; override;
+      function Init(out ErrorText: string): Boolean; 
       procedure DoMake;  // Rubicon 1.4 was DoMakeDictionary
       function WordCount(const SearchWord:String):Integer;
       function IsValidReferer(const Referer:String;var Prefix:String):Boolean;
@@ -220,8 +220,7 @@ begin
       end;
 end;
 
-{-}
-function TDSPdm.Init: Boolean;
+function TDSPdm.Init(out ErrorText: string): Boolean;
    procedure SetDatabase(tbl:TTable; const bAlias:boolean; const pathValue:string; const tablenameValue:string);
    begin
       Try
@@ -243,9 +242,9 @@ function TDSPdm.Init: Boolean;
    end;
 var bAlias: boolean;
 begin
-   Result:=Inherited Init;
-   If not Result then Exit;
-   If fInit then Exit;
+  ErrorText := '';
+  Result := fInit;
+  If fInit then Exit;
 
    LogInfo('TDSPdm.Init');
    fInit := true;

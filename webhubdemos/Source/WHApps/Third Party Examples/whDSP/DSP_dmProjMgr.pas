@@ -34,9 +34,9 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, webApp, htWebApp, DSP_u1, DSP_dmDisplayResults, DSP_dmWH1,
-  whsample_ExceptionTester, DSP_dmRubicon, DSP_fmPanelSearch;
-  //DSP_fmConfigure; obsolete
+  MultiTypeApp,
+  webApp, htWebApp, whsample_ExceptionTester,
+  DSP_u1, DSP_dmDisplayResults, DSP_dmWH1, DSP_dmRubicon, DSP_fmPanelSearch;
 
 procedure TPMForDSP.ProjMgrDataModulesCreate2(Sender: TtpProject;
   const SuggestedAppID: String; var ErrorText: String; var Continue: Boolean);
@@ -51,7 +51,7 @@ begin
     OnEventMacro := DSPAppEventMacro;
     OnExecDone := DSPAppExecDone;
     OnNewSession := DSPAppNewSession;
-    OnBadIP := DSPAppBadIP; // 1-June-2001 AML
+    OnBadIP := nil; // 9-Nov-2013 mobile support
   end;
   pWebApp.Refresh; // Sets WordsDatabaseName
 end;
@@ -70,11 +70,14 @@ procedure TPMForDSP.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   Inherited;
-  DSPdm.Init;
-  // Loads database, using AppSettings. Rubicon components in here. BEFORE MacrosUpdate!!
-  DSPAppHandler.DSPMacrosUpdate;
-  DSPdm.rbSearch.Cache := nil; // per Deven's advice, 16-May-2001.
-  dmDSPWebSearch.Init;
+  Continue := DSPdm.Init(ErrorText);
+  if Continue then
+  begin
+    // Loads database, using AppSettings. Rubicon components in here. BEFORE MacrosUpdate!!
+    DSPAppHandler.DSPMacrosUpdate;
+    DSPdm.rbSearch.Cache := nil; // per Deven's advice, 16-May-2001.
+    Continue := dmDSPWebSearch.Init(ErrorText);
+  end;
 end;
 
 procedure TPMForDSP.ProjMgrGUICreate(Sender: TtpProject;
