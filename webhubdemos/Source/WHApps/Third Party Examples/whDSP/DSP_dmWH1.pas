@@ -22,7 +22,7 @@ type
    public
       waResults: TwhScanKeysGrid;
       waExtraInfo: TwhWebAction;
-      function Init(out ErrorText: string): Boolean; 
+      function Init(out ErrorText: string): Boolean;
    end;
 
 var
@@ -50,42 +50,42 @@ begin
   ErrorText := '';
   Result := False;
   try
-  waExtraInfo := TwhWebAction.Create(Self);
-  waExtraInfo.Name := 'waExtraInfo';
-  waExtraInfo.OnExecute := waExtraInfoExecute;
+    waExtraInfo := TwhWebAction.Create(Self);
+    waExtraInfo.Name := 'waExtraInfo';
+    waExtraInfo.OnExecute := waExtraInfoExecute;
 
-   waResults := TwhScanKeysGrid.Create(Self);
-   waResults.Name := 'waResults';
-   With waResults do
-      begin
-         OnExecute := waResultsExecute;
-         Row := 0;
-         RowCount := 0;
-         Col := 1;
-         ColCount := 1;
-         PageHeight := 10;
-         PageRows := 0;
-         PageRow := 0;
-         ColStyle := scData;
-         FixCols := 0;
-         FixRows := 0;
-         FixRowHeader := False;
-         FixColHeader := False;
-         OverlapScroll := False;
-         ScanMode := dsByKey;
-         ControlAutoHide := False;
-         Buttons := [dsbFirst, dsbPrior, dsbNext, dsbLast];
-         ButtonStyle := bsLink;
-         ButtonAutoHide := True;
-         OnNotify := waResultsNotify;
-         OnColStart := waResultsColStart;
-         TABLE := '';
-         TR := '<tr>';
-         TH := '<th>';
-         TD := '<td>';
-         BR := '';
-      end;
-  RefreshWebActions(Self);
+    waResults := TwhScanKeysGrid.Create(Self);
+    waResults.Name := 'waResults';
+    With waResults do
+    begin
+      OnExecute := waResultsExecute;
+      Row := 0;
+      RowCount := 0;
+      Col := 1;
+      ColCount := 1;
+      PageHeight := 10;
+      PageRows := 0;
+      PageRow := 0;
+      ColStyle := scData;
+      FixCols := 0;
+      FixRows := 0;
+      FixRowHeader := False;
+      FixColHeader := False;
+      OverlapScroll := False;
+      ScanMode := dsByKey;
+      ControlAutoHide := False;
+      Buttons := [dsbFirst, dsbPrior, dsbNext, dsbLast];
+      ButtonStyle := bsLink;
+      ButtonAutoHide := True;
+      OnNotify := waResultsNotify;
+      OnColStart := waResultsColStart;
+      TABLE := '';
+      TR := '<tr>';
+      TH := '<th>';
+      TD := '<td>';
+      BR := '';
+    end;
+    RefreshWebActions(Self);
     Result := True;
   except
     on E: Exception do
@@ -374,4 +374,3 @@ begin
 end;
 
 end.
-
