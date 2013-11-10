@@ -62,6 +62,7 @@ uses
   ExceptionLog7, EExceptionManager,
   {$ENDIF}
   MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
+  whSharedLog,
   whutil_ZaphodsMap,
   webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
