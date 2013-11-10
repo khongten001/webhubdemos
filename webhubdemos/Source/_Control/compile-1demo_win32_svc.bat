@@ -15,6 +15,7 @@ if not exist %dcc% pause
 
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
+%CSSend% raizelib "%raizelib%"
 set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizelib%;%droot%lib\win32\debug;
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
@@ -34,8 +35,11 @@ if exist %1.cfg REN %1.cfg %1.off
 echo 1demo as-service d%compilerdigits%_win32 %1
 
 @echo on
+set okflag=yes
 "%dcc%"  -w -h -b %1.dpr  -n%dcu% -E%outputroot% -D%compilerflags% -LU%pkg% "-u%libsearchpath%" "-R%respath%;%libsearchpath%" -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
+if errorlevel 1 set okflag=no
+if "%okflag%"=="no" %CSSend% /error "Failed to compile %1.dpr"
+if "%okflag%"=="no" pause
 
 @echo off
 if exist %1.off REN %1.off %1.cfg
