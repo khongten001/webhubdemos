@@ -32,6 +32,7 @@
   <Text>
     <Asap value="as soon as possible"/>
     <AppCoverPage value="temporary admin mode"/>
+    <AppIDBusy value="AppID is busy."/>
     <AppNotDefined value="invalid AppID"/>
     <AppNotRunning value="app not running"/>
     <AppShuttingDown value="app in process of shutting down"/>
