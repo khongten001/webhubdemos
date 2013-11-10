@@ -140,7 +140,7 @@ or
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h2><img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" /> System Info</h2>
-All web applications receive a certain amount of system information from the web
+<p>All web applications receive a certain amount of system information from the web
 server when they are called. The WebHub demos all use a shared droplet called
 <i>drSystemInfo</i> which prints out the cgi environment data, form StringVars, checkboxes,
 etc. for the current surfer.  This information is helpful during debugging because it lets you
@@ -148,7 +148,7 @@ quickly see what's going on.  All the demos have a <b>Set Preferences</b> page w
 surfers can toggle this information on and off.  The page footer droplet looks at a setting
 to determine whether or not to display the extra information.  This makes it convenient
 when you need to study it, and easy to hide later.
-<br /><br />(~drJumpBack~)
+</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)</body></html>
 </whoutput>
