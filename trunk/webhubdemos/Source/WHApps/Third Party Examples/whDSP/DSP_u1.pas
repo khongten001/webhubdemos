@@ -3,12 +3,10 @@ unit DSP_u1;
 interface
 
 uses
-   Websend,           // TwhRespondingApp
-   SysUtils,          // Exception
-   uCode, ucLogFil,   // HaveParam, AppendToLog
-   ucString,          // IP2Longint
-   Webapp             // pWebApp
-   ;
+  SysUtils,          // Exception
+  webSend,           // TwhRespondingApp
+  webApp             // pWebApp
+  ;
 
 
 type
@@ -19,8 +17,8 @@ type
       procedure DSPAppNewSession(Sender:TObject;InSessionNo:Cardinal;const Command:String);
       procedure DSPAppExecDone(Sender: TObject);
       procedure DSPAppEventMacro(Sender: TwhRespondingApp; const aMacro, aParams, aID: String);
-      procedure DSPAppError(Sender: TObject; E: Exception; var Handled, ReDoPage: Boolean);
-      procedure DSPAppBadIP(Sender: TwhRespondingApp; var bContinue:Boolean);
+      procedure DSPAppError(Sender: TObject; E: Exception;
+        var Handled, ReDoPage: Boolean);
       procedure DSPMacrosUpdate;
    end;
 
@@ -37,11 +35,13 @@ uses
   {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF}
    whMacroAffixes,
    DSP_dmRubicon,             // DSPdm
-   Weblist,                   // TwhList
-   whgui_Menu,      
+   webList,                   // TwhList
+   whgui_Menu,
+   uCode, ucLogFil,           // HaveParam, AppendToLog
+   ucString,                  // IP2Longint
    ucPos,                     // posci
-   webInfoU,                  // CentralInfo
    ucVers,                    // access file version information
+   webInfoU,                  // CentralInfo
    ucCodeSiteInterface
    ;
 
@@ -245,50 +245,29 @@ begin
          end;
 end;
 
-{-}
-procedure TDSPAppHandler.DSPAppError(Sender: TObject; E: Exception; var Handled, ReDoPage: Boolean);
+procedure TDSPAppHandler.DSPAppError(Sender: TObject; E: Exception;
+  var Handled, ReDoPage: Boolean);
 var
   S1: string;
 begin
   Handled := True;
-  LogSendException(E);  // uses ucCodeSiteInterface and ucLogFil
+  LogSendException(E);  // uses ucCodeSiteInterface
 
-  {$IFDEF CodeSite}
-  HREFTestLog('exception', E.Message, '');
+  {$IFDEF CodeSite} { extra copy of exception to LOG file }
+  HREFTestLog('exception', E.Message, ''); // uses ucLogFil
   {$ENDIF}
 
   {$IFDEF EUREKALOG}
   // uses ExceptionLog7, EExceptionManager
   LogSendWarning('EurekaLog provides the following CallStack');
-  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  LogSendError(ExceptionManager.LastThreadException.CallStack.ToString);
   {$ENDIF}
 
   with pWebApp do
   begin
-    S1 := 'Extra info: ' + Request.RemoteAddress
-         +','+Request.QueryString
-         +','+e.classname;
+    S1 := 'Extra info: ' + Request.RemoteAddress + ',' + Request.QueryString;
     LogSendError(S1);
   end;
-end;
-
-procedure TDSPAppHandler.DSPAppBadIP(Sender: TwhRespondingApp; var bContinue:Boolean);
-begin
-   Inherited;
-   bContinue:= true;
-   With Sender, Request do
-      begin
-         If posci(ServerDomain(Host)+'.',Referer)>0 then Exit;
-
-         //PageID:=AppDefault[cPageIDBadIP];
-         //RejectSession;
-         With pWebApp, Request do
-            LogInfo('DSPAppBadIP: '+
-               QueryString +
-               ' UserAgent=' + UserAgent +
-               ' IP# ' + RemoteAddress +
-               ' Session ' + SessionID);
-      end;
 end;
 
 initialization

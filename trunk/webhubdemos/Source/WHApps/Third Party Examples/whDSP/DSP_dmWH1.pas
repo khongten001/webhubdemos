@@ -3,13 +3,20 @@ unit DSP_dmWH1;
 interface
 
 uses
-   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-   dmBasic, UpdateOk, tpAction,
-   webTypes, webLink, webScan, webGrid, webScanKeys, webRubi,
-   uDSPFuzziness;
+  Windows, Messages, SysUtils, Classes, Controls, Forms,
+  OtlCommon,
+  OtlComm,
+  OtlSync,
+  OtlTask,
+  OtlTaskControl,
+  OtlCollections,
+  OtlParallel,
+  UpdateOk, tpAction,
+  webTypes, webLink, webScan, webGrid, webScanKeys, webRubi,
+  uDSPFuzziness;
 
 type
-   TdmDSPWebSearch = class(TdmBasicDatamodule)
+   TdmDSPWebSearch = class(TDatamodule)
       waSearch: TwhWebActionEx;
       procedure waExtraInfoExecute(Sender: TObject);
       procedure waSearchExecute(Sender: TObject);
@@ -17,12 +24,15 @@ type
       procedure waResultsColStart(Sender: TwhScan; var ok: Boolean);
       procedure waResultsNotify(Sender: TObject; Event: TwhScanNotify);
       procedure DataModuleCreate(Sender: TObject);
+  strict private
+    FCountJobsPending: Integer;
+    FBackgroundWorker: IOmniBackgroundWorker;
    private
       { Private declarations }
    public
       waResults: TwhScanKeysGrid;
       waExtraInfo: TwhWebAction;
-      function Init: Boolean; override;
+      function Init(out ErrorText: string): Boolean; 
    end;
 
 var
@@ -43,10 +53,11 @@ begin
    waExtraInfo := nil;
 end;
 
-function TdmDSPWebSearch.Init: Boolean;
+function TdmDSPWebSearch.Init(out ErrorText: string): Boolean;
 begin
-  Result:=Inherited Init;
-  If not Result then Exit;
+  ErrorText := '';
+  Result := False;
+  try
   waExtraInfo := TwhWebAction.Create(Self);
   waExtraInfo.Name := 'waExtraInfo';
   waExtraInfo.OnExecute := waExtraInfoExecute;
@@ -83,6 +94,13 @@ begin
          BR := '';
       end;
   RefreshWebActions(Self);
+    Result := True;
+  except
+    on E: Exception do
+    begin
+      ErrorText := E.Message;
+    end;
+  end;
 end;
 
 function StringReplace2(const Value,sThis,sWith:String): String;
