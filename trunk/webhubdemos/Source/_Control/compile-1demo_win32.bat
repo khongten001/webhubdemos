@@ -71,4 +71,5 @@ if "%ok1%"=="no" pause
 :cleanup
 @echo off
 del %outputroot%\*.map
+del %outputroot%\*.drc
 if exist %1.off REN %1.off %1.cfg

@@ -122,6 +122,7 @@ if errorlevel 1 %CSSend% /error "invalid directory for whDSP"
 ::dsp new-ipc
 call %~dp0\compile-1demo_win32.bat whDSP EurekaLog
 if errorlevel 1 %CSSend% /error "%~dp0\compile-1demo_win32.bat failed for whDSP"
+DEL %~dp0\..\..\Live\WebHub\Apps\whDSP_reqpkg.bin
 REN %~dp0\..\..\Live\WebHub\Apps\whDSP.exe whDSP_reqpkg.bin
 REN %~dp0\..\..\Live\WebHub\Apps\whDSP_eur.exe whDSP.exe
 

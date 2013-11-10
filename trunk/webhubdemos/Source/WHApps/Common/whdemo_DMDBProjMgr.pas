@@ -238,4 +238,7 @@ begin
   pWebApp.Response.SendBounceToPage('pgWelcome', '');
 end;
 
+initialization
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
+
 end.

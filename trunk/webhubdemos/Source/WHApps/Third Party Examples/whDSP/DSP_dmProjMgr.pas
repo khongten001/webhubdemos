@@ -3,8 +3,8 @@ unit DSP_dmProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMProjMgr, tpProj;
+  Windows, Messages, SysUtils, Variants, Classes, Forms,
+  whdemo_DMProjMgr, tpProj;
 
 type
   TPMForDSP = class(TDMForWHDemo)
@@ -35,7 +35,7 @@ implementation
 
 uses
   MultiTypeApp,
-  webApp, htWebApp, whsample_ExceptionTester,
+  webApp, htWebApp, whSharedLog, whsample_ExceptionTester,
   DSP_u1, DSP_dmDisplayResults, DSP_dmWH1, DSP_dmRubicon, DSP_fmPanelSearch;
 
 procedure TPMForDSP.ProjMgrDataModulesCreate2(Sender: TtpProject;
@@ -54,6 +54,7 @@ begin
     OnBadIP := nil; // 9-Nov-2013 mobile support
   end;
   pWebApp.Refresh; // Sets WordsDatabaseName
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 end;
 
 procedure TPMForDSP.ProjMgrDataModulesCreate3(Sender: TtpProject;
