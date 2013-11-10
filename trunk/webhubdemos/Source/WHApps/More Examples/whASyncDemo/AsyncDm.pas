@@ -1,7 +1,6 @@
 unit AsyncDm;
 (*
-  Copyright (c) 1999-2012 HREF Tools Corp.
-  Original Author: Michael Ax
+  Copyright (c) 1999-2013 HREF Tools Corp.
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -24,9 +23,15 @@ unit AsyncDm;
 
 interface
 
+{$I hrefdefines.inc}
+{$I WebHub_Comms.inc}
+
+{$IFDEF WEBHUBACE} error! currently requires old-ipc {$ENDIF}
+
 uses
   Windows, SysUtils, Classes,
-  updateOk, tpAction, webTypes, webLink, webVars, whAsync,
+  updateOk, tpAction, webTypes, webLink, webVars,
+  whAsync,  // WebHub ASync; see also OmniThreadLibrary
   htmlCore;
 
 type
