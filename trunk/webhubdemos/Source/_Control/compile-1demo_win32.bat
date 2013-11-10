@@ -43,7 +43,7 @@ echo 1demo d%compilerdigits%_win32 %1
 @del %outputroot%\%1.exe %1.raize.bin
 set ok1=yes
 @echo on
-"%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU "-E%outputroot%" -DCodeSite;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib "-u%libsearchpath%;%raizepath%" -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  %1.dpr -w -h -b -nd:\temp\DelphiTempDCU "-E%outputroot%" -DCodeSite;Log2CSL;%compilerflags% -LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib "-u%libsearchpath%;%raizepath%" -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite"
 if "%ok1%"=="no" pause
