@@ -50,7 +50,7 @@ uses
   webApp,    //pWebApp
   whMacros,  //SplitTerms()
   ucString,  //isEqual()
-  whAsync,   //Task globals
+  whAsync,   // Task globals: WebHub ASync; see also OmniThreadLibrary
   htStrWWW;  //Stream globals
 
 {Task globals: maintained by TwhAsyncObject in whAsync.pas:
