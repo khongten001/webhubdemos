@@ -3,10 +3,29 @@
 the page, chunks and macros for the async demonstrations
 
 the page from which to experiment with the functionality of the async demo application
-(uses flush/close/no app specific header to plug into any appid you might be using)
 </whdoc>
 
-<whpage pageid="pgASync">
+<whpage pageid="pgasync">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~PageDesc~)</h1>
+(~JUMP|pgasync|display again~)
+<p>
+(~waAsyncAction.execute|ping~)
+</p>
+</div>  <!--- demopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
+<whpage pageid="pgASync_OFF">
 <whprep>
 (~IFNOT|_FlagInit|(~chNewSession~)~)
 </whprep>
@@ -24,17 +43,19 @@ the page from which to experiment with the functionality of the async demo appli
 ||(~MATCH|(~AsyncDemo~)~tracert|(~mcDosTracert~)
 ||(~MATCH|(~AsyncDemo~)~nslookup|(~mcDosNsLookup~)
 ||(~waAsyncAction.execute~)~)~)~)
-<FORM METHOD="POST" accept-charset="UTF-8" ACTION="(~ACTION|pgASync,CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgASync,CKB~)">
 (~AsyncTitleEnd~)
-<table><tr><td><hr />
+<table>
+<tr>
+<td style="border-top: solid 1px black; border-bottom: solid 1px black;">
 <INPUT TYPE="SUBMIT" VALUE="Reload" NAME="@Any"/>
 (~MATCH|(~AsyncState~)[Finished,Failed,Aborted,Prior|<INPUT TYPE="SUBMIT" VALUE="Clear" NAME="@Clear"/>~)
 (~NOMATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Start" NAME="@Start"/>~)
 (~MATCH|(~AsyncState~)[Busy|<INPUT TYPE="SUBMIT" VALUE="Abort" NAME="@Abort"/>~)
 (~NOMATCH|(~AsyncState~)[Aborted,Busy|(~INPUTSELECT|AsyncDemo,AsyncDemos~)~)
-<hr /></td></tr></table>
+</td></tr></table>
 (~NOMATCH|(~AsyncState~)[Aborted,Busy|(~AsyncDemoPick~)~)
-</FORM>
+</form>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 

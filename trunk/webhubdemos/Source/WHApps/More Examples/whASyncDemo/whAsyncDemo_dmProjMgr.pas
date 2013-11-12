@@ -15,6 +15,8 @@ type
       var Continue: Boolean);
     procedure ProjMgrGUIInit(Sender: TtpProject; const ShouldEnableGUI: Boolean;
       var ErrorText: string; var Continue: Boolean);
+    procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
+      var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -28,7 +30,7 @@ implementation
 
 uses
   MultiTypeApp,
-  webCall,
+  webCall, whSharedLog,
   AsyncDm, StreamsDM, SimpleDm, whAsyncDemo_fmWhRequests;
 
 {$R *.dfm}
@@ -42,6 +44,14 @@ begin
   Application.CreateForm(TdmSimpleAsync, dmSimpleAsync);
 end;
 
+procedure TDMForWHAsync.ProjMgrDataModulesInit(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  Continue := dmAsyncDemo.Init(ErrorText);
+  UseWebHubSharedLog;
+end;
+
 procedure TDMForWHAsync.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
 begin
@@ -53,7 +63,7 @@ procedure TDMForWHAsync.ProjMgrGUIInit(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
-  AddConnectionExecuteHandler(fmWhRequests.WebCommandLineExecute);
+  //AddConnectionExecuteHandler(fmWhRequests.WebCommandLineExecute);
 end;
 
 end.
