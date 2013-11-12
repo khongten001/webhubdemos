@@ -1,24 +1,28 @@
 inherited fmWhRequests: TfmWhRequests
   Left = 157
   Top = 146
-  Width = 508
-  Height = 308
   Caption = '&Requests[2]'
-  PixelsPerInch = 96
-  TextHeight = 13
+  ClientHeight = 263
+  ClientWidth = 490
+  ExplicitWidth = 508
+  ExplicitHeight = 308
+  PixelsPerInch = 120
+  TextHeight = 18
   inherited pa: TPanel
-    Width = 500
-    Height = 264
+    Width = 490
+    Height = 263
+    ExplicitWidth = 490
+    ExplicitHeight = 263
     object ToolBar: TtpToolBar
       Left = 5
       Top = 5
-      Width = 490
+      Width = 480
       BorderWidth = 5
       TabOrder = 0
       object CheckBox1: TCheckBox
         Left = 8
         Top = 12
-        Width = 185
+        Width = 329
         Height = 17
         Caption = 'Show each request in the listbox'
         TabOrder = 0
@@ -27,8 +31,8 @@ inherited fmWhRequests: TfmWhRequests
     object Panel: TPanel
       Left = 5
       Top = 45
-      Width = 490
-      Height = 214
+      Width = 480
+      Height = 213
       Align = alClient
       BevelOuter = bvNone
       BorderStyle = bsSingle
@@ -36,9 +40,9 @@ inherited fmWhRequests: TfmWhRequests
       object PageControl1: TPageControl
         Left = 0
         Top = 0
-        Width = 486
-        Height = 210
-        ActivePage = TabSheet5
+        Width = 476
+        Height = 209
+        ActivePage = TabSheet4
         Align = alClient
         TabOrder = 0
         object TabSheet5: TTabSheet
@@ -46,10 +50,10 @@ inherited fmWhRequests: TfmWhRequests
           object ListBox1: TListBox
             Left = 0
             Top = 0
-            Width = 478
-            Height = 182
+            Width = 468
+            Height = 176
             Align = alClient
-            ItemHeight = 13
+            ItemHeight = 18
             TabOrder = 0
             TabWidth = 50
           end
@@ -59,9 +63,15 @@ inherited fmWhRequests: TfmWhRequests
           object WebHtmlMemo1: TwhguiTekoMemo
             Left = 0
             Top = 0
-            Width = 478
-            Height = 182
+            Width = 468
+            Height = 176
             Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -18
+            Font.Name = 'Lucida Sans Unicode'
+            Font.Style = []
+            ParentFont = False
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
@@ -74,9 +84,15 @@ inherited fmWhRequests: TfmWhRequests
           object WebHtmlMemo2: TwhguiTekoMemo
             Left = 0
             Top = 0
-            Width = 478
-            Height = 182
+            Width = 468
+            Height = 176
             Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -18
+            Font.Name = 'Lucida Sans Unicode'
+            Font.Style = []
+            ParentFont = False
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
@@ -89,9 +105,15 @@ inherited fmWhRequests: TfmWhRequests
           object WebHtmlMemo3: TwhguiTekoMemo
             Left = 0
             Top = 0
-            Width = 478
-            Height = 182
+            Width = 468
+            Height = 176
             Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -18
+            Font.Name = 'Lucida Sans Unicode'
+            Font.Style = []
+            ParentFont = False
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
@@ -104,9 +126,15 @@ inherited fmWhRequests: TfmWhRequests
           object WebHtmlMemo4: TwhguiTekoMemo
             Left = 0
             Top = 0
-            Width = 478
-            Height = 182
+            Width = 468
+            Height = 176
             Align = alClient
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -18
+            Font.Name = 'Lucida Sans Unicode'
+            Font.Style = []
+            ParentFont = False
             ScrollBars = ssBoth
             TabOrder = 0
             WordWrap = False
@@ -116,12 +144,5 @@ inherited fmWhRequests: TfmWhRequests
         end
       end
     end
-  end
-  object wa: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waExecute
-    DirectCallOk = True
-    Left = 152
-    Top = 150
   end
 end
