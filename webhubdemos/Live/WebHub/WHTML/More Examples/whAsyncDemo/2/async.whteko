@@ -5,7 +5,14 @@ the page, chunks and macros for the async demonstrations
 the page from which to experiment with the functionality of the async demo application
 </whdoc>
 
+<whmacros>
+mcDosKeywordList=ping-ping,tracert-tracert,nslookup-nslookup
+</whmacros>
+
 <whpage pageid="pgasync">
+<whprep>
+(~NOTASSIGNED|inDosKeyword|(~SET|inDosKeyword=ping~)~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -15,10 +22,26 @@ the page from which to experiment with the functionality of the async demo appli
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>(~PageDesc~)</h1>
-(~JUMP|pgasync|display again~)
+<p>(~JUMP|pgasync|display again~)</p>
+
+(~ANCHOR|anchInputForm~)
+
+
+<h2>(~inDosKeyword~) output</h2>
 <p>
-(~waAsyncAction.execute|ping~)
+(~waAsyncAction.execute|(~inDosKeyword~)~)
 </p>
+
+
+(~IfNotBlankSV|_OmniUniqueID|<p>Dedicated thread is working on UniqueID #(~_OmniUniqueID~) for you now. (~JUMPR|pgasync|check for output~)</p>||
+(~ANCHORMODIFY|anchInputForm|<h2>input</h2>
+<form method="post" action="(~ACTIONR|pgasync~)">
+(~INPUTSELECTRADIO|inDosKeyword,mcDosKeywordList~)
+<input type="submit" />
+</form>
+~)~)
+
+
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
