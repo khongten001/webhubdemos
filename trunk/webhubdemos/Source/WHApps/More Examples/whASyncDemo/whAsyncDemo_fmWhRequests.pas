@@ -45,18 +45,13 @@ type
     WebHtmlMemo3: TwhguiTekoMemo;
     TabSheet4: TTabSheet;
     WebHtmlMemo4: TwhguiTekoMemo;
-    wa: TwhWebActionEx;
-    procedure waExecute(Sender: TObject);
   private
     { Private declarations }
     FRoundRobin: Integer;
   public
     { Public declarations }
     function Init: Boolean; override;
-    procedure LogRequest(const A, B: string);
     procedure WebAppOutputShow(Sender: TObject);
-    procedure WebCommandLineExecute(Sender: TObject);
-    procedure tpApplication1Idle(Sender: TObject; var Done: Boolean);
     end;
 
 var
@@ -80,13 +75,6 @@ end;
 
 
 //------------------------------------------------------------------------------
-
-procedure TfmWhRequests.LogRequest(const A, B: string);
-begin
-  if CheckBox1.Checked then
-    listbox1.items.insert(0,A + Chr(183) + B);
-  {$IFDEF CodeSite}CodeSite.Send(A, B); {$ENDIF}
-end;
 
 procedure TfmWhRequests.WebAppOutputShow(Sender: TObject);
 var
@@ -120,26 +108,6 @@ begin
 
   if PageControl1.ActivePage <> TabSheet5 then
     PageControl1.ActivePage := ts;
-end;
-
-procedure TfmWhRequests.WebCommandLineExecute(Sender: TObject);
-begin
-  LogRequest(pWebApp.Request.systemvalues.values['ConnectID'],
-    pWebApp.Request.QueryString);
-end;
-
-procedure TfmWhRequests.tpApplication1Idle(Sender: TObject;
-  var Done: Boolean);
-begin
-  inherited;
-{  if assigned(WebCommandLine) then
-    WebCommandLine.DoIdle(Sender,Done);}
-end;
-
-procedure TfmWhRequests.waExecute(Sender: TObject);
-begin
-  inherited;
-  pwebapp.sendstring('hi there ['+wa.htmlparam+']['+wa.command+']');
 end;
 
 end.
