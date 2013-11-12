@@ -64,8 +64,12 @@ type
     FSurferTasks: TTrackSurferTaskList;
     FCountJobsPending: Integer;
     FBackgroundPingWorker: IOmniBackgroundWorker;
+    FBackgroundTracertWorker: IOmniBackgroundWorker;
+    FBackgroundNSLookupWorker: IOmniBackgroundWorker;
     procedure ProcessPingWorkItem(const workItem: IOmniWorkItem);
-    procedure HandlePingWorkDone(const Sender: IOmniBackgroundWorker;
+    procedure ProcessTracertWorkItem(const workItem: IOmniWorkItem);
+    procedure ProcessNSLookupWorkItem(const workItem: IOmniWorkItem);
+    procedure HandleDosWorkDone(const Sender: IOmniBackgroundWorker;
       const workItem: IOmniWorkItem);
   public
     waAsyncAction: TwhWebAction;
@@ -117,22 +121,42 @@ var
   TempOmniWorkItem: IOmniWorkItem;
   rec: TTrackSurferTaskRec;
   actionKeyword: string;
+  bValidKeyword: Boolean;
 begin
   CSEnterMethod(Self, cFn);
 
+  bValidKeyword := False;
   j := FindTaskBySessionID(pWebApp.SessionNumber);
   CSSend('Task index for this surfer', S(j));
+
   if j = -1 then
   begin
     rec.SessionNumber := pWebApp.SessionNumber;
     CSSend('rec.SessionNumber', S(rec.SessionNumber));
-    actionKeyword := TwhWebAction(Sender).HtmlParam;
+    actionKeyword := pWebApp.MoreIfParentild(TwhWebAction(Sender).HtmlParam);
     CSSend('actionKeyword', actionKeyword);
     if actionKeyword = 'ping' then
     begin
       TempOmniWorkItem :=
         FBackgroundPingWorker.CreateWorkItem(pWebApp.Request.RemoteAddress);
-
+      bValidKeyword := True;
+    end
+    else
+    if actionKeyword = 'tracert' then
+    begin
+      TempOmniWorkItem :=
+        FBackgroundTracertWorker.CreateWorkItem(pWebApp.Request.RemoteAddress);
+      bValidKeyword := True;
+    end
+    else
+    if actionKeyword = 'nslookup' then
+    begin
+      TempOmniWorkItem :=
+        FBackgroundNSLookupWorker.CreateWorkItem(pWebApp.Request.RemoteAddress);
+      bValidKeyword := True;
+    end;
+    if bValidKeyword then
+    begin
       InterlockedIncrement(FCountJobsPending);
       rec.OmniUniqueID := TempOmniWorkItem.UniqueID;
       rec.FinishedOnAt := Now + 365;  // not done yet
@@ -140,14 +164,21 @@ begin
       FCS.Enter;
       FSurferTasks.Add(rec);
       FCS.Leave;
-
-      FBackgroundPingWorker.Schedule(TempOmniWorkItem);
-
       pWebApp.StringVarInt['_OmniUniqueID'] := TempOmniWorkItem.UniqueID;
-      pWebApp.SendStringImm('starting your job now');
+      pWebApp.SendStringImm('Starting your ' + actionKeyword + ' task now...');
+
+      if actionKeyword = 'ping' then
+        FBackgroundPingWorker.Schedule(TempOmniWorkItem)
+      else
+      if actionKeyword = 'tracert' then
+        FBackgroundTracertWorker.Schedule(TempOmniWorkItem)
+      else
+      if actionKeyword = 'nslookup' then
+        FBackgroundNSLookupWorker.Schedule(TempOmniWorkItem);
+
     end
     else
-      pWebApp.SendStringImm('unsupported keyword');
+      pWebApp.SendStringImm('unsupported keyword: ' + actionKeyword);
   end
   else
   begin
@@ -161,7 +192,13 @@ begin
       FSurferTasks.Delete(j);
       FCS.Leave;
       InterlockedDecrement(FCountJobsPending);
-    end;
+      pWebApp.Session.DeleteStringVarByName('_OmniUniqueID');
+    end
+    {
+    else  // could give extra message to surfer here.
+      pWebApp.SendStringImm('work in progress... display again')
+    }
+    ;
   end;
 
   CSExitMethod(Self, cFn);
@@ -269,10 +306,10 @@ begin
   CSExitMethod(Self, cFn);
 end;
 
-procedure TdmAsyncDemo.HandlePingWorkDone(const Sender: IOmniBackgroundWorker;
+procedure TdmAsyncDemo.HandleDosWorkDone(const Sender: IOmniBackgroundWorker;
   const workItem: IOmniWorkItem);
 const
-  cFn = 'HandlePingWorkDone';
+  cFn = 'HandleDosWorkDone';
 var
   i: Integer;
   rec: TTrackSurferTaskRec;
@@ -301,10 +338,36 @@ begin
   ErrorText := '';
   FBackgroundPingWorker := Parallel.BackgroundWorker
     .NumTasks(1)
-    .OnRequestDone(dmAsyncDemo.HandlePingWorkDone)
+    .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
     .Execute(dmAsyncDemo.ProcessPingWorkItem);
+  FBackgroundTracertWorker := Parallel.BackgroundWorker
+    .NumTasks(1)
+    .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
+    .Execute(dmAsyncDemo.ProcessTracertWorkItem);
+  FBackgroundNSlookupWorker := Parallel.BackgroundWorker
+    .NumTasks(1)
+    .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
+    .Execute(dmAsyncDemo.ProcessNSLookupWorkItem);
   RefreshWebActions(Self);
   Result := True;
+end;
+
+procedure TdmAsyncDemo.ProcessNSLookupWorkItem(const workItem: IOmniWorkItem);
+const cFn = 'ProcessNSLookupWorkItem';
+var
+  DosCmd: string;
+  aa: AnsiString;
+  s1: string;
+  ErrorCode: Integer;
+begin
+  CSEnterMethod(Self, cFn);
+  DosCmd := 'nslookup ' + workItem.Data.AsString;
+  //CSSend('DosCmd', DosCmd);
+  aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
+  s1 := AnsiCodePageToUnicode(aa, 1252);
+  workItem.Result := s1;
+  //CSSend('workItem.Result', workItem.Result);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TdmAsyncDemo.ProcessPingWorkItem(const workItem: IOmniWorkItem);
@@ -322,6 +385,24 @@ begin
   CSSend('aa', string(aa));
   s1 := AnsiCodePageToUnicode(aa, 1252);
   CSSend('s1', s1);
+  workItem.Result := s1;
+  CSSend('workItem.Result', workItem.Result);
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TdmAsyncDemo.ProcessTracertWorkItem(const workItem: IOmniWorkItem);
+const cFn = 'ProcessTracertWorkItem';
+var
+  DosCmd: string;
+  aa: AnsiString;
+  s1: string;
+  ErrorCode: Integer;
+begin
+  CSEnterMethod(Self, cFn);
+  DosCmd := 'tracert ' + workItem.Data.AsString;
+  CSSend('DosCmd', DosCmd);
+  aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
+  s1 := AnsiCodePageToUnicode(aa, 1252);
   workItem.Result := s1;
   CSSend('workItem.Result', workItem.Result);
   CSExitMethod(Self, cFn);
