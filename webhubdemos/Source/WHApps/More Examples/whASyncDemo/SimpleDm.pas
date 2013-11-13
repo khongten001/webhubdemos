@@ -25,7 +25,7 @@ unit SimpleDm;
 interface
 
 uses
-  SysUtils, Classes, SyncObjs,
+  SysUtils, Classes,
   {System.Generics.}Generics.Collections,
   OtlCommon,  // Delphi OmniThreadLibrary replaces WebHub ASync November 2013
   OtlComm,
@@ -58,7 +58,6 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   strict private
-    //FCS: TCriticalSection;
     otListLock: TOmniMREW;
     FSurferTasks: TTrackSurferSimpleTaskList;
     FCountJobsPending: Integer;
@@ -87,7 +86,7 @@ uses
   TypInfo, // for translating the Async-state into a literal
   webApp,  // for access to pWebApp in the thread's constructor
   ucCodeSiteInterface,
-  ucString; // string functions (IsIn...)
+  ucString; // string functions
 
 
 procedure TdmSimpleAsync.DataModuleCreate(Sender: TObject);
@@ -320,8 +319,9 @@ begin
     begin
       //CSSend('FSurferTasks[j].Output', FSurferTasks[j].Output.AsString);
       pWebApp.StringVar['_Demo1Output'] :=
-      '<span style="font-weight:900; color: #DDDDDD;">' +
+      '<span style="font-weight:900; color: #20B2AA;">' +
         sLineBreak +
+        'Here is your random number between 0 and 9999: ' +
         IntTostr(FSurferTasks[j].Output) +
         '</span>'+ sLineBreak;
       otListLock.EnterWriteLock;
@@ -362,7 +362,7 @@ begin
         InterlockedExchange(N, rec.PercentComplete);
         pWebApp.StringVarInt['_PercentComplete'] := N;
         pWebApp.StringVarInt['_CountJobsPending'] := FCountJobsPending;
-        pWebApp.Response.Send('(~_PercentComplete~) percent complete ...');
+        pWebApp.Response.Send('(~_PercentComplete~) percent complete');
       end;
     end;
   end;

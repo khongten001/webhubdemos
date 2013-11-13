@@ -18,7 +18,7 @@ input, select { font-family: Tahoma; font-weight: 900; color: blue; }
 <h2>Demo #1</h2>
 <p><i><a target="_blank" href="(~DynURL.ToPageID~)">Open new window as new surfer</a></i></p>
 <div style="border: solid 1px blue; padding: 2em; width: 18em;">
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post,NewThread~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post~)">
 Query Length: (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~) <br />
 Status Refresh Rate: (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)<br/>
 <input type="submit" value="Start" />
@@ -30,12 +30,12 @@ Status Refresh Rate: (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)<br/>
 for the system to be tied up generating an http response, we do it asynchronously, letting the WebApp (whAsyncDemo.exe) 
 get right back to the surfer with a status page.  This frees the app to serve other requests.  </p>
 <p>To see this in action, select a query length and refresh rate, and 
-click Submit Query.  Normally, the length of the query depends on the nature of the processing to be done, not on the user.  However, since
-this is a simulation, you can select how long you wish the query to take. Once you click &quot;Submit Query&quot; you will be immediately 
-presented with a page informing you that your &quot;query&quot; has been started, from there, the status page will refresh, showning the 
+click the button.  Ordinarily, the length of the query depends on the nature of the processing to be done, not on the user.  However, since
+this is a simulation, you can select how long you wish the query to take. Once you submit the form, you will be immediately 
+presented with a page informing you that your work is in progress. From there, the status page will refresh, showing the 
 current percentage complete.  What you selected for &quot;Status Refresh Rate&quot; will be how often (in seconds) the status page 
 refreshes, keeping you up to date on your progress.  When the async thread has completed, and your results are ready, you will be 
-taken to a page where you can view the results, and, if you wish, clear them and restart the demo.</p>
+taken to a page where you can view the result (a random integer up to 9999).</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
@@ -63,7 +63,7 @@ taken to a page where you can view the results, and, if you wish, clear them and
 <whprep>
 (~waAsyncSimple1.Execute|~)
 <!--- a bounce from the page that was posted to is helpful for browser subsequently reloading a page -->
-(~BOUNCE|Demo1Loop,(~Command~)~)
+(~BOUNCE|Demo1Loop~)
 </whprep>
 </whpage>
 
@@ -86,16 +86,16 @@ taken to a page where you can view the results, and, if you wish, clear them and
 (~waAsyncSimple1.Execute|~)
 (~NOTASSIGNED|_OmniUniqueID|(~BOUNCE|Demo1Result~)~) <!--- check again -->
 *:
-<progress value="(~_PercentComplete~)" max="100">
-</progress>
+<progress value="(~_PercentComplete~)" max="100"></progress>
 
 <p>The demo is searching the imaginary database.<br />
-Please wait while your query is processed.<br />
+Please wait while your imaginary query is processed.<br />
 The browser should reload this page every (~Demo1Refresh~) seconds.<br/>
-Jobs competing for the CPU: (~_CountJobsPending~).</p>
+Count of jobs competing for the server CPU: (~_CountJobsPending~).</p>
+<p>A surfer-specific _OmniUniqueID value [(~_OmniUniqueID~)] is present while the job is in process. </p>
 <p>(~JUMPR|Demo1Cancel|Cancel~)</p>
 
-<p><strong>* Note:</strong> The progress tag is not supported in Microsoft Internet Explorer 9 and earlier versions.</p>
+<p><strong>* Note:</strong> The HTML5 progress tag is not supported in Microsoft IE9 and earlier versions.</p>
 
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
