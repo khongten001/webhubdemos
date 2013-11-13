@@ -1,6 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
-<whpage pageid="Demo2Home">
+<whpage pageid="Demo2Home" desc="ASync Demonstration #2">
+<whprep>
+(~CLEAR|_OmniUniqueID~)
+(~CLEAR|inDosKeyword~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -9,56 +15,18 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-Welcome to Demo 2, an advanced showcase of async capabilities in WebHub.  
-<p>
-<p>
-Next: (~JUMP|pgASync|Start Demo 2 as Current Surfer~) or 
-<a href="(~DynURL.ToAppID~):pgASync::">Start Demo 2 as New Surfer</a><br />
-<span class="highlighter"><i>Start the demo in a new window so that you can simulate multiple surfers 
-while keeping the instructions handy.</i></span>
-<p>
-<b>Instructions</b><br />
-After you start demo 2, you will be presented with a screen of options to
-select how the web application should process your async request. 
-<p>
-At the top of the screen will be a yellow status box.  This tells you the status of your async request as well as other options
-(background or not, connection open or not, etc) currently being used. Below that is where you choose which type of demo to run:
-<OL>
-<li><b>% Complete</b> - Similar to the imaginary database query in Demo 1, this will simulate a 10 second request, reporting
-back the percentage complete in various ways, depending on how the checkboxes are set.<br />&nbsp;</LI>
+<h2>(~PageDesc~)</h2>
+<p>After you start demo 2, you will be presented with a screen of options to
+select how the web application should process your async request. </p>
 
-<li><b>Trace the route back to you</b> - This executes the DOS command <CODE>TRACERT</CODE> in its own thread, reporting 
-its results when they are available.<br />&nbsp;</LI>
+<p>Next: (~JUMP|pgASync|Start Demo 2 using Current Session Object~) or </p>
+<p><a target="_blank" href="(~DynURL.ToAppID~):pgASync::">Start Demo 2 as New Surfer</a>.
+</p>
 
-<li><b>Ping your IP address</b> - This executes the DOS command <CODE>PING</CODE> in its own thread, reporting its results when
-they are available.<br />&nbsp;</LI>
-
-<li><b>Look up your IP's name</b> - This executes the DOS command <CODE>NSLOOKUP</CODE> in its own thread, reporting its results
-when they are available.<br />&nbsp;</LI>
-</OL>
-Remember to click the &quot;Clear&quot; button to clear your results before repeating the demo.<br />
-<br />
-Things to try:
-<ul>
-<li>Start multiple requests for the same demo (open several browser windows, each with a different session number).  Some setting
-combinations will cause additional requests to wait until the first is done (keeping the connection open is one example).</LI>
-<li>Try clicking the status button (when there is one).  It will give you (via JavaScript) the elapsed time.</LI>
-<li>Try aborting a process.</LI>
-<li>Try forcing page reloads, both during processing, and when it is done or aborted</LI>
-</ul>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
 </body></html>
 </whpage>
-
-
-<whdroplet name="chExtra2">
-<h1>A WebHub VCL Demonstration</h1>
-<h2>&quot;Your solution for asynchroneous, real-world, task-processing.&quot;</h1>
-<font size="+1">O</font>therwise known as a complete example of
-how to use a single application instance to track and perform taks
-that take longer than an average web-request.
-</whdroplet>
 
 </whteko>

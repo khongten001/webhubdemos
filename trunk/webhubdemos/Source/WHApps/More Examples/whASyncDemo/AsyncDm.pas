@@ -58,7 +58,7 @@ type
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   strict private
-    FCS: TCriticalSection;
+    otListLock: TOmniMREW;
     FSurferTasks: TTrackSurferTaskList;
     FCountDosJobsPending: Integer;
     FBackgroundPingWorker: IOmniBackgroundWorker;
@@ -117,7 +117,9 @@ begin
   CSEnterMethod(Self, cFn);
 
   bValidKeyword := False;
+  otListLock.EnterReadLock;
   j := FindTaskBySessionID(pWebApp.SessionNumber);  // -1 if not found
+  otListLock.ExitReadLock;
 
   if j = -1 then
   begin
@@ -152,9 +154,9 @@ begin
       rec.OmniUniqueID := TempOmniWorkItem.UniqueID;
       rec.FinishedOnAt := Now + 365;  // not done yet
       rec.StartedOnAt := Now;
-      FCS.Enter;
+      otListLock.EnterWriteLock;
       FSurferTasks.Add(rec);
-      FCS.Leave;
+      otListLock.ExitWriteLock;
       pWebApp.StringVarInt['_OmniUniqueID'] := TempOmniWorkItem.UniqueID;
       pWebApp.StringVarInt['_CountDosJobsPending'] := FCountDosJobsPending;
 
@@ -176,15 +178,18 @@ begin
   else
   begin
     CSSend('Task index for this surfer', S(j));
-    if FSurferTasks[j].FinishedOnAt < Now then
+    otListLock.EnterReadLock;
+    rec := FSurferTasks[j];
+    otListLock.ExitReadLock;
+    if rec.FinishedOnAt < Now then
     begin
       CSSend('FSurferTasks[j].Output', FSurferTasks[j].Output.AsString);
       pWebApp.SendStringImm('<pre>' + sLineBreak);
       pWebApp.SendStringImm(FSurferTasks[j].Output.AsString);
       pWebApp.SendStringImm('</pre>'+ sLineBreak);
-      FCS.Enter;
+      otListLock.EnterWriteLock;
       FSurferTasks.Delete(j);
-      FCS.Leave;
+      otListLock.ExitWriteLock;
       InterlockedDecrement(FCountDosJobsPending);
       pWebApp.Session.DeleteStringVarByName('_OmniUniqueID');
     end
@@ -205,26 +210,17 @@ procedure TdmAsyncDemo.DataModuleCreate(Sender: TObject);
 const cFn = 'DataModuleCreate';
 begin
   CSEnterMethod(Self, cFn);
-  FCS := TCriticalSection.Create;
+
   FSurferTasks := TTrackSurferTaskList.Create;
   FCountDosJobsPending := 0;
+
   waAsyncAction := TwhWebAction.Create(Self);
   waAsyncAction.Name := 'waAsyncAction';
   waAsyncAction.OnExecute := waAsyncActionExecute;
-  //  TicksExpires = 3600000
-  //  AsyncState = asInit
 
-{
-  GlobalOmniThreadPool.MonitorWith(OmniTED);
-  GlobalOmniThreadPool.MaxExecuting := 2;
-  GlobalOmniThreadPool.MaxQueued := 3;
-}
-
-{
-  OmniTED := TOmniEventMonitor.Create(Self);
-  OmniTED.Name := 'OmniTED';
-}
   FBackgroundPingWorker := nil;
+  FBackgroundTracertWorker := nil;
+  FBackgroundNSLookupWorker := nil;
 
   CSExitMethod(Self, cFn);
 end;
@@ -244,7 +240,6 @@ begin
   FBackgroundNSLookupWorker := nil;
   FreeAndNil(waAsyncAction);
   FreeAndNil(FSurferTasks);
-  FreeAndNil(FCS);
   CSExitMethod(Self, cFn);
 end;
 
@@ -311,15 +306,18 @@ begin
   CSSend(Format('Work item %d returned Result=%s',
     [workItem.UniqueID, workItem.Result.AsString]));
 
-  i := FindTaskByUniqueID(workItem.UniqueID);
-  if i > -1 then
-  begin
-    FCS.Enter;
-    rec := FSurferTasks[i];
-    rec.Output := workItem.Result;
-    rec.FinishedOnAt := Now;
-    FSurferTasks[i] := rec;
-    FCS.Leave;
+  otListLock.EnterWriteLock;
+  try
+    i := FindTaskByUniqueID(workItem.UniqueID);
+    if i > -1 then
+    begin
+      rec := FSurferTasks[i];
+      rec.Output := workItem.Result;
+      rec.FinishedOnAt := Now;
+      FSurferTasks[i] := rec;
+    end;
+  finally
+    otListLock.ExitWriteLock;
   end;
 
   CSExitMethod(Self, cFn);
@@ -329,15 +327,15 @@ function TdmAsyncDemo.Init(out ErrorText: string): Boolean;
 begin
   ErrorText := '';
   FBackgroundPingWorker := Parallel.BackgroundWorker
-    .NumTasks(1)
+    .NumTasks(2)
     .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
     .Execute(dmAsyncDemo.ProcessPingWorkItem);
   FBackgroundTracertWorker := Parallel.BackgroundWorker
-    .NumTasks(1)
+    .NumTasks(2)
     .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
     .Execute(dmAsyncDemo.ProcessTracertWorkItem);
   FBackgroundNSlookupWorker := Parallel.BackgroundWorker
-    .NumTasks(1)
+    .NumTasks(2)
     .OnRequestDone(dmAsyncDemo.HandleDosWorkDone)
     .Execute(dmAsyncDemo.ProcessNSLookupWorkItem);
   RefreshWebActions(Self);
@@ -371,12 +369,12 @@ var
   ErrorCode: Integer;
 begin
   CSEnterMethod(Self, cFn);
-  DosCmd := 'ping ' + workItem.Data.AsString;
+  DosCmd := 'ping ' + workItem.Data.AsString + ' -n 10';  // repeat 10x
   CSSend('DosCmd', DosCmd);
   aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
-  CSSend('aa', string(aa));
+  //CSSend('aa', string(aa));
   s1 := AnsiCodePageToUnicode(aa, 1252);
-  CSSend('s1', s1);
+  //CSSend('s1', s1);
   workItem.Result := s1;
   CSSend('workItem.Result', workItem.Result);
   CSExitMethod(Self, cFn);
