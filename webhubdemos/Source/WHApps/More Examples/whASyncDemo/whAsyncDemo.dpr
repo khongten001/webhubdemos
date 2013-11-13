@@ -37,9 +37,7 @@ uses
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   AsyncDm in 'AsyncDm.pas' {dmAsyncDemo: TDataModule},
-  StreamsDM in 'StreamsDM.pas' {dmStreams: TDataModule},
   SimpleDm in 'SimpleDm.pas' {dmSimpleAsync},
-  whAsyncDemo_fmWhRequests in 'whAsyncDemo_fmWhRequests.pas' {fmWhRequests},
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whAsyncDemo_dmProjMgr in 'whAsyncDemo_dmProjMgr.pas' {DMForWHAsync: TDataModule};
 

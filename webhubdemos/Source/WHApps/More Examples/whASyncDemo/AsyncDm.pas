@@ -31,15 +31,14 @@ uses
   SysUtils, Classes, SyncObjs,
   {System.Generics.}Generics.Collections,
   updateOk, tpAction, webTypes, webLink, webVars,
-  //whAsync,  // WebHub ASync until October 2013
-  OtlCommon,  // Delphi OmniThreadLibrary
+  OtlCommon,  // Delphi OmniThreadLibrary replaces WebHub ASync November 2013
   OtlComm,
   OtlSync,
   OtlTask,
   OtlTaskControl,
   OtlCollections,
-  OtlParallel,
-  htmlCore;
+  OtlParallel;
+  //htmlCore;
 
 type
   TTrackSurferTaskRec = record
@@ -49,7 +48,6 @@ type
     StartedOnAt: TDateTime;
     FinishedOnAt: TDateTime;
   end;
-//  TTrackSurferTaskRecPtr = ^TTrackSurferTaskRec;
 
 type
   TTrackSurferTaskList = TList<TTrackSurferTaskRec>;
@@ -62,7 +60,7 @@ type
   strict private
     FCS: TCriticalSection;
     FSurferTasks: TTrackSurferTaskList;
-    FCountJobsPending: Integer;
+    FCountDosJobsPending: Integer;
     FBackgroundPingWorker: IOmniBackgroundWorker;
     FBackgroundTracertWorker: IOmniBackgroundWorker;
     FBackgroundNSLookupWorker: IOmniBackgroundWorker;
@@ -71,11 +69,11 @@ type
     procedure ProcessNSLookupWorkItem(const workItem: IOmniWorkItem);
     procedure HandleDosWorkDone(const Sender: IOmniBackgroundWorker;
       const workItem: IOmniWorkItem);
+    function FindTaskByUniqueID(const InValue: Int64): Integer;
+    function FindTaskBySessionID(const InValue: Cardinal): Integer;
   public
     waAsyncAction: TwhWebAction;
     function Init(out ErrorText: string): Boolean;
-    function FindTaskByUniqueID(const InValue: Int64): Integer;
-    function FindTaskBySessionID(const InValue: Cardinal): Integer;
   end;
 
 var
@@ -88,28 +86,21 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
-  TypInfo, // for translating the Async-state into a literal
-  webApp, // for access to pWebApp in the thread's constructor
-  whMacroAffixes, // MacroStart and MacroEnd
-  webSend,
-  htStrWWW,
+  webApp, // for access to pWebApp
   htWebApp, // for subscribing to the AfterWebAppExecute event list.
-  htThread, // backgroundthread class to subscribe TNotifyevents to.
-  ipcMail,
-  whMacros,
   ucAnsiUtil, // explicit conversion using specified CodePage number
   ucCodeSiteInterface,
-  uCode, // tpRaise, tpRaiseHere
-  ucString, // string function (IsIn..)
-  ucPipe, // access to dos output
-  ucWinAPI, // winpath
-  whAsyncDemo_fmWhRequests;
+  ucString, // string function
+  ucPipe // access to dos output
+  ;
+
 
 {$REGION 'Documentation'}
 ///	<summary>
-///	Process your custom async action through these datamodule events.
-/// Below you will find init/finish procs and code for both the onexecute
-/// events used in the demo application.
+///	This example shows how to process 3 DOS commands on a background thread:
+/// ping, tracert and nslookup.
+/// Each is handled by its own IOmniBackgroundWorker and its own "work"
+/// method.  They share the "done" method.
 ///	</summary>
 {$ENDREGION}
 
@@ -126,13 +117,13 @@ begin
   CSEnterMethod(Self, cFn);
 
   bValidKeyword := False;
-  j := FindTaskBySessionID(pWebApp.SessionNumber);
-  CSSend('Task index for this surfer', S(j));
+  j := FindTaskBySessionID(pWebApp.SessionNumber);  // -1 if not found
 
   if j = -1 then
   begin
     rec.SessionNumber := pWebApp.SessionNumber;
-    CSSend('rec.SessionNumber', S(rec.SessionNumber));
+    //CSSend('rec.SessionNumber', S(rec.SessionNumber));
+    { Surfer selects a radio button, which expands to a particular string }
     actionKeyword := pWebApp.MoreIfParentild(TwhWebAction(Sender).HtmlParam);
     CSSend('actionKeyword', actionKeyword);
     if actionKeyword = 'ping' then
@@ -157,7 +148,7 @@ begin
     end;
     if bValidKeyword then
     begin
-      InterlockedIncrement(FCountJobsPending);
+      InterlockedIncrement(FCountDosJobsPending);
       rec.OmniUniqueID := TempOmniWorkItem.UniqueID;
       rec.FinishedOnAt := Now + 365;  // not done yet
       rec.StartedOnAt := Now;
@@ -165,6 +156,8 @@ begin
       FSurferTasks.Add(rec);
       FCS.Leave;
       pWebApp.StringVarInt['_OmniUniqueID'] := TempOmniWorkItem.UniqueID;
+      pWebApp.StringVarInt['_CountDosJobsPending'] := FCountDosJobsPending;
+
       pWebApp.SendStringImm('Starting your ' + actionKeyword + ' task now...');
 
       if actionKeyword = 'ping' then
@@ -182,6 +175,7 @@ begin
   end
   else
   begin
+    CSSend('Task index for this surfer', S(j));
     if FSurferTasks[j].FinishedOnAt < Now then
     begin
       CSSend('FSurferTasks[j].Output', FSurferTasks[j].Output.AsString);
@@ -191,7 +185,7 @@ begin
       FCS.Enter;
       FSurferTasks.Delete(j);
       FCS.Leave;
-      InterlockedDecrement(FCountJobsPending);
+      InterlockedDecrement(FCountDosJobsPending);
       pWebApp.Session.DeleteStringVarByName('_OmniUniqueID');
     end
     {
@@ -213,7 +207,7 @@ begin
   CSEnterMethod(Self, cFn);
   FCS := TCriticalSection.Create;
   FSurferTasks := TTrackSurferTaskList.Create;
-  FCountJobsPending := 0;
+  FCountDosJobsPending := 0;
   waAsyncAction := TwhWebAction.Create(Self);
   waAsyncAction.Name := 'waAsyncAction';
   waAsyncAction.OnExecute := waAsyncActionExecute;
@@ -239,16 +233,15 @@ procedure TdmAsyncDemo.DataModuleDestroy(Sender: TObject);
 const cFn = 'DataModuleDestroy';
 begin
   CSEnterMethod(Self, cFn);
-  {GlobalOmniThreadPool.CancelAll;}
-  {if assigned(FThreadPool) then
-  begin
-    FThreadPool.CancelAll;
-    FThreadPool := nil;
-  end;}
-
   FBackgroundPingWorker.CancelAll;
   FBackgroundPingWorker.Terminate(INFINITE);
   FBackgroundPingWorker := nil;
+  FBackgroundTracertWorker.CancelAll;
+  FBackgroundTracertWorker.Terminate(INFINITE);
+  FBackgroundTracertWorker := nil;
+  FBackgroundNSLookupWorker.CancelAll;
+  FBackgroundNSLookupWorker.Terminate(INFINITE);
+  FBackgroundNSLookupWorker := nil;
   FreeAndNil(waAsyncAction);
   FreeAndNil(FSurferTasks);
   FreeAndNil(FCS);
@@ -262,8 +255,7 @@ var
   i: integer;
 begin
   CSEnterMethod(Self, cFn);
-  CSSend('InValue Integer', S(InValue));
-  CSSend('InValue', Format('Cardinal? %d', [InValue]));
+  CSSend('InValue', S(InValue));
   Result := -1;
   CSSend('FSurferTasks.Count', S(FSurferTasks.Count));
 

@@ -14,12 +14,4 @@
 <hr />
 </whdroplet>
 
-
-<whdroplet name="chDebug">
-<hr />ConnectID: (~Request.SystemValues.ConnectID~)
-<br />(~waDocStreams.execute|Streams|Streams: [Active:(~dyn1~) Max:(~dyn2~) Cap:(~dyn3~)]~)
-<br />(~waDocStreams.execute|Tasks|Tasks: [Active:(~dyn1~) Max:(~dyn2~) Total:(~dyn3~) Finished:(~dyn4~)]~)
-<br /><a href="#top">top</a>
-</whdroplet>
-
 </whteko>
