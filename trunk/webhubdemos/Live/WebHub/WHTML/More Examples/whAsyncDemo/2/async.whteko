@@ -33,7 +33,8 @@ mcDosKeywordList=ping-ping,tracert-tracert,nslookup-nslookup
 </p>
 
 
-(~IfNotBlankSV|_OmniUniqueID|<p>Dedicated thread is working on UniqueID #(~_OmniUniqueID~) for you now. (~JUMPR|pgasync|check for output~)</p>||
+(~IfNotBlankSV|_OmniUniqueID|<p>Dedicated thread is working on UniqueID #(~_OmniUniqueID~) for you now. 
+There are (~_CountDosJobsPending~) &quot;DOS&quot; jobs pending. (~JUMPR|pgasync|check for output~)</p>||
 (~ANCHORMODIFY|anchInputForm|<h2>input</h2>
 <form method="post" action="(~ACTIONR|pgasync~)">
 (~INPUTSELECTRADIO|inDosKeyword,mcDosKeywordList~)

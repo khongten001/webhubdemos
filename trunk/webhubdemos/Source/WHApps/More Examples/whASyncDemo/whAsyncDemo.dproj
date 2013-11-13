@@ -111,15 +111,8 @@
             <Form>dmAsyncDemo</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="StreamsDM.pas">
-            <Form>dmStreams</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="SimpleDm.pas">
             <Form>dmSimpleAsync</Form>
-        </DCCReference>
-        <DCCReference Include="whAsyncDemo_fmWhRequests.pas">
-            <Form>fmWhRequests</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
             <Form>DMForWHDemo</Form>

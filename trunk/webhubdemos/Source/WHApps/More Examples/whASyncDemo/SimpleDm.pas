@@ -1,7 +1,7 @@
 unit SimpleDm;
 (*
   Copyright (c) 1999 HREF Tools Corp.
-  Original Author: Michael Ax
+  Refactored to use OmniThreadLibrary 12-Nov-2013
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -22,33 +22,55 @@ unit SimpleDm;
   THE SOFTWARE.
 *)
 
-
-{ Example of WebHub background processing with dedicated threads
-  not shown in SimpleDM.pas:
-  - using a shared background thread
-  - using a temporary data object .. although the hookups are shown
-  - keeping the connection to the surfer open
-  - aborting when the surfer switches away from the open page }
-
 interface
 
 uses
-  SysUtils, Classes,
+  SysUtils, Classes, SyncObjs,
+  {System.Generics.}Generics.Collections,
+  OtlCommon,  // Delphi OmniThreadLibrary replaces WebHub ASync November 2013
+  OtlComm,
+  OtlSync,
+  OtlTask,
+  OtlTaskControl,
+  OtlCollections,
+  OtlParallel,
   tpAction, updateOK,
-  webTypes,  
-  whAsync,  // WebHub ASync; see also OmniThreadLibrary
+  webTypes,
   webLink;
 
 type
+  TTrackSurferSimpleTaskRec = record
+    SessionNumber: Cardinal;
+    OmniUniqueID: Int64;
+    OmniWorkItem: IOmniWorkItem;
+    Output: Integer;
+    PercentComplete: Integer;
+    StartedOnAt: TDateTime;
+    FinishedOnAt: TDateTime;
+  end;
+
+type
+  TTrackSurferSimpleTaskList = TList<TTrackSurferSimpleTaskRec>;
+
+type
   TdmSimpleAsync = class(TDatamodule)
-    waAsyncSimple1: TwhAsyncAction;
     procedure waAsyncSimple1Execute(Sender: TObject);
-    procedure waAsyncSimple1ThreadOnInit(Sender: TObject);
-    procedure waAsyncSimple1ThreadOnDestroy(Sender: TObject);
-    procedure waAsyncSimple1ThreadOnExecute(Sender: TObject);
-  private
-    procedure SetAsyncState(Value: TAsyncState);
+    procedure DataModuleCreate(Sender: TObject);
+    procedure DataModuleDestroy(Sender: TObject);
+  strict private
+    //FCS: TCriticalSection;
+    otListLock: TOmniMREW;
+    FSurferTasks: TTrackSurferSimpleTaskList;
+    FCountJobsPending: Integer;
+    FBackgroundWorker: IOmniBackgroundWorker;
+    procedure ProcessWorkItem(const workItem: IOmniWorkItem);
+    procedure HandleWorkDone(const Sender: IOmniBackgroundWorker;
+      const workItem: IOmniWorkItem);
+    function FindTaskByUniqueID(const InValue: Int64): Integer;
+    function FindTaskBySessionID(const InValue: Cardinal): Integer;
   public
+    waAsyncSimple1: TwhWebAction;
+    function Init(out ErrorText: string): Boolean;
   end;
 
 var
@@ -60,265 +82,295 @@ implementation
 
 uses
 {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
+  Windows, // InterlockedIncrement
+  //Forms,   // ProcessMessages
   TypInfo, // for translating the Async-state into a literal
-  Math, // integer helpers (min/max)
-  webApp, // for access to pWebApp in the thread's constructor
+  webApp,  // for access to pWebApp in the thread's constructor
+  ucCodeSiteInterface,
   ucString; // string functions (IsIn...)
 
 
-procedure TdmSimpleAsync.SetAsyncState(Value: TAsyncState);
+procedure TdmSimpleAsync.DataModuleCreate(Sender: TObject);
 begin
-{ private helper method to map the async state into a WebHub StringVar.
-  also used to change the reported state for convenience when canceling.}
-  waAsyncSimple1.AsyncState := Value;
-  pWebApp.StringVar['AsyncState'] :=
-    Copy(GetEnumName(TypeInfo(TAsyncState), ord(Value)), 3, 255);
-{$IFDEF CodeSite}CodeSite.Send('TdmSimpleAsync.SetAsyncState', pWebApp.StringVar['AsyncState']); {$ENDIF}
+  waAsyncSimple1 := TwhWebAction.Create(Self);
+  waAsyncSimple1.Name := 'waAsyncSimple1';
+  waAsyncSimple1.OnExecute := waAsyncSimple1Execute;
+  FBackgroundWorker := nil;
+
+  FSurferTasks := TTrackSurferSimpleTaskList.Create;
+  FCountJobsPending := 0;
 end;
 
-// ..the code to drive the async activities..
+procedure TdmSimpleAsync.DataModuleDestroy(Sender: TObject);
+begin
+  FBackgroundWorker.CancelAll;
+  FBackgroundWorker.Terminate(INFINITE);
+  FBackgroundWorker := nil;
+  FreeAndNil(FSurferTasks);
+  FreeAndNil(waAsyncSimple1);
 
-procedure TdmSimpleAsync.waAsyncSimple1Execute(Sender: TObject);
-const
-  cFn = 'waAsyncSimple1Execute';
+end;
+
+function TdmSimpleAsync.FindTaskBySessionID(const InValue: Cardinal): Integer;
+const cFn = 'FindTaskBySessionID';
 var
-  i: Cardinal;
+  i: integer;
+begin
+  //CSEnterMethod(Self, cFn);
+  Result := -1;
+  //CSSend('FSurferTasks.Count', S(FSurferTasks.Count));
 
-  function StartNewThread: Boolean;
-  const
-    cFn = 'StartNewThread';
+  for i := 0 to Pred(FSurferTasks.Count) do
   begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
-    Result := False;
-    with waAsyncSimple1 do
-      // double check that the session is not already running a thread
-      if FindSession(pWebApp.SessionID) then
-        if SurfersObject.Done then
-          SetAsyncState(asPrior)
-        else
-          SetAsyncState(asBusy)
-      else
-      begin
-        // clear whatever last result we might have buffered for this session.
-        if FindResult(pWebApp.SessionID, i) then
-        begin
-          SurfersObject.DeleteTask; // remove thread result
-          SurfersObject := nil;
-          SurfersThread := nil;
-        end;
-        Result := True;
-        SetAsyncState(asStarted);
-        NewThread;
-      end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
+    //CSSend('Task #' + S(i),
+    //  Format('for SessionNumber %d', [FSurferTasks[i].SessionNumber]));
+    if FSurferTasks[i].SessionNumber = InValue then
+    begin
+      Result := i;
+      break;
+    end;
+  end;
+  //CSSend(cFn + ' Result', S(Result));
+  //CSExitMethod(Self, cFn);
+end;
+
+function TdmSimpleAsync.FindTaskByUniqueID(const InValue: Int64): Integer;
+//const cFn = 'FindTaskByUniqueID';
+var
+  i: integer;
+begin
+  //CSEnterMethod(Self, cFn);
+  Result := -1;
+
+  for i := 0 to Pred(FSurferTasks.Count) do
+  begin
+    //CSSend(S(i), S(FSurferTasks[i].OmniUniqueID));
+    //CSSend('StartedOnAt',
+    //  FormatDateTime('ddd hh:nn', FSurferTasks[i].StartedOnAt));
+    if FSurferTasks[i].OmniUniqueID = InValue then
+    begin
+      Result := i;
+      break;
+    end;
+  end;
+  //CSSend(cFn + ' Result', S(Result));
+  //CSExitMethod(Self, cFn);
+end;
+
+procedure TdmSimpleAsync.HandleWorkDone(const Sender: IOmniBackgroundWorker;
+  const workItem: IOmniWorkItem);
+const
+  cFn = 'HandleWorkDone';
+var
+  i: Integer;
+  rec: TTrackSurferSimpleTaskRec;
+begin
+  CSEnterMethod(Self, cFn);
+
+  CSSend('workItem.UniqueID', S(workItem.UniqueID));
+
+  otListLock.EnterWriteLock;
+  try
+    i := FindTaskByUniqueID(workItem.UniqueID);
+    if i > -1 then
+    begin
+      rec := FSurferTasks[i];
+      rec.Output := workItem.Result.AsInteger;
+      rec.FinishedOnAt := Now;
+      rec.PercentComplete := 100;
+      FSurferTasks[i] := rec;
+      CSSend('Work complete for session', S(rec.SessionNumber));
+    end
+    else
+      CSSendError('Unable to find task in list');
+  finally
+    otListLock.ExitWriteLock;
   end;
 
-begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
-  with pWebApp, TwhAsyncAction(Sender) do
-  begin
-    // deal with commands sent to waAsyncAction.
-    // please note that waAsyncAction DOES NOT look at either its command
-    // or htmlparam properies. It simply reports back one of FOUR states
-    // (recursion that you get to trigger from below here in this proc
-    // takes that up to the available SIX states, plus a SEVENTH state is
-    // available on exit in case you are using this with an external buffer)
-    // process commands sent to the component
+  CSExitMethod(Self, cFn);
+end;
 
-    if (AsyncState = asInit) and IsIn('NewThread', pWebApp.Command, ',') then
+function TdmSimpleAsync.Init(out ErrorText: string): Boolean;
+const cFn = 'Init';
+begin
+  CSEnterMethod(Self, cFn);
+  ErrorText := '';
+  RefreshWebActions(Self);
+  Result := waAsyncSimple1.IsUpdated;
+  if Result then
+  begin
+    FBackgroundWorker := Parallel.BackgroundWorker
+      .NumTasks(5)
+      .OnRequestDone(dmSimpleAsync.HandleWorkDone)
+      .Execute(dmSimpleAsync.ProcessWorkItem);
+  end
+  else
+  begin
+    ErrorText := 'Unable to refresh ' + waAsyncSimple1.Name;  // very unlikely
+  end;
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TdmSimpleAsync.ProcessWorkItem(const workItem: IOmniWorkItem);
+const cFn = 'ProcessWorkItem';
+var
+  i, iJob: Integer;
+  rec: TTrackSurferSimpleTaskRec;
+  iSimulateDBQuerySeconds: Integer;
+const
+  cLoops = 100;
+begin
+  CSEnterMethod(Self, cFn);
+  iSimulateDBQuerySeconds := workItem.Data.AsInteger;
+  CSSend('iSimulateDBQuerySeconds', S(iSimulateDBQuerySeconds));
+  if iSimulateDBQuerySeconds < 5 then
+  begin
+    iSimulateDBQuerySeconds := 5;
+    CSSend('iSimulateDBQuerySeconds', S(iSimulateDBQuerySeconds));
+  end;
+
+  otListLock.EnterReadLock;
+  iJob := FindTaskByUniqueID(workItem.UniqueID);
+  otListLock.ExitReadLock;
+
+  if iJob > -1 then
+  begin
+    for i := 0 to Pred(cLoops) do
     begin
-      Command := '';
-      StartNewThread; // will recurse here and call asStarted!
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
-      Exit;
+      if workItem.CancellationToken.IsSignalled then
+        break;
+      Sleep((iSimulateDBQuerySeconds * 1000) Div cLoops);
+      //Application.ProcessMessages;
+      if workItem.CancellationToken.IsSignalled then
+        break;
+      if i mod 10 = 0 then
+      begin
+        otListLock.EnterWriteLock;
+        iJob := FindTaskByUniqueID(workItem.UniqueID);
+        try
+          rec := FSurferTasks[iJob];
+          rec.PercentComplete := i;  // math is easy with 100 loops
+          FSurferTasks[iJob] := rec;
+        finally
+          otListLock.ExitWriteLock;
+        end;
+      end;
+    end;
+    workItem.Result := Random(9999);
+    CSSend('workItem.Result', S(workItem.Result.AsInteger));
+  end;
+
+  CSExitMethod(Self, cFn);
+end;
+
+
+procedure TdmSimpleAsync.waAsyncSimple1Execute(Sender: TObject);
+const cFn = 'waAsyncSimple1Execute';
+const cCancel = 'cancel';
+var
+  j: Integer;
+  InputSleepSeconds: Integer;
+  TempOmniWorkItem: IOmniWorkItem;
+  rec: TTrackSurferSimpleTaskRec;
+  N: Integer;
+begin
+  CSEnterMethod(Self, cFn);
+
+  j := FindTaskBySessionID(pWebApp.SessionNumber);  // -1 if not found
+
+  if j = -1 then
+  begin
+    { new work }
+    rec.SessionNumber := pWebApp.SessionNumber;
+    InputSleepSeconds := pWebApp.StringVarInt['Demo1SleepSec'];
+    CSSend('InputSleepSeconds', S(InputSleepSeconds));
+    if InputSleepSeconds < 5 then
+    begin
+      InputSleepSeconds := 5;
+      CSSend('InputSleepSeconds', S(InputSleepSeconds));
     end;
 
-    if { assigned(SurfersObject)
-      and } (AsyncState in [asBusy, asFinished, asPrior, asAborted, asFailed])
-      and IsIn('ClearThread', pWebApp.Command, ',') then
+    TempOmniWorkItem := FBackgroundWorker.CreateWorkItem(InputSleepSeconds);
+    //  .TaskConfig(Parallel.TaskConfig.WithLock(CreateOmniCriticalSection));
+
+    InterlockedIncrement(FCountJobsPending);
+    rec.OmniUniqueID := TempOmniWorkItem.UniqueID;
+    rec.FinishedOnAt := Now + 365;  // not done yet
+    rec.PercentComplete := 0;
+    rec.StartedOnAt := Now;
+    rec.OmniWorkItem := TempOmniWorkItem;
+
+    otListLock.EnterWriteLock;
+    FSurferTasks.Add(rec);  // only main thread adds to list
+    otListLock.ExitWriteLock;
+
+    pWebApp.StringVarInt['_PercentComplete'] := rec.PercentComplete;
+    pWebApp.StringVarInt['_OmniUniqueID'] := TempOmniWorkItem.UniqueID;
+    pWebApp.StringVarInt['_CountJobsPending'] := FCountJobsPending;
+    pWebApp.Session.DeleteStringVarByName('_Demo1Output');
+
+    FBackgroundWorker.Schedule(TempOmniWorkItem);
+
+  end
+  else
+  begin
+    { existing work }
+    //CSSend('Task index for this surfer', S(j));
+    if FSurferTasks[j].FinishedOnAt < Now then
     begin
-      pWebApp.RemoveCommandPortion := 'ClearThread';
-      // elim part(or all) of url supplied commandline
-      if AsyncState = asBusy then
+      //CSSend('FSurferTasks[j].Output', FSurferTasks[j].Output.AsString);
+      pWebApp.StringVar['_Demo1Output'] :=
+      '<span style="font-weight:900; color: #DDDDDD;">' +
+        sLineBreak +
+        IntTostr(FSurferTasks[j].Output) +
+        '</span>'+ sLineBreak;
+      otListLock.EnterWriteLock;
+      FSurferTasks.Delete(j);  // only main thread deletes from list
+      otListLock.ExitWriteLock;
+      InterlockedDecrement(FCountJobsPending);
+      pWebApp.Session.DeleteStringVarByName('_OmniUniqueID');
+    end
+    else
+    begin
+      if TwhWebAction(Sender).HtmlParam = cCancel then
       begin
-        if assigned(SurfersObject) then
-          SurfersObject.Aborted := True;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
-        Exit;
+        CSSendNote(cCancel);
+        otListLock.EnterWriteLock;
+        try
+          j := FindTaskBySessionID(pWebApp.SessionNumber);  // again
+          rec := FSurferTasks[j];
+          rec.OmniWorkItem.CancellationToken.Signal;
+          FSurferTasks.Delete(j);  // only main thread deletes from list
+        finally
+          otListLock.ExitWriteLock;
+        end;
+        InterlockedDecrement(FCountJobsPending);
+        pWebApp.Session.DeleteStringVarByName('_OmniUniqueID');
+        pWebApp.Session.DeleteStringVarByName('_PercentComplete');
+        pWebApp.StringVar['_Demo1Output'] := 'cancelled by surfer';
       end
       else
       begin
-        if assigned(SurfersObject) then
-        begin
-          with SurfersObject do
-          begin
-            DeleteTask; // remove thread result
-            SurfersObject := nil;
-            SurfersThread := nil;
-          end;
+        // give message to surfer here.
+        otListLock.EnterReadLock;
+        try
+          j := FindTaskBySessionID(pWebApp.SessionNumber);  // again
+          rec := FSurferTasks[j];
+        finally
+          otListLock.ExitReadLock;
         end;
-        SetAsyncState(asInit);
+        InterlockedExchange(N, rec.PercentComplete);
+        pWebApp.StringVarInt['_PercentComplete'] := N;
+        pWebApp.StringVarInt['_CountJobsPending'] := FCountJobsPending;
+        pWebApp.Response.Send('(~_PercentComplete~) percent complete ...');
       end;
     end;
-
-    // translate the state to a literal for easy access
-    SetAsyncState(AsyncState);
-
-    // prep temporary StringVars
-    if assigned(SurfersObject) then
-      with SurfersObject do
-      begin
-        if (AsyncState in [asFinished, asPrior, asAborted, asFailed]) then
-        begin
-          { It is safe to access these session properties now that there is no
-             more activity by the async object. Do not access while
-             asBusy/asStarted! }
-          // StringVar['dyn1']:=ResultString;  // AML
-          StringVar['asResultString'] := ResultString;
-          // StringVarInt['dyn2']:=ResultValue;    // AML
-          StringVarInt['asResultInteger'] := ResultValue;
-        end;
-        { PercentComplete and Time* properties are always threadsafe. }
-        { StringVarInt['dyn3']:=PercentComplete;
-          StringVarInt['dyn4']:=TimeElapsed;
-          StringVarInt['dyn5']:=TimeRemaining; }
-        StringVarInt['asResultPercentDone'] := PercentComplete;
-        StringVarInt['asResultTimeElapsed'] := TimeElapsed;
-        StringVarInt['asResultTimeRemaining'] := TimeRemaining;
-      end;
-
-    case AsyncState of
-      asInit:
-        SendMacro('CLEAR|asResult*'); // Demo1AsyncNone');
-      asStarted:
-        SendMacro('Demo1AsyncStarted');
-      asBusy:
-        begin
-          //This is called frequently. One could send a WebHub droplet here.
-          {$IFDEF CodeSite}CodeSite.Send('AsyncState', 'asBusy');{$ENDIF}
-        end;
-      asFinished:
-        begin
-          //SendMacro('Demo1AsyncFinished');
-          {$IFDEF CodeSite}CodeSite.SendWarning('asFinished!');{$ENDIF}
-        end;
-      asPrior:
-        SendMacro('Demo1AsyncPrior');
-      asAborted:
-        SendMacro('Demo1AsyncAborted');
-      asFailed:
-        SendMacro('Demo1AsyncFailed');
-    end;
-
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
+
+  CSExitMethod(Self, cFn);
 end;
 
-// ..three procedures to init, run and finish async operations.
-
-procedure TdmSimpleAsync.waAsyncSimple1ThreadOnInit(Sender: TObject);
-const
-  cFn = 'waAsyncSimple1ThreadOnInit';
-  // runs from the main-thread with Session set for the right surfer!
-var
-  S: string;
-begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
-  inherited;
-  // create and initialize the object's extra data-packet.
-  if assigned(Sender) and (Sender is TwhAsyncObject) then
-    with TwhAsyncObject(Sender) do
-    begin
-      Done := False;
-      // set the resultstring property here to provide input to the object
-      S := pWebApp.Expand(waAsyncSimple1.HtmlParam);
-      {$IFDEF CodeSite}CodeSite.Send('waAsyncSimple1.HtmlParam',
-        waAsyncSimple1.HtmlParam); {$ENDIF}
-      ResultString := S;
-      { If you want to create a data/input object for use by the thread
-        you should probably instantiate and initialize it here, e.g.
-         Data:=TThreadInput.Create;
-         TThreadInput(Data).urlstr:=Expand(..); }
-    end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
-end;
-
-procedure TdmSimpleAsync.waAsyncSimple1ThreadOnExecute(Sender: TObject);
-const
-  cFn = 'waAsyncSimple1ThreadOnExecute';
-  // runs in its own thread.. sessions change in the main thread
-  // as pages are served there.
-  // NEVER access StringVars and other session properties from here!
-var
-  i, SleepTime: integer;
-  a1, a2: string;
-begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
-  inherited;
-  with TwhAsyncObject(Sender) do
-  begin
-    { Earlier, htmlparam was expanded into ResultString. Now
-      parse it into substrings that we use below:
-      We expect the following format, with 2nd parameter being optional:
-      TimeToSleepInSeconds|FinalTextForResultString
-      this might be provided from wh-html like this:
-      %=waAsyncSimple1.execute|%=SleepMS=%|The Answer is [%=UserName=%]!=%
-      expanding the htmlparm into resulttext might result in:
-      %=waAsyncSimple1.execute|5|The Answer is [(your name)]!=% }
-
-    {$IFDEF CodeSite}CodeSite.Send('ResultString', ResultString); {$ENDIF}
-    a1 := LeftOfS('|', ResultString);
-    {$IFDEF CodeSite}CodeSite.Send('a1', a1); {$ENDIF}
-
-    SleepTime := StrToIntDef(a1, 5); // if blank or not a number, make it 5sec
-    SleepTime := Math.Max(1, Math.Min(100, SleepTime));
-    // fit into bounds of >=1sec, <=100sec
-    SleepTime := SleepTime * (1000 div 100);
-    {$IFDEF CodeSite}CodeSite.Send('SleepTime (for 100x)', SleepTime); {$ENDIF}
-
-    // convert to ms to wait per percent complete
-    //
-    // no reason not to create a data-object here if you can pass all the
-    // init info into here through the ResultString/ResultValues properties.
-    // do a 'blocking' loop to simulate work..
-    for i := 1 to 100 do
-    if not Aborted then
-    begin
-      PercentComplete := i;
-      Sleep(SleepTime); // takes from +0..25% msec
-    end;
-    // on the way out, if not aborted, make up a result
-    if not Aborted then
-    begin
-      // store the answer here:
-      ResultString := DefaultsTo(a2, 'Done!'); // return 'something' if a2=''
-      ResultValue := 0;
-      Done := True;
-    end;
-    // YOU MUST SET DONE (or Aborted, or raise an exception) to indicate
-    // the the thread servicing this event can stop calling it!
-  end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
-end;
-
-procedure TdmSimpleAsync.waAsyncSimple1ThreadOnDestroy(Sender: TObject);
-const
-  cFn = 'waAsyncSimple1ThreadOnDestroy';
-  // runs in its own thread
-  // the worker object is about to be destroyed by 'DeleteTask' which
-  // is called by you or the background house-cleaning task.
-begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
-  inherited;
-  if assigned(Sender) and (Sender is TwhAsyncObject) then
-    with TwhAsyncObject(Sender) do
-      // if there is a data object, free it here/now.
-      if assigned(Data) then
-      begin
-        Data.Free;
-        Data := nil;
-      end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
-end;
+initialization
+  Randomize;
 
 end.

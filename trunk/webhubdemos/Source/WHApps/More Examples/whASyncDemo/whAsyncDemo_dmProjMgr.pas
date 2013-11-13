@@ -3,18 +3,15 @@ unit whAsyncDemo_dmProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMProjMgr, tpProj;
+  Classes,
+  whdemo_DMProjMgr, tpProj;
 
 type
   TDMForWHAsync = class(TDMForWHDemo)
+    procedure ProjMgrDataModulesCreate1(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
     procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
       var ErrorText: String; var Continue: Boolean);
-    procedure ProjMgrGUICreate(Sender: TtpProject;
-      const ShouldEnableGUI: Boolean; var ErrorText: string;
-      var Continue: Boolean);
-    procedure ProjMgrGUIInit(Sender: TtpProject; const ShouldEnableGUI: Boolean;
-      var ErrorText: string; var Continue: Boolean);
     procedure ProjMgrDataModulesInit(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
   private
@@ -29,18 +26,25 @@ var
 implementation
 
 uses
+  SysUtils,
   MultiTypeApp,
   webCall, whSharedLog,
-  AsyncDm, StreamsDM, SimpleDm, whAsyncDemo_fmWhRequests;
+  AsyncDm, SimpleDm;
 
 {$R *.dfm}
+
+procedure TDMForWHAsync.ProjMgrDataModulesCreate1(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  UseWebHubSharedLog;
+end;
 
 procedure TDMForWHAsync.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
 begin
   inherited;
   Application.CreateForm(TdmAsyncDemo, dmAsyncDemo);
-  Application.CreateForm(TdmStreams, dmStreams);
   Application.CreateForm(TdmSimpleAsync, dmSimpleAsync);
 end;
 
@@ -49,21 +53,9 @@ procedure TDMForWHAsync.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := dmAsyncDemo.Init(ErrorText);
+  if Continue then
+    Continue := dmSimpleAsync.Init(ErrorText);
   UseWebHubSharedLog;
-end;
-
-procedure TDMForWHAsync.ProjMgrGUICreate(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
-begin
-  inherited;
-  Application.CreateForm(TfmWhRequests, fmWhRequests);
-end;
-
-procedure TDMForWHAsync.ProjMgrGUIInit(Sender: TtpProject;
-  const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
-begin
-  inherited;
-  //AddConnectionExecuteHandler(fmWhRequests.WebCommandLineExecute);
 end;
 
 end.

@@ -1,41 +1,41 @@
 <whteko defaultlingvo="eng" designmode="code">
 
-<whpage pageid="Demo1Home" desc="Demo 1 - Simple Database Query">
+<whpage pageid="Demo1Home" desc="Demo 1 - Simulate Long Database Query">
 <whprep>
-<!--- run waAsyncSimple1 to allow for resetting variables for 2+ usages by the same surfer. -->
-(~waAsyncSimple1.Execute|(~Demo1SleepSec~)~)
+(~CLEAR|asyncdemo~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
 (~drHead~)
+<style type="text/css">
+input, select { font-family: Tahoma; font-weight: 900; color: blue; }
+</style>
 </head>
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
+<h2>Demo #1</h2>
+<p><i><a target="_blank" href="(~DynURL.ToPageID~)">Open new window as new surfer</a></i></p>
+<div style="border: solid 1px blue; padding: 2em; width: 18em;">
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post,NewThread~)">
-(~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~)
-Query Length (sec): <br />
-(~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)
-Status Refresh Rate (sec):
-<p>
-<input type="submit" value="Submit Query" />
-<CENTER>
-<h2>Status:</h2> Idle
-</CENTER>
-<p>
-Welcome to Demo #1.  This very simple async example simulates a 5 second (or longer) database query.  Because 5 seconds is a long
-time (compared to the typical number of milliseconds required to generate a WebHub page) for the system to be tied up generating
-a page, we do it asynchronously, letting the WebApp (whAsyncDemo.exe) get right back to the surfer (you) with a status page.  This now frees 
-the app to serve other requests.  
-<p>
-To see this in action, select a query length and refresh rate, and 
+Query Length: (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~) <br />
+Status Refresh Rate: (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)<br/>
+<input type="submit" value="Start" />
+</form>
+</div>
+
+<h2>Notes</h2>
+<p>Welcome to Demo #1.  This async example simulates a database query taking 5 or more seconds.  Because this is a long time 
+for the system to be tied up generating an http response, we do it asynchronously, letting the WebApp (whAsyncDemo.exe) 
+get right back to the surfer with a status page.  This frees the app to serve other requests.  </p>
+<p>To see this in action, select a query length and refresh rate, and 
 click Submit Query.  Normally, the length of the query depends on the nature of the processing to be done, not on the user.  However, since
 this is a simulation, you can select how long you wish the query to take. Once you click &quot;Submit Query&quot; you will be immediately 
 presented with a page informing you that your &quot;query&quot; has been started, from there, the status page will refresh, showning the 
 current percentage complete.  What you selected for &quot;Status Refresh Rate&quot; will be how often (in seconds) the status page 
 refreshes, keeping you up to date on your progress.  When the async thread has completed, and your results are ready, you will be 
-taken to a page where you can view the results, and, if you wish, clear them and restart the demo.
+taken to a page where you can view the results, and, if you wish, clear them and restart the demo.</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
@@ -43,32 +43,33 @@ taken to a page where you can view the results, and, if you wish, clear them and
 </whpage>
 
 <whdroplet name="chDemo1DurationValues">
-5-5
-10-10
-15-15
-20-20
-25-25
-30-30
+5-5 seconds
+10-10 seconds
+15-15 seconds
+20-20 seconds
+25-25 seconds
+30-30 seconds
 </whdroplet>
 
 <whdroplet name="chDemo1RefreshValues">
-1-1
-2-2
-3-3
-4-4
-5-5
+1-1 second
+2-2 seconds
+3-3 seconds
+4-4 seconds
+5-5 seconds
 </whdroplet>
 
-<whpage pageid="Demo1Post">
-<!--- a bounce from the page that was posted to is needed for IE to be able to reload a page -->
+<whpage pageid="Demo1Post" desc="-intermediate page">
+<whprep>
+(~waAsyncSimple1.Execute|~)
+<!--- a bounce from the page that was posted to is helpful for browser subsequently reloading a page -->
 (~BOUNCE|Demo1Loop,(~Command~)~)
+</whprep>
 </whpage>
 
-<whpage pageid="Demo1Loop" desc="Demo 1 Waiting Start Page">
+<whpage pageid="Demo1Loop" desc="-Demo 1 Waiting Start Page">
 <whprep>
-(~waAsyncSimple1.Execute|(~Demo1SleepSec~)|what?~)
-<!--- go to the Demo1Result page if nothing is happening -->
-(~NOMATCH|(~AsyncState~)[Started,Busy|(~PAGE|Demo1Result~)~)
+(~NOTASSIGNED|_OmniUniqueID|(~BOUNCE|Demo1Result~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html><head>
@@ -81,26 +82,36 @@ taken to a page where you can view the results, and, if you wish, clear them and
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<!---show the state,-->
-<CENTER>
-<FONT SIZE="+1"><b>Status:</b></FONT> 
-(~MATCH|(~AsyncState~)[Started|Started~)
-(~MATCH|(~AsyncState~)[Busy|<FONT SIZE="+1"><b>(~asResultPercentDone~)%</b> complete</FONT><br />(~chDemo1ProgressBar~)~)
-<!---and say something...-->
-<p>
-<table style="border: none; padding: 0; margin: 0;">
-<tr><td>
-(~MATCH|(~AsyncState~)[Started|(~chDemo1StartedText~)~)
-(~MATCH|(~AsyncState~)[Busy|(~chDemo1BusyText~)~)
-<p>
-</td></tr></table></CENTER>
+<h2>Work in Progress</h2>
+(~waAsyncSimple1.Execute|~)
+(~NOTASSIGNED|_OmniUniqueID|(~BOUNCE|Demo1Result~)~) <!--- check again -->
+*:
+<progress value="(~_PercentComplete~)" max="100">
+</progress>
+
+<p>The demo is searching the imaginary database.<br />
+Please wait while your query is processed.<br />
+The browser should reload this page every (~Demo1Refresh~) seconds.<br/>
+Jobs competing for the CPU: (~_CountJobsPending~).</p>
+<p>(~JUMPR|Demo1Cancel|Cancel~)</p>
+
+<p><strong>* Note:</strong> The progress tag is not supported in Microsoft Internet Explorer 9 and earlier versions.</p>
+
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
 </body></html>
 </whpage>
 
-<whpage pageid="Demo1Result" desc="Results of Demo 1 Database Query">
+<whpage pageid="Demo1Cancel" desc="-cancel demo 1 process">
+<whprep>
+(~waAsyncSimple1.Execute|cancel~)
+<!--- a bounce from the page that was posted to is helpful for browser subsequently reloading a page -->
+(~BOUNCE|Demo1Result~)
+</whprep>
+</whpage>
+
+<whpage pageid="Demo1Result" desc="-Result of Demo 1 Simulated Slow Query">
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -109,54 +120,14 @@ taken to a page where you can view the results, and, if you wish, clear them and
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<CENTER>
-<FONT SIZE="+1"><b>Status:</b></FONT> (~AsyncState~)
-<p>
-<table WIDTH="75%"><tr><td>
-(~MATCH|(~AsyncState~)[Finished|(~chDemo1FinishedText~)~)
-(~MATCH|(~AsyncState~)[Prior|(~chDemo1FinishedText~)~)
-(~MATCH|(~AsyncState~)[Aborted|(~chDemo1AbortedText~)~)
-</td></tr></table></CENTER>
+<h2>Demo #1 ... Output</h2>
+(~_Demo1Output~)
+<p>Next: (~JUMP|Demo2Home|On to Demo #2~)</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
 </body></html>
 </whpage>
-
-<whdroplet name="chDemo1StartedText">
-Your query has been initiated. Please wait.<br />
-This page will reload every (~Demo1Refresh~) seconds.
-</whdroplet>
-
-
-<whdroplet name="chDemo1BusyText">
-The demo is searching the imaginary database.<br />
-please wait while your query is processed.<br />
-This page will reload every (~Demo1Refresh~) seconds.
-</whdroplet>
-
-
-<whdroplet name="chDemo1FinishedText">
-Congratulations, your query has finished processing. Here are your results:<br />
-<br />
-(~asResultString~)<br />
-<br />
-This took (~asResultTimeElapsed~) milliseconds to produce.<br />
-<FORM METHOD=POST ACTION="(~ACTION|Demo1Home,ClearThread~)">
-<INPUT TYPE=SUBMIT VALUE="Run it Again">
-</FORM>
-</whdroplet>
-
-
-<whdroplet name="chDemo1AbortedText">
-Your query was aborted after (~asResultTimeElapsed~) milliseconds at (~asResultPercentDone~)% completion.<br />
-<br />
-Click the &quot;Submit Another Query&quot; button below to clear the results and try the demo again.  
-Click the &quot;On to Demo 2&quot; link above to continue on to Demo #2.
-<FORM METHOD=POST ACTION="(~ACTION|Demo1Home,ClearThread~)">
-<INPUT TYPE=SUBMIT VALUE="Submit Another Query">
-</FORM>
-</whdroplet>
 
 
 <whdroplet name="chDemo1ProgressBar">
