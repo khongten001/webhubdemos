@@ -72,8 +72,8 @@ call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_source.bat DServer
 %CSSend% /note "Intentional Pause when DServer files are ready"
 pause
 
-:: not suitable for new-ipc cd %droot%\More Examples\whASyncDemo
-:: not suitable for new-ipc call %cbat% whASyncDemo
+cd %droot%\More Examples\whASyncDemo
+call %cbat% whASyncDemo
 
 cd %droot%\More Examples\whDropdown
 call %cbat% whDropdown

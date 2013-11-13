@@ -15,8 +15,7 @@ set demohtcv=yes
 
 set demohtun=yes
 
-if "%whipc%"=="old" set demohtasync=no
-if "%whipc%"=="x"    set demohtasync=no
+set demohtasync=yes
 
 set demohtdr=yes
 
