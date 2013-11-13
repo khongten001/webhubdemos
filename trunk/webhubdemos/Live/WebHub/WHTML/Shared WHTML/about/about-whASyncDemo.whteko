@@ -7,58 +7,40 @@ mcWhDemoOneLinerHTASYNC=Background Processing
 mcWhDemoCreditIdeaHTASYNC=Michael Ax
 mcWhDemoCreditFirstDraftHTASYNC=Michael Ax
 mcWhDemoCreditGraphicsHTASYNC=n/a
-mcWhDemoCreditCopyHTASYNC=Martha V. Moore
-mcWhDemoUpdatedHTASYNC=2-Apr-2003
-mcWhDemoKeywordsHTASYNC=Asynchronous processing,background processing, percent complete, partial completion,TWhAsync
+mcWhDemoCreditCopyHTASYNC=Martha V. Moore, Ann Lynnworth
+mcWhDemoUpdatedHTASYNC=12-Nov-2013
+mcWhDemoKeywordsHTASYNC=Asynchronous processing,background processing, percent complete, OmniThreadLibrary
 mcWhDemoLiteHTASYNC=No
 </whmacros>
 
 <whdroplet name="drDemoSetupHTASYNC">
 <ol>
-<li> This demo requires WebHub  v1.73+ </li>
-
-<li> The &quot;Keep Connection Open&quot; portions of Demo 2 require a WebHub 
-ISAPI runner dated 7-Jun-1999 or later.</li>
-
-<li>  The second demo requires a JavaScript enabled browser that supports HTML FORMs. </li>
-
+<li> This demo requires the <a target="_blank" href="http://otl.17slon.com/">Delphi OmniThreadLibrary</a> 
+(open source, free, well documented and independently supported). 
+The OmniThreadLibrary source is provided as an "external" to the WebHubDemos repository as of early November 2013.</li>
 </ol>
 </whdroplet>
+
 <whtranslation key="~whDemoShortDescHTASYNC">
-This application demonstrates asynchronous coding techniques using WebHub.  There are 3 parts 
-to the demo: explanatory text and diagrams, a simulation involving a slow database query, and 
-a group of examples which showcase the variety of settings and features available to WebHub programmers 
-using these techniques.
+This application demonstrates asynchronous coding techniques using WebHub with OmniThreadLibrary.  There are 3 parts 
+to the demo: explanatory text and diagrams, a simulation of a slow database query, and 
+a group of examples which demonstrate the use of surfer-specific data in the input. 
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescHTASYNC">
-We recommend these techniques for sites that include slow processes, because they let you provide 
-a quick reply to the surfer, plus optional ongoing status information while the processing goes on in 
-a background thread.
-
-<h2>Notes</h2>
+We recommend these techniques for sites that by necessity include one or more slow tasks. Running selected 
+slow tasks in a background thread lets your main webaction component give a quick reply to the surfer, 
+while retaining the option to give ongoing status information.
+<p>To automatically update the screen shown to the surfer, any of the following can be used:</p>
 <ul>
-<li> AsyncState is a StringVar set by customized OnExecute logic in AsyncDM.pas. </li>
-<li> whAsyncAction.OnExecute:
-<ul>
-<li>surfaces 7 different states and the customized response
-logic expands macros named after the state. 
-<pre>
-AsyncNone
-AsyncPrior
-AsyncStarted
-AsyncBusy
-AsyncAborted
-AsyncFinished
-AsyncFailed
-</pre>
-</li>
-<li>where applicable dyn1 will be set to the object's result otherwise to the %complete</li>
-
+<li style="list-style-type: square;"> Surfer clicks a <b>link</b> to see whether the result is ready. </li>
+<li style="list-style-type: square;"> <b>META REFRESH</b> in the HTML HEAD is used to automatically reload after N seconds. </li>
+<li style="list-style-type: square;"> <b>JavaScript</b> is used to look for a response and updates the contents of a DIV or other element depending on the response data. 
+The response content type could be HTML, XML, JSON, etc. </li>
 </ul>
-
-</ul>
-
+<p>Background thread management is extremely difficult without a sophisticated threading layer. 
+The Delphi community is very lucky to have someone as committed to this subject as the authors of 
+the OmniThreadLibrary.  They have taken all the pain out of multi-threading.</p>
 </whtranslation>
 
 </whteko>
