@@ -58,7 +58,7 @@ if exist %1.dprojoff REN %1.dprojoff %1.dproj
 
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite"
 if "%ok1%"=="no" pause
-if "%ok1%"=="yes" COPY %outputroot%\%1.exe %1.raize.bin
+if "%ok1%"=="yes" COPY %outputroot%\%1.exe %outputroot%\%1.raize.bin
 
 if NOT "%2"=="EurekaLog" goto continue030
 
