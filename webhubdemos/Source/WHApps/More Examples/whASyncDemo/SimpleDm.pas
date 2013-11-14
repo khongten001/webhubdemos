@@ -41,7 +41,7 @@ uses
 type
   TTrackSurferSimpleTaskRec = record
     SessionNumber: Cardinal;
-    OmniUniqueID: Int64;
+    OmniUniqueID: Int64;   // unique per IOmniBackgroundWorker
     OmniWorkItem: IOmniWorkItem;
     Output: Integer;
     PercentComplete: Integer;
@@ -321,7 +321,8 @@ begin
       pWebApp.StringVar['_Demo1Output'] :=
       '<span style="font-weight:900; color: #20B2AA;">' +
         sLineBreak +
-        'Here is your random number between 0 and 9999: ' +
+        'Session ' + IntToStr(FSurferTasks[j].SessionNumber) +
+        ': here is your random number between 0 and 9999: ' +
         IntTostr(FSurferTasks[j].Output) +
         '</span>'+ sLineBreak;
       otListLock.EnterWriteLock;
