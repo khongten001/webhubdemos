@@ -89,6 +89,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
+  TypInfo,
   webApp, // for access to pWebApp
   htWebApp, // for subscribing to the AfterWebAppExecute event list.
   ucAnsiUtil, // explicit conversion using specified CodePage number
@@ -150,9 +151,10 @@ begin
             FBackgroundPingWorker.CreateWorkItem(
               'ping ' + pWebApp.Request.RemoteAddress + ' -n 10');
         dctTracert:
+          // max 10 hops. wait 5 ms for timeout.
           TempOmniWorkItem :=
             FBackgroundTracertWorker.CreateWorkItem(
-              'tracert ' + pWebApp.Request.RemoteAddress);
+              'tracert -h 10 -w 5 ' + pWebApp.Request.RemoteAddress);
         dctNSLookup:
           TempOmniWorkItem :=
             FBackgroundNSLookupWorker.CreateWorkItem(
@@ -258,25 +260,25 @@ const
 var
   i: Integer;
 begin
-  CSEnterMethod(Self, cFn);
+  //CSEnterMethod(Self, cFn);
   // CSSend('InValue', S(InValue));
   Result := -1;
   // CSSend('FSurferTasks.Count', S(FSurferTasks.Count));
 
   for i := 0 to Pred(FSurferTasks.Count) do
   begin
-    CSSend('List #' + S(i), Format('for SessionNumber %d',
-      [FSurferTasks[i].SessionNumber]));
+    //CSSend('List #' + S(i), Format('for SessionNumber %d',
+    //  [FSurferTasks[i].SessionNumber]));
     if (FSurferTasks[i].SessionNumber = InValue) and
       (FSurferTasks[i].CmdType = InCmdType) then
     begin
-      CSSend('found');
+      //CSSend('found');
       Result := i;
       break;
     end;
   end;
   // CSSend(cFn + ' Result', S(Result));
-  CSExitMethod(Self, cFn);
+  //CSExitMethod(Self, cFn);
 end;
 
 function TdmAsyncDemo.FindTaskByUniqueID(const InCmdType: TDosCmdType;
@@ -286,27 +288,28 @@ const
 var
   i: Integer;
 begin
-  CSEnterMethod(Self, cFn);
-  CSSend('InValue', S(InValue));
+  //CSEnterMethod(Self, cFn);
+  //CSSend('InValue', S(InValue));
   Result := -1;
   /// CSSend('FSurferTasks.Count', S(FSurferTasks.Count));
 
   for i := 0 to Pred(FSurferTasks.Count) do
   begin
-    CSSend('list #' + S(i) + ' has OmniUniqueID',
-      S(FSurferTasks[i].OmniUniqueID));
+    //CSSend('list #' + S(i) + ' has OmniUniqueID',
+    //  S(FSurferTasks[i].OmniUniqueID) + ' and type ' +
+    //  GetEnumName(TypeInfo(TDosCmdType), Ord(FSurferTasks[i].CmdType)));
     // CSSend('StartedOnAt',
     // FormatDateTime('ddd hh:nn', FSurferTasks[i].StartedOnAt));
     if (FSurferTasks[i].OmniUniqueID = InValue) and
       (FSurferTasks[i].CmdType = InCmdType) then
     begin
-      CSSend('found');
+      //CSSend('found');
       Result := i;
       break;
     end;
   end;
-  CSSend(cFn + ' Result', S(Result));
-  CSExitMethod(Self, cFn);
+  //CSSend(cFn + ' Result', S(Result));
+  //CSExitMethod(Self, cFn);
 end;
 
 procedure TdmAsyncDemo.HandleDosWorkDone(const Sender: IOmniBackgroundWorker;
@@ -432,11 +435,14 @@ var
 begin
   CSEnterMethod(Self, cFn);
   DosCmd := workItem.Data.AsString; // tracert
-  CSSend('DosCmd', DosCmd);
+  CSSendNote(DosCmd);
   aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
   s1 := AnsiCodePageToUnicode(aa, 1252);
+  if ErrorCode <> 0 then
+    s1 := 'ErrorCode=' + IntToStr(ErrorCode) + sLineBreak + s1;
+  CSSendNote(s1);
   workItem.Result := s1;
-  CSSend('workItem.Result', workItem.Result);
+  CSSend('workItem.Result', workItem.Result.AsString);
   CSExitMethod(Self, cFn);
 end;
 
