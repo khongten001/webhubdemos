@@ -199,6 +199,7 @@ Your Purchase Order Reference: (~inPurchaseOrder~)
 <div id="whdemopagecontent">
 <h2>Demo</h2>
 <p>Here you can send a message from yourself to yourself, with a cc to Customer Service.</p>
+(~FEATURE.execute|SilentUnrecognizedExpressions=true~)
 <!-- changing:start-->
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|testwebmailform2,safemail~)">
 <!-- changing:stop-->
@@ -218,6 +219,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.<br/>
 
 <input type="submit" />
 </form>
+(~FEATURE.execute|SilentUnrecognizedExpressions=false~)
 
 </div>  <!--- whdemopagecontent -->
 (~drPageEnd~)

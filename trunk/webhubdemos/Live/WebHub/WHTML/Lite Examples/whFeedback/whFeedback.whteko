@@ -327,28 +327,9 @@ the INI file and send mail accordingly.  -->
 <div id="whdemopagecontent">
 <div class="dcenter">
 
-<b>We have sent your message...
-here is the template we used for it: </b>
+<b>We have sent your message...</b>
 
-<table width="60%"  border="1">
-<tr>
-<td>
-(~.CentralInfo.webtimegmt~)
-<p>Dear (~.FullName~),</p>
-<p>We're so glad to hear you like the color (~.aColor~).
-Your fondness for (~.aColor~) probably comes from
-the artist (~.Artist~), who used this color quite skillfully.</p>
-<p>We'd like to echo this sentiment you expressed:</p>
-<p>(~.txtMessage~)</p>
-<p>Thanks for taking the time to write.</p>
-
-<p>Bye for now,</p>
-
-techsupport@href.com<br />
-Technical Support Department<br />
-HREF Tools Corp.
-</td></tr>
-</table></div>
+</div>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
