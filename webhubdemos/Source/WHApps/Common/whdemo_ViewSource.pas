@@ -563,6 +563,8 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourceSetCommand(Sender: TObject;
   var ThisCommand: string);
+var
+  InfoMsg: string;
 begin
   if (ThisCommand = '') or IsEqual(ThisCommand, FProjectFilename) then
   begin
@@ -570,10 +572,12 @@ begin
   end
   else
   begin
-    {$IFDEF CodeSite}CodeSite.SendWarning(Self.ClassName+' bot overload');
-    CodeSite.SendError('ThisCommand' + #183 + ThisCommand);{$ENDIF}
+    CSSendWarning(Self.ClassName+' bot overload');
+    CSSendError('ThisCommand' + #183 + ThisCommand);
     ThisCommand := '';
-    raise Exception.Create('Invalid URL');
+    InfoMsg := 'Invalid URL';
+    CSSendError(InfoMsg);
+    raise Exception.Create(InfoMsg);
   end;
 end;
 
