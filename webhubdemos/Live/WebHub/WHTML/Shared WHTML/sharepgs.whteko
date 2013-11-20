@@ -1007,7 +1007,7 @@ RawVMR: (~Request.RawVMR~)
 <th style="background-color:#66FF66;">(~litecount~)</th>
 <td> ok </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
-<td><iframe src="(~testprefix~)?htfd:pgwelcome"></iframe> </td>
+<td><iframe src="(~testprefix~)?htfd:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
@@ -1025,24 +1025,24 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?adv:pgwelcome:(~Security.ReadOnlySessionID~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
-<td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?bw:privacypolicy:(~Security.ReadOnlySessionID~)"></iframe></td> 
-<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?bw:privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
-<td><iframe src="(~testprefix~)?bw:pgWelcome:(~Security.ReadOnlySessionID~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?bw:pgWelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 </tr>
 </whdroplet>
 
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~) 
+<!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
 
 (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
--->
+
 </table>
 (~CLEAR|testprefix~)
 </div>  <!--- demopagecontent -->
