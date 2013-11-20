@@ -57,6 +57,7 @@
       <AdminSessionNumber value="1204" context="DEMOS"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
+      <ReadOnlySessionNumber value="888888"/>
     </Security>
     <Static>
       <AppRoot value="/"/>
