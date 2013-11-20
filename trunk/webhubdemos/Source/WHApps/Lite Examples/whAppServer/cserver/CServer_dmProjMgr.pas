@@ -6,8 +6,8 @@ interface
 {$I WebHub_Comms.inc}
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMProjMgr, tpProj;
+  Windows, Messages, SysUtils, Variants, Classes, Forms,
+  whdemo_DMProjMgr, tpProj;
 
 type
   TDMForWHDemoC = class(TDMForWHDemo)
@@ -17,6 +17,8 @@ type
     procedure ProjMgrStartupComplete(Sender: TtpProject);
     procedure ProjMgrStop(Sender: TtpProject; var ErrorText: string;
       var Continue: Boolean);
+    procedure ProjMgrDataModulesCreate1(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
   private
     { Private declarations }
   public
@@ -35,6 +37,13 @@ uses
   MultiTypeApp, whSharedLog, ucCodeSiteInterface, uCode, 
   whutil_ZaphodsMap, htWebApp, webCall, webApp,
   cfmwhCustom;
+
+procedure TDMForWHDemoC.ProjMgrDataModulesCreate1(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  inherited;
+  UseWebHubSharedLog;
+end;
 
 procedure TDMForWHDemoC.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
@@ -61,6 +70,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
   inherited;
+  UseWebHubSharedLog;
   CSSend('my pid', S(GetCurrentProcessID));
   CSSend('my AppID', pWebApp.AppID);
 
@@ -76,9 +86,6 @@ begin
   UncoverAppOnStartup(pWebApp.AppID);
   CSSend('Started instance', S(ProjMgr.InstanceSequence));
   pConnection.MarkReadyToWork;
-  {$ELSE}
-  if NOT pWebApp.ConnectToHub then
-    LogSendWarning('ConnectToHub: False', cFn);
   {$ENDIF}
   CSExitMethod(Self, cFn);
 end;

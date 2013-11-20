@@ -19,7 +19,7 @@ if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\W
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
 
-echo raizelib %raizelib%
+%CSSend% raizelib %raizelib%
 
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
@@ -27,11 +27,12 @@ set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE
 :: LogSTime;
 if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE;CodeSite;Log2CSL;LogAppTick
+%CSSend% compilerflags "%compilerflags%"
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 set objpath=K:\WebHub\regex\Pcre-Delphi-Win64-msc
 
-:: extra parameters for Delphi XE2
+:: extra parameters for Delphi XE2+
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
