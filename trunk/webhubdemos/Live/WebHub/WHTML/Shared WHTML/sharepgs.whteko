@@ -1000,7 +1000,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
+(~FOR|litecount,1,1|(~drStressRH~)~) 
 
 <whdroplet name="drStressRH" show="no">
 <tr>
@@ -1039,7 +1039,7 @@ RawVMR: (~Request.RawVMR~)
 </tr>
 </whdroplet>
 
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
+(~FOR|litecount,1,1|(~drStressRH~)~)
 
 (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
 
