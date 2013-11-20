@@ -1025,16 +1025,16 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?adv:pgwelcome"></iframe> </td>
+<td><iframe src="(~testprefix~)?adv:pgwelcome:(~Security.ReadOnlySessionID~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~)"></iframe></td>
-<td><iframe src="(~testprefix~)?bw:privacypolicy:"></iframe></td> 
-<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?bw:privacypolicy:(~Security.ReadOnlySessionID~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
-<td><iframe src="(~testprefix~)?bw:pgWelcome"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?bw:pgWelcome:(~Security.ReadOnlySessionID~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~)"  ></iframe> </td>
 </tr>
 </whdroplet>
