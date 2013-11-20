@@ -33,6 +33,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDSecure value="ssl"/>
+        <UseAppID value="true"/>
         <UseAppProcessID value="true"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -64,10 +65,8 @@
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="overview" filename="whOverview.whteko"/>
