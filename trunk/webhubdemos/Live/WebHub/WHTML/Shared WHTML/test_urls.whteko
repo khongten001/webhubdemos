@@ -38,23 +38,21 @@ function encodeSpecial(s) {
 function fred() {
 var
 	ajaxUsageFullName = 'Copper %C2%A0 (High)';
-	//alert('fred');
 
-<!---new Ajax.Updater('thediv', '(~ACTIONR|ajaxhangtest~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  }   }); 
--->
  new Ajax.Updater('thediv', '(~ACTIONR|ajaxSProductUsageTypeAndTxet~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  /*alert('success');*//*setFocus_txtAjaxProductUsageText(); */}   }); 
 }
 </script>
 </head>
 <body>
 <div id="thediv" style="font-size:2em">Test</div>
-<div id="link" onclick="fred()" style="background-color: red; width:4em;height:4em;">Click Here</div>
-<p><a href="http://subscriber.local-suretreat.com/water/analysis.dll?(~AppID~):ajaxSProductUsageTypeAndTxet:(~SessionID~):Edit,10,Copper%20%C2%A0%20ZHighZ">Normal Link</a></p>
+<div id="link" onclick="fred()" style="font-size: 3em;background-color: red; width:10em;height:10em;">Click Here to Test AJAX</div>
+<p style="font-size: 2em;"><a href="http://subscriber.local-suretreat.com/water/analysis.dll?(~AppID~):ajaxSProductUsageTypeAndTxet:(~SessionID~):Edit,10,Copper%20%C2%A0%20ZHighZ">Copper Link</a></p>
+<p style="font-size: 2em;"><a href="http://subscriber.local-suretreat.com/water/analysis.dll?(~AppID~):ajaxSProductUsageTypeAndTxet:(~SessionID~):Edit,10,Iron%20%C2%A0%20%28High%29">IRON Link</a></p>
 </body>
 </html>
 </whpage>
 <whpage pageid="ajaxSProductUsageTypeAndTxet">
-(~CentralInfo.WebTimeGMT~)
+(~CentralInfo.WebTimeGMT~)<p>Command = (~Command~)</p>
 </whpage>
 
 </whteko>
