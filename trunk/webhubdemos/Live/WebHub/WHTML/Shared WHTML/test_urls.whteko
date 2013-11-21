@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko
+  defaultlingvo="eng"
+  designmode="code">
+
+<whpage pageid="pgtesturls">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>URL Hang Test</title>
+<style type="text/css">
+body {
+	background-color: #FFFFFF;
+	text-align: center;
+	}
+</style>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"></script>
+<script type="text/javascript">
+function encodeSpecial(s) {
+	var
+		result;
+		//---
+	result = 	encodeURIComponent(s);
+	result = result.replace('(', 'Z');//'%28');
+	result = result.replace(')', 'Z'); //'%29');
+	//result = result.replace('%C2', '');
+	//result = result.replace('%A0', '');	
+	//result = result.replace(/\%20/g, '');	
+	result = result.replace(' ', '');		
+	/* ~ --> %7E
+! --> %21
+* --> %2A*/
+	//return result;
+	return 'Copper%20%C2%A0%20ZHighZ';
+}
+function fred() {
+var
+	ajaxUsageFullName = 'Copper %C2%A0 (High)';
+	//alert('fred');
+
+<!---new Ajax.Updater('thediv', '(~ACTIONR|ajaxhangtest~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  }   }); 
+-->
+ new Ajax.Updater('thediv', '(~ACTIONR|ajaxSProductUsageTypeAndTxet~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  /*alert('success');*//*setFocus_txtAjaxProductUsageText(); */}   }); 
+}
+</script>
+</head>
+<body>
+<div id="thediv" style="font-size:2em">Test</div>
+<div id="link" onclick="fred()" style="background-color: red; width:4em;height:4em;">Click Here</div>
+<p><a href="http://subscriber.local-suretreat.com/water/analysis.dll?(~AppID~):ajaxSProductUsageTypeAndTxet:(~SessionID~):Edit,10,Copper%20%C2%A0%20ZHighZ">Normal Link</a></p>
+</body>
+</html>
+</whpage>
+<whpage pageid="ajaxSProductUsageTypeAndTxet">
+(~CentralInfo.WebTimeGMT~)
+</whpage>
+
+</whteko>
