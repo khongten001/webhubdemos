@@ -122,9 +122,9 @@ object Form2: TForm2
     Top = 233
     Width = 577
     Height = 33
-    EditLabel.Width = 328
+    EditLabel.Width = 446
     EditLabel.Height = 25
-    EditLabel.Caption = 'Upload Target Path ( blank or end with / )'
+    EditLabel.Caption = 'Upload Target Path ( blank or end with / example data/ )'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -18

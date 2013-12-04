@@ -15,7 +15,8 @@ THE SOFTWARE.
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, SysUtils, System.Variants, System.Classes,
+  Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient, Vcl.StdCtrls,
   Vcl.FileCtrl, Vcl.ExtCtrls, Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI;
 
@@ -46,6 +47,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  ucDlgs;
+
 //const
 //  SMDPath = 'originalfilepath';
 //  SMDFrom = 'uploadfrom';
@@ -53,49 +57,61 @@ implementation
 procedure TForm2.Button1Click(Sender: TObject);
 var
   ResponseInfo: TCloudResponseInfo;
-  //Metadata: TStringList;
   Filespec: string;
   stream: TBytesStream;
   StorageService: TAmazonStorageService;
 begin
+  stream := nil;
+  StorageService := nil;
+  ResponseInfo := nil;
+
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
   AmazonConnectionInfo1.Protocol := 'https';
 
   Filespec := Filelistbox1.FileName;
+
+  if (LabeledEditTargetPath.Text <> '') and
+    (LabeledEditTargetPath.Text[1] = '/') then
+  begin
+    MsgWarningOk('Do not start with a leading / for the target path.' +
+      sLIneBreak + sLineBreak + LabeledEditTargetPath.Text);
+  end
+  else
   if FileExists(Filespec) then
   begin
-    StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
+    try
+      StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
 
-    ResponseInfo := TCloudResponseInfo.Create;
-    stream := TBytesStream.Create;
-    stream.LoadFromFile(Filespec);
+      ResponseInfo := TCloudResponseInfo.Create;
+      stream := TBytesStream.Create;
+      stream.LoadFromFile(Filespec);
 
-    //Metadata not required on Amazon S3
-    //Metadata := TStringList.Create;
-    //Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
-    //Metadata.Values[SMDFrom] := GetComputerandUserName;
+      //Metadata not required on Amazon S3
+      //Metadata := TStringList.Create;
+      //Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
+      //Metadata.Values[SMDFrom] := GetComputerandUserName;
 
-    StorageService.UploadObject(
-      LabeledEditBucket.Text,  // target bucket e.g. screenshots.href.com
+      StorageService.UploadObject(
+        LabeledEditBucket.Text,  // target bucket e.g. screenshots.href.com
 
-      { LabeledEditTargetPath.Text must be blank or end in / }
-      LabeledEditTargetPath.Text + ExtractFileName(Filespec),
+        { LabeledEditTargetPath.Text must be blank or end in / example data/ }
+        LabeledEditTargetPath.Text + ExtractFileName(Filespec),
 
-      Stream.Bytes,
-      False, nil, nil,
-      Data.Cloud.AmazonAPI.amzbaPublicRead,  // permissions - public
-      ResponseInfo);
+        Stream.Bytes,
+        False, nil, nil,
+        Data.Cloud.AmazonAPI.amzbaPublicRead,  // permissions - public
+        ResponseInfo);
 
-    {status 200 means that it worked
-     if you use a bad Access Key or Secret Access Key, status 403 will be in
-     headers}
-    ShowMessage(Format('statuscode %d, message %s, headers %s',
-      [ResponseInfo.StatusCode, ResponseInfo.StatusMessage,
-      ResponseInfo.Headers.Text]));
-
-    //FreeAndNil(metadata);
-    FreeAndNil(stream);
+      {status 200 means that it worked
+       if you use a bad Access Key or Secret Access Key, status 403 will be in
+       headers}
+      MsgInfoOk(Format('statuscode %d, message %s, headers %s',
+        [ResponseInfo.StatusCode, ResponseInfo.StatusMessage,
+        ResponseInfo.Headers.Text]));
+    finally
+      FreeAndNil(stream);
+    end;
   end;
 end;
 
