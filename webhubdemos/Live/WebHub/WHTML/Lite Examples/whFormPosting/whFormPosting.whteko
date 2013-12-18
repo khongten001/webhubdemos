@@ -39,7 +39,9 @@ mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gr
 <h1>Demo of WebHub Save-State</h1>
 <p>
 <whtranslation key="~FormIntro" show="yes">
-To participate, fill in this form to describe your real or imaginary pet...
+To participate, fill in this form to describe your real or imaginary pet...  many of these questions were added in order to demonstrate
+the new input types in HTML5.  View this page with different browsers to see how each browser renders the controls.  Unsupported 
+input types default back to type=&quot;text&quot;.
 </whtranslation>
 </p>
 (~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
@@ -71,6 +73,57 @@ To participate, fill in this form to describe your real or imaginary pet...
 </tr>
 <tr>
 	<td class="prompt">
+	Age in Years:
+	</td>
+</tr>
+
+<!---  new input types in HTML5
+search, tel, url, email, datetime, date, month, week, time, datetime-local, number, range, color.
+-->
+<tr>
+	<td>
+	<input name="inAgeYears" type="number" min="0" max="120" value="(~INPUTDEFAULT|inAgeYears~)" />
+	</td>
+</tr>
+
+<tr>
+	<td class="prompt">
+	(Fake) Search For:
+	</td>
+</tr>
+<tr><td>
+<input type="search" name="inSearchFor" value="(~INPUTDEFAULT|inSearchFor~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet Telephone
+	</td>
+</tr>
+<tr><td>
+<input type="tel" name="inPetTel" value="(~INPUTDEFAULT|inPetTel~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet EMail
+	</td>
+</tr>
+<tr><td>
+<input type="email" name="inPetEMail" value="(~INPUTDEFAULT|inPetEMail~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet URL
+	</td>
+</tr>
+<tr><td>
+<input type="url" name="inPetURL" value="(~INPUTDEFAULT|inPetURL~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
 	<!--- The user can select multiple options from this drop-down list.
           All these options will be saved in a literal called "inPersonality." -->
 	Personality:<br />
@@ -100,6 +153,52 @@ To participate, fill in this form to describe your real or imaginary pet...
              (~INPUTCHECKBOX|inVeryLoved|class="cbox"~) Pet is very loved.
              </td>
 </tr>
+
+<tr>
+	<td class="prompt">
+	Pet Birthday 
+	</td>
+</tr>
+<tr><td>
+<input type="date" name="inPetBornOn" value="(~INPUTDEFAULT|inPetBornOn~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet Birth Moment
+	</td>
+</tr>
+<tr><td>
+<input type="datetime" name="inPetBornOnAt" value="(~INPUTDEFAULT|inPetBornOnAt~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet MasterCard Expires (Month/Year)
+	</td>
+</tr>
+<tr><td>
+<input type="month" name="inPetExpMo" value="(~INPUTDEFAULT|inPetExpMo~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Digital Color
+	</td>
+</tr>
+<tr><td>
+<input type="color" name="inPetDigitalColor" value="(~INPUTDEFAULT|inPetDigitalColor~)" />
+</td></tr>
+
+<tr>
+	<td class="prompt">
+	Pet Speed
+	</td>
+</tr>
+<tr><td>
+<input type="range" name="inPetSpeed" value="(~INPUTDEFAULT|inPetSpeed~)" />
+</td></tr>
+
 <tr>
 	<td class="prompt">
 <!--- The surfer can check as many boxes as he or she likes.
@@ -116,6 +215,7 @@ To participate, fill in this form to describe your real or imaginary pet...
 </table>
 
 </td></tr>
+
 <tr><td colspan="2">
 <input type="submit" name="petFormButton" value="Post Pet Particulars" />
 <input type="submit" name="petFormButton" value="Shortcut" />
