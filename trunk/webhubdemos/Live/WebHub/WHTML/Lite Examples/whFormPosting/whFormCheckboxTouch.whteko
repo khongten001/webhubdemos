@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', addPressEventListeners, false);
 ~)
 
 <h1>(~pagedesc~)</h1>
-<h2>Test on iPad, iPhone, Android Tablet, Windows Surface, etc.</h2>
+<h2>Use for testing on iPad, iPhone, Android Tablet, Windows Surface, etc.</h2>
 <p><i>(~CentralInfo.WebTimeGMT~)</i></p>
-<p>Both the checkbox and the checkbox label have an touchstart event.</p>
-<p>This works in Chrome and Firefox with an Android tablet, but not in the WebViewTesting utility.</p>
+
+<p>On an Android device, press the checkbox label. An alert should appear. </p>
 
 <div style="margin-left: 3em; font-size: 2em;">
 (~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
@@ -26,8 +26,13 @@ document.addEventListener('DOMContentLoaded', addPressEventListeners, false);
 (~INPUTFORM|CLOSE~)
 </div>
 
-(~JUMPR|pgtesttouchevent|Retry (same session)~)
+<p>Both the checkbox and the checkbox label have a touchstart event.</p>
+<p>This works in Chrome and Firefox with an Android tablet, but not in the WebViewTesting utility.</p>
+
+<p>(~JUMPR|pgtesttouchevent|Retry (same session)~)</p>
+
 </body></html>
+
 </whpage>
 
 
