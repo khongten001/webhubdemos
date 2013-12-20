@@ -8,11 +8,18 @@
 (~NOTASSIGNED|cbCheckName3|(~SET|cbCheckName3=ccc~)~)
 </whprep>
 <whdroplet name="drCBHeader" show="yes">
-<![CDATA[<html><head><title>(~pagedesc~)</title></head><body>]]>
+<html><head><title>(~pagedesc~)</title>(~ANCHOR|anchJavascript~)</head><body>
 </whdroplet>
+
+(~ANCHORMODIFY|anchJavascript|
+<script type="text/javascript">
+document.getElementById('cb1').addEventListener('touchstart', function(e) {alert('touchstart on cb1')}, false);
+</script>
+~)
+
 (~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
 <p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
-<p>(~INPUTCHECKBOX|cbCBCheckOne~) Check box one</p>
+<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label for="cb1">Check box one</label> </p>
 (~INPUTSUBMIT|Submit,Submit~)
 (~INPUTFORM|CLOSE~)
 <whdroplet name="drCBFooter" show="yes">
