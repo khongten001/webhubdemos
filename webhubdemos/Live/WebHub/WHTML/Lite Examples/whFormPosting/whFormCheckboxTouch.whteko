@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', addPressEventListeners, false);
 <h1>(~pagedesc~)</h1>
 <h2>Test on iPad, iPhone, Android Tablet, Windows Surface, etc.</h2>
 <p><i>(~CentralInfo.WebTimeGMT~)</i></p>
+<p>Both the checkbox and the checkbox label have an touchstart event.</p>
+<p>This works in Chrome and Firefox with an Android tablet, but not in the WebViewTesting utility.</p>
 
 <div style="margin-left: 3em; font-size: 2em;">
 (~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
-<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label id="labelCb1" for="cb1">Check box one</label> </p>
-(~INPUTSUBMIT|Submit,Submit~)
+<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label id="labelCb1" for="cb1">Check box (label)</label> </p>
 (~INPUTFORM|CLOSE~)
 </div>
 
