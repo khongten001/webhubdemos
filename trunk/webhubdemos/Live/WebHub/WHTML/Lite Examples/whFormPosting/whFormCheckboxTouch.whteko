@@ -25,7 +25,8 @@ document.addEventListener('DOMContentLoaded', addPressEventListeners, false);
 (~INPUTFORM|CLOSE~)
 </div>
 
-(~drCBFooter~)
+(~JUMPR|pgtesttouchevent|Retry (same session)~)
+</body></html>
 </whpage>
 
 
