@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd"><whteko>
+
+<whpage pageid="pgTestTouchEvent" desc="-Test of checkbox with touch start event">
+(~drCBHeader~)
+
+(~ANCHORMODIFY|anchJavascript|
+<script type="text/javascript">
+function addPressEventListeners() {
+document.getElementById('cb1').addEventListener('touchstart', function(e) {alert('touchstart on cb1')}, false);
+document.getElementById('labelCb1').addEventListener('touchstart', function(e) {alert('touchstart on labelCb1')}, false);
+}
+document.addEventListener('DOMContentLoaded', addPressEventListeners, false); 
+</script>
+~)
+
+<h1>(~pagedesc~)</h1>
+<h2>Test on iPad, iPhone, Android Tablet, Windows Surface, etc.</h2>
+<p><i>(~CentralInfo.WebTimeGMT~)</i></p>
+
+<div style="margin-left: 3em; font-size: 2em;">
+(~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
+<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label id="labelCb1" for="cb1">Check box one</label> </p>
+(~INPUTSUBMIT|Submit,Submit~)
+(~INPUTFORM|CLOSE~)
+</div>
+
+(~drCBFooter~)
+</whpage>
+
+
+</whteko>

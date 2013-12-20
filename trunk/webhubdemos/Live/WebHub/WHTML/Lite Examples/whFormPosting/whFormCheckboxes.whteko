@@ -11,15 +11,6 @@
 <html><head><title>(~pagedesc~)</title>(~ANCHOR|anchJavascript~)</head><body>
 </whdroplet>
 
-(~ANCHORMODIFY|anchJavascript|
-<script type="text/javascript">
-function addPressEventListeners() {
-document.getElementById('cb1').addEventListener('touchstart', function(e) {alert('touchstart on cb1')}, false);
-document.getElementById('labelCb1').addEventListener('touchstart', function(e) {alert('touchstart on labelCb1')}, false);
-}
-document.addEventListener('DOMContentLoaded', addPressEventListeners, false); 
-</script>
-~)
 <h1>(~pagedesc~)</h1>
 <p><i>(~CentralInfo.WebTimeGMT~)</i></p>
 
