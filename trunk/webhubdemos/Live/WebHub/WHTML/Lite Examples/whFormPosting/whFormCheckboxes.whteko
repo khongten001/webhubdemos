@@ -12,8 +12,11 @@
 </whdroplet>
 
 (~ANCHORMODIFY|anchJavascript|
-<script type="text/javascript">
+<script type="text/javascript">
+function addPressEventListeners() {
 document.getElementById('cb1').addEventListener('touchstart', function(e) {alert('touchstart on cb1')}, false);
+}
+document.addEventListener('DOMContentLoaded', addPressEventListeners, false); 
 </script>
 ~)
 
