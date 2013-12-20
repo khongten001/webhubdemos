@@ -19,6 +19,8 @@ document.getElementById('cb1').addEventListener('touchstart', function(e) {alert
 document.addEventListener('DOMContentLoaded', addPressEventListeners, false); 
 </script>
 ~)
+<h1>(~pagedesc~)</h1>
+<p><i>(~CentralInfo.WebTimeGMT~)</i></p>
 
 (~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
 <p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
