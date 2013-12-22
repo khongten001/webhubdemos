@@ -212,6 +212,11 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 	</td>
 </tr>
 <tr><td>(~inputtextarea|txtdescription,6,30~)</td></tr>
+<tr>
+	<td class="prompt">Other Notes:
+	</td>
+</tr>
+<tr><td><textarea name="txtnotes" rows="2" cols="30">(~INPUTDEFAULT|txtvar.txtnotes~)</textarea></td></tr>
 </table>
 
 </td></tr>
@@ -327,7 +332,9 @@ Note that WebHub allows you to track checkboxes and text fields separate from th
 <b>StringVars:</b><br />
 (~StringVars~)<br />
 <b>txtDescription:</b><br />
-(~txtDescription~)<br />
+(~INPUTDEFAULT|txtvar.txtDescription~)<br />
+<b>txtNotes:</b><br />
+(~INPUTDEFAULT|txtvar.txtNotes~)<br />
 <b>BoolVars:</b><br />
 (~BoolVars~)
 </td></tr>
