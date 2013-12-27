@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
@@ -21,7 +21,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="enabled-gui"/>
+          <Module name="decode" status="disabled" />
           <Module name="googlesitemap" status="enabled-gui"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
