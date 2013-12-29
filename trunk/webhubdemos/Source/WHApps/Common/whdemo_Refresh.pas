@@ -1,11 +1,12 @@
 unit whdemo_Refresh;
-////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 2002-2005 HREF Tools Corp.  All Rights Reserved Worldwide.  //
-//                                                                            //
-//  This source code file is part of WebHub v2.04x.  Please obtain a WebHub   //
-//  development license from HREF Tools Corp. before using this file, and     //
-//  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
-////////////////////////////////////////////////////////////////////////////////
+
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2002-2013 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
+{ * development license from HREF Tools Corp. before using this file, and    * }
+{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
