@@ -20,9 +20,6 @@ if "%whipc%"=="x" set demoshowcase=yes
 
 set demohtaj=yes
 
-if "%whipc%"=="old" set demobrnd=no
-if "%whipc%"=="x"    set demobrnd=no
-
 if "%whipc%"=="old" set demohtfd=yes
 if "%whipc%"=="x" set demohtfd=yes
 

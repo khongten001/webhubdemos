@@ -39,10 +39,6 @@ if "%demohtaj%"=="yes" start whLite.exe /ID:htaj
 if "%demohtaj%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%demohtaj%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htaj /minutes=%covermin% /reason=%coverreason% 
 
-if "%demobrnd%"=="yes" start  whLite.exe /ID:brnd  
-if "%demobrnd%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
-if "%demobrnd%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=brnd /minutes=%covermin% /reason=%coverreason% 
-
 if "%demohtfd%"=="yes" start whLite.exe /ID:htfd   
 if "%demohtfd%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 6
 if "%demohtfd%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htfd /minutes=%covermin% /reason=%coverreason% 
