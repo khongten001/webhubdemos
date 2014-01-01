@@ -71,7 +71,6 @@
     <TekoFiles>
       <File id="overview" filename="whOverview.whteko"/>
       <File id="abADV" filename="..\..\Shared WHTML\about\about-whAdRotation.whteko"/>
-      <File id="abBRND" filename="..\..\Shared WHTML\about\about-whBranding.whteko"/>
       <File id="abBW" filename="..\..\Shared WHTML\about\about-whOptions.whteko"/>
       <File id="abCodeRage" filename="..\..\Shared WHTML\about\about-whSchedule.whteko"/>
       <File id="abDBHTML" filename="..\..\Shared WHTML\about\about-whLoadFromDB.whteko"/>
