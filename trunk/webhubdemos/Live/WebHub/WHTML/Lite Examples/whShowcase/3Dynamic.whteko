@@ -34,8 +34,8 @@ Using the JUMP macro is better than using an A HREF link because it:
 <li> Saves typing
 <li> Is calculated at run-time to use the current http expression
 <li> Will expand at run-time based on the current runner (runisa.dll in this example).
-<li> Adds the essential functionality of branding in the
-surfer session ID -- something that is impossible on a static .html page.  If the page were
+<li> Adds the essential functionality of including the
+surfer session ID in the URL -- impossible on a static .html page.  If the page were
 being generated for surfer 123456, the JUMP above would expand to:
 <pre>&lt;A HREF="/scripts/runisa.dll?SHOWCASE:pgGO:123456">The GO Macro&lt;/A>
 </pre>
