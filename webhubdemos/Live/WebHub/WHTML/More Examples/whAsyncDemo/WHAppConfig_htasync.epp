@@ -139,12 +139,12 @@ FTPFilename=
 ForcedReadOnly=0
 
 [File4]
-DataLen=4985
-TopLine=69
-SelStart=3564
-SelStop=3564
+DataLen=5142
+TopLine=0
+SelStart=96
+SelStop=96
 RectSel=0
-CaretPos=3564
+CaretPos=96
 CaretVisible=1
 TopLineAlt=0
 SelStartAlt=0
@@ -176,10 +176,10 @@ ForcedReadOnly=0
 [File5]
 DataLen=1546
 TopLine=0
-SelStart=1077
-SelStop=1077
+SelStart=0
+SelStop=0
 RectSel=0
-CaretPos=1077
+CaretPos=0
 CaretVisible=1
 TopLineAlt=0
 SelStartAlt=0
@@ -211,8 +211,39 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=0
 BookmarksProjectWide=0
-TabIndex=5
+TabIndex=4
 FirstFileTab=0
 FileCount=6
-RemovedCount=0
+RemovedCount=1
+
+[Removed0]
+DataLen=7846
+TopLine=181
+SelStart=6038
+SelStop=6083
+RectSel=0
+CaretPos=6083
+CaretVisible=0
+TopLineAlt=0
+SelStartAlt=0
+SelStopAlt=0
+RectSelAlt=0
+CaretPosAlt=0
+CaretVisibleAlt=0
+BookmarkCount=1
+Folding=
+FileType=
+DataFormat=utf8
+AutoIndent=0
+NumberLines=0
+WordWrapIndent=0
+NumberColumns=0
+ShowSpaces=0
+ShowLineBreaks=0
+LiveSpell=0
+WrapPos=-2
+RecordSize=-2
+HexEditor=0
+HexSections=-2
+Filename=d:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dprcleanup2013.whteko
 
