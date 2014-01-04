@@ -2,7 +2,7 @@
 
 <whmacros>
 mcYesNo=y-yes,n-no
-mcAbsoluteURL=(~MATCH|(~inAbsURL~)=y|(~Request.scheme~)(~Request.Host~)~)
+mcAbsoluteURL=(~MATCH|(~inAbsURL~)=y|(~Request.scheme~)://(~Request.Host~)~)
 </whmacros>
 
 <whpage pageid="Demo1Home" desc="Demo 1 - Simulate Long Database Query">
@@ -82,7 +82,7 @@ taken to a page where you can view the result (a random integer up to 9999).</p>
 <html><head>
 (~drHead~)
 <!-- changing:start-->
-<meta http-equiv="Refresh" content="(~mcAbsoluteURL~)(~Demo1Refresh~);(~DynURL.ToSessionIDW~)"/>
+<meta http-equiv="Refresh" content="(~Demo1Refresh~);(~mcAbsoluteURL~)(~DynURL.ToSessionIDW~)"/>
 <!-- changing:stop-->
 </head>
 <body>
