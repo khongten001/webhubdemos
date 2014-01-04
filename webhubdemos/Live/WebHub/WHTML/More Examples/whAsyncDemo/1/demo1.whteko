@@ -102,6 +102,7 @@ Please wait while your imaginary query is processed.<br />
 The browser should reload this page every (~Demo1Refresh~) seconds.<br/>
 Count of jobs competing for the server CPU: (~_CountJobsPending~).</p>
 <p>A surfer-specific _OmniUniqueID value [(~_OmniUniqueID~)] is present while the job is in process. </p>
+<p>(~JUMPR|Demo1Loop|Check Status Right NOW~)</p>
 <p>(~JUMPR|Demo1Cancel|Cancel~)</p>
 
 <p><strong>* Note:</strong> The HTML5 progress tag is not supported in Microsoft IE9 and earlier versions.</p>
