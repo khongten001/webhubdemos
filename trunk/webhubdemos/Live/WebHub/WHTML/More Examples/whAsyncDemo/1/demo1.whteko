@@ -1,5 +1,10 @@
 <whteko defaultlingvo="eng" designmode="code">
 
+<whmacros>
+mcYesNo=y-yes,n-no
+mcAbsoluteURL=(~MATCH|(~inAbsURL~)=y|(~Request.scheme~)(~Request.Host~)~)
+</whmacros>
+
 <whpage pageid="Demo1Home" desc="Demo 1 - Simulate Long Database Query">
 <whprep>
 (~CLEAR|asyncdemo~)
@@ -17,10 +22,12 @@ input, select { font-family: Tahoma; font-weight: 900; color: blue; }
 <div id="whdemopagecontent">
 <h2>Demo #1</h2>
 <p><i><a target="_blank" href="(~DynURL.ToPageID~)">Open new window as new surfer</a></i></p>
+
 <div style="border: solid 1px blue; padding: 2em; width: 18em;">
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post~)">
 Query Length: (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~) <br />
 Status Refresh Rate: (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)<br/>
+Use absolute URL in meta refresh: (~INPUTSELECT|inAbsURL,mcYesNo,1~)<br/>
 <input type="submit" value="Start" />
 </form>
 </div>
@@ -75,7 +82,7 @@ taken to a page where you can view the result (a random integer up to 9999).</p>
 <html><head>
 (~drHead~)
 <!-- changing:start-->
-<meta http-equiv="Refresh" content="(~Demo1Refresh~);(~DynURL.ToSessionIDW~)"/>
+<meta http-equiv="Refresh" content="(~mcAbsoluteURL~)(~Demo1Refresh~);(~DynURL.ToSessionIDW~)"/>
 <!-- changing:stop-->
 </head>
 <body>
