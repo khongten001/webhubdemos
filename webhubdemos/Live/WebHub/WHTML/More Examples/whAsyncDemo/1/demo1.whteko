@@ -8,6 +8,7 @@ mcAbsoluteURL=(~MATCH|(~inAbsURL~)=y|(~Request.scheme~)://(~Request.Host~)~)
 <whpage pageid="Demo1Home" desc="Demo 1 - Simulate Long Database Query">
 <whprep>
 (~CLEAR|asyncdemo~)
+(~NOTASSIGNED|inAbsURL|(~SET|inAbsURL=N~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
@@ -27,7 +28,8 @@ input, select { font-family: Tahoma; font-weight: 900; color: blue; }
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|Demo1Post~)">
 Query Length: (~INPUTSELECT|Demo1SleepSec,chDemo1DurationValues,1~) <br />
 Status Refresh Rate: (~INPUTSELECT|Demo1Refresh,chDemo1RefreshValues,1~)<br/>
-Use absolute URL in meta refresh: (~INPUTSELECT|inAbsURL,mcYesNo,1~)<br/>
+Use absolute URL<br/>
+in meta refresh: (~INPUTSELECT|inAbsURL,mcYesNo,1~)<br/>
 <input type="submit" value="Start" />
 </form>
 </div>
@@ -130,6 +132,7 @@ Count of jobs competing for the server CPU: (~_CountJobsPending~).</p>
 <h2>Demo #1 ... Output</h2>
 (~_Demo1Output~)
 <p>Next: (~JUMP|Demo2Home|On to Demo #2~)</p>
+<p>Or (~JUMP|Demo1Home|Repeat Demo #1~)</p>
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 
