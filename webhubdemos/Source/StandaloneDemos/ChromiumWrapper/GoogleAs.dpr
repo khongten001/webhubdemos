@@ -3,13 +3,6 @@ program GoogleAs;
 {$I hrefdefines.inc}
 
 uses
-  {$IFDEF EUREKALOG}
-  EMemLeaks,
-  EResLeaks,
-  EDebugExports,
-  EAppVCL,
-  ExceptionLog7,
-  {$ENDIF}
   Forms,
   ucCodeSiteInterface in 'H:\ucCodeSiteInterface.pas',
   System.UITypes,
