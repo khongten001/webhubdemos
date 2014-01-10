@@ -28,6 +28,9 @@ type
     SlowPageTest1: TMenuItem;
     N2: TMenuItem;
     LargePageTest1: TMenuItem;
+    miGoogleCalendar1: TMenuItem;
+    miGoogleWebmasterTools: TMenuItem;
+    miEnterURL: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -42,6 +45,9 @@ type
     procedure GooglePlus1Click(Sender: TObject);
     procedure SlowPageTest1Click(Sender: TObject);
     procedure LargePageTest1Click(Sender: TObject);
+    procedure miGoogleCalendar1Click(Sender: TObject);
+    procedure miGoogleWebmasterToolsClick(Sender: TObject);
+    procedure miEnterURLClick(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -89,7 +95,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  TypInfo,
+  TypInfo, Dialogs,
   uCode, ucDlgs, ucCodeSiteInterface;
 
 procedure TfmChromiumWrapper.Chromium1ContentsSizeChange(Sender: TObject;
@@ -270,7 +276,23 @@ begin
   Delphi := 'Delphi ' + PascalCompilerCode;
   MsgInfoOk('Compiled with ' + Delphi + sLineBreak + sLineBreak +
     'and TChromium (CEF1)' + sLineBreak + sLineBreak +
-    'Pass email and password as command line parameters for Quick Login');
+    'Pass email and password as command line parameters for Quick Login' +
+    sLineBreak + sLineBreak +
+    'Source code in webhubdemos project' + sLineBreak +
+    'c/o HREF Tools Corp.' + sLineBreak +
+    'http://lite.demos.href.com/demos');
+end;
+
+procedure TfmChromiumWrapper.miEnterURLClick(Sender: TObject);
+var
+  AURL: string;
+begin
+  AURL := InputBox('', 'Enter URL', 'http://');
+  if Copy(AURL, 1, 4) = 'http' then
+  begin
+    Self.Caption := AURL;
+    FChromium1.Load(AURL);
+  end;
 end;
 
 procedure TfmChromiumWrapper.miExitClick(Sender: TObject);
@@ -354,12 +376,28 @@ begin
   FChromium1.Load(cGooglePlus);
 end;
 
+procedure TfmChromiumWrapper.miGoogleCalendar1Click(Sender: TObject);
+const
+  cAddr = 'https://www.google.com/calendar/';
+begin
+  Self.Caption := cAddr;
+  FChromium1.Load(cAddr);
+end;
+
 procedure TfmChromiumWrapper.miGoogleClick(Sender: TObject);
 const
   cGoogle = 'http://www.google.com/';
 begin
   Self.Caption := cGoogle;
   FChromium1.Load(cGoogle);
+end;
+
+procedure TfmChromiumWrapper.miGoogleWebmasterToolsClick(Sender: TObject);
+const
+  cAddr = 'http://www.google.com/webmasters/tools/';
+begin
+  Self.Caption := cAddr;
+  FChromium1.Load(cAddr);
 end;
 
 function TfmChromiumWrapper.Init(out ErrorText: string): Boolean;

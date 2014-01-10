@@ -57,6 +57,18 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = 'Google Plus'
         OnClick = GooglePlus1Click
       end
+      object miGoogleCalendar1: TMenuItem
+        Caption = 'Google Calendar'
+        OnClick = miGoogleCalendar1Click
+      end
+      object miGoogleWebmasterTools: TMenuItem
+        Caption = 'Google Webmaster Tools'
+        OnClick = miGoogleWebmasterToolsClick
+      end
+      object miEnterURL: TMenuItem
+        Caption = 'Enter URL'
+        OnClick = miEnterURLClick
+      end
       object N2: TMenuItem
         Caption = '-'
       end
@@ -73,7 +85,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
         OnClick = LargePageTest1Click
       end
       object N1: TMenuItem
-        Caption = '--'
+        Caption = '-'
       end
       object QuickLogin1: TMenuItem
         Caption = 'Quick Login'
