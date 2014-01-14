@@ -45,7 +45,7 @@ type
     { Public declarations }
     procedure SetDemoFacts(const DemoAppID, SourceSubdir: string;
       const IsRelativePath: Boolean);
-    procedure WHDBAppError(Sender: TObject; E: Exception; var Handled,
+    procedure WHDBAppException(Sender: TObject; E: Exception; var Handled,
       ReDoPage: Boolean);
   end;
 
@@ -217,7 +217,7 @@ begin
   whDemoDestroySharedDataModules;
 end;
 
-procedure TDMForWHDBDemo.WHDBAppError(Sender: TObject; E: Exception;
+procedure TDMForWHDBDemo.WHDBAppException(Sender: TObject; E: Exception;
   var Handled, ReDoPage: Boolean);
 begin
   { some database demos connect pWebApp.OnError to this event handler }
