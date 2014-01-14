@@ -47,7 +47,7 @@ begin
   begin
     AddAppUpdateHandler(DSPAppUpdate);
     AddAppAfterExecuteHandler(DSPAppExecute);
-    OnError := DSPAppError;
+    OnError := DSPAppException;
     OnEventMacro := DSPAppEventMacro;
     OnExecDone := DSPAppExecDone;
     OnNewSession := DSPAppNewSession;

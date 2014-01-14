@@ -17,7 +17,7 @@ type
       procedure DSPAppNewSession(Sender:TObject;InSessionNo:Cardinal;const Command:String);
       procedure DSPAppExecDone(Sender: TObject);
       procedure DSPAppEventMacro(Sender: TwhRespondingApp; const aMacro, aParams, aID: String);
-      procedure DSPAppError(Sender: TObject; E: Exception;
+      procedure DSPAppException(Sender: TObject; E: Exception;
         var Handled, ReDoPage: Boolean);
       procedure DSPMacrosUpdate;
    end;
@@ -245,7 +245,7 @@ begin
          end;
 end;
 
-procedure TDSPAppHandler.DSPAppError(Sender: TObject; E: Exception;
+procedure TDSPAppHandler.DSPAppException(Sender: TObject; E: Exception;
   var Handled, ReDoPage: Boolean);
 var
   S1: string;

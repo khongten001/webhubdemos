@@ -81,7 +81,7 @@ begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
 
-      pWebApp.OnError := DMForWHFirebird.WHDBAppError;
+      pWebApp.OnError := DMForWHFirebird.WHDBAppException;
 
       ZMLookup_Firebird_Credentials('WebHubDemo-fire', DBName, DBUser, DBPass);
       CreateIfNil(DBName, DBUser, DBPass);
