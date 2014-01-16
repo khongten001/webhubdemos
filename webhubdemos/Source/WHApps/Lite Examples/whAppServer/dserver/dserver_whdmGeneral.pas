@@ -42,7 +42,7 @@ procedure TdmwhGeneral.ControlPageCalcTime(Sender: TwhConnection;
 begin
   {prevent testing of extraordinarily slow web pages from blocking further
   requests}
-  ExecutionAverageMS := Math.Max(ExecutionAverageMS, 200);
+  ExecutionAverageMS := Math.Min(ExecutionAverageMS, 200);
 end;
 
 procedure TdmwhGeneral.DServerAppExecute(Sender: TwhRespondingApp;
