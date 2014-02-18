@@ -1,7 +1,7 @@
 unit whSendMail_dmProjMgr;  { initialization specific to the sendmail demo }
 
 (*
-Copyright (c) 2004-2012 HREF Tools Corp.
+Copyright (c) 2004-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
