@@ -38,7 +38,7 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  whpanel_Mail in 'h:\whpanel_Mail.pas' {fmWebMail},
+  whpanel_Mail in 'k:\webhub\lib\whpanel_Mail.pas' {fmWebMail},
   whSendmail_dmWhQuote in 'whSendmail_dmWhQuote.pas' {dmWhQuote: TdmWhQuote},
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   tpProj in 'h:\tpProj.pas',
@@ -50,6 +50,11 @@ uses
 {$R HTDEMOS.RES}     // main icon for WebHub demos
 {..$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
 {..$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
+
+(* for use when compiling with source
+  whMail in 'k:\webhub\lib\whMail.pas',
+  webMailV in 'k:\webhub\lib\whPlus\webMailV.pas',
+*)
 
 begin
   {M}Application.Initialize;
