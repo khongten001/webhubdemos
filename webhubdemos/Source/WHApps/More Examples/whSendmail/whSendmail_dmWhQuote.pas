@@ -40,7 +40,6 @@ uses
 type
   TdmWhQuote = class(TDataModule)
     waQuoteMessage: TwhWebActionEx;
-    ExtraOutput: TwhResponse;
     procedure waQuoteMessageExecute(Sender: TObject);
   private
     { Private declarations }
@@ -71,7 +70,6 @@ const
 
 procedure TdmWhQuote.Init;
 begin
-  ExtraOutput.GUI.SetShowResponse(outQuick);
   DataModuleWhMail.WebMailForm.OnExecute := OverrideWebMailFormExecute;
 end;
 
