@@ -1,12 +1,18 @@
 unit htmaildm;
 
 interface
+{$I hrefdefines.inc}
+  {$IF Defined(Delphi17UP)}
+  {$DEFINE INDYSMTP}
+  {$ELSE}
+  {$UNDEF INDYSMTP}
+  {$IFEND}
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UpdateOk, WebTypes,   WebLink, HtmlBase,
-  HtmlCore, HtmlSend, CGiVarS, APiStat, WebBase, WebCore, WebSend, WebApp,
-  tpAction;
+  Windows, Messages, SysUtils, Classes,
+  updateOk, tpAction,
+  webTypes,   webLink, HtmlBase,
+  HtmlCore, HtmlSend, WebBase, WebCore, WebSend, WebApp;
 
 type
   TFormLetterDM = class(TDataModule)
@@ -30,7 +36,8 @@ var
 implementation
 
 uses
-  webPrologue, whMail, whpanel_Mail, webMail;
+  ucCodeSiteInterface, ucLogFil,
+  webPrologue, whMail, whpanel_Mail;
 
 {$R *.DFM}
 
@@ -67,43 +74,52 @@ begin
 end;
 
 procedure TFormLetterDM.WebFormLetterExecute(Sender: TObject);
+const
+  cFn = 'WebFormLetterExecute';
 var
-  app: TwhAppBase;
-  sav: TwhResponse;
+  FileContentUnexpanded: string;
+  FileContentExpanded: string;
 begin
-  //Sender is a TwhWebActionEx component.
-  with WebAppOutputFormLtr do
+  CSEnterMethod(Self, cFn);
+
+  FileContentUnexpanded := StringLoadFromFile
+    (pWebApp.AppSetting['FormLetterFile']);
+  LogToCodeSiteKeepCRLF('FileContentUnexpanded', FileContentUnexpanded);
+
+  if FileContentUnexpanded <> '' then
   begin
-    {connect this output component to the app and vice versa}
-    app:=TwhWebActionEx(Sender).WebApp;
-    sav:=app.Response;
+    FileContentExpanded := pWebApp.Expand(FileContentUnexpanded);
 
-    WebApp:=app;
-    app.Response:=WebAppOutputFormLtr;
-
-    app.Response.SetContentType(ProSkip, '');  {skip the HTTP PrologueMode!}
-    ResponseFilespec := '';
-    Open;
-
-    {SendFile will expand macros while it sends the data, because
-     it is called from a TwhResponse rather than TwhResponseSimple component.}
-    SendFile(app.AppSetting['FormLetterFile']);  {get filename from configuration file}
-
-    with DataModuleWHMail.WebMail do
+    if FileContentExpanded <> '' then
     begin
-      Sender.EMail:=app.StringVar['MsgTo'];
-      Mailto.text:=app.StringVar['MsgTo'];
-      Subject:=app.StringVar['Subject'];
-      {stream.text contains the output document from SendFile above.
-       We want that to become the e-mail message through the .Lines property.}
-      Lines.Text := string(Stream.Text);
-      end;
-    Close;  {close temp output stream}
-    DataModuleWHMail.WebMail.Execute;
 
-    {reconnect the app to the main output component}
-    app.Response:=sav;
+      with DataModuleWHMail do
+      begin
+{$IFDEF INDYSMTP}
+        WebMailForm.IndyMessage.From.Address := pWebApp.StringVar['MsgTo'];
+        WebMailForm.IndyMessage.Recipients.Clear;
+        WebMailForm.IndyMessage.Recipients.EMailAddresses :=
+          pWebApp.StringVar['MsgTo'];
+        WebMailForm.IndyMessage.Subject := pWebApp.StringVar['Subject'];
+        WebMailForm.IndyMessage.Body.Text := FileContentExpanded;
+{$ELSE}
+        WebMailForm.WebMail.Sender.EMail := pWebApp.StringVar['MsgTo'];
+        WebMailForm.WebMail.Mailto.Text := pWebApp.StringVar['MsgTo'];
+        WebMailForm.WebMail.Subject := pWebApp.StringVar['Subject'];
+        WebMailForm.WebMail.Lines.Text := FileContentExpanded;
+{$ENDIF}
+
+{$IFDEF INDYSMTP}
+      WebMailForm.IndySMTP.Connect;
+      WebMailForm.IndySMTP.Send(WebMailForm.IndyMessage);
+      WebMailForm.IndySMTP.Disconnect;
+{$ELSE}
+      WebMailForm.WebMail.Execute;
+{$ENDIF}
+      end;
+    end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 end.
