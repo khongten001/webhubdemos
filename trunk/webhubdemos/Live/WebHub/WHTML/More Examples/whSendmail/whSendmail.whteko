@@ -170,15 +170,15 @@ at <b>(~inSurferEMail~)</b>.</p>
 
 <whdroplet name="chQuote">
 QUOTATION for (~inSurfername~)
+as of (~CentralInfo.WebTimeGMT~)
 
 For (~inQty1~) Bucket(s) of Puppies and (~inQty2~) Crate(s) of Kittens.
 
 List price: (~vListPrice~)
 Adjustment factor: (~inPayMethod~)
 Amount due: (~vAmountDue~)
-(~IfNotBlankSV|inPurchaseOrder|
-Your Purchase Order Reference: (~inPurchaseOrder~)
-~)
+
+Your Purchase Order Reference: (~IfNotBlankSV|inPurchaseOrder|(~inPurchaseOrder~)||none~)
 </whdroplet>
 
 <whpage pageid="testwebmailform1" desc="Test TwhMailForm component">
