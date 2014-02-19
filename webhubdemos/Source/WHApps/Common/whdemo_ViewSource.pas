@@ -564,6 +564,7 @@ end;
 
 procedure TDemoViewSource.waDemoViewSourceSetCommand(Sender: TObject;
   var ThisCommand: string);
+const cFn = 'waDemoViewSourceSetCommand';
 var
   InfoMsg: string;
 begin
@@ -573,8 +574,9 @@ begin
   end
   else
   begin
-    CSSendWarning(Self.ClassName+' bot overload');
-    CSSendError('ThisCommand' + #183 + ThisCommand);
+    LogSendWarning(cFn + #183 + Self.ClassName+' bot overload');
+    LogSendInfo(pWebApp.Request.QueryString);
+    LogSendError('ThisCommand' + #183 + ThisCommand);
     ThisCommand := '';
     InfoMsg := 'Invalid URL';
     CSSendError(InfoMsg);
