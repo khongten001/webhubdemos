@@ -22,12 +22,20 @@ unit htshopc;
 *)
 
 interface
+{$I hrefdefines.inc}
+  {$IF Defined(Delphi17UP)}
+  {$DEFINE INDYSMTP}
+  {$ELSE}
+  {$UNDEF INDYSMTP}
+  {$IFEND}
+
 
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, ExtCtrls, 
-  StdCtrls, Buttons, DB, Grids, DBGrids, ComCtrls, DBCtrls, //ADODB,
+  StdCtrls, Buttons, DB, Grids, DBGrids, ComCtrls, DBCtrls, 
   tpStatus, utPanFrm, updateOk, tpAction, tpMemo, toolbar, tpCompPanel,
-  webMail, webSock, webTypes, webLink;
+  {$IFDEF INDYSMTP}webMail, webSock, {$ENDIF}
+  webTypes, webLink;
 
 type
   TfmShopPanel = class(TutParentForm)
@@ -75,11 +83,14 @@ uses
 function TfmShopPanel.Init: Boolean;
 begin
   Result := inherited Init;
-  if not Result then
-    Exit;
-
-  DataModuleWhMail.webMail.Subject := '';
-  Result := True;
+  if Result then
+  begin
+    {$IFDEF INDYSMTP}
+    DataModuleWhMail.webMailForm.IndyMessage.Subject := '';
+    {$ELSE}
+    DataModuleWhMail.webMailForm.WebMail.Subject := '';
+    {$ENDIF}
+  end;
 end;
 
 
@@ -98,14 +109,24 @@ begin
   if EditSubject.Text = '' then
     EditSubject.Text := '** Shop1 Sale';
   //
-  with DataModuleWhMail.webMail do
+
+  with DataModuleWhMail do
   begin
-    Sender.EMail := EditEMailFrom.Text;
-    MailTo.clear;
-    MailTo.add(EditEMailTo.Text);
-    MailHost.hostname := EditMailhost.Text;
-    MailHost.port := StrToIntDef(EditMailPort.Text, 25);
-    subject := EditSubject.Text;
+    {$IFDEF INDYSMTP}
+    WebMailForm.IndyMessage.From.Address := EditEMailFrom.Text;
+    WebMailForm.IndyMessage.Recipients.Clear;
+    WebMailForm.IndyMessage.Recipients.EmailAddresses := EditEMailTo.Text;
+    WebMailForm.IndySMTP.Host := EditMailhost.Text;
+    WebMailForm.IndySMTP.Port := StrToIntDef(EditMailPort.Text, 25);
+    WebMailForm.IndyMessage.Subject := EditSubject.Text;
+    {$ELSE}
+    WebMailForm.WebMail.Sender.EMail := EditEMailFrom.Text;
+    WebMailForm.WebMail.MailTo.clear;
+    WebMailForm.WebMail.MailTo.add(EditEMailTo.Text);
+    WebMailForm.WebMail.MailHost.hostname := EditMailhost.Text;
+    WebMailForm.WebMail.MailHost.port := StrToIntDef(EditMailPort.Text, 25);
+    WebMailForm.WebMail.subject := EditSubject.Text;
+    {$ENDIF}
   end;
 end;
 
@@ -118,29 +139,58 @@ end;
 procedure TfmShopPanel.WebActionMailerExecute(Sender: TObject);
 var
   sList: TStringList;
+  temp: string;
 begin
-  with TwhWebActionEx(Sender).WebApp, DataModuleWhMail.webMail do
+  with TwhWebActionEx(Sender).WebApp, DataModuleWhMail do
   begin
-    if subject = '' then
+    {$IFDEF INDYSMTP}
+    temp := WebMailForm.IndyMessage.Subject;
+    {$ELSE}
+    temp := WebMailForm.WebMail.Subject;
+    {$ENDIF}
+    if temp = '' then
       ConfigEMail;
-    //
-    Sender.Name := StringVar['CustFullName'];
+
+    {$IFDEF INDYSMTP}
+    WebMailForm.IndyMessage.From.Name := StringVar['CustFullName'];
+    {$ELSE}
+    WebMailForm.WebMail.Sender.Name := StringVar['CustFullName'];
+    {$ENDIF}
+    
     // fill in the message (Lines property)
-    Lines.clear;
-    Lines.add('CUSTOMER:');
-    Lines.add(StringVar['CustFullName']);
-    Lines.add(StringVar['CustCity']);
-    Lines.add('');
-    Lines.add('ORDER:');
+    temp := 'CUSTOMER:' + sLineBreak +
+      StringVar['CustFullName'] + sLineBreak +
+      StringVar['CustCity'] + sLineBreak +
+      sLineBreak +
+      'ORDER:' + sLineBreak;
+
+    {$IFDEF INDYSMTP}
+    WebMailForm.IndyMessage.Body.Text := temp;
+    {$ELSE}
+    WebMailForm.WebMail.Lines.Text := temp;
+    {$ENDIF}
+    
     sList := nil;
     try
       sList := TStringList.create;
       DMShop1.getOrderList(sList);
-      Lines.AddStrings(sList);
+	    {$IFDEF INDYSMTP}
+	    WebMailForm.IndyMessage.Body.AddStrings(sList);
+	    {$ELSE}
+	    WebMailForm.WebMail.Lines.AddStrings(sList);
+	    {$ENDIF}
     finally
-      sList.free;
+      FreeAndNil(sList);
     end;
-    execute; { send the message }
+    {$IFDEF INDYSMTP}
+        if not WebMailForm.IndySMTP.Connected then
+          WebMailForm.IndySMTP.Connect;
+        WebMailForm.IndySMTP.Send(WebMailForm.IndyMessage);
+        WebMailForm.IndyMessage.MessageParts.Clear;
+        WebMailForm.IndySMTP.Disconnect;
+    {$ELSE}
+        WebMailForm.WebMail.Execute; { send the message }
+    {$ENDIF}
   end;
 end;
 
