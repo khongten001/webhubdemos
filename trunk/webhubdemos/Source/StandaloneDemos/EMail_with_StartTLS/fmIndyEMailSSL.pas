@@ -33,7 +33,7 @@ uses
   IdIOHandlerStream, IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient,
   IdExplicitTLSClientServerBase, IdMessageClient, IdSMTPBase, IdSMTP,
   IdMessage, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,
-  IdAttachment, IdAttachmentFile;
+  IdAttachment, IdAttachmentFile, IdText, IdMessageBuilder;
 
 type
   TForm3 = class(TForm)
@@ -50,6 +50,7 @@ type
     EditUser: TLabeledEdit;
     editPass: TLabeledEdit;
     editFilespec: TLabeledEdit;
+    rbAttachmentTechnique: TRadioGroup;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -58,6 +59,9 @@ type
     IdSMTP1: TIdSMTP;
     IdSSLIOHandlerSocketOpenSSL1: TIdSSLIOHandlerSocketOpenSSL;
     IdMessage1: TIdMessage;
+    IdAttachment1: TIdAttachment;
+    IdText1: TIdText;
+    IdMsgBldr1: TIdMessageBuilderPlain;
     procedure IndyMailStatus(ASender: TObject; const AStatus: TIdStatus;
       const AStatusText: string);
   strict private
@@ -66,6 +70,12 @@ type
     function IntentionalError_SmtpUsername: Boolean;
     function IntentionalError_SmtpPassword: Boolean;
     function IntentionalError_MissingAttachment: Boolean;
+  strict private
+    function BodySampleForAttachment(const i: Integer): string;
+    procedure AttachmentTest01;
+    procedure AttachmentTest02;
+    procedure AttachmentTest03;
+    procedure AttachmentTest04;
   public
     { Public declarations }
   end;
@@ -80,10 +90,71 @@ implementation
 uses
   CodeSiteLogging,
   IdGlobal,
-  ucString, ucDlgs, uCode, ucCodeSiteInterface;
+  ucString, ucMsTime, ucDlgs, uCode, ucCodeSiteInterface;
 
 const
-  cFromName = 'System Test';
+  cFromName = 'Indy SMTP';
+
+procedure TForm3.AttachmentTest01;
+begin
+  IdMessage1.Subject := 'Attachment Test 01';
+  IdMessage1.AttachmentEncoding := 'UUE';
+  IdMessage1.Encoding := meDefault;
+  IdMessage1.ConvertPreamble := True;
+  idMessage1.MessageParts.Clear;
+  idMessage1.Encoding := mePlainText;
+  idMessage1.Body.Text := BodySampleForAttachment(1);
+  TIdAttachmentFile.Create(idMessage1.MessageParts, editFilespec.Text)
+end;
+
+procedure TForm3.AttachmentTest02;
+begin
+  IdMessage1.Subject := 'Attachment Test 02';
+  IdMessage1.AttachmentEncoding := 'UUE';
+  IdMessage1.Encoding := meDefault;
+  IdMessage1.ConvertPreamble := True;
+  idMessage1.MessageParts.Clear;
+  idMessage1.Encoding := mePlainText;
+  idMessage1.Body.Text := BodySampleForAttachment(2);
+  idAttachment1 := TIdAttachmentFile.Create(idMessage1.MessageParts,
+    editFilespec.Text);
+  idAttachment1.ContentType := 'application/pdf';
+end;
+
+procedure TForm3.AttachmentTest03;
+begin
+  IdMessage1.Subject := 'Attachment Test 03';
+  idMessage1.MessageParts.Clear;
+
+  IdMessage1.ContentType := 'multipart/alternative';
+
+  IdText1 := TIdText.Create(IdMessage1.MessageParts, nil);
+  IdText1.ContentType := 'text/plain';
+  IdText1.ContentTransfer := '8BIT'; //to stop encoding text
+  IdText1.Body.Text := BodySampleForAttachment(3);
+  idAttachment1 := TIdAttachmentFile.Create(idMessage1.MessageParts,
+    editFilespec.Text);
+  idAttachment1.ContentType := 'application/pdf';
+  IdMessage1.ContentType := 'multipart/mixed';
+end;
+
+procedure TForm3.AttachmentTest04;
+begin
+  IdMessage1.Subject := 'Attachment Test 04';
+  try
+    IdMsgBldr1 := TIdMessageBuilderPlain.Create;
+
+    IdMsgBldr1.PlainText.Text := BodySampleForAttachment(4);
+
+    IdMsgBldr1.Attachments.Add(editFilespec.Text, 'application/pdf');
+    IdMessage1 := IdMsgBldr1.NewMessage;
+  finally
+    FreeAndNil(IdMsgBldr1);
+  end;
+  IdMessage1.From.Name := cFromName;
+  IdMessage1.From.Address := EdFrom.Text;
+  IdMessage1.Priority := mpNormal;
+end;
 
 procedure TForm3.BitBtn2Click(Sender: TObject);
 
@@ -99,10 +170,32 @@ procedure TForm3.BitBtn2Click(Sender: TObject);
 begin
   BitBtn2.Enabled := False;
   Self.Update;
+
+  idMessage1.Subject := edSubject.Text;
+  idMessage1.Body.Text := Memo1.Lines.Text + sLineBreak + 'sent by ' +
+    idSMTP1.ClassName + ' compiled with Delphi ' + PascalCompilerCode +
+    sLineBreak + ' using ' +
+    'Amazon email server ' + editSMTP.Text + sLineBreak;
+
+  if Checkbox1.Checked then
+  begin
+    if NOT IntentionalError_MissingAttachment then
+    begin
+      case Succ(rbAttachmentTechnique.ItemIndex) of
+        1: AttachmentTest01;
+        2: AttachmentTest02;
+        3: AttachmentTest03;
+        4: AttachmentTest04;
+      end;
+    end
+    else
+      idAttachment1 := TIdAttachmentFile.Create(idMessage1.MessageParts,
+         ChangeFileExt(editFilespec.Text, '.bad'));
+  end;
+
   with idMessage1 do
   begin
     idMessage1.Recipients.Clear;
-    idMessage1.MessageParts.Clear;
 
     // bounce@simulator.amazonses.com
     // ooto@simulator.amazonses.com
@@ -120,7 +213,6 @@ begin
     idMessage1.Recipients.EMailAddresses := edTo.Text;
     CSSend('idMessage1.Recipients.EMailAddresses',
       idMessage1.Recipients.EMailAddresses);
-    idMessage1.Subject := edSubject.Text;
     //idMessage1.From.Address := VERP(edFrom.Text, edTo.Text);  // see VERP
 
     idMessage1.From.Address := edFrom.Text;
@@ -130,13 +222,8 @@ begin
 
     idMessage1.From.Name := cFromName;
     CSSend('idMessage1.From.Address', idMessage1.From.Address);
-    idMessage1.Body.Text := Memo1.Lines.Text + sLineBreak + 'sent by ' +
-      idSMTP1.ClassName + ' compiled with Delphi ' + PascalCompilerCode +
-      sLineBreak + ' using ' +
-      'Amazon email server ' + editSMTP.Text + sLineBreak;
 
     idMessage1.CharSet := 'utf-8';
-    idMessage1.Encoding := mePlainText;
     idSMTP1.Host := editSMTP.Text;
     if IntentionalError_SmtpServer then
       idSMTP1.Host := 'invalid.' + idSMTP1.Host;
@@ -148,14 +235,10 @@ begin
     if IntentionalError_SmtpPassword then
       idSMTP1.Password := 'bad' + Copy(idSMTP1.Password, 4, MaxInt);
 
-    if Checkbox1.Checked then
-    begin
-      if NOT IntentionalError_MissingAttachment then
-        TIdAttachmentFile.Create(idMessage1.MessageParts, editFilespec.Text)
-      else
-        TIdAttachmentFile.Create(idMessage1.MessageParts,
-          ChangeFileExt(editFilespec.Text, '.bad'));
-    end;
+{    IdMessage1.From.Name := cFromName;
+    IdMessage1.From.Address := EdFrom.Text;
+}
+    IdMessage1.Priority := mpNormal;
 
     CSSend('idSMTP1.Host', idSMTP1.Host);
   end;
@@ -163,7 +246,9 @@ begin
     try
       if NOT idSMTP1.Connected then
         idSMTP1.Connect;
+      CSSend('about to call idSMTP1.Send');
       idSMTP1.Send(idMessage1);
+      CSSend('done sending');
       idMessage1.MessageParts.Clear;
       idSMTP1.Disconnect;
     except
@@ -179,12 +264,23 @@ begin
     end;
 
   BitBtn2.Enabled := True;
+  Self.Update;
+end;
+
+function TForm3.BodySampleForAttachment(const i: Integer): string;
+begin
+  Result := 'Test #' + IntToStr(i) + ' of PDF attachment as of ' +
+    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 const cFn = 'FormCreate';
 begin
   CSEnterMethod(Self, cFn);
+  IdAttachment1 := nil;
+  IdText1 := nil;
+  IdMsgBldr1 := nil;
+
   IdSMTP1 := TIdSMTP.Create(nil);
   IdSMTP1.Name := 'IdSMTP1';
   IdSSLIOHandlerSocketOpenSSL1 := TIdSSLIOHandlerSocketOpenSSL.Create(Self);
@@ -205,12 +301,6 @@ begin
 
   IdMessage1 := TIdMessage.Create(Self);
   IdMessage1.Name := 'IdMessage1';
-  with IdMessage1 do
-  begin
-    AttachmentEncoding := 'UUE';
-    Encoding := meDefault;
-    ConvertPreamble := True;
-  end;
 
   with IdSMTP1 do
   begin
@@ -220,12 +310,27 @@ begin
     SASLMechanisms.Clear;
     UseTLS := utUseExplicitTLS;
   end;
+
+  { optionally use a local file to fill in default values for
+      EditUser.Text := 'access user';
+      EditPass.Text := 'password';
+      EdFrom.Text := 'webmaster@href.com';
+      EdTo.Text := 'ann@href.com'; }
+
+  {$I client_access_info.txt}  // optional local file
+
+  // any local pdf file for testing
+  EditFilespec.Text := ExtractFilePath(ParamStr(0)) + 'LoremIpsum.pdf';
+
   CSExitMethod(Self, cFn);
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
 begin
   idMessage1.MessageParts.Clear;
+  FreeAndNil(IdAttachment1);
+  FreeAndNil(IdText1);
+  FreeAndNil(IdMsgBldr1);
   FreeAndNil(idMessage1);
   FreeAndNil(IdSSLIOHandlerSocketOpenSSL1);
   FreeAndNil(idSMTP1);

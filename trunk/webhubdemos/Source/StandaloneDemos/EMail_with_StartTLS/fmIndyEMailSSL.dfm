@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   Caption = 'Test Secure EMail with Indy'
-  ClientHeight = 652
+  ClientHeight = 702
   ClientWidth = 1164
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -19,7 +19,7 @@ object Form3: TForm3
     Left = 0
     Top = 0
     Width = 1164
-    Height = 652
+    Height = 702
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -28,9 +28,6 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitLeft = 169
-    ExplicitWidth = 680
-    ExplicitHeight = 692
     object edTo: TLabeledEdit
       Left = 32
       Top = 56
@@ -101,10 +98,10 @@ object Form3: TForm3
       TabOrder = 3
     end
     object BitBtn2: TBitBtn
-      Left = 894
-      Top = 544
-      Width = 235
-      Height = 73
+      Left = 38
+      Top = 623
+      Width = 1091
+      Height = 49
       Caption = 'Test Secure EMail'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -214,6 +211,20 @@ object Form3: TForm3
       Font.Style = []
       ParentFont = False
       TabOrder = 8
+    end
+    object rbAttachmentTechnique: TRadioGroup
+      Left = 831
+      Top = 335
+      Width = 298
+      Height = 273
+      Caption = 'Attachment'
+      ItemIndex = 0
+      Items.Strings = (
+        '01 simplest PDF attachment'
+        '02 explicit content type'
+        '03 ContentTransfer 8BIT'
+        '04 TIdMessageBuilderPlain')
+      TabOrder = 9
     end
   end
 end
