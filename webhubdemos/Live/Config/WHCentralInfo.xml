@@ -307,8 +307,8 @@
           <ErrorLogFolder value="{DemoLogPath}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
-          <SessionCookieName value=""/>
-		  <SessionNumberLocation value="URL" />
+          <SessionCookieName value="whcookie"/>
+          <SessionNumberLocation value="CookieFixedDomain"/>
           <Deployment>
             <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>

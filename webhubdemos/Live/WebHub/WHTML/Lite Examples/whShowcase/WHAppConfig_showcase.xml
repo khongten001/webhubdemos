@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
@@ -20,7 +20,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="googlesitemap" status="enabled-gui"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
@@ -32,9 +32,9 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="lite" context="DEMOS"/>
-        <ServerProfileIDStandard value="newipc" context="ultraann" />
+        <ServerProfileIDStandard value="newipc" context="ultraann"/>
         <ServerProfileIDSecure value="ssl"/>
-        <ServerProfileIDSecure value="" context="NYX" />
+        <ServerProfileIDSecure value="" context="NYX"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
@@ -74,6 +74,7 @@
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
+      <CookieDomainDefault value="lite.demos.href.com" context="DEMOS"/>
     </Security>
     <Situations>
       <FrontDoor pageID="pgWelcome"/>
@@ -144,7 +145,7 @@
       </Item>
     </whMailForm>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="D:\temp\w3validation\showcase\" />
+      <Item id="DiskFolder" value="D:\temp\w3validation\showcase\"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
