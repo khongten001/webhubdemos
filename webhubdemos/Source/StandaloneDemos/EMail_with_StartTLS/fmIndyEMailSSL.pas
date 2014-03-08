@@ -141,7 +141,6 @@ end;
 
 procedure TForm3.AttachmentTest04;
 begin
-  IdMessage1.Subject := 'Attachment Test 04';
   try
     IdMsgBldr1 := TIdMessageBuilderPlain.Create;
 
@@ -152,6 +151,7 @@ begin
   finally
     FreeAndNil(IdMsgBldr1);
   end;
+  IdMessage1.Subject := 'Attachment Test 04';  // must set after "building"
   IdMessage1.From.Name := cFromName;
   IdMessage1.From.Address := EdFrom.Text;
   IdMessage1.Priority := mpNormal;
