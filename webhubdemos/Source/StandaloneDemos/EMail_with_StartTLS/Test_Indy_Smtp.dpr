@@ -25,22 +25,16 @@ THE SOFTWARE.
 {$I hrefdefines.inc}
 
 uses
-  ucCodeSiteInterface,
   Vcl.Forms,
-  {$IFDEF Delphi19UP}
-  Vcl.Themes,
-  Vcl.Styles,
-  {$ENDIF}
-  fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3};
+  fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3},
+  Test_Indy_Smtp_dmProjMgr in 'Test_Indy_Smtp_dmProjMgr.pas' {DataModule1: TDataModule};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  {$IFDEF Delphi19UP}
-  TStyleManager.TrySetStyle('Ruby Graphite');
-  {$ENDIF}
-  Application.CreateForm(TForm3, Form3);
+  Application.CreateForm(TDataModule1, DataModule1);
+  DataModule1.tpProject1.ManageStartup;
   Application.Run;
 end.

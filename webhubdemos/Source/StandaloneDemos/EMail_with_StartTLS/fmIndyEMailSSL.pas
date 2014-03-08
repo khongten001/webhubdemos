@@ -51,6 +51,7 @@ type
     editPass: TLabeledEdit;
     editFilespec: TLabeledEdit;
     rbAttachmentTechnique: TRadioGroup;
+    EdCC: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -211,6 +212,8 @@ begin
     http://en.wikipedia.org/wiki/Variable_envelope_return_path.
     *)
     idMessage1.Recipients.EMailAddresses := edTo.Text;
+    if edCC.Text <> '' then
+     IdMessage1.Recipients.Add.Address := edCC.Text;
     CSSend('idMessage1.Recipients.EMailAddresses',
       idMessage1.Recipients.EMailAddresses);
     //idMessage1.From.Address := VERP(edFrom.Text, edTo.Text);  // see VERP
@@ -271,6 +274,8 @@ function TForm3.BodySampleForAttachment(const i: Integer): string;
 begin
   Result := 'Test #' + IntToStr(i) + ' of PDF attachment as of ' +
     FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
+  Result := Result + sLineBreak +
+    'compiled with ' + PascalCompilerCode;
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
@@ -280,6 +285,8 @@ begin
   IdAttachment1 := nil;
   IdText1 := nil;
   IdMsgBldr1 := nil;
+
+  BitBtn2.Caption := BitBtn2.Caption + ' ' + PascalCompilerCode;
 
   IdSMTP1 := TIdSMTP.Create(nil);
   IdSMTP1.Name := 'IdSMTP1';
