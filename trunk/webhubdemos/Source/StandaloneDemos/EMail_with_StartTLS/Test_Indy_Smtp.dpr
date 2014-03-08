@@ -1,7 +1,7 @@
 program Test_Indy_Smtp;
 
 (*
-Copyright (c) 2013 HREF Tools Corp.
+Copyright (c) 2013-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 29-Dec-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -22,19 +22,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
+{$I hrefdefines.inc}
+
 uses
   ucCodeSiteInterface,
   Vcl.Forms,
-  fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3},
+  {$IFDEF Delphi19UP}
   Vcl.Themes,
-  Vcl.Styles;
+  Vcl.Styles,
+  {$ENDIF}
+  fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  {$IFDEF Delphi19UP}
   TStyleManager.TrySetStyle('Ruby Graphite');
+  {$ENDIF}
   Application.CreateForm(TForm3, Form3);
   Application.Run;
 end.
