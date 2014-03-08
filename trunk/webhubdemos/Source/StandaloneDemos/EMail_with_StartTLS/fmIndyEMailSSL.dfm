@@ -28,6 +28,7 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    ExplicitTop = -8
     object edTo: TLabeledEdit
       Left = 32
       Top = 56
@@ -47,7 +48,7 @@ object Form3: TForm3
     end
     object edFrom: TLabeledEdit
       Left = 32
-      Top = 128
+      Top = 208
       Width = 513
       Height = 36
       EditLabel.Width = 46
@@ -64,7 +65,7 @@ object Form3: TForm3
     end
     object edSubject: TLabeledEdit
       Left = 32
-      Top = 208
+      Top = 288
       Width = 513
       Height = 36
       EditLabel.Width = 65
@@ -81,9 +82,9 @@ object Form3: TForm3
     end
     object Memo1: TMemo
       Left = 32
-      Top = 264
+      Top = 335
       Width = 513
-      Height = 246
+      Height = 175
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -20
@@ -225,6 +226,22 @@ object Form3: TForm3
         '03 ContentTransfer 8BIT'
         '04 TIdMessageBuilderPlain')
       TabOrder = 9
+    end
+    object EdCC: TLabeledEdit
+      Left = 32
+      Top = 128
+      Width = 513
+      Height = 36
+      EditLabel.Width = 24
+      EditLabel.Height = 28
+      EditLabel.Caption = 'CC'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 10
     end
   end
 end
