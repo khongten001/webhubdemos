@@ -25,16 +25,6 @@ THE SOFTWARE.
 {$I hrefdefines.inc}
 
 uses
-  EMemLeaks,
-  EResLeaks,
-  EDialogWinAPIMSClassic,
-  EDialogWinAPIEurekaLogDetailed,
-  EDialogWinAPIStepsToReproduce,
-  EDebugExports,
-  EFixSafeCallException,
-  EMapWin32,
-  EAppVCL,
-  ExceptionLog7,
   Vcl.Forms,
   fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3},
   Test_Indy_Smtp_dmProjMgr in 'Test_Indy_Smtp_dmProjMgr.pas' {DataModule1: TDataModule};
