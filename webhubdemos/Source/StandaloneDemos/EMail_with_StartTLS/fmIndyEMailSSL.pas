@@ -38,9 +38,6 @@ uses
 type
   TForm3 = class(TForm)
     Panel1: TPanel;
-    edTo: TLabeledEdit;
-    edFrom: TLabeledEdit;
-    edSubject: TLabeledEdit;
     Memo1: TMemo;
     BitBtn2: TBitBtn;
     CheckBox1: TCheckBox;
@@ -51,7 +48,12 @@ type
     editPass: TLabeledEdit;
     editFilespec: TLabeledEdit;
     rbAttachmentTechnique: TRadioGroup;
+    GroupBox2: TGroupBox;
+    edSubject: TLabeledEdit;
+    edFrom: TLabeledEdit;
     EdCC: TLabeledEdit;
+    edTo: TLabeledEdit;
+    cbUTF8: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BitBtn2Click(Sender: TObject);
@@ -91,7 +93,7 @@ implementation
 uses
   CodeSiteLogging,
   IdGlobal,
-  ucString, ucMsTime, ucDlgs, uCode, ucCodeSiteInterface;
+  ucString, ucLogFil, ucMsTime, ucDlgs, uCode, ucCodeSiteInterface;
 
 const
   cFromName = 'Indy SMTP';
@@ -274,7 +276,10 @@ function TForm3.BodySampleForAttachment(const i: Integer): string;
 begin
   Result := 'Test #' + IntToStr(i) + ' of PDF attachment as of ' +
     FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
-  Result := Result + sLineBreak +
+  if cbUTF8.Checked then
+    Result := Result + sLineBreak +
+      StringLoadFromFile('..\WHTML\Shared WHTML\lingvo_rus.whteko');
+  Result := Result + sLineBreak + Memo1.Lines.Text + sLineBreak + sLineBreak +
     'compiled with ' + PascalCompilerCode;
 end;
 
@@ -286,7 +291,8 @@ begin
   IdText1 := nil;
   IdMsgBldr1 := nil;
 
-  BitBtn2.Caption := BitBtn2.Caption + ' ' + PascalCompilerCode;
+  Application.Title := Application.Title + ' (' + PascalCompilerCode + ')';
+  BitBtn2.Caption := BitBtn2.Caption + ' (' + PascalCompilerCode + ')';
 
   IdSMTP1 := TIdSMTP.Create(nil);
   IdSMTP1.Name := 'IdSMTP1';
@@ -327,7 +333,9 @@ begin
   {$I client_access_info.txt}  // optional local file
 
   // any local pdf file for testing
-  EditFilespec.Text := ExtractFilePath(ParamStr(0)) + 'LoremIpsum.pdf';
+  EditFilespec.Text :=
+    ExtractFilePath(ParamStr(0)) +
+    '..\..\..\Source\StandaloneDemos\EMail_with_StartTLS\LoremIpsum.pdf';
 
   CSExitMethod(Self, cFn);
 end;
