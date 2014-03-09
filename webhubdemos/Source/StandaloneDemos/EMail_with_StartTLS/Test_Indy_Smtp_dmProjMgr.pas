@@ -50,7 +50,7 @@ begin
   // are included in the uses clause above
   // and
   // the program is compiled with Delphi XE5
-  TStyleManager.TrySetStyle('Ruby Graphite');
+  {TStyleManager.TrySetStyle('Ruby Graphite');}
   {$ENDIF}
   Application.CreateForm(TForm3, Form3);
 end;
