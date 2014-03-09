@@ -105,7 +105,6 @@ begin
   IdMessage1.Encoding := meDefault;
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
-  idMessage1.Encoding := mePlainText;
   idMessage1.Body.Text := BodySampleForAttachment(1);
   TIdAttachmentFile.Create(idMessage1.MessageParts, editFilespec.Text)
 end;
@@ -117,7 +116,6 @@ begin
   IdMessage1.Encoding := meDefault;
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
-  idMessage1.Encoding := mePlainText;
   idMessage1.Body.Text := BodySampleForAttachment(2);
   idAttachment1 := TIdAttachmentFile.Create(idMessage1.MessageParts,
     editFilespec.Text);
@@ -131,7 +129,8 @@ begin
 
   IdMessage1.ContentType := 'multipart/alternative';
 
-  IdText1 := TIdText.Create(IdMessage1.MessageParts, nil);
+  if IdText1 = nil then
+    IdText1 := TIdText.Create(IdMessage1.MessageParts, nil);
   IdText1.ContentType := 'text/plain';
   IdText1.ContentTransfer := '8BIT'; //to stop encoding text
   IdText1.Body.Text := BodySampleForAttachment(3);
@@ -175,10 +174,7 @@ begin
   Self.Update;
 
   idMessage1.Subject := edSubject.Text;
-  idMessage1.Body.Text := Memo1.Lines.Text + sLineBreak + 'sent by ' +
-    idSMTP1.ClassName + ' compiled with Delphi ' + PascalCompilerCode +
-    sLineBreak + ' using ' +
-    'Amazon email server ' + editSMTP.Text + sLineBreak;
+  idMessage1.Body.Text := BodySampleForAttachment(0);
 
   if Checkbox1.Checked then
   begin
@@ -273,12 +269,17 @@ begin
 end;
 
 function TForm3.BodySampleForAttachment(const i: Integer): string;
+var
+  s8: UTF8String;
 begin
   Result := 'Test #' + IntToStr(i) + ' of PDF attachment as of ' +
     FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
   if cbUTF8.Checked then
-    Result := Result + sLineBreak +
-      StringLoadFromFile('..\WHTML\Shared WHTML\lingvo_rus.whteko');
+  begin
+    S8 := UTF8StringLoadFromFile('..\WHTML\Shared WHTML\lingvo_rus.whteko');
+    StripUTF8BOM(S8);
+    Result := Result + sLineBreak + UnicodeString(S8);
+  end;
   Result := Result + sLineBreak + Memo1.Lines.Text + sLineBreak + sLineBreak +
     'compiled with ' + PascalCompilerCode;
 end;
