@@ -40,13 +40,14 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <VCL_Custom_Styles>&quot;Ruby Graphite|VCLSTYLE|$(PUBLIC)\Documents\RAD Studio\12.0\Styles\RubyGraphite.vsf&quot;</VCL_Custom_Styles>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_DcuOutput>d:\temp\DelphiTempDCU\$(Platform)</DCC_DcuOutput>
-        <DCC_ExeOutput>.\</DCC_ExeOutput>
+        <DCC_ExeOutput>..\..\..\Live\WebHub\Apps</DCC_ExeOutput>
         <DCC_E>false</DCC_E>
         <DCC_N>false</DCC_N>
         <DCC_S>false</DCC_S>
@@ -74,6 +75,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
+        <DCC_MapFile>3</DCC_MapFile>
+        <DCC_Define>EUREKALOG;EUREKALOG_VER7;$(DCC_Define)</DCC_Define>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
@@ -184,7 +187,18 @@
 <!-- EurekaLog First Line
 [Exception Log]
 EurekaLog Version=7007
-Activate=0
+Activate=1
+atFixSafeCallException=1
+atVCL=1
+atWin32=1
 DeleteMapAfterCompile=1
 Encrypt Password=""
+idEurekaLog=1
+idEurekaLogDetailed=1
+idMSClassic=1
+idStepsToReproduce=1
+InjectCode=1
+InjectInfo=1
+InjectOptions=1
+ProjectID="{D3B0D6D9-2415-434A-A886-A195427FEBB2}"
 EurekaLog Last Line -->
