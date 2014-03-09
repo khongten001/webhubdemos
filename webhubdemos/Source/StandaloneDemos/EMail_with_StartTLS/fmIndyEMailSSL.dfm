@@ -28,7 +28,6 @@ object Form3: TForm3
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    ExplicitHeight = 702
     object Memo1: TMemo
       Left = 16
       Top = 335
