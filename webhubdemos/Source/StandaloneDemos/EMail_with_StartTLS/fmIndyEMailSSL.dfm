@@ -39,12 +39,13 @@ object Form3: TForm3
       Font.Name = 'Segoe UI'
       Font.Style = []
       Lines.Strings = (
-        'Test  message'
+        'Test message'
         'line 2'
         'and line 3.'
         'Bye.')
       ParentFont = False
       TabOrder = 0
+      WordWrap = False
     end
     object BitBtn2: TBitBtn
       Left = 16
@@ -219,7 +220,7 @@ object Form3: TForm3
       object EdCC: TLabeledEdit
         Left = 16
         Top = 202
-        Width = 513
+        Width = 241
         Height = 36
         EditLabel.Width = 24
         EditLabel.Height = 28
@@ -248,6 +249,22 @@ object Form3: TForm3
         ParentFont = False
         TabOrder = 3
         Text = 'webmaster@href.com'
+      end
+      object EdReplyTo: TLabeledEdit
+        Left = 288
+        Top = 202
+        Width = 241
+        Height = 36
+        EditLabel.Width = 76
+        EditLabel.Height = 28
+        EditLabel.Caption = 'Reply To'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -20
+        Font.Name = 'Segoe UI'
+        Font.Style = []
+        ParentFont = False
+        TabOrder = 4
       end
     end
     object cbUTF8: TCheckBox
