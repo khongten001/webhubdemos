@@ -56,7 +56,7 @@ type
     cbUTF8: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
-    procedure BitBtn2Click(Sender: TObject);
+    procedure ClickTestSecureEMail(Sender: TObject);
   private
     { Private declarations }
     IdSMTP1: TIdSMTP;
@@ -92,28 +92,31 @@ implementation
 
 uses
   CodeSiteLogging,
+  TypInfo,
   IdGlobal,
   ucString, ucLogFil, ucMsTime, ucDlgs, uCode, ucCodeSiteInterface;
 
 const
   cFromName = 'Indy SMTP';
+  cCharsetUTF8 = 'utf-8';  // must include hyphen symbol
 
 procedure TForm3.AttachmentTest01;
+const cFn = 'AttachmentTest01';
 begin
+  CSEnterMethod(Self, cFn);
   IdMessage1.Subject := 'Attachment Test 01';
   IdMessage1.AttachmentEncoding := 'UUE';
-  IdMessage1.Encoding := meDefault;
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
   idMessage1.Body.Text := BodySampleForAttachment(1);
-  TIdAttachmentFile.Create(idMessage1.MessageParts, editFilespec.Text)
+  TIdAttachmentFile.Create(idMessage1.MessageParts, editFilespec.Text);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TForm3.AttachmentTest02;
 begin
   IdMessage1.Subject := 'Attachment Test 02';
   IdMessage1.AttachmentEncoding := 'UUE';
-  IdMessage1.Encoding := meDefault;
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
   idMessage1.Body.Text := BodySampleForAttachment(2);
@@ -134,6 +137,10 @@ begin
   IdText1.ContentType := 'text/plain';
   IdText1.ContentTransfer := '8BIT'; //to stop encoding text
   IdText1.Body.Text := BodySampleForAttachment(3);
+  if cbUTF8.Checked then
+    IdText1.CharSet := cCharsetUTF8 // must set this here not just on TidMessage
+  else
+    IdText1.CharSet := '';
   idAttachment1 := TIdAttachmentFile.Create(idMessage1.MessageParts,
     editFilespec.Text);
   idAttachment1.ContentType := 'application/pdf';
@@ -141,24 +148,37 @@ begin
 end;
 
 procedure TForm3.AttachmentTest04;
+const cFn = 'AttachmentTest04';
 begin
+  CSEnterMethod(Self, cFn);
   try
     IdMsgBldr1 := TIdMessageBuilderPlain.Create;
 
     IdMsgBldr1.PlainText.Text := BodySampleForAttachment(4);
+    CSSend('Default IdMsgBldr1.PlainTextCharSet', IdMsgBldr1.PlainTextCharSet);
+    if cbUTF8.Checked then
+    begin
+      // required step when using TIdMessageBuilderPlain
+      IdMsgBldr1.PlainTextCharSet := cCharsetUTF8;
+      CSSend('IdMsgBldr1.PlainTextCharSet', IdMsgBldr1.PlainTextCharSet);
+    end;
 
     IdMsgBldr1.Attachments.Add(editFilespec.Text, 'application/pdf');
     IdMessage1 := IdMsgBldr1.NewMessage;
+    CSSend('IdMessage1.IsEncoded', S(IdMessage1.IsEncoded));
+    IdMessage1.IsEncoded := False;
   finally
     FreeAndNil(IdMsgBldr1);
   end;
   IdMessage1.Subject := 'Attachment Test 04';  // must set after "building"
-  IdMessage1.From.Name := cFromName;
-  IdMessage1.From.Address := EdFrom.Text;
-  IdMessage1.Priority := mpNormal;
+
+  CSExitMethod(Self, cFn);
 end;
 
-procedure TForm3.BitBtn2Click(Sender: TObject);
+procedure TForm3.ClickTestSecureEMail(Sender: TObject);
+const cFn = 'ClickTestSecureEMail';
+var
+  SaveCaption: string;
 
   function VERP(const FromAddress, ToAddress: string): string;
   var
@@ -170,6 +190,10 @@ procedure TForm3.BitBtn2Click(Sender: TObject);
   end;
 
 begin
+  CSEnterMethod(Self, cFn);
+
+  SaveCaption := BitBtn2.Caption;
+  BitBtn2.Caption := 'in process...';
   BitBtn2.Enabled := False;
   Self.Update;
 
@@ -224,7 +248,6 @@ begin
     idMessage1.From.Name := cFromName;
     CSSend('idMessage1.From.Address', idMessage1.From.Address);
 
-    idMessage1.CharSet := 'utf-8';
     idSMTP1.Host := editSMTP.Text;
     if IntentionalError_SmtpServer then
       idSMTP1.Host := 'invalid.' + idSMTP1.Host;
@@ -236,10 +259,15 @@ begin
     if IntentionalError_SmtpPassword then
       idSMTP1.Password := 'bad' + Copy(idSMTP1.Password, 4, MaxInt);
 
-{    IdMessage1.From.Name := cFromName;
-    IdMessage1.From.Address := EdFrom.Text;
-}
     IdMessage1.Priority := mpNormal;
+    IdMessage1.Encoding := meDefault;
+
+    CSSend('Default idMessage1.CharSet', idMessage1.CharSet);
+    if cbUTF8.Checked then
+    begin
+      IdMessage1.CharSet := cCharsetUTF8;
+      CSSend('IdMessage1.CharSet', IdMessage1.CharSet);
+    end;
 
     CSSend('idSMTP1.Host', idSMTP1.Host);
   end;
@@ -250,7 +278,8 @@ begin
       CSSend('about to call idSMTP1.Send');
       idSMTP1.Send(idMessage1);
       CSSend('done sending');
-      idMessage1.MessageParts.Clear;
+      if Assigned(idMessage1.MessageParts) then
+        idMessage1.MessageParts.Clear;
       idSMTP1.Disconnect;
     except
       on E: Exception do
@@ -264,18 +293,22 @@ begin
       end;
     end;
 
+  BitBtn2.Caption := SaveCaption;
   BitBtn2.Enabled := True;
   Self.Update;
+  CSExitMethod(Self, cFn);
 end;
 
 function TForm3.BodySampleForAttachment(const i: Integer): string;
 var
   s8: UTF8String;
 begin
-  Result := 'Test #' + IntToStr(i) + ' of PDF attachment as of ' +
+  Result := 'Test #' + IntToStr(i) + ' as of ' +
     FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
   if cbUTF8.Checked then
   begin
+    Result := Result + sLineBreak + sLineBreak + ' Russian whteko follows ' +
+      sLineBreak;
     S8 := UTF8StringLoadFromFile('..\WHTML\Shared WHTML\lingvo_rus.whteko');
     StripUTF8BOM(S8);
     Result := Result + sLineBreak + UnicodeString(S8);
@@ -295,7 +328,7 @@ begin
   Application.Title := Application.Title + ' (' + PascalCompilerCode + ')';
   BitBtn2.Caption := BitBtn2.Caption + ' (' + PascalCompilerCode + ')';
 
-  IdSMTP1 := TIdSMTP.Create(nil);
+  IdSMTP1 := TIdSMTP.Create(Self);
   IdSMTP1.Name := 'IdSMTP1';
   IdSSLIOHandlerSocketOpenSSL1 := TIdSSLIOHandlerSocketOpenSSL.Create(Self);
   IdSSLIOHandlerSocketOpenSSL1.Name := 'IdSSLIOHandlerSocketOpenSSL1';
@@ -325,13 +358,16 @@ begin
     UseTLS := utUseExplicitTLS;
   end;
 
-  { optionally use a local file to fill in default values for
+  { optionally use a local file to fill in default values for any of the
+    edit boxes, for example:
+
       EditUser.Text := 'access user';
       EditPass.Text := 'password';
-      EdFrom.Text := 'webmaster@href.com';
-      EdTo.Text := 'ann@href.com'; }
+      EdFrom.Text := 'webmaster @href.com';
+      EdCC.Text := 'customer service@href.com';
+      EdTo.Text := 'ann @href.com'; }
 
-  {$I client_access_info.txt}  // optional local file
+  {$I client_access_info.txt}  // optional local file (can be 0 bytes - empty)
 
   // any local pdf file for testing
   EditFilespec.Text :=
@@ -342,20 +378,26 @@ begin
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
+const cFn = 'FormDestroy';
 begin
+  CSEnterMethod(Self, cFn);
   idMessage1.MessageParts.Clear;
+  IdAttachment1 := nil; // destroyed by clearing MessageParts BUT not set to nil
+  IdText1 := nil;       // same here (nb: used in test #3)
   FreeAndNil(IdAttachment1);
   FreeAndNil(IdText1);
   FreeAndNil(IdMsgBldr1);
   FreeAndNil(idMessage1);
   FreeAndNil(IdSSLIOHandlerSocketOpenSSL1);
   FreeAndNil(idSMTP1);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TForm3.IndyMailStatus(ASender: TObject; const AStatus: TIdStatus;
   const AStatusText: string);
+const cFn = 'IndyMailStatus';
 begin
-  CSSend(idSMTP1.Name, AStatusText);
+  CSSend(Self.ClassName + '.' + cFn, AStatusText);
 end;
 
 function TForm3.IntentionalError_MissingAttachment: Boolean;
