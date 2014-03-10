@@ -74,6 +74,7 @@ type
     function IntentionalError_SmtpPassword: Boolean;
     function IntentionalError_MissingAttachment: Boolean;
   strict private
+    function SubjectSample(const i: Integer): string;
     function BodySampleForAttachment(const i: Integer): string;
     procedure AttachmentTest01;
     procedure AttachmentTest02;
@@ -104,7 +105,7 @@ procedure TForm3.AttachmentTest01;
 const cFn = 'AttachmentTest01';
 begin
   CSEnterMethod(Self, cFn);
-  IdMessage1.Subject := 'Attachment Test 01';
+  IdMessage1.Subject := SubjectSample(1);
   IdMessage1.AttachmentEncoding := 'UUE';
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
@@ -115,7 +116,7 @@ end;
 
 procedure TForm3.AttachmentTest02;
 begin
-  IdMessage1.Subject := 'Attachment Test 02';
+  IdMessage1.Subject := SubjectSample(2);
   IdMessage1.AttachmentEncoding := 'UUE';
   IdMessage1.ConvertPreamble := True;
   idMessage1.MessageParts.Clear;
@@ -127,7 +128,7 @@ end;
 
 procedure TForm3.AttachmentTest03;
 begin
-  IdMessage1.Subject := 'Attachment Test 03';
+  IdMessage1.Subject := SubjectSample(3);
   idMessage1.MessageParts.Clear;
 
   IdMessage1.ContentType := 'multipart/alternative';
@@ -170,7 +171,7 @@ begin
   finally
     FreeAndNil(IdMsgBldr1);
   end;
-  IdMessage1.Subject := 'Attachment Test 04';  // must set after "building"
+  IdMessage1.Subject := SubjectSample(4);  // must set after "building"
 
   CSExitMethod(Self, cFn);
 end;
@@ -304,16 +305,16 @@ var
   s8: UTF8String;
 begin
   Result := 'Test #' + IntToStr(i) + ' as of ' +
-    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT);
+    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT) + sLineBreak;
   if cbUTF8.Checked then
   begin
-    Result := Result + sLineBreak + sLineBreak + ' Russian whteko follows ' +
+    Result := Result + sLineBreak + ' Russian whteko follows ' +
       sLineBreak;
     S8 := UTF8StringLoadFromFile('..\WHTML\Shared WHTML\lingvo_rus.whteko');
     StripUTF8BOM(S8);
     Result := Result + sLineBreak + UnicodeString(S8);
   end;
-  Result := Result + sLineBreak + Memo1.Lines.Text + sLineBreak + sLineBreak +
+  Result := Result + Memo1.Lines.Text + sLineBreak + sLineBreak +
     'compiled with ' + PascalCompilerCode;
 end;
 
@@ -435,6 +436,16 @@ begin
 Authentication Credentials Invalid
 }
   Result := RadioGroup1.ItemIndex = 2;
+end;
+
+function TForm3.SubjectSample(const i: Integer): string;
+begin
+  Result := 'EMail Test, Mode ' + IntToStr(i) + ', ';
+  if cbUTF8.Checked then
+    Result := Result + cCharsetUTF8 + ', ';
+  if Checkbox1.Checked then
+    Result := Result + 'pdf, ';
+  Result := Result + PascalCompilerCode;
 end;
 
 end.
