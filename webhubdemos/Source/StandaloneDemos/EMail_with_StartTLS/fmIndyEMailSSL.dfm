@@ -61,7 +61,7 @@ object Form3: TForm3
       NumGlyphs = 2
       ParentFont = False
       TabOrder = 1
-      OnClick = BitBtn2Click
+      OnClick = ClickTestSecureEMail
     end
     object CheckBox1: TCheckBox
       Left = 16
