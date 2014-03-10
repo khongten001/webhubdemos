@@ -54,6 +54,7 @@ type
     EdCC: TLabeledEdit;
     edTo: TLabeledEdit;
     cbUTF8: TCheckBox;
+    EdReplyTo: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ClickTestSecureEMail(Sender: TObject);
@@ -235,10 +236,16 @@ begin
     http://en.wikipedia.org/wiki/Variable_envelope_return_path.
     *)
     idMessage1.Recipients.EMailAddresses := edTo.Text;
-    if edCC.Text <> '' then
-     IdMessage1.Recipients.Add.Address := edCC.Text;
     CSSend('idMessage1.Recipients.EMailAddresses',
       idMessage1.Recipients.EMailAddresses);
+    if edCC.Text <> '' then
+    begin
+      // IdMessage1.Recipients.Add.Address := edCC.Text;
+      IdMessage1.ccList.Clear;
+      IdMessage1.CCList.Add.Address := edCC.Text;
+      CSSend('IdMessage1.CCList.EMailAddresses',
+        idMessage1.CCList.EMailAddresses);
+    end;
     //idMessage1.From.Address := VERP(edFrom.Text, edTo.Text);  // see VERP
 
     idMessage1.From.Address := edFrom.Text;
@@ -246,8 +253,13 @@ begin
       idMessage1.From.Address := LeftOf('@', edFrom.Text) +
         '@invalid.microsoft.com';
 
-    idMessage1.From.Name := cFromName;
+    if Checkbox1.Checked then
+      idMessage1.From.Name := ''  // leave blank for attachment tests
+    else
+      idMessage1.From.Name := cFromName;
     CSSend('idMessage1.From.Address', idMessage1.From.Address);
+
+    idMessage1.ReplyTo.Add.Address := EdReplyTo.Text;
 
     idSMTP1.Host := editSMTP.Text;
     if IntentionalError_SmtpServer then
@@ -305,7 +317,8 @@ var
   s8: UTF8String;
 begin
   Result := 'Test #' + IntToStr(i) + ' as of ' +
-    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT) + sLineBreak;
+    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT) + ' gmt' + sLineBreak +
+    sLineBreak;
   if cbUTF8.Checked then
   begin
     Result := Result + sLineBreak + ' Russian whteko follows ' +
@@ -315,11 +328,13 @@ begin
     Result := Result + sLineBreak + UnicodeString(S8);
   end;
   Result := Result + Memo1.Lines.Text + sLineBreak + sLineBreak +
-    'compiled with ' + PascalCompilerCode;
+    'Note: this test was compiled with Delphi ' + PascalCompilerCode;
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
 const cFn = 'FormCreate';
+var
+  EMailBodyFilename: string;
 begin
   CSEnterMethod(Self, cFn);
   IdAttachment1 := nil;
@@ -369,6 +384,13 @@ begin
       EdTo.Text := 'ann @href.com'; }
 
   {$I client_access_info.txt}  // optional local file (can be 0 bytes - empty)
+
+  EMailBodyFilename :=
+    ExtractFilePath(ParamStr(0)) +
+    '..\..\..\Source\StandaloneDemos\EMail_with_StartTLS\message_body.txt';
+
+  if FileExists(EMailBodyFilename) then
+    Memo1.Lines.LoadFromFile(EMailBodyFilename);
 
   // any local pdf file for testing
   EditFilespec.Text :=
@@ -440,11 +462,11 @@ end;
 
 function TForm3.SubjectSample(const i: Integer): string;
 begin
-  Result := 'EMail Test, Mode ' + IntToStr(i) + ', ';
+  Result := EdSubject.Text + 'Test, #' + IntToStr(i) + ', ';
   if cbUTF8.Checked then
     Result := Result + cCharsetUTF8 + ', ';
   if Checkbox1.Checked then
-    Result := Result + 'pdf, ';
+    Result := Result + 'with pdf, ';
   Result := Result + PascalCompilerCode;
 end;
 
