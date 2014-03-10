@@ -166,6 +166,7 @@ begin
 
     {$IFDEF INDYSMTP}
     WebMailForm.IndyMessage.Body.Text := temp;
+    WebMailForm.IndyMessage.Charset := 'utf-8';
     {$ELSE}
     WebMailForm.WebMail.Lines.Text := temp;
     {$ENDIF}

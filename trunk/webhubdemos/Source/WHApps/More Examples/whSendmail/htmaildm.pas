@@ -102,6 +102,7 @@ begin
           pWebApp.StringVar['MsgTo'];
         WebMailForm.IndyMessage.Subject := pWebApp.StringVar['Subject'];
         WebMailForm.IndyMessage.Body.Text := FileContentExpanded;
+        WebMailForm.IndyMessage.Charset := 'utf-8';
 {$ELSE}
         WebMailForm.WebMail.Sender.EMail := pWebApp.StringVar['MsgTo'];
         WebMailForm.WebMail.Mailto.Text := pWebApp.StringVar['MsgTo'];
