@@ -2,9 +2,6 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko  
 	defaultlingvo="eng"  
-	designlingvo="eng" 
-	designpage="pgEnterADV"  
-	designdynsrc="adv-live"  
 	designmode="code">
  
 
