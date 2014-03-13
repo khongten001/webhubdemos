@@ -138,9 +138,6 @@ inherited fmWebHubPowerMainForm: TfmWebHubPowerMainForm
       object htWebAppViewErrors1: TMenuItem
         Caption = 'app_View Errors'
       end
-      object htWebAppViewUploadedFiles1: TMenuItem
-        Caption = 'app_View Uploaded Files'
-      end
       object htWebAppEditMediaServers1: TMenuItem
         Caption = 'app_Edit MediaSources'
       end

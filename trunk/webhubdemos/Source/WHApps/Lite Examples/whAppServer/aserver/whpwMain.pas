@@ -96,7 +96,6 @@ type
     htWebAppEditAppSettings1: TMenuItem;
     htWebAppExportPages1: TMenuItem;
     htWebAppViewErrors1: TMenuItem;
-    htWebAppViewUploadedFiles1: TMenuItem;
     htWebAppEditMediaServers1: TMenuItem;
     htWebAppEditFiles1: TMenuItem;
     htWebAppEditMacros1: TMenuItem;
