@@ -159,7 +159,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucString, ucpos, ucfile, ucLogFil, ucCodeSiteInterface,
+  ucString, ucPos, ucFile, ucLogFil, ucCodeSiteInterface,
   webApp,
   HTMLText, DSP_dmDisplayResults, DSP_u1;
 
@@ -217,6 +217,7 @@ begin
 end;
 
 function TDSPdm.Init(out ErrorText: string): Boolean;
+const cFn = 'Init';
   procedure SetDatabase(tbl: TTable; const bAlias: Boolean;
     const pathValue: string; const tablenameValue: string);
   begin
@@ -232,12 +233,13 @@ function TDSPdm.Init(out ErrorText: string): Boolean;
         tbl.DatabaseName := ''; // no Alias
         tbl.TableName := TrailingBackslash(pathValue) + tablenameValue;
       end;
+      tbl.ReadOnly := True;
       tbl.open;
       LogInfo('Opened ' + tbl.TableName);
     except
       on e: Exception do
       begin
-        LogSendInfo(tbl.TableName + ' error.');
+        LogSendInfo(tbl.TableName);
         LogSendException(E);
       end;
     end;
@@ -246,12 +248,12 @@ function TDSPdm.Init(out ErrorText: string): Boolean;
 var
   bAlias: Boolean;
 begin
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   Result := fInit;
   If NOT fInit then
   begin
 
-    LogInfo('TDSPdm.Init');
     fInit := true;
 
     // Note that TfmWebAppMainForm.htWebAppUpdate sets FilesDatabasename
@@ -270,9 +272,6 @@ begin
       begin
         bAlias := False;
         dbDSP.AliasName := '';
-        // dbDSP.Connected:=True;   // 18-June-2001 commented out
-        // dbDSP.Directory:=trailingbackslash(FilesDatabasename);
-        // LogInfo('dbDSP.Directory set to '+dbDSP.Directory);
       end
       Else
       begin
@@ -323,9 +322,9 @@ begin
       LogInfo(tblWords.TableName +
         ' does not exist. Will not be able to open Words table.');
     end;
-    LogInfo('TDSPdm.Init complete.');
     Result := fInit;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 {-}
@@ -355,6 +354,7 @@ begin
                   Close;
                   IndexName:='';
                end;
+            ReadOnly := True;
             Open;
          end;
       tblWords.Close;
