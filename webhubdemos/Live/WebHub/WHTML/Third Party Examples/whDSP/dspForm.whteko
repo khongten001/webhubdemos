@@ -5,12 +5,6 @@
 mcDebug=<hr />(~BoolVars~)<hr />(~StringVars~)<hr />
 </whmacros>
 
-<whdoc>
-//////////////////////////////////////////////////////////////////////////////
-// Michael Kennedy - replacement droplets start here
-//////////////////////////////////////////////////////////////////////////////
-</whdoc>
-
 <whdroplet name="chDataResults">
 (~waResults.execute~)<br /><br />
 </whdroplet>
@@ -84,8 +78,6 @@ Search Time=<span class="changing">(~SearchTime~)</span> ms.
 <!--- now all the icons for the versions available -->
 (~DYN6~)
 
-<!--- Share&nbsp; d2&nbsp;<a href="http://delphi.icm.edu.pl/ftp/d10share/imsd1.zip">d1</a>&nbsp; <a href="http://delphi.icm.edu.pl/ftp/d30share/imsd3.zip">d3</a>&nbsp; <a href="http://delphi.icm.edu.pl/ftp/c10share/imsbcb.zip">c10</a>&nbsp; <a href="http://delphi.icm.edu.pl/ftp/d20share/imsd2.htm" TARGET="Other">doc</a> -->
-
 </td>
 </tr>
 </table>
@@ -95,13 +87,6 @@ Search Time=<span class="changing">(~SearchTime~)</span> ms.
 <td><hr size="1"/></td>
 </tr>
 </whdroplet>
-
-<whdoc>
-//////////////////////////////////////////////////////////////////////////////
-// Michael Kennedy - replacement droplets end here
-//////////////////////////////////////////////////////////////////////////////
-</whdoc>
-
 
 <whdoc>
 The next section of this teko file defines 
