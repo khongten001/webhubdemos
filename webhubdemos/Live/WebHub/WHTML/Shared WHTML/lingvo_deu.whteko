@@ -5,7 +5,7 @@
 mcGerman=Deutsch
 </whmacros>
 
-<whtranslations lingvo="deu">
+<whtranslations>
 ~Welcome=Willkommen 
 ~Entrance=Eingang
 ~Source=Quelle
@@ -17,7 +17,7 @@ mcGerman=Deutsch
 </whtranslations>
 
 <!--- used in setpref file           -->
-<whtranslations lingvo="deu">
+<whtranslations>
 ~SetPrefLingvo=Geben Sie Sprachencode ein
 ~Wallpaper=Tapete
 ~none=keine
