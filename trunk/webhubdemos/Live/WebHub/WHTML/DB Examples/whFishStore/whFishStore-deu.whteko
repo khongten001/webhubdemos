@@ -4,7 +4,7 @@
   defaultlingvo="deu"
   notes="German translation">
 
-<whtranslations lingvo="deu">
+<whtranslations>
 ~WelcomeToOurStore=Willkommen zu unserem Fisch-Speicher
 ~WeHaveAFewOptions=Wir haben einige Wahlen für Sie.
 ~BrowseForFish=Grasen Sie für Fische
