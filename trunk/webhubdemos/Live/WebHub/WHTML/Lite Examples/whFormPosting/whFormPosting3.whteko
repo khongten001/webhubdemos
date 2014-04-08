@@ -118,4 +118,29 @@
 </body></html>
 </whpage>
 
+<whpage pageid="pgbuttontest" desc="Test the BUTTON syntax">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h2>Your stringvars</h2>
+(~stringvars~)
+
+<form method="post" action="(~ACTION|pgbuttontest~)">
+abc: (~INPUTTEXT|inABC~)<br/>
+<input type="button" value="(~Register~)" id="jqxButtonRegister" />
+</form>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
 </whteko>
