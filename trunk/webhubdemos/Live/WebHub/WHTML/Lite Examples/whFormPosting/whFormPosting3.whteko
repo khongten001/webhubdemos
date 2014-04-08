@@ -120,6 +120,7 @@
 
 <whpage pageid="pgbuttontest" desc="Test the BUTTON syntax">
 <whprep>
+(~INC|x~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
