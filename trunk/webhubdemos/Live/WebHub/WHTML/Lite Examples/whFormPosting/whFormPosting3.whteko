@@ -136,6 +136,7 @@
 
 <form method="post" action="(~ACTION|pgbuttontest~)">
 abc: (~INPUTTEXT|inABC~)<br/>
+<button type="button">Click Me!</button><br/>
 <input type="button" value="(~Register~)" id="jqxButtonRegister" />
 </form>
 
