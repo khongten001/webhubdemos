@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
   designdynsrc="dserveradv"
@@ -58,7 +58,7 @@
 (~MATCH|(~Request.Host~)!lite.demos| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!more.demos| (~JUMP|pgEnterMoreDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!dsp.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+(~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)
 (~MATCH|(~Request.Host~)!w12.demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
 (~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
@@ -74,7 +74,7 @@
 (~MATCH|(~Request.Host~)!lite.demos| (~HIDE|pgEnterLiteDemos|(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!more.demos| (~HIDE|pgEnterMoreDemos|(~~Entrance~)~)~)
 (~MATCH|(~Request.Host~)!db.demos| (~HIDE|pgEnterDemos|(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!dsp.href.com| (~HIDE|pgEnterDemos|(~~Entrance~)~)~)
+(~HIDE|pgEnterDemos|(~~Entrance~)~)
 (~MATCH|(~Request.Host~)=demos.href.com| (~HIDE|pgEnterDemos|(~~Entrance~)~)~)
 (~NOMATCH|href.com[(~Request.Host~)| (~HIDE|pgEnterLiteDemos|(~~Entrance~)~)~)
 ~)
@@ -85,7 +85,7 @@
 (~MATCH|(~Request.Host~)!lite.demos|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)!more.demos|<a href="http://more.demos.href.com/demos:pgEnterMoreDemos:(~SessionID~)">more.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)!db.demos|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
-(~MATCH|(~Request.Host~)=dsp.href.com|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
+(~MATCH|(~Request.Host~)=delphiprefix.href.com|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)=demos.href.com|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
 (~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos|(~~Entrance~)~)~)
 </whdroplet>
@@ -767,10 +767,6 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <br/><i><b>(~ACTIONR|fast:pgorderform(lite)~)</b></i>
 <br/><i>JUMPR, LITEMORE server</i></li>
 
-        <li> (~JUMPR|dsp:(dsp)|The DSP~)
-<br/><i><b>(~ACTIONR|dsp:(dsp)~)</b></i>
-<br/><i>JUMPR, short URLs, DSP server</i></li>
-
         <li> (~JUMPR|dpr:(dpr)|Prefix Registry~)
 <br/><i><b>(~ACTIONR|dpr:(dpr)~)</b></i>
 <br/><i>JUMPR, short URLs, DB server</i></li>
@@ -858,7 +854,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 
 <div id="whdemopagecontent">
 <h1>WebHub Demos (~PageDesc~)</h1>
-<h2>Includes *.demos.href.com, delphiprefix.href.com and dsp.href.com</h2>
+<h2>Includes *.demos.href.com and delphiprefix.href.com</h2>
 <!-- START PRIVACY POLICY CODE --><div style="font-family: Lucida Sans Unicode;"><strong>What information do we collect?</strong> <br /><br />We collect information from you when you register on our site (Delphi Prefix Registry) or fill out a form.  <br /><br />When testing demos on our site, as appropriate, you may be asked to enter your: name, e-mail address and company name. You may, however, visit our site anonymously and use most of the demos anonymously.<br /><br /><strong>What do we use your information for?</strong> <br /><br />Any of the information we collect from you may be used in one of the following ways: <br /><br /></div>
 <div style="font-family: Lucida Sans Unicode;">; To personalize your experience<br />(your information helps us to better respond to your individual needs)</div>
 <div style="font-family: Lucida Sans Unicode;"></div>
