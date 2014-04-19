@@ -112,6 +112,7 @@ begin
 end;
 
 function getWebHubDemoInstallRoot: string;
+const cFn = 'getWebHubDemoInstallRoot';
 var
   HREFInstallBranch: string;
   Warning: string;
@@ -123,12 +124,14 @@ begin
   Result := ZaphodKeyedFileZNodeAttr(HREFInstallBranch, cWebHubKeyGroupName,
     cWebHubInstallKeyName, cWebHubInstallConfigRootName,
     ['InstallFolders/Product[@name="WebHubDemos"]'], cxOptional, usrNone,
-    'folder', 'c:\projects\WebHubDemos\', Warning);
+    'folder', 'D:\projects\WebHubDemos\', Warning);
   if Warning = '' then
   begin
     IsDemoRootKnown := True;
     Result := IncludeTrailingPathDelimiter(Result);
-  end;
+  end
+  else
+    LogSendWarning(cFn + ': ' + Warning);
 end;
 
 function getHtDemoCodeRoot: String;
