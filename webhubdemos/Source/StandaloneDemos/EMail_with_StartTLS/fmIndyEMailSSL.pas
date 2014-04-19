@@ -199,6 +199,16 @@ begin
   BitBtn2.Enabled := False;
   Self.Update;
 
+  if IdMessage1 = nil then
+  begin
+    IdMessage1 := TidMessage.Create(Self);
+    IdMessage1.Name := 'IdMessage1';
+  end;
+
+  // *** essential when re-using TIdMessage, attachment then non-attachment
+  idMessage1.Clear; // ***
+  // ***
+
   idMessage1.Subject := edSubject.Text;
   idMessage1.Body.Text := BodySampleForAttachment(0);
 
@@ -243,6 +253,7 @@ begin
       // IdMessage1.Recipients.Add.Address := edCC.Text;
       IdMessage1.ccList.Clear;
       IdMessage1.CCList.Add.Address := edCC.Text;
+      IdMessage1.CCList.Add.Address := 'ann@sonic.net';
       CSSend('IdMessage1.CCList.EMailAddresses',
         idMessage1.CCList.EMailAddresses);
     end;
@@ -300,6 +311,7 @@ begin
         CSSendNote('Indy Exception');
         CSSendException(E);
         idSMTP1.Disconnect;
+        FreeAndNil(idMessage1);
         MsgErrorOk('Exception' + sLineBreak + E.Message + sLineBreak
         {$IFDEF CodeSite} + 'See details in CodeSite log'{$ENDIF}
         );
@@ -404,7 +416,8 @@ procedure TForm3.FormDestroy(Sender: TObject);
 const cFn = 'FormDestroy';
 begin
   CSEnterMethod(Self, cFn);
-  idMessage1.MessageParts.Clear;
+  if Assigned(idMessage1) and Assigned(idMessage1.MessageParts) then
+    idMessage1.MessageParts.Clear;
   IdAttachment1 := nil; // destroyed by clearing MessageParts BUT not set to nil
   IdText1 := nil;       // same here (nb: used in test #3)
   FreeAndNil(IdAttachment1);
