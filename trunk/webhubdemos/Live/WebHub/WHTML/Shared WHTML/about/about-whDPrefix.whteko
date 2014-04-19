@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" 
   designpage="PGTHANKS">
@@ -39,7 +39,7 @@ mcWhDemoLiteDPR=No
 <body>
 
 <whdroplet name="drBannerThenNav" show="yes">
-(~GO|pgHomePage|<img src="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~)
+(~GO|pgHomePage|<img src="(~mcImageDir~)dpr.png" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~)
 (~drSkipBannerThenNav~)
 </whdroplet>
 
@@ -56,9 +56,9 @@ mcWhDemoLiteDPR=No
 <div id="dprtext-div">
 
 <p><span style="color:red;">Attention...</span>
-(~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.gif" style="float:left; height: 31px; width:88px; margin: 0.2em 1em 0.2em 0;" alt="Button for linking to DPR" />~)
+(~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.png" style="float:left; height: 31px; width:88px; margin: 0.2em 1em 0.2em 0;" alt="Button for linking to DPR" />~)
 Please link your blogs etc to (~HREF|http://delphiprefix.href.com/|http://delphiprefix.href.com/~)
-and have (~HREF|(~mcImageDir~)dprbut.gif|this handy button~) as our thanks!
+and have (~HREF|(~mcImageDir~)dprbut.png|this handy button~) as our thanks!
 </p>
 
 <p>

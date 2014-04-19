@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
@@ -15,7 +15,7 @@ Administration Shortcuts:
 </whdroplet>
 
 <whdroplet name="chGraphicalBanner">
-<img src="(~mcImageDir~)dpr.gif" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
+<img src="(~mcImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
 (~mcDPRLogo~)
 </whdroplet>
 
