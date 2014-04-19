@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
   designmode="code"
@@ -47,9 +47,7 @@ siteroot is (~mcSiteRoot~)<br />
 (~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
 <meta charset="UTF-8" /> 
 <meta name="generator" content="(~version~)" />
-(~NOMATCH|(~AppID~)=dsp|<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
-<!--- the DSP demo does its own meta tags -->
-~)
+<meta name="description" content="This demo page is summarized as (~pagedesc~)" />
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />

@@ -49,35 +49,16 @@
 (~PARAMS|drDemoLink|coderage,db~)
 (~PARAMS|drDemoLink|scan,db~)
 (~PARAMS|drDemoLink|htcl,db~)
-(~drDemoLinkForDSP~)
 (~PARAMS|drDemoLink|fire,db~)
 (~PARAMS|drDemoLink|htfs,db~)
 (~PARAMS|drDemoLink|htfm,db~)
 (~PARAMS|drDemoLink|dbhtml,db~)
 ]]>
 
-<whdroplet name="drDemoLinkForDSP" show="no">
-<tr><td>(~tempCounter~)</td>
-<td class="oneliner"><a href="http://dsp.href.com/dsp::(~SessionID~)">(~mcWhDemoOneLinerDSP~)</a></td>
-<td></td>
-<td align="right"><a name="DSP">dsp</a></td>
-</tr>
-<tr><td></td><td colspan="2">(~DYNCHUNK|~whDemoShortDesc,dsp~)
-[<a href="javascript:newWindow('(~ACTION|pgDemoDetail,dsp~)')">more</a>]
-</td>
-<td class="updatedon">(~DYNCHUNK|mcWhDemoUpdated,dsp~)</td>
-</tr>
-<tr><td></td><td colspan="2" class="keywords">Keywords: (~DYNCHUNK|mcWhDemoKeywords,dsp~)</td>
-<td></td>
-</tr>
-<tr><td colspan="4"></td></tr>
-(~INC|tempCounter~)
-</whdroplet>
-
 <whdroplet name="drDemoLink" show="no">
 <whdoc for="drDemoLink">
 DYN1 = AppID in lowercase
-DYN2 = Server Profile ID example shortformat, lite, db, more, dsp
+DYN2 = Server Profile ID example shortformat, lite, db, more
 </whdoc>
 <tr><td>(~tempCounter~)</td>
 <td class="oneliner"><!-- dyn1=(~DYN1~) and dyn2=(~DYN2~). -->
