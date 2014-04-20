@@ -3,10 +3,10 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="WESLEY"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -32,6 +32,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortdpr" context="DEMOS"/>
+        <ServerProfileIDStandard value="shortdpr" context="WESLEY"/>
         <UseAppID value="true"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -56,6 +57,7 @@
     <StreamCatcherInterface>
       <WebRobotIniFilespec value=""/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" context="WESLEY"/>
       <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
@@ -79,8 +81,7 @@
       <Captions macroPrefix="mcManPrefCaptions"/>
     </whdbScan>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="c:\temp\"/>
-      <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" context="DEMOS"/>
+      <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" />
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
