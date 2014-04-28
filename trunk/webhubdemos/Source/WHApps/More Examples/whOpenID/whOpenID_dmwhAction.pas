@@ -30,6 +30,8 @@ https://github.com/janrain/Janrain-Sample-Code/blob/master/php/rpx-token-url.php
 
 interface
 
+{$I hrefdefines.inc}
+
 uses
   SysUtils, Classes,
   IdHTTP, IdSSLOpenSSL, IdSSL,
@@ -60,7 +62,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  DBXJSON,
+  {$IFDEF Delphi20UP}JSON, {$ELSE} DBXJSON, {$ENDIF}
   IdSSLOpenSSLHeaders,
   ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
   webApp, htWebApp, whdemo_ViewSource;
