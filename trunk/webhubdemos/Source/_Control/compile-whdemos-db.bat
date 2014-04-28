@@ -3,7 +3,7 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 
 if NOT "%comp3%%bits%"=="" goto Continue00
 
-set /P comp3=Enter Pascal Compiler Digits as Number (eg. 18 or 19) :   
+set /P comp3=Enter Pascal Compiler Digits as Number (eg. 18 or 20) :   
 if %comp3%=="" goto end
 set compilerdigits=%comp3%
 set comp3=D%compilerdigits%
@@ -33,7 +33,7 @@ if "%compilehtq1%"=="" pause
 if NOT "%compilehtq1%"=="no" cd %droot%\DB Examples\whQuery1
 if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
 
-:: whQuery2 uses IBObjects and that compiles for D19
+:: whQuery2 uses IBObjects and that compiles for D20
 del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
 if "%compilehtq2%"=="" %CSSend% /error "compilehtq2 is blank"
 if "%compilehtq2%"=="" pause

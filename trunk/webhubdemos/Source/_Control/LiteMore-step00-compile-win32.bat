@@ -2,7 +2,7 @@ setlocal
 
 cd /d %~dp0
 
-set comp3=D19
+set comp3=D20
 set bits=32
 :: goto newipcWhLite
 

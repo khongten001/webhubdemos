@@ -17,8 +17,8 @@ echo Demo params: %demoparams%
 
 set /P isdebug=Debug version? (y/n) :  
 if "%isdebug%"=="" goto end
-if "%isdebug%"=="y" set exename=DServer_x_d19_win32_debug.exe
-if "%isdebug%"=="n" set exename=DServer_x_d19_win32.exe
+if "%isdebug%"=="y" set exename=DServer_x_d20_win32_debug.exe
+if "%isdebug%"=="n" set exename=DServer_x_d20_win32.exe
 
 echo exename is %exename%
 
