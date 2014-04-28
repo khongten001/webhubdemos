@@ -4,7 +4,7 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 
 if NOT "%comp3%%bits%"=="" goto DServerContinue00
 
-set /P comp3=Enter Pascal Compiler Digits as NUMBER (eg. 18 or 19) :   
+set /P comp3=Enter Pascal Compiler Digits as NUMBER (eg. 18 or 20) :   
 if %comp3%=="" goto end
 set compilerdigits=%comp3%
 set comp3=D%compilerdigits%
