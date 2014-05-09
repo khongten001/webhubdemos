@@ -105,6 +105,7 @@ echo ***
 echo .
 
 ::whDPrefix uses NexusDB
+:: NexusDB v4.004 as of 28-Apr-2014
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
