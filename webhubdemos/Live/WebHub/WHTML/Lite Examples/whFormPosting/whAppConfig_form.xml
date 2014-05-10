@@ -66,6 +66,7 @@
     <TekoFiles>
       <File id="cb" filename="whFormCheckboxes.whteko"/>
       <File id="cbt" filename="whFormCheckboxTouch.whteko"/>
+      <File id="f03" filename="..\..\Shared WHTML\cssdroplets.whteko" />
       <File id="aboutFORM" filename="..\..\Shared WHTML\about\about-whFormPosting.whteko"/>
       <File id="contentFORM" filename="whFormPosting.whteko"/>
       <File id="contentFORM2" filename="whFormPosting2.whteko"/>

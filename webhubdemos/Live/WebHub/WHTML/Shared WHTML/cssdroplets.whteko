@@ -1,0 +1,208 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko 
+  defaultlingvo="eng"
+  designlingvo="eng"
+  designmode="code"
+  notes="css droplets">
+
+<whmacros>
+mcSeparatorColor=#6699FF
+mcFieldCaptionColor=#FFDC84
+mcFieldCaptionColorEdit=#BB9740
+mcFieldCaptionFontWeight=700
+mcTitleBarLowerColor=#111
+mcTableLeftBorderColor=#284B7E
+mcTableRightBorderColor=#284B7E
+mcBrowseLinkColor=#3366CC
+mcBrowseLinkHoverColor=#990000
+mcEditBackgroundColor=#FFFFDD
+</whmacros>
+
+<whdoc for="drCssOpacity">
+PARAMS|drCssOpacity|x
+where x = 1 .. 10  for opacity of 10% .. 100%
+</whdoc>
+<whdroplet name="drCssOpacity">
+<!--- IE 8  syntax must be before IE 5-7 in case  IE8-as-IE7 mode is active-->
+-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=(~DYN1~)0)';
+<!--- IE 5 - 7 -->
+	filter: alpha(opacity=(~DYN1~)0);
+<!--- for all other browsers -->
+	opacity: (~NOMATCH|(~DYN1~)=10|0.(~DYN1~)||1.0~);
+</whdroplet>
+
+<whdoc for="drCssOpacityVeryLow">
+PARAMS|drCssOpacity|x
+where x = 1 .. 10  for opacity of .01% to 1%
+</whdoc>
+<whdroplet name="drCssOpacityVeryLow">
+<!--- IE 8  syntax must be before IE 5-7 in case  IE8-as-IE7 mode is active-->
+-ms-filter:'progid:DXImageTransform.Microsoft.Alpha(Opacity=(~DYN1~))';
+<!--- IE 5 - 7 -->
+	filter: alpha(opacity=(~DYN1~));
+<!--- for all other browsers -->
+	opacity: (~NOMATCH|(~DYN1~)=1|0.0(~DYN1~)||0.1~);
+</whdroplet>
+
+<whdroplet name="drCssLinearGradient">
+(~MATCH|(~DYN1~)=topbottom|
+<!--- For WebKit (Safari, Google Chrome etc) -->
+	background: -webkit-gradient(linear, left top, left bottom, from(#(~DYN2~)), to(#(~DYN3~)));
+<!---For Mozilla/Gecko (Firefox etc) -->
+	background: -moz-linear-gradient(top, #(~DYN2~), #(~DYN3~));
+<!--- For Internet Explorer 5.5 - 7  -->
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF(~DYN2~), endColorstr=#FF(~DYN3~));
+<!--- For Internet Explorer 8  -->
+	filter: progid:DXImageTransform.Microsoft.Gradient(startColorStr=#FF(~DYN2~), endColorStr=#FF(~DYN3~));
+~)
+</whdroplet>	
+
+<whdoc>
+usage:		PARAMS|drCssGradient|direction,col1,col2,col3,col4
+					direction=topbottom|bottomtop
+					eg col .. col4  #747474,#111,#111,#000
+</whdoc>
+<whdroplet name="drCssGradient">
+(~MATCH|(~DYN1~)=topbottom|
+	background: -webkit-gradient(linear, left top, left bottom, from((~DYN2~)), to((~DYN3~)), color-stop(0.6, (~DYN3~)), color-stop(0.6, (~DYN4~)));
+~)
+(~MATCH|(~DYN1~)=bottomtop|
+	background: -webkit-gradient(linear, left bottom, left top, from((~DYN2~)), to((~DYN3~)), color-stop(0.6, (~DYN3~)), color-stop(0.6, (~DYN4~)));
+~)
+</whdroplet>
+ 
+<whdroplet name="drCssGradientHalf">
+(~MATCH|(~DYN1~)=topbottom|
+	background: -webkit-gradient(linear, left top, left bottom, from((~DYN2~)), to((~DYN3~)), color-stop(0.5, (~DYN3~)), color-stop(0.5, (~DYN4~)));
+~)
+(~MATCH|(~DYN1~)=bottomtop|
+	background: -webkit-gradient(linear, left bottom, left top, from((~DYN2~)), to((~DYN3~)), color-stop(0.5, (~DYN3~)), color-stop(0.5, (~DYN4~)));
+~)
+</whdroplet> 
+ 
+<whdoc>
+usage:		PARAMS|drCssGradientBlack|direction
+					direction=topbottom|bottomtop
+</whdoc>
+<whdroplet name="drCssGradientBlack">
+(~MATCH|(~DYN1~)=topbottom|
+	background: -webkit-gradient(linear, left top, left bottom, from(#747474), to(#111), color-stop(0.6, #111), color-stop(0.6, #000));
+	
+	background: -webkit-gradient(linear, left top, left bottom, from(#6A93D4), to(#052F6D), color-stop(0.6, #052F6D), color-stop(0.6, #052F6D));
+
+
+~)
+(~MATCH|(~DYN1~)=bottomtop|
+	background: -webkit-gradient(linear, left bottom, left top, from(#747474), to(#111), color-stop(0.6, #111), color-stop(0.6, #000));
+	
+	background: -webkit-gradient(linear, left bottom, left top, from(#6A93D4), to(#052F6D), color-stop(0.6, #052F6D), color-stop(0.6, #052F6D));
+	
+~)
+
+</whdroplet>
+		
+	
+<whdoc>
+usage:		PARAMS|drCssGradientOrange|direction
+					direction=topbottom|bottomtop
+</whdoc>
+<whdroplet name="drCssGradientOrange">
+(~SET|titleBarLight=#0000BB~)
+(~SET|titleBarDark=#000066~)
+
+(~SET|titleBarLight=#456CAF~)
+(~SET|titleBarDark=#000066~)
+
+(~SET|titleBarLight=#FFCC33~)
+(~SET|titleBarLight=#EEBB22~)
+(~SET|titleBarDark=#993300~)
+
+<!--- 27-Feb-2011-->
+(~SET|titleBarLight=#6666CF~)
+(~SET|titleBarDark=#00008B~)
+
+(~SET|titleBarLight=#6A93D4~)
+(~SET|titleBarDark=#0063BE~)
+
+(~SET|titleBarLight=#6D8FFF~)
+(~SET|titleBarDark=#284B7E~)
+
+
+(~MATCH|(~DYN1~)=topbottom|
+	background: -webkit-gradient(linear, left top, left bottom, from((~titleBarLight~)), to((~titleBarDark~)), color-stop(0.6, (~titleBarDark~)), color-stop(0.6, (~titleBarDark~)));
+	border-bottom: 1px solid #000066;
+~)
+(~MATCH|(~DYN1~)=bottomtop|
+	background: -webkit-gradient(linear, left bottom, left top, from((~titleBarLight~)), to((~titleBarDark~)), color-stop(0.6, (~titleBarDark~)), color-stop(0.6, (~titleBarDark~)));
+	border-top: 1px solid #000066;
+~)
+</whdroplet>
+				
+				
+				
+	
+<whdoc>
+usage:	PARAMS|drCssRadius|where,radius
+				where=top|bottom|all|topleft|topright|bottomleft|bottomright|right|left
+				radius=radius of element corner in px or em  eg 1.4em 30px
+</whdoc>
+<whdroplet name="drCssRadius">
+(~MATCH|(~DYN1~)=top|
+	-webkit-border-top-left-radius: (~DYN2~);
+	-webkit-border-top-right-radius: (~DYN2~);
+	-moz-border-radius-topleft: (~DYN2~);
+	-moz-border-radius-topright: (~DYN2~);
+	border-top-left-radius: (~DYN2~) (~DYN2~); 
+	border-top-right-radius: (~DYN2~) (~DYN2~); 	
+~)
+(~MATCH|(~DYN1~)=bottom|
+	-webkit-border-bottom-left-radius: (~DYN2~);
+	-webkit-border-bottom-right-radius: (~DYN2~);
+	-moz-border-radius-bottomleft: (~DYN2~);
+	-moz-border-radius-bottomright: (~DYN2~);
+	border-bottom-left-radius: (~DYN2~) (~DYN2~); 
+	border-bottom-right-radius: (~DYN2~) (~DYN2~); 	
+~)
+(~MATCH|(~DYN1~)=all|
+	-webkit-border-radius: (~DYN2~);
+	-moz-border-radius: (~DYN2~);
+	border-radius: (~DYN2~) (~DYN2~); 
+~)
+(~MATCH|(~DYN1~)=topleft|
+	-webkit-border-top-left-radius: (~DYN2~);
+	-moz-border-radius-topleft: (~DYN2~);
+	border-top-left-radius: (~DYN2~) (~DYN2~); 
+~)
+(~MATCH|(~DYN1~)=topright|
+	-webkit-border-top-right-radius: (~DYN2~);
+	-moz-border-radius-topright: (~DYN2~);
+	border-top-right-radius: (~DYN2~) (~DYN2~);
+~)
+(~MATCH|(~DYN1~)=bottomleft|
+	-webkit-border-bottom-left-radius: (~DYN2~);
+	-moz-border-radius-bottomleft: (~DYN2~);
+	border-bottom-left-radius: (~DYN2~) (~DYN2~); 
+~)
+(~MATCH|(~DYN1~)=bottomright|
+	-webkit-border-bottom-right-radius: (~DYN2~);
+	-moz-border-radius-bottomright: (~DYN2~);
+	border-bottom-right-radius: (~DYN2~) (~DYN2~);
+~)
+(~MATCH|(~DYN1~)=right|
+	-webkit-border-top-right-radius: (~DYN2~);
+	-moz-border-radius-topright: (~DYN2~);
+	border-top-right-radius: (~DYN2~) (~DYN2~);
+	-webkit-border-bottom-right-radius: (~DYN2~);
+	-moz-border-radius-bottomright: (~DYN2~);
+	border-bottom-right-radius: (~DYN2~) (~DYN2~);
+~)
+(~MATCH|(~DYN1~)=left|
+	-webkit-border-top-left-radius: (~DYN2~);
+	-moz-border-radius-topleft: (~DYN2~);
+	border-top-left-radius: (~DYN2~) (~DYN2~); 
+	-webkit-border-bottom-left-radius: (~DYN2~);
+	-moz-border-radius-bottomleft: (~DYN2~);
+	border-bottom-left-radius: (~DYN2~) (~DYN2~); 
+~)
+</whdroplet>
+</whteko>

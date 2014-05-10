@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
   defaultlingvo="eng"
@@ -26,11 +26,14 @@ mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gr
 <html>
 <head>
 	(~drHead~)
+	
 	<style type="text/css">
 	#inputleft  td {padding: .5em;text-align:center;}
 	#inputright td {padding: .5em;text-align:center;}
 	#inputleft  td.prompt {color:gray;font-weight:700;}
 	#inputright td.prompt {color:gray;font-weight:700;}
+	
+	input.rounded { (~PARAMS|drCssRadius|all,1em~) }
 	</style>
 </head>
 <body>
@@ -58,7 +61,7 @@ input types default back to type=&quot;text&quot;.
 	Name:
 	</td>
 </tr>
-<tr><td>(~inputtext|inPetname,15,25|placeholder="Jett"~)</td></tr>
+<tr><td>(~inputtext|inPetname,15,25| class="rounded" placeholder="Jett"~)</td></tr>
 <tr>
 	<td class="prompt">
 	<!---The surfer can make a single selection from this drop-down list.
