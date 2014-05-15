@@ -78,6 +78,8 @@ metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologie
 
 <whdroplet name="chDataWelcome">
 (~NOTASSIGNED|DSPUrlPrefix|(~SET|DSPUrlPrefix=http://delphi.icm.edu.pl/~)~)
+<table style="width:100%;">
+<tr><td>
 <h2>Instructions</h2>
 <p>Use the form in the window above to search the
 <b>Delphi Super Page</b> database for resources for Delphi, C++Builder and Kylix.
@@ -102,6 +104,19 @@ and increase fuzziness.</p>
 <p>The system is pointing to <b><i>(~DSPUrlPrefix~)</i></b> as the root for your file downloads. </p>
 <p>That is pretty much all there is to using this site. Play around and try things. 
 Look at the advanced search mode if you can not find what you need right away. </p>
+</td>
+<td>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Google on DSP -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:120px;height:600px"
+     data-ad-client="ca-pub-9853278708320896"
+     data-ad-slot="8577849337"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</td>
+</tr></table>
 </whdroplet>
 
 <whpage pageid="AdvSearch" desc="Advanced Search Mode">
