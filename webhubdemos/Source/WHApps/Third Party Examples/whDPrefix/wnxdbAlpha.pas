@@ -4,7 +4,7 @@ unit wnxdbAlpha; { TWebnxdbAlphabet, a WebHub action component }
   http://www.href.com/pub/WebAct/db }
 
 (*
-  Copyright (c) 1995-2013 HREF Tools Corp.
+  Copyright (c) 1995-2014 HREF Tools Corp.
 
   Permission is hereby granted, on 27-Feb-2003, free of charge, to any person
   obtaining a copy of this software (the "Software"), to deal in the Software
@@ -35,13 +35,13 @@ interface
 uses
   Windows, SysUtils, Classes,
   updateOk, ucString,
-  webTypes, webLink, wbdeSource;
+  webTypes, webLink, wdbSSrc, wdbSource;
 
 type
   TWebnxdbAlphabet = class(TwhWebAction)
   private
     { Private declarations }
-    fWebDataSource: TwhbdeSource; // where the data comes from
+    fWebDataSource: TwhdbSource; // where the data comes from
     fNumPerRow: integer;
     fAlphabet: string;
     fLinkMacro: string;
@@ -64,7 +64,7 @@ type
   published
     { Published declarations }
     property NumPerRow: integer read fNumPerRow write SetNumPerRow;
-    property WebDataSource: TwhbdeSource read fWebDataSource
+    property WebDataSource: TwhdbSource read fWebDataSource
       write fWebDataSource;
     property Alphabet: string read getAlphabet write SetNoString stored False;
     property LinkMacro: string read fLinkMacro write fLinkMacro;
@@ -105,7 +105,7 @@ begin
     exit;
   if Operation = opRemove then
     cx.NilIfSet(fWebDataSource, AComponent)
-  else if (AComponent is TwhbdeSource) then
+  else if (AComponent is TwhdbSource) then
   begin
     if NOT Assigned(fWebDataSource) then
       TComponent(fWebDataSource) := AComponent;
@@ -191,11 +191,7 @@ end;
 
 function TWebnxdbAlphabet.DoUpdate: boolean;
 begin
-  // cx.MakeIfNil(fWebDataSource,TwhbdeSource);
   result := inherited DoUpdate;
-  // and (WebDataSource.ComponentUpdated)
-  // and assigned(WebDataSource.DataSet)
-  // and (WebDataSource.DataSet is TnxTable);
 end;
 
 end.
