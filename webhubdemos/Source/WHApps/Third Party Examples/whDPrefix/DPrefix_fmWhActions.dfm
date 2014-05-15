@@ -122,7 +122,7 @@ inherited fmWhActions: TfmWhActions
     Height = 19
     Panels = <
       item
-        Text = 'whbdeGrid2: Not Updated'
+        Text = ''
         Width = 50
       end>
     ParentShowHint = False
