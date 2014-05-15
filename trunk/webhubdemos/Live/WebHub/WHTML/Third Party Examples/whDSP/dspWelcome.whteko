@@ -60,8 +60,13 @@ metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologie
 </form>
 </whdroplet>
 
+<!---
+<table><tr><td>(~waResults.execute~)<br /><br /></td>
+<td>(~drGoogleAdsenseDSPTall~)</td></tr></table>
+-->
+
 (~CHECK|tempWelcome~)
-(~CMDHAS|results|(~CLEAR|tempWelcome~)(~waSearch.execute~)(~chDataResults~)~)
+(~CMDHAS|results|(~CLEAR|tempWelcome~)<table><tr><td>(~waSearch.execute~)(~chDataResults~)</td><td>(~drGoogleAdsenseDSPTall~)</td></tr></table>~)
 (~CMDHAS|waresults|(~CLEAR|tempWelcome~)(~waSearch.execute~)(~chDataResults~)~)
 (~IF|tempWelcome|(~chDataWelcome~)(~CLEAR|tempWelcome~)~)
 

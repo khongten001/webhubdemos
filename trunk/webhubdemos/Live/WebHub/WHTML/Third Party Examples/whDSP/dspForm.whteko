@@ -6,8 +6,7 @@ mcDebug=<hr />(~BoolVars~)<hr />(~StringVars~)<hr />
 </whmacros>
 
 <whdroplet name="chDataResults">
-<table><tr><td>(~waResults.execute~)<br /><br /></td>
-<td>(~drGoogleAdsenseDSPTall~)</td></tr></table>
+(~waResults.execute~)<br /><br />
 </whdroplet>
 
 <whdroplet name="chBeforeScan">
