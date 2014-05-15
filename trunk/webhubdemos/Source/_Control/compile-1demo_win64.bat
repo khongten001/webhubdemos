@@ -14,7 +14,7 @@ set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB"
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE

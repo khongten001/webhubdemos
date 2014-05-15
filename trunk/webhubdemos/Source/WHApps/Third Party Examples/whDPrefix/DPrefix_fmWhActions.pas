@@ -1,5 +1,5 @@
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1999-2013 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1999-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of the Delphi Prefix Registry.             * }
 { *                                                                          * }
@@ -24,8 +24,8 @@ uses
   {$I xe_actions.inc}
   {$I xe_actnlist.inc}
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
-  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde},
-  wdbSSrc, wbdeSource;
+  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid, 
+  wdbSSrc;
 
 type
   TfmWhActions = class(TutParentForm)

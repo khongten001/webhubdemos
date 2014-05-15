@@ -110,7 +110,7 @@ echo .
 if "%compiledpr%"=="no" goto dspstart
 cd %droot%\Third Party Examples\whDPrefix
 call %~dp0\default-compilerdigits.bat
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_win32.bat whDPrefix
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
 
 :dspstart
 set compilerdigits=
