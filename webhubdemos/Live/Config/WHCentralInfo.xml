@@ -183,8 +183,8 @@
           <ErrorLogFolder value="{DemoLogPath}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
-          <SessionCookieName value="whsession"/>
-		  <SessionNumberLocation value="URL" />
+          <SessionCookieName value="delphisuperpagesession"/>
+		  <SessionNumberLocation value="CookieFixedDomain" />
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
