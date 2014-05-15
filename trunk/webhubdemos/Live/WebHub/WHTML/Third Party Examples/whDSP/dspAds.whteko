@@ -68,15 +68,6 @@ metarobot=noindex,nofollow
 (~BOUNCE|HTTP://(~Command~)~)
 </whpage>
 
-<whpage pageid="Goto">
-<whpagesettings>
-googlesitemap=exclude
-metarobot=noindex,nofollow
-</whpagesettings>
-(~APPENDTOLOG|AppSetting.LogFile~)
-(~BOUNCE|HTTP://(~Command~)~)
-</whpage>
-
 <whdroplet name="chAdHomePageTop">
 </whdroplet>
 <whdroplet name="chAdHomePageBottom">

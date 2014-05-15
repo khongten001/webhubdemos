@@ -69,7 +69,7 @@ metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologie
 (~drPageEnd~)
 <div class="whDemoSectionNav" style="border-color: red;">
 <!--- advertisement -->
-<!--ad should start here-->(~app.MediaSources~) 
+<!--ad should start here based on MediaSources-->(~app.MediaSources~) <!-- end MediaSources -->
 <!--- advertisement -->
 </div>
 (~chDSPPageFooter~)
@@ -77,10 +77,6 @@ metakeywords=Delphi Super Page, Search Engine, CodeGear, Embarcadero Technologie
 </whpage>
 
 <whdroplet name="chDataWelcome">
-<whdoc>
-<!--- ~http:// -->
-<!---(~MATCH|(~DSPUrlPrefix~)~http://|(~SET|DSPUrlPrefix=ftp://ftp.freesoftware.com/pub/delphi_www/~)~)-->
-</whdoc>
 (~NOTASSIGNED|DSPUrlPrefix|(~SET|DSPUrlPrefix=http://delphi.icm.edu.pl/~)~)
 <h2>Instructions</h2>
 <p>Use the form in the window above to search the
@@ -93,9 +89,7 @@ The database of (~mcNrFiles~) files is current as of (~mcNrAsOf~).</p>
 <em>LIKE</em> and
 <em>NEAR</em> or any kind of phrase and the engine will try to find you what you need.
 You can also use quoted text to find phrases or parentheses to build logical expressions.</p>
-<p>Expressions like those you may have learned to build on
-altavista containing '+' or '|' or other nefarious constructions will not work here.
-</p>
+
 
 <h2>Fuzziness</h2> 
 <p>To help deal with spelling mistakes, the search engine takes the 
