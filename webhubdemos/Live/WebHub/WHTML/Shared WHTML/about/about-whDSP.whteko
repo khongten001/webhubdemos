@@ -51,7 +51,7 @@ and whether the file must be free to try.
 was written in Delphi ((~PascalCompilerCode~)) with HREF Tools's (~version~) and 
 Rubicon v(~waExtraInfo.Execute|RubiconVersion~) with Database Bridge 
 (~waExtraInfo.Execute|RubiconBridge~). The site uses no Microsoft ASP, 
-no Visual Basic or javascript, and does not rely on cookies. </p>
+no Visual Basic or javascript. </p>
 
 	<p>In February 2013 the search-checkboxes were simplified to a choice between 
 Pascal and C++ languages, instead of individual versions of Delphi, Kylix and CPPBuilder.
