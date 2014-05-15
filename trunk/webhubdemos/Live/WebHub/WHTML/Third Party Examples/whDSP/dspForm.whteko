@@ -1,12 +1,13 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" designdynsrc="localdsp">
+<whteko designmode="code">
 
 <whmacros>
 mcDebug=<hr />(~BoolVars~)<hr />(~StringVars~)<hr />
 </whmacros>
 
 <whdroplet name="chDataResults">
-(~waResults.execute~)<br /><br />
+<table><tr><td>(~waResults.execute~)<br /><br /></td>
+<td>(~drGoogleAdsenseDSPTall~)</td></tr></table>
 </whdroplet>
 
 <whdroplet name="chBeforeScan">

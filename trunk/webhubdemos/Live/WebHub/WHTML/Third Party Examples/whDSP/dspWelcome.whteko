@@ -105,9 +105,13 @@ and increase fuzziness.</p>
 <p>That is pretty much all there is to using this site. Play around and try things. 
 Look at the advanced search mode if you can not find what you need right away. </p>
 </td>
-<td>
+<td>(~drGoogleAdsenseDSPTall~)</td>
+</tr></table>
+</whdroplet>
+
+<whdroplet name="drGoogleAdsenseDSPTall">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Google on DSP -->
+<!-- Google Adsense on DSP -->
 <ins class="adsbygoogle"
      style="display:inline-block;width:120px;height:600px"
      data-ad-client="ca-pub-9853278708320896"
@@ -115,8 +119,6 @@ Look at the advanced search mode if you can not find what you need right away. <
 <script>
 (adsbygoogle = window.adsbygoogle || []).push({});
 </script>
-</td>
-</tr></table>
 </whdroplet>
 
 <whpage pageid="AdvSearch" desc="Advanced Search Mode">
