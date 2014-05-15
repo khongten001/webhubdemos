@@ -70,7 +70,6 @@ Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 	<title>(~PageDesc~)</title>
-	(~MATCH|(~PageID~)!pghomepage|<meta name="google-site-verification" content="lUTswhylYRoWTLRiWh3BJUt4GeNoYScSK1oNn306TGw" />~)
 	(~drSharedHead~)
 </head>
 <body>
