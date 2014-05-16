@@ -85,7 +85,11 @@ googlepriority=0.7
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
 (~chScan~)
+
+<div style="padding-top:1.5em;text-align:center;">
 (~drGoogleAdsOnDPR~)
+</div>
+
 (~drSharedFooter~)
 </body></html>
 </whpage>
