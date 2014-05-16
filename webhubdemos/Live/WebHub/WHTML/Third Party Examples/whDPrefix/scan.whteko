@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" designpage="PGPREFIX">
 
@@ -27,6 +27,8 @@ mcManPrefCaptionsRedraw=Redraw
 </td></tr></table>
 
 (~drSkipBannerThenNav~)
+
+(~drGoogleAdsOnDPR~)
 
 <div id="dprmain-div">
 <div itemscope itemtype="http://schema.org/Table">
@@ -83,6 +85,7 @@ googlepriority=0.7
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
 (~chScan~)
+(~drGoogleAdsOnDPR~)
 (~drSharedFooter~)
 </body></html>
 </whpage>
