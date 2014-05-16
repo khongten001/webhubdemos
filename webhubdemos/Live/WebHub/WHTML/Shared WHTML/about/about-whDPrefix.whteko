@@ -44,7 +44,7 @@ mcWhDemoLiteDPR=No
 </whdroplet>
 
 <whdroplet name="drSkipBannerThenNav" show="no">
-<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" >
+<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="padding-bottom: 1.2em;">
 (~GO|pgPrefix|Browse the Delphi Prefix Registry~) 
 &nbsp;(~GO|pgRegister|Add/Edit YOUR Prefix~)
 &nbsp;(~GO|pgthanks|About this Site~)
