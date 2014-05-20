@@ -186,7 +186,7 @@ var
   var
     a1, a2: string;
   begin
-    SplitString(FromAddress, '@', a1, a2);  // info @ suretreat.com
+    SplitString(FromAddress, '@', a1, a2);  // info @ gmail.com
     Result := a1 + '+' +
       StringReplaceAll(ToAddress, '@', '=') + '@' + a2;
   end;

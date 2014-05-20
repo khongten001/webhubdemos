@@ -25,9 +25,9 @@ object fmChromiumWrapper: TfmChromiumWrapper
   TextHeight = 23
   object Panel1: TPanel
     Left = 0
-    Top = 0
+    Top = 49
     Width = 633
-    Height = 471
+    Height = 422
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -36,6 +36,26 @@ object fmChromiumWrapper: TfmChromiumWrapper
     Color = clMoneyGreen
     ParentBackground = False
     TabOrder = 0
+  end
+  object PanelURL: TPanel
+    Left = 0
+    Top = 0
+    Width = 633
+    Height = 49
+    Align = alTop
+    Caption = 'PanelURL'
+    TabOrder = 1
+    object MemoURL: TMemo
+      Left = 1
+      Top = 1
+      Width = 631
+      Height = 47
+      Align = alClient
+      Lines.Strings = (
+        'MemoURL')
+      ScrollBars = ssVertical
+      TabOrder = 0
+    end
   end
   object MainMenu1: TMainMenu
     Left = 224
@@ -50,23 +70,34 @@ object fmChromiumWrapper: TfmChromiumWrapper
     object miBookmarks: TMenuItem
       Caption = '&Bookmarks'
       object miGoogle: TMenuItem
-        Caption = '&Google'
+        Caption = '&Google Search'
         OnClick = miGoogleClick
       end
       object GooglePlus1: TMenuItem
-        Caption = 'Google Plus'
+        Caption = 'Google &Plus'
         OnClick = GooglePlus1Click
       end
       object miGoogleCalendar1: TMenuItem
-        Caption = 'Google Calendar'
+        Caption = 'Google &Calendar'
         OnClick = miGoogleCalendar1Click
       end
       object miGoogleWebmasterTools: TMenuItem
-        Caption = 'Google Webmaster Tools'
+        Caption = 'Google &Webmaster Tools'
         OnClick = miGoogleWebmasterToolsClick
       end
+      object GoogleAdsense1: TMenuItem
+        Caption = 'Google &Adsense'
+        OnClick = GoogleAdsense1Click
+      end
+      object GoogleMail1: TMenuItem
+        Caption = 'Google &Mail'
+        OnClick = GoogleMail1Click
+      end
+      object N3: TMenuItem
+        Caption = '-'
+      end
       object miEnterURL: TMenuItem
-        Caption = 'Enter URL'
+        Caption = 'Enter &URL'
         OnClick = miEnterURLClick
       end
       object N2: TMenuItem
@@ -90,6 +121,14 @@ object fmChromiumWrapper: TfmChromiumWrapper
       object QuickLogin1: TMenuItem
         Caption = 'Quick Login'
         OnClick = QuickLogin1Click
+      end
+    end
+    object View1: TMenuItem
+      Caption = '&View'
+      object miURL: TMenuItem
+        Caption = '&URL'
+        Checked = True
+        OnClick = miURLClick
       end
     end
     object Help1: TMenuItem
