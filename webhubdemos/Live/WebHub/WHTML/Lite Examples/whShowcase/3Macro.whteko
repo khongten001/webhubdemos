@@ -148,11 +148,11 @@ It's the same idea as the IF macro, except instead of working with checkboxes,
 it uses StringVars and other webhub properties.
 <p>
 Here's an example. We will display an HTML table only in the case where your
-browser supports table syntax.
+browser (user agent) indicates it is a Mozilla browser.
 <p>
-Syntax used: <b>(~.MATCH|(~.browser.Tables~)=True|(~.chTableYes~)~)</b>
+Syntax used: <b>(~.MATCH|Mozilla[(~Request.UserAgent~)|(~.chTableYes~)~)</b>
 <p>
-(~MATCH|(~browser.Tables~)=True|(~chTableYes~)~)
+(~MATCH|Mozilla[(~Request.UserAgent~)|(~chTableYes~)~)
 <h2>Extremely Advanced Example</h2>
 <span class="changing">(~centralinfo.webtimelocal~)</span><br/>
 <p>Set stringvar named abc123 equal to hello.(~SET|abc123=hello~)</p>
