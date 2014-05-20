@@ -14,4 +14,9 @@ if errorlevel 1 pause
 ::set src=http://delphichromiumembedded.googlecode.com/svn/trunk/bin/Win32 
 ::svn export %src% .\Win32 --force
 
+::CEF3 is in GIT not SVN
+:: http://code.google.com/p/dcef3/source/browse/
+:: Developer must download ZIP and extract files to Externals\CEF3 folder.
+:: Developer must modify CEF3\src\cef.inc for use with XE6
+
 :END
