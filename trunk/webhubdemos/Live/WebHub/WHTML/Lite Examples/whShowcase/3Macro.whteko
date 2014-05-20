@@ -150,7 +150,7 @@ it uses StringVars and other webhub properties.
 Here's an example. We will display an HTML table only in the case where your
 browser (user agent) indicates it is a Mozilla browser.
 <p>
-Syntax used: <b>(~.MATCH|Mozilla[(~Request.UserAgent~)|(~.chTableYes~)~)</b>
+Syntax used: <b>(~.MATCH|Mozilla[(~.Request.UserAgent~)|(~.chTableYes~)~)</b>
 <p>
 (~MATCH|Mozilla[(~Request.UserAgent~)|(~chTableYes~)~)
 <h2>Extremely Advanced Example</h2>
