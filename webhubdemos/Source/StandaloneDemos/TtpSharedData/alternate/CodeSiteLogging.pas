@@ -67,7 +67,7 @@ type
   TDestinationRec = class
   public
     function AsString: string;
-    function ToString: string; {$IFDEF Delphi16UP}override; {$ENDIF}
+    function ToString: string; {$IF Defined(FPC) or Defined(Delphi16UP)}override; {$IFEND}
   end;
 
 type
@@ -96,7 +96,8 @@ type
     procedure SendError(const S: string);
     procedure SendException(E: Exception);
     procedure Send(const a1: string); overload;
-    procedure Send(const i: Integer; const a1, a2: string); overload;
+    procedure Send(const i: Integer; const TextA: string;
+      const TextB: string = ''); overload;
     procedure Send(const a1, a2: string); overload;
     procedure Send(const a1: string; const i2: Integer); overload;
     procedure Send(const a1: string; const b2: Boolean); overload;
@@ -275,9 +276,11 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.Send(const i: Integer; const a1, a2: string);
+procedure TCodeSiteFake.Send(const i: Integer; const TextA: string;
+  const TextB: string = '');
 begin
-  Send(a1, a2);
+  // color integer is lost in this fake transfer
+  Send(TextA, TextB);
 end;
 
 procedure TCodeSiteFake.Send(const a1, a2: string);
