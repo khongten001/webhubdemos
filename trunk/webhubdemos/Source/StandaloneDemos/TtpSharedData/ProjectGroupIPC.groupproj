@@ -15,6 +15,9 @@
         <Projects Include="SansCodeSite.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="SharedReceiverFmx.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="SansCodeSite:Make">
         <MSBuild Projects="SansCodeSite.dproj" Targets="Make"/>
     </Target>
+    <Target Name="SharedReceiverFmx">
+        <MSBuild Projects="SharedReceiverFmx.dproj"/>
+    </Target>
+    <Target Name="SharedReceiverFmx:Clean">
+        <MSBuild Projects="SharedReceiverFmx.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SharedReceiverFmx:Make">
+        <MSBuild Projects="SharedReceiverFmx.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="SharedSender;SharedReceiver;CodeSiteXFer;SansCodeSite"/>
+        <CallTarget Targets="SharedSender;SharedReceiver;CodeSiteXFer;SansCodeSite;SharedReceiverFmx"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="SharedSender:Clean;SharedReceiver:Clean;CodeSiteXFer:Clean;SansCodeSite:Clean"/>
+        <CallTarget Targets="SharedSender:Clean;SharedReceiver:Clean;CodeSiteXFer:Clean;SansCodeSite:Clean;SharedReceiverFmx:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="SharedSender:Make;SharedReceiver:Make;CodeSiteXFer:Make;SansCodeSite:Make"/>
+        <CallTarget Targets="SharedSender:Make;SharedReceiver:Make;CodeSiteXFer:Make;SansCodeSite:Make;SharedReceiverFmx:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

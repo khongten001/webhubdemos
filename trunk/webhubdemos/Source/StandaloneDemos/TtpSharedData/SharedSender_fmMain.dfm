@@ -45,8 +45,5 @@ object Form3: TForm3
     ShowHint = True
     SimpleText = ''
     PanelStatusIndex = 0
-    ExplicitLeft = 240
-    ExplicitTop = 112
-    ExplicitWidth = 0
   end
 end

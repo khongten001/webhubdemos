@@ -11,7 +11,6 @@ uses
 begin
   Application.Initialize;
   Application.UseMetropolisUI;
-  TStyleManager.TrySetStyle('Metropolis UI Dark');
   Application.MainFormOnTaskbar := True;
   Application.Title := 'Metropolis UI Application';
   Application.CreateForm(TForm4, Form4);

@@ -161,7 +161,8 @@ begin
 
   top := 50;
   left := 150;
-  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteFPC', 2048);
+  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
+    1024 * SizeOf(Char));
   FSharedBuf.Name := 'FSharedBuf';
   FSharedBuf.OnChange := BufChanged;
   FSharedBuf.IgnoreOwnChanges := True;
