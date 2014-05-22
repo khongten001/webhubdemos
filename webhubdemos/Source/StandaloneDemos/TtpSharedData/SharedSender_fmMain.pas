@@ -31,16 +31,20 @@ implementation
 
 procedure TForm3.Button1Click(Sender: TObject);
 var
-  SA: AnsiString;
+  //SA: AnsiString;
+  S8: UTF8String;
+{$I shared_buffer.inc}
 begin
   if FSharedBuf = nil then
   begin
-    FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'abc', 12);
+    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize);
     FSharedBuf.Name := 'FSharedBuf';
   end;
 
-  SA := AnsiString(Copy(Edit1.Text, 1, 12));
-  FSharedBuf.GlobalAnsiString := SA;
+  //SA := AnsiString(Copy(Edit1.Text, 1, cSize));
+  //FSharedBuf.GlobalAnsiString := SA;
+  S8 := UTF8String(Copy(Edit1.Text, 1, cSize));
+  FSharedBuf.GlobalUTF8String := S8;
 
   tpStatusBar1.Status :=  FormatDateTime('hh:nn:ss', Now) +
     ': Wrote to buffer named ' + FSharedBuf.GlobalName;

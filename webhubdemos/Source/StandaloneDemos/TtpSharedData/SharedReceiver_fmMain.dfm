@@ -25,8 +25,8 @@ object Form4: TForm4
   object Label1: TLabel
     Left = 64
     Top = 104
-    Width = 273
-    Height = 41
+    Width = 69
+    Height = 32
     Caption = 'Label1'
   end
   object AppBar: TPanel

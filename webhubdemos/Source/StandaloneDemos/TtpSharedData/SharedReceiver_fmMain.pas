@@ -70,17 +70,19 @@ end;
 
 procedure TForm4.BufferChanged(Sender: TObject);
 var
-  SA: AnsiString;
+  //SA: AnsiString;
+  S8: UTF8String;
 begin
-  SA := FSharedBuf.GlobalAnsiString;
-  Label1.Caption := string(SA);
+  S8 := FSharedBuf.GlobalUTF8String;
+  Label1.Caption := string(S8);
 end;
 
 procedure TForm4.Button1Click(Sender: TObject);
+{$I shared_buffer.inc}
 begin
   if FSharedBuf = nil then
   begin
-    FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'abc', 12);
+    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize);
     FSharedBuf.Name := 'FSharedBuf';
     FSharedBuf.OnChange := BufferChanged;
   end;
