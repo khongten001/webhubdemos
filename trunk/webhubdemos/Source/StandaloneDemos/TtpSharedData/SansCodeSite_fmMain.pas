@@ -58,9 +58,11 @@ begin
 end;
 
 procedure TForm5.FormCreate(Sender: TObject);
+const
+  ws2: unicodestring = 'phi omega : '#$03A8' '#$03A9;
 begin
   ListBox1.ItemIndex := 0;
-  LabeledEdit1.Text := 'a';
+  LabeledEdit1.Text := ws2;
   LabeledEdit2.Text := 'b';
   top := 300;
   left := 600;

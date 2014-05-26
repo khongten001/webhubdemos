@@ -32,7 +32,8 @@ unit CodeSiteLogging; // placeholder unit for use when CodeSite not available
 interface
 
 uses
-  SysUtils, Classes
+  SysUtils, Classes,
+  ucConvertStrings
   {$IFDEF XFER2CodeSite}, tpShareB{$ENDIF}
   ;
 
@@ -55,7 +56,7 @@ type
   end;
 
   TCodeSiteDestination = class
-  strict private
+  {$IFDEF UNICODE_INCL_FPC}strict{$ENDIF} private
     FLogFIle: TCodeSiteLogFile;
   public
     property LogFile: TCodeSiteLogFile read FLogFile write FLogFile;
@@ -66,7 +67,7 @@ type
 type
   TDestinationRec = class
   public
-    function AsString: string;
+    function AsString: UnicodeString;
     function ToString: string; {$IF Defined(FPC) or Defined(Delphi16UP)}override; {$IFEND}
   end;
 
@@ -86,23 +87,23 @@ type
     constructor Create;
     destructor Destroy; override;
     function Installed: Boolean;
-    procedure EnterMethod(const S: string); overload;
-    procedure EnterMethod(c: TObject; const S: string); overload;
-    procedure ExitMethod(const S: string); overload;
-    procedure ExitMethod(c: TObject; const S: string); overload;
-    procedure SendNote(const S: string);
-    procedure SendReminder(const S: string);
-    procedure SendWarning(const S: string);
-    procedure SendError(const S: string);
+    procedure EnterMethod(const S: UnicodeString); overload;
+    procedure EnterMethod(c: TObject; const S: UnicodeString); overload;
+    procedure ExitMethod(const S: UnicodeString); overload;
+    procedure ExitMethod(c: TObject; const S: UnicodeString); overload;
+    procedure SendNote(const S: UnicodeString);
+    procedure SendReminder(const S: UnicodeString);
+    procedure SendWarning(const S: UnicodeString);
+    procedure SendError(const S: UnicodeString);
     procedure SendException(E: Exception);
-    procedure Send(const a1: string); overload;
-    procedure Send(const i: Integer; const TextA: string;
-      const TextB: string = ''); overload;
-    procedure Send(const a1, a2: string); overload;
-    procedure Send(const a1: string; const i2: Integer); overload;
-    procedure Send(const a1: string; const b2: Boolean); overload;
-    procedure Send( const Fmt: string; const Args: array of const ); overload;
-    procedure Write(const a1, a2: string);
+    procedure Send(const a1: UnicodeString); overload;
+    procedure Send(const i: Integer; const TextA: UnicodeString;
+      const TextB: UnicodeString = ''); overload;
+    procedure Send(const a1, a2: UnicodeString); overload;
+    procedure Send(const a1: UnicodeString; const i2: Integer); overload;
+    procedure Send(const a1: UnicodeString; const b2: Boolean); overload;
+    procedure Send( const Fmt: UnicodeString; const Args: array of const ); overload;
+    procedure Write(const a1, a2: UnicodeString);
     property Category: string read FCategory write FCategory;
     property CategoryFontColor: Integer read FCategoryFontColor
       write FCategoryFontColor;
@@ -135,7 +136,11 @@ var
 
 implementation
 
-{$IFNDEF XFER2CodeSite}uses ucLogFil;{$ENDIF}
+uses
+  uCode  // placeholder unit name
+  {$IFDEF FPC}, lazUTF8{$ENDIF}
+{$IFNDEF XFER2CodeSite}, ucLogFil{$ENDIF}
+  ;
 
 { TCodeSiteFake }
 
@@ -151,14 +156,21 @@ begin
   {$ENDIF}
 end;
 
-function ABC(const a: Integer; const b, c: string): UTF8String;
+function ABC(const a: Integer; const b, c: UnicodeString): UTF8String;
+var
+  combo: UnicodeString;
+  a8: UTF8String;
 begin
-  Result := UTF8Encode(IntToStr(a) + '^^' + b + '^^' + c);
+  combo := {$IFDEF FPC}ConvAto16{$ENDIF}(IntToStr(a)) + '^^' + b + '^^' + c;
+
+  a8 := Conv16to8(combo);
+
+  Result := a8;
   if Length(Result) > 2048 then
-    Result := Copy(Result, 1, 2048);
+    Result := Copy(Result, 1, 2032);
 end;
 
-procedure TCodeSiteFake.EnterMethod(c: TObject; const S: string);
+procedure TCodeSiteFake.EnterMethod(c: TObject; const S: UnicodeString);
 begin
   if Assigned(c) and (c is TComponent) then
   begin
@@ -181,7 +193,7 @@ begin
   end;
 end;
 
-procedure TCodeSiteFake.EnterMethod(const S: string);
+procedure TCodeSiteFake.EnterMethod(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -191,7 +203,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.ExitMethod(c: TObject; const S: string);
+procedure TCodeSiteFake.ExitMethod(c: TObject; const S: UnicodeString);
 begin
   if Assigned(c) and (c is TComponent) then
   begin
@@ -226,8 +238,10 @@ end;
 constructor TCodeSiteFake.Create;
 begin
   {$IFDEF XFER2CodeSite}
-  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteFPC', 2048);
+  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
+    1024 * SizeOf(Char));
   FSharedBuf.Name := 'FSharedBuf';
+  FSharedBuf.IgnoreOwnChanges := True;
   {$ENDIF}
 end;
 
@@ -236,7 +250,7 @@ begin
   Result := False;
 end;
 
-function TDestinationRec.AsString: string;
+function TDestinationRec.AsString: UnicodeString;
 begin
   Result := ToString;
 end;
@@ -246,7 +260,7 @@ begin
   Result := 'n/a';
 end;
 
-procedure TCodeSiteFake.ExitMethod(const S: string);
+procedure TCodeSiteFake.ExitMethod(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -256,7 +270,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.Send(const a1: string);
+procedure TCodeSiteFake.Send(const a1: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -266,7 +280,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.Send(const a1: string; const i2: Integer);
+procedure TCodeSiteFake.Send(const a1: UnicodeString; const i2: Integer);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -276,14 +290,14 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.Send(const i: Integer; const TextA: string;
-  const TextB: string = '');
+procedure TCodeSiteFake.Send(const i: Integer; const TextA: UnicodeString;
+  const TextB: UnicodeString = '');
 begin
   // color integer is lost in this fake transfer
   Send(TextA, TextB);
 end;
 
-procedure TCodeSiteFake.Send(const a1, a2: string);
+procedure TCodeSiteFake.Send(const a1, a2: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -293,7 +307,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.SendError(const S: string);
+procedure TCodeSiteFake.SendError(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -313,7 +327,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.SendNote(const S: string);
+procedure TCodeSiteFake.SendNote(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -323,7 +337,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.SendReminder(const S: string);
+procedure TCodeSiteFake.SendReminder(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -333,7 +347,7 @@ begin
   {$ENDIF}
 end;
 
-procedure TCodeSiteFake.SendWarning(const S: string);
+procedure TCodeSiteFake.SendWarning(const S: UnicodeString);
 begin
   {$IFDEF XFER2CodeSite}
   ClearBuf;
@@ -368,7 +382,7 @@ begin
   FUseCodeSiteManagerConnection := True;
 end;
 
-procedure TCodeSiteFake.Write(const a1, a2: string);
+procedure TCodeSiteFake.Write(const a1, a2: UnicodeString);
 begin
   Send(a1, a2);
 end;
@@ -411,15 +425,15 @@ begin
   end;
 end;
 
-procedure TCodeSiteFake.Send(const a1: string; const b2: Boolean);
+procedure TCodeSiteFake.Send(const a1: UnicodeString; const b2: Boolean);
 begin
   Send(a1, BoolToStr(b2, True));
 end;
 
-procedure TCodeSiteFake.Send(const Fmt: string; const Args: array of const);
+procedure TCodeSiteFake.Send(const Fmt: UnicodeString; const Args: array of const);
 begin
   try
-    Send(Format( Fmt, Args ), '' );
+    Send(XFormat( Fmt, Args ), '' );
   except
     on E: EConvertError do
       SendError( 'Send Error: Invalid Format Arguments' );

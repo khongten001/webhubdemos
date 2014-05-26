@@ -51,8 +51,11 @@ begin
 end;
 
 procedure TForm3.FormCreate(Sender: TObject);
+const
+  ws2: unicodestring = 'phi omega : '#$03A8' '#$03A9;
 begin
   FSharedBuf := nil;
+  Edit1.Text := ws2;
 end;
 
 procedure TForm3.FormDestroy(Sender: TObject);
