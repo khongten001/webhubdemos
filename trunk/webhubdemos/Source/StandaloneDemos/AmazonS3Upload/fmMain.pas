@@ -111,6 +111,8 @@ begin
         ResponseInfo.Headers.Text]));
     finally
       FreeAndNil(stream);
+      FreeAndNil(StorageService);
+      FreeAndNil(ResponseInfo);
     end;
   end;
 end;
