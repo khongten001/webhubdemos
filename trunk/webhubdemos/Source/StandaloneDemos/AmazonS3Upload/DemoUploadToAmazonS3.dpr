@@ -1,5 +1,9 @@
 program DemoUploadToAmazonS3;
 
+// subversion
+// see http://lite.demos.href.com/demos:pgDownload:0:demos
+// webhubdemos\Source\StandaloneDemos\AmazonS3Upload
+
 (*
 Copyright (c) 2013-2014 HREF Tools Corp.
 
