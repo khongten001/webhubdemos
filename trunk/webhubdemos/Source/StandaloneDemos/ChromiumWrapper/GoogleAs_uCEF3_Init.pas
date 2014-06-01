@@ -10,13 +10,17 @@ uses
   ucCodeSiteInterface,
   ceflib;
 
+function CacheFolderRoot: string;
 procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
 
 var
   SharedFlag: TSharedStr = nil;
+  SharedCache: TSharedStr = nil;
+  {$IFDEF CEF3}
   SharedInstanceCount: TSharedInt = nil;
+  {$ENDIF}
 
 implementation
 
@@ -28,13 +32,109 @@ uses
   System.Types,
   System.UITypes
   {$ENDIF}
+  , ucString
   , GoogleAs_fmChromium;
+
+function PrimaryProcessInstance: Integer;
+const cFn = 'PrimaryProcessInstance';
+var
+  n: Integer;
+begin
+  CSEnterMethod(nil, cFn);
+
+  {
+  1 ==> 1
+  2 ==> 1
+  3 ==> 1
+  4 ==> 2
+  5 ==> 2
+  }
+
+  if Assigned(SharedInstanceCount) then
+  begin
+    n := SharedInstanceCount.GlobalInteger - 1;
+    CSSend('n', S(n));
+    Result := (n Div 3) + 1;
+  end
+  else
+  begin
+    CSSendError('SharedInstanceCount nil');
+    Result := 0;
+  end;
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function IsPrimaryProcess: Boolean;
+const cFn = 'IsPrimaryProcess';
+begin
+  CSEnterMethod(nil, cFn);
+  (*if Assigned(SharedInstanceCount) then
+    Result := SharedInstanceCount.GlobalInteger = 1
+  else*)
+  begin
+    Result := ParamCount = 0;
+    if (ParamCount >= 1) then
+      Result := Copy(ParamStr(1), 1, 6) <> '--type';
+  end;
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function CacheFolderRoot: string;
+const cFn = 'CacheFolderRoot';
+var
+  Extra: string;
+begin
+  CSEnterMethod(nil, cFn);
+  if IsPrimaryProcess then
+  begin
+
+    Extra := '';
+    if ParamCount >= 1 then
+    begin
+
+      Extra := Trim(ParamStr(1));
+      if Extra <> '' then
+      begin
+        if Extra[1] = '-' then  // --type=gpu-process
+          Extra := ''
+        else
+        begin
+          Extra := StringReplaceAll(Extra, '@', '_');
+          Extra := StringReplaceAll(Extra, '.', '_');
+          Extra := PathDelim + Extra;
+        end;
+      end;
+    end;
+    Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+      'cache' + Extra;
+  end
+  else
+  begin
+    CSSendError('should not call this way');
+    if Assigned(SharedCache) then
+    begin
+      CSSend('SharedCache exists');
+      Result := string(SharedCache.GlobalUTF8String);
+    end
+    else
+    begin
+      CSSendWarning('SharedCache does not exist');
+      Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+        'cache';
+    end;
+  end;
+  CSSend(cFn + ': Result', Result);
+  CSExitMethod(nil, cFn);
+end;
 
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
 const cFn = 'InitCEF_GoogleAs';
 {$IFDEF CEF3}
 var
   ErrorText: string;
+  DivName: string;
   Cache, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
   //LogSeverity: TCefLogSeverity;
   JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
@@ -43,77 +143,106 @@ var
   ReleaseDCheck: Boolean; UncaughtExceptionStackSize: Integer;
   ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean;
+  i: Integer;
 {$ENDIF}
 begin
   CSEnterMethod(nil, cFn);
 
+  for i := 1 to ParamCount do
+    CSSend('ParamStr(' + S(i) +')', ParamStr(i));
+
+  {$IFDEF CEF3}
+  SharedInstanceCount := TSharedInt.Create(nil);
+  SharedInstanceCount.Name := 'SharedInstanceCount';
+  {$ENDIF}
+
   SharedFlag := TSharedStr.Create(nil);
   SharedFlag.Name := 'SharedFlag';
+
+  SharedCache := TSharedStr.Create(nil);
+  SharedCache.Name := 'SharedCache';
+
+  {$IFDEF CEF3}
+  SharedInstanceCount.GlobalName := ExtractFilename(ParamStr(0));
+  SharedInstanceCount.GlobalInteger := SharedInstanceCount.GlobalInteger + 1;
+  CSSend('SharedInstanceCount.GlobalInteger',
+    S(SharedInstanceCount.GlobalInteger));
+  {$ENDIF}
+
   SharedFlag.GlobalName := 'GoogleAsStartup';
   {$IFDEF CEF3}
   SharedFlag.IgnoreOwnChanges := True;   // dual process !!
   {$ELSE}
   SharedFlag.IgnoreOwnChanges := False;  // single process !!
   {$ENDIF}
-  CSSend('SharedFlag.GlobalAnsiString', string(SharedFlag.GlobalAnsiString));
+
+  CSSend('about to figure DivName');
+  DivName := 'GoogleAs_' + IntToStr(PrimaryProcessInstance);
+  CSSend('DivName', DivName);
+  SharedCache.GlobalName := DivName;
+  SharedCache.IgnoreOwnChanges := True;
 
   {$IFDEF CEF3}
-  SharedInstanceCount := TSharedInt.Create(nil);
-  SharedInstanceCount.Name := 'SharedInstanceCount';
-  SharedInstanceCount.GlobalName := ExtractFilename(ParamStr(0));
-  SharedInstanceCount.GlobalInteger := SharedInstanceCount.GlobalInteger + 1;
-
-  if SharedInstanceCount.GlobalInteger = 1 then
-    EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
-
+  if IsPrimaryProcess then
   begin
-    // CefLoadLibDefault is not enough when you want to control the startup
-    // settings. So use CefLoadLib below.
-
-    Cache := ExtractFilePath(ParamStr(0)) + PathDelim + 'cache';
-    CSSend('Cache directory', Cache);
-    ForceDirectories(Cache);
-    //UserAgent := ''; // if overridden, default value is lost.
-    UserAgent := 
-      'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.73 Safari/537.36';
-    ProductVersion := '';
-    Locale := '';
-    LogFile := '';
-    BrowserSubprocessPath := '';
-    JavaScriptFlags := '';
-    ResourcesDirPath := '';
-    LocalesDirPath := '';
-    FlagSingleProcess := False;  // single process does not work 
-    CommandLineArgsDisabled := True;
-    PackLoadingDisabled := False;
-    RemoteDebuggingPort := 0;
-    ReleaseDCheck := False;  // easier debugging even after release
-    UncaughtExceptionStackSize := 0;
-    ContextSafetyImplementation := 0;
-    PersistSessionCookies := False;
-    IgnoreCertificateErrors := False;
-
-    IsFirstInit := CefLoadLib(cache, UserAgent, ProductVersion, Locale, LogFile,
-      BrowserSubprocessPath, LOGSEVERITY_DISABLE,
-      JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
-      FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled,
-      RemoteDebuggingPort, ReleaseDCheck, UncaughtExceptionStackSize,
-      ContextSafetyImplementation,
-      PersistSessionCookies, IgnoreCertificateErrors
-      );
-    if IsFirstInit then
-    begin
-      //
-    end
+    Cache := CacheFolderRoot;
+    CSSend('Cache', Cache);
+    SharedCache.GlobalUTF8String := UTF8String(Cache);
+    EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
+  end
+  else
+  begin
+    if Assigned(SharedCache) then
+      Cache := string(SharedCache.GlobalUTF8String)
     else
     begin
-      ErrorText := 'Unable to load CEF3 DLL library files';
-      CSSendError(ErrorText);
+      CSSendWarning('SharedCache nil');
+      Cache := CacheFolderRoot;
     end;
+    CSSend('Cache', Cache);
+  end;
+
+  // CefLoadLibDefault is not enough when you want to control the startup
+  // settings. So use CefLoadLib below.
+
+  ForceDirectories(Cache);
+  //UserAgent := ''; // if overridden, default value is lost.
+  UserAgent :=
+    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.73 Safari/537.36';
+  ProductVersion := '';
+  Locale := '';
+  LogFile := '';
+  BrowserSubprocessPath := '';
+  JavaScriptFlags := '';
+  ResourcesDirPath := '';
+  LocalesDirPath := '';
+  FlagSingleProcess := False;  // single process does not work
+  CommandLineArgsDisabled := True;
+  PackLoadingDisabled := False;
+  RemoteDebuggingPort := 0;
+  ReleaseDCheck := False;  // easier debugging even after release
+  UncaughtExceptionStackSize := 0;
+  ContextSafetyImplementation := 0;
+  PersistSessionCookies := False;
+  IgnoreCertificateErrors := False;
+
+  IsFirstInit := CefLoadLib(cache, UserAgent, ProductVersion, Locale, LogFile,
+    BrowserSubprocessPath, LOGSEVERITY_DISABLE,
+    JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
+    FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled,
+    RemoteDebuggingPort, ReleaseDCheck, UncaughtExceptionStackSize,
+    ContextSafetyImplementation,
+    PersistSessionCookies, IgnoreCertificateErrors
+    );
+  if IsFirstInit then
+  begin
+    //
   end
-  //else
-  //  IsFirstInit := False
-  ;
+  else
+  begin
+    ErrorText := 'Unable to load CEF3 DLL library files';
+    CSSendError(ErrorText);
+  end;
 
   CSSend('IsFirstInit', S(IsFirstInit));
   {$ELSE}
@@ -127,7 +256,6 @@ procedure EraseCacheFiles;
 const cFn = 'EraseCacheFiles';
 var
   Filespec: string;
-  CacheFolderRoot: string;
 begin
   CSEnterMethod(nil, cFn);
   { As long as the chromium DLLs have not yet loaded, this deletes all files
@@ -135,7 +263,6 @@ begin
     it deletes everything EXCEPT the 4 control files. Therefore
     counter-productive. The 4 control files are locked as long as the CEF
     library is in memory. }
-  CacheFolderRoot := ExtractFilePath(ParamStr(0)) + PathDelim + 'cache';
   if DirectoryExists(CacheFolderRoot) then
   begin
   for Filespec in TDirectory.GetFiles(CacheFolderRoot, '*.*') do
@@ -170,6 +297,9 @@ end;
 initialization
 finalization
   FreeAndNil(SharedFlag);
+  {$IFDEF CEF3}
   FreeAndNil(SharedInstanceCount);
+  {$ENDIF}
+  FreeAndNil(SharedCache);
 
 end.
