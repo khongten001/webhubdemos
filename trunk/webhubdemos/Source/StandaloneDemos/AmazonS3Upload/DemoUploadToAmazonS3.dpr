@@ -1,7 +1,7 @@
 program DemoUploadToAmazonS3;
 
 (*
-Copyright (c) 2013 HREF Tools Corp.
+Copyright (c) 2013-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 22-Aug-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
