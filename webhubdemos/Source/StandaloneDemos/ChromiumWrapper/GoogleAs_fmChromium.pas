@@ -554,8 +554,6 @@ end;
 
 procedure TfmChromiumWrapper.FormCreate(Sender: TObject);
 const cFn = 'FormCreate';
-//var
-//  xTop, xLeft: Integer;
 begin
   CSEnterMethod(Self, cFn);
   FFlagInitOnce := False;
@@ -568,9 +566,13 @@ begin
   Self.Left := 150; //xLeft;
   Self.Height := 768 + 120;
   Self.Width := 1024 + 120;
+  {$IFDEF CEF3}
+  Application.Title := 'Chromium Embedded Framework 3';
+  {$ELSE}
   Application.Title := 'Chromium Embedded Framework 1';
+  {$ENDIF}
   if (ParamCount >= 1) then
-    Application.Title := ParamStr(1);
+    Self.Caption := ParamStr(1); // email address
   FActiveTitle := Application.Title;
   FStartURL := 'https://plus.google.com';
   FChromium1 := nil;
