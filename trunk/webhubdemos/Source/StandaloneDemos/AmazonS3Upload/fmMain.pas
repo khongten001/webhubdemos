@@ -1,7 +1,7 @@
 unit fmMain;
 
 (*
-Copyright (c) 2013 HREF Tools Corp.
+Copyright (c) 2013-2014 HREF Tools Corp.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -32,6 +32,7 @@ type
     Label1: TLabel;
     DriveComboBox1: TDriveComboBox;
     LabeledEditTargetPath: TLabeledEdit;
+    EditCustomHeader: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -47,23 +48,21 @@ implementation
 
 {$R *.dfm}
 
-uses
-  ucDlgs;
-
-//const
-//  SMDPath = 'originalfilepath';
-//  SMDFrom = 'uploadfrom';
-
 procedure TForm2.Button1Click(Sender: TObject);
 var
   ResponseInfo: TCloudResponseInfo;
   Filespec: string;
   stream: TBytesStream;
   StorageService: TAmazonStorageService;
+  CustomHeaderList: TStringList;
+  Data: TArray<Byte>;
+  PSrc, PTrg: PByte;
 begin
   stream := nil;
   StorageService := nil;
   ResponseInfo := nil;
+  CustomHeaderList := nil;
+  SetLength(Data, 0);
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
@@ -74,7 +73,7 @@ begin
   if (LabeledEditTargetPath.Text <> '') and
     (LabeledEditTargetPath.Text[1] = '/') then
   begin
-    MsgWarningOk('Do not start with a leading / for the target path.' +
+    ShowMessage('ALERT: Do not start with a leading / for the target path.' +
       sLIneBreak + sLineBreak + LabeledEditTargetPath.Text);
   end
   else
@@ -86,11 +85,21 @@ begin
       ResponseInfo := TCloudResponseInfo.Create;
       stream := TBytesStream.Create;
       stream.LoadFromFile(Filespec);
+      SetLength(Data, stream.Size);
+      PSrc := Addr(Stream.Bytes[0]);
+      PTrg := Addr(Data[0]);
+      Move(pSrc^, pTrg^, Stream.Size);
 
       //Metadata not required on Amazon S3
       //Metadata := TStringList.Create;
       //Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
       //Metadata.Values[SMDFrom] := GetComputerandUserName;
+
+      if EditCustomHeader.Text <> '' then
+      begin
+        CustomHeaderList := TStringList.Create;
+        CustomHeaderList.Add(EditCustomHeader.Text);
+      end;
 
       StorageService.UploadObject(
         LabeledEditBucket.Text,  // target bucket e.g. screenshots.href.com
@@ -98,33 +107,45 @@ begin
         { LabeledEditTargetPath.Text must be blank or end in / example data/ }
         LabeledEditTargetPath.Text + ExtractFileName(Filespec),
 
-        Stream.Bytes,
-        False, nil, nil,
-        Data.Cloud.AmazonAPI.amzbaPublicRead,  // permissions - public
+        Data,  // must use an array whose length is the size to send!
+        False, nil, CustomHeaderList,
+        amzbaPublicRead,  // permissions - public
         ResponseInfo);
 
       {status 200 means that it worked
        if you use a bad Access Key or Secret Access Key, status 403 will be in
        headers}
-      MsgInfoOk(Format('statuscode %d, message %s, headers %s',
-        [ResponseInfo.StatusCode, ResponseInfo.StatusMessage,
-        ResponseInfo.Headers.Text]));
+      ShowMessage(Format('statuscode %d, message %s',
+        [ResponseInfo.StatusCode, ResponseInfo.StatusMessage
+        ]));
+      if Assigned(ResponseInfo.Headers) then
+      begin
+        ShowMessage('ResponseInfo.Headers' + sLineBreak + sLineBreak +
+          ResponseInfo.Headers.Text);
+      end;
     finally
       FreeAndNil(stream);
       FreeAndNil(StorageService);
       FreeAndNil(ResponseInfo);
+      FreeAndNil(CustomHeaderList);
+      SetLength(Data, 0);
     end;
   end;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-var
-  SampleDirectory: string;
+{var
+  SampleDirectory: string; }
+{$I amazon_secret_info.txt}  // you can comment this out
 begin
-  SampleDirectory :=
+{  SampleDirectory :=
   'D:\Apps\Embarcadero\RADStudio\11.0\Samples\Delphi\DataSnap\connectors\WindowsPhone7Clients\CompanyTweetClient\CompanyTweetClient\icons';
-  if Directoryexists(SampleDirectory) then
+  if SysUtils.Directoryexists(SampleDirectory) then
     DirectoryListBox1.Directory := SampleDirectory;
+}
+  LabeledEditAccessKey.Text := cAKey;
+  LabeledEditSecret.Text := cSAKey;
+  LabeledEditBucket.Text := cBName;
 end;
 
 end.

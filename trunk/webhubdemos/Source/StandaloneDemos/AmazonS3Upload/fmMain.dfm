@@ -1,8 +1,8 @@
 object Form2: TForm2
   Left = 0
   Top = 0
-  Caption = 'Form2'
-  ClientHeight = 473
+  Caption = 'Delphi TAmazonStorageService'
+  ClientHeight = 548
   ClientWidth = 768
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,11 +15,11 @@ object Form2: TForm2
   PixelsPerInch = 120
   TextHeight = 25
   object Label1: TLabel
-    Left = 41
-    Top = 305
-    Width = 179
+    Left = 297
+    Top = 377
+    Width = 168
     Height = 25
-    Caption = 'C:\Windows\system32'
+    Caption = 'D:\...\Source\WHApp'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -18
@@ -29,7 +29,7 @@ object Form2: TForm2
   end
   object Button1: TButton
     Left = 584
-    Top = 317
+    Top = 389
     Width = 137
     Height = 125
     Caption = 'Upload to S3'
@@ -74,8 +74,8 @@ object Form2: TForm2
     TabOrder = 3
   end
   object FileListBox1: TFileListBox
-    Left = 41
-    Top = 336
+    Left = 297
+    Top = 408
     Width = 265
     Height = 106
     Font.Charset = DEFAULT_CHARSET
@@ -88,8 +88,8 @@ object Form2: TForm2
     TabOrder = 4
   end
   object DirectoryListBox1: TDirectoryListBox
-    Left = 312
-    Top = 345
+    Left = 40
+    Top = 417
     Width = 241
     Height = 97
     DirLabel = Label1
@@ -104,8 +104,8 @@ object Form2: TForm2
     TabOrder = 5
   end
   object DriveComboBox1: TDriveComboBox
-    Left = 312
-    Top = 308
+    Left = 40
+    Top = 380
     Width = 145
     Height = 31
     DirList = DirectoryListBox1
@@ -132,6 +132,23 @@ object Form2: TForm2
     Font.Style = []
     ParentFont = False
     TabOrder = 7
+  end
+  object EditCustomHeader: TLabeledEdit
+    Left = 40
+    Top = 306
+    Width = 577
+    Height = 33
+    EditLabel.Width = 354
+    EditLabel.Height = 25
+    EditLabel.Caption = 'Custom Header e.g. Content-Type=text/html'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -18
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+    Text = ''
   end
   object AmazonConnectionInfo1: TAmazonConnectionInfo
     Protocol = 'https'
