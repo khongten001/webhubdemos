@@ -569,6 +569,8 @@ begin
   Self.Height := 768 + 120;
   Self.Width := 1024 + 120;
   Application.Title := 'Chromium Embedded Framework 1';
+  if (ParamCount >= 1) then
+    Application.Title := ParamStr(1);
   FActiveTitle := Application.Title;
   FStartURL := 'https://plus.google.com';
   FChromium1 := nil;
