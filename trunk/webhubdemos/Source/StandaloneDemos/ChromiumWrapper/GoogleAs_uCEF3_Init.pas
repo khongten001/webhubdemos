@@ -32,51 +32,48 @@ uses
   System.Types,
   System.UITypes
   {$ENDIF}
-  , ucString
-  , GoogleAs_fmChromium;
-
-function PrimaryProcessInstance: Integer;
-const cFn = 'PrimaryProcessInstance';
-var
-  n: Integer;
-begin
-  CSEnterMethod(nil, cFn);
-
-  {
-  1 ==> 1
-  2 ==> 1
-  3 ==> 1
-  4 ==> 2
-  5 ==> 2
-  }
-
-  if Assigned(SharedInstanceCount) then
-  begin
-    n := SharedInstanceCount.GlobalInteger - 1;
-    CSSend('n', S(n));
-    Result := (n Div 3) + 1;
-  end
-  else
-  begin
-    CSSendError('SharedInstanceCount nil');
-    Result := 0;
-  end;
-  CSSend(cFn + ': Result', S(Result));
-  CSExitMethod(nil, cFn);
-end;
+  , ucString, ucShellProcessCntrl, uCode,
+  GoogleAs_fmChromium;
 
 function IsPrimaryProcess: Boolean;
 const cFn = 'IsPrimaryProcess';
 begin
   CSEnterMethod(nil, cFn);
-  (*if Assigned(SharedInstanceCount) then
-    Result := SharedInstanceCount.GlobalInteger = 1
-  else*)
+  Result := ParamCount = 0;
+  if (ParamCount >= 1) then
+    Result := Copy(ParamStr(1), 1, 6) <> '--type';
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function PrimaryProcessPID: Integer;
+const cFn = 'PrimaryProcessPID';
+var
+  CEF3Channel: string;
+begin
+  CSEnterMethod(nil, cFn);
+
+  if IsPrimaryProcess then
+    Result := GetCurrentProcessID
+  else
   begin
-    Result := ParamCount = 0;
-    if (ParamCount >= 1) then
-      Result := Copy(ParamStr(1), 1, 6) <> '--type';
+    if ParamCount >= 2 then
+    begin
+      // ParamStr(2) = --channel=5184.0.844380937\1519884606
+      CEF3Channel := ParamString('-channel'); // Copy(ParamStr(2), 11, MaxInt);
+      CSSend('CEF3Channel', CEF3Channel);
+      Result := StrToIntDef(LeftOf('.', CEF3Channel), 0);
+    end
+    else
+      Result := 0;
   end;
+  (*if Assigned(SharedInstanceCount) then
+  begin
+    n := SharedInstanceCount.GlobalInteger - 1;
+    CSSend('n', S(n));
+    Result := (n Div 3) + 1;
+  end
+  else*)
   CSSend(cFn + ': Result', S(Result));
   CSExitMethod(nil, cFn);
 end;
@@ -177,7 +174,7 @@ begin
   {$ENDIF}
 
   CSSend('about to figure DivName');
-  DivName := 'GoogleAs_' + IntToStr(PrimaryProcessInstance);
+  DivName := 'GoogleAs_' + IntToStr(PrimaryProcessPID);
   CSSend('DivName', DivName);
   SharedCache.GlobalName := DivName;
   SharedCache.IgnoreOwnChanges := True;
