@@ -5,6 +5,8 @@ program GoogleAs;
 uses
   Forms,
   ucCodeSiteInterface in 'H:\ucCodeSiteInterface.pas',
+  ucShellProcessCntrl in 'k:\webhub\tpack\ucShellProcessCntrl.pas',
+  uCode in 'k:\webhub\tpack\uCode.pas',
   System.UITypes,
   {$IFDEF CEF3}
   ceflib in 'Externals\CEF3\src\ceflib.pas',
