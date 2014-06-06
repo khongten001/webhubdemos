@@ -11,7 +11,7 @@ TRUE
 -->
 1
 WebHub page using Delphi as the programming language
-93
+89
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -26,10 +26,6 @@ asetting=aaaaa
 style=bbb
 </whpagesettings>
 <whprep>
-<whdesign>
-(~SET|username=Fred Jones~)
-(~SET|account=12345~)
-</whdesign>
 (~waSecurity.execute|~)
 </whprep>
 <whoutput>
@@ -105,15 +101,15 @@ incluant comment il se relie à l'argent, à la religion et à la politique.
 </whpage>
 
 </whteko>
-0
+17
 TRUE
 21
-whteko tag
+any whteko tag
 
-<wh
+<(/)?wh([^>])*>
 FALSE
 FALSE
-33
+23
 0
 
 
@@ -125,7 +121,7 @@ TRUE
 
 
 
-code
+xml
 FALSE
 
 Teko script closing tag
@@ -529,7 +525,7 @@ content
 FALSE
 {
 0
-14
+15
 XML Comment
 1
 9
@@ -1994,17 +1990,185 @@ FALSE
 
 FALSE
 
-WHTeko
+WebHub
 1
 0
 FALSE
 0
 
 
-7
+8
 whteko
 
-whteko|teko
+<(/)?whteko([^>])*>
+FALSE
+FALSE
+27
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdroplet
+
+<(/)?whdroplet([^>])*>
+FALSE
+FALSE
+34
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whsketch
+
+<(/)?whsketch([^>])*>
+FALSE
+FALSE
+35
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettingslist
+
+<(/)?whpagesettingslist([^>])*>
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettings
+
+<(/)?whpagesettings([^>])*
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpage
+
+<(/)?whpage([^>])*>
+FALSE
+FALSE
+26
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whprep
+
+<(/)?whprep([^>])*>
+FALSE
+FALSE
+21
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whoutput
+
+<(/)?whoutput([^>])*>
+FALSE
+FALSE
+21
+0
+
+
+2
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whteko tag
+1
+0
+FALSE
+0
+
+
+3
+whteko tag and attr
+
+<(/)?whteko([^>])*>
 FALSE
 FALSE
 33
@@ -2022,12 +2186,12 @@ FALSE
 
 FALSE
 
-whdroplet
+tag
 
-whdroplet
+whteko
 FALSE
 FALSE
-34
+33
 0
 
 
@@ -2038,16 +2202,16 @@ FALSE
 FALSE
 
 
-/>
+
 
 FALSE
 
-whpagesettingslist
+close
 
-whpagesettingslist
+>
 FALSE
 FALSE
-12
+33
 0
 
 
@@ -2058,87 +2222,7 @@ FALSE
 FALSE
 
 
-/>
 
-FALSE
-
-whpagesettings
-
-whpagesettings
-FALSE
-FALSE
-12
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-/>
-
-FALSE
-
-whpage
-
-whpage
-FALSE
-FALSE
-26
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-/>
-
-FALSE
-
-whprep
-
-whprep
-FALSE
-FALSE
-21
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-/>
-
-FALSE
-
-whoutput
-
-whoutput
-FALSE
-FALSE
-21
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-/>
 
 FALSE
 
