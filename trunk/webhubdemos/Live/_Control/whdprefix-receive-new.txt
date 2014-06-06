@@ -2,7 +2,7 @@
 
 setlocal
 
-call D:\projects\WebHubDemos\_ControlSVN\svn-update-webhubdemos.bat
+:: call D:\projects\WebHubDemos\_ControlSVN\svn-update-webhubdemos.bat
 
 cd /d %~dp0\..
 
