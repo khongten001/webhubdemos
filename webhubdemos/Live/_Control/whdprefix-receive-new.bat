@@ -12,11 +12,11 @@ pause
 
 del webhub\apps\whdprefix.exe
 
-cd /d %~dp0\..\WebHub\bin
+cd /d %~dp0..\WebHub\Apps
 
 d:\Apps\Utilities\7Zip\7z.exe x whdprefix-bin.7z 
 if errorlevel 1 pause
 
-start %~dp0\..\webhub\bin\whdprefix.exe
+start %~dp0..\WebHub\Apps\whdprefix.exe
 if errorlevel 1 pause
 
