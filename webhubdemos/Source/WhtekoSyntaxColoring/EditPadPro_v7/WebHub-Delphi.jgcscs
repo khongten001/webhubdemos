@@ -13,7 +13,7 @@ TRUE
 WebHub page using Delphi as the programming language
 93
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
 designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
 showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
@@ -681,7 +681,7 @@ FALSE
 0
 
 
-7
+6
 
 
 =
@@ -722,26 +722,6 @@ DQ
 xml
 FALSE
 "
-whteko tag
-xml tag starting with wh
-<wh
-FALSE
-FALSE
-40
-0
-
-
-16
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-/>
-code
-FALSE
-
 Single-quoted value
 
 '
@@ -2021,10 +2001,10 @@ FALSE
 0
 
 
-2
+7
 whteko
 
-teko|whteko
+whteko|teko
 FALSE
 FALSE
 33
@@ -2044,10 +2024,110 @@ FALSE
 
 whdroplet
 
-droplet|whdroplet
+whdroplet
 FALSE
 FALSE
 34
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettingslist
+
+whpagesettingslist
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettings
+
+whpagesettings
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whpage
+
+whpage
+FALSE
+FALSE
+26
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whprep
+
+whprep
+FALSE
+FALSE
+21
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whoutput
+
+whoutput
+FALSE
+FALSE
+21
 0
 
 
