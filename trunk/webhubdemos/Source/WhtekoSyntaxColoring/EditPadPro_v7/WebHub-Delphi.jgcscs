@@ -11,7 +11,7 @@ TRUE
 -->
 1
 WebHub page using Delphi as the programming language
-89
+90
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -40,6 +40,7 @@ style=bbb
 <h1>Headline</h1>
 (~waAction1.execute|~)
 <!--- hidden comments -->
+// one line comments
 <whsketch for="waAction1" show="no">
 Hello, world.
 </whsketch>
@@ -117,11 +118,11 @@ FALSE
 FALSE
 FALSE
 FALSE
-TRUE
+FALSE
 
 
 
-xml
+
 FALSE
 
 Teko script closing tag
@@ -140,7 +141,7 @@ FALSE
 FALSE
 
 0
-<% %>
+(~ ~)
 
 FALSE
 <%
@@ -1995,12 +1996,12 @@ WebHub
 0
 FALSE
 0
-
+//
 
 8
 whteko
 
-<(/)?whteko([^>])*>
+\G<(/)?whteko([^>])*>
 FALSE
 FALSE
 27
@@ -2010,7 +2011,7 @@ FALSE
 0
 FALSE
 FALSE
-FALSE
+TRUE
 FALSE
 
 
@@ -2020,7 +2021,7 @@ FALSE
 
 whdroplet
 
-<(/)?whdroplet([^>])*>
+\G<(/)?whdroplet([^>])*>
 FALSE
 FALSE
 34
