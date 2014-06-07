@@ -11,7 +11,7 @@ TRUE
 -->
 1
 WebHub page using Delphi as the programming language
-90
+95
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -20,7 +20,12 @@ showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
 
 <whpagesettingslist id="setlist1">
 asetting=aaaaa
-</whpagesettings>
+</whpagesettingslist>
+
+<whdroplet name="drToday">
+(~CentralInfo.WebTimeGMT~)
+</whdroplet>
+
 <whpage pageid="news" desc="latest news">
 <whpagesettings inherit="setlist1">
 style=bbb
@@ -110,18 +115,18 @@ any whteko tag
 <(/)?wh([^>])*>
 FALSE
 FALSE
-23
+27
 0
 
 
 16
 FALSE
+TRUE
 FALSE
-FALSE
-FALSE
+TRUE
 
 
-
+/>
 
 FALSE
 
@@ -1992,26 +1997,26 @@ FALSE
 FALSE
 
 WebHub
-1
 0
+3
 FALSE
 0
 //
 
-8
-whteko
+9
+whteko tag incl <>
 
-\G<(/)?whteko([^>])*>
+<(/)?whteko([^>])*>
 FALSE
 FALSE
-27
+33
 0
 
 
 0
 FALSE
 FALSE
-TRUE
+FALSE
 FALSE
 
 
@@ -2019,9 +2024,9 @@ FALSE
 
 FALSE
 
-whdroplet
+whdroplet incl <>
 
-\G<(/)?whdroplet([^>])*>
+<(/)?whdroplet([^>])*>
 FALSE
 FALSE
 34
@@ -2039,12 +2044,12 @@ FALSE
 
 FALSE
 
-whsketch
+whsketch incl <>
 
 <(/)?whsketch([^>])*>
 FALSE
 FALSE
-35
+36
 0
 
 
@@ -2128,7 +2133,7 @@ FALSE
 0
 
 
-2
+0
 FALSE
 FALSE
 FALSE
@@ -2139,16 +2144,16 @@ FALSE
 
 FALSE
 
-whoutput
+whoutput incl <>
 
-<(/)?whoutput([^>])*>
+<(/)?whoutput([^>])*
 FALSE
 FALSE
 21
 0
 
 
-2
+0
 FALSE
 FALSE
 TRUE
@@ -2159,9 +2164,29 @@ FALSE
 
 FALSE
 
+any
+
+(.)*
+FALSE
+FALSE
+5
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
 whteko tag
 1
-0
+33
 FALSE
 0
 
@@ -2169,21 +2194,21 @@ FALSE
 3
 whteko tag and attr
 
-<(/)?whteko([^>])*>
+>
 FALSE
 FALSE
 33
 0
 
 
-0
+2
 FALSE
 FALSE
 FALSE
 FALSE
 
 
-/>
+
 
 FALSE
 
