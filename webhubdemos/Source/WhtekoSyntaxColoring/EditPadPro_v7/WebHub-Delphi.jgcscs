@@ -540,7 +540,7 @@ content
 FALSE
 {
 0
-15
+14
 XML Comment
 1
 9
@@ -2012,7 +2012,7 @@ FALSE
 0
 //
 
-15
+14
 whteko tag incl <>
 
 <(/)?whteko([^>])*>
@@ -2290,94 +2290,6 @@ FALSE
 
 
 />
-
-FALSE
-
-any
-
-(.)*
-FALSE
-FALSE
-5
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-whteko tag
-1
-33
-FALSE
-0
-
-
-3
-whteko tag and attr
-
->
-FALSE
-FALSE
-33
-0
-
-
-2
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-tag
-
-whteko
-FALSE
-FALSE
-33
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-close
-
->
-FALSE
-FALSE
-33
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
 
 FALSE
 
