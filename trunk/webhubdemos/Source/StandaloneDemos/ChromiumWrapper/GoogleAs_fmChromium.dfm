@@ -100,6 +100,10 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = 'Enter &URL'
         OnClick = miEnterURLClick
       end
+      object miTestAlert: TMenuItem
+        Caption = 'Test JavaScript Alert'
+        OnClick = miTestAlertClick
+      end
       object N2: TMenuItem
         Caption = '-'
       end
