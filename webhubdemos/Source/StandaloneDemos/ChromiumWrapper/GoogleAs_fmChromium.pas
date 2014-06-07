@@ -38,6 +38,7 @@ type
     miURL: TMenuItem;
     PanelURL: TPanel;
     MemoURL: TMemo;
+    miTestAlert: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -57,6 +58,7 @@ type
     procedure GoogleAdsense1Click(Sender: TObject);
     procedure GoogleMail1Click(Sender: TObject);
     procedure miURLClick(Sender: TObject);
+    procedure miTestAlertClick(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -459,6 +461,13 @@ begin
       NoteNewURL(url);
     end;
   end;
+end;
+
+procedure TfmChromiumWrapper.miTestAlertClick(Sender: TObject);
+begin
+  if FChromium1.Browser <> nil then
+    FChromium1.Browser.MainFrame.ExecuteJavaScript(
+      'alert(''JavaScript execute works!'');', 'about:blank', 0);
 end;
 
 procedure TfmChromiumWrapper.Chromium1LoadStart(Sender: TObject;
