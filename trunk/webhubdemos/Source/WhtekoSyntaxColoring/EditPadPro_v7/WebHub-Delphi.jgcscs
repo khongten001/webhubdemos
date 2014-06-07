@@ -10,8 +10,8 @@ TRUE
 <!---
 -->
 1
-WebHub page using Delphi as the programming language
-95
+Use this for highlighting WebHub *.whteko files. 
+104
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -25,6 +25,11 @@ asetting=aaaaa
 <whdroplet name="drToday">
 (~CentralInfo.WebTimeGMT~)
 </whdroplet>
+
+<whmacros>
+mcHello=Hello, world!
+</whmacros>
+
 
 <whpage pageid="news" desc="latest news">
 <whpagesettings inherit="setlist1">
@@ -70,6 +75,10 @@ politics.
 </table>
 </whdroplet>
 
+<whdoc for="waScanData">
+explanation about how this webaction operates...
+</whdoc>
+
 <h2>Another Headline</h2>
 Table content repeats:
 (~waScanData.execute|drTable~)
@@ -81,7 +90,7 @@ Table content repeats:
 </whpage>
 <whpage pageid="snippetpage" desc="a snippet test page" mode="scaffold">
 <whdroplet name="drCopyright">
-Copyright 2004 My Company
+Copyright 2004-(~CentralInfo.YearGMT~) My Company
 </whdroplet>
 
 </whpage>
@@ -107,7 +116,7 @@ incluant comment il se relie à l'argent, à la religion et à la politique.
 </whpage>
 
 </whteko>
-17
+0
 TRUE
 21
 any whteko tag
@@ -2003,7 +2012,7 @@ FALSE
 0
 //
 
-9
+15
 whteko tag incl <>
 
 <(/)?whteko([^>])*>
@@ -2116,7 +2125,67 @@ FALSE
 0
 FALSE
 FALSE
-TRUE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdoc
+
+<(/)?whdoc([^>])*>
+FALSE
+FALSE
+36
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdesign
+
+<(/)?whdesign([^>])*>
+FALSE
+FALSE
+36
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whremote
+
+<(/)?whremote([^>])*>
+FALSE
+FALSE
+25
+0
+
+
+0
+FALSE
+FALSE
+FALSE
 FALSE
 
 
@@ -2150,6 +2219,66 @@ whoutput incl <>
 FALSE
 FALSE
 21
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whmacros
+
+<(/)?whmacros>
+FALSE
+FALSE
+35
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whtranslations
+
+<(/)?whtranslations>
+FALSE
+FALSE
+37
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whtranslation
+
+<(/)?whtranslation([^>])*>
+FALSE
+FALSE
+37
 0
 
 
