@@ -2058,7 +2058,7 @@ whsketch incl <>
 <(/)?whsketch([^>])*>
 FALSE
 FALSE
-36
+10
 0
 
 
@@ -2078,7 +2078,7 @@ whpagesettingslist
 <(/)?whpagesettingslist([^>])*>
 FALSE
 FALSE
-12
+36
 0
 
 
@@ -2098,7 +2098,7 @@ whpagesettings
 <(/)?whpagesettings([^>])*
 FALSE
 FALSE
-12
+36
 0
 
 
@@ -2138,7 +2138,7 @@ whdoc
 <(/)?whdoc([^>])*>
 FALSE
 FALSE
-36
+10
 0
 
 
@@ -2158,7 +2158,7 @@ whdesign
 <(/)?whdesign([^>])*>
 FALSE
 FALSE
-36
+10
 0
 
 
