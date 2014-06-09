@@ -28,6 +28,8 @@ asetting=aaaaa
 
 <whmacros>
 mcHello=Hello, world!
+mcTime=(~CentralInfo.WebTimeGMT~)
+mcLinkContact=(~JUMP|contact|Contact Us~)
 </whmacros>
 
 
@@ -54,8 +56,7 @@ style=bbb
 <whsketch for="waAction1" show="no">
 Hello, world.
 </whsketch>
-<h2>
-[~Second Headline~]</h2>
+<h2>[~Second Headline~]</h2>
 <whtranslation key="~content2">
 And now we discuss everything you need to know
 about the second headline, including how it relates to money, religion and
@@ -64,11 +65,10 @@ politics.
 (~waScanData.execute|drTable~)
 <whdroplet name="drTable"show="no">
 <table id="tableid-table" class="(~PageSetting.style~)">
-<tr><td>
-[~English 1A~]
-</td><td>
-[~English 1B~]
-</td></tr>
+<tr>
+  <td>[~English 1A~]</td>
+  <td>[~English 1B~]</td>
+</tr>
 <whrow>
 <tr><td>sample1</td><td>sample2</td></tr>
 </whrow>
@@ -90,7 +90,7 @@ Table content repeats:
 </whpage>
 <whpage pageid="snippetpage" desc="a snippet test page" mode="scaffold">
 <whdroplet name="drCopyright">
-Copyright 2004-(~CentralInfo.YearGMT~) My Company
+Copyright 2004-(~CentralInfo.YearGMT~) My Company (~MAILTO|bob@msn.com|EMail Bobby~)
 </whdroplet>
 
 </whpage>
@@ -118,7 +118,7 @@ incluant comment il se relie à l'argent, à la religion et à la politique.
 </whteko>
 0
 TRUE
-21
+22
 any whteko tag
 
 <(/)?wh([^>])*>
@@ -136,6 +136,26 @@ TRUE
 
 
 />
+
+FALSE
+
+WebHub Parentil
+
+\(~(.*)?~\)
+FALSE
+FALSE
+27
+0
+
+
+17
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+~)
 
 FALSE
 
@@ -540,7 +560,7 @@ content
 FALSE
 {
 0
-14
+15
 XML Comment
 1
 9
@@ -2290,6 +2310,54 @@ FALSE
 
 
 />
+
+FALSE
+
+Parentild
+0
+0
+FALSE
+0
+
+
+2
+Parentild Command
+
+\(~(ACTION|JUMP|MAILTO)|~\)
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+
+
+
+FALSE
+FALSE
+0
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
 
 FALSE
 
