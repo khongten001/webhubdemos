@@ -1,16 +1,18 @@
 ﻿JGCSCS
 5
-WebHub Delphi
+WebHub
 *.whteko
 HREF Tools Corp.
-webmaster@href.com
-http://www.href.com/
-
+techsupport@href.com
+http://www.href.com/techhelp
+http://webhub.com/dynhelp
 TRUE
 <!---
 -->
-1
-Use this for highlighting WebHub *.whteko files. 
+3
+Use this for syntax highlighting WebHub *.whteko files -- in combination with an appropriate set of color choices.
+
+First draft.
 198
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
