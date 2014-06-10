@@ -11,7 +11,7 @@ TRUE
 -->
 1
 Use this for highlighting WebHub *.whteko files. 
-140
+198
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -29,6 +29,9 @@ asetting=aaaaa
 <whmacros>
 mcHello=Hello, world!
 mcTime=(~CentralInfo.WebTimeGMT~)
+</whmacros>
+
+<whmacros>
 mcTestAssigned=(~ASSIGNED|x|1||2~)
 mcTestNOTAssigned=(~NOTASSIGNED|x|1||2~)
 mcTestCmdHas=(~CMDHAS|proof|(~waProofread.Execute|~)~)
@@ -63,8 +66,63 @@ mcTestPushPrior=(~PUSHPRIOR|~)
 mcTestPushThis=(~PUSHTHIS|~)
 mcTestRequires=(~REQUIRES|email|pgContact~)
 mcTestRequiresMatch=(~REQUIRESMATCH|@[(~email~)|pgContact~)
+mcTestCookie=(~COOKIE|key=value~)
+mcTestCookieClear=(~COOKIECLEAR|~)
+mcTestExpires=(~EXPIRES|~)
+mcTestHeader=(~HEADER|~)
+mcTestSetPrologueType=(~SETPROLOGUETYPE|~)
+mcTestSetHttpStatus=(~SETHTTPSTATUS|~)
+mcTestCrunchkeys=(~CRUNCHKEYS|aa~)
+mcTestDec=(~DEC|i~)
+mcTestDelKeys=(~DELKEYS|aa~)
+mcTestDynChunk=(~DYNCHUNK|abcd,ef~)
+mcTestFoc=(~FOR|i,1,5~)
+mcTestInc=(~INC|i~)
+mcTestLit=(~LIT|i~)
+mcTestParams=(~PARAMS|drGoogle,^,a,^b~)
+mcTestAssertProtocol=(~ASSERTPROTOCOL|https~)
+mcTestIfInactiveForSec=(~IfINACTIVEFORSEC|5|pgLogin~)
+mcTestSession=(~SESSION|Delete~)
+mcTestSessionHouseClean=(~SESSIONHOUSECLEAN|~)
+mcTestCode64String=(~CODE64STRING|ProductSKU~)
+mcTestAnchor=(~ANCHOR|anchTop~)
+mcTestAnchorModify=(~ANCHORMODIFY|anchCSS|<style type="text/css">body {padding: 3em;}</style>~)
+mcTestField=(~FIELD|wds|customerName~)
+mcTestCmd=(~CMD|asSource~)
+mcTestSource=(~SOURCE|drSomething~)
+mcTestSummary=(~SUMMARY|Reminder: validate final html at W3~)
+mcTestDynaction=(~DYNACTION|pgLogin~)
+mcTestDynJump=(~DYNJUMP|pgLogin~)
+mcTestStaticJump=(~STATICJUMP|pgContact~)
+</whmacros>
+
+<whmacros>
+mcTestAction=(~ACTION|pgPostForm~)
+mcTestActionR=(~ACTIONR|pgPostForm~)
+mcTestInputCheckBox=(~INPUTCHECKBOX|bSaveNow~)
+mcTestInputDefault=(~INPUTDEFAULT|email~)
+mcTestInputFile=(~INPUTFILE|inFile~)
+mcTestInputHidden=(~INPUTHIDDEN|email~)
+mcTestInputImage=(~INPUTIMAGE|imagename~)
+mcTestInputPassword=(~INPUTPASSWORD|inPass~)
+mcTestInputRadio=(~INPUTRADIO|inSpeed~)
+mcTestInputReset=(~INPUTRESET|btnReset,Reset~)
+mcTestInputSelect=(~INPUTSELECT|inChoice,mcList,1~)
+mcTestInputSelectRadio=(~INPUTSELECTRADIO|inChoice,mcList,1~)
+mcTestInputSelectCheckbox=(~INPUTSELECTCHECKBOX|inChoice,mcList,1~)
+mcTestInputSubmit=(~INPUTRESET|btnSubmit,Go~)
+mcTestInputText=(~INPUTTEXT|inEMail~)
+mcTestInputTEXTAREA=(~INPUTTEXTAREA|txtNotes,5,80~)
+</whmacros>
+
+<whmacros>
+mcLinkGoContact=(~GO|contact|Contact Us~)
+mcLinkGoContactR=(~GOR|contact|Contact Us~)
+mcLinkHideContact=(~HIDE|contact|Contact Us~)
+mcLinkHideContactR=(~HIDER|contact|Contact Us~)
 mcLinkContact=(~JUMP|contact|Contact Us~)
 mcLinkContactR=(~JUMPR|contact|Contact Us~)
+mcLinkMailto=(~MAILTO|bob@yahoo.com~)
 </whmacros>
 
 
@@ -2396,11 +2454,31 @@ FALSE
 0
 
 
-2
+3
 WebHub Command
 
-(ACTION|APPSETTING|ASSIGNED|BOUNCE|CHECK|CLEARLOCALVAR|CLEAR|CLOSE|CMDHAS|FLUSH|GOR?|IFDYNAMIC|IFSTATIC|IFNOT|IFINDW|IF|INCLUDE|ISWEBROBOTREQUEST|JUMPBACK|JUMPR?|MAILTO|REQUIRESMATCH|MATCH|NOMATCH|NOTASSIGNED|PAGESETTING|PAGE|POPPAGE|PUSH(PRIOR|THIS)|REQUIRES|SENDFILE|SETLOCALVAR|SET|SHELL|START|TOGGLE)\|
+(ACTIONR?|ANCHOR(MODIFY)?|APPSETTING|ASSERTPROTOCOL|ASSIGNED|BOUNCE|CHECK|CLEARLOCALVAR|CLEAR|CLOSE|CMD(HAS)?|CODE64STRING|COOKIE(CLEAR)?|CRUNCHKEYS|DEC|DELKEYS|DYN(CHUNK|ACTION|JUMP)|EXPIRES|FIELD|FLUSH|FOR|GOR?|HEADER|HIDER?|IF(DYNAMIC|INACTIVEFORSEC|STATIC|NOT|INDW)?|INC(LUDE)?|ISWEBROBOTREQUEST|JUMPBACK|JUMPR?|LIT|MAILTO|REQUIRESMATCH|MATCH|NOMATCH|NOTASSIGNED|PAGESETTING|PAGE|PARAMS|POPPAGE|PUSH(PRIOR|THIS)|REQUIRES|SENDFILE|SET(PROLOGUETYPE|HTTPSTATUS|LOCALVAR)?|SESSION(HOUSECLEAN)?|SHELL|SOURCE|START|STATICJUMP|SUMMARY|TOGGLE)\|
+TRUE
 FALSE
+40
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+WebHub INPUT Command
+
+INPUT(CHECKBOX|DEFAULT|FILE|HIDDEN|IMAGE|PASSWORD|RADIO|RESET|SELECT(RADIO|CHECKBOX)?|SUBMIT|TEXT(AREA)?)\|
+TRUE
 FALSE
 40
 0
