@@ -118,7 +118,7 @@ incluant comment il se relie à l'argent, à la religion et à la politique.
 </whteko>
 0
 TRUE
-22
+24
 any whteko tag
 
 <(/)?wh([^>])*>
@@ -139,9 +139,29 @@ TRUE
 
 FALSE
 
+WebHub Action
+
+\(~wa[^.]*\.Execute\|~\)
+TRUE
+FALSE
+42
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
 WebHub Parentil
 
-\(~(.*)?~\)
+\(~([^~]*)?
 FALSE
 FALSE
 27
@@ -155,7 +175,27 @@ FALSE
 TRUE
 
 
-~)
+
+
+FALSE
+
+WebHub Macro End
+
+~\)
+FALSE
+FALSE
+41
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
 
 FALSE
 
@@ -2321,12 +2361,12 @@ FALSE
 
 
 2
-Parentild Command
+WebHub Command
 
-\(~(ACTION|JUMP|MAILTO)|~\)
+(ACTION|JUMP|MAILTO)\|
 FALSE
 FALSE
-12
+40
 0
 
 
@@ -2341,12 +2381,12 @@ FALSE
 
 FALSE
 
+MacroStart
 
-
-
+\(~
 FALSE
 FALSE
-0
+41
 0
 
 
