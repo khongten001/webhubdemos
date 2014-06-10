@@ -1,10 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko  
-	defaultlingvo="eng"  
-	designmode="code">
+<whteko defaultlingvo="eng" designmode="code">
  
-
 <whdroplet name="drDemoSpeedbarForADV">
 [(~GO|Cycle2|Internal Workings~)]<br />
 [(~GO|Cycle2A|Cycle List Navigation Bar~)]<br />
