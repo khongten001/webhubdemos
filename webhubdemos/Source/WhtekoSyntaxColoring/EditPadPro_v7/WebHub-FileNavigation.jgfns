@@ -9,14 +9,14 @@ support@editpadpro.com
 http://www.editpadpro.com
 1
 Shows the nested layout of heading tags in an HTML file
-2
+3
 WebHub Pages, Droplets
-6
+7
 whdroplet
 -16777208
 -16777211
 
-^<whdroplet name="([^"]*?)".*?^</whdroplet>
+^<whdroplet\s+name="([^"]+)".*?^</whdroplet>
 0
 1
 0
@@ -38,9 +38,9 @@ whdroplet
 1
 
 1
-whdroplet   \1
-0
-0
+whdroplet
+1
+1
 0
 1
 0
@@ -49,13 +49,25 @@ whdroplet   \1
 1
 
 1
+1
+\1
+0
+0
+0
+0
+0
+0
+
+1
+
+0
 0
 2
 1
 4
 1
 0
-whpage
+whpage with nested whteko tags
 -16777208
 -16777211
 
@@ -63,13 +75,13 @@ whpage
 0
 1
 0
+3
 0
-0
-1
-0
-
+2
 0
 
+0
+
 
 0
 0
@@ -77,12 +89,24 @@ whpage
 0
 0
 0
-
-1
 
 1
-whpage     \1
+
+1
+whpage
+1
+1
 0
+0
+0
+0
+
+1
+
+0
+1
+\1
+1
 0
 0
 1
@@ -125,7 +149,7 @@ whmacros
 
 1
 \1
-0
+1
 0
 0
 1
@@ -141,7 +165,7 @@ whmacros
 4
 1
 0
-whrtanslations
+whtranslations
 -16777208
 -16777211
 
@@ -168,7 +192,7 @@ whrtanslations
 
 1
 \1
-0
+1
 0
 0
 1
@@ -254,6 +278,49 @@ whsketch
 
 1
 whsketch   \1
+0
+0
+0
+1
+0
+0
+
+1
+
+1
+0
+2
+1
+4
+1
+0
+whdoc
+-16777208
+-16777211
+
+^<(whdoc)[^>]*?>.*?^</whdoc>
+0
+1
+0
+0
+0
+0
+0
+
+0
+
+
+0
+0
+0
+0
+0
+0
+
+1
+
+1
+\1
 0
 0
 0
@@ -555,4 +622,61 @@ Comment
 
 1
 
+0
+Nested droplets, sketches and translations
+1
+nested whdroplet
+-16777208
+-16777211
+
+^<whdroplet\s+name="([^"]+)".*?^</whdroplet>
+0
+1
+0
+0
+0
+1
+0
+
+0
+
+
+0
+0
+0
+0
+0
+0
+
+1
+
+1
+whdroplet
+0
+1
+0
+1
+0
+0
+
+1
+
+1
+1
+\1
+0
+0
+0
+0
+0
+0
+
+1
+
+0
+0
+2
+1
+4
+1
 0
