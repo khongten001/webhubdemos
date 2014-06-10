@@ -11,7 +11,7 @@ TRUE
 -->
 1
 Use this for highlighting WebHub *.whteko files. 
-104
+140
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -29,7 +29,42 @@ asetting=aaaaa
 <whmacros>
 mcHello=Hello, world!
 mcTime=(~CentralInfo.WebTimeGMT~)
+mcTestAssigned=(~ASSIGNED|x|1||2~)
+mcTestNOTAssigned=(~NOTASSIGNED|x|1||2~)
+mcTestCmdHas=(~CMDHAS|proof|(~waProofread.Execute|~)~)
+mcTestIf=(~IF|_bLoggedIn|top secret||(~BOUNCE|pgLogin~)~)
+mcTestIfNot=(~IFNOT|_bLoggedIn|(~BOUNCE|pgLogin~)||top secret~)
+mcTestIsWebRobotRequest=(~IsWebRobotRequest|<!-- snip -->||Welcome, human~)
+mcTestMatch=(~MATCH|home=(~PageID~)|(~drSomething~)||(~drSomethingElse~)~)
+mcTestMatch=(~NOMATCH|login=(~PageID~)|(~drSomethingElse~)||(~drSomethingLogin~)~)
+mcTestSetAppSetting=(~APPSETTING|a=aaa~)
+mcTestGetAppSetting=(~APPSETTING.a~)
+mcTestCheck=(~CHECK|_bLoggedIn~)
+mcTestClear=(~CLEAR|~)
+mcTestClearLocalVar=(~CLEARLOCALVAR|~)
+mcTestSetPageSetting=(~PAGESETTING|a=aaa~)
+mcTestGetPageSetting=(~PAGESETTING.a~)
+mcTestSet=(~SET|_password=empty~)
+mcTestSetLocalVar=(~SETLOCALVAR|_password=empty~)
+mcTestToggle=(~TOGGLE|_bLoggedIn~)
+mcTestIfDynamic=(~IFDYNAMIC|(~waSiteIndex.Execute|~)~)
+mcTestIfDynamic=(~IFSTATIC|<!-- no site index -->~)
+mcTestShell=(~SHELL|c:\backup.bat~)
+mcTestStart=(~START|c:\aws.exe~)
+mcTestInclude=(~INCLUDE|c:\filename.html~)
+mcTestSendFile=(~SENDFILE|c:\filename.pdf~)
+mcTestBounce=(~BOUNCE|pgLogin~)
+mcTestClose=(~CLOSE|~)
+mcTestFlush=(~FLUSH|~)
+mcTestJumpback=(~JUMPBACK|~)
+mcTestPage=(~PAGE|pgLogin~)
+mcTestPopPage=(~POPPAGE|~)
+mcTestPushPrior=(~PUSHPRIOR|~)
+mcTestPushThis=(~PUSHTHIS|~)
+mcTestRequires=(~REQUIRES|email|pgContact~)
+mcTestRequiresMatch=(~REQUIRESMATCH|@[(~email~)|pgContact~)
 mcLinkContact=(~JUMP|contact|Contact Us~)
+mcLinkContactR=(~JUMPR|contact|Contact Us~)
 </whmacros>
 
 
@@ -38,7 +73,8 @@ mcLinkContact=(~JUMP|contact|Contact Us~)
 style=bbb
 </whpagesettings>
 <whprep>
-(~waSecurity.execute|~)
+(~waSecurity.execute|username,password~)
+(~MATCH|home=(~PageID~)|<!--- grant entrance -->||(~waSecurity2.execute|username,(~password~)~)~)
 </whprep>
 <whoutput>
 <!DOCTYPE html>
@@ -141,7 +177,7 @@ FALSE
 
 WebHub Action
 
-\(~wa[^.]*\.Execute\|~\)
+\(~wa[^.]*\.Execute\|.*?~\)
 TRUE
 FALSE
 42
@@ -2363,7 +2399,7 @@ FALSE
 2
 WebHub Command
 
-(ACTION|JUMP|MAILTO)\|
+(ACTION|APPSETTING|ASSIGNED|BOUNCE|CHECK|CLEARLOCALVAR|CLEAR|CLOSE|CMDHAS|FLUSH|GOR?|IFDYNAMIC|IFSTATIC|IFNOT|IFINDW|IF|INCLUDE|ISWEBROBOTREQUEST|JUMPBACK|JUMPR?|MAILTO|REQUIRESMATCH|MATCH|NOMATCH|NOTASSIGNED|PAGESETTING|PAGE|POPPAGE|PUSH(PRIOR|THIS)|REQUIRES|SENDFILE|SETLOCALVAR|SET|SHELL|START|TOGGLE)\|
 FALSE
 FALSE
 40
