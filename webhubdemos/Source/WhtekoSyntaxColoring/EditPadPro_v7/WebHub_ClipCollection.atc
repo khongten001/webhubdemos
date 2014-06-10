@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection sort="none">
+		<clip kind="text" label="JUMP">
+			<text>(~JUMP|pageid|optional|visiblephrase~)</text>
+		</clip>
+	</collection>
+</act:acetext>
