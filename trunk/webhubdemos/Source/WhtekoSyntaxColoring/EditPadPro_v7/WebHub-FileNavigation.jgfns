@@ -11,55 +11,12 @@ http://www.editpadpro.com
 Shows the nested layout of heading tags in an HTML file
 2
 WebHub Pages, Droplets
-5
-whpage
--16777208
--16777211
-
-<whpage pageid="(([^"])*)"
-0
-1
-0
-0
-0
-1
-0
-
-0
-
-
-0
-0
-0
-0
-0
-0
-
-1
-
-1
-whpage     \1
-0
-0
-0
-1
-0
-0
-
-1
-
-0
-0
-2
-1
-4
-1
-0
+6
 whdroplet
 -16777208
 -16777211
 
-<whdroplet name="(([^"])*)"(.*)</whdroplet>
+^<whdroplet name="([^"]*?)".*?^</whdroplet>
 0
 1
 0
@@ -93,7 +50,50 @@ whdroplet   \1
 
 1
 0
+2
+1
+4
+1
 0
+whpage
+-16777208
+-16777211
+
+^<whpage pageid="(.*?)".*?^</whpage>
+0
+1
+0
+0
+0
+1
+0
+
+0
+
+
+0
+0
+0
+0
+0
+0
+
+1
+
+1
+whpage     \1
+0
+0
+0
+1
+0
+0
+
+1
+
+1
+0
+2
 1
 4
 1
@@ -102,7 +102,7 @@ whmacros
 -16777208
 -16777211
 
-<(whmacros)>(([^<]*)?)?(</whmacros>)
+^<(whmacros)>.*?^</whmacros>
 0
 1
 0
@@ -136,18 +136,18 @@ whmacros
 
 1
 0
-0
+2
 1
 4
 1
--1
+0
 whrtanslations
 -16777208
 -16777211
 
-(<whtranslations>)(.*)</whtranslations>
+^<(whtranslations)>.*?^</whtranslations>
 0
-0
+1
 0
 0
 0
@@ -167,7 +167,7 @@ whrtanslations
 1
 
 1
-\0
+\1
 0
 0
 0
@@ -179,16 +179,16 @@ whrtanslations
 
 1
 0
-0
+2
 1
 4
 1
--1
+0
 whtranslation
 -16777208
 -16777211
 
-<whtranslation key="(~([^"])*)"(.*)</whtranslation>
+^<whtranslation key="(~([^"])*)"(.*)^</whtranslation>
 0
 1
 0
@@ -223,6 +223,49 @@ whtranslation    \1
 1
 0
 0
+1
+4
+1
+0
+whsketch
+-16777208
+-16777211
+
+^<whsketch for="([^"]*?)".*?^</whsketch>
+0
+1
+0
+0
+0
+1
+0
+
+0
+
+
+0
+0
+0
+0
+0
+0
+
+1
+
+1
+whsketch   \1
+0
+0
+0
+1
+0
+0
+
+1
+
+1
+0
+2
 1
 4
 1
