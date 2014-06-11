@@ -18,8 +18,7 @@ First public draft. Nested parentild expressions are not highlighted the same as
 245
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko
-designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
+<whteko designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
 showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
 
 <whpagesettingslist id="setlist1">
@@ -193,8 +192,8 @@ Table content repeats:
 <whdroplet name="drCopyright">
 Copyright 2004-(~CentralInfo.YearGMT~) My Company (~MAILTO|bob@msn.com|EMail Bobby~)
 </whdroplet>
-
 </whpage>
+
 <whpage pageid="mypage3" desc="my translation page" mode="translation" defaultlingvo="deu" >
 <whtranslation key="~content2" show="no">
 Und jetzt besprechen wir alles, das Sie über die zweite Schlagzeile wissen
@@ -255,6 +254,7 @@ if (you == /like([Jj]ava(?:[Ss]cript)?)/g) { alert('You like JavaScript'); }
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Overview of the WebHub Component Named WebCycle</h1>
+<p>text here </p>
 </div>
 </body>
 </html>
@@ -313,7 +313,9 @@ FALSE
 
 WebHub Parentil
 Expression within WebHub Parentils (~ ~)
-(\(~)([^~]*)?
+2
+(\(~)         # open parentil (~
+([^~]*)?
 FALSE
 FALSE
 27
@@ -322,7 +324,7 @@ FALSE
 
 17
 FALSE
-FALSE
+TRUE
 FALSE
 TRUE
 
@@ -722,7 +724,7 @@ FALSE
 FALSE
 
 0
-15
+18
 HTML Tag
 1
 0
@@ -2770,30 +2772,30 @@ FALSE
 0
 <!---
 -->
-14
-whteko tag incl <>
+17
+whteko tag to closing >
 
-<(/)?whteko([^>])*>
+^</?whteko([^>])*>$
 FALSE
 FALSE
 33
 0
 
 
-0
+18
 FALSE
 FALSE
 FALSE
+TRUE
+
+
+
+
 FALSE
 
+whdroplet close
 
-/>
-
-FALSE
-
-whdroplet incl <>
-
-<(/)?whdroplet([^>])*>
+^</whdroplet>$
 FALSE
 FALSE
 34
@@ -2801,6 +2803,26 @@ FALSE
 
 
 0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+whdroplet to closing >
+
+^<whdroplet\s+([^>])*>$
+FALSE
+FALSE
+34
+0
+
+
+20
 FALSE
 FALSE
 TRUE
@@ -2833,7 +2855,7 @@ FALSE
 
 whpagesettingslist
 
-<(/)?whpagesettingslist([^>])*>
+^<(/)?whpagesettingslist([^>])*>$
 FALSE
 FALSE
 36
@@ -2853,7 +2875,7 @@ FALSE
 
 whpagesettings
 
-<(/)?whpagesettings([^>])*
+^<(/)?whpagesettings([^>])*>$
 FALSE
 FALSE
 36
@@ -2871,9 +2893,9 @@ FALSE
 
 FALSE
 
-whpage
+whpage closing
 
-<(/)?whpage([^>])*>
+^</whpage>$
 FALSE
 FALSE
 26
@@ -2887,13 +2909,33 @@ FALSE
 FALSE
 
 
-/>
+
+
+FALSE
+
+whpage
+
+^<whpage\s+([^>])*>$
+FALSE
+FALSE
+26
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
 
 FALSE
 
 whdoc
 
-<(/)?whdoc([^>])*>
+^<(/)?whdoc([^>])*>$
 FALSE
 FALSE
 10
@@ -2953,7 +2995,7 @@ FALSE
 
 whprep
 
-<(/)?whprep([^>])*>
+^<(/)?whprep>$
 FALSE
 FALSE
 21
@@ -2971,9 +3013,9 @@ FALSE
 
 FALSE
 
-whoutput incl <>
+whoutput
 
-<(/)?whoutput([^>])*
+^<(/)?whoutput>$
 FALSE
 FALSE
 21
@@ -2993,7 +3035,7 @@ FALSE
 
 whmacros
 
-<(/)?whmacros>
+^<(/)?whmacros>$
 FALSE
 FALSE
 35
@@ -3013,7 +3055,27 @@ FALSE
 
 whtranslations
 
-<(/)?whtranslations>
+^<(/)?whtranslations>$
+FALSE
+FALSE
+37
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whtranslation closing
+
+^</whtranslation>$
 FALSE
 FALSE
 37
@@ -3033,7 +3095,7 @@ FALSE
 
 whtranslation
 
-<(/)?whtranslation([^>])*>
+^<whtranslation\s+key="([^>])*>$
 FALSE
 FALSE
 37
@@ -3113,6 +3175,110 @@ FALSE
 FALSE
 FALSE
 FALSE
+
+
+
+
+FALSE
+
+teko
+0
+33
+FALSE
+0
+
+
+1
+= attr value
+everything except this gets Default Color
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+Double-quoted wh value
+0
+8
+FALSE
+0
+
+
+2
+=
+
+="
+FALSE
+FALSE
+0
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+"
+
+"
+FALSE
+FALSE
+0
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+droplet
+0
+34
+FALSE
+0
+
+
+1
+= attr value
+
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
 
 
 
