@@ -724,7 +724,7 @@ FALSE
 FALSE
 
 0
-18
+22
 HTML Tag
 1
 0
@@ -2862,10 +2862,10 @@ FALSE
 0
 
 
-0
+23
 FALSE
 FALSE
-TRUE
+FALSE
 FALSE
 
 
@@ -2922,11 +2922,11 @@ FALSE
 0
 
 
-0
+22
 FALSE
 FALSE
 FALSE
-FALSE
+TRUE
 
 
 
@@ -2942,7 +2942,7 @@ FALSE
 0
 
 
-0
+24
 FALSE
 FALSE
 FALSE
@@ -3065,7 +3065,7 @@ FALSE
 0
 FALSE
 FALSE
-TRUE
+FALSE
 FALSE
 
 
@@ -3102,7 +3102,7 @@ FALSE
 0
 
 
-0
+21
 FALSE
 FALSE
 TRUE
@@ -3267,6 +3267,118 @@ FALSE
 1
 = attr value
 
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+translation
+0
+37
+FALSE
+0
+
+
+1
+= attr value
+
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+page
+0
+26
+FALSE
+0
+
+
+1
+= attr value
+everything except this gets Default Color
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+pagesettingslist
+0
+36
+FALSE
+0
+
+
+1
+= attr value
+everything except this gets Default Color
+="[^"]*"
+FALSE
+FALSE
+8
+0
+
+
+19
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+doc
+0
+10
+FALSE
+0
+
+
+1
+= attr value
+everything except this gets Default Color
 ="[^"]*"
 FALSE
 FALSE
