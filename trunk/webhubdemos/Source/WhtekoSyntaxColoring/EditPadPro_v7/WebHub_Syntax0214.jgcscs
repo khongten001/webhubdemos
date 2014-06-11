@@ -1,6 +1,6 @@
 ﻿JGCSCS
 5
-WebHub
+WebHub Syntax Stage 2.14
 *.whteko
 Ann Lynnworth
 techsupport@href.com
@@ -9,12 +9,13 @@ http://webhub.com/dynhelp
 TRUE
 <!---
 -->
-4
+5
 WebHub WHTEKO with support for embedded HTML, JavaScript and VBScript. (Original by JGSoft; modified by JMRware; modified for WebHub  by HREF Tools)
 
+First public draft. Nested parentild expressions are not highlighted the same as outer parentild expressions.
 
-
-415
+3 related custom color schemes are available from HREF Tools in the WebHubDemos subversion repository.
+245
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
@@ -147,7 +148,9 @@ style=bbb
 <link rel="stylesheet" type="text/css" href="..." />
 </head>
 <body>
+<div id="test">
 <h1>Headline</h1>
+</div>
 (~waAction1.execute|~)
 <!--- hidden comments -->
 // one line comments
@@ -232,201 +235,29 @@ if (you == /like([Jj]ava(?:[Ss]cript)?)/g) { alert('You like JavaScript'); }
 </body>
 </html>
 </whpage>
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko
-designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
-showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
 
-<whpagesettingslist id="setlist1">
-asetting=aaaaa
-</whpagesettingslist>
-
-<whdroplet name="drToday">
-(~CentralInfo.WebTimeGMT~)
-</whdroplet>
-
-<whmacros>
-mcHello=Hello, world!
-mcTime=(~CentralInfo.WebTimeGMT~)
-</whmacros>
-
-<whmacros>
-mcTestAssigned=(~ASSIGNED|x|1||2~)
-mcTestNOTAssigned=(~NOTASSIGNED|x|1||2~)
-mcTestCmdHas=(~CMDHAS|proof|(~waProofread.Execute|~)~)
-mcTestIf=(~IF|_bLoggedIn|top secret||(~BOUNCE|pgLogin~)~)
-mcTestIfNot=(~IFNOT|_bLoggedIn|(~BOUNCE|pgLogin~)||top secret~)
-mcTestIsWebRobotRequest=(~IsWebRobotRequest|<!-- snip -->||Welcome, human~)
-mcTestMatch=(~MATCH|home=(~PageID~)|(~drSomething~)||(~drSomethingElse~)~)
-mcTestMatch=(~NOMATCH|login=(~PageID~)|(~drSomethingElse~)||(~drSomethingLogin~)~)
-mcTestSetAppSetting=(~APPSETTING|a=aaa~)
-mcTestGetAppSetting=(~APPSETTING.a~)
-mcTestCheck=(~CHECK|_bLoggedIn~)
-mcTestClear=(~CLEAR|~)
-mcTestClearLocalVar=(~CLEARLOCALVAR|~)
-mcTestSetPageSetting=(~PAGESETTING|a=aaa~)
-mcTestGetPageSetting=(~PAGESETTING.a~)
-mcTestSet=(~SET|_password=empty~)
-mcTestSetLocalVar=(~SETLOCALVAR|_password=empty~)
-mcTestToggle=(~TOGGLE|_bLoggedIn~)
-mcTestIfDynamic=(~IFDYNAMIC|(~waSiteIndex.Execute|~)~)
-mcTestIfDynamic=(~IFSTATIC|<!-- no site index -->~)
-mcTestShell=(~SHELL|c:\backup.bat~)
-mcTestStart=(~START|c:\aws.exe~)
-mcTestInclude=(~INCLUDE|c:\filename.html~)
-mcTestSendFile=(~SENDFILE|c:\filename.pdf~)
-mcTestBounce=(~BOUNCE|pgLogin~)
-mcTestClose=(~CLOSE|~)
-mcTestFlush=(~FLUSH|~)
-mcTestJumpback=(~JUMPBACK|~)
-mcTestPage=(~PAGE|pgLogin~)
-mcTestPopPage=(~POPPAGE|~)
-mcTestPushPrior=(~PUSHPRIOR|~)
-mcTestPushThis=(~PUSHTHIS|~)
-mcTestRequires=(~REQUIRES|email|pgContact~)
-mcTestRequiresMatch=(~REQUIRESMATCH|@[(~email~)|pgContact~)
-mcTestCookie=(~COOKIE|key=value~)
-mcTestCookieClear=(~COOKIECLEAR|~)
-mcTestExpires=(~EXPIRES|~)
-mcTestHeader=(~HEADER|~)
-mcTestSetPrologueType=(~SETPROLOGUETYPE|~)
-mcTestSetHttpStatus=(~SETHTTPSTATUS|~)
-mcTestCrunchkeys=(~CRUNCHKEYS|aa~)
-mcTestDec=(~DEC|i~)
-mcTestDelKeys=(~DELKEYS|aa~)
-mcTestDynChunk=(~DYNCHUNK|abcd,ef~)
-mcTestFoc=(~FOR|i,1,5~)
-mcTestInc=(~INC|i~)
-mcTestLit=(~LIT|i~)
-mcTestParams=(~PARAMS|drGoogle,^,a,^b~)
-mcTestAssertProtocol=(~ASSERTPROTOCOL|https~)
-mcTestIfInactiveForSec=(~IfINACTIVEFORSEC|5|pgLogin~)
-mcTestSession=(~SESSION|Delete~)
-mcTestSessionHouseClean=(~SESSIONHOUSECLEAN|~)
-mcTestCode64String=(~CODE64STRING|ProductSKU~)
-mcTestAnchor=(~ANCHOR|anchTop~)
-mcTestAnchorModify=(~ANCHORMODIFY|anchCSS|<style type="text/css">body {padding: 3em;}</style>~)
-mcTestField=(~FIELD|wds|customerName~)
-mcTestCmd=(~CMD|asSource~)
-mcTestSource=(~SOURCE|drSomething~)
-mcTestSummary=(~SUMMARY|Reminder: validate final html at W3~)
-mcTestDynaction=(~DYNACTION|pgLogin~)
-mcTestDynJump=(~DYNJUMP|pgLogin~)
-mcTestStaticJump=(~STATICJUMP|pgContact~)
-</whmacros>
-
-<whmacros>
-mcTestAction=(~ACTION|pgPostForm~)
-mcTestActionR=(~ACTIONR|pgPostForm~)
-mcTestInputCheckBox=(~INPUTCHECKBOX|bSaveNow~)
-mcTestInputDefault=(~INPUTDEFAULT|email~)
-mcTestInputFile=(~INPUTFILE|inFile~)
-mcTestInputHidden=(~INPUTHIDDEN|email~)
-mcTestInputImage=(~INPUTIMAGE|imagename~)
-mcTestInputPassword=(~INPUTPASSWORD|inPass~)
-mcTestInputRadio=(~INPUTRADIO|inSpeed~)
-mcTestInputReset=(~INPUTRESET|btnReset,Reset~)
-mcTestInputSelect=(~INPUTSELECT|inChoice,mcList,1~)
-mcTestInputSelectRadio=(~INPUTSELECTRADIO|inChoice,mcList,1~)
-mcTestInputSelectCheckbox=(~INPUTSELECTCHECKBOX|inChoice,mcList,1~)
-mcTestInputSubmit=(~INPUTRESET|btnSubmit,Go~)
-mcTestInputText=(~INPUTTEXT|inEMail~)
-mcTestInputTEXTAREA=(~INPUTTEXTAREA|txtNotes,5,80~)
-</whmacros>
-
-<whmacros>
-mcLinkGoContact=(~GO|contact|Contact Us~)
-mcLinkGoContactR=(~GOR|contact|Contact Us~)
-mcLinkHideContact=(~HIDE|contact|Contact Us~)
-mcLinkHideContactR=(~HIDER|contact|Contact Us~)
-mcLinkContact=(~JUMP|contact|Contact Us~)
-mcLinkContactR=(~JUMPR|contact|Contact Us~)
-mcLinkMailto=(~MAILTO|bob@yahoo.com~)
-</whmacros>
-
-
-<whpage pageid="news" desc="latest news">
-<whpagesettings inherit="setlist1">
-style=bbb
-</whpagesettings>
-<whprep>
-(~waSecurity.execute|username,password~)
-(~MATCH|home=(~PageID~)|<!--- grant entrance -->||(~waSecurity2.execute|username,(~password~)~)~)
-</whprep>
+<whpage pageid="pgEnterADV" desc="Overview of the WebHub Component Named WebCycle">
 <whoutput>
-<!DOCTYPE html>
-<html>
+(~mcdoctypehtml~)
+<html (~mcxmlns~)>
 <head>
-<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-<title>everything about the latest news</title>
-<link rel="stylesheet" type="text/css" href="..." />
+	(~drHead~)
+<whdroplet name="drStyleBookAds" show="yes">
+<style type="text/css">
+.booktitle {
+	font-size: 1.5em;
+	color:#D00;
+}
+</style>
+</whdroplet>
 </head>
 <body>
-<h1>Headline</h1>
-(~waAction1.execute|~)
-<!--- hidden comments -->
-// one line comments
-<whsketch for="waAction1" show="no">
-Hello, world.
-</whsketch>
-<h2>[~Second Headline~]</h2>
-<whtranslation key="~content2">
-And now we discuss everything you need to know
-about the second headline, including how it relates to money, religion and
-politics.
-</whtranslation>
-(~waScanData.execute|drTable~)
-<whdroplet name="drTable"show="no">
-<table id="tableid-table" class="(~PageSetting.style~)">
-<tr>
-  <td>[~English 1A~]</td>
-  <td>[~English 1B~]</td>
-</tr>
-<whrow>
-<tr><td>sample1</td><td>sample2</td></tr>
-</whrow>
-</table>
-</whdroplet>
-
-<whdoc for="waScanData">
-explanation about how this webaction operates...
-</whdoc>
-
-<h2>Another Headline</h2>
-Table content repeats:
-(~waScanData.execute|drTable~)
-<whremote dynsrc="WH3">
-(~waAdvertisement.execute|~)
-</whremote>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Overview of the WebHub Component Named WebCycle</h1>
+</div>
 </body>
-</whoutput>
-</whpage>
-<whpage pageid="snippetpage" desc="a snippet test page" mode="scaffold">
-<whdroplet name="drCopyright">
-Copyright 2004-(~CentralInfo.YearGMT~) My Company (~MAILTO|bob@msn.com|EMail Bobby~)
-</whdroplet>
-
-</whpage>
-<whpage pageid="mypage3" desc="my translation page" mode="translation" defaultlingvo="deu" >
-<whtranslation key="~content2" show="no">
-Und jetzt besprechen wir alles, das Sie über die zweite Schlagzeile wissen
-müssen und mit einschließen, wie sie auf Geld, Religion und Politik bezieht.
-</whtranslation>
-<whtranslations>
-~Second Headline=Schlagzeile
-~English 1A=Deutsch 1A
-~English 1B=Deutsch 1B
-</whtranslations>
-<whtranslation key="~content2" lingvo="fra" show="no">
-Et maintenant nous discutons tout que vous devez savoir le deuxième titre,
-incluant comment il se relie à l'argent, à la religion et à la politique.
-</whtranslation>
-<whtranslations lingvo="fra">
-~Second Headline=titre
-~English 1A=Français 1A
-~English 1B=Français 1B
-</whtranslations>
+</html>
 </whpage>
 
 </whteko>
@@ -482,7 +313,7 @@ FALSE
 
 WebHub Parentil
 Expression within WebHub Parentils (~ ~)
-\(~([^~]*)?
+(\(~)([^~]*)?
 FALSE
 FALSE
 27
