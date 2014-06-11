@@ -1,0 +1,3290 @@
+﻿JGCSCS
+5
+WebHub
+*.whteko
+Ann Lynnworth
+techsupport@href.com
+http://www.href.com/techhelp
+http://webhub.com/dynhelp
+TRUE
+<!---
+-->
+4
+WebHub WHTEKO with support for embedded HTML, JavaScript and VBScript. (Original by JGSoft; modified by JMRware; modified for WebHub  by HREF Tools)
+
+
+
+415
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko
+designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
+showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
+
+<whpagesettingslist id="setlist1">
+asetting=aaaaa
+</whpagesettingslist>
+
+<whdroplet name="drToday">
+(~CentralInfo.WebTimeGMT~)
+</whdroplet>
+
+<whmacros>
+mcHello=Hello, world!
+mcTime=(~CentralInfo.WebTimeGMT~)
+</whmacros>
+
+<whmacros>
+mcTestAssigned=(~ASSIGNED|x|1||2~)
+mcTestNOTAssigned=(~NOTASSIGNED|x|1||2~)
+mcTestCmdHas=(~CMDHAS|proof|(~waProofread.Execute|~)~)
+mcTestIf=(~IF|_bLoggedIn|top secret||(~BOUNCE|pgLogin~)~)
+mcTestIfNot=(~IFNOT|_bLoggedIn|(~BOUNCE|pgLogin~)||top secret~)
+mcTestIfNotBlankSV=(~IFNOTBlankSV|email|Thank you for subscribing~)
+mcTestIsWebRobotRequest=(~IsWebRobotRequest|<!-- snip -->||Welcome, human~)
+mcTestMatch=(~MATCH|home=(~PageID~)|(~drSomething~)||(~drSomethingElse~)~)
+mcTestMatch=(~NOMATCH|login=(~PageID~)|(~drSomethingElse~)||(~drSomethingLogin~)~)
+mcTestSetAppSetting=(~APPSETTING|a=aaa~)
+mcTestGetAppSetting=(~APPSETTING.a~)
+mcTestCheck=(~CHECK|_bLoggedIn~)
+mcTestClear=(~CLEAR|~)
+mcTestClearLocalVar=(~CLEARLOCALVAR|~)
+mcTestSetPageSetting=(~PAGESETTING|a=aaa~)
+mcTestGetPageSetting=(~PAGESETTING.a~)
+mcTestSet=(~SET|_password=empty~)
+mcTestSetLocalVar=(~SETLOCALVAR|_password=empty~)
+mcTestToggle=(~TOGGLE|_bLoggedIn~)
+mcTestIfDynamic=(~IFDYNAMIC|(~waSiteIndex.Execute|~)~)
+mcTestIfDynamic=(~IFSTATIC|<!-- no site index -->~)
+mcTestShell=(~SHELL|c:\backup.bat~)
+mcTestStart=(~START|c:\aws.exe~)
+mcTestInclude=(~INCLUDE|c:\filename.html~)
+mcTestSendFile=(~SENDFILE|c:\filename.pdf~)
+mcTestBounce=(~BOUNCE|pgLogin~)
+mcTestClose=(~CLOSE|~)
+mcTestFlush=(~FLUSH|~)
+mcTestJumpback=(~JUMPBACK|~)
+mcTestPage=(~PAGE|pgLogin~)
+mcTestPopPage=(~POPPAGE|~)
+mcTestPushPrior=(~PUSHPRIOR|~)
+mcTestPushThis=(~PUSHTHIS|~)
+mcTestRequires=(~REQUIRES|email|pgContact~)
+mcTestRequiresMatch=(~REQUIRESMATCH|@[(~email~)|pgContact~)
+mcTestCookie=(~COOKIE|key=value~)
+mcTestCookieClear=(~COOKIECLEAR|~)
+mcTestExpires=(~EXPIRES|~)
+mcTestHeader=(~HEADER|~)
+mcTestSetPrologueType=(~SETPROLOGUETYPE|~)
+mcTestSetHttpStatus=(~SETHTTPSTATUS|~)
+mcTestCrunchkeys=(~CRUNCHKEYS|aa~)
+mcTestDec=(~DEC|i~)
+mcTestDelKeys=(~DELKEYS|aa~)
+mcTestDynChunk=(~DYNCHUNK|abcd,ef~)
+mcTestFoc=(~FOR|i,1,5~)
+mcTestInc=(~INC|i~)
+mcTestLit=(~LIT|i~)
+mcTestParams=(~PARAMS|drGoogle,^,a,^b~)
+mcTestAssertProtocol=(~ASSERTPROTOCOL|https~)
+mcTestIfInactiveForSec=(~IfINACTIVEFORSEC|5|pgLogin~)
+mcTestSession=(~SESSION|Delete~)
+mcTestSessionHouseClean=(~SESSIONHOUSECLEAN|~)
+mcTestCode64String=(~CODE64STRING|ProductSKU~)
+mcTestAnchor=(~ANCHOR|anchTop~)
+mcTestAnchorModify=(~ANCHORMODIFY|anchCSS|<style type="text/css">body {padding: 3em;}</style>~)
+mcTestField=(~FIELD|wds|customerName~)
+mcTestCmd=(~CMD|asSource~)
+mcTestSource=(~SOURCE|drSomething~)
+mcTestSummary=(~SUMMARY|Reminder: validate final html at W3~)
+mcTestDynaction=(~DYNACTION|pgLogin~)
+mcTestDynJump=(~DYNJUMP|pgLogin~)
+mcTestStaticJump=(~STATICJUMP|pgContact~)
+</whmacros>
+
+<whmacros>
+mcTestAction=(~ACTION|pgPostForm~)
+mcTestActionR=(~ACTIONR|pgPostForm~)
+mcTestInputCheckBox=(~INPUTCHECKBOX|bSaveNow~)
+mcTestInputDefault=(~INPUTDEFAULT|email~)
+mcTestInputFile=(~INPUTFILE|inFile~)
+mcTestInputHidden=(~INPUTHIDDEN|email~)
+mcTestInputImage=(~INPUTIMAGE|imagename~)
+mcTestInputPassword=(~INPUTPASSWORD|inPass~)
+mcTestInputRadio=(~INPUTRADIO|inSpeed~)
+mcTestInputReset=(~INPUTRESET|btnReset,Reset~)
+mcTestInputSelect=(~INPUTSELECT|inChoice,mcList,1~)
+mcTestInputSelectRadio=(~INPUTSELECTRADIO|inChoice,mcList,1~)
+mcTestInputSelectCheckbox=(~INPUTSELECTCHECKBOX|inChoice,mcList,1~)
+mcTestInputSubmit=(~INPUTRESET|btnSubmit,Go~)
+mcTestInputText=(~INPUTTEXT|inEMail~)
+mcTestInputTEXTAREA=(~INPUTTEXTAREA|txtNotes,5,80~)
+</whmacros>
+
+<whmacros>
+mcLinkGoContact=(~GO|contact|Contact Us~)
+mcLinkGoContactR=(~GOR|contact|Contact Us~)
+mcLinkHideContact=(~HIDE|contact|Contact Us~)
+mcLinkHideContactR=(~HIDER|contact|Contact Us~)
+mcLinkContact=(~JUMP|contact|Contact Us~)
+mcLinkContactR=(~JUMPR|contact|Contact Us~)
+mcLinkMailto=(~MAILTO|bob@yahoo.com~)
+</whmacros>
+
+
+<whpage pageid="news" desc="latest news">
+<whpagesettings inherit="setlist1">
+style=bbb
+</whpagesettings>
+<whprep>
+(~waSecurity.execute|username,password~)
+(~MATCH|home=(~PageID~)|<!--- grant entrance -->||(~waSecurity2.execute|username,(~password~)~)~)
+</whprep>
+<whoutput>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>everything about the latest news</title>
+<link rel="stylesheet" type="text/css" href="..." />
+</head>
+<body>
+<h1>Headline</h1>
+(~waAction1.execute|~)
+<!--- hidden comments -->
+// one line comments
+<whsketch for="waAction1" show="no">
+Hello, world.
+</whsketch>
+<h2>[~Second Headline~]</h2>
+<whtranslation key="~content2">
+And now we discuss everything you need to know
+about the second headline, including how it relates to money, religion and
+politics.
+</whtranslation>
+(~waScanData.execute|drTable~)
+<whdroplet name="drTable"show="no">
+<table id="tableid-table" class="(~PageSetting.style~)">
+<tr>
+  <td>[~English 1A~]</td>
+  <td>[~English 1B~]</td>
+</tr>
+<whrow>
+<tr><td>sample1</td><td>sample2</td></tr>
+</whrow>
+</table>
+</whdroplet>
+
+<whdoc for="waScanData">
+explanation about how this webaction operates...
+</whdoc>
+
+<h2>Another Headline</h2>
+Table content repeats:
+(~waScanData.execute|drTable~)
+<whremote dynsrc="WH3">
+(~waAdvertisement.execute|~)
+</whremote>
+</body>
+</whoutput>
+</whpage>
+<whpage pageid="snippetpage" desc="a snippet test page" mode="scaffold">
+<whdroplet name="drCopyright">
+Copyright 2004-(~CentralInfo.YearGMT~) My Company (~MAILTO|bob@msn.com|EMail Bobby~)
+</whdroplet>
+
+</whpage>
+<whpage pageid="mypage3" desc="my translation page" mode="translation" defaultlingvo="deu" >
+<whtranslation key="~content2" show="no">
+Und jetzt besprechen wir alles, das Sie über die zweite Schlagzeile wissen
+müssen und mit einschließen, wie sie auf Geld, Religion und Politik bezieht.
+</whtranslation>
+<whtranslations>
+~Second Headline=Schlagzeile
+~English 1A=Deutsch 1A
+~English 1B=Deutsch 1B
+</whtranslations>
+<whtranslation key="~content2" lingvo="fra" show="no">
+Et maintenant nous discutons tout que vous devez savoir le deuxième titre,
+incluant comment il se relie à l'argent, à la religion et à la politique.
+</whtranslation>
+<whtranslations lingvo="fra">
+~Second Headline=titre
+~English 1A=Français 1A
+~English 1B=Français 1B
+</whtranslations>
+</whpage>
+
+<whpage pageid="sampleJS">
+<html>
+<head><title>Example</title></head>
+<body bgcolor="white" text="black">
+<script><!--
+if (you == /like([Jj]ava(?:[Ss]cript)?)/g) { alert('You like JavaScript'); }
+//--></script>
+<!-- Comment with URL http://www.editpadpro.com/ -->
+<p>Some text<br>on two lines.</p>
+<p>Relative <a href="other.html">link</a>.</p>
+<p class="regex">var = /(?:[Rr]eg(?:exp?|ular [Ee]+?xpression)+?)/;</p>
+<pre class="regex_x"># Convert escaped group delimiter chars to HTML entities.
+  ( [^\\]+(?:\\[^()|][^\\]*)*  # $1: Everything else (starting with non-escape),
+  |       (?:\\[^()|][^\\]*)+  #  or everything else (starting with escape).
+  )                            # End $1.
+| \\([()|])                    # $2: Escaped "(", ")" or "|".</pre>
+</body>
+</html>
+</whpage>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko
+designdynsrc="mydynsrc" defaultlingvo="eng" designlingvo="eng" designpage="news"
+showdoc="no" showsketch="yes" notes="This is a sample WHTEKO file">
+
+<whpagesettingslist id="setlist1">
+asetting=aaaaa
+</whpagesettingslist>
+
+<whdroplet name="drToday">
+(~CentralInfo.WebTimeGMT~)
+</whdroplet>
+
+<whmacros>
+mcHello=Hello, world!
+mcTime=(~CentralInfo.WebTimeGMT~)
+</whmacros>
+
+<whmacros>
+mcTestAssigned=(~ASSIGNED|x|1||2~)
+mcTestNOTAssigned=(~NOTASSIGNED|x|1||2~)
+mcTestCmdHas=(~CMDHAS|proof|(~waProofread.Execute|~)~)
+mcTestIf=(~IF|_bLoggedIn|top secret||(~BOUNCE|pgLogin~)~)
+mcTestIfNot=(~IFNOT|_bLoggedIn|(~BOUNCE|pgLogin~)||top secret~)
+mcTestIsWebRobotRequest=(~IsWebRobotRequest|<!-- snip -->||Welcome, human~)
+mcTestMatch=(~MATCH|home=(~PageID~)|(~drSomething~)||(~drSomethingElse~)~)
+mcTestMatch=(~NOMATCH|login=(~PageID~)|(~drSomethingElse~)||(~drSomethingLogin~)~)
+mcTestSetAppSetting=(~APPSETTING|a=aaa~)
+mcTestGetAppSetting=(~APPSETTING.a~)
+mcTestCheck=(~CHECK|_bLoggedIn~)
+mcTestClear=(~CLEAR|~)
+mcTestClearLocalVar=(~CLEARLOCALVAR|~)
+mcTestSetPageSetting=(~PAGESETTING|a=aaa~)
+mcTestGetPageSetting=(~PAGESETTING.a~)
+mcTestSet=(~SET|_password=empty~)
+mcTestSetLocalVar=(~SETLOCALVAR|_password=empty~)
+mcTestToggle=(~TOGGLE|_bLoggedIn~)
+mcTestIfDynamic=(~IFDYNAMIC|(~waSiteIndex.Execute|~)~)
+mcTestIfDynamic=(~IFSTATIC|<!-- no site index -->~)
+mcTestShell=(~SHELL|c:\backup.bat~)
+mcTestStart=(~START|c:\aws.exe~)
+mcTestInclude=(~INCLUDE|c:\filename.html~)
+mcTestSendFile=(~SENDFILE|c:\filename.pdf~)
+mcTestBounce=(~BOUNCE|pgLogin~)
+mcTestClose=(~CLOSE|~)
+mcTestFlush=(~FLUSH|~)
+mcTestJumpback=(~JUMPBACK|~)
+mcTestPage=(~PAGE|pgLogin~)
+mcTestPopPage=(~POPPAGE|~)
+mcTestPushPrior=(~PUSHPRIOR|~)
+mcTestPushThis=(~PUSHTHIS|~)
+mcTestRequires=(~REQUIRES|email|pgContact~)
+mcTestRequiresMatch=(~REQUIRESMATCH|@[(~email~)|pgContact~)
+mcTestCookie=(~COOKIE|key=value~)
+mcTestCookieClear=(~COOKIECLEAR|~)
+mcTestExpires=(~EXPIRES|~)
+mcTestHeader=(~HEADER|~)
+mcTestSetPrologueType=(~SETPROLOGUETYPE|~)
+mcTestSetHttpStatus=(~SETHTTPSTATUS|~)
+mcTestCrunchkeys=(~CRUNCHKEYS|aa~)
+mcTestDec=(~DEC|i~)
+mcTestDelKeys=(~DELKEYS|aa~)
+mcTestDynChunk=(~DYNCHUNK|abcd,ef~)
+mcTestFoc=(~FOR|i,1,5~)
+mcTestInc=(~INC|i~)
+mcTestLit=(~LIT|i~)
+mcTestParams=(~PARAMS|drGoogle,^,a,^b~)
+mcTestAssertProtocol=(~ASSERTPROTOCOL|https~)
+mcTestIfInactiveForSec=(~IfINACTIVEFORSEC|5|pgLogin~)
+mcTestSession=(~SESSION|Delete~)
+mcTestSessionHouseClean=(~SESSIONHOUSECLEAN|~)
+mcTestCode64String=(~CODE64STRING|ProductSKU~)
+mcTestAnchor=(~ANCHOR|anchTop~)
+mcTestAnchorModify=(~ANCHORMODIFY|anchCSS|<style type="text/css">body {padding: 3em;}</style>~)
+mcTestField=(~FIELD|wds|customerName~)
+mcTestCmd=(~CMD|asSource~)
+mcTestSource=(~SOURCE|drSomething~)
+mcTestSummary=(~SUMMARY|Reminder: validate final html at W3~)
+mcTestDynaction=(~DYNACTION|pgLogin~)
+mcTestDynJump=(~DYNJUMP|pgLogin~)
+mcTestStaticJump=(~STATICJUMP|pgContact~)
+</whmacros>
+
+<whmacros>
+mcTestAction=(~ACTION|pgPostForm~)
+mcTestActionR=(~ACTIONR|pgPostForm~)
+mcTestInputCheckBox=(~INPUTCHECKBOX|bSaveNow~)
+mcTestInputDefault=(~INPUTDEFAULT|email~)
+mcTestInputFile=(~INPUTFILE|inFile~)
+mcTestInputHidden=(~INPUTHIDDEN|email~)
+mcTestInputImage=(~INPUTIMAGE|imagename~)
+mcTestInputPassword=(~INPUTPASSWORD|inPass~)
+mcTestInputRadio=(~INPUTRADIO|inSpeed~)
+mcTestInputReset=(~INPUTRESET|btnReset,Reset~)
+mcTestInputSelect=(~INPUTSELECT|inChoice,mcList,1~)
+mcTestInputSelectRadio=(~INPUTSELECTRADIO|inChoice,mcList,1~)
+mcTestInputSelectCheckbox=(~INPUTSELECTCHECKBOX|inChoice,mcList,1~)
+mcTestInputSubmit=(~INPUTRESET|btnSubmit,Go~)
+mcTestInputText=(~INPUTTEXT|inEMail~)
+mcTestInputTEXTAREA=(~INPUTTEXTAREA|txtNotes,5,80~)
+</whmacros>
+
+<whmacros>
+mcLinkGoContact=(~GO|contact|Contact Us~)
+mcLinkGoContactR=(~GOR|contact|Contact Us~)
+mcLinkHideContact=(~HIDE|contact|Contact Us~)
+mcLinkHideContactR=(~HIDER|contact|Contact Us~)
+mcLinkContact=(~JUMP|contact|Contact Us~)
+mcLinkContactR=(~JUMPR|contact|Contact Us~)
+mcLinkMailto=(~MAILTO|bob@yahoo.com~)
+</whmacros>
+
+
+<whpage pageid="news" desc="latest news">
+<whpagesettings inherit="setlist1">
+style=bbb
+</whpagesettings>
+<whprep>
+(~waSecurity.execute|username,password~)
+(~MATCH|home=(~PageID~)|<!--- grant entrance -->||(~waSecurity2.execute|username,(~password~)~)~)
+</whprep>
+<whoutput>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<title>everything about the latest news</title>
+<link rel="stylesheet" type="text/css" href="..." />
+</head>
+<body>
+<h1>Headline</h1>
+(~waAction1.execute|~)
+<!--- hidden comments -->
+// one line comments
+<whsketch for="waAction1" show="no">
+Hello, world.
+</whsketch>
+<h2>[~Second Headline~]</h2>
+<whtranslation key="~content2">
+And now we discuss everything you need to know
+about the second headline, including how it relates to money, religion and
+politics.
+</whtranslation>
+(~waScanData.execute|drTable~)
+<whdroplet name="drTable"show="no">
+<table id="tableid-table" class="(~PageSetting.style~)">
+<tr>
+  <td>[~English 1A~]</td>
+  <td>[~English 1B~]</td>
+</tr>
+<whrow>
+<tr><td>sample1</td><td>sample2</td></tr>
+</whrow>
+</table>
+</whdroplet>
+
+<whdoc for="waScanData">
+explanation about how this webaction operates...
+</whdoc>
+
+<h2>Another Headline</h2>
+Table content repeats:
+(~waScanData.execute|drTable~)
+<whremote dynsrc="WH3">
+(~waAdvertisement.execute|~)
+</whremote>
+</body>
+</whoutput>
+</whpage>
+<whpage pageid="snippetpage" desc="a snippet test page" mode="scaffold">
+<whdroplet name="drCopyright">
+Copyright 2004-(~CentralInfo.YearGMT~) My Company (~MAILTO|bob@msn.com|EMail Bobby~)
+</whdroplet>
+
+</whpage>
+<whpage pageid="mypage3" desc="my translation page" mode="translation" defaultlingvo="deu" >
+<whtranslation key="~content2" show="no">
+Und jetzt besprechen wir alles, das Sie über die zweite Schlagzeile wissen
+müssen und mit einschließen, wie sie auf Geld, Religion und Politik bezieht.
+</whtranslation>
+<whtranslations>
+~Second Headline=Schlagzeile
+~English 1A=Deutsch 1A
+~English 1B=Deutsch 1B
+</whtranslations>
+<whtranslation key="~content2" lingvo="fra" show="no">
+Et maintenant nous discutons tout que vous devez savoir le deuxième titre,
+incluant comment il se relie à l'argent, à la religion et à la politique.
+</whtranslation>
+<whtranslations lingvo="fra">
+~Second Headline=titre
+~English 1A=Français 1A
+~English 1B=Français 1B
+</whtranslations>
+</whpage>
+
+</whteko>
+0
+TRUE
+17
+any whteko tag
+Tags starting with <wh are processed separately to HTML markup
+<(/)?wh([^>])*>
+FALSE
+FALSE
+27
+0
+
+
+16
+FALSE
+TRUE
+FALSE
+TRUE
+
+
+/>
+
+FALSE
+
+WebHub Action
+WebHub action calls within parentils, indicated by .Execute| suffix
+7
+\(~           # (~
+\w*           # word = webaction name
+\.            # required dot
+Execute       # required Execute
+\|            # required vertical bar
+.*?           # optional parameters
+~\)           # ~)
+TRUE
+FALSE
+42
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+WebHub Parentil
+Expression within WebHub Parentils (~ ~)
+\(~([^~]*)?
+FALSE
+FALSE
+27
+0
+
+
+17
+FALSE
+FALSE
+FALSE
+TRUE
+
+
+
+
+FALSE
+
+WebHub Macro End
+
+~\)
+FALSE
+FALSE
+41
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Script tag
+Skips <script/> tags
+<script\b\s*+(?!/)
+TRUE
+FALSE
+6
+0
+
+
+8
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+script
+html
+FALSE
+</script>
+HTML tag class=regex begin
+A tag having a class="regex" contains a regular expression.
+55
+# HTML class="regex" tag Rev-20101216_2300
+<                    # HTML opening tag < opening delimiter
+(\w++)\b             # 1$: HTML tag name.
+(?:                  # Match any attributes preceding class.
+  \s++               # Attributes are separated by whitespace.
+  (?!class\b)        # If this attribute is not "class", then match it.
+  [\w\-.:]++         # Attribute name is required for attr=value pair.
+  (?:                # Non-capture group for optional attribute value.
+    \s*+=\s*+        # Name and value separated by "=" and optional ws.
+    (?:              # Non-capture group for attrib value alternatives.
+      "[^"]*+"       # Double quoted string (Note: may contain "&<>").
+    | '[^']*+'       # or Single quoted string (Note: may contain "&<>").
+    | [\w\-.:]++     # or Non-quoted attrib value can be A-Z0-9-._:
+    )                # End of attribute value
+  )?+                # Attribute value is optional.
+)*+                  # Zero or more attributes preceding class.
+\s++                 # Class attribute separated by whitespace.
+class\s*+=\s*+       # Class and its value separated by "=" and optional ws.
+(?:                  # Class attribute value may be quoted or unquoted.
+  "                  # Case 1: Double quoted. Match opening quote.
+  [^"r]*+            # (normal*) Everything up to "regex" or closing quote.
+  (?:                # Begin "Unrolling the loop" (special normal*)*
+    (?!\bregex\b)    # If not at start of a "regex" class,
+    r                # then match any literal "r". (special)
+    [^"r]*+          # more (normal*) Everything up to "regex" or closing quote.
+  )*+                # End (special normal*)*
+  \bregex\b          # Match "regex" in class value.
+  [^"]*+             # Match any additional classes following "regex"
+  "                  # End Case 1: Double quoted. Match closing quote.
+| '                  # or Case 2: Single quoted. Match opening quote.
+  [^'r]*+            # (normal*) Everything up to "regex" or closing quote.
+  (?:                # Begin "Unrolling the loop" (special normal*)*
+    (?!\bregex\b)    # If not at start of a "regex" class,
+    r                # then match any literal "r". (special)
+    [^'r]*+          # more (normal*) Everything up to "regex" or closing quote.
+  )*+                # End (special normal*)*
+  \bregex\b          # Match "regex" in class value.
+  [^']*+             # Match any additional classes following "regex"
+  '                  # End Case 2: Single quoted. Match closing quote.
+| regex\b            # or Case 3: Unquoted.
+)                    # End group of class attribute value alternatives.
+(?:                  # Match any attributes following class
+  \s++               # Attributes are separated by whitespace.
+  [\w\-.:]++         # Attribute name is required for attr=value pair.
+  (?:                # Non-capture group for optional attribute value.
+    \s*+=\s*+        # Name and value separated by "=" and optional ws.
+    (?:              # Non-capture group for attrib value alternatives.
+      "[^"]*+"       # Double quoted string (Note: may contain "&<>").
+    | '[^']*+'       # Single quoted string (Note: may contain "&<>").
+    | [\w\-.:]++     # Non-quoted attrib value can be A-Z0-9-._:
+    )                # End of attribute value
+  )?+                # Attribute value is optional.
+)*+                  # Zero or more attributes following class.
+\s*+>                # Optional whitespace and closing tag delimiter.
+
+TRUE
+FALSE
+6
+0
+
+
+14
+FALSE
+TRUE
+FALSE
+FALSE
+0
+
+\L1
+html
+FALSE
+
+HTML tag class=regex_x begin
+A tag having a class="regex" contains a regular expression.
+55
+# HTML class="regex_x" tag Rev-20101216_2300
+<                    # HTML opening tag < opening delimiter
+(\w++)\b             # 1$: HTML tag name.
+(?:                  # Match any attributes preceding class.
+  \s++               # Attributes are separated by whitespace.
+  (?!class\b)        # If this attribute is not "class", then match it.
+  [\w\-.:]++         # Attribute name is required for attr=value pair.
+  (?:                # Non-capture group for optional attribute value.
+    \s*+=\s*+        # Name and value separated by "=" and optional ws.
+    (?:              # Non-capture group for attrib value alternatives.
+      "[^"]*+"       # Double quoted string (Note: may contain "&<>").
+    | '[^']*+'       # or Single quoted string (Note: may contain "&<>").
+    | [\w\-.:]++     # or Non-quoted attrib value can be A-Z0-9-._:
+    )                # End of attribute value
+  )?+                # Attribute value is optional.
+)*+                  # Zero or more attributes preceding class.
+\s++                 # Class attribute separated by whitespace.
+class\s*+=\s*+       # Class and its value separated by "=" and optional ws.
+(?:                  # Class attribute value may be quoted or unquoted.
+  "                  # Case 1: Double quoted. Match opening quote.
+  [^"r]*+            # (normal*) Everything up to "regex_x" or closing quote.
+  (?:                # Begin "Unrolling the loop" (special normal*)*
+    (?!\bregex_x\b)  # If not at start of a "regex_x" class,
+    r                # then match any literal "r". (special)
+    [^"r]*+          # more (normal*) Everything up to "regex_x" or closing quote.
+  )*+                # End (special normal*)*
+  \bregex_x\b        # Match "regex_x" in class value.
+  [^"]*+             # Match any additional classes following "regex_x"
+  "                  # End Case 1: Double quoted. Match closing quote.
+| '                  # or Case 2: Single quoted. Match opening quote.
+  [^'r]*+            # (normal*) Everything up to "regex_x" or closing quote.
+  (?:                # Begin "Unrolling the loop" (special normal*)*
+    (?!\bregex_x\b)  # If not at start of a "regex_x" class,
+    r                # then match any literal "r". (special)
+    [^'r]*+          # more (normal*) Everything up to "regex_x" or closing quote.
+  )*+                # End (special normal*)*
+  \bregex_x\b        # Match "regex_x" in class value.
+  [^']*+             # Match any additional classes following "regex_x"
+  '                  # End Case 2: Single quoted. Match closing quote.
+| regex_x\b          # or Case 3: Unquoted.
+)                    # End group of class attribute value alternatives.
+(?:                  # Match any attributes following class
+  \s++               # Attributes are separated by whitespace.
+  [\w\-.:]++         # Attribute name is required for attr=value pair.
+  (?:                # Non-capture group for optional attribute value.
+    \s*+=\s*+        # Name and value separated by "=" and optional ws.
+    (?:              # Non-capture group for attrib value alternatives.
+      "[^"]*+"       # Double quoted string (Note: may contain "&<>").
+    | '[^']*+'       # Single quoted string (Note: may contain "&<>").
+    | [\w\-.:]++     # Non-quoted attrib value can be A-Z0-9-._:
+    )                # End of attribute value
+  )?+                # Attribute value is optional.
+)*+                  # Zero or more attributes following class.
+\s*+>                # Optional whitespace and closing tag delimiter.
+
+TRUE
+FALSE
+6
+0
+
+
+15
+FALSE
+TRUE
+FALSE
+FALSE
+0
+
+\L1
+html
+FALSE
+
+Solo tag start
+<tag> that should not have a corresponding </tag> (defined as "empty" in HTML 4 DTD)
+<(?>area|base|br|col|hr|img|input|link|meta|param)\b
+TRUE
+FALSE
+6
+0
+
+
+3
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+emptytag
+
+FALSE
+
+Closing tag (invalid)
+</tag> for a tag that should be emtpy
+</(?>area|base|br|col|hr|img|input|link|meta|param)>
+TRUE
+FALSE
+6
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Opening tag
+<tag> that should have a corresponding </tag>
+<([a-zA-Z][a-zA-Z0-9]*)\s*+>
+FALSE
+FALSE
+6
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+\L1
+html
+FALSE
+</\1>
+Opening tag
+<tag with attributes that should have a corresponding </tag>
+<([a-zA-Z][a-zA-Z0-9]*)
+FALSE
+FALSE
+6
+0
+
+
+3
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+\L1
+html
+FALSE
+</\1>
+Closing tag
+</tag>
+</([a-zA-Z][a-zA-Z0-9]*+)>
+FALSE
+FALSE
+6
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+\L1
+html
+FALSE
+<\1>
+HTML comment
+
+<!--
+FALSE
+TRUE
+9
+0
+
+
+4
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+<!-->
+html
+FALSE
+-->
+Doctype
+
+<!
+FALSE
+FALSE
+11
+0
+
+
+7
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+doctype
+html
+FALSE
+>
+Named Entity
+HTML named entity
+&(?:#[0-9]++|#x[0-9A-F]++|[A-Z][A-Z0-9]++);
+TRUE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+URL
+
+\b(?:(?:https?|ftp|file)://|www\.|ftp\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])
+TRUE
+FALSE
+2
+1
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+email address
+
+\b(?:mailto:)?[A-Z0-9._%+-]++@(?:[A-Z0-9-]++\.)++[A-Z]{2,6}+\b
+TRUE
+FALSE
+2
+3
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+0
+15
+HTML Tag
+1
+0
+FALSE
+0
+
+
+7
+Closing bracket
+Ends the HTML tag and continues with plain text
+>
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Solo tag end
+
+/>
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+emptytag
+
+FALSE
+
+HTML Attribute
+
+\s++[a-zA-Z]++
+FALSE
+FALSE
+7
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Double-quoted value
+Attribute value enclosed by double quotes.  Quote character can be escaped with \
+=\s*+(")
+FALSE
+FALSE
+8
+0
+
+
+5
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+DQattr
+html
+FALSE
+"
+Single-quoted value
+Attribute value enclosed by single quotes.  Quote character can be escaped with \
+=\s*+(')
+FALSE
+FALSE
+8
+0
+
+
+6
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+SQattr
+html
+FALSE
+'
+Value
+Attribute value that is not quoted
+=\s*+[A-Za-z0-9_]++
+FALSE
+FALSE
+8
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Another tag
+Though not valid in HTML, we permit < tags to keep syntax coloring consistent while the file is being edited
+(?=<)
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+HTML Comment
+1
+9
+FALSE
+0
+
+
+3
+Closing -->
+
+-->
+FALSE
+FALSE
+9
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+<!-->
+html
+FALSE
+<!--
+URL
+
+\b(?:(?:https?|ftp|file)://|www\.|ftp\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])
+TRUE
+FALSE
+2
+1
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+email address
+
+\b(?:mailto:)?[A-Z0-9._%+-]++@(?:[A-Z0-9-]++\.)++[A-Z]{2,6}+\b
+TRUE
+FALSE
+2
+3
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Double-quoted value
+1
+8
+FALSE
+0
+
+
+7
+Closing quote
+Non-escaped quote ends the attribute
+(?<!\\)"
+FALSE
+FALSE
+8
+0
+
+
+1
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+DQattr
+html
+FALSE
+"
+Closing bracket
+If we find a > bracket, assume the HTML tag ends here
+>
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Relative link to text file
+
+(?<=(?:href|src)=")((?:\.\.[\\/])?(?:[-A-Z0-9+&@%=~_$!:,.]++[\\/])*+[-A-Z0-9+&@%=~_$!:,.]+\.(?:html?|xhtml|asp|as[pach]x|php|js(on|p)?|css|p[ly]|rbx?|erb|rss|xml|xs[dl]?|xslt))
+TRUE
+FALSE
+1
+2
+\1
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Relative link to other file
+
+(?<=(?:href|src)=")((?:\.\.[\\/])?(?:[-A-Z0-9+&@%=~_$!:,.]++[\\/])*+[-A-Z0-9+&@%=~_$!:,.]++)
+TRUE
+FALSE
+1
+1
+\1
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+URL
+
+\b(?:(?:https?|ftp|file)://|www\.|ftp\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])
+TRUE
+FALSE
+2
+1
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+email address
+
+\b(?:mailto:)?[A-Z0-9._%+-]++@(?:[A-Z0-9-]++\.)++[A-Z]{2,6}+\b
+TRUE
+FALSE
+2
+3
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Another tag
+Though not valid in HTML, we permit < tags to keep syntax coloring consistent while the file is being edited
+(?=<)
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Single-quoted value
+1
+8
+FALSE
+0
+
+
+7
+Closing quote
+Non-escaped quote ends the attribute
+(?<!\\)'
+FALSE
+FALSE
+8
+0
+
+
+1
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+SQattr
+html
+FALSE
+'
+Closing bracket
+If we find a > bracket, assume the HTML tag ends here
+>
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Relative link to text file
+
+(?<=(?:href|src)=')((?:\.\.[\\/])?(?:[-A-Z0-9+&@%=~_$!:,.]++[\\/])*+[-A-Z0-9+&@%=~_$!:,.]+\.(?:html?|xhtml|asp|as[pach]x|php|js(on|p)?|css|p[ly]|rbx?|erb|rss|xml|xs[dl]?|xslt))
+TRUE
+FALSE
+1
+2
+\1
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Relative link to other file
+
+(?<=(?:href|src)=')((?:\.\.[\\/])?(?:[-A-Z0-9+&@%=~_$!:,.]++[\\/])*+[-A-Z0-9+&@%=~_$!:,.]++)
+TRUE
+FALSE
+1
+1
+\1
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+URL
+
+\b(?:(?:https?|ftp|file)://|www\.|ftp\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])
+TRUE
+FALSE
+2
+1
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+email address
+
+\b(?:mailto:)?[A-Z0-9._%+-]++@(?:[A-Z0-9-]++\.)++[A-Z]{2,6}+\b
+TRUE
+FALSE
+2
+3
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Another tag
+Though not valid in HTML, we permit < tags to keep syntax coloring consistent while the file is being edited
+(?=<)
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Doctype
+1
+11
+FALSE
+0
+
+
+2
+Closing >
+
+>
+FALSE
+FALSE
+11
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+doctype
+html
+FALSE
+
+URL
+
+\b(?:(?:https?|ftp|file)://|www\.|ftp\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])
+TRUE
+FALSE
+2
+1
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Script Tag
+1
+7
+FALSE
+0
+
+
+7
+Closing bracket
+Script starts when the tag closes
+>\r?\n?
+FALSE
+FALSE
+6
+0
+
+
+9
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+HTML Attribute
+
+\s++[a-zA-Z]++
+FALSE
+FALSE
+7
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+VBScript indicator
+Attribute indicating the script is written in VBScript; switch to VBScript Tag subscheme which in turn will switch to the VBScript subscheme
+=(["']?)[^'"\s]*VBScript[^'"\s]*(\1)
+TRUE
+FALSE
+8
+0
+
+
+11
+FALSE
+FALSE
+FALSE
+FALSE
+1
+2
+
+html
+FALSE
+
+Double-quoted value
+Attribute value enclosed by double quotes.  Quote character can be escaped with \
+=\s*+(")
+FALSE
+FALSE
+8
+0
+
+
+5
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+DQattr
+html
+FALSE
+"
+Single-quoted value
+Attribute value enclosed by single quotes.  Quote character can be escaped with \
+=\s*+(')
+FALSE
+FALSE
+8
+0
+
+
+6
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+SQattr
+html
+FALSE
+'
+Value
+Attribute value that is not quoted
+=\s*+[A-Za-z0-9_]++
+FALSE
+FALSE
+8
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Another tag
+Another HTML tag starts before the script tag is properly closed; assume the script hasn't been written yet
+(?=<)
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+JavaScript
+1
+0
+FALSE
+32
+//
+
+18
+Closing tag
+End of script
+</script>
+TRUE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+TRUE
+
+0
+script
+html
+FALSE
+<script>
+HTML comment
+Ignore HTML comment tags, which are typically used to enclose the script to hide them from older browsers
+<!--|-->
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Single-line comment
+
+//.*?(?=</script>|$)
+FALSE
+FALSE
+9
+0
+
+
+0
+TRUE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Multi-line comment
+
+/\*
+FALSE
+TRUE
+9
+0
+
+
+10
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+/**/
+code
+FALSE
+*/
+Opening bracket
+
+{
+FALSE
+FALSE
+25
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+{}
+code
+FALSE
+}
+Closing bracket
+
+}
+FALSE
+FALSE
+25
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+{}
+code
+FALSE
+{
+Opening bracket
+
+\[
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+[]
+code
+FALSE
+]
+Closing bracket
+
+]
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+[]
+code
+FALSE
+[
+Opening parenthesis
+
+\(
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+()
+code
+FALSE
+)
+Closing parenthesis
+
+\)
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+()
+code
+FALSE
+(
+Double-quoted string
+Closing quote optional so an unclosed string is still colored as a string
+(")[^"\\\r\n]*+(?:\\(?:.|$)[^"\\\r\n]*+)*+(")?
+FALSE
+FALSE
+17
+0
+
+
+0
+TRUE
+FALSE
+FALSE
+FALSE
+1
+2
+
+code
+FALSE
+"
+Single-quoted string
+Closing quote optional so an unclosed string is still colored as a string
+(')[^'\\\r\n]*+(?:\\(?:.|$)[^'\\\r\n]*+)*+(')?
+FALSE
+FALSE
+17
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+1
+2
+
+code
+FALSE
+
+Hexadecimal number
+
+\b0x[0-9A-F]++\b
+TRUE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Integer
+
+\b[0-9]++(?:ul?+|lu?+)?+\b
+TRUE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Float
+
+(?:\b[0-9]++\.[0-9]*+|\B\.[0-9]++)(?:[Ee][+\-]?+[0-9]++)?+|\b[0-9]++[Ee][+\-]?+[0-9]++
+FALSE
+FALSE
+20
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Reserved words
+
+\b(?>abstract|boolean|break|byte|case|catch|char|class|const|continue|debugger|default|delete|do(?:uble)?|else|enum|export|extends|false|final(?:ly)?|float|for|function|goto|if|implements|import|in(?:stanceof|t(?:erface)?)?|long|native|new|null|package|private|protected|public|return|short|static|super|switch|synchronized|this|throws?|transient|true|try|typeof|var|void|volatile|while|with)\b
+FALSE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Regex
+A / that is preceded by a (, =, or : starts a regular expression.  The next unescaped / terminates the regex.
+(?<=[(=:](?:\s*+!)?+\s*+)(/)
+FALSE
+FALSE
+18
+0
+
+
+13
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+/regex/
+code
+FALSE
+/
+Operator
+
+[-+*/=<>%&^|!~?]
+FALSE
+FALSE
+23
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+JavaScript comment
+1
+9
+FALSE
+32
+//
+
+1
+Closing */
+
+\*/
+FALSE
+FALSE
+9
+0
+
+
+9
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+/**/
+code
+FALSE
+/*
+VBScript Tag
+1
+7
+FALSE
+0
+
+
+5
+Closing bracket
+Script starts when the tag closes
+>\r?\n?
+FALSE
+FALSE
+6
+0
+
+
+12
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Double-quoted value
+Attribute value enclosed by double quotes.  Quote character can be escaped with \
+=\s*+(")
+FALSE
+FALSE
+8
+0
+
+
+5
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+DQattr
+html
+FALSE
+"
+Single-quoted value
+Attribute value enclosed by single quotes.  Quote character can be escaped with \
+=\s*+(')
+FALSE
+FALSE
+8
+0
+
+
+6
+FALSE
+FALSE
+FALSE
+FALSE
+1
+
+SQattr
+html
+FALSE
+'
+Value
+Attribute value that is not quoted
+=\s*+[A-Za-z0-9_]++
+FALSE
+FALSE
+8
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Another tag
+Another HTML tag starts before the script tag is properly closed; assume the script hasn't been written yet
+(?=<)
+FALSE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+VBScript
+1
+0
+FALSE
+32
+'
+
+15
+Closing tag
+End of script
+</script>
+TRUE
+FALSE
+6
+0
+
+
+2
+FALSE
+FALSE
+FALSE
+TRUE
+
+0
+script
+html
+FALSE
+<script>
+HTML comment
+Ignore HTML comment tags, which are typically used to enclose the script to hide them from older browsers
+<!--|-->
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+String
+The closing " is optional, so unterminated strings are colored as well
+"[^"\r\n]*+(?:"c?)?
+TRUE
+FALSE
+17
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Date
+Closing # is optional, so unterminated dates are colored as well
+#[^#\r\n]*+#?
+FALSE
+FALSE
+21
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Comment
+
+'.*?(?=</script>|$)
+FALSE
+FALSE
+9
+0
+
+
+0
+TRUE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Comment
+
+\brem\b.*?(?=</script>|$)
+TRUE
+FALSE
+9
+0
+
+
+0
+TRUE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Reserved word
+
+(?<![.\w])(?>And|Call|Case|Class|Const|Default|Dim|Do|Each|Else(?:If)?|Empty|End|Eqv|Erase|Error|Execute|Exit|False|For|Function|I[fns]|Imp|Loop|Mod|New|Next|Not(?:hing)?|Null|O[rn]|Option +Explicit|Private|Property +[GLS]et|Public|Randomize|ReDim|Resume|Select|Set|Step|Stop|Sub|Then|To|True|Until|Wend|While|With|Xor)(?![.\w])
+TRUE
+FALSE
+12
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Built-in functions
+
+(?<![.\w])(?>Abs|andTrim|Array|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date(?:Add|Diff|Part|Serial|Value)?|Day|DerivedMath|Escape|Eval|Exp|Filter|Fix|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr(?:Rev)?|Int|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Join|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|Maths|Mid|Minute|Month(?:Name)?|MsgBox|Now|Oct|Replace|RGB|Right|Rnd|Round|RTrim|ScriptEngine(?:BuildVersion|MajorVersion|MinorVersion)?|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time(?:r|Serial|Value)?|TypeName|UBound|UCase|Unescape|VarType|Weekday(?:Name)?|Year)(?![.\w])
+TRUE
+FALSE
+13
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Integer
+
+\b[0-9]++[%&SIL]?
+TRUE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Real
+
+\b(?:[0-9]++)?\.?[0-9]+(?:e[+-]?[0-9]+)?[@!#FRD]?
+FALSE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Hex number
+
+&H[0-9A-F]++[SIL%&]?
+TRUE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Octal number
+
+&O[0-7]++[SIL%&]?
+TRUE
+FALSE
+19
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Operator
+
+[*+-/\^&<=>]++
+FALSE
+FALSE
+23
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Opening parenthesis
+
+\(
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+0
+
+()
+code
+FALSE
+)
+Closing parenthesis
+
+\)
+FALSE
+FALSE
+24
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+()
+code
+FALSE
+(
+Javascript regex
+1
+18
+FALSE
+0
+
+
+5
+Escaped anything
+
+\\.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Regex end
+Include the regex modifier as part of closing bracket. Toggle back on end of line too.
+/[igm]*|$
+FALSE
+FALSE
+18
+0
+
+
+1
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+/regex/
+code
+FALSE
+
+Character class
+
+7
+# Javascript Character class - Rev 20101210_2200
+(\[\^?)                               # $1: Character class opening delim.
+\]?                                   # Unescaped ] allowed if first char.
+[^\]\r\n\\]*(?:\\.[^\]\r\n\\]*)*      # Non-], escaped-anything.
+( \]                                  # $2: Character class closing delimiter.
+  (?:(?:[?*+]|\{\d+(?:,\d*)?\})\??)?  # Optional char class quantifier.
+)?                                    # End $2. Closing delimiter.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+1
+2
+
+
+TRUE
+]
+Group open
+
+6
+# Javascript Group open - Rev 20101210_2200
+\(       # Regex group opening "(" delimiter.
+(?:      # Optional group type specification.
+  \?     # All special group types start with a "?".
+  [:=!]  # Types specified with a single character.
+)?       # End Optional group type specification.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+0
+
+(regex)
+regex
+TRUE
+
+Group close
+
+3
+# Javascript Group close - Rev 20101210_2200
+\)                                  # Regex group closing ")" delimiter
+(?:(?:[?*+]|\{\d+(?:,\d*)?\})\??)?  # Optional group quantifier.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+
+0
+(regex)
+regex
+TRUE
+
+HTML regex
+1
+18
+FALSE
+0
+
+
+7
+HTML Regex end
+
+</(\w++)[ \t]*+>
+FALSE
+FALSE
+6
+0
+
+
+1
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+\L1
+html
+FALSE
+
+Escaped anything
+Anything except an HTML tag delimiter
+\\[^<>]
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+HTML tag
+
+<\w+
+FALSE
+FALSE
+0
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+<!-->
+
+FALSE
+
+Comment group
+
+(\(\?\#)[^)\r\n]*+(\))?+
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+1
+2
+
+
+FALSE
+
+Character class (pcre)
+
+11
+# PCRE Character class - Rev 20101215_1800
+(\[\^?+)                                     # $1: Character class (CC) opening delim.
+\]?+                                         # Unescaped ] allowed if first char.
+[^[\]\r\n\\]*+(?:\\.[^[\]\r\n\\]*+)*+        # Non-[], escaped-anything (normal*).
+(?: \[                                       # Allow a non-escaped "[", and it
+  (?::\^?+\w++:\])?+                         # may be embedded POSIX char class.
+  [^[\]\r\n\\]*+(?:\\.[^[\]\r\n\\]*+)*+      # More non-[], escaped-anything.
+)*+                                          # Unroll-the-loop (special normal*)*
+( \]                                         # $2: CC closing delim & quantifier.
+  (?:(?:[?*+]|\{\d++(?:,\d*+)?+\})[+?]?+)?+  # Optional CC quantifier.
+)?+                                          # End $2: CC closing delim & quantifier.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+1
+2
+
+
+TRUE
+
+Group open (pcre)
+
+35
+# PCRE Group open (not 'x' mode) - Rev 20101215_1800
+\(                         # Regex group opening "(" delimiter.
+(                          # $1: Optional group type specification.
+  \?                       # All special group types start with a "?".
+  (?:                      # Non-capture group for group types alternatives.
+    [:|>=!]                # Types specified with a single character.
+  | &gt;                   # Atomic group (HTML entity).
+  | &lt;[=!]               # Look behind (HTML entity).
+  | <[=!]                  # Look behind (Note 1).
+  | P?&lt;\w+&gt;          # Named capture group (Python/Perl) (HTML entity).
+  | P?<\w+>                # Named capture group (Python/Perl) (Note 1).
+  | '\w+'                  # Named capturing group (Perl).
+  | (?=<span[^>]*>&\#40;)  # Previously-marked nested generic conditional.
+  | \(                     # Begin conditional group with "(" delimiter.
+    (?:                    # Non-capture group for conditional alternatives.
+      [+\-]?\d+            # Absolute/+-relative reference condition.
+    | &lt;\w+&gt;          # Named reference condition (Perl) (HTML entity).
+    | <\w+>                # Named reference condition (Perl) (Note 1).
+    | '\w+'                # Named reference condition (Perl).
+    | R&amp;\w+            # specific recursion condition (HTML entity).
+    | R&\w+                # specific recursion condition (Note 1).
+    | \w+                  # Named reference condition (PCRE)
+    ) \)                   # End conditional group with ")" delimiter.
+  | (?:                    # Group types that must have zero content.
+      R                    # Recurse whole pattern.
+    | (?:-?[iJmsUx])+      # Flag modifiers (PCRE).
+    | [+\-]?\d+            # Call subpattern by absolute/+-relative number.
+    | &amp;\w+             # Call subpattern by name (Perl) (HTML entity).
+    | &\w+                 # Call subpattern by name (Perl) (Note 1).
+    | P&gt;\w+             # Call subpattern by name (Python) (HTML entity).
+    | P>\w+                # Call subpattern by name (Python) (Note 1).
+    | P=\w+                # Reference by name (Python).
+    )(?=\))                # Ensure this group type has no contents.
+  )                        # End non-capture group of group types alternatives.
+)?                         # End $1: Optional group type specification.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+0
+
+(regex)
+regex
+TRUE
+
+Group close (pcre)
+
+4
+# PCRE Group close - Rev 20101215_1900
+\)                                         # Regex group closing ")" delimiter
+(?:(?:[?*+]|\{\d++(?:,\d*+)?+\})[+?]?+)?+  # Optional group quantifier.
+
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+
+0
+(regex)
+regex
+TRUE
+
+HTML regex_x
+1
+18
+FALSE
+0
+
+
+7
+HTML Regex end
+
+</(\w++)[ \t]*+>
+FALSE
+FALSE
+6
+0
+
+
+1
+FALSE
+FALSE
+FALSE
+FALSE
+
+0
+\L1
+html
+FALSE
+
+Escaped anything
+Anything except an HTML tag delimiter
+\\[^<>]
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Comment
+Stop comment on end of line or on start of any HTML tag (note that < and > are reserved as tag delimiters in HTML - should never occur in the HTMLified regex)
+#[^<\r\n]*+
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+Comment group
+
+(\(\?\#)[^)\r\n]*+(\))?+
+FALSE
+FALSE
+9
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+1
+2
+
+
+FALSE
+
+Character class (pcre)
+
+11
+# PCRE Character class - Rev 20101215_1800
+(\[\^?+)                                     # $1: Character class (CC) opening delim.
+\]?+                                         # Unescaped ] allowed if first char.
+[^[\]\r\n\\]*+(?:\\.[^[\]\r\n\\]*+)*+        # Non-[], escaped-anything (normal*).
+(?: \[                                       # Allow a non-escaped "[", and it
+  (?::\^?+\w++:\])?+                         # may be embedded POSIX char class.
+  [^[\]\r\n\\]*+(?:\\.[^[\]\r\n\\]*+)*+      # More non-[], escaped-anything.
+)*+                                          # Unroll-the-loop (special normal*)*
+( \]                                         # $2: CC closing delim & quantifier.
+  (?:(?:[?*+]|\{\d++(?:,\d*+)?+\})[+?]?+)?+  # Optional CC quantifier.
+)?+                                          # End $2: CC closing delim & quantifier.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+1
+2
+
+
+TRUE
+
+Group open (pcre)
+
+35
+# PCRE Group open (not 'x' mode) - Rev 20101215_1800
+\(                         # Regex group opening "(" delimiter.
+(                          # $1: Optional group type specification.
+  \?                       # All special group types start with a "?".
+  (?:                      # Non-capture group for group types alternatives.
+    [:|>=!]                # Types specified with a single character.
+  | &gt;                   # Atomic group (HTML entity).
+  | &lt;[=!]               # Look behind (HTML entity).
+  | <[=!]                  # Look behind (Note 1).
+  | P?&lt;\w+&gt;          # Named capture group (Python/Perl) (HTML entity).
+  | P?<\w+>                # Named capture group (Python/Perl) (Note 1).
+  | '\w+'                  # Named capturing group (Perl).
+  | (?=<span[^>]*>&\#40;)  # Previously-marked nested generic conditional.
+  | \(                     # Begin conditional group with "(" delimiter.
+    (?:                    # Non-capture group for conditional alternatives.
+      [+\-]?\d+            # Absolute/+-relative reference condition.
+    | &lt;\w+&gt;          # Named reference condition (Perl) (HTML entity).
+    | <\w+>                # Named reference condition (Perl) (Note 1).
+    | '\w+'                # Named reference condition (Perl).
+    | R&amp;\w+            # specific recursion condition (HTML entity).
+    | R&\w+                # specific recursion condition (Note 1).
+    | \w+                  # Named reference condition (PCRE)
+    ) \)                   # End conditional group with ")" delimiter.
+  | (?:                    # Group types that must have zero content.
+      R                    # Recurse whole pattern.
+    | (?:-?[iJmsUx])+      # Flag modifiers (PCRE).
+    | [+\-]?\d+            # Call subpattern by absolute/+-relative number.
+    | &amp;\w+             # Call subpattern by name (Perl) (HTML entity).
+    | &\w+                 # Call subpattern by name (Perl) (Note 1).
+    | P&gt;\w+             # Call subpattern by name (Python) (HTML entity).
+    | P>\w+                # Call subpattern by name (Python) (Note 1).
+    | P=\w+                # Reference by name (Python).
+    )(?=\))                # Ensure this group type has no contents.
+  )                        # End non-capture group of group types alternatives.
+)?                         # End $1: Optional group type specification.
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+0
+
+(regex)
+regex
+TRUE
+
+Group close (pcre)
+
+4
+# PCRE Group close - Rev 20101215_1900
+\)                                         # Regex group closing ")" delimiter
+(?:(?:[?*+]|\{\d++(?:,\d*+)?+\})[+?]?+)?+  # Optional group quantifier.
+
+FALSE
+FALSE
+18
+0
+
+
+0
+FALSE
+TRUE
+FALSE
+FALSE
+
+0
+(regex)
+regex
+TRUE
+
+WebHub
+0
+3
+FALSE
+0
+<!---
+-->
+14
+whteko tag incl <>
+
+<(/)?whteko([^>])*>
+FALSE
+FALSE
+33
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdroplet incl <>
+
+<(/)?whdroplet([^>])*>
+FALSE
+FALSE
+34
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whsketch incl <>
+
+<(/)?whsketch([^>])*>
+FALSE
+FALSE
+10
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettingslist
+
+<(/)?whpagesettingslist([^>])*>
+FALSE
+FALSE
+36
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpagesettings
+
+<(/)?whpagesettings([^>])*
+FALSE
+FALSE
+36
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whpage
+
+<(/)?whpage([^>])*>
+FALSE
+FALSE
+26
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdoc
+
+<(/)?whdoc([^>])*>
+FALSE
+FALSE
+10
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whdesign
+
+<(/)?whdesign([^>])*>
+FALSE
+FALSE
+10
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whremote
+
+<(/)?whremote([^>])*>
+FALSE
+FALSE
+25
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whprep
+
+<(/)?whprep([^>])*>
+FALSE
+FALSE
+21
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+/>
+
+FALSE
+
+whoutput incl <>
+
+<(/)?whoutput([^>])*
+FALSE
+FALSE
+21
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whmacros
+
+<(/)?whmacros>
+FALSE
+FALSE
+35
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whtranslations
+
+<(/)?whtranslations>
+FALSE
+FALSE
+37
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+whtranslation
+
+<(/)?whtranslation([^>])*>
+FALSE
+FALSE
+37
+0
+
+
+0
+FALSE
+FALSE
+TRUE
+FALSE
+
+
+/>
+
+FALSE
+
+Parentild
+0
+0
+FALSE
+0
+<!---
+-->
+3
+WebHub Command
+
+(ACTIONR?|ANCHOR(MODIFY)?|APPSETTING|ASSERTPROTOCOL|ASSIGNED|BOUNCE|CHECK|CLEARLOCALVAR|CLEAR|CLOSE|CMD(HAS)?|CODE64STRING|COOKIE(CLEAR)?|CRUNCHKEYS|DEC|DELKEYS|DYN(CHUNK|ACTION|JUMP)|EXPIRES|FIELD|FLUSH|FOR|GOR?|HEADER|HIDER?|IF(DYNAMIC|INACTIVEFORSEC|STATIC|NOT(BlankSV|INDW)?)?|INC(LUDE)?|ISWEBROBOTREQUEST|JUMPBACK|JUMPR?|LIT|MAILTO|REQUIRESMATCH|MATCH|NOMATCH|NOTASSIGNED|PAGESETTING|PAGE|PARAMS|POPPAGE|PUSH(PRIOR|THIS)|REQUIRES|SENDFILE|SET(PROLOGUETYPE|HTTPSTATUS|LOCALVAR)?|SESSION(HOUSECLEAN)?|SHELL|SOURCE|START|STATICJUMP|SUMMARY|TOGGLE)\|
+TRUE
+FALSE
+40
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+WebHub INPUT Command
+
+INPUT(CHECKBOX|DEFAULT|FILE|HIDDEN|IMAGE|PASSWORD|RADIO|RESET|SELECT(RADIO|CHECKBOX)?|SUBMIT|TEXT(AREA)?)\|
+TRUE
+FALSE
+40
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
+MacroStart
+
+\(~
+FALSE
+FALSE
+41
+0
+
+
+0
+FALSE
+FALSE
+FALSE
+FALSE
+
+
+
+
+FALSE
+
