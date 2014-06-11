@@ -38,7 +38,6 @@ begin
     pTrg := Addr(Result[1]);
     res.Read(pTrg^, res.Size);
     StripUTF8BOM(Result);
-    // ucString
   finally
     FreeAndNil(res);
   end;
@@ -134,7 +133,7 @@ begin
       RenameFile(TargetFilespec, BakFilespec);
     end;
     LatestStr8 := GetUTF8Resource('Resource_Colors_Ini');
-    UTF8StringWriteToFile(TargetFilespec, LatestStr8);
+    StringWriteToFile(TargetFilespec, AnsiString(LatestStr8));
   end;
 
   CSExitMethod(nil, cFn);
