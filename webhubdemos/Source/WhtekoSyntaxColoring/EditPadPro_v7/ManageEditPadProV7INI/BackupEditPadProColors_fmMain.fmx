@@ -1,0 +1,42 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 444
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop, iPhone, iPad]
+  DesignerMobile = False
+  DesignerWidth = 0
+  DesignerHeight = 0
+  DesignerDeviceName = ''
+  DesignerOrientation = 0
+  DesignerOSVersion = ''
+  object Button1: TButton
+    Height = 41.000000000000000000
+    Position.X = 16.000000000000000000
+    Position.Y = 24.000000000000000000
+    TabOrder = 1
+    Text = 'Load from EditPadProV7.ini'
+    Width = 193.000000000000000000
+    OnClick = Button1Click
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    Height = 345.000000000000000000
+    Position.X = 232.000000000000000000
+    Position.Y = 24.000000000000000000
+    TabOrder = 2
+    Width = 369.000000000000000000
+  end
+  object Button2: TButton
+    Height = 33.000000000000000000
+    Position.X = 232.000000000000000000
+    Position.Y = 384.000000000000000000
+    TabOrder = 4
+    Text = 'Preserve EditPad_Colors_Backup.ini'
+    Width = 289.000000000000000000
+    OnClick = Button2Click
+  end
+end
