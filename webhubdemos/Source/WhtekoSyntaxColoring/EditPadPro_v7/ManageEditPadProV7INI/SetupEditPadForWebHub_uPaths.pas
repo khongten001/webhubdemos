@@ -36,7 +36,7 @@ const
   cRegistryKeyPath = 'eppfile\shell\Open\command';
 begin
   CSEnterMethod(nil, cFn);
-  Result := ''; // %ProgramFiles(x86)%JGsoft\EditPad Plus v7\
+  Result := '';
   try
     try
       Reg := TRegistry.Create;
@@ -66,9 +66,12 @@ begin
   end;
 
   if Result = '' then
-    Result := IncludeTrailingPathDelimiter(
-      GetEnvironmentVariable('ProgramFiles(x86)')) + 'JGsoft' + PathDelim +
-      'EditPad Plus v7';
+  begin
+    // %ProgramFiles(x86)%JGsoft\EditPad Plus v7\    ???
+    Result :=
+      IncludeTrailingPathDelimiter(GetEnvironmentVariable('ProgramFiles')) +
+      'Just Great Software' + PathDelim + 'EditPad Pro 7';
+  end;
 
   CSSend('Result', Result);
   CSExitMethod(nil, cFn);
