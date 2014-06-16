@@ -4,7 +4,8 @@ unit SetupEditPadForWebHub_uDownload;
 
 interface
 
-function InstallLatestWebHubFiles: Boolean;
+function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagColor
+  : Boolean): Boolean;
 
 function WGetFileNavigation: UTF8String;
 function WGetSyntaxScheme: UTF8String;
@@ -85,7 +86,8 @@ http://www.editpadpro.com/cgi-bin/fnsdl2.pl?id=72
   Result := GetUTF8Resource('Resource_JGFNS');
 end;
 
-function InstallLatestWebHubFiles: Boolean;
+function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagColor
+  : Boolean): Boolean;
 const cFn = 'InstallLatestWebHubFiles';
 var
   IniFilespec: string;
@@ -98,42 +100,51 @@ begin
   Result := FileExists(IniFilespec);
   if Result then
   begin
-    LatestStr8 := WGetSyntaxScheme;
-    TargetFilespec := IncludeTrailingPathDelimiter(
-      EditPadPlusProgramInstallRoot) + 'WebHub_Syntax0214.jgcscs';
-    CSSend('TargetFilespec', TargetFilespec);
-    //CSSend('LatestStr8', Copy(string(LatestStr8), 1, 24));
-    if FileExists(TargetFilespec) then
+    if FlagSyntax then
     begin
-      BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
-      SysUtils.DeleteFile(BakFilespec);
-      RenameFile(TargetFilespec, BakFilespec);
+      LatestStr8 := WGetSyntaxScheme;
+      TargetFilespec := IncludeTrailingPathDelimiter(
+        EditPadPlusProgramInstallRoot) + 'WebHub_Syntax0214.jgcscs';
+      CSSend('TargetFilespec', TargetFilespec);
+      //CSSend('LatestStr8', Copy(string(LatestStr8), 1, 24));
+      if FileExists(TargetFilespec) then
+      begin
+        BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
+        SysUtils.DeleteFile(BakFilespec);
+        RenameFile(TargetFilespec, BakFilespec);
+      end;
+      UTF8StringWriteToFile(TargetFilespec, LatestStr8);
     end;
-    UTF8StringWriteToFile(TargetFilespec, LatestStr8);
 
-    TargetFilespec := IncludeTrailingPathDelimiter(
-      EditPadPlusProgramInstallRoot) + 'WebHub-FileNavigation.jgfns';
-    CSSend('TargetFilespec', TargetFilespec);
-    if FileExists(TargetFilespec) then
+    if FlagFileNav then
     begin
-      BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
-      SysUtils.DeleteFile(BakFilespec);
-      RenameFile(TargetFilespec, BakFilespec);
+      TargetFilespec := IncludeTrailingPathDelimiter(
+        EditPadPlusProgramInstallRoot) + 'WebHub-FileNavigation.jgfns';
+      CSSend('TargetFilespec', TargetFilespec);
+      if FileExists(TargetFilespec) then
+      begin
+        BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
+        SysUtils.DeleteFile(BakFilespec);
+        RenameFile(TargetFilespec, BakFilespec);
+      end;
+      LatestStr8 := WGetFileNavigation;
+      UTF8StringWriteToFile(TargetFilespec, LatestStr8);
     end;
-    LatestStr8 := WGetFileNavigation;
-    UTF8StringWriteToFile(TargetFilespec, LatestStr8);
 
-    TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
-      cHREFToolsColorsIniFilespec;
-    CSSend('TargetFilespec', TargetFilespec);
-    if FileExists(TargetFilespec) then
+    if FlagColor then
     begin
-      BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
-      SysUtils.DeleteFile(BakFilespec);
-      RenameFile(TargetFilespec, BakFilespec);
+      TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+        cHREFToolsColorsIniFilespec;
+      CSSend('TargetFilespec', TargetFilespec);
+      if FileExists(TargetFilespec) then
+      begin
+        BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
+        SysUtils.DeleteFile(BakFilespec);
+        RenameFile(TargetFilespec, BakFilespec);
+      end;
+      LatestStr8 := GetUTF8Resource('Resource_Colors_Ini');
+      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8));
     end;
-    LatestStr8 := GetUTF8Resource('Resource_Colors_Ini');
-    StringWriteToFile(TargetFilespec, AnsiString(LatestStr8));
   end;
 
   CSExitMethod(nil, cFn);

@@ -10,6 +10,9 @@ type
   TForm2 = class(TForm)
     Button1: TButton;
     Label1: TLabel;
+    cbSyntax: TCheckBox;
+    cbFileNav: TCheckBox;
+    cbColor: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
   private
@@ -32,8 +35,10 @@ uses
 procedure TForm2.Button1Click(Sender: TObject);
 begin
   Label1.Text := '';
-  if InstallLatestWebHubFiles then
+  if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
+    cbColor.IsChecked) then
   begin
+    if cbColor.IsChecked then
     if WriteHREFToolsColorsToEditPadINI then
       Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.'
     else
@@ -46,6 +51,9 @@ end;
 procedure TForm2.FormCreate(Sender: TObject);
 begin
   Label1.Text := '';
+  cbSyntax.IsChecked := True;
+  cbFileNav.IsChecked := True;
+  cbColor.IsChecked := True;
 end;
 
 end.
