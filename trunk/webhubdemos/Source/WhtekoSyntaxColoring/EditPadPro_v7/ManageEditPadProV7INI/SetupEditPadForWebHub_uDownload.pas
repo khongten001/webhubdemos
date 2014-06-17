@@ -4,23 +4,23 @@ unit SetupEditPadForWebHub_uDownload;
 
 interface
 
+function IsWHTekoFileTypeInstalled: Boolean;
+
 function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagColor
   : Boolean): Boolean;
 
+function InstallWebHubFileType: Boolean;
+
 function WGetFileNavigation: UTF8String;
 function WGetSyntaxScheme: UTF8String;
+
 
 implementation
 
 uses
   Classes, SysUtils,
-  //Registry,
-  Windows,
+  Windows, IniFiles,
   ucCodeSiteInterface, ucString, ucLogFil, SetupEditPadForWebHub_uPaths;
-
-//const
-//  cUserAgent = 'HREF Tools Software Installer';
-//  cURLStart = 'http://www.editpadpro.com/cgi-bin';
 
 function GetUTF8Resource(const inResName: string): UTF8String;
 const cFn = 'GetUTF8Resource';
@@ -50,23 +50,7 @@ function WGetSyntaxScheme: UTF8String;
 const cFn = 'WGetSyntaxScheme';
 begin
   CSEnterMethod(nil, cFn);
-(*
-http://www.editpadpro.com/cgi-bin/cscslist4.pl?focus=251
-http://www.editpadpro.com/cgi-bin/cscsdl4.pl?id=251
-*)
 
-  (*Result := HTTPSGet(cURLStart + '/cscsdl4.pl?id=251',
-    ErrorText, cUserAgent,
-    cURLStart + '/cscslist4.pl?focus=251', True, True);
-  CSSend('Result', Result);
-
-  SplitString(Result, sLineBreak + sLineBreak, Headers, Result);
-  if ErrorText <> '' then
-  begin
-    CSSendError(ErrorText);
-    CSSend('HTTP Headers', Headers);
-  end;
-  *)
   Result := GetUTF8Resource('Resource_JGCSCS');
   //LogToCodeSiteKeepCRLF('Result', Copy(Result, 1, 1024));
   CSExitMethod(nil, cFn);
@@ -74,15 +58,6 @@ end;
 
 function WGetFileNavigation: UTF8String;
 begin
-(*
-http://www.editpadpro.com/cgi-bin/fnslist2.pl?focus=72
-http://www.editpadpro.com/cgi-bin/fnsdl2.pl?id=72
-*)
-
-  (*Result := HTTPSGet(cURLStart + '/fnsdl2.pl?id=72',
-    ErrorText, cUserAgent,
-    cURLStart + '/fnslist2.pl?focus=72', False, True);
-  *)
   Result := GetUTF8Resource('Resource_JGFNS');
 end;
 
@@ -143,10 +118,73 @@ begin
         RenameFile(TargetFilespec, BakFilespec);
       end;
       LatestStr8 := GetUTF8Resource('Resource_Colors_Ini');
-      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8));
+      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8)); // Ansi
     end;
   end;
 
+  CSExitMethod(nil, cFn);
+end;
+
+function IsWHTekoFileTypeInstalled: Boolean;
+const cFn = 'IsWHTekoFileTypeInstalled';
+var
+  IniFilespec: string;
+  ini: TIniFile;
+  FileTypeCount: Integer;
+  FileMasks: string;
+begin
+  CSEnterMethod(nil, cFn);
+  ini := nil;
+  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'EditPadPro7.ini';
+  Result := False;
+  if FileExists(IniFilespec) then
+  begin
+    try
+      ini := TIniFile.Create(IniFilespec);
+      FileTypeCount := 0;
+      while true do
+      begin
+        FileMasks := ini.ReadString('FT' + IntToStr(FileTypeCount), 'FileMasks',
+          '');
+        if FileMasks = '' then
+          break;
+        if Pos('whteko', FileMasks) > 0 then
+        begin
+          CSSend('FileTypeCount', S(FileTypeCount));
+          CSSend('FileMasks', FileMasks);
+          Result := True;
+          break;
+        end;
+        Inc(FileTypeCount);
+      end;
+    finally
+      FreeAndNil(ini);
+    end;
+  end;
+
+  CSSend('Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function InstallWebHubFileType: Boolean;
+const cFn = 'InstallWebHubFileType';
+var
+  IniFilespec: string;
+  FileType33: string;
+begin
+  CSEnterMethod(nil, cFn);
+
+  FileType33 := string(GetUTF8Resource('Resource_FT33'));
+  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'EditPadPro7.ini';
+  Result := FileExists(IniFilespec);
+  if Result then
+  begin
+    StringAppendToFile(IniFilespec,
+      AnsiString(sLineBreak + FileType33 + sLineBreak));
+  end;
+  CSSend('Result', S(Result));
   CSExitMethod(nil, cFn);
 end;
 

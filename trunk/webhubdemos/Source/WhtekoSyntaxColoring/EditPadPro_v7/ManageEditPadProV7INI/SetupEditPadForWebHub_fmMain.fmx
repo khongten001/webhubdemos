@@ -54,4 +54,13 @@ object Form2: TForm2
     Text = 'Install 3 Custom Color Sets'
     Width = 193.000000000000000000
   end
+  object Button2: TButton
+    Height = 22.000000000000000000
+    Position.X = 408.000000000000000000
+    Position.Y = 16.000000000000000000
+    TabOrder = 7
+    Text = ' ? '
+    Width = 40.000000000000000000
+    OnClick = Button2Click
+  end
 end
