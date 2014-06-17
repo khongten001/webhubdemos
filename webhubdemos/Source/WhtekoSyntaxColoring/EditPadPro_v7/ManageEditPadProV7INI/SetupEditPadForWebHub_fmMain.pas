@@ -13,8 +13,10 @@ type
     cbSyntax: TCheckBox;
     cbFileNav: TCheckBox;
     cbColor: TCheckBox;
+    Button2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -29,23 +31,52 @@ implementation
 {$R *.fmx}
 
 uses
+  ucVers,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors;
 
 
 procedure TForm2.Button1Click(Sender: TObject);
+var
+  bAllGood: Boolean;
 begin
   Label1.Text := '';
+  bAllGood := False;
   if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
     cbColor.IsChecked) then
   begin
     if cbColor.IsChecked then
-    if WriteHREFToolsColorsToEditPadINI then
-      Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.'
+    begin
+      if NOT WriteHREFToolsColorsToEditPadINI then
+        Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed'
+      else
+        bAllGood := True;
+    end
     else
-      Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed';
+      bAllGood := True;
+
+    if bAllGood and cbSyntax.IsChecked then
+    begin
+      if NOT IsWHTekoFileTypeInstalled then
+      begin
+        bAllGood := InstallWebHubFileType;
+      end;
+    end;
   end
   else
     Label1.Text := 'InstallLatestWebHubFiles failed';
+  if bAllGood then
+    Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.';
+
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+begin
+  ShowMessage(Self.Caption + sLineBreak +
+    'version ' + GetVersionDigits(False) + sLineBreak +
+    sLineBreak +
+    'Quickly configure EditPad Pro v7 for use with WebHub' + sLineBreak +
+    '(c) 2014 HREF Tools Corp.'
+  );
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
