@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{55CBA79F-B10E-4B36-8860-6E45B0BE0157}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="BackupEditPadProColors.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="SetupEditPadForWebHub.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="WHBridge2EditPad.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="BDS_DDELink.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="BDS_DDELink_GUI.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="BackupEditPadProColors">
+        <MSBuild Projects="BackupEditPadProColors.dproj"/>
+    </Target>
+    <Target Name="BackupEditPadProColors:Clean">
+        <MSBuild Projects="BackupEditPadProColors.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BackupEditPadProColors:Make">
+        <MSBuild Projects="BackupEditPadProColors.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="SetupEditPadForWebHub">
+        <MSBuild Projects="SetupEditPadForWebHub.dproj"/>
+    </Target>
+    <Target Name="SetupEditPadForWebHub:Clean">
+        <MSBuild Projects="SetupEditPadForWebHub.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="SetupEditPadForWebHub:Make">
+        <MSBuild Projects="SetupEditPadForWebHub.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="WHBridge2EditPad">
+        <MSBuild Projects="WHBridge2EditPad.dproj"/>
+    </Target>
+    <Target Name="WHBridge2EditPad:Clean">
+        <MSBuild Projects="WHBridge2EditPad.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="WHBridge2EditPad:Make">
+        <MSBuild Projects="WHBridge2EditPad.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BDS_DDELink">
+        <MSBuild Projects="BDS_DDELink.dproj"/>
+    </Target>
+    <Target Name="BDS_DDELink:Clean">
+        <MSBuild Projects="BDS_DDELink.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BDS_DDELink:Make">
+        <MSBuild Projects="BDS_DDELink.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="BDS_DDELink_GUI">
+        <MSBuild Projects="BDS_DDELink_GUI.dproj"/>
+    </Target>
+    <Target Name="BDS_DDELink_GUI:Clean">
+        <MSBuild Projects="BDS_DDELink_GUI.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="BDS_DDELink_GUI:Make">
+        <MSBuild Projects="BDS_DDELink_GUI.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="BackupEditPadProColors;SetupEditPadForWebHub;WHBridge2EditPad;BDS_DDELink;BDS_DDELink_GUI"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="BackupEditPadProColors:Clean;SetupEditPadForWebHub:Clean;WHBridge2EditPad:Clean;BDS_DDELink:Clean;BDS_DDELink_GUI:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="BackupEditPadProColors:Make;SetupEditPadForWebHub:Make;WHBridge2EditPad:Make;BDS_DDELink:Make;BDS_DDELink_GUI:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

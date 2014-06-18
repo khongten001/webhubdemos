@@ -1,14 +1,43 @@
 program WHBridge2EditPad;
 
+(*
+commandline
+%FILE% %TEMPFILE% %SELSTART% %SELSTOP% --line=%LINE%
+WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%"
+  --projectfile=%PROJECTFILE% --pos=%POS% "--linetext=%LINETEXT%"
+  --col=%COL% "--word=%WORD%"
+
+WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%" --projectfile=%PROJECTFILE% --pos=%POS% "--linetext=%LINETEXT%" --col=%COL% "--word=%WORD%"
+*)
+
 uses
-  EMemLeaks,
   FMX.Forms,
-  WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3};
+  ucCodeSiteInterface,
+  uCode,
+  WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
+  WHBridge2EditPad_uIni in 'WHBridge2EditPad_uIni.pas',
+  WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas';
 
 {$R *.res}
 
+var
+  ErrorText: string;
+
 begin
   Application.Initialize;
-  Application.CreateForm(TForm3, Form3);
+
+  CSSend('verb', ParamString('-verb'));
+
+  if ParamString('-verb') = 'FindDeclaration' then
+  begin
+    WrapFindInFiles(ErrorText);
+
+    if ErrorText <> '' then
+    begin
+      CSSendNote('"' + ErrorText + '"');
+      Application.CreateForm(TForm3, Form3);
+    end;
+  end;
+
   Application.Run;
 end.
