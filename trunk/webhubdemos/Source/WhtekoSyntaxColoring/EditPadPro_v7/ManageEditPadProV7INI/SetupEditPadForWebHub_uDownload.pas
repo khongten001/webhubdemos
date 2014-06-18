@@ -6,10 +6,11 @@ interface
 
 function IsWHTekoFileTypeInstalled: Boolean;
 
-function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagColor
-  : Boolean): Boolean;
+function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
+  FlagColor: Boolean): Boolean;
 
 function InstallWebHubFileType: Boolean;
+function InstallWHBridgeTools: Boolean;
 
 function WGetFileNavigation: UTF8String;
 function WGetSyntaxScheme: UTF8String;
@@ -61,8 +62,8 @@ begin
   Result := GetUTF8Resource('Resource_JGFNS');
 end;
 
-function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagColor
-  : Boolean): Boolean;
+function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
+  FlagColor: Boolean): Boolean;
 const cFn = 'InstallLatestWebHubFiles';
 var
   IniFilespec: string;
@@ -105,6 +106,21 @@ begin
       LatestStr8 := WGetFileNavigation;
       UTF8StringWriteToFile(TargetFilespec, LatestStr8);
     end;
+
+    {if FlagTools then
+    begin
+      TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+        cHREFToolsEPPToolsIniFilespec;
+      CSSend('TargetFilespec', TargetFilespec);
+      if FileExists(TargetFilespec) then
+      begin
+        BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
+        SysUtils.DeleteFile(BakFilespec);
+        RenameFile(TargetFilespec, BakFilespec);
+      end;
+      LatestStr8 := GetUTF8Resource('Resource_Tools_Ini');
+      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8)); // Ansi
+    end;}
 
     if FlagColor then
     begin
@@ -184,6 +200,56 @@ begin
     StringAppendToFile(IniFilespec,
       AnsiString(sLineBreak + FileType33 + sLineBreak));
   end;
+  CSSend('Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function InstallWHBridgeTools: Boolean;
+const cFn = 'InstallWHBridgeTools';
+var
+  IniFilespec: string;
+  WHBridgeTools: string;
+  iniTrg: TIniFile;
+  ACommandLine: string;
+  bContinue: Boolean;
+begin
+  CSEnterMethod(nil, cFn);
+
+  iniTrg := nil;
+  WHBridgeTools := string(GetUTF8Resource('Resource_Tools_Ini'));
+  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'EditPadPro7.ini';
+
+  bContinue := FileExists(IniFilespec);
+  if bContinue then
+  begin
+    try
+      iniTrg := TIniFile.Create(IniFilespec);
+      if iniTrg.SectionExists('Tool0') then
+      begin
+        ACommandLine := Lowercase(iniTrg.ReadString('Tool0', 'CommandLine', ''));
+        if Pos('whbridge2editpad.exe', ACommandLine) > 0 then
+          iniTrg.EraseSection('Tool0')
+        else
+          bContinue := False;
+      end;
+      if bContinue and iniTrg.SectionExists('Tool1') then
+      begin
+        ACommandLine := iniTrg.ReadString('Tool1', 'CommandLine', '');
+        if Pos('WHBridge', ACommandLine) > 0 then
+          iniTrg.EraseSection('Tool1')
+        else
+          bContinue := False;
+      end;
+    finally
+      FreeAndNil(iniTrg);
+    end;
+
+    if bContinue then
+      StringAppendToFile(IniFilespec,
+        AnsiString(sLineBreak + WHBridgeTools + sLineBreak));
+  end;
+  Result := bContinue;
   CSSend('Result', S(Result));
   CSExitMethod(nil, cFn);
 end;

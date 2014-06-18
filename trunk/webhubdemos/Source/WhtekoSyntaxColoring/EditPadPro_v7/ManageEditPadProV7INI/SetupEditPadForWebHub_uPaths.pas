@@ -4,6 +4,7 @@ interface
 
 const
   cHREFToolsColorsIniFilespec= 'HREFTools-Colors.ini';
+  cHREFToolsEPPToolsIniFilespec= 'HREFTools-EPPTools.ini';
 
 function EditPadPlusProgramInstallRoot: string;
 function EditPadPlusDataRoot: string;

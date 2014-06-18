@@ -14,6 +14,7 @@ type
     cbFileNav: TCheckBox;
     cbColor: TCheckBox;
     Button2: TButton;
+    cbTools: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -42,7 +43,7 @@ begin
   Label1.Text := '';
   bAllGood := False;
   if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
-    cbColor.IsChecked) then
+    cbTools.IsChecked, cbColor.IsChecked) then
   begin
     if cbColor.IsChecked then
     begin
@@ -60,6 +61,11 @@ begin
       begin
         bAllGood := InstallWebHubFileType;
       end;
+    end;
+
+    if bAllGood and cbTools.IsChecked then
+    begin
+      bAllGood := InstallWHBridgeTools;
     end;
   end
   else
@@ -85,6 +91,7 @@ begin
   cbSyntax.IsChecked := True;
   cbFileNav.IsChecked := True;
   cbColor.IsChecked := True;
+  cbTools.IsChecked := True;
 end;
 
 end.

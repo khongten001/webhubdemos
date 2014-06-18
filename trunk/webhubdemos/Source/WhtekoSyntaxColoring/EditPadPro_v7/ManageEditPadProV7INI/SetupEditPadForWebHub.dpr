@@ -3,6 +3,7 @@ program SetupEditPadForWebHub;
 {$R *.dres}
 
 uses
+  EMemLeaks,
   FMX.Forms,
   ucCodeSiteInterface in 'k:\webhub\tpack\ucCodeSiteInterface.pas',
   ucString in 'k:\webhub\tpack\ucString.pas',
