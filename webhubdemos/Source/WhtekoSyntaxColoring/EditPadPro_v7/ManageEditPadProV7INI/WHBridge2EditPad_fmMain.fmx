@@ -1,9 +1,9 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 480
-  ClientWidth = 640
+  Caption = 'WebHub Bridge to/from EditPad Pro'
+  ClientHeight = 431
+  ClientWidth = 624
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
@@ -23,12 +23,20 @@ object Form3: TForm3
     Width = 489.000000000000000000
   end
   object Button1: TButton
-    Height = 41.000000000000000000
+    Height = 73.000000000000000000
     Position.X = 64.000000000000000000
-    Position.Y = 280.000000000000000000
+    Position.Y = 312.000000000000000000
     TabOrder = 2
-    Text = 'Button1'
-    Width = 401.000000000000000000
+    Text = 'Process'
+    Width = 489.000000000000000000
     OnClick = Button1Click
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 5
+    Position.X = 64.000000000000000000
+    Position.Y = 264.000000000000000000
+    Width = 489.000000000000000000
+    Height = 22.000000000000000000
   end
 end
