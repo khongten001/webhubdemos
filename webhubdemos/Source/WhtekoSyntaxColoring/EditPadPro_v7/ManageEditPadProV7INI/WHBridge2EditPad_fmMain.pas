@@ -12,6 +12,7 @@ type
     Memo1: TMemo;
     Button1: TButton;
     Edit1: TEdit;
+    Label1: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -52,6 +53,8 @@ var
   I: Integer;
 begin
   CSEnterMethod(Self, cFn);
+
+  Label1.Text := ParamString('-verb');
 
   Memo1.Lines.Clear;
   Memo1.Font.Size := 11;

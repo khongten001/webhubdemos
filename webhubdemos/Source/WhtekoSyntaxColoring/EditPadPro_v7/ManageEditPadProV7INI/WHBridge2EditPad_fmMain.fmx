@@ -39,4 +39,11 @@ object Form3: TForm3
     Width = 489.000000000000000000
     Height = 22.000000000000000000
   end
+  object Label1: TLabel
+    Height = 17.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 24.000000000000000000
+    Text = 'Label1'
+    Width = 120.000000000000000000
+  end
 end

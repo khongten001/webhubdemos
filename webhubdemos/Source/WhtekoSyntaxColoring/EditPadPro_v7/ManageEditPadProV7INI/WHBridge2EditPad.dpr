@@ -2,10 +2,11 @@ program WHBridge2EditPad;
 
 (*
 commandline
-%FILE% %TEMPFILE% %SELSTART% %SELSTOP% --line=%LINE%
+ %TEMPFILE% %SELSTART% %SELSTOP% --line=%LINE%
 WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%"
-  --projectfile=%PROJECTFILE% --pos=%POS% "--linetext=%LINETEXT%"
-  --col=%COL% "--word=%WORD%"
+  --file=%FILE% --col=%COL% --pos=%POS%
+  --projectfile=%PROJECTFILE% "--linetext=%LINETEXT%"
+  "--word=%WORD%"
 
 WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%" --projectfile=%PROJECTFILE% --pos=%POS% "--linetext=%LINETEXT%" --col=%COL% "--word=%WORD%"
 *)
@@ -36,8 +37,8 @@ begin
     begin
       CSSendNote('"' + ErrorText + '"');
       Application.CreateForm(TForm3, Form3);
+      Application.Run;
     end;
   end;
 
-  Application.Run;
 end.
