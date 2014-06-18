@@ -9,20 +9,26 @@ WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%"
   "--word=%WORD%"
 
 WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%" --projectfile=%PROJECTFILE% --pos=%POS% "--linetext=%LINETEXT%" --col=%COL% "--word=%WORD%"
+
+WHBridge2EditPad.exe --verb=PopBookmark "--exe=%EPPFILE%"
+
 *)
 
 uses
+  EMemLeaks,
   FMX.Forms,
   ucCodeSiteInterface,
   uCode,
   WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
   WHBridge2EditPad_uIni in 'WHBridge2EditPad_uIni.pas',
-  WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas';
+  WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas',
+  WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas';
 
 {$R *.res}
 
 var
   ErrorText: string;
+  AFilespec, APosition: string;
 
 begin
   Application.Initialize;
@@ -37,8 +43,13 @@ begin
     begin
       CSSendNote('"' + ErrorText + '"');
       Application.CreateForm(TForm3, Form3);
-      Application.Run;
+  Application.Run;
     end;
+  end
+  else
+  if ParamString('-verb') = 'PopBookmark' then
+  begin
+    if StackPopLocation(AFilespec, APosition) then
+      LaunchEPPAgainst(AFilespec, APosition);
   end;
-
 end.

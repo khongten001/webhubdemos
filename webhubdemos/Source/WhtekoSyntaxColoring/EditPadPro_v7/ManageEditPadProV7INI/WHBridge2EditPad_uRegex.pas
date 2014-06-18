@@ -21,7 +21,7 @@ uses
   Classes, SysUtils, TypInfo,
   ldi.RegEx.RegularExpressions,
   uCode, ucShell, ucString, ucLogFil, ucCodeSiteInterface,
-  WHBridge2EditPad_uIni;
+  WHBridge2EditPad_uIni, WHBridge2EditPad_uBookmark;
 
 var
   FRegEx: TldiRegExMulti;
@@ -252,6 +252,7 @@ begin
 
       if Flag then
       begin
+        StackPushLocation(ParamString('-file'), ParamString('-pos'));
         Launch(ExtractFileName(ExeFile),
           MatchFilespec + ' /s' + IntToStr(StartSel) + '-' + IntToStr(EndSel),
           ExtractFilepath(ExeFile), True, 0,
