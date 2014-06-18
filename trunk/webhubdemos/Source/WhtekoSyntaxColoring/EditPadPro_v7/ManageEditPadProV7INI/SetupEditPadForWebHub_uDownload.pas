@@ -107,7 +107,7 @@ begin
       UTF8StringWriteToFile(TargetFilespec, LatestStr8);
     end;
 
-    {if FlagTools then
+    if FlagTools then
     begin
       TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
         cHREFToolsEPPToolsIniFilespec;
@@ -120,7 +120,7 @@ begin
       end;
       LatestStr8 := GetUTF8Resource('Resource_Tools_Ini');
       StringWriteToFile(TargetFilespec, AnsiString(LatestStr8)); // Ansi
-    end;}
+    end;
 
     if FlagColor then
     begin
