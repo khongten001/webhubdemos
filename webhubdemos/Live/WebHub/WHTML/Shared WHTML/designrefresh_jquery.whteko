@@ -1,0 +1,68 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" >
+
+<whdoc for="drDesignRefresh_jQuery">
+Use the drDesignRefresh_jQuery droplet in the header of any page to
+enable the "WebApp to be refreshed and the current page to be
+redisplayed" with a single mouse click on one of the html
+elements on the page, using the jQuery library.
+
+usage: 	(enclosed in parentils in the header of the web page requiring refresh)
+	PARAMS|drDesignRefresh_jQuery|elementtype,elementid,delay,pageid[,command]
+	eg. PARAMS|drDesignRefresh_jQuery|div,header,3000,( ~PageID~ )
+	eg. PARAMS|drDesignRefresh_jQuery|div,header,3000,( ~PageID~ ),( ~Command~ )
+	
+requirements:
+	jquery-2.0.3.js or newer must be in the ( ~mcJSDir~ ) (javascript resource) folder	
+	AppSetting.DesignRefreshEnabled=True
+	optional:
+		_DesignRefreshEnabled=False to prevent the design refresh feature
+		_no_jQuery to prevent the jQuery library from loading
+</whdoc>
+<whdroplet name="drDesignRefresh_jQuery__">
+<script type="text/javascript">
+var
+	refreshLocation,
+	refreshTimeout,
+	refreshElementId,
+	refreshURL;
+	//---
+	refreshLocation = '(~ACTION|(~DYN4~),(~ASSIGNED|DYN5|(~DYN5~)~)~)';
+	refreshTimeout = (~DYN3~);
+	refreshElementId = '(~DYN2~)';
+	refreshURL = '(~ACTIONR|remoterefresh~)';
+</script>
+<script type="text/javascript" src="(~mcJSDir~)webhub/wh-designrefresh.js"></script>
+</whdroplet>
+
+<whdroplet name="drDesignRefresh_jQuery">
+<!--- include jQuery if (design refresh is enabled by appsetting and not disabled by boolvar) or (_no_jQuery = false) -->
+(~CLEAR|tmp_JQueryReqd~)
+(~CLEAR|tmp_RefreshReqd~)
+(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|
+	(~NOMATCH|(~_DesignRefreshEnabled~)=False|
+		(~CHECK|tmp_JQueryReqd~)
+		(~CHECK|tmp_RefreshReqd~)
+	~)
+~)
+(~IFNOT|_no_jQuery|
+	(~CHECK|tmp_JQueryReqd~)
+~)
+(~IF|tmp_JQueryReqd|
+	(~JS|ScriptTag|src="(~mcJQueryRoot~)jquery-2.1.1.min.js"~)
+~)
+(~IF|tmp_RefreshReqd|
+(~drDesignRefresh_jQuery__~)
+~)
+<script type="text/javascript">
+$.ajaxSetup ({  
+    cache: false  
+});  
+</script>
+(~CLEAR|tmp_JQueryReqd~)
+(~CLEAR|tmp_RefreshReqd~)
+(~CLEAR|_no_jQuery~)<!--- used on a page by page basis -->
+</whdroplet>	
+	
+</whteko>
+
