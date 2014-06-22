@@ -1,10 +1,10 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" designdynsrc="localdemoFire"
-  designpage="pgEnterFire">
+<whteko designmode="code" >
 
-<whmacros>
-mcJQueryURL=/webhub/demos/js/jquery-1.9.1.js
-</whmacros>
+<whdoc for="JQuery">
+jquery 1.x supports old IE through IE 8
+jquery 2.x drops support for IE 6, 7, 8
+</whdoc>
 
 <whpage pageid="pgMastDet" desc="Master (Department) to Detail (Employee)">
 <whprep>
@@ -18,8 +18,8 @@ mcJQueryURL=/webhub/demos/js/jquery-1.9.1.js
 	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemosWebDataScan.css" />
 	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/opacity.css" />
 	<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whajaxerrormgmt.css" />
-	(~JS|ScriptTag|src="(~mcJQueryURL~)"~)
-	(~JS|ScriptTag|src="/webhub/demos/js/jquery-webhub.js"~)
+	(~JS|ScriptTag|src="(~mcJQueryRoot~)jquery-1.11.1.min.js"~)
+	(~JS|ScriptTag|src="(~mcJQueryRoot~)jquery-webhub.js"~)
 
 <script type="text/javascript">
 /* requires 

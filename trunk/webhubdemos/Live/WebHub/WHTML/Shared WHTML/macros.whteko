@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko 
-  designdynsrc="localdemoscan"
   defaultlingvo="eng" 
   designpage="temp"
   designmode="code"
   notes="Macros shared by many WebHub demos."
-  copyright="1995-2004 HREF Tools Corp.">
+  copyright="1995-2014 HREF Tools Corp.">
 
 <!--- Directory Macros -->
 <whmacros>
@@ -16,6 +15,7 @@ mcWhDemoMiscDir=(~mcSiteRoot~)demos/img/misc/
 
 <!--- General Macros -->
 <whmacros>
+mcJQueryRoot=http://lite.demos.href.com/webhub/demos/js/
 mcWhDemoOneLiner=(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)
 mcEmDash=&#8212;
 </whmacros>
