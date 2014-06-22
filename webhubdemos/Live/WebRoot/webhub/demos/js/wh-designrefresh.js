@@ -13,6 +13,7 @@ function initDesignRefresh() {
 			success: function(response) {refreshPage(); return false;},
 			error: function(jqXHR, exception) {
 				if (jqXHR.status === 0) {
+					// no connection to refreshURL
 					 alert('No connection.\n Verify Network.');
 				} else if (jqXHR.status == 403) {
 					var reason = jqXHR.getResponseHeader('X-Status-Reason');
