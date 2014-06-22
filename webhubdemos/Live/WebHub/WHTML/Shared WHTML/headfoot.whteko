@@ -61,16 +61,13 @@ body {
 </head>
 <body>
 <whdroplet name="drPageBegin" show="yes">
-<!--- first create a hot spot for refreshing the app from the browser on development machines -->
-(~PARAMS|drDesignRefresh_jQuery|div,demoheader,3000,(~PageID~),(~Command~)~)
-<!--- then bring in the shared beginning of every demo page -->
 (~NOMATCH|(~AppSetting.DemoGraphic~)=no|
 <!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
 <div id="demoheader" class="whDemoSectionNav" style="border-color: plum;">
-<div id="whDemoLogo">
-(~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
-</div>
-<div id="whDemoShortDesc">
+  <div id="whDemoLogo">
+  (~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
+  </div>
+  <div id="whDemoShortDesc">
 AppID = (~AppID~)<br />
 Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 &nbsp;<br />
@@ -80,9 +77,10 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
   (~drHideToDemoEntrance~)<br/>
   (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
 ~)
-</div>
-
-</div>  <!--- whDemoSectionNav -->
+  </div>
+<!--- create a hot spot for refreshing the app from the browser on development machines -->
+(~PARAMS|drDesignRefresh_jQuery|div,demoheader,3000,(~PageID~),(~Command~)~)
+</div><!-- whDemoSectionNav -->
 ~)
 </whdroplet>
 

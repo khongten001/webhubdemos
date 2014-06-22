@@ -32,7 +32,7 @@ var
 	refreshElementId = '(~DYN2~)';
 	refreshURL = '(~ACTIONR|remoterefresh~)';
 </script>
-<script type="text/javascript" src="(~mcJSDir~)webhub/wh-designrefresh.js"></script>
+<script type="text/javascript" src="(~mcSiteRoot~)demos/js/wh-designrefresh.js"></script>
 </whdroplet>
 
 <whdroplet name="drDesignRefresh_jQuery">
@@ -65,4 +65,3 @@ $.ajaxSetup ({
 </whdroplet>	
 	
 </whteko>
-
