@@ -95,6 +95,7 @@
       <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
+      <File id="D01" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
