@@ -82,7 +82,6 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
   <div id="designRefreshDiv" style="position: absolute; top: 0; left: 0; width:2em; height:2em; (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|border:solid 1px red;~) 
   z-index:100"><!-- behavior depends on AppSetting.DesignRefreshEnabled--></div>
   (~PARAMS|drDesignRefresh_jQuery|div,designRefreshDiv,3000,(~PageID~),(~Command~)~)
-~)
 </div><!-- whDemoSectionNav -->
 ~)
 </whdroplet>
