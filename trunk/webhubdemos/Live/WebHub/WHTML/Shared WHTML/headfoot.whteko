@@ -2,15 +2,13 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
   designmode="code"
-  designdynsrc="localdemoscan"
   defaultlingvo="eng"
   designlingvo="eng"
-  designpage="temp1"
   showdoc="no"
   showsketch="no"
   notes="Global Header and Footer assets
     (shared by all WebHub demos)."
-  copyright="2006 HREF Tools Corp.">
+  copyright="2006-2014 HREF Tools Corp.">
 
 
 <whmacros>
@@ -63,9 +61,12 @@ body {
 </head>
 <body>
 <whdroplet name="drPageBegin" show="yes">
+<!--- first create a hot spot for refreshing the app from the browser on development machines -->
+(~PARAMS|drDesignRefresh_jQuery|div,demoheader,3000,(~PageID~),(~Command~)~)
+<!--- then bring in the shared beginning of every demo page -->
 (~NOMATCH|(~AppSetting.DemoGraphic~)=no|
 <!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
-<div class="whDemoSectionNav" style="border-color: plum;">
+<div id="demoheader" class="whDemoSectionNav" style="border-color: plum;">
 <div id="whDemoLogo">
 (~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
 </div>
