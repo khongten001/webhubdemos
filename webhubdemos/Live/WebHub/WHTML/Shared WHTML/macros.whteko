@@ -15,7 +15,7 @@ mcWhDemoMiscDir=(~mcSiteRoot~)demos/img/misc/
 
 <!--- General Macros -->
 <whmacros>
-mcJQueryRoot=http://lite.demos.href.com/webhub/demos/js/
+mcJQueryRoot=http://code.jquery.com/
 mcWhDemoOneLiner=(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)
 mcEmDash=&#8212;
 </whmacros>
