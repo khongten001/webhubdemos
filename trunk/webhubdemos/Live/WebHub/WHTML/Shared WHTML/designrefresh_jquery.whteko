@@ -13,11 +13,12 @@ usage: 	(enclosed in parentils in the header of the web page requiring refresh)
 	eg. PARAMS|drDesignRefresh_jQuery|div,header,3000,( ~PageID~ ),( ~Command~ )
 	
 requirements:
-	jquery-2.0.3.js or newer must be in the ( ~mcJSDir~ ) (javascript resource) folder	
 	AppSetting.DesignRefreshEnabled=True
+	jquery-2.0.3.js or newer, provided on lite.demos.href.com
+	wh-designrefresh.js, provided in webhubdemos svn repository
 	optional:
 		_DesignRefreshEnabled=False to prevent the design refresh feature
-		_no_jQuery to prevent the jQuery library from loading
+		_no_jQuery to prevent the jQuery library from loading again, if you already use it on your page
 </whdoc>
 <whdroplet name="drDesignRefresh_jQuery__">
 <script type="text/javascript">
