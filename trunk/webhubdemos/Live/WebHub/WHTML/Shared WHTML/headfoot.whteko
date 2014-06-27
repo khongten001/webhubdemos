@@ -47,6 +47,7 @@ siteroot is (~mcSiteRoot~)<br />
 <meta name="generator" content="(~version~)" />
 <meta name="description" content="This demo page is summarized as (~pagedesc~)" />
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
 (~MATCH|demos.href.com[(~Request.Host~)|<link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~SessionLingvo~)/(~AppID~)/(~PageID~)" />~)
