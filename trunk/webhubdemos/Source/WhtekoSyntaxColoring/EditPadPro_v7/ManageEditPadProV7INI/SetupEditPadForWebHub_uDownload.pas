@@ -186,10 +186,12 @@ end;
 function InstallWebHubFileType: Boolean;
 const cFn = 'InstallWebHubFileType';
 var
+  Ini: TIniFile;
   IniFilespec: string;
   FileType33: string;
 begin
   CSEnterMethod(nil, cFn);
+  ini := nil;
 
   FileType33 := string(GetUTF8Resource('Resource_FT33'));
   IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
@@ -199,7 +201,15 @@ begin
   begin
     StringAppendToFile(IniFilespec,
       AnsiString(sLineBreak + FileType33 + sLineBreak));
+
+    try
+      ini := TIniFile.Create(IniFilespec);
+      ini.WriteString('Lite', 'FileTypes', '36');
+    finally
+      FreeAndNil(ini);
+    end;
   end;
+
   CSSend('Result', S(Result));
   CSExitMethod(nil, cFn);
 end;
@@ -225,6 +235,7 @@ begin
   begin
     try
       iniTrg := TIniFile.Create(IniFilespec);
+      iniTrg.WriteString('Pro', 'ToolCount', '2');
       if iniTrg.SectionExists('Tool0') then
       begin
         ACommandLine := Lowercase(iniTrg.ReadString('Tool0', 'CommandLine', ''));
