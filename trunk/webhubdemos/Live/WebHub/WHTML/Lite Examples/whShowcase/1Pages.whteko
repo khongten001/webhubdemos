@@ -204,6 +204,7 @@ application design and support. The following examples will show you how easy it
 <whdroplet name="barJava">
 (~GO|PGJAVACL|Clock~)(~mcHeadingSeparator~)
 (~GO|PGMARQUEE1|Tickertape~)(~mcHeadingSeparator~)
+(~GO|pgGoogleMap|Map~)(~mcHeadingSeparator~)
 (~GO|PGSIMPLEAJAX|Ajax~)(~mcHeadingSeparator~)
 (~GO|pgAboutXML|XML~)(~mcHeadingSeparator~)
 (~GO|pgAboutCSV|CSV~)
