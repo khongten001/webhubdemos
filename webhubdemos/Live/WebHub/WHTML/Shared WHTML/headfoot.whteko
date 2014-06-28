@@ -57,6 +57,7 @@ body {
 <body>
 <whdroplet name="drPageBegin" show="yes">
 (~NOMATCH|(~AppSetting.DemoGraphic~)=no|
+<header>
 <!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
 <div class="whDemoSectionNav" style="border-color: plum;z-index:100" >
   <div id="whDemoLogo">
@@ -79,9 +80,11 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
   <div id="designRefreshDiv" style="position: absolute; top: 0; left: 0; width:2em; height:2em; (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|border:solid 1px red;~) 
   z-index:100"><!-- behavior depends on AppSetting.DesignRefreshEnabled--></div>
   (~PARAMS|drDesignRefresh_jQuery|div,designRefreshDiv,3000,(~PageID~),(~Command~)~)
+</header>
 </whdroplet>
 
 <whdroplet name="drDemoSpeedbar" show="no">
+<nav>
 <div id="menuThisWebHubDemoContainer">
 <div id="menuThisWebHubDemo">
 <ul>
@@ -95,9 +98,11 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 </ul>
 </div>
 </div>
+</nav>
 </whdroplet>
 
 <whdroplet name="drPageEnd" show="no">
+<footer>
 <div class="whDemoSectionNav" style="border-color: #99CC00;">
 (~IFDynamic|(~drDemoSpeedBar~)~)
 </div>  <!--- whDemoSectionNav -->
@@ -121,14 +126,17 @@ view links to all demos on
 <div class="whDemoSectionNav" style="border-color: darkgreen;">
 (~drCopyright~)
 </div>  <!--- whDemoSectionNav -->
+</footer>
 </whdroplet>
 
 <whdroplet name="drLingvoLinkList">
-<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> &nbsp;
-<span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span> &nbsp;
-<span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span> &nbsp;
-<span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span> &nbsp;
+<span style="word-spacing: 1.5em;">
+<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> 
+<span id="lingvodeu">(~JUMP|(~PageID~),lingvo=deu|(~mcGerman~)~)</span> 
+<span id="lingvofra">(~JUMP|(~PageID~),lingvo=fra|(~mcFrench~)~)</span> 
+<span id="lingvochi">(~JUMP|(~PageID~),lingvo=chi|(~mcChinese~)~)</span> 
 <span id="lingvorus">(~JUMP|(~PageID~),lingvo=rus|(~mcRussian~)~)</span>
+</span>
 </whdroplet>
 
 <whdroplet name="drConditionalSystemInfo" show="no">
