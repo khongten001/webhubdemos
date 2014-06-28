@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
-	<collection sort="none">
+	<collection label="WebHub_ClipCollection" sort="none">
+		<clip kind="text" label="ACTION">
+			<text>(~ACTION|pageid,command~)</text>
+		</clip>
+		<clip kind="text" label="ANCHOR">
+			<text>(~ANCHOR|anchorName~)</text>
+		</clip>
+		<clip kind="text" label="ANCHORMODIFY">
+			<text>(~ANCHORMODIFY|anchorName|new text~)</text>
+		</clip>
 		<clip kind="text" label="JUMP">
 			<text>(~JUMP|pageid|optional|visiblephrase~)</text>
 		</clip>

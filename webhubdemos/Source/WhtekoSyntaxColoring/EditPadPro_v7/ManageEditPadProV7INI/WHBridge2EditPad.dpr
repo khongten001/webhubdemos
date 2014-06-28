@@ -16,7 +16,7 @@ WHBridge2EditPad.exe --verb=PopBookmark "--exe=%EPPFILE%"
 
 uses
   EMemLeaks,
-  FMX.Forms,
+  FMX.Forms, FMX.Dialogs,
   ucCodeSiteInterface,
   uCode,
   WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
@@ -41,15 +41,20 @@ begin
 
     if ErrorText <> '' then
     begin
-      CSSendNote('"' + ErrorText + '"');
-      Application.CreateForm(TForm3, Form3);
-  Application.Run;
+      CSSendError(ErrorText);
+      ShowMessage(ErrorText);
     end;
   end
   else
   if ParamString('-verb') = 'PopBookmark' then
   begin
     if StackPopLocation(AFilespec, APosition) then
-      LaunchEPPAgainst(AFilespec, APosition);
+      LaunchEPPAgainst(AFilespec, APosition)
+    else
+    begin
+      ErrorText := 'No saved bookmark locations to pop back to.';
+      CSSendError(ErrorText);
+      ShowMessage(ErrorText);
+    end;
   end;
 end.

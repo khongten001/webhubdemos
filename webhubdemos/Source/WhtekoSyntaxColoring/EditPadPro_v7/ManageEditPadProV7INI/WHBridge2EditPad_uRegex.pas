@@ -208,7 +208,6 @@ procedure WrapFindInFiles(out InfoMsg: string);
 const cFn = 'WrapFindInFiles';
 var
   ExeFile: string;
-  ErrorText: string;
   ProjectFileList: string;
   GoodSearchPhrase: string;
   MatchFilespec: string;
@@ -256,16 +255,19 @@ begin
         Launch(ExtractFileName(ExeFile),
           MatchFilespec + ' /s' + IntToStr(StartSel) + '-' + IntToStr(EndSel),
           ExtractFilepath(ExeFile), True, 0,
-          ErrorText);
-        if ErrorText <> '' then
-        begin
-          CSSend('ErrorText', ErrorText);
-          InfoMsg := ErrorText;
-        end;
-      end;
-    end;
+          InfoMsg);
+      end
+      else
+        InfoMsg := 'Declaration not found for ' + ParamString('-word');
+    end
+    else
+      InfoMsg := 'No good regex pattern for ' + ParamString('-word');
   end;
 
+  if InfoMsg <> '' then
+  begin
+    CSSend('InfoMsg', InfoMsg);
+  end;
   CSExitMethod(nil, cFn);
 end;
 
