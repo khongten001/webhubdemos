@@ -41,6 +41,8 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
+      <AppSetting name="DesignRefreshEnabled" value="True" />
+      <AppSetting name="DesignRefreshEnabled" value="False" context="DEMOS"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="LogToFile" value="true"/>

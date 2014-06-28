@@ -41,9 +41,13 @@ var
 (~CLEAR|tmp_JQueryReqd~)
 (~CLEAR|tmp_RefreshReqd~)
 (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|
-	(~ASSIGNED|_DesignRefreshEnabled|(~NOMATCH|(~_DesignRefreshEnabled~)=False|
+	(~NOTASSIGNED|_DesignRefreshEnabled|
 		(~CHECK|tmp_JQueryReqd~)
 		(~CHECK|tmp_RefreshReqd~)
+	||
+	(~MATCH|(~_DesignRefreshEnabled~)=False|
+		(~CLEAR|tmp_JQueryReqd~)
+		(~CLEAR|tmp_RefreshReqd~)
 	~)~)
 ~)
 (~IFNOT|_no_jQuery|
