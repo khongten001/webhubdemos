@@ -59,6 +59,81 @@ This example shows the version of Java installed.
 (~drShowcaseGlobalFooter~)
 </whpage>
 
+<whpage pageid="pgGoogleMap" desc="Google Map Example">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+<whprep>
+</whprep>
+(~drShowcaseGlobalHeader~)
+(~ANCHORMODIFY|anchBaseHREF|
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+<script>
+    function initialize() {
+      
+	var latLngNewYork = new google.maps.LatLng(40.77, -73.98 );
+	var latLngSantaRosa = new google.maps.LatLng(38.52, -122.82); 
+	
+	var myOptions = {
+        	zoom: 3,
+	        center: latLngSantaRosa, 
+        	mapTypeId: google.maps.MapTypeId.ROADMAP
+	}
+
+	//  Make an array of the LatLng's of the markers you want to show
+	var LatLngList = new Array (latLngNewYork, latLngSantaRosa);
+	//  Create a new viewpoint bound
+	var bounds = new google.maps.LatLngBounds ();
+	//  Go through each...
+	for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+	  //  And increase the bounds to take this point
+	  bounds.extend (LatLngList[i]);
+	}
+
+	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+
+	//  Fit these bounds to the map
+	map.fitBounds (bounds);
+
+	// add the markers
+	 var marker = new google.maps.Marker({
+	      position: latLngSantaRosa,
+	      map: map,
+	      title: 'A'
+	  }); 
+	var marker = new google.maps.Marker({
+	      position: latLngNewYork,
+	      map: map,
+	      title: 'B'
+	  });
+    }
+
+    function loadScript() {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+      document.body.appendChild(script);
+    }
+
+    window.onload = loadScript;
+</script>
+~)
+
+<p>Here is a map with two points marked out: Santa Rosa, California and New York City.</p>
+<p>This is done with JavaScript (not Java).</p>
+<div id="map_canvas" style="border: solid 1px red; margin-left: 5%; margin-right: 5%; height: 15em;">
+</div>
+
+<h3>References</h3>
+<ul>
+<li> <a href="https://developers.google.com/maps/documentation/javascript/reference?csw=1#Marker">Google Maps API v3</a> </li>
+<li> <a href="http://blog.shamess.info/2009/09/29/zoom-to-fit-all-markers-on-google-maps-api-v3/">Zoom to fit all markers</a> </li>
+</ul>
+
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
 <whpage pageid="pgSimpleAjax" desc="Simple Ajax Example">
 <whdoc for="credits">
 17-Jul-2006

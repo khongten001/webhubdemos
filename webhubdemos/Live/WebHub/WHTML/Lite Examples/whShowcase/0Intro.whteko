@@ -161,6 +161,7 @@ Demo?  What do the icons mean?  How can I <a href="https://www.href.com/hrefshop
 
 (~GO|pgjavacl|<dd>Clock Example</dd>~)
 (~GO|pgMarquee1|<dd>Tickertape Marquee Example</dd>~)
+(~GO|pgGoogleMap|<dd>Google Map Example</dd>~)
 (~GO|pgSimpleAjax|<dd>Simple Ajax Example</dd>~)
 (~GO|pgAboutXML|<dd>About XML</dd>~)
 (~GO|pgAboutCSV|<dd>About CSV</dd>~)
