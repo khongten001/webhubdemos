@@ -36,7 +36,22 @@
         	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 
+	//  Make an array of the LatLng's of the markers you want to show
+	var LatLngList = new Array (myLatlng, place2Latlng);
+	//  Create a new viewpoint bound
+	var bounds = new google.maps.LatLngBounds ();
+	//  Go through each...
+	for (var i = 0, LtLgLen = LatLngList.length; i < LtLgLen; i++) {
+	  //  And increase the bounds to take this point
+	  bounds.extend (LatLngList[i]);
+	}
+
 	var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions); 
+
+	//  Fit these bounds to the map
+	map.fitBounds (bounds);
+
+	// add the markers
 	var marker = new google.maps.Marker({
 	      position: myLatlng,
 	      map: map,
