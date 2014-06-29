@@ -2,7 +2,7 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   Left = 0
   Top = 0
   Caption = 'Form5'
-  ClientHeight = 638
+  ClientHeight = 692
   ClientWidth = 998
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -17,7 +17,7 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   DesignerOSVersion = ''
   object Panel1: TPanel
     Align = Client
-    Height = 605.000000000000000000
+    Height = 599.000000000000000000
     Width = 998.000000000000000000
     TabOrder = 3
     object ScaledLayout1: TScaledLayout
@@ -25250,13 +25250,27 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       4260820000064865696768740500000000000000C804400756697369626C6508
       0557696474680500000000000000C804400000}
   end
-  object Button1: TButton
-    Height = 22.000000000000000000
-    Position.X = 864.000000000000000000
-    Position.Y = 576.000000000000000000
-    TabOrder = 9
-    Text = 'Ok'
-    Width = 80.000000000000000000
-    OnClick = Button1Click
+  object Panel3: TPanel
+    Align = Bottom
+    Height = 60.000000000000000000
+    Position.Y = 632.000000000000000000
+    Width = 998.000000000000000000
+    TabOrder = 14
+    object LabelHelp: TLabel
+      Height = 38.000000000000000000
+      Position.X = 16.000000000000000000
+      Position.Y = 11.000000000000000000
+      Text = 'LabelHelp'
+      Width = 865.000000000000000000
+    end
+    object Button1: TButton
+      Height = 35.000000000000000000
+      Position.X = 896.000000000000000000
+      Position.Y = 14.000000000000000000
+      TabOrder = 9
+      Text = 'Ok'
+      Width = 89.000000000000000000
+      OnClick = Button1Click
+    end
   end
 end
