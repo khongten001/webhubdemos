@@ -92,7 +92,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Debugger_DebugSourcePath>k:\webhub\tpack\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Debugger_RunParams>--verb=ExprHelp --word=ACTION</Debugger_RunParams>
+        <Debugger_RunParams>--verb=ExprHelp --word=JUMPR</Debugger_RunParams>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
