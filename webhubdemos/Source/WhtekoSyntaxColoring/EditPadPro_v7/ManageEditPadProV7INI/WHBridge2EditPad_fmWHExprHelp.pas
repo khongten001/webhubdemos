@@ -16,12 +16,17 @@ type
     ScaledLayout1: TScaledLayout;
     WinStyleBookDiamond: TStyleBook;
     LabelCommandNames: TLabel;
+    Panel3: TPanel;
+    LabelHelp: TLabel;
     Button1: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure PrimaryComboEnter(Sender: TObject);
+    procedure Edit1Enter(Sender: TObject);
   private
     { Private declarations }
+    FActiveIdx: Integer;
     LabelCommandP: TLabel;
     LabelCommand: TComboEdit;
     LabelHintP, LabelHint: TLabel;
@@ -52,7 +57,7 @@ end;
 procedure TfmWebHubExpressionHelp.CreateInputForm(const AWebHubCommand: string);
 var
   i, j, idx: Integer;
-  jdx, iParam: Integer;
+  jdx: Integer;
   n: Integer;
 const
   TopLine = 1;
@@ -73,6 +78,7 @@ begin
         if WebHubCommandInfoList[i].WHSort = 0 then
         begin
           idx := i;
+          FActiveIdx := i;
           LabelCommandNames.Text := WebHubCommandInfoList[i].WHCommandNames[0];
           if High(WebHubCommandInfoList[i].WHCommandNames) > 0 then
             LabelCommandNames.Text := LabelCommandNames.Text + ' or ' +
@@ -131,6 +137,7 @@ begin
       Position.X := cTabStop;
       Position.Y := TopLine;
       Text := AWebHubCommand;
+      OnEnter := PrimaryComboEnter;
       Items.Add(WebHubCommandInfoList[idx].WHCommandNames[0]);
       if High(WebHubCommandInfoList[idx].WHCommandNames) > 0 then
         Items.Add(WebHubCommandInfoList[idx].WHCommandNames[1]);
@@ -195,11 +202,13 @@ begin
       with AnyE[n] do
       begin
         Parent := ScaledLayout1;
+        OnEnter := Edit1Enter;
         Position.X := cTabStop;
         Position.Y := LabelSyntax.Position.Y + LabelSyntax.Height +
           (Succ(N) * AnyLineInc);
         Text := '';
         TextSettings.HorzAlign := TTextAlign.Leading;
+        //Hint := WebHubCommandInfoList[jdx].WHHint;
         Scale.X := 0.95;
         Scale.Y := 0.95;
       end;
@@ -215,6 +224,17 @@ begin
 
 end;
 
+procedure TfmWebHubExpressionHelp.Edit1Enter(Sender: TObject);
+var
+  i: Integer;
+begin
+  for i := 0 to High(AnyE) do
+  begin
+    if TEdit(Sender) = AnyE[i] then
+      LabelHelp.Text := WebHubCommandInfoList[fActiveIdx + 1 + i].WHHint;
+  end;
+end;
+
 procedure TfmWebHubExpressionHelp.FormCreate(Sender: TObject);
 var
   AWebHubCommand: string;
@@ -227,6 +247,8 @@ begin
   LabelSyntaxP := nil;
   SetLength(AnyP, 0);
   SetLength(AnyE, 0);
+
+  LabelHelp.Text := '';
 
   fmWebHubExpressionHelp.StyleBook := nil;
 
@@ -247,6 +269,11 @@ end;
 procedure TfmWebHubExpressionHelp.FormDestroy(Sender: TObject);
 begin
   SetLength(WebHubCommandInfoList, 0);
+end;
+
+procedure TfmWebHubExpressionHelp.PrimaryComboEnter(Sender: TObject);
+begin
+  LabelHelp.Text := WebHubCommandInfoList[fActiveIdx].WHHint;
 end;
 
 initialization
