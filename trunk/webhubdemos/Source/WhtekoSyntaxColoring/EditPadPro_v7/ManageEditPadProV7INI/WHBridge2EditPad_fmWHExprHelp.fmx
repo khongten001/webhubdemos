@@ -31,13 +31,6 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       Position.X = 16.000000000000000000
       Position.Y = 16.000000000000000000
       Width = 945.000000000000000000
-      object Label2: TLabel
-        Height = 17.000000000000000000
-        Position.X = 784.000000000000000000
-        Position.Y = 8.000000000000000000
-        Text = 'Label2'
-        Width = 120.000000000000000000
-      end
     end
   end
   object Panel2: TPanel
@@ -25256,5 +25249,14 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       04411004411004411004217494FAFF98FDD49E5DFFADB40000000049454E44AE
       4260820000064865696768740500000000000000C804400756697369626C6508
       0557696474680500000000000000C804400000}
+  end
+  object Button1: TButton
+    Height = 22.000000000000000000
+    Position.X = 864.000000000000000000
+    Position.Y = 576.000000000000000000
+    TabOrder = 9
+    Text = 'Ok'
+    Width = 80.000000000000000000
+    OnClick = Button1Click
   end
 end
