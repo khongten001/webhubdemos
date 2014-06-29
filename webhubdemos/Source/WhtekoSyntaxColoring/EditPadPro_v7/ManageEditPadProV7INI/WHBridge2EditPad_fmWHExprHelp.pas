@@ -38,14 +38,14 @@ implementation
 {$R *.fmx}
 
 uses
-  uCode, ucPos;
+  uCode, ucPos, ucCodeSiteInterface;
 
 procedure TfmWebHubExpressionHelp.CreateInputForm(const AWebHubCommand: string);
 var
   i, j, idx: Integer;
 const
-  TopLine = 2;
-  LineInc = 12;
+  TopLine = 10;
+  LineInc = 18;
   cTabStop: Single = 80;
 begin
 
@@ -76,11 +76,35 @@ begin
   with LabelCommandP do
   begin
     Parent := ScaledLayout1;
-    Position.X := 2;
+    Position.X := 10;
     Position.Y := TopLine;
-    Width := 20;
+    Width := 60;
     Text := 'Command:';
-    Align := TAlignLayout.Right;
+    //Align := TAlignLayout.Right;
+    StyleName := 'labelstyle';
+  end;
+  LabelHintP := TLabel.Create(Self);
+  LabelHintP.Name := 'LabelHintP';
+  with LabelHintP do
+  begin
+    Parent := ScaledLayout1;
+    Position.X := 10;
+    Position.Y := TopLine + LineInc;
+    Width := 60;
+    Text := 'Hint:';
+    //Align := TAlignLayout.Right;
+    StyleName := 'labelstyle';
+  end;
+  LabelSyntaxP := TLabel.Create(Self);
+  LabelSyntaxP.Name := 'LabelSyntaxP';
+  with LabelSyntaxP do
+  begin
+    Parent := ScaledLayout1;
+    Position.X := 10;
+    Position.Y := LabelHintP.Position.Y + LineInc;
+    Width := 60;
+    Text := 'Syntax:';
+    //Align := TAlignLayout.Right;
     StyleName := 'labelstyle';
   end;
 
@@ -92,18 +116,20 @@ begin
     LabelCommand.Position.X := cTabStop;
     LabelCommand.Position.Y := TopLine;
     LabelCommand.Text := WebHubCommandInfoList[idx].WHCommandNames[0];
+    CSSend('Name 0', WebHubCommandInfoList[idx].WHCommandNames[0]);
     LabelCommand.StyleName := 'labelstyle';
     //LabelCommand.Scale.X := -0.5;
     //LabelCommand.Scale.Y := -0.5;
-
+    Application.ProcessMessages;
 
     LabelHint := TLabel.Create(Self);
     LabelHint.Name := 'LabelHint';
     LabelHint.Parent := ScaledLayout1;
     LabelHint.Position.X := cTabStop;
-    LabelHint.Position.Y := LabelCommand.Position.X + LineInc;
+    LabelHint.Position.Y := LabelCommand.Position.Y + LineInc;
     LabelHint.Width := 400;
     LabelHint.Text := WebHubCommandInfoList[idx].WHHint;
+    CSSend('WHHint', WebHubCommandInfoList[idx].WHHint);
     LabelHint.StyleName := 'labelstyle';
     //LabelCommand.Scale.X := -0.6;
     //LabelCommand.Scale.Y := -0.6;
@@ -115,8 +141,11 @@ begin
       Parent := ScaledLayout1;
       Position.X := cTabStop;
       Position.Y := LabelHint.Position.Y + LineInc;
-      Width := 600;
+      Width := 900;
+      WordWrap := True;
       Text := WebHubCommandInfoList[idx].WHSyntax;
+      AutoSize := True;
+      CSSend('WHSyntax', WebHubCommandInfoList[idx].WHSyntax);
       StyleName := 'labelstyle';
     end;
 
