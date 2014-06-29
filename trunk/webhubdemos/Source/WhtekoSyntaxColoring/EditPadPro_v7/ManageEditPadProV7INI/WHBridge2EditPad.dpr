@@ -14,15 +14,20 @@ WHBridge2EditPad.exe --verb=PopBookmark "--exe=%EPPFILE%"
 
 *)
 
+{$R *.dres}
+
 uses
   EMemLeaks,
-  FMX.Forms, FMX.Dialogs,
+  FMX.Forms,
+  FMX.Dialogs,
   ucCodeSiteInterface,
   uCode,
   WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
   WHBridge2EditPad_uIni in 'WHBridge2EditPad_uIni.pas',
   WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas',
-  WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas';
+  WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas',
+  WHBridge2EditPad_fmWHExprHelp in 'WHBridge2EditPad_fmWHExprHelp.pas' {fmWebHubExpressionHelp},
+  WHBridge2EditPad_uLoadWHCommands in 'WHBridge2EditPad_uLoadWHCommands.pas';
 
 {$R *.res}
 
@@ -56,5 +61,12 @@ begin
       CSSendError(ErrorText);
       ShowMessage(ErrorText);
     end;
+  end
+  else
+  if ParamString('-verb') = 'ExprHelp' then
+  begin
+    Application.CreateForm(TfmWebHubExpressionHelp, fmWebHubExpressionHelp);
+  Application.Run;
   end;
+
 end.
