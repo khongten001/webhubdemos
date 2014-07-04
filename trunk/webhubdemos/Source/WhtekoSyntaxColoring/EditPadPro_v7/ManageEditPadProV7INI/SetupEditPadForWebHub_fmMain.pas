@@ -71,7 +71,10 @@ begin
   else
     Label1.Text := 'InstallLatestWebHubFiles failed';
   if bAllGood then
+  begin
     Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.';
+    ShowMessage('Done. You may exit this Setup now.');
+  end;
 
 end;
 

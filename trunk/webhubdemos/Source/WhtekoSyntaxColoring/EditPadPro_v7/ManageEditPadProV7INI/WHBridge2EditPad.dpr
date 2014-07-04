@@ -12,9 +12,11 @@ WHBridge2EditPad.exe --verb=FindDeclaration "--exe=%EPPFILE%" --projectfile=%PRO
 
 WHBridge2EditPad.exe --verb=PopBookmark "--exe=%EPPFILE%"
 
+WHBridge2EditPad.exe --verb=ExprHelp "--word=%WORD%"
+
 *)
 
-{$R *.dres}
+{$R *.dres}   // some resources are available only at HREF Tools. IFDEF INHOUSE.
 
 uses
   EMemLeaks,
@@ -25,9 +27,11 @@ uses
   WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
   WHBridge2EditPad_uIni in 'WHBridge2EditPad_uIni.pas',
   WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas',
-  WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas',
+  {$IFDEF INHOUSE}
   WHBridge2EditPad_fmWHExprHelp in 'WHBridge2EditPad_fmWHExprHelp.pas' {fmWebHubExpressionHelp},
-  WHBridge2EditPad_uLoadWHCommands in 'WHBridge2EditPad_uLoadWHCommands.pas';
+  WHBridge2EditPad_uLoadWHCommands in 'WHBridge2EditPad_uLoadWHCommands.pas',
+  {$ENDIF}
+  WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas';
 
 {$R *.res}
 
@@ -62,11 +66,14 @@ begin
       ShowMessage(ErrorText);
     end;
   end
+  {$IFDEF INHOUSE}
   else
   if ParamString('-verb') = 'ExprHelp' then
   begin
     Application.CreateForm(TfmWebHubExpressionHelp, fmWebHubExpressionHelp);
   Application.Run;
-  end;
+  end
+  {$ENDIF}
+  ;
 
 end.
