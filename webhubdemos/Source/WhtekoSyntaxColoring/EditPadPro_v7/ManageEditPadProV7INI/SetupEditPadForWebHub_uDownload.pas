@@ -222,6 +222,9 @@ var
   iniTrg: TIniFile;
   ACommandLine: string;
   bContinue: Boolean;
+  iTool: Integer;
+const
+  nTools = 3;
 begin
   CSEnterMethod(nil, cFn);
 
@@ -235,22 +238,21 @@ begin
   begin
     try
       iniTrg := TIniFile.Create(IniFilespec);
-      iniTrg.WriteString('Pro', 'ToolCount', '2');
-      if iniTrg.SectionExists('Tool0') then
+      iniTrg.WriteString('Pro', 'ToolCount', IntToStr(nTools));
+      for iTool := 0 to Pred(nTools) do
       begin
-        ACommandLine := Lowercase(iniTrg.ReadString('Tool0', 'CommandLine', ''));
-        if Pos('whbridge2editpad.exe', ACommandLine) > 0 then
-          iniTrg.EraseSection('Tool0')
-        else
-          bContinue := False;
-      end;
-      if bContinue and iniTrg.SectionExists('Tool1') then
-      begin
-        ACommandLine := iniTrg.ReadString('Tool1', 'CommandLine', '');
-        if Pos('WHBridge', ACommandLine) > 0 then
-          iniTrg.EraseSection('Tool1')
-        else
-          bContinue := False;
+        if bContinue then
+        begin
+          if iniTrg.SectionExists('Tool' + IntToStr(iTool)) then
+          begin
+            ACommandLine := Lowercase(iniTrg.ReadString('Tool' + IntToStr(iTool),
+              'CommandLine', ''));
+            if Pos('whbridge2editpad.exe', ACommandLine) > 0 then
+              iniTrg.EraseSection('Tool' + IntToStr(iTool))
+            else
+              bContinue := False;
+          end;
+        end;
       end;
     finally
       FreeAndNil(iniTrg);

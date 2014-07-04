@@ -35,8 +35,8 @@ object Form2: TForm2
     Position.X = 24.000000000000000000
     Position.Y = 24.000000000000000000
     TabOrder = 6
-    Text = 'Install Syntax Scheme'
-    Width = 193.000000000000000000
+    Text = 'Install Syntax Highlighting Scheme for *.whteko'
+    Width = 297.000000000000000000
   end
   object cbFileNav: TCheckBox
     Height = 19.000000000000000000
@@ -68,7 +68,7 @@ object Form2: TForm2
     Position.X = 24.000000000000000000
     Position.Y = 96.000000000000000000
     TabOrder = 3
-    Text = 'Install Custom Tools (hotkeys for searching)'
+    Text = 'Install 3 Custom Tools (hotkeys for searching, help)'
     Width = 337.000000000000000000
   end
 end
