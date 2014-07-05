@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code"  designpage="PGLOGIN">
+<whteko designmode="code"   >
 
 <whdroplet name="drAdminCheckpoint">
 (~EXPIRES|-1~)

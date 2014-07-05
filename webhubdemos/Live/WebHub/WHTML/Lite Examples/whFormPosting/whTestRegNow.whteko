@@ -4,7 +4,7 @@
   defaultlingvo="eng"
   designlingvo="eng"
   designdynsrc="localdemoFORM"
-  designpage=""
+   
   designmode="code"
   notes="This file provides a way to test a RegNow license server.">
 
