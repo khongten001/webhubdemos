@@ -27,7 +27,7 @@ mcCommandList=MATCH-The MATCH Command,PAGE-The PAGE Command,REQUIRES-The REQUIRE
 <table CELLPADDING=10 CELLSPACING=0 BORDER=0>
 <tr style="vertical-align:top; text-align:center;">
 <td>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageB-FB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageB|target="FB"~)">
 Please choose an Icon:<br />
 <span style="font-size:small;">
 (~INPUTSELECT|litFrameIcon, mcIconList,1~)<br />
@@ -36,7 +36,7 @@ Please choose an Icon:<br />
 </form>
 </td>
 <td>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageC-FC~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:FramePageC|target="FC"~)">
 Please choose a Page:<br />
 <span style="font-size:small;">
 (~INPUTSELECT|litFramePage, mcCommandList,1~)<br />
@@ -61,8 +61,8 @@ WebHub lets you set up frames in a variety of ways. Here
 is one example!
 </CENTER>
 <br />
-<b>(~GO|pgFrames-_top|Exit Frame Demo~)</b><br />
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Frameset1-_top,.CKB~)">
+<b>(~GO|pgFrames| target="top"|Exit Frame Demo~)</b><br />
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Frameset1,.CKB| target="_top"~)">
 (~inputcheckbox|Sizeable~)
 Sizeable<br />
 (~inputcheckbox|notscrollable~)
