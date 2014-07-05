@@ -98,9 +98,9 @@ Rand: (~DynURL.Rand~) <br/>
 W: (~DynURL.W~)
 </td>
 <td>
-MacroCost: (~MacroCost~)<br/>
 PageCount: (~PageCount~)<br/>
 PageCost: (~PageCost~)<br/>
+RandStr: (~RandStr~) <br/>
 SessionAverageIntervalMS: (~SessionAverageIntervalMS~)<br/>
 SessionCost: (~SessionCost~)<br/>
 SessionElapsedSec: (~SessionElapsedSec~)<br/>

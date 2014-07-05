@@ -510,7 +510,6 @@ you win, because it requires so much time, energy and financial resources.</p>
 <li> AppPath: (~AppPath~)</li>
 <li> AppRoot: (~Static.AppRoot~)</li>
 <li> Command: (~Command~)</li>
-<li> MacroCost: (~MacroCost~)</li>
 <li> MacroErrorShow: (~MacroErrorShow~)</li>
 <li> Name: (~Name~)</li>
 <li> Project Lingvo: (~ProjectLingvo~) </li>
@@ -555,13 +554,13 @@ you win, because it requires so much time, energy and financial resources.</p>
 
 <h2>TwhSession</h2>
 <ul>
-<li> MacroCost: (~MacroCost~)</li>
 <li> ModuleReferer: (~ModuleReferer~)</li>
 <li> PageCost: (~PageCost~)</li>
 <li> PageCount: (~PageCount~)</li>
 <li> PriorAppID: (~PriorAppID~)</li>
 <li> PriorAppIDPageID: (~PriorAppIDPageID~)</li>
 <li> PriorPageID: (~PriorPageID~)</li>
+<li> RandStr: (~RandStr~) </li>
 <li> RawSessionNumber: (~RawSessionNumber~) </li><!-- displays something for web robots -->
 <li> SessionCost: (~SessionCost~)</li>
 <li> SessionCreatedOnAt: <span class="changing">(~SessionCreatedOnAt~)</span></li>
