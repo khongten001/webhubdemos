@@ -2,7 +2,6 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko
   defaultlingvo="eng"
-  designpage="sysinfoscaffold"
   designmode="code"
   notes="dynamic resources that display WebHub system information">
 
