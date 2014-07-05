@@ -71,17 +71,19 @@ bNoMore=true
 <script>
     function initialize() {
       
-	var latLngNewYork = new google.maps.LatLng(40.77, -73.98 );
-	var latLngSantaRosa = new google.maps.LatLng(38.52, -122.82); 
-	
+	//  Make an array of the LatLng's of the markers you want to show
+	var LatLngList = new Array (
+           new google.maps.LatLng(40.6687100, -74.1143100 ), 
+           new google.maps.LatLng(39.5682, -75.4726 )
+           );
+
 	var myOptions = {
         	zoom: 3,
-	        center: latLngSantaRosa, 
+	        center: LatLngList[0], 
         	mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 
-	//  Make an array of the LatLng's of the markers you want to show
-	var LatLngList = new Array (latLngNewYork, latLngSantaRosa);
+
 	//  Create a new viewpoint bound
 	var bounds = new google.maps.LatLngBounds ();
 	//  Go through each...
@@ -97,14 +99,14 @@ bNoMore=true
 
 	// add the markers
 	 var marker = new google.maps.Marker({
-	      position: latLngSantaRosa,
+	      position: LatLngList[0],
 	      map: map,
-	      title: 'A'
+	      title: '1'
 	  }); 
 	var marker = new google.maps.Marker({
-	      position: latLngNewYork,
+	      position: LatLngList[1],
 	      map: map,
-	      title: 'B'
+	      title: '2'
 	  });
     }
 

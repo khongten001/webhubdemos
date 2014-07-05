@@ -244,11 +244,11 @@ WebHub provides support for Netscape's FRAME syntax. Target frame names can be
 sent as a modifier after any PageID. For example, if you are setting up a JUMP,
 you might say
 <p>
-<code>(~.JUMP|home<b>-FrameName</b>|Link to Home Page in a Frame~)</code>.
+<code>(~.JUMP|home| <b>target="FrameName</b>"|Link to Home Page in a Frame~)</code>.
 <p>
 You can create a jump out of a frame environment with this syntax:
 <p>
-<code>(~.JUMP|home-_top|Let me Out!~)</code>
+<code>(~.JUMP|home| <b>target="_top"|Let me Out!~)</code>
 <p>
 Many people use JavaScript to further control frames, especially
 the automatic loading of content into frames.
