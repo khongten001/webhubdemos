@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko 
   defaultlingvo="eng" 
-  designpage="temp"
+   
   designmode="code"
   notes="Macros shared by many WebHub demos."
   copyright="1995-2014 HREF Tools Corp.">

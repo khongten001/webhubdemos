@@ -1,5 +1,5 @@
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase" designpage="pgBigPict" designmode="code">
+<whteko defaultlingvo="eng" designdynsrc="localdemoshowcase"   designmode="code">
 
 <whpagesettingslist id="a">
 whsequence=on

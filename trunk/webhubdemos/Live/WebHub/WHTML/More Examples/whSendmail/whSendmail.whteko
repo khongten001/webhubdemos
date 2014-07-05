@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko defaultlingvo="eng" designmode="code" designpage="pgEnterHTEM">
+<whteko defaultlingvo="eng" designmode="code"  >
 
 <whdroplet name="drDemoSpeedbarForhtem">
 [(~GO|testwebmailform1|Additional Test~)]

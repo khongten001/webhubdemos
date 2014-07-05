@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" designdynsrc="localdemohtfs"
   defaultlingvo="eng"
-  designpage="pgEnterHTFS"
+   
   notes="Droplets and Pages for WebHub Fish Store demo">
 
 <whmacros>

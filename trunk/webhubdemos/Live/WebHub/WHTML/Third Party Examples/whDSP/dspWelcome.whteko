@@ -1,5 +1,5 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" designdynsrc="localdsp" designpage="pgEnterDSP"> 
+<whteko designmode="code" designdynsrc="localdsp"  > 
 
 <whpage pageid="pgEnterDSPX" mode="design">
 <whprep>

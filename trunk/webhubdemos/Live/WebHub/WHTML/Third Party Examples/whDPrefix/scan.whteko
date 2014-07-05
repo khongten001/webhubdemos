@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" designpage="PGPREFIX">
+<whteko designmode="code"  >
 
 <whmacros>
 mcManPrefButtonSpecsFirst=<a href="(~where~)ManPref.First">First Page</a>
