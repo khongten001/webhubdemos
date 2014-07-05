@@ -1,6 +1,6 @@
 program whQuery1;       {Query example, hard coded.}
 (*
-Copyright (c) 1999-2013 HREF Tools Corp.
+Copyright (c) 1999-2014 HREF Tools Corp.
 First author: Matt Marshall
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person

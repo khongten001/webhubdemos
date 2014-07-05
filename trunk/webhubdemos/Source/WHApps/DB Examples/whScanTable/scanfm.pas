@@ -1,6 +1,6 @@
 unit scanfm;
 (*
-Copyright (c) 1997-2013 HREF Tools Corp.
+Copyright (c) 1997-2014 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person

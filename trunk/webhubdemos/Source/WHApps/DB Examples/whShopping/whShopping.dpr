@@ -1,7 +1,7 @@
 program whShopping;     { Shopping Cart - Simplest Example }
 
 (*
-  Copyright (c) 1998-2013 HREF Tools Corp.
+  Copyright (c) 1998-2014 HREF Tools Corp.
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software

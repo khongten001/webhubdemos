@@ -1,6 +1,6 @@
 unit counter;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2013 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2014 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 ////////////////////////////////////////////////////////////////////////////////
 
 // The key to the counter is the OnNewSession event which is on the
