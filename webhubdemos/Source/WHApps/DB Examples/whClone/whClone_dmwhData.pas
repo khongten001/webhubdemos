@@ -1,7 +1,7 @@
 unit whClone_dmwhData;
 
 (*
-Copyright (c) 1997-2013 HREF Tools Corp.
+Copyright (c) 1997-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 03-Feb-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

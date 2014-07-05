@@ -1,7 +1,7 @@
 unit whpwMain;
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2013 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2014 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
