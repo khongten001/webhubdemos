@@ -22,7 +22,7 @@ mcWhDemoLitefire=No
 Compiles with IBObjects v4.9.11, with D07 through D15. </li>
 <li> 
 <whtranslation key="~whDemoSetupfire" lingvo="eng">
-We installed Firebird SQL server v2.5 on demos.href.com using the <b>Official Windows Setup</b>. <![CDATA[<a target="_blank" href="http://www.firebirdsql.org/index.php?op=files&id=engine_250">download</a>]]>.  Firebird SQL is an open source database. Firebird runs on both Windows and Linux servers.
+We installed Firebird SQL server v2.5 on demos.href.com using the <b>Official Windows Setup</b>. <![CDATA[<a href="http://www.firebirdsql.org/index.php?op=files&id=engine_250">download</a>]]>.  Firebird SQL is an open source database. Firebird runs on both Windows and Linux servers.
 </whtranslation>
 </li>
 <li>We used the employee.gdb file, distributed by Borland, CodeGear and Embarcadero Software with various versions of Delphi since 1994.</li>

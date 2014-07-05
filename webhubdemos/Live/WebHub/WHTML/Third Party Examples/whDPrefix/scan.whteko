@@ -112,7 +112,7 @@ googlepriority=0.7
 <td>(~FIELD|wdsManPref|Mpf Company~)</td>
 <td>(~FIELD|wdsManPref|MpfPurpose~)</td>
 <td>(~SET|prefurl="(~FIELD|wdsManPref|Mpf WebPage~)"~)
-(~NOMATCH|(~prefurl~)=""|<a target="_blank" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
+(~NOMATCH|(~prefurl~)=""|<a href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a>~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)</td>
 <td>(~FIELD|wdsManPref|Mpf Date Registered|dd-MMM-yyyy~)</td>
 (~IF|_bAdminRemote|

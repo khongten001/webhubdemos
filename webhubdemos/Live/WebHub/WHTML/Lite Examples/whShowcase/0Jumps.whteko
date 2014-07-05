@@ -31,8 +31,6 @@ h2 {text-align: center; font-size: 1.1em; margin: .8em 0 .3em 0;}
 (~GO|PGREUSABLE|(~mcRedCube~)~)&nbsp;Reusable Pieces of HTML<br />
 (~GO|PGDYNAMICLINKS|(~mcRedCube~)~)&nbsp;Dynamic Links Within a Site<br />
 (~GO|PGWHMACROS|(~mcRedCube~)~)&nbsp;WebHub Commands<br />
-(~GO|PGFRAMES|(~mcRedCube~)~)&nbsp;Frames<br />
-
 
 <h2>(~GO|pgFORMS|Forms with Built-in Save-State~)</h2>
 

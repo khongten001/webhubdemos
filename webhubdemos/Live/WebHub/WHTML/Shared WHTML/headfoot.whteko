@@ -150,9 +150,9 @@ view links to all demos on
 
 <whdroplet name="drCopyright" show="no">
 <div class="copyright">
-Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &nbsp;&nbsp;
+Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
 <a href="http://www.href.com/contact">contact</a>
-<a target="_blank" href="http://lite.demos.href.com/privacypolicy">privacy</a>
+<a href="http://lite.demos.href.com/privacypolicy">privacy</a>
 </div>
 </whdroplet>
 
@@ -160,7 +160,7 @@ Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reser
 <whdroplet name="drCreditsTimingEtc" show="no">
 (~IfDynamic|<span class="techiefooter">
 This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~).
-Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &nbsp; 
+Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &emsp; 
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span>; 
 (~IsWebRobotRequest|R ||H (~AppProcessID~); session number <span id="sessionNumberHere">(~RawSessionNumber~)</span>;~)
 user agent is <span id="userAgentHere">(~Request.UserAgent~)</span>. 

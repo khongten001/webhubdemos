@@ -159,7 +159,7 @@ to work as modules within a larger system, you need to control
 link generation. WebHub macros are designed to give you full control over your
 links while making it easy to make system-wide changes.
 <p>
-WebHub includes a variety of different kinds of macros that can be used to create dynamic A HREF links, including JUMP, GO, and HIDE. All of these can take extra parameters for Javascript and frame syntax.
+WebHub includes a variety of different kinds of macros that can be used to create dynamic A HREF links, including JUMP, GO, and HIDE. All of these can take extra HTMl5 attributes for Javascript, etc.
 These examples will help you understand how WebHub dynamic links work.
 (~drShowcaseGlobalFooter~)
 </whpage>
@@ -231,34 +231,5 @@ Some, but not all, are highlighted in this SHOWCASE.
 (~GO|PGEXPIRE|The EXPIRES Macro~)<br/>
 (~GO|PGSUMMARY|The SUMMARY Macro~)<br/>
 </whdroplet>
-
-
-
-
-<whpage pageid="pgFrames" desc="Frames">
-<whpagesettings inherit="a">
-downLink=FRAMESET1
-</whpagesettings>
-(~drShowcaseGlobalHeader~)
-WebHub provides support for Netscape's FRAME syntax. Target frame names can be
-sent as a modifier after any PageID. For example, if you are setting up a JUMP,
-you might say
-<p>
-<code>(~.JUMP|home| <b>target="FrameName</b>"|Link to Home Page in a Frame~)</code>.
-<p>
-You can create a jump out of a frame environment with this syntax:
-<p>
-<code>(~.JUMP|home| <b>target="_top"|Let me Out!~)</code>
-<p>
-Many people use JavaScript to further control frames, especially
-the automatic loading of content into frames.
-(~drShowcaseGlobalFooter~)
-</whpage>
-
-
-<whdroplet name="ulPgFrames">
-<span class="changing">(~GOR|FRAMESET1|Content Picker Example~)</span>
-</whdroplet>
-
 
 </whteko>

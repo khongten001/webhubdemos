@@ -41,7 +41,7 @@ This demo is arranged into sections.
 <ul>
 <li style="list-style-type:square;"> (~JUMP|pgSOver|Sync Overview~): limitations of ordinary synchronous processing</li>
 <li style="list-style-type:square;"> (~JUMP|pgAOver|Async Overview~): advantages to async processing of long tasks</li>
-<li style="list-style-type:square;"> <a target="_blank" href="http://otl.17slon.com/tutorials.htm">Delphi OmniThreadLibrary Tutorials</a> </li>
+<li style="list-style-type:square;"> <a href="http://otl.17slon.com/tutorials.htm">Delphi OmniThreadLibrary Tutorials</a> </li>
 </ul>
 </li>
 

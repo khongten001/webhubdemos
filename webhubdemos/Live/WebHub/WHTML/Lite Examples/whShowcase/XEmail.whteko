@@ -27,8 +27,4 @@ Your message has been sent.
 (~drShowcaseGlobalFooter~)
 </whpage>
 
-<whpage pageid="pgFrameHelper" desc="-Link to FrameSet1">
-(~PAGE|FrameSet1~)
-</whpage>
-
 </whteko>

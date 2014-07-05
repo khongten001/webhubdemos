@@ -15,7 +15,7 @@ mcWhDemoLiteHTASYNC=No
 
 <whdroplet name="drDemoSetupHTASYNC">
 <ol>
-<li> This demo requires the <a target="_blank" href="http://otl.17slon.com/">Delphi OmniThreadLibrary</a> 
+<li> This demo requires the <a href="http://otl.17slon.com/">Delphi OmniThreadLibrary</a> 
 (open source, free, well documented and independently supported). 
 The OmniThreadLibrary source is provided as an "external" to the WebHubDemos repository as of early November 2013.</li>
 </ol>

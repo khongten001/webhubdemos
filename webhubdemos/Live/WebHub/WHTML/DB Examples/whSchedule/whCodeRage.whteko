@@ -272,26 +272,26 @@ Enter your GMT offset, in hours:
 <tr>
   <td>Frankfurt, Germany</td>
   <td>+1</td>
-  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_DE.aspx">world time DE</a></td>
+  <td><a href="http://www.worldtimeserver.com/current_time_in_DE.aspx">world time DE</a></td>
 </tr>
 <tr>
   <td>New York, USA</td>
   <td>-5</td>
-  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_US-NY.aspx">world time NY</a></td>
+  <td><a href="http://www.worldtimeserver.com/current_time_in_US-NY.aspx">world time NY</a></td>
 </tr>
 <tr>
   <td>San Francisco, USA</td>
   <td>-8</td>
-  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_US-CA.aspx">world time CA</a></td>
+  <td><a href="http://www.worldtimeserver.com/current_time_in_US-CA.aspx">world time CA</a></td>
 </tr>
 <tr>
   <td>Sydney, Australia</td>
   <td>+11</td>
-  <td><a target="_blank" href="http://www.worldtimeserver.com/current_time_in_AU-NSW.aspx">world time NSW AU</a></td>
+  <td><a href="http://www.worldtimeserver.com/current_time_in_AU-NSW.aspx">world time NSW AU</a></td>
 </tr>
 </table>
 
-<p>Use the <a target="_blank" href="http://www.worldtimeserver.com/">World Time Server Site</a>
+<p>Use the <a href="http://www.worldtimeserver.com/">World Time Server Site</a>
 to look up any other location and find your GMT offset number.</p>
 <br/><br/><br/>
 </div>  <!--- whdemopagecontent -->

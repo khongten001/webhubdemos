@@ -91,7 +91,7 @@ googlepriority=0
 (~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
 <p>(~JUMPR|pgcleanup|Login here~)</p>
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
-<a target="_blank" href="https://www.href.com/techhelp">www.href.com</a>
+<a href="https://www.href.com/techhelp">www.href.com</a>
 </p>
 (~CLEAR|waCleanup2013Login-errormessage~)
 
@@ -122,13 +122,13 @@ googlepriority=0
 <h1>Change (~_EMail~)</h1>
 <div id="dprmain-div">
 <p>Ongoing login after January 2013 will be via 
-<a target="_blank" href="http://www.openid.net/">OpenID</a>
+<a href="http://www.openid.net/">OpenID</a>
 using the providers below.</p>
 <p>You may change all records managed by <span style="padding: 0 0.2em 0 0.2em; background-color: yellow;">(~_EMail~)</span> 
 to reference a different email address.</p>
-<p>You can create a free account at <a target="_blank" href="http://www.openid.net/">OpenID</a> 
+<p>You can create a free account at <a href="http://www.openid.net/">OpenID</a> 
 or 
-<a target="_blank" href="https://www.myopenid.com/">MyOpenID</a>
+<a href="https://www.myopenid.com/">MyOpenID</a>
 if necessary.</p>
 (~drMultipleOpenID~)
 

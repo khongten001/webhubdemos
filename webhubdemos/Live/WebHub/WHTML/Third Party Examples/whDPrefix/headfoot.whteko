@@ -32,17 +32,13 @@ Administration Shortcuts:
 <whdroplet name="drSharedFooter">
 <div style="text-align:center; margin-top: 3em;">
 (~chNavigation~)
-<!---
-<p style="padding: 0 1em 0 1em; background-color: yellow; color: #ddf">Under construction - please check back in a few days if you want to add/edit your prefix registration(s).</p>
--->
-
 <p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
-Running <a target="_blank" href="http://www.href.com/whvcl">(~version~)</a> 
+Running <a href="http://www.href.com/whvcl">(~version~)</a> 
 compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
-All data is stored in a <a target="_blank" href="http://www.nexusdb.com/">NexusDB</a> table.<br>
+All data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
 Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</span>
-&nbsp; <a target="_blank" href="http://lite.demos.href.com/privacypolicy">Privacy</a>
-&nbsp; <a target="_blank" href="http://www.href.com/contact">Contact</a>
+&nbsp; <a href="http://lite.demos.href.com/privacypolicy">Privacy</a>
+&nbsp; <a href="http://www.href.com/contact">Contact</a>
 <!-- Your http client: (~Request.UserAgent~) considered (~ISWebRobotRequest|webrobot||human~) -->
 </p>
 (~drLinkW3Org~)

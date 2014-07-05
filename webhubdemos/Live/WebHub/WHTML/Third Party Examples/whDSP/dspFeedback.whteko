@@ -22,11 +22,11 @@ metakeywords=Feedback,suggestions
 
 <h1>Feedback</h1>
 <p>Please 
-<a target="outbound" href="http://www.href.com/contact">write to HREF Tools Customer Service</a> 
+<a href="http://www.href.com/contact">write to HREF Tools Customer Service</a> 
 when you have comments or questions 
 about the operation of the DSP Search Engine, 
 or say hello during open office hours, generally Mon-Fri, 4-5pm, California clock, 
-at <a target="_blank" href="https://www.href.com/techhelp">www.href.com live chat</a>.
+at <a href="https://www.href.com/techhelp">www.href.com live chat</a>.
 </p>
 
 <p>If you have comments about the content within the DSP, please 
@@ -34,7 +34,7 @@ contact:
 <BLOCKQUOTE>
 Robert M. Czerwinski       <br />
 The Delphi Super Page administrator/owner <br />
-DSP web: <a target="_blank" href="http://delphi.icm.edu.pl/">delphi.icm.edu.pl/</a>
+DSP web: <a href="http://delphi.icm.edu.pl/">delphi.icm.edu.pl/</a>
 </BLOCKQUOTE>
 </p>
 </div>  <!--- demopagecontent -->

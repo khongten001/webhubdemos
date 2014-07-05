@@ -1351,11 +1351,11 @@ download the certificate in PEM format and save to a file
 ending in .cer such as cacert-root.cer.  Then you can open the CER file 
 and Windows will run the Install Certificate Wizard.  </p>
 <p>The full instructions for all operating systems and all browsers (including Firefox) 
-are <a target="_blank" href="http://wiki.cacert.org/FAQ/BrowserClients">here on wiki.cacert.org</a>.
+are <a href="http://wiki.cacert.org/FAQ/BrowserClients">here on wiki.cacert.org</a>.
 </p>
 
 <p>All www.cacert.org 
-certificates are available for <a target="_blank" href="https://secure.cacert.org/index.php?id=3">download here</a>.</p>
+certificates are available for <a href="https://secure.cacert.org/index.php?id=3">download here</a>.</p>
 <p>Of course you can also tell Chrome or Firefox to proceed without any extra certificates installed, but you may see 
 scary icons or receive troubling messages from your anti-malware software.</p>
 

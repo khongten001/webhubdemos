@@ -91,7 +91,7 @@ a generic soap client to quickly test any SOAP service.</p>
 ANY SOAP server for which you know the WSDL.</p>
 <h3>Test THIS whSlowSpam Service</h3>
 <p>If you want to test THIS whSlowSpam service, copy this <b>WSDL</b> into the online tester: <code style="font-weight:900;">http://more.demos.href.com/scripts/runisa.dll/htun/wsdl/waSlowSpam</code></p>
-<p style="text-align:center;"><a href="http://www.soapclient.com/soaptest.html" target="_blank">www.soapclient.com</a></p>
+<p style="text-align:center;"><a href="http://www.soapclient.com/soaptest.html">www.soapclient.com</a></p>
 <h3>Test Your Own WebHub SOAP Service</h3>
 <p>To test your own WebHub SOAP services, change the WSDL such that it contains your own information:
 <ul class="sq">

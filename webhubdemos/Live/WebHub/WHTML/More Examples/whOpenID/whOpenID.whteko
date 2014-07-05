@@ -4,8 +4,8 @@
 
 <whdroplet name="drDemoSpeedbarForhtoi">
 <!--- speedbar for HTOI demo -->
-<a target="_blank" href="http://openid.net">OpenID Foundation</a><br/>
-<a target="_blank" href="http://janrain.com/">janrain engage</a>
+<a href="http://openid.net">OpenID Foundation</a><br/>
+<a href="http://janrain.com/">janrain engage</a>
 </whdroplet>
 
 <whdoc for="janrain">
