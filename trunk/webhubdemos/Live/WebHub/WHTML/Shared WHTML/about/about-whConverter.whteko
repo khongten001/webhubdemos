@@ -3,9 +3,9 @@
 <whteko defaultlingvo="eng" designmode="code">
 <whmacros>
 mcWhDemoOneLinerHTCV=File Converter Service
-mcWhDemoCreditIdeaHTCV=Max Sautin <a target="_blank" href="http://convert.sautin.com">HTML to RTF converter</a>
+mcWhDemoCreditIdeaHTCV=Max Sautin HTML to RTF converter
 mcWhDemoCreditFirstDraftHTCV=Ann Lynnworth
-mcWhDemoCreditGraphicsHTCV=Suzanne Aldrich and <a target="geekphotos" href="http://geekphilosopher.com/MainPage/photos.htm">Geek Philosopher Free Stock Photos</a>
+mcWhDemoCreditGraphicsHTCV=Suzanne Aldrich and <a href="http://geekphilosopher.com/MainPage/photos.htm">Geek Philosopher Free Stock Photos</a>
 mcWhDemoCreditCopyHTCV=Ann Lynnworth
 mcWhDemoUpdatedHTCV=24-Aug-2003
 mcWhDemoKeywordsHTCV=convert,process,online service,ASP business model

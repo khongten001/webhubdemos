@@ -13,7 +13,7 @@ mcDoShowChecked=_bLoginOk<!---This macro names the literal that indicates whethe
 Define the helper macros that the above code jumps to.
 </whdoc>
 <whmacros>
-mcLoginNew="(~DynURL.ToSessionIDWBlankSession~)" Target="(~rand~)"
+mcLoginNew="(~DynURL.ToSessionIDWBlankSession~)" target="(~RandStr~)"
 </whmacros>
 
 <whdoc>

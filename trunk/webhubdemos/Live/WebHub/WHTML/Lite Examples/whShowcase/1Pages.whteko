@@ -44,7 +44,6 @@ When you call the names with the macro syntax, it expands into full
 (~GO|PGREUSABLE|Reusable HTML~)(~mcHeadingSeparator~)
 (~GO|PGDYNAMICLINKS|Dynamic Links~)(~mcHeadingSeparator~)
 (~GO|PGWHMACROS|Event Macros~)(~mcHeadingSeparator~)
-(~GO|PGFRAMES|Frames~)
 </whdroplet>
 
 <whdroplet name="ulPgHTML">
@@ -52,7 +51,6 @@ When you call the names with the macro syntax, it expands into full
 (~GO|PGREUSABLE|Reusable Pieces of HTML~)<br/>
 (~GO|PGDYNAMICLINKS|Dynamic Links Within a Site~)<br/>
 (~GO|PGWHMACROS|WebHub Commands~)<br/>
-(~GO|PGFRAMES|Frames~)<br/>
 </whdroplet>
 
 

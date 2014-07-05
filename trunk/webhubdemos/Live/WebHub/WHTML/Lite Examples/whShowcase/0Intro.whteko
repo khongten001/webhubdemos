@@ -97,10 +97,6 @@ Demo?  What do the icons mean?  How can I <a href="https://www.href.com/hrefshop
 (~GO|pgSendfile|<dd>The SENDFILE macro</dd>~)
 (~GO|pgSummary|<dd>The SUMMARY Macro</dd>~)
 
-(~GO|pgFrames|<dd class="ddem">Using Frames</dd>~)
-
-(~GO|frameset1|<dd>Example</dd>~)
-
 (~GO|pgForms|<dt>Forms with Built-in Save-State</dt>~)
 
 (~GO|pgWidgets|<dd class="dd3em">Standard Interface Widgets</dd>~)

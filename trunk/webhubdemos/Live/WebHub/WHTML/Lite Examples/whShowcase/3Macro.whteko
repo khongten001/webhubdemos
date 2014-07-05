@@ -231,7 +231,7 @@ bNoMore=true
 <a href="(~Request.RawVMR~)/whLite.exe?(~AppID~):pgSendFileSample:(~SessionID~)">Try pgSendFileSample (StreamCatcher not active)</a>
 ~)
 </p>
-<p>Syntax details for the SENDFILE command are in the <a target="_blank" href="http://webhub.com/dynhelp">WebHub Online Help Reference</a>. 
+<p>Syntax details for the SENDFILE command are in the <a href="http://webhub.com/dynhelp">WebHub Online Help Reference</a>. 
 </p>
 
 (~drShowcaseGlobalFooter~)

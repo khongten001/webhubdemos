@@ -50,7 +50,7 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Testing RegNow Shareware License Generator</h1>
-<p><a target="_blank" href="http://www.regnow.com/">RegNow</a> is the software industry’s premier registration commerce provider. </p>
+<p><a href="http://www.regnow.com/">RegNow</a> is the software industry's premier registration commerce provider. </p>
 <p>Among many other features, they let shareware authors use a custom web application to generate unlock codes for their products.  Testing such an interface usually involves triggering a test order within RegNow's developer-only interface. Instructions are in their Help system.</p>
 <p>Here we use our own form to simulate a test.  We post selected fields to a license generator.</p>
 <p>This is a 3 step process.</p>

@@ -72,7 +72,7 @@ names which do not conflict with those in use by other developers.</p>
 <p style="color:#009900;">
 There is nothing more soul destroying for either application developer or component 
 developer than to find that when loaded into the delphi ide there is a naming conflict.
-(See <a target="_blank" href="http://edn.embarcadero.com/article/10283">Charlie Calvert's discussion</a>.)
+(See <a href="http://edn.embarcadero.com/article/10283">Charlie Calvert's discussion</a>.)
 </p>
 
 <p>The inspiration for this site came from seeing a wonderful calendar component,

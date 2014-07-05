@@ -36,7 +36,7 @@ the three AJAX commands.
 Similar to Ruby on Rails, WebHub's AJAX implementation uses the Prototype Javascript framework. The Prototype Javascript Framework is a single file distributed under a developer-friendly MIT-style license by Sam Stephenson.  </p>
 <p>There have been several significant releases of the library. In this demo, you can test with different version.</p>
 HREF Tools has archived version 1.4.0 of the file available at <a href="http://static.webhub.com/js/prototype-1.4.0.js">static.webhub.com/js/prototype-1.4.0.js</a>. Version 1.7 is hosted by google at 
-<a target="_blank" href="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js">ajax.googleapis.com</a>.</p>
+<a href="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js">ajax.googleapis.com</a>.</p>
 <p>Far simpler than Ruby on Rails, WebHub's implementation requires only 3 commands (<span class="syntaxinline"><span class="syntaxcommand">AJAXEvent, AJAXObserver, AJAXTimedEvent</span></span>) to provide full AJAX functionality in your WebApp.  
 A helper command (<span class="syntaxinline"><span class="syntaxcommand">JS</span></span>) is also provided for streamlining associated Javascript.</p>
 <p>The WebHub AJAX commands generate Javascript in the outgoing HTML document.  We recommend using AJAX commands within the <i>&lt;head_tag&gt;</i>.

@@ -17,7 +17,7 @@ mcWhDemoLiteHTQ1=No
 <li> Requires whQuery1.exe </li>
 <li> The Borland Database Engine is required</li>
 <li> The tables "countrycode.db", "languagecode.db" and "languageindex.db" are required.
-<a target="_blank" href="http://www.ethnologue.com/codes/#downloading">(source)</a>
+<a href="http://www.ethnologue.com/codes/#downloading">(source)</a>
 </li>
 
 <li> The table navigation is defined through a combination of answergrid.Captions, 

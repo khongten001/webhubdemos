@@ -98,7 +98,7 @@ googlepriority=0
 <th>Purpose</th>
 <th>Contact<br/>Company</th>
 <th>Web Page</th>
-<th>URL <a target="_blank" href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status</a></th><th>Updated</th>
+<th>URL <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html">Status</a></th><th>Updated</th>
 </tr></thead>
 <tbody>
 <whrow>
@@ -122,7 +122,7 @@ googlepriority=0
 <td>(~FIELD|wdsManPref|MpfPurpose~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)<br/>
 <!-- (~FIELD|wdsManPref|Mpf EMail~) -->(~FIELD|wdsManPref|Mpf Company~)</td>
-<td><a target="_blank" title="test web page" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a></td>
+<td><a title="test web page" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a></td>
 <td>(~SET|temps=(~FIELD|wdsManPref|MpfURLStatus~)~)
 (~ASSIGNED|temps|(~temps~)<br>
 <span style="font-size:smaller;">(~FIELD|wdsManPref|MpfURLTestOnAt|dd-MMM-yyyy hh:nn~)</span>
@@ -142,16 +142,16 @@ googlepriority=0
 <h2>Change EMail</h2>
 <p>You may (~JUMPR|switchemail|change the email address~) used for data entry. This is recommended if <b>(~_email~)</b> is 
 not authenticated at Google, Yahoo, OpenID, MyOpenID, WordPress or Microsoft. If you are not sure about this OpenID feature, 
-what you can do is (~JUMP|pgLogout| target="_blank" |log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
+what you can do is (~JUMP|pgLogout|log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
 If that works for you, you are all set.  If not, come back in via the special January 2013 link with your reserved password, 
 and then you can (~JUMPR|switchemail|switch email~).</p>
 <p>The reason for all this is to enable a one-time cleanup effort that does not depend on OpenID, while allowing 
 all future data entry to proceed without any site-specific passwords.</p>
 
 <h2>Help!</h2>
-<p>If you need assistance, please send a note via <a target="_blank" href="http://www.href.com/contact">www.href.com/contact</a> 
+<p>If you need assistance, please send a note via <a href="http://www.href.com/contact">www.href.com/contact</a> 
 or talk to us via Secure Live Chat, Monday to Friday, at approximately 4-5pm in California at 
-<a target="_blank" href="https://www.href.com/techhelp">www.href.com/techhelp</a>.
+<a href="https://www.href.com/techhelp">www.href.com/techhelp</a>.
 </p>
 
 </div>
