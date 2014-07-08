@@ -1,9 +1,30 @@
 unit whdemo_CodeSite;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this WebHub sample file *)
+(*
+Copyright (c) 2014 HREF Tools Corp.
+
+Permission is hereby granted, on 7-Jul-2014, free of charge, to any person
+obtaining a copy of this file (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+*)
 
 interface
+
+{$I hrefdefines.inc}
 
 uses
   SysUtils, Classes,
@@ -17,7 +38,6 @@ type
   private
     { Private declarations }
     FlagInitDone: Boolean;
-    procedure WebAppUpdate(Sender: TObject);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -53,17 +73,12 @@ begin
 
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
-      // Call RefreshWebActions here only if it is not called within a TtpProject event
-      // RefreshWebActions(Self);
-
-      // helpful to know that WebAppUpdate will be called whenever the
-      // WebHub app is refreshed.
-      AddAppUpdateHandler(WebAppUpdate);
+      RefreshWebActions(Self);
       FlagInitDone := True;
     end;
   end;
   Result := FlagInitDone;
-  CSSend('Result', Result);
+  CSSend('Result', S(Result));
   CSExitMethod(Self, cFn);
 end;
 
@@ -93,7 +108,7 @@ begin
     Param1 := wa.MoreIfParentild(Param1);
     Param2 := wa.MoreIfParentild(Param2);
     CodeSite.Send(Param1, Format('%s="%s"', [Param2,
-      cBoolAsStr[pWebApp.BoolVar[Param2]]]));
+      S(pWebApp.BoolVar[Param2])]));
   end
   else
   if (ASendType = 'StringVar') then
@@ -116,15 +131,6 @@ begin
       CodeSite.SendNote(Params);
   end;
   {$ENDIF}
-end;
-
-procedure TdmwhUIHelpers.WebAppUpdate(Sender: TObject);
-const cFn = 'WebAppUpdate';
-begin
-  CSEnterMethod(Self, cFn);
-  // reserved for when the WebHub application object refreshes
-  // e.g. to make adjustments because the config changed.
-  CSExitMethod(Self, cFn);
 end;
 
 end.
