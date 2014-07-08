@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 *)
 
-// Usage: whLite.exe /ID:AppID 
+// Usage: whLite.exe /ID:AppID
 // Check Run|Parameters if you are running this from within the Delphi IDE!
 
 // Full paths are required on utpanfrm, utmainfm, uttrayfm so that WebHub Panels
@@ -30,11 +30,13 @@ THE SOFTWARE.
 // Either map h: to your WebHub "lib" directory or change the paths as needed.
 // e.g. h: would be mapped to c:\Program Files\HREFTools\WebHub\lib
 
-(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder 
+(* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  {$IFDEF CodeSite}
+  CodeSiteLogging,
+  {$ENDIF }
   whSharedLog in 'h:\whSharedLog.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
@@ -45,6 +47,7 @@ uses
   webLink in 'h:\webLink.pas',
   whutil_ZaphodsMap in 'H:\whutil_ZaphodsMap.pas',
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
+  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDemoViewSource},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},

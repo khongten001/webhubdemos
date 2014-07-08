@@ -74,12 +74,11 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   MultiTypeApp,
-  {$IFNDEF PREVENTGUI}ucDlgs,{$ENDIF}
-  ucCodeSiteInterface, whSharedLog,
+  ucDlgs, ucCodeSiteInterface, whSharedLog,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
-  whutil_ZaphodsMap,
+  whutil_ZaphodsMap, whdemo_CodeSite,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
-  whsample_PrototypeJS, 
+  whsample_PrototypeJS,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
@@ -159,7 +158,7 @@ end;
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
-//
+  Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesInit(Sender: TtpProject;
@@ -168,12 +167,13 @@ begin
   InitCoreWebHubDataModule;
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
+  Continue := dmwhUIHelpers.Init(ErrorText);
 end;
 
 procedure TDMForWHDemo.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
-const 
+const
   cFn = 'ProjMgrGUICreate';
 var
   SplashMessage: string;
@@ -220,7 +220,7 @@ begin
       InitCoreWebHubDataModuleGUI;
       InitStandardWHModulesGUI;
 
-      WebMessage('0');   
+      WebMessage('0');
     except
       on E: Exception do
        begin
@@ -272,3 +272,4 @@ initialization
   {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
 end.
+
