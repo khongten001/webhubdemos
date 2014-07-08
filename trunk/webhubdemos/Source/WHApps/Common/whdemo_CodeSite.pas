@@ -77,15 +77,23 @@ begin
       FlagInitDone := True;
     end;
   end;
+    waCodeSiteExecute(nil);
   Result := FlagInitDone;
   CSSend('Result', S(Result));
   CSExitMethod(Self, cFn);
 end;
 
+/// <Summary> WebHub action component to log to CodeSite from WHTEKO
+/// </Summary>
+/// <Remarks>
+/// Usage examples:
+/// (~waCodeSiteSend.Execute|Error|(~ErrorMessage~)~)
+/// (~waCodeSiteSend.Execute|BoolVar|abc_t,afterAdd~)
+/// (~waCodeSiteSend.Execute|Info|url,(~Request.QueryString~)~)
+/// (~waCodeSiteSend.Execute|Info|data,(~EXPAND|ksrLocationNo=(~LocationNo~),ksrDate=(~ksrDate~)~)~)
+/// </Remarks>
 procedure TdmwhUIHelpers.waCodeSiteExecute(Sender: TObject);
 {$IFDEF CodeSite}
-const
-  cBoolAsStr: array[Boolean] of string = ('False','True');
 var
   ASendType, Params, Param1, Param2: string;
   wa: TwhAppBase;
@@ -94,7 +102,7 @@ begin
   {$IFDEF CodeSite}
   wa :=(TwhWebAction(Sender).WebApp);
   SplitString(TwhWebAction(Sender).HtmlParam, '|', ASendType, Params);
-  if (ASendType = 'Info') then
+  if SameText(ASendType, 'Info') then
   begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
@@ -102,7 +110,7 @@ begin
     CodeSite.Send(Param1, Param2);
   end
   else
-  if (ASendType = 'BoolVar') then
+  if SameText(ASendType, 'BoolVar') then
   begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
@@ -111,7 +119,7 @@ begin
       S(pWebApp.BoolVar[Param2])]));
   end
   else
-  if (ASendType = 'StringVar') then
+  if SameText(ASendType, 'StringVar') then
   begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
@@ -121,10 +129,10 @@ begin
   else
   begin
     Params := wa.MoreIfParentild(Params);
-    if (ASendType = 'Error') then
+    if SameText(ASendType, 'Error') then
       CodeSite.SendError(Params)
     else
-    if (ASendType = 'Warning') then
+    if SameText(ASendType, 'Warning') then
       CodeSite.SendWarning(Params)
     else
     //if (ASendType = 'Note') then
