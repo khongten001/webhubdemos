@@ -34,6 +34,18 @@ type
   TdmwhUIHelpers = class(TDataModule)
     waCodeSite: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
+
+/// <summary> WebHub action component to log to CodeSite from WHTEKO
+/// </summary>
+/// <param name="Sender"> WebHub will pass in the webaction component.
+/// </param>
+/// <remarks>
+/// Usage examples:
+/// <para>(~waCodeSiteSend.Execute|Error|(~ErrorMessage~)~)</para>
+/// <para>(~waCodeSiteSend.Execute|BoolVar|abc_t,afterAdd~)</para>
+/// <para>(~waCodeSiteSend.Execute|Info|url,(~Request.QueryString~)~)</para>
+/// <para>(~waCodeSiteSend.Execute|Info|data,(~EXPAND|ksrLocationNo=(~LocationNo~),ksrDate=(~ksrDate~)~)~)</para>
+/// </remarks>
     procedure waCodeSiteExecute(Sender: TObject);
   private
     { Private declarations }
@@ -55,7 +67,7 @@ uses
   ucCodeSiteInterface, ucString,
   webApp, htWebApp;
 
-{ TDM001 }
+{ TdmwhUIHelpers }
 
 procedure TdmwhUIHelpers.DataModuleCreate(Sender: TObject);
 begin
@@ -77,21 +89,12 @@ begin
       FlagInitDone := True;
     end;
   end;
-    waCodeSiteExecute(nil);
+
   Result := FlagInitDone;
   CSSend('Result', S(Result));
   CSExitMethod(Self, cFn);
 end;
 
-/// <Summary> WebHub action component to log to CodeSite from WHTEKO
-/// </Summary>
-/// <Remarks>
-/// Usage examples:
-/// (~waCodeSiteSend.Execute|Error|(~ErrorMessage~)~)
-/// (~waCodeSiteSend.Execute|BoolVar|abc_t,afterAdd~)
-/// (~waCodeSiteSend.Execute|Info|url,(~Request.QueryString~)~)
-/// (~waCodeSiteSend.Execute|Info|data,(~EXPAND|ksrLocationNo=(~LocationNo~),ksrDate=(~ksrDate~)~)~)
-/// </Remarks>
 procedure TdmwhUIHelpers.waCodeSiteExecute(Sender: TObject);
 {$IFDEF CodeSite}
 var
