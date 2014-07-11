@@ -1,6 +1,6 @@
 program whStopSpam;     {demonstrates SOAP plus using the MAILTO macro to lessen likelihood of spam when email addresses are published}
 (*
-Copyright (c) 2002-2011 HREF Tools Corp.
+Copyright (c) 2002-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -35,6 +35,7 @@ uses
   ZaphodsMap in 'h:\ZaphodsMap.pas',
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
+  whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},

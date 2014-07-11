@@ -1,6 +1,6 @@
 program whSendmail;     {Examples that involve generating custom e-mail from a web site.}
 (*
-Copyright (c) 1997 HREF Tools Corp.
+Copyright (c) 1997-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -30,6 +30,7 @@ uses
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
+  whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},

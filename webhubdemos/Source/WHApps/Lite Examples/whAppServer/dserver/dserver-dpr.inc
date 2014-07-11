@@ -15,6 +15,7 @@
   htWebApp in 'h:\htWebApp.pas',
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
+  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas',
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
