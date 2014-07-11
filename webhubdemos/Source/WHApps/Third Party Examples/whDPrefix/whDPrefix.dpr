@@ -20,6 +20,7 @@ uses
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
+  whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
   wnxdbAlpha in 'wnxdbAlpha.pas',
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whutil_ValidEmail in 'h:\whutil_ValidEmail.pas',
