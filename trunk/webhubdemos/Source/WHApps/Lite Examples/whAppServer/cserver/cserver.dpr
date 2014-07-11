@@ -15,6 +15,7 @@ uses
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
+  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},

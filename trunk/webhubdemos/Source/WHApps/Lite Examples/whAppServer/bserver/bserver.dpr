@@ -40,6 +40,7 @@ uses
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
+  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdw_RemotePages in 'h:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModuleDreamWeaver},

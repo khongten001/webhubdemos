@@ -32,6 +32,7 @@ uses
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
+  whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
