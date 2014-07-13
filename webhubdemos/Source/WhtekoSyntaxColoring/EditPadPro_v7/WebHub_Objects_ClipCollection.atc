@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
+	<collection label="WebHub_Objects_ClipCollection" sort="none">
+		<folder label="Published Properties on WebHub Objects">
+			<clip kind="text" label="YearGMT">
+				<text>(~CentralInfo.YearGMT~)</text>
+			</clip>
+			<clip kind="text" label="WebTimeGMT">
+				<text>(~CentralInfo.WebTimeGMT~)</text>
+			</clip>
+			<clip kind="text" label="WebTimeLocal">
+				<text>(~CentralInfo.WebTimeLocal~)</text>
+			</clip>
+			<clip kind="text" label="SessionID">
+				<text>(~SessionID~)</text>
+			</clip>
+			<clip kind="text" label="PageCount">
+				<text>(~PageCount~)</text>
+			</clip>
+			<clip kind="text" label="BoolVars">
+				<text>(~BoolVars~)</text>
+			</clip>
+			<clip kind="text" label="StringVars">
+				<text>(~StringVars~)</text>
+			</clip>
+		<folder label="CodeSite logging from whteko">
+				<clip kind="text" label="waCodeSiteSend info">
+					<text>(~waCodeSiteSend.Execute|info|phrase~)</text>
+				</clip>
+				<clip kind="text" label="waCodeSiteSend warning">
+					<text>(~waCodeSiteSend.Execute|warning|phrase~)</text>
+				</clip>
+				<clip kind="text" label="waCodeSiteSend error">
+					<text>(~waCodeSiteSend.Execute|error|phrase~)</text>
+				</clip>
+				<clip kind="text" label="waCodeSiteSend note">
+					<text>(~waCodeSiteSend.Execute|note|phrase~)</text>
+				</clip>
+		</folder>
+			
+			
+		</folder>
+	</collection>
+</act:acetext>
