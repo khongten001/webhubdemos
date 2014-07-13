@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Setup EditPad Pro for WebHub'
-  ClientHeight = 344
+  ClientHeight = 379
   ClientWidth = 456
   FormFactor.Width = 320
   FormFactor.Height = 480
@@ -15,42 +15,44 @@ object Form2: TForm2
   DesignerOrientation = 0
   DesignerOSVersion = ''
   object Button1: TButton
-    Height = 158.000000000000000000
-    Position.X = 96.000000000000000000
-    Position.Y = 128.000000000000000000
+    Height = 118.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 176.000000000000000000
     TabOrder = 1
     Text = 'Install into EditPad Pro v7 Now'
-    Width = 264.000000000000000000
+    Width = 417.000000000000000000
     OnClick = Button1Click
   end
   object Label1: TLabel
-    Height = 17.000000000000000000
-    Position.X = 96.000000000000000000
-    Position.Y = 304.000000000000000000
+    Height = 41.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 312.000000000000000000
+    Scale.X = 1.399999976158142000
+    Scale.Y = 1.399999976158142000
     Text = 'Label1'
-    Width = 265.000000000000000000
+    Width = 297.000000000000000000
   end
   object cbSyntax: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 24.000000000000000000
-    TabOrder = 6
+    TabOrder = 7
     Text = 'Install Syntax Highlighting Scheme for *.whteko'
     Width = 297.000000000000000000
   end
   object cbFileNav: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 48.000000000000000000
-    TabOrder = 5
+    Position.Y = 72.000000000000000000
+    TabOrder = 6
     Text = 'Install File Navigation Scheme'
     Width = 193.000000000000000000
   end
   object cbColor: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 72.000000000000000000
-    TabOrder = 4
+    Position.Y = 96.000000000000000000
+    TabOrder = 5
     Text = 'Install 3 Custom Color Sets'
     Width = 193.000000000000000000
   end
@@ -58,7 +60,7 @@ object Form2: TForm2
     Height = 22.000000000000000000
     Position.X = 408.000000000000000000
     Position.Y = 16.000000000000000000
-    TabOrder = 8
+    TabOrder = 9
     Text = ' ? '
     Width = 40.000000000000000000
     OnClick = Button2Click
@@ -66,9 +68,27 @@ object Form2: TForm2
   object cbTools: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 96.000000000000000000
-    TabOrder = 3
+    Position.Y = 120.000000000000000000
+    TabOrder = 4
     Text = 'Install 3 Custom Tools (hotkeys for searching, help)'
+    Width = 337.000000000000000000
+  end
+  object EditFT35: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 11
+    ReadOnly = True
+    Text = '1655568939'
+    Position.X = 48.000000000000000000
+    Position.Y = 48.000000000000000000
+    Width = 100.000000000000000000
+    Height = 22.000000000000000000
+  end
+  object cbClipCollections: TCheckBox
+    Height = 19.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 144.000000000000000000
+    TabOrder = 3
+    Text = 'Install WebHub Clip Collections'
     Width = 337.000000000000000000
   end
 end

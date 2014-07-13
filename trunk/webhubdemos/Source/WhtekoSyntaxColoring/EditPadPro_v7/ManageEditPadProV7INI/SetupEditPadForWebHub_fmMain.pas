@@ -4,7 +4,8 @@ interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
-  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls;
+  FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
+  FMX.Edit;
 
 type
   TForm2 = class(TForm)
@@ -15,6 +16,8 @@ type
     cbColor: TCheckBox;
     Button2: TButton;
     cbTools: TCheckBox;
+    EditFT35: TEdit;
+    cbClipCollections: TCheckBox;
     procedure Button1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
@@ -67,6 +70,9 @@ begin
     begin
       bAllGood := InstallWHBridgeTools;
     end;
+
+    if bAllGood and cbClipCollections.IsChecked then
+      bAllGood := InstallWebHubClipCollections;
   end
   else
     Label1.Text := 'InstallLatestWebHubFiles failed';

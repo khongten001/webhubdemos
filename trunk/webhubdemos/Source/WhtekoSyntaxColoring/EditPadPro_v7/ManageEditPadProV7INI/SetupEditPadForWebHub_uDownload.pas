@@ -10,11 +10,14 @@ function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
   FlagColor: Boolean): Boolean;
 
 function InstallWebHubFileType: Boolean;
+function InstallWebHubClipCollections: Boolean;
 function InstallWHBridgeTools: Boolean;
 
 function WGetFileNavigation: UTF8String;
 function WGetSyntaxScheme: UTF8String;
 
+const
+  FileTypeID = '33';
 
 implementation
 
@@ -193,7 +196,7 @@ begin
   CSEnterMethod(nil, cFn);
   ini := nil;
 
-  FileType33 := string(GetUTF8Resource('Resource_FT33'));
+  FileType33 := string(GetUTF8Resource('Resource_FT' + FileTypeID));
   IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'EditPadPro7.ini';
   Result := FileExists(IniFilespec);
@@ -204,13 +207,49 @@ begin
 
     try
       ini := TIniFile.Create(IniFilespec);
-      ini.WriteString('Lite', 'FileTypes', '36');
+      ini.WriteString('Lite', 'FileTypes',
+        IntToStr(Succ(StrToIntDef(FileTypeID, 0))));
     finally
       FreeAndNil(ini);
     end;
   end;
 
   CSSend('Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function InstallWebHubClipCollections: Boolean;
+const cFn = 'InstallWebHubClipCollections';
+var
+  AtcFilespec: string;
+  ClipCommands: string;
+  Ini: TIniFile;
+  IniFilespec: string;
+begin
+  CSEnterMethod(nil, cFn);
+
+  Result := False;
+  ClipCommands := string(GetUTF8Resource('Resource_Clip_Commands'));
+  AtcFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'WebHub_Commands_ClipCollection.atc';
+  StringWriteToFile(AtcFilespec, AnsiString(ClipCommands));
+
+  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'EditPadPro7.ini';
+  if FileExists(IniFilespec) then
+  try
+    ini := TIniFile.Create(IniFilespec);
+    ini.WriteString('FT' + FileTypeID, 'ClipCollection', AtcFilespec);
+    Result := True;
+  finally
+    FreeAndNil(ini);
+  end;
+
+  ClipCommands := string(GetUTF8Resource('Resource_Clip_Objects'));
+  AtcFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'WebHub_Objects_ClipCollection.atc';
+  StringWriteToFile(AtcFilespec, AnsiString(ClipCommands));
+
   CSExitMethod(nil, cFn);
 end;
 
