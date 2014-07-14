@@ -32,7 +32,8 @@ uses
   WHBridge2EditPad_uLoadWHCommands in 'WHBridge2EditPad_uLoadWHCommands.pas',
   {$ENDIF }
   WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas',
-  WebHubDWSourceUtil_uGlobal in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uGlobal.pas';
+  WebHubDWSourceUtil_uGlobal in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uGlobal.pas',
+  WebHubDWSourceUtil_uSyntaxRegex in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uSyntaxRegex.pas';
 
 {$R *.res}
 

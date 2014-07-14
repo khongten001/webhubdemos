@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   WHBridge2EditPad_uLoadWHCommands, FMX.Layouts, FMX.Edit,
-  WebHubDWSourceUtil_uGlobal;
+  WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex;
 
 type
   TfmWebHubExpressionHelp = class(TForm)
@@ -53,8 +53,15 @@ uses
   uCode, ucPos, ucShell, ucCodeSiteInterface;
 
 procedure TfmWebHubExpressionHelp.Button1Click(Sender: TObject);
+var
+  ActiveCommandDef: TwhCommandDef;
+  whSyntax: TwhSyntax;
 begin
-  Self.Close;
+  ActiveCommandDef := whCommands[fActiveIdx];
+  ExtractSyntax(ActiveCommandDef, whSyntax);
+  ExtractParseParams(ActiveCommandDef, whSyntax);
+  CSSend('SyntaxRegEx', whSyntax.SyntaxRegEx);
+  //Self.Close;
 end;
 
 procedure TfmWebHubExpressionHelp.ButtonHelpClick(Sender: TObject);
@@ -71,7 +78,7 @@ const cFn = 'CreateInputForm';
 var
   n: Integer;
   AGroupID: string;
-  GroupCategoryIdx, CategoryCommandIdx, CommandIdx: Integer;
+  GroupCategoryIdx, CategoryCommandIdx: Integer;
   ActiveCommandDef: TwhCommandDef;
   paramidx: Integer;
 const
@@ -86,11 +93,10 @@ begin
   CSSend('AWebHubCommand', AWebHubCommand);
 
   if FindCommandInArrays(AWebHubCommand, AGroupID, GroupCategoryIdx,
-    CategoryCommandIdx, CommandIdx) then
+    CategoryCommandIdx, fActiveIdx) then
   begin
-    //CSSend(AGroupID + ' ' + 'CommandIDX=' + S(CommandIdx));
-    fActiveIdx := CommandIdx;
-    ActiveCommandDef := whCommands[CommandIdx];
+    //CSSend(AGroupID + ' ' + 'CommandIDX=' + S(fActiveIdx));
+    ActiveCommandDef := whCommands[fActiveIdx];
 
     CSSend('MaxCommandParamNameLength', S(ActiveCommandDef.MaxCommandParamNameLength));
     cTabStop := 120; // 20 + (5 * ActiveCommandDef.MaxCommandParamNameLength); //120;
