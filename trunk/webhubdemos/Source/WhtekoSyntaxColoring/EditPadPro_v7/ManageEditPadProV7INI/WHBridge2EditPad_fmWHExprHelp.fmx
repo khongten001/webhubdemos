@@ -4,11 +4,11 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   Caption = 'Form5'
   ClientHeight = 692
   ClientWidth = 998
+  StyleBook = StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   DesignerMobile = False
   DesignerWidth = 0
   DesignerHeight = 0
@@ -26,11 +26,11 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       Padding.Top = 10.000000000000000000
       Padding.Right = 10.000000000000000000
       Padding.Bottom = 10.000000000000000000
-      OriginalWidth = 945.000000000000000000
+      OriginalWidth = 961.000000000000000000
       OriginalHeight = 561.000000000000000000
       Position.X = 16.000000000000000000
       Position.Y = 16.000000000000000000
-      Width = 945.000000000000000000
+      Width = 961.000000000000000000
     end
   end
   object Panel2: TPanel
@@ -54,9 +54,18 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       Position.Y = 5.000000000000000000
       Scale.X = 1.399999976158142000
       Scale.Y = 1.399999976158142000
-      StyleLookup = 'Label1Style1'
+      StyleLookup = 'LabelCommandNamesStyle1'
       Text = 'LabelCommandNames'
       Width = 465.000000000000000000
+    end
+    object ButtonHelp: TButton
+      Height = 22.000000000000000000
+      Position.X = 904.000000000000000000
+      Position.Y = 4.000000000000000000
+      TabOrder = 11
+      Text = 'Help'
+      Width = 80.000000000000000000
+      OnClick = ButtonHelpClick
     end
   end
   object WinStyleBookJet: TStyleBook
@@ -25272,5 +25281,18 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       Width = 89.000000000000000000
       OnClick = Button1Click
     end
+  end
+  object StyleBook1: TStyleBook
+    ResourcesBin = {
+      464D585F5354594C4520322E350106174C6162656C436F6D6D616E644E616D65
+      735374796C6531030801005450463007544C61796F757400095374796C654E61
+      6D6506174C6162656C436F6D6D616E644E616D65735374796C65310648656967
+      68740500000000000000F002400A506F736974696F6E2E580500000000000000
+      9B07400A506F736974696F6E2E590500000000000080B4074005576964746805
+      00000000000080E80740085461624F7264657202000005545465787400095374
+      796C654E616D6506047465787405416C69676E0706436C69656E74064C6F636B
+      656409064865696768740500000000000000F002400748697454657374081754
+      65787453657474696E67732E466F6E742E5374796C650B066673426F6C640005
+      57696474680500000000000080E80740000000}
   end
 end
