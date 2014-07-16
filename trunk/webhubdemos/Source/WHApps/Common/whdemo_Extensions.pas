@@ -110,6 +110,8 @@ begin
 
   if NOT FlagBeenHere then
   begin
+    FEATURE.SilentExecution := True; // requires WebHub v3.217+
+    
     AddAppUpdateHandler(DemoAppUpdate);
     // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
