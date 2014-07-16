@@ -83,6 +83,8 @@ begin
   if NOT FlagInitDone then
   begin
 
+    waCodeSite.SilentExecution := True; // requires webhub v3.217+
+    
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
       RefreshWebActions(Self);

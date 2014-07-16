@@ -1,6 +1,6 @@
 ﻿[File0]
 ProjectStatus=0
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Lite Examples\whAdRotation\whAdRotation.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whAdRotation\whAdRotation.whteko
 FTPFilename=
@@ -32,7 +32,7 @@ ForcedReadOnly=0
 
 [File4]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\cssdroplets.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\cssdroplets.whteko
 FTPFilename=
@@ -40,7 +40,7 @@ ForcedReadOnly=0
 
 [File5]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
 FTPFilename=
@@ -48,7 +48,7 @@ ForcedReadOnly=0
 
 [File6]
 ProjectStatus=0
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\designrefresh_jquery.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\designrefresh_jquery.whteko
 FTPFilename=
@@ -56,7 +56,7 @@ ForcedReadOnly=0
 
 [File7]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whteko
 FTPFilename=
@@ -72,7 +72,7 @@ ForcedReadOnly=0
 
 [File9]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whteko
 FTPFilename=
@@ -80,7 +80,7 @@ ForcedReadOnly=0
 
 [File10]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whteko
 FTPFilename=
@@ -88,7 +88,7 @@ ForcedReadOnly=0
 
 [File11]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whteko
 FTPFilename=
@@ -96,7 +96,7 @@ ForcedReadOnly=0
 
 [File12]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whteko
 FTPFilename=
@@ -104,7 +104,7 @@ ForcedReadOnly=0
 
 [File13]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\macros.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\macros.whteko
 FTPFilename=
@@ -112,7 +112,7 @@ ForcedReadOnly=0
 
 [File14]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\monitor.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\monitor.whteko
 FTPFilename=
@@ -120,7 +120,7 @@ ForcedReadOnly=0
 
 [File15]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
 FTPFilename=
@@ -128,7 +128,7 @@ ForcedReadOnly=0
 
 [File16]
 ProjectStatus=0
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
 FTPFilename=
@@ -231,8 +231,8 @@ FTPFilename=
 ForcedReadOnly=0
 
 [File29]
-ProjectStatus=1
-FileType=501360705
+ProjectStatus=0
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
 FTPFilename=
@@ -240,7 +240,7 @@ ForcedReadOnly=0
 
 [File30]
 ProjectStatus=1
-FileType=501360705
+FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\test_urls.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\test_urls.whteko
 FTPFilename=
@@ -249,6 +249,7 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=1
 BookmarksProjectWide=0
+ClipCollection=D:\Projects\webhubdemos\Source\WhtekoSyntaxColoring\EditPadPro_v7\WebHub_Commands_ClipCollection.atc
 TabIndex=16
 FirstFileTab=0
 FileCount=31
