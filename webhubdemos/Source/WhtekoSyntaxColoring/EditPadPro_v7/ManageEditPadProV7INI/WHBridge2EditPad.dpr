@@ -19,6 +19,7 @@ WHBridge2EditPad.exe --verb=ExprHelp "--word=%WORD%"
 {$R *.dres}   // some resources are available only at HREF Tools. IFDEF INHOUSE.
 
 uses
+  EMemLeaks,
   FMX.Forms,
   FMX.Dialogs,
   ucCodeSiteInterface,

@@ -65,8 +65,8 @@ var
       if c2 = MacroEnd[2] then
         Result := True;
     end;
-    CSSend('IsMacroEnd Result for ' + Copy(string(Content8), i, 2),
-      S(Result));
+    //CSSend('IsMacroEnd Result for ' + Copy(string(Content8), i, 2),
+    //  S(Result));
   end;
 
   function IsMacroStart(const i: Integer): Boolean;
@@ -81,8 +81,8 @@ var
       if c2 = MacroStart[2] then
         Result := True;
     end;
-    CSSend('IsMacroStart Result for ' + Copy(string(Content8), i, 2),
-      S(Result));
+    //CSSend('IsMacroStart Result for ' + Copy(string(Content8), i, 2),
+    //  S(Result));
   end;
 
 begin
@@ -96,14 +96,14 @@ begin
   if FileExists(ActiveFilespec) then
   begin
     EditPadPosition := StrToIntDef(ParamString('-pos'), -1);
-    CSSend('EditPadPosition', S(EditPadPosition));
+    //CSSend('EditPadPosition', S(EditPadPosition));
     if EditPadPosition <> -1 then
     begin
       Content8 := UTF8String(StringLoadFromFile(ActiveFilespec));
       LogToCodeSiteKeepCRLF('Content8', string(content8));
 
       InputStartPos := FirstStartParentil;
-      CSSend('InputStartPos', S(InputStartPos));
+      //CSSend('InputStartPos', S(InputStartPos));
 
       if InputStartPos <> -1 then
       begin
@@ -130,7 +130,7 @@ begin
             Inc(i); // move ahead 1 extra
           end;
           Inc(i); // usual increment for the while/for loop
-          CSSend('CountParentilPairs', S(CountParentilPairs));
+          //CSSend('CountParentilPairs', S(CountParentilPairs));
         end;
       end;
     end;
