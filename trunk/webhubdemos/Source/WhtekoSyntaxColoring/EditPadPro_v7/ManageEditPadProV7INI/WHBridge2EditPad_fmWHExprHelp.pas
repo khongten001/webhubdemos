@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   WHBridge2EditPad_uLoadWHCommands, FMX.Layouts, FMX.Edit,
-  WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex;
+  WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex,
+  WHBridge2EditPad_uExpressionReplacement;
 
 type
   TfmWebHubExpressionHelp = class(TForm)
@@ -234,6 +235,8 @@ begin
       end;
       Inc(n);
     end;
+    if FindImportantInputText then
+      LabelHelp.Text := ActiveWebHubExtract;
   end
   else
     Self.Caption := 'ERROR. Keyword not found.';
