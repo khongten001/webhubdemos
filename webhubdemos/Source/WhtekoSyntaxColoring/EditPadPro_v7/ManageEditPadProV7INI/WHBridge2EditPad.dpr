@@ -19,7 +19,6 @@ WHBridge2EditPad.exe --verb=ExprHelp "--word=%WORD%"
 {$R *.dres}   // some resources are available only at HREF Tools. IFDEF INHOUSE.
 
 uses
-  EMemLeaks,
   FMX.Forms,
   FMX.Dialogs,
   ucCodeSiteInterface,
@@ -33,7 +32,8 @@ uses
   {$ENDIF }
   WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas',
   WebHubDWSourceUtil_uGlobal in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uGlobal.pas',
-  WebHubDWSourceUtil_uSyntaxRegex in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uSyntaxRegex.pas';
+  WebHubDWSourceUtil_uSyntaxRegex in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uSyntaxRegex.pas',
+  WHBridge2EditPad_uExpressionReplacement in 'WHBridge2EditPad_uExpressionReplacement.pas';
 
 {$R *.res}
 
