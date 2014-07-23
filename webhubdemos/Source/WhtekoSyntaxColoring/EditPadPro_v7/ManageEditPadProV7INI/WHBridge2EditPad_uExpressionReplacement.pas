@@ -2,7 +2,19 @@ unit WHBridge2EditPad_uExpressionReplacement;
 
 interface
 
+uses
+  Classes, FMX.Controls;
+
+type
+  TValidControlArray = Array of TStyledControl; // TCustomEdit;
+
 function FindImportantInputText: Boolean;
+
+function CalculateFullExpression(const LabelCommandText: string;
+  AnyE: TValidControlArray): string;
+
+function ReplaceFileContentsNow(const LabelCommandText: string;
+  AnyE: TValidControlArray): Boolean;
 
 var
   ActiveFilespec: string = '';
@@ -15,7 +27,7 @@ var
 implementation
 
 uses
-  SysUtils,
+  SysUtils, FMX.Memo, FMX.Edit,
   whMacroAffixes,
   ucString, uCode, ucLogFil, ucCodeSiteInterface;
 
@@ -100,7 +112,7 @@ begin
     if EditPadPosition <> -1 then
     begin
       Content8 := UTF8String(StringLoadFromFile(ActiveFilespec));
-      LogToCodeSiteKeepCRLF('Content8', string(content8));
+      //LogToCodeSiteKeepCRLF('Content8', string(content8));
 
       InputStartPos := FirstStartParentil;
       //CSSend('InputStartPos', S(InputStartPos));
@@ -144,8 +156,59 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
+
+
+function CalculateFullExpression(const LabelCommandText: string;
+  AnyE: TValidControlArray): string;
+var
+  TentativeResult: string;
+  ThisEditText: string;
+  i, n: Integer;
+begin
+  TentativeResult := MacroStart + LabelCommandText + '|';
+  n := High(AnyE);
+  for i := Low(AnyE) to n do
+  begin
+    if Assigned(AnyE[i]) then
+    begin
+      CSSend(AnyE[i].Name + ': ClassName', AnyE[i].ClassName);
+      if AnyE[i] is TMemo then
+        ThisEditText := TMemo(AnyE[i]).Lines.Text
+      else
+        ThisEditText := TCustomEdit(AnyE[i]).Text;
+      TentativeResult := TentativeResult + '__' + ThisEditText;
+    end;
+  end;
+  TentativeResult := TentativeResult + MacroEnd;
+  Result := TentativeResult;
+end;
+
+function ReplaceFileContentsNow(const LabelCommandText: string;
+  AnyE: TValidControlArray): Boolean;
+var
+  ReplacementInfo8: UTF8String;
+  Content8: UTF8String;
+  Before8, After8: UTF8String;
+begin
+  if FileExists(ActiveFilespec) then
+  begin
+    Content8 := UTF8String(StringLoadFromFile(ActiveFilespec));
+    Before8 := UTF8Copy(Content8, 1, Pred(InputStartPos));
+    CSSend('Before8', string(Before8));
+    After8 := UTF8Copy(Content8, Succ(InputStopPos), MaxInt);
+    CSSend('After8', string(After8));
+    ReplacementInfo8 := UTF8String(CalculateFullExpression(LabelCommandtext,
+      AnyE));
+    ReplacementInfo8 := Before8 + ReplacementInfo8 + After8;
+    UTF8StringWriteToFile(ActiveFilespec, ReplacementInfo8);
+    Result := True;
+  end
+  else
+    Result := False;
+end;
+
 initialization
-  ActiveFilespec := uCode.ParamString('-file');
+  ActiveFilespec := ParamString('-file');
   ActiveWebHubCommandWord := Lowercase(ParamString('-word'));
 
 end.

@@ -20,14 +20,18 @@ type
     LabelCommandNames: TLabel;
     Panel3: TPanel;
     LabelHelp: TLabel;
-    Button1: TButton;
+    ButtonOK: TButton;
     ButtonHelp: TButton;
     StyleBook1: TStyleBook;
+    Panel4: TPanel;
+    ButtonPreview: TButton;
+    MemoPreview: TMemo;
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure ButtonOKClick(Sender: TObject);
     procedure PrimaryComboEnter(Sender: TObject);
     procedure Edit1Enter(Sender: TObject);
     procedure ButtonHelpClick(Sender: TObject);
+    procedure ButtonPreviewClick(Sender: TObject);
   private
     { Private declarations }
     FActiveIdx: Integer;
@@ -35,9 +39,8 @@ type
     LabelCommand: TComboEdit;
     LabelHintP, LabelHint: TLabel;
     LabelSyntaxP, LabelSyntax: TLabel;
-    //WebHubCommandInfoList: TWebHubCommandInfoList;
     AnyP: Array of TLabel;
-    AnyE: Array of TStyledControl; // TCustomEdit;
+    AnyE: TValidControlArray;
   public
     { Public declarations }
     procedure CreateInputForm(const AWebHubCommand: string);
@@ -51,27 +54,28 @@ implementation
 {$R *.fmx}
 
 uses
+  TypInfo,
+  whMacroAffixes,
   uCode, ucString, ucPos, ucShell, ucCodeSiteInterface;
 
-procedure TfmWebHubExpressionHelp.Button1Click(Sender: TObject);
-var
-  ActiveCommandDef: TwhCommandDef;
-  whSyntax: TwhSyntax;
+procedure TfmWebHubExpressionHelp.ButtonOKClick(Sender: TObject);
 begin
-  ActiveCommandDef := whCommands[fActiveIdx];
-  ExtractSyntax(ActiveCommandDef, whSyntax);
-  ExtractParseParams(ActiveCommandDef, whSyntax);
-  CSSend('SyntaxRegEx', whSyntax.SyntaxRegEx);
-  //Self.Close;
+  if ReplaceFileContentsNow(LabelCommand.Text, AnyE) then
+    Self.Close;
+end;
+
+procedure TfmWebHubExpressionHelp.ButtonPreviewClick(Sender: TObject);
+var
+  TentativeResult: string;
+begin
+  TentativeResult := CalculateFullExpression(LabelCommand.Text, AnyE);
+  MemoPreview.Lines.Text := TentativeResult;
 end;
 
 procedure TfmWebHubExpressionHelp.ButtonHelpClick(Sender: TObject);
-var
-  keyword: string;
 begin
-  keyword := Lowercase(ParamString('-word'));
   WinShellOpen('http://www.href.com/pub/docsnhelp/whQuickRefForCommands.html#' +
-    keyword);
+    ActiveWebHubCommandWord);
 end;
 
 procedure TfmWebHubExpressionHelp.CreateInputForm(const AWebHubCommand: string);
@@ -220,12 +224,36 @@ begin
         Position.Y := iRowStart;
         Width := LabelCommandP.Width * 1.2;
         Text := ActiveCommandDef.CommandParams[paramidx].Prompt;
+        CSSendNote(Text);
         //Text := WebHubCommandInfoList[jdx].WHCaption;
         TextSettings.HorzAlign := TTextAlign.Trailing;
         StyleName := 'labelstyle';
         Scale.X := 0.85;
         Scale.Y := 0.85;
       end;
+
+      with whSyntax.SyntaxParams[paramidx] do
+      begin
+        CSSend('ElementName', ElementName); // ElementName: string; {from syntax}
+        CSSend('ElementType', GetEnumName(TypeInfo(TwhElementType), Ord(ElementType)));
+        CSSend('ElementSelectType', GetEnumName(TypeInfo(TwhSelectType), Ord(ElementSelectType)));
+        CSSend('ElementCols', ElementCols); // : string;
+        CSSend('ElementRows', ElementRows);
+        CSSend('ElementEnumeratedChoices', ElementEnumeratedChoices); // : string;
+        CSSend('ElementRequired', S(ElementRequired)); // : Boolean;
+        CSSend('ElementRequired', ElementPrefix); //: string;
+        CSSend('ElementPrefixReqd', GetEnumName(TypeInfo(TwhPrefixReqd), Ord(ElementPrefixReqd)));
+        CSSend('ElementSuffix', ElementSuffix); // : string;
+        CSSend('ElementCharsToExclude', ElementCharsToExclude); // : string;  {comma separated}
+        CSSend('ElementRegExExclusionSet', ElementRegExExclusionSet); // : string;
+        CSSend('ElementNestLevel', S(ElementNestLevel)); // : Integer;
+        CSSend('ElementIsSecondAlternate', S(ElementIsSecondAlternate)); // : Boolean;
+        CSSend('ElementCaptureGroupNum', S(ElementCaptureGroupNum)); // : Integer;
+        CSSend('ElementCompleted', S(ElementCompleted)); // : Boolean;
+        //CSSend('ElementTestChoices: TStringList; {used for writing out test data}
+        CSSend('ElementExpansionType', GetEnumName(TypeInfo(TwhExpansionType), Ord(ElementExpansionType)));
+      end;
+
 
       case whSyntax.SyntaxParams[paramidx].ElementType of
         etSelect:
@@ -254,12 +282,13 @@ begin
           AnyE[n] := TEdit.Create(Self);
           with TEdit(AnyE[n]) do
           begin
+            Width := 300;
             Scale.X := 0.95;
             Scale.Y := 0.95;
           end;
         end;
       end;
-      AnyE[n].Name := 'AnyE' + IntToStr(n);
+      AnyE[n].Name := 'AnyE_' + AnyE[n].ClassName + IntToStr(n);
       with AnyE[n] do
       begin
         Parent := ScaledLayout1;
@@ -285,17 +314,42 @@ procedure TfmWebHubExpressionHelp.Edit1Enter(Sender: TObject);
 const cFn = 'Edit1Enter';
 var
   i: Integer;
+  HintText: string;
+  Note: string;
+var
+  ActiveCommandDef: TwhCommandDef;
+  whSyntax: TwhSyntax;
 begin
+  CSEnterMethod(Self, cFn);
   for i := 0 to High(AnyE) do
   begin
     if TEdit(Sender) = AnyE[i] then
     begin
-      //CSSend(cFn + ' i', S(i));
-      LabelHelp.Text := StringReplaceAll(
+      CSSend(cFn + ' i', S(i));
+      HintText := StringReplaceAll(
         whCommands[fActiveIdx].CommandParams[i].Hint, '%command%',
-          Uppercase(ActiveWebHubCommandWord));
+          Uppercase(LabelCommand.Text));
+      CSSend(HintText);
+      ActiveCommandDef := whCommands[fActiveIdx];
+      ExtractSyntax(ActiveCommandDef, whSyntax);
+      ExtractParseParams(whCommands[fActiveIdx], whSyntax);
+      CSSend('count', S(High(whSyntax.SyntaxParams)));
+      if i <= High(whSyntax.SyntaxRegEx) then
+      begin
+        case whSyntax.SyntaxParams[i].ElementExpansionType of
+          etUnknown: Note := '';
+          etNever: note := '(n)';
+          etAlways: note := '(a)';
+          etExplicit: note := '(e)';
+          etImplicit: note := '(i)';
+          etConditional: note := '(c)';
+        end;
+      end;
+
+      LabelHelp.Text := HintText + ' ' + Note;
     end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmWebHubExpressionHelp.FormCreate(Sender: TObject);
@@ -315,6 +369,10 @@ begin
   SetLength(AnyE, 0);
 
   LabelHelp.Text := '';
+  MemoPreview.Lines.Clear;
+  MemoPreview.TextSettings.Font.Style := [TFontStyle.fsBold];
+  //MemoPreview.Scale.X := 1.4;
+  //MemoPreview.Scale.Y := 1.4;
 
   fmWebHubExpressionHelp.StyleBook := nil;
 
@@ -350,7 +408,7 @@ end;
 
 procedure TfmWebHubExpressionHelp.PrimaryComboEnter(Sender: TObject);
 begin
-  LabelHelp.Text := 'hint pending'; //WebHubCommandInfoList[fActiveIdx].WHHint;
+  LabelHelp.Text := '';
 end;
 
 initialization

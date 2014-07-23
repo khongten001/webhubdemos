@@ -2,7 +2,7 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   Left = 0
   Top = 0
   Caption = 'Form5'
-  ClientHeight = 692
+  ClientHeight = 748
   ClientWidth = 998
   StyleBook = StyleBook1
   FormFactor.Width = 320
@@ -17,7 +17,7 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   DesignerOSVersion = ''
   object Panel1: TPanel
     Align = Client
-    Height = 599.000000000000000000
+    Height = 595.000000000000000000
     Width = 998.000000000000000000
     TabOrder = 3
     object ScaledLayout1: TScaledLayout
@@ -25262,7 +25262,7 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
   object Panel3: TPanel
     Align = Bottom
     Height = 60.000000000000000000
-    Position.Y = 632.000000000000000000
+    Position.Y = 688.000000000000000000
     Width = 998.000000000000000000
     TabOrder = 14
     object LabelHelp: TLabel
@@ -25272,14 +25272,14 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       Text = 'LabelHelp'
       Width = 865.000000000000000000
     end
-    object Button1: TButton
+    object ButtonOK: TButton
       Height = 35.000000000000000000
       Position.X = 896.000000000000000000
       Position.Y = 14.000000000000000000
       TabOrder = 9
       Text = 'Ok'
       Width = 89.000000000000000000
-      OnClick = Button1Click
+      OnClick = ButtonOKClick
     end
   end
   object StyleBook1: TStyleBook
@@ -25296,5 +25296,30 @@ object fmWebHubExpressionHelp: TfmWebHubExpressionHelp
       656409064865696768740500000000000000F002400748697454657374081754
       65787453657474696E67732E466F6E742E5374796C650B066673426F6C640005
       57696474680500000000000080E80740000000}
+  end
+  object Panel4: TPanel
+    Align = Bottom
+    Height = 60.000000000000000000
+    Position.Y = 628.000000000000000000
+    Width = 998.000000000000000000
+    TabOrder = 22
+    object ButtonPreview: TButton
+      Height = 35.000000000000000000
+      Position.X = 896.000000000000000000
+      Position.Y = 14.000000000000000000
+      TabOrder = 9
+      Text = 'Preview'
+      Width = 89.000000000000000000
+      OnClick = ButtonPreviewClick
+    end
+    object MemoPreview: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      Height = 50.000000000000000000
+      Position.X = 24.000000000000000000
+      Position.Y = 2.000000000000000000
+      TabOrder = 11
+      Width = 857.000000000000000000
+      ReadOnly = True
+    end
   end
 end
