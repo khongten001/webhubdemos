@@ -89,7 +89,7 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <Debugger_DebugSourcePath>k:\webhub\tpack\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Debugger_RunParams>--verb=ExprHelp --word=JUMPR</Debugger_RunParams>
+        <Debugger_RunParams>--verb=ExprHelp --word=MATCH</Debugger_RunParams>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -164,3 +164,11 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7007
+Activate=0
+DeleteMapAfterCompile=1
+Encrypt Password=""
+EurekaLog Last Line -->

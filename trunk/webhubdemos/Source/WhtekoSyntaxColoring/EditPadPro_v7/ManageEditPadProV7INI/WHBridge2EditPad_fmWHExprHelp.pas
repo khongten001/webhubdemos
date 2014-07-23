@@ -7,7 +7,7 @@ uses
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   WHBridge2EditPad_uLoadWHCommands, FMX.Layouts, FMX.Edit,
   WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex,
-  WHBridge2EditPad_uExpressionReplacement;
+  WHBridge2EditPad_uExpressionReplacement, FMX.ListBox, FMX.Memo;
 
 type
   TfmWebHubExpressionHelp = class(TForm)
@@ -37,7 +37,7 @@ type
     LabelSyntaxP, LabelSyntax: TLabel;
     //WebHubCommandInfoList: TWebHubCommandInfoList;
     AnyP: Array of TLabel;
-    AnyE: Array of TEdit;
+    AnyE: Array of TStyledControl; // TCustomEdit;
   public
     { Public declarations }
     procedure CreateInputForm(const AWebHubCommand: string);
@@ -51,7 +51,7 @@ implementation
 {$R *.fmx}
 
 uses
-  uCode, ucPos, ucShell, ucCodeSiteInterface;
+  uCode, ucString, ucPos, ucShell, ucCodeSiteInterface;
 
 procedure TfmWebHubExpressionHelp.Button1Click(Sender: TObject);
 var
@@ -82,6 +82,7 @@ var
   GroupCategoryIdx, CategoryCommandIdx: Integer;
   ActiveCommandDef: TwhCommandDef;
   paramidx: Integer;
+  iRowStart: Extended;
 const
   TopLine = 1;
   LineInc = 18;
@@ -89,6 +90,8 @@ const
   cPromptTabStop = 2;
 var
   cTabStop: Single;
+var
+  whSyntax: TwhSyntax;
 begin
   CSEnterMethod(Self, cFn);
   CSSend('AWebHubCommand', AWebHubCommand);
@@ -123,19 +126,6 @@ begin
       TextSettings.HorzAlign := TTextAlign.Trailing;
       StyleName := 'labelstyle';
     end;
-    (*
-    LabelHintP := TLabel.Create(Self);
-    LabelHintP.Name := 'LabelHintP';
-    with LabelHintP do
-    begin
-      Parent := ScaledLayout1;
-      Position.X := cPromptTabStop;
-      Position.Y := TopLine + (1.4 * LineInc);
-      Width := LabelCommandP.Width;
-      Text := 'Hint:';
-      TextSettings.HorzAlign := TTextAlign.Trailing;
-      StyleName := 'labelstyle';
-    end;*)
     LabelSyntaxP := TLabel.Create(Self);
     LabelSyntaxP.Name := 'LabelSyntaxP';
     with LabelSyntaxP do
@@ -197,7 +187,25 @@ begin
     end;
 
 
+
+
+    ExtractSyntax(ActiveCommandDef, whSyntax);
+    ExtractParseParams(ActiveCommandDef, whSyntax);
+    CSSend('SyntaxRegEx', whSyntax.SyntaxRegEx);
+
+(*
+    for paramidx := 0 to High(whSyntax.SyntaxParams) do
+    begin
+      begin
+        if whSyntax.SyntaxParams[paramidx].ElementType = etSelect then
+        begin
+          {EnumeratedPrompts: value#9desc,value#9desc etc}
+
+*)
+
+
     n := 0;
+    iRowStart := LabelSyntax.Position.Y + LabelSyntax.Height + AnyLineInc;
 
     for paramidx := 0 to High(ActiveCommandDef.CommandParams) do
     begin
@@ -209,8 +217,7 @@ begin
       begin
         Parent := ScaledLayout1;
         Position.X := cPromptTabStop;
-        Position.Y := LabelSyntax.Position.Y + LabelSyntax.Height +
-          (Succ(N) * AnyLineInc);
+        Position.Y := iRowStart;
         Width := LabelCommandP.Width * 1.2;
         Text := ActiveCommandDef.CommandParams[paramidx].Prompt;
         //Text := WebHubCommandInfoList[jdx].WHCaption;
@@ -219,20 +226,50 @@ begin
         Scale.X := 0.85;
         Scale.Y := 0.85;
       end;
-      AnyE[n] := TEdit.Create(Self);
+
+      case whSyntax.SyntaxParams[paramidx].ElementType of
+        etSelect:
+          begin
+            {EnumeratedPrompts: value#9desc,value#9desc etc}
+            AnyE[n] := TComboEdit.Create(Self);
+            with TComboEdit(AnyE[n]) do
+            begin
+              Items.Text := StringReplaceAll(
+                whSyntax.SyntaxParams[paramidx].ElementEnumeratedChoices, ',',
+                sLineBreak);
+              ItemIndex := 0;
+            end;
+          end;
+        etTextarea:
+          begin
+            AnyE[n] := TMemo.Create(Self);
+            with TMemo(AnyE[n]) do
+            begin
+              Height := 35;
+              Width := 300;
+            end;
+          end
+        else
+        begin
+          AnyE[n] := TEdit.Create(Self);
+          with TEdit(AnyE[n]) do
+          begin
+            Scale.X := 0.95;
+            Scale.Y := 0.95;
+          end;
+        end;
+      end;
       AnyE[n].Name := 'AnyE' + IntToStr(n);
       with AnyE[n] do
       begin
         Parent := ScaledLayout1;
         OnEnter := Edit1Enter;
         Position.X := cTabStop;
-        Position.Y := LabelSyntax.Position.Y + LabelSyntax.Height +
-          (Succ(N) * AnyLineInc);
-        Text := '';
-        TextSettings.HorzAlign := TTextAlign.Leading;
-        Scale.X := 0.95;
-        Scale.Y := 0.95;
+        Position.Y := iRowStart;
+        if AnyE[n] is TCustomEdit then
+          TCustomEdit(AnyE[n]).TextSettings.HorzAlign := TTextAlign.Leading;
       end;
+      iRowStart := iRowStart + AnyE[n].Height + 10; //AnyLineInc;
       Inc(n);
     end;
     if FindImportantInputText then
@@ -254,8 +291,9 @@ begin
     if TEdit(Sender) = AnyE[i] then
     begin
       //CSSend(cFn + ' i', S(i));
-      LabelHelp.Text :=
-        whCommands[fActiveIdx].CommandParams[i].Hint;
+      LabelHelp.Text := StringReplaceAll(
+        whCommands[fActiveIdx].CommandParams[i].Hint, '%command%',
+          Uppercase(ActiveWebHubCommandWord));
     end;
   end;
 end;
