@@ -256,7 +256,7 @@
           <SessionCookieName value=""/>
 		  <SessionNumberLocation value="URL" />
           <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
+            <DefaultStartup mode="application" stopWithHub="false" numToStartWithHub="0" />
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
             <ExecutableFilename value="CServer_demos.exe"/>
 			<ServiceName value="demos" />
