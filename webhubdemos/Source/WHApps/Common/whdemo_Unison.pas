@@ -33,8 +33,7 @@ uses
   
 procedure TdmwhUnison.Init;
 begin
-  fSharedExitTrigger := TSharedInt.CreateNamed(Self, 'RHSExit',
-    SizeOf(Longint));
+  fSharedExitTrigger := TSharedInt.CreateNamed(Self, 'RHSExit');
   with fSharedExitTrigger do
   begin
     if GlobalInteger <> 1 then

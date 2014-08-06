@@ -30,7 +30,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 {$I shared_buffer.inc}
 begin
-  shared := TtpSharedBuf.CreateNamed(nil, cName, cSize);
+  shared := TtpSharedBuf.CreateNamed(nil, cName, cSize, True); // readonly
   shared.Name := 'shared';
   shared.OnChange := SharedHasChanged;
   shared.IgnoreOwnChanges := True;

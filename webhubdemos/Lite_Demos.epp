@@ -249,7 +249,6 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=1
 BookmarksProjectWide=0
-ClipCollection=D:\Projects\webhubdemos\Source\WhtekoSyntaxColoring\EditPadPro_v7\WebHub_Commands_ClipCollection.atc
 TabIndex=16
 FirstFileTab=0
 FileCount=31

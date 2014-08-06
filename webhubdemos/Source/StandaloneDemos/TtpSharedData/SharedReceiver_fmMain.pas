@@ -82,7 +82,7 @@ procedure TForm4.Button1Click(Sender: TObject);
 begin
   if FSharedBuf = nil then
   begin
-    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize);
+    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize, True); // readonly
     FSharedBuf.Name := 'FSharedBuf';
     FSharedBuf.OnChange := BufferChanged;
   end;
