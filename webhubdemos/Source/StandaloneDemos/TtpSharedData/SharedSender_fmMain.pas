@@ -17,7 +17,7 @@ type
     procedure FormDestroy(Sender: TObject);
   strict private
     { Private declarations }
-    FSharedBuf: TtpSharedBuf;
+    FSharedBuf: TSharedBuf;
   public
     { Public declarations }
   end;
@@ -37,7 +37,9 @@ var
 begin
   if FSharedBuf = nil then
   begin
-    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize);
+    FSharedBuf := TSharedBuf.CreateNamed(nil, cName, cSize,
+      cReadWriteSharedMem,  // NOT readonly
+      cLocalSharedMem); // LOCAL not global
     FSharedBuf.Name := 'FSharedBuf';
   end;
 

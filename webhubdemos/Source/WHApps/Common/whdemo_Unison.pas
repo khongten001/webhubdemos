@@ -33,7 +33,9 @@ uses
   
 procedure TdmwhUnison.Init;
 begin
-  fSharedExitTrigger := TSharedInt.CreateNamed(Self, 'RHSExit');
+  fSharedExitTrigger := TSharedInt.CreateNamed(Self, 'RHSExit', 
+    cReadWriteSharedMem,  // not readonly
+    cLocalSharedMem);     // LOCAL not global
   with fSharedExitTrigger do
   begin
     if GlobalInteger <> 1 then

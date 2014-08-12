@@ -14,7 +14,7 @@ type
     procedure FormDestroy(Sender: TObject);
   private
     { Private declarations }
-    shared: TtpSharedBuf;
+    shared: TSharedBuf;
     procedure SharedHasChanged(Sender: TObject);
   public
     { Public declarations }
@@ -30,7 +30,7 @@ implementation
 procedure TForm1.FormCreate(Sender: TObject);
 {$I shared_buffer.inc}
 begin
-  shared := TtpSharedBuf.CreateNamed(nil, cName, cSize, True); // readonly
+  shared := TSharedBuf.CreateNamed(nil, cName, cSize, cReadonlySharedMem, cLocalSharedMem); 
   shared.Name := 'shared';
   shared.OnChange := SharedHasChanged;
   shared.IgnoreOwnChanges := True;
