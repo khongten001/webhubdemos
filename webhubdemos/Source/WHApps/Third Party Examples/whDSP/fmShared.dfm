@@ -67,13 +67,6 @@ inherited fmCommon: TfmCommon
       TabOrder = 4
     end
   end
-  object Global: TtpSharedInt32
-    GlobalValue = 0
-    IgnoreOwnChanges = True
-    OnChange = GlobalChange
-    Left = 248
-    Top = 7
-  end
   object tpAppRole1: TtpAppRole
     Left = 216
     Top = 8

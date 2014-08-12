@@ -79,7 +79,7 @@ type
     FDestination: TCodeSiteDestination;
     FUseCodeSiteManagerConnection: Boolean;
     {$IFDEF XFER2CodeSite}
-    FSharedBuf: TtpSharedBuf;
+    FSharedBuf: TSharedBuf;
     {$ENDIF}
     procedure ClearBuf;
     procedure SetDestination(Value: TCodeSiteDestination);
@@ -229,9 +229,7 @@ end;
 procedure TCodeSiteFake.ClearBuf;
 begin
   {$IFDEF XFER2CodeSite}
-//  if Self <> nil then
-//    FSharedBuf.GlobalUTF8String := '';
-  Sleep(10);  // slow the stream to the TtpSharedBuf
+  Sleep(10);  // slow the stream to the TSharedBuf
   {$ENDIF}
 end;
 
