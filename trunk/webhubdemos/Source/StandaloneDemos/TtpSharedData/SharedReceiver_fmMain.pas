@@ -30,7 +30,7 @@ type
     procedure Button1Click(Sender: TObject);
   strict private
     { Private declarations }
-    FSharedBuf: TtpSharedBuf;
+    FSharedBuf: TSharedBuf;
     procedure AppBarResize;
     procedure AppBarShow(mode: integer);
     procedure BufferChanged(Sender: TObject);
@@ -82,7 +82,9 @@ procedure TForm4.Button1Click(Sender: TObject);
 begin
   if FSharedBuf = nil then
   begin
-    FSharedBuf := TtpSharedBuf.CreateNamed(nil, cName, cSize, True); // readonly
+    FSharedBuf := TSharedBuf.CreateNamed(nil, cName, cSize, 
+      cReadonlySharedMem,   
+      cLocalSharedMem); // LOCAL not global
     FSharedBuf.Name := 'FSharedBuf';
     FSharedBuf.OnChange := BufferChanged;
   end;

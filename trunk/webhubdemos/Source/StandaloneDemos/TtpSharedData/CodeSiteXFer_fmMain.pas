@@ -22,7 +22,7 @@ type
   strict private
     { Private declarations }
     FGuiActive: Boolean;
-    FSharedBuf: TtpSharedBuf;
+    FSharedBuf: TSharedBuf;
     FCS: TCriticalSection;
     procedure BufChanged(Sender: TObject);
   public
@@ -161,11 +161,10 @@ begin
 
   top := 50;
   left := 150;
-  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
-    1024 * SizeOf(Char));
+  FSharedBuf := TSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
+    1024 * SizeOf(Char), True, False); // Readonly; LOCAL not global
   FSharedBuf.Name := 'FSharedBuf';
   FSharedBuf.OnChange := BufChanged;
-  FSharedBuf.IgnoreOwnChanges := True;
 
   FGuiActive := False;
   Checkbox1.Checked := False;
