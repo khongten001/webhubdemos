@@ -2,7 +2,7 @@ unit CodeSiteLogging; // placeholder unit for use when CodeSite not available
                       // for example, when compiling with FreePascal
 
 (*
-  Copyright (c) 2011 HREF Tools Corp.
+  Copyright (c) 2011-2014 HREF Tools Corp.
 
   Permission is hereby granted, on 23-Jul-2011, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -110,7 +110,7 @@ type
     property Destination: TCodeSiteDestination read FDestination write
       SetDestination;
     {$IFDEF XFER2CodeSite}
-    property SharedBuf: TtpSharedBuf read FSharedBuf;
+    property SharedBuf: TSharedBuf read FSharedBuf;
     {$ENDIF}
     procedure UseCodeSiteManagerConnection;
   end;
@@ -238,10 +238,9 @@ end;
 constructor TCodeSiteFake.Create;
 begin
   {$IFDEF XFER2CodeSite}
-  FSharedBuf := TtpSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
-    1024 * SizeOf(Char));
+  FSharedBuf := TSharedBuf.CreateNamed(nil, 'CodeSiteIPC',
+    1024 * SizeOf(Char), cReadWriteSharedMem, cLocalSharedMem); // NOT readonly; LOCAL not global
   FSharedBuf.Name := 'FSharedBuf';
-  FSharedBuf.IgnoreOwnChanges := True;
   {$ENDIF}
 end;
 
