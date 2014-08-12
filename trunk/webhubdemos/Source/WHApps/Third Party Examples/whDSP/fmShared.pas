@@ -9,15 +9,14 @@ unit fmShared;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, 
   ExtCtrls, StdCtrls, 
-  utpanfrm, tpShareI, updateOk{non-gui}, updateOKGUI, 
+  utpanfrm, tpShareB, updateOk{non-gui}, updateOKGUI, 
   tpApplic{non-gui}, tpApplicGUI, 
-  WebCall;
+  webCall;
 
 type
   TfmCommon = class(TutParentForm)
-    Global: TtpSharedInt32;
     rg: TRadioGroup;
     Button1: TButton;
     tpAppRole1: TtpAppRole;
@@ -35,6 +34,7 @@ type
     procedure AppUpdate(Sender: TObject);
   public
     { Public declarations }
+    Global: TSharedInt;
     WebCommandLine: TwhConnection;
     property GlobalCommand:String write SetGlobalCommand;
   end;
@@ -52,7 +52,11 @@ uses
 procedure TfmCommon.FormCreate(Sender: TObject);
 begin
   inherited;
-  Global.GlobalName:=pWebApp.AppIDEx;
+  Global := TSharedInt.CreateNamed(Self, pWebApp.AppID, cReadWriteSharedMem, cLocalSharedMem);
+  Global.Name := 'Global';
+  Global.OnChange := GlobalChange;
+  Global.GlobalInteger := 0;
+
   AppUpdate(Sender);
   AddAppUpdateHandler(AppUpdate);
 end;
@@ -65,25 +69,25 @@ end;
 
 procedure TfmCommon.SetGlobalCommand(const Value:String);
 begin
-  Global.GlobalName:=pWebApp.AppID;
-  Global.GlobalValue:=0;
+  if Global.GlobalName <> pWebApp.AppID then
+    Global.GlobalName:=pWebApp.AppID;
+  Global.GlobalInteger := 0;
   sleep(20);
   application.processmessages;
   sleep(20);
   application.processmessages;
   sleep(20);
-  Global.GlobalValue:=StrToIntDef(Value,0);
+  Global.GlobalInteger:=StrToIntDef(Value,0);
   sleep(20);
 end;
 
-procedure TfmCommon.GlobalChange(Sender: TObject; var Continue: Boolean);
+procedure TfmCommon.GlobalChange(Sender: TObject);
 begin
   inherited;
-  with TtpSharedInt32(Sender) do
+  with TSharedInt(Sender) do
     case GlobalValue of
       0:;
       1:begin
-        Continue := False;
         Application.Terminate;
         end;
       2:begin
@@ -110,5 +114,7 @@ begin
   GlobalCommand:=IntToStr(succ(rg.ItemIndex));
   Global.IgnoreOwnChanges:=True;
 end;
+
+(* destroy should FreeAndNil(Global); *)
 
 end.

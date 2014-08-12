@@ -22,11 +22,4 @@ object Form1: TForm1
     TabOrder = 0
     OnClick = Button1Click
   end
-  object tpSharedLongint1: TtpSharedInt32
-    GlobalName = 'AppShutdown'
-    GlobalValue = 0
-    IgnoreOwnChanges = True
-    Left = 96
-    Top = 88
-  end
 end

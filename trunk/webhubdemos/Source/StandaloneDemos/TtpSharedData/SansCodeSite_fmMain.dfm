@@ -19,7 +19,7 @@ object Form5: TForm5
     Top = 152
     Width = 250
     Height = 49
-    Caption = 'Log to CodeSite via TtpSharedBuf'
+    Caption = 'Log to CodeSite via TPack Shared Buffer'
     TabOrder = 0
     OnClick = Button1Click
   end

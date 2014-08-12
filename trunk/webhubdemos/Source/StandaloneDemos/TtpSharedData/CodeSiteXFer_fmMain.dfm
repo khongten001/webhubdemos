@@ -1,7 +1,7 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Transmit from TtpSharedBuf to CodeSite Logger'
+  Caption = 'Transmit from TPack Shared Buffer to CodeSite Logger'
   ClientHeight = 310
   ClientWidth = 408
   Color = clBtnFace

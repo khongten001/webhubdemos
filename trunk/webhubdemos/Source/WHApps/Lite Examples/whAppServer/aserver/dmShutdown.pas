@@ -3,16 +3,16 @@ unit dmShutdown;
 interface
 
 uses
-  SysUtils, Classes, tpShareI;
+  SysUtils, Classes, tpShareB;
 
 type
   TDataModuleShutdown = class(TDataModule)
-    tpSharedLongint1: TtpSharedInt32;
     procedure tpSharedLongint1Change(Sender: TObject;
       var Continue: Boolean);
   private
     { Private declarations }
   public
+    tpSharedLongint1: TSharedInt;
     { Public declarations }
   end;
 
@@ -26,16 +26,26 @@ implementation
 uses
   Forms;
 
-procedure TDataModuleShutdown.tpSharedLongint1Change(Sender: TObject;
-  var Continue: Boolean);
+procedure TDataModuleShutdown.tpSharedLongint1Change(Sender: TObject);
 begin
-  with TtpSharedInt32(Sender) do
+  with TSharedInt(Sender) do
   begin
-    if GlobalValue = 57 then
+    if GlobalInteger = 57 then
     begin
       Application.MainForm.Close;
     end;
   end;
 end;
+
+(* on create
+  object tpSharedLongint1: TtpSharedInt32
+    GlobalName = 'AppShutdown'
+    GlobalValue = 0
+    IgnoreOwnChanges = True
+    OnChange = tpSharedLongint1Change
+    Left = 56
+    Top = 32
+  end
+*)
 
 end.

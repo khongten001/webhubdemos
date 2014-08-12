@@ -4,17 +4,17 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, tpShareI;
+  StdCtrls, tpShareB;
 
 type
   TForm1 = class(TForm)
-    tpSharedLongint1: TtpSharedInt32;
     Button1: TButton;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    tpSharedLongint1: TSharedInt;
   end;
 
 var
@@ -26,7 +26,17 @@ implementation
 
 procedure TForm1.Button1Click(Sender: TObject);
 begin
-  TpSharedLongint1.GlobalValue := 57;
+  tpSharedLongint1.GlobalInteger := 57;
 end;
+
+(* on create
+  object tpSharedLongint1: TtpSharedInt32
+    GlobalName = 'AppShutdown'
+    GlobalValue = 0
+    IgnoreOwnChanges = True
+    Left = 96
+    Top = 88
+  end
+*)
 
 end.

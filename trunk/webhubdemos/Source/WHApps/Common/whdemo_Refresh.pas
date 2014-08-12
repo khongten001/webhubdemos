@@ -11,21 +11,21 @@ unit whdemo_Refresh;
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  tpsharei, updateok, tpaction, WebTypes,   weblink;
+  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, 
+  tpshareb, updateok, tpAction, 
+  webTypes, webLink;
 
 type
   TdmWhRefresh = class(TDataModule)
-    tpSharedLongint: TtpSharedInt32;
     waDemoRefresh: TwhWebActionEx;
     procedure DataModuleCreate(Sender: TObject);
-    procedure tpSharedLongintChange(Sender: TObject;
-      var Continue: Boolean);
+    procedure tpSharedLongintChange(Sender: TObject);
     procedure waDemoRefreshExecute(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
   private
     { Private declarations }
   public
+    tpSharedLongint: TSharedInt;
     { Public declarations }
   end;
 
@@ -43,7 +43,9 @@ begin
   (* Set the name equal to something that is easily available to all instances
      which need to respond to the commands.  In this case, we want to refresh
      all running demos in unison. *)
-  tpSharedLongint.GlobalName := 'WebHubDemo';
+  tpSharedLongint := TSharedInt.CreateNamed(Self, 'WebHubDemo', cReadWriteSharedMem);
+  tpSharedLongint.Name := 'tpSharedLongint';
+  tpSharedLongint.OnChange := tpSharedLongintChange;
 
   (* If IgnoreOwnChanges is true, then "global" actions will not occur in
      this instance, only in the other instances.  If IgnoreOwnChanges is
@@ -52,19 +54,17 @@ begin
   tpSharedLongint.IgnoreOwnChanges := False;
 end;
 
-procedure TdmWhRefresh.tpSharedLongintChange(Sender: TObject;
-  var Continue: Boolean);
+procedure TdmWhRefresh.tpSharedLongintChange(Sender: TObject);
 var
   newValue: Integer;
 begin
   inherited;
-  newValue := TtpSharedInt32(Sender).GlobalValue;
+  newValue := TSharedInt(Sender).GlobalInteger;
   { These are the same values (1,3) as used in whShared.pas. Nonetheless you
     may define any values to lead to any actions. }
   case newValue of
     1:begin
       // Close application
-      Continue:=false;
       Application.MainForm.Close;
       // By the way, the app will exit; no response will come back to surfer.
       end;
@@ -87,7 +87,7 @@ begin
     begin
       if HtmlParam = '3' then
         WebResponse := 'Refreshing all apps';
-      tpSharedLongInt.GlobalValue := StrToIntDef(HtmlParam, 0);
+      tpSharedLongInt.GlobalInteger := StrToIntDef(HtmlParam, 0);
     end;
     Response.Send(WebResponse);
   end;
@@ -95,6 +95,7 @@ end;
 
 procedure TdmWhRefresh.DataModuleDestroy(Sender: TObject);
 begin
+  FreeAndNil(tpSharedLongint);
   dmWhRefresh := nil;
 end;
 
