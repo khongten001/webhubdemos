@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{53BCC7DF-3BC2-478E-A2B4-2B4E5AA37C64}</ProjectGuid>
         <MainSource>whLite.dpr</MainSource>
@@ -144,10 +144,6 @@
         </DCCReference>
         <DCCReference Include="..\..\..\Common\whdemo_About.pas">
             <Form>fmAppAboutPanel</Form>
-        </DCCReference>
-        <DCCReference Include="..\..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="h:\whpanel_RemotePages.pas">
             <Form>fmWhDreamweaver</Form>

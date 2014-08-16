@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{A7EC982A-D33C-44B1-B63A-55B9C2660292}</ProjectGuid>
         <MainSource>whSendmail.dpr</MainSource>
@@ -85,10 +85,6 @@
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="h:\whpanel_RemotePages.pas">

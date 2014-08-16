@@ -45,8 +45,7 @@ uses
   whsample_DWSecurity, whsample_PrototypeJS,
   webCall, whdemo_Extensions, whdemo_ViewSource,
   ucPos, uCode, ucString, ucDlgs, whpanel_Mail,
-  whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About,
-  whdemo_Refresh;
+  whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
 
 procedure whDemoSetAppId(const whDemoAppID: string);
 begin
@@ -66,9 +65,6 @@ begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
   CreateStandardWHModules; // based on flags in app's config
 
-  // The dmWhRefresh datamodule enables global refresh of all WebHub demos.
-  {M}Application.CreateForm(TdmWhRefresh, dmWhRefresh);
-
   // The "view source" and "extensions" data modules are required
   // on demos.href.com
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
@@ -81,7 +77,6 @@ procedure whDemoDestroySharedDataModules;
 begin
   DestroyStandardWHModules;
   FreeAndNil(DMPrototypeJS);
-  FreeAndNil(dmWhRefresh);
   FreeAndNil(DemoViewSource);
   FreeAndNil(DemoExtensions);
 end;

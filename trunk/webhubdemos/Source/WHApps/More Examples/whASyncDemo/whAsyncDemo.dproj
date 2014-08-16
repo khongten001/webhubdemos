@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{39B97A33-CCF9-4102-BF89-FBF75A360921}</ProjectGuid>
         <MainSource>whAsyncDemo.dpr</MainSource>
@@ -93,10 +93,6 @@
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="AsyncDm.pas">
