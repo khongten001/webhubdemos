@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{5653C155-9103-431A-AEB9-1CFFE5CDEFC8}</ProjectGuid>
         <MainSource>whShopping.dpr</MainSource>
@@ -113,10 +113,6 @@
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="h:\whpanel_RemotePages.pas">

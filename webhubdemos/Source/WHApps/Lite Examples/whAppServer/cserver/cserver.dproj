@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{0AA8EDD1-718F-45B7-84C2-2C5F568FF588}</ProjectGuid>
         <MainSource>cserver.dpr</MainSource>
@@ -101,10 +101,6 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\..\Common\whdemo_Initialize.pas"/>
-        <DCCReference Include="..\..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="..\..\..\Common\whdemo_About.pas">
             <Form>fmAppAboutPanel</Form>
         </DCCReference>

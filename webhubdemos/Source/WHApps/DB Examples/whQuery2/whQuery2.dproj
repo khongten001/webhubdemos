@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{204790D6-48B7-4C0E-90EE-B02C75951703}</ProjectGuid>
         <MainSource>whQuery2.dpr</MainSource>
@@ -92,10 +92,6 @@
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
