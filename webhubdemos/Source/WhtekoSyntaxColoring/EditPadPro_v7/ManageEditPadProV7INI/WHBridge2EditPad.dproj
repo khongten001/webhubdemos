@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>WHBridge2EditPad.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -51,6 +51,8 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <DCC_UnitSearchPath>k:\webhub\ZaphodsMap;k:\webhub\tpack;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <SanitizedProjectName>WHBridge2EditPad</SanitizedProjectName>
         <DCC_Define>PREVENTSVCMGR;FMACTIVE;INHOUSE;$(DCC_Define)</DCC_Define>
@@ -70,7 +72,8 @@
         <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;DBXOracleDriver;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;soaprtl;FMXTee;FireDACADSDriver;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;DataSnapServerMidas;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;WebHubBDE;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;inetdbbde;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;WebHubDB;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;rbc40_m_pas_lib;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;ldiRegExLib;FireDACASADriver;WebHub;bindcompfmx;vcldbx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;rbc40_s_pas_lib;rbc40_b_pas_lib;xmlrtl;DataSnapNativeClient;svnui;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;rbc40_k_pas_lib;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;ZaphodsMapLib;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;rbc40_e_pas_lib;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;WebHubNewAppIDWizard;NexusDB400pv200;bdertl;rbc40_core_pas_lib;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -145,7 +148,6 @@
                     <Source Name="MainSource">WHBridge2EditPad.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\EurekaLogExpert.bpl">EurekaLog Expert</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k200.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp200.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\bcboffice2k200.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>

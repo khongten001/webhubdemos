@@ -18,7 +18,6 @@ uses
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
-  whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel};
 
 {$R cserver_version.RES}

@@ -1,4 +1,4 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{9F2DFF6F-B5F9-488B-95EF-B23FB8936737}</ProjectGuid>
 			<MainSource>whDropdown.dpr</MainSource>
@@ -71,10 +71,6 @@
 			</DCCReference>
 			<DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
 				<Form>DemoViewSource</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
-			<DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-				<Form>dmWhRefresh</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\whpanel_RemotePages.pas">

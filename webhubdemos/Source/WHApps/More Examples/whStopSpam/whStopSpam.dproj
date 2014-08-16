@@ -1,4 +1,4 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{47F870CB-D386-494A-A106-7036D295D9F2}</ProjectGuid>
 			<MainSource>whStopSpam.dpr</MainSource>
@@ -69,10 +69,6 @@
 			</DCCReference>
 			<DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
 				<Form>DemoViewSource</Form>
-				<DesignClass>TDataModule</DesignClass>
-			</DCCReference>
-			<DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-				<Form>dmWhRefresh</Form>
 				<DesignClass>TDataModule</DesignClass>
 			</DCCReference>
 			<DCCReference Include="h:\whsample_EvtHandlers.pas">

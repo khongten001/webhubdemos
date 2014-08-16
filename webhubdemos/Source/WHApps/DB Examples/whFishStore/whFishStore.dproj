@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{86B23A7B-11C9-4061-827D-F236FEF98106}</ProjectGuid>
         <MainSource>whFishStore.dpr</MainSource>
@@ -82,10 +82,6 @@
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_Extensions.pas">
             <Form>DemoExtensions</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="..\..\Common\whdemo_Refresh.pas">
-            <Form>dmWhRefresh</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">

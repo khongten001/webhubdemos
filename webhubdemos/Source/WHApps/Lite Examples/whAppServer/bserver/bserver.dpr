@@ -42,7 +42,6 @@ uses
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
-  whdemo_Refresh in '..\..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   whdw_RemotePages in 'h:\whdw_RemotePages.pas' {DataModuleDreamWeaver: TDataModuleDreamWeaver},
   whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
   fmsetups in '..\aserver\fmsetups.pas' {fmAppsetups},
@@ -77,7 +76,6 @@ begin
   Application.CreateForm(TfmAppIn, fmAppIn);
   Application.CreateForm(TfmAppOut, fmAppOut);
   Application.CreateForm(TDemoExtensions, DemoExtensions);
-  Application.CreateForm(TdmWhRefresh, dmWhRefresh);
   Application.CreateForm(TDataModuleDreamWeaver, DataModuleDreamWeaver);
   Application.CreateForm(TfmWhDreamweaver, fmWhDreamweaver);
   Application.CreateForm(TdmDWSecurity, dmDWSecurity);

@@ -55,7 +55,6 @@ uses
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
-  whdemo_Refresh in '..\..\Common\whdemo_Refresh.pas' {dmWhRefresh: TDataModule},
   webInfoU,
   whcfg_app in 'h:\whcfg_app.pas',
   DSP_dmProjMgr in 'DSP_dmProjMgr.pas' {PMForDSP: TDataModule},
