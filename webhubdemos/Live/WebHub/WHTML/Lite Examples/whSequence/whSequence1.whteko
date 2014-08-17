@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
+
 <whdoc>
-You might be wondering: "where is the code to tell WebHub which page is next?
+You might be wondering: where is the code to tell WebHub which page is next?
 No extra code is required to make the sequencing of these pages work!
 When you turn page sequencing on, WebHub will automatically advance to the
 next PageID within a WHTEKO file.
