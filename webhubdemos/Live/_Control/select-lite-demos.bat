@@ -4,6 +4,9 @@
 
 call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
 
+:: default to new-ipc
+if "%whipc%"=="" set whipc=x
+
 echo .
 echo ***
 echo ipc is %whipc%
@@ -36,6 +39,6 @@ if "%whipc%"=="old" set demohtsc=yes
 if "%whipc%"=="x" set demohtsc=yes
 
 if "%whipc%"=="old" set demojoke=no
-if "%whipc%"=="x" set demojoke=no
+if "%whipc%"=="x" set demojoke=yes
 
 :end
