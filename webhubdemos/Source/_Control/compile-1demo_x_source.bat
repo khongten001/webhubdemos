@@ -5,8 +5,8 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 setlocal
 
 call %~dp0\default-compilerdigits.bat
-set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS
-set newipcdebug=CodeSite;Log2CSL;LogIPC;LOGHelo;LOGLICENSE
+set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS;LogIPC;LOGHelo;LOGLICENSE;
+set newipcdebug=CodeSite;Log2CSL;LogIPC;LOGHelo;LOGLICENSE;
 
 del d:\temp\DelphiTempDCU\*.dcu
 
