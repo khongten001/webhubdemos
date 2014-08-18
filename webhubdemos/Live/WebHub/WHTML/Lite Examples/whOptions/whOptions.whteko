@@ -7,10 +7,12 @@ The session variable "inSpeed" is defined based on surfer input via radio button
 This determines the name of the directory from which the images are taken.
 The color images are considered acceptable for fast connections, and the black and white 
 images are for slow connections.
+
+img.href.com is an Amazon S3 bucket. The /webhubdemos/ area is available for use with this demo.
 </whdoc>
 
 <whmacros>
-mcImgDir=(~mcSiteRoot~)demos/whOptions/(~inSpeed~)/
+mcImgDir=http://img.href.com/webhubdemos/whOptions/(~inSpeed~)/
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForbw" show="no">
@@ -115,45 +117,25 @@ Clicking this radio button sets the session variable named "inSpeed" to either "
 <td>
 <table cellpadding="10" cellspacing="0">
 <tr><td colspan="2" align="center" valign="middle">
-<span style="font-size:2em;">CalJOBS Powered by WebHub</span>
+<span style="font-size:2em;">Actress Jean Harlow</span>
 </td></tr>
 <tr><td valign="top">
-<p>The State of California Employment Development Department (EDD) has been given the opportunity to reevaluate the means
-through which public service information is provided. The following case study will discuss work done by the EDD in the area
-of Internet-enabled public service systems. The EDD built a high quality, cost-effective job search system for the State of
-California. Called the California Job Openings Browse System (CalJOBS), this project marks the cornerstone of true industrial
-strength web application development.</p>
-
-<p>The EDD team, using the Object Pascal programming language (then Borland Delphi, renamed to CodeGear Delphi then Embarcadero Delphi) and low-overhead SQL links to Informix's
-SQL database, O'Reilly and Associate's web server (WebSite Professional) and HREF Tools Corporation's web
-development framework (WebHub), created a solid, interactive, database-driven web site.</p>
-
-The sites powerful functionality is derived from its ability to:
-<ul>
-
-<li>Maintain the user's identity throughout their session.</li>
-
-<li>Provide complex drill down queries.</li>
-
-<li>Increase information delivery speed with extreme modular scalability.</li>
-
-</ul>
+<i>thanks to <a href="http://www.imdb.com/name/nm0001318/bio?ref_=nm_ov_bio_sm">imdb</a></i>
+<p>
+Harlean Carpenter, who later became Jean Harlow, was born in Kansas City, Missouri, on March 3, 1911. She was the daughter of a successful dentist and his wife. In 1927, at the age of 16, she ran away from home to marry a young businessman named Charles McGrew, who was 23. The couple pulled up stakes and moved to Los Angeles, not long after they were married, and it was there Jean found work as an extra in films, landing a bit part in Moran of the Marines (1928). From that point on she would go to casting calls whenever she could. In 1929 she had bit parts in no less than 11 movies, playing everything from a passing woman on the street to a winged ballerina. Her marriage to McGrew turned out to be a disaster--it lasted barely two years--and they divorced.
+</p>
+<p>
+The divorce enabled her to put more of her efforts into finding roles in the movie business. Although she was having trouble finding roles in feature movies, she had more luck in film shorts. She had a fairly prominent role in Hal Roach's Double Whoopee (1929). Her big break came in 1930, when she landed a role in Howard Hughes' World War I epic Hell's Angels (1930), which turned out to be a smash hit. Not long after the film's debut, Hughes sold her contract to MGM for $60,000, and it was there where her career shot to unprecedented heights. Her appearance in Platinum Blonde (1931) cemented her role as America's new sex symbol. 
+</p>
 </td>
 <td valign="top">
-<p>The site's functionality is provided in a secure environment that has been created by separating the database security from the
-Internet application and implementing a captive browser using ActiveX technology.</p>
-
-<p>The CalJOBS Internet pilot project has realized custom application development for the web at the highest, most thoroughly
-tested level, the State government. This not only marks the successful implementation of a cutting edge technology, it also sets
-the standard for high quality, cost-effective government service programs. Using WebHub technology, EDD has merged
-desktop computing with the World Wide Web, allowing people to access custom database information easier than they could
-from their own personal computer. The CalJOBS project is an undeniable realization of something that has, until now, been
-exceedingly difficult to create: a dynamic, database-driven, enterprise-wide computer application for the World Wide Web.</p>
+<p>The next year saw her paired with Clark Gable in John Ford's Red Dust (1932), the second of six films she would make with Gable. It was while filming this picture (which took 44 days to complete at a cost of $408,000) that she received word that her new husband, MGM producer Paul Bern, had committed suicide. His death threatened to halt production of the film, and MGM chief Louis B. Mayer had even contacted Tallulah Bankhead to replace Harlow if she were unable to continue, a step that proved to be unnecessary. The film was released late in 1932 and was an instant hit. She was becoming a superstar.
+</p>
 </td></tr>
 <tr><td colspan="2" align="center" valign="middle">
 <small>
-<img src="(~mcImgDir~)CA_EDD.jpg" alt="CalJOBS initial development team" /><br />
-<i>EDD Development Team</i></small>
+<img src="(~mcImgDir~)jean_harlow.jpg" alt="artwork for Actress Jean Harlow" /><br />
+<i>Jean Harlow, 1911-1937</i></small>
 </td></tr></table>
 </td>
 <td valign="top">
