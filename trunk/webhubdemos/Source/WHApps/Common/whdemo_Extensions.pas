@@ -158,11 +158,13 @@ begin
     pWebApp.OnNewSession := DemoAppNewSession;
     pWebApp.OnPageComplete := DemoAppPageComplete;
 
+    {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
+
+    DemoAppUpdate(nil);   // do this once
+    
     FlagBeenHere := True;
   end;
 
-  DemoAppUpdate(nil);
-  // do this once, in case the app has already been loaded - likely.
 
 {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
