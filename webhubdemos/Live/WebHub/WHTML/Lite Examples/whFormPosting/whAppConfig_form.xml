@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="true" context="DEMOS"/>
     <SplashEnabled value="true"/>
+    <SplashEnabled context="DEMOS" value="false"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
@@ -19,7 +20,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
@@ -36,7 +37,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
-      <AppSetting name="DesignRefreshEnabled" value="True" />
+      <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="DEMOS"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
@@ -68,7 +69,7 @@
     <TekoFiles>
       <File id="cb" filename="whFormCheckboxes.whteko"/>
       <File id="cbt" filename="whFormCheckboxTouch.whteko"/>
-      <File id="f03" filename="..\..\Shared WHTML\cssdroplets.whteko" />
+      <File id="f03" filename="..\..\Shared WHTML\cssdroplets.whteko"/>
       <File id="aboutFORM" filename="..\..\Shared WHTML\about\about-whFormPosting.whteko"/>
       <File id="contentFORM" filename="whFormPosting.whteko"/>
       <File id="contentFORM2" filename="whFormPosting2.whteko"/>
