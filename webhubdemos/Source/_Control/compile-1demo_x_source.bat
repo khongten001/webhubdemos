@@ -6,7 +6,7 @@ setlocal
 
 call %~dp0\default-compilerdigits.bat
 set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS
-set newipcdebug=CodeSite;Log2CSL
+set newipcdebug=CodeSite;Log2CSL;LogIPC;LOGHelo;LOGLICENSE
 
 del d:\temp\DelphiTempDCU\*.dcu
 
@@ -35,30 +35,34 @@ if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\W
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
 if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
-%CSSend% raizelib "%raizelib%"
+:: %CSSend% raizelib "%raizelib%"
 
 :: off May-2013 set eurparams=--el_pathK:\Vendors\EurekaLab\EurekaLog6\Delphi16  --el_config"k:\webhub\hub\d07\href_eurekalog_whsilent.eof"
 :: --el_output=el6 --el_mode=delphi --el_verbose 
 :: off May-2013 set eurparams=
 
-if exist %1.cfg   REN %1.cfg %1.off
 if exist %1.dproj REN %1.dproj %1.dproj_off
 
+%CSSend% newipcdebug %newipcdebug%
+
 if "%raizelib%"=="" goto continue040
-del %outputroot%\%1_x_d%compilerdigits%_win32_debug.exe
+del %outputroot%\%1_x_d%compilerdigits%_win32_debug_src.exe
 if NOT "%newipcdebug%"=="" echo 1demo x_d%compilerdigits%_win32_debug %1 "%eurparams%"
 if NOT "%newipcdebug%"=="" @echo on
+set ok=yes
 if NOT "%newipcdebug%"=="" "%droot%bin\dcc32.exe"  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags%;%newipcdebug% -LU%pkg% -u%libsearchpath%;%droot%\lib\win32\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
-if NOT "%newipcdebug%"=="" @if errorlevel 1 pause
-if NOT "%newipcdebug%"=="" ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_debug.exe
+if NOT "%newipcdebug%"=="" @if errorlevel 1 set ok=no
+if "%ok%"=="no" %CSSend% /error "failed to compile"
+if "%ok%"=="no" pause
+if NOT "%newipcdebug%"=="" ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_debug_src.exe
 
 :continue040
-del %outputroot%\%1_x_d%compilerdigits%_win32.exe
+del %outputroot%\%1_x_d%compilerdigits%_win32_src.exe
 echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
 @echo on
 "%droot%bin\dcc32.exe"  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%droot%\lib\win32\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
 @if errorlevel 1 pause
-ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32.exe
+ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_src.exe
 
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
@@ -69,7 +73,7 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 
 ::win64
 if "%raizelib%"=="" goto continue041
-@del %outputroot%\%1_x_d%compilerdigits%_win64.exe
+@del %outputroot%\%1_x_d%compilerdigits%_win64_src.exe
 set objdir=K:\webhub\regex\Pcre-Delphi-Win64-msc
 %CSSend% win64 %1.dpr
 %CSSend% outputroot %outputroot%
@@ -81,7 +85,7 @@ if "%okflag%"=="no" %CSSend% /error "Failed to compile %1.dpr for win64"
 if "%okflag%"=="no" pause
 
 set okflag=yes
-ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64.exe
+ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64_src.exe
 if errorlevel 1 set okflag=no
 if "%okflag%"=="no" %CSSend% /error "Failed to rename %1.exe"
 if "%okflag%"=="no" pause
@@ -89,14 +93,13 @@ if "%okflag%"=="no" pause
 
 :continue041
 @echo off
-if exist %1.off   REN %1.off %1.cfg
 if exist %1.dproj REN %1.dproj_off %1.dproj
 
 @cd /d %outputroot%
-::eur off if NOT "%eurparams%"=="" del %1_x_d%compilerdigits%_win32_debug.exe
-::eur off if "%eurparams%"=="" del %1_x_d%compilerdigits%_win32.exe
-::eur off if NOT "%eurparams%"=="" ren %1.exe %1_x_d%compilerdigits%_win32_debug.exe
-::eur off if "%eurparams%"=="" ren %1.exe %1_x_d%compilerdigits%_win32.exe
+::eur off if NOT "%eurparams%"=="" del %1_x_d%compilerdigits%_win32_debug_src.exe
+::eur off if "%eurparams%"=="" del %1_x_d%compilerdigits%_win32_src.exe
+::eur off if NOT "%eurparams%"=="" ren %1.exe %1_x_d%compilerdigits%_win32_debug_src.exe
+::eur off if "%eurparams%"=="" ren %1.exe %1_x_d%compilerdigits%_win32_src.exe
 if errorlevel 1 pause
 
 @del *.drc
