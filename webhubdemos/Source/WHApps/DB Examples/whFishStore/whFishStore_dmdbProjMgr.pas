@@ -100,6 +100,7 @@ begin
   end;
 
   whDemoSetAppId(UsedAppID);  // this refreshes the app
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
 
   // We want to let a parameter determine the AppID served by whLite.exe
   // See ucString.pas and uCode.pas for DefaultsTo and ParamString functions

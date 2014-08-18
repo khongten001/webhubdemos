@@ -143,6 +143,7 @@ begin
     {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
 
     whDemoSetAppId(UsedAppID);  // this refreshes the app
+    {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
     whDemoCreateSharedDataModules;
   except
     on E: Exception do

@@ -58,7 +58,7 @@ uses
   ucDlgs, ucLogFil, ucCodeSiteInterface, ucMsTime, ucPos,
   webApp, webBase, webSplat, dmWHApp, htWebApp, webCall, whxpCommTypes,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whcfg_App, whConst,
-  whutil_ZaphodsMap,
+  whutil_ZaphodsMap, whSharedLog,
   {$IFNDEF PREVENTGUI}
   Forms,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels, whMain, whgui_Menu,
@@ -144,6 +144,7 @@ begin
     UsedAppID := 'appvers';
 
   whDemoSetAppId(UsedAppID);  // this refreshes the app
+  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
 
   ProjMgr.Item := S;
 
