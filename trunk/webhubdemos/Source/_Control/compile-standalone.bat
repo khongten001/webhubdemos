@@ -1,5 +1,5 @@
 set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
-set compilerflagsplus=;CodeSite
+set compilerflagsplus=CodeSite;
 
 %CSSend% /note "compile-standalone.bat EMail_with_StartTLS"
 
