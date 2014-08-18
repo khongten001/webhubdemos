@@ -75,8 +75,6 @@ P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe 
 if "%raizelib%"=="" goto continue041
 @del %outputroot%\%1_x_d%compilerdigits%_win64_src.exe
 set objdir=K:\webhub\regex\Pcre-Delphi-Win64-msc
-%CSSend% win64 %1.dpr
-%CSSend% outputroot %outputroot%
 set okflag=yes
 @echo on
 %droot%bin\dcc64.exe  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags%;%newipcdebug% -LU%pkg% -u%libsearchpath%;%droot%\lib\win64\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
