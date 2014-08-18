@@ -1,9 +1,0 @@
-18-Nov-2006 23:30 GMT
-
-The HTRU demo is offline because we have not yet tested it with WebHub v2.073
-
-The Delphi Super Page search engine uses WebHub and Rubicon,
-and is fully operational at http://dsp.href.com.
-
-Furthermore, this photo artwork site ( http://www.photovisionsbydc.com ) also 
-uses WebHub and Rubicon.
