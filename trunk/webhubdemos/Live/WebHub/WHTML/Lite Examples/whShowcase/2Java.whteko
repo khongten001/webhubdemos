@@ -158,7 +158,7 @@ bNoMore=true
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
 	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
 <style type="text/css">
-  (~ASSIGNED|litWallpaper|body {background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat; }~)
+  (~ASSIGNED|litWallpaper|body {background: url(http://img.href.com/webhubdemos/img/textures/(~litWallpaper~)) repeat; }~)
 .currentnode {
   font-weight:700;
   color: #A22222;
