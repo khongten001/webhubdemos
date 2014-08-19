@@ -47,7 +47,7 @@ siteroot is (~mcSiteRoot~)<br />
 (~MATCH|demos.href.com[(~Request.Host~)|<link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~SessionLingvo~)/(~AppID~)/(~PageID~)" />~)
 (~ASSIGNED|litWallpaper|<style type="text/css">
 body {
-  background: url((~mcSiteRoot~)demos/img/textures/(~litWallpaper~)) repeat;
+  background: url(http://img.href.com/webhubdemos/img/textures/(~litWallpaper~)) repeat;
 }
 </style>~)
 <!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
