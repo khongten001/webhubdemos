@@ -34,10 +34,10 @@ white images).   The surfer chooses a radio button -- fast or slow-- based on th
 speed, and this selection sets a session variable called "inSpeed".   
 This session variable is part of the macro mcImgDir, defined as follows:
 <pre>
-mcImgDir=(~mcSiteRoot~)demos/whOptions/(~.inSpeed~)/ 
+mcImgDir=http://img.href.com/webhubdemos/whOptions/(~.inSpeed~)/ 
 </pre>
 <p>Thus the actual directory from which the graphics are served is dynamically 
-determined by the value of this session variable.</p>
+determined by the value of this <code>inSpeed</code> session variable.</p>
 <p>This demo also shows one way to create an RSS feed, using the PARAMS command to format the data according to the <a href="http://en.wikipedia.org/wiki/RSS_(file_format)">RSS 2.0 specification</a>.</p>
 </whtranslation>
 
