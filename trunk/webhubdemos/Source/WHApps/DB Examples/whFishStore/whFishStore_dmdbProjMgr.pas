@@ -53,7 +53,8 @@ implementation
 uses
   Forms,
   MultiTypeApp, ucDlgs, ucLogFil,
-  webApp, webBase, webSplat, dmFishAp, tfish, htWebApp, htbdeWApp,
+  webApp, webBase, webSplat, whSharedLog,
+  dmFishAp, tfish, htWebApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
   whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel,
   whFishStore_dmwhBiolife;
