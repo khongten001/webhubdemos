@@ -10,7 +10,6 @@
     <StartMinimized value="true" context="DEMOS"/>
     <StartMinimized context="ultraann" value="true"/>
     <TrayIconEnabled value="true"/>
-    <TrayIconEnabled context="ultraann" value="false"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
@@ -81,6 +80,8 @@
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
       <File id="D01" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
+      <File id="T01" filename="..\..\Shared WHTML\test_urls.whteko"/>
+      <File id="M01" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
   </Application>
 </WebHubAppConfiguration>
