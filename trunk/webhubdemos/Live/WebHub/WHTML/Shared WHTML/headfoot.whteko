@@ -25,7 +25,7 @@ mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 (~drPageBegin~)
 <div id="whdemopagecontent">
 siteroot is (~mcSiteRoot~)<br />
-<img src="(~mcSiteRoot~)demos/img/logos/adv.jpg" alt="logo for adv demo" />
+<img src="http://img.href.com/webhubdemos/img/logos/adv.jpg" alt="logo for adv demo" />
 </div>  <!--- demopagecontent -->
 (~drPageEnd~)
 </body></html>
