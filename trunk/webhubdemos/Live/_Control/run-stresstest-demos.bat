@@ -6,34 +6,35 @@
 setlocal
 
 set fastseconds=6
+set exename=whLite_x_d20_win32_src.exe
 
 cd /d %~dp0
 cd ..\WebHub\Apps
 
 @echo on
 
-start whlite_x_d20_win32_debug_src.exe /ID=demos  
+start %exename% /ID=demos  
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=adv
+start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=bw
+start %exename% /ID=bw
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=htfd
+start %exename% /ID=htfd
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=demos  
+start %exename% /ID=demos  
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=adv
+start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=bw
+start %exename% /ID=bw
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start whlite_x_d20_win32_debug_src.exe /ID=htfd
+start %exename% /ID=htfd
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 
