@@ -6,9 +6,7 @@ setlocal
 
 call %~dp0\default-compilerdigits.bat
 set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS;LogIPC;LOGHelo;LOGLICENSE;
-set newipcdebug=CodeSite;Log2CSL;LogIPC;LOGHelo;LOGLICENSE;
-
-del d:\temp\DelphiTempDCU\*.dcu
+set newipcdebug=CodeSite;Log2CSL;LogSTime;LogBAD;
 
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
@@ -30,11 +28,11 @@ set flags=-b -W-SYMBOL_PLATFORM -W-UNIT_PLATFORM  -$O- -$W+ -$J+ -$Q+ -$C- -$Y- 
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
+if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win32
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win32
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win32
-if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win32
 :: %CSSend% raizelib "%raizelib%"
 
 :: off May-2013 set eurparams=--el_pathK:\Vendors\EurekaLab\EurekaLog6\Delphi16  --el_config"k:\webhub\hub\d07\href_eurekalog_whsilent.eof"
@@ -47,6 +45,7 @@ if exist %1.dproj REN %1.dproj %1.dproj_off
 
 if "%raizelib%"=="" goto continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_debug_src.exe
+del d:\temp\DelphiTempDCU\*.dcu
 if NOT "%newipcdebug%"=="" echo 1demo x_d%compilerdigits%_win32_debug %1 "%eurparams%"
 if NOT "%newipcdebug%"=="" @echo on
 set ok=yes
@@ -55,25 +54,32 @@ if NOT "%newipcdebug%"=="" @if errorlevel 1 set ok=no
 if "%ok%"=="no" %CSSend% /error "failed to compile"
 if "%ok%"=="no" pause
 if NOT "%newipcdebug%"=="" ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_debug_src.exe
+if errorlevel 1 set ok=locked
+if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win32_debug_src.exe"
 
 :continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_src.exe
+del d:\temp\DelphiTempDCU\*.dcu
 echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
 @echo on
+set ok=yes
 "%droot%bin\dcc32.exe"  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%droot%\lib\win32\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%
 @if errorlevel 1 pause
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_src.exe
+if errorlevel 1 set ok=locked
+if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win32_src.exe"
 
+if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win64
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
 if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
-if "%compilerdigits%"=="16" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE2\Win64
 P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe raizelib "%raizelib%"
 
 ::win64
 if "%raizelib%"=="" goto continue041
 @del %outputroot%\%1_x_d%compilerdigits%_win64_src.exe
+del d:\temp\DelphiTempDCU\*.dcu
 set objdir=K:\webhub\regex\Pcre-Delphi-Win64-msc
 set okflag=yes
 @echo on
@@ -84,9 +90,9 @@ if "%okflag%"=="no" pause
 
 set okflag=yes
 ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win64_src.exe
-if errorlevel 1 set okflag=no
-if "%okflag%"=="no" %CSSend% /error "Failed to rename %1.exe"
-if "%okflag%"=="no" pause
+if errorlevel 1 set okflag=locked
+if "%okflag%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win64_src.exe"
+if "%okflag%"=="locked" pause
 
 
 :continue041
@@ -103,3 +109,5 @@ if errorlevel 1 pause
 @del *.drc
 @del *.map
 
+set ok=
+set okflag=
