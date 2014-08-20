@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
@@ -7,9 +7,10 @@
     <MenuEnabled context="ultraann" value="true"/>
     <MenuEnabled context="NYX" value="false"/>
     <SplashEnabled value="true"/>
+    <SplashEnabled context="ultraann" value="false"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="DEMOS"/>
-    <StartMinimized context="ultraann" value="false"/>
+    <StartMinimized context="ultraann" value="true"/>
     <StartMinimized context="NYX" value="true"/>
     <TrayIconEnabled value="true"/>
     <TrayIconEnabled context="ultraann" value="false"/>
@@ -24,7 +25,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="googlesitemap" status="enabled-gui"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
@@ -48,7 +49,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="DemoGraphic" value="yes"/>
-      <AppSetting name="DesignRefreshEnabled" value="True" />
+      <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="DEMOS"/>
       <AppSetting name="StartupDelaySeconds" value="0" context="ultraann"/>
     </AppSettings>
@@ -95,7 +96,7 @@
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whAdRotation.whteko"/>
