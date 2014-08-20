@@ -40,6 +40,7 @@ if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\W
 :: off May-2013 set eurparams=
 
 if exist %1.dproj REN %1.dproj %1.dproj_off
+if errorlevel 1 %CSSend% /warning "unable to rename .dproj out of the way"
 
 %CSSend% newipcdebug %newipcdebug%
 
@@ -56,6 +57,7 @@ if "%ok%"=="no" pause
 if NOT "%newipcdebug%"=="" ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_debug_src.exe
 if errorlevel 1 set ok=locked
 if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win32_debug_src.exe"
+
 
 :continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_src.exe
