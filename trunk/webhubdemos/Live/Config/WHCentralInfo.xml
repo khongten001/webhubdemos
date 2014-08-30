@@ -176,16 +176,6 @@
           <SessionCookieName value="dprsession"/>
 		  <SessionNumberLocation value="CookieFixedDomain" />
         </WebHubApp>
-        <WebHubApp appID="dsp">
-          <Nickname value="DSP Search Engine"/>
-          <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDSP\"/>
-          <ConfigFilename value="WHAppConfig_dsp.xml"/>
-          <ErrorLogFolder value="{DemoLogPath}"/>
-          <ShareSessions value="true"/>
-          <ShareByFile value="true"/>
-          <SessionCookieName value="delphisuperpagesession"/>
-		  <SessionNumberLocation value="CookieFixedDomain" />
-        </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
     <WebHubAppGroup name="WebHub Demos Lite">

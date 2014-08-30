@@ -15,7 +15,6 @@
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="coderage" value="{WebHubDemoMsgRoot}appnotrunning-coderage.whmsg"/>
-    <AppNotRunning appID="dsp" value="{WebHubDemoMsgRoot}appnotrunning-dsp.whmsg"/>
     <AppNotRunning appID="htaj" value="{WebHubDemoMsgRoot}appnotrunning-htaj.whmsg"/>
     <AppNotRunning appID="fire" value="{WebHubDemoMsgRoot}appnotrunning-fire.whmsg"/>
     <AppNotRunning appID="htoi" value="{WebHubDemoMsgRoot}appnotrunning-htoi.whmsg"/>

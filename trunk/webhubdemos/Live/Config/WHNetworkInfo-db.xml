@@ -4,7 +4,6 @@
   <Variables begin="{" end="}"/>
 <!-- a comment -->
   <HttpServers>
-    <HttpServer id="apache" nameStartsWith="Apache" sendHttpVersion="false" sendHttpColon="false" httpForceCase="none"/>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
   </HttpServers>
   <LocalMachine>
@@ -112,16 +111,6 @@
   </LocalMachine>
   <OtherMachines>
     <ServerProfiles>
-      <ServerProfile id="dsp">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="dsp.href.com:80"/>
-        <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-      </ServerProfile>
       <ServerProfile id="lite">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
