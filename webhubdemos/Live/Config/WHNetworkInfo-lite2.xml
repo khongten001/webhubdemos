@@ -97,16 +97,6 @@
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
       </ServerProfile>
-      <ServerProfile id="dsp">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="dsp.href.com:80"/>
-        <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="false"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-      </ServerProfile>
       <ServerProfile id="dpr">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
