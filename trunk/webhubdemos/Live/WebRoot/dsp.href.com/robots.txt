@@ -1,6 +1,0 @@
-# robots.txt for http://dsp.href.com/
-#
-User-agent: *
-
-Disallow: /w3validation
-
