@@ -48,6 +48,9 @@ implementation
 
 {$R *.dfm}
 
+uses
+  ucLogFil;
+
 procedure TForm2.Button1Click(Sender: TObject);
 var
   ResponseInfo: TCloudResponseInfo;
@@ -57,6 +60,7 @@ var
   CustomHeaderList: TStringList;
   Data: TArray<Byte>;
   PSrc, PTrg: PByte;
+  InfoMsg: string;
 begin
   stream := nil;
   StorageService := nil;
@@ -115,9 +119,12 @@ begin
       {status 200 means that it worked
        if you use a bad Access Key or Secret Access Key, status 403 will be in
        headers}
-      ShowMessage(Format('statuscode %d, message %s',
+      InfoMsg := Format('statuscode %d, message %s',
         [ResponseInfo.StatusCode, ResponseInfo.StatusMessage
-        ]));
+        ]);
+      HREFTestLog('info', InfoMsg, '');
+      ShowMessage(InfoMsg);
+      
       if Assigned(ResponseInfo.Headers) then
       begin
         ShowMessage('ResponseInfo.Headers' + sLineBreak + sLineBreak +
@@ -146,6 +153,12 @@ begin
   LabeledEditAccessKey.Text := cAKey;
   LabeledEditSecret.Text := cSAKey;
   LabeledEditBucket.Text := cBName;
+
+  LabeledEditTargetPath.Text := 'testfolder_' + 
+    FormatDateTime('yyyymmdd', Now) + '/';
+
+  ; Custom headers not supported.  See Quality Central.
+  ; EditCustomHeader.Text := 'Content-Type=text/html';
 end;
 
 end.
