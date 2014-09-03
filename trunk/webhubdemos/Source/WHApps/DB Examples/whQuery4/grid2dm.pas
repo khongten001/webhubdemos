@@ -30,7 +30,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DB, DBTables, wbdeSource, UpdateOk, WebTypes, WebLink, WdbLink, webScan,
+  DB, Bde.DBTables, wbdeSource, UpdateOk, WebTypes, WebLink, WdbLink, webScan,
   WdbScan, wdbGrid, wbdeGrid{bde}, tpAction, wdbSSrc, wdbSource;
 
 type

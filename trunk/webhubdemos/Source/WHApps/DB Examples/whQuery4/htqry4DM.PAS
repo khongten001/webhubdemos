@@ -28,7 +28,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DBTables, DB, 
+  Bde.DBTables, DB, 
   UpdateOk, tpAction, 
   WebTypes, wbdeSource, wdbForm,
   WebLink, WdbLink, WdbScan, wdbGrid, wbdeGrid{bde}, WebSend, webScan, wdbLstBx, wdbSSrc,
