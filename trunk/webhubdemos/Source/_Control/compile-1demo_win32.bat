@@ -28,9 +28,13 @@ set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects
 set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;k:\webhub\lib\whplus\rubi;k:\Rubicon\source;%ibopath%;%droot%lib\win32\release;D:\vcl\NexusDB4;%eurpath%
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot=%~dp0..\..\Live\WebHub\Apps
-set pkg=vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
-set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
+:: vcldbx requires bdertl !!! 
+set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
+set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
+
+%CSSend% libsearchpath %libsearchpath%
+%CSSend% pkg %pkg%
 
 ::-GD creates detailed MAP file (required for EurekaLog)
 
@@ -44,11 +48,12 @@ if exist %1.dproj REN %1.dproj %1.dprojoff
 
 if "%raizepath%"=="" %CSSend% "skip CodeSite here"
 if "%raizepath%"=="" goto continue030
-echo 1demo d%compilerdigits%_win32 %1
+%CSSend% 1demo d%compilerdigits%_win32 %1
 @del %outputroot%\%1.exe %1.raize.bin
 
 set LUFlags=
-if NOT "%2"=="EurekaLog" set LUFlags=-LUvcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExLib
+:: vcldbx;
+if NOT "%2"=="EurekaLog" set LUFlags=-LUvcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib
 
 set ok1=yes
 @echo on
@@ -59,9 +64,10 @@ if errorlevel 1 set ok1=no
 if exist %1.off REN %1.off %1.cfg
 if exist %1.dprojoff REN %1.dprojoff %1.dproj
 
+if "%ok1%"=="yes" %CSSend% "ok1 %1.dpr yes ... %ok1% with -DCodeSite;Log2CSL;%compilerflags%"
+if "%ok1%"=="yes" COPY %outputroot%\%1.exe %outputroot%\%1.raize.bin
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite"
 if "%ok1%"=="no" pause
-if "%ok1%"=="yes" COPY %outputroot%\%1.exe %outputroot%\%1.raize.bin
 
 if NOT "%2"=="EurekaLog" goto continue030
 
@@ -76,14 +82,19 @@ COPY %outputroot%\%1.exe %outputroot%\%1_eur.exe
 DEL %outputroot%\%1.exe 
 
 :continue030
+@del d:\temp\DelphiTempDCU\*.dcu
 set ok1=yes
+echo on
 "%dcc%" %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
-if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
-if "%ok1%"=="no" pause
+@echo off
+if "%ok1%"=="yes" %CSSend% "%1.dpr compiled with -D%compilerflags% -LU%pkg%"
+if "%ok1%"=="no"  %CSSend% /error "%1.dpr failed to compile with -D%compilerflags%"
+if "%ok1%"=="no"  pause
 
 :cleanup
 @echo off
 del %outputroot%\*.map
 del %outputroot%\*.drc
 if exist %1.off REN %1.off %1.cfg
+if exist %1.dprojoff REN %1.dprojoff %1.dproj

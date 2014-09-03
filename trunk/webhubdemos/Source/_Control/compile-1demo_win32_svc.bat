@@ -17,7 +17,7 @@ if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\W
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win32
 if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
 if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
-set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizelib%;%droot%lib\win32\debug;
+set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizelib%;%droot%lib\win32\release;
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
 :: LogInitFinal;LogAppTick;CodeSite;LogTerminate;LogHelo
@@ -33,17 +33,20 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 
 if exist %1.cfg REN %1.cfg %1.off
+if exist %1.dproj REN %1.dproj %1.dprojoff
 
-echo 1demo as-service d%compilerdigits%_win32 %1
+%CSSend% 1demo as-service d%compilerdigits%_win32 %1
 
-@echo on
 set okflag=yes
+@echo on
 "%dcc%"  -w -h -b %1.dpr  -n%dcu% -E%outputroot% -D%compilerflags% -LU%pkg% "-u%libsearchpath%" "-R%respath%;%libsearchpath%" -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set okflag=no
-if "%okflag%"=="no" %CSSend% /error "Failed to compile %1.dpr"
-if "%okflag%"=="no" pause
-
 @echo off
+if "%okflag%"=="yes" %CSSend% "Compiled %1.dpr -D%compilerflags% -LU%pkg%"
+if "%okflag%"=="no"  %CSSend% /error "Failed to compile %1.dpr -D%compilerflags% -LU%pkg%"
+if "%okflag%"=="no"  pause
+
 if exist %1.off REN %1.off %1.cfg
+if exist %1.dprojoff REN %1.dprojoff %1.dproj
 
 endlocal
