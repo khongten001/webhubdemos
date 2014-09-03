@@ -37,7 +37,7 @@
         <DCC_Platform>x86</DCC_Platform>
         <DCC_ExeOutput>D:\Projects\WebHubDemos\Live\WebHub\Apps</DCC_ExeOutput>
         <DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
-        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;Etk70;ldiRegExD7;maxCode;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;Etk70;ldiRegExD7;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_K>false</DCC_K>
         <DCC_F>false</DCC_F>
         <DCC_S>false</DCC_S>

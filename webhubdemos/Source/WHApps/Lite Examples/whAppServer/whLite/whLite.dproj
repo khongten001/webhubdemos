@@ -66,7 +66,7 @@
         <DCC_Platform>x86</DCC_Platform>
         <DCC_ExeOutput>D:\Projects\WebHubDemos\Live\WebHub\Apps</DCC_ExeOutput>
         <DCC_Define>PREVENTSVCMGR;WEBHUBACE;$(DCC_Define)</DCC_Define>
-        <DCC_UsePackage>vcl;vclx;vcldb;vcldbx;soaprtl;xmlrtl;inet;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;vclx;vcldb;soaprtl;xmlrtl;inet;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_K>false</DCC_K>
         <DCC_F>false</DCC_F>
         <DCC_S>false</DCC_S>

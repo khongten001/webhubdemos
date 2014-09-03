@@ -41,11 +41,11 @@
         <Icon_MainIcon>..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps\</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Imaging;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Imaging$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
         <DCC_DcuOutput>d:\Temp\DelphiTempDCU</DCC_DcuOutput>
-        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;maxCode;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07;WebHubWizardComponents_D07;WebHubNewAppIDWizard_D07;IBO40CRT_D7;IBO40XRT_D7;WebHubIBO;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07;WebHubWizardComponents_D07;WebHubNewAppIDWizard_D07;IBO40CRT_D7;IBO40XRT_D7;WebHubIBO;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_N>true</DCC_N>
         <DCC_S>false</DCC_S>
