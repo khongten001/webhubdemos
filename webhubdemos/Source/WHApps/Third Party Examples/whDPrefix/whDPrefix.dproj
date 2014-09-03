@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{0325117D-0F04-4CB4-85B9-DD7BD58D930A}</ProjectGuid>
         <MainSource>whDPrefix.dpr</MainSource>
@@ -46,11 +46,11 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <VerInfo_Build>18</VerInfo_Build>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Samples;Bde;Vcl.Imaging;Vcl.Touch;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Samples;Vcl.Imaging;Vcl.Touch;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <DCC_DependencyCheckOutputName>..\..\..\Live\WebHub\Apps\DPR\DPR.exe</DCC_DependencyCheckOutputName>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_WriteableConstants>true</DCC_WriteableConstants>
-        <DCC_UsePackage>vcl;rtl;vclx;vclactnband;dbrtl;vcldb;WebHubBDERT_D15;WebHubDBRT_D15;WebHubRT_D15;ZaphodsMapRT_D15;ldiRegExD15;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;vclactnband;dbrtl;vcldb$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Optimize>false</DCC_Optimize>
         <DCC_SYMBOL_PLATFORM>false</DCC_SYMBOL_PLATFORM>
         <DCC_Platform>x86</DCC_Platform>
