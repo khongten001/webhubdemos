@@ -61,7 +61,7 @@ if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to 
 :continue040
 del %outputroot%\%1_x_d%compilerdigits%_win32_src.exe
 del d:\temp\DelphiTempDCU\*.dcu
-echo 1demo x_d%compilerdigits%_win32 %1 "%eurparams%"
+
 @echo on
 set ok=yes
 "%droot%bin\dcc32.exe"  %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath%;%droot%\lib\win32\release;%raizelib% -R%libsearchpath% -I%includepath% -O%objdir% %dccflags% %dccns% %flags% %eurparams%

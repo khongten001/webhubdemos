@@ -12,7 +12,6 @@ echo .
 
 :: init all to NO
 set demodbhtml=no
-set demodsp=no
 set demodpr=no
 set democoderage=yes
 set demofire=no
@@ -30,7 +29,6 @@ set demoshop1=yes
 set demostore000=no
 
 set compiledbhtml=yes
-set compiledsp=yes
 set compiledpr=yes
 set compilecoderage=yes
 set compilefire=yes
@@ -48,11 +46,6 @@ set compileshop1=yes
 set compilestore000=no
 
 set demodbhtml=yes
-
-call %ZaphodsMap%zmset.bat flagdemosdsp UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdsp"
-echo flagdemosdsp is %flagdemosdsp%
-
-if "%flagdemosdsp%"=="yes" set demodsp=yes
 
 call %ZaphodsMap%zmset.bat flagdemosdpr UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosdpr"
 echo flagdemosdpr is %flagdemosdpr%

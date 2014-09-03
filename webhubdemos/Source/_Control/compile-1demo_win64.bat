@@ -27,7 +27,6 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 if exist %1.cfg REN %1.cfg %1.off
 
-echo 1demo d%compilerdigits%_win64 %1
 @echo on
 "%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 pause

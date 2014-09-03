@@ -2,7 +2,7 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 %CSSend% /note "compile-1demo_win32.bat %1 %2"
 
 @echo off
-call %~dp0\default-compilerdigits.bat
+if "%compilerdigits%"=="" call %~dp0\default-compilerdigits.bat
 
 setlocal
 @del d:\temp\DelphiTempDCU\*.dcu
@@ -30,11 +30,12 @@ set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\External
 set outputroot=%~dp0..\..\Live\WebHub\Apps
 :: vcldbx requires bdertl !!! 
 set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
+if "%compilerdigits%"=="20" set pkg=%pkg%;vcldbx
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
-%CSSend% libsearchpath %libsearchpath%
-%CSSend% pkg %pkg%
+:: %CSSend% libsearchpath %libsearchpath%
+:: %CSSend% pkg %pkg%
 
 ::-GD creates detailed MAP file (required for EurekaLog)
 
@@ -48,12 +49,13 @@ if exist %1.dproj REN %1.dproj %1.dprojoff
 
 if "%raizepath%"=="" %CSSend% "skip CodeSite here"
 if "%raizepath%"=="" goto continue030
-%CSSend% 1demo d%compilerdigits%_win32 %1
+%CSSend% d%compilerdigits%_win32 %1
 @del %outputroot%\%1.exe %1.raize.bin
 
 set LUFlags=
 :: vcldbx;
 if NOT "%2"=="EurekaLog" set LUFlags=-LUvcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib
+if "%compilerdigits%"=="20" set LUFlags=%LUFlags%;vcldbx
 
 set ok1=yes
 @echo on
@@ -66,7 +68,7 @@ if exist %1.dprojoff REN %1.dprojoff %1.dproj
 
 if "%ok1%"=="yes" %CSSend% "ok1 %1.dpr yes ... %ok1% with -DCodeSite;Log2CSL;%compilerflags%"
 if "%ok1%"=="yes" COPY %outputroot%\%1.exe %outputroot%\%1.raize.bin
-if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite"
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite with -DCodeSite;Log2CSL;%compilerflags%"
 if "%ok1%"=="no" pause
 
 if NOT "%2"=="EurekaLog" goto continue030

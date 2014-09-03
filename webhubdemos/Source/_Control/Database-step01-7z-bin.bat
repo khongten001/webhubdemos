@@ -8,17 +8,11 @@ cd ..\..\Live\WebHub\Apps
 
 del Database-bin.7z
 del Database-Library-bin.7z
-del Database-dsp.7z
+
 del DriveH-source.7z
 
 set t=DriveH-source.7z
 d:\Apps\Utilities\7Zip\7z.exe a %t% h:\*.pas h:\*.dfm
-if errorlevel 1 pause
-
-set t=Database-dsp.7z
-d:\Apps\Utilities\7Zip\7z.exe a %t% whLite.exe
-if errorlevel 1 pause
-d:\Apps\Utilities\7Zip\7z.exe a %t% whDSP.exe
 if errorlevel 1 pause
 
 set t=Database-dpr.7z
@@ -45,15 +39,16 @@ if errorlevel 1 pause
 
 set t=Database-Library-bin.7z
 
-:: previous compiler has nexusdb support
-:: set sdir=h:\pkg_d18_win32
+:: XE6 compiler has bde support
+set sdir=h:\pkg_d20_win32
 
-:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d1?_win32.bpl
-:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d1?_win32.bpl
-:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d1?_win32.bpl
-:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d1?_win32.bpl
-:: d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d1?_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d??_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d??_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
+:: XE7 compiler has no bde support
 call %~dp0\default-compilerdigits.bat
 set sdir=h:\pkg_d%compilerdigits%_win32
 
