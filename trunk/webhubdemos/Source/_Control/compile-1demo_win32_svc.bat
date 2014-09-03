@@ -35,7 +35,7 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 if exist %1.cfg REN %1.cfg %1.off
 if exist %1.dproj REN %1.dproj %1.dprojoff
 
-%CSSend% 1demo as-service d%compilerdigits%_win32 %1
+%CSSend% "as-service d%compilerdigits%_win32 %1"
 
 set okflag=yes
 @echo on

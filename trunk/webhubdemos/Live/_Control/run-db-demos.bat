@@ -23,14 +23,9 @@ cd ..\WebHub\Apps
 @echo on
 
 :DB Examples
-if "%demodsp%"=="yes" start whDSP.exe 
-if "%demodsp%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
-::DSP has an AppNotRunning page of its own
-if "%demodsp%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dsp /minutes=99999 /reason="Try on http://dsp.href.com"
-
 if "%demodpr%"=="yes" start whDPrefix.exe 
 if "%demodpr%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
-if "%demodsp%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dsp /minutes=99999 "/reason=Try on http://delphiprefix.href.com"
+if "%demodpr%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dpr /minutes=99999 "/reason=Try on http://delphiprefix.href.com/"
 
 rem CodeRage Schedule and Archive
 if "%democoderage%"=="yes" start whSchedule.exe 

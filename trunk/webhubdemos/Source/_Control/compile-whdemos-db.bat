@@ -1,9 +1,12 @@
 set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
 %CSSend% /note "compile-whdemos-db.bat"
 
+set compilerdigits=20
+set comp3=D%compilerdigits%
+
 if NOT "%comp3%%bits%"=="" goto Continue00
 
-set /P comp3=Enter Pascal Compiler Digits as Number (eg. 18 or 20) :   
+set /P comp3=Enter Pascal Compiler Digits as Number (eg. 20 or 21) :   
 if %comp3%=="" goto end
 set compilerdigits=%comp3%
 set comp3=D%compilerdigits%
@@ -27,44 +30,53 @@ if NOT Exist %cbat% pause
 cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
 
+:: whQuery1 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q
 if "%compilehtq1%"=="" %CSSend% /error "compilehtq1 is blank"
 if "%compilehtq1%"=="" pause
 if NOT "%compilehtq1%"=="no" cd %droot%\DB Examples\whQuery1
 if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
 
-:: whQuery2 uses IBObjects and that compiles for D20
+:: whQuery2 uses IBObjects not BDE
+call %~dp0\default-compilerdigits.bat
 del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
 if "%compilehtq2%"=="" %CSSend% /error "compilehtq2 is blank"
 if "%compilehtq2%"=="" pause
 if NOT "%compilehtq2%"=="no" cd %droot%\DB Examples\whQuery2
 if NOT "%compilehtq2%"=="no" call %cbat% whQuery2
-set compilerdigits=
 
+:: whQuery3 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery3.exe /q
 if NOT "%compilehtq3%"=="no" cd %droot%\DB Examples\whQuery3
+if NOT "%compilehtq3%"=="no" set compilerdigits=20
 if NOT "%compilehtq3%"=="no" call %cbat% whQuery3
 
+:: whQuery4 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery4.exe /q
 if NOT "%compilehtq4%"=="no" cd %droot%\DB Examples\whQuery4
+if NOT "%compilehtq4%"=="no" set compilerdigits=20
 if NOT "%compilehtq4%"=="no" call %cbat% whQuery4
 
 :: democoderage
 del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
-::whSchedule uses IBObjects and Rubicon
+::whSchedule uses IBObjects and Rubicon, no BDE
 if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
-::if NOT "%compilecoderage%"=="no" set compilerdigits=18
+if NOT "%compilecoderage%"=="no" call %~dp0\default-compilerdigits.bat
 if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
-::set compilerdigits=
+:: Fish Store uses BDE
+set compilerdigits=20
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
 if NOT "%compilehtfs%"=="no" call %cbat% whFishStore
 
+:: whClone uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whClone.exe /q
 if NOT "%compilehtcl%"=="no" cd %droot%\DB Examples\whClone
+if NOT "%compilehtcl%"=="no" set compilerdigits=20
 if NOT "%compilehtcl%"=="no" call %cbat% whClone
 
+call %~dp0\default-compilerdigits.bat
 del %~dp0\..\..\Live\WebHub\Apps\whLoadFromDB.exe
 if NOT "%compiledbhtml%"=="no" cd %droot%\DB Examples\whLoadFromDB
 if NOT "%compiledbhtml%"=="no" call %cbat% whLoadFromDB
@@ -88,9 +100,7 @@ if NOT "%compilejpeg%"=="no" call %cbat% whDynamicJPEG
 ::whFirebird uses IBObjects 
 del %~dp0\..\..\Live\WebHub\Apps\whFirebird.exe
 if NOT "%compilefire%"=="no" cd %droot%\DB Examples\whFirebird
-::if NOT "%compilefire%"=="no" set compilerdigits=18
 if NOT "%compilefire%"=="no" call %cbat% whFirebird
-::set compilerdigits=
 
 del %~dp0\..\..\Live\WebHub\Apps\whRubicon.exe
 if NOT "%compilehtru%"=="no" cd %droot%\Third Party Examples\whRubicon
@@ -104,28 +114,13 @@ echo ipc is %whipc%
 echo ***
 echo .
 
-::whDPrefix uses NexusDB
+::whDPrefix uses NexusDB not BDE
 :: NexusDB v4.004 as of 28-Apr-2014
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
-if "%compiledpr%"=="no" goto dspstart
+if "%compiledpr%"=="no" goto END
 cd %droot%\Third Party Examples\whDPrefix
 call %~dp0\default-compilerdigits.bat
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
-
-:dspstart
-set compilerdigits=
-call %~dp0\default-compilerdigits.bat
-@del %~dp0\..\..\Live\WebHub\Apps\whDSP*.exe
-if "%compiledsp%"=="no" goto end
-cd %droot%\Third Party Examples\whDSP
-if errorlevel 1 %CSSend% /error "invalid directory for whDSP"
-
-::dsp new-ipc
-call %~dp0\compile-1demo_win32.bat whDSP EurekaLog
-if errorlevel 1 %CSSend% /error "%~dp0\compile-1demo_win32.bat failed for whDSP"
-DEL %~dp0\..\..\Live\WebHub\Apps\whDSP_reqpkg.bin
-REN %~dp0\..\..\Live\WebHub\Apps\whDSP.exe whDSP_reqpkg.bin
-REN %~dp0\..\..\Live\WebHub\Apps\whDSP_eur.exe whDSP.exe
 
 goto end
 
