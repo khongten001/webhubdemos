@@ -35,7 +35,7 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_DependencyCheckOutputName>..\..\..\..\Live\WebHub\Apps\whSendmail.exe</DCC_DependencyCheckOutputName>
         <DCC_ImageBase>00400000</DCC_ImageBase>
-        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;bdertl;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;maxCode;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;vcldb;soaprtl;VclSmp;dbexpress;inetdb;vcldbx;webdsnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whdemod7;maxCode;rb20r70r;HREFSite_Package;rb20b70r;Etk70;ldiRegExD07;ZaphodsMapRT_D07;WebHubRT_D07;WebHubDBRT_D07;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Platform>x86</DCC_Platform>
         <DCC_ExeOutput>..\..\..\..\Live\WebHub\Apps\</DCC_ExeOutput>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
@@ -47,7 +47,7 @@
         <DCC_F>false</DCC_F>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
