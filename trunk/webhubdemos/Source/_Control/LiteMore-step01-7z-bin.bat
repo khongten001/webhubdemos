@@ -14,7 +14,7 @@ del LiteMore-Library-bin.7z
 :: compress the Lite and More EXEs
 d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z whLite.exe
 if errorlevel 1 pause
-::d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z DServerD1?.exe
+
 d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z whConverter.exe
 d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z whDropdown.exe
 d:\Apps\Utilities\7Zip\7z.exe a LiteMore-bin.7z whObjectInspector.exe
