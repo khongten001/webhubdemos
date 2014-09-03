@@ -25,7 +25,7 @@ THE SOFTWARE.
 interface
 
 uses
-  SysUtils, Classes, DB, DBTables, Provider, DBClient, SimpleDS,
+  SysUtils, Classes, DB, Bde.DBTables, Provider, DBClient, SimpleDS,
   webLink, wdbScan, wdbSSrc, wdbSource, wbdeSource, 
   updateOK, tpAction, webTypes, wdbGrid, wbdeGrid{bde}, 
   wdbxSource;

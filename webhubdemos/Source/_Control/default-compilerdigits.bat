@@ -1,3 +1,3 @@
 :: default-compilerdigits.bat
 
-if "%compilerdigits%"=="" set compilerdigits=20
+if "%compilerdigits%"=="" set compilerdigits=21

@@ -12,7 +12,7 @@ call %~dp0\compile-1demo_win32_nopackages.bat Test_Indy_Smtp
 ren %~dp0\..\..\Live\WebHub\Apps\Test_Indy_Smtp.exe Test_Indy_Smtp_D%compilerdigits%.exe
 if errorlevel 1 pause
 
-set compilerdigits=20
+set compilerdigits=21
 call %~dp0\compile-1demo_win32_nopackages.bat Test_Indy_Smtp
 ren %~dp0\..\..\Live\WebHub\Apps\Test_Indy_Smtp.exe Test_Indy_Smtp_D%compilerdigits%.exe
 if errorlevel 1 pause
