@@ -50,11 +50,11 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Bde;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_MapFile>3</DCC_MapFile>
-        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbbde;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;bdertl;vcldbx;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whubd7;whubdbd7;whdemod7;Etk70;ldiRegExD7;maxCode;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;vclx;indy;inet;xmlrtl;vclie;inetdbxpress;dbrtl;dsnap;dsnapcon;vcldb;soaprtl;VclSmp;dbexpress;dbxcds;inetdb;webdsnap;websnap;adortl;teeui;teedb;tee;dss;visualclx;visualdbclx;vclactnband;vclshlctrls;dclaxserver;whubd7;whubdbd7;whdemod7;Etk70;ldiRegExD7;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Define>PREVENTSVCMGR;WEBHUBACE;$(DCC_Define)</DCC_Define>
         <DCC_ExeOutput>D:\Projects\WebHub Demos\Live\WebHub\Apps</DCC_ExeOutput>
         <DCC_K>false</DCC_K>
@@ -129,10 +129,6 @@
         <DCCReference Include="H:\whsample_EvtHandlers.pas">
             <Form>whdmCommonEventHandlers</Form>
             <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
-        <DCCReference Include="h:\dmwhBDEApp.pas">
-            <Form>dmWebHubBDEApp</Form>
-            <DesignClass>TdmWebHubDBApp</DesignClass>
         </DCCReference>
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>

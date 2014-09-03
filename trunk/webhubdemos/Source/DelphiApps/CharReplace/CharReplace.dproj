@@ -1,4 +1,4 @@
-﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 		<PropertyGroup>
 			<ProjectGuid>{F6515843-83F5-4282-9654-E0D9061106B3}</ProjectGuid>
 			<MainSource>CharReplace.dpr</MainSource>
@@ -27,7 +27,7 @@
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_DcuOutput>d:\temp\DelphiTempDCU\</DCC_DcuOutput>
 			<DCC_UnitSearchPath>h:\;h:\d15\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
+			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;WinTypes=Windows;WinProcs=Windows;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_ExeOutput>D:\Projects\webhubdemos\Live\DelphiApps</DCC_ExeOutput>
 			<DCC_N>false</DCC_N>
 			<DCC_S>false</DCC_S>
