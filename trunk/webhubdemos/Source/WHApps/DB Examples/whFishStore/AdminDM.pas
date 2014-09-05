@@ -7,13 +7,13 @@ interface
 uses
   SysUtils, Classes, Forms, DB, Datasnap.DBClient,
   updateOk, tpAction,
-  webTypes, webLink, wdbScan, webScan, wdbGrid, wbdeGrid{bde}, webPage, webPHub,
-  wdbSSrc, wdbSource, wbdeSource, wdbLink;
+  webTypes, webLink, wdbScan, webScan, wdbGrid, webPage, webPHub,
+  wdbSSrc, wdbSource, wdbLink;
 
 type
   TDataModuleAdmin = class(TDataModule)
-    gfAdmin: TwhbdeGrid;
-    wdsAdmin: TwhbdeSource;
+    gfAdmin: TwhdbGrid;
+    wdsAdmin: TwhdbSource;
     DataSourceFishCost: TDataSource;
     TableFishCost: TClientDataSet;
     waPostPrice: TwhWebAction;

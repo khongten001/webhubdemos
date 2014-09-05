@@ -8,8 +8,8 @@ interface
 uses
   SysUtils, Classes, DB, DBClient,
   updateOK, tpAction, 
-  webLink, webLGrid, wdbScan, wdbGrid, wbdeGrid{bde}, webTypes, wdbSSrc,
-  wdbSource, wbdeSource, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  webLink, webLGrid, wdbScan, wdbGrid, webTypes, wdbSSrc,
+  wdbSource, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
   FireDAC.Stan.StorageBin;
@@ -20,11 +20,11 @@ const
 type
   TDMFishStoreBiolife = class(TDataModule)
     DataSourceA1: TDataSource;
-    wdsa1: TwhbdeSource;
-    gfa1: TwhbdeGrid;
+    wdsa1: TwhdbSource;
+    gfa1: TwhdbGrid;
     DataSourceBiolife: TDataSource;
-    WebDataSourceBiolife: TwhbdeSource;
-    gf: TwhbdeGrid;
+    WebDataSourceBiolife: TwhdbSource;
+    gf: TwhdbGrid;
     WebListGrid1: TwhListGrid;
     TableA1: TClientDataSet;
     waGrabFish: TwhWebAction;
@@ -225,7 +225,7 @@ end;
 {                          CODE FOR THE LOOKFISH PAGE                          }
 {------------------------------------------------------------------------------}
 
-{ This procedure is called whenever TwhbdeGrid gets to a "hot" field
+{ This procedure is called whenever TwhdbGrid gets to a "hot" field
   in the table.  Hot fields were set above by controlling the .tag
   property of the field in question.  See the webhub.hlp file for all the
   .tag options.
@@ -236,13 +236,13 @@ procedure TDMFishStoreBiolife.gfHotField(Sender: TwhdbGrid; aField: TField;
   var CellValue: string);
 var
   desc: string;
-  g: TwhbdeGrid;
+  g: TwhdbGrid;
   tc: TDataSet;  // tc stands for Table Cursor
   id: string;
 begin
   CellValue := '';
   desc := aField.asString;
-  g := TwhbdeGrid(Sender); { so we can reuse this proc for multiple grids }
+  g := TwhdbGrid(Sender); { so we can reuse this proc for multiple grids }
   tc := aField.DataSet;
   //
   // Reference the desired field by name, not position, because fields[0] might
