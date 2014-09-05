@@ -27,6 +27,7 @@ if NOT Exist %cbat% pause
 
 :Continue02
 :: need DEMOS app even on DB server
+set compilerdigits=
 cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
 
@@ -35,9 +36,11 @@ del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q
 if "%compilehtq1%"=="" %CSSend% /error "compilehtq1 is blank. Start from Database-step00-compile-win32."
 if "%compilehtq1%"=="" pause
 if NOT "%compilehtq1%"=="no" cd %droot%\DB Examples\whQuery1
+if NOT "%compilehtq1%"=="no" set compilerdigits=20
 if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
 
 :: whQuery2 uses IBObjects not BDE
+set compilerdigits=
 call %~dp0\default-compilerdigits.bat
 del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
 if "%compilehtq2%"=="" %CSSend% /error "compilehtq2 is blank"
@@ -58,16 +61,20 @@ if NOT "%compilehtq4%"=="no" set compilerdigits=20
 if NOT "%compilehtq4%"=="no" call %cbat% whQuery4
 
 :: democoderage
+:: whSchedule uses IBObjects and Rubicon, no BDE
 del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
-::whSchedule uses IBObjects and Rubicon, no BDE
+set compilerdigits=20
 if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
 if NOT "%compilecoderage%"=="no" call %~dp0\default-compilerdigits.bat
 if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
 :: Fish Store uses FireDAC September 2014
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
+set compilerdigits=
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
 if NOT "%compilehtfs%"=="no" call %~dp0\default-compilerdigits.bat
+%CSSend% compilerdigits %compilerdigits%
+%CSSend% "cbat for Fish Store" %cbat%
 if NOT "%compilehtfs%"=="no" call %cbat% whFishStore
 
 :: whClone uses BDE
@@ -76,6 +83,8 @@ if NOT "%compilehtcl%"=="no" cd %droot%\DB Examples\whClone
 if NOT "%compilehtcl%"=="no" set compilerdigits=20
 if NOT "%compilehtcl%"=="no" call %cbat% whClone
 
+:: whLoadFromDB relies on some properties on the BDE webapp object
+set compilerdigits=20
 call %~dp0\default-compilerdigits.bat
 del %~dp0\..\..\Live\WebHub\Apps\whLoadFromDB.exe
 if NOT "%compiledbhtml%"=="no" cd %droot%\DB Examples\whLoadFromDB

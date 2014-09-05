@@ -64,7 +64,7 @@ uses
   MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
   whSharedLog,
   whutil_ZaphodsMap,
-  webApp, webBase, webSplat, dmwhBDEApp, htbdeWApp, webCall,
+  webApp, webBase, webSplat, dmWHApp, webCall,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource,
   whMain, htWebApp, whpanel_RemotePages,
   whpanel_Mail, uAutoPanels;
