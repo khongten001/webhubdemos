@@ -8,7 +8,7 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 268
     Top = 193
   end
-  object wdsa1: TwhbdeSource
+  object wdsa1: TwhdbSource
     ComponentOptions = []
     GotoMode = wgGotoKey
     KeyFieldNames = 'Species No'
@@ -20,7 +20,7 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 145
     Top = 193
   end
-  object gfa1: TwhbdeGrid
+  object gfa1: TwhdbGrid
     ComponentOptions = []
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
@@ -40,7 +40,7 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 276
     Top = 102
   end
-  object WebDataSourceBiolife: TwhbdeSource
+  object WebDataSourceBiolife: TwhdbSource
     ComponentOptions = []
     GotoMode = wgGotoKey
     KeyFieldNames = 'Species No'
@@ -52,7 +52,7 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 145
     Top = 104
   end
-  object gf: TwhbdeGrid
+  object gf: TwhdbGrid
     ComponentOptions = []
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     PageHeight = 3

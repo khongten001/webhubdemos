@@ -2,7 +2,7 @@ object DataModuleAdmin: TDataModuleAdmin
   OldCreateOrder = True
   Height = 243
   Width = 441
-  object gfAdmin: TwhbdeGrid
+  object gfAdmin: TwhdbGrid
     ComponentOptions = [tpStatusPanel]
     DataScanOptions = [dsbFirst, dsbPrior, dsbNext, dsbLast]
     ScanMode = dsByKey
@@ -19,7 +19,7 @@ object DataModuleAdmin: TDataModuleAdmin
     Left = 238
     Top = 12
   end
-  object wdsAdmin: TwhbdeSource
+  object wdsAdmin: TwhdbSource
     ComponentOptions = [tpStatusPanel]
     GotoMode = wgGotoNearest
     KeyFieldNames = 'Species No'
