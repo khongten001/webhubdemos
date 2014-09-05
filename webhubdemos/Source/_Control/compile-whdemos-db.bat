@@ -32,7 +32,7 @@ call %cbat% whLite
 
 :: whQuery1 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q
-if "%compilehtq1%"=="" %CSSend% /error "compilehtq1 is blank"
+if "%compilehtq1%"=="" %CSSend% /error "compilehtq1 is blank. Start from Database-step00-compile-win32."
 if "%compilehtq1%"=="" pause
 if NOT "%compilehtq1%"=="no" cd %droot%\DB Examples\whQuery1
 if NOT "%compilehtq1%"=="no" call %cbat% whQuery1
@@ -64,10 +64,10 @@ if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
 if NOT "%compilecoderage%"=="no" call %~dp0\default-compilerdigits.bat
 if NOT "%compilecoderage%"=="no" call %cbat% whSchedule
 
-:: Fish Store uses BDE
-set compilerdigits=20
+:: Fish Store uses FireDAC September 2014
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
+if NOT "%compilehtfs%"=="no" call %~dp0\default-compilerdigits.bat
 if NOT "%compilehtfs%"=="no" call %cbat% whFishStore
 
 :: whClone uses BDE
@@ -116,10 +116,11 @@ echo .
 
 ::whDPrefix uses NexusDB not BDE
 :: NexusDB v4.004 as of 28-Apr-2014
+:: Use same version of WebHub as CodeNewsFast so libraries are shared
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto END
 cd %droot%\Third Party Examples\whDPrefix
-call %~dp0\default-compilerdigits.bat
+set compilerdigits=20
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
 
 goto end
