@@ -55,7 +55,7 @@ uses
   Forms,
   MultiTypeApp, ucDlgs, ucLogFil,
   webApp, webBase, webSplat, whSharedLog, webCall,
-  dmFishAp, tfish, htWebApp, htbdeWApp,
+  dmFishAp, tfish, htWebApp, 
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
   whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel,
   whFishStore_dmwhBiolife;

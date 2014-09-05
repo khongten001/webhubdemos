@@ -34,7 +34,7 @@ uses
   whgui_Menu, cgivars, apistat, apibuilt, apicall,
   webcall, cgiserv, webserv, htmlbase, htmlcore, htmlsend, weblink,
   webTypes, webInfoU, webBase, webcore, webSend, webapp,
-  htWebApp, htbdeWApp, webvars,
+  htWebApp, webvars,
   tFish, webInfoBase, System.Actions, Vcl.ActnList;
 
 procedure CreateCoreWebHubDataModule;
@@ -92,7 +92,7 @@ procedure CreateCoreWebHubDataModule;
 begin
   { The purpose of this procedure is to establish a standard way of creating
     the core webhub datamodule while still allowing developers to have a
-    choice of TwhApplication or TwhbdeApplication or a custom-derived class. If you make
+    choice of TwhApplication or a custom-derived class. If you make
     a custom-derived class, put this same procedure, CreateCoreWebHubDataModule,
     into your datamodule, and adjust the parameters on the next line. }
   Application.CreateForm(TwhdmCommonMenu, whdmCommonMenu);

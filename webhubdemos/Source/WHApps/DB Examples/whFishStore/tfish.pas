@@ -53,7 +53,7 @@ type
     function VarsClass: TWHSessionVarsClass; override;
   end;
 
-  TFishApp = class(TwhApplication) // TwhbdeApplication)  Feb 2010
+  TFishApp = class(TwhApplication) 
   private
     function ActiveSessionVarsPointer: TFishSessionVars;
   protected
