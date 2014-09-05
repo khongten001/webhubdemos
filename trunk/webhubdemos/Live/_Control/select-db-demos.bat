@@ -1,14 +1,6 @@
 :: select-db-demos.bat
-:: Copyright (c) 2011-2012 HREF Tools Corp.
+:: Copyright (c) 2011-2014 HREF Tools Corp.
 :: www.href.com
-
-call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
-
-echo .
-echo ***
-echo ipc is %whipc%
-echo ***
-echo .
 
 :: init all to NO
 set demodbhtml=no
