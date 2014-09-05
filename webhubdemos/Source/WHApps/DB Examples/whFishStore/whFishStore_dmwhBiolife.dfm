@@ -36,7 +36,7 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Top = 193
   end
   object DataSourceBiolife: TDataSource
-    DataSet = TableBiolife
+    DataSet = FDMemTableBiolife
     Left = 276
     Top = 102
   end
@@ -76,14 +76,6 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     Left = 53
     Top = 28
   end
-  object TableBiolife: TClientDataSet
-    Aggregates = <>
-    FileName = 'D:\Projects\webhubdemos\Live\Database\embSample\biolife.xml'
-    Params = <>
-    AfterOpen = TableBiolifeAfterOpen
-    Left = 416
-    Top = 104
-  end
   object TableA1: TClientDataSet
     Aggregates = <>
     FileName = 'D:\Projects\webhubdemos\Live\Database\embSample\biolife.xml'
@@ -102,5 +94,19 @@ object DMFishStoreBiolife: TDMFishStoreBiolife
     OnExecute = waSaveCurrentFishExecute
     Left = 176
     Top = 288
+  end
+  object FDMemTableBiolife: TFDMemTable
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired]
+    UpdateOptions.CheckRequired = False
+    Left = 416
+    Top = 104
+  end
+  object FDStanStorageBinLink1: TFDStanStorageBinLink
+    Left = 472
+    Top = 296
   end
 end

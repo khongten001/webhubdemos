@@ -12,6 +12,7 @@ object DMForWHFishStore: TDMForWHFishStore
     OnDataModulesInit = ProjMgrDataModulesInit
     OnGUICreate = ProjMgrGUICreate
     OnGUIInit = ProjMgrGUIInit
+    OnStartupComplete = ProjMgrStartupComplete
     OnStartupError = ProjMgrStartupError
     OnStop = ProjMgrStop
     Left = 40

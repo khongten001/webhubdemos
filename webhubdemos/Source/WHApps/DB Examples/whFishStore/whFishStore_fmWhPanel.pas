@@ -90,7 +90,7 @@ begin
   // We need to create the graphics file in a directory which is visible
   // to the web server, so that <img src=/htdemo/htfs/dynfish... will work.
   shortFile:='fish'+
-    DMFishStoreBiolife.TableBiolife.fieldByName( FishKeyField ).asString+'.jpg';  // e.g. fish60030.jpg
+    DMFishStoreBiolife.FDMemTableBiolife.fieldByName( FishKeyField ).asString+'.jpg';  // e.g. fish60030.jpg
   filespec := getHtDemoWWWRoot + 'webhub\demos\whFishStore\dynfish\';
   if NOT DirectoryExists(filespec) then
     ForceDirectories(filespec);
@@ -100,7 +100,7 @@ begin
   if NOT fileExists(filespec) then
   begin
     // make a TPicture object and load it with data from BIOLIFE.Graphic
-    image1.picture.assign( DMFishStoreBiolife.TableBiolife.fieldByName( 'Graphic' ) );
+    image1.picture.assign( DMFishStoreBiolife.FDMemTableBiolife.fieldByName( 'Graphic' ) );
     // translate the graphic to the file, unless it has already been created!
     Bmp2JPEGFile(image1.picture.bitmap.handle, filespec);
   end;

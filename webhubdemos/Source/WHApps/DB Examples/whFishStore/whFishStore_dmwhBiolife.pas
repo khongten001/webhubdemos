@@ -9,7 +9,10 @@ uses
   SysUtils, Classes, DB, DBClient,
   updateOK, tpAction, 
   webLink, webLGrid, wdbScan, wdbGrid, wbdeGrid{bde}, webTypes, wdbSSrc,
-  wdbSource, wbdeSource;
+  wdbSource, wbdeSource, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  FireDAC.Stan.StorageBin;
 
 const
   FishKeyField='Species No';
@@ -23,10 +26,11 @@ type
     WebDataSourceBiolife: TwhbdeSource;
     gf: TwhbdeGrid;
     WebListGrid1: TwhListGrid;
-    TableBiolife: TClientDataSet;
     TableA1: TClientDataSet;
     waGrabFish: TwhWebAction;
     waSaveCurrentFish: TwhWebActionEx;
+    FDMemTableBiolife: TFDMemTable;
+    FDStanStorageBinLink1: TFDStanStorageBinLink;
     procedure DataModuleCreate(Sender: TObject);
     procedure TableBiolifeAfterOpen(DataSet: TDataSet);
     procedure waGrabFishExecute(Sender: TObject);
@@ -87,10 +91,12 @@ begin
       end;
       DataSourceA1.DataSet := TableA1;
 
-      with TableBiolife do
+      with FDMemTableBiolife do
       begin
-        FileName := TableA1.Filename;
+        //FileName := getHtDemoDataRoot + 'embSample\' + 'biolife.FDS';
+        LoadFromFile(getHtDemoDataRoot + 'embSample' + PathDelim + 'biolife.FDS');
         AfterOpen := TableBiolifeAfterOpen;
+        IndexFieldnames := Fields[0].FieldName;
         Active := True;
       end;
 
@@ -170,7 +176,7 @@ begin
   item := vp.currentFish;
 
   { find it and remember the description }
-  with TableBiolife do
+  with FDMemTableBiolife do
   begin
     findKey([item]);
     Desc := FieldByName( 'Common_Name' ).asString;
@@ -202,7 +208,7 @@ begin
     TFishSessionVars(Session.Vars).CurrentFish := StrToFloatDef(S1, 0);
     CSSend('PageID', PageID);
     if SameText(PageID, 'DETAIL') then
-      b:=dmFishStoreBIOLIFE.TableBiolife.FindKey([S1])
+      b:=dmFishStoreBIOLIFE.FDMemTableBiolife.FindKey([S1])
     else
       b:= DataModuleAdmin.TableFishCost.FindKey([S1]);
     if not b then

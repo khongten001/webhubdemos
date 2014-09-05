@@ -25,7 +25,7 @@ THE SOFTWARE.
 interface
 
 uses
-  SysUtils, Windows, Classes,
+  SysUtils, Classes,
   updateOK,
   webTypes, webVars, webBase, webCore, webApp, htWebApp,
   uTranslations;

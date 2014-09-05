@@ -32,6 +32,7 @@ type
     procedure ProjMgrStop(Sender: TtpProject; var ErrorText: String;
       var Continue: Boolean);
     procedure DataModuleCreate(Sender: TObject);
+    procedure ProjMgrStartupComplete(Sender: TtpProject);
   private
     { Private declarations }
     FFixedAppID: string;
@@ -53,7 +54,7 @@ implementation
 uses
   Forms,
   MultiTypeApp, ucDlgs, ucLogFil,
-  webApp, webBase, webSplat, whSharedLog,
+  webApp, webBase, webSplat, whSharedLog, webCall,
   dmFishAp, tfish, htWebApp, htbdeWApp,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
   whpanel_RemotePages, whpanel_Mail, AdminDM, whFishStore_fmWhPanel,
@@ -162,6 +163,12 @@ begin
 
     WebMessage('0');         // required to close splash screen
   end;
+end;
+
+procedure TDMForWHFishStore.ProjMgrStartupComplete(Sender: TtpProject);
+begin
+  UncoverAppOnStartup(pWebApp.AppID);
+  pConnection.MarkReadyToWork;  // required in v3.190+
 end;
 
 procedure TDMForWHFishStore.ProjMgrStartupError(Sender: TtpProject;
