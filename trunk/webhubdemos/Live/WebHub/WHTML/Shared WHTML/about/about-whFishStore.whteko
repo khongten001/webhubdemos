@@ -7,23 +7,23 @@ mcWhDemoCreditIdeaHTFS=Ann Lynnworth
 mcWhDemoCreditFirstDraftHTFS=Ann Lynnworth
 mcWhDemoCreditGraphicsHTFS=Michael S. Davis&#44; Rob Daniels&#44; and ImageLib
 mcWhDemoCreditCopyHTFS=Rob Daniels and Ann Lynnworth
-mcWhDemoUpdatedHTFS=29-Jan-2013
-mcWhDemoKeywordsHTFS=dynamic graphics,XML,TClientDataSet,shopping cart example,custom TwhAppBase class
+mcWhDemoUpdatedHTFS=4-Sep-2014
+mcWhDemoKeywordsHTFS=dynamic graphics,XML,FireDAC,TClientDataSet,shopping cart example,custom TwhAppBase class
 mcWhDemoLiteHTFS=No
 </whmacros>
 
 <whtranslation key="~whDemoShortDescHTFS">
 Demonstrated features include scrolling grids with &quot;drill-down&quot;, graphics files within 
 custom grids, data entry, BMP to JPEG conversion on the fly, and 
-accessing MEMO and BLOB fields in XML using TClientDataSet.
+accessing MEMO and BLOB fields in XML using TClientDataSet.  Uses FireDAC TFDMemTable.
 </whtranslation>
 
 <whdroplet name="drDemoSetupHTFS">
 <ol>
-<li> This example uses the Borland/Embarcadero demo table named biolife.xml. 
-</li>
+<li> This example uses the Borland/Embarcadero demo table named biolife.xml (biolife.fds). </li>
 <li> Use Delphi to compile whFishStore.dpr to whFishStore.exe and run that as your application server.</li>
 <li> Requires midas.dll or MidasLib.dcu (licensed by Embarcadero)</li>
+<li> As of September 2014, the Borland Database Engine is no longer used in any way in the Fish Store demo. </li>
 </ol>
 </whdroplet>
 
