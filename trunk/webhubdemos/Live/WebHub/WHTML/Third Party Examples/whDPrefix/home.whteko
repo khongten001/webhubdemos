@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whpage pageid="pghomepage" desc="Delphi Prefix Registry Home" exportfilename="" remap="">
+<whpage pageid="pghomepage" desc="-Home Page for the Delphi Prefix Registry">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
@@ -11,7 +11,7 @@ googlepriority=0.9
 (~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-	<title>Delphi Prefix Registry</title>
+	<title>(~~title_homepage~)</title>
 	<meta name="google-site-verification" content="lUTswhylYRoWTLRiWh3BJUt4GeNoYScSK1oNn306TGw" />
 	(~drSharedHead~)
   <link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr" />
@@ -21,7 +21,8 @@ googlepriority=0.9
 
 (~drBannerThenNav~)
 
-<whdroplet name="drGoogleAdsOnDPR" show="no">
+<whdroplet name="drGoogleAdsOnDPR" show="yes">
+(~MATCH|a=b|
 <div class="row">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
@@ -36,13 +37,13 @@ googlepriority=0.9
 		</script>
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
-</div>
+</div>~)
 </whdroplet>
 
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
-		<h1>Welcome to the Delphi Prefix Registry</h1>
+		<h1>(~~title_homepage~)</h1>
 		(~NOMATCH|(~ZMDefaultMapContext~)=WESLEY|<p><i>(~CentralInfo.WebTimeGMT~)</i></p>~)
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>

@@ -61,12 +61,12 @@ googlepriority=0.8
 <whprep>
 (~waJanrain.Execute|~)
 (~ASSIGNED|_email|(~BOUNCE|pgmaintain~)~)
-(~SET|waJanrain-ErrorMessage=Sorry for some reason your email id is unknown. Please try again in a few days.~)
+(~SET|waJanrain-ErrorMessage=Sorry! For some reason your email id is unknown. Please try again in a few days.~)
 (~BOUNCE|cleanup2013error~)
 </whprep>
 </whpage>
 
-<whpage pageid="pgmaintain" desc="Maintain Prefix Registrations">
+<whpage pageid="pgmaintain" desc="-Maintain Prefix Registrations">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -79,31 +79,33 @@ googlepriority=0
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-  <title>(~pagedesc~)</title>
+  <title>(~~title_maintain~)</title>
 	(~drSharedHead~)
-  <meta name="robots" content="nofollow" />
-<style>
-#maintain-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
-#maintain-table th {
-  border-bottom: 2px solid black; margin: 0; padding: 10px 8px; text-align: left; 
-  vertical-align: top;
-}
-#maintain-table td {border-bottom: 1px solid crimson; margin: 0; padding: 6px 8px; 
-  vertical-align: top;
-}
-#maintain-table td.action {
-	font-weight:700; font-size: 1.4em; white-space:nowrap;
-	font-family: Code2000, DejaVu Sans Bold, EversonMono, GNU Unifont, LastResort, Quivira, Symbola, Unicode BMP Fallback SIL;
-}
-</style>
+  <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
 (~drBannerThenNav~)
 
-<h1>(~PageDesc~)</h1>
-<h2>Existing Prefixes</h2>
-<p><i>managed by (~_EMail~)</i></p>
-(~manpref.Execute|Maintain~)
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+
+		<h1>(~~title_maintain~)</h1>
+		<h2>Existing Prefixes</h2>
+		<p><i>managed by (~_EMail~)</i></p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		(~manpref.Execute|Maintain~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
+
+
 <whdroplet name="ScanMaintain" show="no">
 <table id="maintain-table">
 <thead>
@@ -137,7 +139,7 @@ googlepriority=0
 </td>
 <td>(~FIELD|wdsManPref|MpfPurpose~)</td>
 <td>(~FIELD|wdsManPref|Mpf Contact~)<br/>
-<!-- (~FIELD|wdsManPref|Mpf EMail~) -->(~FIELD|wdsManPref|Mpf Company~)</td>
+<!--- (~FIELD|wdsManPref|Mpf EMail~) -->(~FIELD|wdsManPref|Mpf Company~)</td>
 <td><a title="test web page" href="http://(~FIELD|wdsManPref|Mpf WebPage~)">(~FIELD|wdsManPref|Mpf WebPage~)</a></td>
 <td>(~SET|temps=(~FIELD|wdsManPref|MpfURLStatus~)~)
 (~ASSIGNED|temps|(~temps~)<br>
@@ -151,26 +153,36 @@ googlepriority=0
 </table>
 </whdroplet>
 
-<div id="dprtext-div">
-<h2>Add New Prefix</h2>
-<p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
-
-<h2>Change EMail</h2>
-<p>You may (~JUMPR|switchemail|change the email address~) used for data entry. This is recommended if <b>(~_email~)</b> is 
-not authenticated at Google, Yahoo, OpenID, MyOpenID, WordPress or Microsoft. If you are not sure about this OpenID feature, 
-what you can do is (~JUMP|pgLogout|log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
-If that works for you, you are all set.  If not, come back in via the special January 2013 link with your reserved password, 
-and then you can (~JUMPR|switchemail|switch email~).</p>
-<p>The reason for all this is to enable a one-time cleanup effort that does not depend on OpenID, while allowing 
-all future data entry to proceed without any site-specific passwords.</p>
-
-<h2>Help!</h2>
-<p>If you need assistance, please send a note via <a href="http://www.href.com/contact">www.href.com/contact</a> 
-or talk to us via Secure Live Chat, Monday to Friday, at approximately 4-5pm in California at 
-<a href="https://www.href.com/techhelp">www.href.com/techhelp</a>.
-</p>
-
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h2>Add New Prefix</h2>
+		<p>(~JUMPR|pgregisterc|Click to Create New Prefix~)</p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h2>Change EMail</h2>
+		<p>You may (~JUMPR|switchemail|change the email address~) used for data entry. This is recommended if <b>(~_email~)</b> is 
+		not authenticated at Google, Yahoo, OpenID, MyOpenID, WordPress or Microsoft. If you are not sure about this OpenID feature, 
+		what you can do is (~JUMP|pgLogout|log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
+		If that works for you, you are all set.  If not, come back in via the special January 2013 link with your reserved password, 
+		and then you can (~JUMPR|switchemail|switch email~).</p>
+		<p>The reason for all this is to enable a one-time cleanup effort that does not depend on OpenID, while allowing 
+		all future data entry to proceed without any site-specific passwords.</p>
+
+		<h2>Help!</h2>
+		<p>If you need assistance, please send a note via <a href="http://www.href.com/contact">www.href.com/contact</a> 
+		or talk to us via Secure Live Chat, Monday to Friday, at approximately 4-5pm in California at 
+		<a href="https://www.href.com/techhelp">www.href.com/techhelp</a>.
+		</p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
+
 (~drSharedFooter~)
 </body></html>
 </whpage>
@@ -200,76 +212,75 @@ googlepriority=0
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-  <title>(~pagedesc~)</title>
+  <title>(~~title_registerDetails~)</title>
 	(~drSharedHead~)
-  <meta name="robots" content="nofollow" />
-  <style>
-  #newprefix-table {border: solid 1px crimson; padding: 0.4em; 
-  }
-  #newprefix-table th {text-align:right; padding-right: 1em;
-    vertical-align: top;}
-  #newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
-  .example {font-size:smaller; color: #666666; }
-  </style>
+  <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
 (~mcDPRHomeGraphic~)
 <whdroplet name="drMaintainNav" show="yes">
-<div>(~JUMP|pgmaintain|Maintain Prefixes~)</div>
+<div>(~JUMP|pgmaintain|(~~link_maintain~)~)</div>
 </whdroplet>
 
-<div id="dprmain-div">
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h2>(~~title_registerDetails~)</h2>
+		<p>To register your Delphi prefix preference, please enter the following
+		details and submit the form. Thank you!</p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
 
-<h2>Prefix Registration Details</h2>
-
-<p>To register your Delphi prefix preference, please enter the following
-details and submit the form! Thank you!</p>
-
-<form action="(~ACTION|pgRegThx~)" method="post">
-<table id="newprefix-table">
-<tr>
-<th>E-mail address:</th>
-<td>(~_email~)</td>
-</tr>
-
-<tr>
-<th>Person to contact:</th>
-<td>(~INPUTTEXT|Mpf Contact,60,40~)</td>
-</tr>
-
-<tr>
-<th>Company name:</th>
-<td>(~INPUTTEXT|Mpf Company,60,40~)</td>
-</tr>
-
-<tr><th>Web Page:</th>(~CLEAR|Mpf Webpage~)
-<td>(~INPUTTEXT|Mpf Webpage,60,60| placeholder="www.href.com/tpack" ~)</td>
-</tr>
-
-<tr>
-<th>Purpose:</th>(~CLEAR|MpfPurpose~)
-<td>(~INPUTTEXT|MpfPurpose,60,75~)<br/>
-<span class="example">e.g. class names, unit names, interface names</span></td>
-</tr>
-
-<tr>
-<th>Component prefix:</th>(~CLEAR|Mpf Prefix~)
-<td>(~INPUTTEXT|Mpf Prefix,60,10~)<br/>
-<span class="example">e.g. 'abc' if your component classes have names <br/>
-like TabcQuery, TabcDatabase</span>
-</td>
-</tr>
-
-<tr><td colspan="2" style="text-align:right; padding-right:2em;"><input type="submit" value="Save to Registry Now" /></td></tr>
-</table>
-</form>
-
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<form action="(~ACTION|pgRegThx~)" method="post">
+		<table id="newprefix-table">
+		<tr>
+		<th>E-mail address:</th>
+		<td>(~_email~)</td>
+		</tr>
+		
+		<tr>
+		<th>Person to contact:</th>
+		<td>(~INPUTTEXT|Mpf Contact,60,40~)</td>
+		</tr>
+		
+		<tr>
+		<th>Company name:</th>
+		<td>(~INPUTTEXT|Mpf Company,60,40~)</td>
+		</tr>
+		
+		<tr><th>Web Page:</th>(~CLEAR|Mpf Webpage~)
+		<td>(~INPUTTEXT|Mpf Webpage,60,60| placeholder="www.href.com/tpack" ~)</td>
+		</tr>
+		
+		<tr>
+		<th>Purpose:</th>(~CLEAR|MpfPurpose~)
+		<td>(~INPUTTEXT|MpfPurpose,60,75~)<br/>
+		<span class="example">e.g. class names, unit names, interface names</span></td>
+		</tr>
+		
+		<tr>
+		<th>Component prefix:</th>(~CLEAR|Mpf Prefix~)
+		<td>(~INPUTTEXT|Mpf Prefix,60,10~)<br/>
+		<span class="example">e.g. 'abc' if your component classes have names <br/>
+		like TabcQuery, TabcDatabase</span>
+		</td>
+		</tr>
+		
+		<tr><td colspan="2" style="text-align:right; padding-right:2em;"><input type="submit" value="Save to Registry Now" /></td></tr>
+		</table>
+		</form>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 (~drSharedFooter~)
 </body></html>
 </whpage>
 
-<whpage pageid="pgregthx" desc="Thanks for Registering">
+<whpage pageid="pgregthx" desc="-Thanks for Registering">
 <whprep>
 (~drCleanupCheckpoint~)
 (~REQUIRES|_email|pgregisterc~)
@@ -286,15 +297,20 @@ like TabcQuery, TabcDatabase</span>
 </head>
 <body>
 (~mcDPRHomeGraphic~)
-<div>(~JUMP|pgmaintain|Maintain Prefixes~)</div>
+<div>(~JUMP|pgmaintain|(~~link_maintain~)~)</div>
 <div id="dprmain-div">
 
-<h1>Thanks for registering!!</h1>
-<p>
-Your data has been added to the registry and will be visible to the public 
-as soon as an administrator approves the entries.  Thank you.</p>
-
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h1>Thanks for registering!!</h1>
+		<p>Your data has been added to the registry and will be visible to the public 
+		as soon as an administrator approves the entries.  ETA one business day. 
+		Thank you.</p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
+
 (~drSharedFooter~)
 </body></html>
 </whpage>

@@ -47,9 +47,8 @@ mcWhDemoLiteDPR=No
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~GO|pgPrefix|(~~link_view~)~) 
-		&emsp;(~GO|pgRegister|(~~link_edit~)~)
-		&emsp;(~GO|pgthanks|(~~link_about~)~)
+		(~GO|pgPrefix|(~~link_view_long~)~) 
+		&emsp;(~GO|pgRegister|(~~link_edit_long~)~)
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code"  >
 
 <whmacros>
@@ -15,25 +15,31 @@ mcManPrefCaptionsRedraw=Redraw
 </whmacros>
 
 <whdroplet name="chScan">
-<table id="alphabet-table">
-<tr><td style="padding-right:2em;">(~GO|pgHomePage|(~mcDPRLogo~)~)</td>
-<td style="width:90%;">
-
-<b>Quick Alphabetical Search:</b>
-<div id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-. <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
+<div class="row">
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="small-1 medium-1 columns">(~GO|pgHomePage|(~mcDPRLogo~)~)</div>
+	<div class="small-17 medium-11 columns">
+		
+		<h2>Quick Alphabetical Search</h2>
+		<span id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+		. <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
+		</span>
+		(~WebDBAlphabet.execute|~)
+		
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
-(~WebDBAlphabet.execute|~)
-</td></tr></table>
 
 (~drSkipBannerThenNav~)
 
-(~drGoogleAdsOnDPR~)
+<!--- (~drGoogleAdsOnDPR~) -->
 
-<div id="dprmain-div">
-<div itemscope itemtype="http://schema.org/Table">
-(~ManPref.execute|Approved~)
-</div>
+<div class="row">
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="small-18 medium-14 columns" itemscope itemtype="http://schema.org/Table">
+		(~ManPref.execute|Approved~)
+	</div>
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
 </div>
 </whdroplet>
 
@@ -49,46 +55,19 @@ googlepriority=0.7
 (~mcdoctypehtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with Letter (~Command~)~)</title>
+	<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with Letter (~Command~)~)</title>
 	(~drSharedHead~)
 
   <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURL.W~)0(~DynURL.W~)(~Command~)~)" />
 
-  <style>
-  #alphabet-table {
-	border: none; width:100%;
-	margin-bottom: 1em;
-  }
-  #alphabet-table td {
-		background-color: white;
-		vertical-align: bottom;
-	}
-	#approvedPrefixesTable {
-    margin-top: 1.4em; border: solid 1px; 
-		padding: 0.3em 0.1em; 
-		width:100%;
-		border-collapse: collapse;
-	}
-	#approvedPrefixesTable th {
-		color: crimson;
-		text-align: left;
-		background-color: #EEE;
-	}
-	#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
-	#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
-  #approvedPrefixesTable th, #approvedPrefixesTable td {
-	padding: 0.5em 0.9em 0.5em 0.9em;
-  }
-	#adminTable th {color: Crimson;}
-	#alphabetNav-div a { padding: 0 0.2em 0 0.1em; font-size: 1.4em; font-weight:900; }
-	</style>
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
+
 (~chScan~)
 
-<div style="padding-top:1.5em;text-align:center;">
+<!---<div style="padding-top:1.5em;text-align:center;">
 (~drGoogleAdsOnDPR~)
-</div>
+</div>-->
 
 (~drSharedFooter~)
 </body></html>

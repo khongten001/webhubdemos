@@ -15,3 +15,52 @@ table {empty-cells: show;}
   vertical-align: top;
 }
 
+  #alphabet-table {
+	border: none; 
+	margin-bottom: 1em;
+  }
+  #alphabet-table td {
+		vertical-align: bottom;
+  }
+	
+  #approvedPrefixesTable {
+    margin-top: 1.4em; border: solid 1px; 
+		padding: 0.3em 0.1em; 
+		
+		border-collapse: collapse;
+	}
+	#approvedPrefixesTable th {
+		color: crimson;
+		text-align: left;
+		background-color: #EEE;
+	}
+	#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
+	#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
+  #approvedPrefixesTable th, #approvedPrefixesTable td {
+	padding: 0.5em 0.9em 0.5em 0.9em;
+  }
+	#adminTable th {color: Crimson;}
+	#alphabetNav-div a { padding: 0 0.2em 0 0.1em; font-size: 1.4em; font-weight:900; }
+
+
+#maintain-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
+#maintain-table th {
+  border-bottom: 2px solid black; margin: 0; padding: 10px 8px; text-align: left; 
+  vertical-align: top;
+}
+#maintain-table td {border-bottom: 1px solid crimson; margin: 0; padding: 6px 8px; 
+  vertical-align: top;
+}
+#maintain-table td.action {
+	font-weight:700; font-size: 1.4em; white-space:nowrap;
+	font-family: Code2000, DejaVu Sans Bold, EversonMono, GNU Unifont, LastResort, Quivira, Symbola, Unicode BMP Fallback SIL;
+}
+
+
+  #newprefix-table {border: solid 1px crimson; padding: 0.4em; 
+  }
+  #newprefix-table th {text-align:right; padding-right: 1em;
+    vertical-align: top;}
+  #newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
+
+  .example {font-size:smaller; color: #666666; }
