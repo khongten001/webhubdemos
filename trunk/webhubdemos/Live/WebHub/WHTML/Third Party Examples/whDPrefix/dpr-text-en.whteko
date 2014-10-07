@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" defaultlingvo="en">
+
+<whtranslations>
+~title_about=About&hellip;
+~title_register=Add/Edit YOUR Delphi Prefix
+~link_home=Home
+~link_view=View the Registry
+~link_edit=Add/Edit YOUR Prefix
+~link_about=About&hellip;
+</whtranslations>
+
+</whteko>

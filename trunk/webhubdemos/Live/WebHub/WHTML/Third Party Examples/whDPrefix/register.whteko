@@ -6,7 +6,7 @@
 mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
 </whmacros>
 
-<whpage pageid="pgregister" desc="Add/Edit YOUR Delphi Prefix">
+<whpage pageid="pgregister" desc="-Entrance to Data Maitenance">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
@@ -18,25 +18,41 @@ googlepriority=0.8
 (~mcDocTypeHTML~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-  <title>(~pagedesc~)</title>
+  <title>(~~title_register~)</title>
 	(~drSharedHead~)
-  <meta name="robots" content="nofollow" />
-  <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
-  (~PARAMS|drJanrainJavascript|pgregopenid~)
+	<meta name="robots" content="nofollow" />
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+	(~PARAMS|drJanrainJavascript|pgregopenid~)
 </head>
 <body>
 (~drBannerThenNav~)
 
-<h1>(~pagedesc~)</h1>
-<div id="dprtext-div">
-
-<p>To add/edit/delete your Delphi prefix preference, please start by 
-logging in with an email known by one of the following six providers... 
-</p>
-(~drMultipleOpenID~)
-(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
-<div id="janrainEngageEmbed"></div>
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h1>(~~title_register~)</h1>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<p>To add/edit/delete your Delphi prefix preference, please start by 
+		logging in with an email known by one of the following six providers... 
+		</p>
+		(~drMultipleOpenID~)
+		(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-6 columns">&nbsp;</div>
+	<div class="small-18 medium-6 columns" id="janrainEngageEmbed"></div>
+	<div class="show-for-medium-up medium-6 columns">&nbsp;</div>
+</div>
+
 (~drSharedFooter~)
 </body></html>
 </whpage>

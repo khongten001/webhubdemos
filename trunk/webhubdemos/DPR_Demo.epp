@@ -1,5 +1,5 @@
 ﻿[File0]
-ProjectStatus=1
+ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\register.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\register.whteko
@@ -7,6 +7,14 @@ FTPFilename=
 ForcedReadOnly=0
 
 [File1]
+ProjectStatus=0
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-en.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-en.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File2]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\admin.whteko
@@ -14,7 +22,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefi
 FTPFilename=
 ForcedReadOnly=0
 
-[File2]
+[File3]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dprcleanup2013.whteko
@@ -22,7 +30,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefi
 FTPFilename=
 ForcedReadOnly=0
 
-[File3]
+[File4]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\headfoot.whteko
@@ -30,23 +38,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefi
 FTPFilename=
 ForcedReadOnly=0
 
-[File4]
-ProjectStatus=1
-FileType=css
-RelativeFilename=Live\WebRoot\delphiprefix.href.com\Registry\css\DelphiPrefixRegistry_colors.css
-Filename=D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\Registry\css\DelphiPrefixRegistry_colors.css
-FTPFilename=
-ForcedReadOnly=0
-
 [File5]
-ProjectStatus=0
-FileType=css
-RelativeFilename=Live\WebRoot\webhub\demos\c\whdprefix.css
-Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\c\whdprefix.css
-FTPFilename=
-ForcedReadOnly=0
-
-[File6]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\home.whteko
@@ -54,11 +46,19 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefi
 FTPFilename=
 ForcedReadOnly=0
 
-[File7]
+[File6]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\about\about-whDPrefix.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\about\about-whDPrefix.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File7]
+ProjectStatus=0
+FileType=css
+RelativeFilename=Live\WebRoot\webhub\demos\whDPrefix\css\whdprefix.css
+Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whDPrefix\css\whdprefix.css
 FTPFilename=
 ForcedReadOnly=0
 
