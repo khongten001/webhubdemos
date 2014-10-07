@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcDPRLogo=<img src="(~mcImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
-</whmacros>
+<whdroplet name="drSharedHead">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,700,400italic' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,800,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.css" />
+	<script src="(~Static.AppRoot~)js/vendor/modernizr.js"></script>
+	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix_colors.css" />
+	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css" />
+</whdroplet>
 
 <whdroplet name="chAdminFooterLinks">
 <br/><br/>
@@ -15,60 +21,48 @@ Administration Shortcuts:
 </whdroplet>
 
 <whdroplet name="chGraphicalBanner">
-<img src="(~mcImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
+<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
 (~mcDPRLogo~)
 </whdroplet>
 
-<whdroplet name="chNavigation">
-<span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-(~GO|pgHomepage| itemprop="url" |Home~) &nbsp;
-(~GO|pgPrefix| itemprop="url" |Browse~) &nbsp;
-(~GO|pgRegister| itemprop="url" |Add/Edit~) &nbsp;
-(~GO|pgThanks| itemprop="url" |About~) &nbsp;
-</span>
-(~GOR|pgLogout|Logout~) &nbsp;
-</whdroplet>
 
 <whdroplet name="drSharedFooter">
-<div style="text-align:center; margin-top: 3em;">
-(~chNavigation~)
-<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
-Running <a href="http://www.href.com/whvcl">(~version~)</a> 
-compiled with Delphi (~CentralInfo.PascalCompilerCode~). <br>
-All data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
-Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</span>
-&nbsp; <a href="http://lite.demos.href.com/privacypolicy">Privacy</a>
-&nbsp; <a href="http://www.href.com/contact">Contact</a>
-<!-- Your http client: (~Request.UserAgent~) considered (~ISWebRobotRequest|webrobot||human~) -->
-</p>
-(~drLinkW3Org~)
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns text-center" style="margin-top: 3rem;">
+		<span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+		(~GO|pgHomepage| itemprop="url" |Home~) &nbsp;
+		(~GO|pgPrefix| itemprop="url" |Browse~) &nbsp;
+		(~GO|pgRegister| itemprop="url" |Add/Edit~) &nbsp;
+		(~GO|pgThanks| itemprop="url" |About~) &nbsp;
+		</span>
+		<!--- (~GOR|pgLogout|Logout~) &nbsp; -->
+		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
+		Running <a href="http://www.href.com/whvcl">(~version~)</a> 
+		compiled with <span class="color-secondary-2-3">Delphi (~CentralInfo.PascalCompilerCode~)</span>. <br>
+		All data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
+		Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</span>
+		&nbsp; <a href="http://lite.demos.href.com/demos/privacypolicy">Privacy</a>
+		&nbsp; <a href="http://www.href.com/contact">Contact</a>
+		<!-- Your http client: (~Request.UserAgent~) considered (~ISWebRobotRequest|webrobot||human~) -->
+		</p>
+		(~drLinkW3Org~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
+<script src="(~Static.AppRoot~)js/vendor/jquery.js"></script>
+<script src="(~Static.AppRoot~)js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
 </whdroplet>
 
 <whdroplet name="drLinkW3Org">
-(~IsWebRobotRequest|<!-- w3.org -->||<div style="margin-top: 2em;">
+(~IsWebRobotRequest|<!-- w3.org -->||<div class="row text-center" style="margin-top: 2em;">
 (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
   <a onclick="window.open(this.href);return false;" 
 	href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)">validator.w3.org</a>
 </div>~)
-</whdroplet>
-
-<whdroplet name="chPageFooter">
-(~drSharedFooter~)
-</body></html>
-</whdroplet>
-
-<whdroplet name="drSharedHead">
-  <link rel="stylesheet" type="text/css" href="/webhub/demos/c/whdprefix.css" />
-</whdroplet>
-
-<whdroplet name="chPageHeader">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
-	<title>(~PageDesc~)</title>
-	(~drSharedHead~)
-</head>
-<body>
 </whdroplet>
 
 </whteko>

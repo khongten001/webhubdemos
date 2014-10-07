@@ -1,5 +1,6 @@
-﻿<whteko designmode="code" 
-   >
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
 
 <whpage pageid="pghomepage" desc="Delphi Prefix Registry Home" exportfilename="" remap="">
 <whpagesettings>
@@ -13,112 +14,137 @@ googlepriority=0.9
 	<title>Delphi Prefix Registry</title>
 	<meta name="google-site-verification" content="lUTswhylYRoWTLRiWh3BJUt4GeNoYScSK1oNn306TGw" />
 	(~drSharedHead~)
-  <link rel="canonical" href="http://delphiprefix.href.com/" />
-	<style>
-	img.float_right_img {float: right;}
-	</style>
+  <link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr" />
 </head>
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
 
 (~drBannerThenNav~)
 
-<whdroplet name="drGoogleAdsOnDPR" show="yes">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- Delphi Prefix Registry -->
-<ins class="adsbygoogle"
-     style="display:inline-block;width:728px;height:90px"
-     data-ad-client="ca-pub-9853278708320896"
-     data-ad-slot="9797230530"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+<whdroplet name="drGoogleAdsOnDPR" show="no">
+<div class="row">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns text-center">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- Delphi Prefix Registry -->
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-9853278708320896"
+		     data-ad-slot="9797230530"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+</div>
 </whdroplet>
 
-<h1>Welcome to the Delphi Prefix Registry</h1>
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h1>Welcome to the Delphi Prefix Registry</h1>
+		(~NOMATCH|(~ZMDefaultMapContext~)=WESLEY|<p><i>(~CentralInfo.WebTimeGMT~)</i></p>~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
 
-<div id="dprtext-div">
+<div class="row">
+	<div class="show-for-medium-up medium-3 large-2 columns">&nbsp;</div>
+	<div class="show-for-large-up large-1 columns">(~mcAthenaDelphiImage~)</div>
+	<div class="small-18 medium-12 columns">
+		<p>
+		The growing number of Delphi components and Delphi component suppliers has given 
+		rise to conflicts in component <span class="color-primary-3">NAMES.</span>
+		</p>
+		
+		<p>If you publish components, then please register your preferences
+		here and add a link from your site.</p>
 
-<p>
-The growing number of components
-and component suppliers has given rise to conflicts in component 
-<span style="color:#FF0000;">NAMES.</span>
-<whdroplet name="drDelphiImage" show="yes">
-<img class="float_right_img" src="(~mcImageDir~)delphi2.png" style="height:115px; width:125px; margin-left: 1em;" alt="Athena -- Delphi2" />
-</whdroplet>
-</p>
+		<p>The DELPHI PREFIX REGISTRY (DPxR) has been designed
+		to LIST component creators, the PREFIXES they use and sufficient contact details 
+		without disclosing email addresses.</p>
+	</div>
+	<div class="show-for-medium-up medium-3 large-3 columns">&nbsp;</div>
+</div>
+		
+<div class="row">
+	<div class="show-for-medium-up medium-3 large-2 columns">&nbsp;</div>
+	<div class="show-for-large-up large-1 columns">(~mcVisigenicImage~)</div>
+	<div class="small-18 medium-12 columns">
 
-<p>
-If you publish components, then please register your preferences
-here and add a link to the http://delphiprefix.href.com
-from your site.</p>
+		<p>DPxR gives no warranty express or implied on any component or vendor
+		that registers their prefix preferences here. </p>
+		
+		<p>
+		In no way do we wish to impose component naming upon ANYONE,
+		we simply provide the information to help you to choose&nbsp; component
+		names which do not conflict with those in use by other developers.</p>
+		
+		<p class="color-complement-0">
+		There is nothing more soul destroying for either application developer or component 
+		developer than to find that when loaded into the delphi ide there is a naming conflict.
+		(See <a href="http://edn.embarcadero.com/article/10283">Charlie Calvert's discussion</a>.)
+		</p>
+		
+		<p>The inspiration for this site came from seeing a wonderful calendar component,
+		downloading it and not being able to install the package because it had ONE unit 
+		which used the EXACT same name as a very popular Email Suite which we use.
+		(the wonderful calendar now sits quite happily in my ide and i am about to register it
+		 - all's well that ends well - thanks to aguado)</p>
+		
+		<p>If every developer used a prefix from AAA through ZZZ then most problems would be solved -
+		so instead of plain DBSORTGRID use ADQDBSORTGRID, and check here beforehand to 
+		see if anyone else uses ADQ first!</p>
+		
+		<p>The whole aim of this site is to detect current naming conflicts 
+		and play some part in preventing future conflicts. 
+		&quot;Space for Intelligent Collaboration&quot;</p>
+		
+		<p>It is not always necessary to adopt
+		a prefix to maintain unique component naming - many established component
+		builders have used the uniqueness of the task that their component performs
+		as the basis of naming.</p>
+		
+	</div>
+	<!---<div class="show-for-large-up large-1 columns">(~mcVisigenicImage~)</div> -->
+	<div class="show-for-medium-up medium-3 large-3 columns">&nbsp;</div>
+</div>
+		
+<div class="row">
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-2 columns">(~GO|pgThanks|<img src="(~mcDPRImageDir~)dprlogo.png"  alt="Thanks; DPR logo" />~)</div>
+	<div class="small-18 medium-12 columns">
 
-<p>The DELPHI PREFIX REGISTRY (DPxR) has been designed
-to LIST component creators, the PREFIXES they use and sufficient contact details with disclosing email addresses.
-<whdroplet name="drVisigenicImage" show="yes">
-<img class="float_right_img" src="(~mcImageDir~)visigenic2.png" style="height:64px; width:80px; margin-left: 1em;" alt="visigenic" />
-</whdroplet>
-</p>
+		<p>At the end of the day what matters is that names are
+		<span class="color-primary-3" style="font-weight:700;">UNIQUE</span>
+		and that components can live harmony within the IDE.
+		(~drDelphiImage~)
+		</p>
+		
+		<p class="color-secondary-2-3">
+		Nobody has a divine right to assign or control component names,
+		and we do not lay down the law.
+		</p>
+		
+		<p class="color-complement-2" style="font-weight:700;">
+		Freedom of choice Rules!
+		</p>
 
-<p>DPxR gives no warranty express or implied on any component or vendor
-that registers their prefix preferences here. </p>
+		<div class="row">
+			<div class="medium-10 columns">&nbsp;</div>
+			<div class="medium-5 columns">		
+				<p><i>-- written by the original site creator, Steven Healey *</i></p>
+			</div>
+			<div class="show-for-large-up large-1 columns">(~mcVisigenicImage~)</div>
+			<div class="show-for-medium-up medium-3 large-2 columns">&nbsp;</div>
+		</div>
 
-<p>
-(~GO|pgThanks|<IMG SRC="(~mcImageDir~)dprlogo.png" style="height:84px; width:126px border: none; float:left; margin: 5px 1em 5px 0;" alt="DPR" />~)
-In no way do we wish to impose component naming upon ANYONE,
-we simply provide the information to help you to choose&nbsp; component
-names which do not conflict with those in use by other developers.</p>
-
-<p style="color:#009900;">
-There is nothing more soul destroying for either application developer or component 
-developer than to find that when loaded into the delphi ide there is a naming conflict.
-(See <a href="http://edn.embarcadero.com/article/10283">Charlie Calvert's discussion</a>.)
-</p>
-
-<p>The inspiration for this site came from seeing a wonderful calendar component,
-downloading it and not being able to install the package because it had ONE unit 
-which used the EXACT same name as a very popular Email Suite which we use.
-(the wonderful calendar now sits quite happily in my ide and i am about to register it
- - all's well that ends well - thanks to aguado)</p>
-
-<p>If every developer used a prefix from AAA through ZZZ then most problems would be solved -
-so instead of plain DBSORTGRID use ADQDBSORTGRID, and check here beforehand to 
-see if anyone else uses ADQ first!</p>
-
-<p>The whole aim of this site is to detect current naming conflicts 
-and play some part in preventing future conflicts. 
-&quot;Space for Intelligent Collaboration&quot;</p>
-
-<p>It is not always necessary to adopt
-a prefix to maintain unique component naming - many established component
-builders have used the uniqueness of the task that their component performs
-as the basis of naming.</p>
-
-<p>At the end of the day what matters is that names are
-<span style="color:#993366;">UNIQUE</span>
-and that components can live harmony within the IDE.
-(~drDelphiImage~)
-</p>
-
-
-<p style="color:#CC6600;">
-Nobody has a divine right to assign or control component names,
-and we do not lay down the law.
-(~drVisigenicImage~)
-</p>
-
-
-<p style="color:#009900">
-Freedom of choice Rules!
-</p>
-
-<p>Should you have any comments, then please contact me.</p>
-
-<p>Steven Healey *</p>
-<p>* As it turns out, Steven Healey is no longer working on 
-this web site but HREF Tools decided to keep it going as 
-delphiprefix.href.com. Sponsors and Volunteers always welcome!
-</p>
+		<p>* As it turns out, Steven Healey is no longer working on 
+		this web site but HREF Tools Corp. decided to keep it going as 
+		<b>delphiprefix.href.com</b>.</p><p>Sponsors and Volunteers are always welcome!
+		</p>
+	</div>
+	<div class="medium-3 columns">&nbsp;</div>
 </div>
 
 (~drSharedFooter~)

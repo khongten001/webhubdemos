@@ -20,7 +20,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="googlesitemap" status="enabled-gui"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
@@ -36,9 +36,12 @@
         <UseAppID value="true"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
+      <ProjectLingvo value="en"/>
     </AppProperties>
     <AppSettings>
       <AppSetting name="AlphaLetters" value="26"/>
+      <AppSetting name="DesignRefreshEnabled" value="False" />
+      <AppSetting name="DesignRefreshEnabled" value="True" context="ultraann"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
     </AppSettings>
@@ -52,7 +55,8 @@
       <Invalid pageID="pghomePage"/>
     </Situations>
     <Static>
-      <AppRoot value="/"/>
+      <AppRoot value="(~Request.Scheme~)://img.href.com/webhubdemos/whDPrefix/"/>
+      <AppRoot value="/webhub/demos/whDPrefix/" context="ultraann"/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value=""/>
@@ -81,7 +85,7 @@
       <Captions macroPrefix="mcManPrefCaptions"/>
     </whdbScan>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="D:\temp\w3validation\dpr\" />
+      <Item id="DiskFolder" value="D:\temp\w3validation\dpr\"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

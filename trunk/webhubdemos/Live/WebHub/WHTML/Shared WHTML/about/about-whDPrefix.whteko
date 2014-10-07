@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" 
-   >
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
 
 <whmacros>
-mcImageDir=(~Static.AppRoot~)webhub/demos/whDPrefix/
+mcDPRImageDir=(~Static.AppRoot~)
+mcDPRCSSDir=(~Static.AppRoot~)css/
+</whmacros>
+
+<whmacros>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
+mcDPRLogo=<img src="(~mcDPRImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
+mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
+mcAthenaDelphiImage=<img src="(~mcDPRImageDir~)delphi2.png" alt="Athena -- Delphi2" />
 </whmacros>
 
 <whmacros>
@@ -13,7 +20,7 @@ mcWhDemoCreditIdeaDPR=Stephen Healey, Ray Kanopka
 mcWhDemoCreditFirstDraftDPR=Stephen Healey
 mcWhDemoCreditGraphicsDPR=Stephen Healey
 mcWhDemoCreditCopyDPR=Stephen Healey
-mcWhDemoUpdatedDPR=10-Jan-2013
+mcWhDemoUpdatedDPR=7-Oct-2014
 mcWhDemoKeywordsDPR=Prefix,Component,Registry
 mcWhDemoLiteDPR=No
 </whmacros>
@@ -25,6 +32,7 @@ mcWhDemoLiteDPR=No
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 <title>About the Delphi Prefix Registry</title>
 	(~drSharedHead~)
+  <link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr:pgthanks" />
 <style>
 #credits-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
 #credits-table th {
@@ -39,173 +47,208 @@ mcWhDemoLiteDPR=No
 <body>
 
 <whdroplet name="drBannerThenNav" show="yes">
-(~GO|pgHomePage|<img src="(~mcImageDir~)dpr.png" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~)
+<div class="row">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns">
+		(~GO|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~)
+	</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+</div>
 (~drSkipBannerThenNav~)
 </whdroplet>
 
 <whdroplet name="drSkipBannerThenNav" show="no">
-<div itemscope itemtype="http://www.schema.org/SiteNavigationElement" style="padding-bottom: 1.2em;">
-(~GO|pgPrefix|Browse the Delphi Prefix Registry~) 
-&nbsp;(~GO|pgRegister|Add/Edit YOUR Prefix~)
-&nbsp;(~GO|pgthanks|About this Site~)
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns text-center" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+		(~GO|pgPrefix|Browse the Delphi Prefix Registry~) 
+		&emsp;(~GO|pgRegister|Add/Edit YOUR Prefix~)
+		&emsp;(~GO|pgthanks|About&hellip;~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 </whdroplet>
 
-<h1>(~pagedesc~)</h1>
-
-<div id="dprtext-div">
-
-<p><span style="color:red;">Attention...</span>
-(~JUMP|pgRegister|<IMG SRC="(~mcImageDir~)dprbut.png" style="float:left; height: 31px; width:88px; margin: 0.2em 1em 0.2em 0;" alt="Button for linking to DPR" />~)
-Please link your blogs etc to (~HREF|http://delphiprefix.href.com/|http://delphiprefix.href.com/~)
-and have (~HREF|(~mcImageDir~)dprbut.png|this handy button~) as our thanks!
-</p>
-
-<p>
-Firstly Component Builders are truly the salt of the earth - they provide ready
-to use solutions to all manner of application programming problems and provide 
-us with the tools to repeatedly furnish end users with what they really want.</p>
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h1>About&hellip;</h1>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
 
 
-<p style="color:#CC33CC;">Special mention with regard
-to the project goes to <b>Ray Konopka</b>, author of Developing Custom Delphi
-3 Components, who has tirelessly promoted the use of prefixes (long before
-this site existed).</p>
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-6 medium-4 columns">
+		<p>
+		Firstly Component Builders are truly the salt of the earth - they provide ready
+		to use solutions to all manner of application programming problems and provide 
+		us with the tools to repeatedly furnish end users with what they really want.</p>
+	</div>
+	<div class="small-6 medium-4 columns">
+		<p class="color-secondary-2-2">Special mention with regard
+		to the project goes to <b>Ray Konopka</b>, author of <cite>Developing Custom Delphi
+		3 Components</cite>, who tirelessly promoted the use of prefixes long before
+		this web site existed.</p>
+		
+	</div>
+	<div class="small-6 medium-4 columns">
+		<p>This project would not have gotten off the ground without help and encouragement;
+		the following people provided the motivation!</p>
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
 
-<p>This project would not have got off the ground
-without help and encouragement ,
-<br/>the following people provided the motivation :</p>
+<div class="row">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns">
 
-<TABLE id="credits-table">
-<TR>
-<th>bob swart</th>
+		<TABLE id="credits-table">
+		<TR>
+		<th>bob swart</th>
+		
+		<TD>- international delphi guru</TD>
+		
+		<TD>(in london may see ukbug)</TD>
+		</TR>
+		
+		<TR>
+		<th>marco cantu</th>
+		
+		<TD>- international delphi guru</TD>
+		
+		<TD>(mastering delphi 1/2/3)</TD>
+		</TR>
+		
+		<TR>
+		<th>david clark</th>
+		
+		<TD>- infinity software</TD>
+		
+		<TD>(the best in security components)</TD>
+		</TR>
+		
+		<TR>
+		<th>chriz frizell</th>
+		
+		<TD>- itec uk - delphi magazine</TD>
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>tomasz stanczak</th>
+		
+		<TD>- r &amp; t</TD>
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>nick hodges</th>
+		
+		<TD>- teamb</TD>
+		
+		<TD>(teamb - programmers godsend)</TD>
+		</TR>
+		
+		<TR>
+		<th>duncan mcormack</th>
+		
+		<TD>- addrock</TD>
+		
+		<TD>(time &amp; date gurus)</TD>
+		</TR>
+		
+		<TR>
+		<th>brian lowe</th>
+		
+		<TD>- acro tchnology</TD>
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>greg lief&nbsp;</th>
+		
+		<TD>- glad components</TD>
+		
+		<TD>(must have toolkit)</TD>
+		</TR>
+		
+		<TR>
+		<th>mark miller</th>
+		
+		<TD>- eagle software</TD>
+		
+		<TD>(cdk - a MUST)</TD>
+		</TR>
+		
+		<TR>
+		<th>brett liddicoet</th>
+		
+		<TD>- opaque software</TD>
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>gerald nunn</th>
+		
+		<TD>- gexperts</TD>
+		
+		<TD>(freeware tools for the serious developer)</TD>
+		</TR>
+		
+		<TR>
+		<th>artchil gogova</th>
+		
+		<TD>- internet mailsuite</TD>
+		
+		<TD>(premier internet tools)</TD>
+		</TR>
+		
+		<TR>
+		<th>roman eremin</th>
+		
+		<TD>- rsd software</TD>
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>david f schrader</th>
+		
+		<TD>- delphi user</TD>
+		
+		
+		<TD></TD>
+		</TR>
+		
+		<TR>
+		<th>the graphical gnome</th>
+		
+		<TD>- graphics specialist</TD>
+		
+		<TD></TD>
+		</TR>
+		</TABLE>
+	</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+</div>
 
-<TD>- international delphi guru</TD>
 
-<TD>(in london may see ukbug)</TD>
-</TR>
-
-<TR>
-<th>marco cantu</th>
-
-<TD>- international delphi guru</TD>
-
-<TD>(mastering delphi 1/2/3)</TD>
-</TR>
-
-<TR>
-<th>david clark</th>
-
-<TD>- infinity software</TD>
-
-<TD>(the best in security components)</TD>
-</TR>
-
-<TR>
-<th>chriz frizell</th>
-
-<TD>- itec uk - delphi magazine</TD>
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>tomasz stanczak</th>
-
-<TD>- r &amp; t</TD>
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>nick hodges</th>
-
-<TD>- teamb</TD>
-
-<TD>(teamb - programmers godsend)</TD>
-</TR>
-
-<TR>
-<th>duncan mcormack</th>
-
-<TD>- addrock</TD>
-
-<TD>(time &amp; date gurus)</TD>
-</TR>
-
-<TR>
-<th>brian lowe</th>
-
-<TD>- acro tchnology</TD>
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>greg lief&nbsp;</th>
-
-<TD>- glad components</TD>
-
-<TD>(must have toolkit)</TD>
-</TR>
-
-<TR>
-<th>mark miller</th>
-
-<TD>- eagle software</TD>
-
-<TD>(cdk - a MUST)</TD>
-</TR>
-
-<TR>
-<th>brett liddicoet</th>
-
-<TD>- opaque software</TD>
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>gerald nunn</th>
-
-<TD>- gexperts</TD>
-
-<TD>(freeware tools for the serious developer)</TD>
-</TR>
-
-<TR>
-<th>artchil gogova</th>
-
-<TD>- internet mailsuite</TD>
-
-<TD>(premier internet tools)</TD>
-</TR>
-
-<TR>
-<th>roman eremin</th>
-
-<TD>- rsd software</TD>
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>david f schrader</th>
-
-<TD>- delphi user</TD>
-
-
-<TD></TD>
-</TR>
-
-<TR>
-<th>the graphical gnome</th>
-
-<TD>- graphics specialist</TD>
-
-<TD></TD>
-</TR>
-</TABLE>
+<div class="row" style="margin-top: 2rem;">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-10 columns">
+		<p><span class="color-primary-3">Attention...</span>
+		(~JUMP|pgRegister|<img src="(~mcDPRImageDir~)dprbut.png" alt="Button for linking to DPR" />~)
+		Please link your blogs etc to (~HREF|http://delphiprefix.href.com/|http://delphiprefix.href.com/~)
+		and have (~HREF|(~mcDPRImageDir~)dprbut.png|this handy button~) as our thanks!
+		</p>
+	</div>
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
 </div>
 
 (~drSharedFooter~)
