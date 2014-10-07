@@ -31,12 +31,12 @@ Administration Shortcuts:
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" style="margin-top: 3rem;">
 		<span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~GO|pgHomepage| itemprop="url" |Home~) &nbsp;
-		(~GO|pgPrefix| itemprop="url" |Browse~) &nbsp;
-		(~GO|pgRegister| itemprop="url" |Add/Edit~) &nbsp;
-		(~GO|pgThanks| itemprop="url" |About~) &nbsp;
+		(~GO|pgHomepage| itemprop="url" |(~~link_home~)~) &emsp;
+		(~GO|pgPrefix| itemprop="url" |(~~link_view~)~) &emsp;
+		(~GO|pgRegister| itemprop="url" |(~~link_edit~)~) &emsp;
+		(~GO|pgThanks| itemprop="url" |(~~link_about~)~) &emsp;
 		</span>
-		<!--- (~GOR|pgLogout|Logout~) &nbsp; -->
+		<!--- (~GOR|pgLogout|Logout~) &emsp; -->
 		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 		Running <a href="http://www.href.com/whvcl">(~version~)</a> 
 		compiled with <span class="color-secondary-2-3">Delphi (~CentralInfo.PascalCompilerCode~)</span>. <br>

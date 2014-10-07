@@ -6,4 +6,12 @@ h1, h2 {font-family: 'Open Sans', Verdana, sans-serif;}
 
 table {empty-cells: show;}
 
+#credits-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
+#credits-table th {
+  border-bottom: 1px solid #F08080; margin: 0; padding: 10px 8px; text-align: left; 
+  vertical-align: top;
+}
+#credits-table td {border-bottom: 1px solid #F08080; margin: 0; padding: 6px 8px; 
+  vertical-align: top;
+}
 

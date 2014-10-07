@@ -3,12 +3,9 @@
 <whteko designmode="code">
 
 <whmacros>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRImageDir=(~Static.AppRoot~)
 mcDPRCSSDir=(~Static.AppRoot~)css/
-</whmacros>
-
-<whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRLogo=<img src="(~mcDPRImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
 mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
 mcAthenaDelphiImage=<img src="(~mcDPRImageDir~)delphi2.png" alt="Athena -- Delphi2" />
@@ -25,24 +22,13 @@ mcWhDemoKeywordsDPR=Prefix,Component,Registry
 mcWhDemoLiteDPR=No
 </whmacros>
 
-
 <whpage pageid="pgthanks" desc="About the Delphi Prefix Registry">
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-<title>About the Delphi Prefix Registry</title>
+	<title>About the Delphi Prefix Registry</title>
 	(~drSharedHead~)
-  <link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr:pgthanks" />
-<style>
-#credits-table {border: none; margin: 0; outline: none; border-collapse: collapse;}
-#credits-table th {
-  border-bottom: 1px solid #F08080; margin: 0; padding: 10px 8px; text-align: left; 
-  vertical-align: top;
-}
-#credits-table td {border-bottom: 1px solid #F08080; margin: 0; padding: 6px 8px; 
-  vertical-align: top;
-}
-</style>
+	<link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr:pgthanks" />
 </head>
 <body>
 
@@ -61,9 +47,9 @@ mcWhDemoLiteDPR=No
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~GO|pgPrefix|Browse the Delphi Prefix Registry~) 
-		&emsp;(~GO|pgRegister|Add/Edit YOUR Prefix~)
-		&emsp;(~GO|pgthanks|About&hellip;~)
+		(~GO|pgPrefix|(~~link_view~)~) 
+		&emsp;(~GO|pgRegister|(~~link_edit~)~)
+		&emsp;(~GO|pgthanks|(~~link_about~)~)
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
@@ -72,7 +58,7 @@ mcWhDemoLiteDPR=No
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
-		<h1>About&hellip;</h1>
+		<h1>(~~title_about~)</h1>
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
@@ -80,20 +66,20 @@ mcWhDemoLiteDPR=No
 
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-6 medium-4 columns">
+	<div class="small-18 medium-4 columns">
 		<p>
 		Firstly Component Builders are truly the salt of the earth - they provide ready
 		to use solutions to all manner of application programming problems and provide 
 		us with the tools to repeatedly furnish end users with what they really want.</p>
 	</div>
-	<div class="small-6 medium-4 columns">
+	<div class="small-18 medium-4 columns">
 		<p class="color-secondary-2-2">Special mention with regard
 		to the project goes to <b>Ray Konopka</b>, author of <cite>Developing Custom Delphi
 		3 Components</cite>, who tirelessly promoted the use of prefixes long before
 		this web site existed.</p>
 		
 	</div>
-	<div class="small-6 medium-4 columns">
+	<div class="small-18 medium-4 columns">
 		<p>This project would not have gotten off the ground without help and encouragement;
 		the following people provided the motivation!</p>
 	</div>
