@@ -74,7 +74,7 @@
       <File id="f07" filename="register.whteko"/>
       <File id="f08" filename="scan.whteko"/>
       <File id="f09" filename="dprcleanup2013.whteko"/>
-      <FIle id="F21" filename="dpr-text-en.whteko" />
+      <File id="f21" filename="dpr-text-en.whteko" />
       <File id="j01" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
