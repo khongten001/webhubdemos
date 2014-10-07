@@ -129,7 +129,7 @@ echo .
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto END
 cd %droot%\Third Party Examples\whDPrefix
-set compilerdigits=20
+set compilerdigits=21
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
 
 goto end
