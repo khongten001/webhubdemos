@@ -4,6 +4,39 @@
   designmode="code"
   notes="pages for monitoring the application health and details">
 
+<whpage pageid="pgMonitor"  desc="use this page for site monitoring">
+<whprep>
+(~SESSION|Delete~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+<h2>Application Test</h2>
+<p>(~AppID~) is running under (~version~) 
+as at <span class="changing">(~CentralInfo.WebTimeGMT~)</span>. Your ip# is <span class="changing">(~Request.RemoteAddress~)</span>.
+Your user agent is [<span class="changing" id="echouseragent" >(~Request.UserAgent~)</span>]. 
+<span class="webrobotstatus">(~ISWEBROBOTREQUEST|You have been classified as a web robot.||You have not been classified as a web robot.~)</span>
+</p>
+
+<h2>Session Data Cleared</h2>
+<p>Session data for session #
+<span id="webhubsessionid">(~RawSessionNumber~) </span>
+deleted.</p>
+<form id="sessionform" method="post" action="(~ACTION|pgmonitor~)">
+data: (~INPUTTEXT|data,30~)<br/>
+<input type="submit" name="btnMonitor(~RawSessionNumber~)" value="(~RawSessionNumber~)" />
+</form>
+
+<h2>Enter Site</h2>
+(~JUMP||home page for this demo~)
+
+</body>
+</html>
+</whpage>
+
 <whpage pageid="pgAjaxCheckVersion" desc="-Check WebHub Component Version within domain">
 <whdoc for="pgAjaxCheckVersion">
 This mini page can be called by Ajax *as long as* the calling page is 
