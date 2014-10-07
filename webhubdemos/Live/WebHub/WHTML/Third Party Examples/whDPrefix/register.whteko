@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" >
 
 <whmacros>
-mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
+mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
 </whmacros>
 
 <whpage pageid="pgregister" desc="Add/Edit YOUR Delphi Prefix">

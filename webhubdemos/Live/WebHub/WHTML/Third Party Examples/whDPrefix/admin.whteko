@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" notes="File #1"
-   >
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
 
 <whpage pageid="pgadminbrowse" desc="Browse with the ability to edit entries" mode="design">
 <whpagesettings>
@@ -76,7 +75,7 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 (~drAdminCheckpoint~)
-(~JUMP|pgHomePage|<IMG SRC="(~mcImageDir~)dpr.png" HEIGHT=90 WIDTH=649 alt="DPR logo text" />~)
+(~JUMP|pgHomePage|<IMG SRC="(~mcDPRImageDir~)dpr.png" HEIGHT=90 WIDTH=649 alt="DPR logo text" />~)
 <br><FONT SIZE=-1 COLOR="#000000">
 (~JUMP|pgHomePage|Homepage~) 
 |&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
