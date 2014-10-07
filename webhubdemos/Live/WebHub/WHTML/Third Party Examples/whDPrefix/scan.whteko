@@ -58,7 +58,7 @@ googlepriority=0.7
 	<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with Letter (~Command~)~)</title>
 	(~drSharedHead~)
 
-  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURL.W~)0(~DynURL.W~)(~Command~)~)" />
+  <link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~SessionLingvo~)/(~AppID~)/pgprefix(~NOMATCH|"(~Command~)"=""|(~DynURL.W~)0(~DynURL.W~)(~Command~)~)" />
 
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">

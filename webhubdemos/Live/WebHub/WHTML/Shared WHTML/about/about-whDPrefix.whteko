@@ -28,7 +28,7 @@ mcWhDemoLiteDPR=No
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
 	<title>About the Delphi Prefix Registry</title>
 	(~drSharedHead~)
-	<link rel="canonical" href="http://delphiprefix.href.com/(~SessionLingvo~)/dpr:pgthanks" />
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
 
