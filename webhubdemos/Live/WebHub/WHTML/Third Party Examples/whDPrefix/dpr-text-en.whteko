@@ -3,12 +3,12 @@
 <whteko designmode="code" defaultlingvo="en">
 
 <whtranslations>
-~title_about=About&hellip;
+~title_about=Credits&hellip;
 ~title_homepage=Welcome to the Delphi Prefix Registry
 ~title_maintain=Maintain Prefix Registrations
 ~title_register=Add/Edit
 ~title_registerDetails=Prefix Registration Details
-~link_about=About&hellip;
+~link_about=Credits&hellip;
 ~link_edit_long=Add/Edit YOUR Prefixes
 ~link_edit=Add/Edit
 ~link_home=Home

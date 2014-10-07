@@ -21,24 +21,7 @@ googlepriority=0.9
 
 (~drBannerThenNav~)
 
-<whdroplet name="drGoogleAdsOnDPR" show="yes">
-(~MATCH|a=b|
-<div class="row">
-	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
-	<div class="small-18 medium-8 columns text-center">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- Delphi Prefix Registry -->
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-9853278708320896"
-		     data-ad-slot="9797230530"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-	</div>
-	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
-</div>~)
-</whdroplet>
+<!--- drGoogleAdsOnDPR call was here -->
 
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
@@ -151,5 +134,23 @@ googlepriority=0.9
 (~drSharedFooter~)
 </body></html>
 </whpage>
+
+<whdroplet name="drGoogleAdsOnDPR" show="yes">
+<div class="row">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns text-center">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+		<!-- Delphi Prefix Registry -->
+		<ins class="adsbygoogle"
+		     style="display:inline-block;width:728px;height:90px"
+		     data-ad-client="ca-pub-9853278708320896"
+		     data-ad-slot="9797230530"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+	</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+</div>
+</whdroplet>
 
 </whteko>
