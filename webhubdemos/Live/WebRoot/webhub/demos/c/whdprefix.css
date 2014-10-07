@@ -1,14 +1,9 @@
-body {
-    font-family:Verdana, Arial, Arial Unicode MS, Helvetica, sans-serif;
-    background-color: white;
-	margin-left: 3em; padding-left: 3em;
-	margin-right: 3em; padding-right: 3em;
-	margin-top: 0.8em;
-}
-table {empty-cells: show;}
-#dprmain-div {
-}
+/* WebHub Demo: Delphi Prefix Registry Application */
+/* CSS */
+body {font-family: 'Old Standard TT', serif;}
 
-#dprtext-div {
-	width: 48em;
-}
+h1, h2 {font-family: 'Open Sans', Verdana, sans-serif;}
+
+table {empty-cells: show;}
+
+
