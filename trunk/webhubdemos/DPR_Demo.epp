@@ -31,7 +31,7 @@ FTPFilename=
 ForcedReadOnly=0
 
 [File4]
-ProjectStatus=0
+ProjectStatus=1
 FileType=css
 RelativeFilename=Live\WebRoot\delphiprefix.href.com\Registry\css\DelphiPrefixRegistry_colors.css
 Filename=D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\Registry\css\DelphiPrefixRegistry_colors.css
@@ -207,7 +207,7 @@ FTPFilename=
 ForcedReadOnly=0
 
 [File26]
-ProjectStatus=1
+ProjectStatus=0
 FileType=xml
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\WHAppConfig_dpr.xml
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\WHAppConfig_dpr.xml
@@ -217,8 +217,7 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=1
 BookmarksProjectWide=0
-ClipCollection=D:\Projects\webhubdemos\Source\WhtekoSyntaxColoring\EditPadPro_v7\WebHub_Objects_ClipCollection.atc
-TabIndex=7
+TabIndex=26
 FirstFileTab=0
 FileCount=27
 RemovedCount=0
