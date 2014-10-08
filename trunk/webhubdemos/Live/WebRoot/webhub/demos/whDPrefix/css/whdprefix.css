@@ -1,8 +1,13 @@
 /* WebHub Demo: Delphi Prefix Registry Application */
 /* CSS */
-body {font-family: 'Old Standard TT', serif;}
+body {
+	font-family: 'Old Standard TT', serif;
+	/* setting font-size here does NOT override Foundation CSS */
+}
 
-h1, h2 {font-family: 'Open Sans', Verdana, sans-serif;}
+h1, h2 {
+	font-family: 'Open Sans', Verdana, sans-serif;
+}
 
 table {empty-cells: show;}
 
@@ -15,31 +20,31 @@ table {empty-cells: show;}
   vertical-align: top;
 }
 
-  #alphabet-table {
+#alphabet-table {
 	border: none; 
 	margin-bottom: 1em;
-  }
-  #alphabet-table td {
+}
+#alphabet-table td {
 		vertical-align: bottom;
-  }
+}
 	
-  #approvedPrefixesTable {
+#approvedPrefixesTable {
     margin-top: 1.4em; border: solid 1px; 
 		padding: 0.3em 0.1em; 
 		
 		border-collapse: collapse;
-	}
-	#approvedPrefixesTable th {
+}
+#approvedPrefixesTable th {
 		color: crimson;
 		text-align: left;
 		background-color: #EEE;
-	}
-	#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
-	#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
-  #approvedPrefixesTable th, #approvedPrefixesTable td {
+}
+#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
+#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
+#approvedPrefixesTable th, #approvedPrefixesTable td {
 	padding: 0.5em 0.9em 0.5em 0.9em;
-  }
-	#adminTable th {color: Crimson;}
+}
+#adminTable th {color: Crimson;}
 	#alphabetNav-div a { padding: 0 0.2em 0 0.1em; font-size: 1.4em; font-weight:900; }
 
 
@@ -57,10 +62,10 @@ table {empty-cells: show;}
 }
 
 
-  #newprefix-table {border: solid 1px crimson; padding: 0.4em; 
-  }
-  #newprefix-table th {text-align:right; padding-right: 1em;
+#newprefix-table {border: solid 1px crimson; padding: 0.4em; 
+}
+#newprefix-table th {text-align:right; padding-right: 1em;
     vertical-align: top;}
-  #newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
+#newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
 
-  .example {font-size:smaller; color: #666666; }
+.example {font-size:smaller; color: #666666; }
