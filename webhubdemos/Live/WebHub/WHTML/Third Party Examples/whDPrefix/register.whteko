@@ -87,22 +87,22 @@ googlepriority=0
 (~drBannerThenNav~)
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-12 columns">
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
+	<div class="small-18 medium-16 columns">
 
 		<h1>(~~title_maintain~)</h1>
 		<h2>Existing Prefixes</h2>
 		<p><i>managed by (~_EMail~)</i></p>
 	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
 </div>
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-12 columns">
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
+	<div class="small-18 medium-16 columns">
 		(~manpref.Execute|Maintain~)
 	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
 </div>
 
 
