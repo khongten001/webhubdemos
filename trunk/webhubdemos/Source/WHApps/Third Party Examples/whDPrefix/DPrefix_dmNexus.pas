@@ -122,6 +122,7 @@ begin
   TableAdmin.TableName := Table1.TableName;
   TableAdmin.Database := Table1.Database;
   TableAdmin.Filtered := False;
+  TableAdmin.ReadOnly := False;  // must allow editing here
 end;
 
 procedure TDMNexus.DataModuleDestroy(Sender: TObject);
@@ -234,11 +235,13 @@ begin
 end;
 
 procedure TDMNexus.Stamp(DS: TDataSet; const UpdatedBy: string);
+const cFn = 'Stamp';
 var
   ACap: string;
   OpenIDProvider: string;
   url: string;
 begin
+  CSEnterMethod(Self, cFn);
   DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
   DS.FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
   if DS.FieldByName('UpdateCounter').IsNull then
@@ -272,6 +275,7 @@ begin
   if DS.FieldByName('MpfFirstLetter').asString <> ACap then
     DS.FieldByName('MpfFirstLetter').asString := ACap;
 
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMNexus.Table1OnlyApproved;

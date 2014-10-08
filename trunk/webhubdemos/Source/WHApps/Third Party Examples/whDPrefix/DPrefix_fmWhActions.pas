@@ -21,10 +21,20 @@ interface
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
-  {$I xe_actions.inc}
-  {$I xe_actnlist.inc}
+{$IFDEF VER280}System.Actions,{$ENDIF}  // XE7 D21
+{$IFDEF VER270}System.Actions,{$ENDIF}  // XE6 D20
+{$IFDEF VER260}System.Actions,{$ENDIF}  // XE5 D19
+{$IFDEF VER250}System.Actions,{$ENDIF}  // XE4 D18
+{$IFDEF VER240}System.Actions,{$ENDIF}  // XE3 D17
+{$IFDEF VER230}{$ENDIF}  // XE2 D16 -- unit did not exist yet
+{$IFDEF VER280}Vcl.ActnList,{$ENDIF}  // XE7 D21
+{$IFDEF VER270}Vcl.ActnList,{$ENDIF}  // XE6 D20
+{$IFDEF VER260}Vcl.ActnList,{$ENDIF}  // XE5 D19
+{$IFDEF VER250}Vcl.ActnList,{$ENDIF}  // XE4 D18
+{$IFDEF VER240}Vcl.ActnList,{$ENDIF}  // XE3 D17
+{$IFDEF VER230}ActnList,{$ENDIF}  // XE2 D16
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
-  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid, 
+  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid,
   wdbSSrc;
 
 type
@@ -732,39 +742,78 @@ var
   a1,aKey,aFieldname: string;
   i, iKey, iKeyDone: Integer;
   bEditing: Boolean;
+  InfoMsg: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   iKeyDone := -1;
   bEditing := False;
+
+  if Assigned(DMDPRWebAct) and Assigned(DMDPRWebAct.wdsAdmin) and
+    Assigned(DMDPRWebAct.wdsAdmin.DataSet) and
+    (DMDPRWebAct.wdsAdmin.DataSet is TnxTable) then
+  begin
+    { just make sure that the dataset is not readonly }
+    if Tnxtable(DMDPRWebAct.wdsAdmin.DataSet).ReadOnly then
+      CSSendError('DMDPRWebAct.wdsAdmin.DataSet is READONLY');
+  end;
+
   with TwhWebActionEx(Sender), DMDPRWebAct.wdsAdmin.DataSet do
   begin
+    CSSend('Count of posted fields', S(pWebApp.Request.dbFields.Count));
+
     for i := 0 to Pred(pWebApp.Request.dbFields.Count) do
     begin
+      CSSend('posted data #' + S(i), LeftOfEqual(pWebApp.Request.dbFields[i]));
+
       if SplitString(LeftOfEqual(pWebApp.Request.dbFields[i]),'@',a1,aKey)
       and SplitString(a1,'.',a1,aFieldname)
       and IsEqual(a1, DMDPRWebAct.wdsAdmin.Name) then
       begin
+        CSSend('a1', a1);
+        CSSend('aKey', aKey);
+        CSSend('aFieldname', aFieldname);
+        CSSend('IsAllowedRemoteDataEntryField',
+          S(DMNexus.IsAllowedRemoteDataEntryField(a1)));
+
         if DMNexus.IsAllowedRemoteDataEntryField(a1) then
         begin
           iKey := StrToIntDef(aKey, -1);
           CSSend('iKey', S(iKey));
+          CSSend('iKeyDone', S(iKeyDone));
           if (iKeyDone = -1) or (iKeyDone <> iKey) then
           begin
 
             if not Locate('MpfID', iKey,[]) then
-              pWebApp.Debug.AddPageError('no such MpfID ' + aKey)
+            begin
+              InfoMsg := 'no such MpfID ' + aKey;
+              pWebApp.Debug.AddPageError(InfoMsg);
+            end
             else
             begin
-              CSSend('_email', pWebApp.StringVar['_EMail']);
               if IsEqual(FieldByName('Mpf EMail').AsString,
                 pWebApp.StringVar['_email']) then
               begin
                 // surfer has permission to work on this record
                 iKeyDone := iKey;
-                CSSend('iKeyDone', S(iKeyDone));
-                Edit;
-                bEditing := True;
+                CSSend('About to Edit; iKeyDone', S(iKeyDone));
+                try
+                  Edit;
+                  bEditing := True;
+                except
+                  on E: Exception do
+                  begin
+                    CSSendException(E);
+                    bEditing := False;
+                  end;
+                end;
+              end
+              else
+              begin
+                CSSendWarning(Format(
+                  '_email mismatch between stringvar %s and db data %s',
+                  [pWebApp.StringVar['_EMail'],
+                   FieldByName('Mpf EMail').AsString]));
               end;
             end;
           end;
@@ -773,7 +822,7 @@ begin
           CSSendWarning('Disallow posting to ' + a1);
         if bEditing then
         begin
-          CSSend('aFieldName', aFieldName);
+          CSSend('Posting data into aFieldName', aFieldName);
           FieldByName(aFieldName).asString:=
             RightOfEqual(pWebApp.Request.dbFields[i]);
         end;
@@ -793,7 +842,14 @@ begin
       DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
       DMNexus.Stamp(DMDPRWebAct.wdsAdmin.DataSet, 'srf');
       CSSendnote('ready to post');
-      Post;
+      try
+        Post;
+      except
+        on E: Exception do
+        begin
+          CSSendException(E);
+        end;
+      end;
     end;
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
