@@ -223,7 +223,6 @@ begin
           URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
         //CSSend('SRequest', SRequest);
         SResponse := HTTPSGet(SRequest);
-        //CSSend('SResponse', SResponse);
       finally
         Free;
       end;
@@ -235,22 +234,21 @@ begin
         if (json.Parse(BytesOf(SResponse), 0) >= 0) then
         begin
 
-          if (json.Size >= 2) then
+          if ({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF} >= 2) then
           begin
-            pair := json.Get(0);
+            pair := {$IFDEF Delphi20UP}json.Pairs[0]{$ELSE}json.Get(0){$ENDIF};
             CSSend('0 pair.JsonString', pair.JsonString.ToString);
             CSSend('0 pair.JsonValue', pair.JsonValue.ToString);
             if (NoQuotes(pair.JsonString.ToString) = 'stat') and
               (NoQuotes(pair.JsonValue.ToString) = 'ok') then
             begin
               jsonProfile := TJSONObject.Create;
-              S1 := json.Get(1).JSONValue.ToString;
-              //CSSend('json.Get(1).JSONValue', json.Get(1).JSONValue.ToString);
+              S1 := {$IFDEF Delphi20UP}json.Pairs[1]{$ELSE}json.Get(1){$ENDIF}.JSONValue.ToString;
               jsonProfile.Parse(BytesOf(S1), 0); // 0-based parsing ! ! !
-              CSSend('jsonProfile.Size', S(json.Size));
-              for I := 0 to Pred(jsonProfile.Size) do
+              CSSend('jsonProfile.Size', S({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF}));
+              for I := 0 to Pred({$IFDEF Delphi20UP}jsonProfile.Count{$ELSE}jsonProfile.Size{$ENDIF}) do
               begin
-                pair := jsonProfile.Get(i);
+                pair := {$IFDEF Delphi20UP}jsonProfile.Pairs[1]{$ELSE}jsonProfile.Get(1){$ENDIF};
                 LeftKey := NoQuotes(pair.JsonString.ToString);
                 //CSSend('i ' + S(i), LeftKey);
                 //CSSend('i ' + S(i) + ' pair.JsonValue',  pair.JsonValue.ToString);
@@ -287,7 +285,7 @@ begin
           begin
             ErrorText := 'unexpected json.size';
             LogSendWarning(ErrorText);
-            CSSend('json.Size', S(json.Size));
+            CSSend('json.Size', S({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF}));
             pWebApp.StringVar[cn + '-ErrorMessage'] := ErrorText;
           end;
         end
