@@ -53,7 +53,7 @@ type
   public
     { Public declarations }
     WebDBAlphabet: TWebnxdbAlphabet;
-    WebDataForm: TwhdbForm;
+    WebDataForm: TwhdbForm;  // requires WebHub v3.220+
     dsAdmin: TDataSource;
     wdsAdmin: TwhdbSource;
     function Init(out ErrorText: string): Boolean;
@@ -551,10 +551,10 @@ begin
   {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
   inherited;
   Assert(Sender is TwhdbForm);
-  CSSend('Command', Command);
 
   a1 := Uncode64String(Command);
-  CSSend('a1', a1);
+  CSSend('Uncoded command', a1);
+
   with pWebApp.Response, wdsAdmin.DataSet do
   begin
     b := Locate('MpfID', StrToIntDef(a1,-1),[]);
@@ -562,7 +562,12 @@ begin
     CSSend('WebDataForm.LocateResult', S(WebDataForm.LocateResult));
     CSSend('WebDataForm.AlreadyLocated', S(WebDataForm.AlreadyLocated));
     if b then
-      CSSendNote('found ' + a1 + ' ok')
+    begin
+      CSSendNote('found ' + a1 + ' ok');
+      (Sender as TwhdbForm).AlreadyLocated := True;
+      (Sender as TwhdbForm).SetWorkKey(a1);
+      CSSend('WebDataForm.WorkKey', (Sender as TwhdbForm).WorkKey);
+    end
     else
     begin
       ErrorText := 'Error - MpfID [' + a1 + '] not found.';
