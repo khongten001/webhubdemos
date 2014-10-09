@@ -6,9 +6,11 @@
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRImageDir=(~Static.AppRoot~)
 mcDPRCSSDir=(~Static.AppRoot~)css/
+mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
 mcDPRLogo=<img src="(~mcDPRImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
 mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
 mcAthenaDelphiImage=<img src="(~mcDPRImageDir~)delphi2.png" alt="Athena -- Delphi2" />
+mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0001~)
 </whmacros>
 
 <whmacros>
@@ -47,43 +49,45 @@ mcWhDemoLiteDPR=No
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~GO|pgPrefix| class="small radius secondary button" |(~~link_view_long~)||<span class="small radius button">(~~link_view_long~)</span>~) 
+		(~GO|pgHomepage| itemprop="url"  class="small radius secondary button" |(~~link_home~)||<span class="small radius info button">(~~link_home~)</span>~) 
 		&emsp;
-		(~GO|pgRegister| class="small radius secondary button" |(~~link_edit_long~)||<span class="small radius button">(~~link_edit_long~)</span>~)
+		(~GO|pgPrefix| class="small radius secondary button" |(~~link_view_long~)||<span class="small radius info button">(~~link_view_long~)</span>~) 
+		&emsp;
+		(~GO|pgRegister| class="small radius secondary button" |(~~link_edit_long~)||<span class="small radius info button">(~~link_edit_long~)</span>~)
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 </whdroplet>
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-12 columns">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-10 columns">
 		<h1>(~~title_about~)</h1>
 	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
 </div>
 
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-4 columns">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-5 columns">
 		<p>
-		Firstly Component Builders are truly the salt of the earth - they provide ready
+		Firstly... Component Builders are truly the salt of the earth - they provide ready
 		to use solutions to all manner of application programming problems and provide 
 		us with the tools to repeatedly furnish end users with what they really want.</p>
+		<p>This project would not have gotten off the ground without help and encouragement;
+		the following people provided the motivation!</p>
 	</div>
-	<div class="small-18 medium-4 columns">
+	<div class="small-18 medium-5 columns">
 		<p class="color-secondary-2-2">Special mention with regard
 		to the project goes to <b>Ray Konopka</b>, author of <cite>Developing Custom Delphi
 		3 Components</cite>, who tirelessly promoted the use of prefixes long before
 		this web site existed.</p>
+		<p>-- Steven Healey
 		
 	</div>
-	<div class="small-18 medium-4 columns">
-		<p>This project would not have gotten off the ground without help and encouragement;
-		the following people provided the motivation!</p>
-	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-2 columns">(~drGoogleAdsSidebar~)</div>
 </div>
 
 <div class="row">
