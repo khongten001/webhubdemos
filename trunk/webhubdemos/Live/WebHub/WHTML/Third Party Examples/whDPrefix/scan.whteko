@@ -22,7 +22,7 @@ mcManPrefCaptionsRedraw=Redraw
 		
 		<h2>Quick Alphabetical Search</h2>
 		<span id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		. <a href="(~DynURL.ToSessionIDW~)1">1</a> (~WebDBAlphabet.alphabet~)
+		(~WebDBAlphabet.alphabet~)
 		</span>
 		(~WebDBAlphabet.execute|~)
 		
