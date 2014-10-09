@@ -28,23 +28,23 @@ googlepriority=0.8
 (~drBannerThenNav~)
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-12 columns">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns">
 		<h1>(~~title_register~)</h1>
 	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
 
 <div class="row">
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
-	<div class="small-18 medium-12 columns">
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-8 columns">
 		<p>To add/edit/delete your Delphi prefix preference, please start by 
 		logging in with an email known by one of the following six providers... 
 		</p>
 		(~drMultipleOpenID~)
 		(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 	</div>
-	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
 
 <div class="row">
