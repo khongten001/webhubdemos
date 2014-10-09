@@ -1,10 +1,5 @@
 /* WebHub Demo: Delphi Prefix Registry Application */
 /* CSS */
-body {
-	font-family: 'Old Standard TT', serif;
-	/* setting font-size here does NOT override Foundation CSS */
-}
-
 h1, h2 {
 	font-family: 'Open Sans', Verdana, sans-serif;
 }
