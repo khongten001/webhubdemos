@@ -7,10 +7,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href='http://fonts.googleapis.com/css?family=Old+Standard+TT:400,700,400italic' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:600,800,700' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.css" />
+	(~mcDPRFoundationCSS~)
 	<script src="(~Static.AppRoot~)js/vendor/modernizr.js"></script>
 	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix_colors.css" />
-	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css" />
+	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css?(~mcCSSVersion~)" />
 </whdroplet>
 
 <whdroplet name="chAdminFooterLinks">
@@ -31,10 +31,10 @@ Administration Shortcuts:
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" style="margin-top: 3rem;">
 		<span itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~GO|pgHomepage| itemprop="url"  class="small radius secondary button" |(~~link_home~)||<span class="small radius button">(~~link_home~)</span>~) &emsp;
-		(~GO|pgPrefix| itemprop="url"  class="small radius secondary button" |(~~link_view~)||<span class="small radius button">(~~link_view~)</span>~) &emsp;
-		(~GO|pgRegister| itemprop="url"  class="small radius secondary button" |(~~link_edit~)||<span class="small radius button">(~~link_edit~)</span>~) &emsp;
-		(~GO|pgThanks| itemprop="url"  class="small radius secondary button" |(~~link_about~)||<span class="small radius button">(~~link_about~)</span>~) &emsp;
+		(~GO|pgHomepage| itemprop="url"  class="tiny radius secondary button" |(~~link_home~)||<span class="tiny radius info button">(~~link_home~)</span>~) &emsp;
+		(~GO|pgPrefix| itemprop="url"  class="tiny radius secondary button" |(~~link_view~)||<span class="tiny radius info button">(~~link_view~)</span>~) &emsp;
+		(~GO|pgRegister| itemprop="url"  class="tiny radius secondary button" |(~~link_edit~)||<span class="tiny radius info button">(~~link_edit~)</span>~) &emsp;
+		(~GO|pgThanks| itemprop="url"  class="tiny radius secondary button" |(~~link_about~)||<span class="tiny radius info button">(~~link_about~)</span>~) &emsp;
 		</span>
 		<!--- (~GOR|pgLogout|Logout~) &emsp; -->
 		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
