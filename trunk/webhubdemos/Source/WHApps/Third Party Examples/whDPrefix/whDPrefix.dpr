@@ -45,7 +45,8 @@ uses
   webLink in 'h:\webLink.pas',
   wdbForm in 'h:\wdbForm.pas',
   uBigMacIndex in 'uBigMacIndex.pas',
-  DPrefix_dmWhNexus in 'DPrefix_dmWhNexus.pas' {DMWHNexus: TDataModule};
+  DPrefix_dmWhNexus in 'DPrefix_dmWhNexus.pas' {DMWHNexus: TDataModule},
+  DPrefix_dmwhApi in 'DPrefix_dmwhApi.pas' {DMWHAPI: TDataModule};
 
 (* search path for debugging with WebHub source
 k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
