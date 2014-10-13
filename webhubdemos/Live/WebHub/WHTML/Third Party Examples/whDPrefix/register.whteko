@@ -2,10 +2,6 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" >
 
-<whmacros>
-mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
-</whmacros>
-
 <whpage pageid="pgregister" desc="-Entrance to Data Maitenance">
 <whpagesettings>
 googlesitemap=include

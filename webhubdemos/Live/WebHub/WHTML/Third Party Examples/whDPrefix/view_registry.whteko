@@ -14,7 +14,7 @@ mcManPrefCaptionsLast=Last Page
 mcManPrefCaptionsRedraw=Redraw
 </whmacros>
 
-<whdroplet name="chScan">
+<whdroplet name="drScanRegistry">
 <div class="row">
 	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
 	<div class="small-1 medium-1 columns">(~GO|pgHomePage|(~mcDPRLogo~)~)</div>
@@ -63,7 +63,7 @@ googlepriority=0.7
 </head>
 <body itemscope itemtype="http://www.schema.org/SearchResultsPage">
 
-(~chScan~)
+(~drScanRegistry~)
 
 <!---<div style="padding-top:1.5em;text-align:center;">
 (~drGoogleAdsOnDPR~)

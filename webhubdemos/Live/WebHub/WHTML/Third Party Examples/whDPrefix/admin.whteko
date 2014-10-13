@@ -10,7 +10,7 @@ googlepriority=0
 </whpagesettings>
 (~drAdminCheckpoint~)
 (~CHECK|_bAdminMode~)
-(~chScan~)
+(~drScanRegistry~)
 </whpage>
 
 <whdroplet name="ScanAdmin">
@@ -109,10 +109,11 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 (~drAdminCheckpoint~)
-(~chGraphicalBanner~)
+<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
+(~mcDPRLogo~)
 <p>
 (~waLocate.execute~)
-//
+
 <form method=post action="(~ACTION|pgPost~)">
 (~webDataForm.execute|edit~)
 <BR>
