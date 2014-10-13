@@ -29,6 +29,8 @@ type
     waDelete: TwhWebAction;
     waConfirmOpenID: TwhWebAction;
     waURL: TwhWebAction;
+    waPrice: TwhWebAction;
+    waSaveAndroidCountryCode: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
@@ -39,6 +41,8 @@ type
     procedure waConfirmOpenIDExecute(Sender: TObject);
     procedure waURLExecute(Sender: TObject);
     procedure waURLSetCommand(Sender: TObject; var ThisCommand: string);
+    procedure waPriceExecute(Sender: TObject);
+    procedure waSaveAndroidCountryCodeExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -73,9 +77,12 @@ uses
   IdHTTP,
   ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
   webApp, htWebApp, wdbSSrc,
-  DPrefix_dmNexus, whutil_ValidEmail, whdemo_Extensions;
+  DPrefix_dmNexus, whutil_ValidEmail, whdemo_Extensions, uBigMacIndex;
 
 { TDMDPRWebAct }
+
+const
+  cSVSurferCountryCode = '_SurferCountryCode';
 
 procedure TDMDPRWebAct.DataModuleCreate(Sender: TObject);
 begin
@@ -438,6 +445,32 @@ begin
     LogSendInfo('fMpfID', S(fMpfID), cFn);
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+end;
+
+procedure TDMDPRWebAct.waPriceExecute(Sender: TObject);
+var
+  SurferCountryCode: string;
+  Price: Currency;
+begin
+  SurferCountryCode := pWebApp.StringVar[cSVSurferCountryCode];
+  Price := BigMacPriceForCountry(SurferCountryCode, 1);
+  pWebApp.Response.Send(Format('%m usd', [Price]));
+end;
+
+procedure TDMDPRWebAct.waSaveAndroidCountryCodeExecute(Sender: TObject);
+const cFn = 'waSaveAndroidCountryCode';
+begin
+  CSEnterMethod(Self, cFn);
+  if Pos('country=', pWebApp.Command) > 0 then  // country=CH  for Switzerland
+  begin
+    pWebApp.StringVar[cSVSurferCountryCode] := RightOfEqual(pWebApp.Command);
+  end
+  else
+  begin
+    CSSend('command', pWebApp.Command);
+    pWebApp.StringVar[cSVSurferCountryCode] := 'US';
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waURLExecute(Sender: TObject);

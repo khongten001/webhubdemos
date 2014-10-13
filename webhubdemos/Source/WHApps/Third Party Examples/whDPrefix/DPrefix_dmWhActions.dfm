@@ -42,4 +42,16 @@ object DMDPRWebAct: TDMDPRWebAct
     Left = 328
     Top = 48
   end
+  object waPrice: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waPriceExecute
+    Left = 376
+    Top = 136
+  end
+  object waSaveAndroidCountryCode: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waSaveAndroidCountryCodeExecute
+    Left = 376
+    Top = 200
+  end
 end
