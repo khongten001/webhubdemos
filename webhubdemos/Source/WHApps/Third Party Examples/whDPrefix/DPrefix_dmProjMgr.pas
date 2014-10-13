@@ -1,4 +1,4 @@
-unit DPrefix_DMProjMgr;
+unit DPrefix_dmProjMgr;
 
 (*
 Copyright (c) 2008-2014 HREF Tools Corp.
@@ -68,13 +68,13 @@ uses
   MultiTypeApp,
   ucLogFil, ucCodeSiteInterface,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
-  dmWHApp, whAppOut,
-  DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
-  Unit1,
-  webApp, webCall, whcfg_App, webBase, webSplat, whSharedLog, uAutoDataModules,
-  whutil_ZaphodsMap, htWebApp,
+  dmWHApp, whAppOut, webApp, webCall, whcfg_App, webBase, webSplat, 
+  whSharedLog, uAutoDataModules, whutil_ZaphodsMap, htWebApp,
+  whOpenID_dmwhAction,
   whdemo_About, whdemo_Extensions,
-  DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
+  DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
+  DPrefix_dmwhApi,
+  DPrefix_fmAdminDataEntry, whgui_Menu;
 
 procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
