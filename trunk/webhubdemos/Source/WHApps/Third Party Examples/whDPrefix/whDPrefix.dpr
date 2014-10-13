@@ -34,7 +34,8 @@ uses
   wdbForm in 'h:\wdbForm.pas',
   wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
   wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
-  wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas';
+  wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas',
+  uBigMacIndex in 'uBigMacIndex.pas';
 
 (* search path for debugging
 k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
