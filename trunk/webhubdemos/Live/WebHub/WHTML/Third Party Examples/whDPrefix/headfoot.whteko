@@ -2,6 +2,10 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
+<whmacros>
+mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
+</whmacros>
+
 <whdroplet name="drSharedHead">
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -19,12 +23,6 @@ Administration Shortcuts:
 [ (~GOR|pgAdminMenu|Menu~) ] &nbsp;
 [ (~GOR|pgAdminBrowse|Browse~) ] &nbsp;
 </whdroplet>
-
-<whdroplet name="chGraphicalBanner">
-<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
-(~mcDPRLogo~)
-</whdroplet>
-
 
 <whdroplet name="drSharedFooter">
 <div class="row">
