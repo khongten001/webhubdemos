@@ -17,13 +17,6 @@ mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" styl
 	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css?(~mcCSSVersion~)" />
 </whdroplet>
 
-<whdroplet name="chAdminFooterLinks">
-<br/><br/>
-Administration Shortcuts: 
-[ (~GOR|pgAdminMenu|Menu~) ] &nbsp;
-[ (~GOR|pgAdminBrowse|Browse~) ] &nbsp;
-</whdroplet>
-
 <whdroplet name="drSharedFooter">
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
