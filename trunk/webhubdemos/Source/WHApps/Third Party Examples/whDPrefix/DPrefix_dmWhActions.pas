@@ -31,6 +31,7 @@ type
     waURL: TwhWebAction;
     waPrice: TwhWebAction;
     waSaveAndroidCountryCode: TwhWebAction;
+    waSelectBigMacCountry: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waAddExecute(Sender: TObject);
@@ -43,6 +44,7 @@ type
     procedure waURLSetCommand(Sender: TObject; var ThisCommand: string);
     procedure waPriceExecute(Sender: TObject);
     procedure waSaveAndroidCountryCodeExecute(Sender: TObject);
+    procedure waSelectBigMacCountryExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -83,6 +85,7 @@ uses
 
 const
   cSVSurferCountryCode = '_SurferCountryCode';
+  cSVSurferErrorMsg = '_SurferErrorMsg';
 
 procedure TDMDPRWebAct.DataModuleCreate(Sender: TObject);
 begin
@@ -459,17 +462,53 @@ end;
 
 procedure TDMDPRWebAct.waSaveAndroidCountryCodeExecute(Sender: TObject);
 const cFn = 'waSaveAndroidCountryCode';
+var
+  ThisCountryCode: string;
 begin
   CSEnterMethod(Self, cFn);
+  pWebApp.StringVar[cSVSurferErrorMsg] := '';
   if Pos('country=', pWebApp.Command) > 0 then  // country=CH  for Switzerland
   begin
-    pWebApp.StringVar[cSVSurferCountryCode] := RightOfEqual(pWebApp.Command);
+    ThisCountryCode := RightOfEqual(pWebApp.Command);
+    { allow reasonable data entry from non-Android-app surfers }
+    if ThisCountryCode = 'input' then
+    begin
+      ThisCountryCode := Uppercase(pWebApp.StringVar['inCountryCode']);
+      if NOT IsCountrySupported(ThisCountryCode) then
+      begin
+        pWebApp.StringVar[cSVSurferErrorMsg] :=
+          Format(
+            'Error: %s is not a country supported by the Big Mac Index.',
+            [ThisCountryCode]);
+        pWebApp.Response.SendBounceToPage('pgChangeCountry', '');
+      end;
+
+    end;
+    { remember the surfer country }
+    pWebApp.StringVar[cSVSurferCountryCode] := ThisCountryCode;
   end
   else
   begin
     CSSend('command', pWebApp.Command);
     pWebApp.StringVar[cSVSurferCountryCode] := 'US';
   end;
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TDMDPRWebAct.waSelectBigMacCountryExecute(Sender: TObject);
+const cFn = 'waSelectBigMacCountryExecute';
+var
+  HtmlSelectStr: string;
+  FieldName, FieldID, FieldCSS: string;
+begin
+  CSEnterMethod(Self, cFn);
+  SplitThree(TwhWebAction(Sender).HtmlParam, ',', FieldName, FieldID, FieldCSS);
+
+  HtmlSelectStr := HtmlSelectCountry(FieldName, FieldID, FieldCSS);
+
+  CSSend('HtmlSelectStr', HtmlSelectStr);
+  pWebApp.SendStringImm(HtmlSelectStr);
+
   CSExitMethod(Self, cFn);
 end;
 
@@ -481,7 +520,7 @@ var
   iStatusCode: Integer;
   ErrorText: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   if FMpfID <> -1 then
   begin
@@ -528,7 +567,7 @@ begin
     end;
   end;
   pWebApp.Response.SendBounceToPage('pgmaintain', '');
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waURLSetCommand(Sender: TObject;

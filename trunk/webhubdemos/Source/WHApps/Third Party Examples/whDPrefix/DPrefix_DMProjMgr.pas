@@ -70,8 +70,9 @@ uses
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
   dmWHApp, whAppOut, 
   DPrefix_dmNexus, DPrefix_dmWhActions,
-  webApp, webCall, whcfg_App, webBase, webSplat, uAutoDataModules,
-  whdemo_About, whdemo_Extensions, whutil_ZaphodsMap, htWebApp,
+  webApp, webCall, whcfg_App, webBase, webSplat, whSharedLog, uAutoDataModules,
+  whutil_ZaphodsMap, htWebApp,
+  whdemo_About, whdemo_Extensions,
   DPrefix_fmWhActions, whgui_Menu, whOpenID_dmwhAction;
 
 procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
@@ -87,6 +88,9 @@ procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
   CreateCoreWebHubDataModule;
+  {$IFDEF CodeSite}
+  UseWebHubSharedLog;
+  {$ENDIF}
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate2(
@@ -97,6 +101,9 @@ begin
     AppID and refreshing the application object. }
   pWebApp.AppID := SuggestedAppID;  // e.g. from /id=adv on command line
   pWebApp.Refresh;
+  {$IFDEF CodeSite}
+  UseWebHubSharedLog;
+  {$ENDIF}
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate3(
@@ -113,21 +120,16 @@ begin
     Refresh;
     Response.HttpMinorVersion := 1;
     Security.BuiltInPagesEnabled := False;
-    //OnBadBrowser no longer used for DPrefix, 15-May-2013
-    //Security.CheckUserAgent := True;
-    //Security.CheckSurferIP := True;
   end;
 
   CreateStandardWHModules;
-  //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
-    Application.CreateForm(TDMNexus, DMNexus);
+  Application.CreateForm(TDMNexus, DMNexus);
 
-    Application.CreateForm(TDMWHOpenIDviaJanrain, DMWHOpenIDviaJanrain);
+  Application.CreateForm(TDMWHOpenIDviaJanrain, DMWHOpenIDviaJanrain);
 
-  //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
-    Application.CreateForm(TDMDPRWebAct, DMDPRWebAct);
+  Application.CreateForm(TDMDPRWebAct, DMDPRWebAct);
 
-    Application.CreateForm(TDemoExtensions, DemoExtensions);
+  Application.CreateForm(TDemoExtensions, DemoExtensions);
 
   { Special Comment for DataModules - do not delete!
 

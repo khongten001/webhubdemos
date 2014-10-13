@@ -25,7 +25,6 @@ uses
   whappin in 'h:\whappin.pas' {fmAppIn},
   whappout in 'h:\whappout.pas' {fmAppOut},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  //webScan in 'K:\WebHub\lib\whplus\webScan.pas',
   whdm_Lingvo in 'h:\whdm_Lingvo.pas',
   whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
   htWebApp in 'k:\webhub\lib\htWebApp.pas',
