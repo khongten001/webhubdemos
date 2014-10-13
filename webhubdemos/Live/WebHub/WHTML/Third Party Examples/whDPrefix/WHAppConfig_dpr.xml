@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
@@ -40,7 +40,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="AlphaLetters" value="26"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" />
+      <AppSetting name="DesignRefreshEnabled" value="False"/>
       <AppSetting name="DesignRefreshEnabled" value="True" context="ultraann"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
@@ -49,6 +49,11 @@
       <AutoPageFooter dropletName="None"/>
       <AutoPageHeader dropletName="None"/>
     </PageGeneration>
+    <Security>
+      <CookieDomainDefault value="delphiprefix.modulab.com"/>
+      <CookieDomainDefault context="WESLEY" value="delphiprefix.href.com"/>
+      <ReadOnlySessionNumber value="999999"/>
+    </Security>
     <Situations>
       <FrontDoor pageID=""/>
       <Home pageID="pghomepage"/>
@@ -66,18 +71,19 @@
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="f01" filename="..\..\Shared WHTML\about\about-whDPrefix.whteko"/>
-      <File id="f02" filename="admin.whteko"/>
-      <File id="f03" filename="headfoot.whteko"/>
-      <File id="f04" filename="home.whteko"/>
-      <File id="f05" filename="login.whteko"/>
-      <File id="f06" filename="advertising.whteko"/>
-      <File id="f07" filename="register.whteko"/>
-      <File id="f08" filename="view_registry.whteko"/>
-      <File id="f09" filename="donate.whteko"/>
-      <File id="f10" filename="dprcleanup2013.whteko"/>
-      <File id="f11" filename="credits.whteko"/>
-      <File id="f21" filename="dpr-text-eng.whteko" />
-      <File id="j01" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
+      <File id="f02" filename="dpr-admin.whteko"/>
+      <File id="f03" filename="dpr-advertising.whteko"/>
+      <File id="f04" filename="dpr-api.whteko"/>
+      <File id="f06" filename="dpr-cleanup2013.whteko"/>
+      <File id="f07" filename="dpr-credits.whteko"/>
+      <File id="f11" filename="dpr-donate.whteko"/>
+      <File id="f12" filename="dpr-headfoot.whteko"/>
+      <File id="f13" filename="dpr-home.whteko"/>
+      <File id="f20" filename="dpr-login.whteko"/>
+      <File id="f10" filename="dpr-text-eng.whteko"/>
+      <File id="f21" filename="dpr-register.whteko"/>
+      <File id="f22" filename="dpr-view-registry.whteko"/>
+      <File id="f50" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
