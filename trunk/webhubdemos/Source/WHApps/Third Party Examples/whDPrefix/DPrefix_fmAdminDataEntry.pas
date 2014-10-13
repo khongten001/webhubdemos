@@ -1,4 +1,4 @@
-unit DPrefix_fmWhActions; // GUI
+unit DPrefix_fmAdminDataEntry; // GUI for quick data entry by administrator
 
 { ---------------------------------------------------------------------------- }
 { * Copyright (c) 1999-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
