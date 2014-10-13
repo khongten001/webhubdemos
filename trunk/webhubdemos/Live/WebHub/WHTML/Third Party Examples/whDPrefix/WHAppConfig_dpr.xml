@@ -36,7 +36,7 @@
         <UseAppID value="true"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
-      <ProjectLingvo value="en"/>
+      <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
       <AppSetting name="AlphaLetters" value="26"/>

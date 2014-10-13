@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code">
+<whteko designmode="code" defaultlingvo="eng">
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
@@ -26,18 +26,19 @@ mcWhDemoLiteDPR=No
 
 <whdroplet name="drDemoSetupDPR">
 <ol>
-<li> NexusDB components are required </li>
-<li> OpenID processing account at janrain.com </li>
+<li> NexusDB is required </li>
+<li> An OpenID processing account at janrain.com is required </li>
 </ol>
 </whdroplet>
 
 
 <whtranslation key="~whDemoShortDescDPR">
-The DPR is a public registry (database) of prefixes used by the Delphi community for components and classes.
+The DPR is a public registry used by the Delphi community for reserving component prefixes. 
 </whtranslation>
 
 <whtranslation key="~whDemoLongDescDPR">
-This site publishes a table for use by the Delphi community to track reserved prefixes for classes, components, etc.
+The DELPHI PREFIX REGISTRY (DPxR) has been designed to LIST component creators, the PREFIXES they use 
+and sufficient contact details, without disclosing email addresses.
 </whtranslation>
 
 </whteko>
