@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+
+<whpage pageid="jsonapirequest" desc="-JSON API Request">
+<whprep>
+(~NOMATCH|(~SessionID~)=999999|(~BOUNCE|pgregistry~)~)
+</whprep>
+(~waJsonApiRequest.Execute|~)
+</whpage>
+
+<whdroplet name="drJsonDetailLevel_Versions_1_0">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "OK",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "Payload": {
+      "APIInfo": {
+        "Version": "1.0",
+        "DetailLevel": "Versions",
+        "WebAppAPISpec": {
+          "Version": "0001"
+        },
+        "VideoList": {
+          "Version": "0000"
+        },
+        "ImageList": {
+          "Version": "0001"
+        },
+        "LingvoList": {
+          "Version": "0001"
+        },
+        "TradukoList": {
+          "Version": "0001"
+        }
+      }
+    }
+  }
+}
+</whdroplet>
+
+</whteko>
