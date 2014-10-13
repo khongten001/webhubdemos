@@ -1,7 +1,7 @@
 unit DPrefix_DMProjMgr;
 
 (*
-Copyright (c) 2008-2012 HREF Tools Corp.
+Copyright (c) 2008-2014 HREF Tools Corp.
 
 Permission is hereby granted, on 09-Aug-2008, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
