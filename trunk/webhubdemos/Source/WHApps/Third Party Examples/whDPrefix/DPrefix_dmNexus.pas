@@ -1,5 +1,19 @@
 unit DPrefix_dmNexus;
 
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ *                                                                          * }
+{ * This source code file is part of the Delphi Prefix Registry.             * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
+
 {$I hrefdefines.inc}
 
 interface

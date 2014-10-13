@@ -1,4 +1,18 @@
-program whDPrefix;
+program whDPrefix;  { Delphi Prefix Registry WebHub App }
+
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2013-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ *                                                                          * }
+{ * This source code file is part of the Delphi Prefix Registry.             * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
 
 uses
   MultiTypeApp in 'h:\MultiTypeApp.pas',
@@ -11,7 +25,7 @@ uses
   whappin in 'h:\whappin.pas' {fmAppIn},
   whappout in 'h:\whappout.pas' {fmAppOut},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  webScan in 'K:\WebHub\lib\whplus\webScan.pas',
+  //webScan in 'K:\WebHub\lib\whplus\webScan.pas',
   whdm_Lingvo in 'h:\whdm_Lingvo.pas',
   whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
   htWebApp in 'k:\webhub\lib\htWebApp.pas',
@@ -24,7 +38,7 @@ uses
   wnxdbAlpha in 'wnxdbAlpha.pas',
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whutil_ValidEmail in 'h:\whutil_ValidEmail.pas',
-  ucURLEncode in 'k:\webhub\tpack\ucURLEncode.pas',
+  //ucURLEncode in 'k:\webhub\tpack\ucURLEncode.pas',
   whOpenID_dmwhAction in '..\..\More Examples\whOpenID\whOpenID_dmwhAction.pas',
   DPrefix_fmWhActions in 'DPrefix_fmWhActions.pas' {fmWhActions},
   DPrefix_DMProjMgr in 'DPrefix_DMProjMgr.pas' {DMDPrefixProjMgr: TDataModule},
@@ -32,16 +46,13 @@ uses
   DPrefix_dmWhActions in 'DPrefix_dmWhActions.pas' {DMDPRWebAct: TDataModule},
   webLink in 'h:\webLink.pas',
   wdbForm in 'h:\wdbForm.pas',
-  wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
-  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
-  wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas',
+  //wdbSSrc in 'K:\WebHub\lib\whdb\wdbSSrc.pas',
+  //wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
+  //wdbSource in 'K:\WebHub\lib\whdb\wdbSource.pas',
   uBigMacIndex in 'uBigMacIndex.pas';
 
-(* search path for debugging
+(* search path for debugging with WebHub source
 k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
-  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
-  uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
-  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas',
 *)
 
 {$R *.RES}
