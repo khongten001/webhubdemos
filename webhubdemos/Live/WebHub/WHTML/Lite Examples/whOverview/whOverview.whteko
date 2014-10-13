@@ -49,6 +49,7 @@
 (~PARAMS|drDemoLink|coderage,db~)
 (~PARAMS|drDemoLink|scan,db~)
 (~PARAMS|drDemoLink|htcl,db~)
+(~PARAMS|drDemoLink|dpr,shortdpr~)
 (~PARAMS|drDemoLink|fire,db~)
 (~PARAMS|drDemoLink|htfs,db~)
 (~PARAMS|drDemoLink|htfm,db~)

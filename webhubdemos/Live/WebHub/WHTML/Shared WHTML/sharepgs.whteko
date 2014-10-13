@@ -50,20 +50,21 @@
 <li>(~mcWhDemoDot~) (~JUMP|pgSetup| id="a-pgsetup" |[~Prerequisites~]~)</li>
 
 <li>(~mcWhDemoDot~)
-<whdroplet name="drJumpToDemoEntrance" show="yes">
 (~NOMATCH|(~AppID~)=demos|
  (~JUMP|pgEnter(~AppID~)| id="a-pgenter(~AppID~)" |(~~Entrance~)~)
 ||
 <!--- special processing for the DEMOS demo which runs on multiple domains -->
-(~MATCH|(~Request.Host~)!lite.demos| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!more.demos| (~JUMP|pgEnterMoreDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!db.demos| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)
-(~MATCH|(~Request.Host~)!w12.demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)=demos.href.com| (~JUMP|pgEnterDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
-(~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos| id="a-pgenter(~AppID~)" |(~~Entrance~)~)~)
+AppID demos? Ok. 
+(~CLEAR|_FlagEnt~)
+(~MATCH|(~Request.Host~)!lite.demos|         (~CHECK|_FlagEnt~)(~JUMP|pgEnterLiteDemos| id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!more.demos|         (~CHECK|_FlagEnt~)(~JUMP|pgEnterMoreDemos| id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!db.demos|           (~CHECK|_FlagEnt~)(~JUMP|pgEnterDemos|     id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!w12.demos.href.com| (~CHECK|_FlagEnt~)(~JUMP|pgEnterDemos|     id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)=demos.href.com|     (~CHECK|_FlagEnt~)(~JUMP|pgEnterLiteDemos| id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~NOMATCH|href.com[(~Request.Host~)|         (~CHECK|_FlagEnt~)(~JUMP|pgEnterLiteDemos| id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~IFNOT|_FlagEnt|(~JUMP|pgEnterDemos| id="a-pgenterdemos" |(~~Entrance~)~)~)
+(~CLEAR|_FlagEnt~)
 ~)
-</whdroplet>
 </li>
 
 <whdroplet name="drHideToDemoEntrance" show="no">
@@ -85,9 +86,9 @@
 (~MATCH|(~Request.Host~)!lite.demos|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)!more.demos|<a href="http://more.demos.href.com/demos:pgEnterMoreDemos:(~SessionID~)">more.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)!db.demos|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
-(~MATCH|(~Request.Host~)=delphiprefix.href.com|<a href="http://db.demos.href.com/demos:pgEnterDemos:(~SessionID~)">db.demos.href.com</a>~)
+(~MATCH|(~Request.Host~)=delphiprefix.href.com|<a href="http://db.demos.href.com/demos:pgEnterDemos">db.demos.href.com</a>~)
 (~MATCH|(~Request.Host~)=demos.href.com|<a href="http://lite.demos.href.com/demos:pgEnterLiteDemos:(~SessionID~)">lite.demos.href.com</a>~)
-(~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos|(~~Entrance~)~)~)
+(~NOMATCH|href.com[(~Request.Host~)| (~JUMP|pgEnterLiteDemos|(~Request.Host~)~)~)
 </whdroplet>
 
 <li>(~mcWhDemoDot~) (~JUMP|ViewFiles,(~AppID~)| id="a-viewfiles" |(~~Source~)~)</li>
