@@ -20,7 +20,7 @@ mcManPrefCaptionsRedraw=Redraw
 	<div class="small-1 medium-1 columns">(~GO|pgHomePage|(~mcDPRLogo~)~)</div>
 	<div class="small-17 medium-11 columns">
 		
-		<h2>Quick Alphabetical Search</h2>
+		<h2>(~~title_view~)</h2>
 		<span id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
 		(~WebDBAlphabet.alphabet~)
 		</span>

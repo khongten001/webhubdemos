@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whpage pageid="pgadminbrowse" desc="Browse with the ability to edit entries" mode="design">
+<whpage pageid="pgadminbrowse" desc="-Browse with the ability to edit entries" mode="design">
 <whpagesettings>
 googlesitemap=exclude
 googlechangefreq=n/a
@@ -133,7 +133,7 @@ googlepriority=0
 
 (~drBannerThenNav~)
 <h1>Done</h1>
-<p>Your session data has been deleted.</p>
+<p>Your session data file has been deleted.</p>
 
 <center>
 <table style="width:72%;"><tr><td>
@@ -153,6 +153,20 @@ googlepriority=0
 Data has been posted... 
 (~JUMP|pgAdminBrowse|Admin Browse~)
 <p>
+</whpage>
+
+<whpage pageid="pgcountpending" desc="-Remote monitor of pending requests">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+  <title>(~PageDesc~)</title>
+</head> 
+<body>
+Blink (~appid~), (~PageID~)
+
+<h2>Pending Prefix Requests</h2>
+<p>Count = (~waCountPending.Execute|~)</p>
+</body>
+</html>
 </whpage>
 
 </whteko>
