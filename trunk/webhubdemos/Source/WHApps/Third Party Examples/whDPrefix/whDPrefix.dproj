@@ -202,6 +202,11 @@
         <DCCReference Include="h:\webLink.pas"/>
         <DCCReference Include="h:\wdbForm.pas"/>
         <DCCReference Include="uBigMacIndex.pas"/>
+        <DCCReference Include="DPrefix_dmWhNexus.pas">
+            <Form>DMWHNexus</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <BuildConfiguration Include="Debug">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
@@ -267,6 +272,12 @@
             </Platforms>
             <Deployment>
                 <DeployFile LocalName="..\..\..\..\Live\WebHub\Apps\whDPrefix.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win64">
+                        <RemoteName>whDPrefix.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="H:\pkg_d21_Win64\whDPrefix.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>whDPrefix.exe</RemoteName>
                         <Overwrite>true</Overwrite>

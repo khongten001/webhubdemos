@@ -7,7 +7,7 @@ inherited fmWhActions: TfmWhActions
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   ExplicitWidth = 988
-  ExplicitHeight = 526
+  ExplicitHeight = 528
   PixelsPerInch = 120
   TextHeight = 18
   object tpToolButton3: TtpToolButton [0]
@@ -38,7 +38,7 @@ inherited fmWhActions: TfmWhActions
       object tpToolButton5: TtpToolButton
         Left = 177
         Top = 6
-        Width = 123
+        Width = 193
         Action = ActDeleteStatusD
         LeaveSpace = True
         MinWidth = 28
@@ -74,15 +74,6 @@ inherited fmWhActions: TfmWhActions
         Align = alTop
         Caption = 'View-only DB Display'
         TabOrder = 0
-      end
-      object GroupBox6: TGroupBox
-        Left = 1
-        Top = 89
-        Width = 242
-        Height = 104
-        Align = alTop
-        Caption = 'Editing + Posting + Deleting'
-        TabOrder = 1
       end
     end
     object Panel1: TPanel
@@ -122,7 +113,6 @@ inherited fmWhActions: TfmWhActions
     Height = 19
     Panels = <
       item
-        Text = ''
         Width = 50
       end>
     ParentShowHint = False
@@ -148,21 +138,9 @@ inherited fmWhActions: TfmWhActions
     Left = 22
     Top = 68
   end
-  object waModify: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waModifyExecute
-    Left = 38
-    Top = 182
-  end
-  object waAdminDelete: TwhWebActionEx
-    ComponentOptions = [tpUpdateOnLoad, tpStatusPanel]
-    OnExecute = waAdminDeleteExecute
-    Left = 150
-    Top = 190
-  end
   object ActionList1: TActionList
     Left = 80
-    Top = 256
+    Top = 160
     object ActCleanURL: TAction
       Caption = 'Clean URL'
       OnExecute = ActCleanURLExecute
