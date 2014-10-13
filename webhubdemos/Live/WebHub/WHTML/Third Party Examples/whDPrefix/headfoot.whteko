@@ -32,7 +32,7 @@ mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" styl
 		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 		Running <a href="http://www.href.com/whvcl">(~version~)</a> 
 		compiled with <span class="color-secondary-2-3">Delphi (~CentralInfo.PascalCompilerCode~)</span>. <br>
-		All data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
+		The Registry data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
 		Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</span>
 		&nbsp; <a href="http://lite.demos.href.com/eng/demos:privacypolicy">Privacy</a>
 		&nbsp; <a href="http://www.href.com/contact">Contact</a>
