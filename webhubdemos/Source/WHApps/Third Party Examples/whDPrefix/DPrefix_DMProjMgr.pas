@@ -68,8 +68,8 @@ uses
   MultiTypeApp,
   ucLogFil, ucCodeSiteInterface,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
-  dmWHApp, whAppOut, 
-  DPrefix_dmNexus, DPrefix_dmWhActions,
+  dmWHApp, whAppOut,
+  DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
   webApp, webCall, whcfg_App, webBase, webSplat, whSharedLog, uAutoDataModules,
   whutil_ZaphodsMap, htWebApp,
   whdemo_About, whdemo_Extensions,
@@ -131,6 +131,8 @@ begin
 
   Application.CreateForm(TDemoExtensions, DemoExtensions);
 
+  Application.CreateForm(TDMWHNexus, DMWHNexus);
+
   { Special Comment for DataModules - do not delete!
 
     This comment is used by the WebHub Wizard to position non-gui CreateForm
@@ -146,6 +148,8 @@ begin
   InitCoreWebHubDataModule;
   InitStandardWHModules;
   Continue := DMNexus.Init(ErrorText);
+  if Continue then
+    Continue := DMWHNexus.Init(ErrorText);
   if Continue then
     Continue := DMDPRWebAct.Init(ErrorText);
   if Continue then
