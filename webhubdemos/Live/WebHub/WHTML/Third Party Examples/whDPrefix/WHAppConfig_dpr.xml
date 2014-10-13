@@ -70,10 +70,11 @@
       <File id="f03" filename="headfoot.whteko"/>
       <File id="f04" filename="home.whteko"/>
       <File id="f05" filename="login.whteko"/>
-      <File id="f06" filename="pages.whteko"/>
+      <File id="f06" filename="advertising.whteko"/>
       <File id="f07" filename="register.whteko"/>
-      <File id="f08" filename="scan.whteko"/>
-      <File id="f09" filename="dprcleanup2013.whteko"/>
+      <File id="f08" filename="view_registry.whteko"/>
+      <File id="f09" filename="donate.whteko"/>
+      <File id="f10" filename="dprcleanup2013.whteko"/>
       <File id="f21" filename="dpr-text-en.whteko" />
       <File id="j01" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>

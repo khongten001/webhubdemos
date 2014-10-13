@@ -34,7 +34,8 @@ Administration Shortcuts:
 		(~GO|pgHomepage| itemprop="url"  class="tiny radius secondary button" |(~~link_home~)||<span class="tiny radius info button">(~~link_home~)</span>~) &emsp;
 		(~GO|pgPrefix| itemprop="url"  class="tiny radius secondary button" |(~~link_view~)||<span class="tiny radius info button">(~~link_view~)</span>~) &emsp;
 		(~GO|pgRegister| itemprop="url"  class="tiny radius secondary button" |(~~link_edit~)||<span class="tiny radius info button">(~~link_edit~)</span>~) &emsp;
-		(~GO|pgThanks| itemprop="url"  class="tiny radius secondary button" |(~~link_about~)||<span class="tiny radius info button">(~~link_about~)</span>~) &emsp;
+		(~GO|pgThanks| itemprop="url"  class="tiny radius secondary button" |(~~link_credits~)||<span class="tiny radius info button">(~~link_credits~)</span>~) &emsp;
+		(~GO|pgDonate| itemprop="url"  class="tiny radius secondary button" |(~~link_donate~)||<span class="tiny radius info button">(~~link_donate~)</span>~) &emsp;
 		</span>
 		<!--- (~GOR|pgLogout|Logout~) &emsp; -->
 		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
@@ -42,7 +43,7 @@ Administration Shortcuts:
 		compiled with <span class="color-secondary-2-3">Delphi (~CentralInfo.PascalCompilerCode~)</span>. <br>
 		All data is stored in a <a href="http://www.nexusdb.com/">NexusDB</a> table.<br>
 		Sponsored 1998-(~CentralInfo.YearGMT~) by <span itemprop="publisher">HREF Tools Corp.</span>
-		&nbsp; <a href="http://lite.demos.href.com/demos/privacypolicy">Privacy</a>
+		&nbsp; <a href="http://lite.demos.href.com/eng/demos:privacypolicy">Privacy</a>
 		&nbsp; <a href="http://www.href.com/contact">Contact</a>
 		<!-- Your http client: (~Request.UserAgent~) considered (~ISWebRobotRequest|webrobot||human~) -->
 		</p>

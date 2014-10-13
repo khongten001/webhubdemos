@@ -3,15 +3,19 @@
 <whteko designmode="code" defaultlingvo="en">
 
 <whtranslations>
-~title_about=Credits&hellip;
+~title_credits=Credits&hellip;
+~title_creditsLine2=For the Initial Creation of the Delphi Prefix Registry
+~title_donate=Donate
 ~title_homepage=Welcome to the Delphi Prefix Registry
 ~title_maintain=Maintain Prefix Registrations
 ~title_register=Add/Edit
 ~title_registerDetails=Prefix Registration Details
-~link_about=Credits&hellip;
-~link_edit_long=Add/Edit YOUR Prefixes
+~title_view=View &ndash; Alphabetical
+~link_credits=Credits&hellip;
+~link_donate=Donate
 ~link_edit=Add/Edit
-~link_home=Home
+~link_edit_long=Add/Edit YOUR Prefixes
+~link_home=Welcome
 ~link_maintain=Maintain Prefixes
 ~link_view_long=View the Registry
 ~link_view=View

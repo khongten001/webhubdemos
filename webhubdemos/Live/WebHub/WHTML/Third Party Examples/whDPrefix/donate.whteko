@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" notes="donation example for CodeRage 9 in October 2014">
+
+<whpage pageid="pgdonate" desc="Donate to Delphi Prefix Registry">
+<whprep>
+(~waSaveAndroidCountryCode.Execute|~)
+</whprep>
+(~mcDocTypeHtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+	<title>(~~title_donate~)</title>
+	(~drSharedHead~)
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+</head>
+<body>
+
+(~drBannerThenNav~)
+
+<div class="row">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-10 columns">
+		<h1>(~~title_donate~)</h1>
+	</div>
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-10 columns">
+	<p>Show your support for the Delphi Prefix Registry 
+	by contributing the value of one Big Mac in your country. </p>
+	<p>In an effort to make prices more fair, we are using the <a href="http://www.economist.com/content/big-mac-index">Big Mac Index</a>
+	to suggest a donation amount.</p>
+	<h2>Suggested Donation Amount</h2>
+	<h3>Country Code: (~_SurferCountryCode~)*</h3>
+	<p><b>(~waPrice.Execute|~)</b></p>
+
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+    <!-- Identify your business so that you can collect the payments. -->
+    <input type="hidden" name="business"
+        value="accounting@href.com">
+
+    <!-- Specify a Donate button. -->
+    <input type="hidden" name="cmd" value="_donations">
+
+    <!-- Specify details about the contribution -->
+    <input type="hidden" name="item_name" value="Contribute to Delphi Prefix Registry">
+    <input type="hidden" name="item_number" value="019822">
+    <input type="hidden" name="amount" value="(~waPrice.Execute|~)">
+    <input type="hidden" name="currency_code" value="USD">
+	<input type="hidden" name="lc" value="(~_SurferCountryCode~)">
+	<input type="hidden" name="no_shipping" value="1">
+
+    <!-- Display the payment button. -->
+    <input type="image" name="submit" border="0"
+    src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+    alt="PayPal - The safer, easier way to pay online">
+    <img alt="" border="0" width="1" height="1"
+    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+</form>
+
+	<p>*Visiting this page from our Android app gives you automatic pricing for your country.
+	Alternatively, (~JUMP|pgChangeCountry|use this link~) to choose your country.
+	</p>
+
+	</div>
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+</div>
+
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+
+<whpage pageid="pgchangecountry" desc="Change Country Code">
+(~mcDocTypeHtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+	<title>(~~title_changeCountry~)</title>
+	(~drSharedHead~)
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+</head>
+<body>
+
+(~drBannerThenNav~)
+
+<div class="row">
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+	<div class="small-18 medium-10 columns">
+		<h1>(~~title_changeCountry~)</h1>
+	</div>
+	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-7 columns">&nbsp;</div>
+	<div class="small-18 medium-4 columns">
+
+		<form method="post" action="(~ACTION|pgDonate,country=input~)">
+			<label>ISO Country Code</label>
+			(~INPUTTEXT|CountryCode,5,2| placeholder="(~_SurferCountryCode~)"~) 
+			<input type="submit" />
+		</form>
+
+	</div>
+	<div class="show-for-medium-up medium-7 columns">&nbsp;</div>
+</div>
+
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
+
+</whteko>
