@@ -1,0 +1,61 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 480
+  ClientWidth = 994
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object Button1: TButton
+    Position.X = 32.000000000000000000
+    Position.Y = 40.000000000000000000
+    Size.Width = 184.000000000000000000
+    Size.Height = 78.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Text = 'Button1'
+    OnClick = Button1Click
+  end
+  object Label1: TLabel
+    Position.X = 280.000000000000000000
+    Position.Y = 72.000000000000000000
+    Size.Width = 625.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Label1'
+  end
+  object Label2: TLabel
+    Position.X = 280.000000000000000000
+    Position.Y = 104.000000000000000000
+    Size.Width = 500.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Label2'
+  end
+  object Label3: TLabel
+    Position.X = 280.000000000000000000
+    Position.Y = 136.000000000000000000
+    Size.Width = 500.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Label3'
+  end
+  object Label4: TLabel
+    Position.X = 280.000000000000000000
+    Position.Y = 168.000000000000000000
+    Size.Width = 500.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Label4'
+  end
+  object Label5: TLabel
+    Position.X = 280.000000000000000000
+    Position.Y = 200.000000000000000000
+    Size.Width = 500.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'Label5'
+  end
+end
