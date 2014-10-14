@@ -74,11 +74,11 @@
           "Images": {
             "Welcome": {
               "Version": "0001",
-              "URL": "(~Static.AppRoot~)/mobile/welcome.svg"
+              "URL": "http://img.href.com/webhubdemos/whDPrefix/mobile/welcome.svg"
             },
             "Goodbye": {
               "Version": "0001",
-              "URL": "(~Static.AppRoot~)/mobile/goodbye.svg"
+              "URL": "http://img.href.com/webhubdemos/whDPrefix/mobile/goodbye.svg"
             }
           }
         }
@@ -142,18 +142,15 @@
           "Count": 2,
           "LingvoCount": 2,
           "Traduki": {
-            "btnCancel": {
-              "eng": "Cancel",
-              "por": "Cancelar"
-            },
-            "btnContinue": {
-              "eng": "Continue",
+            "btnGo": {
+              "eng": "Go",
               "por": "Continuar"
             },
-      }
-    }
-  }
-}
+            "btnExit": {
+              "eng": "Exit",
+              "por": "Cancelar"
+            }
+}}}}}}     
 </whdroplet>
 
 <whdroplet name="drJsonDetailLevel_Versions_1_0">
@@ -231,7 +228,6 @@
     "DPRAPIErrorCode": "10",
     "DPRAPIErrorMessage": "Unsupported API Request",
     "Payload": ""
-    }
   }
 }
 </whdroplet>
