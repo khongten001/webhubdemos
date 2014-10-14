@@ -6,7 +6,7 @@
 http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versions;32533
 </whdoc>
 
-<whpage pageid="pgTestJsonApi" desc="-Quick test of sample API requests">
+<whpage pageid="pgTestJsonApi" desc="-See DPR API responses">
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
@@ -30,9 +30,10 @@ http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.
 	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
 	<div class="small-18 medium-14 columns">
 		<ul>
-		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versions;(~Rand~)">Versions</a> </li>
-		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=LingvoList;(~Rand~)">LingvoList</a> </li>
-		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=ImageList;(~Rand~)">ImageList</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versions;(~DynURL.Rand~)">Versions</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=LingvoList;(~DynURL.Rand~)">LingvoList</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=ImageList;(~DynURL.Rand~)">ImageList</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=TradukoList;(~DynURL.Rand~)">TradukoList</a> </li>
 		</ul>
 	</div>
 	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
@@ -44,41 +45,11 @@ http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.
 <whpage pageid="jsonapirequest" desc="-JSON API Request">
 <whprep>
 (~NOMATCH|(~SessionID~)=999999|(~BOUNCE|pgregistry~)~)
-(~SETPROLOGUETYPE|json~)
+<!---  (~SETPROLOGUETYPE|json~) -->
+(~HEADER|Content-Type: application/json; charset=utf-8~)
 </whprep>
 (~waJsonApiRequest.Execute|~)
 </whpage>
-
-<whdroplet name="drJsonDetailLevel_Versions_1_0">
-{
-  "DelphiPrefixRegistryResponse": {
-    "Version": "1.0",
-    "WebAPIStatus": "OK",
-    "RequestType": "APIInfo",
-    "ResponseType": "APIInfo",
-    "DPRAPIErrorCode": "0",
-    "DPRAPIErrorMessage": "",
-    "Payload": {
-      "APIInfo": {
-        "Version": "1.0",
-        "DetailLevel": "Versions",
-        "WebAppAPISpec": {
-          "Version": "0001"
-        },
-        "ImageList": {
-          "Version": "0001"
-        },
-        "LingvoList": {
-          "Version": "0001"
-        },
-        "TradukoList": {
-          "Version": "0001"
-        }
-      }
-    }
-  }
-}
-</whdroplet>
 
 <whdroplet name="drJsonDetailLevel_ImageList_1_0">
 {
@@ -136,9 +107,75 @@ http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.
             },
             {
               "ISO639_3": "por",
-              "Name": "PortuguÃªs"
+              "Name": "português"
             }
           ]
+        }
+      }
+    }
+  }
+}
+</whdroplet>
+
+<whdroplet name="drJsonDetailLevel_TradukoList_1_0">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "OK",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "0",
+    "DPRAPIErrorMessage": "",
+    "Payload": {
+      "APIInfo": {
+        "Version": "1.0",
+        "DetailLevel": "TradukoList",
+        "WebAppAPISpec": {
+          "Version": "0001"
+        },
+        "TradukoList": {
+          "Version": "0001",
+          "Count": 2,
+          "LingvoCount": 2,
+          "Traduki": {
+            "btnCancel": {
+              "eng": "Cancel",
+              "por": "Cancelar"
+            },
+            "btnContinue": {
+              "eng": "Continue",
+              "por": "Continuar"
+            },
+      }
+    }
+  }
+}
+</whdroplet>
+
+<whdroplet name="drJsonDetailLevel_Versions_1_0">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "OK",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "0",
+    "DPRAPIErrorMessage": "",
+    "Payload": {
+      "APIInfo": {
+        "Version": "1.0",
+        "DetailLevel": "Versions",
+        "WebAppAPISpec": {
+          "Version": "0001"
+        },
+        "ImageList": {
+          "Version": "0001"
+        },
+        "LingvoList": {
+          "Version": "0001"
+        },
+        "TradukoList": {
+          "Version": "0001"
         }
       }
     }
@@ -154,7 +191,7 @@ http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.
     "RequestType": "APIInfo",
     "ResponseType": "APIInfo",
     "DPRAPIErrorCode": "10",
-    "DPRAPIErrorMessage": "Invalid API Request",
+    "DPRAPIErrorMessage": "Unsupported API Request",
     "Payload": ""
     }
   }

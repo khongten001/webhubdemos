@@ -2,7 +2,7 @@
     <PropertyGroup>
         <ProjectGuid>{0325117D-0F04-4CB4-85B9-DD7BD58D930A}</ProjectGuid>
         <MainSource>whDPrefix.dpr</MainSource>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <ProjectVersion>16.0</ProjectVersion>
         <Base>True</Base>
@@ -157,9 +157,13 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
+        <DCCReference Include="h:\webLink.pas"/>
+        <DCCReference Include="h:\wdbForm.pas"/>
         <DCCReference Include="h:\whdm_Lingvo.pas"/>
-        <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
-        <DCCReference Include="k:\webhub\lib\htWebApp.pas"/>
+        <DCCReference Include="h:\whcfg_App.pas"/>
+        <DCCReference Include="h:\htWebApp.pas"/>
+        <DCCReference Include="h:\whutil_ZaphodsMap.pas"/>
+        <DCCReference Include="h:\whutil_ValidEmail.pas"/>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -180,14 +184,13 @@
             <Form>fmwhGoogleSitemap</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_CodeSite.pas"/>
-        <DCCReference Include="wnxdbAlpha.pas"/>
-        <DCCReference Include="h:\whutil_ZaphodsMap.pas"/>
-        <DCCReference Include="h:\whutil_ValidEmail.pas"/>
         <DCCReference Include="..\..\More Examples\whOpenID\whOpenID_dmwhAction.pas"/>
-        <DCCReference Include="DPrefix_fmWhActions.pas">
+        <DCCReference Include="wnxdbAlpha.pas"/>
+        <DCCReference Include="uBigMacIndex.pas"/>
+        <DCCReference Include="DPrefix_fmAdminDataEntry.pas">
             <Form>fmWhActions</Form>
         </DCCReference>
-        <DCCReference Include="DPrefix_DMProjMgr.pas">
+        <DCCReference Include="DPrefix_dmProjMgr.pas">
             <Form>DMDPrefixProjMgr</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
@@ -195,14 +198,11 @@
             <Form>DMNexus</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="DPrefix_dmWhActions.pas">
+        <DCCReference Include="DPrefix_dmwhActions.pas">
             <Form>DMDPRWebAct</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
-        <DCCReference Include="h:\webLink.pas"/>
-        <DCCReference Include="h:\wdbForm.pas"/>
-        <DCCReference Include="uBigMacIndex.pas"/>
-        <DCCReference Include="DPrefix_dmWhNexus.pas">
+        <DCCReference Include="DPrefix_dmwhNexus.pas">
             <Form>DMWHNexus</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>

@@ -13,6 +13,11 @@ type
   TDMWHAPI = class(TDataModule)
     waJsonApiRequest: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
+
+/// <summary> WebHub Action component, called from pageid="jsonapirequest".
+/// </summary>
+/// <param name="Sender">Sender will be the TwhWebAction named waJsonApiRequest
+/// </param>
     procedure waJsonApiRequestExecute(Sender: TObject);
   private
     { Private declarations }
@@ -72,8 +77,6 @@ var
   AJSONResponseStr: string;
 begin
   AJSONResponseStr := '';
-// http://delphiprefix.href.com/eng/
-// dpr:jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;32533
   URL_Command := pWebApp.Command;
   if Pos('Version=1.0;', URL_Command) > 0 then
   begin
@@ -84,10 +87,29 @@ begin
         if Pos('DetailLevel=Versions;', URL_Command) > 0 then
         begin
           AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_Versions_1_0'];
+        end
+        else
+        if Pos('DetailLevel=ImageList;', URL_Command) > 0 then
+        begin
+          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_ImageList_1_0'];
+        end
+        else
+        if Pos('DetailLevel=LingvoList;', URL_Command) > 0 then
+        begin
+          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_LingvoList_1_0'];
+        end
+        else
+        if Pos('DetailLevel=TradukoList;', URL_Command) > 0 then
+        begin
+          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_TradukoList_1_0'];
         end;
       end;
     end;
   end;
+
+  if AJSONResponseStr = '' then
+    AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_Invalid'];
+
   pWebApp.SendStringImm(AJSONResponseStr);
 end;
 
@@ -95,8 +117,7 @@ procedure TDMWHAPI.WebAppUpdate(Sender: TObject);
 const cFn = 'WebAppUpdate';
 begin
   CSEnterMethod(Self, cFn);
-  // reserved for when the WebHub application object refreshes
-  // e.g. to make adjustments because the config changed.
+  // placeholder
   CSExitMethod(Self, cFn);
 end;
 

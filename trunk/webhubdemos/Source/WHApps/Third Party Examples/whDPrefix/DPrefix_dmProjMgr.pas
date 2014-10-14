@@ -134,8 +134,7 @@ begin
 
   Application.CreateForm(TDMWHNexus, DMWHNexus);
 
-  //if NOT (pWebApp.Startup.CustomModuleStatus('TDM001') = mstatusDisabled) then
-    Application.CreateForm(TDM001, DM001);
+  Application.CreateForm(TDMWHAPI, DMWHAPI);
 
   { Special Comment for DataModules - do not delete!
 
@@ -151,14 +150,15 @@ begin
     on any datamodules which require one-time initialization. }
   InitCoreWebHubDataModule;
   InitStandardWHModules;
-    Continue := DM001.Init(ErrorText);
-  Continue := DMNexus.Init(ErrorText);
+  Continue := DMNexus.Init(ErrorText);  { database first }
   if Continue then
     Continue := DMWHNexus.Init(ErrorText);
   if Continue then
     Continue := DMDPRWebAct.Init(ErrorText);
   if Continue then
     Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
+  if Continue then
+    Continue := DMWHAPI.Init(ErrorText);
   if Continue then
     Continue := DemoExtensions.Init;
 end;
