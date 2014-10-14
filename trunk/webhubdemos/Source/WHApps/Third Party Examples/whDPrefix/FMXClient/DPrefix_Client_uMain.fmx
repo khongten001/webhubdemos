@@ -1,0 +1,103 @@
+object WebBrowserForm: TWebBrowserForm
+  Left = 0
+  Top = 0
+  ClientHeight = 567
+  ClientWidth = 384
+  FormFactor.Width = 1920
+  FormFactor.Height = 1022
+  FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  OnCreate = FormCreate
+  DesignerMasterStyle = 3
+  object ToolBar1: TToolBar
+    Size.Width = 384.000000000000000000
+    Size.Height = 48.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object btnGO: TButton
+      Align = Right
+      Margins.Right = 5.000000000000000000
+      Position.X = 296.000000000000000000
+      Size.Width = 83.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'donetoolbutton'
+      TabOrder = 0
+      Text = 'GO'
+      OnClick = btnGOClick
+    end
+    object edtURL: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Client
+      TabOrder = 1
+      Text = 'http://www.google.com/'
+      Size.Width = 296.000000000000000000
+      Size.Height = 32.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object StatusBar1: TStatusBar
+    Position.Y = 523.000000000000000000
+    ShowSizeGrip = True
+    Size.Width = 384.000000000000000000
+    Size.Height = 44.000000000000000000
+    Size.PlatformDefault = False
+    object btnBack: TButton
+      Align = Left
+      Margins.Left = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'priortoolbuttonbordered'
+      TabOrder = 0
+      Text = 'Back'
+      OnClick = btnBackClick
+    end
+    object btnForward: TButton
+      Align = Right
+      Margins.Right = 5.000000000000000000
+      Position.X = 331.000000000000000000
+      Size.Width = 48.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = 'nexttoolbuttonbordered'
+      TabOrder = 1
+      Text = 'Forward'
+      OnClick = btnForwardClick
+    end
+    object btnExit: TButton
+      Position.X = 48.000000000000000000
+      Size.Width = 97.000000000000000000
+      Size.Height = 44.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 2
+      Text = 'Exit'
+      OnClick = btnExitClick
+    end
+    object SpeedHide: TSpeedButton
+      Position.X = 200.000000000000000000
+      Position.Y = 4.000000000000000000
+      Size.Width = 33.000000000000000000
+      Size.Height = 48.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'hide'
+      OnClick = SpeedHideClick
+    end
+  end
+  object WebBrowser1: TWebBrowser
+    Align = Client
+    Size.Width = 384.000000000000000000
+    Size.Height = 475.000000000000000000
+    Size.PlatformDefault = False
+    OnDidStartLoad = WebBrowser1DidStartLoad
+    OnDidFinishLoad = WebBrowser1DidFinishLoad
+  end
+  object LocationSensor1: TLocationSensor
+    LocationChange = lctLarge
+    Distance = 1.000000000000000000
+    OnLocationChanged = LocationSensor1LocationChanged
+    Left = 96
+    Top = 112
+  end
+end
