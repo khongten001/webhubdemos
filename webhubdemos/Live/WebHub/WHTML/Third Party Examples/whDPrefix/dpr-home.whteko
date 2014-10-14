@@ -134,4 +134,45 @@ googlepriority=0.9
 </body></html>
 </whpage>
 
+<whpage pageid="pghomemobile" desc="-Mobile Home Page for the Delphi Prefix Registry">
+<whpagesettings>
+googlesitemap=include
+googlechangefreq=yearly
+googlepriority=0.9
+</whpagesettings>
+(~mcdoctypehtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+	<title>(~~title_homepage~)</title>
+	(~drSharedHead~)
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+</head>
+<body itemscope itemtype="http://www.schema.org/WebPage">
+<meta itemprop="audience" content="Delphi developers" />
+
+(~drBannerThenNav~)
+
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<h1>(~~title_homepage~)</h1>
+		(~NOMATCH|(~ZMDefaultMapContext~)=WESLEY|<p><i>(~CentralInfo.WebTimeGMT~)</i></p>~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-18 medium-12 columns">
+		<p>
+		Welcome mobile user!
+		</p>
+			</div>
+	<div class="show-for-medium-up medium-3 large-3 columns">&nbsp;</div>
+</div>
+		
+(~drSharedFooter~)
+</body></html>
+</whpage>
+
 </whteko>

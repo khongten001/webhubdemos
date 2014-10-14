@@ -78,8 +78,7 @@ var
   FlagReadonlySession: Boolean;
 begin
   AJSONResponseStr := '';
-  if pWebApp.SessionID = '999999' then
-    FlagReadonlySession := True;
+  FlagReadonlySession := pWebApp.IsReadOnlySessionNumber(pWebApp.SessionNumber);
 
   URL_Command := pWebApp.Command;
   if Pos('Version=1.0;', URL_Command) > 0 then

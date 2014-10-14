@@ -23,6 +23,7 @@ type
     ImageIdentifier: string;
     Version: Integer;
     URL: string;
+    LocalFilespec: string;
   end;
   TDPRAPIResponseImageListRec = record
     hdr: TDPRAPIResponseHdrRec;
@@ -44,9 +45,9 @@ uses
   Classes,
   Variants,
   System.IOUtils,
-  {$IFDEF Delphi20UP}System.Json, {$ELSE} Data.DBXJSON, {$ENDIF}
+  System.JSON,
   ucJSONWrapper,
-  ucHttps, ucShell;
+  ucHttps;
 
 const
   cUserAgent = 'TIdHttp on Android';
@@ -62,12 +63,13 @@ var
   WebResponse: string;
 const
   cStartDomain = 'delphiprefix.modulab.com';   // local testing 192.168.x.x
-  cStartPath = 'win64'; // or 'scripts'
+  cStartPath = 'win64';
   cStartRunner = 'runisa_x_d21_win64.dll';
 var
   URL_Versions: string;
   URL_ImageList: string;
-  JSON: Variant;
+  JSONV: Variant;
+  DelphiPrefixRegistryResponse: Variant;
   S1: string;
   sb: TStringList;
 begin
@@ -86,31 +88,32 @@ begin
 
   if ErrorText = '' then
   begin
-    JSON := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
-    S1 := JSON.DelphiPrefixRegistryResponse.Version;
+    JSONV := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
+    DelphiPrefixRegistryResponse := JSONV.DelphiPrefixRegistryResponse;
+    S1 := DelphiPrefixRegistryResponse.Version;
     DPR_API_Versions_Rec.hdr.Version := StrToFloatDef(S1, 0.0);
     DPR_API_Versions_Rec.hdr.WebAPIStatus :=
-      JSON.DelphiPrefixRegistryResponse.WebAPIStatus;
+      DelphiPrefixRegistryResponse.WebAPIStatus;
     DPR_API_Versions_Rec.hdr.DPRAPIErrorCode :=
-      StrToIntDef(JSON.DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
+      StrToIntDef(DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
     DPR_API_Versions_Rec.hdr.DPRAPIErrorMessage :=
-      JSON.DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
+      DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
 
     if DPR_API_Versions_Rec.hdr.DPRAPIErrorCode = 0 then
     begin
-      S1 := JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
+      S1 := DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
       DPR_API_Versions_Rec.ApiInfo_Version := StrToFloatDef(S1, 0.0);
       DPR_API_Versions_Rec.WebAppAPISpec_Version :=
-        StrToIntDef(JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.
+        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
           WebAppAPISpec.Version, 0);
       DPR_API_Versions_Rec.ImageList_Version :=
-        StrToIntDef(JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.
+        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
           ImageList.Version, 0);
       DPR_API_Versions_Rec.LingvoList_Version :=
-        StrToIntDef(JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.
+        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
           LingvoList.Version, 0);
       DPR_API_Versions_Rec.TradukoList_Version :=
-        StrToIntDef(JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.
+        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
           TradukoList.Version, 0);
       Result := True;
     end
@@ -137,35 +140,36 @@ begin
 
     if ErrorText = '' then
     begin
-      JSON := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
-      S1 := JSON.DelphiPrefixRegistryResponse.Version;
+      JSONV := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
+      DelphiPrefixRegistryResponse := JSONV.DelphiPrefixRegistryResponse;
+      S1 := DelphiPrefixRegistryResponse.Version;
       DPR_API_ImageList_Rec.hdr.Version := StrToFloatDef(S1, 0.0);
       DPR_API_ImageList_Rec.hdr.WebAPIStatus :=
-        JSON.DelphiPrefixRegistryResponse.WebAPIStatus;
+        DelphiPrefixRegistryResponse.WebAPIStatus;
       DPR_API_ImageList_Rec.hdr.DPRAPIErrorCode :=
-        StrToIntDef(JSON.DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
+        StrToIntDef(DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
       DPR_API_ImageList_Rec.hdr.DPRAPIErrorMessage :=
-        JSON.DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
+        DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
 
       if DPR_API_ImageList_Rec.hdr.DPRAPIErrorCode = 0 then
       begin
-        S1 := JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
+        S1 := DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
         DPR_API_ImageList_Rec.ApiInfo_Version := StrToFloatDef(S1, 0.0);
         DPR_API_ImageList_Rec.Count :=
-          JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Count;
+          DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Count;
         if DPR_API_ImageList_Rec.Count = 2 then
         begin
           SetLength(DPR_API_ImageList_Rec.ImageList, DPR_API_ImageList_Rec.Count);
           DPR_API_ImageList_Rec.ImageList[0].ImageIdentifier := 'Welcome';
           DPR_API_ImageList_Rec.ImageList[0].Version :=
-            JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.Version;
+            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.Version;
           DPR_API_ImageList_Rec.ImageList[0].URL :=
-            JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.URL;
+            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.URL;
           DPR_API_ImageList_Rec.ImageList[1].ImageIdentifier := 'Goodbye';
           DPR_API_ImageList_Rec.ImageList[1].Version :=
-            JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.Version;
+            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.Version;
           DPR_API_ImageList_Rec.ImageList[1].URL :=
-            JSON.DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.URL;
+            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.URL;
 
           WebResponse := HTTPSGet(DPR_API_ImageList_Rec.ImageList[0].URL,
             ErrorText, cUserAgent, '', False, True);
@@ -175,10 +179,10 @@ begin
             sb := TStringList.Create;
             sb.Text := WebResponse;
             ForceDirectories(Client_Documents_Path);
-            sb.SaveToFile(IncludeTrailingPathDelimiter(Client_Documents_Path) +
-              'welcome.svg');
-            WinShellOpen(IncludeTrailingPathDelimiter(Client_Documents_Path) +
-              'welcome.svg');
+            DPR_API_ImageList_Rec.ImageList[0].LocalFilespec :=
+              IncludeTrailingPathDelimiter(Client_Documents_Path) +
+              'welcome.svg';
+            sb.SaveToFile(DPR_API_ImageList_Rec.ImageList[0].LocalFilespec);
           finally
             FreeAndNil(sb);
           end;

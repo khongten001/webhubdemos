@@ -14,6 +14,7 @@ type
     Label3: TLabel;
     Label4: TLabel;
     Label5: TLabel;
+    Label6: TLabel;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -46,6 +47,8 @@ begin
       IntToStr(DPR_API_Versions_Rec.LingvoList_Version);
     Label5.Text := 'DPR_API_Versions_Rec.TradukoList_Version=' +
       IntToStr(DPR_API_Versions_Rec.TradukoList_Version);
+    Label6.Text := 'Wecome file = ' +
+      DPR_API_ImageList_Rec.ImageList[0].LocalFilespec;
     ShowMessage('good');
   end
   else

@@ -72,13 +72,13 @@
           "Version": "0001",
           "Count": 2,
           "Images": {
-            "SplashScreen": {
+            "Welcome": {
               "Version": "0001",
-              "URL": "http://media.delphiprefix.modulab.com/images/SplashScreen-v0001.svg"
+              "URL": "(~Static.AppRoot~)/mobile/welcome.svg"
             },
             "Goodbye": {
               "Version": "0001",
-              "URL": "http://media.delphiprefix.modulab.com/images/Goodbye-v0001.svg"
+              "URL": "(~Static.AppRoot~)/mobile/goodbye.svg"
             }
           }
         }
@@ -204,14 +204,14 @@
           "Version": "0001",
           "URLScheme": "http://",
           "URLAuthority": "(~Request.Host~)",
-          "URLPath": "/win64/runisa_x_d21_win64.dll?",
+          "URLPath": "/(~Request.RawVMR~)?",
           "URLQueryStrings": {
             "ToIntercept": {
               "SplashScreen": "dpr:pgsplashscreen",
               "LingvoChanged": "dpr:pglingvochanged:(~SessionID~):Lingvo="
             },
             "ToGenerate": {
-              "HomePage": "dpr:::",
+              "HomePage": "dpr:pghomemobile::",
               "Donate": "dpr:pgdonate:(~SessionID~).(~DynURL.Rand~):country="
             }
           }
