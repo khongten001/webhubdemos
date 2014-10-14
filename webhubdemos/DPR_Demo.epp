@@ -1,52 +1,20 @@
 ﻿[File0]
 ProjectStatus=1
 FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\register.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\register.whteko
+RelativeFilename=Live\WebHub\WHTML\More Examples\whOpenID\whJanrainIntf.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOpenID\whJanrainIntf.whteko
 FTPFilename=
 ForcedReadOnly=0
 
 [File1]
 ProjectStatus=1
 FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\More Examples\whOpenID\whJanrainIntf.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOpenID\whJanrainIntf.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File2]
-ProjectStatus=0
-FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-en.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-en.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File3]
-ProjectStatus=1
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\admin.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\admin.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File4]
-ProjectStatus=1
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dprcleanup2013.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dprcleanup2013.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File5]
-ProjectStatus=0
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\headfoot.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\headfoot.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File6]
+[File2]
 ProjectStatus=1
 FileType=*
 RelativeFilename=Live\Database\whDPrefix\BigMacIndex.csv
@@ -54,15 +22,7 @@ Filename=D:\Projects\webhubdemos\Live\Database\whDPrefix\BigMacIndex.csv
 FTPFilename=
 ForcedReadOnly=0
 
-[File7]
-ProjectStatus=0
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\home.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\home.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File8]
+[File3]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\about\about-whDPrefix.whteko
@@ -70,7 +30,103 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\about\about-whDP
 FTPFilename=
 ForcedReadOnly=0
 
+[File4]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-admin.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-admin.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File5]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-advertising.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-advertising.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File6]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-cleanup2013.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-cleanup2013.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File7]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-credits.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-credits.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File8]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-donate.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-donate.whteko
+FTPFilename=
+ForcedReadOnly=0
+
 [File9]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-headfoot.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-headfoot.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File10]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-home.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-home.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File11]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-login.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-login.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File12]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-register.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-register.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File13]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-eng.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-text-eng.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File14]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-view-registry.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-view-registry.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File15]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-api.whteko
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dpr-api.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File16]
 ProjectStatus=0
 FileType=css
 RelativeFilename=Live\WebRoot\webhub\demos\whDPrefix\css\whdprefix.css
@@ -78,7 +134,7 @@ Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whDPrefix\css\whdpref
 FTPFilename=
 ForcedReadOnly=0
 
-[File10]
+[File17]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\cssdroplets.whteko
@@ -86,7 +142,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\cssdroplets.whte
 FTPFilename=
 ForcedReadOnly=0
 
-[File11]
+[File18]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\designrefresh_jquery.whteko
@@ -94,7 +150,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\designrefresh_jq
 FTPFilename=
 ForcedReadOnly=0
 
-[File12]
+[File19]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
@@ -102,7 +158,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File13]
+[File20]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whteko
@@ -110,7 +166,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File14]
+[File21]
 ProjectStatus=1
 FileType=*
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_chi-sample.png
@@ -118,7 +174,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_chi-sampl
 FTPFilename=
 ForcedReadOnly=0
 
-[File15]
+[File22]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whteko
@@ -126,7 +182,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File16]
+[File23]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whteko
@@ -134,7 +190,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File17]
+[File24]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whteko
@@ -142,7 +198,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File18]
+[File25]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whteko
@@ -150,7 +206,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File19]
+[File26]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\macros.whteko
@@ -158,7 +214,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\macros.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File20]
+[File27]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\monitor.whteko
@@ -166,7 +222,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\monitor.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File21]
+[File28]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
@@ -174,7 +230,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File22]
+[File29]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
@@ -182,7 +238,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File23]
+[File30]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
@@ -190,7 +246,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File24]
+[File31]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\test_urls.whteko
@@ -198,31 +254,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\test_urls.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File25]
-ProjectStatus=1
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\login.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\login.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File26]
-ProjectStatus=1
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\pages.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\pages.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File27]
-ProjectStatus=0
-FileType=1655568939
-RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\scan.whteko
-Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\scan.whteko
-FTPFilename=
-ForcedReadOnly=0
-
-[File28]
+[File32]
 ProjectStatus=1
 FileType=css
 RelativeFilename=Live\WebRoot\webhub\demos\whDPrefix\css\whdprefix_colors.css
@@ -230,7 +262,7 @@ Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whDPrefix\css\whdpref
 FTPFilename=
 ForcedReadOnly=0
 
-[File29]
+[File33]
 ProjectStatus=0
 FileType=css
 RelativeFilename=Live\WebRoot\webhub\demos\whDPrefix\css\foundation.css
@@ -238,7 +270,7 @@ Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\whDPrefix\css\foundat
 FTPFilename=
 ForcedReadOnly=0
 
-[File30]
+[File34]
 ProjectStatus=0
 FileType=xml
 RelativeFilename=Live\WebHub\WHTML\Third Party Examples\whDPrefix\WHAppConfig_dpr.xml
@@ -249,8 +281,32 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=1
 BookmarksProjectWide=0
-TabIndex=5
+TabIndex=3
 FirstFileTab=0
-FileCount=31
-RemovedCount=0
+FileCount=35
+RemovedCount=8
+
+[Removed0]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\dprcleanup2013.whteko
+
+[Removed1]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\admin.whteko
+
+[Removed2]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\register.whteko
+
+[Removed3]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\pages.whteko
+
+[Removed4]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\login.whteko
+
+[Removed5]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\home.whteko
+
+[Removed6]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\headfoot.whteko
+
+[Removed7]
+Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Third Party Examples\whDPrefix\scan.whteko
 
