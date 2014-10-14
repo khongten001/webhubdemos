@@ -2,6 +2,7 @@ program DPrefix_Client;
 
 uses
   System.StartUpCopy,
+  System.ByteStrings,
   FMX.Forms,
   DPrefix_Client_uMain in 'DPrefix_Client_uMain.pas' {WebBrowserForm},
   ucHttps in 'K:\WebHub\tpack\ucHttps.pas',
@@ -10,8 +11,14 @@ uses
 
 {$R *.res}
 
+var
+  ErrorText: string = '';
+
 begin
   Application.Initialize;
-  Application.CreateForm(TWebBrowserForm, WebBrowserForm);
-  Application.Run;
+  if ErrorText = '' then
+  begin
+    Application.CreateForm(TWebBrowserForm, WebBrowserForm);
+    Application.Run;
+  end;
 end.
