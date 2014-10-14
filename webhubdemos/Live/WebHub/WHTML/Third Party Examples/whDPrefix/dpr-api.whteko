@@ -1,11 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
+<whdoc for="jsonapirequest">
+http://local64/win64/runisa_x_d21_win64.dll?dpr:jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versions;32533
+</whdoc>
+
+<whpage pageid="pgTestJsonApi" desc="-Quick test of sample API requests">
+(~mcDocTypeHtml~)
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><!-- (~ANCHOR|anchHtmlTag~) -->
+	<title>(~PageDesc~)</title>
+	(~drSharedHead~)
+	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
+</head>
+<body>
+
+(~drBannerThenNav~)
+
+<div class="row">
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="small-18 medium-14 columns">
+		<h1>(~PageDesc~)</h1>
+	</div>
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+</div>
+
+<div class="row">
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="small-18 medium-14 columns">
+		<ul>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versions;(~Rand~)">Versions</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=LingvoList;(~Rand~)">LingvoList</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=ImageList;(~Rand~)">ImageList</a> </li>
+		</ul>
+	</div>
+	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+</div>
+(~drSharedFooter~)
+</body></html>
+</whpage>
 
 <whpage pageid="jsonapirequest" desc="-JSON API Request">
 <whprep>
 (~NOMATCH|(~SessionID~)=999999|(~BOUNCE|pgregistry~)~)
+(~SETPROLOGUETYPE|json~)
 </whprep>
 (~waJsonApiRequest.Execute|~)
 </whpage>
@@ -17,15 +56,14 @@
     "WebAPIStatus": "OK",
     "RequestType": "APIInfo",
     "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "0",
+    "DPRAPIErrorMessage": "",
     "Payload": {
       "APIInfo": {
         "Version": "1.0",
         "DetailLevel": "Versions",
         "WebAppAPISpec": {
           "Version": "0001"
-        },
-        "VideoList": {
-          "Version": "0000"
         },
         "ImageList": {
           "Version": "0001"
@@ -37,6 +75,87 @@
           "Version": "0001"
         }
       }
+    }
+  }
+}
+</whdroplet>
+
+<whdroplet name="drJsonDetailLevel_ImageList_1_0">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "OK",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "0",
+    "DPRAPIErrorMessage": "",
+    "Payload": {
+      "APIInfo": {
+        "Version": "1.0",
+        "DetailLevel": "ImageList",
+        "ImageList": {
+          "Version": "0001",
+          "Count": 2,
+          "Images": {
+            "SplashScreen": {
+              "Version": "0001",
+              "URL": "http://media.delphiprefix.modulab.com/images/SplashScreen-v0001.svg"
+            },
+            "Goodbye": {
+              "Version": "0001",
+              "URL": "http://media.delphiprefix.modulab.com/images/Goodbye-v0001.svg"
+            }
+          }
+        }
+      }
+    }
+  }
+}
+</whdroplet>
+
+<whdroplet name="drJsonDetailLevel_LingvoList_1_0">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "OK",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "0",
+    "DPRAPIErrorMessage": "",
+    "Payload": {
+      "APIInfo": {
+        "Version": "1.0",
+        "DetailLevel": "LingvoList",
+        "LingvoList": {
+          "Version": "0001",
+          "Count": 3,
+          "Lingvoj": [
+            {
+              "ISO639_3": "eng",
+              "Name": "English"
+            },
+            {
+              "ISO639_3": "por",
+              "Name": "PortuguÃªs"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
+</whdroplet>
+
+<whdroplet name="drJsonDetailLevel_Invalid">
+{
+  "DelphiPrefixRegistryResponse": {
+    "Version": "1.0",
+    "WebAPIStatus": "Error",
+    "RequestType": "APIInfo",
+    "ResponseType": "APIInfo",
+    "DPRAPIErrorCode": "10",
+    "DPRAPIErrorMessage": "Invalid API Request",
+    "Payload": ""
     }
   }
 }
