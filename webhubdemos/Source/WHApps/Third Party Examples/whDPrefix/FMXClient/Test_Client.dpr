@@ -8,6 +8,8 @@ uses
 
 {$R *.res}
 
+//   ucJSONWrapper in 'k:\webhub\tpack\ucJSONWrapper.pas',
+
 begin
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);

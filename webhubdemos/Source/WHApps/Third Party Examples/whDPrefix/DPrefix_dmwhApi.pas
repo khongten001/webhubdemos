@@ -96,7 +96,10 @@ begin
         if Pos('DetailLevel=ImageList;', URL_Command) > 0 then
         begin
           if FlagReadonlySession then
+          begin
             AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_ImageList_1_0'];
+            AJSONResponseStr := pWebApp.Expand(AJSONResponseStr);
+          end;
         end
         else
         if Pos('DetailLevel=LingvoList;', URL_Command) > 0 then
