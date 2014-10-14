@@ -75,8 +75,12 @@ procedure TDMWHAPI.waJsonApiRequestExecute(Sender: TObject);
 var
   URL_Command: string;
   AJSONResponseStr: string;
+  FlagReadonlySession: Boolean;
 begin
   AJSONResponseStr := '';
+  if pWebApp.SessionID = '999999' then
+    FlagReadonlySession := True;
+
   URL_Command := pWebApp.Command;
   if Pos('Version=1.0;', URL_Command) > 0 then
   begin
@@ -86,22 +90,32 @@ begin
       begin
         if Pos('DetailLevel=Versions;', URL_Command) > 0 then
         begin
-          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_Versions_1_0'];
+          if FlagReadonlySession then
+            AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_Versions_1_0'];
         end
         else
         if Pos('DetailLevel=ImageList;', URL_Command) > 0 then
         begin
-          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_ImageList_1_0'];
+          if FlagReadonlySession then
+            AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_ImageList_1_0'];
         end
         else
         if Pos('DetailLevel=LingvoList;', URL_Command) > 0 then
         begin
-          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_LingvoList_1_0'];
+          if FlagReadonlySession then
+            AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_LingvoList_1_0'];
         end
         else
         if Pos('DetailLevel=TradukoList;', URL_Command) > 0 then
         begin
-          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_TradukoList_1_0'];
+          if FlagReadonlySession then
+            AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_TradukoList_1_0'];
+        end
+        else
+        if Pos('DetailLevel=WebAppAPISpec;', URL_Command) > 0 then
+        begin
+          AJSONResponseStr := pWebApp.Tekero['drJsonDetailLevel_WebAppAPISpec_1_0'];
+          AJSONResponseStr := pWebApp.Expand(AJSONResponseStr);
         end;
       end;
     end;
