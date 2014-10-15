@@ -19,7 +19,7 @@ googlepriority=0.9
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
 
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 
 <!--- drGoogleAdsOnDPR call was here -->
 
@@ -150,7 +150,7 @@ googlepriority=0.9
 <body itemscope itemtype="http://www.schema.org/WebPage">
 <meta itemprop="audience" content="Delphi developers" />
 
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>

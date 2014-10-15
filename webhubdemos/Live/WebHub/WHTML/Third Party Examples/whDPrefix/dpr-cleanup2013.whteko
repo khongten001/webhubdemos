@@ -36,7 +36,7 @@ googlepriority=0
 	</style>
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|cleanup2013b~)">
 <table id="cleanup-table">
@@ -85,7 +85,7 @@ googlepriority=0
   <link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 
 <h2>Sorry, No Go.</h2>
 (~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
@@ -116,7 +116,7 @@ googlepriority=0
   (~PARAMS|drJanrainJavascript|openidprocess~)
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 (~drMaintainNav~)
 
 <h1>Change (~_EMail~)</h1>
@@ -165,7 +165,7 @@ googlepriority=0
 	</style>
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 (~drMaintainNav~)
 
 <div id="dprmain-div">
@@ -219,7 +219,7 @@ googlepriority=0
 (~drSharedHead~)
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 (~drMaintainNav~)
 
 <h1>Are you sure?</h1>
