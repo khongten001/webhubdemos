@@ -32,13 +32,13 @@
 		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=ImageList;(~DynURL.Rand~)">ImageList</a> </li>
 		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=TradukoList;(~DynURL.Rand~)">TradukoList</a> </li>
 		</ul>
-		<h2>Process</h2>
+		<h2>URLs to Process</h2>
 		<ul>
 		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:(~SessionID~):Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=WebAppAPISpec;(~DynURL.Rand~)">WebAppAPISpec</a> </li>
 		</ul>
 		<h2>Error</h2>
 		<ul>
-		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=Versns;(~DynURL.Rand~)">Versions - Typo</a> </li>
+		<li> <a href="(~DynURL.ToAppID~):jsonapirequest:999999:Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;DetailLevel=TypoHere;(~DynURL.Rand~)">Versions - Typo</a> </li>
 		</ul>
 	</div>
 	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
@@ -137,13 +137,17 @@
           "Version": "0001"
         },
         "TradukoList": {
-          "Version": "0001",
-          "Count": 2,
+          "Version": "0002",
+          "Count": 3,
           "LingvoCount": 2,
           "Traduki": {
             "btnGo": {
               "eng": "Go",
               "por": "Vá"
+            },
+            "btnHide": {
+              "eng": "Hide",
+              "por": "Ocultar"
             },
             "btnExit": {
               "eng": "Exit",
