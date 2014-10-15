@@ -9,7 +9,7 @@ They DPR customizations are very small and should refresh in real time.
 
 <whmacros>
 mcDPRCSSDir=/webhub/demos/whDPrefix/css/
-mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0003~)
+mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0004~)
 mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
 mcBigMacIndex=<a title="Big Mac Currency Valuation Index at The Economist" href="http://www.economist.com/content/big-mac-index">Big Mac Index</a>
 mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http://www.embarcadero.com/coderage">Code Rage 9</a>
