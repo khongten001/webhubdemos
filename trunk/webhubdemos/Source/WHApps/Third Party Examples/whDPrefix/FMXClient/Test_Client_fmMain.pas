@@ -50,8 +50,13 @@ begin
     if High(DPR_API_ImageList_Rec.ImageList) > 0 then
       Label6.Text := 'Wecome file = ' +
         DPR_API_ImageList_Rec.ImageList[0].LocalFilespec;
-    ShowMessage('good' + sLineBreak + Translate('btnGo', 'por') +
-      sLineBreak + Translate('btnExit', 'por'));
+    ShowMessage('portuguese' +
+      sLineBreak + Translate('btnGo', 'por') +
+      sLineBreak + Translate('btnExit', 'por') +
+      sLineBreak + 'english' +
+      sLineBreak + Translate('btnGo', 'eng') +
+      sLineBreak + Translate('btnExit', 'eng')
+      );
   end
   else
     ShowMessage(ErrorText);
