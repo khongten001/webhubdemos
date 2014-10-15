@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code">
+<whteko designmode="code" notes="not yet converted to use Foundation CSS">
 
 <whpage pageid="pgadminbrowse" desc="-Browse with the ability to edit entries" mode="design">
 <whpagesettings>
@@ -75,7 +75,8 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 (~drAdminCheckpoint~)
-(~JUMP|pgHomePage|<IMG SRC="(~mcDPRImageDir~)dpr.png" HEIGHT=90 WIDTH=649 alt="DPR logo text" />~)
+(~drDPRBanner~)
+
 <br><FONT SIZE=-1 COLOR="#000000">
 (~JUMP|pgHomePage|Homepage~) 
 |&nbsp;(~JUMP|pgAdminBrowse|Browse&nbsp;BoolVarsPending&nbsp;records~) 
@@ -87,7 +88,7 @@ googlepriority=0
 
 <center>
 <table style="width:72%;"><tr><td>
-//
+
 <FONT FACE="Verdana" COLOR="#000000">
 <font size="-1">
 <ul>
@@ -109,7 +110,7 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 (~drAdminCheckpoint~)
-<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; padding-right: 5em; height:90px; width:649px;" alt="Delphi Prefix Registry Logo"/>
+(~drDPRBanner~)
 (~mcDPRLogo~)
 <p>
 (~waLocate.execute~)
@@ -132,7 +133,7 @@ googlepriority=0
 (~CLEAR|*~)
 (~SESSION|Delete~)
 
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 <h1>Done</h1>
 <p>Your session data file has been deleted.</p>
 

@@ -12,7 +12,7 @@
 </head>
 <body>
 
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 
 <div class="row">
 	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>

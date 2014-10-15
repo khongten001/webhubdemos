@@ -3,12 +3,12 @@
 <whteko designmode="code">
 
 <whdoc for="mcDPRCSSDir">
-Avoid Amazon Cloudfront hosting for the CSS files - they are too small to worry about and their content should refresh in real time.
+Avoid Amazon Cloudfront hosting of CSS, except for the non-Zurb-Foundation CSS files.
+They DPR customizations are very small and should refresh in real time.
 </whdoc>
 
 <whmacros>
 mcDPRCSSDir=/webhub/demos/whDPrefix/css/
-mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
 mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0003~)
 mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
 </whmacros>
@@ -25,19 +25,17 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css?(~mcCSSVersion~)" />
 </whdroplet>
 
-<whdroplet name="drBannerThenNav" show="yes">
+<whdroplet name="drDPRBanner">
 <div class="row">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
-		<!--- (~GO|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~) -->
 		<h1 class="fancy">(~GO|pgHomePage|Delphi Prefix Registry~)</h1>
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
-(~drSkipBannerThenNav~)
 </whdroplet>
 
-<whdroplet name="drSkipBannerThenNav" show="no">
+<whdroplet name="drDPRTopNavigation">
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns text-center" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
@@ -50,6 +48,12 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 </whdroplet>
+
+<whdroplet name="drDPRBannerPlusTopNav">
+(~drDPRBannerPlusTopNav~)
+(~drDPRTopNavigation~)
+</whdroplet>
+
 
 <whdroplet name="drSharedFooter">
 <div class="row">

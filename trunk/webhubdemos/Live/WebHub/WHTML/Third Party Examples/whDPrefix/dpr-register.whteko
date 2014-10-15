@@ -21,7 +21,7 @@ googlepriority=0.8
 	(~PARAMS|drJanrainJavascript|pgregopenid~)
 </head>
 <body>
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 
 <div class="row">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
@@ -80,7 +80,7 @@ googlepriority=0
   <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
-(~drBannerThenNav~)
+(~drDPRBannerPlusTopNav~)
 
 <div class="row">
 	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
@@ -213,7 +213,9 @@ googlepriority=0
   <meta name="robots" content="noindex,nofollow" />
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+
+(~drDPRBanner~)
+
 <whdroplet name="drMaintainNav" show="yes">
 <div>(~JUMP|pgmaintain|(~~link_maintain~)~)</div>
 </whdroplet>
@@ -292,7 +294,7 @@ googlepriority=0
   (~drSharedHead~)
 </head>
 <body>
-(~mcDPRHomeGraphic~)
+(~drDPRBanner~)
 <div>(~JUMP|pgmaintain|(~~link_maintain~)~)</div>
 <div id="dprmain-div">
 
