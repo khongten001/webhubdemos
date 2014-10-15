@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" defaultlingvo="rus"  notes="planned for translation">
+
+<whtranslations>
+~banner_DelphiPrefixRegistry=Delphi Prefix Registry
+~title_credits=Credits&hellip;
+~title_creditsLine2=For the Initial Creation of the Delphi Prefix Registry
+~title_donate=Donate
+~title_homepage=Welcome
+~title_homepage_long=Welcome to the Delphi Prefix Registry
+~title_maintain=Maintain Prefix Registrations
+~title_register=Add/Edit
+~title_registerDetails=Prefix Registration Details
+~title_view=View &ndash; Alphabetical
+~link_credits=Credits&hellip;
+~link_donate=Donate
+~link_edit=Add/Edit
+~link_edit_long=Add/Edit YOUR Prefixes
+~link_home=Welcome
+~link_maintain=Maintain Prefixes
+~link_view_long=View the Registry
+~link_view=View
+</whtranslations>
+
+<!--- Donations page -->
+
+<whtranslations>
+~para_donate_show_your_support=Show your support by contributing the value of one Big Mac in your country.
+~para_donate_effort_more_fair=In an effort to make prices more fair, we are using the (~mcBigMacIndex~) to suggest a donation amount.
+~hdr_suggested_donation=Suggested Donation Amount
+~prompt_country_code=Country Code
+~para_from_android=Visiting this page from our (~mcCodeRage9~) Android app gives you automatic pricing for your country.
+~word_alternatively=Alternatively
+~link_choose_country=use this link to choose your country
+</whtranslations>
+
+<!--- View Registry page -->
+<whtranslations>
+~noun_prefix=Prefix
+~noun_Organization=Organization
+~noun_Purpose=Purpose
+~noun_WebSite=Web Site
+~noun_Contact=Contact
+~verbPastTense_Registered=Registered
+</whtranslations>
+
+<!--- Change Country Code page -->
+<whtranslations>
+~prompt_your_country=Your Country
+~button_apply=Apply
+</whtranslations>
+
+<!--- Mobile home page -->
+<whtranslations>
+~para_welcome_mobile=Welcome mobile user!
+</whtranslations>
+
+</whteko>
