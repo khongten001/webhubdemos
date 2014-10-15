@@ -209,7 +209,7 @@
               "LingvoChanged": ":::lingvo="
             },
             "ToGenerate": {
-              "HomePage": "pgmobile",
+              "HomePage": "pgmobile:(~SessionID~).(~DynURL.Rand~)",
               "Donate": "pgdonate:(~SessionID~).(~DynURL.Rand~):country="
             }
           }
