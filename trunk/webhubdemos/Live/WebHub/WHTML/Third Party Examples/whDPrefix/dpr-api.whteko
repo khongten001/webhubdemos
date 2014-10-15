@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whpage pageid="pgTestJsonApi" desc="-See DPR API responses">
+<whpage pageid="pgTestJsonApi" desc="-View API responses">
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
@@ -49,8 +49,7 @@
 
 <whpage pageid="jsonapirequest" desc="-JSON API Request">
 <whprep>
-<!---  (~SETPROLOGUETYPE|json~) -->
-<!--- (~HEADER|Content-Type: application/json; charset=utf-8~) -->
+(~SETPROLOGUETYPE|json~)
 </whprep>
 (~waJsonApiRequest.Execute|~)
 </whpage>
