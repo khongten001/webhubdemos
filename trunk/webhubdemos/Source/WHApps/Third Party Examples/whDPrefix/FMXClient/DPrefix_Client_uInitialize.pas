@@ -1,5 +1,19 @@
 unit DPrefix_Client_uInitialize;
 
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ *                                                                          * }
+{ * This source code file is part of the Delphi Prefix Registry.             * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
+
 interface
 
 {$I hrefdefines.inc}
@@ -308,7 +322,7 @@ var
   TradukiTopJO, TradukiItemJO: TJSONObject;
   WebAppAPIJO, URLQueryStringsJO, InterceptJO, GenerateJO: TJSONObject;
   n: Integer;
-  iTrad, iAPI: Integer;
+  iTrad, jTrad, iAPI: Integer;
 begin
   ErrorText := '';
   if FlagInitDone then
@@ -420,7 +434,7 @@ begin
 
         if DPR_API_TradukoList_Rec.hdr.DPRAPIErrorCode = 0 then
         begin
-          if (APIInfoJO.Count = 4) then
+          if (APIInfoJO.Count >= 4) then
           begin
 
             TradukoListJO := TJSONObject(APIInfoJO.Pairs[3].JsonValue);
@@ -433,7 +447,7 @@ begin
             DPR_API_TradukoList_Rec.LingvoCount :=
               JSONPairtoInteger(TradukoListJO.Pairs[2]);
 
-            if (DPR_API_TradukoList_Rec.Count = 3) then  // version 0002
+            if (DPR_API_TradukoList_Rec.Count >= 3) then  // version 0002
             begin
               n := -1;
               SetLength(DPR_API_TradukoList_Rec.TradukiList,
@@ -445,23 +459,18 @@ begin
               for iTrad := 0 to Pred(DPR_API_TradukoList_Rec.Count) do
               begin
                 Inc(n);
-                DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                  NoQuotes(TradukiTopJO.Pairs[iTrad].JsonString.ToString); // btnGo
                 TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[iTrad].JsonValue);
-
-                S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
-                DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
-                S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
-                DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
-
-                Inc(n);  // next language, maybe portuguese
-                DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                  DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
-
-                DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-                  NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString);
-                DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-                  NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
+                for jTrad := 0 to Pred(DPR_API_TradukoList_Rec.LingvoCount) do
+                begin
+                  DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                    NoQuotes(TradukiTopJO.Pairs[iTrad].JsonString.ToString); // btnGo
+                  S1 := TradukiItemJO.Pairs[jTrad].JSONString.ToString;
+                  DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
+                  S1 := TradukiItemJO.Pairs[jTrad].JSONValue.ToString;
+                  DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
+                  if jTrad < Pred(DPR_API_TradukoList_Rec.LingvoCount) then
+                    Inc(n);  // next, e.g. portuguese
+                end;
               end;  // back to english
 
               Result := True;
