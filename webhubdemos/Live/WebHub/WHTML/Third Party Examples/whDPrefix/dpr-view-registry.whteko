@@ -16,26 +16,28 @@ mcManPrefCaptionsRedraw=Redraw
 
 <whdroplet name="drScanRegistry">
 <div class="row">
-	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-1 medium-1 columns">(~GO|pgHomePage|(~mcDPRLogo~)~)</div>
 	<div class="small-17 medium-11 columns">
 		
 		<h2>(~~title_view~)</h2>
-		<span id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
-		(~WebDBAlphabet.alphabet~)
-		</span>
-		(~WebDBAlphabet.execute|~)
-		
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 
-(~drSkipBannerThenNav~)
-
-<!--- (~drGoogleAdsOnDPR~) -->
+<div class="row">
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+	<div class="small-17 medium-12 columns">
+		<span id="alphabetNav-div" itemscope itemtype="http://www.schema.org/SiteNavigationElement">
+		(~WebDBAlphabet.alphabet~)
+		</span>
+		(~WebDBAlphabet.execute|~)
+	</div>
+	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
+</div>
 
 <div class="row">
-	<div class="show-for-medium-up medium-2 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-2 columns">(~drGoogleAdsSidebar~)</div>
 	<div class="small-18 medium-14 columns" itemscope itemtype="http://schema.org/Table">
 		(~ManPref.execute|Approved~)
 	</div>

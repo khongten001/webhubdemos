@@ -6,11 +6,9 @@
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRImageDir=(~Static.AppRoot~)
 mcDPRCSSDir=(~Static.AppRoot~)css/
-mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
-mcDPRLogo=<img src="(~mcDPRImageDir~)dprlogo.png" height="59" width="126" alt="D.P.R." />
+mcDPRLogo=<span class="fancy">DP<sub>x</sub>R</span>
 mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
 mcAthenaDelphiImage=<img src="(~mcDPRImageDir~)delphi2.png" alt="Athena -- Delphi2" />
-mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0001~)
 </whmacros>
 
 <whmacros>

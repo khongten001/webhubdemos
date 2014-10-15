@@ -26,7 +26,7 @@ googlepriority=0.9
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
-		<h1>(~~title_homepage~)</h1>
+		<h1>(~~link_homepage~)</h1>
 		(~NOMATCH|(~ZMDefaultMapContext~)=WESLEY|<p><i>(~CentralInfo.WebTimeGMT~)</i></p>~)
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
@@ -95,7 +95,7 @@ googlepriority=0.9
 		
 <div class="row">
 	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
-	<div class="show-for-medium-up medium-2 columns">(~GO|pgThanks|<img src="(~mcDPRImageDir~)dprlogo.png"  alt="Thanks; DPR logo" />~)</div>
+	<div class="show-for-medium-up medium-2 columns">(~GO|pgThanks|(~mcDPRLogo~)~)</div>
 	<div class="small-18 medium-12 columns">
 
 		<p>At the end of the day what matters is that names are
