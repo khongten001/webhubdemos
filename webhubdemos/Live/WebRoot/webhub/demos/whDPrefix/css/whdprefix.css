@@ -26,18 +26,17 @@ table {empty-cells: show;}
 }
 	
 #approvedPrefixesTable {
-    margin-top: 1.4em; border: solid 1px; 
+    margin-top: 0.4em; border: solid 1px; 
 		padding: 0.3em 0.1em; 
-		
 		border-collapse: collapse;
 }
 #approvedPrefixesTable th {
-		color: crimson;
+		color: white; /* crimson; */
 		text-align: left;
-		background-color: #EEE;
+		background-color: #569D9D; /* #EEE;*/
 }
-#approvedPrefixesTable tbody tr.alt0 td {background-color: bisque;}
-#approvedPrefixesTable tbody tr.alt1 td {background-color: #EEE;}
+#approvedPrefixesTable tbody tr.alt0 td {background-color: white;}  /* bisque; */
+#approvedPrefixesTable tbody tr.alt1 td {background-color: #C0EAC0;} /* #EEE; */
 #approvedPrefixesTable th, #approvedPrefixesTable td {
 	padding: 0.5em 0.9em 0.5em 0.9em;
 }
@@ -68,8 +67,17 @@ table {empty-cells: show;}
 .example {font-size:smaller; color: #666666; }
 
 /* http://css3gen.com/text-shadow/ */
-h1.fancy {
+h1.fancy, h1.fancy a, span.fancy, span.fancy a {
 	font-family: Niconne, Serif; 
-	color: red; 
+	color: #D84A4A; 
 	text-shadow: 4px 4px 2px rgba(125, 26, 26, 0.2);
+}
+
+h1.fancy, h1.fancy a {
+	font-size: 3.1rem;
+}
+
+span.fancy, span.fancy a {
+  /* no font-size change */
+  font-weight: 900;
 }
