@@ -2,34 +2,23 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code">
 
-<whdroplet name="drGoogleAdsOnDPR" show="yes">
-<div class="row" itemscope itemtype="http://www.schema.org/WPAdBlock">
-	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
-	<div class="small-18 medium-8 columns text-center">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-		<!-- Delphi Prefix Registry -->
-		<ins class="adsbygoogle"
-		     style="display:inline-block;width:728px;height:90px"
-		     data-ad-client="ca-pub-9853278708320896"
-		     data-ad-slot="9797230530"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-	</div>
-	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
-</div>
-</whdroplet>
+<whdoc for="mcAdsByGoogle">
+It is important to outboard the google script containing || symbols.  
+Otherwise it interferes with the MATCH command's else clause.
+</whdoc>
 
-<whdroplet name="drGoogleAdsSidebar" show="yes">
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<!-- CNFAdvertisement01Tall -->
+<whmacros>
+mcAdsByGoogle=<script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</whmacros>
+
+<whdroplet name="drGoogleAdsSidebar">
+(~MATCH|(~AppSetting.Advertise~)=True|<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <ins class="adsbygoogle"
      style="display:inline-block;width:120px;height:600px"
      data-ad-client="ca-pub-9853278708320896"
      data-ad-slot="7093222790"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+(~mcAdsByGoogle~)
+||<!-- column spacer -->&nbsp;~)
 </whdroplet>
 
 </whteko>

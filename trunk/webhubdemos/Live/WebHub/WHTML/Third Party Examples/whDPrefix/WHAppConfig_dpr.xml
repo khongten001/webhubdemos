@@ -44,6 +44,8 @@
       <AppSetting name="DesignRefreshEnabled" value="True" context="ultraann"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
+      <AppSetting name="Advertise" value="True" />
+      <AppSetting name="Advertise" value="False" context="ultraann" />
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
