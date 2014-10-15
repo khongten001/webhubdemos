@@ -51,5 +51,9 @@
 ~button_apply=Apply
 </whtranslations>
 
+<!--- Mobile home page -->
+<whtranslations>
+~para_welcome_mobile=Welcome mobile user!
+</whtranslations>
 
 </whteko>
