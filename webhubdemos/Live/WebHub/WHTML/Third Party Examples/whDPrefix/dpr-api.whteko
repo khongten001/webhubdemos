@@ -201,18 +201,16 @@
         "Version": "1.0",
         "DetailLevel": "WebAppAPISpec",
         "WebAppAPISpec": {
-          "Version": "0001",
-          "URLScheme": "http://",
-          "URLAuthority": "(~Request.Host~)",
-          "URLPath": "/(~Request.RawVMR~)?",
+          "Version": "0002",
+          "ToAppID": "(~DynURL.RawToActiveAuthority~)(~DynURL.ToAppID~)",
           "URLQueryStrings": {
             "ToIntercept": {
-              "SplashScreen": "dpr:pgsplashscreen",
-              "LingvoChanged": "dpr:pglingvochanged:(~SessionID~):Lingvo="
+              "Donate": "pgdonate",
+              "LingvoChanged": ":::lingvo="
             },
             "ToGenerate": {
-              "HomePage": "dpr:pghomemobile::",
-              "Donate": "dpr:pgdonate:(~SessionID~).(~DynURL.Rand~):country="
+              "HomePage": "pgmobile",
+              "Donate": "pgdonate:(~SessionID~).(~DynURL.Rand~):country="
             }
           }
        }
