@@ -4,6 +4,8 @@
 
 <whmacros>
 mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="height:90px; width:649px; margin-bottom: 1em;" alt="D.P.R." />~)</div>
+mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0002~)
+mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
 </whmacros>
 
 <whdroplet name="drSharedHead">
@@ -23,7 +25,7 @@ mcDPRHomeGraphic=<div>(~JUMP|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" styl
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
 		<!--- (~GO|pgHomePage|<img src="(~mcDPRImageDir~)dpr.png" style="margin-bottom: 1em; height:90px; width: 649px;" alt="D.P.R." />~) -->
-		<h1 class="fancy">Delphi Prefix Registry</h1>
+		<h1 class="fancy">(~GO|pgHomePage|Delphi Prefix Registry~)</h1>
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
