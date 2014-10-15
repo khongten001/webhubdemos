@@ -201,22 +201,21 @@
         "Version": "1.0",
         "DetailLevel": "WebAppAPISpec",
         "WebAppAPISpec": {
-          "Version": "0002",
+          "Version": "0003",
           "ToAppID": "(~DynURL.RawToActiveAuthority~)(~DynURL.ToAppID~)",
           "URLQueryStrings": {
             "ToIntercept": {
-              "Donate": "pgdonate",
+              "Donate": "(~DynURL.W~)pgdonate",
               "LingvoChanged": ":::lingvo="
             },
             "ToGenerate": {
-              "HomePage": "pgmobile:(~SessionID~).(~DynURL.Rand~)",
-              "Donate": "pgdonate:(~SessionID~).(~DynURL.Rand~):country="
+              "HomePage": "(~DynURL.W~)pgmobile",
+              "Donate": ":::country="
             }
           }
        }
     }
-  }
-}
+}}}
 </whdroplet>
 
 <whdroplet name="drJsonDetailLevel_Invalid">
