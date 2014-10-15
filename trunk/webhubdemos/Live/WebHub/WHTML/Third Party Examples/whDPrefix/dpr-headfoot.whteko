@@ -11,6 +11,8 @@ They DPR customizations are very small and should refresh in real time.
 mcDPRCSSDir=/webhub/demos/whDPrefix/css/
 mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0003~)
 mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
+mcBigMacIndex=<a title="Big Mac Currency Valuation Index at The Economist" href="http://www.economist.com/content/big-mac-index">Big Mac Index</a>
+mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http://www.embarcadero.com/coderage">Code Rage 9</a>
 </whmacros>
 
 <whdroplet name="drSharedHead">
@@ -79,7 +81,7 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 		&nbsp; <a href="http://www.href.com/contact">Contact</a>
 		<!-- Your http client: (~Request.UserAgent~) considered (~ISWebRobotRequest|webrobot||human~) -->
 		</p>
-		(~drLinkW3Org~)
+		<!--- (~drLinkW3Org~) -->
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>

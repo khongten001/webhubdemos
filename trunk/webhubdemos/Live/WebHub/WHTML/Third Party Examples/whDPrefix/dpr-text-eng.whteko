@@ -28,6 +28,21 @@
 <whtranslations>
 ~para_donate_show_your_support=Show your support by contributing the value of one Big Mac in your country.
 ~para_donate_effort_more_fair=In an effort to make prices more fair, we are using the (~mcBigMacIndex~) to suggest a donation amount.
+~hdr_suggested_donation=Suggested Donation Amount
+~prompt_country_code=Country Code
+~para_from_android=Visiting this page from our (~mcCodeRage9~) Android app gives you automatic pricing for your country.
+~word_alternatively=Alternatively
+~link_choose_country=use this link to choose your country
+</whtranslations>
+
+<!--- View Registry page -->
+<whtranslations>
+~noun_prefix=Prefix
+~noun_Organization=Organization
+~noun_Purpose=Purpose
+~noun_WebSite=Web Site
+~noun_Contact=Contact
+~verbPastTense_Registered=Registered
 </whtranslations>
 
 </whteko>

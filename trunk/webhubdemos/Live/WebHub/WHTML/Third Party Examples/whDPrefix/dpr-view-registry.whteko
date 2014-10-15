@@ -79,12 +79,12 @@ googlepriority=0.7
 (~clear|bColor~)
 <table id="approvedPrefixesTable">
 <tr>
-  <th>Prefix</th>
-  <th>Company</th>
-  <th>Purpose</th>
-  <th>Web Site</th>
-  <th>Contact</th>
-	<th>Registered</th>
+  <th>(~~noun_prefix~)</th>
+  <th>(~~noun_organization~)</th>
+  <th>(~~noun_purpose~)</th>
+  <th>(~~noun_website~)</th>
+  <th>(~~noun_contact~)</th>
+	<th>(~~verbPastTense_Registered~)</th>
 	(~IF|_bAdminRemote|<th>EMail</th><th>Token</th>~)
 </tr>
 <whrow>
