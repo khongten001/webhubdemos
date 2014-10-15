@@ -3,7 +3,7 @@
 <whteko designmode="code" defaultlingvo="por">
 
 <whmacros>
-mcPortuguese=Portuguese
+mcPortuguese=Português
 </whmacros>
 
 <whtranslations>
@@ -32,9 +32,21 @@ mcPortuguese=Portuguese
 <whtranslations>
 ~para_donate_show_your_support=Mostre seu apoio, contribuindo o valor de um Big Mac em seu país.
 ~para_donate_effort_more_fair=Em um esforço para tornar os preços mais justos, estamos usando o (~mcBigMacIndex~) para sugerir um valor de doação.
+~hdr_suggested_donation=Sugestão de Doação
+~prompt_country_code=Código do País
+~para_from_android=Visitar esta página do nosso aplicativo (~mcCodeRage9~) Android dá a você preços automático para o seu país.
+~word_alternatively=Alternativamente
+~link_choose_country=use este link para escolher o seu país
 </whtranslations>
 
-
-
+<!--- View Registry page -->
+<whtranslations>
+~noun_prefix=Prefixo
+~noun_organization=Organização
+~noun_Purpose=Intenção
+~noun_WebSite=Site da Internet
+~noun_Contact=Contato
+~verbPastTense_Registered=Inscrito
+</whtranslations>
 
 </whteko>

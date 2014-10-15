@@ -9,8 +9,8 @@
 (~mcDocTypeHtml~)
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head><!-- (~ANCHOR|anchHtmlTag~) -->
-	<title>(~~title_donate~)</title>
 	(~drSharedHead~)
+	<title>(~~title_donate~)</title>
 	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
 </head>
 <body>
@@ -28,18 +28,16 @@
 <div class="row">
 	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
 	<div class="small-18 medium-10 columns">
-	<p>Show your support by contributing the value of one Big Mac in your country. </p>
-	<p>In an effort to make prices more fair, we are using the <a href="http://www.economist.com/content/big-mac-index">Big Mac Index</a>
-	to suggest a donation amount.</p>
-	<h2>Suggested Donation Amount</h2>
-	<h3>Country Code: (~_SurferCountryCode~)*</h3>
+	<p>(~~para_donate_show_your_support~)</p>
+	<p>(~~para_donate_effort_more_fair~)</p>
+	<h2>(~~hdr_suggested_donation~)</h2>
+	<h3>(~~prompt_country_code~): (~_SurferCountryCode~)*</h3>
 	<p><b>(~waPrice.Execute|~)</b></p>
 
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
 
     <!-- Identify your business so that you can collect the payments. -->
-    <input type="hidden" name="business"
-        value="accounting@href.com">
+    <input type="hidden" name="business" value="accounting@href.com">
 
     <!-- Specify a Donate button. -->
     <input type="hidden" name="cmd" value="_donations">
@@ -54,14 +52,14 @@
 
     <!-- Display the payment button. -->
     <input type="image" name="submit" border="0"
-    src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif"
+    src="https://www.paypalobjects.com/(~waLingvo.Execute|ISO639-1~)_(~_SurferCountryCode~)/i/btn/btn_donate_LG.gif"
     alt="PayPal - The safer, easier way to pay online">
     <img alt="" border="0" width="1" height="1"
-    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+    src="https://www.paypalobjects.com/(~waLingvo.Execute|ISO639-1~)_(~_SurferCountryCode~)/i/scr/pixel.gif" >
 </form>
 
-	<p>*Visiting this page from our Android app gives you automatic pricing for your country.
-	Alternatively, (~JUMP|pgChangeCountry|use this link~) to choose your country.
+	<p>*(~~para_from_android~)
+	(~~word_alternatively~), (~JUMP|pgChangeCountry|(~~link_choose_country~)~).
 	</p>
 
 	</div>
