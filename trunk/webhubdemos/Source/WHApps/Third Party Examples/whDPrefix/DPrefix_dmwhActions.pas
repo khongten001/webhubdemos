@@ -54,12 +54,12 @@ type
     procedure WebDataFormField(Sender: TwhdbForm; aField: TField;
       var THCellText, TDCellValue: string);
     procedure WebDataFormSkipField(Sender: TwhdbForm; const iFieldNo: Integer;
-      const AFieldName: string; AField: TField; var Skip: Boolean);
+      const AFieldName: string; aField: TField; var Skip: Boolean);
     procedure WebDataFormFooter(Sender: TwhdbForm; var Html: string);
   public
     { Public declarations }
     WebDBAlphabet: TWebnxdbAlphabet;
-    WebDataForm: TwhdbForm;  // requires WebHub v3.220+
+    WebDataForm: TwhdbForm; // requires WebHub v3.220+
     dsAdmin: TDataSource;
     wdsAdmin: TwhdbSource;
     function Init(out ErrorText: string): Boolean;
@@ -74,7 +74,7 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils,
   IdHTTP,
   ucCodeSiteInterface, ucString, ucMsTime, ucBase64, ucPos,
@@ -95,11 +95,11 @@ begin
   begin
     Name := 'WebDBAlphabet';
     Separator := '.';
-    WebDataSource := nil; //wdsManPref;
+    WebDataSource := nil; // wdsManPref;
     if Assigned(pWebApp) then
     begin
       // let the webmaster adjust the # of alphabet letters on a row.
-      NumPerRow:=StrToIntDef(pWebApp.AppSetting['AlphaLetters'],26);
+      NumPerRow := StrToIntDef(pWebApp.AppSetting['AlphaLetters'], 26);
     end;
   end;
 
@@ -118,7 +118,7 @@ begin
     SaveTableName := False;
     DataSource := dsAdmin;
     KeyFieldNames := 'MpfID';
-    //DisplaySet := 'ActiveFields';
+    // DisplaySet := 'ActiveFields';
   end;
 
   WebDataForm := TwhdbForm.Create(Self);
@@ -165,17 +165,18 @@ begin
   Result := FlagInitDone;
 end;
 
-function TDMDPRWebAct.TestURL(const InURL: string; out IStatusCode: Integer)
-  : Boolean;
+function TDMDPRWebAct.TestURL(const InURL: string;
+  out IStatusCode: Integer): Boolean;
 var
   SResponse: string;
 
   function HTTPGet(const URL: string; out HTTPStatusCode: Integer): string;
-  const cFn = 'HTTPGet';
+  const
+    cFn = 'HTTPGet';
   var
     IdHTTP: TIdHTTP;
   begin
-    {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(cFn); {$ENDIF}
     CSSend('URL', URL);
     IdHTTP := nil;
     HTTPStatusCode := 0;
@@ -188,9 +189,9 @@ var
       except
         on E: Exception do
         begin
-          {$IFDEF CodeSite}
+{$IFDEF CodeSite}
           CodeSite.SendException(E);
-          {$ENDIF}
+{$ENDIF}
           if Pos('Host not found.', E.Message) > 0 then
             HTTPStatusCode := 500
           else
@@ -201,27 +202,28 @@ var
         end;
       end;
       CSSend('HTTPStatusCode', S(HTTPStatusCode));
-      {$IFDEF CodeSite}
+{$IFDEF CodeSite}
       LogToCodeSiteKeepCRLF('Result', Result);
-      {$ENDIF}
+{$ENDIF}
     finally
       FreeAndNil(IdHTTP);
     end;
-    {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(cFn); {$ENDIF}
   end;
 
 begin
-  SResponse := HTTPGet(InURL, iStatusCode);
+  SResponse := HTTPGet(InURL, IStatusCode);
   Result := SResponse <> '';
 end;
 
 procedure TDMDPRWebAct.waAddExecute(Sender: TObject);
-const cFn = 'waAddExecute';
+const
+  cFn = 'waAddExecute';
 var
-  aFieldname: string;
-  i,iKey: integer;
+  AFieldName: string;
+  i, iKey: Integer;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   inherited;
 
   iKey := 0;
@@ -247,32 +249,33 @@ begin
     Filtered := False;
     Insert;
     // process some fields by name, explicitly, to avoid garbage-in
-    FieldByName('MpfID').asInteger:=iKey;
+    FieldByName('MpfID').AsInteger := iKey;
     // Mpf Prefix is excluded from editing so process it here
-    FieldByName('Mpf Prefix').asString:= pWebApp.StringVar['Mpf Prefix'];
-    FieldByName('Mpf EMail').asString := Lowercase(pWebApp.StringVar['_email']); // OpenID
+    FieldByName('Mpf Prefix').asString := pWebApp.StringVar['Mpf Prefix'];
+    FieldByName('Mpf EMail').asString := Lowercase(pWebApp.StringVar['_email']);
+    // OpenID
     // MpfOpenIDOnAt set during Stamp
-    FieldByName('MpfFirstLetter').asString:=
+    FieldByName('MpfFirstLetter').asString :=
       UpperCase(Copy(pWebApp.StringVar['Mpf Prefix'], 1, 1));
-    FieldByName('Mpf Status').AsString := 'P';  // new records always Pending
+    FieldByName('Mpf Status').asString := 'P'; // new records always Pending
     FieldByName('Mpf Date Registered').asDateTime := NowGMT;
 
-    for i:=0 to Pred(pWebApp.Session.StringVars.count) do
+    for i := 0 to Pred(pWebApp.Session.StringVars.count) do
     begin
-      //example stringvar: Mpf EMail=info@href.com
-      aFieldName:=LeftOfEqual(pWebApp.Session.StringVars[i]);
-      if DMNexus.IsAllowedRemoteDataEntryField(aFieldname) then
+      // example stringvar: Mpf EMail=info@href.com
+      AFieldName := LeftOfEqual(pWebApp.Session.StringVars[i]);
+      if DMNexus.IsAllowedRemoteDataEntryField(AFieldName) then
       begin
-        CSSend(S(i) + ' aFieldName', aFieldName);
-        if {StartsWith(aFieldName,'Mpf') and }
-          (FindField(aFieldName)<>nil) then
-          FieldByName(aFieldName).asString :=
+        CSSend(S(i) + ' aFieldName', AFieldName);
+        if { StartsWith(aFieldName,'Mpf') and }
+          (FindField(AFieldName) <> nil) then
+          FieldByName(AFieldName).asString :=
             RightOfEqual(pWebApp.Session.StringVars[i]);
       end;
     end;
-    if Copy(FieldByName('Mpf Webpage').AsString, 1, 7) = 'http://' then
-      FieldByName('Mpf Webpage').AsString := Copy(
-        FieldByName('Mpf Webpage').AsString, 8, MaxInt);
+    if Copy(FieldByName('Mpf Webpage').asString, 1, 7) = 'http://' then
+      FieldByName('Mpf Webpage').asString :=
+        Copy(FieldByName('Mpf Webpage').asString, 8, MaxInt);
     DMNexus.RecordNoAmpersand(DMNexus.TableAdmin);
     DMNexus.Stamp(DMNexus.TableAdmin, 'add');
     try
@@ -284,18 +287,18 @@ begin
       end;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
-
 procedure TDMDPRWebAct.waCleanup2013LoginExecute(Sender: TObject);
-const cFn = 'waCleanup2013LoginExecute';
+const
+  cFn = 'waCleanup2013LoginExecute';
 var
   DPREmail, DPRPassword: string;
   bFound: Boolean;
   cn: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   bFound := False;
   cn := TwhWebAction(Sender).Name;
   DPREmail := Lowercase(Trim(pWebApp.StringVar['DPREMail']));
@@ -303,51 +306,51 @@ begin
   begin
     DPRPassword := Trim(pWebApp.StringVar['DPRPassword']);
     CSSend('DPRPassword', DPRPassword);
-    if (DPRPassword = '') and DemoExtensions.IsSuperuser(
-      pWebApp.Request.RemoteAddress) then
+    if (DPRPassword = '') and DemoExtensions.IsSuperuser
+      (pWebApp.Request.RemoteAddress) then
     begin
       bFound := True;
       CSSend('superuser');
     end
     else
-    with DMNexus.TableAdmin do
-    begin
-      First;
-      while NOT EOF do
+      with DMNexus.TableAdmin do
       begin
-        if (Lowercase(Trim(FieldByName('Mpf Email').AsString)) = DPREmail) and
-          (FieldByName('MpfPassToken').AsString = DPRPassword) then
+        First;
+        while NOT EOF do
         begin
-          if (NowGMT < FieldByName('MpfPassUntil').AsDateTime) then
-            bFound := True
+          if (Lowercase(Trim(FieldByName('Mpf Email').asString)) = DPREmail) and
+            (FieldByName('MpfPassToken').asString = DPRPassword) then
+          begin
+            if (NowGMT < FieldByName('MpfPassUntil').asDateTime) then
+              bFound := True
+            else
+              pWebApp.StringVar[cn + '-ErrorMessage'] := 'expired password; ' +
+                'please login via Add/Edit using an OpenID provider that knows about '
+                + DPREmail;
+            break;
+          end
           else
-            pWebApp.StringVar[cn + '-ErrorMessage'] := 'expired password; ' +
-            'please login via Add/Edit using an OpenID provider that knows about ' + 
-            DPREmail;
-          break;
-        end
-        else
-          Next;
+            Next;
+        end;
       end;
-    end;
   end;
   if bFound then
   begin
-    pWebApp.StringVar['_email'] := DPREMail;
+    pWebApp.StringVar['_email'] := DPREmail;
     pWebApp.Response.SendBounceToPage('pgmaintain', '');
   end
   else
     pWebApp.Response.SendBounceToPage('cleanup2013error', '');
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waConfirmOpenIDExecute(Sender: TObject);
-const cFn = 'waConfirmOpenIDExecute';
+const
+  cFn = 'waConfirmOpenIDExecute';
 var
   wasEMail, newEMail: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
-
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   if pWebApp.IsWebRobotRequest then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
 
@@ -363,7 +366,7 @@ begin
   if (newEMail = '') or (NOT StrIsEMail(newEMail)) then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
 
-  //rename _wasEMail -> _email and erase any pass token details
+  // rename _wasEMail -> _email and erase any pass token details
   with DMNexus.TableAdmin do
   begin
     if NOT Filtered then
@@ -371,12 +374,12 @@ begin
       First;
       while NOT EOF do
       begin
-        if IsEqual(FieldByName('Mpf Email').AsString, wasEMail) then
+        if IsEqual(FieldByName('Mpf Email').asString, wasEMail) then
         begin
           Edit;
-          FieldByName('Mpf EMail').AsString := Lowercase(newEMail);
-          FieldByName('MpfPassToken').AsString := '';
-          FieldByName('MpfPassUntil').AsDateTime := IncDay(Now, -365);
+          FieldByName('Mpf EMail').asString := Lowercase(newEMail);
+          FieldByName('MpfPassToken').asString := '';
+          FieldByName('MpfPassUntil').asDateTime := IncDay(Now, -365);
           DMNexus.Stamp(DMNexus.TableAdmin, 'oid');
           Post;
         end;
@@ -389,54 +392,56 @@ begin
   pWebApp.Session.DeleteStringVarByName('_wasEMail');
   pWebApp.Session.DeleteStringVarByName('DPREMail');
   pWebApp.Response.SendBounceToPage('pgmaintain', '');
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waCountPendingExecute(Sender: TObject);
 var
   N: Integer;
 begin
-  n := DMNexus.CountPending;
+  N := DMNexus.CountPending;
   pWebApp.SendStringImm(IntToStr(N));
 end;
 
 procedure TDMDPRWebAct.waDeleteExecute(Sender: TObject);
-const cFn = 'waDeleteExecute';
+const
+  cFn = 'waDeleteExecute';
 var
-  a1:string;
+  a1: string;
   ErrorText: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   inherited;
   if FMpfID <> -1 then
   begin
     with pWebApp.Response, wdsAdmin.DataSet do
     begin
-      if Locate('MpfID', fMpfID,[]) then
+      if Locate('MpfID', FMpfID, []) then
       begin
         CSSendNote('found ' + a1 + ' ok');
         Edit;
-        FieldByName('Mpf Status').AsString := 'D';
+        FieldByName('Mpf Status').asString := 'D';
         DMNexus.Stamp(wdsAdmin.DataSet, 'srf');
         Post;
       end
       else
       begin
-        ErrorText := 'Error - MpfID ['+ IntToStr(FMpfID) + '] not found.';
+        ErrorText := 'Error - MpfID [' + IntToStr(FMpfID) + '] not found.';
         pWebApp.Debug.AddPageError(ErrorText);
       end;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waDeleteSetCommand(Sender: TObject;
   var ThisCommand: string);
-const cFn = 'waDeleteSetCommand';
+const
+  cFn = 'waDeleteSetCommand';
 var
-  a1:string;
+  a1: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   inherited;
   FMpfID := -1;
 
@@ -445,10 +450,10 @@ begin
     LogSendInfo('ThisCommand', ThisCommand, cFn);
     a1 := Uncode64String(ThisCommand);
     LogSendInfo('a1', a1, cFn);
-    fMpfID := StrToIntDef(a1, -1);
-    LogSendInfo('fMpfID', S(fMpfID), cFn);
+    FMpfID := StrToIntDef(a1, -1);
+    LogSendInfo('fMpfID', S(FMpfID), cFn);
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.waPriceExecute(Sender: TObject);
@@ -462,25 +467,25 @@ begin
 end;
 
 procedure TDMDPRWebAct.waSaveAndroidCountryCodeExecute(Sender: TObject);
-const cFn = 'waSaveAndroidCountryCode';
+const
+  cFn = 'waSaveAndroidCountryCode';
 var
   ThisCountryCode: string;
 begin
   CSEnterMethod(Self, cFn);
   pWebApp.StringVar[cSVSurferErrorMsg] := '';
-  if Pos('country=', pWebApp.Command) > 0 then  // country=CH  for Switzerland
+  if Pos('country=', pWebApp.Command) > 0 then // country=CH  for Switzerland
   begin
     ThisCountryCode := RightOfEqual(pWebApp.Command);
     { allow reasonable data entry from non-Android-app surfers }
     if ThisCountryCode = 'input' then
     begin
-      ThisCountryCode := Uppercase(pWebApp.StringVar['inCountryCode']);
+      ThisCountryCode := UpperCase(pWebApp.StringVar['inCountryCode']);
       if NOT IsCountrySupported(ThisCountryCode) then
       begin
         pWebApp.StringVar[cSVSurferErrorMsg] :=
-          Format(
-            'Error: %s is not a country supported by the Big Mac Index.',
-            [ThisCountryCode]);
+          Format('Error: %s is not a country supported by the Big Mac Index.',
+          [ThisCountryCode]);
         pWebApp.Response.SendBounceToPage('pgChangeCountry', '');
       end;
 
@@ -491,13 +496,19 @@ begin
   else
   begin
     CSSend('command', pWebApp.Command);
-    pWebApp.StringVar[cSVSurferCountryCode] := 'US';
+    if pWebApp.StringVar[cSVSurferCountryCode] = '' then
+    begin
+      // do not reset if we already have a valid answer, e.g. from Android
+      // location sensor.
+      pWebApp.StringVar[cSVSurferCountryCode] := 'US';
+    end;
   end;
   CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waSelectBigMacCountryExecute(Sender: TObject);
-const cFn = 'waSelectBigMacCountryExecute';
+const
+  cFn = 'waSelectBigMacCountryExecute';
 var
   HtmlSelectStr: string;
   FieldName, FieldID, FieldCSS: string;
@@ -514,11 +525,13 @@ begin
 end;
 
 procedure TDMDPRWebAct.waURLExecute(Sender: TObject);
-const cFn = 'waURLExecute';
-const cUpdatedBy = 'url';
+const
+  cFn = 'waURLExecute';
+const
+  cUpdatedBy = 'url';
 var
   aURL: string;
-  iStatusCode: Integer;
+  IStatusCode: Integer;
   ErrorText: string;
 begin
   CSEnterMethod(Self, cFn);
@@ -528,20 +541,20 @@ begin
     with wdsAdmin.DataSet do
     begin
 
-      if Locate('MpfID', fMpfID, []) then
+      if Locate('MpfID', FMpfID, []) then
       begin
-        CSSendNote('found ' + IntToStr(fMpfID) + ' ok');
+        CSSendNote('found ' + IntToStr(FMpfID) + ' ok');
 
-        AURL := FieldByName('Mpf WebPage').AsString;
-        if AURL <> '' then
+        aURL := FieldByName('Mpf WebPage').asString;
+        if aURL <> '' then
         begin
-          AURL := 'http://' + AURL;
-          DMDPRWebAct.TestURL(AURL, iStatusCode);
-          if iStatusCode > 0 then
+          aURL := 'http://' + aURL;
+          DMDPRWebAct.TestURL(aURL, IStatusCode);
+          if IStatusCode > 0 then
           begin
             Edit;
-            FieldByName('MpfURLStatus').AsInteger := iStatusCode;
-            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('MpfURLStatus').AsInteger := IStatusCode;
+            FieldByName('MpfURLTestOnAt').asDateTime := NowGMT;
             DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
             Post;
           end;
@@ -553,7 +566,7 @@ begin
           begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := -1;
-            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('MpfURLTestOnAt').asDateTime := NowGMT;
             DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
             Post;
           end;
@@ -562,7 +575,7 @@ begin
       end
       else
       begin
-        ErrorText := 'Error - MpfID '+ IntToStr(FMpfID) + ' not found.';
+        ErrorText := 'Error - MpfID ' + IntToStr(FMpfID) + ' not found.';
         pWebApp.Debug.AddPageError(ErrorText);
       end;
     end;
@@ -573,26 +586,26 @@ end;
 
 procedure TDMDPRWebAct.waURLSetCommand(Sender: TObject;
   var ThisCommand: string);
-const cFn = 'waURLSetCommand';
+const
+  cFn = 'waURLSetCommand';
 var
-  a1:string;
+  a1: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   inherited;
   FMpfID := -1;
 
   if ThisCommand <> '' then
   begin
     a1 := Uncode64String(ThisCommand);
-    fMpfID := StrToIntDef(a1, -1);
+    FMpfID := StrToIntDef(a1, -1);
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.WebAppUpdate(Sender: TObject);
 begin
-  // reserved for when the WebHub application object refreshes
-  // e.g. to make adjustments because the config changed.
+  // placeholder
 end;
 
 procedure TDMDPRWebAct.WebDataFormField(Sender: TwhdbForm; aField: TField;
@@ -601,10 +614,10 @@ begin
   inherited;
   // indicate that the primary key is off limits
   THCellText := StringReplaceAll(THCellText, 'Mpf', ''); // strip from label
-  if (AField.fieldname='MpfID') or (AField.FieldName = 'Mpf Prefix') then
+  if (aField.FieldName = 'MpfID') or (aField.FieldName = 'Mpf Prefix') then
   begin
     TDCellValue := '<span style="color:#666; font-weight: 900;">' +
-      AField.AsString + '</span>';
+      aField.asString + '</span>';
   end;
 end;
 
@@ -615,13 +628,14 @@ end;
 
 procedure TDMDPRWebAct.WebDataFormSetCommand(Sender: TObject;
   var Command: string);
-const cFn = 'WebDataFormSetCommand';
+const
+  cFn = 'WebDataFormSetCommand';
 var
-  a1:string;
+  a1: string;
   ErrorText: string;
   b: Boolean;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
   inherited;
   Assert(Sender is TwhdbForm);
 
@@ -630,8 +644,8 @@ begin
 
   with pWebApp.Response, wdsAdmin.DataSet do
   begin
-    b := Locate('MpfID', StrToIntDef(a1,-1),[]);
-    (Sender as TwhdbForm).LocateResult := b;   // must tag both properties True
+    b := Locate('MpfID', StrToIntDef(a1, -1), []);
+    (Sender as TwhdbForm).LocateResult := b; // must tag both properties True
     CSSend('WebDataForm.LocateResult', S(WebDataForm.LocateResult));
     CSSend('WebDataForm.AlreadyLocated', S(WebDataForm.AlreadyLocated));
     if b then
@@ -646,22 +660,21 @@ begin
       ErrorText := 'Error - MpfID [' + a1 + '] not found.';
       CSSendError(ErrorText);
       pWebApp.Debug.AddPageError(ErrorText);
-      pWebApp.StringVar[TwhWebAction(Sender).Name + '-ErrorMessage']
-        := ErrorText;
+      pWebApp.StringVar[TwhWebAction(Sender).Name + '-ErrorMessage'] :=
+        ErrorText;
     end;
   end;
   (Sender as TwhdbForm).AlreadyLocated := True; // attempted.
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
 end;
 
 procedure TDMDPRWebAct.WebDataFormSkipField(Sender: TwhdbForm;
-  const iFieldNo: Integer; const AFieldName: string; AField: TField;
+  const iFieldNo: Integer; const AFieldName: string; aField: TField;
   var Skip: Boolean);
 begin
   if iFieldNo = 0 then
     Skip := False // display primary key
-  else
-  if AFieldName = 'Mpf Prefix' then
+  else if AFieldName = 'Mpf Prefix' then
     Skip := False // display the prefix
   else
     Skip := NOT DMNexus.IsAllowedRemoteDataEntryField(AFieldName);
