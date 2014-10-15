@@ -36,7 +36,7 @@ googlepriority=0.8
 	<div class="small-18 medium-8 columns">
 		<p>(~~para_to_maintain_your_prefx~) 
 		</p>
-		(~drMultipleOpenID~)
+		<!--- (~drMultipleOpenID~) -->
 		(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
