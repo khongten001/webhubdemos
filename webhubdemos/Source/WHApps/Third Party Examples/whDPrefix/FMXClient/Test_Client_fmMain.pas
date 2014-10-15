@@ -55,7 +55,8 @@ begin
       sLineBreak + Translate('btnExit', 'por') +
       sLineBreak + 'english' +
       sLineBreak + Translate('btnGo', 'eng') +
-      sLineBreak + Translate('btnExit', 'eng')
+      sLineBreak + Translate('btnExit', 'eng') +
+      sLineBreak + GenerateURL('HomePage')
       );
   end
   else

@@ -55,10 +55,6 @@ var
 implementation
 
 {$R *.fmx}
-{$R *.LgXhdpiPh.fmx ANDROID}
-{$R *.XLgXhdpiTb.fmx ANDROID}
-{$R *.LgXhdpiTb.fmx ANDROID}
-{$R *.Macintosh.fmx _MACOS}
 
 uses DPrefix_Client_uInitialize;
 
@@ -91,18 +87,14 @@ var
   AlreadyActivated: Boolean = False;
 
 procedure TWebBrowserForm.FormActivate(Sender: TObject);
-var
-  S1: string;
 begin
   if NOT AlreadyActivated then
   begin
     LoadWelcomeImage;
-    AlreadyActivated := True;
     LocationSensor1.Active := True;
-    EdtURL.Text :=
-      'http://delphiprefix.modulab.com/win64/runisa_x_d21_win64.dll?dpr:pgmobile';
     TranslateUIControls;
-    WebBrowser1.Navigate(edtURL.Text);
+    WebBrowser1.Navigate(GenerateURL('HomePage'));
+    AlreadyActivated := True;
   end;
 end;
 
