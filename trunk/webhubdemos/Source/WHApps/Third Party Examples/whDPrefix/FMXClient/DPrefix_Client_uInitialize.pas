@@ -120,23 +120,6 @@ end;
 const
   cTreatAsUTF8 = True;
 
-function JSONtoInteger(AJO: TJSONObject; AFieldName: string;
-  const FlagQuotes: Boolean = False): Integer;
-var
-  AJP: TJSONPair;
-begin
-  AJP := AJO.Get(AFieldName);
-  if (AJP <> nil) then
-  begin
-    if FlagQuotes then
-      Result := StrToIntDef(NoQuotes(AJP.JsonValue.ToString), 0)
-    else
-      Result := StrToIntDef(AJP.JsonValue.ToString, 0);
-  end
-  else
-    Result := 0;
-end;
-
 function JSONPairtoInteger(AJP: TJSONPair;
   const FlagQuotes: Boolean = False): Integer;
 begin
@@ -185,7 +168,6 @@ var
   VersionsJsonFilespec: string;
   PreviousVersionsJsonStr8: UTF8String;
   MainName: string;
-  //ParseCount: Integer;
   P: Pointer;
   Idx: Integer;
 begin
@@ -217,16 +199,12 @@ begin
 
     try
       MJO := TJSONObject.Create;
-      //ParseCount := MJO.Parse(BytesOf(WebResponse), 0);
-      //ParseCount := MJO.Parse(BytesOf(WebResponse8), 0);
 
       Idx := Low(WebResponse8);
       P := Addr(WebResponse8[Idx]);
       MPV := MJO.ParseJSONValue(P, 0, cTreatAsUTF8);
-      if ( NOT MPV.Null ) then // and (ParseCount > 0) then
-        S1 := MPV.ToString;
 
-      if ( NOT MPV.Null ) then // and (ParseCount > 0) then
+      if ( NOT MPV.Null ) then
       begin
         MainName := NoQuotes(TJSONObject(MPV).Pairs[0].JSONString.ToString);
 
@@ -238,7 +216,7 @@ begin
             S1 := JSONtoString(DelphiPrefixRegistryResponseJ0, 'Version');
             hdr.Version := StrToFloatDef(S1, 0.0);
 
-            S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[1]); // JOV), 'WebAPIStatus');
+            S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[1]);
             hdr.WebAPIStatus := S1;
 
             S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[4]);
@@ -295,6 +273,7 @@ var
   TradukoListJO: TJSONObject;
   TradukiTopJO, TradukiItemJO: TJSONObject;
   n: Integer;
+  iTrad: Integer;
 begin
   ErrorText := '';
   if FlagInitDone then
@@ -419,36 +398,38 @@ begin
             DPR_API_TradukoList_Rec.LingvoCount :=
               JSONPairtoInteger(TradukoListJO.Pairs[2]);
 
-            if (DPR_API_TradukoList_Rec.Count = 2) then
+            if (DPR_API_TradukoList_Rec.Count = 3) then  // version 0002
             begin
-              n := 0;
+              n := -1;
               SetLength(DPR_API_TradukoList_Rec.TradukiList,
                 DPR_API_TradukoList_Rec.Count * DPR_API_TradukoList_Rec.LingvoCount);
 
               // TradukoList .... Traduki
               TradukiTopJO := TJSONObject(TradukoListJO.Pairs[3].JsonValue);
 
-              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                NoQuotes(TradukiTopJO.Pairs[0].JsonString.ToString); // btnGo
-              TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[0].JsonValue);
+              for iTrad := 0 to Pred(DPR_API_TradukoList_Rec.Count) do
+              begin
+                Inc(n);
+                DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                  NoQuotes(TradukiTopJO.Pairs[iTrad].JsonString.ToString); // btnGo
+                TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[iTrad].JsonValue);
 
-              S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
-              S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
+                S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
+                DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
+                S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
+                DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
 
-              Inc(n);  // portuguese
-              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
+                Inc(n);  // portuguese
+                DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                  DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
 
-              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-                NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString);
-              DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-                NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
+                DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+                  NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString);
+                DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+                  NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
+              end;  // back to english
 
-
-              Inc(n);  // back to english
-              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+              (*DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
                 NoQuotes(TradukiTopJO.Pairs[1].JsonString.ToString); // btnExit
               TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[1].JsonValue);
 
@@ -465,13 +446,13 @@ begin
               DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
               S1 := TradukiItemJO.Pairs[1].JSONValue.ToString;
               DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
-
+                *)
               Result := True;
             end;
           end
           else
           begin
-            ErrorText := 'invalid count';
+            ErrorText := 'invalid traduko count';
             Result := False;
           end;
         end;

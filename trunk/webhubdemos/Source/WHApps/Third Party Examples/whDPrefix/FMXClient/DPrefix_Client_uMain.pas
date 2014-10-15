@@ -8,8 +8,8 @@ uses
   FMX.WebBrowser, FMX.Layouts, FMX.Controls.Presentation, System.Sensors,
   System.Sensors.Components, FMX.Memo, System.Android.Sensors;
 
-const
-  cSurferLingvo = 'por';  // or 'por' for Brazil
+var
+  mobileSurferLingvo: string = 'eng';  // or 'por' for Brazil
 
 type
   TWebBrowserForm = class(TForm)
@@ -20,7 +20,7 @@ type
     ToolBar1: TToolBar;
     StatusBar1: TStatusBar;
     btnExit: TButton;
-    SpeedHide: TSpeedButton;
+    btnHide: TSpeedButton;
     LocationSensor1: TLocationSensor;
     edtURL: TEdit;
     procedure btnGOClick(Sender: TObject);
@@ -30,7 +30,7 @@ type
       Shift: TShiftState);
     procedure Button2Click(Sender: TObject);
     procedure btnExitClick(Sender: TObject);
-    procedure SpeedHideClick(Sender: TObject);
+    procedure btnHideClick(Sender: TObject);
     procedure WebBrowser1DidFinishLoad(ASender: TObject);
     procedure LocationSensor1LocationChanged(Sender: TObject; const OldLocation,
       NewLocation: TLocationCoord2D);
@@ -45,6 +45,7 @@ type
     procedure OnGeocodeReverseEvent(const Address: TCivicAddress);  public
     procedure LoadWelcomeImage;
     procedure LoadGoodbyeImage;
+    procedure TranslateUIControls;
     { Public declarations }
   end;
 
@@ -100,13 +101,7 @@ begin
     LocationSensor1.Active := True;
     EdtURL.Text :=
       'http://delphiprefix.modulab.com/win64/runisa_x_d21_win64.dll?dpr:pgmobile';
-    if High(DPR_API_TradukoList_Rec.TradukiList) > 0 then
-    begin
-      S1 := Translate(btnGo.Name, cSurferLingvo);
-      btnGO.Text := S1;
-      S1 := Translate(btnExit.Name, cSurferLingvo);
-      btnExit.Text := S1;
-    end;
+    TranslateUIControls;
     WebBrowser1.Navigate(edtURL.Text);
   end;
 end;
@@ -211,9 +206,21 @@ begin
   }
 end;
 
-procedure TWebBrowserForm.SpeedHideClick(Sender: TObject);
+procedure TWebBrowserForm.btnHideClick(Sender: TObject);
 begin
   Toolbar1.Visible := NOT Toolbar1.Visible;
+end;
+
+procedure TWebBrowserForm.TranslateUIControls;
+var
+  S1: string;
+begin
+  S1 := Translate(btnGo.Name, mobileSurferLingvo);
+  btnGO.Text := S1;
+  S1 := Translate(btnExit.Name, mobileSurferLingvo);
+  btnExit.Text := S1;
+  S1 := Translate(btnHide.Name, mobileSurferLingvo);
+  btnHide.Text := S1;
 end;
 
 procedure TWebBrowserForm.WebBrowser1DidFinishLoad(ASender: TObject);
@@ -224,15 +231,31 @@ end;
 procedure TWebBrowserForm.WebBrowser1DidStartLoad(ASender: TObject);
 var
   AURL: string;
+  x: Integer;
+  URLSnip: string;
 begin
   AURL := TWebBrowser(ASender).URL;
+  x := Pos('lingvo=', AURL);
+  if (x > 0) then
+  begin
+    URLSnip := Copy(AURL, x + 6, MaxInt);
+    if Pos('=por', URLSnip) > 0 then
+      mobileSurferLingvo := 'por'
+    else
+      mobileSurferLingvo := 'eng';
+    TranslateUIControls;
+  end
+  else
   if (Pos('pgDonate', AURL) > 0) then
   begin
     if (Pos(':country=', AURL) = 0) then
     begin
       if Assigned(FLatestAddress) then
-        TWebBrowser(ASender).URL := AURL + ':country=' +
-          FLatestAddress.CountryCode;
+      begin
+        TWebBrowser(ASender).Stop;
+        TWebBrowser(ASender).Navigate(AURL + ':country=' +
+          FLatestAddress.CountryCode);
+      end;
     end;
   end;
 end;
