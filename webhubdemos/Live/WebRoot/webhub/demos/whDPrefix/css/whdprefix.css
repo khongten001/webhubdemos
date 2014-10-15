@@ -81,3 +81,7 @@ span.fancy, span.fancy a {
   /* no font-size change */
   font-weight: 900;
 }
+
+span.spanLingvoLinks a {
+  padding: 0.5em 1em 0.5em 1em; /* extra padding to make them easier to press on Android */
+}
