@@ -94,14 +94,14 @@
 <div class="row">
 	<div class="show-for-medium-up medium-7 columns">&nbsp;</div>
 	<div class="small-18 medium-4 columns">
-		<h2>Your Country</h2>
+		<h2>(~~prompt_your_country~)</h2>
 		(~IfNotBlankSV|_SurferErrorMsg|<p><span class="tiny button alert">(~_SurferErrorMsg~)</span></p>~)
 
 		<form method="post" action="(~ACTION|pgDonate,country=input~)">
-			<label><a href="https://www.iso.org/obp/ui/#search">ISO Country Code</a></label>
+			<label><a href="https://www.iso.org/obp/ui/#search">ISO (~~prompt_country_code~)</a></label>
 			<!--- (~INPUTTEXT|inCountryCode,5,2| placeholder="(~_SurferCountryCode~)"~)  -->
 			(~waSelectBigMacCountry.Execute|inCountryCode,,~)
-			<input type="submit" value="Apply" />
+			<input type="submit" value="(~~button_apply~)" />
 		</form>
 
 	</div>
