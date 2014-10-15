@@ -85,9 +85,10 @@
       <File id="f50" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
-      <File id="L01" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
-      <File id="L02" filename="dpr-text-eng.whteko"/>
-      <File id="L03" filename="dpr-text-por.whteko"/>
+      <File id="L00" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="L01" filename="dpr-text-eng.whteko"/>
+      <File id="L02" filename="dpr-text-por.whteko"/>
+      <File id="L03" filename="dpr-text-rus.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
