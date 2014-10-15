@@ -1,5 +1,19 @@
 unit DPrefix_Client_uMain;
 
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ *                                                                          * }
+{ * This source code file is part of the Delphi Prefix Registry.             * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
+
 interface
 
 uses
@@ -224,17 +238,22 @@ procedure TWebBrowserForm.WebBrowser1DidStartLoad(ASender: TObject);
 var
   AURL: string;
   x: Integer;
-  URLSnip: string;
+  LingvoSnip: string;
+  iTrad: integer;
 begin
   AURL := TWebBrowser(ASender).URL;
   x := Pos('lingvo=', AURL);
   if (x > 0) then
   begin
-    URLSnip := Copy(AURL, x + 6, MaxInt);
-    if Pos('=por', URLSnip) > 0 then
-      mobileSurferLingvo := 'por'
-    else
-      mobileSurferLingvo := 'eng';
+    LingvoSnip := Copy(AURL, x + 7, 3);
+    for iTrad := 0 to Pred(DPR_API_TradukoList_Rec.LingvoCount) do
+    begin
+      if (LingvoSnip = DPR_API_TradukoList_Rec.TradukiList[iTrad].Lingvo3) then
+      begin
+        mobileSurferLingvo := LingvoSnip;
+        break;
+      end;
+    end;
     TranslateUIControls;
   end
   else
