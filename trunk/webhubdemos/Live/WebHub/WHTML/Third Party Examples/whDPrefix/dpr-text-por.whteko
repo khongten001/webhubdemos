@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" defaultlingvo="por">
 
@@ -26,5 +26,15 @@ mcPortuguese=Portuguese
 ~link_view_long=Ver o Registro
 ~link_view=Ver
 </whtranslations>
+
+<!--- Donations page -->
+
+<whtranslations>
+~para_donate_show_your_support=Mostre seu apoio, contribuindo o valor de um Big Mac em seu país.
+~para_donate_effort_more_fair=Em um esforço para tornar os preços mais justos, estamos usando o (~mcBigMacIndex~) para sugerir um valor de doação.
+</whtranslations>
+
+
+
 
 </whteko>

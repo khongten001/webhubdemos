@@ -23,4 +23,11 @@
 ~link_view=View
 </whtranslations>
 
+<!--- Donations page -->
+
+<whtranslations>
+~para_donate_show_your_support=Show your support by contributing the value of one Big Mac in your country.
+~para_donate_effort_more_fair=In an effort to make prices more fair, we are using the (~mcBigMacIndex~) to suggest a donation amount.
+</whtranslations>
+
 </whteko>
