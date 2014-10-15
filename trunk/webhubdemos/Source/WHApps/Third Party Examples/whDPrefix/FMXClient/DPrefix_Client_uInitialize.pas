@@ -166,7 +166,7 @@ begin
 end;
 
 
-function JsonRequestParseHdr(MJO: TJSONObject;
+function JsonRequestParseHdr(var MJO: TJSONObject;
   const InURL: string; const Keyword: string;
   var AlreadyCached: Boolean;
   var hdr: TDPRAPIResponseHdrRec; out ErrorText: string;
@@ -177,7 +177,7 @@ var
   PayloadJO: TJSONObject;
   S1: string;
   VersionsJsonFilespec: string;
-  PreviousVersionsJsonStr8: UTF8String;
+  {PreviousVersionsJsonStr8: UTF8String;}
   MainName: string;
   ParseCount: Integer;
 begin
@@ -195,7 +195,7 @@ begin
       AlreadyCached := False;
       VersionsJsonFilespec := Client_Documents_Path + PathDelim + Keyword +
         '.json';
-      if FileExists(VersionsJsonFilespec) then
+      {if FileExists(VersionsJsonFilespec) then
         PreviousVersionsJsonStr8 := UTF8String(StrLoadFromFile(VersionsJsonFilespec))
       else
         PreviousVersionsJsonStr8 := '';
@@ -203,15 +203,13 @@ begin
         AlreadyCached := True;
 
       if NOT AlreadyCached then
-        StrSaveToFile(WebResponse, VersionsJsonFilespec, TEncoding.UTF8);
+        StrSaveToFile(WebResponse, VersionsJsonFilespec, TEncoding.UTF8);}
     end;
 
     try
       MJO := TJSONObject.Create;
       ParseCount := MJO.Parse(BytesOf(WebResponse), 0);
-      if (ParseCount = 608) and
-
-      ( NOT MJO.Null ) then
+      if ( NOT MJO.Null ) and (ParseCount > 0) then
       begin
         MainName := NoQuotes(MJO.Pairs[0].JSONString.ToString);
 
@@ -311,7 +309,6 @@ begin
           S1 := JSONPairtoString(JO2.Pairs[0]); // WebAppAPISpec Version
           DPR_API_Versions_Rec.WebAppAPISpec_Version := StrToIntDef(S1, 0);
 
-
           JO2 := TJSONObject(APIInfoJO.Pairs[3].JsonValue); // ImageList
           S1 := JSONPairtoString(JO2.Pairs[0]); // Version
           DPR_API_Versions_Rec.ImageList_Version := StrToIntDef(S1, 0);
@@ -349,19 +346,23 @@ begin
 
           S1 := JSONPairtoString(ImageListJO.Pairs[0]);
           DPR_API_ImageList_Rec.ImageList_Version := StrToIntDef(S1, 0);
-
           DPR_API_ImageList_Rec.Count := JSONPairtoInteger(ImageListJO.Pairs[1]);
 
           if (DPR_API_ImageList_Rec.Count = 2) then
           begin
-            SetLength(DPR_API_ImageList_Rec.ImageList, DPR_API_ImageList_Rec.Count);
+            SetLength(DPR_API_ImageList_Rec.ImageList, 2);
             DPR_API_ImageList_Rec.ImageList[0].ImageIdentifier := 'Welcome';
+            DPR_API_ImageList_Rec.ImageList[1].ImageIdentifier := 'Goodbye';
 
-            ImagesJO := TJSONObject(APIInfoJO.Pairs[2].JsonValue); // ImageList .... Images
-            ImageJO := TJSONObject(ImagesJO.Pairs[0].JsonValue);  // welcome image
-            DPR_API_ImageList_Rec.ImageList[0].Version := JSONPairtoInteger(ImageJO.Pairs[0], True);
-            DPR_API_ImageList_Rec.ImageList[0].URL := JSONPairtoString(ImageJO.Pairs[1]);
+            ImageListJO := TJSONObject(APIInfoJO.Pairs[2].JsonValue); // ImageList .... Images
+            ImagesJO  := TJSONObject(ImageListJO.Pairs[2].JsonValue);
+            ImageJO  := TJSONObject(ImagesJO.Pairs[0].JsonValue);  // welcome image
 
+            if (ImageJO.Count = 2) then
+            begin
+              DPR_API_ImageList_Rec.ImageList[0].Version := JSONPairtoInteger(ImageJO.Pairs[0], True);
+              DPR_API_ImageList_Rec.ImageList[0].URL := JSONPairtoString(ImageJO.Pairs[1]);
+            end;
 
             ImageJO := TJSONObject(ImagesJO.Pairs[1].JsonValue);  // goodbye image
             DPR_API_ImageList_Rec.ImageList[1].Version := JSONPairtoInteger(ImageJO.Pairs[0], True);
@@ -389,60 +390,73 @@ begin
 
         if DPR_API_TradukoList_Rec.hdr.DPRAPIErrorCode = 0 then
         begin
-          TradukoListJO := TJSONObject(APIInfoJO.Pairs[6].JsonValue);
-          DPR_API_TradukoList_Rec.TradukoList_Version :=
-            JSONPairtoInteger(TradukoListJO.Pairs[0], True);
-
-          DPR_API_TradukoList_Rec.Count :=  // do not strip quotes from true integer
-            JSONPairtoInteger(TradukoListJO.Pairs[1]);
-
-          DPR_API_TradukoList_Rec.LingvoCount :=
-            JSONPairtoInteger(TradukoListJO.Pairs[2]);
-
-          if (DPR_API_TradukoList_Rec.Count = 2) then
+          if (APIInfoJO.Count = 4) then
           begin
-            n := 0;
-            SetLength(DPR_API_TradukoList_Rec.TradukiList,
-              DPR_API_TradukoList_Rec.Count * DPR_API_TradukoList_Rec.LingvoCount);
 
-            // TradukoList .... Traduki
-            TradukiTopJO := TJSONObject(APIInfoJO.Pairs[3].JsonValue);
+            TradukoListJO := TJSONObject(APIInfoJO.Pairs[3].JsonValue);
+            DPR_API_TradukoList_Rec.TradukoList_Version :=
+              JSONPairtoInteger(TradukoListJO.Pairs[0], True);
 
-            DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-              NoQuotes(TradukiTopJO.Pairs[0].JsonString.ToString); // btnGo
-            TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[0].JsonValue);
+            DPR_API_TradukoList_Rec.Count :=  // do not strip quotes from true integer
+              JSONPairtoInteger(TradukoListJO.Pairs[1]);
 
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-              TradukiItemJO.Pairs[0].JSONString.ToString;
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-              TradukiItemJO.Pairs[0].JSONValue.ToString;
+            DPR_API_TradukoList_Rec.LingvoCount :=
+              JSONPairtoInteger(TradukoListJO.Pairs[2]);
 
-            Inc(n);  // portuguese
-            DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-              DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
+            if (DPR_API_TradukoList_Rec.Count = 2) then
+            begin
+              n := 0;
+              SetLength(DPR_API_TradukoList_Rec.TradukiList,
+                DPR_API_TradukoList_Rec.Count * DPR_API_TradukoList_Rec.LingvoCount);
 
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-              TradukiItemJO.Pairs[1].JSONString.ToString;
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-              TradukiItemJO.Pairs[1].JSONValue.ToString;
+              // TradukoList .... Traduki
+              TradukiTopJO := TJSONObject(TradukoListJO.Pairs[3].JsonValue);
+
+              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                NoQuotes(TradukiTopJO.Pairs[0].JsonString.ToString); // btnGo
+              TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[0].JsonValue);
+
+              S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
+              S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
+
+              Inc(n);  // portuguese
+              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
+
+              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+                NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString);
+              DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+                NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
 
 
-            Inc(n);  // back to english
-            TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[1].JsonValue);
+              Inc(n);  // back to english
+              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                NoQuotes(TradukiTopJO.Pairs[1].JsonString.ToString); // btnExit
+              TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[1].JsonValue);
 
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-              TradukiItemJO.Pairs[0].JSONString.ToString; // btnExit
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-              TradukiItemJO.Pairs[0].JSONValue.ToString;
+              S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
+              S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
 
+              Inc(n);  // portuguese
+              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
+                DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
 
-            Inc(n);  // portuguese
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-              TradukiItemJO.Pairs[0].JSONString.ToString; // btnExit
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-              TradukiItemJO.Pairs[0].JSONValue.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+                NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString); // btnExit
+              DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+                NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
 
-            Result := True;
+              Result := True;
+            end;
+          end
+          else
+          begin
+            ErrorText := 'invalid count';
+            Result := False;
           end;
         end;
       end;
