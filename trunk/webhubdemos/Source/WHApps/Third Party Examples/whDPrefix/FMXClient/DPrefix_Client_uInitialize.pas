@@ -127,48 +127,65 @@ begin
       Result := StrToIntDef(NoQuotes(AJP.JsonValue.ToString), 0)
     else
       Result := StrToIntDef(AJP.JsonValue.ToString, 0);
-  end;
+  end
+  else
+    Result := 0;
 end;
 
-function JSONtoString(AJO: TJSONObject; AFieldName: string): Integer;
+function JSONPairtoInteger(AJP: TJSONPair;
+  const FlagQuotes: Boolean = False): Integer;
+begin
+  if (AJP <> nil) then
+  begin
+    if FlagQuotes then
+      Result := StrToIntDef(NoQuotes(AJP.JsonValue.ToString), 0)
+    else
+      Result := StrToIntDef(AJP.JsonValue.ToString, 0);
+  end
+  else
+    Result := 0;
+end;
+
+function JSONtoString(AJO: TJSONObject; AFieldName: string): string;
 var
   AJP: TJSONPair;
 begin
   AJP := AJO.Get(AFieldName);
   if (AJP <> nil) then
-    Result := NoQuotes(AJP.JsonValue.ToString);
+    Result := NoQuotes(AJP.JsonValue.ToString)
+  else
+    Result := 'not found';
+end;
+
+function JSONPairtoString(AJP: TJSONPair): string;
+begin
+  if (AJP <> nil) then
+    Result := NoQuotes(AJP.JsonValue.ToString)
+  else
+    Result := 'not found';
 end;
 
 
-function JsonRequestParseHdr(const InURL: string; const Keyword: string;
+function JsonRequestParseHdr(MJO: TJSONObject;
+  const InURL: string; const Keyword: string;
   var AlreadyCached: Boolean;
   var hdr: TDPRAPIResponseHdrRec; out ErrorText: string;
-  out ApiInfo_Version: Double; var APIInfoJV: TJSONValue): Boolean;
+  out ApiInfo_Version: Double; var APIInfoJO: TJSONObject): Boolean;
 var
-  MJO: TJSONObject;
   WebResponse: string;
-  WebResponse8: UTF8String;
-  pair: TJSONPair;
   DelphiPrefixRegistryResponseJ0: TJSONObject;
   PayloadJO: TJSONObject;
-  JO: TJSONObject;
-  JOV: TJSONValue;
-  TempStr: string;
   S1: string;
-  S8: UTF8String;
   VersionsJsonFilespec: string;
   PreviousVersionsJsonStr8: UTF8String;
+  MainName: string;
+  ParseCount: Integer;
 begin
   Result := False;
 
-  DelphiPrefixRegistryResponseJ0 := nil;
-  PayloadJO := nil;
-  APIInfoJV := nil;
-
-  MJO := TJSONObject.Create;
+  APIInfoJO := nil;
 
   WebResponse := HTTPSGet(InURL, ErrorText, cUserAgent, '', False, True);
-  WebResponse8 := UTF8Encode(WebResponse);
 
   if ErrorText = '' then
   begin
@@ -182,57 +199,44 @@ begin
         PreviousVersionsJsonStr8 := UTF8String(StrLoadFromFile(VersionsJsonFilespec))
       else
         PreviousVersionsJsonStr8 := '';
-      if string(PreviousVersionsJsonStr8) = string(WebResponse8) then
+      if string(PreviousVersionsJsonStr8) = WebResponse then
         AlreadyCached := True;
 
       if NOT AlreadyCached then
-        StrSaveToFile(string(WebResponse8), VersionsJsonFilespec, TEncoding.UTF8);
+        StrSaveToFile(WebResponse, VersionsJsonFilespec, TEncoding.UTF8);
     end;
 
     try
-      JOV := JO.ParseJSONValue(BytesOf(WebResponse8), 0, cTreatAsUTF8);
-      if NOT JOV.Null then
-      begin
-        JO := TJSONObject(JOV);
-        if JO.Count = 1 then
-        begin
-          pair := JO.Pairs[0];
-          TempStr := pair.JsonString.Value;
-          if TempStr = 'DelphiPrefixRegistryResponse' then
-          begin
-            S8 := pair.JsonValue.ToString;
-            JOV := DelphiPrefixRegistryResponseJ0.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-            DelphiPrefixRegistryResponseJ0 := TJSONObject(JOV);
+      MJO := TJSONObject.Create;
+      ParseCount := MJO.Parse(BytesOf(WebResponse), 0);
+      if (ParseCount = 608) and
 
-            pair := DelphiPrefixRegistryResponseJ0.Pairs[0];  // version
-            S1 := NoQuotes(pair.JsonValue.ToString);
+      ( NOT MJO.Null ) then
+      begin
+        MainName := NoQuotes(MJO.Pairs[0].JSONString.ToString);
+
+        begin
+          if MainName = 'DelphiPrefixRegistryResponse' then
+          begin
+            DelphiPrefixRegistryResponseJ0 := TJSONObject(MJO.Pairs[0].JsonValue);
+            S1 := JSONtoString(DelphiPrefixRegistryResponseJ0, 'Version');
             hdr.Version := StrToFloatDef(S1, 0.0);
 
-            pair := DelphiPrefixRegistryResponseJ0.Pairs[1];  // WebAPIStatus
-            S1 := NoQuotes(pair.JsonValue.ToString);
+            S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[1]); // JOV), 'WebAPIStatus');
             hdr.WebAPIStatus := S1;
 
-            pair := DelphiPrefixRegistryResponseJ0.Pairs[4];  // DPRAPIErrorCode
-            S1 := NoQuotes(pair.JsonValue.ToString);
+            S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[4]);
             hdr.DPRAPIErrorCode := StrToIntDef(S1, 5);
 
-            pair := DelphiPrefixRegistryResponseJ0.Pairs[5];  // DPRAPIErrorMessage
-            S1 := NoQuotes(pair.JsonValue.ToString);
+            S1 := JSONPairtoString(DelphiPrefixRegistryResponseJ0.Pairs[5]); // 'DPRAPIErrorMessage');
             hdr.DPRAPIErrorMessage := S1;
 
             if hdr.DPRAPIErrorCode = 0 then
             begin
-              pair := DelphiPrefixRegistryResponseJ0.Pairs[6];  // Payload
-              S8 := UTF8String(pair.JsonValue.ToString);
-              JOV := PayloadJO.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-              PayloadJO := TJSONObject(JOV);
+              PayloadJO := TJSONObject(DelphiPrefixRegistryResponseJ0.Pairs[6].JsonValue);
+              APIInfoJO := TJSONObject(PayloadJO.Pairs[0].JsonValue);
 
-              pair := PayloadJO.Pairs[0];  // APIInfo
-              S8 := UTF8String(pair.JsonValue.ToString);
-              APIInfoJV := PayloadJO.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-
-              pair := TJSONObject(APIInfoJV).Pairs[0];  // Version
-              S1 := NoQuotes(pair.JsonValue.ToString);
+              S1 := JSONPairtoString(APIInfoJO.Pairs[0]);
               ApiInfo_Version := StrToFloatDef(S1, 0.0);
 
               Result := True;
@@ -248,6 +252,7 @@ begin
         hdr.DPRAPIErrorMessage := 'JSON could not be parsed.';
       end;
     finally
+      //FreeAndNil(MJO);
       //FreeAndNil(DelphiPrefixRegistryResponseJ0);
       //FreeAndNil(PayloadJO);
       // do not free JOV
@@ -265,20 +270,16 @@ const
   cStartPath = 'win64';
   cStartRunner = 'runisa_x_d21_win64.dll';
 var
+  MJO: TJSONObject;
   FlagAlreadyCached: Boolean;
   URL_Versions: string;
   URL_ImageList: string;
   URL_TradukoList: string;
-  JOV: TJSONValue;
-  //DelphiPrefixRegistryResponse: Variant;
   APIInfoJO: TJSONObject;
-  APIInfoJV: TJSONValue;
-  S8: UTF8String;
   S1: string;
-  ImageListJO, ImagesJO, ImageJO, JO, JO2: TJSONObject;
+  ImageListJO, ImagesJO, ImageJO, JO2: TJSONObject;
   TradukoListJO: TJSONObject;
   TradukiTopJO, TradukiItemJO: TJSONObject;
-  pair: TJSONPair;
   n: Integer;
 begin
   ErrorText := '';
@@ -287,15 +288,8 @@ begin
   else
   begin
     Result := False;
-    JO := nil;
-    JO2 := nil;
+    MJO := nil;
     APIInfoJO := nil;
-    ImageListJO := nil;
-    ImagesJO := nil;  // plural
-    ImageJO := nil;   // singular
-    TradukoListJO := nil;
-    TradukiTopJO := nil;
-    TradukiItemJO := nil;
 
     try
       URL_Versions := Format('http://%s/%s/%s?dpr:jsonapirequest:999999:' +
@@ -304,56 +298,32 @@ begin
         [cStartDomain, cStartPath, cStartRunner, 'Versions',
           FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
         ]);
-      JsonRequestParseHdr(URL_Versions, 'Versions', FlagAlreadyCached,
+      JsonRequestParseHdr(MJO, URL_Versions, 'Versions', FlagAlreadyCached,
         DPR_API_Versions_Rec.hdr, ErrorText, DPR_API_Versions_Rec.ApiInfo_Version,
-        APIInfoJV);
+        APIInfoJO);
 
       if ErrorText = '' then
       begin
 
         if DPR_API_Versions_Rec.hdr.DPRAPIErrorCode = 0 then
         begin
-
-         APIInfoJO := TJSONObject(APIInfoJV);
-          pair := APIInfoJO.Pairs[2];  // WebAppAPISpec
-
-          S8 := UTF8String(pair.JsonValue.ToString);
-          JOV := JO2.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-          JO2 := TJSONObject(JOV);
-
-          pair := JO2.Pairs[0];        // WebAppAPISpec Version
-          S1 := NoQuotes(pair.JsonValue.ToString);
+          JO2 := TJSONObject(APIInfoJO.Pairs[2].JsonValue); // WebAppAPISpec
+          S1 := JSONPairtoString(JO2.Pairs[0]); // WebAppAPISpec Version
           DPR_API_Versions_Rec.WebAppAPISpec_Version := StrToIntDef(S1, 0);
 
-          pair := APIInfoJO.Pairs[3];  // ImageList
 
-          S8 := pair.JsonValue.ToString;
-          JOV := JO2.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-          JO2.Parse(BytesOf(S8), 0);
-
-          pair := JO2.Pairs[0];        // ImageList Version
-          S1 := NoQuotes(pair.JsonValue.ToString);
+          JO2 := TJSONObject(APIInfoJO.Pairs[3].JsonValue); // ImageList
+          S1 := JSONPairtoString(JO2.Pairs[0]); // Version
           DPR_API_Versions_Rec.ImageList_Version := StrToIntDef(S1, 0);
 
-          pair := APIInfoJO.Pairs[4];  // LingvoList
-
-          S8 := pair.JsonValue.ToString;
-          JOV := JO2.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-          JO2.Parse(BytesOf(S8), 0);
-
-          pair := JO2.Pairs[0];        // LingvoList Version
-          S1 := NoQuotes(pair.JsonValue.ToString);
+          JO2 := TJSONObject(APIInfoJO.Pairs[4].JsonValue); // LingvoList
+          S1 := JSONPairtoString(JO2.Pairs[0]); // Version
           DPR_API_Versions_Rec.LingvoList_Version := StrToIntDef(S1, 0);
 
-          pair := APIInfoJO.Pairs[5];  // TradukoList
-
-          S8 := pair.JsonValue.ToString;
-          JOV := JO2.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-          JO2.Parse(BytesOf(S8), 0);
-
-          pair := JO2.Pairs[0];        // TradukoList Version
-          S1 := NoQuotes(pair.JsonValue.ToString);
+          JO2 := TJSONObject(APIInfoJO.Pairs[5].JsonValue); // LingvoList
+          S1 := JSONPairtoString(JO2.Pairs[0]); // Version
           DPR_API_Versions_Rec.TradukoList_Version := StrToIntDef(S1, 0);
+
           Result := True;
         end;
       end;
@@ -367,62 +337,35 @@ begin
             FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
           ]);
 
-        JsonRequestParseHdr(URL_ImageList, 'ImageList', FlagAlreadyCached,
+        FreeAndNil(MJO);
+        JsonRequestParseHdr(MJO, URL_ImageList, 'ImageList', FlagAlreadyCached,
           DPR_API_ImageList_Rec.hdr, ErrorText,
-          DPR_API_ImageList_Rec.ApiInfo_Version, APIInfoJV);
+          DPR_API_ImageList_Rec.ApiInfo_Version, APIInfoJO);
 
 
         if DPR_API_ImageList_Rec.hdr.DPRAPIErrorCode = 0 then
         begin
+          ImageListJO := TJSONObject(APIInfoJO.Pairs[2].JsonValue);
 
-          pair := APIInfoJO.Pairs[2];  // ImageList
-          S8 := pair.JsonValue.ToString;
-          ImageListJO := TJSONObject.Create;
-          ImageListJO.Parse(BytesOf(S8), 0);
+          S1 := JSONPairtoString(ImageListJO.Pairs[0]);
+          DPR_API_ImageList_Rec.ImageList_Version := StrToIntDef(S1, 0);
 
-          pair := ImageListJO.Pairs[0];  // ImageList Version
-          S8 := NoQuotes(pair.JsonValue.ToString);
-          DPR_API_ImageList_Rec.ImageList_Version := StrToIntDef(S8, 0);
+          DPR_API_ImageList_Rec.Count := JSONPairtoInteger(ImageListJO.Pairs[1]);
 
-          pair := ImageListJO.Pairs[1];  // ImageList Count
-          S8 := pair.JsonValue.ToString;  // do not strip quotes from true integer
-          DPR_API_ImageList_Rec.Count := StrToIntDef(S8, 0);
           if (DPR_API_ImageList_Rec.Count = 2) then
           begin
             SetLength(DPR_API_ImageList_Rec.ImageList, DPR_API_ImageList_Rec.Count);
             DPR_API_ImageList_Rec.ImageList[0].ImageIdentifier := 'Welcome';
 
-            pair := ImageListJO.Pairs[2];  // ImageList .... Images
-            S8 := pair.JsonValue.ToString;
-            ImagesJO := TJSONObject.Create;
-            ImagesJO.Parse(BytesOf(S8), 0);
+            ImagesJO := TJSONObject(APIInfoJO.Pairs[2].JsonValue); // ImageList .... Images
+            ImageJO := TJSONObject(ImagesJO.Pairs[0].JsonValue);  // welcome image
+            DPR_API_ImageList_Rec.ImageList[0].Version := JSONPairtoInteger(ImageJO.Pairs[0], True);
+            DPR_API_ImageList_Rec.ImageList[0].URL := JSONPairtoString(ImageJO.Pairs[1]);
 
-            pair := ImagesJO.Pairs[0];  // start Welcome Image
-            S8 := pair.JsonValue.ToString;
-            ImageJO := TJSONObject.Create;
-            ImageJO.Parse(BytesOf(S8), 0);
 
-            pair := ImageJO.Pairs[0];  // Image Version
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_ImageList_Rec.ImageList[0].Version := StrToIntDef(S8, 0);
-
-            pair := ImageJO.Pairs[1];  // Image URL
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_ImageList_Rec.ImageList[0].URL := S8;
-
-            pair := ImagesJO.Pairs[1];  // start Goodbye Image
-            S8 := pair.JsonValue.ToString;
-            //FreeAndNil(ImageJO);
-            ImageJO := TJSONObject.Create;
-            ImageJO.Parse(BytesOf(S8), 0);
-
-            pair := ImageJO.Pairs[0];  // Image Version
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_ImageList_Rec.ImageList[1].Version := StrToIntDef(S8, 0);
-
-            pair := ImageJO.Pairs[1];  // Image URL
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_ImageList_Rec.ImageList[1].URL := S8;
+            ImageJO := TJSONObject(ImagesJO.Pairs[1].JsonValue);  // goodbye image
+            DPR_API_ImageList_Rec.ImageList[1].Version := JSONPairtoInteger(ImageJO.Pairs[0], True);
+            DPR_API_ImageList_Rec.ImageList[1].URL := JSONPairtoString(ImageJO.Pairs[1]);
 
             Result := True;
           end;
@@ -439,29 +382,22 @@ begin
             FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
           ]);
 
-        JsonRequestParseHdr(URL_TradukoList, 'TradukoList', FlagAlreadyCached,
+        FreeAndNil(MJO);
+        JsonRequestParseHdr(MJO, URL_TradukoList, 'TradukoList', FlagAlreadyCached,
           DPR_API_TradukoList_Rec.hdr, ErrorText,
-          DPR_API_TradukoList_Rec.ApiInfo_Version, APIInfoJV);
+          DPR_API_TradukoList_Rec.ApiInfo_Version, APIInfoJO);
 
         if DPR_API_TradukoList_Rec.hdr.DPRAPIErrorCode = 0 then
         begin
+          TradukoListJO := TJSONObject(APIInfoJO.Pairs[6].JsonValue);
+          DPR_API_TradukoList_Rec.TradukoList_Version :=
+            JSONPairtoInteger(TradukoListJO.Pairs[0], True);
 
-          pair := APIInfoJO.Pairs[3];  // TradukiList
-          S8 := pair.JsonValue.ToString;
-          TradukoListJO := TJSONObject.Create;
-          TradukoListJO.Parse(BytesOf(S8), 0);
+          DPR_API_TradukoList_Rec.Count :=  // do not strip quotes from true integer
+            JSONPairtoInteger(TradukoListJO.Pairs[1]);
 
-          pair := TradukoListJO.Pairs[0];  // TradukoList Version
-          S8 := NoQuotes(pair.JsonValue.ToString);
-          DPR_API_TradukoList_Rec.TradukoList_Version := StrToIntDef(S8, 0);
-
-          pair := TradukoListJO.Pairs[1];  // TradukoList Count
-          S8 := pair.JsonValue.ToString;  // do not strip quotes from true integer
-          DPR_API_TradukoList_Rec.Count := StrToIntDef(S8, 0);
-
-          pair := TradukoListJO.Pairs[2];  // TradukoList LingvoCount
-          S8 := pair.JsonValue.ToString;  // true integer
-          DPR_API_TradukoList_Rec.LingvoCount := StrToIntDef(S8, 0);
+          DPR_API_TradukoList_Rec.LingvoCount :=
+            JSONPairtoInteger(TradukoListJO.Pairs[2]);
 
           if (DPR_API_TradukoList_Rec.Count = 2) then
           begin
@@ -469,75 +405,50 @@ begin
             SetLength(DPR_API_TradukoList_Rec.TradukiList,
               DPR_API_TradukoList_Rec.Count * DPR_API_TradukoList_Rec.LingvoCount);
 
-            pair := TradukoListJO.Pairs[3];  // TradukoList .... Traduki
-            S8 := pair.JsonValue.ToString;
-            TradukiTopJO := TJSONObject.Create;
-            TradukiTopJO.Parse(BytesOf(S8), 0);
+            // TradukoList .... Traduki
+            TradukiTopJO := TJSONObject(APIInfoJO.Pairs[3].JsonValue);
 
-
-            pair := TradukiTopJO.Pairs[0];  // btnGo
             DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-              NoQuotes(pair.JsonString.ToString);
-            S8 := pair.JsonValue.ToString;
-            JOV := TradukiItemJO.ParseJSONValue(BytesOf(S8), 0, cTreatAsUTF8);
-            TradukiItemJO := TJSONObject(JOV);
+              NoQuotes(TradukiTopJO.Pairs[0].JsonString.ToString); // btnGo
+            TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[0].JsonValue);
 
-            pair := TradukiItemJO.Pairs[0];
-            S8 := NoQuotes(pair.JsonString.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := S8;
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation := S8;
+            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+              TradukiItemJO.Pairs[0].JSONString.ToString;
+            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+              TradukiItemJO.Pairs[0].JSONValue.ToString;
 
             Inc(n);  // portuguese
             DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
               DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
-            pair := TradukiItemJO.Pairs[1];
-            S8 := NoQuotes(pair.JsonString.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := S8;
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation := S8;
 
-            Inc(n);
-            pair := TradukiTopJO.Pairs[1];  // btnExit
-            DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-              NoQuotes(pair.JsonString.ToString);
-            //FreeAndNil(TradukiItemJO);
-            TradukiItemJO := TJSONObject.Create;
-            TradukiItemJO.Parse(BytesOf(pair.JsonValue.ToString), 0);
+            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+              TradukiItemJO.Pairs[1].JSONString.ToString;
+            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+              TradukiItemJO.Pairs[1].JSONValue.ToString;
 
-            pair := TradukiItemJO.Pairs[0];  // english first lingvo #
-            S8 := NoQuotes(pair.JsonString.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := S8;
-            S8 := NoQuotes(pair.JsonValue.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation := S8;
+
+            Inc(n);  // back to english
+            TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[1].JsonValue);
+
+            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+              TradukiItemJO.Pairs[0].JSONString.ToString; // btnExit
+            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+              TradukiItemJO.Pairs[0].JSONValue.ToString;
+
 
             Inc(n);  // portuguese
-            DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-              DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
-            pair := TradukiItemJO.Pairs[1];   // next lingvo #
-            S8 := NoQuotes(pair.JsonString.ToString);
-            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := S8;
-            S8 := pair.JsonValue.ToString;
-            if S8 <> '' then
-              S8 := pair.JsonValue.Value;
-            DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(string(S8));
+            DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
+              TradukiItemJO.Pairs[0].JSONString.ToString; // btnExit
+            DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
+              TradukiItemJO.Pairs[0].JSONValue.ToString;
+
             Result := True;
           end;
         end;
       end;
 
-
     finally
-      //FreeAndNil(JOV);
-      {FreeAndNil(ImageListJO);
-      FreeAndNil(ImagesJO);
-      FreeAndNil(ImageJO);
-      FreeAndNil(APIInfoJO);
-      FreeAndNil(JO);
-      FreeAndNil(JO2);
-      FreeAndNil(TradukoListJO);
-      FreeAndNil(TradukiTopJO);
-      FreeAndNil(TradukiItemJO);}
+      FreeAndNil(MJO);
     end;
 
 
