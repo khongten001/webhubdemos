@@ -6,7 +6,24 @@ interface
 
 {$IFDEF NEXTGEN}
 uses
+  // This patch makes UTF8String etc available for use in FireMonkey apps.
+  // http://andy.jgknet.de/blog/2014/09/system-bytestrings-support-for-xe7/
   System.ByteStrings;
+{$ENDIF}
+
+{$IFDEF INHOUSE}
+const
+  cStartDomain = 'delphiprefix.modulab.com';   // local testing 192.168.x.x
+      // use delphiprefix.href.com for public server
+  cStartPath = 'win64';
+      // use scripts for public server
+  cStartRunner = 'runisa_x_d21_win64.dll';
+      // use runisa.dll for public server
+{$ELSE}
+const
+  cStartDomain = 'delphiprefix.href.com';  // for public server
+  cStartPath = 'scripts';
+  cStartRunner = 'runisa.dll';
 {$ENDIF}
 
 type
@@ -53,14 +70,34 @@ type
     TradukiList: array of TDPRAPITradukiRec;
   end;
 
+  TDPRAPIInterceptRec = record
+    Identifier: string;
+    InterceptURLSnip: string;
+  end;
+  TDPRAPIGenerateRec = record
+    Identifier: string;
+    GenerateURLSnip: string;
+  end;
+  TDPRAPIWebAppAPISpecRec = record
+    hdr: TDPRAPIResponseHdrRec;
+    ApiInfo_Version: Double;
+    WebAppAPISpec_Version: Integer;
+    URL_ToAppID: string;
+    InterceptList: array of TDPRAPIInterceptRec;
+    GenerateList: array of TDPRAPIGenerateRec;
+  end;
+
+
 var
   DPR_API_Versions_Rec: TDPRAPIResponseVersionsRec;
   DPR_API_ImageList_Rec: TDPRAPIResponseImageListRec;
   DPR_API_TradukoList_Rec: TDPRAPITradukoListRec;
+  DPR_API_WebAppAPISpec_Rec: TDPRAPIWebAppAPISpecRec;
 
 function Client_Init(out ErrorText: string): Boolean;
 
 function Translate(const InKeyword, InLingvo3: string): string;
+function GenerateURL(const InIdentifier: string): string;
 
 implementation
 
@@ -204,7 +241,7 @@ begin
       P := Addr(WebResponse8[Idx]);
       MPV := MJO.ParseJSONValue(P, 0, cTreatAsUTF8);
 
-      if ( NOT MPV.Null ) then
+      if ( MPV <> nil ) then
       begin
         MainName := NoQuotes(TJSONObject(MPV).Pairs[0].JSONString.ToString);
 
@@ -256,10 +293,6 @@ end;
 function Client_Init(out ErrorText: string): Boolean;
 var
   SVGResponse: string;
-const
-  cStartDomain = 'delphiprefix.modulab.com';   // local testing 192.168.x.x
-  cStartPath = 'win64';
-  cStartRunner = 'runisa_x_d21_win64.dll';
 var
   MPV: TJSONValue;
   MJO: TJSONObject;
@@ -267,13 +300,15 @@ var
   URL_Versions: string;
   URL_ImageList: string;
   URL_TradukoList: string;
+  URL_WebAppAPISpec: string;
   APIInfoJO: TJSONObject;
   S1: string;
   ImageListJO, ImagesJO, ImageJO, JO2: TJSONObject;
   TradukoListJO: TJSONObject;
   TradukiTopJO, TradukiItemJO: TJSONObject;
+  WebAppAPIJO, URLQueryStringsJO, InterceptJO, GenerateJO: TJSONObject;
   n: Integer;
-  iTrad: Integer;
+  iTrad, iAPI: Integer;
 begin
   ErrorText := '';
   if FlagInitDone then
@@ -419,7 +454,7 @@ begin
                 S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
                 DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
 
-                Inc(n);  // portuguese
+                Inc(n);  // next language, maybe portuguese
                 DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
                   DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
 
@@ -429,24 +464,6 @@ begin
                   NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
               end;  // back to english
 
-              (*DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                NoQuotes(TradukiTopJO.Pairs[1].JsonString.ToString); // btnExit
-              TradukiItemJO := TJSONObject(TradukiTopJO.Pairs[1].JsonValue);
-
-              S1 := TradukiItemJO.Pairs[0].JSONString.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
-              S1 := TradukiItemJO.Pairs[0].JSONValue.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
-
-              Inc(n);  // portuguese
-              DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
-                DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
-
-              S1 := TradukiItemJO.Pairs[1].JSONString.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
-              S1 := TradukiItemJO.Pairs[1].JSONValue.ToString;
-              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
-                *)
               Result := True;
             end;
           end
@@ -457,6 +474,81 @@ begin
           end;
         end;
       end;
+
+
+      if Result then
+      begin
+        URL_WebAppAPISpec :=
+          Format('http://%s/%s/%s?dpr:jsonapirequest:999999:' +
+          'Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;' +
+          'DetailLevel=%s;%s',
+          [cStartDomain, cStartPath, cStartRunner, 'WebAppAPISpec',
+            FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
+          ]);
+
+        FreeAndNil(MJO);
+        JsonRequestParseHdr(MPV, MJO, URL_WebAppAPISpec, 'WebAppAPISpec',
+          FlagAlreadyCached,
+          DPR_API_WebAppAPISpec_Rec.hdr, ErrorText,
+          DPR_API_WebAppAPISpec_Rec.ApiInfo_Version, APIInfoJO);
+
+        if DPR_API_WebAppAPISpec_Rec.hdr.DPRAPIErrorCode = 0 then
+        begin
+          if (APIInfoJO.Count = 3) then
+          begin
+
+            WebAppAPIJO := TJSONObject(APIInfoJO.Pairs[2].JsonValue);
+            DPR_API_WebAppAPISpec_Rec.WebAppAPISpec_Version :=
+              JSONPairtoInteger(WebAppAPIJO.Pairs[0], True);
+
+            DPR_API_WebAppAPISpec_Rec.URL_ToAppID :=
+              JSONPairtoString(WebAppAPIJO.Pairs[1]);
+
+            URLQueryStringsJO := TJSONObject(WebAppAPIJO.Pairs[2].JsonValue);
+            if (URLQueryStringsJO.Count = 2) then
+            begin
+              InterceptJO := TJSONObject(URLQueryStringsJO.Pairs[0].JsonValue);
+              GenerateJO := TJSONObject(URLQueryStringsJO.Pairs[1].JsonValue);
+
+              SetLength(DPR_API_WebAppAPISpec_Rec.InterceptList,
+                InterceptJO.Count);
+              SetLength(DPR_API_WebAppAPISpec_Rec.GenerateList,
+                GenerateJO.Count);
+
+              for iAPI := 0 to Pred(InterceptJO.Count) do
+              begin
+                DPR_API_WebAppAPISpec_Rec.InterceptList[iAPI].Identifier :=
+                  NoQuotes(InterceptJO.Pairs[iAPI].JSONString.ToString);
+                DPR_API_WebAppAPISpec_Rec.InterceptList[iAPI].InterceptURLSnip
+                  := NoQuotes(InterceptJO.Pairs[iAPI].JsonValue.ToString);
+              end;
+
+              for iAPI := 0 to Pred(GenerateJO.Count) do
+              begin
+                DPR_API_WebAppAPISpec_Rec.GenerateList[iAPI].Identifier :=
+                  NoQuotes(GenerateJO.Pairs[iAPI].JSONString.ToString);
+                DPR_API_WebAppAPISpec_Rec.GEnerateList[iAPI].GenerateURLSnip
+                  := NoQuotes(GenerateJO.Pairs[iAPI].JsonValue.ToString);
+              end;
+
+              Result := True;
+            end
+            else
+            begin
+              ErrorText := 'Invalid count of URLQueryStrings';
+              Result := False;
+            end;
+          end
+          else
+          begin
+            ErrorText := 'invalid WebAppAPISpec count';
+            Result := False;
+          end;
+        end
+        else
+          Result := False;
+      end;
+
 
     finally
       FreeAndNil(MJO);
@@ -513,111 +605,30 @@ begin
   end;
 end;
 
+function GenerateURL(const InIdentifier: string): string;
+var
+  i, n: Integer;
+begin
+  Result := '?' + InIdentifier + '?';
+  n := High(DPR_API_WebAppAPISpec_Rec.GenerateList);
+  for i := 0 to n do
+  begin
+    if SameText(InIdentifier,
+      DPR_API_WebAppAPISpec_Rec.GenerateList[i].Identifier) then
+    begin
+      Result := DPR_API_WebAppAPISpec_Rec.URL_ToAppID +
+        DPR_API_WebAppAPISpec_Rec.GenerateList[i].GenerateURLSnip;
+      break;
+    end;
+  end;
+end;
 
 initialization
 finalization
   SetLength(DPR_API_ImageList_Rec.ImageList, 0);
   SetLength(DPR_API_TradukoList_Rec.TradukiList, 0);
-
-(* ok to use ucJSONWrapper.pas on FMX win32 but not Android in October 2014
-
-    JSONV := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
-    DelphiPrefixRegistryResponse := JSONV.DelphiPrefixRegistryResponse;
-    S1 := DelphiPrefixRegistryResponse.Version;
-    DPR_API_Versions_Rec.hdr.Version := StrToFloatDef(S1, 0.0);
-    DPR_API_Versions_Rec.hdr.WebAPIStatus :=
-      DelphiPrefixRegistryResponse.WebAPIStatus;
-    DPR_API_Versions_Rec.hdr.DPRAPIErrorCode :=
-      StrToIntDef(DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
-    DPR_API_Versions_Rec.hdr.DPRAPIErrorMessage :=
-      DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
-*)
-
-(*
-    if DPR_API_Versions_Rec.hdr.DPRAPIErrorCode = 0 then
-    begin
-      S1 := DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
-      DPR_API_Versions_Rec.ApiInfo_Version := StrToFloatDef(S1, 0.0);
-      DPR_API_Versions_Rec.WebAppAPISpec_Version :=
-        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
-          WebAppAPISpec.Version, 0);
-      DPR_API_Versions_Rec.ImageList_Version :=
-        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
-          ImageList.Version, 0);
-      DPR_API_Versions_Rec.LingvoList_Version :=
-        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
-          LingvoList.Version, 0);
-      DPR_API_Versions_Rec.TradukoList_Version :=
-        StrToIntDef(DelphiPrefixRegistryResponse.Payload.APIInfo.
-          TradukoList.Version, 0);
-      Result := True;
-    end
-    else
-    begin
-      Result := False;
-    end;
-  end
-  else
-  begin
-    Result := False;
-  end;
-
-  if Result then
-  begin
-    URL_ImageList := Format('http://%s/%s/%s?dpr:jsonapirequest:999999:' +
-      'Version=1.0;RequestType=APIInfo;RequestTypeVersion=1.0;' +
-      'DetailLevel=%s;%s',
-      [cStartDomain, cStartPath, cStartRunner, 'ImageList',
-        FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
-      ]);
-    WebResponse := HTTPSGet(URL_ImageList, ErrorText, cUserAgent, '',
-      False, True);
-
-    if ErrorText = '' then
-    begin
-      JSONV := VarJSONCreate(TJSONObject.ParseJSONValue(WebResponse), True);
-      DelphiPrefixRegistryResponse := JSONV.DelphiPrefixRegistryResponse;
-      S1 := DelphiPrefixRegistryResponse.Version;
-      DPR_API_ImageList_Rec.hdr.Version := StrToFloatDef(S1, 0.0);
-      DPR_API_ImageList_Rec.hdr.WebAPIStatus :=
-        DelphiPrefixRegistryResponse.WebAPIStatus;
-      DPR_API_ImageList_Rec.hdr.DPRAPIErrorCode :=
-        StrToIntDef(DelphiPrefixRegistryResponse.DPRAPIErrorCode, 5);
-      DPR_API_ImageList_Rec.hdr.DPRAPIErrorMessage :=
-        DelphiPrefixRegistryResponse.DPRAPIErrorMessage;
-
-      if DPR_API_ImageList_Rec.hdr.DPRAPIErrorCode = 0 then
-      begin
-        S1 := DelphiPrefixRegistryResponse.Payload.APIInfo.Version;
-        DPR_API_ImageList_Rec.ApiInfo_Version := StrToFloatDef(S1, 0.0);
-        DPR_API_ImageList_Rec.Count :=
-          DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Count;
-        if DPR_API_ImageList_Rec.Count = 2 then
-        begin
-          SetLength(DPR_API_ImageList_Rec.ImageList, DPR_API_ImageList_Rec.Count);
-          DPR_API_ImageList_Rec.ImageList[0].ImageIdentifier := 'Welcome';
-          DPR_API_ImageList_Rec.ImageList[0].Version :=
-            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.Version;
-          DPR_API_ImageList_Rec.ImageList[0].URL :=
-            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Welcome.URL;
-          DPR_API_ImageList_Rec.ImageList[1].ImageIdentifier := 'Goodbye';
-          DPR_API_ImageList_Rec.ImageList[1].Version :=
-            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.Version;
-          DPR_API_ImageList_Rec.ImageList[1].URL :=
-            DelphiPrefixRegistryResponse.Payload.APIInfo.ImageList.Images.Goodbye.URL;
-
-
-        end
-        else
-          Result := False;
-      end
-      else
-      begin
-        Result := False;
-      end;
-    end;
-  end;
-    *)
+  SetLength(DPR_API_WebAppAPISpec_Rec.InterceptList, 0);
+  SetLength(DPR_API_WebAppAPISpec_Rec.GenerateList, 0);
 
 end.
 
