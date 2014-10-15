@@ -14,6 +14,7 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 </whmacros>
 
 <whdroplet name="drSharedHead">
+(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href='//fonts.googleapis.com/css?family=Old+Standard+TT:400,700,400italic' rel='stylesheet' type='text/css'>
@@ -29,7 +30,7 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 <div class="row">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
-		<h1 class="fancy">(~GO|pgHomePage|Delphi Prefix Registry~)</h1>
+		<h1 class="fancy">(~GO|pgHomePage|(~~banner_DelphiPrefixRegistry~)~)</h1>
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
@@ -66,7 +67,9 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
 		(~GO|pgThanks| itemprop="url"  class="tiny radius secondary button" |(~~link_credits~)||<span class="tiny radius info button">(~~link_credits~)</span>~) &emsp;
 		(~GO|pgDonate| itemprop="url"  class="tiny radius secondary button" |(~~link_donate~)||<span class="tiny radius info button">(~~link_donate~)</span>~) &emsp;
 		</span>
+		<p> (~drDPRLingvoLinkList~) </p>
 		<!--- (~GOR|pgLogout|Logout~) &emsp; -->
+
 		<p style="margin-top: 6em; color:#666667; font-size: smaller;" itemscope itemtype="http://www.schema.org/WPAdBlock">
 		Running <a href="http://www.href.com/whvcl">(~version~)</a> 
 		compiled with <span class="color-secondary-2-3">Delphi (~CentralInfo.PascalCompilerCode~)</span>. <br>
@@ -93,6 +96,13 @@ mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation
   <a onclick="window.open(this.href);return false;" 
 	href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)">validator.w3.org</a>
 </div>~)
+</whdroplet>
+
+<whdroplet name="drDPRLingvoLinkList">
+<span style="word-spacing: 1.5em;">
+<span id="lingvoeng">(~JUMP|(~PageID~),lingvo=eng|(~mcEnglish~)~)</span> 
+<span id="lingvopor">(~JUMP|(~PageID~),lingvo=por|(~mcPortuguese~)~)</span>
+</span>
 </whdroplet>
 
 </whteko>
