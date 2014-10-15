@@ -21,5 +21,9 @@ call %ZaphodsMap%zmset.bat p UsingKey2Value "HREFTools\FileTransfer FTP wesleywh
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-dpr.7z
 if errorlevel 1 pause
 
+call %~dp0\default-compilerdigits.bat
+D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-Library-d%compilerdigits%.7z
+if errorlevel 1 pause
+
 :TheEnd
 endlocal
