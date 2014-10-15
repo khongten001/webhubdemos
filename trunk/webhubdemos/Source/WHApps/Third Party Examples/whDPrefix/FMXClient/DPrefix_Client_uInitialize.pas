@@ -4,6 +4,9 @@ interface
 
 {$I hrefdefines.inc}
 
+uses
+  System.ByteStrings;
+
 type
   TDPRAPIResponseHdrRec = record
     Version: Double;
@@ -166,26 +169,30 @@ begin
 end;
 
 
-function JsonRequestParseHdr(var MJO: TJSONObject;
+function JsonRequestParseHdr(var MPV: TJSONValue; var MJO: TJSONObject;
   const InURL: string; const Keyword: string;
   var AlreadyCached: Boolean;
   var hdr: TDPRAPIResponseHdrRec; out ErrorText: string;
   out ApiInfo_Version: Double; var APIInfoJO: TJSONObject): Boolean;
 var
   WebResponse: string;
+  WebResponse8: UTF8String;
   DelphiPrefixRegistryResponseJ0: TJSONObject;
   PayloadJO: TJSONObject;
   S1: string;
   VersionsJsonFilespec: string;
-  {PreviousVersionsJsonStr8: UTF8String;}
+  PreviousVersionsJsonStr8: UTF8String;
   MainName: string;
   ParseCount: Integer;
+  P: Pointer;
+  Idx: Integer;
 begin
   Result := False;
 
   APIInfoJO := nil;
 
   WebResponse := HTTPSGet(InURL, ErrorText, cUserAgent, '', False, True);
+  WebResponse8 := UTF8Encode(WebResponse);
 
   if ErrorText = '' then
   begin
@@ -195,7 +202,7 @@ begin
       AlreadyCached := False;
       VersionsJsonFilespec := Client_Documents_Path + PathDelim + Keyword +
         '.json';
-      {if FileExists(VersionsJsonFilespec) then
+      if FileExists(VersionsJsonFilespec) then
         PreviousVersionsJsonStr8 := UTF8String(StrLoadFromFile(VersionsJsonFilespec))
       else
         PreviousVersionsJsonStr8 := '';
@@ -203,20 +210,29 @@ begin
         AlreadyCached := True;
 
       if NOT AlreadyCached then
-        StrSaveToFile(WebResponse, VersionsJsonFilespec, TEncoding.UTF8);}
+        StrSaveToFile(WebResponse, VersionsJsonFilespec, TEncoding.UTF8);
     end;
 
     try
       MJO := TJSONObject.Create;
-      ParseCount := MJO.Parse(BytesOf(WebResponse), 0);
-      if ( NOT MJO.Null ) and (ParseCount > 0) then
+      //ParseCount := MJO.Parse(BytesOf(WebResponse), 0);
+      //ParseCount := MJO.Parse(BytesOf(WebResponse8), 0);
+
+      Idx := Low(WebResponse8);
+      P := Addr(WebResponse8[Idx]);
+      MPV := MJO.ParseJSONValue(P, 0, cTreatAsUTF8);
+      if ( NOT MPV.Null ) then // and (ParseCount > 0) then
+        S1 := MPV.ToString;
+
+      if ( NOT MPV.Null ) then // and (ParseCount > 0) then
       begin
-        MainName := NoQuotes(MJO.Pairs[0].JSONString.ToString);
+        MainName := NoQuotes(TJSONObject(MPV).Pairs[0].JSONString.ToString);
 
         begin
           if MainName = 'DelphiPrefixRegistryResponse' then
           begin
-            DelphiPrefixRegistryResponseJ0 := TJSONObject(MJO.Pairs[0].JsonValue);
+            DelphiPrefixRegistryResponseJ0 :=
+              TJSONObject(TJSONObject(MPV).Pairs[0].JsonValue);
             S1 := JSONtoString(DelphiPrefixRegistryResponseJ0, 'Version');
             hdr.Version := StrToFloatDef(S1, 0.0);
 
@@ -250,10 +266,7 @@ begin
         hdr.DPRAPIErrorMessage := 'JSON could not be parsed.';
       end;
     finally
-      //FreeAndNil(MJO);
-      //FreeAndNil(DelphiPrefixRegistryResponseJ0);
-      //FreeAndNil(PayloadJO);
-      // do not free JOV
+      // not not FreeAndNil(PV);
       // do not free APIInfoJO here
     end;
   end;
@@ -262,12 +275,13 @@ end;
 
 function Client_Init(out ErrorText: string): Boolean;
 var
-  WebResponse: string;
+  SVGResponse: string;
 const
   cStartDomain = 'delphiprefix.modulab.com';   // local testing 192.168.x.x
   cStartPath = 'win64';
   cStartRunner = 'runisa_x_d21_win64.dll';
 var
+  MPV: TJSONValue;
   MJO: TJSONObject;
   FlagAlreadyCached: Boolean;
   URL_Versions: string;
@@ -296,7 +310,7 @@ begin
         [cStartDomain, cStartPath, cStartRunner, 'Versions',
           FormatDateTime('hhnn', Now)  // 4 digits that vary sufficiently
         ]);
-      JsonRequestParseHdr(MJO, URL_Versions, 'Versions', FlagAlreadyCached,
+      JsonRequestParseHdr(MPV, MJO, URL_Versions, 'Versions', FlagAlreadyCached,
         DPR_API_Versions_Rec.hdr, ErrorText, DPR_API_Versions_Rec.ApiInfo_Version,
         APIInfoJO);
 
@@ -335,7 +349,7 @@ begin
           ]);
 
         FreeAndNil(MJO);
-        JsonRequestParseHdr(MJO, URL_ImageList, 'ImageList', FlagAlreadyCached,
+        JsonRequestParseHdr(MPV, MJO, URL_ImageList, 'ImageList', FlagAlreadyCached,
           DPR_API_ImageList_Rec.hdr, ErrorText,
           DPR_API_ImageList_Rec.ApiInfo_Version, APIInfoJO);
 
@@ -384,7 +398,7 @@ begin
           ]);
 
         FreeAndNil(MJO);
-        JsonRequestParseHdr(MJO, URL_TradukoList, 'TradukoList', FlagAlreadyCached,
+        JsonRequestParseHdr(MPV, MJO, URL_TradukoList, 'TradukoList', FlagAlreadyCached,
           DPR_API_TradukoList_Rec.hdr, ErrorText,
           DPR_API_TradukoList_Rec.ApiInfo_Version, APIInfoJO);
 
@@ -445,10 +459,10 @@ begin
               DPR_API_TradukoList_Rec.TradukiList[n].Identifier :=
                 DPR_API_TradukoList_Rec.TradukiList[n - 1].Identifier;
 
-              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 :=
-                NoQuotes(TradukiItemJO.Pairs[1].JSONString.ToString); // btnExit
-              DPR_API_TradukoList_Rec.TradukiList[n].Translation :=
-                NoQuotes(TradukiItemJO.Pairs[1].JSONValue.ToString);
+              S1 := TradukiItemJO.Pairs[1].JSONString.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Lingvo3 := NoQuotes(S1);
+              S1 := TradukiItemJO.Pairs[1].JSONValue.ToString;
+              DPR_API_TradukoList_Rec.TradukiList[n].Translation := NoQuotes(S1);
 
               Result := True;
             end;
@@ -473,21 +487,21 @@ begin
         ForceDirectories(Client_Documents_Path);
         if High(DPR_API_ImageList_Rec.ImageList) >= 1 then
         begin
-          WebResponse := HTTPSGet(DPR_API_ImageList_Rec.ImageList[0].URL,
+          SVGResponse := HTTPSGet(DPR_API_ImageList_Rec.ImageList[0].URL,
             ErrorText, cUserAgent, '', False, True);
           DPR_API_ImageList_Rec.ImageList[0].LocalFilespec :=
             IncludeTrailingPathDelimiter(Client_Documents_Path) +
             'welcome.svg';
-          StrSaveToFile(WebResponse,
+          StrSaveToFile(SVGResponse,
             DPR_API_ImageList_Rec.ImageList[0].LocalFilespec,
             TEncoding.ASCII);
 
-          WebResponse := HTTPSGet(DPR_API_ImageList_Rec.ImageList[1].URL,
+          SVGResponse := HTTPSGet(DPR_API_ImageList_Rec.ImageList[1].URL,
             ErrorText, cUserAgent, '', False, True);
           DPR_API_ImageList_Rec.ImageList[1].LocalFilespec :=
             IncludeTrailingPathDelimiter(Client_Documents_Path) +
             'goodbye.svg';
-          StrSaveToFile(WebResponse,
+          StrSaveToFile(SVGResponse,
             DPR_API_ImageList_Rec.ImageList[1].LocalFilespec,
             TEncoding.ASCII);
         end;

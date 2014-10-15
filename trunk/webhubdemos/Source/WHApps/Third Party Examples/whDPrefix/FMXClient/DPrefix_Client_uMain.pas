@@ -9,7 +9,7 @@ uses
   System.Sensors.Components, FMX.Memo, System.Android.Sensors;
 
 const
-  cSurferLingvo = 'eng';  // or 'por' for Brazil
+  cSurferLingvo = 'por';  // or 'por' for Brazil
 
 type
   TWebBrowserForm = class(TForm)
@@ -100,7 +100,7 @@ begin
     LocationSensor1.Active := True;
     EdtURL.Text :=
       'http://delphiprefix.modulab.com/win64/runisa_x_d21_win64.dll?dpr:pgmobile';
-    if High(DPR_API_TradukoList_Rec.TradukiList) >= 3 then
+    if High(DPR_API_TradukoList_Rec.TradukiList) > 0 then
     begin
       S1 := Translate(btnGo.Name, cSurferLingvo);
       btnGO.Text := S1;
@@ -120,26 +120,23 @@ procedure TWebBrowserForm.LoadGoodbyeImage;
 var
   GoodbyeSVG: string;
   sb: TStringList;
-  ErrorText: string;
 begin
   sb := nil;
-  Client_Init(ErrorText);
-  if (ErrorText = '') then
-  begin
-    if High(DPR_API_ImageList_Rec.ImageList) >= 1 then
-    try
-      sb := TStringList.Create;
-      sb.LoadFromFile(DPR_API_ImageList_Rec.ImageList[1].LocalFilespec);
-      if sb.Count > 0 then
-      begin
-        GoodbyeSVG := sb.Text;
-        WebBrowser1.LoadFromStrings(GoodbyeSVG, 'file:///' +
-          DPR_API_ImageList_Rec.ImageList[1].LocalFilespec);
-      end;
-    finally
-      FreeAndNil(sb);
+
+  if High(DPR_API_ImageList_Rec.ImageList) >= 1 then
+  try
+    sb := TStringList.Create;
+    sb.LoadFromFile(DPR_API_ImageList_Rec.ImageList[1].LocalFilespec);
+    if sb.Count > 0 then
+    begin
+      GoodbyeSVG := sb.Text;
+      WebBrowser1.LoadFromStrings(GoodbyeSVG, 'file:///' +
+        DPR_API_ImageList_Rec.ImageList[1].LocalFilespec);
     end;
+  finally
+    FreeAndNil(sb);
   end;
+
 end;
 
 procedure TWebBrowserForm.LoadWelcomeImage;
