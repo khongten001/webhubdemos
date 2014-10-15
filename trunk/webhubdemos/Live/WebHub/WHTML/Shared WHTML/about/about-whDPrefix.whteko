@@ -5,7 +5,6 @@
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRImageDir=(~Static.AppRoot~)
-mcDPRCSSDir=(~Static.AppRoot~)css/
 mcDPRLogo=<span class="fancy">DP<sub>x</sub>R</span>
 mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
 mcAthenaDelphiImage=<img src="(~mcDPRImageDir~)delphi2.png" alt="Athena -- Delphi2" />
