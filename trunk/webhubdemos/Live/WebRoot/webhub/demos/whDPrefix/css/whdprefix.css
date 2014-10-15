@@ -36,7 +36,7 @@ table {empty-cells: show;}
 		background-color: #569D9D; /* #EEE;*/
 }
 #approvedPrefixesTable tbody tr.alt0 td {background-color: white;}  /* bisque; */
-#approvedPrefixesTable tbody tr.alt1 td {background-color: #C0EAC0;} /* #EEE; */
+#approvedPrefixesTable tbody tr.alt1 td {background-color: #CBD4CB; } /* #C0EAC0;} /* #EEE; */
 #approvedPrefixesTable th, #approvedPrefixesTable td {
 	padding: 0.5em 0.9em 0.5em 0.9em;
 }
