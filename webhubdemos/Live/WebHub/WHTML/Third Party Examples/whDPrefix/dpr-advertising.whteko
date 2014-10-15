@@ -3,7 +3,7 @@
 <whteko designmode="code">
 
 <whdroplet name="drGoogleAdsOnDPR" show="yes">
-<div class="row">
+<div class="row" itemscope itemtype="http://www.schema.org/WPAdBlock">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
@@ -80,12 +80,14 @@
       <File id="f12" filename="dpr-headfoot.whteko"/>
       <File id="f13" filename="dpr-home.whteko"/>
       <File id="f20" filename="dpr-login.whteko"/>
-      <File id="f10" filename="dpr-text-eng.whteko"/>
       <File id="f21" filename="dpr-register.whteko"/>
       <File id="f22" filename="dpr-view-registry.whteko"/>
       <File id="f50" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
+      <File id="L01" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
+      <File id="L02" filename="dpr-text-eng.whteko"/>
+      <File id="L03" filename="dpr-text-por.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
