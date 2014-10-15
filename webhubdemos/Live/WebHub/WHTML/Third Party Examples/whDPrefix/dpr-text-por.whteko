@@ -49,4 +49,11 @@ mcPortuguese=Português
 ~verbPastTense_Registered=Inscrito
 </whtranslations>
 
+<!--- Change Country Code page -->
+<whtranslations>
+~prompt_your_country=Seu País
+~button_apply=Usar
+</whtranslations>
+
+
 </whteko>

@@ -45,4 +45,11 @@
 ~verbPastTense_Registered=Registered
 </whtranslations>
 
+<!--- Change Country Code page -->
+<whtranslations>
+~prompt_your_country=Your Country
+~button_apply=Apply
+</whtranslations>
+
+
 </whteko>
