@@ -4,8 +4,10 @@ interface
 
 {$I hrefdefines.inc}
 
+{$IFDEF NEXTGEN}
 uses
   System.ByteStrings;
+{$ENDIF}
 
 type
   TDPRAPIResponseHdrRec = record
@@ -183,7 +185,7 @@ var
   VersionsJsonFilespec: string;
   PreviousVersionsJsonStr8: UTF8String;
   MainName: string;
-  ParseCount: Integer;
+  //ParseCount: Integer;
   P: Pointer;
   Idx: Integer;
 begin
