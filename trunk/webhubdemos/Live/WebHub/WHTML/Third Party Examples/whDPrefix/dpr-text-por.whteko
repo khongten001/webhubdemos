@@ -60,4 +60,9 @@ mcPortuguese=Português
 ~para_welcome_mobile=Bem-vindo usuário móvel
 </whtranslations>
 
+<!--- Add/Edit pages -->
+<whtranslations>
+~para_to_maintain_your_prefx=Para adicionar, editar ou apagar a sua preferência prefixo Delphi, por favor comece fazendo login com um e-mail conhecido por um dos seis fornecedores seguintes.
+</whtranslations>
+
 </whteko>
