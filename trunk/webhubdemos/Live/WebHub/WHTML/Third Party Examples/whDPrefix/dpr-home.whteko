@@ -134,7 +134,7 @@ googlepriority=0.9
 </body></html>
 </whpage>
 
-<whpage pageid="pghomemobile" desc="-Mobile Home Page for the Delphi Prefix Registry">
+<whpage pageid="pgmobile" desc="-Mobile Home Page for the Delphi Prefix Registry">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
@@ -166,6 +166,9 @@ googlepriority=0.9
 	<div class="small-18 medium-12 columns">
 		<p>
 		Welcome mobile user!
+		</p>
+		<p>
+		(~Request.UserAgent~)
 		</p>
 			</div>
 	<div class="show-for-medium-up medium-3 large-3 columns">&nbsp;</div>
