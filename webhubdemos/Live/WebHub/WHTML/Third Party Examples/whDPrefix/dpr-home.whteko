@@ -156,7 +156,7 @@ googlepriority=0.9
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
 		<h1>(~~title_homepage~)</h1>
-		(~NOMATCH|(~ZMDefaultMapContext~)=WESLEY|<p><i>(~CentralInfo.WebTimeGMT~)</i></p>~)
+		<p><i>(~CentralInfo.WebTimeGMT~)</i></p>
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
@@ -165,7 +165,7 @@ googlepriority=0.9
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
 		<p>
-		Welcome mobile user!
+		(~~para_welcome_mobile~)
 		</p>
 		<p>
 		(~Request.UserAgent~)

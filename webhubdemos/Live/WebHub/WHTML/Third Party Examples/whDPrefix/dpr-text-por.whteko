@@ -55,5 +55,9 @@ mcPortuguese=Português
 ~button_apply=Usar
 </whtranslations>
 
+<!--- Mobile home page -->
+<whtranslations>
+~para_welcome_mobile=Bem-vindo usuário móvel
+</whtranslations>
 
 </whteko>
