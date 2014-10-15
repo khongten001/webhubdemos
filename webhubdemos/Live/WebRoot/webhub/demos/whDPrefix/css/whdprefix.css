@@ -66,3 +66,10 @@ table {empty-cells: show;}
 #newprefix-table td { padding: 0.1em 0 0.4em 1em; vertical-align: top;}
 
 .example {font-size:smaller; color: #666666; }
+
+/* http://css3gen.com/text-shadow/ */
+h1.fancy {
+	font-family: Niconne, Serif; 
+	color: red; 
+	text-shadow: 4px 4px 2px rgba(125, 26, 26, 0.2);
+}
