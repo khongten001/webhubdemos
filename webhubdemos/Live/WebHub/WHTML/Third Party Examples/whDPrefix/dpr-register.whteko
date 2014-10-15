@@ -2,7 +2,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" >
 
-<whpage pageid="pgregister" desc="-Entrance to Data Maitenance">
+<whpage pageid="pgregister" desc="-Entrance to Data Maintenance">
 <whpagesettings>
 googlesitemap=include
 googlechangefreq=yearly
@@ -34,8 +34,7 @@ googlepriority=0.8
 <div class="row">
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns">
-		<p>To add/edit/delete your Delphi prefix preference, please start by 
-		logging in with an email known by one of the following six providers... 
+		<p>(~~para_to_maintain_your_prefx~) 
 		</p>
 		(~drMultipleOpenID~)
 		(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
