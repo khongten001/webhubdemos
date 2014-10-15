@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code" defaultlingvo="por">
+
+<whmacros>
+mcPortuguese=Portuguese
+</whmacros>
+
+<whtranslations>
+~banner_DelphiPrefixRegistry=Delphi Prefixo Registro
+~title_credits=Honra&hellip;
+~title_creditsLine2=Para a Criação Inicial do Delphi Prefixo Registro
+~title_donate=Doar
+~title_homepage=Boas-Vindas
+~title_homepage_long=Bem-vindo ao Delphi Prefixo Registro
+~title_maintain=Manter Prefixo Inscrições
+~title_register=Adicionar/Editar
+~title_registerDetails=Prefixo Inscrição Detalhes
+~title_view=Ver &ndash; Alfabética
+~link_credits=Honra&hellip;
+~link_donate=Doar
+~link_edit=Adicionar/Editar
+~link_edit_long=Adicionar/Editar SEUS Prefixos
+~link_home=Acolhida
+~link_maintain=Manter Prefixes
+~link_view_long=Ver o Registro
+~link_view=Ver
+</whtranslations>
+
+</whteko>
