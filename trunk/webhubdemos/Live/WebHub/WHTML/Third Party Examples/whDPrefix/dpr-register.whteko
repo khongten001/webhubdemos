@@ -36,16 +36,15 @@ googlepriority=0.8
 	<div class="small-18 medium-8 columns">
 		<p>(~~para_to_maintain_your_prefx~) 
 		</p>
-		<!--- (~drMultipleOpenID~) -->
-		(~ASSIGNED|waJanrain-ErrorMessage|(~waJanrain-ErrorMessage~)(~CLEAR|waJanrain-ErrorMessage~)~)
+		(~ASSIGNED|waJanrain-ErrorMessage|<p>(~waJanrain-ErrorMessage~)</p>(~CLEAR|waJanrain-ErrorMessage~)~)
 	</div>
 	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
 </div>
 
 <div class="row">
-	<div class="show-for-medium-up medium-6 columns">&nbsp;</div>
-	<div class="small-18 medium-6 columns" id="janrainEngageEmbed"></div>
-	<div class="show-for-medium-up medium-6 columns">&nbsp;</div>
+	<div class="show-for-medium-up medium-5 columns">&nbsp;</div>
+	<div class="small-18 medium-10 large-10 columns" id="janrainEngageEmbed"><!--- tricky to get alignment control here --></div>
+	<div class="show-for-medium-up medium-1 columns">&nbsp;</div>
 </div>
 
 (~drSharedFooter~)
