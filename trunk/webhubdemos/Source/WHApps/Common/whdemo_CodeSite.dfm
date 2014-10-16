@@ -1,4 +1,4 @@
-object dmwhUIHelpers: TdmwhUIHelpers
+object dmwhCodeSiteHelper: TdmwhCodeSiteHelper
   OldCreateOrder = False
   OnCreate = DataModuleCreate
   Height = 150
