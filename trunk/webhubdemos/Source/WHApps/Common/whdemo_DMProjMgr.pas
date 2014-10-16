@@ -76,7 +76,7 @@ uses
   MultiTypeApp,
   ucDlgs, ucCodeSiteInterface, whSharedLog,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
-  whutil_ZaphodsMap, whdemo_CodeSite,
+  whutil_ZaphodsMap, whdemo_CodeSite, whdemo_UIHelpers,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
   whsample_PrototypeJS,
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
@@ -159,6 +159,7 @@ end;
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
+  Application.CreateForm(TdmwhCodeSiteHelper, dmwhCodeSiteHelper);
   Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
 end;
 
@@ -169,6 +170,8 @@ begin
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
   Continue := dmwhUIHelpers.Init(ErrorText);
+  if Continue then
+    Continue := dmwhCodeSiteHelper.Init(ErrorText);
 end;
 
 procedure TDMForWHDemo.ProjMgrGUICreate(Sender: TtpProject;
