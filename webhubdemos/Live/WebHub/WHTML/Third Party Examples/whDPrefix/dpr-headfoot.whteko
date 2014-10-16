@@ -52,7 +52,7 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 
 
 <whdroplet name="drDPRDeveloperMenu">
-<div id="divRefresh">&#9842; (~~link_refresh~)</div>
+(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|<div id="divRefresh">&#9842; (~~link_refresh~)</div>~)
 (~IF|bShowSessionVars|	(~drSessionVars_TabletLayout~)   ~)
 
 (~MATCH|(~AppSetting.ShowSessionVars~)~True|
