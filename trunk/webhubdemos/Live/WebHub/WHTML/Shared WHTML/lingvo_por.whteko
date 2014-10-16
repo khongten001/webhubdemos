@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="por" designmode="code">
+
+<whmacros>
+mcPortuguese=Português
+</whmacros>
+
+<whtranslations>
+~SetPrefLingvo=Digite o código de idioma
+~Wallpaper=papel de parede
+~none=nada
+~HumanLanguage=Linguagem Humana
+~Debugging=Depuração
+~SetPrefReturn=Você deve voltar para a página (~PrePref~).
+</whtranslations>
+
+<whtranslations>
+~daySunday=Domingo
+~dayMonday=Segunda-feira
+~dayTuesday=Terça-feira
+~dayWednesday=Quarta-feira
+~dayThursday=Quinta-feira
+~dayFriday=Sexta-feira
+~daySaturday=Sábado
+</whtranslations>
+
+<whtranslation key="~SetPrefWallpaperIntro" show="no">
+Esta opção é usada apenas para mostrar que as configurações podem ser alteradas.
+Os demos WebHub não foram projetados para procurar visualmente atraente com todas as origens.
+</whtranslation>
+
+<whtranslations>
+~link_showSessionVars=Mostrar Session Variáveis
+~link_hideSessionVars=Esconder Session Variáveis
+</whtranslations>
+
+</whteko>
