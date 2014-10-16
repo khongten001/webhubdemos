@@ -1,0 +1,32 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whdroplet name="drSessionVars_Styles">
+(~MATCH|(~AppSetting.ShowSessionVars~)~True|
+	<link rel="stylesheet" type="text/css" href="http://lite.demos.href.com/webhubdemos/demos/c/sessionvars.css" /> 
+~)	
+</whdroplet>
+
+<whdroplet name="drSessionVars_StylesForTablet">
+	<style type="text/css">
+	#sessionvarstoggle {
+		position: absolute;
+		top: 0;
+		left: 5em;
+	}
+	#div-SessionDetails {
+		position: absolute;
+		top: 2em;
+		left: 0;
+		overflow: scroll;
+		height:43em;
+		z-index:200;
+		display: none;
+		}
+	#table-SessionVariables {
+		display: block;
+		}
+	</style>
+</whdroplet>
+
+</whteko>
