@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>Delphi Prefix Registry is Closed ((~SITUATIONTEXT~))</title>
@@ -8,13 +8,16 @@
 	margin-right: 5%;
 	margin-left: 5%;
   }
+#whmsgContent h1.fancy {
+	font-family: Niconne, Serif;
+}
 </style>
-
+<link href='//fonts.googleapis.com/css?family=Niconne:400' rel='stylesheet' type='text/css'>
 </head>
 <body>
 <div id="whmsgContent">
 	<div align="center">
-	<img src="/webhub/demos/whDPrefix/dpr.gif" alt="Delphi Prefix Registry - wide logo" /><br/>
+	<h1 class="fancy">Delphi Prefix Registry</h1>
 
 	<h2>Hmm...</h2>
 	</div>
@@ -27,7 +30,7 @@
 HREF Tools Corp.<br/>
 1585 Terrace Way #109<br/>
 Santa Rosa CA 95404 USA<br/>
-<a href="http://www.href.com/contact">contact</a>
+<a href="http://www.href.com/techhelp">tech support</a>
 </p>
 </div>
 </body></html>
