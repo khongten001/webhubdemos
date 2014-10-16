@@ -39,13 +39,15 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="AlphaLetters" value="26"/>
-      <AppSetting name="DesignRefreshEnabled" value="False"/>
-      <AppSetting name="DesignRefreshEnabled" value="True" context="ultraann"/>
-      <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
-      <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
       <AppSetting name="Advertise" value="True" />
       <AppSetting name="Advertise" value="False" context="ultraann" />
+      <AppSetting name="AlphaLetters" value="26"/>
+      <AppSetting name="DesignRefreshEnabled" value="True"/>
+      <AppSetting name="DesignRefreshEnabled" value="False" context="WESLEY" />
+      <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
+      <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
+      <AppSetting name="ShowSessionVars" value="True" />
+      <AppSetting name="ShowSessionVars" value="False" context="WESLEY" />
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
@@ -85,13 +87,15 @@
       <File id="f21" filename="dpr-register.whteko"/>
       <File id="f22" filename="dpr-view-registry.whteko"/>
       <File id="f50" filename="..\..\More Examples\whOpenID\whJanrainIntf.whteko"/>
+      <File id="f96" filename="..\..\Shared WHTML\css_sessionvars.whteko"/>
       <File id="f97" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
       <File id="f98" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="L00" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
-      <File id="L01" filename="dpr-text-eng.whteko"/>
-      <File id="L02" filename="dpr-text-por.whteko"/>
-      <File id="L03" filename="dpr-text-rus.whteko"/>
+      <File id="L01" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="L02" filename="dpr-text-eng.whteko"/>
+      <File id="L03" filename="dpr-text-por.whteko"/>
+      <File id="L04" filename="dpr-text-rus.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
