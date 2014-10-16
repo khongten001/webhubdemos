@@ -1,0 +1,49 @@
+/* sessionvars.css */
+
+#sessionvarstoggle {
+	color:#0033FF;
+	z-index:100;
+	margin: 0 auto 0 auto;
+	cursor: pointer;
+	opacity: 0.3;
+	}
+#div-SessionDetails {
+	margin-top: 1em;
+	text-align: center;
+	background-color: #FFFFFF;
+	}
+#table-SessionVariables {
+	width: 50em;
+	margin: auto;
+	margin-bottom: 1em;
+	text-align: left;
+	border-top: 0.1em solid;
+	border-right: 0.1em solid;
+	background-color:#FFFFFF;
+	display: none;
+	}
+#table-SessionVariables td {
+	border-left: 0.1em solid #AAAAAA;
+	border-bottom: 0.1em solid #AAAAAA;
+	padding: 0.1em 0 0.1em 0.5em;
+	font-size: 1.1em;
+	color:#000000;
+	}
+.title-SessionVarType {
+	font-weight: 700;
+	text-align: center;
+	}	
+
+#div-SessionDetails {
+		position: absolute;
+		top: 1em;
+		left: 8em;
+		/*overflow: scroll;*/
+		/*height:43em;*/
+		z-index:200;
+		display: block;
+		}
+#table-SessionVariables {
+		display: none;
+		}	
+/* end */
