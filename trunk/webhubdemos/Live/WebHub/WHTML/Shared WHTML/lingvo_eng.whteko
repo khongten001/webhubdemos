@@ -36,6 +36,7 @@ This option is used only to show that settings  may be changed. The WebHub demos
 <whtranslations>
 ~link_showSessionVars=Show Session Variables
 ~link_hideSessionVars=Hide Session Variables
+~link_refresh=Refresh
 </whtranslations>
 
 </whteko>

@@ -43,6 +43,7 @@ mcRussian=Русский
 <whtranslations>
 ~link_showSessionVars=показ Session Переменные
 ~link_hideSessionVars=скрыть Session Переменные
+~link_refresh=Обновить
 </whtranslations>
 
 </whteko>
