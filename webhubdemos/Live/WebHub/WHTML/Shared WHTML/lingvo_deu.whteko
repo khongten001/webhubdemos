@@ -42,5 +42,9 @@ geändert werden können. Die WebHub Demos waren nicht entworfen, um mit
 allen Hintergründen sichtlich anziehend zu schauen.
 </whtranslation>
 
+<whtranslations>
+~link_showSessionVars=Session Variablen Anzeigen
+~link_hideSessionVars=Session Variablen Verbergen
+</whtranslations>
 
 </whteko>

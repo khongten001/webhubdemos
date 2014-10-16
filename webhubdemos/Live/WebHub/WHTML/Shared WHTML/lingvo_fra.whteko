@@ -43,4 +43,9 @@ peuvent être changés. Les démonstrations de WebHub n'ont pas été conçues p
 regarder visuellement attrayantes avec tous les milieux.
 </whtranslation>
 
+<whtranslations>
+~link_showSessionVars=Afficher Session Variables
+~link_hideSessionVars=Cacher Session Variables
+</whtranslations>
+
 </whteko>
