@@ -49,16 +49,27 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 ~)	
 </whdroplet>
 
+
+
+<whdroplet name="drDPRDeveloperMenu">
+<div id="divRefresh">&#9842; (~~link_refresh~)</div>
+(~IF|bShowSessionVars|	(~drSessionVars_TabletLayout~)   ~)
+
+(~MATCH|(~AppSetting.ShowSessionVars~)~True|
+<div id="div-SessionDetails">
+	<div id="sessionvarstoggle" onclick="toggleSessionVars()">(~~link_showSessionVars~)</div>
+	(~waShowSessionVariables.Execute|sorted~)
+</div>~)
+
+</whdroplet>
+
+
+
+
 <whdroplet name="drDPRBanner">
 <div class="row">
-	<div class="show-for-medium-up medium-1 columns">&nbsp;
-		<div id="divRefresh">Refresh</div>
-(~CHECK|bShowSessionVars~)
-(~IF|bShowSessionVars|
-	(~drSessionVars_TabletLayout~)
-~)
+	<div class="show-for-medium-up medium-5 columns">&nbsp; (~drDPRDeveloperMenu~)
 	</div>
-	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
 		<h1 class="fancy">(~GO|pgHomePage|(~~banner_DelphiPrefixRegistry~)~)</h1>
 	</div>
@@ -113,12 +124,6 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 	</div>
 	<div class="show-for-medium-up medium-1 large-3 columns">&nbsp;</div>
 </div>
-(~MATCH|(~AppSetting.ShowSessionVars~)~True|
-<div id="div-SessionDetails">
-	<div id="sessionvarstoggle" onclick="toggleSessionVars()">Show Session Vars</div>
-	(~waShowSessionVariables.Execute|sorted~)
-	(~StringVars~)
-</div>~)
 <script src="(~Static.AppRoot~)js/vendor/jquery.js"></script>
 <script src="(~Static.AppRoot~)js/foundation.min.js"></script>
 <script>
