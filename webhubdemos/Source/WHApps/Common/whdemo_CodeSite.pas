@@ -31,7 +31,7 @@ uses
   webLink, updateOK, tpAction, webTypes;
 
 type
-  TdmwhUIHelpers = class(TDataModule)
+  TdmwhCodeSiteHelper = class(TDataModule)
     waCodeSite: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
 
@@ -56,7 +56,7 @@ type
   end;
 
 var
-  dmwhUIHelpers: TdmwhUIHelpers;
+  dmwhCodeSiteHelper: TdmwhCodeSiteHelper;
 
 implementation
 
@@ -67,14 +67,12 @@ uses
   ucCodeSiteInterface, ucString,
   webApp, htWebApp;
 
-{ TdmwhUIHelpers }
-
-procedure TdmwhUIHelpers.DataModuleCreate(Sender: TObject);
+procedure TdmwhCodeSiteHelper.DataModuleCreate(Sender: TObject);
 begin
   FlagInitDone := False;
 end;
 
-function TdmwhUIHelpers.Init(out ErrorText: string): Boolean;
+function TdmwhCodeSiteHelper.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
 begin
   CSEnterMethod(Self, cFn);
@@ -97,7 +95,7 @@ begin
   CSExitMethod(Self, cFn);
 end;
 
-procedure TdmwhUIHelpers.waCodeSiteExecute(Sender: TObject);
+procedure TdmwhCodeSiteHelper.waCodeSiteExecute(Sender: TObject);
 {$IFDEF CodeSite}
 var
   ASendType, Params, Param1, Param2: string;
