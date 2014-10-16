@@ -93,9 +93,10 @@
       <File id="f99" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="L00" filename="..\..\Shared WHTML\lingvo_eng.whteko"/>
       <File id="L01" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
-      <File id="L02" filename="dpr-text-eng.whteko"/>
-      <File id="L03" filename="dpr-text-por.whteko"/>
-      <File id="L04" filename="dpr-text-rus.whteko"/>
+      <File id="L02" filename="..\..\Shared WHTML\lingvo_por.whteko"/>
+      <File id="L03" filename="dpr-text-eng.whteko"/>
+      <File id="L04" filename="dpr-text-por.whteko"/>
+      <File id="L05" filename="dpr-text-rus.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
