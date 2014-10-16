@@ -40,4 +40,9 @@ mcRussian=Русский
 ~daySaturday=Суббота
 </whtranslations>
 
+<whtranslations>
+~link_showSessionVars=показ Session Переменные
+~link_hideSessionVars=скрыть Session Переменные
+</whtranslations>
+
 </whteko>
