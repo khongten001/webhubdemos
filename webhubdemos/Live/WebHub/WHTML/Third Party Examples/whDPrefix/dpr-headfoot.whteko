@@ -24,14 +24,40 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 	<link href='//fonts.googleapis.com/css?family=Niconne:400' rel='stylesheet' type='text/css'>
 	(~mcDPRFoundationCSS~)
 	<script src="(~Static.AppRoot~)js/vendor/modernizr.js"></script>
-	(~PARAMS|drDesignRefresh_jQuery|div,divRefresh,2000,(~PageID~)~)
+	(~CHECK|_no_jQuery~)(~PARAMS|drDesignRefresh_jQuery|div,divRefresh,2000,(~PageID~)~)
+(~MATCH|(~AppSetting.ShowSessionVars~)~True|<script>
+	function toggleSessionVars() {
+	var
+		e,
+		aTable;
+		e = document.getElementById('sessionvarstoggle');
+		aTable = document.getElementById('table-SessionVariables');
+		if (aTable.style.display == 'none') {
+			aTable.style.display = 'block';
+			e.innerHTML = 'Hide Session Vars';
+		}
+		else {
+			aTable.style.display = 'none';
+			e.innerHTML = 'Show Session Vars';
+		}
+	}</script>
+~)
 	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix_colors.css" />
 	<link rel="stylesheet" type="text/css" href="(~mcDPRCSSDir~)whdprefix.css?(~mcCSSVersion~)" />
+(~MATCH|(~AppSetting.ShowSessionVars~)~True|
+	(~drSessionVars_Styles~)
+~)	
 </whdroplet>
 
 <whdroplet name="drDPRBanner">
 <div class="row">
-	<div id="divRefresh" class="show-for-medium-up medium-1 columns">Refresh</div>
+	<div class="show-for-medium-up medium-1 columns">&nbsp;
+		<div id="divRefresh">Refresh</div>
+(~CHECK|bShowSessionVars~)
+(~IF|bShowSessionVars|
+	(~drSessionVars_TabletLayout~)
+~)
+	</div>
 	<div class="show-for-medium-up medium-4 columns">&nbsp;</div>
 	<div class="small-18 medium-8 columns text-center">
 		<h1 class="fancy">(~GO|pgHomePage|(~~banner_DelphiPrefixRegistry~)~)</h1>
@@ -87,6 +113,12 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 	</div>
 	<div class="show-for-medium-up medium-1 large-3 columns">&nbsp;</div>
 </div>
+(~MATCH|(~AppSetting.ShowSessionVars~)~True|
+<div id="div-SessionDetails">
+	<div id="sessionvarstoggle" onclick="toggleSessionVars()">Show Session Vars</div>
+	(~waShowSessionVariables.Execute|sorted~)
+	(~StringVars~)
+</div>~)
 <script src="(~Static.AppRoot~)js/vendor/jquery.js"></script>
 <script src="(~Static.AppRoot~)js/foundation.min.js"></script>
 <script>
