@@ -71,7 +71,7 @@ uses
   dmWHApp, whAppOut, webApp, webCall, whcfg_App, webBase, webSplat, 
   whSharedLog, uAutoDataModules, whutil_ZaphodsMap, htWebApp,
   whOpenID_dmwhAction,
-  whdemo_About, whdemo_Extensions,
+  whdemo_About, whdemo_Extensions, whdemo_UIHelpers, whdemo_CodeSite,
   DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
   DPrefix_dmwhApi,
   DPrefix_fmAdminDataEntry, whgui_Menu;
@@ -124,6 +124,10 @@ begin
   end;
 
   CreateStandardWHModules;
+  Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
+
+  Application.CreateForm(TdmwhCodeSiteHelper, dmwhCodeSiteHelper);
+
   Application.CreateForm(TDMNexus, DMNexus);
 
   Application.CreateForm(TDMWHOpenIDviaJanrain, DMWHOpenIDviaJanrain);
@@ -161,6 +165,10 @@ begin
     Continue := DMWHAPI.Init(ErrorText);
   if Continue then
     Continue := DemoExtensions.Init;
+  if Continue then
+    Continue := dmwhUIHelpers.Init(ErrorText);
+  if Continue then
+    Continue := dmwhCodeSiteHelper.Init(Errortext);
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;

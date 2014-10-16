@@ -38,6 +38,7 @@ uses
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whsample_GoogleSitemap in 'h:\whsample_GoogleSitemap.pas' {fmwhGoogleSitemap},
   whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
+  whdemo_UIHelpers in '..\..\Common\whdemo_UIHelpers.pas',
   whOpenID_dmwhAction in '..\..\More Examples\whOpenID\whOpenID_dmwhAction.pas',
   wnxdbAlpha in 'wnxdbAlpha.pas',
   uBigMacIndex in 'uBigMacIndex.pas',

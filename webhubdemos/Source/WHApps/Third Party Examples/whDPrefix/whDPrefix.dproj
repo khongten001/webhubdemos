@@ -164,6 +164,10 @@
         <DCCReference Include="h:\htWebApp.pas"/>
         <DCCReference Include="h:\whutil_ZaphodsMap.pas"/>
         <DCCReference Include="h:\whutil_ValidEmail.pas"/>
+        <DCCReference Include="..\..\Common\whdemo_UIHelpers.pas">
+            <Form>dmwhUIHelpers</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_ViewSource.pas">
             <Form>DemoViewSource</Form>
             <DesignClass>TDataModule</DesignClass>
