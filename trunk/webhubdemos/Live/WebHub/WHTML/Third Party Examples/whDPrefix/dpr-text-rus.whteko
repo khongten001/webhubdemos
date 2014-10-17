@@ -30,9 +30,9 @@
 ~para_donate_effort_more_fair=В стремлении сделать цены более справедливым , мы используем (~mcBigMacIndex~) предложить сумму пожертвований.
 ~hdr_suggested_donation=Предложенная сумма пожертвования Сумма
 ~prompt_country_code=Код страны
-~para_from_android=Visiting this page from our (~mcCodeRage9~) Android приложение дает вам автоматический ценообразования для вашей страны.
+~para_from_android=Посещая эту страницу из нашего приложения (~mcCodeRage9~) Android дает автоматическое ценообразование для вашей страны.
 ~word_alternatively=В качестве альтернативы
-~link_choose_country=используйте эту ссылку , чтобы выбрать страну
+~link_choose_country=используйте эту ссылку, чтобы выбрать страну
 </whtranslations>
 
 <!--- View Registry page -->
