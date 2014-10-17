@@ -196,20 +196,7 @@ end;
 
 procedure TWebBrowserForm.OnGeocodeReverseEvent(const Address: TCivicAddress);
 begin
-  FLatestAddress := Address;
-  //edtURL.Text := edtURL.Text + Address.CountryName;
-  {
-  ListBoxItemAdminArea.ItemData.Detail       := Address.AdminArea;
-  ListBoxItemCountryCode.ItemData.Detail     := Address.CountryCode;
-  ListBoxItemCountryName.ItemData.Detail     := Address.CountryName;
-  ListBoxItemFeatureName.ItemData.Detail     := Address.FeatureName;
-  ListBoxItemLocality.ItemData.Detail        := Address.Locality;
-  ListBoxItemPostalCode.ItemData.Detail      := Address.PostalCode;
-  ListBoxItemSubAdminArea.ItemData.Detail    := Address.SubAdminArea;
-  ListBoxItemSubLocality.ItemData.Detail     := Address.SubLocality;
-  ListBoxItemSubThoroughfare.ItemData.Detail := Address.SubThoroughfare;
-  ListBoxItemThoroughfare.ItemData.Detail    := Address.Thoroughfare;
-  }
+  FLatestAddress := Address;  // remember for subsequent use
 end;
 
 procedure TWebBrowserForm.btnHideClick(Sender: TObject);
