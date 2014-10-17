@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko designmode="code" defaultlingvo="rus"  notes="google translate">
 
@@ -42,7 +42,7 @@
 ~noun_Purpose=Цель
 ~noun_WebSite=Веб-сайт
 ~noun_Contact=Связаться
-~verbPastTense_Registered=Registered
+~verbPastTense_Registered=записаны
 </whtranslations>
 
 <!--- Change Country Code page -->
