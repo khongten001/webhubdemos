@@ -286,8 +286,9 @@ Additional content may come from a database or other sources.</i></p>
 WebHub Components from HREF Tools Corp. </p>
 <p>It is a good idea to check which version of WebHub this page was created by.
 To do this, look for the version number in the page footer.  (The answer is (~version~) 
-compiled with (~CentralInfo.PascalCompilerCode~) for this (~AppID~) app.)
-Compare this version against the information on
+compiled with (~CentralInfo.PascalCompilerCode~) for this 
+<span style="padding: 0.1em 0.4em 0.1em 0.4em; background-color:yellow;">(~AppID~)</span> app.)
+Compare this against the information on
 <a href="http://www.href.com/whVersion">this page</a>, where HREF indicates the latest
 release of WebHub.  Generally, these versions are in sync but occasionally there are
 delays in updating the demos.  </p>
