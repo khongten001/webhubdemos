@@ -102,7 +102,7 @@
         "DetailLevel": "LingvoList",
         "LingvoList": {
           "Version": "0001",
-          "Count": 3,
+          "Count": 2,
           "Lingvoj": [
             {
               "ISO639_3": "eng",
