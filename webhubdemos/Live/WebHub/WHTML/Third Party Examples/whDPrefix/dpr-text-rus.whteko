@@ -3,10 +3,10 @@
 <whteko designmode="code" defaultlingvo="rus"  notes="planned for translation">
 
 <whtranslations>
-~banner_DelphiPrefixRegistry=Delphi Prefix Registry
-~title_credits=Credits&hellip;
-~title_creditsLine2=For the Initial Creation of the Delphi Prefix Registry
-~title_donate=Donate
+~banner_DelphiPrefixRegistry=Delphi Приставка реестра
+~title_credits=Кредиты&hellip;
+~title_creditsLine2=Для первоначального формирования реестра Delphi префикса
+~title_donate=Пожертвовать
 ~title_homepage=Welcome
 ~title_homepage_long=Welcome to the Delphi Prefix Registry
 ~title_maintain=Maintain Prefix Registrations
