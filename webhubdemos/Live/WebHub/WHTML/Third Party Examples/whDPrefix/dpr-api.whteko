@@ -102,7 +102,7 @@
         "DetailLevel": "LingvoList",
         "LingvoList": {
           "Version": "0001",
-          "Count": 2,
+          "Count": 3,
           "Lingvoj": [
             {
               "ISO639_3": "eng",
@@ -111,6 +111,10 @@
             {
               "ISO639_3": "por",
               "Name": "português"
+            },
+            {
+              "ISO639_3": "rus",
+              "Name": "Русский"
             }
           ]
         }
@@ -139,19 +143,22 @@
         "TradukoList": {
           "Version": "0002",
           "Count": 3,
-          "LingvoCount": 2,
+          "LingvoCount": 3,
           "Traduki": {
             "btnGo": {
               "eng": "Go",
-              "por": "Vá"
+              "por": "Vá",
+              "rus": "идти"
             },
             "btnHide": {
               "eng": "Hide",
-              "por": "Ocultar"
+              "por": "Ocultar",
+              "rus": "таить"
             },
             "btnExit": {
               "eng": "Exit",
-              "por": "Saída"
+              "por": "Saída",
+              "rus": "уходить"
             }
 }}}}}}     
 </whdroplet>
@@ -176,10 +183,10 @@
           "Version": "0001"
         },
         "LingvoList": {
-          "Version": "0001"
+          "Version": "0002"
         },
         "TradukoList": {
-          "Version": "0001"
+          "Version": "0002"
         }
       }
     }
