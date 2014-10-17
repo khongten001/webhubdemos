@@ -49,10 +49,6 @@ uses
   DPrefix_dmwhNexus in 'DPrefix_dmwhNexus.pas' {DMWHNexus: TDataModule},
   DPrefix_dmwhApi in 'DPrefix_dmwhApi.pas' {DMWHAPI: TDataModule};
 
-(* search path for debugging with WebHub source
-k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whrun;k:\webhub\lib\whplus;k:\webhub\tpack
-*)
-
 {$R *.RES}
 {$R DPRICON.RES}
 {$R HTICONS.RES}
