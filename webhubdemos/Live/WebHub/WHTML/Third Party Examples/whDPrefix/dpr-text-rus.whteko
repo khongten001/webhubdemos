@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" defaultlingvo="rus"  notes="planned for translation">
+<whteko designmode="code" defaultlingvo="rus"  notes="google translate">
 
 <whtranslations>
-~banner_DelphiPrefixRegistry=Delphi Приставка реестра
+~banner_DelphiPrefixRegistry=Delphi Приставка Реестр
 ~title_credits=Кредиты&hellip;
-~title_creditsLine2=Для первоначального формирования реестра Delphi префикса
+~title_creditsLine2=Для Первоначальный Создание Delphi Приставка Реестр
 ~title_donate=Пожертвовать
-~title_homepage=Welcome
-~title_homepage_long=Welcome to the Delphi Prefix Registry
-~title_maintain=Maintain Prefix Registrations
-~title_register=Add/Edit
-~title_registerDetails=Prefix Registration Details
-~title_view=View &ndash; Alphabetical
-~link_credits=Credits&hellip;
-~link_donate=Donate
-~link_edit=Add/Edit
-~link_edit_long=Add/Edit YOUR Prefixes
-~link_home=Welcome
-~link_maintain=Maintain Prefixes
-~link_view_long=View the Registry
-~link_view=View
+~title_homepage=Добро пожаловать
+~title_homepage_long=Добро пожаловать в Delphi Приставка Реестр
+~title_maintain=Поддержание префиксов регистраций
+~title_register=Добавить/Изменить
+~title_registerDetails=Префиксные Регистрация Детали
+~title_view=Oсматривать &ndash; Алфавитный
+~link_credits=Кредиты&hellip;
+~link_donate=Пожертвовать
+~link_edit=Добавить/Изменить
+~link_edit_long=Добавить/Изменить ВАШИ Приставки
+~link_home=Добро пожаловать
+~link_maintain=Поддерживайте Приставки
+~link_view_long=Посмотреть Реестр
+~link_view=Oсматривать
 </whtranslations>
 
 <!--- Donations page -->
 
 <whtranslations>
-~para_donate_show_your_support=Show your support by contributing the value of one Big Mac in your country.
-~para_donate_effort_more_fair=In an effort to make prices more fair, we are using the (~mcBigMacIndex~) to suggest a donation amount.
-~hdr_suggested_donation=Suggested Donation Amount
-~prompt_country_code=Country Code
-~para_from_android=Visiting this page from our (~mcCodeRage9~) Android app gives you automatic pricing for your country.
-~word_alternatively=Alternatively
-~link_choose_country=use this link to choose your country
+~para_donate_show_your_support=Показать свою поддержку, суммы, соответствующей стоимости одного Биг Мака в вашей стране .
+~para_donate_effort_more_fair=В стремлении сделать цены более справедливым , мы используем (~mcBigMacIndex~) предложить сумму пожертвований.
+~hdr_suggested_donation=Предложенная сумма пожертвования Сумма
+~prompt_country_code=Код страны
+~para_from_android=Visiting this page from our (~mcCodeRage9~) Android приложение дает вам автоматический ценообразования для вашей страны.
+~word_alternatively=В качестве альтернативы
+~link_choose_country=используйте эту ссылку , чтобы выбрать страну
 </whtranslations>
 
 <!--- View Registry page -->
 <whtranslations>
-~noun_prefix=Prefix
-~noun_Organization=Organization
-~noun_Purpose=Purpose
-~noun_WebSite=Web Site
-~noun_Contact=Contact
+~noun_prefix=Приставка
+~noun_Organization=Организация
+~noun_Purpose=Цель
+~noun_WebSite=Веб-сайт
+~noun_Contact=Связаться
 ~verbPastTense_Registered=Registered
 </whtranslations>
 
 <!--- Change Country Code page -->
 <whtranslations>
-~prompt_your_country=Your Country
-~button_apply=Apply
+~prompt_your_country=Ваш Страна
+~button_apply=Применить
 </whtranslations>
 
 <!--- Mobile home page -->
 <whtranslations>
-~para_welcome_mobile=Welcome mobile user!
+~para_welcome_mobile=Добро пожаловать мобильный пользователь!
 </whtranslations>
 
 </whteko>
