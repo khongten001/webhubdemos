@@ -46,7 +46,7 @@
       <AppSetting name="DesignRefreshEnabled" value="False" context="WESLEY" />
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
-      <AppSetting name="ShowSessionVars" value="True" />
+      <AppSetting name="ShowSessionVars" value="False" />
       <AppSetting name="ShowSessionVars" value="False" context="WESLEY" />
     </AppSettings>
     <PageGeneration>
