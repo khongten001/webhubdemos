@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Delphi Prefix Registry is Closed ((~SITUATIONTEXT~))</title>
+<title>The Delphi Prefix Registry is Currently Closed ((~SITUATIONTEXT~))</title>
 <style type="text/css">
   #whmsgContent {
     font-family: Verdana,Arial;
@@ -24,13 +24,14 @@
 <p><i>(~NOWGMT~)</i></p>
 
 <p><b>The <a target="_blank" href="http://delphiprefix.href.com/">Delphi Prefix Registry</a> 
-(&quot;(~APPID~)&quot;) that you have requested is currently closed.</b>
+(&quot;(~APPID~)&quot;) that you have requested is currently closed.</b></p>
+<p>Please try again in 5 or 10 minutes.</p>
 
 <p align="center">
 HREF Tools Corp.<br/>
 1585 Terrace Way #109<br/>
 Santa Rosa CA 95404 USA<br/>
-<a href="http://www.href.com/techhelp">tech support</a>
+<a href="https://www.href.com/techhelp">tech support</a>
 </p>
 </div>
 </body></html>
