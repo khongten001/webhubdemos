@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{83392072-87D9-467F-B298-F5AE752A8B20}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="FMXClient\DPrefix_Client.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="whDPrefix.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="FMXClient\Test_Client.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DPrefix_Client">
+        <MSBuild Projects="FMXClient\DPrefix_Client.dproj"/>
+    </Target>
+    <Target Name="DPrefix_Client:Clean">
+        <MSBuild Projects="FMXClient\DPrefix_Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DPrefix_Client:Make">
+        <MSBuild Projects="FMXClient\DPrefix_Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="whDPrefix">
+        <MSBuild Projects="whDPrefix.dproj"/>
+    </Target>
+    <Target Name="whDPrefix:Clean">
+        <MSBuild Projects="whDPrefix.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="whDPrefix:Make">
+        <MSBuild Projects="whDPrefix.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Test_Client">
+        <MSBuild Projects="FMXClient\Test_Client.dproj"/>
+    </Target>
+    <Target Name="Test_Client:Clean">
+        <MSBuild Projects="FMXClient\Test_Client.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Test_Client:Make">
+        <MSBuild Projects="FMXClient\Test_Client.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DPrefix_Client;whDPrefix;Test_Client"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DPrefix_Client:Clean;whDPrefix:Clean;Test_Client:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DPrefix_Client:Make;whDPrefix:Make;Test_Client:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
