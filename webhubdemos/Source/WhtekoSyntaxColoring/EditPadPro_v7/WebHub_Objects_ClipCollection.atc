@@ -2,6 +2,9 @@
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="WebHub_Objects_ClipCollection" sort="none">
 		<folder label="Published Properties on WebHub Objects">
+			<clip kind="text" label="Host">
+				<text>(~Request.Host~)</text>
+			</clip>
 			<clip kind="text" label="YearGMT">
 				<text>(~CentralInfo.YearGMT~)</text>
 			</clip>
