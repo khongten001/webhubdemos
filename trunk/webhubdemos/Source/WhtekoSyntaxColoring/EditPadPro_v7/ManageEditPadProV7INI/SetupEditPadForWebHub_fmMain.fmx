@@ -15,9 +15,9 @@ object Form2: TForm2
   DesignerOrientation = 0
   DesignerOSVersion = ''
   object Button1: TButton
-    Height = 118.000000000000000000
+    Height = 46.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 176.000000000000000000
+    Position.Y = 248.000000000000000000
     TabOrder = 1
     Text = 'Install into EditPad Pro v7 Now'
     Width = 417.000000000000000000
@@ -43,7 +43,7 @@ object Form2: TForm2
   object cbFileNav: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 72.000000000000000000
+    Position.Y = 48.000000000000000000
     TabOrder = 6
     Text = 'Install File Navigation Scheme'
     Width = 193.000000000000000000
@@ -51,7 +51,7 @@ object Form2: TForm2
   object cbColor: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 96.000000000000000000
+    Position.Y = 72.000000000000000000
     TabOrder = 5
     Text = 'Install 3 Custom Color Sets'
     Width = 193.000000000000000000
@@ -68,27 +68,43 @@ object Form2: TForm2
   object cbTools: TCheckBox
     Height = 19.000000000000000000
     Position.X = 24.000000000000000000
-    Position.Y = 120.000000000000000000
+    Position.Y = 96.000000000000000000
     TabOrder = 4
     Text = 'Install 3 Custom Tools (hotkeys for searching, help)'
     Width = 337.000000000000000000
   end
-  object EditFT35: TEdit
-    Touch.InteractiveGestures = [LongTap, DoubleTap]
-    TabOrder = 11
-    ReadOnly = True
-    Text = '1655568939'
-    Position.X = 48.000000000000000000
-    Position.Y = 48.000000000000000000
-    Width = 100.000000000000000000
-    Height = 22.000000000000000000
-  end
   object cbClipCollections: TCheckBox
     Height = 19.000000000000000000
+    IsChecked = True
     Position.X = 24.000000000000000000
-    Position.Y = 144.000000000000000000
+    Position.Y = 168.000000000000000000
     TabOrder = 3
     Text = 'Install WebHub Clip Collections'
     Width = 337.000000000000000000
+  end
+  object Edit1: TEdit
+    Touch.InteractiveGestures = [LongTap, DoubleTap]
+    TabOrder = 12
+    Text = 'D:\Apps\HREFTools\WebHub\bin'
+    Position.X = 48.000000000000000000
+    Position.Y = 136.000000000000000000
+    Width = 353.000000000000000000
+    Height = 22.000000000000000000
+  end
+  object Label2: TLabel
+    Height = 17.000000000000000000
+    Position.X = 48.000000000000000000
+    Position.Y = 120.000000000000000000
+    Text = 'WHBridge2EditPad.exe saved here:'
+    Width = 257.000000000000000000
+  end
+  object Button3: TButton
+    Height = 41.000000000000000000
+    Position.X = 24.000000000000000000
+    Position.Y = 200.000000000000000000
+    TabOrder = 14
+    Text = 'README - Click to read instructions'
+    Width = 417.000000000000000000
+    OnClick = Button3Click
   end
 end

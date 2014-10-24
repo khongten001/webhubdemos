@@ -4,6 +4,8 @@ unit SetupEditPadForWebHub_uDownload;
 
 interface
 
+function GetRTFResource(const inResName, SaveAsFilespec: string): Boolean;
+
 function IsWHTekoFileTypeInstalled: Boolean;
 
 function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
@@ -11,20 +13,55 @@ function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
 
 function InstallWebHubFileType: Boolean;
 function InstallWebHubClipCollections: Boolean;
-function InstallWHBridgeTools: Boolean;
+function InstallWHBridgeTools(WHBridgePath: string): Boolean;
 
 function WGetFileNavigation: UTF8String;
-function WGetSyntaxScheme: UTF8String;
+function WGetSyntaxScheme(const JGCSCSIdentifier: string): UTF8String;
 
-const
-  FileTypeID = '33';
+function FileTypeID: string;
 
 implementation
 
 uses
   Classes, SysUtils,
-  Windows, IniFiles,
-  ucCodeSiteInterface, ucString, ucLogFil, SetupEditPadForWebHub_uPaths;
+  Windows, IniFiles, Math,
+  ucCodeSiteInterface, ucPos, ucString, ucLogFil,
+  SetupEditPadForWebHub_uPaths;
+
+var
+  SaveFileTypeID: string = '';
+function FileTypeID: string;
+const cFn = 'FileTypeID';
+var
+  IniFilespec: string;
+  Ini: TMemIniFile;
+  iFileID: Integer;
+begin
+  CSEnterMethod(nil, cFn);
+  Ini:= nil;
+
+  if SaveFileTypeID = '' then
+  begin
+    IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+      'EditPadPro7.ini';
+    if FileExists(IniFilespec) then
+    begin
+      try
+        Ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
+        iFileID := StrToIntDef(Ini.ReadString('Lite', 'FileTypes', ''), -1);
+        SaveFileTypeID := IntToStr(iFileID);  // default id -1 count 0
+        CSSend('SaveFileTypeID', SaveFileTypeID);
+      finally
+        FreeAndNil(Ini);
+      end;
+    end
+    else
+      CSSendWarning('File does not exist: ' + IniFilespec);
+  end;
+  Result := SaveFileTypeID;
+  CSExitMethod(nil, cFn);
+end;
+
 
 function GetUTF8Resource(const inResName: string): UTF8String;
 const cFn = 'GetUTF8Resource';
@@ -50,12 +87,12 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
-function WGetSyntaxScheme: UTF8String;
+function WGetSyntaxScheme(const JGCSCSIdentifier: string): UTF8String;
 const cFn = 'WGetSyntaxScheme';
 begin
   CSEnterMethod(nil, cFn);
 
-  Result := GetUTF8Resource('Resource_JGCSCS');
+  Result := GetUTF8Resource(Format('Resource_%s_JGCSCS', [JGCSCSIdentifier]));
   //LogToCodeSiteKeepCRLF('Result', Copy(Result, 1, 1024));
   CSExitMethod(nil, cFn);
 end;
@@ -81,11 +118,24 @@ begin
   begin
     if FlagSyntax then
     begin
-      LatestStr8 := WGetSyntaxScheme;
-      TargetFilespec := IncludeTrailingPathDelimiter(
-        EditPadPlusProgramInstallRoot) + 'WebHub_Syntax0214.jgcscs';
+      LatestStr8 := WGetSyntaxScheme('Syntax0214');
+      TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+        //EditPadPlusProgramInstallRoot) +
+        'WebHub_' + 'Syntax0214' + '.jgcscs';
       CSSend('TargetFilespec', TargetFilespec);
       //CSSend('LatestStr8', Copy(string(LatestStr8), 1, 24));
+      if FileExists(TargetFilespec) then
+      begin
+        BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
+        SysUtils.DeleteFile(BakFilespec);
+        RenameFile(TargetFilespec, BakFilespec);
+      end;
+      UTF8StringWriteToFile(TargetFilespec, LatestStr8);
+      // again for parentils
+      LatestStr8 := WGetSyntaxScheme('Parentils');
+      TargetFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+        'WebHub_' + 'Parentils' + '.jgcscs';
+      CSSend('TargetFilespec', TargetFilespec);
       if FileExists(TargetFilespec) then
       begin
         BakFilespec := ChangeFileExt(TargetFilespec, '.bak');
@@ -148,7 +198,7 @@ function IsWHTekoFileTypeInstalled: Boolean;
 const cFn = 'IsWHTekoFileTypeInstalled';
 var
   IniFilespec: string;
-  ini: TIniFile;
+  ini: TMemIniFile;
   FileTypeCount: Integer;
   FileMasks: string;
 begin
@@ -160,7 +210,7 @@ begin
   if FileExists(IniFilespec) then
   begin
     try
-      ini := TIniFile.Create(IniFilespec);
+      ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
       FileTypeCount := 0;
       while true do
       begin
@@ -168,7 +218,7 @@ begin
           '');
         if FileMasks = '' then
           break;
-        if Pos('whteko', FileMasks) > 0 then
+        if PosCI('whteko', FileMasks) > 0 then
         begin
           CSSend('FileTypeCount', S(FileTypeCount));
           CSSend('FileMasks', FileMasks);
@@ -189,14 +239,20 @@ end;
 function InstallWebHubFileType: Boolean;
 const cFn = 'InstallWebHubFileType';
 var
-  Ini: TIniFile;
+  Ini: TMemIniFile;
   IniFilespec: string;
   FileType33: string;
+  NecessaryFileTypeStr: string;
+  iFileTypeCount: Integer;
 begin
   CSEnterMethod(nil, cFn);
   ini := nil;
 
-  FileType33 := string(GetUTF8Resource('Resource_FT' + FileTypeID));
+  FileType33 := string(GetUTF8Resource('Resource_FT33')); // fixed FT number 33
+  NecessaryFileTypeStr := FileTypeID;
+  FileType33 := StringReplaceAll(FileType33, '[FT33]',
+    Format('[FT%s]', [FileTypeID]));
+
   IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'EditPadPro7.ini';
   Result := FileExists(IniFilespec);
@@ -206,13 +262,17 @@ begin
       AnsiString(sLineBreak + FileType33 + sLineBreak));
 
     try
-      ini := TIniFile.Create(IniFilespec);
-      ini.WriteString('Lite', 'FileTypes',
-        IntToStr(Succ(StrToIntDef(FileTypeID, 0))));
+      ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
+      iFileTypeCount := StrToIntDef(FileTypeID, 0) + 1;
+      ini.WriteInteger('Lite', 'FileTypes', iFileTypeCount);
+      ini.UpdateFile;
+      CSSend('[Lite] FileTypes', FileTypeID);
     finally
       FreeAndNil(ini);
     end;
-  end;
+  end
+  else
+    CSSendWarning('File not found: ' + IniFilespec);
 
   CSSend('Result', S(Result));
   CSExitMethod(nil, cFn);
@@ -221,9 +281,9 @@ end;
 function InstallWebHubClipCollections: Boolean;
 const cFn = 'InstallWebHubClipCollections';
 var
-  AtcFilespec: string;
+  AtcFilespec, AtcFilespecDoubleDelim: string;
   ClipCommands: string;
-  Ini: TIniFile;
+  Ini: TMemIniFile;
   IniFilespec: string;
 begin
   CSEnterMethod(nil, cFn);
@@ -238,8 +298,12 @@ begin
     'EditPadPro7.ini';
   if FileExists(IniFilespec) then
   try
-    ini := TIniFile.Create(IniFilespec);
-    ini.WriteString('FT' + FileTypeID, 'ClipCollection', AtcFilespec);
+    AtcFilespecDoubleDelim := StringReplaceAll(AtcFilespec, PathDelim,
+      PathDelim + PathDelim);
+    ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
+    ini.WriteString('FT' + FileTypeID, 'ClipCollection',
+      AtcFilespecDoubleDelim);
+    ini.UpdateFile;
     Result := True;
   finally
     FreeAndNil(ini);
@@ -253,15 +317,17 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
-function InstallWHBridgeTools: Boolean;
+function InstallWHBridgeTools(WHBridgePath: string): Boolean;
 const cFn = 'InstallWHBridgeTools';
 var
   IniFilespec: string;
   WHBridgeTools: string;
-  iniTrg: TIniFile;
+  iniTrg: TMemIniFile;
   ACommandLine: string;
   bContinue: Boolean;
   iTool: Integer;
+  iStartedWithToolCount: Integer;
+  iErasedToolsCount: Integer;
 const
   nTools = 3;
 begin
@@ -269,16 +335,32 @@ begin
 
   iniTrg := nil;
   WHBridgeTools := string(GetUTF8Resource('Resource_Tools_Ini'));
+
+  WHBridgePath := StringReplaceAll(WHBridgePath, PathDelim, PathDelim +
+    PathDelim);
+  CSSend('WHBridgePath', WHBridgePath);
+
+  WHBridgeTools := StringReplaceAll(WHBridgeTools,
+    '""C:\\WebHub_v3\\bin\\WHBridge2EditPad.exe"',
+    Format('""%sWHBridge2EditPad.exe"', [WHBridgePath]));
+  CSSend('WHBridgeTools', WHBridgeTools);
+
   IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'EditPadPro7.ini';
 
   bContinue := FileExists(IniFilespec);
   if bContinue then
   begin
+    iErasedToolsCount := 0;
     try
-      iniTrg := TIniFile.Create(IniFilespec);
-      iniTrg.WriteString('Pro', 'ToolCount', IntToStr(nTools));
-      for iTool := 0 to Pred(nTools) do
+      iniTrg := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
+      iStartedWithToolCount := iniTrg.ReadInteger('Pro', 'ToolCount', 0);
+      if iStartedWithToolCount = 0 then
+      begin
+        iniTrg.WriteInteger('Pro', 'ToolCount', nTools);
+        iniTrg.UpdateFile;
+      end;
+      for iTool := 0 to Pred(Max(iStartedWithToolCount, nTools)) do
       begin
         if bContinue then
         begin
@@ -286,24 +368,65 @@ begin
           begin
             ACommandLine := Lowercase(iniTrg.ReadString('Tool' + IntToStr(iTool),
               'CommandLine', ''));
-            if Pos('whbridge2editpad.exe', ACommandLine) > 0 then
-              iniTrg.EraseSection('Tool' + IntToStr(iTool))
+            if PosCI('whbridge2editpad.exe', ACommandLine) > 0 then
+            begin
+              CSSend('Erasing tool ' + S(iTool), ACommandLine);
+              iniTrg.EraseSection('Tool' + IntToStr(iTool));
+              Inc(iErasedToolsCount);
+              iniTrg.UpdateFile;
+            end
             else
               bContinue := False;
           end;
         end;
       end;
+      if (iErasedToolsCount > 0) and (iStartedWithToolCount > 3) then
+      begin
+        if (iErasedToolsCount <> 3) then
+        begin
+          iniTrg.WriteInteger('Pro', 'ToolCount',
+            iStartedWithToolCount - iErasedToolsCount + nTools);
+          iniTrg.UpdateFile;
+          CSSend('ToolCount fixed',
+            S(iStartedWithToolCount - iErasedToolsCount + nTools));
+        end;
+      end;
+
     finally
       FreeAndNil(iniTrg);
     end;
 
     if bContinue then
       StringAppendToFile(IniFilespec,
-        AnsiString(sLineBreak + WHBridgeTools + sLineBreak));
-  end;
+        AnsiString(sLineBreak + WHBridgeTools + sLineBreak))
+    else
+      CSSendWarning('bContinue went False');
+  end
+  else
+    CSSendWarning('File not found: ' + IniFilespec);
   Result := bContinue;
   CSSend('Result', S(Result));
   CSExitMethod(nil, cFn);
 end;
+
+function GetRTFResource(const inResName, SaveAsFilespec: string): Boolean;
+const cFn = 'GetRTFResource';
+var
+  res: TResourceStream;
+
+begin
+  CSEnterMethod(nil, cFn);
+  CSSend('inResName', inResName);
+  res := nil;
+  try
+    res := TResourceStream.Create(HInstance, InResName, RT_RCDATA);
+    res.SaveToFile(SaveAsFilespec);
+    Result := FileExists(SaveAsFilespec);
+  finally
+    FreeAndNil(res);
+  end;
+  CSExitMethod(nil, cFn);
+end;
+
 
 end.
