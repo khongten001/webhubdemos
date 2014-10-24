@@ -148,7 +148,7 @@ begin
     if FlagFileNav then
     begin
       TargetFilespec := IncludeTrailingPathDelimiter(
-        EditPadPlusProgramInstallRoot) + 'WebHub-FileNavigation.jgfns';
+        EditPadPlusDataRoot) + 'WebHub-FileNavigation.jgfns';
       CSSend('TargetFilespec', TargetFilespec);
       if FileExists(TargetFilespec) then
       begin
