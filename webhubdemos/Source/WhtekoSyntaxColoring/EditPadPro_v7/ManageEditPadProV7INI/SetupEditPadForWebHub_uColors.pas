@@ -17,7 +17,7 @@ const
   nColors = 3;
 var
   iColor: Integer;
-  iniSrc, iniTrg: TIniFile;
+  iniSrc, iniTrg: TMemIniFile;
   IniData: string;
   IniSourceFilespec: string;
   IniTargetFilespec: string;
@@ -49,8 +49,8 @@ begin
       CSSend('IniTargetFilespec', IniTargetFilespec);
       if FileExists(IniSourceFilespec) and FileExists(IniTargetFilespec) then
       begin
-        iniSrc := TIniFile.Create(IniSourceFilespec);
-        iniTrg := TIniFile.Create(IniTargetFilespec);
+        iniSrc := TMemIniFile.Create(IniSourceFilespec, TEncoding.UTF8);
+        iniTrg := TMemIniFile.Create(IniTargetFilespec, TEncoding.UTF8);
         Memo1 := TStringBuilder.Create;
 
         IniData := SectionToStr('SyntaxColors');

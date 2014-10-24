@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{8A248F2B-99D9-48FA-91FA-F475027F16BA}</ProjectGuid>
         <ProjectVersion>15.4</ProjectVersion>
@@ -52,11 +52,9 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <Manifest_File>uac.manifest</Manifest_File>
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=Setup EditPad for use with WebHub;FileVersion=1.1.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>3</VerInfo_MinorVer>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=Setup EditPad for use with WebHub;FileVersion=1.3.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;FMX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <SanitizedProjectName>SetupEditPadForWebHub</SanitizedProjectName>
@@ -76,13 +74,14 @@
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;WebHubDB;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;rbc40_m_pas_lib;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;ldiRegExLib;FireDACASADriver;WebHub;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;rbc40_s_pas_lib;rbc40_b_pas_lib;xmlrtl;DataSnapNativeClient;svnui;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;rbc40_k_pas_lib;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;ZaphodsMapLib;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;rbc40_e_pas_lib;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;WebHubNewAppIDWizard;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace);$(DCC_Namespace)</DCC_Namespace>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;xmlrtl;DataSnapNativeClient;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;NexusDB400pv200;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
+        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <DCC_Define>DEBUG;CodeSite;$(DCC_Define)</DCC_Define>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <DCC_Optimize>false</DCC_Optimize>
@@ -91,7 +90,6 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
@@ -101,10 +99,9 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Build>20</VerInfo_Build>
+        <VerInfo_Build>28</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=Customize new EditPad installation for use with WebHub;FileVersion=1.0.0.20;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=Customize new EditPad installation for use with WebHub;FileVersion=1.3.0.28;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -121,7 +118,7 @@
         <RcItem Include="..\WebHub_Syntax0214.jgcscs">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
-            <ResourceId>Resource_JGCSCS</ResourceId>
+            <ResourceId>Resource_Syntax0214_JGCSCS</ResourceId>
         </RcItem>
         <RcItem Include="..\WebHub-FileNavigation.jgfns">
             <ContainerId>ResourceItem</ContainerId>
@@ -152,6 +149,16 @@
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Resource_Clip_Objects</ResourceId>
+        </RcItem>
+        <RcItem Include="..\WebHub_Parentils.jgcscs">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Resource_Parentils_JGCSCS</ResourceId>
+        </RcItem>
+        <RcItem Include="..\Readme-WebHub-EditPad.rtf">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Resource_README</ResourceId>
         </RcItem>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
@@ -192,11 +199,3 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
 </Project>
-
-<!-- EurekaLog First Line
-[Exception Log]
-EurekaLog Version=7007
-Activate=0
-DeleteMapAfterCompile=1
-Encrypt Password=""
-EurekaLog Last Line -->
