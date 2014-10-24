@@ -6,14 +6,14 @@ const
   cHREFToolsColorsIniFilespec= 'HREFTools-Colors.ini';
   cHREFToolsEPPToolsIniFilespec= 'HREFTools-EPPTools.ini';
 
-function EditPadPlusProgramInstallRoot: string;
+//function EditPadPlusProgramInstallRoot: string;
 function EditPadPlusDataRoot: string;
 
 implementation
 
 uses
   Classes, SysUtils,
-  Registry,
+  //Registry,
   Windows,
   ucCodeSiteInterface, ucString, ucLogFil;
 
@@ -27,6 +27,7 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
+(*
 function EditPadPlusProgramInstallRoot: string;
 const cFn = 'EditPadPlusProgramInstallRoot';
 var
@@ -77,6 +78,6 @@ begin
   CSSend('Result', Result);
   CSExitMethod(nil, cFn);
 end;
-
+*)
 
 end.
