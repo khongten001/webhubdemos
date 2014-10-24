@@ -74,7 +74,7 @@ Try them out!
 <p>This does <i>not</i> support TLS. </p>
 
  <form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgFeedbackResult~)">
-<table id="feedbackmessage" cellspacing="0">
+<table id="feedbackmessage" role="presentation">
 <tr>
  <td class="prompt">SMTP Server (<i>required</i>)</td>
  <td>(~INPUTTEXT|smtp,40,120|placeholder="smtp.gmail.com"~)</td>
@@ -161,7 +161,7 @@ Action 'control' and the SAME keyword Feedback. -->
 <h1>2. Feedback Message - Result</h1>
 <b>Thank you for sending us feedback!</b>
 
-<table>
+<table role="presentation">
 <tr>
 <td>
 Use the [View Source] feature to find the template used in this example, feedback.txt:
@@ -175,7 +175,7 @@ this application and your web server.
 
 <tr>
 <td align="center">
-<table width="60%">
+<table width="60%"  role="presentation">
 <tr>
 <td>
 ###
@@ -186,7 +186,7 @@ this application and your web server.
 
 
 <td>
-<table border="0">
+<table border="0"  role="presentation">
 <tr>
 <td>
 <ul>
@@ -263,7 +263,7 @@ This is essentially the same technique as the feedback example, just
 with more extensive formatting of the template.</p>
 
 <form method="post" accept-charset="UTF-8" action="(~ACTION|pgFormLetterResult,webmailform.FormLetter~)">
-<table id="templateletter">
+<table id="templateletter" role="presentation">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
  <td>(~INPUTTEXT|EMail~)</td>
@@ -366,7 +366,7 @@ Note that this example does not use a template, so there is no path
 listed.</p>
 
 <form method="post" accept-charset="UTF-8" action="(~ACTION|pgSimpleFormResult~)">
-<table id="simple">
+<table id="simple"  role="presentation">
 <tr>
  <td class="prompt">Your e-mail  (<i>required</i>)</td>
  <td>(~INPUTTEXT|EMail~)</td>
