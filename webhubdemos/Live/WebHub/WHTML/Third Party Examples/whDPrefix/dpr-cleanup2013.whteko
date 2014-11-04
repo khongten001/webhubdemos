@@ -24,8 +24,8 @@ googlepriority=0
 <whprep>
 </whprep>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>(~PageDesc~)</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -77,8 +77,8 @@ googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>Error Logging in to Delphi Prefix Registry</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -109,8 +109,8 @@ googlepriority=0
 (~SET|_wasEMail=(~_EMail~)~)
 </whprep>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>(~PageDesc~)</title>
   (~drSharedHead~)
   (~PARAMS|drJanrainJavascript|openidprocess~)
@@ -154,8 +154,8 @@ googlepriority=0
 (~waCheckSubnet.Execute|(~CHECK|_bAdminRemote~)||(~CLEAR|_bAdminRemote~)~)
 </whprep>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>(~pagedesc~)</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />

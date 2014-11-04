@@ -4,8 +4,8 @@
 
 <whpage pageid="pgthanks" desc="-Credits">
 (~mcDocTypeHtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 	<title>(~~title_creditsDetails~)</title>
 	(~drSharedHead~)
 	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />

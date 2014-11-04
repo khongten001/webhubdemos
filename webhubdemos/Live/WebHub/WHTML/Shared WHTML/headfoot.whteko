@@ -6,10 +6,13 @@
   notes="Global Header and Footer assets (shared by all WebHub demos)."
   copyright="2006-2014 HREF Tools Corp.">
 
+<whdoc for="doctype">
+See http://diveintohtml5.info/semantics.html for exceptionally clear info about the HTML5 head tag requirements.
+</whdoc>
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcxmlns=xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)
+mcxmlns=(~ANCHOR|anchHtmlTag~)
 mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </whmacros>
@@ -17,7 +20,7 @@ mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 
 <whpage pageid="temp1" mode="scaffold" desc="-for use in Dreamweaver design mode">
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -33,10 +36,10 @@ siteroot is (~mcSiteRoot~)<br />
 
 <whpage pageid="temp2" mode="scaffold" desc="-for use in Dreamweaver design mode">
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" (~ANCHOR|anchHtmlTag~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 <whdroplet name="drHead" show="yes">
-(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
+(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|lang="(~waLingvo.Execute|ISO639-1~)"~)
 <meta charset="UTF-8" /> 
 <meta name="generator" content="(~version~)" />
 <meta name="description" content="This demo page is summarized as (~pagedesc~)" />

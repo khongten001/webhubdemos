@@ -16,7 +16,7 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 </whmacros>
 
 <whdroplet name="drSharedHead">
-(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|xml:lang="(~waLingvo.Execute|ISO639-1~)" lang="(~waLingvo.Execute|ISO639-1~)"~)
+(~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|lang="(~waLingvo.Execute|ISO639-1~)"~)
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link href='//fonts.googleapis.com/css?family=Old+Standard+TT:400,700,400italic' rel='stylesheet' type='text/css'>
