@@ -32,7 +32,7 @@
 <!--- The contents of this page change depending on the current AppID. -->
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -105,7 +105,7 @@ AppID demos? Ok.
 <whpage pageid="pgSetup" desc="Setup Instructions and/or Requirements for this Demo">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -127,7 +127,7 @@ Note: these instructions assume that you know how to run WebHub application serv
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -153,7 +153,7 @@ different machine and request the same demo with the same session #.
 </whdoc>
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -181,7 +181,7 @@ customizing the onBadIP event of the TwhAppBase.</p>
 <whpage pageid="pgAbout" desc="About a WebHub Demo">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -222,7 +222,7 @@ customizing the onBadIP event of the TwhAppBase.</p>
 <whpage pageid="ViewWHTMLFile" desc="View WHTML File">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -245,7 +245,7 @@ mcHdrOff=</h2>
 <whpage pageid="ViewFiles" desc="View source files for this demo">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -362,7 +362,7 @@ and Delphi Form (.DFM) files.</i>
 <whpage pageid="pgPNG" desc="PNG File Format">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -499,7 +499,7 @@ you win, because it requires so much time, energy and financial resources.</p>
 <whpage pageid="WHProperties" desc="Display WebHub component properties">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -678,7 +678,7 @@ you win, because it requires so much time, energy and financial resources.</p>
 <whpage pageid="pgLinkTest" desc="Test Outbound Links from this Demo">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -749,7 +749,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestA" desc="Link Test Page A">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -770,7 +770,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestB" desc="Link Test Page B">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -791,7 +791,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="pgLinkTestC" desc="Link Test Page C">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
 </head>
@@ -812,7 +812,7 @@ alt="Go to Order Form" /> (~JUMPR|fast:pgorderform(lite)|Order Form~)
 <whpage pageid="privacypolicy" desc="Privacy Policy">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/(~PageID~)" />
@@ -865,7 +865,7 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/(~PageID~)" />
@@ -890,7 +890,7 @@ ok
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/(~PageID~)" />
@@ -911,7 +911,7 @@ ok
 <whpage pageid="pgWhatIsMyIP" desc="What is my IP number">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
@@ -939,7 +939,7 @@ ok
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />

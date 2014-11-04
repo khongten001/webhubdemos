@@ -136,7 +136,7 @@ googlesitemap=exclude
 <whpage pageid="pgTestSimulatedErrors" desc="-Simulating 403 Conditions">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 (~drHead~)
   <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />

@@ -12,7 +12,6 @@ See http://diveintohtml5.info/semantics.html for exceptionally clear info about 
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcxmlns=(~ANCHOR|anchHtmlTag~)
 mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </whmacros>
