@@ -15,8 +15,8 @@ googlesitemap=exclude
 googlechangefreq=n/a
 googlepriority=0
 </whpagesettings>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -53,8 +53,8 @@ googlepriority=0
 (~REQUIRES|LoginUser|pgLogin~)
 (~REQUIRES|LoginPass|pgLogin~)
 </whprep>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
 </head>

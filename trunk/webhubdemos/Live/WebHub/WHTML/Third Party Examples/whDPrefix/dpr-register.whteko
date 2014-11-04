@@ -12,8 +12,8 @@ googlepriority=0.8
 (~ASSIGNED|_email|(~BOUNCE|pgmaintain~)~)
 </whprep>
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
   <title>(~~title_register~)</title>
 	(~drSharedHead~)
 	<meta name="robots" content="nofollow" />
@@ -71,8 +71,8 @@ googlepriority=0
 (~CLEAR|_bAdminMode~)
 </whprep>
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
   <title>(~~title_maintain~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -204,8 +204,8 @@ googlepriority=0
 (~drCleanupCheckpoint~)
 </whprep>
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
   <title>(~~title_registerDetails~)</title>
 	(~drSharedHead~)
   <meta name="robots" content="noindex,nofollow" />
@@ -286,8 +286,8 @@ googlepriority=0
 (~waAdd.execute|~)
 </whprep>
 (~mcDocTypeHTML~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 <title>Delphi Prefix Registry</title>
   (~drSharedHead~)
 </head>

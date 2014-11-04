@@ -55,8 +55,8 @@ googlepriority=0.7
 (~waCheckSubnet.Execute|(~CHECK|_bAdminRemote~)||(~CLEAR|_bAdminRemote~)~)
 </whprep>
 (~mcdoctypehtml~)
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head><!-- (~ANCHOR|anchHtmlTag~) -->
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
 	<title>Delphi Prefix Registry(~NOMATCH|"(~Command~)"=""|: Prefixes starting with Letter (~Command~)~)</title>
 	(~drSharedHead~)
 
