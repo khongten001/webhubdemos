@@ -11,7 +11,7 @@
 <whpage pageid="pgEnterADV" desc="Overview of the WebHub Component Named WebCycle">
 <whoutput>
 (~mcdoctypehtml~)
-<html (~mcxmlns~)>
+<html (~ANCHOR|anchHtmlTag~)>
 <head>
 	(~drHead~)
 <whdroplet name="drStyleBookAds" show="yes">
