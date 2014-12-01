@@ -53,7 +53,7 @@ begin
   JA := TJSONArray.Create;
   for i := 0 to Pred(statement.FieldCount) do
   begin
-    JA.AddElement(TJSONString.Create(statement.Fields[0].AsString));
+    JA.AddElement(TJSONString.Create(statement.Fields[i].AsString));
   end;
 
   Result := TJSONPair.Create('cell', JA);
