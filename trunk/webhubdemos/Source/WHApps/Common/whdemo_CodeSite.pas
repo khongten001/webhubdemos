@@ -41,10 +41,10 @@ type
 /// </param>
 /// <remarks>
 /// Usage examples:
-/// <para>(~waCodeSiteSend.Execute|Error|(~ErrorMessage~)~)</para>
-/// <para>(~waCodeSiteSend.Execute|BoolVar|abc_t,afterAdd~)</para>
-/// <para>(~waCodeSiteSend.Execute|Info|url,(~Request.QueryString~)~)</para>
-/// <para>(~waCodeSiteSend.Execute|Info|data,(~EXPAND|ksrLocationNo=(~LocationNo~),ksrDate=(~ksrDate~)~)~)</para>
+/// <para>(~waCodeSite.Execute|Error|(~ErrorMessage~)~)</para>
+/// <para>(~waCodeSite.Execute|BoolVar|abc_t,afterAdd~)</para>
+/// <para>(~waCodeSite.Execute|Info|url,(~Request.QueryString~)~)</para>
+/// <para>(~waCodeSite.Execute|Info|data,(~EXPAND|ksrLocationNo=(~LocationNo~),ksrDate=(~ksrDate~)~)~)</para>
 /// </remarks>
     procedure waCodeSiteExecute(Sender: TObject);
   private
