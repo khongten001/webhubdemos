@@ -232,6 +232,16 @@ begin
         Firebird_GenPAS_FillClientDatasets(y, conn, InProjectAbbrev, Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
+
+        Filespec := IncludeTrailingPathDelimiter(PASOutputFolder) + 'u';
+        if IsInterbase then
+          Filespec := Filespec + 'Interbase'
+        else
+          Filespec := Filespec + 'Firebird';
+        Filespec := Filespec + '_RecordStruct_' + InProjectAbbrev + '.pas';
+        Firebird_GenPAS_RecordStruct(y, conn, InProjectAbbrev, Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
       end;
     finally
       FreeAndNil(y);
