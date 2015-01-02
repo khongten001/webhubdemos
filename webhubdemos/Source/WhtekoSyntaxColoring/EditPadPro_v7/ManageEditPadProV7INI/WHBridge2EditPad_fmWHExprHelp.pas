@@ -2,12 +2,16 @@ unit WHBridge2EditPad_fmWHExprHelp;
 
 interface
 
+{$I hrefdefines.inc}
+
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   WHBridge2EditPad_uLoadWHCommands, FMX.Layouts, FMX.Edit,
   WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex,
-  WHBridge2EditPad_uExpressionReplacement, FMX.ListBox, FMX.Memo;
+  WHBridge2EditPad_uExpressionReplacement, FMX.ListBox, FMX.Memo,
+  {$IFDEF Delphi21UP}FMX.ComboEdit,{$ENDIF}
+  FMX.Controls.Presentation;
 
 type
   TfmWebHubExpressionHelp = class(TForm)
