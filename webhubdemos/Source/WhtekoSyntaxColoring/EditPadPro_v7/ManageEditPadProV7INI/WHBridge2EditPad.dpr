@@ -19,7 +19,6 @@ WHBridge2EditPad.exe --verb=ExprHelp "--word=%WORD%"
 {$R *.dres}   // some resources are available only at HREF Tools. IFDEF INHOUSE.
 
 uses
-  EMemLeaks,
   FMX.Forms,
   FMX.Dialogs,
   ucCodeSiteInterface,
@@ -34,7 +33,8 @@ uses
   WHBridge2EditPad_uBookmark in 'WHBridge2EditPad_uBookmark.pas',
   WebHubDWSourceUtil_uGlobal in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uGlobal.pas',
   WebHubDWSourceUtil_uSyntaxRegex in 'P:\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\Source\WebHubDWSourceUtil_uSyntaxRegex.pas',
-  WHBridge2EditPad_uExpressionReplacement in 'WHBridge2EditPad_uExpressionReplacement.pas';
+  WHBridge2EditPad_uExpressionReplacement in 'WHBridge2EditPad_uExpressionReplacement.pas',
+  whBridge2EditPad_fmSelectFilespec in 'whBridge2EditPad_fmSelectFilespec.pas' {Form4};
 
 {$R *.res}
 
@@ -65,6 +65,19 @@ begin
     else
     begin
       ErrorText := 'No saved bookmark locations to pop back to.';
+      CSSendError(ErrorText);
+      ShowMessage(ErrorText);
+    end;
+  end
+  else
+  if ParamString('-verb') = 'FileOpen' then
+  begin
+    //Application.CreateForm(TForm4, Form4);
+    //Form4.Visible := False;
+    Form4 := nil; // FMX no form on the fly ?!?!?!
+    WrapOpenJSorCSSorOtherFile(ErrorText);
+    if ErrorText <> '' then
+    begin
       CSSendError(ErrorText);
       ShowMessage(ErrorText);
     end;
