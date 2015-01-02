@@ -2,9 +2,6 @@ unit WHBridge2EditPad_uRegex;
 
 interface
 
-uses
-  SysUtils;
-
 type
   TwhsType = (whsUnknown, whsMacro, whsDroplet, whsPage, whsTranslation,
     whsTranslations, whsAppSetting, whsWebAction);
@@ -19,15 +16,10 @@ function FindInFiles(const ASearchType: TwhsType;
   out FoundInFilespec: string; out StartSel, EndSel: Integer): Boolean;
 
 
-function OpenJSorCSSorOtherFile(const InFindThisFilename, EPPFilespec
-  : string; out FoundInFilespecs: TStringBuilder): Boolean;
-procedure WrapOpenJSorCSSorOtherFile(out InfoMsg: string);
-
-
 implementation
 
 uses
-  Classes, TypInfo, System.IOUtils, FMX.Forms,
+  Classes, SysUtils, TypInfo,
   ldi.RegEx.RegularExpressions,
   uCode, ucShell, ucString, ucLogFil, ucCodeSiteInterface,
   WHBridge2EditPad_uIni, WHBridge2EditPad_uBookmark,
@@ -214,47 +206,6 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
-function OpenJSorCSSorOtherFile(const InFindThisFilename, EPPFilespec
-  : string; out FoundInFilespecs: TStringBuilder): Boolean;
-const cFn = 'OpenJSorCSSorOtherFile';
-var
-  AFilename: string;
-  AMask: string;
-  EPPRootFolder: string;
-  AFileExt: string;
-  SearchOption: TSearchOption;
-  FlagAny: Boolean;
-begin
-  CSEnterMethod(nil, cFn);
-  FoundInFilespecs := TStringBuilder.Create;
-  Result := False;
-  FlagAny := False;
-
-  AFileExt := ExtractFileExt(InFindThisFilename);
-  AMask := '*' + AFileExt;
-  //CSSend('AMask', AMask);
-  SearchOption := TSearchOption.soAllDirectories;
-  EPPRootFolder := ExtractFilePath(EPPFilespec);
-  //CSSend('EPPRootFolder', EPPRootFolder);
-
-  for AFilename in TDirectory.GetFiles(EPPRootFolder, AMask, SearchOption, nil)
-  do
-  begin
-    //CSSend('Considering', AFilename);
-    if SameText(ExtractFilename(AFilename), ExtractFilename(InFindThisFilename))
-    then
-    begin
-      if FlagAny then
-        FoundInFilespecs.Append(sLineBreak);
-      FoundInFilespecs.Append(AFilename);
-      FlagAny := True;
-      //CSSend('FoundInFilespecs', FoundInFilespecs.ToString);
-      Result := True;
-    end;
-  end;
-  CSExitMethod(nil, cFn);
-end;
-
 procedure WrapFindInFiles(out InfoMsg: string);
 const cFn = 'WrapFindInFiles';
 var
@@ -322,145 +273,6 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
-function Word2FilenameAtCursor(const InWord, InTextLineNoQuotes: string;
-  out ErrorText: string): string;
-const cFn = 'Word2FilenameAtCursor';
-var
-  x: Integer;
-  Left, Right: string;
-  FileExt: string;
-  FlagSlash: Boolean;
-begin
-  CSEnterMethod(nil, cFn);
-  Result := '';
-  ErrorText := '';
-
-  CSSend('InWord', InWord);
-  CSSend('InTextLineNoQuotes', InTextLineNoQuotes);
-
-  SplitRight(InTextLineNoQuotes, InWord, Left, Right);
-  CSSend('Left', Left);
-  CSSend('Right', Right);
-
-  // look for end of filename noting that quotes are lost en-route
-  x := Pos('"', Right);
-  if x = 0 then
-    x := Pos('''', Right);
-  if x = 0 then
-    x := Pos('>', Right);
-  if x > 0 then
-  begin
-    Right := Copy(Right, 1, Pred(x));
-    CSSend('Right', Right);
-    FlagSlash := False;
-    while true do
-    begin
-      x := Pos('/', Right);
-      if x = 0 then break
-      else
-      begin
-        FlagSlash := True;
-        Right := Copy(Right, Succ(x), MaxInt);
-      end;
-    end;
-
-    x := Pos('.', Right);
-    if x > 0 then
-    begin
-      FileExt := Copy(Right, x, MaxInt);  // e.g. '.js' or '.css'
-      CSSend('FileExt', FileExt);
-      CSSend('FlagSlash', S(FlagSlash));
-      if FlagSlash then
-        Result := Right
-      else
-        Result := InWord + FileExt;
-    end
-    else
-      ErrorText := Format('No . found after "%s" within "%s"',
-      [InWord, InTextLineNoQuotes]);
-  end
-  else
-    ErrorText := Format(
-      'No closing quote mark nor > symbol found after "%s" and within "%s"',
-      [InWord, InTextLineNoQuotes]);
-
-  CSSend('Result', Result);
-  CSExitMethod(nil, cFn);
-end;
-
-
-procedure WrapOpenJSorCSSorOtherFile(out InfoMsg: string);
-const cFn = 'WrapOpenJSorCSSorOtherFile';
-var
-  EPPFilespec: string;
-  ExeFile: string;
-  GoodSearchPhrase: string;
-  MatchFilespecList: TStringBuilder;
-  Flag: Boolean;
-begin
-  CSEnterMethod(nil, cFn);
-  InfoMsg := '';
-  MatchFilespecList := nil;
-
-  CSSend('word', ParamString('-word'));
-  CSSend('linetext with double-quotes stripped!', ParamString('-linetext'));
-
-  EPPFilespec := ParamString('-projectfile');
-  CSSend('EPPFilespec', EPPFilespec);
-
-  ExeFile := ParamString('-exe');
-  CSSend('ExeFile', ExeFile);
-
-  if FileExists(ExeFile) then
-  begin
-    GoodSearchPhrase := Word2FilenameAtCursor(
-      ParamString('-word'),
-      ParamString('-linetext'), InfoMsg);
-    CSSend('GoodSearchPhrase', GoodSearchPhrase);
-    if InfoMsg = '' then
-    begin
-      Flag := OpenJSorCSSorOtherFile(GoodSearchPhrase, EPPFilespec,
-        MatchFilespecList);
-
-      CSSend('Flag', S(Flag));
-      if Flag then
-      begin
-        CSSend('MatchFilespecList.Length', S(MatchFilespecList.Length));
-        if Pos(sLineBreak, MatchFilespecList.ToString) = 0 then
-        begin
-          // easy - only one match
-          StackPushLocation(ParamString('-file'), ParamString('-pos'));
-          Launch(ExtractFileName(ExeFile),
-            MatchFilespecList.ToString,
-            ExtractFilepath(ExeFile), True, 0,
-            InfoMsg);
-        end
-        else
-        begin
-          CSSendWarning('Multiple matches');
-          if Assigned(Form4) then
-          begin
-            Form4.SetFilespecList(MatchFilespecList, sLineBreak);
-            Form4.Visible := True;
-          end
-          else
-            CSSendError('Form4 nil');
-        end;
-      end
-      else
-        InfoMsg := 'File not found for ' + GoodSearchPhrase;
-    end;
-  end;
-
-  if InfoMsg <> '' then
-  begin
-    CSSend('InfoMsg', InfoMsg);
-  end;
-
-  FreeAndNil(MatchFilespecList);
-
-  CSExitMethod(nil, cFn);
-end;
 
 initialization
   FRegEx := nil;

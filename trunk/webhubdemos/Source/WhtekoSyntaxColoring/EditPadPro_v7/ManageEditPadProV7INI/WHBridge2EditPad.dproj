@@ -66,6 +66,10 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <DCC_UnitSearchPath>k:\webhub\ZaphodsMap;k:\webhub\tpack;K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
@@ -73,7 +77,7 @@
         <DCC_Define>PREVENTSVCMGR;FMACTIVE;INHOUSE;$(DCC_Define)</DCC_Define>
         <DCC_Namespace>System;FMX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.1.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_DcuOutput>..\..\..\TempBuild\dcu\$(Platform)\fmx</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\..\TempBuild\bin\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -175,8 +179,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.0.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>2</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.0.0.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>6</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <Debugger_DebugSourcePath>k:\webhub\tpack\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -190,9 +194,10 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
+        <VerInfo_MinorVer>1</VerInfo_MinorVer>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.0.0.1;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>1</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.1.0.3;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.2;Comments=</VerInfo_Keys>
+        <VerInfo_Build>3</VerInfo_Build>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <Debugger_RunParams>--verb=ExprHelp --word=ACTION</Debugger_RunParams>
     </PropertyGroup>
@@ -217,6 +222,7 @@
             <Form>Form4</Form>
             <FormType>fmx</FormType>
         </DCCReference>
+        <DCCReference Include="WHBridge2EditPad_uSearchDir.pas"/>
         <RcItem Include="D:\HREF\Source\Product\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\WebHubCommandsTabDelimitedList.txt">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
@@ -248,12 +254,6 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment>
-                <DeployFile LocalName="..\..\..\TempBuild\bin\Win32\Release\WHBridge2EditPad.exe" Configuration="Release" Class="ProjectOutput">
-                    <Platform Name="Win32">
-                        <RemoteName>WHBridge2EditPad.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
                 <DeployFile LocalName="$(BDS)\Redist\osx32\libcgunwind.1.0.dylib" Class="DependencyModule">
                     <Platform Name="OSX32">
                         <Overwrite>true</Overwrite>
@@ -263,6 +263,24 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="D:\HREF\Source\Product\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\WebHubCommandsTabDelimitedList.txt" Configuration="Release" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\TempBuild\bin\Win32\Release\WHBridge2EditPad.exe" Configuration="Release" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>WHBridge2EditPad.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="..\..\..\TempBuild\bin\Win32\Debug\WHBridge2EditPad.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>WHBridge2EditPad.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="D:\HREF\Source\Product\KompProd\Pak\WebHubP\WHDocs\WHCommandDocs\WebHubCommandsTabDelimitedList.txt" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>

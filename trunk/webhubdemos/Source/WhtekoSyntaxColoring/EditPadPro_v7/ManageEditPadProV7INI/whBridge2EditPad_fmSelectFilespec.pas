@@ -10,16 +10,18 @@ uses
 type
   TForm4 = class(TForm)
     Panel1: TPanel;
-    Button1: TButton;
-    Button2: TButton;
+    ButtonCancel: TButton;
+    ButtonOk: TButton;
     Panel2: TPanel;
     ListBox1: TListBox;
-    procedure Button2Click(Sender: TObject);
+    procedure ButtonOkClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure ButtonCancelClick(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
-    procedure SetFilespecList(AList: TStringBuilder; const ADelim: string);
   end;
 
 var
@@ -30,32 +32,56 @@ implementation
 {$R *.fmx}
 
 uses
-  ucString, ucCodeSiteInterface;
+  ucString, uCode, ucCodeSiteInterface,
+  WHBridge2EditPad_uSearchDir;
 
-procedure TForm4.Button2Click(Sender: TObject);
+procedure TForm4.ButtonCancelClick(Sender: TObject);
 begin
-  ShowMessage(Listbox1.ItemByIndex(ListBox1.ItemIndex).ToString);
+  Self.Close;
 end;
 
-procedure TForm4.SetFilespecList(AList: TStringBuilder; const ADelim: string);
-const cFn = 'SetFilespecList';
+procedure TForm4.ButtonOkClick(Sender: TObject);
+const cFn = 'ButtonOkClick';
 var
-  a1, a2: string;
+  AFilespec: string;
 begin
   CSEnterMethod(Self, cFn);
-  ListBox1.Clear;
-
-  a2 := AList.ToString;
-  while true do
-  begin
-    SplitString(a2, ADelim, a1, a2);
-    if a1 <> '' then
-      ListBox1.Items.Add(a1)
-    else
-      break;
-  end;
-
+  AFilespec := Listbox1.ItemByIndex(ListBox1.ItemIndex).Text;
+  CSSend('Selected', AFilespec);
+  Push2Stack_and_OpenFile(ParamString('-exe'), AFilespec);
+  Self.Close;
   CSExitMethod(Self, cFn);
+end;
+
+var
+  FlagInitDone: Boolean = False;
+
+procedure TForm4.FormActivate(Sender: TObject);
+var
+  ErrorText: string;
+begin
+  if NOT FlagInitDone then
+  begin
+    WrapOpenJSorCSSorOtherFile(ListBox1, ErrorText);
+    if ErrorText <> '' then
+    begin
+      CSSendError(ErrorText);
+      ShowMessage(ErrorText);
+      Self.Close;
+    end
+    else
+    begin
+      if ListBox1.Items.Count > 0 then
+      begin
+        // calling function takes over...
+      end;
+    end;
+  end;
+end;
+
+procedure TForm4.FormCreate(Sender: TObject);
+begin
+  ListBox1.Clear;
 end;
 
 end.

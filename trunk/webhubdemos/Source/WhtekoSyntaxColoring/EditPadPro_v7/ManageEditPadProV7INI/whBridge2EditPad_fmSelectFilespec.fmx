@@ -1,12 +1,14 @@
 object Form4: TForm4
   Left = 0
   Top = 0
-  Caption = 'Form4'
+  Caption = 'Select Filespec'
   ClientHeight = 480
   ClientWidth = 640
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  OnActivate = FormActivate
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object Panel1: TPanel
     Align = Bottom
@@ -15,13 +17,14 @@ object Form4: TForm4
     Size.Height = 96.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    object Button1: TButton
+    object ButtonCancel: TButton
       Position.X = 40.000000000000000000
       Position.Y = 40.000000000000000000
       TabOrder = 0
       Text = 'Cancel'
+      OnClick = ButtonCancelClick
     end
-    object Button2: TButton
+    object ButtonOk: TButton
       StyledSettings = [Family, Size, FontColor]
       Position.X = 504.000000000000000000
       Position.Y = 24.000000000000000000
@@ -31,7 +34,7 @@ object Form4: TForm4
       TabOrder = 1
       Text = 'Ok - Select'
       TextSettings.Font.Style = [fsBold]
-      OnClick = Button2Click
+      OnClick = ButtonOkClick
     end
   end
   object Panel2: TPanel
@@ -42,8 +45,10 @@ object Form4: TForm4
     TabOrder = 1
     object ListBox1: TListBox
       Align = Client
-      Size.Width = 640.000000000000000000
-      Size.Height = 384.000000000000000000
+      Scale.X = 1.500000000000000000
+      Scale.Y = 1.500000000000000000
+      Size.Width = 426.666687011718800000
+      Size.Height = 256.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       DisableFocusEffect = True
