@@ -14,6 +14,7 @@ type
     ButtonOk: TButton;
     Panel2: TPanel;
     ListBox1: TListBox;
+    Label1: TLabel;
     procedure ButtonOkClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -35,6 +36,10 @@ uses
   ucString, uCode, ucCodeSiteInterface,
   WHBridge2EditPad_uSearchDir;
 
+var
+  FlagInitDone: Boolean = False;
+  FlagJustClose: Boolean = False;
+
 procedure TForm4.ButtonCancelClick(Sender: TObject);
 begin
   Self.Close;
@@ -46,15 +51,15 @@ var
   AFilespec: string;
 begin
   CSEnterMethod(Self, cFn);
-  AFilespec := Listbox1.ItemByIndex(ListBox1.ItemIndex).Text;
-  CSSend('Selected', AFilespec);
-  Push2Stack_and_OpenFile(ParamString('-exe'), AFilespec);
+  if (NOT FlagJustClose) and Assigned(Listbox1) then
+  begin
+    AFilespec := Listbox1.ItemByIndex(ListBox1.ItemIndex).Text;
+    CSSend('Selected', AFilespec);
+    Push2Stack_and_OpenFile(ParamString('-exe'), AFilespec);
+  end;
   Self.Close;
   CSExitMethod(Self, cFn);
 end;
-
-var
-  FlagInitDone: Boolean = False;
 
 procedure TForm4.FormActivate(Sender: TObject);
 var
@@ -65,15 +70,22 @@ begin
     WrapOpenJSorCSSorOtherFile(ListBox1, ErrorText);
     if ErrorText <> '' then
     begin
+      FreeAndNil(ListBox1);
+      Label1.Visible := True;
+      Label1.Text := ErrorText;
       CSSendError(ErrorText);
-      ShowMessage(ErrorText);
-      Self.Close;
+      //ShowMessage(ErrorText);
+      FreeAndNil(ButtonCancel);
+      ButtonOk.Text := 'Ok';
+      FlagJustClose := True;
     end
     else
     begin
-      if ListBox1.Items.Count > 0 then
+      if ListBox1.Items.Count = 0 then
+        Self.Close
+      else
       begin
-        // calling function takes over...
+        // calling function takes over... GUI is involved.
       end;
     end;
   end;
@@ -82,6 +94,8 @@ end;
 procedure TForm4.FormCreate(Sender: TObject);
 begin
   ListBox1.Clear;
+  Label1.Visible := False;
+  Self.Caption := ExtractFilename(ParamStr(0)) + ': Select File to Open';
 end;
 
 end.

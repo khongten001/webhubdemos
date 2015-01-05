@@ -70,6 +70,7 @@ function Word2FilenameAtCursor(const InWord, InTextLineNoQuotes: string;
 const cFn = 'Word2FilenameAtCursor';
 var
   x: Integer;
+  i: Integer;
   Left, Right: string;
   FileExt: string;
   FlagSlash: Boolean;
@@ -86,15 +87,24 @@ begin
   CSSend('Right', Right);
 
   // look for end of filename noting that quotes are lost en-route
-  x := Pos('"', Right);
+  x := Pos('?', Right);  // item.js?123
   if x = 0 then
-    x := Pos('''', Right);
+    x := Pos(' ', Right); // whitespace
+  if x = 0 then
+    x := Pos(#9, Right);
+  if x = 0 then
+    x := Pos(sLineBreak, Right);
+  if x = 0 then
+    x := Pos('"', Right);
   if x = 0 then
     x := Pos('>', Right);
+  if x = 0 then
+    x := Pos('''', Right);
   if x > 0 then
   begin
+    CSSend('x', S(x));
     Right := Copy(Right, 1, Pred(x));
-    CSSend('Right', Right);
+    CSSend('Adjusted Right', Right);
     FlagSlash := False;
     while true do
     begin
@@ -112,11 +122,21 @@ begin
     begin
       FileExt := Copy(Right, x, MaxInt);  // e.g. '.js' or '.css'
       CSSend('FileExt', FileExt);
+
+      for i := Length(Left) downto 1 do  // right edge of Left part
+      begin
+        if CharInSet(Left[i], ['=', '/', '"', '''', ')', '>']) then  // '-' is valid char!
+        begin
+          Left := Copy(Left, Succ(i), MaxInt);
+          CSSend('Adjusted Left', Left);
+          break;
+        end;
+      end;
       CSSend('FlagSlash', S(FlagSlash));
       if FlagSlash then
         Result := Right
       else
-        Result := InWord + FileExt;
+        Result := Left + InWord + FileExt;
     end
     else
       ErrorText := Format('No . found after "%s" within "%s"',
@@ -237,7 +257,7 @@ begin
         end;
       end
       else
-        InfoMsg := 'File not found for ' + GoodSearchPhrase;
+        InfoMsg := 'File not found:' + sLineBreak + GoodSearchPhrase;
     end;
   end;
 

@@ -1,7 +1,6 @@
 object Form4: TForm4
   Left = 0
   Top = 0
-  Caption = 'Select Filespec'
   ClientHeight = 480
   ClientWidth = 640
   FormFactor.Width = 320
@@ -55,6 +54,17 @@ object Form4: TForm4
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
+    end
+    object Label1: TLabel
+      Align = Client
+      Margins.Left = 20.000000000000000000
+      Margins.Right = 20.000000000000000000
+      Scale.X = 2.000000000000000000
+      Scale.Y = 2.000000000000000000
+      Size.Width = 280.000000000000000000
+      Size.Height = 192.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Label1'
     end
   end
 end
