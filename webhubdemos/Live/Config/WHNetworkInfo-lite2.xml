@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201306.xsd">
   <Variables begin="{" end="}">
-    <Var name="RootForWHDataFolders" value="d:\whTemp\" />
+    <Var name="RootForWHDataFolders" value="d:\whData\" />
   </Variables>
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
