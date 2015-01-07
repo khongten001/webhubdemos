@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201306.xsd">
   <Variables begin="{" end="}">
-    <Var name="RootForTempFolders" value="d:\temp\" />
+    <Var name="RootForWHDataFolders" value="d:\whTemp\" />
   </Variables>
   <HttpServers>
     <HttpServer id="apache" nameStartsWith="Apache" sendHttpVersion="false" sendHttpColon="false" httpForceCase="none"/>
@@ -10,15 +10,15 @@
   </HttpServers>
   <LocalMachine>
   	<ConnectionLayer>
-	  <SharedLogFolder value="{RootForTempFolders}whLogs\" />
-	  <WorkingFolder value="{RootForTempFolders}whIPC\" />
+	  <SharedLogFolder value="{RootForWHDataFolders}whLogs\" />
+	  <WorkingFolder value="{RootForWHDataFolders}whIPC\" />
   	</ConnectionLayer>
     <Runners>
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
-        <ErrorLogFolder value="{RootForTempFolders}whLogs\"/>
+        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
 	<AdvancedFlags value="none" />
       </Runner>
@@ -27,7 +27,7 @@
         <DelayMS value="0"/>
         <UploadFolder value="D:\AppsData\WebHub\upload\"/>
         <UploadMaxFileSizeKB value="5"/>
-        <ErrorLogFolder value="{RootForTempFolders}whLogs\"/>
+        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="demos.href.com:8082"/>
       </Runner>
     </Runners>
