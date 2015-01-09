@@ -54,6 +54,7 @@ begin
 
     if ErrorText <> '' then
     begin
+      CSSendParams;
       CSSendError(ErrorText);
       ShowMessage(ErrorText);
     end;
@@ -65,6 +66,7 @@ begin
       LaunchEPPAgainst(AFilespec, APosition)
     else
     begin
+      CSSendParams;
       ErrorText := 'No saved bookmark locations to pop back to.';
       CSSendError(ErrorText);
       ShowMessage(ErrorText);
@@ -75,6 +77,17 @@ begin
   begin
     Application.CreateForm(TForm4, Form4);  // FMX different from Vcl !
     Application.Run;
+  end
+  else
+  if ParamString('-verb') = 'FindJSFunction' then
+  begin
+    WrapFindJavascriptFunctionInFiles(ErrorText);
+    if ErrorText <> '' then
+    begin
+      CSSendParams;
+      CSSendError(ErrorText);
+      ShowMessage(ErrorText);
+    end;
   end
   {$IFDEF INHOUSE}
   else
