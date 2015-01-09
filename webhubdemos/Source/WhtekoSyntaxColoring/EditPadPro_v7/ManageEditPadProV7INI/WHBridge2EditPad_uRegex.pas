@@ -4,12 +4,15 @@ interface
 
 type
   TwhsType = (whsUnknown, whsMacro, whsDroplet, whsPage, whsTranslation,
-    whsTranslations, whsAppSetting, whsWebAction);
+    whsTranslations, whsAppSetting, whsWebAction, whsJavascriptFunction);
+
+procedure CSSendParams;
 
 function Word2SearchType(const InWord, InLineText: string): TwhsType;
 function Word2SearchPattern(const InWord: string; const InType: TwhsType): string;
 
 procedure WrapFindInFiles(out InfoMsg: string);
+procedure WrapFindJavascriptFunctionInFiles(out InfoMsg: string);
 
 function FindInFiles(const ASearchType: TwhsType;
   const ASearchPattern, InFileList: string;
@@ -98,6 +101,7 @@ begin
     whsWebAction: Result := Format('procedure\s[^.]*\.%sExecute',
       [InWord]);
     whsAppSetting: Result := Format('AppSetting\sname="%s"', [InWord]);
+    whsJavascriptFunction: Result := Format('function\s%s', [InWord]);
     else
       Result := '';
   end;
@@ -128,6 +132,7 @@ const
   cWhteko = '.whteko';
   cPas = '.pas';
   cXml = '.xml';
+  cJS = '.js';
 begin
   CSEnterMethod(nil, cFn);
   //CSSend('ASearchPattern', ASearchPattern);
@@ -165,6 +170,8 @@ begin
           whsTranslations: DoThisFileExt := (AFileExt = cWhteko);
           whsWebAction: DoThisFileExt := (AFileExt = cPas);
           whsAppSetting: DoThisFileExt := (AFileExt = cXml);
+          whsJavascriptFunction: DoThisFileExt := (AFileExt = cWhteko)
+            or (AFileExt = cJS);
           else DoThisFileExt := False;
         end;
 
@@ -273,6 +280,80 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
+procedure CSSendParams;
+var
+  i: Integer;
+begin
+  for i := 0 to Pred(ParamCount) do
+  begin
+    CSSend(S(i), ParamStr(i));
+  end;
+end;
+
+procedure WrapFindJavascriptFunctionInFiles(out InfoMsg: string);
+const cFn = 'WrapFindJavascriptFunctionInFiles';
+var
+  ExeFile: string;
+  ProjectFileList: string;
+  GoodSearchPhrase: string;
+  MatchFilespec: string;
+  StartSel, EndSel: Integer;
+  Flag: Boolean;
+  ActiveFilespecInEditpad: string;
+begin
+  CSEnterMethod(nil, cFn);
+  InfoMsg := '';
+
+  ActiveFilespecInEditpad := ParamString('-file');
+  CSSend('ActiveFilespecInEditpad', ActiveFilespecInEditpad);
+
+  ExeFile := ParamString('-exe');
+  if FileExists(ExeFile) then
+  begin
+    ProjectFileList := EPPExtractFileList(ParamString('-projectfile'));
+    CSSend('word', ParamString('-word'));
+    GoodSearchPhrase := Word2SearchPattern(ParamString('-word'),
+      whsJavascriptFunction);
+    CSSend('GoodSearchPhrase', GoodSearchPhrase);
+
+    if GoodSearchPhrase <> '' then
+    begin
+      CSSend('GoodSearchPhrase', GoodSearchPhrase);
+
+      Flag := FindInFiles(whsJavascriptFunction, GoodSearchPhrase,
+        ActiveFilespecInEditpad, MatchFilespec, StartSel, EndSel);
+      CSSend('Flag 1', S(Flag));
+
+      if (NOT Flag) then
+      begin
+        Flag := FindInFiles(whsJavascriptFunction, GoodSearchPhrase,
+          ProjectFileList, MatchFilespec, StartSel, EndSel);
+        CSSend('Flag 2', S(Flag));
+      end;
+
+      if Flag then
+      begin
+        StackPushLocation(ParamString('-file'), ParamString('-pos'));
+        Launch(ExtractFileName(ExeFile),
+          MatchFilespec + ' /s' + IntToStr(StartSel) + '-' + IntToStr(EndSel),
+          ExtractFilepath(ExeFile), True, 0,
+          InfoMsg);
+      end
+      else
+        InfoMsg := 'Not found: ' + GoodSearchPhrase;
+    end
+    else
+      InfoMsg := 'No good regex pattern for ' + ParamString('-word');
+  end
+  else
+    InfoMsg := 'Not found: ' + ExeFile;
+
+  if InfoMsg <> '' then
+  begin
+    CSSendError(InfoMsg);
+  end;
+  CSExitMethod(nil, cFn);
+end;
 
 initialization
   FRegEx := nil;

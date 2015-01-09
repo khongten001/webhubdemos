@@ -5,7 +5,7 @@
         <FrameworkType>FMX</FrameworkType>
         <MainSource>WHBridge2EditPad.dpr</MainSource>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -66,7 +66,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MinorVer>4</VerInfo_MinorVer>
         <VerInfo_Build>2</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -77,7 +77,7 @@
         <DCC_Define>PREVENTSVCMGR;FMACTIVE;INHOUSE;$(DCC_Define)</DCC_Define>
         <DCC_Namespace>System;FMX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.1.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.4.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_DcuOutput>..\..\..\TempBuild\dcu\$(Platform)\fmx</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\..\TempBuild\bin\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -179,8 +179,8 @@
         <DCC_RemoteDebug>true</DCC_RemoteDebug>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.1.0.11;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>11</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.0.13;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>13</VerInfo_Build>
         <Debugger_DebugSourcePath>k:\webhub\tpack\;$(Debugger_DebugSourcePath)</Debugger_DebugSourcePath>
         <Debugger_RunParams>--verb=ExprHelp --word=MATCH</Debugger_RunParams>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
@@ -192,8 +192,8 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.1.0.6;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.1.0.5;Comments=</VerInfo_Keys>
-        <VerInfo_Build>6</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.0.7;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>7</VerInfo_Build>
         <Debugger_RunParams>--verb=ExprHelp --word=ACTION</Debugger_RunParams>
     </PropertyGroup>
     <ItemGroup>
