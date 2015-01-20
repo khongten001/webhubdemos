@@ -6,13 +6,14 @@
 setlocal
 
 set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk
-set svndir=d:\Apps\Utilities\SVN\Console
+if exist d:\Apps\Utilities\SVN\Console\svn.exe         set svndir=d:\Apps\Utilities\SVN\Console\
+if exist D:\Apps\Utilities\SVN\TortoiseSVN\bin\svn.exe set svndir=D:\Apps\Utilities\SVN\TortoiseSVN\bin\
 
 cd /d %~dp0
 cd ..
 
 echo on
-%svndir%\svn.exe update  --accept theirs-full
+%svndir%svn.exe update  --accept theirs-full
 @if errorlevel 1 pause
 
 :end
