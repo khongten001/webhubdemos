@@ -416,7 +416,7 @@
     <SessionDebug value="false"/>
     <SessionDigits value="10"/>
     <SessionFileMask value="*.var"/>
-    <SessionFolder value="d:\temp\whSessions\"/>
+    <SessionFolder value="{RootForWHDataFolders}whSessions\"/>
     <SessionLifeMinutes value="25"/>
     <SessionMaxActive value="0"/>
     <SessionSweepIntervalMS value="120000"/>

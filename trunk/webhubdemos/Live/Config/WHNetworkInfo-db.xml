@@ -17,7 +17,7 @@
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
-        <UploadFolder value="D:\AppsData\WebHub\upload\"/>
+        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
 	<AdvancedFlags value="none" />
@@ -25,7 +25,7 @@
       <Runner id="cgibin" filespec="d:\apps\hreftools\webhub\bin\whrunner\runbin.exe">
         <Interface value="cgi-bin"/>
         <DelayMS value="0"/>
-        <UploadFolder value="D:\AppsData\WebHub\upload\"/>
+        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <UploadMaxFileSizeKB value="5"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="demos.href.com:8082"/>
