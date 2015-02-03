@@ -101,7 +101,7 @@ begin
     whsWebAction: Result := Format('procedure\s[^.]*\.%sExecute',
       [InWord]);
     whsAppSetting: Result := Format('AppSetting\sname="%s"', [InWord]);
-    whsJavascriptFunction: Result := Format('function\s%s', [InWord]);
+    whsJavascriptFunction: Result := Format('function\s%s\(', [InWord]);
     else
       Result := '';
   end;
