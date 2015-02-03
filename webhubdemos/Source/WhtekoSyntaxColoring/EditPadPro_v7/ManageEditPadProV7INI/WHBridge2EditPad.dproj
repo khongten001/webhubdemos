@@ -192,8 +192,8 @@
         <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.0.7;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>7</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.0.8;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>8</VerInfo_Build>
         <Debugger_RunParams>--verb=ExprHelp --word=ACTION</Debugger_RunParams>
     </PropertyGroup>
     <ItemGroup>
