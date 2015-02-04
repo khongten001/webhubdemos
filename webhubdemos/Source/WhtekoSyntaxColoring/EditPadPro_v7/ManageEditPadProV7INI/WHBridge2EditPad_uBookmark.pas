@@ -7,6 +7,7 @@ function WHBridgeDataPath: string;
 function StackPushLocation(const InFilespec: string; const APosition: string): Boolean;
 function StackPopLocation(out TheFilespec, ThePosition: string): Boolean;
 function LaunchEPPAgainst(const InFilespec, APosition: string): Boolean;
+function WHBridgeDataFilespec: string;
 
 implementation
 

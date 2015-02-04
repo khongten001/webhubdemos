@@ -23,6 +23,8 @@ uses
   FMX.Dialogs,
   ucCodeSiteInterface,
   uCode,
+  ucVers,
+  SysUtils,
   WHBridge2EditPad_fmMain in 'WHBridge2EditPad_fmMain.pas' {Form3},
   WHBridge2EditPad_uIni in 'WHBridge2EditPad_uIni.pas',
   WHBridge2EditPad_uRegex in 'WHBridge2EditPad_uRegex.pas',
@@ -43,9 +45,17 @@ var
   ErrorText: string;
   AFilespec, APosition: string;
 
+procedure ShowError;
+begin
+  ShowMessage('WHBridge2EditPad v' + GetVersionDigits(False) +
+    sLineBreak + sLineBreak +
+    ErrorText);
+end;
+
 begin
   Application.Initialize;
 
+  CSSend('version', ucVers.GetVersionDigits(False));
   CSSend('verb', ParamString('-verb'));
 
   if ParamString('-verb') = 'FindDeclaration' then
@@ -56,7 +66,7 @@ begin
     begin
       CSSendParams;
       CSSendError(ErrorText);
-      ShowMessage(ErrorText);
+      ShowError;
     end;
   end
   else
@@ -69,7 +79,7 @@ begin
       CSSendParams;
       ErrorText := 'No saved bookmark locations to pop back to.';
       CSSendError(ErrorText);
-      ShowMessage(ErrorText);
+      ShowError;
     end;
   end
   else
@@ -86,7 +96,7 @@ begin
     begin
       CSSendParams;
       CSSendError(ErrorText);
-      ShowMessage(ErrorText);
+      ShowError;
     end;
   end
   {$IFDEF INHOUSE}
@@ -97,6 +107,12 @@ begin
   Application.Run;
   end
   {$ENDIF}
+  else
+  if ParamString('-verb') = 'ClearBookmarks' then
+  begin
+    if FileExists(WHBridgeDataFilespec) then
+      DeleteFile(WHBridgeDataFilespec);
+  end;
   ;
 
 end.
