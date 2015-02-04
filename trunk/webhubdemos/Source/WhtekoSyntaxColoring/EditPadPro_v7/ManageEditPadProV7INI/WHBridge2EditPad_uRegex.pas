@@ -56,6 +56,9 @@ begin
   if Copy(InWord, 1, 2) = 'mc' then
     Result := whsMacro
   else
+  if Copy(InWord, 1, 2) = 'pg' then
+    Result := whsPage
+  else
   begin
     if (Copy(InWord, 1, 2) = 'wa') then
       Result := whsWebAction
@@ -67,6 +70,9 @@ begin
       //CSSend('LettersAfter', LettersAfter);
       if (Pos('.execute', LettersAfter) = 1) then
         Result := whsWebAction
+      else
+      if (Length(LettersAfter) > 0) and (LettersAfter[1] = '(') then
+        Result := whsJavascriptFunction
       else
       begin
         if xb > 11 then  // AppSetting.
@@ -95,7 +101,7 @@ begin
   case InType of
     whsMacro: Result := Format('\n%s=', [InWord]);
     whsDroplet: Result := Format('<whdroplet[^>]*?\sname="%s"', [InWord]);
-    whsPage: Result := Format('\sid="%s"', [InWord]);
+    whsPage: Result := Format('\spageid="%s"', [InWord]);
     whsTranslation: Result := Format('<whtranslation[^>]*?\skey="~%s"', [InWord]);
     whsTranslations: Result := Format('\n~%s=', [InWord]);
     whsWebAction: Result := Format('procedure\s[^.]*\.%sExecute',
@@ -233,44 +239,53 @@ begin
     ProjectFileList := EPPExtractFileList(ParamString('-projectfile'));
     SearchType := Word2SearchType(ParamString('-word'),
       ParamString('-linetext'));
-    GoodSearchPhrase := Word2SearchPattern(ParamString('-word'), SearchType);
 
-    if GoodSearchPhrase <> '' then
+    if SearchType = whsJavascriptFunction then
     begin
-      CSSend('GoodSearchPhrase', GoodSearchPhrase);
-
-      Flag := FindInFiles(SearchType, GoodSearchPhrase, ProjectFileList,
-        MatchFilespec, StartSel, EndSel);
-
-      if (NOT Flag) and (SearchType = whsTranslation) then
-      begin
-        GoodSearchPhrase := Word2SearchPattern(ParamString('-word'),
-          whsTranslations);
-        Flag := FindInFiles(whsTranslations, GoodSearchPhrase, ProjectFileList,
-          MatchFilespec, StartSel, EndSel);
-      end;
-
-      if (NOT Flag) and (SearchType <> whsDroplet) then
-      begin
-        GoodSearchPhrase := Word2SearchPattern(ParamString('-word'),
-          whsDroplet);
-        Flag := FindInFiles(whsDroplet, GoodSearchPhrase, ProjectFileList,
-          MatchFilespec, StartSel, EndSel);
-      end;
-
-      if Flag then
-      begin
-        StackPushLocation(ParamString('-file'), ParamString('-pos'));
-        Launch(ExtractFileName(ExeFile),
-          MatchFilespec + ' /s' + IntToStr(StartSel) + '-' + IntToStr(EndSel),
-          ExtractFilepath(ExeFile), True, 0,
-          InfoMsg);
-      end
-      else
-        InfoMsg := 'Declaration not found for ' + ParamString('-word');
+      // word followed by () means javascript function
+      WrapFindJavascriptFunctionInFiles(InfoMsg);
     end
     else
-      InfoMsg := 'No good regex pattern for ' + ParamString('-word');
+    begin
+      GoodSearchPhrase := Word2SearchPattern(ParamString('-word'), SearchType);
+
+      if GoodSearchPhrase <> '' then
+      begin
+        CSSend('GoodSearchPhrase', GoodSearchPhrase);
+
+        Flag := FindInFiles(SearchType, GoodSearchPhrase, ProjectFileList,
+          MatchFilespec, StartSel, EndSel);
+
+        if (NOT Flag) and (SearchType = whsTranslation) then
+        begin
+          GoodSearchPhrase := Word2SearchPattern(ParamString('-word'),
+            whsTranslations);
+          Flag := FindInFiles(whsTranslations, GoodSearchPhrase, ProjectFileList,
+            MatchFilespec, StartSel, EndSel);
+        end;
+
+        if (NOT Flag) and (SearchType <> whsDroplet) then
+        begin
+          GoodSearchPhrase := Word2SearchPattern(ParamString('-word'),
+            whsDroplet);
+          Flag := FindInFiles(whsDroplet, GoodSearchPhrase, ProjectFileList,
+            MatchFilespec, StartSel, EndSel);
+        end;
+
+        if Flag then
+        begin
+          StackPushLocation(ParamString('-file'), ParamString('-pos'));
+          Launch(ExtractFileName(ExeFile),
+            MatchFilespec + ' /s' + IntToStr(StartSel) + '-' + IntToStr(EndSel),
+            ExtractFilepath(ExeFile), True, 0,
+            InfoMsg);
+        end
+        else
+          InfoMsg := 'Declaration not found for ' + ParamString('-word');
+      end
+      else
+        InfoMsg := 'No good regex pattern for ' + ParamString('-word');
+    end;
   end;
 
   if InfoMsg <> '' then

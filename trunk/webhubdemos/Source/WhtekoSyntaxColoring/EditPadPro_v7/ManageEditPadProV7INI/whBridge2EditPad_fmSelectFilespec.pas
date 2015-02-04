@@ -1,4 +1,4 @@
-unit whBridge2EditPad_fmSelectFilespec;
+ unit whBridge2EditPad_fmSelectFilespec;
 
 interface
 
