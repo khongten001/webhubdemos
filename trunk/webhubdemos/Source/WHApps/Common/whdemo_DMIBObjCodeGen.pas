@@ -242,6 +242,10 @@ begin
         Firebird_GenPAS_RecordStruct(y, conn, InProjectAbbrev, Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
+
+        Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
+          'Grant_Select_' + InProjectAbbrev + '.sql';
+        IbAndFb_GenSQL_Grant_Select(y, InProjectAbbrev, Filespec);
       end;
     finally
       FreeAndNil(y);
