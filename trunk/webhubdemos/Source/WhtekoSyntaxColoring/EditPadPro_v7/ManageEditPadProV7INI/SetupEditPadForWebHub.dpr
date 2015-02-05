@@ -3,7 +3,6 @@ program SetupEditPadForWebHub;
 {$R *.dres}
 
 uses
-  EMemLeaks,
   FMX.Forms,
   ucCodeSiteInterface in 'k:\webhub\tpack\ucCodeSiteInterface.pas',
   ucString in 'k:\webhub\tpack\ucString.pas',
@@ -11,6 +10,10 @@ uses
   SetupEditPadForWebHub_uDownload in 'SetupEditPadForWebHub_uDownload.pas',
   SetupEditPadForWebHub_uColors in 'SetupEditPadForWebHub_uColors.pas',
   SetupEditPadForWebHub_uPaths in 'SetupEditPadForWebHub_uPaths.pas';
+
+(* does not work on FMX XE7
+  CodeSiteLogging in 'K:\Vendors\Raize\CodeSite5\Source\Delphi\CodeSiteLogging.pas',
+*)
 
 {$R *.res}
 
