@@ -329,7 +329,7 @@ var
   iStartedWithToolCount: Integer;
   iErasedToolsCount: Integer;
 const
-  nTools = 3;
+  nTools = 5;  // 4.Feb.2015
 begin
   CSEnterMethod(nil, cFn);
 

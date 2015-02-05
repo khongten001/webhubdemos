@@ -7,80 +7,84 @@ object Form2: TForm2
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop, iPhone, iPad]
+  OnActivate = FormActivate
   OnCreate = FormCreate
-  DesignerMobile = False
-  DesignerWidth = 0
-  DesignerHeight = 0
-  DesignerDeviceName = ''
-  DesignerOrientation = 0
-  DesignerOSVersion = ''
-  object Button1: TButton
-    Height = 46.000000000000000000
+  DesignerMasterStyle = 0
+  object ButtonInstallNow: TButton
     Position.X = 24.000000000000000000
     Position.Y = 248.000000000000000000
+    Size.Width = 417.000000000000000000
+    Size.Height = 46.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 1
     Text = 'Install into EditPad Pro v7 Now'
-    Width = 417.000000000000000000
-    OnClick = Button1Click
+    OnClick = ButtonInstallNowClick
   end
   object Label1: TLabel
-    Height = 41.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 312.000000000000000000
     Scale.X = 1.399999976158142000
     Scale.Y = 1.399999976158142000
+    Size.Width = 297.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
     Text = 'Label1'
-    Width = 297.000000000000000000
   end
   object cbSyntax: TCheckBox
-    Height = 19.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 24.000000000000000000
+    Size.Width = 297.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 7
     Text = 'Install Syntax Highlighting Scheme for *.whteko'
-    Width = 297.000000000000000000
   end
   object cbFileNav: TCheckBox
-    Height = 19.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 48.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 6
     Text = 'Install File Navigation Scheme'
-    Width = 193.000000000000000000
   end
   object cbColor: TCheckBox
-    Height = 19.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 72.000000000000000000
+    Size.Width = 193.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 5
     Text = 'Install 3 Custom Color Sets'
-    Width = 193.000000000000000000
   end
-  object Button2: TButton
-    Height = 22.000000000000000000
+  object ButtonHelp: TButton
     Position.X = 408.000000000000000000
     Position.Y = 16.000000000000000000
+    Size.Width = 40.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 9
     Text = ' ? '
-    Width = 40.000000000000000000
-    OnClick = Button2Click
+    OnClick = ButtonHelpClick
   end
   object cbTools: TCheckBox
-    Height = 19.000000000000000000
     Position.X = 24.000000000000000000
     Position.Y = 96.000000000000000000
+    Size.Width = 337.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 4
-    Text = 'Install 3 Custom Tools (hotkeys for searching, help)'
-    Width = 337.000000000000000000
+    Text = 'Install 5 Custom Tools (hotkeys for searching, help)'
   end
   object cbClipCollections: TCheckBox
-    Height = 19.000000000000000000
     IsChecked = True
     Position.X = 24.000000000000000000
     Position.Y = 168.000000000000000000
+    Size.Width = 337.000000000000000000
+    Size.Height = 19.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 3
     Text = 'Install WebHub Clip Collections'
-    Width = 337.000000000000000000
   end
   object Edit1: TEdit
     Touch.InteractiveGestures = [LongTap, DoubleTap]
@@ -88,23 +92,26 @@ object Form2: TForm2
     Text = 'D:\Apps\HREFTools\WebHub\bin'
     Position.X = 48.000000000000000000
     Position.Y = 136.000000000000000000
-    Width = 353.000000000000000000
-    Height = 22.000000000000000000
+    Size.Width = 353.000000000000000000
+    Size.Height = 22.000000000000000000
+    Size.PlatformDefault = False
   end
   object Label2: TLabel
-    Height = 17.000000000000000000
     Position.X = 48.000000000000000000
     Position.Y = 120.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 17.000000000000000000
+    Size.PlatformDefault = False
     Text = 'WHBridge2EditPad.exe saved here:'
-    Width = 257.000000000000000000
   end
-  object Button3: TButton
-    Height = 41.000000000000000000
+  object ButtonReadme: TButton
     Position.X = 24.000000000000000000
     Position.Y = 200.000000000000000000
+    Size.Width = 417.000000000000000000
+    Size.Height = 41.000000000000000000
+    Size.PlatformDefault = False
     TabOrder = 14
-    Text = 'README - Click to read instructions'
-    Width = 417.000000000000000000
-    OnClick = Button3Click
+    Text = 'Click to read instructions on webhub.com'
+    OnClick = ButtonReadmeClick
   end
 end

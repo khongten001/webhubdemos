@@ -3,31 +3,34 @@ unit SetupEditPadForWebHub_fmMain;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Edit;
+  FMX.Edit, FMX.Controls.Presentation;
 
 type
   TForm2 = class(TForm)
-    Button1: TButton;
+    ButtonInstallNow: TButton;
     Label1: TLabel;
     cbSyntax: TCheckBox;
     cbFileNav: TCheckBox;
     cbColor: TCheckBox;
-    Button2: TButton;
+    ButtonHelp: TButton;
     cbTools: TCheckBox;
     cbClipCollections: TCheckBox;
     Edit1: TEdit;
     Label2: TLabel;
-    Button3: TButton;
-    procedure Button1Click(Sender: TObject);
+    ButtonReadme: TButton;
+    procedure ButtonInstallNowClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure ButtonHelpClick(Sender: TObject);
+    procedure ButtonReadmeClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
+    FIsSilentInstall: Boolean;
   public
     { Public declarations }
+
   end;
 
 var
@@ -40,11 +43,11 @@ implementation
 uses
   //ZaphodsMap,
   whutil_ZaphodsMap,
-  ucVers, ucShell,
+  ucVers, ucShell, uCode,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors;
 
 
-procedure TForm2.Button1Click(Sender: TObject);
+procedure TForm2.ButtonInstallNowClick(Sender: TObject);
 var
   bAllGood: Boolean;
 begin
@@ -96,30 +99,49 @@ begin
   if bAllGood then
   begin
     Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.';
-    ShowMessage('Done. You may exit this Setup now.');
+    if NOT FIsSilentInstall then
+      ShowMessage('Done. You may exit this Setup now.');
   end;
 
 end;
 
-procedure TForm2.Button2Click(Sender: TObject);
+procedure TForm2.ButtonHelpClick(Sender: TObject);
 begin
   ShowMessage(Self.Caption + sLineBreak +
     'version ' + GetVersionDigits(False) + sLineBreak +
     sLineBreak +
     'Quickly configure EditPad Pro v7 for use with WebHub' + sLineBreak +
-    '(c) 2014 HREF Tools Corp.'
+    sLineBreak +
+    Format('(c) 2014-%s HREF Tools Corp.', [FormatDateTime('yyyy', Now)]) +
+    sLineBreak +
+    'www.href.com' + sLineBreak +
+    'webhub.com'
   );
 end;
 
-procedure TForm2.Button3Click(Sender: TObject);
+procedure TForm2.ButtonReadmeClick(Sender: TObject);
 var
-  AFilespec: string;
+  AURL: string;
 begin
-  AFilespec := ExtractFilePath(ParamStr(0)) + PathDelim +
-    'Readme-WebHub-EditPad.rtf';
-  if NOT FileExists(AFilespec) then
-    GetRTFResource('Resource_README', AFilespec);
-  WinShellOpen(AFilespec);
+  AURL := 'http://webhub.com/dynhelp:alias::whbridge2editpad';
+  WinShellOpen(AURL);
+end;
+
+var
+  FlagInit: Boolean = False;
+
+procedure TForm2.FormActivate(Sender: TObject);
+begin
+  if NOT FlagInit then
+  begin
+    FIsSilentInstall := HaveParam('/Silent');
+    if FIsSilentInstall then
+    begin
+      ButtonInstallNowClick(Sender);
+      Self.Close;
+    end;
+    FlagInit := True;
+  end;
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
@@ -127,6 +149,7 @@ var
   WebHubBinPath: string;
 begin
   Label1.Text := '';
+  FIsSilentInstall := False;
 
   cbSyntax.IsChecked := True;
   cbFileNav.IsChecked := True;
