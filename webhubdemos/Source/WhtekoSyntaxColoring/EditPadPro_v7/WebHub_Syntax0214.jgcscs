@@ -1,5 +1,5 @@
 ﻿JGCSCS
-5
+6
 WebHub Syntax Stage 2.14
 *.whteko
 Ann Lynnworth
@@ -273,7 +273,7 @@ FALSE
 0
 
 
-16
+WebHub
 FALSE
 TRUE
 FALSE
@@ -300,7 +300,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -322,7 +322,7 @@ FALSE
 0
 
 
-17
+Parentild
 FALSE
 TRUE
 FALSE
@@ -342,7 +342,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -362,7 +362,7 @@ FALSE
 0
 
 
-8
+Script Tag
 FALSE
 FALSE
 FALSE
@@ -437,7 +437,7 @@ FALSE
 0
 
 
-14
+HTML regex
 FALSE
 TRUE
 FALSE
@@ -512,7 +512,7 @@ FALSE
 0
 
 
-15
+HTML regex_x
 FALSE
 TRUE
 FALSE
@@ -532,7 +532,7 @@ FALSE
 0
 
 
-3
+HTML Tag
 FALSE
 FALSE
 FALSE
@@ -552,7 +552,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -572,7 +572,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -592,7 +592,7 @@ FALSE
 0
 
 
-3
+HTML Tag
 FALSE
 FALSE
 FALSE
@@ -612,7 +612,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -632,7 +632,7 @@ TRUE
 0
 
 
-4
+HTML Comment
 FALSE
 FALSE
 FALSE
@@ -652,7 +652,7 @@ FALSE
 0
 
 
-7
+Doctype
 FALSE
 FALSE
 FALSE
@@ -672,7 +672,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -692,7 +692,7 @@ FALSE
 1
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -712,7 +712,7 @@ FALSE
 3
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -724,7 +724,7 @@ FALSE
 FALSE
 
 0
-22
+20
 HTML Tag
 1
 0
@@ -742,7 +742,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -762,7 +762,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -782,7 +782,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -802,7 +802,7 @@ FALSE
 0
 
 
-5
+Double-quoted value
 FALSE
 FALSE
 FALSE
@@ -822,7 +822,7 @@ FALSE
 0
 
 
-6
+Single-quoted value
 FALSE
 FALSE
 FALSE
@@ -842,7 +842,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -862,7 +862,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -890,7 +890,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -910,7 +910,7 @@ FALSE
 1
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -930,7 +930,7 @@ FALSE
 3
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -958,7 +958,7 @@ FALSE
 0
 
 
-1
+⌂
 FALSE
 FALSE
 FALSE
@@ -978,7 +978,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -998,7 +998,7 @@ FALSE
 2
 \1
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1018,7 +1018,7 @@ FALSE
 1
 \1
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1038,7 +1038,7 @@ FALSE
 1
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1058,7 +1058,7 @@ FALSE
 3
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1078,7 +1078,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1106,7 +1106,7 @@ FALSE
 0
 
 
-1
+⌂
 FALSE
 FALSE
 FALSE
@@ -1126,7 +1126,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1146,7 +1146,7 @@ FALSE
 2
 \1
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1166,7 +1166,7 @@ FALSE
 1
 \1
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1186,7 +1186,7 @@ FALSE
 1
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1206,7 +1206,7 @@ FALSE
 3
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1226,7 +1226,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1254,7 +1254,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1274,7 +1274,7 @@ FALSE
 1
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1302,7 +1302,7 @@ FALSE
 0
 
 
-9
+JavaScript
 FALSE
 FALSE
 FALSE
@@ -1322,7 +1322,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1342,7 +1342,7 @@ FALSE
 0
 
 
-11
+VBScript Tag
 FALSE
 FALSE
 FALSE
@@ -1362,7 +1362,7 @@ FALSE
 0
 
 
-5
+Double-quoted value
 FALSE
 FALSE
 FALSE
@@ -1382,7 +1382,7 @@ FALSE
 0
 
 
-6
+Single-quoted value
 FALSE
 FALSE
 FALSE
@@ -1402,7 +1402,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1422,7 +1422,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1450,7 +1450,7 @@ FALSE
 0
 
 
-2
+←
 FALSE
 FALSE
 FALSE
@@ -1470,7 +1470,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1490,7 +1490,7 @@ FALSE
 0
 
 
-0
+
 TRUE
 FALSE
 FALSE
@@ -1510,7 +1510,7 @@ TRUE
 0
 
 
-10
+JavaScript comment
 FALSE
 FALSE
 FALSE
@@ -1530,7 +1530,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1550,7 +1550,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1570,7 +1570,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1590,7 +1590,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1610,7 +1610,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1630,7 +1630,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1650,7 +1650,7 @@ FALSE
 0
 
 
-0
+
 TRUE
 FALSE
 FALSE
@@ -1670,7 +1670,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1690,7 +1690,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1710,7 +1710,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1730,7 +1730,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1750,7 +1750,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1770,7 +1770,7 @@ FALSE
 0
 
 
-13
+Javascript regex
 FALSE
 FALSE
 FALSE
@@ -1790,7 +1790,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -1818,7 +1818,7 @@ FALSE
 0
 
 
-9
+JavaScript
 FALSE
 FALSE
 FALSE
@@ -1829,422 +1829,6 @@ FALSE
 code
 FALSE
 /*
-VBScript Tag
-1
-7
-FALSE
-0
-
-
-5
-Closing bracket
-Script starts when the tag closes
->\r?\n?
-FALSE
-FALSE
-6
-0
-
-
-12
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Double-quoted value
-Attribute value enclosed by double quotes.  Quote character can be escaped with \
-=\s*+(")
-FALSE
-FALSE
-8
-0
-
-
-5
-FALSE
-FALSE
-FALSE
-FALSE
-1
-
-DQattr
-html
-FALSE
-"
-Single-quoted value
-Attribute value enclosed by single quotes.  Quote character can be escaped with \
-=\s*+(')
-FALSE
-FALSE
-8
-0
-
-
-6
-FALSE
-FALSE
-FALSE
-FALSE
-1
-
-SQattr
-html
-FALSE
-'
-Value
-Attribute value that is not quoted
-=\s*+[A-Za-z0-9_]++
-FALSE
-FALSE
-8
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Another tag
-Another HTML tag starts before the script tag is properly closed; assume the script hasn't been written yet
-(?=<)
-FALSE
-FALSE
-6
-0
-
-
-2
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-VBScript
-1
-0
-FALSE
-32
-'
-
-15
-Closing tag
-End of script
-</script>
-TRUE
-FALSE
-6
-0
-
-
-2
-FALSE
-FALSE
-FALSE
-TRUE
-
-0
-script
-html
-FALSE
-<script>
-HTML comment
-Ignore HTML comment tags, which are typically used to enclose the script to hide them from older browsers
-<!--|-->
-FALSE
-FALSE
-9
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-String
-The closing " is optional, so unterminated strings are colored as well
-"[^"\r\n]*+(?:"c?)?
-TRUE
-FALSE
-17
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Date
-Closing # is optional, so unterminated dates are colored as well
-#[^#\r\n]*+#?
-FALSE
-FALSE
-21
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Comment
-
-'.*?(?=</script>|$)
-FALSE
-FALSE
-9
-0
-
-
-0
-TRUE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Comment
-
-\brem\b.*?(?=</script>|$)
-TRUE
-FALSE
-9
-0
-
-
-0
-TRUE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Reserved word
-
-(?<![.\w])(?>And|Call|Case|Class|Const|Default|Dim|Do|Each|Else(?:If)?|Empty|End|Eqv|Erase|Error|Execute|Exit|False|For|Function|I[fns]|Imp|Loop|Mod|New|Next|Not(?:hing)?|Null|O[rn]|Option +Explicit|Private|Property +[GLS]et|Public|Randomize|ReDim|Resume|Select|Set|Step|Stop|Sub|Then|To|True|Until|Wend|While|With|Xor)(?![.\w])
-TRUE
-FALSE
-12
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Built-in functions
-
-(?<![.\w])(?>Abs|andTrim|Array|Asc|Atn|CBool|CByte|CCur|CDate|CDbl|Chr|CInt|CLng|Conversions|Cos|CreateObject|CSng|CStr|Date(?:Add|Diff|Part|Serial|Value)?|Day|DerivedMath|Escape|Eval|Exp|Filter|Fix|FormatCurrency|FormatDateTime|FormatNumber|FormatPercent|GetLocale|GetObject|GetRef|Hex|Hour|InputBox|InStr(?:Rev)?|Int|IsArray|IsDate|IsEmpty|IsNull|IsNumeric|IsObject|Join|LBound|LCase|Left|Len|LoadPicture|Log|LTrim|Maths|Mid|Minute|Month(?:Name)?|MsgBox|Now|Oct|Replace|RGB|Right|Rnd|Round|RTrim|ScriptEngine(?:BuildVersion|MajorVersion|MinorVersion)?|Second|SetLocale|Sgn|Sin|Space|Split|Sqr|StrComp|String|StrReverse|Tan|Time(?:r|Serial|Value)?|TypeName|UBound|UCase|Unescape|VarType|Weekday(?:Name)?|Year)(?![.\w])
-TRUE
-FALSE
-13
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Integer
-
-\b[0-9]++[%&SIL]?
-TRUE
-FALSE
-19
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Real
-
-\b(?:[0-9]++)?\.?[0-9]+(?:e[+-]?[0-9]+)?[@!#FRD]?
-FALSE
-FALSE
-19
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Hex number
-
-&H[0-9A-F]++[SIL%&]?
-TRUE
-FALSE
-19
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Octal number
-
-&O[0-7]++[SIL%&]?
-TRUE
-FALSE
-19
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Operator
-
-[*+-/\^&<=>]++
-FALSE
-FALSE
-23
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-Opening parenthesis
-
-\(
-FALSE
-FALSE
-24
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-0
-
-()
-code
-FALSE
-)
-Closing parenthesis
-
-\)
-FALSE
-FALSE
-24
-0
-
-
-0
-FALSE
-FALSE
-FALSE
-FALSE
-
-0
-()
-code
-FALSE
-(
 Javascript regex
 1
 18
@@ -2262,7 +1846,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2282,7 +1866,7 @@ FALSE
 0
 
 
-1
+⌂
 FALSE
 FALSE
 FALSE
@@ -2309,7 +1893,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2335,7 +1919,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2358,7 +1942,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2386,7 +1970,7 @@ FALSE
 0
 
 
-1
+⌂
 FALSE
 FALSE
 FALSE
@@ -2406,7 +1990,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2426,7 +2010,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2446,7 +2030,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2477,7 +2061,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2532,7 +2116,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2556,7 +2140,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2584,7 +2168,7 @@ FALSE
 0
 
 
-1
+⌂
 FALSE
 FALSE
 FALSE
@@ -2604,7 +2188,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2624,7 +2208,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2644,7 +2228,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2675,7 +2259,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2730,7 +2314,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2754,7 +2338,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 TRUE
 FALSE
@@ -2782,7 +2366,7 @@ FALSE
 0
 
 
-18
+teko
 FALSE
 FALSE
 FALSE
@@ -2802,7 +2386,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2822,7 +2406,7 @@ FALSE
 0
 
 
-20
+droplet
 FALSE
 FALSE
 TRUE
@@ -2842,7 +2426,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 TRUE
@@ -2862,7 +2446,7 @@ FALSE
 0
 
 
-23
+pagesettingslist
 FALSE
 FALSE
 FALSE
@@ -2882,7 +2466,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 TRUE
@@ -2902,7 +2486,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2922,7 +2506,7 @@ FALSE
 0
 
 
-22
+page
 FALSE
 FALSE
 FALSE
@@ -2942,7 +2526,7 @@ FALSE
 0
 
 
-24
+doc
 FALSE
 FALSE
 FALSE
@@ -2962,7 +2546,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -2982,7 +2566,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3002,7 +2586,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3022,7 +2606,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 TRUE
@@ -3042,7 +2626,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 TRUE
@@ -3062,7 +2646,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3082,7 +2666,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 TRUE
@@ -3102,7 +2686,7 @@ FALSE
 0
 
 
-21
+translation
 FALSE
 FALSE
 TRUE
@@ -3130,7 +2714,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3150,7 +2734,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3170,7 +2754,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3198,7 +2782,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
@@ -3226,7 +2810,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3246,7 +2830,7 @@ FALSE
 0
 
 
-0
+
 FALSE
 FALSE
 FALSE
@@ -3274,7 +2858,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
@@ -3302,7 +2886,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
@@ -3330,7 +2914,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
@@ -3358,7 +2942,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
@@ -3386,7 +2970,7 @@ FALSE
 0
 
 
-19
+Double-quoted wh value
 FALSE
 FALSE
 FALSE
