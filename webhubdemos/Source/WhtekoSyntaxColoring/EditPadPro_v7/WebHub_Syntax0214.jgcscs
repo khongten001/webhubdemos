@@ -1,5 +1,5 @@
 ﻿JGCSCS
-6
+5
 WebHub Syntax Stage 2.14
 *.whteko
 Ann Lynnworth
@@ -273,7 +273,7 @@ FALSE
 0
 
 
-WebHub
+14
 FALSE
 TRUE
 FALSE
@@ -300,7 +300,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -322,7 +322,7 @@ FALSE
 0
 
 
-Parentild
+15
 FALSE
 TRUE
 FALSE
@@ -342,7 +342,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -362,7 +362,7 @@ FALSE
 0
 
 
-Script Tag
+8
 FALSE
 FALSE
 FALSE
@@ -437,7 +437,7 @@ FALSE
 0
 
 
-HTML regex
+12
 FALSE
 TRUE
 FALSE
@@ -512,7 +512,7 @@ FALSE
 0
 
 
-HTML regex_x
+13
 FALSE
 TRUE
 FALSE
@@ -532,7 +532,7 @@ FALSE
 0
 
 
-HTML Tag
+3
 FALSE
 FALSE
 FALSE
@@ -552,7 +552,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -572,7 +572,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -592,7 +592,7 @@ FALSE
 0
 
 
-HTML Tag
+3
 FALSE
 FALSE
 FALSE
@@ -612,7 +612,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -632,7 +632,7 @@ TRUE
 0
 
 
-HTML Comment
+4
 FALSE
 FALSE
 FALSE
@@ -652,7 +652,7 @@ FALSE
 0
 
 
-Doctype
+7
 FALSE
 FALSE
 FALSE
@@ -672,7 +672,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -692,7 +692,7 @@ FALSE
 1
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -712,7 +712,7 @@ FALSE
 3
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -742,7 +742,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -762,7 +762,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -782,7 +782,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -802,7 +802,7 @@ FALSE
 0
 
 
-Double-quoted value
+5
 FALSE
 FALSE
 FALSE
@@ -822,7 +822,7 @@ FALSE
 0
 
 
-Single-quoted value
+6
 FALSE
 FALSE
 FALSE
@@ -842,7 +842,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -862,7 +862,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -890,7 +890,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -910,7 +910,7 @@ FALSE
 1
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -930,7 +930,7 @@ FALSE
 3
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -958,7 +958,7 @@ FALSE
 0
 
 
-⌂
+1
 FALSE
 FALSE
 FALSE
@@ -978,7 +978,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -998,7 +998,7 @@ FALSE
 2
 \1
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1018,7 +1018,7 @@ FALSE
 1
 \1
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1038,7 +1038,7 @@ FALSE
 1
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1058,7 +1058,7 @@ FALSE
 3
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1078,7 +1078,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1106,7 +1106,7 @@ FALSE
 0
 
 
-⌂
+1
 FALSE
 FALSE
 FALSE
@@ -1126,7 +1126,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1146,7 +1146,7 @@ FALSE
 2
 \1
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1166,7 +1166,7 @@ FALSE
 1
 \1
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1186,7 +1186,7 @@ FALSE
 1
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1206,7 +1206,7 @@ FALSE
 3
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1226,7 +1226,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1254,7 +1254,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1274,7 +1274,7 @@ FALSE
 1
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1292,7 +1292,7 @@ FALSE
 0
 
 
-7
+6
 Closing bracket
 Script starts when the tag closes
 >\r?\n?
@@ -1302,7 +1302,7 @@ FALSE
 0
 
 
-JavaScript
+9
 FALSE
 FALSE
 FALSE
@@ -1322,35 +1322,15 @@ FALSE
 0
 
 
-
-FALSE
-FALSE
-FALSE
-FALSE
-
-
-
-
-FALSE
-
-VBScript indicator
-Attribute indicating the script is written in VBScript; switch to VBScript Tag subscheme which in turn will switch to the VBScript subscheme
-=(["']?)[^'"\s]*VBScript[^'"\s]*(\1)
-TRUE
-FALSE
-8
 0
+FALSE
+FALSE
+FALSE
+FALSE
 
 
-VBScript Tag
-FALSE
-FALSE
-FALSE
-FALSE
-1
-2
 
-html
+
 FALSE
 
 Double-quoted value
@@ -1362,7 +1342,7 @@ FALSE
 0
 
 
-Double-quoted value
+5
 FALSE
 FALSE
 FALSE
@@ -1382,7 +1362,7 @@ FALSE
 0
 
 
-Single-quoted value
+6
 FALSE
 FALSE
 FALSE
@@ -1402,7 +1382,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1422,7 +1402,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1450,7 +1430,7 @@ FALSE
 0
 
 
-←
+2
 FALSE
 FALSE
 FALSE
@@ -1470,7 +1450,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1490,7 +1470,7 @@ FALSE
 0
 
 
-
+0
 TRUE
 FALSE
 FALSE
@@ -1510,7 +1490,7 @@ TRUE
 0
 
 
-JavaScript comment
+10
 FALSE
 FALSE
 FALSE
@@ -1530,7 +1510,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1550,7 +1530,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1570,7 +1550,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1590,7 +1570,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1610,7 +1590,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1630,7 +1610,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1650,7 +1630,7 @@ FALSE
 0
 
 
-
+0
 TRUE
 FALSE
 FALSE
@@ -1670,7 +1650,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1690,7 +1670,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1710,7 +1690,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1730,7 +1710,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1750,7 +1730,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1770,7 +1750,7 @@ FALSE
 0
 
 
-Javascript regex
+11
 FALSE
 FALSE
 FALSE
@@ -1790,7 +1770,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1818,7 +1798,7 @@ FALSE
 0
 
 
-JavaScript
+9
 FALSE
 FALSE
 FALSE
@@ -1846,7 +1826,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -1866,7 +1846,7 @@ FALSE
 0
 
 
-⌂
+1
 FALSE
 FALSE
 FALSE
@@ -1893,7 +1873,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -1919,7 +1899,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -1942,7 +1922,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -1970,7 +1950,7 @@ FALSE
 0
 
 
-⌂
+1
 FALSE
 FALSE
 FALSE
@@ -1990,7 +1970,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2010,7 +1990,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2030,7 +2010,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2061,7 +2041,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2116,7 +2096,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2140,7 +2120,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2168,7 +2148,7 @@ FALSE
 0
 
 
-⌂
+1
 FALSE
 FALSE
 FALSE
@@ -2188,7 +2168,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2208,7 +2188,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2228,7 +2208,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2259,7 +2239,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2314,7 +2294,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2338,7 +2318,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 TRUE
 FALSE
@@ -2366,7 +2346,7 @@ FALSE
 0
 
 
-teko
+16
 FALSE
 FALSE
 FALSE
@@ -2386,7 +2366,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2406,7 +2386,7 @@ FALSE
 0
 
 
-droplet
+18
 FALSE
 FALSE
 TRUE
@@ -2426,7 +2406,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 TRUE
@@ -2446,7 +2426,7 @@ FALSE
 0
 
 
-pagesettingslist
+21
 FALSE
 FALSE
 FALSE
@@ -2466,7 +2446,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 TRUE
@@ -2486,7 +2466,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2506,7 +2486,7 @@ FALSE
 0
 
 
-page
+20
 FALSE
 FALSE
 FALSE
@@ -2526,7 +2506,7 @@ FALSE
 0
 
 
-doc
+22
 FALSE
 FALSE
 FALSE
@@ -2546,7 +2526,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2566,7 +2546,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2586,7 +2566,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2606,7 +2586,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 TRUE
@@ -2626,7 +2606,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 TRUE
@@ -2646,7 +2626,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2666,7 +2646,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 TRUE
@@ -2686,7 +2666,7 @@ FALSE
 0
 
 
-translation
+19
 FALSE
 FALSE
 TRUE
@@ -2714,7 +2694,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2734,7 +2714,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2754,7 +2734,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2782,7 +2762,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
@@ -2810,7 +2790,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2830,7 +2810,7 @@ FALSE
 0
 
 
-
+0
 FALSE
 FALSE
 FALSE
@@ -2858,7 +2838,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
@@ -2886,7 +2866,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
@@ -2914,7 +2894,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
@@ -2942,7 +2922,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
@@ -2970,7 +2950,7 @@ FALSE
 0
 
 
-Double-quoted wh value
+17
 FALSE
 FALSE
 FALSE
