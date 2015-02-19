@@ -1,59 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <act:acetext xmlns:act="http://www.acetext.com/acetext20.xsd" version="2.0">
 	<collection label="WebHub_Commands_ClipCollection" sort="a-z">
-			<folder label="WebHub Teko Sections">
-				<clip kind="beforeafter" label="whteko minimal">
-					<before>&lt;whteko></before>
-					<after>&lt;/whteko></after>
-				</clip>
-				<clip kind="text" label="whteko with xml text and doctype plus common attributes">
-					<text>&lt;?xml version="1.0" encoding="utf-8"?>&#13;&#10;&lt;!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">&#13;&#10;&#13;&#10;&lt;whteko defaultlingvo="eng" &#13;&#10;notes="General notes about this file">&#13;&#10;</text>
-				</clip>
-				<clip kind="beforeafter" label="whpagesettingslist">
-					<before>&lt;whpagesettingslist id="setlist1">&#13;&#10;</before>
-					<after>&lt;/whpagesettingslist></after>
-				</clip>
-				<clip kind="beforeafter" label="whmacros">
-					<before>&lt;whmacros>&#13;&#10;</before>
-					<after>&lt;/whmacros>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whpage">
-					<before>&lt;whpage pageid="news" desc="latest news" exportfilename=""></before>
-					<after>&lt;/whpage></after>
-				</clip>
-				<clip kind="beforeafter" label="whpagesettings">
-					<before>&lt;whpagesettings inherit=""></before>
-					<after>&lt;/whpagesettings></after>
-				</clip>
-				<clip kind="beforeafter" label="whprep">
-					<before>&lt;whprep>&#13;&#10;</before>
-					<after>&lt;/whprep>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whoutput">
-					<before>&lt;whoutput>&#13;&#10;&#13;&#10;</before>
-					<after>&lt;/whoutput>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whsketch">
-					<before>&lt;whsketch for="" show="no">&#13;&#10;&#13;&#10;</before>
-					<after>&lt;/whsketch>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whdroplet">
-					<before>&lt;whdroplet name=""></before>
-					<after>&lt;/whdroplet>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whrow">
-					<before>&lt;whrow>&#13;&#10;</before>
-					<after>&lt;/whrow>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whtranslations">
-					<before>&lt;whtranslations>&#13;&#10;</before>
-					<after>&lt;/whtranslations>&#13;&#10;</after>
-				</clip>
-				<clip kind="beforeafter" label="whtranslation">
-					<before>&lt;whtranslation key="~identifier">&#13;&#10;</before>
-					<after>&lt;/whtranslations>&#13;&#10;</after>
-				</clip>
-			</folder>
+		<folder label="WebHub Teko Sections">
+			<clip kind="beforeafter" label="whteko minimal">
+				<before>&lt;whteko>&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whteko></after>
+			</clip>
+			<clip kind="beforeafter" label="whteko with xml text and doctype plus common attributes">
+				<before>&lt;?xml version="1.0" encoding="utf-8"?>&#13;&#10;&lt;!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">&#13;&#10;&#13;&#10;&lt;whteko defaultlingvo="eng" &#13;&#10;notes="General notes about this file">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whteko>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whpagesettingslist">
+				<before>&lt;whpagesettingslist id="setlist1">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whpagesettingslist></after>
+			</clip>
+			<clip kind="beforeafter" label="whmacros">
+				<before>&lt;whmacros>&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whmacros>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whpage">
+				<before>&lt;whpage pageid="news" desc="latest news" exportfilename="">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whpage></after>
+			</clip>
+			<clip kind="beforeafter" label="whpagesettings">
+				<before>&lt;whpagesettings inherit="">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whpagesettings>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whprep">
+				<before>&lt;whprep>&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whprep>&#13;&#10;&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whoutput">
+				<before>&lt;whoutput>&#13;&#10;&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whoutput>&#13;&#10;&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whsketch">
+				<before>&lt;whsketch for="" show="no">&#13;&#10;&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whsketch>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whdroplet">
+				<before>&lt;whdroplet name="">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whdroplet>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whrow">
+				<before>&lt;whrow>&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whrow>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whtranslations">
+				<before>&lt;whtranslations>&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whtranslations>&#13;&#10;</after>
+			</clip>
+			<clip kind="beforeafter" label="whtranslation">
+				<before>&lt;whtranslation key="~identifier">&#13;&#10;</before>
+				<after>&#13;&#10;&lt;/whtranslations>&#13;&#10;</after>
+			</clip>
+		</folder>
 		<folder label="WebHub Programming Commands" sort="a-z">
 			<clip kind="text" label="anchor">
 				<text>(~anchor|anchorName[,requiredAnchor]~)</text>
