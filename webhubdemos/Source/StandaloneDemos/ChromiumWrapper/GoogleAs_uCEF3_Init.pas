@@ -18,9 +18,7 @@ procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
 var
   SharedFlag: TSharedStr = nil;
   SharedCache: TSharedStr = nil;
-  {$IFDEF CEF3}
   SharedInstanceCount: TSharedInt = nil;
-  {$ENDIF}
 
 implementation
 
@@ -32,7 +30,7 @@ uses
   System.Types,
   System.UITypes
   {$ENDIF}
-  , ucString, ucShellProcessCntrl, uCode,
+  , ucString, ucShellProcessCntrl, uCode, ucDlgs,
   GoogleAs_fmChromium;
 
 function IsPrimaryProcess: Boolean;
@@ -106,6 +104,17 @@ begin
     end;
     Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
       'cache' + Extra;
+    try
+      ForceDirectories(Result);
+    except
+      on E: Exception do
+      begin
+        CSSend(cFn, Result);
+        CSSendException(E);
+        MsgErrorOk(E.Message + sLineBreak + sLineBreak + Result);
+      end;
+
+    end;
   end
   else
   begin
@@ -128,7 +137,6 @@ end;
 
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
 const cFn = 'InitCEF_GoogleAs';
-{$IFDEF CEF3}
 var
   ErrorText: string;
   DivName: string;
@@ -141,56 +149,63 @@ var
   ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean;
   i: Integer;
-{$ENDIF}
+  NoSandbox: Boolean;
 begin
   CSEnterMethod(nil, cFn);
 
   for i := 1 to ParamCount do
     CSSend('ParamStr(' + S(i) +')', ParamStr(i));
 
-  {$IFDEF CEF3}
   SharedInstanceCount := TSharedInt.Create(nil);
   SharedInstanceCount.Name := 'SharedInstanceCount';
-  {$ENDIF}
 
   SharedFlag := TSharedStr.Create(nil);
   SharedFlag.Name := 'SharedFlag';
 
-  SharedCache := TSharedStr.Create(nil);
-  SharedCache.Name := 'SharedCache';
-
-  {$IFDEF CEF3}
   SharedInstanceCount.GlobalName := ExtractFilename(ParamStr(0));
   SharedInstanceCount.GlobalInteger := SharedInstanceCount.GlobalInteger + 1;
   CSSend('SharedInstanceCount.GlobalInteger',
     S(SharedInstanceCount.GlobalInteger));
-  {$ENDIF}
 
   SharedFlag.GlobalName := 'GoogleAsStartup';
-  {$IFDEF CEF3}
   SharedFlag.IgnoreOwnChanges := True;   // dual process !!
-  {$ELSE}
-  SharedFlag.IgnoreOwnChanges := False;  // single process !!
-  {$ENDIF}
 
   CSSend('about to figure DivName');
   DivName := 'GoogleAs_' + IntToStr(PrimaryProcessPID);
   CSSend('DivName', DivName);
-  SharedCache.GlobalName := DivName;
+
+  {NB: global UTF8 string is not available to additional processes unless the
+   shared string is created here with the CreateNamed method. 24.Feb.2015 }
+  SharedCache := TSharedStr.CreateNamed(nil, DivName, DefaultSharedBufSize,
+    NOT IsPrimaryProcess, // readonly
+    True, // global
+    15 * 1000);
+  SharedCache.Name := 'SharedCache';
+
+  if SharedCache.GlobalName <> DivName then
+    CSSendError(Format('SharedCache.GlobalName %s should be %s',
+      [SharedCache.GlobalName, DivName]));
   SharedCache.IgnoreOwnChanges := True;
 
-  {$IFDEF CEF3}
   if IsPrimaryProcess then
   begin
     Cache := CacheFolderRoot;
     CSSend('Cache', Cache);
     SharedCache.GlobalUTF8String := UTF8String(Cache);
+    CSSend('SharedCache.GlobalUTF8String', string(SharedCache.GlobalUTF8String));
     EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
   end
   else
   begin
     if Assigned(SharedCache) then
-      Cache := string(SharedCache.GlobalUTF8String)
+    begin
+      Cache := string(SharedCache.GlobalUTF8String);
+      if Cache = '' then
+      begin
+        CSSendError('SharedCache.GlobalUTF8String blank string');
+        Cache := CacheFolderRoot;
+      end;
+    end
     else
     begin
       CSSendWarning('SharedCache nil');
@@ -202,7 +217,15 @@ begin
   // CefLoadLibDefault is not enough when you want to control the startup
   // settings. So use CefLoadLib below.
 
-  ForceDirectories(Cache);
+  try
+    ForceDirectories(Cache);
+  except
+    on E: Exception do
+    begin
+      CSSend('Cache', Cache);
+      CSSendException(E);
+    end;
+  end;
   //UserAgent := ''; // if overridden, default value is lost.
   UserAgent :=
     'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.73 Safari/537.36';
@@ -222,11 +245,23 @@ begin
   ContextSafetyImplementation := 0;
   PersistSessionCookies := False;
   IgnoreCertificateErrors := False;
+  NoSandbox := False;
+
+(*
+function CefLoadLib(const Cache, UserAgent, ProductVersion, Locale, LogFile,
+  BrowserSubprocessPath: ustring;
+  LogSeverity: TCefLogSeverity;
+  JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
+  SingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled: Boolean; RemoteDebuggingPort: Integer;
+  ReleaseDCheck: Boolean; UncaughtExceptionStackSize: Integer; ContextSafetyImplementation: Integer;
+  PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean; BackgroundColor: TCefColor;
+  WindowsSandboxInfo: Pointer): Boolean;
+*)
 
   IsFirstInit := CefLoadLib(cache, UserAgent, ProductVersion, Locale, LogFile,
     BrowserSubprocessPath, LOGSEVERITY_DISABLE,
     JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
-    FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled,
+    FlagSingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled,
     RemoteDebuggingPort, ReleaseDCheck, UncaughtExceptionStackSize,
     ContextSafetyImplementation,
     PersistSessionCookies, IgnoreCertificateErrors
@@ -242,9 +277,6 @@ begin
   end;
 
   CSSend('IsFirstInit', S(IsFirstInit));
-  {$ELSE}
-     IsFirstInit := True; // CEF1 does it elsewhere in unit initialization
-  {$ENDIF}
 
   CSExitMethod(nil, cFn);
 end;
@@ -285,18 +317,14 @@ begin
   end
   else
   begin
-    {$IFDEF CEF3}
     CSSendError('FYI: nested process for CEF3 rendering and WebKit call-backs');
-    {$ENDIF}
   end;
 end;
 
 initialization
 finalization
   FreeAndNil(SharedFlag);
-  {$IFDEF CEF3}
   FreeAndNil(SharedInstanceCount);
-  {$ENDIF}
   FreeAndNil(SharedCache);
 
 end.
