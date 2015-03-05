@@ -211,6 +211,8 @@ procedure TDemoExtensions.DemoAppUpdate(Sender: TObject);
 const cFn = 'DemoAppUpdate';
 var
   AdminFilespec: string;
+  TempLoggingOptions: TcsLoggingOptions;
+  LoggingState: string;
 begin
   CSEnterMethod(Self, cFn);
 
@@ -247,6 +249,38 @@ begin
   FServerIpNumber := HostToIPv4(LeftOf(':',
       pWebApp.DynURL.CurrentServerProfile.Authority));
   {$IFNDEF LogSTime}CSSend('FServerIpNumber', FServerIpNumber);{$ENDIF}
+
+  CSSend('CodeSiteLoggingState', pWebApp.AppSetting['CodeSiteLoggingState']);
+  { the next line might well turn off CodeSite logging based on AppSetting.
+    Requires v3.224+ }
+  TempLoggingOptions := [];
+  LoggingState := LowerCase(pWebApp.AppSetting['CodeSiteLoggingState']) + ',';
+  if Pos('all,', LoggingState) > 0 then
+    TempLoggingOptions := [cslAll]
+  else
+  if (LoggingState = ',') then
+    TempLoggingOptions := [cslAll]  // No configuration ==> All Logging
+  else
+  if Pos('none,', LoggingState) > 0 then
+    TempLoggingOptions := []
+  else
+  begin
+    if Pos('info,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslInfo];
+    if Pos('infotype,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslInfoType];
+    if Pos('note,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslNote];
+    if Pos('warning,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslWarning];
+    if Pos('error,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslError];
+    if Pos('exception,', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslException];
+    if Pos('enterexit', LoggingState) > 0 then
+      TempLoggingOptions := TempLoggingOptions + [cslEnterExitMethod];
+  end;
+  SetCodeSiteLoggingState(TempLoggingOptions);
 
   CSExitMethod(Self, cFn);
 end;
