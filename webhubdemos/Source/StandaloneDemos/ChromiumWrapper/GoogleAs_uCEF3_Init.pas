@@ -182,9 +182,9 @@ begin
     15 * 1000);
   SharedCache.Name := 'SharedCache';
 
-  if SharedCache.GlobalName <> DivName then
+  if SharedCache.GlobalName <> ('Global\' + DivName) then
     CSSendError(Format('SharedCache.GlobalName %s should be %s',
-      [SharedCache.GlobalName, DivName]));
+      [SharedCache.GlobalName, ('Global\' + DivName)]));
   SharedCache.IgnoreOwnChanges := True;
 
   if IsPrimaryProcess then
