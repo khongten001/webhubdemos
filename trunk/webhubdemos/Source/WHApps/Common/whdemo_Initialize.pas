@@ -69,7 +69,7 @@ begin
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
   {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
-  CSExitMethod(Self, cFn);
+  CSExitMethod(nil, cFn);
 end;
 
 procedure whDemoDestroySharedDataModules;
