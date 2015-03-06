@@ -88,7 +88,7 @@ uses
   ucCodeSiteInterface,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
   htmlBase,      // PrologueMode property
-  ucDlgs, ucLogFil, ucString, ucCodeSiteInterface;
+  ucDlgs, ucLogFil, ucString;
 
 //----------------------------------------------------------------------
 
@@ -96,7 +96,7 @@ procedure whDemoSetDelphiSourceLocation(const Path: String;
   const isRelativePath: Boolean);
 const cFn = 'whDemoSetDelphiSourceLocation';
 begin
-  CSEnterMethod(Self, cFn);
+  CSEnterMethod(nil, cFn);
   if Assigned(DemoViewSource) then
   begin
     if isRelativePath then
@@ -108,7 +108,7 @@ begin
         source here. }
       DemoViewSource.DelphiSourcePath := Path;
   end;
-  CSExitMethod(Self, cFn);
+  CSExitMethod(nil, cFn);
 end;
 
 function getWebHubDemoInstallRoot: string;
