@@ -1,7 +1,7 @@
 unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://lite.demos.href.com }
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1998-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1998-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
@@ -83,9 +83,9 @@ implementation
 {$R *.DFM}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   ZaphodsMap,
+  ucCodeSiteInterface,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
   htmlBase,      // PrologueMode property
   ucDlgs, ucLogFil, ucString, ucCodeSiteInterface;
@@ -96,7 +96,7 @@ procedure whDemoSetDelphiSourceLocation(const Path: String;
   const isRelativePath: Boolean);
 const cFn = 'whDemoSetDelphiSourceLocation';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   if Assigned(DemoViewSource) then
   begin
     if isRelativePath then
@@ -108,7 +108,7 @@ begin
         source here. }
       DemoViewSource.DelphiSourcePath := Path;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 function getWebHubDemoInstallRoot: string;
@@ -158,14 +158,14 @@ end;
 procedure TDemoViewSource.DataModuleCreate(Sender: TObject);
 const cFn = 'DataModuleCreate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   IsDemoRootKnown := False;
   fProjectFilename := ChangeFileExt(ExtractFilename(Paramstr(0)), '.dpr');
   fpaslist := TStringList.Create;
   fformlist := TStringList.Create;
   foutputlist := TStringList.Create;
   ftemplist := TStringList.Create;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 //------------------------------------------------------------------------------
@@ -190,7 +190,7 @@ var
   i: Integer;
   bOk: Boolean;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
 
   begin
 
@@ -277,7 +277,7 @@ begin
         TwhWebActionEx(Sender).WebApp.Response.SendStringListNoBR(foutputlist);
       end;
     end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 function fixFilename(const aProjectPath,aFilespec:string):string;
@@ -302,7 +302,7 @@ var
   aFileContents: string;
   InfoMsg: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   with TwhWebActionEx(Sender) do
   begin
@@ -329,8 +329,8 @@ begin
           Response.SendHdr('2','Error');
           InfoMsg := 'File does not exist: ' + aFilename;
           Response.Send(InfoMsg);
-          {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
-            ' or garbage command');{$ENDIF}
+          CSSendError(InfoMsg + #183 +
+            ' or garbage command');
           Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
           Exit;
         end
@@ -339,7 +339,7 @@ begin
           aFileContents := StringLoadFromFile(aFilename);
           if aFileContents = '' then
           begin
-            {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
+            CSSendWarning('Empty source? ' + aFilename);
             pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
           end;
         end;
@@ -359,7 +359,7 @@ begin
           aFileContents := StringLoadFromFile(aFilename);
           if aFileContents = '' then
           begin
-            {$IFDEF CodeSite}CodeSite.SendWarning('Empty source? ' + aFilename);{$ENDIF}
+            CSSendWarning('Empty source? ' + aFilename);
             pWebApp.Debug.AddPageError('Empty source? ' + aFilename);
           end;
         end;
@@ -375,8 +375,8 @@ begin
           Response.SendHdr('2','Error');
           InfoMsg := 'DFM File does not exists: ' + aFilename;
           Response.Send(InfoMsg);
-          {$IFDEF CodeSite}CodeSite.SendError(InfoMsg + #183 +
-            ' or garbage command');{$ENDIF}
+          CSSendError(InfoMsg + #183 +
+            ' or garbage command');
           Response.Send('; DelphiSourcePath is ' + DelphiSourcePath);
           Exit;
         end
@@ -390,9 +390,8 @@ begin
               // modern DFM files are no longer binary so this is expected....
               if (E.Message <> 'Invalid stream format') then
               begin
-                {$IFDEF CodeSite}CodeSite.SendException(E);
-                CodeSite.Send('when loading', aFilename);
-                {$ENDIF}
+                CSSendException(E);
+                CSSend('when loading', aFilename);
                 pWebApp.Debug.AddPageError(E.Message);
               end;
               aFileContents:= StringLoadfromfileDef(aFilename, '');
@@ -411,7 +410,7 @@ begin
       end;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 function TDemoViewSource.isEndOfUses(a1: String): boolean;
@@ -545,7 +544,7 @@ begin
     else
     begin
       InfoMsg := 'File #' + WebApp.Command + ' not found.';
-      {$IFDEF CodeSite}CodeSite.SendWarning(InfoMsg);{$ENDIF}
+      CSSendWarning(InfoMsg);
       Response.Send(InfoMsg);
       Response.SendComment(S);
     end;
