@@ -36,15 +36,14 @@ var
 implementation
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   ZaphodsMap,
-  MultiTypeApp, ucLogFil,
+  ucCodeSiteInterface, ucPos, uCode, ucString, ucDlgs, MultiTypeApp, ucLogFil,
   whConst, webSplat,
   webApp, webInfoU, whMacroAffixes, htmConst, htWebApp,
   whsample_DWSecurity, whsample_PrototypeJS,
   webCall, whdemo_Extensions, whdemo_ViewSource,
-  ucPos, uCode, ucString, ucDlgs, whpanel_Mail,
+  whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
 
 procedure whDemoSetAppId(const whDemoAppID: string);
@@ -62,7 +61,7 @@ end;
 procedure whDemoCreateSharedDataModules;
 const cFn = 'whDemoCreateSharedDataModules';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
+  CSEnterMethod(nil, cFn);
   CreateStandardWHModules; // based on flags in app's config
 
   // The "view source" and "extensions" data modules are required
@@ -70,7 +69,7 @@ begin
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
   {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
-  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure whDemoDestroySharedDataModules;
