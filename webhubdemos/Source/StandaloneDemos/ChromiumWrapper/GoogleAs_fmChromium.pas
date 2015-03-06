@@ -83,34 +83,20 @@ type
   strict private
     procedure crmAddressChange(Sender: TObject; const browser: ICefBrowser;
       const frame: ICefFrame; const url: ustring);
-    {$IFDEF CEF3}
     procedure Chromium3KeyEvent(Sender: TObject; const browser: ICefBrowser;
       const event: PCefKeyEvent;  osEvent: TCefEventHandle; out Result: Boolean);
-    {$ELSE}
-    procedure Chromium1KeyEvent(Sender: TObject; const browser: ICefBrowser;
-      event: TCefHandlerKeyEventType; code, modifiers: Integer;
-      isSystemKey, isAfterJavaScript: Boolean; out Result: Boolean);
-    procedure Chromium1ContentsSizeChange(Sender: TObject;
-      const browser: ICefBrowser; const frame: ICefFrame;
-      width, height: Integer);
-    {$ENDIF}
     procedure Chromium1TitleChange(Sender: TObject; const browser: ICefBrowser;
-      const title: ustring {$IFNDEF CEF3}; out Result: Boolean{$ENDIF});
+      const title: ustring);
     // procedure OnPressEvent(const AEvent: ICefDomEvent);
     // procedure OnExploreDOM(const ADocument: ICefDomDocument);
     procedure Chromium1LoadStart(Sender: TObject; const browser: ICefBrowser;
       const frame: ICefFrame);
     procedure Chromium1LoadEnd(Sender: TObject; const browser: ICefBrowser;
-      const frame: ICefFrame; httpStatusCode: Integer {$IFNDEF CEF3}; out Result: Boolean{$ENDIF});
+      const frame: ICefFrame; httpStatusCode: Integer );
   strict private
     procedure MakeWindowFullScreen;  // F11
     procedure MakeWindowNormal;
   private
-    {$IFNDEF CEF3}
-    procedure Chromium1ContentsSizeChange(Sender: TObject;
-      const browser: ICefBrowser; const frame: ICefFrame; width,
-      height: Integer);
-    {$ENDIF}
   protected
     procedure ForceColor;
   public
@@ -131,24 +117,12 @@ uses
   TypInfo, Dialogs, DateUtils,
   uCode, ucDlgs, ucCodeSiteInterface, GoogleAs_uCEF3_Init;
 
-{$IFNDEF CEF3}
-procedure TfmChromiumWrapper.Chromium1ContentsSizeChange(Sender: TObject;
-  const browser: ICefBrowser; const frame: ICefFrame; width, height: Integer);
-begin
-  //MsgInfoOk(Format('Width %d height %d', [width, height]));
-end;
-{$ENDIF}
-
 procedure TfmChromiumWrapper.MakeWindowFullScreen;  // F11
 const cFn = 'MakeWindowFullScreen';
 begin
   CSEnterMethod(Self, cFn);
   Self.WindowState := wsMaximized;
-  {$IFDEF CEF3}
   FChromium1.Browser.Host.ZoomLevel := FZoomWhenMaximized;  // default 100%
-  {$ELSE}
-  FChromium1.browser.ZoomLevel := FZoomWhenMaximized;  // default 100%
-  {$ENDIF}
   Self.Menu := nil;
   FreeAndNil(Label1);
   Self.BorderStyle := bsNone;
@@ -167,11 +141,7 @@ begin
   CSSend('MainMenu1 Assigned', S(Assigned(MainMenu1)));
   CSSend('Self.Menu Assigned', S(Assigned(Self.Menu)));
   Label1.Caption := FActiveTitle;
-  {$IFDEF CEF3}
   FChromium1.Browser.Host.ZoomLevel := FZoomWhenMaximized;  // default 100%
-  {$ELSE}
-  FChromium1.browser.ZoomLevel := FZoomWhenMaximized;
-  {$ENDIF}
   //Self.Update;
   Application.ProcessMessages;
   CSExitMethod(Self, cFn);
@@ -184,13 +154,9 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  {$IFDEF CEF3}
   browser.Host.ZoomLevel := browser.Host.ZoomLevel - 0.2;
   x := browser.Host.ZoomLevel;
-  {$ELSE}
-  browser.ZoomLevel := browser.ZoomLevel - 0.2;
-  x := browser.ZoomLevel;
-  {$ENDIF}
+
   if WindowState = wsMaximized then
     FZoomWhenMaximized := x
   else
@@ -204,13 +170,10 @@ var
   x: Extended;
 begin
   CSEnterMethod(Self, cFn);
-  {$IFDEF CEF3}
+
   browser.Host.ZoomLevel := browser.Host.ZoomLevel + 0.2;
   x := browser.Host.ZoomLevel;
-  {$ELSE}
-  browser.ZoomLevel := browser.ZoomLevel + 0.2;
-  x := browser.ZoomLevel;
-  {$ENDIF}
+
   if WindowState = wsMaximized then
     FZoomWhenMaximized := x
   else
@@ -225,13 +188,8 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  {$IFDEF CEF3}
   browser.Host.ZoomLevel := 1.0;
   x := browser.Host.ZoomLevel;
-  {$ELSE}
-  browser.ZoomLevel := 1.0;  // default 100%
-  x := browser.ZoomLevel;
-  {$ENDIF}
 
   if WindowState = wsMaximized then
     FZoomWhenMaximized := x
@@ -284,110 +242,14 @@ end;
 var
   bLogKeystrokes: Boolean = True;
 
-{$IFNDEF CEF3}
-procedure TfmChromiumWrapper.Chromium1KeyEvent(Sender: TObject; const browser: ICefBrowser;
-  event: TCefHandlerKeyEventType; code, modifiers: Integer; isSystemKey,
-  isAfterJavaScript: Boolean; out Result: Boolean);
-const cFn = 'Chromium1KeyEvent';
-begin
-  if bLogKeystrokes then
-  begin
-    CSEnterMethod(Self, cFn);
-    CSSend(Format('Code %d Modifiers %d IsSystemKey %s, IsAfterJS %s',
-      [Code, Modifiers, BoolToStr(IsSystemKey, True),
-      BoolToStr(IsAfterJavaScript, True)]));
-  end;
-
-  case code of
-    27:   // Esc
-    begin
-      if Modifiers = 0 then
-      begin
-        if Self.WindowState = wsMaximized then
-          MakeWindowNormal;
-        Result := True;
-      end;
-    end;
-    48:
-    begin
-      if Modifiers = 2 then  // Ctrl 0
-      begin
-        {$IFDEF CEF3}
-        browser.host.ZoomLevel := 1.0;  // default 100%
-        {$ELSE}
-        browser.ZoomLevel := 1.0;  // default 100%
-        {$ENDIF}
-        if WindowState = wsMaximized then
-          FZoomWhenMaximized := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF}
-        else
-          FZoomWhenNormal := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF};
-        Result := True;
-      end;
-    end;
-    187:
-    begin
-      if Modifiers = 2 then  // Ctrl +
-      begin
-        {$IFDEF CEF3}
-        browser.host.ZoomLevel := browser.host.ZoomLevel + 0.2;
-        {$ELSE}
-        browser.ZoomLevel := browser.ZoomLevel + 0.2;
-        {$ENDIF}
-        if WindowState = wsMaximized then
-          FZoomWhenMaximized := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF}
-        else
-          FZoomWhenNormal := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF};
-        Result := True;
-      end;
-    end;
-    189:
-    begin
-      if Modifiers = 2 then  // Ctrl -
-      begin
-        {$IFDEF CEF3}
-        browser.host.ZoomLevel := browser.host.ZoomLevel - 0.2;
-        {$ELSE}
-        browser.ZoomLevel := browser.ZoomLevel - 0.2;
-        {$ENDIF}
-        if WindowState = wsMaximized then
-          FZoomWhenMaximized := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF}
-        else
-          FZoomWhenNormal := {$IFDEF CEF3}browser.host.ZoomLevel{$ELSE}browser.ZoomLevel{$ENDIF};
-        Result := True;
-      end;
-    end;
-    122:  // F11
-    begin
-      CSSend('WindowState', GetEnumName(TypeInfo(TWindowState),
-        Ord(Self.WindowState)));
-      if Self.WindowState = wsMaximized then
-      begin
-        MakeWindowNormal;
-      end
-      else
-      begin
-        MakeWindowFullScreen;
-      end;
-      Result := False;
-    end;
-    else
-      Result := False;
-  end;
-  if bLogKeystrokes then CSExitMethod(Self, cFn);
-end;
-{$ENDIF}
-
 procedure TfmChromiumWrapper.Chromium1TitleChange(Sender: TObject;
-  const browser: ICefBrowser; const title: ustring {$IFNDEF CEF3};
-  out Result: Boolean{$ENDIF});
+  const browser: ICefBrowser; const title: ustring );
 begin
   FActiveTitle := Title;
   if Assigned(Label1) then
     Label1.Caption := Title;
-  {$IFNDEF CEF3}Result := True;{$ENDIF}
 end;
 
-{$IFDEF CEF3}
 procedure TfmChromiumWrapper.Chromium3KeyEvent(Sender: TObject; const browser: ICefBrowser;
       const event: PCefKeyEvent;  osEvent: TCefEventHandle; out Result: Boolean);
 const cFn = 'Chromium3KeyEvent';
@@ -433,7 +295,6 @@ begin
   if bLogKeystrokes then
     CSExitMethod(Self, cFn);
 end;
-{$ENDIF}
 
 procedure TfmChromiumWrapper.CreateLabel;
 begin
@@ -508,7 +369,7 @@ var
 begin
   Delphi := 'Delphi ' + PascalCompilerCode;
   MsgInfoOk('Compiled with ' + Delphi + sLineBreak + sLineBreak +
-    'and TChromium (' + {$IFDEF CEF3}'CEF3'{$ELSE}'CEF1'{$ENDIF} + ')' +
+    'and TChromium (CEF3)' +
     sLineBreak + sLineBreak +
     'Pass email and password as command line parameters for Quick Login' +
     sLineBreak + sLineBreak +
@@ -575,11 +436,7 @@ begin
   Self.Left := 150; //xLeft;
   Self.Height := 768 + 120;
   Self.Width := 1024 + 120;
-  {$IFDEF CEF3}
   Application.Title := 'Chromium Embedded Framework 3';
-  {$ELSE}
-  Application.Title := 'Chromium Embedded Framework 1';
-  {$ENDIF}
   if (ParamCount >= 1) then
     Self.Caption := ParamStr(1); // email address
   FActiveTitle := Application.Title;
@@ -679,29 +536,13 @@ begin
       Parent := Panel1;
       Align := alClient;
       TabOrder := 0;
-      {$IFNDEF CEF3}
-      OnContentsSizeChange := Chromium1ContentsSizeChange;
-      {$ENDIF}
+
       OnAddressChange := crmAddressChange;
       OnTitleChange := Chromium1TitleChange;
-      {$IFDEF CEF3}
+
       OnKeyEvent := Chromium3KeyEvent;
-      {$ELSE}
-      OnKeyEvent := Chromium1KeyEvent;
-      {$ENDIF}
       OnLoadStart := Chromium1LoadStart;
       OnLoadEnd := Chromium1LoadEnd;
-      {$IFNDEF CEF3}
-      Options.HistoryDisabled := True;
-      Options.EncodingDetectorEnabled := True;
-      Options.HyperlinkAuditingDisabled := True;
-      Options.LocalStorageDisabled := True;
-      Options.DatabasesDisabled := True;
-      Options.FullscreenEnabled := True;
-      Options.AcceleratedPaintingDisabled := False;
-      Options.AcceleratedFiltersDisabled := False;
-      Options.AcceleratedPluginsDisabled := False;
-      {$ENDIF}
       DefaultUrl := 'about:blank';
       //UserStyleSheetLocation := CSSHeader + CSSBase64;
       //Options.UserStyleSheetEnabled := True;
@@ -714,11 +555,7 @@ begin
     begin
       CSSend('Default ZoomLevel',
         FloatToStr(
-      {$IFDEF CEF3}
           FChromium1.Browser.Host.ZoomLevel
-      {$ELSE}
-          FChromium1.Browser.ZoomLevel
-      {$ENDIF}
         ));
     end;
 
@@ -735,13 +572,8 @@ end;
 function TfmChromiumWrapper.IsMain(const b: ICefBrowser;
   const f: ICefFrame): Boolean;
 begin
-  {$IFDEF CEF3}
   Result := (b <> nil) and (b.Identifier = FChromium1.BrowserId) and
     ((f = nil) or (f.IsMain));
-  {$ELSE}
-  Result := (b <> nil) and (b.GetWindowHandle = FChromium1.BrowserHandle) and
-    ((f = nil) or (f.IsMain));
-  {$ENDIF}
 end;
 
 procedure TfmChromiumWrapper.LargePageTest1Click(Sender: TObject);
@@ -830,7 +662,7 @@ end;
 procedure TfmChromiumWrapper.Chromium1LoadEnd(Sender: TObject;
   const browser: ICefBrowser;
   const frame: ICefFrame; httpStatusCode: Integer
-  {$IFNDEF CEF3}; out Result: Boolean{$ENDIF});
+  );
 const cFn = 'Chromium1LoadEnd';
 var
   FrameUrl: string;
@@ -855,7 +687,7 @@ begin
 
   // Control the Zoom Level *after* content has loaded
   CSSend('ZoomLevel', FloatToStr(
-    FChromium1.Browser.{$IFDEF CEF3}host.{$ENDIF}ZoomLevel
+    FChromium1.Browser.host.ZoomLevel
   ));
 
   if WindowState = wsMaximized then
