@@ -102,7 +102,7 @@ var
   ExtraConfigFilespec: string;
 {$IFNDEF WEBHUBACE}inst: string;{$ENDIF}
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn);
   Result := True;
   // make the components in this data module refresh
   // when the app object updates.
@@ -166,7 +166,7 @@ begin
   end;
 
 
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 function TDemoExtensions.IsHREFToolsQATestAgent: Boolean;
@@ -189,7 +189,7 @@ const cFn = 'IsSuperuser';
   end;
 
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
 
   if Assigned(pWebApp) and pWebApp.IsUpdated then
   begin
@@ -202,7 +202,7 @@ begin
   if (NOT Result) and (FAdminIpNumber <> '') then
     Result := (InSurferIP = FAdminIpNumber) or  // extra WAN override
       (InSurferIP = '127.0.0.1');
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 // ------------------------------------------------------------------------------
@@ -302,13 +302,13 @@ begin
 end;
 
 procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
-{$IFDEF CodeSite}const
-  cFn = 'Create'; {$ENDIF}
+const
+  cFn = 'DataModuleCreate';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn);
   FMonitorFilespec := ''; // for use with WebHubGuardian
   FDomainIDList := nil;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.DataModuleDestroy(Sender: TObject);
@@ -365,7 +365,7 @@ var
   S1: string;
   i, n: Integer;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
 
   // use this to introduce an artifical delay into page processing
   // see pgIntentionallySlow in webhubdemos
@@ -377,7 +377,7 @@ begin
     Sleep(1000);
     Application.ProcessMessages;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.waCauseAVExecute(Sender: TObject);
@@ -633,7 +633,7 @@ begin
   while this may be a nice thing to do during development, we default this
   to reject the session unconditionally. }
 
-  {$IFDEF LOGBAD}CodeSite.EnterMethod(cUnitName + ' ' + cFn);{$ENDIF}
+  {$IFDEF LOGBAD}CSEnterMethod(Self, cFn);{$ENDIF}
   inherited;
 
   {NB: OnBadBrowser is NOT called when IsWebRobotRequest is True.}
@@ -647,18 +647,18 @@ begin
   bContinue := True;
 
   {$IFDEF LOGBAD}
-  CodeSite.Send(Format('PageID ?= Sender.Session.PriorPageID... (%s ?= %s)',
+  CSSend(Format('PageID ?= Sender.Session.PriorPageID... (%s ?= %s)',
     [Sender.PageID, Sender.Session.PriorPageID]),
-    Sender.PageID = Sender.Session.PriorPageID);
+    S(Sender.PageID = Sender.Session.PriorPageID));
 
-  CodeSite.Send(Format('Command ?= Sender.Session.PriorCommand... (%s ?= %s)',
+  CSSend(Format('Command ?= Sender.Session.PriorCommand... (%s ?= %s)',
     [Sender.Command, Sender.Session.PriorCommand]),
-    Sender.Command = Sender.Session.PriorCommand);
+    S(Sender.Command = Sender.Session.PriorCommand));
 
-  CodeSite.Send(Format(
+  CSSend(Format(
     'UserAgentHash(Request.UserAgent) ?= Session.UserAgentID... (%s ?= %s)',
     [UserAgentHash(Sender.Request.UserAgent), Sender.Session.UserAgentID]),
-    UserAgentHash(Sender.Request.UserAgent) = Sender.Session.UserAgentID);
+    S(UserAgentHash(Sender.Request.UserAgent) = Sender.Session.UserAgentID));
   {$ENDIF}
 
   //if (Session.UserAgentID = FHashGoogleMediaPartners) {1 request ago} then
@@ -693,7 +693,7 @@ begin
       Sender.PageID := Sender.Situations.HomePageID;
     Sender.RejectSession(cUnitName + ', ' + cFn + '()');
   end;
-  {$IFDEF LOGBAD}CodeSite.ExitMethod(cUnitName + ' ' + cFn);{$ENDIF}
+  {$IFDEF LOGBAD}CSExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.DemoAppBadIP(Sender: TwhRespondingApp;
@@ -707,7 +707,7 @@ begin
   as the server producing this page. catches someone copying a session#
   This code is only called if TwhAppBase.Security.CheckSurferIP is true.
   It is false by default. }
-  {$IFDEF LOGBAD}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  {$IFDEF LOGBAD}CSEnterMethod(Self, cFn);{$ENDIF}
   inherited;
   // bContinue defaults to false and will produce a fixed-format error
   // message unless we reset it here. Resetting the value also allows
@@ -764,7 +764,7 @@ begin
   end
   else
     CSSend('Allow HREFTools Quality Assurance Agent');
-  {$IFDEF LOGBAD}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  {$IFDEF LOGBAD}CSExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDemoExtensions.DemoAppNewSession(Sender: TObject;
@@ -822,8 +822,10 @@ begin
       begin
         if bNewSessionInURL then
         begin
-          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CodeSite.Send('bNewSessionInURL', bNewSessionInURL);
-          CodeSite.SendNote(Request.QueryString);{$IFEND}
+          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}
+          CSSend('bNewSessionInURL', S(bNewSessionInURL));
+          CSSendNote(Request.QueryString);
+          {$IFEND}
           { user comes in from a bookmark or a search engine }
           bForceNewSession :=
             (PosCI(ExtractParentDomain(Request.Host, cDomainLevels),
@@ -831,7 +833,7 @@ begin
         end
         else
         begin
-          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CodeSite.Send(Self.Name + #183 + cFn + #183 +
+          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CSSend(Self.Name + #183 + cFn + #183 +
             'HaveSessionCookie',
             GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
           {$IFEND}
@@ -839,7 +841,7 @@ begin
           begin
             { worst case.. user fakes a cookie or comes back days later with the
               non-stored session cookie still loaded in the browser }
-            {$IFDEF CodeSite}CodeSite.SendError('unexpected session cookie in ' + cFn);{$ENDIF}
+            CSSendError('unexpected session cookie in ' + cFn);
             bForceNewSession := True;
           end;
         end;
