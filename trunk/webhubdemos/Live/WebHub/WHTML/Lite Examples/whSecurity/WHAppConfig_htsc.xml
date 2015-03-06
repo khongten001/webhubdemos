@@ -37,6 +37,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
+          <AppSetting name="CodeSiteLoggingState" value="error,exception" />
       <AppSetting name="ParentilOn" value="&#40;"/>
       <AppSetting name="ParentilOff" value="&#41;"/>
     </AppSettings>
