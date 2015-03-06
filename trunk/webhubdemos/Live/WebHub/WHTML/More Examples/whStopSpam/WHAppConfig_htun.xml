@@ -38,6 +38,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
+          <AppSetting name="CodeSiteLoggingState" value="error,exception" />
       <AppSetting name="demographic" value="no"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
