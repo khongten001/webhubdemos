@@ -20,15 +20,7 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
-	<AdvancedFlags value="none" />
-      </Runner>
-      <Runner id="cgibin" filespec="d:\apps\hreftools\webhub\bin\whrunner\runbin.exe">
-        <Interface value="cgi-bin"/>
-        <DelayMS value="0"/>
-        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <UploadMaxFileSizeKB value="5"/>
-        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
-        <AdminAccess scheme="http" authority="demos.href.com:8082"/>
+		<AdvancedFlags value="none" />
       </Runner>
     </Runners>
     <ServerProfiles>
