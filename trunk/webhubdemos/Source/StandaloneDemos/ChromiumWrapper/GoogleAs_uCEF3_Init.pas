@@ -177,14 +177,14 @@ begin
   {NB: global UTF8 string is not available to additional processes unless the
    shared string is created here with the CreateNamed method. 24.Feb.2015 }
   SharedCache := TSharedStr.CreateNamed(nil, DivName, DefaultSharedBufSize,
-    NOT IsPrimaryProcess, // readonly
-    True, // global
+    NOT IsPrimaryProcess, // readonly true/false
+    cLocalSharedMem,     // no need for global memory
     15 * 1000);
   SharedCache.Name := 'SharedCache';
 
-  if SharedCache.GlobalName <> ('Global\' + DivName) then
+  if SharedCache.GlobalName <> ('Local\' + DivName) then
     CSSendError(Format('SharedCache.GlobalName %s should be %s',
-      [SharedCache.GlobalName, ('Global\' + DivName)]));
+      [SharedCache.GlobalName, ('Local\' + DivName)]));
   SharedCache.IgnoreOwnChanges := True;
 
   if IsPrimaryProcess then
@@ -233,7 +233,7 @@ begin
   Locale := '';
   LogFile := '';
   BrowserSubprocessPath := '';
-  JavaScriptFlags := '';
+  JavaScriptFlags := ''; // --touch-events=enabled
   ResourcesDirPath := '';
   LocalesDirPath := '';
   FlagSingleProcess := False;  // single process does not work
@@ -272,8 +272,8 @@ function CefLoadLib(const Cache, UserAgent, ProductVersion, Locale, LogFile,
   end
   else
   begin
-    ErrorText := 'Unable to load CEF3 DLL library files';
-    CSSendError(ErrorText);
+    ErrorText := 'Did not load CEF3 DLL library files';
+    CSSendWarning(ErrorText);
   end;
 
   CSSend('IsFirstInit', S(IsFirstInit));
