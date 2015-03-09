@@ -63,7 +63,6 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   ucCodeSiteInterface, ucString,
   webApp, htWebApp;
 
@@ -110,7 +109,7 @@ begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
     Param2 := wa.MoreIfParentild(Param2);
-    CodeSite.Send(Param1, Param2);
+    CSSend(Param1, Param2);
   end
   else
   if SameText(ASendType, 'BoolVar') then
@@ -118,7 +117,7 @@ begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
     Param2 := wa.MoreIfParentild(Param2);
-    CodeSite.Send(Param1, Format('%s="%s"', [Param2,
+    CSSend(Param1, Format('%s="%s"', [Param2,
       S(pWebApp.BoolVar[Param2])]));
   end
   else
@@ -127,19 +126,24 @@ begin
     SplitString(Params, ',', Param1, Param2);
     Param1 := wa.MoreIfParentild(Param1);
     Param2 := wa.MoreIfParentild(Param2);
-    CodeSite.Send(Param1, Format('%s="%s"', [Param2, pWebApp.StringVar[Param2]]));
+    CSSend(Param1, Format('%s="%s"', [Param2, pWebApp.StringVar[Param2]]));
   end
   else
   begin
     Params := wa.MoreIfParentild(Params);
     if SameText(ASendType, 'Error') then
-      CodeSite.SendError(Params)
+      CSSendError(Params)
     else
     if SameText(ASendType, 'Warning') then
-      CodeSite.SendWarning(Params)
+      CSSendWarning(Params)
     else
-    //if (ASendType = 'Note') then
-      CodeSite.SendNote(Params);
+    if (ASendType = 'Note') then
+      CSSendNote(Params)
+    else
+    begin
+      LogProgrammerErrorToCodeSite('invalid usage');
+      CSSend(Params);
+    end;
   end;
   {$ENDIF}
 end;
