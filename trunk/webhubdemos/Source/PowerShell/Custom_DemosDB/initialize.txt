@@ -40,7 +40,7 @@ $Global:CSConsole = "D:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe"	# command-l
 
 # Relevant when installing WebHub Runtime
 $Global:FolderRootForWHDataFolders = 'D:\whData\';
-$Global:FolderWebHubData = 'D:\whData\whConfig\';
+$Global:FolderWebHubData = 'D:\Projects\WebHubDemos\Live\Config\';
 $Global:WebHubVersion = '3.224';			# WebHub Runtime version
 $Global:WebHubUseDefaultLiteLicense = 1;                # if 0, you should provide your own WHLicense.xml 
 
