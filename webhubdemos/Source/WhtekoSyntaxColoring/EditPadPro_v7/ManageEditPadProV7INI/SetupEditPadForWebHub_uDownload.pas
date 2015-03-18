@@ -11,6 +11,7 @@ function IsWHTekoFileTypeInstalled: Boolean;
 function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
   FlagColor: Boolean): Boolean;
 
+function InstallEditPadv7_Original_Ini: Boolean;
 function InstallWebHubFileType: Boolean;
 function InstallWebHubClipCollections: Boolean;
 function InstallWHBridgeTools(WHBridgePath: string): Boolean;
@@ -106,14 +107,11 @@ function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
   FlagColor: Boolean): Boolean;
 const cFn = 'InstallLatestWebHubFiles';
 var
-  IniFilespec: string;
   LatestStr8: UTF8String;
   BakFilespec, TargetFilespec: string;
 begin
   CSEnterMethod(nil, cFn);
-  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
-    'EditPadPro7.ini';
-  Result := FileExists(IniFilespec);
+  Result := InstallEditPadv7_Original_Ini;  // installs it if needed.
   if Result then
   begin
     if FlagSyntax then
@@ -233,6 +231,27 @@ begin
   end;
 
   CSSend('Result', S(Result));
+  CSExitMethod(nil, cFn);
+end;
+
+function InstallEditPadv7_Original_Ini: Boolean;
+const cFn = 'InstallEditPadv7_Original_Ini';
+var
+  IniFilespec: string;
+  IniContent: AnsiString;
+begin
+  CSEnterMethod(nil, cFn);
+
+  IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
+    'EditPadPro7.ini';
+  Result := FileExists(IniFilespec);
+  if NOT Result then
+  begin
+    IniContent := AnsiString(GetUTF8Resource('EditPadPro7_Original_INI'));
+    StringWriteToFile(IniFilespec, IniContent);
+    Result := FileExists(IniFilespec);
+  end;
+
   CSExitMethod(nil, cFn);
 end;
 
