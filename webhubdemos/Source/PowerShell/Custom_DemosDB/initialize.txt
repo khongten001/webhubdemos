@@ -1,7 +1,8 @@
-# db.demos.href.com
+# db.demos.href.com initialization sample file
 
-# use this file as Custom\Initialize.ps1 together with 
-# these files in WebHub_Appliance_PS   SVN REPO URL: https://svn.code.sf.net/p/webhubapplianceps/code/trunk/PowerShell/WebHub_Appliance_PS
+# use this file (renamed) as Custom\Initialize.ps1 together with 
+# these files in WebHub_Appliance_PS   
+#     SVN REPO URL: https://svn.code.sf.net/p/webhubapplianceps/code/trunk/PowerShell/WebHub_Appliance_PS
 
 # http://blogs.msdn.com/b/powershell/archive/2006/12/24/boolean-values-and-operators.aspx
 
