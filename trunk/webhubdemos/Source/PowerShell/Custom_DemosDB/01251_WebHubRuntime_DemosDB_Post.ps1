@@ -23,6 +23,14 @@ echo $InfoMsg
 if (! (Test-Path D:\Apps\Selenium\HREFTools\test-output)) { mkdir D:\Apps\Selenium\HREFTools\test-output }
 New-Item ($AWebSite +'\seleniumgridoutput') -physicalPath 'D:\Apps\Selenium\HREFTools\test-output' -type VirtualDirectory   # requires WebAdministration
 
+$InfoMsg = 'HostHeader "local-db.demos.href.com"'
+Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
+echo $InfoMsg
+
+New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "local-db.demos.href.com"
+# HOSTS entry for local testing
+Add-Content c:\Windows\System32\Drivers\Etc\Hosts ("`r`n127.0.0.1	   local-db.demos.href.com`r`n")
+
 Start-Process 'iisreset' -NoNewWindow -Wait
 
 StartHttpRunnerEcho 'local-db.demos.href.com' 'scripts' $True $True  # Yes new ipc; Yes 32bit
