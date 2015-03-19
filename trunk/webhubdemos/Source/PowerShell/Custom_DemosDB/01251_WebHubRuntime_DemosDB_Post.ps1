@@ -11,6 +11,8 @@ if (! (Test-Path ($env:USERPROFILE + '\Documents\WindowsPowerShell\Modules\Mod_I
 copy ($PSScriptRoot + '\..\WebHub_Appliance_PS\Mod_IIS_Setup.psm1')   $env:USERPROFILE\Documents\WindowsPowerShell\Modules\Mod_IIS_Setup\Mod_IIS_Setup.psm1
 Import-Module Mod_IIS_Setup
 
+Import-Module WebAdministration
+
 # Disable Data Execution Prevention (for Hub, runner plus all custom WebHub EXEs)
 Start-Process 'bcdedit.exe' -ArgumentList '/set nx OptIn'
 
@@ -19,7 +21,7 @@ $InfoMsg = 'VirtualDirectory "/seleniumgridoutput"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
 if (! (Test-Path D:\Apps\Selenium\HREFTools\test-output)) { mkdir D:\Apps\Selenium\HREFTools\test-output }
-New-Item ($AWebSite +'\seleniumgridoutput') -physicalPath 'D:\Apps\Selenium\HREFTools\test-output' -type VirtualDirectory
+New-Item ($AWebSite +'\seleniumgridoutput') -physicalPath 'D:\Apps\Selenium\HREFTools\test-output' -type VirtualDirectory   # requires WebAdministration
 
 Start-Process 'iisreset' -NoNewWindow -Wait
 
