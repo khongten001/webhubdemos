@@ -19,7 +19,7 @@
         <DelayMS value="0"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
-        <AdminAccess scheme="http" authority="local-db.demos.href.com:80"/>
+        <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
 		<AdvancedFlags value="none" />
       </Runner>
     </Runners>
