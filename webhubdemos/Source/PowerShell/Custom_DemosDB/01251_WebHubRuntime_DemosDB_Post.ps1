@@ -18,6 +18,7 @@ $AWebSite = "IIS:\Sites\WebHubDemos"
 $InfoMsg = 'VirtualDirectory "/seleniumgridoutput"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
+if (! Test-Path D:\Apps\Selenium\HREFTools\test-output) { mkdir D:\Apps\Selenium\HREFTools\test-output }
 New-Item ($AWebSite +'\seleniumgridoutput') -physicalPath 'D:\Apps\Selenium\HREFTools\test-output' -type VirtualDirectory
 
 Start-Process 'iisreset' -NoNewWindow -Wait
