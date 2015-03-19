@@ -27,6 +27,7 @@ $InfoMsg = 'HostHeader "local-db.demos.href.com"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
 
+New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "db.demos.href.com"    # useful on real production server
 New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "local-db.demos.href.com"
 # HOSTS entry for local testing
 Add-Content c:\Windows\System32\Drivers\Etc\Hosts ("`r`n127.0.0.1	   local-db.demos.href.com`r`n")
