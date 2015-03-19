@@ -31,6 +31,9 @@ New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "local-db.demos.href.co
 # HOSTS entry for local testing
 Add-Content c:\Windows\System32\Drivers\Etc\Hosts ("`r`n127.0.0.1	   local-db.demos.href.com`r`n")
 
+# Make sure runner has sufficient write-rights on logging folder
+GrantIUSRSModifyLogs "whLogs"
+
 Start-Process 'iisreset' -NoNewWindow -Wait
 
 StartHttpRunnerEcho 'local-db.demos.href.com' 'scripts' $True $True  # Yes new ipc; Yes 32bit
