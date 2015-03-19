@@ -14,7 +14,7 @@ Import-Module Mod_IIS_Setup
 # Disable Data Execution Prevention (for Hub, runner plus all custom WebHub EXEs)
 Start-Process 'bcdedit.exe' -ArgumentList '/set nx OptIn'
 
-$AWebSite = "IIS:\Sites\WebHubDemos"
+$AWebSite = "IIS:\Sites\WebHub Demos"
 $InfoMsg = 'VirtualDirectory "/seleniumgridoutput"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
