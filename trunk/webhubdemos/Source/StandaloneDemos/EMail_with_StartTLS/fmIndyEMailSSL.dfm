@@ -23,19 +23,33 @@ object Form3: TForm3
     Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -20
+    Font.Height = -17
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 0
+    object Label1: TLabel
+      Left = 16
+      Top = 291
+      Width = 139
+      Height = 23
+      Caption = 'Plain text content:'
+    end
+    object Label2: TLabel
+      Left = 16
+      Top = 451
+      Width = 358
+      Height = 23
+      Caption = 'HTML content (erase this for attachment tests):'
+    end
     object Memo1: TMemo
       Left = 16
-      Top = 335
-      Width = 513
-      Height = 142
+      Top = 320
+      Width = 537
+      Height = 121
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -17
       Font.Name = 'Segoe UI'
       Font.Style = []
       Lines.Strings = (
@@ -44,6 +58,7 @@ object Form3: TForm3
         'and line 3.'
         'Bye.')
       ParentFont = False
+      ScrollBars = ssBoth
       TabOrder = 0
       WordWrap = False
     end
@@ -55,7 +70,7 @@ object Form3: TForm3
       Caption = 'Test Secure EMail'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -17
       Font.Name = 'Segoe UI'
       Font.Style = []
       Kind = bkYes
@@ -65,8 +80,8 @@ object Form3: TForm3
       OnClick = ClickTestSecureEMail
     end
     object CheckBox1: TCheckBox
-      Left = 16
-      Top = 483
+      Left = 831
+      Top = 243
       Width = 241
       Height = 42
       Caption = 'Include Attachment'
@@ -74,7 +89,7 @@ object Form3: TForm3
     end
     object RadioGroup1: TRadioGroup
       Left = 576
-      Top = 244
+      Top = 309
       Width = 249
       Height = 282
       Caption = 'Errors'
@@ -100,13 +115,13 @@ object Form3: TForm3
         Left = 16
         Top = 56
         Width = 513
-        Height = 36
-        EditLabel.Width = 110
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 95
+        EditLabel.Height = 23
         EditLabel.Caption = 'SMTP Server'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -117,13 +132,13 @@ object Form3: TForm3
         Left = 16
         Top = 128
         Width = 513
-        Height = 36
-        EditLabel.Width = 87
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 77
+        EditLabel.Height = 23
         EditLabel.Caption = 'Username'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -133,13 +148,13 @@ object Form3: TForm3
         Left = 16
         Top = 202
         Width = 513
-        Height = 36
-        EditLabel.Width = 82
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 71
+        EditLabel.Height = 23
         EditLabel.Caption = 'Password'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -147,16 +162,16 @@ object Form3: TForm3
       end
     end
     object editFilespec: TLabeledEdit
-      Left = 16
-      Top = 549
+      Left = 592
+      Top = 277
       Width = 513
-      Height = 36
-      EditLabel.Width = 176
-      EditLabel.Height = 28
+      Height = 31
+      EditLabel.Width = 154
+      EditLabel.Height = 23
       EditLabel.Caption = 'Attachment Filespec'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -20
+      Font.Height = -17
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -164,9 +179,9 @@ object Form3: TForm3
     end
     object rbAttachmentTechnique: TRadioGroup
       Left = 831
-      Top = 255
+      Top = 309
       Width = 298
-      Height = 271
+      Height = 168
       Caption = 'Attachment'
       ItemIndex = 0
       Items.Strings = (
@@ -180,20 +195,20 @@ object Form3: TForm3
       Left = 0
       Top = 0
       Width = 553
-      Height = 329
+      Height = 289
       Caption = 'EMail Envelope'
       TabOrder = 7
       object edSubject: TLabeledEdit
         Left = 16
-        Top = 277
+        Top = 234
         Width = 513
-        Height = 36
-        EditLabel.Width = 65
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 56
+        EditLabel.Height = 23
         EditLabel.Caption = 'Subject'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -204,13 +219,13 @@ object Form3: TForm3
         Left = 16
         Top = 56
         Width = 513
-        Height = 36
-        EditLabel.Width = 46
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 39
+        EditLabel.Height = 23
         EditLabel.Caption = 'From'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -219,15 +234,15 @@ object Form3: TForm3
       end
       object EdCC: TLabeledEdit
         Left = 16
-        Top = 202
+        Top = 170
         Width = 241
-        Height = 36
-        EditLabel.Width = 24
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 22
+        EditLabel.Height = 23
         EditLabel.Caption = 'CC'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -235,15 +250,15 @@ object Form3: TForm3
       end
       object edTo: TLabeledEdit
         Left = 16
-        Top = 128
+        Top = 112
         Width = 513
-        Height = 36
-        EditLabel.Width = 22
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 19
+        EditLabel.Height = 23
         EditLabel.Caption = 'To'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -252,15 +267,15 @@ object Form3: TForm3
       end
       object EdReplyTo: TLabeledEdit
         Left = 288
-        Top = 202
+        Top = 170
         Width = 241
-        Height = 36
-        EditLabel.Width = 76
-        EditLabel.Height = 28
+        Height = 31
+        EditLabel.Width = 65
+        EditLabel.Height = 23
         EditLabel.Caption = 'Reply To'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -20
+        Font.Height = -17
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -268,12 +283,33 @@ object Form3: TForm3
       end
     end
     object cbUTF8: TCheckBox
-      Left = 288
-      Top = 483
+      Left = 831
+      Top = 543
       Width = 241
       Height = 42
       Caption = 'Add UTF8 Content'
       TabOrder = 8
+    end
+    object Memo2: TMemo
+      Left = 16
+      Top = 480
+      Width = 537
+      Height = 105
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -17
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      Lines.Strings = (
+        '<!DOCTYPE html>'
+        
+          '<html><head><title>hello</title></head><body><h2>Hello World</h2' +
+          '>This is a <b>bold message</b> sent using Delphi and Indy.'
+        '</body></html>')
+      ParentFont = False
+      ScrollBars = ssBoth
+      TabOrder = 9
+      WordWrap = False
     end
   end
 end
