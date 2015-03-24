@@ -1,7 +1,7 @@
 program Test_Indy_Smtp;
 
 (*
-Copyright (c) 2013-2014 HREF Tools Corp.
+Copyright (c) 2013-2015 HREF Tools Corp.
 
 Permission is hereby granted, on 29-Dec-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

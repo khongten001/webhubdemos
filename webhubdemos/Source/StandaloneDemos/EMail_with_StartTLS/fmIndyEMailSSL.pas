@@ -55,6 +55,9 @@ type
     edTo: TLabeledEdit;
     cbUTF8: TCheckBox;
     EdReplyTo: TLabeledEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Memo2: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure ClickTestSecureEMail(Sender: TObject);
@@ -65,6 +68,7 @@ type
     IdMessage1: TIdMessage;
     IdAttachment1: TIdAttachment;
     IdText1: TIdText;
+    IdHtml1: TIdText;
     IdMsgBldr1: TIdMessageBuilderPlain;
     procedure IndyMailStatus(ASender: TObject; const AStatus: TIdStatus;
       const AStatusText: string);
@@ -81,6 +85,7 @@ type
     procedure AttachmentTest02;
     procedure AttachmentTest03;
     procedure AttachmentTest04;
+    procedure HtmlMailTest01;
   public
     { Public declarations }
   end;
@@ -212,6 +217,11 @@ begin
   idMessage1.Subject := edSubject.Text;
   idMessage1.Body.Text := BodySampleForAttachment(0);
 
+  CSSend('Lines.Count', S(Memo2.Lines.Count));
+
+  if Memo2.Lines.Count > 0 then
+    HtmlMailTest01
+  else
   if Checkbox1.Checked then
   begin
     if NOT IntentionalError_MissingAttachment then
@@ -299,11 +309,17 @@ begin
     try
       if NOT idSMTP1.Connected then
         idSMTP1.Connect;
+      CSSend('idMessage1.MessageParts.Count',
+        S(idMessage1.MessageParts.Count));
       CSSend('about to call idSMTP1.Send');
       idSMTP1.Send(idMessage1);
       CSSend('done sending');
       if Assigned(idMessage1.MessageParts) then
+      begin
         idMessage1.MessageParts.Clear;
+        idText1 := nil;
+        idHtml1 := nil;
+      end;
       idSMTP1.Disconnect;
     except
       on E: Exception do
@@ -351,6 +367,7 @@ begin
   CSEnterMethod(Self, cFn);
   IdAttachment1 := nil;
   IdText1 := nil;
+  IdHtml1 := nil;
   IdMsgBldr1 := nil;
 
   Application.Title := Application.Title + ' (' + PascalCompilerCode + ')';
@@ -420,12 +437,47 @@ begin
     idMessage1.MessageParts.Clear;
   IdAttachment1 := nil; // destroyed by clearing MessageParts BUT not set to nil
   IdText1 := nil;       // same here (nb: used in test #3)
-  FreeAndNil(IdAttachment1);
-  FreeAndNil(IdText1);
+  IdHtml1 := nil;       // same here
   FreeAndNil(IdMsgBldr1);
   FreeAndNil(idMessage1);
   FreeAndNil(IdSSLIOHandlerSocketOpenSSL1);
   FreeAndNil(idSMTP1);
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TForm3.HtmlMailTest01;
+const cFn = 'HtmlMailTest01';
+begin
+  CSEnterMethod(Self, cFn);
+  IdMessage1.Subject := SubjectSample(0);
+  idMessage1.MessageParts.Clear;
+
+  //IdMessage1.ContentType := 'multipart/alternative';
+
+  if IdHtml1 = nil then
+    IdHtml1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create first
+  else
+    CSSendWarning('expecting IdHtml1 to be nil');
+  if IdText1 = nil then
+    IdText1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create second
+  else
+    CSSendWarning('expecting IdText1 to be nil');
+
+  IdHtml1.ContentType := 'text/html';
+  IdHtml1.CharSet := 'utf-8';
+  IdHtml1.Body.Text := Memo2.Lines.Text;
+
+  IdText1.ContentType := 'text/plain';
+  IdText1.ContentTransfer := '8BIT'; //to stop encoding text
+  IdText1.Body.Text := BodySampleForAttachment(0);
+  if cbUTF8.Checked then
+    IdText1.CharSet := cCharsetUTF8 // must set this here not just on TidMessage
+  else
+    IdText1.CharSet := '';
+
+  IdMessage1.ContentType := 'multipart/related; type="text/html"';
+  // IdMessage1.ContentType := 'multipart/mixed';
+
   CSExitMethod(Self, cFn);
 end;
 
