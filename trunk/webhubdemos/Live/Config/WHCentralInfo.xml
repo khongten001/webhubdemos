@@ -3,7 +3,7 @@
 <CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201306.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
-    <Var name="RootForWHDataFolders" value="d:\whData\" />
+    <Var name="RootForWHDataFolders" value="E:\whData\" />
   </Variables>
   <WebHubAppGroups>
     <WebHubAppGroup name="HREF Tools Standard">
