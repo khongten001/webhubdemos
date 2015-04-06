@@ -6,7 +6,7 @@
     <SplashEnabled value="true"/>
     <SplashEnabled context="ultraann" value="false"/>
     <StartMinimized value="false"/>
-    <StartMinimized context="DEMOS" value="true"/>
+    <StartMinimized context="META" value="true"/>
     <StartMinimized context="DORIS" value="true"/>
     <StartMinimized context="ultraann" value="true"/>
     <TrayIconEnabled value="true"/>
@@ -59,7 +59,7 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
       <ReadOnlySessionNumber value="888888"/>

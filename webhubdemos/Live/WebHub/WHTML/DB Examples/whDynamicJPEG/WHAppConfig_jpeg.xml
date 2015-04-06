@@ -3,10 +3,10 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201311.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="DEMOS"/>
+    <MenuEnabled value="false" context="META"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="META"/>
     <StartMinimized context="DORIS" value="true"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -31,7 +31,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="db" context="DEMOS"/>
+        <ServerProfileIDStandard value="db" context="META"/>
         <ServerProfileIDStandard value="defprofile" context="qa"/>
         <ServerProfileIDStandard context="ultraann" value="newipc"/>
       </DynURLConfig>
@@ -53,13 +53,13 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="META"/>
       <CookieDomainDefault value=""/>
       <CookieDomainDefault value="db.demos.href.com"/>
     </Security>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="aboutJPEG" filename="..\..\Shared WHTML\about\about-whDynamicJPEG.whteko"/>

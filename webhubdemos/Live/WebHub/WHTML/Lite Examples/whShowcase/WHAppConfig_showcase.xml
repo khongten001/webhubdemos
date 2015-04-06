@@ -4,9 +4,9 @@
   <Startup>
     <MenuEnabled value="true"/>
     <SplashEnabled value="true"/>
-    <SplashEnabled context="DEMOS" value="false"/>
+    <SplashEnabled context="META" value="false"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="META"/>
     <StartMinimized value="true" context="NYX"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -32,7 +32,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="lite" context="DEMOS"/>
+        <ServerProfileIDStandard value="lite" context="META"/>
         <ServerProfileIDStandard value="newipc" context="ultraann"/>
         <ServerProfileIDSecure value="ssl"/>
         <ServerProfileIDSecure value="" context="NYX"/>
@@ -44,12 +44,12 @@
           <AppSetting name="CodeSiteLoggingState" value="error,exception" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" context="DEMOS"/>
+      <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="LogToFile" value="true"/>
       <ErrorAlertFlag name="Summary" value="true"/>
-      <ErrorAlertFlag name="Summary" context="DEMOS" value="false"/>
+      <ErrorAlertFlag name="Summary" context="META" value="false"/>
     </ErrorAlertFlags>
     <ErrorSituations>
       <ErrorSituation name="RejectSession" logToFile="true"/>
@@ -76,9 +76,9 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="META"/>
       <CookieDomainDefault value=""/>
-      <CookieDomainDefault value="lite.demos.href.com" context="DEMOS"/>
+      <CookieDomainDefault value="lite.demos.href.com" context="META"/>
     </Security>
     <Situations>
       <FrontDoor pageID="pgWelcome"/>
@@ -90,8 +90,8 @@
       <ExportURLPrefix value=""/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DEMOS"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DEMOS"/>
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="L0Chunks" filename="0Chunks.whteko"/>
