@@ -26,9 +26,13 @@ cd ..\..\Library
 d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin.7z -aoa
 if errorlevel 1 pause
 
-cd /d h:\
-d:\Apps\Utilities\7Zip\7z.exe x d:\Projects\WebHubDemos\live\WebHub\Apps\DriveH-source.7z -aoa
+cd ..\Library64
+d:\Apps\Utilities\7Zip\7z.exe x Database-Library64-bin.7z -aoa
 if errorlevel 1 pause
+
+:: No drive H on DORIS server, April 2015
+if exist H:\NUL cd /d h:\
+if exist H:\NUL d:\Apps\Utilities\7Zip\7z.exe x d:\Projects\WebHubDemos\live\WebHub\Apps\DriveH-source.7z -aoa
 
 :: now call startup procedure
 
