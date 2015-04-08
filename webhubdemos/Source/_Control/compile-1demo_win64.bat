@@ -34,6 +34,7 @@ set ok=y
 "%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok=n
 if "%ok%"=="n" %CSSend% /error "D%compilerdigits% %1.dpr"
+if "%ok%"=="y" %CSSend% "success D%compilerdigits% %1.dpr"
 if "%ok%"=="n" pause
 
 @echo off
