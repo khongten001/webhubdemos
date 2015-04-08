@@ -21,7 +21,7 @@ call %ZaphodsMap%zmset.bat p UsingKey2Value "HREFTools\FileTransfer FTP webhubde
 
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps LiteMore-bin.7z
 if errorlevel 1 pause
-D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/Library LiteMore-Library%bits%-bin.7z
+D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/Library%bits% LiteMore-Library%bits%-bin.7z
 if errorlevel 1 pause
 
 endlocal

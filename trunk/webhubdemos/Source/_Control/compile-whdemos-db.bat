@@ -27,9 +27,12 @@ if NOT Exist %cbat% pause
 
 :Continue02
 :: need DEMOS app even on DB server
+:: clearing compilerdigits makes it go to the default
 set compilerdigits=
+set bits=64
 cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
+set bits=32
 
 :: whQuery1 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q

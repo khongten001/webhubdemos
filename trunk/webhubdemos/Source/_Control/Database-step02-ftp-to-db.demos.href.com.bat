@@ -23,5 +23,7 @@ D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Databas
 if errorlevel 1 pause
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/Library Database-Library-bin.7z
 if errorlevel 1 pause
+D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/Library64 Database-Library64-bin.7z
+if errorlevel 1 pause
 
 endlocal
