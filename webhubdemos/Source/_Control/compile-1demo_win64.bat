@@ -15,6 +15,8 @@ if not exist %dcc% pause
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
+:: async requires OTL OmniThreadLibrary
+set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 :: exclude WebHub packages
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib"
@@ -28,8 +30,11 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 if exist %1.cfg REN %1.cfg %1.off
 
 @echo on
+set ok=y
 "%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 pause
+if errorlevel 1 set ok=n
+if "%ok%"=="n" %CSSend% /error "D%compilerdigits% %1.dpr"
+if "%ok%"=="n" pause
 
 @echo off
 if exist %1.off REN %1.off %1.cfg

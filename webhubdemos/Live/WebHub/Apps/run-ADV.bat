@@ -2,7 +2,7 @@ setlocal
 
 :: set zmcontext variable
 call d:\AppsData\WinNT\bat\set-zmcontext.bat
-set compilerdigits=21
+set compilerdigits=22
 
 ::change to folder containing this bat file
 cd %~dp0

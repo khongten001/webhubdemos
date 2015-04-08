@@ -15,6 +15,7 @@ set dcc=%droot%bin\dcc32.exe
 if not exist %dcc% %CSSend% /error "Does not exist: [%dcc%]"
 if not exist %dcc% pause
 
+if "%compilerdigits%"=="22" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win32
 if "%compilerdigits%"=="21" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win32
 if "%compilerdigits%"=="20" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win32
 if "%compilerdigits%"=="19" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
@@ -26,10 +27,13 @@ set eurpath=D:\vcl\EurekaLog7\Lib\Win32\Release\Delphi%compilerdigits%
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;k:\webhub\lib\whplus\rubi;k:\Rubicon\source;%ibopath%;%droot%lib\win32\release;D:\vcl\NexusDB4;%eurpath%
+:: async requires OTL OmniThreadLibrary
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot=%~dp0..\..\Live\WebHub\Apps
 :: vcldbx requires bdertl !!! 
 set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
+if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx
+if "%compilerdigits%"=="21" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="20" set pkg=%pkg%;vcldbx
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;

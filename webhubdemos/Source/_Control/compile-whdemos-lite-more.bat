@@ -72,8 +72,11 @@ call d:\projects\webhubdemos\Source\_Control\compile-1demo_x_source.bat DServer
 :: %CSSend% /note "Intentional Pause when DServer files are ready"
 :: pause
 
+:asyncdemo
+:: set bits=32
 cd %droot%\More Examples\whASyncDemo
 call %cbat% whASyncDemo
+:: set bits=64
 
 cd %droot%\More Examples\whDropdown
 call %cbat% whDropdown
