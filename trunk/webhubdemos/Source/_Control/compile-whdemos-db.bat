@@ -30,9 +30,12 @@ if NOT Exist %cbat% pause
 :: clearing compilerdigits makes it go to the default
 set compilerdigits=
 set bits=64
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
 cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbat% whLite
 set bits=32
+set compilerdigits=20
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
 
 :: whQuery1 uses BDE
 del %~dp0\..\..\Live\WebHub\Apps\whQuery1.exe /q
