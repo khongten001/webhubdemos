@@ -23,7 +23,7 @@ if "%flagdemosdb%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-bin.7z -aoa
 if errorlevel 1 pause
 
 cd ..\..\Library
-d:\Apps\Utilities\7Zip\7z.exe x Database-Library-bin.7z -aoa
+d:\Apps\Utilities\7Zip\7z.exe x Database-Library32-bin.7z -aoa
 if errorlevel 1 pause
 
 cd ..\Library64
