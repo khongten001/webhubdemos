@@ -50,10 +50,7 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 if exist %1.cfg REN %1.cfg %1.off
 if exist %1.dproj REN %1.dproj %1.dprojoff
 
-if "%raizepath%"=="" %CSSend% "skip CodeSite here"
-if "%raizepath%"=="" goto continue030
 %CSSend% d%compilerdigits%_win32 %1
-@del %outputroot%\%1.exe %1.raize.bin
 
 set LUFlags=
 :: vcldbx;
@@ -70,7 +67,6 @@ if exist %1.off REN %1.off %1.cfg
 if exist %1.dprojoff REN %1.dprojoff %1.dproj
 
 if "%ok1%"=="yes" %CSSend% "ok1 %1.dpr yes ... %ok1% with -DCodeSite;Log2CSL;%compilerflags%"
-if "%ok1%"=="yes" COPY %outputroot%\%1.exe %outputroot%\%1.raize.bin
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile for CodeSite with -DCodeSite;Log2CSL;%compilerflags%"
 if "%ok1%"=="no" pause
 
@@ -87,15 +83,7 @@ COPY %outputroot%\%1.exe %outputroot%\%1_eur.exe
 DEL %outputroot%\%1.exe 
 
 :continue030
-@del d:\temp\DelphiTempDCU\*.dcu
-set ok1=yes
-echo on
-"%dcc%" %1.dpr -w -h -b -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
-if errorlevel 1 set ok1=no
-@echo off
-if "%ok1%"=="yes" %CSSend% "%1.dpr compiled with -D%compilerflags% -LU%pkg%"
-if "%ok1%"=="no"  %CSSend% /error "%1.dpr failed to compile with -D%compilerflags%"
-if "%ok1%"=="no"  pause
+:: forget non-CodeSite variation
 
 :cleanup
 @echo off
