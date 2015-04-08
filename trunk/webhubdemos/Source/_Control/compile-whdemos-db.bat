@@ -6,7 +6,7 @@ set comp3=D%compilerdigits%
 
 if NOT "%comp3%%bits%"=="" goto Continue00
 
-set /P comp3=Enter Pascal Compiler Digits as Number (eg. 20 or 21) :   
+set /P comp3=Enter Pascal Compiler Digits as Number (eg. 20 or 22) :   
 if %comp3%=="" goto end
 set compilerdigits=%comp3%
 set comp3=D%compilerdigits%

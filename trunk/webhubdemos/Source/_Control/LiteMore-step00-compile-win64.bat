@@ -2,8 +2,8 @@ setlocal
 
 cd /d %~dp0
 
-set comp3=D21
-set bits=32
+set comp3=D22
+set bits=64
 
 :: new ipc whLite.exe
 set compilerdigits=
