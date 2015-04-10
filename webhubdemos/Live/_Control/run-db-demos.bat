@@ -1,5 +1,5 @@
 :: run-db-demos.bat
-:: Copyright (c) 2011 HREF Tools Corp.
+:: Copyright (c) 2011-2015 HREF Tools Corp.
 :: www.href.com
 
 @echo off
@@ -24,66 +24,66 @@ cd ..\WebHub\Apps
 
 :DB Examples
 if "%demodpr%"=="yes" start whDPrefix.exe 
-if "%demodpr%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
+if "%demodpr%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 20
 if "%demodpr%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dpr /minutes=99999 "/reason=Try on http://delphiprefix.href.com/"
 
 rem CodeRage Schedule and Archive
 if "%democoderage%"=="yes" start whSchedule.exe 
-if "%democoderage%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
+if "%democoderage%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 20
 if "%democoderage%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=coderage /minutes=999 /reason="upgrading"
 
 if "%demojpeg%"=="yes" start whDynamicJPEG.exe 
-if "%demojpeg%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
+if "%demojpeg%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 20
 if "%demojpeg%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=jpeg /minutes=%covermin% /reason=%coverreason%
  
 if "%demohtcl%"=="yes" start whClone.exe   
-if "%demohtcl%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtcl%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtcl%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htcl /minutes=%covermin% /reason=%coverreason%
 
 if "%demohtfs%"=="yes" start whFishStore.exe     
-if "%demohtfs%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtfs%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtfs%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htfs /minutes=%covermin% /reason=%coverreason%
 
 if "%demofire%"=="yes" start whFirebird.exe 
-if "%demofire%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 15
+if "%demofire%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 20
 if "%demofire%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=fire /minutes=%covermin% /reason=%coverreason%
 
 if "%demohtfm%"=="yes" start whInstantForm.exe   
-if "%demohtfm%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtfm%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtfm%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htfm /minutes=%covermin% /reason=%coverreason%
 
 if "%demodbhtml%"=="yes" start whLoadFromDB.exe  
-if "%demodbhtml%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demodbhtml%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demodbhtml%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=dbhtml /minutes=%covermin% /reason=%coverreason%
 
 if "%demohtq1%"=="yes" start whQuery1.exe    
-if "%demohtq1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtq1%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq1 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 if "%demohtq2%"=="yes" start whQuery2.exe  
-if "%demohtq2%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq2%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtq2%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq2 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 if "%demohtq3%"=="yes" start whQuery3.exe   
-if "%demohtq3%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq3%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtq3%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq3 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 if "%demohtq4%"=="yes" start whQuery4.exe   
-if "%demohtq4%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demohtq4%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demohtq4%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htq4 /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 if "%demoscan%"=="yes" start whScanTable.exe
-if "%demoscan%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demoscan%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demoscan%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=scan /minutes=9999999 /reason="disabled; contact techsupport if you need to see this demo"
 
 if "%demoshop1%"=="yes" start whShopping.exe  
-if "%demoshop1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 14
+if "%demoshop1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe 17
 if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=shop1 /minutes=%covermin% /reason=%coverreason%
 
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=store000 /minutes=9999999 /reason="Shopping Cart Jump Start Project needs to be ported to Firebird SQL"
 
 ::start whRubicon.exe 
-::d:\Apps\HREFTools\miscutil\wait.exe 15
+::d:\Apps\HREFTools\miscutil\wait.exe 20
 d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htru /minutes=9999999 /reason="disabled; see either of 2 Rubicon videos at <a href="http://www.href.com/rbnotes">www.href.com/rbnotes</a> "
 
 :end
