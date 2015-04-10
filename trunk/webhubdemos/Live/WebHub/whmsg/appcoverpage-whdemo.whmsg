@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <title>This WebHub Demo is intentionally and temporarily closed ((~SITUATIONTEXT~))</title>
@@ -14,7 +14,7 @@
 <body>
 <div id="whmsgContent">
 	<div align="center">
-	<img src="http://demos.href.com/webhub/demos/whOptions/fast/whlogo.jpg" alt="WebHub logo" />
+	<img src="http://img.href.com/webhubdemos/whOptions/fast/whlogo.jpg" alt="WebHub logo" />
 
 	<h2>closed</h2>
 	</div>
