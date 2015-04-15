@@ -1,7 +1,7 @@
 unit whdemo_DMIBObjCodeGen;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2012-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 2012-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
@@ -43,6 +43,7 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     FProjectAbbreviationNoSpaces: string;
+    FCreatedOnAtFieldname: string;
     FUpdatedByFieldname: string;
     FUpdatedOnAtFieldname: string;
     FUpdateCounterFieldname: string;
@@ -144,6 +145,8 @@ type
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
     property UpdatedByFieldname: string read FUpdatedByFieldname
       write FUpdatedByFieldname;
+    property CreatedOnAtFieldname: string
+      read FCreatedOnAtFieldname write FCreatedOnAtFieldname;
     property UpdatedOnAtFieldname: string
       read FUpdatedOnAtFieldname write FUpdatedOnAtFieldname;
     property UpdateCounterFieldname: string read FUpdateCounterFieldname
@@ -202,7 +205,7 @@ begin
         Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
           InProjectAbbrev + '_Triggers.sql';
         IbAndFb_GenSQL_Triggers(y, conn, Filespec,
-          GeneratorNameFn,
+          GeneratorNameFn, CreatedOnAtFieldname,
           UpdatedOnAtFieldname, UpdateCounterFieldName);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
@@ -246,6 +249,10 @@ begin
         Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
           'Grant_Select_' + InProjectAbbrev + '.sql';
         IbAndFb_GenSQL_Grant_Select(y, InProjectAbbrev, Filespec);
+
+        Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
+          'Create_Generators_' + InProjectAbbrev + '.sql';
+        IbAndFb_GenSQL_CreateGenerators(y, conn, Filespec, GeneratorNameFn);
       end;
     finally
       FreeAndNil(y);
@@ -532,6 +539,7 @@ begin
   FlagInitDone := False;
   FFieldsPerRowInInstantForm := 1;
   FAttributeParser := nil;
+  FCreatedOnAtFieldname := 'CreatedOnAt';
   FUpdatedByFieldname := 'UpdatedBy';
   FUpdatedOnAtFieldname := 'UpdatedOnAt';
   FUpdateCounterFieldname := 'UpdateCounter';
