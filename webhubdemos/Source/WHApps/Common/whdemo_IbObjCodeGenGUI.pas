@@ -54,6 +54,7 @@ begin
   ListBox.Items.Add('Whteko: TR with header cells, for each table');
   ListBox.Items.Add('Whteko: TR with data cells, for each table');
   ListBox.Items.Add('Whteko: Droplets for use with TwhScan, for each table');
+  ListBox.Items.Add('Pas: tabledefs for use with JQGrid, for each table');
   ListBox.MultiSelect := True;
   ListBox.Visible := True;
   ListBox.Selected[0] := True;
