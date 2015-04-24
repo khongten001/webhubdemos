@@ -22,7 +22,7 @@ interface
 uses
   SysUtils, Classes, StdCtrls,
   IB_Components,
-  ucIBObjCodeGen,
+  ucDBCodeGen, ucIBObjCodeGen,
   webLink, whutil_RegExParsing, whCodeGenIBObj;
 
 type
@@ -33,7 +33,8 @@ type
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
     cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
     cgpInstantFormInsert,
-    cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan);
+    cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan,
+    cgpWhTableDefs);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -51,6 +52,8 @@ type
     FLastFieldWasHidden: Boolean;
     FFieldsPerRowInInstantForm: Integer;
     FAttributeParser: TAttributeParser;
+    FPasOutputRoot: string;
+    FJSOutputRoot: string;
     procedure WebAppUpdate(Sender: TObject);
   private
     FDatabaseIterator: TwhDatabaseIterator;
@@ -114,24 +117,30 @@ type
 
     procedure TableDropletForScan(const currTable: string;
       const primaryKeyFieldname: string; out Value: string);
+
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
+
     function CodeGenForPattern(conn: TIB_Connection; TableList: TStringList;
       const CodeGenPattern: TCodeGenPattern;
       AdjustTableListProc: TAdjustTableListProc = nil): string;
+
     procedure GenPASandSQL(inProjectAbbrev: string; const IsInterbase: Boolean;
       conn: TIB_Connection; sess: TIB_Session; tr: TIB_Transaction;
       const PASOutputFolder, SQLOutputFolder: string;
       GUIWriteInfoProc: TGUIWriteInfoProc;
       AdjustTableListProc: TAdjustTableListProc;
       GeneratorNameFn: TtpcgGeneratorNameFn);
+
     function LabelForField(const CurrentTable: string;
       const FieldNum: Integer; const CurrentFieldname: string;
       Cursor: TIB_Cursor): string;
+
     function ProcessCodeGenForPattern(AListBox: TListBox; conn: TIB_Connection;
       GUIWriteInfoProc: TGUIWriteInfoProc;
       AdjustTableListProc: TAdjustTableListProc): string;
+
     function ProjectAbbrevForCodeGen: string;
     property ActiveConn: TIB_Connection read FActiveConn write FActiveConn;
     property ActiveTr: TIB_Transaction read FActiveTr write FActiveTr;
@@ -141,6 +150,8 @@ type
       write FDatabaseIterator;
     property FieldsPerRowInInstantForm: Integer read FFieldsPerRowInInstantForm
       write FFieldsPerRowInInstantForm;
+    property OutputRoot_PAS: string read FPasOutputRoot write FPasOutputRoot;
+    property OutputRoot_JS: string read FJSOutputRoot write FJSOutputRoot;
     property ProjectAbbreviationNoSpaces: string
       read FProjectAbbreviationNoSpaces write FProjectAbbreviationNoSpaces;
     property UpdatedByFieldname: string read FUpdatedByFieldname
@@ -165,7 +176,7 @@ uses
   IB_Header,
   TypInfo, Forms,
   webApp, htWebApp, whMacroAffixes,
-  ucString, ucCodeSiteInterface, ucIbAndFbCredentials;
+  ucString, ucLogFil, ucCodeSiteInterface, ucIbAndFbCredentials;
 
 { TDMIBObjCodeGen }
 
@@ -243,6 +254,20 @@ begin
           Filespec := Filespec + 'Firebird';
         Filespec := Filespec + '_RecordStruct_' + InProjectAbbrev + '.pas';
         Firebird_GenPAS_RecordStruct(y, conn, InProjectAbbrev, Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+
+        Filespec := StringReplace(Filespec, '_RecordStruct_', '_ObjectStruct_',
+          []);
+        Firebird_GenPAS_ObjectStruct(y, conn, InProjectAbbrev, Filespec);
+        GUIWriteInfoProc(Filespec);
+        GUIWriteInfoProc('');
+
+        Filespec := StringReplace(Filespec, '_ObjectStruct_', '_Const_',
+          []);
+        Firebird_GenPAS_FieldNameConstants(y, conn, InProjectAbbrev, Filespec,
+          UpdateCounterFieldname, UpdatedOnAtFieldname, CreatedOnAtFieldname,
+          UpdatedByFieldname);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
@@ -325,6 +350,8 @@ begin
           FActiveConn, y, cgpTableRowCells);
         11: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpTableDropletForScan, AdjustTableListProc);
+        12: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
+          FActiveConn, y, cgpWhTableDefs, AdjustTableListProc);
         else
           GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
         end
@@ -350,188 +377,224 @@ function TDMIBObjCodeGen.CodeGenForPattern(conn: TIB_Connection;
   AdjustTableListProc: TAdjustTableListProc = nil): string;
 var
   i: Integer;
-  CodeContent: string;
+  CodeContent: TStringBuilder;
   FlagWasConnected: Boolean;
+  STemp: string;
 begin
   inherited;
   Result := '';
   FActiveConn := conn;
+  CodeContent := TStringBuilder.Create;
 
   FlagWasConnected := conn.Connected;
   if NOT FlagWasConnected then conn.Connect;
 
-  CodeContent := '';
+  CodeContent.Clear;
   case CodeGenPattern of
     cgpMacroLabelsForFields,
-    cgpMacroPKsForTables: CodeContent := '<whmacros>' + sLineBreak;
+    cgpMacroPKsForTables: CodeContent.AppendLine('<whmacros>');
+    cgpWhTableDefs:
+      begin
+        if (FPasOutputRoot = '') then
+          raise Exception.Create('Pascal Output Root required.');
+        Firebird_GenPAS_whTableDef(TableList, conn,
+          FProjectAbbreviationNoSpaces, FPasOutputRoot);  // and that's it!
+        CodeContent.AppendFormat(
+          '%d WebHub TableDef units have been written to ', [TableList.Count]);
+        CodeContent.AppendLine(FPasOutputRoot);
+      end;
   end;
 
   for i := 0 to Pred(TableList.Count) do
   begin
     case CodeGenPattern of
       cgpMacroLabelsForFields:
-        CodeContent := CodeContent +
-          Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+        begin
+          STemp := Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
           MacroLabelsForFields);
-
+          CodeContent.Append(STemp);
+        end;
       cgpMacroPKsForTables:
         if i = 0 then  // no additional table looping
-          CodeContent := CodeContent +
+        begin
+          STemp :=
             Firebird_GenPAS_For_Each_Table(conn, MacroPKsForTables,
               AdjustTableListProc);
+          CodeContent.Append(STemp);
+        end;
 
       cgpFieldListForImport:
-        CodeContent := CodeContent + ';; ' + TableList[i] + sLineBreak +
-          '[FieldList]' + sLineBreak +
-          Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-          FieldListForImport) + sLineBreak;
+        begin
+          CodeContent.Append(';; ');
+          CodeContent.AppendLine(TableList[i]);
+          CodeContent.AppendLine('[FieldList]');
+          STemp := Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+            FieldListForImport);
+          CodeContent.AppendLine(STemp);;
+        end;
 
       cgpSelectSQLDroplet:
         if i = 0 then  // no additional table looping
-          CodeContent := CodeContent +
-            Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet,
+        begin
+          STemp := Firebird_GenPAS_For_Each_Table(conn, SelectSQLDroplet,
               AdjustTableListProc);
+          CodeContent.Append(STemp);;
+        end;
 
       cgpUpdateSQLDroplet:
-        CodeContent := CodeContent +
-          '<whdroplet name="' + Format('dr%s-UpdateSQL', [TableList[i]]) +
-          '">' + sLineBreak +
-          'update ' + TableList[i] + sLineBreak +
-          'set' + sLineBreak +
-          Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-            UpdateSQLDropletA) +
-            '  WHERE ' + sLineBreak +
-          Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-            UpdateSQLDropletB) +
-          sLineBreak +
-          '</whdroplet>' + sLineBreak + sLineBreak;
+        begin
+          CodeContent.Append('<whdroplet name="');
+          CodeContent.AppendFormat('dr%s-UpdateSQL', [TableList[i]]);
+          CodeContent.AppendLine('">');
+          CodeContent.Append('update ');
+          CodeContent.AppendLine(TableList[i]);
+          CodeContent.AppendLine('set');
+          STemp := Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+            UpdateSQLDropletA);
+          CodeContent.Append(STemp);
+          CodeContent.AppendLine('  WHERE ');
+          STemp := Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
+              UpdateSQLDropletB);
+          CodeContent.AppendLine(STemp);
+          CodeContent.AppendLine('</whdroplet>');
+          CodeContent.AppendLine('');
+        end;
 
       cgpInstantFormReadonly,
       cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
       cgpInstantFormInsert:
         begin
           FLastFieldWasHidden := False;
-          CodeContent := CodeContent +
-            '<whdroplet name="drInstantForm';
+          CodeContent.Append('<whdroplet name="drInstantForm');
           case CodeGenPattern of
-            cgpInstantFormReadonly: CodeContent := CodeContent + 'Readonly';
-            cgpInstantFormEdit: CodeContent := CodeContent + 'Edit';
-            cgpInstantFormEditLabelAbove: CodeContent := CodeContent +
-              'EditLabelAbove';
-            cgpInstantFormInsert: CodeContent := CodeContent + 'Insert';
+            cgpInstantFormReadonly: CodeContent.Append('Readonly');
+            cgpInstantFormEdit: CodeContent.Append('Edit');
+            cgpInstantFormEditLabelAbove: CodeContent.Append('EditLabelAbove');
+            cgpInstantFormInsert: CodeContent.Append('Insert');
           end;
 
-          CodeContent := CodeContent +
-             TableList[i] + '" show="no">' +
-             sLineBreak;
+          CodeContent.Append(TableList[i]);
+          CodeContent.AppendLine('" show="no">');
+
           if CodeGenPattern <> cgpInstantFormReadonly then
-            CodeContent := CodeContent +
+            CodeContent.AppendLine(
               '<!--- <form method="post" accept-charset="UTF-8" ' +
-              'action="(~ACTIONR|~)"> -->' +
-              sLineBreak;
+              'action="(~ACTIONR|~)"> -->');
           if CodeGenPattern in [cgpInstantFormEdit,
             cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
-            CodeContent := CodeContent + '<!--- ';
-          CodeContent := CodeContent +
-          '  <table id="' +
-            LowerCase(
-              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
-              '-' + TableList[i] + '" class="' +
-              LowerCase(
-              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))) +
-              '">';
+            CodeContent.Append('<!--- ');
+          CodeContent.Append('  <table id="');
+          CodeContent.Append(LowerCase(
+              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))));
+          CodeContent.Append('-');
+          CodeContent.Append(TableList[i]);
+          CodeContent.Append('" class="');
+          CodeContent.Append(LowerCase(
+              GetEnumName(TypeInfo(TCodeGenPattern), Ord(CodeGenPattern))));
+          CodeContent.Append('">');
           if CodeGenPattern in [cgpInstantFormEdit,
             cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
-            CodeContent := CodeContent + ' -->';
-          CodeContent := CodeContent + sLineBreak;
+            CodeContent.Append(' -->');
+          CodeContent.AppendLine('');
 
           case CodeGenPattern of
-            cgpInstantFormReadonly: CodeContent := CodeContent +
+            cgpInstantFormReadonly: CodeContent.Append(
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                InstantFormReadonly);
-            cgpInstantFormInsert: CodeContent := CodeContent +
+                InstantFormReadonly));
+            cgpInstantFormInsert: CodeContent.Append(
               Firebird_GenPas_For_Each_Field_in_1Table(conn, TableList[i],
-                InstantFormInsert);
+                InstantFormInsert));
             cgpInstantFormEdit:
               begin
-                CodeContent := CodeContent +
+                STemp :=
                   Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                    InstantFormEdit) +
-                '  <tr class="' +
+                    InstantFormEdit);
+                CodeContent.Append(STemp);
+                CodeContent.Append('  <tr class="');
+                CodeContent.Append(
                   LowerCase(
                     GetEnumName(TypeInfo(TCodeGenPattern),
-                    Ord(CodeGenPattern))) +
-                  'Submit">' + sLineBreak +
-                '    <td colspan="2"><input type="submit" ' +
-                'name="btnInstantForm" ' +
-                'value="Save" /></td>' +
-                sLineBreak +
-                '  </tr>' + sLineBreak;
+                    Ord(CodeGenPattern))));
+                CodeContent.AppendLine('Submit">');
+                CodeContent.Append('    <td colspan="2"><input type="submit" ');
+                CodeContent.Append('name="btnInstantForm" ');
+                CodeContent.AppendLine('value="Save" /></td>');
+                CodeContent.AppendLine('  </tr>');
               end;
             cgpInstantFormEditLabelAbove:
               begin
-                CodeContent := CodeContent +
+                STemp :=
                   Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
-                    InstantFormEditLabelAbove) +
-                '  <tr class="' +
-                  LowerCase(
+                    InstantFormEditLabelAbove);
+                CodeContent.Append(STemp);
+                CodeContent.Append('  <tr class="');
+                CodeContent.Append(LowerCase(
                     GetEnumName(TypeInfo(TCodeGenPattern),
-                    Ord(CodeGenPattern))) +
-                  'Submit">' + sLineBreak +
-                '    <td colspan="' + IntToStr(FFieldsPerRowInInstantForm) +
-                '"><input type="submit" name="btnInstantForm" ' +
-                 'value="Save" /></td>' +
-                sLineBreak +
-                '  </tr>' + sLineBreak;
+                    Ord(CodeGenPattern))));
+
+                CodeContent.AppendLine('Submit">');
+                CodeContent.Append('    <td colspan="');
+                CodeContent.Append(S(FFieldsPerRowInInstantForm));
+                CodeContent.Append('">');
+                CodeContent.AppendLine('<input type="submit" name="btnInstantForm" ' +
+                 'value="Save" /></td>');
+                CodeContent.AppendLine('  </tr>');
               end;
           end;
           if CodeGenPattern in [cgpInstantFormEdit,
             cgpInstantFormEditLabelAbove, cgpInstantFormInsert] then
-            CodeContent := CodeContent +
-              '<!--- </form> -->' + sLineBreak;
-          CodeContent := CodeContent +
-            '</whdroplet>' + sLineBreak + sLineBreak;
+            CodeContent.AppendLine(
+              '<!--- </form> -->');
+          CodeContent.AppendLine(
+            '</whdroplet>');
+          CodeContent.Append(sLineBreak);
         end;
         cgpTableHeaderCells:
         begin
-          CodeContent := CodeContent +
-            '<whdroplet name="' + Format('drDataSetHeader-%s', [TableList[i]]) +
-            '">' + sLineBreak;
-          CodeContent := CodeContent +
+          CodeContent.Append('<whdroplet name="');
+          CodeContent.AppendFormat('drDataSetHeader-%s', [TableList[i]]);
+          CodeContent.AppendLine('">');
+          STemp :=
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
                 TableHeaderCells);
-          CodeContent := CodeContent +
-            '</whdroplet>' + sLineBreak + sLineBreak;
+          CodeContent.Append(STemp);
+          CodeContent.AppendLine('</whdroplet>');
+          CodeContent.Append(sLineBreak);
         end;
         cgpTableRowCells:
         begin
-          CodeContent := CodeContent +
-            '<whdroplet name="' + Format('drDataSetRow-%s', [TableList[i]]) +
-            '">' + sLineBreak;
-          CodeContent := CodeContent +
+          CodeContent.Append('<whdroplet name="');
+          CodeContent.AppendFormat('drDataSetRow-%s', [TableList[i]]);
+          CodeContent.AppendLine('">');
+          STemp :=
               Firebird_GenPAS_For_Each_Field_in_1Table(conn, TableList[i],
                 TableRowCells);
-          CodeContent := CodeContent +
-            '</whdroplet>' + sLineBreak + sLineBreak;
+          CodeContent.Append(STemp);
+          CodeContent.AppendLine('</whdroplet>');
+          CodeContent.Append(sLineBreak);
         end;
         cgpTableDropletForScan:
         begin
           if i = 0 then  // no additional table looping
-            CodeContent := CodeContent +
+          begin
+            STemp :=
               Firebird_GenPAS_For_Each_Table(conn, TableDropletForScan,
                 AdjustTableListProc);
+            CodeContent.Append(STemp);
+          end;
         end;
+        cgpWhTableDefs: ; // no action required
     end;
   end;
 
   case CodeGenPattern of
     cgpMacroLabelsForFields, cgpMacroPKsForTables:
-      CodeContent := CodeContent + '</whmacros>' + sLineBreak;
+      CodeContent.AppendLine('</whmacros>');
   end;
 
   if NOT FlagWasConnected then conn.DisconnectToPool;
 
-  Result := CodeContent;
+  Result := CodeContent.ToString;
 end;
 
 procedure TDMIBObjCodeGen.DataModuleCreate(Sender: TObject);
@@ -987,8 +1050,8 @@ begin
 end;
 
 procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;
-  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string; Cursor: TIB_Cursor;
-  out Value: string);
+  const ThisTableFieldCount, FieldNum: Integer; const CurrentFieldname: string;
+  Cursor: TIB_Cursor; out Value: string);
 var
   FieldLabel: string;
 begin
