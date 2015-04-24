@@ -1,7 +1,7 @@
 unit DPrefix_fmAdminDataEntry; // GUI for quick data entry by administrator
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1999-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1999-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of the Delphi Prefix Registry.             * }
 { *                                                                          * }
@@ -21,6 +21,7 @@ interface
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
+{$IFDEF VER290}System.Actions,{$ENDIF}  // XE8 D22
 {$IFDEF VER280}System.Actions,{$ENDIF}  // XE7 D21
 {$IFDEF VER270}System.Actions,{$ENDIF}  // XE6 D20
 {$IFDEF VER260}System.Actions,{$ENDIF}  // XE5 D19
