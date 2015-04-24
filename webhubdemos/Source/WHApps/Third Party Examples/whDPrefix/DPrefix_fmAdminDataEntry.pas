@@ -21,22 +21,11 @@ interface
 uses
   Windows, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, Buttons, Grids, DBGrids, DB, DBCtrls, ExtCtrls, StdCtrls,
-{$IFDEF VER290}System.Actions,{$ENDIF}  // XE8 D22
-{$IFDEF VER280}System.Actions,{$ENDIF}  // XE7 D21
-{$IFDEF VER270}System.Actions,{$ENDIF}  // XE6 D20
-{$IFDEF VER260}System.Actions,{$ENDIF}  // XE5 D19
-{$IFDEF VER250}System.Actions,{$ENDIF}  // XE4 D18
-{$IFDEF VER240}System.Actions,{$ENDIF}  // XE3 D17
-{$IFDEF VER230}{$ENDIF}  // XE2 D16 -- unit did not exist yet
-{$IFDEF VER280}Vcl.ActnList,{$ENDIF}  // XE7 D21
-{$IFDEF VER270}Vcl.ActnList,{$ENDIF}  // XE6 D20
-{$IFDEF VER260}Vcl.ActnList,{$ENDIF}  // XE5 D19
-{$IFDEF VER250}Vcl.ActnList,{$ENDIF}  // XE4 D18
-{$IFDEF VER240}Vcl.ActnList,{$ENDIF}  // XE3 D17
-{$IFDEF VER230}ActnList,{$ENDIF}  // XE2 D16
+  System.Actions, // requires D17 XE3 
+  Vcl.ActnList,   // requires D17 XE3
   utPanFrm, updateOk, tpAction, toolbar, tpCompPanel, restorer, tpStatus,
-  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, wdbGrid,
-  wdbSSrc;
+  webTypes, webLink, webCall, webLogin, wdbSource, wdbLink, wdbScan, 
+  wdbGrid, wdbSSrc;
 
 type
   TfmWhActions = class(TutParentForm)
