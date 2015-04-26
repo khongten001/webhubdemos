@@ -20,11 +20,11 @@
 <body>
 (~drPageBegin~)
 <div id="whdemopagecontent">
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02,.CKB,.KEEPCKB~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bAAA~) I like the letter A<br />
-(~InputCheckBox|bBBB~) I like the letter B<br />
+(~InputCheckBox|bAAA|Yes,No~) I like the letter A<br />
+(~InputCheckBox|bBBB|Yes,No~) I like the letter B<br />
 <input type="submit" />
 </form>
 
@@ -46,15 +46,15 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<h2>Your boolvars so far</h2>
-(~boolvars~)
+<h2>Your variables so far</h2>
+(~stringvars~)
 
 <h2>Continue with some more</h2>
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03,.CKB,.KEEPCKB~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bCCC~) I like the letter C<br />
-(~InputCheckBox|bDDD~) I like the letter D<br />
+(~InputCheckBox|bCCC|Yes,No~) I like the letter C<br />
+(~InputCheckBox|bDDD|Yes,No~) I like the letter D<br />
 <input type="submit" />
 </form>
 
@@ -75,15 +75,15 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<h2>Your boolvars so far</h2>
-(~boolvars~)
+<h2>Your variables so far</h2>
+(~stringvars~)
 
 <h2>Continue with some more</h2>
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck04,.CKB,.KEEPCKB#skip~)">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck04#skip~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bEEE~) I like the letter E<br />
-(~InputCheckBox|bFFF~) I like the letter F<br />
+(~InputCheckBox|bEEE|Yes,No~) I like the letter E<br />
+(~InputCheckBox|bFFF|Yes,No~) I like the letter F<br />
 <input type="submit" />
 </form>
 
@@ -107,8 +107,8 @@
 (~drPageBegin~)
 <div id="whdemopagecontent">
 
-<h2>Your boolvars so far</h2>
-(~boolvars~)
+<h2>Your variables so far</h2>
+(~stringvars~)
 
 <a name="skip"></a><h2>Again?</h2>
 (~JUMPR|pgcheck01~)

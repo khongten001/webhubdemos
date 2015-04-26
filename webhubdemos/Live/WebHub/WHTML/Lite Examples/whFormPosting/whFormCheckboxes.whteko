@@ -15,15 +15,15 @@
 <p><i>(~CentralInfo.WebTimeGMT~)</i></p>
 
 <div style="margin-left: 3em; font-size: 2em;">
-(~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
+(~INPUTFORM|pgCBSubmitOne~)
 <p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
-<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label id="labelCb1" for="cb1">Check box one</label> </p>
+<p>(~INPUTCHECKBOX|cbCBCheckOne|Yes,No| id="cb1" ~) <label id="labelCb1" for="cb1">Check box one</label> </p>
 (~INPUTSUBMIT|Submit,Submit~)
 (~INPUTFORM|CLOSE~)
 </div>
 
 <whdroplet name="drCBFooter" show="yes">
-<![CDATA[<hr/><h2>stringvars</h2>(~StringVars~)<hr/><h2>boolvars</h2>(~BoolVars~)<hr/><h2>boolvarspending</h2>(~BoolVarsPending~)
+<![CDATA[<hr/><h2>stringvars</h2>(~StringVars~)<hr/><h2>boolvars</h2>(~BoolVars~)
 <hr/>(~JUMP|pgCBCheck~)</body></html>]]>
 </whdroplet>
 </whpage>
@@ -32,16 +32,16 @@
 (~drCBHeader~)
 <p><b>Form 1 page 1</b></p>
 <p>Name 1: (~cbCheckName1~)</p>
-<p>Check box: <!---(~IF|cbCBCheckOne|Yes||NO~)--></p>
+<p>Check box: (~cbCBCheckOne~)</p>
 
-<p><b>Form with .ckb</b></p>
-(~INPUTFORM|pgCBSubmitTwo,.ckb,.keepckb~)
+<p><b>Form </b></p>
+(~INPUTFORM|pgCBSubmitTwo~)
 <p>Name: (~INPUTTEXT|cbCheckName2,35~)</p>
 <p>(~INPUTCHECKBOX|cbCBCheckTwo~) Check box two</p>
 (~INPUTSUBMIT|Submit,Submit~)
 (~INPUTFORM|CLOSE~)
 
-<p><b>Form without .ckb</b></p>
+<p><b>Form </b></p>
 (~INPUTFORM|pgCBSubmitTwo~)
 <p>Name: (~INPUTTEXT|cbCheckName3,35~)</p>
 (~INPUTSUBMIT|Submit,Submit~)
@@ -58,11 +58,11 @@
 
 <p><b>Form 1 page 2</b></p>
 <p>Name 2: (~cbCheckName2~)</p>
-<p>Form two check box: (~IF|cbCBCheckTwo|Yes||NO~)</p>
+<p>Form two check box: (~cbCBCheckTwo~)</p>
 
 <p><b>Form 2 page 2</b></p>
 <p>Name 3: (~cbCheckName3~)</p>
-<p>No check box and no .ckb on form tag</p>
+<p>Had no check box </p>
 (~drCBFooter~)
 </whpage>
 

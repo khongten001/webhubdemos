@@ -47,9 +47,9 @@ the new input types in HTML5.  View this page with different browsers to see how
 input types default back to type=&quot;text&quot;.
 </whtranslation>
 </p>
-(~NOMATCH|(~pagecount~)=0|(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|<p><font color="red">Please check that either your pet is very young or very loved!</font></p>~)~)~)
+(~NOMATCH|(~pagecount~)=0|(~IfNotBlankSV|_ErrorMessage|<p><font color="red">(~_ErrorMessage~)</font></p>~)~)
 <!-- changing:start-->
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou~)">
 <!-- changing:stop-->
 <table border="0" cellpadding="10" cellspacing="0">
 <tr><td valign="middle">
@@ -152,8 +152,8 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 <tr><td>(~INPUTSELECTRADIO|inSize,mcSizeList~)</td></tr>
 <tr>
              <td class="prompt">
-             (~INPUTCHECKBOX|inVeryYoung|class="cbox"~) Pet is very young.
-             (~INPUTCHECKBOX|inVeryLoved|class="cbox"~) Pet is very loved.
+             (~INPUTCHECKBOX|inVeryYoung|OnOff=Y,N|class="cbox"~) Pet is very young.
+             (~INPUTCHECKBOX|inVeryLoved|OnOff=Y,N|class="cbox"~) Pet is very loved.
              </td>
 </tr>
 
@@ -249,7 +249,8 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 
 <whpage pageid="pgThankYou" desc="Thank You">
 <whprep>
-(~IFNOT|inVeryYoung|(~IFNOT|inVeryLoved|(~BOUNCE|pgEnterForm~)~)~)
+(~CLEAR|_ErrorMessage~)
+(~MATCH|(~inVeryYoung~)=N|(~MATCH|(~inVeryLoved~)=N|(~SET|_ErrorMessage=Please tick at least one: that your pet is very young or very loved!~)(~BOUNCE|pgEnterForm~)~)~)
 (~MATCH|(~petFormButton~)=Shortcut|(~BOUNCE|pgShortcut~)~)
 </whprep>
 (~mcdoctypehtml~)
