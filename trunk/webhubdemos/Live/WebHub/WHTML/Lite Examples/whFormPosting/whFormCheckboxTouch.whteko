@@ -21,8 +21,8 @@ document.addEventListener('DOMContentLoaded', addPressEventListeners, false);
 <p>On an Android device, press the checkbox label. An alert should appear. </p>
 
 <div style="margin-left: 3em; font-size: 2em;">
-(~INPUTFORM|pgCBSubmitOne,.ckb,.keepckb~)
-<p>(~INPUTCHECKBOX|cbCBCheckOne| id="cb1" ~) <label id="labelCb1" for="cb1">Check box (label)</label> </p>
+(~INPUTFORM|pgCBSubmitOne~)
+<p>(~INPUTCHECKBOX|cbCBCheckOne|Yes,No| id="cb1" ~) <label id="labelCb1" for="cb1">Check box (label)</label> </p>
 (~INPUTFORM|CLOSE~)
 </div>
 
