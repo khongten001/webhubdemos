@@ -1,5 +1,5 @@
 :: run-lite-demos.bat
-:: Copyright (c) 2011-2014 HREF Tools Corp.
+:: Copyright (c) 2011-2015 HREF Tools Corp.
 :: www.href.com
 
 @echo off
@@ -8,8 +8,8 @@ setlocal
 call %ZaphodsMap%zmset.bat flagdemoslite UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demoslite"
 echo flagdemoslite is %flagdemoslite%
 
-set fastseconds=6
-set slowseconds=12
+set fastseconds=9
+set slowseconds=20
 
 :: change to the location of this bat file
 cd /d %~dp0
