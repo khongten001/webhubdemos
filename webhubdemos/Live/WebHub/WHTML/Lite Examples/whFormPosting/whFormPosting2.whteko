@@ -89,10 +89,8 @@ on <b>liParam</b>:</p>
 		<table>
 		<tr>
 			<td style="text-align:center">
-(~IF|bUseSelect2|(~InputSelect|liParam2,mcList,,Yes~)~)
-(~IFNOT|bUseSelect2|<ul>(~InputSelectCheckBox|liParam2,mcList,<li>,</li>~)</ul>~)
-(~InputCheckBox|bUseSelect2~) select as multi-select..<br />
-(~InputSubmit|,Submit~)
+				(~InputSelect|liParam2,mcList,,Yes~)
+				<input type="submit" />
 			</td>
 		</tr>
 		</table>

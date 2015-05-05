@@ -203,14 +203,6 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 </td></tr>
 
 <tr>
-	<td class="prompt">
-<!--- The surfer can check as many boxes as he or she likes.
-      The resulting data will be saved as "Yes" or "No" StringVars. -->
-	Coloring:
-	</td>
-</tr>
-<tr><td>(~INPUTSELECTCHECKBOX|bColor,mcColorList|class="cbox"~)</td></tr>
-<tr>
 	<td class="prompt">Comments:
 	</td>
 </tr>
