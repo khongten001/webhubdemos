@@ -5,7 +5,7 @@ interface
 uses
   SysUtils, Classes,
   updateOK, tpAction, 
-  webSOAPRegistry, webLink, webTypes;
+  webSOAPRegistry, webLink, webLink_intf, webTypes;
 
 type
   // sample code 1 - execute method is not published
