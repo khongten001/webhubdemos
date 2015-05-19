@@ -70,6 +70,10 @@ inherited fmCodeGenerator: TfmCodeGenerator
         TabOrder = 0
         object TabSheet1: TTabSheet
           Caption = 'Once'
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label1: TLabel
             Left = 16
             Top = 56
@@ -97,6 +101,10 @@ inherited fmCodeGenerator: TfmCodeGenerator
         object tsCodeGenBasics: TTabSheet
           Caption = 'Basics'
           ImageIndex = 1
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label2: TLabel
             Left = 16
             Top = 56
@@ -130,6 +138,10 @@ inherited fmCodeGenerator: TfmCodeGenerator
         object TabSheet3: TTabSheet
           Caption = 'CSV I/O'
           ImageIndex = 2
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object Label4: TLabel
             Left = 16
             Top = 56
@@ -166,6 +178,10 @@ inherited fmCodeGenerator: TfmCodeGenerator
         object TabSheet4: TTabSheet
           Caption = 'By Pattern'
           ImageIndex = 3
+          ExplicitLeft = 0
+          ExplicitTop = 0
+          ExplicitWidth = 0
+          ExplicitHeight = 0
           object tpToolBar1: TtpToolBar
             Left = 0
             Top = 0
