@@ -1,16 +1,16 @@
 unit whSchedule_fmCodeGen;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ * Copyright (c) 2012-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
 { * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
 { *                                                                          * }
 { ---------------------------------------------------------------------------- }
 
 { ---------------------------------------------------------------------------- }
-{ * Requires WebHub v2.176+                                                  * }
+{ * Requires WebHub v3.227+                                                  * }
 { ---------------------------------------------------------------------------- }
 
 interface
@@ -19,9 +19,8 @@ interface
 {$DEFINE BootStrapDone}
 
 uses
-  Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, SysUtils, Classes, 
-  Buttons, ComCtrls,
-  {$I xe_actnlist.inc}
+  Forms, Controls, ExtCtrls, StdCtrls, SysUtils, Classes, Buttons,
+  System.Actions, Vcl.ActnList, Vcl.ComCtrls,
   IB_Components,
   toolbar, utPanFrm, restorer, tpCompPanel,
   whutil_RegExParsing, whdemo_IbObjCodeGenGUI;
@@ -230,7 +229,9 @@ begin
   mOutput.Lines.Clear;
   Init;
 
-  DMIBObjCodeGen.GenPASandSQL('CodeRageSchedule', False,  // Firebird not IB
+  DMIBObjCodeGen.GenPASandSQL('CodeRageSchedule',
+    DMIBObjCodeGen.DBVersion,
+    False,  // Firebird not IB
     DMIBObjCodeGen.ActiveConn, DMIBObjCodeGen.ActiveSess,
     DMIBObjCodeGen.ActiveTr, cPASOutputRoot, cSQLOutputRoot, 
     MemoAddUserMessage,     {anonymous method to give user some feedback}
