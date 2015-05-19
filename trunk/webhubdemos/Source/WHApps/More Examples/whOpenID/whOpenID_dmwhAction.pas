@@ -48,9 +48,11 @@ type
     FlagInitDone: Boolean;
     FAPIKey: string;
     FEngage_Pro: Boolean;
+    procedure SETAPIKey(const InValue: string);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
+    property APIKey: string read FAPIKey write SetAPIKey;
   end;
 
 var
@@ -64,8 +66,8 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   {$IFDEF Delphi20UP}JSON, {$ELSE} DBXJSON, {$ENDIF}
   IdSSLOpenSSLHeaders,
-  ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString,
-  webApp, htWebApp, whdemo_ViewSource;
+  ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString, ucHTTPS,
+  webApp, htWebApp;
 
 { TDMWHOpenIDviaJanrain }
 
@@ -119,23 +121,27 @@ begin
 // PATH_TO_API_KEY_FILE should contain a path to a plain text file containing only
 // your API key. This file should exist in a path that can be read by your web server,
 // but not publicly accessible to the Internet.
-      FAPIKey := Trim(StringLoadFromFile(getHtDemoCodeRoot +
-        'More Examples\whOpenID\janrain_api_key.txt'));
+// Set this in the project manager.
+      FlagInitDone := True;
 
-      //test the length of the API ID; it should be 40 characters
-      if Length(FAPIKey) = 40 then
-      begin
-        RefreshWebActions(Self);
-        FlagInitDone := True;
-      end
-      else
-        ErrorText := 'Invalid length of janrain_api_key.txt';
     end;
   end;
   Result := FlagInitDone;
 end;
 
-function HTTPSGet(const URL: string): string;
+procedure TDMWHOpenIDviaJanrain.SETAPIKey(const InValue: string);
+begin
+  //test the length of the API ID; it should be 40 characters
+  if Length(InValue) = 40 then
+  begin
+    FAPIKey := InValue;
+    RefreshWebActions(Self);
+  end
+  else
+    LogSendError('Invalid length of janrain_api_key.txt');
+end;
+
+(*function HTTPSGet(const URL: string): string;
 const cFn = 'HTTPSGet';
 var
   IdHTTP: TIdHTTP;
@@ -173,10 +179,11 @@ begin
     FreeAndNil(IdHTTP);
   end;
   {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
-end;
+end; *)
 
 
 procedure TDMWHOpenIDviaJanrain.waJanrainExecute(Sender: TObject);
+const cFn = 'waJanrainExecute';
 var
   ErrorText: string;
   token: string;
@@ -188,9 +195,11 @@ var
   i: Integer;
   S1: string;
   identifier, email, preferredUsername, providerName: string;
+  givenName, familyName, url: string;
   LeftKey: string;
   cn: string;
 begin
+  CSEnterMethod(Self, cFn);
   json := nil;
   jsonProfile := nil;
   cn := TwhWebaction(Sender).Name;
@@ -222,7 +231,10 @@ begin
           URLEncode('json', False),
           URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
         //CSSend('SRequest', SRequest);
-        SResponse := HTTPSGet(SRequest);
+        SResponse := HTTPSGet(SRequest, ErrorText);
+        LogToCodeSiteKeepCRLF('SResponse', SResponse);
+        if ErrorText <> '' then
+          LogSendError(ErrorText);
       finally
         Free;
       end;
@@ -234,6 +246,7 @@ begin
         if (json.Parse(BytesOf(SResponse), 0) >= 0) then
         begin
 
+          CSSend('json.Count', S(json.Count));
           if ({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF} >= 2) then
           begin
             pair := {$IFDEF Delphi20UP}json.Pairs[0]{$ELSE}json.Get(0){$ENDIF};
@@ -248,9 +261,9 @@ begin
               CSSend('jsonProfile.Size', S({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF}));
               for I := 0 to Pred({$IFDEF Delphi20UP}jsonProfile.Count{$ELSE}jsonProfile.Size{$ENDIF}) do
               begin
-                pair := {$IFDEF Delphi20UP}jsonProfile.Pairs[1]{$ELSE}jsonProfile.Get(1){$ENDIF};
+                pair := {$IFDEF Delphi20UP}jsonProfile.Pairs[i]{$ELSE}jsonProfile.Get(i){$ENDIF};
                 LeftKey := NoQuotes(pair.JsonString.ToString);
-                //CSSend('i ' + S(i), LeftKey);
+                CSSend('i ' + S(i), LeftKey);
                 //CSSend('i ' + S(i) + ' pair.JsonValue',  pair.JsonValue.ToString);
                 if LeftKey = 'identifier' then
                 begin
@@ -258,19 +271,32 @@ begin
                   CSSend('identifier', identifier);
                 end
                 else
-                if LeftKey = 'email' then
+                if (LeftKey = 'email') or (LeftKey = 'verifiedEmail') then
                   email := NoQuotes(pair.JsonValue.ToString)
                 else
                 if LeftKey = 'preferredUsername' then
                   preferredUsername := NoQuotes(pair.JsonValue.ToString)
                 else
-                if LeftKey = 'providerName' then
+                if LeftKey = 'givenName' then
+                  givenName := NoQuotes(pair.JsonValue.ToString)
+                else
+                if LeftKey = 'familyName' then
+                  familyName := NoQuotes(pair.JsonValue.ToString)
+                else
+                if LeftKey = 'url' then
+                  url := NoQuotes(pair.JsonValue.ToString)
+                else
+                if (LeftKey = 'providerName') or (LeftKey = 'providerSpecifier')
+                then
                   providerName := NoQuotes(pair.JsonValue.ToString);
               end;
               pWebApp.StringVar['_identifier'] := identifier;
               pWebApp.StringVar['_email'] := Lowercase(email); // avoid dupes
               pWebApp.StringVar['_preferredUsername'] := preferredUsername;
               pWebApp.StringVar['_providerName'] := providerName;
+              pWebApp.StringVar['_janrain_familyName'] := familyName;
+              pWebApp.StringVar['_janrain_givenName'] := givenName;
+              pWebApp.StringVar['_janrain_url'] := url;
               pWebApp.Session.DeleteStringVarByName('token');
             end
             else
@@ -322,6 +348,7 @@ begin
     pWebApp.SendMacro('HEADER|Set-Cookie: welcome_info_name=; Domain=' +
       pWebApp.Request.Host + '; Path=/;');
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 end.

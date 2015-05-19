@@ -3,8 +3,8 @@ unit whOpenID_dmProjMgr;
 interface
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, whdemo_DMProjMgr, tpProj;
+  SysUtils, Classes,
+  whdemo_DMProjMgr, tpProj;
 
 type
   TDMProjForWHOpenID = class(TDMForWHDemo)
@@ -26,7 +26,9 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whOpenID_dmwhAction;
+  MultiTypeApp, ucLogFil,
+  whdemo_ViewSource,
+  whOpenID_dmwhAction;
 
 procedure TDMProjForWHOpenID.ProjMgrDataModulesCreate3(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
@@ -40,6 +42,12 @@ procedure TDMProjForWHOpenID.ProjMgrDataModulesInit(Sender: TtpProject;
 begin
   inherited;
   Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
+  if Continue then
+  begin
+    DMWHOpenIDviaJanrain.APIKey :=
+      Trim(StringLoadFromFile(getHtDemoCodeRoot +
+      'More Examples\whOpenID\janrain_api_key.txt'));
+  end;
 end;
 
 end.
