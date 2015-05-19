@@ -33,8 +33,7 @@ type
     cgpFieldListForImport, cgpSelectSQLDroplet, cgpUpdateSQLDroplet,
     cgpInstantFormReadonly, cgpInstantFormEdit, cgpInstantFormEditLabelAbove,
     cgpInstantFormInsert,
-    cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan,
-    cgpWhTableDefs);
+    cgpTableHeaderCells, cgpTableRowCells, cgpTableDropletForScan);
 
 type
   TDMIBObjCodeGen = class(TDataModule)
@@ -44,6 +43,7 @@ type
     { Private declarations }
     FlagInitDone: Boolean;
     FProjectAbbreviationNoSpaces: string;
+    FDBVersion: string;
     FCreatedOnAtFieldname: string;
     FUpdatedByFieldname: string;
     FUpdatedOnAtFieldname: string;
@@ -126,7 +126,8 @@ type
       const CodeGenPattern: TCodeGenPattern;
       AdjustTableListProc: TAdjustTableListProc = nil): string;
 
-    procedure GenPASandSQL(inProjectAbbrev: string; const IsInterbase: Boolean;
+    procedure GenPASandSQL(inProjectAbbrev, DBVersion: string;
+      const IsInterbase: Boolean;
       conn: TIB_Connection; sess: TIB_Session; tr: TIB_Transaction;
       const PASOutputFolder, SQLOutputFolder: string;
       GUIWriteInfoProc: TGUIWriteInfoProc;
@@ -148,6 +149,7 @@ type
     property Counter: Integer read FCounter write FCounter;
     property DatabaseIterator: TwhDatabaseIterator read FDatabaseIterator
       write FDatabaseIterator;
+    property DBVersion: string read FDBVersion write FDBVersion;
     property FieldsPerRowInInstantForm: Integer read FFieldsPerRowInInstantForm
       write FFieldsPerRowInInstantForm;
     property OutputRoot_PAS: string read FPasOutputRoot write FPasOutputRoot;
@@ -180,7 +182,7 @@ uses
 
 { TDMIBObjCodeGen }
 
-procedure TDMIBObjCodeGen.GenPASandSQL(inProjectAbbrev: string;
+procedure TDMIBObjCodeGen.GenPASandSQL(inProjectAbbrev, DBVersion: string;
   const IsInterbase: Boolean; conn: TIB_Connection; sess: TIB_Session;
   tr: TIB_Transaction; const PASOutputFolder, SQLOutputFolder: string;
   GUIWriteInfoProc: TGUIWriteInfoProc;
@@ -215,7 +217,7 @@ begin
         AdjustTableListProc(y);
         Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
           InProjectAbbrev + '_Triggers.sql';
-        IbAndFb_GenSQL_Triggers(y, conn, Filespec,
+        IbAndFb_GenSQL_Triggers(y, FDBVersion, conn, Filespec,
           GeneratorNameFn, CreatedOnAtFieldname,
           UpdatedOnAtFieldname, UpdateCounterFieldName);
         GUIWriteInfoProc(Filespec);
@@ -253,13 +255,15 @@ begin
         else
           Filespec := Filespec + 'Firebird';
         Filespec := Filespec + '_RecordStruct_' + InProjectAbbrev + '.pas';
-        Firebird_GenPAS_RecordStruct(y, conn, InProjectAbbrev, Filespec);
+        Firebird_GenPAS_RecordStruct(y, conn, InProjectAbbrev, DBVersion,
+          Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
         Filespec := StringReplace(Filespec, '_RecordStruct_', '_ObjectStruct_',
           []);
-        Firebird_GenPAS_ObjectStruct(y, conn, InProjectAbbrev, Filespec);
+        Firebird_GenPAS_ObjectStruct(y, conn, InProjectAbbrev, DBVersion,
+          Filespec);
         GUIWriteInfoProc(Filespec);
         GUIWriteInfoProc('');
 
@@ -277,7 +281,8 @@ begin
 
         Filespec := IncludeTrailingPathDelimiter(SQLOutputFolder) +
           'Create_Generators_' + InProjectAbbrev + '.sql';
-        IbAndFb_GenSQL_CreateGenerators(y, conn, Filespec, GeneratorNameFn);
+        IbAndFb_GenSQL_CreateGenerators(y, FDBVersion, conn, Filespec,
+          GeneratorNameFn);
       end;
     finally
       FreeAndNil(y);
@@ -350,8 +355,7 @@ begin
           FActiveConn, y, cgpTableRowCells);
         11: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
           FActiveConn, y, cgpTableDropletForScan, AdjustTableListProc);
-        12: CodeContent := DMIBObjCodeGen.CodeGenForPattern(
-          FActiveConn, y, cgpWhTableDefs, AdjustTableListProc);
+
         else
           GUIWriteInfoProc('Unsupported selection in ' + AListBox.ClassName);
         end
@@ -393,16 +397,6 @@ begin
   case CodeGenPattern of
     cgpMacroLabelsForFields,
     cgpMacroPKsForTables: CodeContent.AppendLine('<whmacros>');
-    cgpWhTableDefs:
-      begin
-        if (FPasOutputRoot = '') then
-          raise Exception.Create('Pascal Output Root required.');
-        Firebird_GenPAS_whTableDef(TableList, conn,
-          FProjectAbbreviationNoSpaces, FPasOutputRoot);  // and that's it!
-        CodeContent.AppendFormat(
-          '%d WebHub TableDef units have been written to ', [TableList.Count]);
-        CodeContent.AppendLine(FPasOutputRoot);
-      end;
   end;
 
   for i := 0 to Pred(TableList.Count) do
@@ -583,7 +577,6 @@ begin
             CodeContent.Append(STemp);
           end;
         end;
-        cgpWhTableDefs: ; // no action required
     end;
   end;
 
@@ -606,6 +599,7 @@ begin
   FUpdatedByFieldname := 'UpdatedBy';
   FUpdatedOnAtFieldname := 'UpdatedOnAt';
   FUpdateCounterFieldname := 'UpdateCounter';
+  FDBVersion := '';
 end;
 
 procedure TDMIBObjCodeGen.DataModuleDestroy(Sender: TObject);
