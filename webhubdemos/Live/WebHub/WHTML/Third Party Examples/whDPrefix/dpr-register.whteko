@@ -18,7 +18,7 @@ googlepriority=0.8
 	(~drSharedHead~)
 	<meta name="robots" content="nofollow" />
 	<link rel="canonical" href="http://delphiprefix.href.com(~DynURL.ToPageID~)" />
-	(~PARAMS|drJanrainJavascript|pgregopenid~)
+	(~PARAMS|drJanrainJavascript|pgregopenid,webhubdemos~)
 </head>
 <body>
 (~drDPRBannerPlusTopNav~)
