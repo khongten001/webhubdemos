@@ -382,7 +382,7 @@ begin
 
   s1 := pWebApp.Command;
   b2 := False;
-  CSSend('command',S1);
+  LogSendInfo('command',S1);
 
   while (S1 <> '') do
   begin
@@ -390,7 +390,7 @@ begin
     if S1 <> '' then
     begin
       b2 := SplitString(S1, '=', key, value);
-      if key = 'openid.identity' then
+      if (key = 'openid.identity') or (key=',openid.identity') then
       begin
         openidInfo.identity := value;
       end
@@ -435,7 +435,9 @@ begin
   LogSendInfo('identity', openidInfo.identity, cFn);
   LogSendInfo('return_to', openidInfo.return_to, cFn);
 
-  pWebApp.Response.SendBounceTo(openidInfo.return_to);
+  if openidInfo.return_to <> '' then
+    pWebApp.Response.SendBounceTo(openidInfo.return_to +
+      'code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj');
 
   CSExitMethod(Self, cFn);
 end;
