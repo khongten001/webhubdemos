@@ -5,6 +5,7 @@
 <whdroplet name="drJanrainJavascript">
 <whdoc for="drJanrainJavascript">
 DYN1 = pageid for the janrain.settings.tokenUrl
+DYN2 = janrain site identifier e.g. 'webhubdemos'
 </whdoc>
 <script type="text/javascript">
 (function() {
@@ -25,9 +26,9 @@ DYN1 = pageid for the janrain.settings.tokenUrl
     e.id = 'janrainAuthWidget';
 
     if (document.location.protocol === 'https:') {
-      e.src = 'https://rpxnow.com/js/lib/webhubdemos/engage.js';
+      e.src = 'https://rpxnow.com/js/lib/(~DYN2~)/engage.js';
     } else {
-      e.src = 'http://widget-cdn.rpxnow.com/js/lib/webhubdemos/engage.js';
+      e.src = 'http://widget-cdn.rpxnow.com/js/lib/(~DYN2~)/engage.js';
     }
 
     var s = document.getElementsByTagName('script')[0];
