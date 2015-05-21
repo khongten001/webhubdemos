@@ -437,7 +437,7 @@ begin
 
   if openidInfo.return_to <> '' then
     pWebApp.Response.SendBounceTo(openidInfo.return_to +
-      'code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj');
+      '&code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj');
 
   CSExitMethod(Self, cFn);
 end;
