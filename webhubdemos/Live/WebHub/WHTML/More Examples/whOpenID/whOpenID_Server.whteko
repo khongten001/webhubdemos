@@ -4,11 +4,13 @@
 
 <whdoc for="ruby sample">
 http://bogomips.org/local-openid.git/tree/lib/local_openid.rb
+also
+https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/controllers/server_controller.rb
 </whdoc>
 
 <whpage pageid="provider_xrds" desc="-html">
 <html><head>
-  <meta http-equiv="X-XRDS-Location" content="https://(~Request.Host~)(~ToAppID~):provider_xrds_xml" />
+  <meta http-equiv="X-XRDS-Location" content="https://(~Request.Host~)(~DynURL.ToAppID~):provider_xrds_xml" />
   <title>OpenID server endpoint</title>
   </head><body>OpenID server endpoint</body></html>
 </whpage>
@@ -33,11 +35,11 @@ http://bogomips.org/local-openid.git/tree/lib/local_openid.rb
 <head>
 (~drHead~)
 (~IfNotBlankSV|id|  
-  <link rel="openid.server" href="https://(~Request.Host~)(~ToAppID~):provider" />
-  <link rel="openid2.provider" href="https://(~Request.Host~)(~ToAppID~):provider" />
-  <link rel="openid2.local_id" href="https://(~Request.Host~)(~ToAppID~):identity:0:" />
-  <link rel="openid.delegate"  href="https://(~Request.Host~)(~ToAppID~):identity:0:" />
-  <meta http-equiv="X-XRDS-Location" content="(~ToAppID~):xrds" />
+  <link rel="openid.server" href="https://(~Request.Host~)(~DynURL.ToAppID~):provider" />
+  <link rel="openid2.provider" href="https://(~Request.Host~)(~DynURL.ToAppID~):provider" />
+  <link rel="openid2.local_id" href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:" />
+  <link rel="openid.delegate"  href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:" />
+  <meta http-equiv="X-XRDS-Location" content="(~DynURL.ToAppID~):xrds" />
 ~)
 </head>
 <body>
@@ -71,7 +73,7 @@ https://code.google.com/p/openid-server/source/checkout
       OpenID::OPENID_2_0_TYPE,
                 OpenID::OPENID_1_0_TYPE,
                 OpenID::SREG_URI
-      <URI>https://(~Request.Host~)(~ToAppID~):provider</URI>
+      <URI>https://(~Request.Host~)(~DynURL.ToAppID~):provider</URI>
     </Service>
   </XRD>
   </xrds:XRDS>(~CLOSE|~)
@@ -131,8 +133,8 @@ https://code.google.com/p/openid-server/source/checkout
       <Type>http://specs.openid.net/extensions/ui/1.0/mode/popup</Type>
       <Type>http://openid.net/extensions/sreg/1.1</Type>
       <Type>http://openid.net/srv/ax/1.0</Type>
-      <URI>(~ToAppID~):provider::op_endpoint</URI>
-      <LocalID>(~ToAppID~):::<!---$main::openid_url_prefix$username$main::openid_url_suffix--></LocalID>
+      <URI>(~DynURL.ToAppID~):provider::op_endpoint</URI>
+      <LocalID>(~DynURL.ToAppID~):::<!---$main::openid_url_prefix$username$main::openid_url_suffix--></LocalID>
     </Service>
   </XRD>
 </xrds:XRDS>
@@ -150,10 +152,10 @@ https://code.google.com/p/openid-server/source/checkout
       OpenID::OPENID_2_0_TYPE,
                 OpenID::OPENID_1_0_TYPE,
                 OpenID::SREG_URI
-      <URI>https://(~Request.Host~)(~ToAppID~):provider</URI>
+      <URI>https://(~Request.Host~)(~DynURL.ToAppID~):provider</URI>
 <!--- 
-      <LocalID>https://(~Request.Host~)(~ToAppID~):::</LocalID>
-      <openid:Delegate>https://(~Request.Host~)(~ToAppID~):::</openid:Delegate>
+      <LocalID>https://(~Request.Host~)(~DynURL.ToAppID~):::</LocalID>
+      <openid:Delegate>https://(~Request.Host~)(~DynURL.ToAppID~):::</openid:Delegate>
 -->
     </Service>
   </XRD>
