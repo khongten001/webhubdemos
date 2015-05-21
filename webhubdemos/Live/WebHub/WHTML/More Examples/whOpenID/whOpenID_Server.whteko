@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code" notes="not yet working!!">
+
+<whdoc for="ruby sample">
+http://bogomips.org/local-openid.git/tree/lib/local_openid.rb
+</whdoc>
+
+<whpage pageid="provider_xrds" desc="-html">
+<html><head>
+  <meta http-equiv="X-XRDS-Location" content="https://(~Request.Host~)(~ToAppID~):provider_xrds_xml" />
+  <title>OpenID server endpoint</title>
+  </head><body>OpenID server endpoint</body></html>
+</whpage>
+
+<whsketch for="IDENTITY_XRDS_HTML">
+<html><head>
+  <link rel="openid.server" href="%sprovider" />
+  <link rel="openid2.provider" href="%sprovider" />
+  <link rel="openid2.local_id" href="%s" />
+  <link rel="openid.delegate"  href="%s" />
+  <meta http-equiv="X-XRDS-Location" content="%sxrds" />
+  <title>OpenID identity</title>
+  </head><body>OpenID identity</body></html>
+</whsketch>
+
+<whpage pageid="identity_xrds" desc="-openid identity page with HTML content">
+<whprep>
+(~NOMATCH|(~Command~)=|(~SET|id=(~Command~)~)||(~SET|id=Unknown~)~)
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+(~IfNotBlankSV|id|  
+  <link rel="openid.server" href="https://(~Request.Host~)(~ToAppID~):provider" />
+  <link rel="openid2.provider" href="https://(~Request.Host~)(~ToAppID~):provider" />
+  <link rel="openid2.local_id" href="https://(~Request.Host~)(~ToAppID~):identity:0:" />
+  <link rel="openid.delegate"  href="https://(~Request.Host~)(~ToAppID~):identity:0:" />
+  <meta http-equiv="X-XRDS-Location" content="(~ToAppID~):xrds" />
+~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+
+<h3>OpenID Identity Page</h3>
+<p>This is the identity page for the user <strong>(~id~)</strong>.
+</p>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdoc for="open id server">
+http://wiki.openid.net/w/page/12995171/Introduction
+http://openid.net/specs/openid-connect-core-1_0.html#Authenticates
+https://code.google.com/p/openid-server/source/checkout
+</whdoc>
+
+<whpage pageid="provider_xrds_xml" desc="-xml response">
+(~FLUSH|~)(~SETPROLOGUETYPE|xml~)
+<?xml version="1.0" encoding="UTF-8"?>
+  <xrds:XRDS
+    xmlns:xrds="xri://$xrds"
+    xmlns:openid="http://openid.net/xmlns/1.0"
+    xmlns="xri://$xrd*($v*2.0)">
+  <XRD version="2.0">
+    <Service priority="0">
+      OpenID::OPENID_2_0_TYPE,
+                OpenID::OPENID_1_0_TYPE,
+                OpenID::SREG_URI
+      <URI>https://(~Request.Host~)(~ToAppID~):provider</URI>
+    </Service>
+  </XRD>
+  </xrds:XRDS>(~CLOSE|~)
+</whpage>
+
+<whpage pageid="provider" desc="-implement openid server aka provider">
+<whprep>
+(~waOpenIDServer.Execute|~)<!--- this bounces if sufficient info found in URL -->
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~Pageid~) !</h1>
+<p>If you can see this, the server did not see a suitable OpenID URL coming in.</p>
+<p>https://www.href.com/techhelp</p>
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdroplet name="drSampleSuccessfulTokenResponse">
+{
+   "access_token": "SlAV32hkKG",
+   "token_type": "Bearer",
+   "refresh_token": "8xLOxBtZp8",
+   "expires_in": 3600,
+   "id_token": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjFlOWdkazcifQ.ewogImlzc
+     yI6ICJodHRwOi8vc2VydmVyLmV4YW1wbGUuY29tIiwKICJzdWIiOiAiMjQ4Mjg5
+     NzYxMDAxIiwKICJhdWQiOiAiczZCaGRSa3F0MyIsCiAibm9uY2UiOiAibi0wUzZ
+     fV3pBMk1qIiwKICJleHAiOiAxMzExMjgxOTcwLAogImlhdCI6IDEzMTEyODA5Nz
+     AKfQ.ggW8hZ1EuVLuxNuuIJKX_V8a_OMXzR0EHR9R6jgdqrOOF4daGU96Sr_P6q
+     Jp6IcmD3HP99Obi1PRs-cwh3LO-p146waJ8IhehcwL7F09JdijmBqkvPeB2T9CJ
+     NqeGpe-gccMg4vfKjkM8FcGvnzZUN4_KSP0aAp1tOJ1zZwgjxqGByKHiOtX7Tpd
+     QyHE5lcMiKPXfEIQILVq0pc_E2DzL7emopWoaoZTF_m0_N0YzFC6g6EJbOEoRoS
+     K5hoDalrcvRYLSrQAZZKflyuVCyixEoV9GfNQC3_osjzw2PAithfubEEBLuVVk4
+     XUVrWOLrLl0nx7RkKU8NXNHq-rvKMzqg"
+  }
+</whdroplet>
+
+<whpage pageid="xrds" mode="design" desc="-openid">
+<!--- http://sourceforge.net/p/openidserver/code/ci/master/tree/htdocs/xrds.cgi -->
+(~SETPROLOGUETYPE|application/xrds+xml; charset=UTF-8~)
+<?xml version="1.0" encoding="UTF-8"?>
+<xrds:XRDS 
+    xmlns:xrds="xri://\$xrds"
+    xmlns="xri://\$xrd*(\$v*2.0)"
+    xmlns:openid="http://openid.net/xmlns/1.0">
+  <XRD>
+    <!-- OpenID 2.0 login service -->
+    <Service priority="10">
+      <Type>http://specs.openid.net/auth/2.0/signon</Type>
+      <Type>http://specs.openid.net/extensions/ui/1.0/mode/popup</Type>
+      <Type>http://openid.net/extensions/sreg/1.1</Type>
+      <Type>http://openid.net/srv/ax/1.0</Type>
+      <URI>(~ToAppID~):provider::op_endpoint</URI>
+      <LocalID>(~ToAppID~):::<!---$main::openid_url_prefix$username$main::openid_url_suffix--></LocalID>
+    </Service>
+  </XRD>
+</xrds:XRDS>
+</whpage>
+
+<whpage pageid="identity_xrds_xml" desc="-identity xml">
+(~FLUSH|~)(~SETPROLOGUETYPE|application/xrds+xml; charset=UTF-8~)
+<?xml version="1.0" encoding="UTF-8"?>
+  <xrds:XRDS
+    xmlns:xrds="xri://$xrds"
+    xmlns:openid="http://openid.net/xmlns/1.0"
+    xmlns="xri://$xrd*($v*2.0)">
+  <XRD version="2.0">
+    <Service priority="0">
+      OpenID::OPENID_2_0_TYPE,
+                OpenID::OPENID_1_0_TYPE,
+                OpenID::SREG_URI
+      <URI>https://(~Request.Host~)(~ToAppID~):provider</URI>
+<!--- 
+      <LocalID>https://(~Request.Host~)(~ToAppID~):::</LocalID>
+      <openid:Delegate>https://(~Request.Host~)(~ToAppID~):::</openid:Delegate>
+-->
+    </Service>
+  </XRD>
+  </xrds:XRDS>(~CLOSE|~)
+</whpage>
+
+<whsketch>
+papereq.preferred_auth_policies,papereq.max_auth_age
+
+paperesp.add_policy_uri(OpenID::PAPE::AUTH_MULTI_FACTOR_PHYSICAL)
+paperesp.auth_time = Time.now.utc.strftime('%Y-%m-%dT%H:%M:%SZ')
+paperesp.nist_auth_level = 4
+</whsketch>
+
+<whsketch>
+sreg_data = {
+      'nickname' => session[:username],
+      'fullname' => 'Mayor McCheese',
+      'email' => 'mayor@example.com'
+    }
+</whsketch>
+
+</whteko>
