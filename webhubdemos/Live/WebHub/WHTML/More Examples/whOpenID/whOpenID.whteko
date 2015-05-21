@@ -21,7 +21,7 @@ The details in the javascript below are for use with the webhubdemos account onl
 <html>
 <head>
 (~drHead~)
-(~PARAMS|drJanrainJavascript|pgProcess~)
+(~PARAMS|drJanrainJavascript|pgProcess,webhubdemos~)
 </head>
 <body>
 (~drPageBegin~)
@@ -58,6 +58,51 @@ JSON parsing you care to do).</p>
 (~drPageBegin~)
 <div id="whdemopagecontent">
 <h1>Hello!</h1>
+<h2>StringVars</h2>
+(~stringvars~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whpage pageid="testopenid" desc="-test openid url">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+<link rel="openid.server" href="/http://(~Request.Host~)/htoi:openidserver">
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Hello!</h1>
+<h2>StringVars</h2>
+(~stringvars~)
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+<whdoc for="open id server">
+http://wiki.openid.net/w/page/12995171/Introduction
+</whdoc>
+
+<whpage pageid="openidserver" desc="-implement openid server">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>(~Pageid~) !</h1>
 <h2>StringVars</h2>
 (~stringvars~)
 
