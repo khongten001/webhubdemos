@@ -40,9 +40,11 @@ uses
 type
   TDMWHOpenIDviaJanrain = class(TDataModule)
     waJanrain: TwhWebAction;
+    waOpenIDServer: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waJanrainExecute(Sender: TObject);
+    procedure waOpenIDServerExecute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -348,6 +350,93 @@ begin
     pWebApp.SendMacro('HEADER|Set-Cookie: welcome_info_name=; Domain=' +
       pWebApp.Request.Host + '; Path=/;');
   end;
+  CSExitMethod(Self, cFn);
+end;
+
+type
+  TOpenIDRec = record
+    identity: string;
+    return_to: string;
+    rpnonce: string;
+    rpsig: string;
+    trust_root: string;
+    mode: string;
+    ns_ext1: string;
+    ext1_preferred_auth_policies: string; // Janrain has this
+    ext1_max_auth_age: integer;           // Janrain has this
+    ns_ext2: string;
+    ext2_mode: string;                    // e.g. popup; Janrain has this
+    ns_sreg: string;
+    sreg_optional: string; // comma separated list
+  end;
+
+procedure TDMWHOpenIDviaJanrain.waOpenIDServerExecute(Sender: TObject);
+const cFn = 'waOpenIDServerExecute';
+var
+  openidInfo: TOpenIDRec;
+  s1, s2: string;
+  key, value: string;
+  b1, b2: Boolean;
+begin
+  CSEnterMethod(Self, cFn);
+
+  s1 := pWebApp.Command;
+  b2 := False;
+  CSSend('command',S1);
+
+  while (S1 <> '') do
+  begin
+    b1 := SplitString(S1, '&', S1, S2);
+    if S1 <> '' then
+    begin
+      b2 := SplitString(S1, '=', key, value);
+      if key = 'openid.identity' then
+      begin
+        openidInfo.identity := value;
+      end
+      else
+      if key = 'openid.return_to' then
+      begin
+        openidInfo.return_to := value;
+      end
+      else
+      if key = 'openid.rpnonce' then
+      begin
+        openidInfo.rpnonce := value;
+      end
+      else
+      if key = 'openid.rpsig' then
+      begin
+        openidInfo.rpsig := value;
+      end
+      else
+      if key = 'openid.trust_root' then
+      begin
+        openidInfo.trust_root := value;
+      end
+      else
+      if key = 'openid.mode' then
+      begin
+        openidInfo.mode := value;
+      end
+      else
+      if key = 'openid.sreg.optional' then
+      begin
+        openidInfo.sreg_optional := value;
+      end;
+    end;
+    if b1 then
+      S1 := S2
+    else
+    if b2 then
+      S1 := '';
+  end;
+
+  LogSendInfo('identity', openidInfo.identity, cFn);
+  LogSendInfo('return_to', openidInfo.return_to, cFn);
+
+  pWebApp.Response.SendBounceTo(openidInfo.return_to);
+
   CSExitMethod(Self, cFn);
 end;
 

@@ -1,6 +1,6 @@
 program whOpenID;
 (*
-Copyright (c) 2013 HREF Tools Corp.
+Copyright (c) 2013-2015 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 9-Jan-2013, free of charge, to any person

@@ -73,7 +73,7 @@ JSON parsing you care to do).</p>
 <html>
 <head>
 (~drHead~)
-<link rel="openid.server" href="https://more.demos.href.com/htoi:openidserver">
+<link rel="openid.server" href="https://more.demos.href.com/htoi:openidserver:0:">
 </head>
 <body>
 (~drPageBegin~)
@@ -87,10 +87,12 @@ JSON parsing you care to do).</p>
 
 <whdoc for="open id server">
 http://wiki.openid.net/w/page/12995171/Introduction
+
 </whdoc>
 
 <whpage pageid="openidserver" desc="-implement openid server">
 <whprep>
+(~waOpenIDServer.Execute|~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
