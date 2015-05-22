@@ -8,6 +8,29 @@ also
 https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/controllers/server_controller.rb
 </whdoc>
 
+<whpage pageid="testopenid" desc="-test openid url">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+<link rel="openid2.provider" 
+  href="https://openid.stackexchange.com/openid/provider">
+<link rel="openid2.local_id" 
+  href="https://openid.stackexchange.com/user/a0cd3405-f76e-429e-b935">
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+<h1>Hello! This is my blog. ?</h1>
+
+</div>  <!--- whdemopagecontent -->
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
 <whpage pageid="provider_xrds" desc="-html">
 <html><head>
   <meta http-equiv="X-XRDS-Location" content="https://(~Request.Host~)(~DynURL.ToAppID~):provider_xrds_xml" />
@@ -29,6 +52,7 @@ https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/cont
 <whpage pageid="identity_xrds" desc="-openid identity page with HTML content">
 <whprep>
 (~NOMATCH|(~Command~)=|(~SET|id=(~Command~)~)||(~SET|id=Unknown~)~)
+(~HEADER|'X-XRDS-Location': https://(~Request.Host~)(~DynURL.ToAppID~):provider_xrds_xml~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
@@ -37,9 +61,9 @@ https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/cont
 (~IfNotBlankSV|id|  
   <link rel="openid.server" href="https://(~Request.Host~)(~DynURL.ToAppID~):provider" />
   <link rel="openid2.provider" href="https://(~Request.Host~)(~DynURL.ToAppID~):provider" />
-  <link rel="openid2.local_id" href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:" />
-  <link rel="openid.delegate"  href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:" />
-  <meta http-equiv="X-XRDS-Location" content="(~DynURL.ToAppID~):xrds" />
+  <link rel="openid2.local_id" href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:(~command~)" />
+  <link rel="openid.delegate"  href="https://(~Request.Host~)(~DynURL.ToAppID~):identity:0:(~command~)" />
+  <meta http-equiv="X-XRDS-Location" content="https://(~Request.Host~)(~DynURL.ToAppID~):provider_xrds_xml" />
 ~)
 </head>
 <body>
@@ -118,7 +142,7 @@ https://code.google.com/p/openid-server/source/checkout
   }
 </whdroplet>
 
-<whpage pageid="xrds" mode="design" desc="-openid">
+<whpage pageid="xrds" desc="-openid">
 <!--- http://sourceforge.net/p/openidserver/code/ci/master/tree/htdocs/xrds.cgi -->
 (~SETPROLOGUETYPE|application/xrds+xml; charset=UTF-8~)
 <?xml version="1.0" encoding="UTF-8"?>
@@ -133,8 +157,8 @@ https://code.google.com/p/openid-server/source/checkout
       <Type>http://specs.openid.net/extensions/ui/1.0/mode/popup</Type>
       <Type>http://openid.net/extensions/sreg/1.1</Type>
       <Type>http://openid.net/srv/ax/1.0</Type>
-      <URI>(~DynURL.ToAppID~):provider::op_endpoint</URI>
-      <LocalID>(~DynURL.ToAppID~):::<!---$main::openid_url_prefix$username$main::openid_url_suffix--></LocalID>
+      <URI>https://(~Request.Host~)(~DynURL.ToAppID~):provider::op_endpoint</URI>
+      <LocalID>https://(~Request.Host~)(~DynURL.ToAppID~):::<!---$main::openid_url_prefix$username$main::openid_url_suffix--></LocalID>
     </Service>
   </XRD>
 </xrds:XRDS>
