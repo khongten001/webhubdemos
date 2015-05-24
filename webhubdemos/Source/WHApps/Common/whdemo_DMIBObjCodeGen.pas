@@ -269,7 +269,8 @@ begin
 
         Filespec := StringReplace(Filespec, '_ObjectStruct_', '_Const_',
           []);
-        Firebird_GenPAS_FieldNameConstants(y, conn, InProjectAbbrev, Filespec,
+        Firebird_GenPAS_FieldNameConstants(y, conn, InProjectAbbrev, DBVersion,
+          Filespec,
           UpdateCounterFieldname, UpdatedOnAtFieldname, CreatedOnAtFieldname,
           UpdatedByFieldname);
         GUIWriteInfoProc(Filespec);
