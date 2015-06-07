@@ -1,0 +1,16 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whdroplet name="drWebHub_Javascript_whSessionInit">
+<script type="text/javascript">
+	whSession.urlActiveAuthority = '(~DynURL.RawToActiveAuthority~)';
+	whSession.urlPath = '/(~Request.RawVMR~)?';
+	whSession.urlDelimiter = '(~DynURL.W~)';
+	whSession.urlSession = '(~SessionID~)';
+	whSession.urlRand = '(~DynURL.Rand~)';
+	whSession.urlSessionRand = whSession.urlSession + '.' + whSession.urlRand;
+	whSession.urlMainAppID = '(~AppID~)';
+</script>
+</whdroplet>
+
+</whteko>
