@@ -66,18 +66,17 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <VerInfo_Release>1</VerInfo_Release>
         <VerInfo_MinorVer>4</VerInfo_MinorVer>
         <VerInfo_Build>2</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
         <DCC_UnitSearchPath>k:\webhub\ZaphodsMap;k:\webhub\tpack;K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <SanitizedProjectName>WHBridge2EditPad</SanitizedProjectName>
         <DCC_Define>PREVENTSVCMGR;FMACTIVE;INHOUSE;$(DCC_Define)</DCC_Define>
         <DCC_Namespace>System;FMX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=;FileVersion=1.4.0.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.2;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=;FileVersion=1.4.1.2;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.2;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_DcuOutput>..\..\..\TempBuild\dcu\$(Platform)\fmx</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\..\TempBuild\bin\$(Platform)\$(Config)</DCC_ExeOutput>
@@ -193,8 +192,8 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Release>1</VerInfo_Release>
-        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.1.10;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Build>10</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=WebHub Bridge to/from EditPad Pro;FileVersion=1.4.1.11;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.4.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Build>11</VerInfo_Build>
         <Debugger_RunParams>--verb=ExprHelp --word=ACTION</Debugger_RunParams>
     </PropertyGroup>
     <ItemGroup>
@@ -628,3 +627,11 @@
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7007
+Activate=0
+DeleteMapAfterCompile=0
+Encrypt Password=""
+EurekaLog Last Line -->
