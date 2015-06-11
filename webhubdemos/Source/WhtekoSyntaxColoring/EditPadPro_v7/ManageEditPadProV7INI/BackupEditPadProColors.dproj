@@ -13,21 +13,6 @@
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
     </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='OSX32' and '$(Base)'=='true') or '$(Base_OSX32)'!=''">
-        <Base_OSX32>true</Base_OSX32>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
-        <Base_Win32>true</Base_Win32>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
-        <Base_Win64>true</Base_Win64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Android' and '$(Base)'=='true') or '$(Base_Android)'!=''">
         <Base_Android>true</Base_Android>
         <CfgParent>Base</CfgParent>
@@ -40,6 +25,21 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='iOSSimulator' and '$(Base)'=='true') or '$(Base_iOSSimulator)'!=''">
         <Base_iOSSimulator>true</Base_iOSSimulator>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='OSX32' and '$(Base)'=='true') or '$(Base_OSX32)'!=''">
+        <Base_OSX32>true</Base_OSX32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Base)'=='true') or '$(Base_Win32)'!=''">
+        <Base_Win32>true</Base_Win32>
+        <CfgParent>Base</CfgParent>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Base)'=='true') or '$(Base_Win64)'!=''">
+        <Base_Win64>true</Base_Win64>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
@@ -75,19 +75,6 @@
         <DCC_S>false</DCC_S>
         <DCC_F>false</DCC_F>
         <DCC_K>false</DCC_K>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_OSX32)'!=''">
-        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;DBXOracleDriver;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;soaprtl;FMXTee;FireDACADSDriver;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;DataSnapServerMidas;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;WebHubDB;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;rbc40_m_pas_lib;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;ldiRegExLib;FireDACASADriver;WebHub;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;rbc40_s_pas_lib;rbc40_b_pas_lib;xmlrtl;DataSnapNativeClient;svnui;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;rbc40_k_pas_lib;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;ZaphodsMapLib;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;rbc40_e_pas_lib;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;WebHubNewAppIDWizard;NexusDB400pv200;rbc40_core_pas_lib;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
-        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
-    </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_Win64)'!=''">
-        <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;xmlrtl;DataSnapNativeClient;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;NexusDB400pv200;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Android)'!=''">
         <AUP_ACCESS_FINE_LOCATION>true</AUP_ACCESS_FINE_LOCATION>
@@ -158,6 +145,19 @@
         <iPhone_AppIcon180>$(BDS)\bin\Artwork\iOS\iPhone\FM_ApplicationIcon_180x180.png</iPhone_AppIcon180>
         <iPad_Launch2048x1536>$(BDS)\bin\Artwork\iOS\iPad\FM_LaunchImageLandscape_2048x1536.png</iPad_Launch2048x1536>
         <iPhone_Spotlight80>$(BDS)\bin\Artwork\iOS\iPhone\FM_SpotlightSearchIcon_80x80.png</iPhone_Spotlight80>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_OSX32)'!=''">
+        <DCC_UsePackage>FireDACSqliteDriver;FireDACDSDriver;DBXSqliteDriver;FireDACPgDriver;fmx;IndySystem;tethering;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;DataSnapProviderClient;DbxCommonDriver;dbxcds;fmxFireDAC;DBXOracleDriver;CustomIPTransport;dsnap;IndyIPServer;fmxase;IndyCore;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;xmlrtl;DataSnapNativeClient;ibxpress;IndyProtocols;DBXMySQLDriver;FireDACCommonDriver;bindcompdbx;bindengine;soaprtl;FMXTee;FireDACADSDriver;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;DataSnapServerMidas;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;WebHubDB;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;rbc40_m_pas_lib;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;CodeSiteExpressPkg;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;ldiRegExLib;FireDACASADriver;WebHub;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;rbc40_s_pas_lib;rbc40_b_pas_lib;xmlrtl;DataSnapNativeClient;svnui;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;rbc40_k_pas_lib;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;ZaphodsMapLib;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;rbc40_e_pas_lib;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;svn;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;WebHubNewAppIDWizard;NexusDB400pv200;rbc40_core_pas_lib;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
+        <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Base_Win64)'!=''">
+        <DCC_UsePackage>NexusDB400ts200;FireDACSqliteDriver;FireDACDSDriver;NexusDB400st200;DBXSqliteDriver;FireDACPgDriver;fmx;NexusDB400pt200;IndySystem;TeeDB;tethering;NexusDB400ll200;vclib;DBXInterBaseDriver;DataSnapClient;DataSnapServer;DataSnapCommon;NexusDB400db200;NexusDB400se200;DataSnapProviderClient;DBXSybaseASEDriver;DbxCommonDriver;vclimg;NexusDB400tn200;dbxcds;DatasnapConnectorsFreePascal;MetropolisUILiveTile;NexusDB400sd200;NexusDB400tm200;NexusDB400lg200;vcldb;vcldsnap;NexusDB400tw200;NexusDB400mr200;fmxFireDAC;DBXDb2Driver;DBXOracleDriver;CustomIPTransport;NexusDB400re200;vclribbon;dsnap;IndyIPServer;fmxase;vcl;IndyCore;DBXMSSQLDriver;IndyIPCommon;CloudService;FmxTeeUI;FireDACIBDriver;DataSnapFireDAC;FireDACDBXDriver;soapserver;inetdbxpress;NexusDB400iv200;NexusDB400sscr200;dsnapxml;FireDACInfxDriver;FireDACDb2Driver;NexusDB400rp200;adortl;FireDACASADriver;bindcompfmx;FireDACODBCDriver;RESTBackendComponents;NexusDB400rb200;rtl;dbrtl;DbxClientDriver;FireDACCommon;bindcomp;inetdb;NexusDB400psd200;NexusDB400tc200;Tee;NexusDB400psi200;DBXOdbcDriver;NexusDB400ch200;vclFireDAC;xmlrtl;DataSnapNativeClient;ibxpress;NexusDB400sq200;IndyProtocols;DBXMySQLDriver;NexusDB400sr200;FireDACCommonDriver;bindcompdbx;bindengine;vclactnband;soaprtl;FMXTee;TeeUI;bindcompvcl;vclie;NexusDB400si200;FireDACADSDriver;vcltouch;NexusDB400rd200;NexusDB400scr200;VclSmp;FireDACMSSQLDriver;FireDAC;DBXInformixDriver;VCLRESTComponents;DataSnapConnectors;DataSnapServerMidas;dsnapcon;DBXFirebirdDriver;inet;fmxobj;FireDACMySQLDriver;soapmidas;vclx;NexusDB400rc200;DBXSybaseASADriver;FireDACOracleDriver;fmxdae;RESTComponents;NexusDB400pv200;FireDACMSAccDriver;dbexpress;DataSnapIndy10ServerTransport;IndyIPClient;$(DCC_UsePackage)</DCC_UsePackage>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
