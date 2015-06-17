@@ -153,7 +153,10 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 <tr>
              <td class="prompt">
              (~INPUTCHECKBOX|inVeryYoung|OnOff=Y,N|class="cbox"~) Pet is very young.
-             (~INPUTCHECKBOX|inVeryLoved|OnOff=Y,N|class="cbox"~) Pet is very loved.
+		<!--- WebHub v3.228 test syntax when INPUTCHECKBOX used with PARAMS -->
+		(~PARAMS|drCheckboxDivClassic,dyn,^|inVeryLoved^Pet is very loved.~)
+		(~PARAMS|drCheckboxDivNew,dyn,^|inVeryCute^Pet is very cute.~)
+
              </td>
 </tr>
 
@@ -230,6 +233,14 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 
 </body></html>
 </whpage>
+
+<whdroplet name="drCheckboxDivClassic">
+<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="cbox abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
+</whdroplet>
+
+<whdroplet name="drCheckboxDivNew">
+<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|OnOff=Y,N|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
+</whdroplet>
 
 <whtranslation key="~FormIntro" lingvo="fra" show="no">
 Pour participer, compltez cette forme pour dcrire votre vrai ou imaginaire animal de compagnie...
