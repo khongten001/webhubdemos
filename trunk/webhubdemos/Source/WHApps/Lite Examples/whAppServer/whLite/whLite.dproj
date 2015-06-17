@@ -100,10 +100,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
+        <Icon_MainIcon>..\..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;k:\vendors\raize\codesite5\lib\rs-xe7\$(platform);k:\webhub\lib\whrun</DCC_UnitSearchPath>
-        <DCC_Define>CodeSite;$(DCC_Define)</DCC_Define>
+        <DCC_Define>CodeSite;LOGCKB;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
+        <Debugger_RunParams>/id=form</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
@@ -231,6 +233,7 @@
                     <VersionInfoKeys Name="ServiceName">Lite</VersionInfoKeys>
                 </VersionInfoKeys>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer210.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
@@ -243,3 +246,11 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7007
+Activate=0
+DeleteMapAfterCompile=0
+Encrypt Password=""
+EurekaLog Last Line -->
