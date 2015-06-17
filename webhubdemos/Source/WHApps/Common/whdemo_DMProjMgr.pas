@@ -1,7 +1,7 @@
 unit whdemo_DMProjMgr;  { initialization shared by all webhub demos }
 
 (*
-Copyright (c) 2004-2014 HREF Tools Corp.
+Copyright (c) 2004-2015 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -25,7 +25,6 @@ THE SOFTWARE.
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
   SysUtils, Classes, tpProj;
@@ -182,27 +181,43 @@ const
 var
   SplashMessage: string;
 begin
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   if ShouldEnableGUI then
   begin
     SplashMessage := 'Creating panels';
+    CSSend(SplashMessage);
     WebMessage(SplashMessage);
 
     try
       {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
+      if Pos(pWebApp.ZMDefaultMapContext, ',DEMOS,META,DORIS,ultraann,') > 0
+      then
+      begin
+        if Assigned(fmWebHubMainForm.Restorer) then
+        begin
+          { avoid Restorer feature on production server
+            with multiple instances -- too much conflict on the
+            WHAppRestorer.xml file during shutdown }
+          fmWebHubMainForm.Restorer.Forget;  // cleanup pointers on nested panels
+          FreeAndNil(fmWebHubMainForm.Restorer);
+        end;
+      end;
+
       fmWebHubMainForm.Caption := pWebApp.AppID;
 
       whDemoCreateSharedPanels;
-
       WebMessage('-' + SplashMessage);
     except
       on E: Exception do
        begin
-          ErrorText := cFn + Chr(183) + E.Message;
-          Continue := False;
+         CSSendException(E);
+         ErrorText := cFn + Chr(183) + E.Message;
+         Continue := False;
        end;
     end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrGUIInit(Sender: TtpProject;
@@ -211,6 +226,7 @@ procedure TDMForWHDemo.ProjMgrGUIInit(Sender: TtpProject;
 const
   cFn = 'ProjMgrGUIInit';
 begin
+  CSEnterMethod(Self, cFn);
   Assert(Assigned(pWebApp));
   Assert(pWebApp.IsUpdated);
 
@@ -234,20 +250,23 @@ begin
     end;
   end;
 
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
 {$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
 begin
+  CSEnterMethod(Self, cFn);
   { override anything else that was in v3.189- and use these handlers }
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
+
   UncoverAppOnStartup(pWebApp.AppID);
-  {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
-  {$ENDIF}
+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupError(Sender: TtpProject;

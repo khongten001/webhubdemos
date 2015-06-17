@@ -211,7 +211,6 @@ procedure TDemoExtensions.DemoAppUpdate(Sender: TObject);
 const cFn = 'DemoAppUpdate';
 var
   AdminFilespec: string;
-  LoggingState: string;
 begin
   CSEnterMethod(Self, cFn);
 
