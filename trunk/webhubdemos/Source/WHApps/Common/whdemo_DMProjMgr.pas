@@ -94,7 +94,7 @@ procedure TDMForWHDemo.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 const cFn = 'ProjMgrDataModulesCreate1';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   try
     CreateCoreWebHubDataModule;
   except
@@ -105,7 +105,7 @@ begin
       ErrorText := E.Message;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate2(
@@ -115,7 +115,7 @@ const cFn = 'Create2';
 var
   UsedAppID: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
 
   try
     if (Sender.Identifier <> '') and (Sender.Identifier <> 'appvers') and
@@ -152,7 +152,7 @@ begin
       ErrorText := E.Message;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
@@ -254,7 +254,7 @@ begin
 end;
 
 procedure TDMForWHDemo.ProjMgrStartupComplete(Sender: TtpProject);
-{$IFDEF CodeSite}const cFn = 'ProjMgrStartupComplete';{$ENDIF}
+const cFn = 'ProjMgrStartupComplete';
 begin
   CSEnterMethod(Self, cFn);
   { override anything else that was in v3.189- and use these handlers }
