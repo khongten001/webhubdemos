@@ -67,8 +67,7 @@ mcChgDiskIMG=&lt;img src=(~ mcImgShowcaseDir~)skdskguy.JPG>|$=4
 </pre>
 <p>Microcharges are stored as arbitrary units in a longint, but
 you may convert those units to any convenient currency unit.
-Here we are assuming $1.00 units.
-To associate a charge with a page, you have to use Delphi to set the PageCost property.</p>
+Here we are assuming $1.00 units.</p>
 <p>This page uses the two charging macros shown above to display graphics. </p>
 <p>You are being charged: </p>
 <b>$3.00</b> for this newspaper: (~mcChgPaperIMG~)
