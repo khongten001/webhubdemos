@@ -557,14 +557,12 @@ you win, because it requires so much time, energy and financial resources.</p>
 <h2>TwhSession</h2>
 <ul>
 <li> ModuleReferer: (~ModuleReferer~)</li>
-<li> PageCost: (~PageCost~)</li>
 <li> PageCount: (~PageCount~)</li>
 <li> PriorAppID: (~PriorAppID~)</li>
 <li> PriorAppIDPageID: (~PriorAppIDPageID~)</li>
 <li> PriorPageID: (~PriorPageID~)</li>
 <li> RandStr: (~RandStr~) </li>
 <li> RawSessionNumber: (~RawSessionNumber~) </li><!-- displays something for web robots -->
-<li> SessionCost: (~SessionCost~)</li>
 <li> SessionCreatedOnAt: <span class="changing">(~SessionCreatedOnAt~)</span></li>
 <li> SessionElapsedSec: <span class="changing">(~SessionElapsedSec~)</span></li>
 <li> SessionLastActivatedOnAt: <span class="changing">(~SessionLastActivatedOnAt~)</span></li>
