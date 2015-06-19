@@ -60,6 +60,7 @@
  <td><!--- column 1 TwhRequest -->
 Request.Host = (~Request.Host~)<br />
 Request.ProxyName = (~Request.ProxyName~)<br/>
+Request.RequestMethod = (~Request.RequestMethod~)<br/>
 Request.RequestProtocol = (~Request.RequestProtocol~)<br />
 Request.RemoteHost = (~Request.RemoteHost~)<br />
 Request.Runner = (~Request.Runner~)<br/>
