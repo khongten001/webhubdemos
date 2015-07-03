@@ -41,10 +41,12 @@ type
   TDMWHOpenIDviaJanrain = class(TDataModule)
     waJanrain: TwhWebAction;
     waOpenIDServer: TwhWebAction;
+    waSend301: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waJanrainExecute(Sender: TObject);
     procedure waOpenIDServerExecute(Sender: TObject);
+    procedure waSend301Execute(Sender: TObject);
   private
     { Private declarations }
     FlagInitDone: Boolean;
@@ -439,6 +441,19 @@ begin
     pWebApp.Response.SendBounceTo(openidInfo.return_to +
       '&code=SplxlOBeZQQYbYS6WxSbIA&state=af0ifjsldkj');
 
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TDMWHOpenIDviaJanrain.waSend301Execute(Sender: TObject);
+const cFn = 'waSend301Execute';
+var
+  TargetURL: string;
+begin
+  CSEnterMethod(Self, cFn);
+  TargetURL := TwhWebAction(Sender).HtmlParam;
+  TargetURL := pWebApp.MoreIfParentild(TargetURL);
+  CSSend('TargetURL', TargetURL);
+  pWebApp.Response.SendRedirection301(TargetURL);
   CSExitMethod(Self, cFn);
 end;
 
