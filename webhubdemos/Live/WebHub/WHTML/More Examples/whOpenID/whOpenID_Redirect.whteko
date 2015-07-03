@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whpage pageid="pgTest301A" desc="-test 301 redirect">
+(~waSend301.Execute|http://lite.demos.href.com/~)
+</whpage>
+
+<whpage pageid="pgTest301B" desc="-test 301 redirect">
+(~waSend301.Execute|(~ACTION|pgTest301C~)~)
+</whpage>
+
+<whpage pageid="pgTest301C" desc="-redirect here">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div id="whdemopagecontent">
+	<h1>Hello!</h1>
+	<h2>This is PageID: (~PageID~)</h2>
+
+</div>
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+</whteko>
