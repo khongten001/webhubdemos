@@ -35,7 +35,8 @@ interface
 uses
   SysUtils, Classes,
   IdHTTP, IdSSLOpenSSL, IdSSL,
-  webLink, updateOK, tpAction, webTypes;
+  updateOK, tpAction,
+  webLink, webTypes, webSend;
 
 type
   TDMWHOpenIDviaJanrain = class(TDataModule)
@@ -53,6 +54,8 @@ type
     FAPIKey: string;
     FEngage_Pro: Boolean;
     procedure SETAPIKey(const InValue: string);
+    procedure SampleAppExecuteHandler(Sender: TwhRespondingApp;
+      var bContinue: Boolean);
   public
     { Public declarations }
     function Init(out ErrorText: string): Boolean;
@@ -129,8 +132,27 @@ begin
       FlagInitDone := True;
 
     end;
+
+    (* additional initialization is for demonstration of 404 responses *)
+    AddAppExecuteHandler(SampleAppExecuteHandler);
+
   end;
   Result := FlagInitDone;
+end;
+
+procedure TDMWHOpenIDviaJanrain.SampleAppExecuteHandler(
+  Sender: TwhRespondingApp; var bContinue: Boolean);
+const cFn = 'SampleAppExecuteHandler';
+begin
+  CSEnterMethod(Self, cFn);
+  if pWebApp.Request.QueryString = 'htoi:pg404' then
+  begin
+    pWebApp.Response.HTTPStatusCode := 404;
+    pWebApp.Response.HTTPStatusDesc := 'not found';
+    pWebApp.Response.Send('###');
+    bContinue := False;
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMWHOpenIDviaJanrain.SETAPIKey(const InValue: string);
