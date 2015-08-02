@@ -51,8 +51,6 @@ if "%flagdemosdb%"=="no" goto end
 
 set demofire=yes
 
-set demohtcl=yes
-
 set demohtfm=yes
 
 set demohtfs=yes
