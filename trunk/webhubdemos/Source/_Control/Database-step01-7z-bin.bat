@@ -52,7 +52,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
-:: XE8 compiler has no bde support
+:: XE8 compiler also has bde support
 set bits=64
 set compilerdigits=22
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
@@ -61,6 +61,7 @@ set t=Database-Library%bits%-bin.7z
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d%compilerdigits%_win??.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHub_d%compilerdigits%_win??.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win??.bpl
+d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d%compilerdigits%_win??.bpl
 
 pause

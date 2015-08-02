@@ -30,8 +30,9 @@ set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_wi
 :: async requires OTL OmniThreadLibrary
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot=%~dp0..\..\Live\WebHub\Apps
-:: vcldbx requires bdertl !!! Not available in D22 XE8.
+:: vcldbx requires bdertl !!! Not available in brand new compilers. 
 set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
+if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="21" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="20" set pkg=%pkg%;vcldbx
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
@@ -45,6 +46,7 @@ set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\c
 :: extra parameters for Delphi XE2+
 set dccflags=--no-config -GD -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows
 if "%compilerdigits%"=="20" set dccflags=%dccflags%;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
+if "%compilerdigits%"=="22" set dccflags=%dccflags%;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
 if exist %1.cfg REN %1.cfg %1.off
