@@ -40,10 +40,10 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whScanTable.exe
 if errorlevel 1 pause
 
 set bits=32
-set compilerdigits=20
+set compilerdigits=22
 set t=Database-Library%bits%-bin.7z
 
-:: XE6 compiler has bde support
+:: XE8 D22 compiler has bde support, win32
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
 
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d??_win32.bpl
@@ -52,7 +52,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
-:: XE8 compiler also has bde support
+:: XE8 compiler win64 is good for the rest of the non-BDE projects
 set bits=64
 set compilerdigits=22
 set sdir=h:\pkg_d%compilerdigits%_win%bits%

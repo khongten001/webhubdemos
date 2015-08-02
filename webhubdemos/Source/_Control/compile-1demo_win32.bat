@@ -30,9 +30,9 @@ set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_wi
 :: async requires OTL OmniThreadLibrary
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot=%~dp0..\..\Live\WebHub\Apps
-:: vcldbx requires bdertl !!! Not available in brand new compilers. 
+:: vcldbx requires bdertl !!! Not available immediately when XE7 shipped.
 set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
-if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx
+if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx;bdertl
 if "%compilerdigits%"=="21" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="20" set pkg=%pkg%;vcldbx
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
