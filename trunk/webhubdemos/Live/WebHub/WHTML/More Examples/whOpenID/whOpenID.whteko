@@ -21,7 +21,7 @@ The details in the javascript below are for use with the webhubdemos account onl
 <html>
 <head>
 (~drHead~)
-(~PARAMS|drJanrainJavascript|pgProcess,webhubdemos~)
+(~PARAMS|drJanrainJavascript|pgProcess,webhub-demos~)<!--- changed webhubdemos to webhub-demos 18.Aug.2015 -->
 </head>
 <body>
 (~drPageBegin~)

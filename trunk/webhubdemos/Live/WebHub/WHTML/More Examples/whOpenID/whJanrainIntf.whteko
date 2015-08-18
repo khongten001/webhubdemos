@@ -5,7 +5,7 @@
 <whdroplet name="drJanrainJavascript">
 <whdoc for="drJanrainJavascript">
 DYN1 = pageid for the janrain.settings.tokenUrl
-DYN2 = janrain site identifier e.g. 'webhubdemos'
+DYN2 = janrain site identifier e.g. 'webhub-demos'
 </whdoc>
 <script type="text/javascript">
 (function() {

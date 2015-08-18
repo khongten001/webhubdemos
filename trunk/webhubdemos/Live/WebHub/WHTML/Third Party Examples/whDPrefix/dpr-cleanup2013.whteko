@@ -113,7 +113,7 @@ googlepriority=0
 <head>
 <title>(~PageDesc~)</title>
   (~drSharedHead~)
-  (~PARAMS|drJanrainJavascript|openidprocess,webhubdemos~)
+  (~PARAMS|drJanrainJavascript|openidprocess,webhub-demos~)
 </head>
 <body>
 (~drDPRBanner~)
