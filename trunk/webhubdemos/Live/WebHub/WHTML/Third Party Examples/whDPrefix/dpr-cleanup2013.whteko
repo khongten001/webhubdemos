@@ -89,7 +89,13 @@ googlepriority=0
 
 <h2>Sorry, No Go.</h2>
 (~ASSIGNED|waCleanup2013Login-errormessage|<p>(~waCleanup2013Login-errormessage~)</p>~)
-<p>(~JUMPR|pgcleanup|Login here~)</p>
+
+<h3>Work in Progress!</h3>
+<p>We are working on upgrading the social login. Please try again 
+in a few days.</p>
+18 August 2015
+
+<!--- <p>(~JUMPR|pgcleanup|Login here~)</p> -->
 <p>For assistance, contact HREF Tools via live chat during online office hours, Mon-Fri, usually 4-5pm California time.
 <a href="https://www.href.com/techhelp">www.href.com</a>
 </p>
