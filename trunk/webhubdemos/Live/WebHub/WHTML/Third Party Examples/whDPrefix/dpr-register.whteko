@@ -156,10 +156,12 @@ googlepriority=0
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
 
+<whsketch show="no">
 <div class="row">
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 	<div class="small-18 medium-12 columns">
 		<h2>Change EMail</h2>
+<!--- not possible now that the special editing period ended. -->
 		<p>You may (~JUMPR|switchemail|change the email address~) used for data entry. This is recommended if <b>(~_email~)</b> is 
 		not authenticated at Google, Yahoo, OpenID, MyOpenID, WordPress or Microsoft. If you are not sure about this OpenID feature, 
 		what you can do is (~JUMP|pgLogout|log out~) and then try to get back in using (~JUMP|pgregister|the usual Add/Edit entrance~).
@@ -176,6 +178,7 @@ googlepriority=0
 	</div>
 	<div class="show-for-medium-up medium-3 columns">&nbsp;</div>
 </div>
+</whsketch>
 
 (~drSharedFooter~)
 </body></html>
