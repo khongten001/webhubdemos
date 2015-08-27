@@ -17,7 +17,7 @@ set demohtq4=yes
 set demohtru=no
 set demojpeg=yes
 set demoscan=yes
-set demoshop1=yes
+set demoshop1=no
 set demostore000=no
 
 set compiledbhtml=yes
