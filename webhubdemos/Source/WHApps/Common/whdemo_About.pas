@@ -1,9 +1,9 @@
 unit whdemo_About;  {panel to help self-document all WebHub demos}
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1996-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1996-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
+{ * This source code file is part of WebHub v3.2x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
 { * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
 { ---------------------------------------------------------------------------- }
