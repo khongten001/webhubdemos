@@ -2,7 +2,8 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 %CSSend% /note "compile-whdemos-db.bat"
 
 set bdecomp=22
-set compilerdigits=%bdecomp%
+set ibocomp=22
+set compilerdigits=22
 set comp3=D%compilerdigits%
 
 if NOT "%comp3%%bits%"=="D" goto Continue00
@@ -41,19 +42,6 @@ call %~dp0\default-compilerdigits.bat
 cd /d %droot%\Lite Examples\whAppServer\whLite
 call %cbatwin64% whLite
 
-:: whQuery2 uses IBObjects not BDE
-del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
-if "%compilehtq2%"=="" %CSSend% /error "compilehtq2 is blank"
-if "%compilehtq2%"=="" pause
-if NOT "%compilehtq2%"=="no" cd %droot%\DB Examples\whQuery2
-if NOT "%compilehtq2%"=="no" call %cbatwin64% whQuery2
-
-:: democoderage
-:: whSchedule uses IBObjects and Rubicon, no BDE
-del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
-if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
-if NOT "%compilecoderage%"=="no" call %cbatwin64% whSchedule
-
 :: Fish Store uses FireDAC September 2014
 del %~dp0\..\..\Live\WebHub\Apps\whFishStore.exe /q
 if NOT "%compilehtfs%"=="no" cd %droot%\DB Examples\whFishStore
@@ -70,13 +58,6 @@ del %~dp0\..\..\Live\WebHub\Apps\whDynamicJPEG.exe
 if NOT "%compilejpeg%"=="no" cd %droot%\DB Examples\whDynamicJPEG
 if NOT "%compilejpeg%"=="no" call %cbatwin64% whDynamicJPEG
 
-::whFirebird uses IBObjects 
-del %~dp0\..\..\Live\WebHub\Apps\whFirebird.exe
-if NOT "%compilefire%"=="no" set compilerdigits=
-if NOT "%compilefire%"=="no" call %~dp0\default-compilerdigits.bat
-if NOT "%compilefire%"=="no" cd %droot%\DB Examples\whFirebird
-if NOT "%compilefire%"=="no" call %cbatwin64% whFirebird
-
 del %~dp0\..\..\Live\WebHub\Apps\whRubicon.exe
 if NOT "%compilehtru%"=="no" cd %droot%\Third Party Examples\whRubicon
 if NOT "%compilehtru%"=="no" call %cbat% whRubicon
@@ -92,8 +73,39 @@ REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPref
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
 
 :::::::::::::::::::::::::::::::
+:: Now demos which use IBObjects
+:::::::::::::::::::::::::::::::
+%CSSend% /note "IBObjects required"
+
+set compilerdigits=%ibocomp%
+set bits=64
+set cbat=d:\projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
+
+::whFirebird uses IBObjects 
+del %~dp0\..\..\Live\WebHub\Apps\whFirebird.exe
+if NOT "%compilefire%"=="no" cd %droot%\DB Examples\whFirebird
+if NOT "%compilefire%"=="no" call %cbatwin64% whFirebird
+
+:: whQuery2 uses IBObjects not BDE
+del %~dp0\..\..\Live\WebHub\Apps\whQuery2.exe /q
+if "%compilehtq2%"=="" %CSSend% /error "compilehtq2 is blank"
+if "%compilehtq2%"=="" pause
+if NOT "%compilehtq2%"=="no" cd %droot%\DB Examples\whQuery2
+if NOT "%compilehtq2%"=="no" call %cbatwin64% whQuery2
+
+:: democoderage
+:: whSchedule uses IBObjects and Rubicon, no BDE
+del %~dp0\..\..\Live\WebHub\Apps\whSchedule.exe /q
+if NOT "%compilecoderage%"=="no" cd %droot%\DB Examples\whSchedule
+if NOT "%compilecoderage%"=="no" call %cbatwin64% whSchedule
+
+
+
+:::::::::::::::::::::::::::::::
 :: Now BDE which requires win32
 :::::::::::::::::::::::::::::::
+
+%CSSend% /note "BDE required"
 
 set compilerdigits=%bdecomp%
 set bits=32
