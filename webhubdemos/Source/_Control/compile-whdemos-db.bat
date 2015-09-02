@@ -2,7 +2,7 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 %CSSend% /note "compile-whdemos-db.bat"
 
 set bdecomp=22
-set ibocomp=22
+set ibocomp=23
 set compilerdigits=22
 set comp3=D%compilerdigits%
 
