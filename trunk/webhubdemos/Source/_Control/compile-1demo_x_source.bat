@@ -28,7 +28,8 @@ set flags=-b -W-SYMBOL_PLATFORM -W-UNIT_PLATFORM  -$O- -$W+ -$J+ -$Q+ -$C- -$Y- 
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
-:: (D22)
+:: (D23)
+if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win32
 if "%compilerdigits%"=="22" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win32
 if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win32
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win32
@@ -72,7 +73,8 @@ ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_src.exe
 if errorlevel 1 set ok=locked
 if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win32_src.exe"
 
-:: (D22)
+:: (D23)
+if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win64
 if "%compilerdigits%"=="22" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win64
 if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win64
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64

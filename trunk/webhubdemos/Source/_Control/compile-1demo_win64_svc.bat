@@ -21,6 +21,7 @@ if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\W
 if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64
 if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win64
 if "%compilerdigits%"=="22" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win64
+if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win64
 
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
