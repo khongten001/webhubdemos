@@ -1,7 +1,7 @@
 unit DPrefix_dmProjMgr;
 
 (*
-Copyright (c) 2008-2014 HREF Tools Corp.
+Copyright (c) 2008-2015 HREF Tools Corp.
 
 Permission is hereby granted, on 09-Aug-2008, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -71,6 +71,7 @@ uses
   dmWHApp, whAppOut, webApp, webCall, whcfg_App, webBase, webSplat, 
   whSharedLog, uAutoDataModules, whutil_ZaphodsMap, htWebApp,
   whOpenID_dmwhAction,
+  whdemo_ViewSource,
   whdemo_About, whdemo_Extensions, whdemo_UIHelpers, whdemo_CodeSite,
   DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
   DPrefix_dmwhApi,
@@ -149,6 +150,8 @@ end;
 
 procedure TDMDPrefixProjMgr.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+var
+  AFilespec: string;
 begin
   { This event handler, DataModulesInit, is reserved for calling the Init method
     on any datamodules which require one-time initialization. }
@@ -161,6 +164,20 @@ begin
     Continue := DMDPRWebAct.Init(ErrorText);
   if Continue then
     Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
+
+  if Continue then
+  begin
+    AFilespec := getHtDemoCodeRoot +
+      'More Examples\whOpenID\janrain_api_key.txt';
+    DMWHOpenIDviaJanrain.APIKey :=
+      Trim(StringLoadFromFile(AFilespec));
+    if DMWHOpenIDviaJanrain.APIKey = '' then
+    begin
+      ErrorText := 'Unable to load valid JANRAIN API Secret Key from ' + AFilespec;
+      Continue := False;
+    end;
+  end;
+
   if Continue then
     Continue := DMWHAPI.Init(ErrorText);
   if Continue then
@@ -169,6 +186,7 @@ begin
     Continue := dmwhUIHelpers.Init(ErrorText);
   if Continue then
     Continue := dmwhCodeSiteHelper.Init(Errortext);
+
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;
