@@ -157,56 +157,16 @@ end;
 
 procedure TDMWHOpenIDviaJanrain.SETAPIKey(const InValue: string);
 begin
-  //test the length of the API ID; it should be 40 characters
+  //test the length of the API Secret Key; it should be 40 characters
   if Length(InValue) = 40 then
   begin
     FAPIKey := InValue;
+    CSSend('FAPIKey', FAPIKey);
     RefreshWebActions(Self);
   end
   else
     LogSendError('Invalid length of janrain_api_key.txt');
 end;
-
-(*function HTTPSGet(const URL: string): string;
-const cFn = 'HTTPSGet';
-var
-  IdHTTP: TIdHTTP;
-  IdSSLIOHandlerSocket: TIdSSLIOHandlerSocketOpenSSL;
-begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(cFn);{$ENDIF}
-  CSSend('URL', URL);
-  IdHTTP := nil;
-  IdSSLIOHandlerSocket := nil;
-  CSSend('01');
-  try
-    try
-      IdHTTP := TIdHTTP.Create(nil);
-  CSSend('02');
-      IdSSLIOHandlerSocket := TIdSSLIOHandlerSocketOpenSSL.Create(nil);
-  CSSend('03');
-      IdHTTP.IOHandler := IdSSLIOHandlerSocket;
-  CSSend('04');
-      IdSSLIOHandlerSocket.SSLOptions.Method := sslvSSLv23;
-  CSSend('05');
-      Result := IdHTTP.Get(URL);
-      {$IFDEF CodeSite}
-      LogToCodeSiteKeepCRLF('Result', Result);
-      {$ENDIF}
-    except
-      on E: Exception do
-      begin
-        LogSendException(E, cFn);
-      end;
-    end;
-  finally
-    FreeAndNil(IdSSLIOHandlerSocket);
-    if Assigned(IdHTTP) and Assigned(IdHTTP.IOHandler) then
-      IdHTTP.IOHandler := nil;
-    FreeAndNil(IdHTTP);
-  end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(cFn);{$ENDIF}
-end; *)
-
 
 procedure TDMWHOpenIDviaJanrain.waJanrainExecute(Sender: TObject);
 const cFn = 'waJanrainExecute';
@@ -237,6 +197,7 @@ begin
     LogSendInfo('token', token, cn);
     if Length(token) = 40 then
     begin
+      CSSend('Token has correct length 40 to proceed.');
 
       pWebApp.Session.DeleteStringVarByName('_identifier');
       pWebApp.Session.DeleteStringVarByName('_email'); // not LinkedIn, Twitter, MySpace
@@ -256,7 +217,7 @@ begin
           URLEncode(FAPIKey, False),
           URLEncode('json', False),
           URLEncode(Lowercase(BoolToStr(FEngage_Pro, True)), False)]);
-        //CSSend('SRequest', SRequest);
+        CSSend('SRequest', SRequest);
         SResponse := HTTPSGet(SRequest, ErrorText);
         LogToCodeSiteKeepCRLF('SResponse', SResponse);
         if ErrorText <> '' then
