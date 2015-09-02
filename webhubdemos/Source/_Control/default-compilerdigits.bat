@@ -1,4 +1,4 @@
 :: default-compilerdigits.bat
 
 if "%compilerdigits%"=="" set bits=64
-if "%compilerdigits%"=="" set compilerdigits=22
+if "%compilerdigits%"=="" set compilerdigits=23

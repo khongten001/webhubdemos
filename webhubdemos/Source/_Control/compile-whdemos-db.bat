@@ -83,13 +83,13 @@ if NOT "%compilehtru%"=="no" call %cbat% whRubicon
 
 ::whDPrefix uses NexusDB not BDE
 :: NexusDB v4.004 as of 28-Apr-2014
-:: Use same version of WebHub as CodeNewsFast so libraries are shared
+:: Sometimes, use same version of WebHub as CodeNewsFast so libraries are shared
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto END
 cd %droot%\Third Party Examples\whDPrefix
 set compilerdigits=22
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
-
+REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
 
 :::::::::::::::::::::::::::::::
 :: Now BDE which requires win32

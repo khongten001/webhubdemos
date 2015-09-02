@@ -52,9 +52,9 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
-:: XE8 compiler win64 is good for the rest of the non-BDE projects
+:: Seattle compiler win64 is good for the rest of the non-BDE projects
 set bits=64
-set compilerdigits=22
+set compilerdigits=23
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
 set t=Database-Library%bits%-bin.7z
 
