@@ -123,7 +123,7 @@ Note: these instructions assume that you know how to run WebHub application serv
 
 <whpage pageid="InvalidPage" desc="-Invalid Page">
 <whprep>
-(~SetHttpStatus|404|page not found~)
+(~SetHttpStatus|404|page not found~)<!--- works only when IIS ErrorPages feature is set to Detailed -->
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
