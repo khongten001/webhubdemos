@@ -99,11 +99,11 @@ begin
       //Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
       //Metadata.Values[SMDFrom] := GetComputerandUserName;
 
-      if EditCustomHeader.Text <> '' then
+      (*if EditCustomHeader.Text <> '' then
       begin
         CustomHeaderList := TStringList.Create;
-        CustomHeaderList.Add(EditCustomHeader.Text);
-      end;
+        CustomHeaderList.Add(EditCustomHeader.Text);  // Exception in XE7.
+      end;*)
 
       StorageService.UploadObject(
         LabeledEditBucket.Text,  // target bucket e.g. screenshots.href.com
@@ -157,8 +157,8 @@ begin
   LabeledEditTargetPath.Text := 'testfolder_' + 
     FormatDateTime('yyyymmdd', Now) + '/';
 
-  ; Custom headers not supported.  See Quality Central.
-  ; EditCustomHeader.Text := 'Content-Type=text/html';
+  //Custom headers not supported.  See Quality Central.
+  EditCustomHeader.Text := ''; //'Content-Type=text/html';
 end;
 
 end.

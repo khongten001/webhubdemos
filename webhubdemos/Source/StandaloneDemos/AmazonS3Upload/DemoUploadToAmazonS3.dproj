@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{5DE52EDD-87E8-467E-8D88-E45964D6724A}</ProjectGuid>
         <MainSource>DemoUploadToAmazonS3.dpr</MainSource>
@@ -7,7 +7,7 @@
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
-        <ProjectVersion>15.4</ProjectVersion>
+        <ProjectVersion>18.0</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -40,7 +40,7 @@
         <DCC_DcuOutput>..\..\TempBuild\dcu\$(Platform)\$(Config)</DCC_DcuOutput>
         <DCC_ExeOutput>..\..\TempBuild\bin\$(Platform)\$(Config)</DCC_ExeOutput>
         <DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
-        <DCC_UnitSearchPath>h:\;h:\dcu_d19_$(Platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>h:\;h:\dcu_d19_$(Platform);k:\webhub\tpack;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_K>false</DCC_K>
         <DCC_N>false</DCC_N>
         <DCC_E>false</DCC_E>
@@ -52,10 +52,11 @@
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=;CFBundleName=;CFBundleDisplayName=;UIDeviceFamily=;CFBundleIdentifier=;CFBundleVersion=;CFBundlePackageType=;CFBundleSignature=;CFBundleAllowMixedLocalizations=;UISupportedInterfaceOrientations=;CFBundleExecutable=;CFBundleResourceSpecification=;LSRequiresIPhoneOS=;CFBundleInfoDictionaryVersion=;CFBundleDevelopmentRegion=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace);$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
@@ -142,12 +143,20 @@
                     <VersionInfoKeys Name="CFBundleDevelopmentRegion"/>
                 </VersionInfoKeys>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="D:\Vcl\Rubicon\packages\pkg_d19_win32\rbc40_u_pas_lib_d19_win32.bpl">File D:\Vcl\Rubicon\packages\pkg_d19_win32\rbc40_u_pas_lib_d19_win32.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="D:\Vcl\Rubicon\packages\pkg_d19_win32\rbc40_u_pas_ide_d19_win32.bpl">File D:\Vcl\Rubicon\packages\pkg_d19_win32\rbc40_u_pas_ide_d19_win32.bpl not found</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k190.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp190.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k190.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp190.bpl">Embarcadero C++Builder Office XP Servers Package</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ZaphodsMap_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ZaphodsMap_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ZaphodsMapLib_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ZaphodsMapLib_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ldiRegEx_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ldiRegEx_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ldiRegExLib_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\ldiRegExLib_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHub_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHub_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHub_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHub_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubDB_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubDB_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubDB_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubDB_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubNewAppIDWizard_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubNewAppIDWizard_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubWizardComponents_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubWizardComponents_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubWizard_ide_d21_win32.bpl">File D:\Apps\HREFTools\WebHub\lib\pkg_d21_win32\WebHubWizard_ide_d21_win32.bpl not found</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclDataSnapNativeServer210.bpl">Embarcadero DBExpress DataSnap Native Server Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k210.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp210.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
@@ -160,3 +169,11 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7007
+Activate=0
+DeleteMapAfterCompile=0
+Encrypt Password=""
+EurekaLog Last Line -->
