@@ -215,7 +215,8 @@ begin
   // ***
 
   idMessage1.Subject := edSubject.Text;
-  idMessage1.Body.Text := BodySampleForAttachment(0);
+  // Remy says ignore the Body completely
+  //idMessage1.Body.Text := BodySampleForAttachment(0);
 
   CSSend('Lines.Count', S(Memo2.Lines.Count));
 
@@ -263,7 +264,6 @@ begin
       // IdMessage1.Recipients.Add.Address := edCC.Text;
       IdMessage1.ccList.Clear;
       IdMessage1.CCList.Add.Address := edCC.Text;
-      IdMessage1.CCList.Add.Address := 'ann@sonic.net';
       CSSend('IdMessage1.CCList.EMailAddresses',
         idMessage1.CCList.EMailAddresses);
     end;
@@ -450,20 +450,19 @@ const cFn = 'HtmlMailTest01';
 begin
   CSEnterMethod(Self, cFn);
   IdMessage1.Subject := SubjectSample(0);
+  IdMessage1.Body.Clear;
   idMessage1.MessageParts.Clear;
 
-  if IdHtml1 = nil then
-    IdHtml1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create first
-  else
-    CSSendWarning('expecting IdHtml1 to be nil');
+  // NB: plain BEFORE html, otherwise gmail displays the PLAIN in preference
+  // to the HTML content.
   if IdText1 = nil then
     IdText1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create second
   else
     CSSendWarning('expecting IdText1 to be nil');
-
-  IdHtml1.ContentType := 'text/html';
-  IdHtml1.CharSet := 'utf-8';
-  IdHtml1.Body.Text := Memo2.Lines.Text;
+  if IdHtml1 = nil then
+    IdHtml1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create first
+  else
+    CSSendWarning('expecting IdHtml1 to be nil');
 
   IdText1.ContentType := 'text/plain';
   if True then
@@ -473,6 +472,10 @@ begin
     IdText1.CharSet := cCharsetUTF8 // must set this here not just on TidMessage
   else
     IdText1.CharSet := '';
+
+  IdHtml1.ContentType := 'text/html';
+  IdHtml1.CharSet := 'utf-8';
+  IdHtml1.Body.Text := Memo2.Lines.Text;
 
   // Reference:
   // http://www.indyproject.org/sockets/blogs/rlebeau/2005_08_17_a.en.aspx
