@@ -25,8 +25,8 @@ THE SOFTWARE.
 {$I hrefdefines.inc}
 
 uses
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp,
-  ucCodeSiteInterface,
   fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3},
   Test_Indy_Smtp_dmProjMgr in 'Test_Indy_Smtp_dmProjMgr.pas' {DataModule1: TDataModule};
 

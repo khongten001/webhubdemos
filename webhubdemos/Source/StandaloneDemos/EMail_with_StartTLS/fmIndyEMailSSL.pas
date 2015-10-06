@@ -398,7 +398,7 @@ begin
   begin
     OnStatus := IndyMailStatus;
     IOHandler := IdSSLIOHandlerSocketOpenSSL1;
-    Port := 587;
+    Port := 587; // for Amazon SES
     SASLMechanisms.Clear;
     UseTLS := utUseExplicitTLS;
   end;
@@ -452,8 +452,6 @@ begin
   IdMessage1.Subject := SubjectSample(0);
   idMessage1.MessageParts.Clear;
 
-  //IdMessage1.ContentType := 'multipart/alternative';
-
   if IdHtml1 = nil then
     IdHtml1 := TIdText.Create(IdMessage1.MessageParts, nil)  // create first
   else
@@ -468,15 +466,17 @@ begin
   IdHtml1.Body.Text := Memo2.Lines.Text;
 
   IdText1.ContentType := 'text/plain';
-  IdText1.ContentTransfer := '8BIT'; //to stop encoding text
+  if True then
+    IdText1.ContentTransfer := '8BIT'; //to stop encoding text
   IdText1.Body.Text := BodySampleForAttachment(0);
   if cbUTF8.Checked then
     IdText1.CharSet := cCharsetUTF8 // must set this here not just on TidMessage
   else
     IdText1.CharSet := '';
 
-  IdMessage1.ContentType := 'multipart/related; type="text/html"';
-  // IdMessage1.ContentType := 'multipart/mixed';
+  // Reference:
+  // http://www.indyproject.org/sockets/blogs/rlebeau/2005_08_17_a.en.aspx
+  IdMessage1.ContentType := 'multipart/alternative';
 
   CSExitMethod(Self, cFn);
 end;
