@@ -1,6 +1,6 @@
 [NewRequest] 
 ; At least one value must be set in this section 
-Subject = "db.demos.href.com"
+Subject = "CN=db.demos.href.com"
 KeyLength = 2048
 MachineKeySet = true
 ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
