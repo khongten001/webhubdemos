@@ -6,12 +6,12 @@ object fmChromiumWrapper: TfmChromiumWrapper
   Margins.Right = 0
   Margins.Bottom = 0
   Caption = 'fmChromiumWrapper'
-  ClientHeight = 471
-  ClientWidth = 633
+  ClientHeight = 377
+  ClientWidth = 506
   Color = clPurple
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -17
+  Font.Height = -14
   Font.Name = 'Segoe UI'
   Font.Style = []
   Menu = MainMenu1
@@ -21,13 +21,13 @@ object fmChromiumWrapper: TfmChromiumWrapper
   OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnResize = FormResize
-  PixelsPerInch = 120
-  TextHeight = 23
+  PixelsPerInch = 96
+  TextHeight = 19
   object Panel1: TPanel
     Left = 0
-    Top = 49
-    Width = 633
-    Height = 422
+    Top = 39
+    Width = 506
+    Height = 338
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -40,16 +40,24 @@ object fmChromiumWrapper: TfmChromiumWrapper
   object PanelURL: TPanel
     Left = 0
     Top = 0
-    Width = 633
-    Height = 49
+    Width = 506
+    Height = 39
+    Margins.Left = 2
+    Margins.Top = 2
+    Margins.Right = 2
+    Margins.Bottom = 2
     Align = alTop
     Caption = 'PanelURL'
     TabOrder = 1
     object MemoURL: TMemo
       Left = 1
       Top = 1
-      Width = 631
-      Height = 47
+      Width = 504
+      Height = 37
+      Margins.Left = 2
+      Margins.Top = 2
+      Margins.Right = 2
+      Margins.Bottom = 2
       Align = alClient
       Lines.Strings = (
         'MemoURL')
@@ -58,8 +66,8 @@ object fmChromiumWrapper: TfmChromiumWrapper
     end
   end
   object MainMenu1: TMainMenu
-    Left = 224
-    Top = 168
+    Left = 168
+    Top = 72
     object miFile: TMenuItem
       Caption = 'File'
       object miExit: TMenuItem
@@ -123,8 +131,16 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = '-'
       end
       object QuickLogin1: TMenuItem
-        Caption = 'Quick Login'
+        Caption = 'Login to Google, User and Pass'
         OnClick = QuickLogin1Click
+      end
+      object miGoogleLoginUser: TMenuItem
+        Caption = 'Login to Google: fill Username only'
+        OnClick = miGoogleLoginUserClick
+      end
+      object miLoginGooglePass: TMenuItem
+        Caption = 'Login to Google: fill Password only'
+        OnClick = miLoginGooglePassClick
       end
     end
     object View1: TMenuItem

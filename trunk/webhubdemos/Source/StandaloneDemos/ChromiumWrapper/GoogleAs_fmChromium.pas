@@ -39,6 +39,8 @@ type
     PanelURL: TPanel;
     MemoURL: TMemo;
     miTestAlert: TMenuItem;
+    miGoogleLoginUser: TMenuItem;
+    miLoginGooglePass: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -47,6 +49,8 @@ type
     procedure TestVideo1Click(Sender: TObject);
     procedure miGoogleClick(Sender: TObject);
     procedure QuickLogin1Click(Sender: TObject);
+    procedure miGoogleLoginUserClick(Sender: TObject);
+    procedure miLoginGooglePassClick(Sender: TObject);
     procedure FormResize(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
     procedure GooglePlus1Click(Sender: TObject);
@@ -512,12 +516,57 @@ begin
   FChromium1.Load(cGoogle);
 end;
 
+procedure TfmChromiumWrapper.miGoogleLoginUserClick(Sender: TObject);
+const cFn = 'miGoogleLoginUserClick';
+var
+  JSText: string;
+  email: string;
+begin
+  CSEnterMethod(Self, cFn);
+  if ParamCount >= 1 then
+  begin
+    email := ParamStr(1);
+    JSText := 'document.getElementById("Email").value = "' + email + '";';
+    //CSSend('JSText', JSText);
+    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+  end
+  else
+  begin
+    MsgErrorOk('at least 1 command line parameter is required for ' +
+      miGoogleLoginUser.Caption);
+  end;
+
+  CSExitMethod(Self, cFn);
+end;
+
 procedure TfmChromiumWrapper.miGoogleWebmasterToolsClick(Sender: TObject);
 const
   cAddr = 'http://www.google.com/webmasters/tools/';
 begin
   Self.Caption := cAddr;
   FChromium1.Load(cAddr);
+end;
+
+procedure TfmChromiumWrapper.miLoginGooglePassClick(Sender: TObject);
+const cFn = 'miLoginGooglePassClick';
+var
+  JSText: string;
+  pass: string;
+begin
+  CSEnterMethod(Self, cFn);
+  if ParamCount = 2 then
+  begin
+    pass := ParamStr(2);
+    JSText := 'document.getElementById("Passwd").value = "' + pass + '";';
+    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+  end
+  else
+  begin
+    MsgErrorOk('2 command line parameters are required for [' +
+      miLoginGooglePass.Caption + ']');
+  end;
+
+  CSExitMethod(Self, cFn);
 end;
 
 function TfmChromiumWrapper.Init(out ErrorText: string): Boolean;
