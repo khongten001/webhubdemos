@@ -148,10 +148,15 @@ var
   ReleaseDCheck: Boolean; UncaughtExceptionStackSize: Integer;
   ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean;
+  BackgroundCefColor: Cardinal;
+  WindowsSandboxInfo: Pointer;
+  WindowlessRenderingEnabled: Boolean;
   i: Integer;
   NoSandbox: Boolean;
 begin
   CSEnterMethod(nil, cFn);
+
+  BackgroundCefColor := 0;
 
   for i := 1 to ParamCount do
     CSSend('ParamStr(' + S(i) +')', ParamStr(i));
@@ -246,25 +251,28 @@ begin
   PersistSessionCookies := False;
   IgnoreCertificateErrors := False;
   NoSandbox := False;
+  WindowsSandboxInfo := nil;
+  WindowlessRenderingEnabled := True;
 
 (*
-function CefLoadLib(const Cache, UserAgent, ProductVersion, Locale, LogFile,
-  BrowserSubprocessPath: ustring;
-  LogSeverity: TCefLogSeverity;
-  JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
+CefLoadLib syntax as of 8-Oct-2015:
+
+function CefLoadLib(const Cache, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
+  LogSeverity: TCefLogSeverity; JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
   SingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled: Boolean; RemoteDebuggingPort: Integer;
-  ReleaseDCheck: Boolean; UncaughtExceptionStackSize: Integer; ContextSafetyImplementation: Integer;
+  UncaughtExceptionStackSize: Integer; ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean; BackgroundColor: TCefColor;
-  WindowsSandboxInfo: Pointer): Boolean;
+  WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
 *)
 
   IsFirstInit := CefLoadLib(cache, UserAgent, ProductVersion, Locale, LogFile,
-    BrowserSubprocessPath, LOGSEVERITY_DISABLE,
-    JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
+    BrowserSubprocessPath,
+    LOGSEVERITY_DISABLE, JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
     FlagSingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled,
-    RemoteDebuggingPort, ReleaseDCheck, UncaughtExceptionStackSize,
-    ContextSafetyImplementation,
-    PersistSessionCookies, IgnoreCertificateErrors
+    RemoteDebuggingPort,
+    UncaughtExceptionStackSize, ContextSafetyImplementation,
+    PersistSessionCookies, IgnoreCertificateErrors, BackgroundCefColor,
+    WindowsSandboxInfo, WindowlessRenderingEnabled
     );
   if IsFirstInit then
   begin
