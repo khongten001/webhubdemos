@@ -16,7 +16,7 @@ Invoke-Expression ($PSScriptRoot + '\..\WebHub_Appliance_PS\Initialize.ps1')  # 
 
 $RequestINFFilespec = "D:\Projects\webhubdemos\Live\ssl\Cert_Request_db.demos.href.com.inf"
 $REQFilespec = "D:\Projects\webhubdemos\Live\ssl\Cert_Request_db.demos.href.com.req.txt"
-$CERFilespec
+$CERFilespec = "D:\Projects\webhubdemos\Live\ssl\db.demos.href.com.crt"
 Start-Process "CERTREQ" -ArgumentList ('-New "' + $RequestINFFilespec + '" "' + $REQFilespec + '"') -NoNewWindow -Wait
 
 Start-Process $Global:CSConsole -ArgumentList '-Note "You should pass the REQUEST data to your secure certificate provider"' -NoNewWindow -Wait
