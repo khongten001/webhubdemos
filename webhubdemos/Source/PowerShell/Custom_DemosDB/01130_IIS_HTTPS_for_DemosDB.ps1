@@ -1,5 +1,13 @@
 # Use CERTREQ to make a new HTTPS certificate request
 
+# References
+# 1 = http://technet.microsoft.com/en-us/library/dn296456.aspx
+# 2 = https://technet.microsoft.com/en-us/library/ff625722%28v=ws.10%29.aspx
+# 3 = http://blogs.technet.com/b/pki/archive/2009/08/05/how-to-create-a-web-server-ssl-certificate-manually.aspx
+# Note that CERTREQ is included in Win2012 Server and many other versions of Windows.
+
+
+
 # call a separate script to init global variables.
 Invoke-Expression ($PSScriptRoot + '\..\WebHub_Appliance_PS\Initialize.ps1')  # loops back and uses custom values
 
