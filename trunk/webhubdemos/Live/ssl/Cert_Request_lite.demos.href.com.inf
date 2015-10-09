@@ -1,0 +1,20 @@
+[References]
+1 = http://technet.microsoft.com/en-us/library/dn296456.aspx
+2 = https://technet.microsoft.com/en-us/library/ff625722%28v=ws.10%29.aspx
+3 = http://blogs.technet.com/b/pki/archive/2009/08/05/how-to-create-a-web-server-ssl-certificate-manually.aspx
+4 = Note that CERTREQ is included in Win2012 Server and many other versions of Windows.
+
+[NewRequest] 
+; At least one value must be set in this section 
+Subject = "CN=lite.demos.href.com, O=HREF Tools Corp., OU=Marketing, L=Santa Rosa, S=California, C=US"
+KeyLength = 2048
+MachineKeySet = true
+ProviderName = "Microsoft RSA SChannel Cryptographic Provider"
+
+[RequestAttributes]
+; If your client operating system is Windows Server 2003, Windows Server 2003 R2, or Windows XP
+; and you are using a standalone CA, SANs can be included in the RequestAttributes 
+; section by using the following text format.
+; (( Actually 2008+ supports this SAN syntax. ))
+SAN="dns=lite.demos.href.com&dns=more.href.com"
+
