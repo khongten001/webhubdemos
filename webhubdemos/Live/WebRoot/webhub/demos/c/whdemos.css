@@ -105,6 +105,7 @@ div#w3-div {
 
 .whDemoSectionEdge {
   border-left: 12px solid; 
+  min-height: 2.0em;
   margin-bottom: 3em;
 }
 

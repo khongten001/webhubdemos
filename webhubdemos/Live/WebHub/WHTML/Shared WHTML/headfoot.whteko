@@ -62,7 +62,7 @@ body {
 <!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
 <div class="row" data-equalizer="head">
 <header>
-	<div class="show-for-medium-up medium-1 columns whDemoSectionEdge" style="border-left-color: plum; min-height: 2.0em;" data-equalizer-watch="head">
+	<div class="show-for-medium-up medium-1 columns whDemoSectionEdge" style="border-left-color: plum;" data-equalizer-watch="head">
 		&ensp;
 	</div>
 	<div class="small-18 medium-12 columns" data-equalizer-watch="head">
