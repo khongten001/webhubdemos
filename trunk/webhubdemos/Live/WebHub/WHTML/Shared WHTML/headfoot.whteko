@@ -51,6 +51,7 @@ body {
 </style>~)
 <!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
 (~ANCHOR|anchJavascript~)
+(~drHead_DesignRefresh~)
 <meta name="generator" content="(~version~)" />
 </whdroplet>
 </head>
@@ -82,10 +83,6 @@ body {
 </header>
 </div>
 ~)
-  <!--- create a hot spot for refreshing the app from the browser on development machines -->
-  <div id="designRefreshDiv" style="position: absolute; top: 0; left: 0; width:2em; height:2em; (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|border:solid 1px red;~) 
-  z-index:100"><!--- behavior depends on AppSetting.DesignRefreshEnabled--></div>
-  (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|(~PARAMS|drDesignRefresh_jQuery|div,designRefreshDiv,3000,(~PageID~),(~Command~)~)~)
 </whdroplet>
 
 <whdroplet name="drDemoSpeedbar" show="no">
@@ -154,6 +151,7 @@ body {
 </div>  
 </footer>
 </div>
+(~drBody_DesignRefresh~)<!--- create a hot spot for refreshing the app from the browser on development machines -->
 <!--- Zurb Foundation JavaScript -->
     <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="(~mcImgHrefCom~)zurb_5.5.3/js/foundation.min.js"></script>
@@ -251,5 +249,22 @@ make a program equivalent to whLite by running the WebHub "new project" wizard. 
 <whpage pageid="ReturnNow" desc="-internal page for returning from subroutine">
 (~PopPage|litReturnHere~)
 </whpage>
+
+<whdroplet name="drHead_DesignRefresh">
+<!--- comment out until fully working
+~IFDYNAMIC|
+	(~PARAMS|drDesignRefresh|designRefresh,2000,(~PageID~),(~Command~)~)
+	(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|
+	<link rel="stylesheet" href="/webhub/demos/c/whrefresh.css?0001" type="text/css" />
+	~)
+~) -->
+</whdroplet>
+
+<whdroplet name="drBody_DesignRefresh">
+<!--- comment out until fully working
+(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|
+(~IFDYNAMIC|<div id="designRefresh">&#x2672;</div>~)
+~)-->
+</whdroplet>
 
 </whteko>

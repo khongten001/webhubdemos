@@ -1,9 +1,10 @@
 /*wh-designrefresh.js*/	
 function refreshPage( ) {
-	setTimeout("document.location=refreshLocation", refreshTimeout);
+	setTimeout("location.reload()", refreshTimeout);
+
 }
 function initDesignRefresh() {
-	/*$('designRefresh').onclick = function(){ new Ajax.Updater('', '	/scripts/runisa.dll?appid:remoterefresh:1199125823.7035', {asynchronous:true, evalScripts:true, method:'get', onLoading:function(request){refreshPage()}}); return false; };*/
+/*alert('initDesignRefresh');*/
 	$('#' + refreshElementId).click(function() {
 		$.ajax({
 			url: refreshURL,
@@ -55,5 +56,5 @@ function initDesignRefresh() {
 		});
 	});
 }
-document.addEventListener("DOMContentLoaded", initDesignRefresh, true);		
+document.addEventListener("DOMContentLoaded", initDesignRefresh, true);
 /* end */

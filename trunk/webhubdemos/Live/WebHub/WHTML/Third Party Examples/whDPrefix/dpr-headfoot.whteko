@@ -24,7 +24,7 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 	<link href='//fonts.googleapis.com/css?family=Niconne:400' rel='stylesheet' type='text/css'>
 	(~mcDPRFoundationCSS~)
 	<script src="(~Static.AppRoot~)js/vendor/modernizr.js"></script>
-	(~CHECK|_no_jQuery~)(~PARAMS|drDesignRefresh_jQuery|div,divRefresh,2000,(~PageID~)~)
+	
 (~MATCH|(~AppSetting.ShowSessionVars~)~True|<script>
 	function toggleSessionVars() {
 	var
@@ -52,7 +52,7 @@ mcCodeRage9=<a title="Code Rage, October 28-30 2014 at Embarcadero" href="http:/
 
 
 <whdroplet name="drDPRDeveloperMenu">
-(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|<div id="divRefresh">&#9842; (~~link_refresh~)</div>~)
+(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|<div id="designRefresh">&#9842; (~~link_refresh~)</div>~)
 (~IF|bShowSessionVars|	(~drSessionVars_TabletLayout~)   ~)
 
 (~MATCH|(~AppSetting.ShowSessionVars~)~True|
