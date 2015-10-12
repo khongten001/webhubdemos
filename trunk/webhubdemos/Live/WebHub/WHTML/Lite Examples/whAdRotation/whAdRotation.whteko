@@ -25,13 +25,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row" data-equalizer="main">
-	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: antiquewhite;" data-equalizer-watch="main">
-		&ensp;
-	</div>
-	<div class="small-17 large-12 columns" data-equalizer-watch="main">
-
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns" >
 <h1>Overview of the WebHub Component Named WebCycle</h1>
 
 <p>WebCycle is a component of type TwhCycle 
@@ -63,9 +57,7 @@ component will start over again at the beginning of the list. This means that
 you can prioritize your advertisements by order of appearance, and you can also list
 particular droplets more than once, to give them increased exposure.</p>
 
-</div>  <!--- whdemopagecontent -->
-	<div class="show-for-large-up small-5 columns">&ensp;</div>
-</div>
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 
@@ -225,7 +217,7 @@ Usage: required parameters for this droplet
  dyn2 = price
  dyn3 = isbn number for use in amazon.com link
 </whdoc>
-<div style="border: solid 1px #000;padding:10;text-align:center;width:30em;">
+<div style="border: solid 1px #000;padding:10;max-width:30em;" class="text-center">
  <p>Sample advertisement for session #(~SessionID~):</p>
  <p>Buy this Book !</p>
  <p><span class="booktitle">(~DYN1~)</span></p>
