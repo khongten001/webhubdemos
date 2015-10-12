@@ -1,5 +1,5 @@
 ﻿[File0]
-ProjectStatus=0
+ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Lite Examples\whAdRotation\whAdRotation.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whAdRotation\whAdRotation.whteko
@@ -8,13 +8,29 @@ ForcedReadOnly=0
 
 [File1]
 ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\DB Examples\whDynamicJPEG\whDynamicJPEG.whteko
+Filename=d:\Projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whDynamicJPEG\whDynamicJPEG.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File2]
+ProjectStatus=1
+FileType=1655568939
+RelativeFilename=Live\WebHub\WHTML\DB Examples\whClone\whClone.whteko
+Filename=d:\Projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whClone\whClone.whteko
+FTPFilename=
+ForcedReadOnly=0
+
+[File3]
+ProjectStatus=1
 FileType=xml
 RelativeFilename=Source\WhtekoSyntaxColoring\DreamweaverMX_2004\Dreamweaver_WebHubCodeColoring.xml
 Filename=D:\Projects\webhubdemos\Source\WhtekoSyntaxColoring\DreamweaverMX_2004\Dreamweaver_WebHubCodeColoring.xml
 FTPFilename=
 ForcedReadOnly=0
 
-[File2]
+[File4]
 ProjectStatus=1
 FileType=xml
 RelativeFilename=Source\WhtekoSyntaxColoring\DreamweaverMX_2004\Dreamweaver_WebHubColors.xml
@@ -22,15 +38,15 @@ Filename=D:\Projects\webhubdemos\Source\WhtekoSyntaxColoring\DreamweaverMX_2004\
 FTPFilename=
 ForcedReadOnly=0
 
-[File3]
-ProjectStatus=1
+[File5]
+ProjectStatus=0
 FileType=xml
 RelativeFilename=Live\WebHub\WHTML\Lite Examples\whAdRotation\WHAppConfig_adv.xml
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whAdRotation\WHAppConfig_adv.xml
 FTPFilename=
 ForcedReadOnly=0
 
-[File4]
+[File6]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\cssdroplets.whteko
@@ -38,15 +54,31 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\cssdroplets.whte
 FTPFilename=
 ForcedReadOnly=0
 
-[File5]
-ProjectStatus=1
+[File7]
+ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
 Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\headfoot.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File6]
+[File8]
+ProjectStatus=0
+FileType=js
+RelativeFilename=Live\WebRoot\webhub\demos\js\wh-designrefresh.js
+Filename=D:\Projects\webhubdemos\Live\WebRoot\webhub\demos\js\wh-designrefresh.js
+FTPFilename=
+ForcedReadOnly=0
+
+[File9]
+ProjectStatus=1
+FileType=css
+RelativeFilename=Live\WebRoot\webhub\demos\c\whdemos.css
+Filename=d:\Projects\webhubdemos\Live\WebRoot\webhub\demos\c\whdemos.css
+FTPFilename=
+ForcedReadOnly=0
+
+[File10]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\designrefresh_jquery.whteko
@@ -54,7 +86,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\designrefresh_jq
 FTPFilename=
 ForcedReadOnly=0
 
-[File7]
+[File11]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whteko
@@ -62,7 +94,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_chi.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File8]
+[File12]
 ProjectStatus=1
 FileType=*
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_chi-sample.png
@@ -70,7 +102,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_chi-sampl
 FTPFilename=
 ForcedReadOnly=0
 
-[File9]
+[File13]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whteko
@@ -78,7 +110,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_deu.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File10]
+[File14]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whteko
@@ -86,7 +118,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_eng.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File11]
+[File15]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whteko
@@ -94,7 +126,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_fra.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File12]
+[File16]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whteko
@@ -102,7 +134,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\lingvo_rus.whtek
 FTPFilename=
 ForcedReadOnly=0
 
-[File13]
+[File17]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\macros.whteko
@@ -110,7 +142,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\macros.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File14]
+[File18]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\monitor.whteko
@@ -118,7 +150,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\monitor.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File15]
+[File19]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
@@ -126,7 +158,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\setprefr.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File16]
+[File20]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
@@ -134,7 +166,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sharepgs.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File17]
+[File21]
 ProjectStatus=0
 FileType=pas
 RelativeFilename=Source\WHApps\Common\uLingvoCodePoints.pas
@@ -142,7 +174,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\uLingvoCodePoints.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File18]
+[File22]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_About.pas
@@ -150,7 +182,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_About.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File19]
+[File23]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_ColorScheme.pas
@@ -158,7 +190,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_ColorScheme.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File20]
+[File24]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_DMDBProjMgr.pas
@@ -166,7 +198,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_DMDBProjMgr.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File21]
+[File25]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_DMIBObjCodeGen.pas
@@ -174,7 +206,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_DMIBObjCodeGen.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File22]
+[File26]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_DMProjMgr.pas
@@ -182,7 +214,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_DMProjMgr.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File23]
+[File27]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_Extensions.pas
@@ -190,7 +222,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Extensions.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File24]
+[File28]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_IbObjCodeGenGUI.pas
@@ -198,7 +230,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_IbObjCodeGenGUI.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File25]
+[File29]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_Initialize.pas
@@ -206,7 +238,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Initialize.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File26]
+[File30]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_Refresh.pas
@@ -214,7 +246,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Refresh.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File27]
+[File31]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_Unison.pas
@@ -222,7 +254,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_Unison.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File28]
+[File32]
 ProjectStatus=1
 FileType=pas
 RelativeFilename=Source\WHApps\Common\whdemo_ViewSource.pas
@@ -230,7 +262,7 @@ Filename=D:\Projects\webhubdemos\Source\WHApps\Common\whdemo_ViewSource.pas
 FTPFilename=
 ForcedReadOnly=0
 
-[File29]
+[File33]
 ProjectStatus=0
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
@@ -238,7 +270,7 @@ Filename=D:\Projects\webhubdemos\Live\WebHub\WHTML\Shared WHTML\sysinfo.whteko
 FTPFilename=
 ForcedReadOnly=0
 
-[File30]
+[File34]
 ProjectStatus=1
 FileType=1655568939
 RelativeFilename=Live\WebHub\WHTML\Shared WHTML\test_urls.whteko
@@ -249,9 +281,9 @@ ForcedReadOnly=0
 [EditPad Project]
 Managed=1
 BookmarksProjectWide=0
-TabIndex=16
+TabIndex=8
 FirstFileTab=0
-FileCount=31
+FileCount=35
 RemovedCount=2
 
 [Removed0]
