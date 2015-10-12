@@ -51,8 +51,8 @@ input types default back to type=&quot;text&quot;.
 <!-- changing:start-->
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|FORM:pgThankYou~)">
 <!-- changing:stop-->
-<table border="0" cellpadding="10" cellspacing="0">
-<tr><td valign="middle">
+<table>
+<tr><td style="vertical-align:middle;">
 <table id="inputleft">
 <tr>
 	<td class="prompt">
@@ -202,6 +202,7 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 	</td>
 </tr>
 <tr><td>
+(~NOTASSIGNED|inPetSpeed|(~SET|inPetSpeed=4.5~)~)
 <input type="range" name="inPetSpeed" value="(~INPUTDEFAULT|inPetSpeed~)" />
 </td></tr>
 
@@ -220,8 +221,8 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 </td></tr>
 
 <tr><td colspan="2">
-<input type="submit" name="petFormButton" value="Post Pet Particulars" />
-<input type="submit" name="petFormButton" value="Shortcut" />
+<input type="submit" name="petFormButton" class="button success radius" value="Post Pet Particulars" />
+<input type="submit" name="petFormButton" class="button secondary radius" value="Shortcut" />
 </td></tr></table>
 </form>
 
