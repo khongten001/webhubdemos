@@ -46,7 +46,7 @@ mcNameType=L-Language,LA-Language Alternate,D-Dialect,DA-Dialect Alternate,LP-La
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>
 This demo shows how to show the results of a simple query based
 on two input fields.</p>
@@ -82,7 +82,7 @@ see where that type of language is spoken.
 Or enter nonsense letters and numbers to see what happens with invalid input.
 </p>
 </whdroplet>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -151,7 +151,7 @@ Please try again.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <span class="changing">(~JUMPR|pgEnterHTQ1|Back~)</span>
 <h2>Search Result</h2>
 <h3>Language ID = (~LangID~)</h3>
@@ -160,7 +160,7 @@ Please try again.
 (~answergrid.execute~)
 (~MATCH|(~RecordCount~)=0|(~errMessage~)||(~ANCHORMODIFY|anchRecordCount|<p>Number of matches: (~RecordCount~)</p>~)
 ~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -174,7 +174,7 @@ Please try again.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>Steps taken to create the HTQ1 demo</h1>
 
@@ -241,7 +241,7 @@ reasonable, stylable captions and button specifications for the grid.
 </li>
 
 </ol>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

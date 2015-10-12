@@ -26,13 +26,13 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>A salesman tells the Pope that he represents the largest fish processor in
 the world, who would pay the church 1 billion dollars if they change the
 wording in the Lord's prayer from "Give us this day our daily bread"
  to "Give us this day our daily fish".</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -49,11 +49,11 @@ wording in the Lord's prayer from "Give us this day our daily bread"
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>After much negotiation, they settle on $5 billion. The next day the Pope
 calls a meeting of the college of cardinals and says:</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -70,11 +70,11 @@ calls a meeting of the college of cardinals and says:</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>"I've got good news and bad news.  The good news is we get 5 billion
 dollars; the bad news is that we lost the Wonderbread account !!"</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

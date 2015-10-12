@@ -52,7 +52,7 @@ The page header has been defined as a single droplet, and is shared by all the d
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <whdroplet name="drPageBeginFAST" show="yes">
 	<div id="fastNav">
@@ -93,7 +93,7 @@ The pages in this demo are (~JUMP|pgServerID|defined to route to a specific Serv
 		</table>
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -110,7 +110,7 @@ The pages in this demo are (~JUMP|pgServerID|defined to route to a specific Serv
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
 <table width="100%">
@@ -135,7 +135,7 @@ page will run on the ssl server.</p>
 </tr></table>
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -152,7 +152,7 @@ page will run on the ssl server.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
 <table cellpadding="5" cellspacing="15" >
@@ -175,7 +175,7 @@ Japanese team for 2011 World Solar Challenge</p>
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -198,7 +198,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
 <table cellpadding="5" cellspacing="15">
@@ -218,7 +218,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
     <div id="sslcert">
 <script type="text/javascript" src="https://www.startssl.com/seal.js"></script>
 	</div>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -235,7 +235,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
 <table cellpadding="5" cellspacing="15">
@@ -254,7 +254,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -271,7 +271,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~drPageBeginFAST~)
 	<div id="fastpagecontent">
 <table cellpadding="5" cellspacing="15">
@@ -293,7 +293,7 @@ You can specify which server is "defprofile" and which is "ssl" in ZMAdmin.
 	</div> <!--- fastpagecontent -->
 	<div id="fastpageend">&nbsp;</div>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

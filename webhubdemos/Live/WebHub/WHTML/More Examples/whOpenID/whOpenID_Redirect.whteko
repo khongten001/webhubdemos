@@ -20,7 +20,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 	<h1>Hello!</h1>
 	<h2>This is PageID: (~PageID~)</h2>
 

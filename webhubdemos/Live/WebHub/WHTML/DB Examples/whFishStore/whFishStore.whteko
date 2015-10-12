@@ -57,7 +57,7 @@ height: 50px;
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~~WelcomeToOurStore~)!</h1>
 <p>(~~WeHaveAFewOptions~)</p>
@@ -87,7 +87,7 @@ height: 50px;
 </div>
 
 <i><br/>(~App.StoreMessage~)</i>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -148,14 +148,14 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~~BrowseForFish~) (using text)</h1>
 <p>We are so glad you decided to look at the fish in our aquariums.</p>
 <p>You guessed it -- click the link to see a fish.  If you like what you
 see, you can place an order.</p>
 (~gf.execute|~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -216,14 +216,14 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>An Alternate View: (~~BrowseForFish~) with Pictures</h1>
 <p>We are so glad you decided to look at the fish in our aquariums.</p>
 <p>You guessed it -- click the link to see a fish.  If you like what you
 see, you can place an order.</p>
 (~gfa1.execute~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -240,7 +240,7 @@ see, you can place an order.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Selected fish: (~FIELD|WebDataSourceBiolife|Common_Name~)</h1>
 <p>Here is your fish!!</p>
 (~waFishPhoto.execute~)
@@ -258,7 +258,7 @@ graphic is being written to.</i></p>
 <li> (~JUMP|lookfish|(~mcShoppingImg~)~) (~JUMP|lookfish|Browse Fish (text)~)</li>
 </ul>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -281,14 +281,14 @@ graphic is being written to.</i></p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 Fish #(~currentFish~) has been added to your shopping cart.
 
 <h2>Take Action</h2>
 <p>(~JUMP|lookfish|Look at More Fish~)</p>
 <p>(~JUMP|Checkout|(~chShoppingCartLink~)~)</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -302,10 +302,10 @@ Fish #(~currentFish~) has been added to your shopping cart.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>Your current order</h2>
 (~fishList~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -323,7 +323,7 @@ Fish #(~currentFish~) has been added to your shopping cart.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Shipping Information</h2>
 
@@ -334,7 +334,7 @@ Note to developers: This example requires zero Object Pascal code.  You add the
 TwhListGrid component to your project, create the text files that contain
 the table data (in a very simple format), define the "DisplaySet" list of text file names,
 set up a page which calls the grid, and you're READY.
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

@@ -14,7 +14,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <p>(~mcWhDemoDot~) (~JUMP|DO,scan1|Try the first scan component~) (.dbf file)</p>
 
@@ -28,7 +28,7 @@
 
 <p>(~mcWhDemoDot~) (~JUMP|DO,ScanDBxDBf|Try the ScanDBxDBf component~) (DBExpress to DBase/CDS)</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -47,13 +47,13 @@ these droplets are used by the DO page for each of the scan components
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
   <div align="center">
 </whdroplet>
 
 <whdroplet name="drPageFooterHTCL">
   </div>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>(~CLEAR|pagedesc~)
 </whdroplet>

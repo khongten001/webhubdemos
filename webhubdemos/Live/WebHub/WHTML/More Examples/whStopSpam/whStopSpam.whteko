@@ -15,7 +15,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <center>
 <h2>(~PageDesc~)</h2>
 
@@ -64,7 +64,7 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 <p>(~drDemoSpeedbarForHTUN~)</p>
 </center>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -82,7 +82,7 @@ ul.sq li {list-style-type:square;}
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>How to Test a SOAP Service</h2>
 <p>You can use Delphi 6+ to create a custom SOAP client... or you can use 
@@ -101,7 +101,7 @@ ANY SOAP server for which you know the WSDL.</p>
 <li> waSlowSpan &rarr; the name of your TwhWebAction component where you have toggled SOAP support on</li>
 </ul>
 </p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

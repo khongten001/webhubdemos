@@ -15,7 +15,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>Keyword Index</h1>
 <h2>for training archive</h2>
@@ -34,7 +34,7 @@
 </whrow>
 </table>
 </whdroplet>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 

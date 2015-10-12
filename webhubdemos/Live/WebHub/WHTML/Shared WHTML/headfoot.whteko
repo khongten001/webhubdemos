@@ -4,18 +4,14 @@
   designmode="code"
   defaultlingvo="eng"
   notes="Global Header and Footer assets (shared by all WebHub demos)."
-  copyright="2006-2014 HREF Tools Corp.">
-
-<whdoc for="doctype">
-See http://diveintohtml5.info/semantics.html for exceptionally clear info about the HTML5 head tag requirements.
-</whdoc>
+  copyright="2006-2015 HREF Tools Corp.">
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcSiteRoot=(~IfInDW|/webroot/webhub/||/webhub/~)
+mcImgHrefCom=(~MATCH|(~Request.Host~)=HTTP|http://img.href.com/||https://d379xgascauhff.cloudfront.net/~)
+mcSiteRoot=/webhub/
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </whmacros>
-
 
 <whpage pageid="temp1" mode="scaffold" desc="-for use in Dreamweaver design mode">
 (~mcdoctypehtml~)
@@ -25,10 +21,10 @@ mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 siteroot is (~mcSiteRoot~)<br />
-<img src="http://img.href.com/webhubdemos/img/logos/adv.jpg" alt="logo for adv demo" />
-</div>  <!--- demopagecontent -->
+<img src="(~mcImgHrefCom~)webhubdemos/img/logos/adv.jpg" alt="logo for adv demo" />
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -40,48 +36,55 @@ siteroot is (~mcSiteRoot~)<br />
 <whdroplet name="drHead" show="yes">
 (~ANCHOR|anRefresh~) (~waLingvo.execute|~)(~ANCHORMODIFY|anchHtmlTag,replace|lang="(~waLingvo.Execute|ISO639-1~)"~)
 <meta charset="UTF-8" /> 
-<meta name="generator" content="(~version~)" />
 <meta name="description" content="This demo page is summarized as (~pagedesc~)" />
 <title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 (~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
+<link rel="stylesheet" href="(~mcImgHrefCom~)webhubdemos/c/foundation.min.css" />
+<script src="(~mcImgHrefCom~)zurb_5.5.3/js/vendor/modernizr.js"></script>
 <link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
 (~MATCH|demos.href.com[(~Request.Host~)|<link rel="canonical" href="(~Request.Scheme~)://(~Request.Host~)/(~SessionLingvo~)/(~AppID~)/(~PageID~)" />~)
 (~ASSIGNED|litWallpaper|<style type="text/css">
 body {
-  background: url(http://img.href.com/webhubdemos/img/textures/(~litWallpaper~)) repeat;
+  background: url((~mcImgHrefCom~)webhubdemos/img/textures/(~litWallpaper~)) repeat;
 }
 </style>~)
 <!-- anchor-style-begin -->(~ANCHOR|style~)<!-- anchor-style-end -->
 (~ANCHOR|anchJavascript~)
+<meta name="generator" content="(~version~)" />
 </whdroplet>
 </head>
 <body>
 <whdroplet name="drPageBegin" show="yes">
+<div class="row" id="divPageBeginEnd">
 (~NOMATCH|(~AppSetting.DemoGraphic~)=no|
-<header>
 <!--- This entire section comes in IF the AppSetting named DemoGraphic is NOT "no" -->
-<div class="whDemoSectionNav" style="border-color: plum;z-index:100" >
-  <div id="whDemoLogo">
-  (~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
-  </div>
-  <div id="whDemoShortDesc">
-AppID = (~AppID~)<br />
-Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
-&nbsp;<br />
-<!--- Except on the generic pages -->
-(~NOMATCH|(~pageid~)[pgWelcome,pgSetup,pgDownload,ViewFiles,VIEWDELPHIFILE,SetPref,SetPref2|
-<!--- link in a navigation/speedbar -->
-  (~drHideToDemoEntrance~)<br/>
-  (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
-~)
-  </div>
-</div><!-- whDemoSectionNav -->
+<div class="row" data-equalizer="head">
+<header>
+	<div class="show-for-medium-up medium-1 columns whDemoSectionEdge" style="border-left-color: plum; min-height: 2.0em;" data-equalizer-watch="head">
+		&ensp;
+	</div>
+	<div class="small-18 medium-12 columns" data-equalizer-watch="head">
+	  (~GO|pgWelcome|<img src="(~mcWhDemoLogoDir~)(~AppID~).jpg" alt="Logo for (~AppID~) WebHub demo" />~)
+	</div>
+	<div id="whDemoShortDesc" class="small-18 medium-5 columns" data-equalizer-watch="head">
+		<div>AppID = (~AppID~)</div>
+		<div class="show-for-medium-up" style="padding-bottom: 1.50em;">
+			Topic = <b><i>(~mcWhDemoOneLiner~)</i></b>
+		</div>
+		<!--- Except on the generic pages -->
+		(~NOMATCH|(~PageIDLower~)[pgwelcome,pgsetup,pgdownload,viewfiles,viewdelphifile,setpref,setpref2|
+		<!--- link in a navigation/speedbar -->
+		  (~drHideToDemoEntrance~)<br/>
+		  (~DYNCHUNK|drDemoSpeedbarFor,(~AppID~)~)
+		~)
+	</div>
 </header>
+</div>
 ~)
   <!--- create a hot spot for refreshing the app from the browser on development machines -->
   <div id="designRefreshDiv" style="position: absolute; top: 0; left: 0; width:2em; height:2em; (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|border:solid 1px red;~) 
-  z-index:100"><!-- behavior depends on AppSetting.DesignRefreshEnabled--></div>
+  z-index:100"><!--- behavior depends on AppSetting.DesignRefreshEnabled--></div>
   (~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|(~PARAMS|drDesignRefresh_jQuery|div,designRefreshDiv,3000,(~PageID~),(~Command~)~)~)
 </whdroplet>
 
@@ -89,14 +92,13 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 <nav>
 <div id="menuThisWebHubDemoContainer">
 <div id="menuThisWebHubDemo">
-<ul>
-<li>(~GO|pgWelcome| id="navWelcome" title="Go to the first welcome page in this demo"|[~Welcome~]~)</li>
-<li>(~GO|pgEnter(~AppID~)| id="navEnter" title="Start this demo."|[~Entrance~]~)</li>
-<li>(~GO|ViewFiles,(~AppID~)| id="navSource" title="View source code for this demo."|[~Source~]~)</li>
-<li>(~GO|pgDownload,(~AppID~)| id="navDownload" title="Download Source for this demo."|[~Download~]~)</li>
-<li>(~GO|SetPref| id="navOptions" title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
-<!--- <li>(~GO|pgLinkTest| title="test a wide range of links" |Link-Tests~) </li> -->
-<li>(~GO|pgLogout| id="navLogout" title="logout to clear session data" |[~Logout~]~)</li>
+<ul class="button-group radius">
+<li>(~JUMP|pgWelcome| id="navWelcome" class="button (~MATCH|(~PageIDLower~)=pgwelcome|secondary~) small" title="Go to the first welcome page in this demo"|[~Welcome~]~)</li>
+<li>(~JUMP|pgEnter(~AppID~)| id="navEnter" class="button (~MATCH|pgenter[(~PageIDLower~)|secondary~) small" title="Start this demo."|[~Entrance~]~)</li>
+<li>(~JUMP|ViewFiles,(~AppID~)| id="navSource" class="button (~MATCH|(~PageIDLower~)=viewfiles|secondary~) small" title="View source code for this demo."|[~Source~]~)</li>
+<li>(~JUMP|pgDownload,(~AppID~)| id="navDownload" class="button (~MATCH|(~PageIDLower~)=pgdownload|secondary~) small" title="Download Source for this demo."|[~Download~]~)</li>
+<li>(~JUMP|setpref| id="navOptions" class="button (~MATCH|(~PageIDLower~)=setpref|secondary~) small" title="Set some options which will stay in effect through all demos."|[~Options~]~)</li>
+<li>(~JUMP|pgLogout| id="navLogout" class="button (~MATCH|(~PageIDLower~)=pglogout|secondary~) small" title="logout to clear session data" |[~Logout~]~)</li>
 </ul>
 </div>
 </div>
@@ -104,31 +106,60 @@ Topic = <b><i>(~mcWhDemoOneLiner~)</i></b><br />
 </whdroplet>
 
 <whdroplet name="drPageEnd" show="no">
-<footer>
-<div class="whDemoSectionNav" style="border-color: #99CC00;">
-(~IFDynamic|(~drDemoSpeedBar~)~)
-</div>  <!--- whDemoSectionNav -->
-
-<div class="whDemoSectionNav" style="border-color: tan;">
-<div class="navWebHubDemos">
-view links to all demos on
-<!--- link to public demos server -->
-(~drLinkToAllDemos~)<br />
-(~NOMATCH|(~pageid~)[ViewFiles,ViewWHTMLFile,VIEWDELPHIFILE,SetPref,SetPref2|lingvo:(~drLingvoLinkList~)~)
+<footer style="clear:left;">
+<div class="row" data-equalizer="end01">
+	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: #99CC00;" data-equalizer-watch="end01">
+		&ensp;
+	</div>
+	<div class="small-17 large-12 columns" data-equalizer-watch="end01">
+	(~IFDynamic|(~drDemoSpeedBar~)~)
+	</div> 
+	<div class="show-for-large-up small-5 columns">&ensp;</div>
 </div>
 
-</div>  <!--- whDemoSectionNav -->
+<div class="row" data-equalizer="end02">
+	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: tan;" data-equalizer-watch="end02">
+		&ensp;
+	</div>
+	<div class="small-17 large-12 columns" data-equalizer-watch="end02">
+		<div class="navWebHubDemos">
+		view links to all demos on
+		<!--- link to public demos server -->
+		(~drLinkToAllDemos~)<br />
+		(~NOMATCH|(~pageid~)[ViewFiles,ViewWHTMLFile,VIEWDELPHIFILE,SetPref,SetPref2|lingvo:(~drLingvoLinkList~)~)
+		</div>
+	</div>
+	<div class="show-for-large-up small-5 columns">&ensp;</div>
+</div>  
 
-<div class="whDemoSectionNav" style="border-color: lightsteelblue;">
-(~drCreditsTimingEtc~)
-</div>  <!--- whDemoSectionNav -->
+<div class="row" data-equalizer>
+	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: lightsteelblue;" data-equalizer-watch>
+		&ensp;
+	</div>
+	<div class="small-17 large-12 columns" data-equalizer-watch>
+		(~drCreditsTimingEtc~)
+		(~drConditionalSystemInfo~)
+	</div>
+	<div class="show-for-large-up small-5 columns">&ensp;</div>
+</div>  
 
-(~drConditionalSystemInfo~)
-
-<div class="whDemoSectionNav" style="border-color: darkgreen;">
-(~drCopyright~)
-</div>  <!--- whDemoSectionNav -->
+<div class="row" data-equalizer>
+	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: darkgreen;" data-equalizer-watch>
+		&ensp;
+	</div>
+	<div class="small-17 large-12 columns" data-equalizer-watch>
+		(~drCopyright~)
+	</div>
+	<div class="show-for-large-up small-5 columns">&ensp;</div>
+</div>  
 </footer>
+</div>
+<!--- Zurb Foundation JavaScript -->
+    <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="(~mcImgHrefCom~)zurb_5.5.3/js/foundation.min.js"></script>
+    <script>
+      $(document).foundation();
+    </script>
 </whdroplet>
 
 <whdroplet name="drLingvoLinkList">
@@ -153,14 +184,14 @@ view links to all demos on
 <whdroplet name="drCopyright" show="no">
 <div class="copyright">
 Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
-<a href="http://www.href.com/contact">contact</a>
-<a href="http://lite.demos.href.com/privacypolicy">privacy</a>
+<a href="//www.href.com/contact">contact</a>
+<a href="http://lite.demos.href.com/demos/privacypolicy">privacy</a>
 </div>
 </whdroplet>
 
 
 <whdroplet name="drCreditsTimingEtc" show="no">
-(~IfDynamic|<span class="techiefooter">
+(~IfDynamic|<span class="techiefooter show-for-medium-up">
 This web application was compiled using Delphi (~CentralInfo.PascalCompilerCode~), (~Version~).
 Time taken to dynamically produce this web page: <span class="changing">(~Runtime.TimeSoFar~)</span> milliseconds. &emsp; 
 Your IP number is reported as <span class="changing">(~RemoteAddress~)</span>; 

@@ -174,7 +174,7 @@ bNoMore=true
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
 <form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">

@@ -14,7 +14,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>The WebObjectInspector component is connected to 
 the "MyClass" component which contains:</p>
 <ol>
@@ -31,7 +31,7 @@ is closed.</p>
 
 <p>(~WebObjectInspector.execute~)</p>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

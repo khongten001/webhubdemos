@@ -45,7 +45,7 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <!--- now build the page -->
 <h2> Blue (~mcBlueDot~) to View and Black (~mcBlackDot~) to Edit</h2>
 <p>
@@ -54,7 +54,7 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 (~MATCH|(~RadioButtons~)=TEXT|(~grid.execute|bOn~)~)
 (~grid.controls~)</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -69,7 +69,7 @@ mcBlueDot=<img src="(~mcImgInstantFormDir~)BLUBULLT.JPG" alt="View" />
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Grid Options</h1>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterHTFM~)">
 (~INPUTRADIO|RadioButtons,TEXT~)Text Controls
@@ -85,7 +85,7 @@ combination of text (from the application-level INI file) plus
 any applied Cascading Style Sheet definitions.
 </p>
 (~JUMP|PreferencesRemembered|Save-state of Your Preferences~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -100,10 +100,10 @@ any applied Cascading Style Sheet definitions.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chExplainTWebDataForm~)
 (~chViewAction~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -117,13 +117,13 @@ any applied Cascading Style Sheet definitions.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chExplainTWebDataForm~)
 <p>The Part Number field is not meant to be edited because
 it is linked to other tables.  You may change the description
 and the list price.</p>
 <p>(~chEditAction~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -165,12 +165,12 @@ displaySet for the grid.  (~JUMP|pgEnterHTFM|Try Again~)</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Preferences Remembered</h1>
 WebHub <b>saves state</b> and remembers the surfer (without requiring the surfer to "log in").  The Delphi programmer can
 easily define unlimited "global" variables that might be used throughout the application, and WebHub takes care of
 remembering these from one page to the next.  (In the demo, the grid preferences are only used on the current page.)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

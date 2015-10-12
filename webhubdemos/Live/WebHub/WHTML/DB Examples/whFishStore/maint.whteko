@@ -18,14 +18,14 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Maintain Fish Prices</h1>
 <p>Select fish to update information on.  Change the display set
 to &quot;SeePassword&quot; to find out what the passwords are.</p>
 <p>You may create the password for any record where it is still 
 blank.</p>
 <p>(~gfAdmin.execute~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -92,7 +92,7 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>(~JUMP|admin|back~)</p>
 
 <h1>Data Entry</h1>

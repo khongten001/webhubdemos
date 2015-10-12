@@ -35,7 +35,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
 <h1>Overview of WebHub Demos</h1>
 <h2>Database-Driven Demos</h2>
@@ -112,7 +112,7 @@ or not (i.e. your local computer) -->
 <br />
 
 (~CLEAR|tempCounter~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -143,7 +143,7 @@ or not (i.e. your local computer) -->
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
 <h1>Overview of WebHub Demos</h1>
 <h2>LITE WebHub Demos</h2>
@@ -169,7 +169,7 @@ or not (i.e. your local computer) -->
 <br />
 
 (~CLEAR|tempCounter~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -200,7 +200,7 @@ or not (i.e. your local computer) -->
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~ANCHORMODIFY|anchJavaScript|(~drJavaScriptPopupWindow~)~)
 <h1>Overview of WebHub Demos</h1>
 <h2>&quot;MORE&quot; WebHub Demos</h2>
@@ -225,7 +225,7 @@ or not (i.e. your local computer) -->
 <br />
 
 (~CLEAR|tempCounter~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -278,7 +278,7 @@ addWindow.focus()
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Tips for Running the Demos on your own Server</h1>
 <p>The overview information for each demo indicates the name of
 the application server you need to run it.</p>
@@ -309,7 +309,7 @@ c:\ht\htexe\aserver.exe /ID:AppID
 
 <p>Note: The other application servers (htdrop.exe, etc.) will all set the
 AppID automatically because they are intended to serve only a single application.</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

@@ -17,7 +17,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Parts! Parts! Get your parts here!</h1>
 <p>Big parts. Small parts. Parts for just about everything.</p>
 <p>Don't you think you need anything?
@@ -33,7 +33,7 @@ and we bet you will find something to buy.</p>
 (~INPUTSUBMIT|BtnShop,Last Page~)
 (~INPUTSUBMIT|BtnShop,Checkout~)
 </form>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -62,7 +62,7 @@ and we bet you will find something to buy.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>(~pagedesc~)</h2>
 <b>You have ordered the following items:</b><br />
 (~webactionOrderList.execute~)
@@ -108,7 +108,7 @@ this feature has been left as an exercise for the reader.)</p>
 </table>
 </form>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 
 (~drPageEnd~)
 </body></html>
@@ -122,10 +122,10 @@ this feature has been left as an exercise for the reader.)</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>You did not enter enough information for us to send you the order.</p>
 <p>Please (~JUMP|confirm|go back~) and enter your <b>email address and shipping city</b>.</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -145,13 +145,13 @@ this feature has been left as an exercise for the reader.)</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>Thanks, (~CustFullname~)!</h2>
 <b>Your parts will be sent to:</b><br />
 (~custCity~)
 <p><b>If we have any problems with your order, we will contact you at:</b><br />
 (~custEmail~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -164,7 +164,7 @@ this feature has been left as an exercise for the reader.)</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>Number of Active Sessions in this Store</h2>
 <p>(~waCountActiveSessions.Execute|~)</p>
 <h2>Your Session Number</h2>
@@ -172,7 +172,7 @@ this feature has been left as an exercise for the reader.)</p>
 <h2>Links for Testing</h2>
 <p>(~JUMPR|pgCountSurfers|repeat, stay in same session~)</p> 
 <p>(~JUMPR|pgLogout|Logout~) to clear session cookie (or use a different web browser); then test with <a title="this link for starting as a new surfer" href="(~DynURL.ToPageID~)">(~DynURL.ToPageID~)</a></p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
