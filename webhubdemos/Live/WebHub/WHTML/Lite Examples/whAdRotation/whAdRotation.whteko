@@ -25,6 +25,12 @@
 </head>
 <body>
 (~drPageBegin~)
+<div class="row" data-equalizer="main">
+	<div class="small-1 columns whDemoSectionEdge" style="border-left-color: antiquewhite;" data-equalizer-watch="main">
+		&ensp;
+	</div>
+	<div class="small-17 large-12 columns" data-equalizer-watch="main">
+
 <div id="whdemopagecontent">
 <h1>Overview of the WebHub Component Named WebCycle</h1>
 
@@ -58,6 +64,8 @@ you can prioritize your advertisements by order of appearance, and you can also 
 particular droplets more than once, to give them increased exposure.</p>
 
 </div>  <!--- whdemopagecontent -->
+	<div class="show-for-large-up small-5 columns">&ensp;</div>
+</div>
 (~drPageEnd~)
 
 </body></html> 
