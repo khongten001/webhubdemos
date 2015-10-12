@@ -99,10 +99,8 @@ W: (~DynURL.W~)
 </td>
 <td>
 PageCount: (~PageCount~)<br/>
-PageCost: (~PageCost~)<br/>
 RandStr: (~RandStr~) <br/>
 SessionAverageIntervalMS: (~SessionAverageIntervalMS~)<br/>
-SessionCost: (~SessionCost~)<br/>
 SessionElapsedSec: (~SessionElapsedSec~)<br/>
 SessionFirstReferer: (~SessionFirstReferer~)<br/>
 SessionFirstIP: (~SessionFirstIP~)<br/>
