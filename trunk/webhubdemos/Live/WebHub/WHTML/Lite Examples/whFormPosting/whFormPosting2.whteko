@@ -27,7 +27,7 @@ mcList=a-Table,b-List,c-Text
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)ckb">
 <!-- changing:stop-->
 
@@ -55,7 +55,7 @@ mcList=a-Table,b-List,c-Text
 </form>
 (~IF|bShowDebug|(~chParamDebug~)~)
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

@@ -19,7 +19,7 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <b>THE TOP 15 SIGNS YOUR WEBMASTER IS IN A CULT</b>
 <p>15.  Every link seems to take you to www.amway.com.</p>
 <p>14.  Repetition of same banner ads: Stoli, Mott's... Stoli, Mott's...</p>
@@ -28,7 +28,7 @@ whSequenceFinal=pgEnterJoke
 <p>11.  Suddenly your travel agency's site is featuring inter-planetary excursions for
  comet watching and one-way tickets to Guyana.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -46,14 +46,14 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>10.  His home page says "Best viewed from the Mothership."</p>
 <p>9.  Your website's "Hall of Fame" inductees required to do stint handing out flowers at airports.</p>
 <p>8.  Your website is honored as the David Koresh Fan Club's "Site of the Day."</p>
 <p>7.  She has 38 roommates, yet is oddly stress-free.</p>
 <p>6.  Insists that Sabbath actually begins when "X-files" ends.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -70,7 +70,7 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>5.  Frequently mutters about the "Prophet Steve Jobs" returning
 to rescue the true believers.</p>
 <p>4.  Not only does he understand Unix, he *IS* one.</p>
@@ -78,7 +78,7 @@ to rescue the true believers.</p>
 <p>2.  He only answers to the name, "Doe-bert."</p>
 <p><b>and the Number 1 Sign Your Webmaster is in a Cult...</b></p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -95,11 +95,11 @@ to rescue the true believers.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>1.  Ugly clothes; insufficient diet; lack of sleep; goofy haircut; lives in a mansion; has many followe...  
 Hey, wait a minute! That's Bill Gates!!</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

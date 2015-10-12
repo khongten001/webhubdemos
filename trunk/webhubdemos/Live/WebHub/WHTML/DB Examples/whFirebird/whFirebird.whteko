@@ -17,7 +17,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Overview of the WebHub Firebird SQL Demo</h1>
 
 <p>This demo shows three ways to use a TwhdbScan component with Interbase Objects to 
@@ -33,7 +33,7 @@ view data from a Firebird SQL database.</p>
 <a href="http://www.firebirdsql.org/index.php?op=ffoundation&id=contributions"><img src="(~mcSiteRoot~)demos/whFirebird/FirebirdFoundation.png" alt="Donate to Firebird Foundation" /></a>
 </div>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 
@@ -51,7 +51,7 @@ view data from a Firebird SQL database.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>TwhdbScan Example 1</h1>
 <h2>...using the default, built-in buttons</h2>
 <p>ScanEmployee1 has the ButtonsWhere property set to dsbBelow. It has nothing extra configured via XML nor macros.</p>
@@ -76,7 +76,7 @@ view data from a Firebird SQL database.</p>
 </table>
 </whdroplet>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 
@@ -94,7 +94,7 @@ view data from a Firebird SQL database.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>TwhdbScan Example #2</h1>
 <h2>Customizing the built-in buttons via configuration and macros</h2>
 <p>See WHAppConfig_fire.xml, ComponentConfig/TwhdbScanBase section to find out how the component links to the macros.</p>
@@ -102,7 +102,7 @@ view data from a Firebird SQL database.</p>
 
 (~ScanEmployee2.Execute~)
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 
@@ -136,7 +136,7 @@ mcPromptsFieldSet=<b>Field Set</b>:
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>TwhdbScan Example 3</h1>
 
 <h2>Fully customized; ButtonsWhere property set to dsbNone</h2>
@@ -162,7 +162,7 @@ Already on Last Page: (~ScanEmployee3.LastPage~)
 <!-- changing:stop-->
 </div>
 </whdroplet>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html> 

@@ -35,7 +35,7 @@ Clicking this radio button sets the session variable named "inSpeed" to either "
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <div class="dcenter">
 
 <form method="post" accept-charset="UTF-8" action="(~ACTION|BW:pgWebHubTimes~)">
@@ -70,7 +70,7 @@ Clicking this radio button sets the session variable named "inSpeed" to either "
 </div>
 <br /><br />
 (~~whDemoLongDescBW~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -106,7 +106,7 @@ Clicking this radio button sets the session variable named "inSpeed" to either "
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <div class="dcenter">
 <table id="whTimesNewspaper" cellspacing="0">
 <tr><td colspan="2" align="center" valign="middle">
@@ -177,7 +177,7 @@ Adjust speed:</span>
 <p>(~INPUTSUBMIT|SUBMIT,Reload~)</p>
 </form>
 </div>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

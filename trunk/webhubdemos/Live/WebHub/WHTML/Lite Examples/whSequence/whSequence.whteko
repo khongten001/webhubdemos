@@ -17,7 +17,7 @@ whSequence=off
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 Are you in need of a good laugh?<br />
 Then, by all means, proceed!
 <br /><br />
@@ -31,7 +31,7 @@ Then, by all means, proceed!
 (~GO|pgJoke4a|The Fourth Joke~)<br />
 
 <!---The physical appearance of the sequence buttons is defined in the application configuration file. The underlying functionality (next, back, up) is automatically controlled by WebHub. -->
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

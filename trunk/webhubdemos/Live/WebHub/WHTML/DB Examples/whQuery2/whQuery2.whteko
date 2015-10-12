@@ -19,7 +19,7 @@ Count new surfer sessions: (~waShowCounter.execute|~)<br/>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>This free sample application demonstrates how one can make
 generic SQL query-and-response pages with WebHub.  More details 
 are on the (~JUMP|pgAbout,htq2|(~~About~)~) page.</p>
@@ -35,7 +35,7 @@ in testing):</p>
 <p>Hint: try the letter S, F, or B, or leave blank for all employee names.</p>
 <p>(~INPUTSUBMIT|submit,Try it~)</p>
 </form>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -95,12 +95,12 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Result of Query</h1>
 <p>(~JUMPR|pgEnterHTQ2|Back~)<br/>
 Here is the result of your query, searching for (~IfNotBlankSV|findme|(~findme~)||ALL employees~):</p>
 (~grid.execute~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -116,7 +116,7 @@ Here is the result of your query, searching for (~IfNotBlankSV|findme|(~findme~)
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <hr />
 <p>(~JUMPR|answer|Back~)<br/>
 Here is further detail on the Employee you selected:</p>
@@ -141,7 +141,7 @@ Here is further detail on the Employee you selected:</p>
  <th>Salary</th><td>$(~Field|wdsFull|Salary~)</td>
 </tr>
 </table>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -157,7 +157,7 @@ Here is further detail on the Employee you selected:</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Using WebDataScan instead of WebDataGrid</h1>
 <h2>Uses TADOQuery, ODBC Paradox driver </h2>
 <whdroplet name="drScanner" show="no">
@@ -167,7 +167,7 @@ Here is further detail on the Employee you selected:</p>
 </table>
 </whdroplet>
 (~webdatascanALL.execute|drScanner~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

@@ -31,7 +31,7 @@ bSeqHdr=false
 <whdroplet name="tpHelp">
 <p>We HAD hoped that you would never need to come here... but since you have asked for help,
 here are answers to such burning questions as:   How do I best navigate the Showcase
-Demo?  What do the icons mean?  How can I <a href="https://www.href.com/hrefshop/">buy a WebHub license</a>?</p>
+Demo?  What do the icons mean?  How can I <a href="https://store.www.href.com/hrefshop/">buy a WebHub license</a>?</p>
 <p>How can I (~JUMPR|pgReset|reset my showcase session data and cookies~)?</p>
 <p>For all other questions, please use the (~JUMP|htInfo|contact~) link.</p>
 </whdroplet>

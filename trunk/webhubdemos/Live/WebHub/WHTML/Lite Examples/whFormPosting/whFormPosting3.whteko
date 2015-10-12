@@ -19,7 +19,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02~)">
 <!-- changing:stop-->
 
@@ -28,7 +28,7 @@
 <input type="submit" />
 </form>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -44,7 +44,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Your variables so far</h2>
 (~stringvars~)
@@ -58,7 +58,7 @@
 <input type="submit" />
 </form>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -73,7 +73,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Your variables so far</h2>
 (~stringvars~)
@@ -90,7 +90,7 @@
 <h2>Again?</h2>
 (~JUMPR|pgcheck01~)
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -105,7 +105,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Your variables so far</h2>
 (~stringvars~)
@@ -113,7 +113,7 @@
 <a name="skip"></a><h2>Again?</h2>
 (~JUMPR|pgcheck01~)
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -129,7 +129,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Your stringvars</h2>
 (~stringvars~)
@@ -140,7 +140,7 @@ abc: (~INPUTTEXT|inABC~)<br/>
 <input type="button" value="Register" id="jqxButtonRegister" />
 </form>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

@@ -48,7 +48,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Testing RegNow Shareware License Generator</h1>
 <p><a href="http://www.regnow.com/">RegNow</a> is the software industry's premier registration commerce provider. </p>
 <p>Among many other features, they let shareware authors use a custom web application to generate unlock codes for their products.  Testing such an interface usually involves triggering a test order within RegNow's developer-only interface. Instructions are in their Help system.</p>
@@ -176,7 +176,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.</td>
 <p style="text-align:center; font-size:x-large;"><input type="submit" value="Proceed to next step" /></p>
 </form>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -200,7 +200,7 @@ Action 'control' and the SAME keyword RegNow. -->
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Step 2: Enter data to be passed to your license system</h1>
 <i>RegNow does not support UTF-8. Use Latin-1 symbols only.</i>
 <form method="post" accept-charset="UTF-8" action="(~URL~)">
@@ -243,7 +243,7 @@ Action 'control' and the SAME keyword RegNow. -->
 <input type="submit" value="Send to (~URL~) Now" />
 </form>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

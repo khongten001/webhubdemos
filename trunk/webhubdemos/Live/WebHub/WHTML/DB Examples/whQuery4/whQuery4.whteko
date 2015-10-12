@@ -24,9 +24,9 @@ mcRedrawSubmit=<input style="font-weight:900; font-size: 1.1em; color: darkgreen
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chCriteria~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -99,7 +99,7 @@ mcRedrawSubmit=<input style="font-weight:900; font-size: 1.1em; color: darkgreen
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pageDesc~)</h1>
 
 <whdoc show="no">
@@ -113,7 +113,7 @@ keys: (~webdatasource1.keys~)
 
 <h2>Search Again</h2>
 (~chCriteria~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -127,11 +127,11 @@ keys: (~webdatasource1.keys~)
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 (~webdataform1.execute|view~)
 <p>(~JUMPR|Result|Go back to Result page~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -151,9 +151,9 @@ keys: (~webdatasource1.keys~)
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chSearchForm~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -167,11 +167,11 @@ keys: (~webdatasource1.keys~)
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chSearchForm~)
 <!--- (~WebDataSourceEmp.execute~) -->
 (~webdataform1.execute|view~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

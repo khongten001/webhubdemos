@@ -38,7 +38,7 @@ mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gr
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Demo of WebHub Save-State</h1>
 <p>
 <whtranslation key="~FormIntro" show="yes">
@@ -228,7 +228,7 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 <!--- This page compares the information that CGI and WebHub retain.
       But CGI can only retain this information for one page,
       so the next page will look much different. -->
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -263,13 +263,13 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <div class="dcenter">
 (~chCGILiterals~)
 (~chWHLiterals~)
 <p><b>Not much difference? (~GO|pgDetour|Follow along~) and find out!</b></p>
 </div>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -283,9 +283,9 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 Thank you for trying the shortcut button.
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -303,14 +303,14 @@ With CGI, all that data is lost. With WebHub it can be kept throughout the surfe
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 (~chCGILiterals~)
 (~chWHLiterals~)
 <p>CGI can only retain the surfer's data for one page.<br />
 WebHub can retain the same data throughout the surfer's visit to the site!
 </p>
 Return to the (~GO|pgEnterFORM|Pet Form~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -358,7 +358,7 @@ Note that WebHub allows you to track checkboxes and text fields separate from th
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 
 (~waMakeBadVars.Execute|~)
@@ -371,7 +371,7 @@ Enter StringVar Name: (~INPUTTEXT|inVarName~)
 </form>
 </div>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

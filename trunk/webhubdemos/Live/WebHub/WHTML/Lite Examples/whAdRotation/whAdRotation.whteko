@@ -25,7 +25,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns" >
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Overview of the WebHub Component Named WebCycle</h1>
 
 <p>WebCycle is a component of type TwhCycle 
@@ -74,10 +74,10 @@ particular droplets more than once, to give them increased exposure.</p>
 </head>
 <body> 
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~PageDesc~) (total of (~webcycle.itemcount~) items)</h1>
 (~webcycle.items~)
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -93,7 +93,7 @@ particular droplets more than once, to give them increased exposure.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~PageDesc~)</h1>
 <p>Internally, the WebCycle component stores a list of items, usually droplet names.
 For each surfer, the component starts a counter at zero, and shows the advertisement
@@ -137,7 +137,7 @@ Content:
 </div>
 </td></tr>
 </table>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -169,7 +169,7 @@ Note: The TwhCycle component can take commands to advance or back up its positio
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~PageDesc~)</h1>
 <p>The cycle index determines which advertisement is displayed.
 It can be altered by the WebHub Command, which is automatically read from the final part
@@ -204,7 +204,7 @@ your ads.  Make yourself an admin-only page with a navigation bar as shown in th
 
 <p>Another use for such a navigation bar would be on a web site that presents a series of points, and
 you'd like to make it easy for the reader to navigate among the points.</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -238,7 +238,7 @@ Usage: required parameters for this droplet
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~PageDesc~)</h1>
 There are basically two good approaches, and the decision depends on
 how similar the HTML is for each item in the list.
@@ -263,7 +263,7 @@ droplet.  Using a generic droplet is especially helpful if you have
 </ol>
 After you have your list defined and your droplets ready, display
 advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -278,11 +278,11 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>Before: (~CentralInfo.WebTimeGMT~)</p>
 (~waDelaySec.Execute|3~)
 <p>After: (~centralinfo.webtimegmt~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

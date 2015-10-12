@@ -13,13 +13,13 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 <ul>
 <li> (~JUMPR|pgMaintReplayInfo|Maintain Replay URLs~) </li>
 <li> (~JUMPR|pgBrowseSchedule|Browse~)</li>
 </ul>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body>
 </html>
@@ -38,7 +38,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 <form method="post" action="(~ACTIONR|pgSelectSchedulePK~)">
 <table id="maintReplay-Find-Table">
@@ -50,7 +50,7 @@
 </table>
 </form>
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body>
 </html>
@@ -74,11 +74,11 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 <p>Code Rage Conference #8:</p>
 (~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHREPLAYWATCHNOWURL, SCHCODERAGECONFNO from SCHEDULE where (SchCodeRageConfNo = 8) ~)
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
 </body>
@@ -103,11 +103,11 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 <p>Here are the matching records in the SCHEDULE table:</p>
 (~waFindSchedule.Execute|select SchNo, SchTitle, SCHPRESENTERFULLNAME, SCHPRESENTERORG, SCHREPLAYDOWNLOADURL, SCHCODERAGECONFNO from SCHEDULE where (SchTitle LIKE '%(~findSCHEDULE-SCHTITLE~)%') ~)
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
 </body>
@@ -131,7 +131,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 
 <whdroplet name="drInstantFormEditSchLayout1" show="yes">
@@ -186,7 +186,7 @@
 </whdroplet>
 
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 <p>(~JUMPR|pgAdminMenu|Admin Menu~)</p>
 (~drPageEnd~)
 </body>
@@ -226,11 +226,11 @@ set
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~pagedesc~)</h1>
 <p>Sorry, IP #(~Request.RemoteAddress~) is not authorized for administration.</p>
 <p>(~JUMP||home page for demo~)</p>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body>
 </html>

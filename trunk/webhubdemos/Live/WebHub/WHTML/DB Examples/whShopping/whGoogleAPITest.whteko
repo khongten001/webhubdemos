@@ -38,7 +38,7 @@ function geoG() {
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>Client-side GeoLocation</h1>
 <p>Press the button below to get your current location as determined by <b>(~Request.UserAgent~)</b>.</p>
@@ -79,7 +79,7 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 || <p style="color: #FF6633; font-style:italic;">not configured to run on (~Request.Host~)</p>
 ~)
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -95,7 +95,7 @@ Filter: (~INPUTTEXT|FreebaseFilter, 80, 1024~)<br/>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>Step 1</h1>
 <a href="https://accounts.google.com/o/oauth2/auth?
@@ -105,7 +105,7 @@ redirect_uri=https%3A%2F%2Fdb.demos.href.com/googleapi/shop1/oauth2callback&
 response_type=code&
 client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">Start authorization process - google data entry form</a>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -127,7 +127,7 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~PageDesc~)</h1>
 <p>Query String (after remap by StreamCatcher): (~Request.QueryString~)</p>
@@ -135,7 +135,7 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 <p>Usually this would happen automatically but for the sake of clarity,
 (~JUMP|pgOAuth2Step2,(~Command~)|click to request token~).</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -151,12 +151,12 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~PageDesc~)</h1>
 <p>This is the end of the road for people who do not wish to log in through google.</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -172,12 +172,12 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~PageDesc~)</h1>
 (~waOAuth2StepToken.Execute~)
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -193,7 +193,7 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h1>(~PageDesc~)</h1>
 <p style="font-weight:900;">(~Request.UserAgent~)<br/>(~Request.RemoteAddress~)<br/>(~Request.QueryString~)</p>
@@ -202,7 +202,7 @@ client_id=(~AppSetting.GoogleClientID~)&approval_prompt=force" title="testing">S
 <h2>BoolVars</h2>
 (~BoolVars~)
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

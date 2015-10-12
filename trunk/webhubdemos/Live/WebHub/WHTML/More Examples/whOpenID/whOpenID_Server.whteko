@@ -22,10 +22,10 @@ https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/cont
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>Hello! This is my blog. ?</h1>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -68,13 +68,13 @@ https://github.com/openid/ruby-openid/blob/master/examples/rails_openid/app/cont
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h3>OpenID Identity Page</h3>
 <p>This is the identity page for the user <strong>(~id~)</strong>.
 </p>
 
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -114,11 +114,11 @@ https://code.google.com/p/openid-server/source/checkout
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h1>(~Pageid~) !</h1>
 <p>If you can see this, the server did not see a suitable OpenID URL coming in.</p>
 <p>https://www.href.com/techhelp</p>
-</div>  <!--- whdemopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whpage>

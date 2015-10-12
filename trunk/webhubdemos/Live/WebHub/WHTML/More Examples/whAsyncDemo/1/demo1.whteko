@@ -20,7 +20,7 @@ input, select { font-family: Tahoma; font-weight: 900; color: blue; }
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>Demo #1</h2>
 <p><i><a target="_blank" href="(~DynURL.ToPageID~)">Open new window as new surfer</a></i></p>
 
@@ -45,7 +45,7 @@ presented with a page informing you that your work is in progress. From there, t
 current percentage complete.  What you selected for &quot;Status Refresh Rate&quot; will be how often (in seconds) the status page 
 refreshes, keeping you up to date on your progress.  When the async thread has completed, and your results are ready, you will be 
 taken to a page where you can view the result (a random integer up to 9999).</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -89,7 +89,7 @@ taken to a page where you can view the result (a random integer up to 9999).</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 
 <h2>Work in Progress</h2>
 (~waAsyncSimple1.Execute|~)
@@ -107,7 +107,7 @@ Count of jobs competing for the server CPU: (~_CountJobsPending~).</p>
 
 <p><strong>* Note:</strong> The HTML5 progress tag is not supported in Microsoft IE9 and earlier versions.</p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -129,12 +129,12 @@ Count of jobs competing for the server CPU: (~_CountJobsPending~).</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>Demo #1 ... Output</h2>
 (~_Demo1Output~)
 <p>Next: (~JUMP|Demo2Home|On to Demo #2~)</p>
 <p>Or (~JUMP|Demo1Home|Repeat Demo #1~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

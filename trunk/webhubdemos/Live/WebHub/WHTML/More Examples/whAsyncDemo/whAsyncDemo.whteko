@@ -34,7 +34,7 @@ mcBar= |&nbsp;
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 This demo is arranged into sections.
 <ol>
 <li><span style="font-size: larger; font-weight:900;">Explanatory text and diagrams</span>
@@ -52,7 +52,7 @@ This demo is arranged into sections.
 <li><span style="font-size:larger;font-weight:900;">Demonstration</span> <br />
 (~JUMP|Demo2Home|Demo 2~) processes real tasks: ping, tracert and nslookup of the remote address of the surfer.</li>
 </ol>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -66,7 +66,7 @@ This demo is arranged into sections.
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 Normal WebHub traffic is <i>synchronous</i>, that is, each request must wait until the one
 before it has finished.  The speed of the Hub and the EXE's serving the surfers ensure that
 no one is kept waiting.  But what if the page being requested requires a database query (or
@@ -79,7 +79,7 @@ page is ever displayed. This is an inherent limitation of synchronous processing
 <IMAGE SRC="(~mcImagedir~)normal_app.gif" HEIGHT=508 WIDTH=698 alt="synchronous schematic">
 </CENTER>
 <p>Next page: (~JUMP|pgAOver|Async Overview~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>
@@ -93,7 +93,7 @@ page is ever displayed. This is an inherent limitation of synchronous processing
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 An <i>asynchronous</i> WebHub application works a little differently.  When its main thread
 receives a request  for a page that will require a long time to construct, it spawns a dedicated
 worker thread to handle the long task, and then can return a page to the surfer informing him
@@ -107,7 +107,7 @@ terminated.  The App is then free to pass the results on to the surfer.<br />
 </CENTER>
 <p>The Async model is versatile.  You can enable the surfer to abort the request if necessary. </p>
 <p>Next page: (~JUMP|Demo1Home|Try Demo/1~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

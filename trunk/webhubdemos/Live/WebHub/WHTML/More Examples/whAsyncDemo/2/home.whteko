@@ -14,7 +14,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <h2>(~PageDesc~)</h2>
 <p>After you start demo 2, you will be presented with a screen of options to
 select how the web application should process your async request. </p>
@@ -23,7 +23,7 @@ select how the web application should process your async request. </p>
 <p><a target="_blank" href="(~DynURL.ToAppID~):pgASync::">Start Demo 2 as New Surfer</a>.
 </p>
 
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 
 </body></html>

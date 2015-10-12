@@ -19,7 +19,7 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <b>TWENTY WORDS THAT SHOULD EXIST</b>
 <p>1. ACCORDIONATED (ah kor' de on ay tid) adj. Being able to drive 
 and refold a road map at the same time.</p>
@@ -30,7 +30,7 @@ of drinking fountain water is at its perfect height, thus relieving
 the drinker from (a) having to suck the nozzle, or (b) squirting
 her(him)self in the eye (or ear).</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -47,7 +47,7 @@ her(him)self in the eye (or ear).</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>4. BURGACIDE (burg' uh side) n. When a hamburger can't take any
 more torture and hurls itself through the grill into the coals.</p>
 <p>5. BUZZACKS (buz' aks) n. People in phone marts who walk around
@@ -60,7 +60,7 @@ putting it back down to give the vacuum one more chance.</p>
 <p> 7. DIMP (dimp) n. A person who insults you in a cheap department
 store by asking, "Do you work here?" </p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -77,7 +77,7 @@ store by asking, "Do you work here?" </p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>8. DISCONFECT (dis kon fekt') v. To sterilize the piece of candy
 you dropped on the floor by blowing on it, somehow assuming this will
 'remove' all the germs.</p>
@@ -91,7 +91,7 @@ maneuvering for one armrest in a movie theater.</p>
 <p> 12. ELECELLERATION (el a cel er ay' shun) n. The mistaken notion
 that the more you press an elevator button the faster it will arrive.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -108,7 +108,7 @@ that the more you press an elevator button the faster it will arrive.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>13. FRUST (frust) n. The small line of debris that refuses to be
 swept onto the dust pan and keeps backing a person across the room
 until he finally decides to give up and sweep it under the rug.</p>
@@ -121,7 +121,7 @@ struggling to come to life.</p>
 whose sole purpose seems to be walking around asking diners if
 they want ground pepper.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -138,7 +138,7 @@ they want ground pepper.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div id="whdemopagecontent">
+<div class="row"><div id="whdemopagecontent" class="small-18 columns">
 <p>17. PETROPHOBIC (pet ro fob' ik) adj. One who is embarrassed to
 undress in front of a household pet.</p>
 <p> 18. PHONESIA (fo nee' zhuh) n. The affliction of dialing a phone
@@ -149,7 +149,7 @@ after a dog presses its nose to it.</p>
 always letting the phone ring at least twice before you pick it up,
 even when you're only six inches away.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div>  <!--- demopagecontent -->
+</div><!--- /whdemopagecontent --></div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
