@@ -25,7 +25,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>Overview of the WebHub Component Named WebCycle</h1>
 
 <p>WebCycle is a component of type TwhCycle 
@@ -33,11 +33,15 @@ that cycles through a list of predefined items.  One use for
 WebCycle is to display a series of advertisements as surfers move
 through a dynamic web site.  Here is an example:</p>
 
-<!--- Execute the component, to display the next ad in the list. -->
-<p>(~WebCycle.Execute~)</p>
+<!--- Execute the component, to display the next advertisement in the list. -->
+
+(~WebCycle.Execute~)
 <!--- Give the surfer something to click on to make this page run again, which
 will show the next ad.  Use the JUMPR macro so the browser can not cache! -->
-<p><span class="changing">(~JUMPR|(~PAGEID~)||Click to Show Next Advertisement~)</span></p>
+<p style="padding-top: 1.2em;">
+<span class="changing">(~JUMPR|(~PAGEID~)|class="button success radius"|Click to Show Next Advertisement~)</span>
+</p>
+
 
 <h2>What can be in an advertisement?</h2>
 <p>Each advertisement can be made up of any combination of HTML,
@@ -57,7 +61,7 @@ component will start over again at the beginning of the list. This means that
 you can prioritize your advertisements by order of appearance, and you can also list
 particular droplets more than once, to give them increased exposure.</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html> 
