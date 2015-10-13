@@ -27,7 +27,7 @@ mcList=a-Table,b-List,c-Text
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)ckb">
 <!-- changing:stop-->
 
@@ -55,7 +55,7 @@ mcList=a-Table,b-List,c-Text
 </form>
 (~IF|bShowDebug|(~chParamDebug~)~)
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>

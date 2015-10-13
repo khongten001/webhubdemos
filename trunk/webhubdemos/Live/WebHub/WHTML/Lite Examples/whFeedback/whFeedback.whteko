@@ -20,7 +20,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 This demo shows you three different ways to use WebHub's WebMail panel
 to incorporate surfer input into emailed messages.  The three examples are
 all listed in the speedbar that appears on every page:  a simple display of the
@@ -29,7 +29,7 @@ that  incorporates the surfer input in a lightly formatted form, and a
 "mailmerge" example that uses a more highly formatted template.
 <br /><br />
 Try them out!
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -61,7 +61,7 @@ Try them out!
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>2. Feedback Message</h1>
 <p>This example uses a template file (feedback.txt) for the email message, which
  incorporates the StringVars from the following form with a slight amount of formatting.
@@ -128,7 +128,7 @@ Try them out!
 </table>
 </form>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -157,7 +157,7 @@ Action 'control' and the SAME keyword Feedback. -->
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>2. Feedback Message - Result</h1>
 <b>Thank you for sending us feedback!</b>
 
@@ -203,7 +203,7 @@ this application and your web server.
 </td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -219,14 +219,14 @@ this application and your web server.
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <strong>You have not filled in all the required fields. You may try again by returning to the data entry page.</strong>
 <p>This is what we do have from you:</p><p> (~Request.FormData~)</p>
 
 <hr />
 <p>(~JUMP|pgFeedback|Feedback~)</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -255,7 +255,7 @@ mcSelectArtist=Picasso-Picasso,Chagall-Chagall,Kandinsky-Kandinsky,Miro-Miro,Roc
  </style>
 </head>
 <body>
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 (~drPageBegin~)
 <h1>3. Template / Form Letter</h1>
 <p>This example demonstrates a "mail merge" letter that incorporates surfer input.
@@ -298,7 +298,7 @@ with more extensive formatting of the template.</p>
 </tr>
 </table>
 </form>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -324,13 +324,13 @@ the INI file and send mail accordingly.  -->
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <div class="dcenter">
 
 <b>We have sent your message...</b>
 
 </div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -354,7 +354,7 @@ the INI file and send mail accordingly.  -->
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>1. Quick EMailing of Form StringVars</h1>
 <p>This method is for situations where you simply want raw data, and the
 format of the resulting email is not important-- it will consist solely
@@ -398,7 +398,7 @@ listed.</p>
 </table>
 </form>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -420,13 +420,13 @@ listed.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>1. Quick EMailing of Form StringVars - Result</h1>
 A simple message has been sent to (~EmailTo~) with all the "StringVars"
 that you have entered.  While this is extremely quick to set up and quite readable to webmasters
 and programmers, many business situations require more control over message contents.
 You'll find this in the other two examples...
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

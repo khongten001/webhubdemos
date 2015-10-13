@@ -39,7 +39,7 @@ UnderLogin=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <table border="1" cellpadding="4" cellspacing="2">
 <caption><b>Security and Flow Control</b></caption>
@@ -114,7 +114,7 @@ end their session (or do it automatically at a certain point.)
  (~GO|pgAboutLogin,(~waLSec.execute|out,15~)|Next step: find out details about setting up login procedures!~)
 </div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -133,7 +133,7 @@ undersession=no
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <div class="dcenter">(~JUMP|pgEnterHTSC|Back to the Entrance Page~)</div>
 <p>This site map is designed to show which pages are protected with which
 type of security.  "Level 1" and "Level 2" are enforced with the TwhLogin
@@ -144,7 +144,7 @@ uses the IFINACTIVEFORSEC macro.</p>
 <img src="(~mcSiteRoot~)demos/whSecurity/HTSC-Map.jpg" alt="Security Demo Site Map" style="border: solid 2px;" />
 </div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -162,7 +162,7 @@ uses the IFINACTIVEFORSEC macro.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <table border="1" width="100%" cellpadding="4" cellspacing="2">
 <caption><b>How the Login procedure works</b></caption>
 <tr><td>
@@ -184,7 +184,7 @@ specifying varying response pages based on the login result.</p>
 <td><div class="dcenter">(~JUMP|pgLogin|Next step: log in!~)</div></td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -202,7 +202,7 @@ specifying varying response pages based on the login result.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>The following is a summary of  the UserList: <br />
 <b><i>NOTE</i>:  UsrID and UsrPassword are required</b>; the other settings
 are optional.</p>
@@ -255,7 +255,7 @@ are optional.</p>
 </table>
 
 <div class="dcenter">(~JUMP|pgAboutLogin|Back~) or (~JUMP|pgLogin|On to the Login Page~)</div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -282,7 +282,7 @@ are optional.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 (~weblogin.execute|LoginUser,LoginPass,_bLoginOK~)
 <p>The log-in mechanism requires a match of a valid Username and it's associated
 password.   If you submit the form using a valid Username and a blank or
@@ -322,7 +322,7 @@ row with a  user-defined prompt "hint" for the password.</p>
 </tr>
 </table></td><td style="width:33%;">&nbsp;</td></tr></table>
 </form>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -342,7 +342,7 @@ row with a  user-defined prompt "hint" for the password.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Web site security is of critical importance for dynamic sites, as well it should be!
 Issues around the confidentiality of their data is a primary factor
 in determining how quickly customers will adopt using web based applications:</p>
@@ -358,7 +358,7 @@ Here is a list of (~JUMP|pgWHSecBasics|built-in WebHub Security features~)</p>
 
 <div class="dcenter"> (~JUMP|pgEnterHTSC|Back~)</div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -385,7 +385,7 @@ Here is a list of (~JUMP|pgWHSecBasics|built-in WebHub Security features~)</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Here is are several of the basic underlying features in WebHub that address security
 and flow control:</p>
 
@@ -488,7 +488,7 @@ Event:  <br /> OnBadPageID event</td>
 
 <div class="dcenter">  (~GO|pgAboutLogin|Check out TwhLogin!~) </div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -506,7 +506,7 @@ Event:  <br /> OnBadPageID event</td>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Cookies have been a hot topic with privacy-advocates, and feelings somethimes run high.
 Cookies are quite useful when used for the right purpose, but they are NOT
 the appropriate technology for transmitting sensitive data!   The pitfalls of
@@ -538,7 +538,7 @@ they are best suited--transmission of data that has no need to be protected.</p>
 <li><a href="http://www.symantec.com/avcenter/security/cookies/disabling.html">http://www.symantec.com/avcenter/security/cookies/disabling.html</a></li>
 <li><a href="http://www.junkbusters.com/ht/en/cookies.html">http://www.junkbusters.com/ht/en/cookies.html</a></li>
 </ul>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 <h2>Your Request Cookies</h2>
 (~Request.CookiesIn~)
 
@@ -563,7 +563,7 @@ accept cookies.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Utilization of HTTPS requires a financial investment;  you need to buy a secure
 certificate and install that into your web server software, and pay annual renewal fees.  The actual
 implementation of HTTPS is the job of the web server, rather than WebHub itself.
@@ -599,7 +599,7 @@ you wish], and define the page as follows:</p>
 <p><code>&lt;whpage pageid="pgHTTPS" remap="(SECURE)" desc="About HTTPS"&gt;</code></p>
 
 <p>The use of ServerProfileIDs with WebHub is the focus of the (~JUMP|FAST:pgWelcome| FAST demo~).</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -639,7 +639,7 @@ UnderLogin=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <table border="1" width="100%" cellpadding="4" cellspacing="2">
 <caption><b>This username and password has  level 1 access.</b></caption>
 <tr><td colspan="2">
@@ -666,7 +666,7 @@ level 2 username and password.  Note the resulting change in the speedbar!</p>
 </td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -688,7 +688,7 @@ UnderLogin=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <table border="1" width="100%" cellpadding="4" cellspacing="2">
 	<caption><b>How the Login Procedure Works</b></caption>
@@ -748,7 +748,7 @@ level 2 username and password.  Note the resulting change in the speedbar!
 </table>
 
 (~CLEAR|_bLoginOk~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -768,7 +768,7 @@ undersession=no
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h1>Here are all the TwhLogin settings for this user name and password:</h1>
 <p>(~chLoginSettings~)</p>
@@ -776,7 +776,7 @@ undersession=no
 (~JUMP|pgLogin|Back to the Login Page~)
 </div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -796,7 +796,7 @@ undersession=no
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <table style="border: 1px solid; width:100%; padding:4px;" cellspacing="2">
 <caption><b>This username and password has  level 2 access,</b>
 <br />
@@ -814,7 +814,7 @@ activating the speedbar with links to
 </td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -833,7 +833,7 @@ undersession=no
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 In this demo, we are using a macro to set a TIMEOUT and force an automatic logout if the surfer
 has not requested a page within a set time period ( 5 seconds, in this case).  <div class="dcenter">(~JUMP|pgTimeoutLogout|Here's how we did it...~)</div>
 
@@ -861,7 +861,7 @@ of elapsed time between page requests.
 </td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -880,7 +880,7 @@ undersession=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <div class="dcenter">(~JUMP|pgTimeRunning|Quick Click Option~)</div>
 <p>Here is an example of an automatic logout sequence after a preset period of inactivity:</p>
@@ -928,7 +928,7 @@ user to a specific page</td>
 <p>If you have been on this page longer than 5 seconds, 
 <span class="changing">(~JUMPR|pgTimeRunning|click here~)</span> and see what happens!</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -954,11 +954,11 @@ user to a specific page</td>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 Congratulations -- that was very fast clicking!  You made it under the timeout allowance!
 <div class="dcenter">(~JUMP|pgAboutExpires|Now take a look at the EXPIRES macro~)</div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -979,12 +979,12 @@ Congratulations -- that was very fast clicking!  You made it under the timeout a
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Sorry, but you have been logged out due to a security timeout.</p>
 
 <p>If you would like to continue your session, here is your link (~JUMP|pgLogin|back to the Login Page~)
 so you can repeat the sequence--be sure to click the link within 5 seconds of landing on the page!</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1008,7 +1008,7 @@ undersession=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <table border="1" width="100%" cellpadding="4" cellspacing="2">
 <caption> <b>Controlling the Session Object </b></caption>
@@ -1041,7 +1041,7 @@ IFINACTIVEFORSEC macro) and a (~JUMP|pgSecLogout| voluntary logout page~)...
 </td>
 </tr>
 </table>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1061,7 +1061,7 @@ IFINACTIVEFORSEC macro) and a (~JUMP|pgSecLogout| voluntary logout page~)...
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <form method="post" accept-charset="UTF-8" action="(~ACTION|HTSC:pgGoodby|post~)">
 <table border="1" width="100%" cellpadding="4" cellspacing="1">
@@ -1091,7 +1091,7 @@ on the site</td>
 
 </table>
 </form>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1111,11 +1111,11 @@ on the site</td>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Your session data has been deleted.   Thanks for joining us!</p>
 
 <div class="dcenter"> (~JUMP|pgLogin| Click here to log in again.~) </div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1137,12 +1137,12 @@ undersession=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 Assigns a new additional session number,  effectively treating the surfer as if they had just arrived.
 Use this whenever you want to have a "fresh start", but without losing the information of the other, still active, session object.
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1161,12 +1161,12 @@ undersession=yes
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
  This gives you the option keeping your session data available to you, while not actually having it active.
 The  datetime can be set so that you can determine the "length of storage"--
 by enabling  the Hub's Background Delete feature on the Session Panel,
 then the session file will be deleted once the specified date/time is reached. (v1.46+)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1189,7 +1189,7 @@ undersession=no
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <b>First, a look at EXPIRES in action:</b>
 <form method="post" accept-charset="UTF-8" action="(~ACTION|pgDumpData|Post~)">
@@ -1245,7 +1245,7 @@ literal has been cleared.</p>
 
 <div class="dcenter">(~JUMP|pgAboutSession|Now on to the Session Macro~)</div>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1266,9 +1266,9 @@ literal has been cleared.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 Thank you--your account number has been submitted and deleted.  Try hitting the back button, and see what happens!
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1286,7 +1286,7 @@ Thank you--your account number has been submitted and deleted.  Try hitting the 
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <whdoc>
 Copied from Showcase section on checkboxes
 </whdoc>
@@ -1318,7 +1318,7 @@ page is recreated dynamically with accurate data.
 </table>
 
 <div class="dcenter">(~JUMP|pgAboutExpires|Back to the Expires page~)</div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -1337,7 +1337,7 @@ page is recreated dynamically with accurate data.
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h1>(~pagedesc~)</h1>
 
@@ -1370,7 +1370,7 @@ You only need to trust the www.cacert.org certificates once (per machine).</p>
 <p>If more people support www.cacert.org, eventually it may be possible for all small businesses to obtain 
 free extended-validation SSL certificates without compromising the international trust chain.</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

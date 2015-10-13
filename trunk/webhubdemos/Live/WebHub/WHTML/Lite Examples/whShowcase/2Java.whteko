@@ -174,7 +174,7 @@ bNoMore=true
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
 
 <form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">

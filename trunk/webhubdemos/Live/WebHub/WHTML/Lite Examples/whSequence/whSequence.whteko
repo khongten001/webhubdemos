@@ -17,7 +17,7 @@ whSequence=off
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 Are you in need of a good laugh?<br />
 Then, by all means, proceed!
 <br /><br />
@@ -31,7 +31,7 @@ Then, by all means, proceed!
 (~GO|pgJoke4a|The Fourth Joke~)<br />
 
 <!---The physical appearance of the sequence buttons is defined in the application configuration file. The underlying functionality (next, back, up) is automatically controlled by WebHub. -->
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

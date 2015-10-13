@@ -18,7 +18,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h1>Welcome to a Tiny Herbal Reference, Loaded from a database</h1>
 <span class="text"><p>Please remember that the point of this demonstration is to show techniques for working with content stored in a database.
@@ -38,7 +38,7 @@
 
 </span>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html> 

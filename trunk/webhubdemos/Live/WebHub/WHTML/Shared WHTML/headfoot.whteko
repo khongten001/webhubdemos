@@ -21,10 +21,10 @@ mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 siteroot is (~mcSiteRoot~)<br />
 <img src="(~mcImgHrefCom~)webhubdemos/img/logos/adv.jpg" alt="logo for adv demo" />
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -182,7 +182,7 @@ body {
 <whdroplet name="drCopyright" show="no">
 <div class="copyright">
 Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
-<a href="//www.href.com/contact">contact</a> &emsp; &emsp;
+<a href="https://www.href.com/contact">contact</a> &emsp; &emsp;
 <a href="http://lite.demos.href.com/demos/privacypolicy">privacy</a>
 </div>
 </whdroplet>

@@ -16,7 +16,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~pagedesc~)</h1>
 <h2>Code Rage 4 through Code Rage 7</h2>
 <p><i>(~JUMP|pgTrainingKeywordIndex|Keyword Index~)</i></p>
@@ -34,7 +34,7 @@
 
 </form>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html> 
@@ -60,7 +60,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>(~JUMPR|pgSearch|Search Again~)</p>
 <h1>(~pagedesc~)</h1>
 <p><i>Note: you must be logged into the Embarcadero Developer Network in order to download. If you are not already logged in, you will be prompted to do so when you attempt a download.</i></p>
@@ -87,7 +87,7 @@ Internal SchNo: (~readonly-SCHEDULE-SchNo~)
 </blockquote>
 </whdroplet>
 <p>(~JUMPR|pgSearch|Search Again~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html> 

@@ -19,13 +19,13 @@ whSequenceFinal=pgEnterJoke
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>A thermodynamics professor had written a take home exam for
 his graduate students.  It had one question:</p>
 <p>Is hell exothermic or endothermic?
 Support your answer with a proof.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -42,14 +42,14 @@ Support your answer with a proof.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Most of the students wrote proofs of their beliefs using
 Boyle's Law or some variant.  One student, however wrote the
 following:</p>
 <p>First, we postulate that if souls exist, then they must have
 some mass.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -66,14 +66,14 @@ some mass.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>If they do, then a mole of souls can also have a mass.  So,
 at what rate are souls moving into hell and at what rate are
 souls leaving?  I think that we can safely assume that once
 a soul gets to hell, it will not leave. Therefore, no souls
 are leaving.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -90,7 +90,7 @@ are leaving.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>As for souls entering hell, lets look at the different
 religions that exist in the world today. Some of these
 religions state that if you are not a member of their
@@ -99,7 +99,7 @@ of these religions and people do not belong to more than one
 religion, we can project that all people and all souls go to
 hell.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -116,7 +116,7 @@ hell.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>With birth and death rates as they are, we can expect the
 number of souls in hell to increase exponentially.</p>
 <p>Now, we look at the rate of change in volume in hell.
@@ -124,7 +124,7 @@ Boyle's Law states that in order for the temperature and
 pressure in hell to stay the same, the ratio of the mass of
 souls and volume needs to stay constant.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -141,7 +141,7 @@ souls and volume needs to stay constant.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>#1 So, if hell is expanding at a slower rate than the rate
 at which souls enter hell, then the temperature and
 pressure in hell will increase until all hell breaks loose.</p>
@@ -149,7 +149,7 @@ pressure in hell will increase until all hell breaks loose.</p>
 increase of souls in hell, than the temperature and
 pressure will drop until hell freezes over.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -166,7 +166,7 @@ pressure will drop until hell freezes over.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>So which is it? If we accept the postulate given me by
 Therese Banyan during Freshman year, and take into account
 the fact that I still have not succeeded in having sexual
@@ -176,7 +176,7 @@ exothermic.</p>
 <p>The student got the only A.</p>
 <p>(~Sequencing.ButtonsAll~)</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>

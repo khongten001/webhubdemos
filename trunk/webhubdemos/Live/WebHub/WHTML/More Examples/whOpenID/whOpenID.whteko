@@ -25,7 +25,7 @@ The details in the javascript below are for use with the webhubdemos account onl
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>OpenID Authentication and Authorization</h1>
 
 <p>Welcome! This is a minimalist demo that shows how a web application written in Delphi can 
@@ -40,7 +40,7 @@ JSON parsing you care to do).</p>
 <h2>Optionally Clear Cookies</h2>
 <p>(~JUMPR|resetopenidcookies|Clear 3 cookies and Return Here~)</p>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -56,12 +56,12 @@ JSON parsing you care to do).</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>Hello!</h1>
 <h2>StringVars</h2>
 (~stringvars~)
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>

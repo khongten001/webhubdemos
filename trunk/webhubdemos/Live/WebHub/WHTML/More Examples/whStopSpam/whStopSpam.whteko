@@ -15,7 +15,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <center>
 <h2>(~PageDesc~)</h2>
 
@@ -64,7 +64,7 @@ Numeric equivalent for: (~waSlowSpam.execute|<a href="mailto:(~edit1~)">(~edit1~
 <p>(~drDemoSpeedbarForHTUN~)</p>
 </center>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>
@@ -82,7 +82,7 @@ ul.sq li {list-style-type:square;}
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h2>How to Test a SOAP Service</h2>
 <p>You can use Delphi 6+ to create a custom SOAP client... or you can use 
@@ -101,7 +101,7 @@ ANY SOAP server for which you know the WSDL.</p>
 <li> waSlowSpan &rarr; the name of your TwhWebAction component where you have toggled SOAP support on</li>
 </ul>
 </p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>

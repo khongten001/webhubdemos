@@ -83,7 +83,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~PageDesc~)</h1>
 <p>Demonstration headline news as at <span class="changing">(~CentralInfo.WebTimeGMT~)</span>, customized slightly for a (~inSpeed~) bandwidth 
 connection. ((~JUMP|pgEnterBW|change~))
@@ -94,7 +94,7 @@ connection. ((~JUMP|pgEnterBW|change~))
 
 <p>(~JUMP|pgnewsrss| onmouseover="window.status='RSS Feed';return true;" onmouseout="window.status='';return true;" |<img src="(~mcImgDir~)/rss-20.png" alt="subscribe rss feed" />~)
 </p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
