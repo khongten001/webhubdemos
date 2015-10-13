@@ -20,7 +20,7 @@ input { font-family: Verdana, Arial; color: green; font-weight: 900;}
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~PageDesc~)</h1>
 (~ANCHOR|anchInputForm~)
 
@@ -47,7 +47,7 @@ There are (~_CountDosJobsPending~) &quot;DOS&quot; jobs pending.</p>
 ~)
 ~)
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>

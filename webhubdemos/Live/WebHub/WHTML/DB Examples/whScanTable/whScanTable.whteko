@@ -78,7 +78,7 @@ mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|wdsDBX|FileURLDir~)(~Field|wdsDBX|Filen
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
   <div class="dcenter">
 <p>The layout and style of this table are completely controlled
 through W-HTML.</p><p>Try the (~JUMP|gridOptions|grid options~) to
@@ -116,7 +116,7 @@ see the range of layout options that have been prepared for you.</p>
 (~browsescan.controls~)
     </div> <!--- customized-area -->
 </div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -154,7 +154,7 @@ see the range of layout options that have been prepared for you.</p>
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <div class="dcenter">
 <form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterSCAN,.CKB~)">
 
@@ -192,7 +192,7 @@ whether you see all graphics or just links.</span>
 
 </form>
 </div>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>

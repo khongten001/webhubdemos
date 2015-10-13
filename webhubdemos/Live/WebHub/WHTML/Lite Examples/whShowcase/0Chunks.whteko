@@ -44,13 +44,13 @@ mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)||<!-- bSeqHdr is not true-->~)
 </whdroplet>
 
 <whdroplet name="drShowcaseGlobalFooter">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseFooter~)||<!-- bSeqHdr is not true-->~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 </div>
 (~drPageEnd~)
 </body></html>

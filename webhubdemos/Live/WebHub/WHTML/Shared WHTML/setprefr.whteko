@@ -54,7 +54,7 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~~Options~)</h1>
 <form method="post" accept-charset="UTF-8" action="(~ACTIONR|setpref,.ckb~)">
 <h2>(~~Wallpaper~)</h2>
@@ -85,7 +85,7 @@ or
 (~IfNotBlankSV|prePref|(~inputsubmit|BtnPref,Return| id="btnPrefReturn" ~)(~~SetPrefReturn~)~)
 
 </form>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)</body></html>
 </whoutput>
 </whpage>
@@ -102,10 +102,10 @@ or
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h2>Session Cookie: ON</h2>
 (~JUMPR|SetPref|Return to Options page~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)</body></html>
 </whoutput>
 </whpage>
@@ -122,10 +122,10 @@ or
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h2>Session Cookie: OFF</h2>
 (~JUMPR|SetPref|Return to Options page~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)</body></html>
 </whoutput>
 </whpage>
@@ -139,7 +139,7 @@ or
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h2><img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" /> System Info</h2>
 <p>All web applications receive a certain amount of system information from the web
 server when they are called. The WebHub demos all use a shared droplet called
@@ -150,7 +150,7 @@ surfers can toggle this information on and off.  The page footer droplet looks a
 to determine whether or not to display the extra information.  This makes it convenient
 when you need to study it, and easy to hide later.
 </p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)</body></html>
 </whoutput>
 </whpage>

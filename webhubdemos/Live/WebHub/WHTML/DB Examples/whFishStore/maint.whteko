@@ -18,14 +18,14 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>Maintain Fish Prices</h1>
 <p>Select fish to update information on.  Change the display set
 to &quot;SeePassword&quot; to find out what the passwords are.</p>
 <p>You may create the password for any record where it is still 
 blank.</p>
 <p>(~gfAdmin.execute~)</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -92,7 +92,7 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>(~JUMP|admin|back~)</p>
 
 <h1>Data Entry</h1>

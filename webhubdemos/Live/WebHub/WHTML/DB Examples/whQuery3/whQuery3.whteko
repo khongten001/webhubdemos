@@ -14,7 +14,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>Hint: try <code>select * from employee</code>
 or
 <code>select * from employee
@@ -25,7 +25,7 @@ where Department='MIS'</code>
 <p>Enter field number to keep invisible (blank for none): (~INPUTTEXT|inHideFieldNum~)</p>
 <p><input type="submit" value="Submit Query" /></p>
 </form>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>
@@ -86,7 +86,7 @@ input, select{
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>(~JUMPR|pgEnterhtq3|Go Back to Enter Another Query~)</p>
 <h1>You typed</h1>
 (~CmdHas|.new|New query...<br />~)
@@ -94,7 +94,7 @@ input, select{
 (~sql~)
 <h1>Your answer</h1>
 (~webdatagrid1.execute~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>

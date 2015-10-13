@@ -15,7 +15,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h1>Keyword Index</h1>
 <h2>for training archive</h2>
@@ -34,7 +34,7 @@
 </whrow>
 </table>
 </whdroplet>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html> 

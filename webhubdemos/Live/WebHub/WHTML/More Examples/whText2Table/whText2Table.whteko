@@ -42,13 +42,13 @@
 </head>(~ANCHORMODIFY|style|(~drStyleHTGR~)~)
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 (~weblistgrid.execute~)
 
 Use this (~JUMP|admin|refresh link~) if you change the
 text files and want to see the new data without shutting down
 the EXE file.
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whoutput>
@@ -66,14 +66,14 @@ the EXE file.
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 ok, both grids have been refreshed.<br />
  (~JUMP|pgEnterHTGR|try again~)
 
 <p>Just calling this page makes the TwhListGrid component
 refresh.  View the source code if you want to know how it works.</p>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>

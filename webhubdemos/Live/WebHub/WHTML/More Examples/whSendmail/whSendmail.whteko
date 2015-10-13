@@ -22,7 +22,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <p>This demo uses some custom Delphi code to  perform calculations on the fly,
 and uses the resulting figures in automated e-mail response letter.</p>
 
@@ -104,7 +104,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.
 
 </form>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -121,11 +121,11 @@ the <span style="color: red; font-weight: 900;">red</span> security code.
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 Sorry, insufficient data entered. Please enter quantity of puppies AND 
 kittens, and the payment method.
 (~JUMP|pgEnterHTEM|Try Again.~)
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
 </body></html>
@@ -151,7 +151,7 @@ calculate vListPrice and vAmountDue. -->
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h2>Thank you, (~inSurferName~)</h2>
 <p>The following message has been emailed to <b>(~inSurferName~)</b> 
@@ -163,7 +163,7 @@ at <b>(~inSurferEMail~)</b>.</p>
 </pre>
 </blockquote>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -197,7 +197,7 @@ Your Purchase Order Reference: (~IfNotBlankSV|inPurchaseOrder|(~inPurchaseOrder~
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h2>Demo</h2>
 <p>Here you can send a message from yourself to yourself, with a cc to Customer Service.</p>
 (~FEATURE.execute|SilentUnrecognizedExpressions=true~)
@@ -222,7 +222,7 @@ the <span style="color: red; font-weight: 900;">red</span> security code.<br/>
 </form>
 (~FEATURE.execute|SilentUnrecognizedExpressions=false~)
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
@@ -245,12 +245,12 @@ Action 'control' and the SAME keyword Quick. -->
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h2>message sent</h2>
 <span class="changing">(~CentralInfo.WebTimeGMT~)</span>
 
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>

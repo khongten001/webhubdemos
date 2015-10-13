@@ -18,7 +18,7 @@
 </head>
 <body>
 (~drPageBegin~)
-<div class="row"><div id="whdemopagecontent" class="small-18 columns">
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>Dynamically modified images from the ANIMALS table</h1>
 
 <h2>Example at 100 percent</h2>
@@ -34,7 +34,7 @@
 (~JUMPR|(~PageID~),waAnimalNav.Prev|Previous BioLife Animal~) &nbsp;&nbsp;&nbsp;
 (~JUMPR|(~PageID~)|Next BioLife Animal~)
 </span>
-</div><!--- /whdemopagecontent --></div>
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 </body></html>
 </whpage>
