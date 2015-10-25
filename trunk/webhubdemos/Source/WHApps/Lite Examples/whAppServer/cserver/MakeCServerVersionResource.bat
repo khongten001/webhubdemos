@@ -3,14 +3,14 @@ setlocal
 :: change the following line for each change in BuildNo
 set fileversion=2,0,0,87
 set productversion=2,0
+set compilerdigits=23
 
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
-call %ZaphodsMap%zmset.bat brcc UsingKey2Folder "HREFTools\Production\cv001 Delphi D15"
+call %ZaphodsMap%zmset.bat brcc UsingKey2Folder "HREFTools\Production\cv001 Delphi D%compilerdigits%"
 set brcc=%brcc%bin\brcc32.exe
 if not exist %brcc% pause
 
-::set servicename=htfd
 set resfilenamenoext=cserver_%servicename%_version
 
 :: resource file will be put into same folder as this BAT file

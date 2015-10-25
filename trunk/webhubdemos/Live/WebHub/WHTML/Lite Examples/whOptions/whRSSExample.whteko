@@ -20,7 +20,7 @@
             <link>(~DYN7~)</link>
             <description><![CDATA[(~DYN2~)]]></description>
             <pubDate>(~DYN3~)</pubDate>
-	        <guid>http://demos.href.com/bw:pgnews::#(~DYN5~)</guid>
+	        <guid>http://lite.demos.href.com/(~AppID~):pgnews::#(~DYN5~)</guid>
 <!---            <author>(~DYN4~)</author>-->
         </item>
 ||

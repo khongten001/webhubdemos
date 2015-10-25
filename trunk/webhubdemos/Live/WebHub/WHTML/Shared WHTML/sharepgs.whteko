@@ -991,11 +991,11 @@ RawVMR: (~Request.RawVMR~)
 <td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
 <td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
-<td><iframe src="(~testprefix~)?bw:privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
-<td><iframe src="(~testprefix~)?bw:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?showcase:privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?showcase:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?adv:privacypolicy" ></iframe></td>
-<td><iframe src="(~testprefix~)?bw:pgWelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?showcase:pgWelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 </tr>
 </whdroplet>

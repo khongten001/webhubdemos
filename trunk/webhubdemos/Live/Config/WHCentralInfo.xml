@@ -253,23 +253,6 @@
             <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
 		  </Deployment>
         </WebHubApp>
-        <WebHubApp appID="bw">
-          <Nickname value="Options"/>
-          <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whOptions\"/>
-          <ConfigFilename value="WHAppConfig_bw.xml"/>
-          <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
-          <ShareSessions value="true"/>
-          <ShareByFile value="true"/>
-          <SessionCookieName value=""/>
-		  <SessionNumberLocation value="URL" />
-          <Deployment>
-            <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0" />
-            <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
-            <ExecutableFilename value="CServer_bw.exe"/>
-			<ServiceName value="bw" />
-            <Instances numToRunMinimum="0" numToRunMaximum="5" delaySecBetween="4"/>
-		  </Deployment>
-        </WebHubApp>
         <WebHubApp appID="htsc">
           <Nickname value="Security"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whSecurity\"/>

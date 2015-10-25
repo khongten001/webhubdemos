@@ -159,7 +159,6 @@ or not (i.e. your local computer) -->
 (~PARAMS|drDemoLink|form,lite~)
 (~PARAMS|drDemoLink|fast,lite~)
 (~PARAMS|drDemoLink|demos,apphttp~)
-(~PARAMS|drDemoLink|bw,lite~)
 (~PARAMS|drDemoLink|HTSC,lite~)
 (~PARAMS|drDemoLink|JOKE,lite~)
 (~PARAMS|drDemoLink|SHOWCASE,lite~)

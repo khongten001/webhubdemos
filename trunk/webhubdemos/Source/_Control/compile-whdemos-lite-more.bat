@@ -40,6 +40,10 @@ call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%svc.exe
 if errorlevel 1 %CSSend% /error "[01] Rename dserver.exe failed"
 
+CD /d %~dp0
+set servicename=adv
+call MakeCServerVersionResource.bat
+
 cd "%droot%\Lite Examples\whAppServer\cserver"
 call %cbat% cserver
 cd "%droot%\Lite Examples\whAppServer\dserver"

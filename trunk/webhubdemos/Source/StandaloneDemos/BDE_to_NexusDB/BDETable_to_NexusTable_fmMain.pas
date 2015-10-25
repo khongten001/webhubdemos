@@ -4,12 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  System.Classes, Vcl.Graphics, Vcl.ExtCtrls,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Data.DB,
   tpTable,
   nxdb, nxseAllEngines,
-  nxllComponent, nxsdServerEngine, nxsrServerEngine, nxdbDatabaseMapper,
-  Vcl.ExtCtrls;
+  nxsdServerEngine, nxsrServerEngine, nxllComponent;
 
 type
   TForm1 = class(TForm)

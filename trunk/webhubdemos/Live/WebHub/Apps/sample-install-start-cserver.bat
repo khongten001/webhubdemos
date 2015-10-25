@@ -8,6 +8,6 @@ cserver.exe -install -num=3 /AppID=joke
 net start webhubsample1 /AppID=fast
 net start webhubsample2 
 :: the third example shows that the demos allow the /AppID from the command line to take precedence
-net start webhubsample3 /AppID=bw
+net start webhubsample3 /AppID=showcase
 
 pause
