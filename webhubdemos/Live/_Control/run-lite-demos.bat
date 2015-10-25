@@ -54,10 +54,6 @@ if "%demofast%"=="yes" start whLite.exe /ID:fast
 if "%demofast%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 if "%demofast%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=fast /minutes=%covermin% /reason=%coverreason% 
 
-if "%demobw%"=="yes" start whLite.exe /ID:bw    
-if "%demobw%"=="yes"  d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demobw%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=bw /minutes=%covermin% /reason=%coverreason% 
-
 if "%demohtsc%"=="yes" start whLite.exe /ID:htsc   
 if "%demohtsc%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 if "%demohtsc%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htsc /minutes=%covermin% /reason=%coverreason% 

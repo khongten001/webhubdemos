@@ -119,7 +119,7 @@ begin
 
   try
     if (Sender.Identifier <> '') and (Sender.Identifier <> 'appvers') and
-       (Sender.Identifier <> 'bw') and (SuggestedAppID <> '') then
+       (Sender.Identifier <> 'adv') and (SuggestedAppID <> '') then
     begin
       {This "error" is here primarily to enable easy testing of setting Continue
        to False.}

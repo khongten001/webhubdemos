@@ -11,5 +11,5 @@ set servicename=demos
 call MakeCServerVersionResource.bat
 
 cd /d %~dp0
-set servicename=bw
+set servicename=showcase
 call MakeCServerVersionResource.bat

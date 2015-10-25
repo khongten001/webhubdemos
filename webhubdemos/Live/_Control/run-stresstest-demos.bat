@@ -19,7 +19,7 @@ d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=bw
+start %exename% /ID=showcase
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=htfd
@@ -31,7 +31,7 @@ d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=bw
+start %exename% /ID=showcase
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=htfd

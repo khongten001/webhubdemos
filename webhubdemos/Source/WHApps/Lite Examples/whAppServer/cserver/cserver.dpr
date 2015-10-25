@@ -29,7 +29,7 @@ uses
 begin
   {M}Application.Initialize;
   {M}Application.CreateForm(TDMForWHDemoC, DMForWHDemoC);
-  DMForWHDemoC.SetDemoFacts('bw', 'Lite Examples\whAppServer\cserver', True);
+  DMForWHDemoC.SetDemoFacts('adv', 'Lite Examples\whAppServer\cserver', True);
   DMForWHDemoC.ProjMgr.ManageStartup;
   {M}Application.Run;
   {$IFDEF LogInitFinal}CSSend('dpr ending');{$ENDIF}
