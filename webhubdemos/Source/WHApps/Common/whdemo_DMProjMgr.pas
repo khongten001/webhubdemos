@@ -278,17 +278,21 @@ end;
 
 procedure TDMForWHDemo.ProjMgrStop(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+const cFn = 'ProjMgrStop';
 begin
+  CSEnterMethod(Self, cFn);
   try
     FreeAndNil(fmWebHubMainForm);
     DestroyCoreWebHubDataModuleGUI;
-    whDemoDestroySharedDataModules;
+    whDemoDestroySharedDataModules;   // or: if Assigned(pWebApp) then pWebApp.Free;
   except
     on E: Exception do
     begin
-      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      CSSendException(E);
     end;
   end;
+
+  CSExitMethod(Self, cFn);
 end;
 
 initialization
