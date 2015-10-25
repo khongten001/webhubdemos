@@ -40,16 +40,16 @@ call %cbat% dserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer%comp3%svc.exe
 if errorlevel 1 %CSSend% /error "[01] Rename dserver.exe failed"
 
-CD /d %~dp0
+:CompileCServerADV
+cd "%droot%\Lite Examples\whAppServer\cserver"
 set servicename=adv
 call MakeCServerVersionResource.bat
-
-cd "%droot%\Lite Examples\whAppServer\cserver"
+copy cserver_adv_version.res cserver_version.res
 call %cbat% cserver
-cd "%droot%\Lite Examples\whAppServer\dserver"
-
+goto END
 
 :DServerContinue01
+cd "%droot%\Lite Examples\whAppServer\dserver"
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
 if NOT Exist %cbat% %CSSend% /error "%cbat% NOT FOUND"
 if NOT Exist %cbat% pause
