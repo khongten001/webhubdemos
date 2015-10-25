@@ -46,7 +46,6 @@ set servicename=adv
 call MakeCServerVersionResource.bat
 copy cserver_adv_version.res cserver_version.res
 call %cbat% cserver
-goto END
 
 :DServerContinue01
 cd "%droot%\Lite Examples\whAppServer\dserver"
