@@ -123,9 +123,9 @@
       <ItemList>
         <Item id="01" value="(~PARAMS|drBook|Delphi 6 Developer&apos;s Guide (With CD-ROM) by Pacheco Teixeira and Intersimone,$45.49,0672321157~)"/>
         <Item id="02" value="(~PARAMS|drBook|Delphi Component Design by Danny Thorpe.,$49.99,0201461366~)"/>
-        <Item id="03" value="(~PARAMS|drBook|Kylix 2 Development (with CD-ROM),$38.47,1556227744~)"/>
-        <Item id="04" value="(~PARAMS|drBook|Kylix Developers Guide (With CD-ROM),$41.99,0672320606~)"/>
-        <Item id="05" value="(~PARAMS|drBook|KYLIX: The Professional Developer&apos;s Guide and Reference,$41.97,1893115895~)"/>
+        <Item id="03" value="(~PARAMS|drBook|Object Pascal Handbook,$37.12,1514349949~)"/>
+        <Item id="04" value="(~PARAMS|drBook|More Coding in Delphi,$39.99,194126610X~)"/>
+        <Item id="05" value="(~PARAMS|drBook|Coding in Delphi,$35.27,1941266037~)"/>
         <Item id="06" value="(~PARAMS|drBook|Casual Day Has Gone Too Far : A Dilbert Book.,$9.95,0836228995~)"/>
         <Item id="07" value="(~PARAMS|drBook|Dilbert Meeting Book.,$19.95,0768320283~)"/>
         <Item id="08" value="(~PARAMS|drBook|Delphi Programming Problem Solver by Neil Rubenking.,$34.99,1568847955~)"/>
