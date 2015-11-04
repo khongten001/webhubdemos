@@ -65,7 +65,7 @@ begin
   CreateStandardWHModules; // based on flags in app's config
 
   // The "view source" and "extensions" data modules are required
-  // on demos.href.com
+  // on lite.demos.href.com
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
   {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
