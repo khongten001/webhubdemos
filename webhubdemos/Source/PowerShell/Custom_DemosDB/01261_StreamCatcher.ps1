@@ -28,9 +28,9 @@ $trgbase = "D:\Apps\HREFTools\StreamCatcher\Application"
 if (!(Test-Path $trgbase)) {mkdir $trgbase}
 
 DownloadHTTP ("http://www.streamcatcher.com/webrobotlist.txt") "D:\AppsData\StreamCatcher\Administrator\Config\webrobotlist.txt"
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCConsole-v1.9.0.5-win32-SCConsole.exe") ($trgbase + "\SCConsole.exe")
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCConsole-v1.9.0.6-win32-SCConsole.exe") ($trgbase + "\SCConsole.exe")
 DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v1.9.0.5-win32-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v1.9.0.6-win32-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
 
 # enable d:\Apps\HREFTools\StreamCatcher\Application\StreamCatcher.dll
 # credit: http://learningpcs.blogspot.com.au/2011/08/powershell-iis-7-adding-isapi-filters.html
