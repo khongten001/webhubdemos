@@ -1,7 +1,6 @@
 unit dserver_dmProjMgr;
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 interface
 
@@ -106,9 +105,7 @@ begin
 
   if PosCi('violation', E.Message) > 0 then
   begin
-    {$IFDEF WEBHUBACE}
     pConnection.MarkTerminateASAP;
-    {$ENDIF}
     pWebApp.Response.SendBounceTo(pWebApp.DynURL.RawToActiveAuthorityM +
       pWebApp.Request.RawVMR + '?' + pWebApp.AppID + pWebApp.DynURL.W +
       pWebApp.Situations.HomePageID);
@@ -235,9 +232,7 @@ end;
 procedure TDMForDServer.ProjMgrStartupComplete(Sender: TtpProject);
 begin
   UncoverAppOnStartup(pWebApp.AppID);
-{$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;  // required final step for app to get to work
-{$ENDIF}
   CSSend('Started instance ' + IntToStr(ProjMgr.InstanceSequence) +
     ' ' + FormatDateTime('dddd dd-MMM hh:nn:ss', NowGMT) + ' gmt');
   CSSend('pConnection.AvailableToCalc state',

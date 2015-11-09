@@ -20,7 +20,6 @@ THE SOFTWARE.
 *)
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 interface
 

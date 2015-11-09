@@ -10,6 +10,14 @@ uses
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
   uAutoDataModules in 'H:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
+
+webBase in 'k:\webhub\lib\whvcl\webBase.pas',
+webCall in 'k:\webhub\lib\whvcl\webCall.pas',
+webCore in 'k:\webhub\lib\whvcl\webCore.pas',
+webSend in 'k:\webhub\lib\whvcl\webSend.pas',
+whxpGlobal in 'k:\webhub\lib\whvcl\whxpGlobal.pas',
+whxpUtils  in 'k:\webhub\lib\whvcl\whxpUtils.pas',
+
   htWebApp in 'H:\htWebApp.pas',
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},

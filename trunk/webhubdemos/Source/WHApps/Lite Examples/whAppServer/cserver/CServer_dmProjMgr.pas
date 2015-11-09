@@ -3,7 +3,6 @@ unit CServer_dmProjMgr;
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Forms,
@@ -82,11 +81,9 @@ begin
         LogSendInfo('service num', inst, cFn);
   end;
   
-  {$IFDEF WEBHUBACE}
   UncoverAppOnStartup(pWebApp.AppID);
   CSSend('Started instance', S(ProjMgr.InstanceSequence));
   pConnection.MarkReadyToWork;
-  {$ENDIF}
   CSExitMethod(Self, cFn);
 end;
 

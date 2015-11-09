@@ -98,8 +98,6 @@
         <DCCReference Include="H:\ucCodeSiteInterface.pas"/>
         <DCCReference Include="h:\MultiTypeApp.pas"/>
         <DCCReference Include="h:\MultiTypeAppSvc.pas"/>
-        <DCCReference Include="k:\webhub\tpack\tpApplic.pas"/>
-        <DCCReference Include="H:\htWebApp.pas"/>
         <DCCReference Include="H:\tpProj.pas"/>
         <DCCReference Include="H:\utPanFrm.pas">
             <Form>utParentForm</Form>
@@ -112,6 +110,13 @@
         </DCCReference>
         <DCCReference Include="H:\uAutoDataModules.pas"/>
         <DCCReference Include="H:\uAutoPanels.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webBase.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webCall.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webCore.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webSend.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\whxpGlobal.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\whxpUtils.pas"/>
+        <DCCReference Include="H:\htWebApp.pas"/>
         <DCCReference Include="CServer_dmProjMgr.pas">
             <Form>DMForWHDemoC</Form>
             <DesignClass>TDataModule</DesignClass>

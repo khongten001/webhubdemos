@@ -3,7 +3,6 @@ unit whdemo_DMDBProjMgr;
 // for use with demos that use the database layer
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 interface
 
@@ -70,8 +69,6 @@ uses
   whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
-
-{$IFNDEF WEBHUBACE}wrong ipc{$ENDIF}
 
 procedure TDMForWHDBDemo.DataModuleCreate(Sender: TObject);
 begin
