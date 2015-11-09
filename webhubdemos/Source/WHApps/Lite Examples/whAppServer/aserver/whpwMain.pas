@@ -19,12 +19,8 @@ unit whpwMain;
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
-{$IFDEF CLR}
-  WinUtils,
-{$ENDIF}
 {$IFNDEF LINUX}
   Windows, Messages,
 {$ENDIF}
@@ -192,7 +188,7 @@ begin
   and HaveParam('/NoMenu') then
     FreeAndNil(MainMenu1);
    
-  {$IFDEF WEBHUBACE}FreeAndNil(sysmiUseWebHub);{$ENDIF} // n/a for new-ipc
+  FreeAndNil(sysmiUseWebHub); // n/a for new-ipc
 
   //initialize the 'state-icons'.
   //if you get an exception, add {$R WHAPPICO.RES} to the project's dpr.
@@ -234,19 +230,6 @@ end;
 function TfmWebHubPowerMainForm.Init:Boolean;
 begin
   Result:=inherited Init;
-  if not Result then
-    exit;
-  {$IFNDEF WEBHUBACE}
-  {Here we tap into the TwhConnection component
-   so that we can adjust the icon used by the application to indicate
-   the active/not-active state.}
-  AddConnectionExecuteHandler(WebCommandLineExecute);
-  AddConnectionAfterExecuteHandler(WebCommandLineAfterExecute);
-  AddConnectionResumeHandler(WebCommandLineSuspendResume);
-  AddConnectionSuspendHandler(WebCommandLineSuspendResume);
-  if Assigned(pConnection) then
-    MenuItemSuspense(NOT pConnection.Active, nil);
-  {$ENDIF}
 end;
 
 //----------------------------------------------------------------------
@@ -258,21 +241,13 @@ begin
   begin
     {becoming active}
     if not pConnection.Active then
-    {$IFDEF WEBHUBACE}
       pConnection.MarkReadyToWork;
-    {$ELSE}
-      pConnection.Active := True;
-    {$ENDIF}
   end
   else
   begin
     {becoming suspended}
     if pConnection.Active then
-    {$IFDEF WEBHUBACE}
       pConnection.MarkSuspended;
-    {$ELSE}
-      pConnection.Active := False;
-    {$ENDIF}
   end;
 
   Application.ProcessMessages;
@@ -322,7 +297,7 @@ begin
   if assigned(pConnection)
   and assigned(TrayIcon) then
   with TrayIcon, pConnection do
-    if Active {$IFNDEF WEBHUBACE}and ConnectToHub{$ENDIF} then
+    if Active then
       if IsFormShown then
         Icon := fIconRestored
       else
@@ -402,24 +377,6 @@ end;
 procedure TfmWebHubPowerMainForm.sysmiUseWebHubClick(Sender: TObject);
 begin
   inherited;
-{$IFNDEF WEBHUBACE}
-  if Assigned(pWebApp) and Assigned(pConnection) then
-  begin
-    // toggle the original
-    with SysMiUseWebHub do
-      Checked := not Checked;
-    // live copy made by tray icon
-    TMenuItem(Sender).Checked := SysMiUseWebHub.Checked;
-    SystemPopUp.SynchronizeMenus; // update system menu
-    if Assigned(pWebApp) then
-    begin
-      pWebApp.ConnectToHub := SysMiUseWebHub.Checked; // act on it, v2.x only
-      pWebApp.Refresh;
-    end;
-  end
-  else
-    MsgErrorOk('App and/or Connection is nil.  Feature is not applicable.');
-{$ENDIF}
 end;
 
 procedure TfmWebHubPowerMainForm.WebCommandLineSuspendResume(Sender: TObject);

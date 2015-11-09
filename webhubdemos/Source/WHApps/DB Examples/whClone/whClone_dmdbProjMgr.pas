@@ -3,7 +3,6 @@ unit whClone_dmdbProjMgr;
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
   SysUtils, Classes,
@@ -80,9 +79,7 @@ procedure TDMForWHClone.ProjMgrStartupComplete(Sender: TtpProject);
 begin
   inherited;
   UncoverAppOnStartup(pWebApp.AppID);
-  {$IFDEF WEBHUBACE}
   pConnection.MarkReadyToWork;
-  {$ENDIF}
 end;
 
 end.

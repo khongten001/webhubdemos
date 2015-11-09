@@ -11,7 +11,6 @@ unit whdemo_Extensions;
 // This unit must be created AFTER the TwhApplication component exists.
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 interface
 
@@ -100,7 +99,6 @@ function TDemoExtensions.Init: Boolean;
 const cFn = 'Init';
 var
   ExtraConfigFilespec: string;
-{$IFNDEF WEBHUBACE}inst: string;{$ENDIF}
 begin
   CSEnterMethod(Self, cFn);
   Result := True;
@@ -127,31 +125,6 @@ begin
       FDomainIDList.LoadFromFile(pWebApp.AppPath + '..\Config\DomainIDList.ini');
       FDomainIDList.Sorted := True;
     end;
-
-{$IFNDEF WEBHUBACE}
-    // for use with WebHubGuardian (old-ipc only)
-    ForceDirectories(GetIPCFolder);  // old-ipc
-    if FMonitorFilespec = '' then
-    begin
-      FMonitorFilespec := GetIPCFolder +
-        'http-' + pWebApp.AppID + '-' + pWebApp.AppProcessID + '.h2i';
-      if ({M}Application.ApplicationMode = mtamWinService) then // uses MultiTypeApp
-      begin
-        {When running as-service, the sequence must come from the service
-         number.}
-        ParamValue('num', inst); // uses ucode
-      end
-      else
-        inst := IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
-
-      // report the combination of instance number and current Process ID
-      // where instance number is critical only if running as service
-      // write as Ansi for compatibility with non-Unicode Delphi
-      StringWriteToFile(FMonitorFilespec,
-        AnsiString(inst + '-' + IntToStr(GetCurrentProcessId)));
-      CSSend(Format('Recording Instance #%s, PID %d', [inst, GetCurrentProcessId]));
-    end;
-{$ENDIF}
 
     pWebApp.OnBadBrowser := DemoAppBadBrowser;
     pWebApp.OnBadIP := DemoAppBadIP;

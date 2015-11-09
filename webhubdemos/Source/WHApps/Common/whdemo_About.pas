@@ -11,7 +11,6 @@ unit whdemo_About;  {panel to help self-document all WebHub demos}
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
@@ -71,9 +70,7 @@ implementation
 
 uses
   ucShell, ucVers, ucString, uCode,
-{$IFDEF WEBHUBACE}
   whxpUtils,
-{$ENDIF}
   webApp, whConst, htWebApp, webCall;
 
 //------------------------------------------------------------------------------
@@ -167,14 +164,11 @@ end;
 procedure TfmAppAboutPanel.ActionShowConnectionDetailExecute(
   Sender: TObject);
 var
-{$IFDEF WEBHUBACE}
   Port: Integer;
   pid: Cardinal;
-{$ENDIF}
   S: string;
 begin
   inherited;
-{$IFDEF WEBHUBACE}
   LabelDllCalls.Caption := 'Calls: ' + IntToStr(pConnection.DllCalls);
   LabelIdentification.Caption := 'AppID=' + pConnection.AppID +
     ' and PID=' + IntToStr(getCurrentProcessID) +
@@ -185,15 +179,6 @@ begin
   end
   else
     LabelAboutHarry.Caption := 'Hub not running';
-{$ELSE}
-  LabelDllCalls.Caption := '';
-  LabelIdentification.Caption := 'AppID=' + pWebApp.AppID +
-    ' and Handle=' + IntToStr(Application.Handle);
-  if pWebApp.ConnectToHub then  // v2.x only
-    LabelAboutHarry.Caption := 'Connect to Hub = True'
-  else
-    LabelAboutHarry.Caption := 'Connect to Hub = False';
-{$ENDIF}
   S := 'Native Code: ';
 {$IFDEF CPUX64}
   S := S + '64-bit';

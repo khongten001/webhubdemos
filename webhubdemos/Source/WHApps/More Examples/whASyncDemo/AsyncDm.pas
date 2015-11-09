@@ -24,7 +24,6 @@ unit AsyncDm;
 interface
 
 {$I hrefdefines.inc}
-{$I WebHub_Comms.inc}
 
 uses
   Windows, Messages,  // both required by OmniThreadLibrary
