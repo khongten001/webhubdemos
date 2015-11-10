@@ -102,8 +102,6 @@ begin
     dmWebHubPowerApp.tpActionListApp);
   whdmCommonMenu.InitMenuActionsForCentralInfo(
     dmWebHubPowerApp.tpActionListCentralInfo);
-  whdmCommonMenu.InitMenuActionsForConnection(
-    dmWebHubPowerApp.tpActionListConnection);
 
   pWebApp.Refresh;
   WebMessage('');

@@ -120,8 +120,6 @@ begin
     dmWebHubFishApp.tpActionListApp);
   whdmCommonMenu.InitMenuActionsForCentralInfo(
     dmWebHubFishApp.tpActionListCentralInfo);
-  whdmCommonMenu.InitMenuActionsForConnection(
-    dmWebHubFishApp.tpActionListConnection);
   WebMessage(''); // clear WebHub splash screen
 end;
 
