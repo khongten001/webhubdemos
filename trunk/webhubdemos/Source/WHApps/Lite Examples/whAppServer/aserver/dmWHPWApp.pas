@@ -28,7 +28,7 @@ uses
   Vcl.ActnList, System.Actions,
   ExtCtrls,
   whgui_Menu, WebBase, WebCore, WebSend, WebApp, htWebApp, WebTypes,
-  WebVars, tpApplic{non-gui}, CGiVarS, APiStat, ApiBuilt, ApiCall,
+  WebVars, tpApplic{non-gui}, 
   WebCall, CGiServ, WebServ, HtmlBase, HtmlCore,
   htmlSend, webLink, UpdateOk, tpAction{no-gui}, tpActionGUI, WebInfoU,
   webInfoBase;

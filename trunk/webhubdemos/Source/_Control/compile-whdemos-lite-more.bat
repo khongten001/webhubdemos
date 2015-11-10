@@ -60,11 +60,6 @@ call D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%_nopackages.
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_%comp3%_win%bits%_NoPackages.exe
 if errorlevel 1 %CSSend% /error "[03] Rename dserver.exe failed"
 
-copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc k:\webhub\lib\WebHub_Comms.inc
-if errorlevel 1 pause
-copy h:\WebHub_Comms.inc h:\WebHub_Comms.txt
-copy k:\webhub\lib\whvcl\WebHub_Comms.new.inc h:\WebHub_Comms.inc
-
 cd "%droot%\Lite Examples\whAppServer\dserver"
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat DServer
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\dserver.exe DServer_x_%comp3%_win64.exe
