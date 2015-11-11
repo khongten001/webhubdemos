@@ -174,7 +174,7 @@ body {
 (~IF|showSystemInfo|
 <div class="whDemoSectionNav" style="border-color: yellow;">
 (~drSystemInfo~)
-</div>  <!--- whDemoSectionNav -->
+</div>  
 ~)
 </whdroplet>
 
@@ -252,7 +252,7 @@ make a program equivalent to whLite by running the WebHub "new project" wizard. 
 
 <whdroplet name="drHead_DesignRefresh">
 <!--- comment out until fully working
-~IFDYNAMIC|
+(~IFDYNAMIC|
 	(~PARAMS|drDesignRefresh|designRefresh,2000,(~PageID~),(~Command~)~)
 	(~MATCH|(~AppSetting.DesignRefreshEnabled~)=True|
 	<link rel="stylesheet" href="/webhub/demos/c/whrefresh.css?0001" type="text/css" />
