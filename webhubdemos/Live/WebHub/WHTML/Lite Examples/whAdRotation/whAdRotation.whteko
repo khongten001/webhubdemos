@@ -191,7 +191,7 @@ and watch the URL (and therefore the command) change.</p>
 and the WebHub command was: <b>(~app.Command~)</b>.
 See below to see how the index number changes...</p>
 
-// Execute the component to show an advertisement....
+<!--- Execute the component to show an advertisement.... -->
 <div class="dcenter">
 (~webcycle.execute~)
 </div>

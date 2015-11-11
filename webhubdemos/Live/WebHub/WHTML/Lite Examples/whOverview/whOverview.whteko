@@ -251,8 +251,6 @@ or not (i.e. your local computer) -->
 
 <whdroplet name="drJavaScriptPopupWindow">
 <script type="text/javascript">
-<!--Hide script from old browsers
-
 leftpos = 0
 if (screen) {
    leftPos = screen.width-280
@@ -263,8 +261,6 @@ addWindow = window.open(terms, 'addWin', 'width=280,height=510,toolbar=no,locati
 
 addWindow.focus()
 }
-
-// End hiding script from old browsers -->
 </script>
 </whdroplet>
 
