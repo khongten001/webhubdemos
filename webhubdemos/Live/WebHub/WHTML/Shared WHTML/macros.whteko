@@ -9,8 +9,8 @@
 
 <!--- Directory Macros -->
 <whmacros>
-mcWhDemoLogoDir=(~mcImgHrefCom~)/webhubdemos/img/logos/
-mcWhDemoMiscDir=(~mcImgHrefCom~)/webhubdemos/img/misc/
+mcWhDemoLogoDir=(~mcImgHrefCom~)webhubdemos/img/logos/
+mcWhDemoMiscDir=(~mcImgHrefCom~)webhubdemos/img/misc/
 </whmacros>
 
 <!--- General Macros -->

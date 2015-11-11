@@ -7,9 +7,8 @@
   copyright="2006-2015 HREF Tools Corp.">
 
 <whmacros>
-// this is a comment
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcImgHrefCom=(~MATCH|(~Request.Host~)=HTTP|//img.href.com/||//d379xgascauhff.cloudfront.net/~)<!--- pending HTTPS cert for img.href.com; currently on AWS CloudFront. -->
+mcImgHrefCom=(~MATCH|(~Request.Scheme~)!HTTP|//img.href.com/||//d379xgascauhff.cloudfront.net/~)<!--- pending HTTPS cert for img.href.com; currently on AWS CloudFront. -->
 mcSiteRoot=/webhub/
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </whmacros>
