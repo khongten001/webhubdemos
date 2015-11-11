@@ -32,7 +32,8 @@ implementation
 {$R *.dfm}
 
 uses
-  MultiTypeApp, whSharedLog, ucCodeSiteInterface, uCode,
+  MultiTypeApp, {$IFDEF LOG2CSL}whSharedLog, {$ENDIF}
+  ucCodeSiteInterface, uCode,
   ucShellProcessCntrl,  // GetCurrentProcessID
   whutil_ZaphodsMap, htWebApp, webCall, webApp,
   cfmwhCustom;
@@ -41,7 +42,7 @@ procedure TDMForWHDemoC.ProjMgrDataModulesCreate1(Sender: TtpProject;
   var ErrorText: string; var Continue: Boolean);
 begin
   inherited;
-  UseWebHubSharedLog;
+  {$IFDEF LOG2CSL}UseWebHubSharedLog;{$ENDIF}
 end;
 
 procedure TDMForWHDemoC.ProjMgrGUICreate(Sender: TtpProject;
@@ -71,7 +72,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
   inherited;
-  UseWebHubSharedLog;
+  {$IFDEF LOG2CSL}UseWebHubSharedLog;{$ENDIF}
   CSSend('my pid', S(GetCurrentProcessID));
   CSSend('my AppID', pWebApp.AppID);
 
