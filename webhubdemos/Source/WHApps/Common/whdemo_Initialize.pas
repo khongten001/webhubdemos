@@ -47,7 +47,9 @@ uses
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
 
 procedure whDemoSetAppId(const whDemoAppID: string);
+const cFn = 'whDemoSetAppId';
 begin
+  CSEnterMethod(nil, cFn);
   with pWebApp do
   begin
     // Ensure that extra settings for demos are reset whenever app refreshes.
@@ -56,6 +58,9 @@ begin
     AppID := whDemoAppID;
     Refresh;  // instantiate nested components
   end;
+  if pConnection = nil then
+    CSSendError('pConnection nil here');
+  CSExitMethod(nil, cFn);
 end;
 
 procedure whDemoCreateSharedDataModules;
@@ -68,14 +73,16 @@ begin
   // on lite.demos.href.com
   {M}Application.CreateForm(TDemoViewSource, DemoViewSource);
   {M}Application.CreateForm(TDemoExtensions, DemoExtensions);
-  {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
+  if False then
+    {M}Application.CreateForm(TDMPrototypeJS, DMPrototypeJS); // Use JQuery...
   CSExitMethod(nil, cFn);
 end;
 
 procedure whDemoDestroySharedDataModules;
 begin
   DestroyStandardWHModules;
-  FreeAndNil(DMPrototypeJS);
+  if False then
+    FreeAndNil(DMPrototypeJS);
   FreeAndNil(DemoViewSource);
   FreeAndNil(DemoExtensions);
 end;
@@ -105,7 +112,8 @@ var
 begin
   InitStandardWHModules;
   DemoExtensions.Init;  // initialize WebCycle, WebLogin
-  DMPrototypeJS.Init(ErrorText); 
+  if Assigned(DMPrototypeJS) then
+    DMPrototypeJS.Init(ErrorText);
 end;
 
 procedure TDemoHelperComponent.CalcDemoButtonLinks(Sender: TwhRespondingApp;
