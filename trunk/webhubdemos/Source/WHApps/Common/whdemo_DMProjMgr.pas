@@ -139,7 +139,7 @@ begin
         UsedAppID := 'appvers';
     end;
 
-    {$IFDEF CodeSite}CodeSite.Send('UsedAppID', UsedAppID);{$ENDIF}
+    CSSend('UsedAppID', UsedAppID);
 
     whDemoSetAppId(UsedAppID);  // this refreshes the app
     {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
@@ -147,7 +147,7 @@ begin
   except
     on E: Exception do
     begin
-      {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+      CSSendException(E);
       Continue := False;
       ErrorText := E.Message;
     end;
