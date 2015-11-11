@@ -5,17 +5,17 @@
    
   designmode="code"
   notes="Macros shared by many WebHub demos."
-  copyright="1995-2014 HREF Tools Corp.">
+  copyright="1995-2015 HREF Tools Corp.">
 
 <!--- Directory Macros -->
 <whmacros>
-mcWhDemoLogoDir=http://img.href.com/webhubdemos/img/logos/
-mcWhDemoMiscDir=http://img.href.com/webhubdemos/img/misc/
+mcWhDemoLogoDir=(~mcImgHrefCom~)/webhubdemos/img/logos/
+mcWhDemoMiscDir=(~mcImgHrefCom~)/webhubdemos/img/misc/
 </whmacros>
 
 <!--- General Macros -->
 <whmacros>
-mcJQueryRoot=http://code.jquery.com/
+mcJQueryRoot=//code.jquery.com/
 mcWhDemoOneLiner=(~DYNCHUNK|mcWhDemoOneLiner,(~AppID~)~)
 mcEmDash=&#8212;
 </whmacros>
