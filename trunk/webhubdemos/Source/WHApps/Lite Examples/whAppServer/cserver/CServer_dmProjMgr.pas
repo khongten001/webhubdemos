@@ -5,7 +5,7 @@ interface
 {$I hrefdefines.inc}
 
 uses
-  Windows, Messages, SysUtils, Variants, Classes, Forms,
+  SysUtils, Variants, Classes, Forms,
   whdemo_DMProjMgr, tpProj;
 
 type
@@ -32,8 +32,8 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  MultiTypeApp, whSharedLog, ucCodeSiteInterface, uCode, 
+  MultiTypeApp, whSharedLog, ucCodeSiteInterface, uCode,
+  ucShellProcessCntrl,  // GetCurrentProcessID
   whutil_ZaphodsMap, htWebApp, webCall, webApp,
   cfmwhCustom;
 
@@ -48,6 +48,7 @@ procedure TDMForWHDemoC.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: string; var Continue: Boolean);
 const cFn = 'ProjMgrGUICreate';
 begin
+  CSEnterMethod(Self, cFn);
   inherited;
   CSSend(cFn + ': ShouldEnableGUI', S(ShouldEnableGUI));
   if ShouldEnableGUI then
@@ -60,6 +61,7 @@ begin
     // this is normal when starting it as a service
     // e.g. net start webhubsample1
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemoC.ProjMgrStartupComplete(Sender: TtpProject);
@@ -80,10 +82,11 @@ begin
         ParamValue('num', inst); // uses ucode
         LogSendInfo('service num', inst, cFn);
   end;
-  
+
   UncoverAppOnStartup(pWebApp.AppID);
   CSSend('Started instance', S(ProjMgr.InstanceSequence));
-  pConnection.MarkReadyToWork;
+  if Assigned(pConnection) then
+    pConnection.MarkReadyToWork;
   CSExitMethod(Self, cFn);
 end;
 
@@ -91,10 +94,10 @@ procedure TDMForWHDemoC.ProjMgrStop(Sender: TtpProject; var ErrorText: string;
   var Continue: Boolean);
 const cFn = 'ProjMgrStop';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   CSSend('Stopping');
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 end.
