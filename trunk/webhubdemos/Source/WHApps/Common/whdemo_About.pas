@@ -169,10 +169,13 @@ var
   S: string;
 begin
   inherited;
-  LabelDllCalls.Caption := 'Calls: ' + IntToStr(pConnection.DllCalls);
-  LabelIdentification.Caption := 'AppID=' + pConnection.AppID +
-    ' and PID=' + IntToStr(getCurrentProcessID) +
-    ' Slot#' + IntToStr(pConnection.SlotNo); {17-Dec-2004}
+  if Assigned(pConnection) then
+  begin
+    LabelDllCalls.Caption := 'Calls: ' + IntToStr(pConnection.DllCalls);
+    LabelIdentification.Caption := 'AppID=' + pConnection.AppID +
+      ' and PID=' + IntToStr(getCurrentProcessID) +
+      ' Slot#' + IntToStr(pConnection.SlotNo); {17-Dec-2004}
+  end;
   if GetHarryListenPortAndPID(Port, pid) then
   begin
     LabelAboutHarry.Caption := 'Hub is running with PID ' + IntToStr(pid);
