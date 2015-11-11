@@ -229,6 +229,7 @@ begin
   CSEnterMethod(Self, cFn);
   Assert(Assigned(pWebApp));
   Assert(pWebApp.IsUpdated);
+  CSSend('ShouldEnableGUI', S(ShouldEnableGUI));
 
   if ShouldEnableGUI then
   begin
@@ -264,7 +265,10 @@ begin
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
 
   UncoverAppOnStartup(pWebApp.AppID);
-  pConnection.MarkReadyToWork;
+  if Assigned(pConnection) then
+    pConnection.MarkReadyToWork
+  else
+    CSSendError(cFn + ': pConnection nil');
 
   CSExitMethod(Self, cFn);
 end;
