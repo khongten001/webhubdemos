@@ -149,8 +149,8 @@ Tickertape Marquee
 </whdoc>
 
 <script language="javascript">
-<!-- Ticker Tape in Java Script .. Cameron Gregory cameron@corona.att.com
-//-- http://www.att.com/homes/cameron/
+<!-- Ticker Tape in Java Script .. Cameron Gregory 
+<!--- from http://www.att.com/homes/cameron/  cameron@corona.att.com -->
 var tickertapeform
 (~chMarquee1Speed~)
 tt_len=50
