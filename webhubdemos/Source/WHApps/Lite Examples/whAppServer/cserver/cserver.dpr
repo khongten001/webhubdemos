@@ -11,14 +11,19 @@ uses
   uAutoDataModules in 'H:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
 
-webBase in 'k:\webhub\lib\whvcl\webBase.pas',
+(*webBase in 'k:\webhub\lib\whvcl\webBase.pas',
 webCall in 'k:\webhub\lib\whvcl\webCall.pas',
 webCore in 'k:\webhub\lib\whvcl\webCore.pas',
 webSend in 'k:\webhub\lib\whvcl\webSend.pas',
+webRead in 'k:\webhub\lib\whvcl\webRead.pas',
 whxpGlobal in 'k:\webhub\lib\whvcl\whxpGlobal.pas',
 whxpUtils  in 'k:\webhub\lib\whvcl\whxpUtils.pas',
+whutil_ZaphodsMap in 'k:\webhub\lib\whutil_ZaphodsMap.pas',
+whMacros in 'k:\webhub\lib\whvcl\whMacros.pas',
 
-  htWebApp in 'H:\htWebApp.pas',
+  htWebApp in 'K:\webhub\lib\htWebApp.pas',
+*)
+
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
