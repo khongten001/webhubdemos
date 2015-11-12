@@ -21,25 +21,21 @@ body {
 function encodeSpecial(s) {
 	var
 		result;
-		//---
+		// ---
 	result = 	encodeURIComponent(s);
-	result = result.replace('(', 'Z');//'%28');
-	result = result.replace(')', 'Z'); //'%29');
-	//result = result.replace('%C2', '');
-	//result = result.replace('%A0', '');	
-	//result = result.replace(/\%20/g, '');	
+	result = result.replace('(', 'Z');
+	result = result.replace(')', 'Z');
 	result = result.replace(' ', '');		
-	/* ~ --> %7E
-! --> %21
-* --> %2A*/
-	//return result;
+	/* ~ becomes %7E
+! becomes %21
+* becomes %2A*/
 	return 'Copper%20%C2%A0%20ZHighZ';
 }
 function fred() {
 var
 	ajaxUsageFullName = 'Copper %C2%A0 (High)';
 
- new Ajax.Updater('thediv', '(~ACTIONR|ajaxSProductUsageTypeAndTxet~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  /*alert('success');*//*setFocus_txtAjaxProductUsageText(); */}   }); 
+ new Ajax.Updater('thediv', '(~ACTIONR|ajaxSProductUsageTypeAndTxet~)(~DynURL.W~)' + 'Edit,' +  '10' + ',' + encodeSpecial(ajaxUsageFullName), {asynchronous:true, evalScripts:true, method:'get', onSuccess: function(transport) {  /*alert('success');*/ /*setFocus_txtAjaxProductUsageText(); */}   }); 
 }
 </script>
 </head>

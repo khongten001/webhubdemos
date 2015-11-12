@@ -28,7 +28,7 @@ var
 	refreshTimeout,
 	refreshElementId,
 	refreshURL;
-	//---
+	// ---
 	refreshLocation = '(~ACTION|(~DYN3~),(~ASSIGNED|DYN4|(~DYN4~)~)~)';
 	refreshTimeout = (~DYN2~);
 	refreshElementId = '(~DYN1~)';
