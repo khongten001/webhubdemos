@@ -304,12 +304,15 @@ If you do not wish to map drive H:, edit the paths (to PAS files) in the project
 <li> password is <b>demos</b></li>
 </ol>
 
-<p>If you have an older version of Delphi and you have any SubVersion client, you may still checkout the WebHub demos using the following details.</p>
+<p>If you have any SubVersion client, you may checkout the WebHub demos using the following details.</p>
 <ol>
 <li> ideal sandbox path is <b>d:\Projects\</b></li>
 <li> URL for the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos</b></li>
 <li> user account is <b>webhubber</b></li>
 <li> password is <b>demos</b></li>
+<li> Note that if you include all the Externals, you will receive many extra files which are only needed 
+for compiling a small subset of projects.  Generally, you can skip the Externals until you take an interest 
+in a project that requires it. So: feel free to <b>uncheck the box for Externals</b>.</li>
 </ol>
 <p>If you do not already have a SVN client package, one to consider
 is <a href="http://tortoisesvn.net/downloads">Tortoise SVN</a>.  It is free and
