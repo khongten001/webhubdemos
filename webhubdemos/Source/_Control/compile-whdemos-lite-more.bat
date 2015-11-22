@@ -46,7 +46,20 @@ set servicename=adv
 call MakeCServerVersionResource.bat
 copy cserver_adv_version.res cserver_version.res
 call %cbat% cserver
-REM goto end
+REN D:\Projects\webhubdemos\Live\WebHub\Apps\cserver.exe CServer_%servicename%.exe
+if errorlevel 1 %CSSend% /error "[02] Rename cserver.exe failed for %servicename%"
+
+:CompileCServerHTSC
+cd "%droot%\Lite Examples\whAppServer\cserver"
+set servicename=htsc
+call MakeCServerVersionResource.bat
+copy cserver_htsc_version.res cserver_version.res
+call %cbat% cserver
+REN D:\Projects\webhubdemos\Live\WebHub\Apps\cserver.exe CServer_%servicename%.exe
+if errorlevel 1 %CSSend% /error "[02] Rename cserver.exe failed for %servicename%"
+
+goto end
+
 
 :DServerContinue01
 cd "%droot%\Lite Examples\whAppServer\dserver"
