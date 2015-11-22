@@ -70,6 +70,8 @@ type
     procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppBadBrowser(Sender: TwhRespondingApp;
       var bContinue: Boolean);
+    procedure DemoAppExceptionHandler(Sender: TObject; E: Exception;
+      var Handled, ReDoPage: Boolean);
     function Init: Boolean;
     function IsSuperuser(const InSurferIP: string): Boolean;
   end;
@@ -84,7 +86,7 @@ uses
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
-  webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal,
+  webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
   whdemo_ViewSource;
 
 {$R *.DFM}
@@ -113,6 +115,8 @@ begin
     AddAppUpdateHandler(DemoAppUpdate);
     // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
+
+    pWebApp.OnError := DemoAppExceptionHandler;
 
     // Extra configuration path containing pairs of domain=id entries
     // Example:  lite.demos.href.com=1
@@ -326,10 +330,10 @@ const cFn = 'waCauseAVExecute';
 var
   y: TStringList;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   y := nil;
   y.Add('abc');  // intentional access violation
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.waCheckSubnetExecute(Sender: TObject);
@@ -831,6 +835,39 @@ begin
   LogSendInfo('UserAgent', pWebApp.Request.UserAgent);
   if pWebApp.Request.CookiesIn.Count > 0 then
     LogSendInfo('Cookies', pWebApp.Request.CookiesIn.Text);
+end;
+
+procedure TDemoExtensions.DemoAppExceptionHandler(Sender: TObject; E: Exception;
+  var Handled, ReDoPage: Boolean);
+const cFn = 'DemoAppExceptionHandler';
+begin
+  CSEnterMethod(Self, cFn);
+
+  Handled := True;
+  LogSendException(E); // just in case it has not already been logged.
+
+  {$IFDEF EUREKALOG}
+  // uses ExceptionLog7, EExceptionManager
+  LogSendWarning('EurekaLog provides the following CallStack');
+  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  {$ENDIF}
+
+  (*
+  For some applications, having the EXE exit after an A/V is a good idea.
+  if E is EAccessViolation then
+    pConnection.MarkTerminateASAP; // uses webCall
+  *)
+
+  (*
+  For some applications, bouncing the surfer to an error message page is useful.
+  pWebApp.Response.SendBounceToPage('pgSyntaxError', '');  // status 302; surfer likely to see 'app not running' system message
+  // application EXE could be auto-restarted by WebHub Guardian feature
+  *)
+
+  // if you do not bounce out, the rest of the page will execute...
+  // which is fine for the WebHub demos.
+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
