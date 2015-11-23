@@ -82,7 +82,6 @@ var
 implementation
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
@@ -840,6 +839,8 @@ end;
 procedure TDemoExtensions.DemoAppExceptionHandler(Sender: TObject; E: Exception;
   var Handled, ReDoPage: Boolean);
 const cFn = 'DemoAppExceptionHandler';
+var
+  iDelaySeconds: Integer;
 begin
   CSEnterMethod(Self, cFn);
 
@@ -851,6 +852,13 @@ begin
   LogSendWarning('EurekaLog provides the following CallStack');
   LogSendError(ExceptionManager.LastException.CallStack.ToString);
   {$ENDIF}
+
+  iDelaySeconds := StrToIntDef(TpJustDigits(pWebApp.Command), 0);
+  if iDelaySeconds > 2 then
+  begin
+    CSSend('Sleeping for seconds', S(iDelaySeconds));
+    Sleep(iDelaySeconds * 1000);
+  end;
 
   (*
   For some applications, having the EXE exit after an A/V is a good idea.
