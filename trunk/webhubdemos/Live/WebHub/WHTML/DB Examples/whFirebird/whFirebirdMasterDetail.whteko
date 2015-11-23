@@ -177,7 +177,7 @@ div.otherChild {
 <body>
 
 <div id="opacityLayer"></div>
-(~drPleaseWaitSpinner~)
+<!--- idea... (~drPleaseWaitSpinner~) -->
 <div id="errorDialogContainer">
 	<div id="errorDialog">
 		<div id="errorTitle">Title</div>
@@ -212,7 +212,7 @@ Intentional Errors: (~INPUTCHECKBOX|fakeAjaxErrorsChild1~) Employee Detail; (~IN
 </tr>
 <whrow>
 <tr>
-  <td>(~MATCH|(~Department_Dept_No~)=(~radioDept~)| (~SET|showdot=checked="checked"~) || (~SET|showdot= ~)~)
+  <td>(~MATCH|(~Department_Dept_No~)=(~radioDept~)| (~SET|showdot= checked="checked" ~) || (~SET|showdot=  ~)~)
 	(~INPUTRADIO|radioDept,(~Department_Dept_No~)| id="radio(~Department_Dept_No~)" (~showdot~) ~)</td>
   <td>(~Department_Dept_No~)</td>
   <td>(~Department_Department~)</td>
