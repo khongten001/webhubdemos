@@ -303,7 +303,7 @@ advertisements using this syntax: <b><code>(~.webcycle.execute~)</code></b>
 <p>(~JUMPR|(~PageID~)|Random, retest this page~)</p>
 </whpage>
 
-<whpage pageid="pgTestExceptionHandler" desc="-test exception handler">
+<whpage pageid="pgTestExceptionHandler" desc="-test exception handler by causing an intentional access violation">
 hello (~waCauseAV.Execute|~) (~CentralInfo.WebTimeGMT~)
 </whpage>
 
