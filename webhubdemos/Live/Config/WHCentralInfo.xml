@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
-<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201306.xsd">
+<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
     <Var name="RootForWHDataFolders" value="E:\whData\" />
@@ -12,16 +12,6 @@
           <Nickname value="App Version"/>
           <ConfigFolder value="{AppPath}config\whcp\"/>
           <ConfigFilename value="WHAppConfig_appvers.xml"/>
-          <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
-          <ShareSessions value="true"/>
-          <ShareByFile value="true"/>
-          <SessionCookieName value=""/>
-		  <SessionNumberLocation value="URL" />
-        </WebHubApp>
-        <WebHubApp appID="hubvers">
-          <Nickname value="Hub Version"/>
-          <ConfigFolder value="{AppPath}config\whcp\"/>
-          <ConfigFilename value="WHAppConfig_hubvers.xml"/>
           <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
@@ -392,8 +382,7 @@
     <DefaultAppID value="appvers"/>
     <DefaultShutdownCommand value="SHUTDOWN"/>
     <GuardianIntervalSeconds value="360" />
-    <HubAppID value="hubvers"/>
-    <RandomNextInstance value="false"/>
+    <LoggingLevel value="warning,error,exception"/>
   </HubProcess>
   <Sessions>
     <SessionDebug value="false"/>
