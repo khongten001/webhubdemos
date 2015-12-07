@@ -61,6 +61,11 @@ if ($Global:FlagInstallWebHubRuntime) {
 	Start-Process $Global:CSConsole -ArgumentList ('"' + $InfoMsg + '"') -NoNewWindow 
 	Start-Process ($Global:FolderInstallers + "HREFTools\WebHub_X_Runtime_System_v" + $webhub_version + "_Setup.exe") -ArgumentList "/S /DIR=d:\Apps\HREFTools\WebHub" -NoNewWindow -Wait
 	
+	$InfoMsg = 'IISReset so that new ISAPI runner becomes active'
+	echo $InfoMsg
+	Start-Process $Global:CSConsole -ArgumentList ('"' + $InfoMsg + '"') -NoNewWindow 
+	Start-Process "IISReset" -NoNewWindow -Wait
+
 	$InfoMsg = ('/note "Done upgrading WebHubRuntime to ' + $webhub_version + '"')
 	echo $InfoMsg
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
