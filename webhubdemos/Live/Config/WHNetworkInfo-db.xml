@@ -17,7 +17,7 @@
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\win32\runisa.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
-        <LoggingLevel value="all"/>
+        <LoggingLevel value="infotype,note,warning,error,exception"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
