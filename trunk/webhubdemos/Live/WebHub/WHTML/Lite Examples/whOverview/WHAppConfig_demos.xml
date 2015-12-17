@@ -79,7 +79,6 @@
       <File id="abCodeRage" filename="..\..\Shared WHTML\about\about-whSchedule.whteko"/>
       <File id="abDBHTML" filename="..\..\Shared WHTML\about\about-whLoadFromDB.whteko"/>
       <File id="abDEMOS" filename="..\..\Shared WHTML\about\about-whOverview.whteko"/>
-      <File id="abDSP" filename="..\..\Shared WHTML\about\about-whDSP.whteko"/>
       <File id="abDPR" filename="..\..\Shared WHTML\about\about-whDPrefix.whteko"/>
       <File id="abFAST" filename="..\..\Shared WHTML\about\about-whHTTPS.whteko"/>
       <File id="abFIRE" filename="..\..\Shared WHTML\about\about-whFirebird.whteko"/>
