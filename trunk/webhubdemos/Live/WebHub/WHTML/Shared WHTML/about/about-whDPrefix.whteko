@@ -3,7 +3,6 @@
 <whteko designmode="code" defaultlingvo="eng">
 
 <whmacros>
-mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRImageDir=(~Static.AppRoot~)
 mcDPRLogo=<span class="fancy">DP<sub>x</sub>R</span>
 mcVisigenicImage=<img src="(~mcDPRImageDir~)visigenic2.png" alt="visigenic" />
