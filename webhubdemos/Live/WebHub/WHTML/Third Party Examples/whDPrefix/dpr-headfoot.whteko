@@ -8,6 +8,7 @@ They DPR customizations are very small and should refresh in real time.
 </whdoc>
 
 <whmacros>
+mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
 mcDPRCSSDir=/webhub/demos/whDPrefix/css/
 mcCSSVersion=(~MATCH|(~ZMDefaultMapContext~)=ultraann|(~DynURL.Rand~)||0005~)
 mcDPRFoundationCSS=<link rel="stylesheet" href="(~Static.AppRoot~)css/foundation.(~NOMATCH|(~ZMDefaultMapContext~)=ultraann|min.~)css?(~mcCSSVersion~)" />
