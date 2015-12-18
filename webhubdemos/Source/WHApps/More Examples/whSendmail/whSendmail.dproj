@@ -1,10 +1,10 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{A7EC982A-D33C-44B1-B63A-55B9C2660292}</ProjectGuid>
         <MainSource>whSendmail.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>15.3</ProjectVersion>
+        <ProjectVersion>18.1</ProjectVersion>
         <Base>True</Base>
         <AppType>Application</AppType>
         <FrameworkType>None</FrameworkType>
@@ -30,6 +30,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <SanitizedProjectName>whSendmail</SanitizedProjectName>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Locale>1033</VerInfo_Locale>
@@ -47,7 +48,8 @@
         <DCC_F>false</DCC_F>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace)</DCC_Namespace>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
+        <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace);$(DCC_Namespace)</DCC_Namespace>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
@@ -76,6 +78,8 @@
             <Form>fmTrayForm</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_Initialize.pas"/>
+        <DCCReference Include="..\..\Common\whdemo_CodeSite.pas"/>
+        <DCCReference Include="..\..\Common\whdemo_UIHelpers.pas"/>
         <DCCReference Include="..\..\Common\whdemo_About.pas">
             <Form>fmAppAboutPanel</Form>
         </DCCReference>
@@ -102,7 +106,7 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
-        <DCCReference Include="k:\webhub\lib\whpanel_Mail.pas">
+        <DCCReference Include="H:\whpanel_Mail.pas">
             <Form>fmWebMail</Form>
         </DCCReference>
         <DCCReference Include="whSendmail_dmWhQuote.pas">
@@ -177,7 +181,6 @@
                 </VersionInfoKeys>
             </Delphi.Personality>
             <Platforms>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>

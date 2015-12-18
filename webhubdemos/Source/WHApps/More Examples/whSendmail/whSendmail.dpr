@@ -39,7 +39,7 @@ uses
   whsample_EvtHandlers in 'H:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  whpanel_Mail in 'k:\webhub\lib\whpanel_Mail.pas' {fmWebMail},
+  whpanel_Mail in 'H:\whpanel_Mail.pas' {fmWebMail},
   whSendmail_dmWhQuote in 'whSendmail_dmWhQuote.pas' {dmWhQuote: TdmWhQuote},
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   tpProj in 'h:\tpProj.pas',
