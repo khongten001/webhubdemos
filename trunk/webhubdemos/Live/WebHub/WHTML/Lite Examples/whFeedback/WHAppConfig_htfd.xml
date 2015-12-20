@@ -16,8 +16,8 @@
         <GUIOptional>
           <Module name="email" status="enabled-gui"/>
           <Module name="email" status="enabled" context="META"/>
-          <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="dreamweaver" status="disabled"/>
+          <Module name="dwsecurity" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
         </GUIOptional>
         <GUI>
@@ -89,14 +89,15 @@
   </Application>
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
-      <Item name="FormLetter">
+      <Item name="SimpleForm">
         <Host value="smtp^"/>
         <Port value="{EMailPort}"/>
-        <From value="info@href.com"/>
-        <Name value="Someone on the Web"/>
+        <From value="EMail^"/>
+        <Name value="FullName^"/>
         <To value="EMailTo^"/>
-        <Subject value="Custom Subject: (~Subject~)"/>
-        <Template value="letters\form-ltr.txt"/>
+        <Cc value="EMail^"/>
+        <Subject value="WebHub SimpleForm demo: (~Subject~)"/>
+        <TxtVars value="txtMessage"/>
         <LogToFile value="false"/>
       </Item>
       <Item name="Feedback">
@@ -108,20 +109,19 @@
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
         <Cc value="EMail^"/>
-        <Subject value="WebHub HTFD demo: (~Subject~)"/>
+        <Subject value="WebHub Feedback demo: (~Subject~)"/>
         <Template value="letters\feedback.txt"/>
         <TxtVars value="txtMessage"/>
         <LogToFile value="false"/>
       </Item>
-      <Item name="SimpleForm">
+      <Item name="FormLetter">
         <Host value="smtp^"/>
         <Port value="{EMailPort}"/>
-        <From value="EMail^"/>
-        <Name value="FullName^"/>
+        <From value="info@href.com"/>
+        <Name value="Someone on the Web"/>
         <To value="EMailTo^"/>
-        <Cc value="EMail^"/>
-        <Subject value="WebHub HTFD demo: Quick Data"/>
-        <TxtVars value="txtMessage"/>
+        <Subject value="WebHub FormLetter Demo: (~Subject~)"/>
+        <Template value="letters\form-ltr.txt"/>
         <LogToFile value="false"/>
       </Item>
     </whMailForm>
