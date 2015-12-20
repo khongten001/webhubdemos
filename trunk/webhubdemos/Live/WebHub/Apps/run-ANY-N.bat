@@ -4,6 +4,7 @@ setlocal
 ::delete the session data for the quality-assurance test run
 del c:\temp\whSessions\1204.var
 del d:\temp\whSessions\1204.var
+del E:\whData\whSessions\1204.var
 
 ::change to folder containing this bat file
 cd %~dp0
@@ -15,11 +16,7 @@ set demoparams="/ID=%whappid%"
 
 echo Demo params: %demoparams%
 
-set /P isdebug=Debug version? (y/n) :  
-if "%isdebug%"=="" goto end
-if "%isdebug%"=="y" set exename=DServer_x_d20_win32_debug.exe
-if "%isdebug%"=="n" set exename=whLite.exe
-
+set exename=whLite.exe
 echo exename is %exename%
 
 set /P qty=Enter Number of instances to start (eg. 1, 3, 5, 10, 20, 30) :  
