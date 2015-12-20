@@ -13,6 +13,14 @@ call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Del
 set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
+if "%compilerdigits%"=="23" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win64
+if "%compilerdigits%"=="22" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win64
+if "%compilerdigits%"=="21" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win64
+if "%compilerdigits%"=="20" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64
+if "%compilerdigits%"=="19" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
+if "%compilerdigits%"=="18" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
+if "%compilerdigits%"=="17" set raizepath=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
+
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 :: async requires OTL OmniThreadLibrary
@@ -31,7 +39,7 @@ if exist %1.cfg REN %1.cfg %1.off
 
 @echo on
 set ok=y
-"%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;Log2CSL -D%compilerflags% -LU%pkg% -u%libsearchpath%;%RaizePath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok=n
 if "%ok%"=="n" %CSSend% /error "D%compilerdigits% %1.dpr"
 if "%ok%"=="y" %CSSend% "success D%compilerdigits% %1.dpr"
