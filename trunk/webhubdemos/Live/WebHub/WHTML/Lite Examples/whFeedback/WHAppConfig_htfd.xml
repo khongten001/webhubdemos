@@ -39,7 +39,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLoggingState" value="error,exception" />
+      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
     </AppSettings>
@@ -95,24 +95,18 @@
         <From value="info@href.com"/>
         <Name value="Someone on the Web"/>
         <To value="EMailTo^"/>
-        <Subject value="Subject^"/>
+        <Subject value="Custom Subject: (~Subject~)"/>
         <Template value="letters\form-ltr.txt"/>
         <LogToFile value="false"/>
       </Item>
       <Item name="Feedback">
         <Host value="smtp^"/>
-        <Host context="NYX" value="email-smtp.us-east-1.amazonaws.com"/>
         <Port value="smtpport^"/>
-        <Port context="NYX" value="25"/>
         <SMTPUsername value="smtpusername^"/>
-        <SMTPUsername context="NYX" value="AKIAJHBTDNZZX6IJQAIQ"/>
         <SMTPPassword value="smtppassword^"/>
-        <SMTPPassword context="NYX" value="Am7mqx/M2MMy9EZ8/PvNz4++0Uud3Kwwgzly3fkzaOi2"/>
         <From value="EMail^"/>
-        <From context="NYX" value="webmaster@href.com"/>
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
-        <To context="NYX" value="ann@href.com"/>
         <Cc value="EMail^"/>
         <Subject value="WebHub HTFD demo: Feedback Letter"/>
         <Template value="letters\feedback.txt"/>

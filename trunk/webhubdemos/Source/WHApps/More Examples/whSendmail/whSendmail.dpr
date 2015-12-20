@@ -41,16 +41,14 @@ uses
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   whpanel_Mail in 'H:\whpanel_Mail.pas' {fmWebMail},
   whSendmail_dmWhQuote in 'whSendmail_dmWhQuote.pas' {dmWhQuote: TdmWhQuote},
-  whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   tpProj in 'h:\tpProj.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whSendMail_dmProjMgr in 'whSendMail_dmProjMgr.pas' {DMForWHSendMail: TDataModule},
+  whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   htmaildm in 'htmaildm.pas' {FormLetterDM: TDataModule};
 
 {$R *.RES}
 {$R HTDEMOS.RES}     // main icon for WebHub demos
-{..$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
-{..$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
 
 (* for use when compiling with source
   whMail in 'k:\webhub\lib\whMail.pas',
