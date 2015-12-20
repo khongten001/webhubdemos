@@ -237,6 +237,9 @@ this application and your web server.
 mcSelectArtist=Picasso-Picasso,Chagall-Chagall,Kandinsky-Kandinsky,Miro-Miro,Rockwell-Rockwell,Monet-Monet,Seurat-Seurat,Other-Other
 </whmacros>
 <whpage pageid="pgFormLetter" desc="Template Letter">
+<whprep>
+(~NOTASSIGNED|smtp|(~SET|smtp=smtplocal.href.com~)~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
@@ -340,6 +343,9 @@ the INI file and send mail accordingly.  -->
 
 
 <whpage pageid="pgSimpleForm" desc="Simple Form for Demo Use">
+<whprep>
+(~NOTASSIGNED|smtp|(~SET|smtp=smtplocal.href.com~)~)
+</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
