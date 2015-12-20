@@ -5,13 +5,11 @@
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
     <MenuEnabled context="ultraann" value="true"/>
-    <MenuEnabled context="NYX" value="false"/>
     <SplashEnabled value="true"/>
     <SplashEnabled context="ultraann" value="false"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
     <StartMinimized context="ultraann" value="true"/>
-    <StartMinimized context="NYX" value="true"/>
     <TrayIconEnabled value="true"/>
     <TrayIconEnabled context="ultraann" value="false"/>
     <Modules>

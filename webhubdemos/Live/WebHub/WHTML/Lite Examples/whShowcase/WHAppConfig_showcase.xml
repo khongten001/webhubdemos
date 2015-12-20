@@ -7,7 +7,6 @@
     <SplashEnabled context="META" value="false"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
-    <StartMinimized value="true" context="NYX"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -35,7 +34,6 @@
         <ServerProfileIDStandard value="lite" context="META"/>
         <ServerProfileIDStandard value="newipc" context="ultraann"/>
         <ServerProfileIDSecure value="ssl"/>
-        <ServerProfileIDSecure value="" context="NYX"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
