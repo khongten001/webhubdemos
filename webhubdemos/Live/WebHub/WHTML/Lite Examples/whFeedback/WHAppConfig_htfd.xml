@@ -108,7 +108,7 @@
         <Name value="FullName^"/>
         <To value="EMailTo^"/>
         <Cc value="EMail^"/>
-        <Subject value="WebHub HTFD demo: Feedback Letter"/>
+        <Subject value="WebHub HTFD demo: (~Subject~)"/>
         <Template value="letters\feedback.txt"/>
         <TxtVars value="txtMessage"/>
         <LogToFile value="false"/>
