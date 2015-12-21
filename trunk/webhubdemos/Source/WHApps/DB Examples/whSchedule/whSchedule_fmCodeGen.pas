@@ -3,7 +3,7 @@ unit whSchedule_fmCodeGen;
 { ---------------------------------------------------------------------------- }
 { * Copyright (c) 2012-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
+{ * This source code file is part of WebHub v3.2x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
 { * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
 { *                                                                          * }
@@ -369,20 +369,19 @@ begin
 end;*)
 
 procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
-var
+(*var
   SAnsi: AnsiString;
-  Raw: TBytes;
+  Raw: TBytes;*)
 const
   // http://www.fileformat.info/info/unicode/char/2029/index.htm
   cParaBreak: UnicodeString = #$2029; // '#CRLF#';
 begin
-  (* required during transition from CHARSET None to CHARSET UTF8. *)
-  Raw := BytesOf(AString);
+  (* was required during transition from CHARSET None to CHARSET UTF8. *)
+  (*Raw := BytesOf(AString);
   SAnsi := UTF8ToAnsiCodePage(UTF8String(Raw), 1252);
-  AString := AnsiCodePageToUnicode(SAnsi, 1252);
+  AString := AnsiCodePageToUnicode(SAnsi, 1252); *)
 
   // unicode parabreak
-  //AString := StringReplace(AString, sLineBreak, cParaBreak, [rfReplaceAll]);
   AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
 end;
 
