@@ -18,7 +18,7 @@ set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;k:\Rubicon\source;%ibopath%"
 set outputroot=d:\Projects\WebHubDemos\Live\WebHub\Apps
 set pkg=
-set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;WEBHUBACE;INHOUSE
+set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
 
 set includepath=k:\webhub\tpack;k:\WebHub\lib;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 set objdir=K:\webhub\regex\Pcre-Delphi-Win32-bcc6
