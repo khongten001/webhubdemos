@@ -26,9 +26,9 @@ if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
-if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE
+if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE
 :: LogAppTick;LogHelo
-if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;WEBHUBACE;CodeSite;Log2CSL;LogSTime
+if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LogSTime
 %CSSend% compilerflags "%compilerflags%"
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
