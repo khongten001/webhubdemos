@@ -15,10 +15,10 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   ComCtrls, ExtCtrls, StdCtrls, Buttons, 
-  {$I xe_actnlist.inc}
-  {$I xe_actions.inc}
+  //{$I xe_actnlist.inc}
+  //{$I xe_actions.inc}
   utPanFrm, tpMemo, tpStatus, updateOk, tpAction, toolbar, {}tpCompPanel, 
-  webTypes, webLink;
+  webTypes, webLink, System.Actions, Vcl.ActnList;
 
 type
   TfmAppAboutPanel = class(TutParentForm)
@@ -44,8 +44,9 @@ type
     LabelDllCalls: TLabel;
     LabelAboutCPU: TLabel;
     LabelAboutHarry: TLabel;
-    LabelAboutCompiler: TLabel;
+    LabelAboutInstance: TLabel;
     Timer1: TTimer;
+    LabelAboutCompiler: TLabel;
     procedure LabelURLClick(Sender: TObject);
     procedure ActionToggleConnectionExecute(Sender: TObject);
     procedure ActionShowConnectionDetailExecute(Sender: TObject);
@@ -190,6 +191,8 @@ begin
 {$ENDIF}
   LabelAboutCPU.Caption := S;
   LabelAboutCompiler.Caption := 'Compiler: ' + uCode.PascalCompilerCode;
+  LabelAboutInstance.Caption := pWebApp.AppID + ' instance #' +
+    IntToStr(pWebApp.AppInstanceCounter.InstanceSequence);
 end;
 
 destructor TfmAppAboutPanel.Destroy;
