@@ -6,7 +6,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
   ClientWidth = 606
   OnCreate = FormCreate
   ExplicitWidth = 624
-  ExplicitHeight = 317
+  ExplicitHeight = 319
   PixelsPerInch = 120
   TextHeight = 18
   inherited pa: TPanel
@@ -260,6 +260,21 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           ParentFont = False
           OnClick = LabelAboutHarryClick
           ExplicitWidth = 141
+        end
+        object LabelAboutInstance: TLabel
+          Left = 0
+          Top = 105
+          Width = 358
+          Height = 21
+          Align = alTop
+          Caption = 'LabelAboutInstance'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -17
+          Font.Name = 'Lucida Sans Unicode'
+          Font.Style = []
+          ParentFont = False
+          ExplicitWidth = 163
         end
         object LabelAboutCompiler: TLabel
           Left = 0
