@@ -7,7 +7,7 @@ start TaskMgr
 rem wait until all demos are out of memory
 pause
 
-d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=demos /minutes=10 "/reason=upgrading web application"
+d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=demos --minutes=10 "--reason=upgrading web application"
 
 cd /d %~dp0
 cd ..\WebHub\Apps

@@ -27,39 +27,39 @@ cd ..\WebHub\Apps
 :Lite Examples
 if "%demodemos%"=="yes" start whLite.exe /ID=demos  
 if "%demodemos%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demodemos%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=demos /minutes=%covermin% /reason=%coverreason% 
+if "%demodemos%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=demos --minutes=%covermin% --reason=%coverreason% 
 if NOT %flagdemoslite%==yes goto end
 
 if "%demoadv%"=="yes" start whLite.exe /ID=adv 
 if "%demoadv%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demoadv%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=adv /minutes=%covermin% /reason=%coverreason% 
+if "%demoadv%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=adv --minutes=%covermin% --reason=%coverreason% 
 
 if "%demoshowcase%"=="yes" start whLite.exe /ID:showcase    
 if "%demoshowcase%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %slowseconds%
-if "%demoshowcase%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=showcase /minutes=%covermin% /reason=%coverreason% 
+if "%demoshowcase%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=showcase --minutes=%covermin% --reason=%coverreason% 
 
 if "%demohtaj%"=="yes" start whLite.exe /ID:htaj    
 if "%demohtaj%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demohtaj%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htaj /minutes=%covermin% /reason=%coverreason% 
+if "%demohtaj%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=htaj --minutes=%covermin% --reason=%coverreason% 
 
 if "%demohtfd%"=="yes" start whLite.exe /ID:htfd   
 if "%demohtfd%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demohtfd%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htfd /minutes=%covermin% /reason=%coverreason% 
+if "%demohtfd%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=htfd --minutes=%covermin% --reason=%coverreason% 
 
 if "%demoform%"=="yes" start whLite.exe /ID:form    
 if "%demoform%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demoform%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=form /minutes=%covermin% /reason=%coverreason% 
+if "%demoform%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=form --minutes=%covermin% --reason=%coverreason% 
 
 if "%demofast%"=="yes" start whLite.exe /ID:fast    
 if "%demofast%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demofast%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=fast /minutes=%covermin% /reason=%coverreason% 
+if "%demofast%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=fast --minutes=%covermin% --reason=%coverreason% 
 
 if "%demohtsc%"=="yes" start whLite.exe /ID:htsc   
 if "%demohtsc%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demohtsc%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=htsc /minutes=%covermin% /reason=%coverreason% 
+if "%demohtsc%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=htsc --minutes=%covermin% --reason=%coverreason% 
 
 if "%demojoke%"=="yes" start whLite.exe /ID:joke   
 if "%demojoke%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
-if "%demojoke%"=="no" d:\Apps\HREFTools\WebHub\bin\WHCoverMgmt.exe /cover /appid=joke /minutes=%covermin% /reason=%coverreason% 
+if "%demojoke%"=="no" d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=joke --minutes=%covermin% --reason=%coverreason% 
 
 :end
