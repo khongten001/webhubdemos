@@ -4,7 +4,7 @@
         <MainSource>cserver.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>18.0</ProjectVersion>
+        <ProjectVersion>18.1</ProjectVersion>
         <FrameworkType>None</FrameworkType>
         <Base>True</Base>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
@@ -110,13 +110,6 @@
         </DCCReference>
         <DCCReference Include="H:\uAutoDataModules.pas"/>
         <DCCReference Include="H:\uAutoPanels.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\webBase.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\webCall.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\webCore.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\webSend.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\whxpGlobal.pas"/>
-        <DCCReference Include="k:\webhub\lib\whvcl\whxpUtils.pas"/>
-        <DCCReference Include="H:\htWebApp.pas"/>
         <DCCReference Include="CServer_dmProjMgr.pas">
             <Form>DMForWHDemoC</Form>
             <DesignClass>TDataModule</DesignClass>
