@@ -1,6 +1,5 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
-<whteko designmode="code" designdynsrc="localdemoFire"
-   >
+<whteko designmode="code">
 
 <whdroplet name="drDemoSpeedbarForfire">
 <!-- speedbar for FIRE demo could appear here -->
@@ -110,8 +109,8 @@ view data from a Firebird SQL database.</p>
 </whpage>
 
 
-<whmacros>
 <!--- used for customization of ScanEmployee2 - example #2 -->
+<whmacros>
 mcEmployee2ButtonSpecsFirst=<!-- changing:start--><a href="(~DynURL.ToSessionIDW~)ScanEmployee2.First">first</a><!-- changing:stop-->
 mcEmployee2ButtonSpecsPrior=<!-- changing:start--><a href="(~DynURL.ToSessionIDW~)ScanEmployee2.Prior">prior</a><!-- changing:stop-->
 mcEmployee2ButtonSpecsNext=<!-- changing:start--><a href="(~DynURL.ToSessionIDW~)ScanEmployee2.Next">next</a><!-- changing:stop-->
