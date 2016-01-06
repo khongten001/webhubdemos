@@ -5,8 +5,8 @@ set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteC
 setlocal
 
 call %~dp0\default-compilerdigits.bat
-set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS;LogIPC;LOGHelo;LOGLICENSE;
-set newipcdebug=CodeSite;Log2CSL;LogSTime;LogBAD;
+:: unused ... set newipcdebug=CodeSite;Log2CSL;LogBAD;LOGLINKS;LogIPC;LOGHelo;LOGLICENSE;
+set newipcdebug=CodeSite;Log2CSL;LogSTime;
 
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com
