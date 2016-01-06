@@ -68,7 +68,7 @@ if NOT "%compilehtru%"=="no" call %cbat% whRubicon
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
 if "%compiledpr%"=="no" goto END
 cd %droot%\Third Party Examples\whDPrefix
-set compilerdigits=22
+set compilerdigits=%ibocomp%
 REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
 

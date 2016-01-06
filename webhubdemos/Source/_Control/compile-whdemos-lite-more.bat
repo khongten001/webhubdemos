@@ -58,9 +58,6 @@ call %cbat% cserver
 REN D:\Projects\webhubdemos\Live\WebHub\Apps\cserver.exe CServer_%servicename%.exe
 if errorlevel 1 %CSSend% /error "[02] Rename cserver.exe failed for %servicename%"
 
-goto end
-
-
 :DServerContinue01
 cd "%droot%\Lite Examples\whAppServer\dserver"
 set cbat=D:\Projects\webhubdemos\Source\_Control\compile-1demo_win%bits%.bat
@@ -90,6 +87,8 @@ cd %droot%\More Examples\whASyncDemo
 call %cbat% whASyncDemo
 :: set bits=64
 
+%CSSend% /note whDropdown
+pause
 cd %droot%\More Examples\whDropdown
 call %cbat% whDropdown
 
