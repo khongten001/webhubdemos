@@ -1,9 +1,11 @@
 :: run-db-demos.bat
-:: Copyright (c) 2011-2015 HREF Tools Corp.
+:: Copyright (c) 2011-2016 HREF Tools Corp.
 :: www.href.com
 
 @echo off
 setlocal
+
+net stop w3svc
 
 set longdelay=40
 set shortdelay=30
@@ -82,5 +84,7 @@ if "%demoscan%"=="no"  d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appi
 if "%demoshop1%"=="yes" start whShopping.exe  
 if "%demoshop1%"=="yes" d:\Apps\HREFTools\miscutil\wait.exe %shortdelay%
 if "%demoshop1%"=="no"  d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=shop1 --minutes=%covermin% --reason=%coverreason%
+
+start iisreset.exe
 
 :end
