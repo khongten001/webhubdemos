@@ -1,9 +1,9 @@
 unit whdemo_Initialize;  {Initialization code shared by the WebHub demos}
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2002-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 2002-2016 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
+{ * This source code file is part of WebHub v3.2x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
 { * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
 { ---------------------------------------------------------------------------- }
@@ -14,7 +14,7 @@ uses
   SysUtils, Classes,
   webSend, htmlBase, whcfg_App;
 
-procedure whDemoSetAppId(const whDemoAppID: string);
+function whDemoSetAppId(const whDemoAppID: string): Boolean;
 procedure whDemoCreateSharedPanels;
 procedure whDemoCreateSharedDataModules;
 procedure whDemoInit;
@@ -46,20 +46,27 @@ uses
   whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
 
-procedure whDemoSetAppId(const whDemoAppID: string);
+function whDemoSetAppId(const whDemoAppID: string): Boolean;
 const cFn = 'whDemoSetAppId';
 begin
   CSEnterMethod(nil, cFn);
-  with pWebApp do
+  Result := pWebApp <> nil;
+  if Result then
   begin
-    // Ensure that extra settings for demos are reset whenever app refreshes.
-    AddAppUpdateHandler(DemoHelperComponent.DemoAppUpdate);
-    OnAfterLoadFromConfig := DemoHelperComponent.DemoForceConfig;
-    AppID := whDemoAppID;
-    Refresh;  // instantiate nested components
-  end;
-  if pConnection = nil then
-    CSSendError('pConnection nil here');
+    with pWebApp do
+    begin
+      // Ensure that extra settings for demos are reset whenever app refreshes.
+      AddAppUpdateHandler(DemoHelperComponent.DemoAppUpdate);
+      OnAfterLoadFromConfig := DemoHelperComponent.DemoForceConfig;
+      AppID := whDemoAppID;
+      Refresh;  // instantiate nested components
+    end;
+    Result := pConnection <> nil;
+    if NOT Result then
+      CSSendError(cFn + ': pConnection nil here');
+  end
+  else
+    CSSendError(cFn + ': pWebApp nil here');
   CSExitMethod(nil, cFn);
 end;
 
