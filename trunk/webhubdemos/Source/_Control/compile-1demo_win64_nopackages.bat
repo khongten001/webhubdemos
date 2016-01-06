@@ -21,6 +21,7 @@ if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\W
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
+:: flags off: ;LogAppTick;LOGIPC;LogHELO
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\
 
