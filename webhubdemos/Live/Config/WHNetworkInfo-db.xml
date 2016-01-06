@@ -126,6 +126,16 @@
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
       </ServerProfile>
+      <ServerProfile id="shortdpr">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="delphiprefix.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value="/"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
     </ServerProfiles>
   </OtherMachines>
 </WebHubNetworkInfo>
