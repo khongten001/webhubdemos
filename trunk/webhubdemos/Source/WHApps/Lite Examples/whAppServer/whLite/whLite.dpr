@@ -1,6 +1,6 @@
 program whLite;  {A fairly generic WebHub application.}
 (*
-Copyright (c) 1999-2015 HREF Tools Corp.
+Copyright (c) 1999-2016 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -77,7 +77,9 @@ begin
   DMForWHDemo.SetDemoFacts('', 'Lite Examples\whAppServer', True);
   DMForWHDemo.ProjMgr.ManageStartup;
 
-  DemoExtensions.Init;  // make extra sure that these event handlers go LAST.
+  if Assigned(DemoExtensions) then
+
+    DemoExtensions.Init;  // make extra sure that these event handlers go LAST.
 
   {M}Application.Run;
 end.
