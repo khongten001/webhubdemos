@@ -1,9 +1,9 @@
 unit whdemo_Extensions;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1998-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1998-2016 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v2.1x.  Please obtain a WebHub   * }
+{ * This source code file is part of WebHub v3.2x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
 { * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
 { ---------------------------------------------------------------------------- }
@@ -82,6 +82,7 @@ var
 implementation
 
 uses
+  {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF}
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
@@ -850,7 +851,7 @@ begin
   {$IFDEF EUREKALOG}
   // uses ExceptionLog7, EExceptionManager
   LogSendWarning('EurekaLog provides the following CallStack');
-  LogSendError(ExceptionManager.LastException.CallStack.ToString);
+  LogSendError(ExceptionManager.LastThreadException.CallStack.ToString);
   {$ENDIF}
 
   iDelaySeconds := StrToIntDef(TpJustDigits(pWebApp.Command), 0);
