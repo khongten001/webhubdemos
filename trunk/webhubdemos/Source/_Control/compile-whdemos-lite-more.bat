@@ -87,8 +87,6 @@ cd %droot%\More Examples\whASyncDemo
 call %cbat% whASyncDemo
 :: set bits=64
 
-%CSSend% /note whDropdown
-pause
 cd %droot%\More Examples\whDropdown
 call %cbat% whDropdown
 
