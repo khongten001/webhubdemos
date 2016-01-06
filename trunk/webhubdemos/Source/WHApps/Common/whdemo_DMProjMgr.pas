@@ -1,7 +1,7 @@
 unit whdemo_DMProjMgr;  { initialization shared by all webhub demos }
 
 (*
-Copyright (c) 2004-2015 HREF Tools Corp.
+Copyright (c) 2004-2016 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -111,7 +111,7 @@ end;
 procedure TDMForWHDemo.ProjMgrDataModulesCreate2(
   Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
-const cFn = 'Create2';
+const cFn = 'ProjMgrDataModulesCreate2';
 var
   UsedAppID: string;
 begin
@@ -141,9 +141,18 @@ begin
 
     CSSend('UsedAppID', UsedAppID);
 
-    whDemoSetAppId(UsedAppID);  // this refreshes the app
-    {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
-    whDemoCreateSharedDataModules;
+    Continue := whDemoSetAppId(UsedAppID);  // this refreshes the app
+    if Continue then
+    begin
+      {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
+      whDemoCreateSharedDataModules;
+    end
+    else
+    begin
+      CSSendError('unable to set AppID');
+      //Halt
+      ;
+    end;
   except
     on E: Exception do
     begin
@@ -157,20 +166,26 @@ end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate3(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
+const cFn = 'ProjMgrDataModulesCreate3';
 begin
+  CSEnterMethod(Self, cFn);
   Application.CreateForm(TdmwhCodeSiteHelper, dmwhCodeSiteHelper);
   Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+const cFn = 'ProjMgrDataModulesInit';
 begin
+  CSEnterMethod(Self, cFn);
   InitCoreWebHubDataModule;
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
   Continue := dmwhUIHelpers.Init(ErrorText);
   if Continue then
     Continue := dmwhCodeSiteHelper.Init(ErrorText);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMForWHDemo.ProjMgrGUICreate(Sender: TtpProject;
