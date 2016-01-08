@@ -15,6 +15,9 @@
         <Projects Include="whAppServer\cserver\AppRoleTester.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="whAppServer\cserver\PipeSpeedTester.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="AppRoleTester:Make">
         <MSBuild Projects="whAppServer\cserver\AppRoleTester.dproj" Targets="Make"/>
     </Target>
+    <Target Name="PipeSpeedTester">
+        <MSBuild Projects="whAppServer\cserver\PipeSpeedTester.dproj"/>
+    </Target>
+    <Target Name="PipeSpeedTester:Clean">
+        <MSBuild Projects="whAppServer\cserver\PipeSpeedTester.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PipeSpeedTester:Make">
+        <MSBuild Projects="whAppServer\cserver\PipeSpeedTester.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="whLite;aserver;cserver;AppRoleTester"/>
+        <CallTarget Targets="whLite;aserver;cserver;AppRoleTester;PipeSpeedTester"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="whLite:Clean;aserver:Clean;cserver:Clean;AppRoleTester:Clean"/>
+        <CallTarget Targets="whLite:Clean;aserver:Clean;cserver:Clean;AppRoleTester:Clean;PipeSpeedTester:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="whLite:Make;aserver:Make;cserver:Make;AppRoleTester:Make"/>
+        <CallTarget Targets="whLite:Make;aserver:Make;cserver:Make;AppRoleTester:Make;PipeSpeedTester:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
