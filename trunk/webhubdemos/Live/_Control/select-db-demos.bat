@@ -1,5 +1,5 @@
 :: select-db-demos.bat
-:: Copyright (c) 2011-2014 HREF Tools Corp.
+:: Copyright (c) 2011-2016 HREF Tools Corp.
 :: www.href.com
 
 :: init all to NO
@@ -10,10 +10,10 @@ set demofire=no
 set demohtcl=no
 set demohtfm=no
 set demohtfs=yes
-set demohtq1=no
-set demohtq2=no
-set demohtq3=no
-set demohtq4=no
+set demohtq1=yes
+set demohtq2=yes
+set demohtq3=yes
+set demohtq4=yes
 set demohtru=no
 set demojpeg=yes
 set demoscan=yes
