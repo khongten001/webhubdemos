@@ -2,7 +2,7 @@ setlocal
 
 set bits=64
 
-d:\Apps\HREFTools\WebHub\bin\ShutdownWHApps.exe
+d:\Apps\HREFTools\WebHub\bin\whadmin.exe app instances stop all
 start TaskMgr
 rem wait until all demos are out of memory
 pause
