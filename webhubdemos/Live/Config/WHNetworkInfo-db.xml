@@ -14,21 +14,11 @@
       <WorkingFolder value="{RootForWHDataFolders}whIPC\"/>
     </ConnectionLayer>
     <Runners>
-      <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\win32\runisa.dll">
-        <Interface value="isapi"/>
-        <DelayMS value="0"/>
-        <LoggingLevel value="infotype,note,warning,error,exception"/>
-        <RequestValidation value="true"/>
-        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
-        <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
-        <AdvancedFlags value="none"/>
-      </Runner>
-      <Runner id="isapi64" filespec="D:\Apps\HREFTools\WebHub\bin\WhRunner\runisa.dll">
+      <Runner id="isapi" filespec="D:\Apps\HREFTools\WebHub\bin\WhRunner\runisa.dll">
         <Active value="true"/>
         <Interface value="isapi"/>
         <DelayMS value="0"/>
-        <LoggingLevel value="warning,error,exception"/>
+        <LoggingLevel value="infotype,warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
