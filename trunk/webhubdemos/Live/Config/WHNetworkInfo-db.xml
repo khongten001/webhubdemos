@@ -1,27 +1,38 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
   <Variables begin="{" end="}">
-    <Var name="RootForWHDataFolders" value="E:\whData\" />
+    <Var name="RootForWHDataFolders" value="E:\whData\"/>
   </Variables>
-<!-- a comment -->
+  <!-- a comment -->
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
   </HttpServers>
   <LocalMachine>
-  	<ConnectionLayer>
-	  <SharedLogFolder value="{RootForWHDataFolders}whLogs\" />
-	  <WorkingFolder value="{RootForWHDataFolders}whIPC\" />
-  	</ConnectionLayer>
+    <ConnectionLayer>
+      <SharedLogFolder value="{RootForWHDataFolders}whLogs\"/>
+      <WorkingFolder value="{RootForWHDataFolders}whIPC\"/>
+    </ConnectionLayer>
     <Runners>
       <Runner id="isapi" filespec="d:\apps\hreftools\webhub\bin\win32\runisa.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
         <LoggingLevel value="infotype,note,warning,error,exception"/>
+        <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
-		<AdvancedFlags value="none" />
+        <AdvancedFlags value="none"/>
+      </Runner>
+      <Runner id="isapi64" filespec="D:\Apps\HREFTools\WebHub\bin\WhRunner\runisa.dll">
+        <Active value="true"/>
+        <Interface value="isapi"/>
+        <DelayMS value="0"/>
+        <LoggingLevel value="warning,error,exception"/>
+        <RequestValidation value="true"/>
+        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
+        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
+        <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
       </Runner>
     </Runners>
     <ServerProfiles>
@@ -101,7 +112,6 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="true"/>
       </ServerProfile>
-      
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
