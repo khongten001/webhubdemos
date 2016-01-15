@@ -33,6 +33,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="shortformat" context="DORIS"/>
         <ServerProfileIDSecure value="ssl"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="true"/>

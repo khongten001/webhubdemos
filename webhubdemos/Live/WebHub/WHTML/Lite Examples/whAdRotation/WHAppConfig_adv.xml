@@ -46,8 +46,8 @@
       <ShutdownCommand value="shutdown"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLoggingState" value="note,warning,error,exception" />
-      <AppSetting name="CodeSiteLoggingState" value="all" context="ultraann" />
+      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLoggingState" value="infotype,warning,error,exception" context="ultraann" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
