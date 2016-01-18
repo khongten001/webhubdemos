@@ -1,9 +1,9 @@
 unit whpwMain;
 
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2014 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2016 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
-//  This source code file is part of WebHub v2.1x.  Please obtain a WebHub    //
+//  This source code file is part of WebHub v3.2x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //
 //  refer friends and colleagues to href.com/webhub for downloading. Thanks!  //
 ////////////////////////////////////////////////////////////////////////////////
@@ -21,18 +21,12 @@ interface
 {$I hrefdefines.inc}
 
 uses
-{$IFNDEF LINUX}
+{$IFDEF MSWINDOWS}
   Windows, Messages,
 {$ENDIF}
   SysUtils, Classes,
-{$IFDEF LINUX}
-  QGraphics, QControls, QForms, QDialogs, QMenus, QComCtrls, QExtCtrls,
-  QStdActns, QActnList,
-{$ELSE}
   Graphics, Controls, Forms, Dialogs, Menus, ComCtrls, ExtCtrls,
-  {$I xe_actnlist.inc}
-  StdActns, 
-{$ENDIF}
+  System.Actions, Vcl.ActnList,  StdActns, 
   toolbar, utTrayFm, utMainFm, restorer, restEdit, gridRest, 
   updateOK{non-gui}, updateOKGUI,
   tpAction{non-gui}, tpActionGUI, tpStatus, comboBar, 

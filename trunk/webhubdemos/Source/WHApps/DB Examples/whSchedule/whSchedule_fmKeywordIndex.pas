@@ -1,7 +1,7 @@
 unit whSchedule_fmKeywordIndex;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2012 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ * Copyright (c) 2012-2016 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * WebHub panel for creating the keyword index using Rubicon.               * }
 { *                                                                          * }
@@ -13,20 +13,15 @@ interface
 
 {$I hrefdefines.inc}
 
-(*
-  {$I xe_actions.inc}
-  {$I xe_actnlist.inc}
-*)
-
 {$IFDEF INHOUSE}
 
 uses
   Forms, Controls, Dialogs, Graphics, ExtCtrls, StdCtrls, Buttons, SysUtils,
-  Classes, DB,
+  Classes, DB, System.Actions, Vcl.ActnList,
   IB_Components, IBODataSet,
   rbBridge_i_ibobjects, rbMake, rbAccept, rbPrgDlg, rbCache, rbBase,
   toolbar, utPanFrm, restorer, tpCompPanel,
-  uLingvoCodePoints, System.Actions, Vcl.ActnList;
+  uLingvoCodePoints;
 
 type
   TfmRubiconIndex = class(TutParentForm)

@@ -33,8 +33,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  {$I xe_actnlist.inc}
-  ExtCtrls, StdCtrls, Menus, Buttons,
+  System.Actions, Vcl.ActnList,  ExtCtrls, StdCtrls, Menus, Buttons,
   UTPANFRM, UpdateOk, tpAction, IniLink, Toolbar, Restorer, 
 {$IFNDEF VER130}
 {$WARN UNIT_PLATFORM OFF}
