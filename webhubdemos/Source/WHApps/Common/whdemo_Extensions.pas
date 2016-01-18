@@ -16,7 +16,7 @@ interface
 
 uses
   Windows, SysUtils, Classes, Controls,
-  {$I xe_actnlist.inc}
+  System.Actions, Vcl.ActnList,
   MultiTypeApp, updateOk, tpAction, tpActionGUI, tpShareI,
   whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
