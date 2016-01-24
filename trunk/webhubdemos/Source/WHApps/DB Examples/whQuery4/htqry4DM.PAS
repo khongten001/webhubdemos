@@ -1,7 +1,7 @@
 unit htqry4dm;
 
 (*
-Copyright (c) 1999-2012 HREF Tools Corp.
+Copyright (c) 1999-2016 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -97,7 +97,7 @@ begin
     begin
       selectDepartment := TwhdbListBox.Create(Self);
       selectDepartment.Name := 'selectDepartment';  // name as used in WHTEKO
-      selectDepartment.DataSource := DataSourceDept;
+      selectDepartment.DataSet := QueryDept;
       selectDepartment.Size := 1;
       selectDepartment.StringVarName := 'Dept';
       selectDepartment.DataField := 'DepartmentFull';
