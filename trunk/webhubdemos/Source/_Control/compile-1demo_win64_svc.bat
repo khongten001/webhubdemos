@@ -28,7 +28,7 @@ set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE
 :: LogAppTick;LogHelo
-if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LogSTime
+if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LogSTime;LogIPCMinimal
 %CSSend% compilerflags "%compilerflags%"
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
