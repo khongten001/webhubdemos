@@ -246,7 +246,7 @@ begin
 
     Debug.ErrorAlerts := [eaSummary, eaLogToFile];
   end;
-  WebMessage('0');
+
 end;
 
 //------------------------------------------------------------------------------

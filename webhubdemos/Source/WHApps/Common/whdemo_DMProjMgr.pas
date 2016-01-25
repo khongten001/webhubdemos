@@ -193,17 +193,11 @@ procedure TDMForWHDemo.ProjMgrGUICreate(Sender: TtpProject;
   var Continue: Boolean);
 const
   cFn = 'ProjMgrGUICreate';
-var
-  SplashMessage: string;
 begin
   CSEnterMethod(Self, cFn);
   ErrorText := '';
   if ShouldEnableGUI then
   begin
-    SplashMessage := 'Creating panels';
-    CSSend(SplashMessage);
-    WebMessage(SplashMessage);
-
     try
       {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
       if Pos(pWebApp.ZMDefaultMapContext, ',DEMOS,META,DORIS,ultraann,') > 0
@@ -222,7 +216,6 @@ begin
       fmWebHubMainForm.Caption := pWebApp.AppID;
 
       whDemoCreateSharedPanels;
-      WebMessage('-' + SplashMessage);
     except
       on E: Exception do
        begin
@@ -256,7 +249,6 @@ begin
       InitCoreWebHubDataModuleGUI;
       InitStandardWHModulesGUI;
 
-      WebMessage('0');
     except
       on E: Exception do
        begin
