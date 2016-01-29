@@ -62,9 +62,11 @@ uses
   whAppOut in 'h:\whAppOut.pas',
   webTypes in 'h:\webTypes.pas',
   whHTML in 'h:\whHTML.pas' {fmAppHTML},
-  whcfg_App in 'h:\whcfg_App.pas',
-  uAutoDataModules in 'h:\uAutoDataModules.pas',
-  uAutoPanels in 'h:\uAutoPanels.pas';
+  whSample_GoogleSitemap in 'k:\webhub\lib\whSample_GoogleSitemap.pas',
+  whSample_DMGoogleSitemap in 'k:\webhub\lib\whSample_DMGoogleSitemap.pas',
+  whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
+  uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
+  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas';
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos

@@ -208,9 +208,11 @@
         <DCCReference Include="h:\whHTML.pas">
             <Form>fmAppHTML</Form>
         </DCCReference>
-        <DCCReference Include="h:\whcfg_App.pas"/>
-        <DCCReference Include="h:\uAutoDataModules.pas"/>
-        <DCCReference Include="h:\uAutoPanels.pas"/>
+        <DCCReference Include="k:\webhub\lib\whSample_GoogleSitemap.pas"/>
+        <DCCReference Include="k:\webhub\lib\whSample_DMGoogleSitemap.pas"/>
+        <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
+        <DCCReference Include="k:\webhub\lib\uAutoDataModules.pas"/>
+        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
