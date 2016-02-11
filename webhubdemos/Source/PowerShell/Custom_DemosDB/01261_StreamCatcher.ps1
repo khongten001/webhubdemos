@@ -23,20 +23,25 @@ $InfoMsg = '"Install StreamCatcher on D"'
 echo $InfoMsg
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
-$srcbase = "http://archiveinstallers.s3.amazonaws.com/win32"
+$srcbase = "http://archiveinstallers.s3.amazonaws.com/win64"
 $trgbase = "D:\Apps\HREFTools\StreamCatcher\Application"
 if (!(Test-Path $trgbase)) {mkdir $trgbase}
 
 DownloadHTTP ("http://www.streamcatcher.com/webrobotlist.txt") "D:\AppsData\StreamCatcher\Administrator\Config\webrobotlist.txt"
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCConsole-v1.9.0.6-win32-SCConsole.exe") ($trgbase + "\SCConsole.exe")
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCConsole-v1.9.0.8-win64-SCConsole.exe") ($trgbase + "\SCConsole.exe")
+# stop IIS so that any existing DLL can be replaced.
+Stop-Service w3svc
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v1.9.0.8-win64-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
+Start-Service w3svc
+
+$srcbase = "http://archiveinstallers.s3.amazonaws.com/win32"
 DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v1.9.0.6-win32-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
 
 # enable d:\Apps\HREFTools\StreamCatcher\Application\StreamCatcher.dll
 # credit: http://learningpcs.blogspot.com.au/2011/08/powershell-iis-7-adding-isapi-filters.html
 if (Test-Path ($trgbase + "\StreamCatcher.dll")) {
 	# -AtIndex 2 for installation at a particular site level
-	Add-WebConfiguration -filter /system.webServer/isapiFilters -PSPath "IIS:\sites"  -Value @{name="StreamCatcher 32bit ISAPI";path=($trgbase + "\StreamCatcher.dll")}
+	Add-WebConfiguration -filter /system.webServer/isapiFilters -PSPath "IIS:\sites"  -Value @{name="StreamCatcher 64bit ISAPI";path=($trgbase + "\StreamCatcher.dll")}
 } else {
 	Start-Process $Global:CSConsole -ArgumentList ('/error "StreamCatcher ISAPI filter NOT installed"') -NoNewWindow 
 }
