@@ -25,8 +25,6 @@ Import-Module WebAdministration
 New-Variable -Name SCVer    -Value "1.9.0.9" -Option private
 New-Variable -Name SCDesc   -Value ("StreamCatcher 64-bit ISAPI v" + $SCVer) -Option private
 New-Variable -Name SCFilter     -Option private
-New-Variable -Name ZMContext    -Option private
-New-Variable -Name MachineLower -Option private
 
 $InfoMsg = '"Install StreamCatcher on D"'
 echo $InfoMsg
@@ -59,3 +57,6 @@ if (Test-Path ($trgbase + "\StreamCatcher.dll")) {
 	Start-Process $Global:CSConsole -ArgumentList ('/error "StreamCatcher ISAPI filter NOT installed"') -NoNewWindow 
 }
 
+Remove-Variable SCVer
+Remove-Variable SCDesc
+Remove-Variable SCFilter
