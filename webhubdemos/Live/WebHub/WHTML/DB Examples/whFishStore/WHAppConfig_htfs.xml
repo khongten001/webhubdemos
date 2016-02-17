@@ -47,6 +47,10 @@
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
+    <AppSettings>
+      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLoggingState" value="infotype,warning,error,exception" context="ultraann" />
+    </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
       <AutoPageHeader dropletName="None"/>
