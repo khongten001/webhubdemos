@@ -51,9 +51,11 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
+      <AppSetting name="CodeRageBooth" value="no" /><!-- no booth in October 2013 -->
+      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLoggingState" value="infotype,warning,error,exception" context="ultraann" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="LiveNow" value="no"/>
-      <AppSetting name="CodeRageBooth" value="no" /><!-- no booth in October 2013 -->
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
