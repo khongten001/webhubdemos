@@ -332,4 +332,27 @@ drTest48<br/>
 (~BOUNCER|pgTestIfBlankSV~)
 </whpage>
 
+<whpage pageid="pgTestParser" desc="-test parsing of commented out droplet tags">
+<h1>Hello</h1>
+(~CentralInfo.WebTimeGMT~)
+<h2>drX?</h2>
+(~drX~)
+<h2>drX2</h2>
+(~drX2~)
+</whpage>
+
+<whdroplet name="drX">
+// <whdroplet name="drY"> 
+
+// do something useful
+X is here.
+</whdroplet>
+
+<whdroplet name="drX2">
+<!--- < whdroplet name="drY2"> -->
+
+// do something useful
+X2 is here.
+</whdroplet>
+
 </whteko>
