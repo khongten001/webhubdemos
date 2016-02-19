@@ -208,9 +208,13 @@ begin
           { avoid Restorer feature on production server
             with multiple instances -- too much conflict on the
             WHAppRestorer.xml file during shutdown }
+          CSSend(csmLevel5, 'Restorer.Forget on ZMContext', 
+            pWebApp.ZMDefaultMapContext);
           fmWebHubMainForm.Restorer.Forget;  // cleanup pointers on nested panels
           FreeAndNil(fmWebHubMainForm.Restorer);
-        end;
+        end
+        else
+          CSSend('fmWebHubMainForm.Restorer already nil');
       end;
 
       fmWebHubMainForm.Caption := pWebApp.AppID;
