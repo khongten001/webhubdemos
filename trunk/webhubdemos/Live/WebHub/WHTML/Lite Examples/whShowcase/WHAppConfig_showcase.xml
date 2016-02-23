@@ -39,7 +39,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-          <AppSetting name="CodeSiteLoggingState" value="error,exception" />
+          <AppSetting name="CodeSiteLogging" value="error,exception" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
