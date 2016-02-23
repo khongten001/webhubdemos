@@ -50,7 +50,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLogging" value="warning,error,exception" />
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>

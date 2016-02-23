@@ -42,8 +42,8 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-          <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
-      <AppSetting name="CodeSiteLoggingState" value="all" context="ultraann" />
+          <AppSetting name="CodeSiteLogging" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLogging" value="all" context="ultraann" />
     </AppSettings>    
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>

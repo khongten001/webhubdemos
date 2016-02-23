@@ -52,8 +52,8 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeRageBooth" value="no" /><!-- no booth in October 2013 -->
-      <AppSetting name="CodeSiteLoggingState" value="warning,error,exception" />
-      <AppSetting name="CodeSiteLoggingState" value="infotype,warning,error,exception" context="ultraann" />
+      <AppSetting name="CodeSiteLogging" value="warning,error,exception" />
+      <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" context="ultraann" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="LiveNow" value="no"/>
     </AppSettings>
