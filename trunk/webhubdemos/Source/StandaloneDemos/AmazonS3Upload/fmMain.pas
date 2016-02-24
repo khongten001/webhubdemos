@@ -1,38 +1,44 @@
 unit fmMain;
 
 (*
-Copyright (c) 2013-2014 HREF Tools Corp.
+  Copyright (c) 2013-2016 HREF Tools Corp.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+  THE SOFTWARE.
 *)
 
 interface
 
 uses
   Winapi.Windows, Winapi.Messages, SysUtils, System.Variants, System.Classes,
-  Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient, Vcl.StdCtrls,
-  Vcl.FileCtrl, Vcl.ExtCtrls, Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI;
+  Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient,
+  Vcl.StdCtrls, Vcl.FileCtrl, Vcl.ExtCtrls, Data.Cloud.CloudAPI,
+  Data.Cloud.AmazonAPI;
 
 type
   TForm2 = class(TForm)
     AmazonConnectionInfo1: TAmazonConnectionInfo;
+    Panel1: TPanel;
     Button1: TButton;
+    GroupBox2: TGroupBox;
+    DriveComboBox1: TDriveComboBox;
+    DirectoryListBox1: TDirectoryListBox;
+    GroupBox3: TGroupBox;
+    Label1: TLabel;
+    FileListBox1: TFileListBox;
+    Panel2: TPanel;
     LabeledEditBucket: TLabeledEdit;
     LabeledEditAccessKey: TLabeledEdit;
     LabeledEditSecret: TLabeledEdit;
-    FileListBox1: TFileListBox;
-    DirectoryListBox1: TDirectoryListBox;
-    Label1: TLabel;
-    DriveComboBox1: TDriveComboBox;
     LabeledEditTargetPath: TLabeledEdit;
     EditCustomHeader: TLabeledEdit;
+    GroupBox1: TGroupBox;
+    Memo1: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -61,27 +67,34 @@ var
   Data: TArray<Byte>;
   PSrc, PTrg: PByte;
   InfoMsg: string;
+  ContentTypeNote: string;
 begin
   stream := nil;
   StorageService := nil;
   ResponseInfo := nil;
   CustomHeaderList := nil;
   SetLength(Data, 0);
+  Memo1.Clear;
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
-  AmazonConnectionInfo1.Protocol := 'https';
 
-  Filespec := Filelistbox1.FileName;
+  { The use of https here always leads to this exception:
+    First chance exception at $758A5B68. Exception class ENetHTTPCertificateException with message 'Server Certificate Invalid or not present'. Process DemoUploadToAmazonS3.exe (3584)
 
-  if (LabeledEditTargetPath.Text <> '') and
-    (LabeledEditTargetPath.Text[1] = '/') then
+    Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
+  }
+  AmazonConnectionInfo1.Protocol := 'http';  // or 'https'
+
+  Filespec := FileListBox1.FileName;
+
+  if (LabeledEditTargetPath.Text <> '') and (LabeledEditTargetPath.Text[1] = '/')
+  then
   begin
     ShowMessage('ALERT: Do not start with a leading / for the target path.' +
-      sLIneBreak + sLineBreak + LabeledEditTargetPath.Text);
+      sLIneBreak + sLIneBreak + LabeledEditTargetPath.Text);
   end
-  else
-  if FileExists(Filespec) then
+  else if FileExists(Filespec) then
   begin
     try
       StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
@@ -90,44 +103,61 @@ begin
       stream := TBytesStream.Create;
       stream.LoadFromFile(Filespec);
       SetLength(Data, stream.Size);
-      PSrc := Addr(Stream.Bytes[0]);
+      PSrc := Addr(stream.Bytes[0]);
       PTrg := Addr(Data[0]);
-      Move(pSrc^, pTrg^, Stream.Size);
+      Move(PSrc^, PTrg^, stream.Size);
 
-      //Metadata not required on Amazon S3
-      //Metadata := TStringList.Create;
-      //Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
-      //Metadata.Values[SMDFrom] := GetComputerandUserName;
+      // Metadata not required on Amazon S3
+      // Metadata := TStringList.Create;
+      // Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
+      // Metadata.Values[SMDFrom] := GetComputerandUserName;
 
-      (*if EditCustomHeader.Text <> '' then
+      if EditCustomHeader.Text <> '' then
       begin
         CustomHeaderList := TStringList.Create;
-        CustomHeaderList.Add(EditCustomHeader.Text);  // Exception in XE7.
-      end;*)
+        CustomHeaderList.Add(EditCustomHeader.Text); // Exception in XE7.
+        ContentTypeNote := ' ' + EditCustomHeader.Text + ' ';
+      end
+      else
+        ContentTypeNote := '';
 
-      StorageService.UploadObject(
-        LabeledEditBucket.Text,  // target bucket e.g. screenshots.href.com
+      try
+        StorageService.UploadObject(LabeledEditBucket.Text,
+          // target bucket e.g. screenshots.href.com
 
-        { LabeledEditTargetPath.Text must be blank or end in / example data/ }
-        LabeledEditTargetPath.Text + ExtractFileName(Filespec),
+          { LabeledEditTargetPath.Text must be blank or end in / example data/ }
+          LabeledEditTargetPath.Text + ExtractFileName(Filespec),
 
-        Data,  // must use an array whose length is the size to send!
-        False, nil, CustomHeaderList,
-        amzbaPublicRead,  // permissions - public
-        ResponseInfo);
+          Data, // must use an array whose length is the size to send!
+          False, nil, CustomHeaderList, amzbaPublicRead, // permissions - public
+          ResponseInfo);
 
-      {status 200 means that it worked
-       if you use a bad Access Key or Secret Access Key, status 403 will be in
-       headers}
-      InfoMsg := Format('statuscode %d, message %s',
-        [ResponseInfo.StatusCode, ResponseInfo.StatusMessage
-        ]);
-      HREFTestLog('info', InfoMsg, '');
-      ShowMessage(InfoMsg);
-      
+        { status 200 means that it worked
+          if you use a bad Access Key or Secret Access Key, status 403 will be in
+          headers }
+        InfoMsg :=
+          Format('ResponseInfo: file %s, %s, statuscode %d, message %s',
+          [ExtractFileName(Filespec), ContentTypeNote, ResponseInfo.StatusCode,
+          ResponseInfo.StatusMessage]);
+      except
+        on E: Exception do
+        begin
+          InfoMsg := 'EXCEPTION:' + #9 + E.Message;
+        end;
+      end;
+
+      Memo1.Lines.Add(InfoMsg);
+      StringAppendToFile('D:\aws_s3_demo_exception.txt',
+        AnsiString(sLIneBreak + InfoMsg));
+      ShowMessage('info' + sLIneBreak + InfoMsg);
+
       if Assigned(ResponseInfo.Headers) then
       begin
-        ShowMessage('ResponseInfo.Headers' + sLineBreak + sLineBreak +
+        Memo1.Lines.Add('');
+        Memo1.Lines.Add(ResponseInfo.Headers.Text);
+        StringAppendToFile('D:\aws_s3_demo_exception.txt',
+          AnsiString(sLIneBreak + ResponseInfo.Headers.Text));
+        ShowMessage('ResponseInfo.Headers' + sLIneBreak + sLIneBreak +
           ResponseInfo.Headers.Text);
       end;
     finally
@@ -141,24 +171,35 @@ begin
 end;
 
 procedure TForm2.FormCreate(Sender: TObject);
-{var
-  SampleDirectory: string; }
-{$I amazon_secret_info.txt}  // you can comment this out
+var
+  SampleDirectory: string;
+{$I amazon_secret_info.txt}  // you can comment this INCLUDE out
 begin
-{  SampleDirectory :=
-  'D:\Apps\Embarcadero\RADStudio\11.0\Samples\Delphi\DataSnap\connectors\WindowsPhone7Clients\CompanyTweetClient\CompanyTweetClient\icons';
+  Memo1.Clear;
+  // you can set the default directory here
+  SampleDirectory := 'D:\Apps\Embarcadero\Studio\18.0\Images\Icons';
   if SysUtils.Directoryexists(SampleDirectory) then
     DirectoryListBox1.Directory := SampleDirectory;
-}
+
   LabeledEditAccessKey.Text := cAKey;
+  if LabeledEditAccessKey.Text = '' then
+  begin
+    // use example from docwiki
+    // http://docwiki.embarcadero.com/RADStudio/XE8/en/Amazon_and_Cloud_Computing_with_DataSnap
+    LabeledEditAccessKey.Text := 'AKIAJ32REXDJHV2X4JSQ';
+  end;
   LabeledEditSecret.Text := cSAKey;
+  if LabeledEditSecret.Text = '' then
+    LabeledEditSecret.Text := 'uW3f0fucxqotP/UXQAv/xhiaGt8UAAhHcYDaqxmW';
   LabeledEditBucket.Text := cBName;
+  if LabeledEditBucket.Text = '' then
+    LabeledEditBucket.Text := 'samples3.embarcadero.com';
 
-  LabeledEditTargetPath.Text := 'testfolder_' + 
-    FormatDateTime('yyyymmdd', Now) + '/';
+  LabeledEditTargetPath.Text := 'testfolder_' + FormatDateTime('yyyymmdd',
+    Now) + '/';
 
-  //Custom headers not supported.  See Quality Central.
-  EditCustomHeader.Text := ''; //'Content-Type=text/html';
+  // Custom headers are better left to use data entry
+  // EditCustomHeader.Text := ''; //'Content-Type=text/html';
 end;
 
 end.
