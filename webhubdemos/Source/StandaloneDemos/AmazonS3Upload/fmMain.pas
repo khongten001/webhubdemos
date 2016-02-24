@@ -54,9 +54,6 @@ implementation
 
 {$R *.dfm}
 
-uses
-  ucLogFil;
-
 procedure TForm2.Button1Click(Sender: TObject);
 var
   ResponseInfo: TCloudResponseInfo;
@@ -147,17 +144,13 @@ begin
       end;
 
       Memo1.Lines.Add(InfoMsg);
-      StringAppendToFile('D:\aws_s3_demo_exception.txt',
-        AnsiString(sLIneBreak + InfoMsg));
       ShowMessage('info' + sLIneBreak + InfoMsg);
 
       if Assigned(ResponseInfo.Headers) then
       begin
         Memo1.Lines.Add('');
         Memo1.Lines.Add(ResponseInfo.Headers.Text);
-        StringAppendToFile('D:\aws_s3_demo_exception.txt',
-          AnsiString(sLIneBreak + ResponseInfo.Headers.Text));
-        ShowMessage('ResponseInfo.Headers' + sLIneBreak + sLIneBreak +
+        ShowMessage('ResponseInfo.Headers' + sLineBreak + sLineBreak +
           ResponseInfo.Headers.Text);
       end;
     finally
