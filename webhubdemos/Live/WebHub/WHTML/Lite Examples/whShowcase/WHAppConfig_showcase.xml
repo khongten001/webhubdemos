@@ -125,6 +125,7 @@
       <File id="_lingvo_fra" filename="..\..\Shared WHTML\lingvo_fra.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_rus" filename="..\..\Shared WHTML\lingvo_rus.whteko"/>
+      <File id="_lorem" filename="..\..\Shared WHTML\lorem_ipsum.whteko"/>
       <File id="_macros" filename="..\..\Shared WHTML\macros.whteko"/>
       <File id="_monitor" filename="..\..\Shared WHTML\monitor.whteko"/>
       <File id="_setprefr" filename="..\..\Shared WHTML\setprefr.whteko"/>
