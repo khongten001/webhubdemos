@@ -19,7 +19,7 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 
 <whpage pageid="pgTestLoremIpsum" desc="Test Extra Large Page">
 <whprep>
-(~NOTASSIGNED|NLoremRepeats|(~SET|NLoremRepeats=40~)~)
+(~NOMATCH|(~Command~)=|(~SET|NLoremRepeats=(~Command~)~)||(~NOTASSIGNED|NLoremRepeats|(~SET|NLoremRepeats=40~)~)~)
 </whprep>
 (~mcdoctypehtml~)
 <html>
