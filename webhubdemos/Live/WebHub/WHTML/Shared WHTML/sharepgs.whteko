@@ -1014,4 +1014,61 @@ RawVMR: (~Request.RawVMR~)
 </whoutput>
 </whpage>
 
+<whpage pageid="pgTestIFrameSendReferer" desc="-Test referer sent into iframe src">
+<whprep>
+(~SET|testprefix=(~Request.Scheme~)://(~Request.Authority~)/(~Request.RawVMR~)~)
+</whprep>
+<whoutput>
+(~mcdoctypehtml~)
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
+(~drHead~)
+  <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
+</head>
+<body>
+(~drPageBegin~)
+
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)
+	<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
+
+<h2>IFrame Tests from (~PageID~)</h2>
+<div>
+(~JUMP|pgTestIFrameSendReferer|test 1~) &emsp; (~JUMP|pgTest2IFrameSendReferer|test 2~)
+</div>
+<iframe src="(~testprefix~)?demos:pgTestIFrameRcvReferer" ></iframe>
+<iframe src="(~testprefix~)?adv:pgTestIFrameRcvReferer" ></iframe>
+
+(~CLEAR|testprefix~)
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
+(~drPageEnd~)</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgTestIFrameRcvReferer" desc="-Test referer received from iframe">
+<whoutput>
+(~mcdoctypehtml~)
+<html (~ANCHOR|anchHtmlTag~)>
+<head>
+(~drHead~)
+  <link rel="canonical" href="http://lite.demos.href.com/demos:(~PageID~)" />
+</head>
+<body>
+
+<div class="small-18 columns" >
+
+<h1>(~AppID~)</h1>
+<pre>
+Referer: (~Request.Referer~)
+</pre>
+
+</div>
+
+</body></html>
+</whoutput>
+</whpage>
+
+<whpage pageid="pgTest2IFrameSendReferer" desc="-Duplicate">
+(~pgTestIFrameSendReferer~)
+</whpage>
+
 </whteko>
