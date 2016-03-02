@@ -1,4 +1,4 @@
-# Parallel Http Test
+# (Ideally Parallel) Http Test
 # Copyright 2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
@@ -8,32 +8,6 @@
 $InfoMsg = ('"parallel testing" "of http requests"')
 echo $InfoMsg
 #Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-
-<#function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize) 
-  $edge1 = $expectedSize - 8
-  $edge2 = $expectedSize + 8
-  if ( ($edge1 -le $actualSize) -and ($edge2 -ge $actualSize)) {
-    return 1
-  } else {
-    # Write-Error ([string]$actualSize + " Fails for " + [string]$expectedSize)
-    return 0
-  }
-}#>
-
-# this should return $False
-# SizeCloseTo 633 2209
-
-workflow Http-WebHub-Runner-Workflow {
-    $NRepeat = 1
-	$myArray = @(
-        "http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?r:echo", 
-        #"http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?r:pcv",
-        "http://delphiprefix.modulab.com/win64/runisa_x_d23_win64.dll?adv:pgTestLoremIpsum::2",
-        "http://delphiprefix.modulab.com/win64/runisa_x_d23_win64.dll?demos:pgTestLoremIpsum:888888:2",
-        "http://delphiprefix.modulab.com/win64/runisa_x_d23_win64.dll?invalid:invalid",
-        "http://delphiprefix.modulab.com/win64/runisa_x_d23_win64.dll?adv:pgTestLoremIpsum:888888:3",
-        "http://delphiprefix.modulab.com/win64/runisa_x_d23_win64.dll?adv:pgTestLoremIpsum::4"
-       )
 
 function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize) 
   $edge1 = $expectedSize - 8
@@ -46,20 +20,71 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
   }
 }
 
+# this should return $False
+# SizeCloseTo 633 2209
+
+    Set-Variable -Name NRepeat -value 40 -Scope script
+    
+    Set-Variable -Name collectionGoal -Value @() -Scope script
+
+    Remove-Variable urlPrefix -Force
+    Set-Variable urlPrefix "http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?" -option ReadOnly
+    
+    #echo $urlPrefx
+      
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "r:echo")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 2209
+    $collectionGoal += $testObj
+
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "adv:pgTestLoremIpsum::2")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 10321
+    $collectionGoal += $testObj
+
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "adv:pgTestLoremIpsum:888888:2")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 10321
+    $collectionGoal += $testObj
+
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "invalid:invalid")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 633
+    $collectionGoal += $testObj
+
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "adv:pgTestLoremIpsum:888888:3")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 15244
+    $collectionGoal += $testObj
+
+    $testObj = New-Object System.Object
+    $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "adv:pgTestLoremIpsum::4")
+    $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 20167
+    $collectionGoal += $testObj
+
+    # echo $collectionGoal
+
+#  ForEach -Parallel is valid only in a Windows PowerShell Workflow.
+
+function Http-WebHub-Runner-Workflow {
+    
+    
     ForEach ($number in 1..$NRepeat ) {	
-	    ForEach -Parallel ($a in $myArray) {
-		    #echo ('Number: ' + $number)
-		    $Content = Invoke-WebRequest -URI $a -TimeoutSec 5;
+        #echo ('outer Number: ' + $number)
+            
+	    ForEach ($objTest in $collectionGoal) {              # NOT PARALLEL
+		    #echo ('inner Number: ' + $number)
+            #echo ("AURL " + $objTest.AURL)
+		    $Content = Invoke-WebRequest $objTest.AURL -TimeoutSec 5 
             $charlen = [int]$Content.RawContentLength;
-            $aok = SizeCloseTo $charlen 2208;
-            $aok = ($aok) -or (SizeCloseTo $charlen 10321);
-            $aok = ($aok) -or (SizeCloseTo $charlen 15244);
-            $aok = ($aok) -or (SizeCloseTo $charlen 20167);
+            #echo $charlen
+            $aok = SizeCloseTo $charlen $objTest.IExpectedSize;
+            
             if ($aok) {
-		        echo ($a + " has length " + $charlen)
-                echo ('ok ' + $charlen)
+		        echo ($objTest.AURL + " has length " + $charlen)
+                #echo ('ok ' + $charlen)
             } else {
-                Write-Error ($a + " " + [string]$charLen + " Fails")
+                Write-Error ($objTest.AURL + " " + [string]$charLen + " Fails")
             
             }
 	    }
