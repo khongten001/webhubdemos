@@ -36,9 +36,10 @@ type
     LabeledEditAccessKey: TLabeledEdit;
     LabeledEditSecret: TLabeledEdit;
     LabeledEditTargetPath: TLabeledEdit;
-    EditCustomHeader: TLabeledEdit;
     GroupBox1: TGroupBox;
     Memo1: TMemo;
+    GroupBox4: TGroupBox;
+    MemoCustomHeaders: TMemo;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -64,7 +65,6 @@ var
   Data: TArray<Byte>;
   PSrc, PTrg: PByte;
   InfoMsg: string;
-  ContentTypeNote: string;
 begin
   stream := nil;
   StorageService := nil;
@@ -109,14 +109,15 @@ begin
       // Metadata.Values[SMDPath] := ExtractFilePath(Filespec);
       // Metadata.Values[SMDFrom] := GetComputerandUserName;
 
-      if EditCustomHeader.Text <> '' then
+      if MemoCustomHeaders.Text <> '' then
       begin
         CustomHeaderList := TStringList.Create;
-        CustomHeaderList.Add(EditCustomHeader.Text); // Exception in XE7.
-        ContentTypeNote := ' ' + EditCustomHeader.Text + ' ';
-      end
-      else
-        ContentTypeNote := '';
+        // NB: XE7 does not support custom headers.
+        CustomHeaderList.Text := Trim(MemoCustomHeaders.Lines.Text);
+        Memo1.Lines.Add('HEADERS:');
+        Memo1.Lines.Add(MemoCustomHeaders.Text);
+        Memo1.Lines.Add('');
+      end;
 
       try
         StorageService.UploadObject(LabeledEditBucket.Text,
@@ -133,8 +134,8 @@ begin
           if you use a bad Access Key or Secret Access Key, status 403 will be in
           headers }
         InfoMsg :=
-          Format('ResponseInfo: file %s, %s, statuscode %d, message %s',
-          [ExtractFileName(Filespec), ContentTypeNote, ResponseInfo.StatusCode,
+          Format('ResponseInfo: file %s, statuscode %d, message %s',
+          [ExtractFileName(Filespec), ResponseInfo.StatusCode,
           ResponseInfo.StatusMessage]);
       except
         on E: Exception do
@@ -171,6 +172,7 @@ begin
   Memo1.Clear;
   // you can set the default directory here
   SampleDirectory := 'D:\Apps\Embarcadero\Studio\18.0\Images\Icons';
+  SampleDirectory := 'D:\Projects';
   if SysUtils.Directoryexists(SampleDirectory) then
     DirectoryListBox1.Directory := SampleDirectory;
 
@@ -191,8 +193,8 @@ begin
   LabeledEditTargetPath.Text := 'testfolder_' + FormatDateTime('yyyymmdd',
     Now) + '/';
 
-  // Custom headers are better left to use data entry
-  // EditCustomHeader.Text := ''; //'Content-Type=text/html';
+  // Custom headers are better left to user data entry
+  //EditCustomHeader.Text := 'Cache-Control=max-age=31557600'; //'Content-Type=text/html';
 end;
 
 end.
