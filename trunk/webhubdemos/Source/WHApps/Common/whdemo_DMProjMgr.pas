@@ -52,6 +52,8 @@ type
     procedure ProjMgrStop(Sender: TtpProject; var ErrorText: String;
       var Continue: Boolean);
     procedure ProjMgrStartupComplete(Sender: TtpProject);
+    procedure ProjMgrBeforeFirstCreate(Sender: TtpProject;
+      var ErrorText: string; var Continue: Boolean);
   private
     { Private declarations }
     FSourceSubDir: string;
@@ -88,6 +90,12 @@ begin
   ProjMgr.Identifier := DemoAppID;
   FSourceSubDir := SourceSubDir;
   FIsRelativePath := IsRelativePath;
+end;
+
+procedure TDMForWHDemo.ProjMgrBeforeFirstCreate(Sender: TtpProject;
+  var ErrorText: string; var Continue: Boolean);
+begin
+  SetCodeSiteLoggingState([]); // none initially
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesCreate1(
@@ -144,7 +152,8 @@ begin
     Continue := whDemoSetAppId(UsedAppID);  // this refreshes the app
     if Continue then
     begin
-      {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
+      ResetLogFileSpec;
+      SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
       whDemoCreateSharedDataModules;
     end
     else
