@@ -53,14 +53,11 @@ begin
   Result := pWebApp <> nil;
   if Result then
   begin
-    with pWebApp do
-    begin
-      // Ensure that extra settings for demos are reset whenever app refreshes.
-      AddAppUpdateHandler(DemoHelperComponent.DemoAppUpdate);
-      OnAfterLoadFromConfig := DemoHelperComponent.DemoForceConfig;
-      AppID := whDemoAppID;
-      Refresh;  // instantiate nested components
-    end;
+    // Ensure that extra settings for demos are reset whenever app refreshes.
+    AddAppUpdateHandler(DemoHelperComponent.DemoAppUpdate);
+    pWebApp.OnAfterLoadFromConfig := DemoHelperComponent.DemoForceConfig;
+    pWebApp.AppID := whDemoAppID;
+    pWebApp.Refresh;  // instantiate nested components
     Result := pConnection <> nil;
     if NOT Result then
       CSSendError(cFn + ': pConnection nil here');
@@ -185,13 +182,7 @@ begin
 
   if Sender is TwhAppDynURLConfig then
   begin
-    if flagPublicDemos and (pWebApp.AppID = 'dsp') then
-    begin
-      // 'dsp' is the default AppID on dsp.href.com, in StreamCatcher config
-      TwhAppDynURLConfig(Sender).UseAppID := False;
-    end
-    else
-      TwhAppDynURLConfig(Sender).UseAppID := True;
+    TwhAppDynURLConfig(Sender).UseAppID := True;
   end
   else
   if Sender is TwhAppSituations then
@@ -204,48 +195,50 @@ begin
   begin
     TwhAppStartup(Sender).SplashEnabled := True;  // ensure splash on all demos
   end;
-    { One could force the project to load a particular syntax using this
-      technique. The demos load their stage from the config file however.
+
+  { For developers transitioning from WebHub v2 to v3:
+    One could force the project to load a particular syntax using this
+    technique. The demos load their stage from the config file however.
     OnLoadProjectSyntax := DemoHelperComponent.DemoAppProjectSyntax;
     OnLoadProjectLingvo := DemoHelperComponent.DemoAppProjectLingvo;}
 end;
 
 procedure TDemoHelperComponent.DemoAppUpdate(Sender: TObject);
 begin
-  with pWebApp do
+  pWebApp.UseSharedLogFolder := False;
+  SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
+
+  { To demonstrate the INDEX and other built-in pages, the demos use
+    Security.BuiltInPagesEnabled True.  Normally, on a production server,
+    Security.BuiltInPagesEnabled would be FALSE. }
+  pWebApp.Security.CheckSurferIP := True;
+  // See also: TwhAppBase.OnBadIP handler.
+  pWebApp.Security.BuiltInPagesEnabled := True;
+
+  // HTTP 1.1 specification
+  pWebApp.Response.HttpMajorVersion := 1;
+  pWebApp.Response.HttpMinorVersion := 1;
+
+  pWebApp.AppInfo.ShareSessions := True;
+  pWebApp.AppInfo.ShareByFile := True;
+
+  { Only set the homepage if it has not already been set in the config file. }
+  if pWebApp.Situations.HomePageID = '' then
+    pWebApp.Situations.HomePageID := 'pgWelcome';
+
+  { All demo pages contain their own headers and footers as of 30-May-2004. }
+  pWebApp.PageGeneration.AutoPageHeader := 'None';
+  pWebApp.PageGeneration.AutoPageFooter := 'None';
+
+  if Assigned(pConnection) then
   begin
-    { To demonstrate the INDEX and other built-in pages, the demos use
-      Security.BuiltInPagesEnabled True.  Normally, on a production server,
-      Security.BuiltInPagesEnabled would be FALSE. }
-    Security.CheckSurferIP := True;  // See also: TwhAppBase.OnBadIP handler.
-    Security.BuiltInPagesEnabled := True;
-
-    // HTTP 1.1 specification
-    Response.HttpMajorVersion := 1;
-    Response.HttpMinorVersion := 1;
-
-    AppInfo.ShareSessions := True;
-    AppInfo.ShareByFile := True;
-
-    {Only set the homepage if it has not already been set in the config file.}
-    if Situations.HomePageID = '' then
-      Situations.HomePageID := 'pgWelcome';
-
-    {All demo pages contain their own headers and footers as of 30-May-2004.}
-    PageGeneration.AutoPageHeader := 'None';
-    PageGeneration.AutoPageFooter := 'None';
-
-    if Assigned(pConnection) then
-    begin
-      if Situations.FrontDoorPageID = '' then
-        pConnection.OnFrontDoorTriggered := nil
-      else
-        pConnection.OnFrontDoorTriggered :=
-          dmDWSecurity.FrontDoorTriggered;
-    end;
-
-    Debug.ErrorAlerts := [eaSummary, eaLogToFile];
+    if pWebApp.Situations.FrontDoorPageID = '' then
+      pConnection.OnFrontDoorTriggered := nil
+    else
+      pConnection.OnFrontDoorTriggered := dmDWSecurity.FrontDoorTriggered;
   end;
+
+  pWebApp.Debug.ErrorAlerts := [eaSummary, eaLogToFile];
 
 end;
 
