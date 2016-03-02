@@ -225,7 +225,7 @@ begin
       pWebApp.DynURL.CurrentServerProfile.Authority));
   {$IFNDEF LogSTime}CSSend('FServerIpNumber', FServerIpNumber);{$ENDIF}
 
-  SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLoggingState']);
+  SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
 
   CSExitMethod(Self, cFn);
 end;
