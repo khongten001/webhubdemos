@@ -5,15 +5,20 @@
 # call a separate script if you need to init global variables.
 #Invoke-Expression "$PSScriptRoot\Initialize.ps1"
 
-Remove-Variable NRepeat
-Set-Variable -Name NRepeat -value 40 -Scope script -option ReadOnly
+#Remove-Variable NRepeat -Force
+#Set-Variable -Name NRepeat -value 500 -Option ReadOnly
+
+Remove-Variable authority -Force
+Set-Variable authority "delphiprefix.modulab.com" -Scope script -Option ReadOnly
+
+Remove-Variable vmr -Force
+Set-Variable vmr "scripts/runisa_x_d23_win64.dll" -Scope script -Option ReadOnly
 
 Remove-Variable urlPrefix -Force
-Set-Variable urlPrefix "http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?" -option ReadOnly
+Set-Variable urlPrefix ("http://" + $authority + "/" + $vmr + "?") -Scope script -option ReadOnly
 
-$InfoMsg = ('"parallel testing" "of ' + $NRepeat + ' http requests"')
-echo $InfoMsg
-#Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
+#echo $urlPrefx
+
 
 function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize) 
   $edge1 = $expectedSize - 8
@@ -33,7 +38,6 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
     Set-Variable -Name collectionGoal -Value @() -Scope script
 
    
-    #echo $urlPrefx
       
     $testObj = New-Object System.Object
     $testObj | Add-Member -type NoteProperty -name AURL -value ($urlPrefix + "r:echo")
@@ -65,33 +69,44 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
     $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 20167
     $collectionGoal += $testObj
 
-    # echo $collectionGoal
+     #echo $collectionGoal
 
 #  ForEach -Parallel is valid only in a Windows PowerShell *Workflow*  (not valid in a regular function)
 
+    #Set-Variable ErrorCount 0
+        
+
 WorkFlow Http-WebHub-Runner-Workflow { Param($NRepeat, $collectionGoal)
     
-    
+    $InfoMsg = ('"parallel testing" "of ' + $NRepeat + ' SETS of http requests"')
+    echo $InfoMsg
+    #Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
+
     ForEach ($number in 1..$NRepeat ) {	
         echo ('Loop Counter: ' + $number)
             
 	    ForEach -parallel ($objTest in $collectionGoal) {              
 		    #echo ('inner Number: ' + $number)
             #echo ("AURL " + $objTest.AURL)
-		    $Content = Invoke-WebRequest $objTest.AURL -TimeoutSec 5 
+		    $Content = Invoke-WebRequest $objTest.AURL -TimeoutSec 9 
             $charlen = [int]$Content.RawContentLength;
             #echo $charlen
             $aok = SizeCloseTo $charlen $objTest.IExpectedSize;
             
             if ($aok) {
-		        echo ($objTest.AURL + " has length " + $charlen)
+		        #echo ($objTest.AURL + " has length " + $charlen)
                 #echo ('ok ' + $charlen)
             } else {
                 Write-Error ($objTest.AURL + " " + [string]$charLen + " Fails")
-            
+                $workflow:ErrorCount++
             }
 	    }
     }
+    echo ('Error Count ' + $workflow:ErrorCount)
 }
 
-Http-WebHub-Runner-Workflow $NRepeat $collectionGoal
+Http-WebHub-Runner-Workflow 100 $collectionGoal
+echo sleeping...
+Start-Sleep -Seconds 180
+Http-WebHub-Runner-Workflow 2 $collectionGoal
+
