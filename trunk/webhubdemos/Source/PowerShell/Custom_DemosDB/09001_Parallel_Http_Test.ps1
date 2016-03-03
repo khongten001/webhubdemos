@@ -5,7 +5,13 @@
 # call a separate script if you need to init global variables.
 #Invoke-Expression "$PSScriptRoot\Initialize.ps1"
 
-$InfoMsg = ('"parallel testing" "of http requests"')
+Remove-Variable NRepeat
+Set-Variable -Name NRepeat -value 40 -Scope script -option ReadOnly
+
+Remove-Variable urlPrefix -Force
+Set-Variable urlPrefix "http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?" -option ReadOnly
+
+$InfoMsg = ('"parallel testing" "of ' + $NRepeat + ' http requests"')
 echo $InfoMsg
 #Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
@@ -23,13 +29,10 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
 # this should return $False
 # SizeCloseTo 633 2209
 
-    Set-Variable -Name NRepeat -value 40 -Scope script
     
     Set-Variable -Name collectionGoal -Value @() -Scope script
 
-    Remove-Variable urlPrefix -Force
-    Set-Variable urlPrefix "http://delphiprefix.modulab.com/scripts/runisa_x_d23_win64.dll?" -option ReadOnly
-    
+   
     #echo $urlPrefx
       
     $testObj = New-Object System.Object
@@ -64,15 +67,15 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
 
     # echo $collectionGoal
 
-#  ForEach -Parallel is valid only in a Windows PowerShell Workflow.
+#  ForEach -Parallel is valid only in a Windows PowerShell *Workflow*  (not valid in a regular function)
 
-function Http-WebHub-Runner-Workflow {
+WorkFlow Http-WebHub-Runner-Workflow { Param($NRepeat, $collectionGoal)
     
     
     ForEach ($number in 1..$NRepeat ) {	
-        #echo ('outer Number: ' + $number)
+        echo ('Loop Counter: ' + $number)
             
-	    ForEach ($objTest in $collectionGoal) {              # NOT PARALLEL
+	    ForEach -parallel ($objTest in $collectionGoal) {              
 		    #echo ('inner Number: ' + $number)
             #echo ("AURL " + $objTest.AURL)
 		    $Content = Invoke-WebRequest $objTest.AURL -TimeoutSec 5 
@@ -91,4 +94,4 @@ function Http-WebHub-Runner-Workflow {
     }
 }
 
-Http-WebHub-Runner-Workflow
+Http-WebHub-Runner-Workflow $NRepeat $collectionGoal
