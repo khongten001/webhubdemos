@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+ 
+<whmacros>
+mcRun1=scripts/runisa_x_d23_win64_debug.dll
+mcRun2=scripts/runisa_x_d23_win64.dll
+mcRun3=(~Request.RawVMR~)
+</whmacros>
+
+<whpage pageid="pgTestParallel">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+	<link rel="stylesheet" type="text/css" href="//one.delphiprefix.modulab.com/(~mcRun1~)?(~AppID~):cssTest1:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//two.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest2:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//three.delphiprefix.modulab.com/(~mcRun1~)?(~AppID~):cssTest3:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//four.delphiprefix.modulab.com/(~mcRun3~)?(~AppID~):cssTest4:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//five.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest5:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//t06.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest6:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//t07.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest07:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//t08.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest08:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//t09.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest09:(~SessionID~):(~RandStr~)" />
+	<link rel="stylesheet" type="text/css" href="//t10.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):cssTest10:(~SessionID~):(~RandStr~)" />
+
+	<script async type="text/javascript" src="//one.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest1:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//two.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest2:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//three.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest3:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//four.delphiprefix.modulab.com/(~mcRun3~)?(~AppID~):jsTest4:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//five.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest5:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//t06.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest6:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//t07.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest07:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//t08.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest08:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//t09.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest09:888888:(~RandStr~)"></script>
+	<script async type="text/javascript" src="//t10.delphiprefix.modulab.com/(~mcRun2~)?(~AppID~):jsTest10:888888:(~RandStr~)"></script>
+
+</head>
+<body>
+(~drPageBegin~)
+
+<h1 id="one">One</h1>
+(~Request.RawVMR~)
+<h2 id="two">Two</h2>
+<h3 id="three">Three</h3>
+<h4 id="four">Four</h4>
+<h5 id="five">Five</h5>
+<h5 id="t06">Six</h5>
+
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
+<whpage pageid="cssTest1">
+(~SETPROLOGUETYPE|css~)
+#one { font-color: red; }
+/*
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="cssTest2">
+(~SETPROLOGUETYPE|css~)
+#two { font-color: red; }
+/*
+Content for some bytes...
+(~drLoremIpsum~)
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="cssTest3">
+(~SETPROLOGUETYPE|css~)
+#three { font-color: red; }
+/*
+Content for some bytes...
+(~drLoremIpsum~)
+(~drLoremIpsum~)
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="cssTest4">
+(~SETPROLOGUETYPE|css~)
+#four { font-color: red; }
+/*
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="cssTest5">
+(~SETPROLOGUETYPE|css~)
+#five { font-color: red; }
+/*
+Content for some bytes...
+(~FOR|i,1,154|(~i~).(~drLoremIpsum~)~)
+*/
+</whpage>
+
+<whpage pageid="cssTest6">
+(~SETPROLOGUETYPE|css~)
+#t06 { font-color: red; }
+/*
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="cssTest07">
+(~SETPROLOGUETYPE|css~)
+#t07 { font-color: red; }
+/*
+Content for some bytes...
+(~FOR|i,1,7|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+
+<whpage pageid="cssTest08">
+(~SETPROLOGUETYPE|css~)
+#t08 { font-color: red; }
+/*
+Content for some bytes...
+(~FOR|i,1,8|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+<whpage pageid="cssTest09">
+(~SETPROLOGUETYPE|css~)
+#t09 { font-color: red; }
+/*
+Content for some bytes...
+(~FOR|i,1,8|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+<whpage pageid="cssTest10">
+(~SETPROLOGUETYPE|css~)
+#t10 { font-color: red; }
+/*
+Content for some bytes...
+(~FOR|i,1,100|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+
+<whpage pageid="jsTest1">
+<!---(~SETPROLOGUETYPE|js~)-->(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 1. (~PageID~)...
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="jsTest2">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 2. (~PageID~)...
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="jsTest3">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 3. (~PageID~)...
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="jsTest4">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 4. (~PageID~)...
+Content for some bytes...
+(~FOR|i,1,14|(~i~).(~drLoremIpsum~)~)
+*/
+</whpage>
+
+<whpage pageid="jsTest5">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 5. (~PageID~)...
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="jsTest6">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 6. (~PageID~)...
+Content for some bytes...
+(~drLoremIpsum~)
+*/
+</whpage>
+
+<whpage pageid="jsTest07">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 07. (~PageID~)...
+Content for some bytes...
+(~FOR|i,1,7|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+
+<whpage pageid="jsTest08">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 08. (~PageID~)...
+Content for some bytes...
+(~FOR|i,1,8|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+<whpage pageid="jsTest09">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 09. (~PageID~)...
+Content for some bytes...
+(~FOR|i,1,9|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+<whpage pageid="jsTest10">
+(~SETPROLOGUETYPE|application/javascript; charset=utf-8~)
+/* 10. (~PageID~)...
+Content for some bytes...
+(~FOR|i,1,10|(~i~).(~drLoremIpsum~)~)
+(~CLEAR|i~)
+*/
+</whpage>
+
+</whteko>

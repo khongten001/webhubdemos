@@ -47,6 +47,7 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
+      <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" context="ultraann"/>
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
@@ -100,6 +101,7 @@
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whAdRotation.whteko"/>
       <File id="content" filename="whAdRotation.whteko"/>
+      <File id="content2" filename="whAdParallel.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
