@@ -948,7 +948,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-(~FOR|litecount,1,1|(~drStressRH~)~) 
+<!--- (~FOR|litecount,1,1|(~drStressRH~)~)  -->
 
 <whdroplet name="drStressRnotH" show="no">
 <tr>
@@ -973,7 +973,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
 <td><iframe src="(~testprefix~)?htfs:pgwelcome:"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?htq1:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?htq1:pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
 <td><iframe src="(~testprefix~)?htq1:pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
@@ -982,12 +982,12 @@ RawVMR: (~Request.RawVMR~)
 <td><iframe src="(~testprefix~)?htfs:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?htq1:privacypolicy" ></iframe></td>
-<td><iframe src="(~testprefix~)?htfs:pgWelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?htfs:pgWelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~).(~RandStr~)"  ></iframe> </td>
 </tr>
 </whdroplet>
 
-(~FOR|litecount,1,1|(~drStressRH~)~)
+<!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
 
 (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
 
