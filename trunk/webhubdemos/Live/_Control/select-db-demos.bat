@@ -54,7 +54,7 @@ set demofire=no
 set demohtfm=no
 
 set demohtfs=yes
-set demojpeg=no
+set demojpeg=yes
 set demohtq1=yes
 
 :end

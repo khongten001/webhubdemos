@@ -919,6 +919,17 @@ ok
 <whpage pageid="pgStressTeenyPages" desc="-Stress Teeny Pages using FrameSet">
 <whprep>
 (~SET|testprefix=(~Request.Scheme~)://(~Request.Authority~)/(~Request.RawVMR~)~)
+(~SET|testapp1=htfd~)
+(~SET|testapp2=adv~)
+(~SET|testapp3=demos~)
+(~SET|testapp4=showcase~)
+(~MATCH|(~ZMDefaultMapContext~)=DORIS|
+<!--- different AppIDs on db.demos.href.com -->
+	(~SET|testapp1=htfs~)
+	(~SET|testapp2=htq1~)
+	(~SET|testapp3=demos~)
+	(~SET|testapp4=jpeg~)
+~)
 </whprep>
 <whoutput>
 (~mcdoctypehtml~)
@@ -950,15 +961,15 @@ RawVMR: (~Request.RawVMR~)
 </tr>
 <!--- (~FOR|litecount,1,1|(~drStressRH~)~)  -->
 
-<whdroplet name="drStressRnotH" show="no">
+<whdroplet name="drStressRH" show="no">
 <tr>
 <th style="background-color:#66FF66;">(~litecount~)</th>
 <td> ok </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
-<td><iframe src="(~testprefix~)?r:echo"></iframe> </td>
-<td><iframe src="(~testprefix~)?r:vers"></iframe></td>
-<td><iframe src="(~testprefix~)?r:echo"></iframe></td>
+<td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
+<td><iframe src="(~testprefix~)?h:vers"></iframe></td>
+<td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
 <td> ok </td>
 <td> ok  </td>
@@ -968,28 +979,28 @@ RawVMR: (~Request.RawVMR~)
 </tr>
 </whdroplet>
 
-(~FOR|litecount,1,10|(~drStress3MainAppIDs~)~)
+(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
-<td><iframe src="(~testprefix~)?htfs:pgwelcome:"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?htq1:pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgwelcome"></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgabout::demos"></iframe> </td>
-<td><iframe src="(~testprefix~)?htq1:pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
-<td><iframe src="(~testprefix~)?demos:privacypolicy:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
-<td><iframe src="(~testprefix~)?htfs:privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
-<td><iframe src="(~testprefix~)?htfs:pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgpng"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?htq1:privacypolicy" ></iframe></td>
-<td><iframe src="(~testprefix~)?htfs:pgWelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?demos:pgTestLoremIpsum:(~SessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp1~):pgwelcome:"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgwelcome"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgabout::demos"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp3~):privacypolicy:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp4~):privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgpng"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):privacypolicy" ></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp4~):pgWelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~SessionID~).(~RandStr~)"  ></iframe> </td>
 </tr>
 </whdroplet>
 
 <!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
 
-(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
+<!--- (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~) -->
 
 </table>
 (~CLEAR|testprefix~)
