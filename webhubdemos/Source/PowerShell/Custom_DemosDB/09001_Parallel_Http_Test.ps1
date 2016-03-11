@@ -105,8 +105,9 @@ WorkFlow Http-WebHub-Runner-Workflow { Param($NRepeat, $collectionGoal)
     echo ('Error Count ' + $workflow:ErrorCount)
 }
 
-Http-WebHub-Runner-Workflow 100 $collectionGoal
+cls
+Measure-Command { Http-WebHub-Runner-Workflow 200 $collectionGoal }
 echo sleeping...
-Start-Sleep -Seconds 180
+Start-Sleep -Seconds 90
 Http-WebHub-Runner-Workflow 2 $collectionGoal
 
