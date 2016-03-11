@@ -172,13 +172,7 @@ begin
 end;
 
 procedure TDemoHelperComponent.DemoForceConfig(Sender: TwhAppPropertyCategory);
-var
-  flagPublicDemos: Boolean;
 begin
-
-  // Find out whether we are running on a demos server, in production mode
-  flagPublicDemos := IsEqual('demos', pWebApp.ZMDefaultMapContext) or
-    IsEqual('doris', pWebApp.ZMDefaultMapContext);
 
   if Sender is TwhAppDynURLConfig then
   begin
@@ -193,7 +187,7 @@ begin
   else
   if Sender is TwhAppStartup then
   begin
-    TwhAppStartup(Sender).SplashEnabled := True;  // ensure splash on all demos
+    TwhAppStartup(Sender).SplashEnabled := True;
   end;
 
   { For developers transitioning from WebHub v2 to v3:
