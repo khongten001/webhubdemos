@@ -5,18 +5,18 @@
 :: init all to NO
 set demodbhtml=no
 set demodpr=no
-set democoderage=yes
+set democoderage=no
 set demofire=no
 set demohtcl=no
 set demohtfm=no
 set demohtfs=yes
 set demohtq1=yes
-set demohtq2=yes
-set demohtq3=yes
-set demohtq4=yes
+set demohtq2=no
+set demohtq3=no
+set demohtq4=no
 set demohtru=no
-set demojpeg=yes
-set demoscan=yes
+set demojpeg=no
+set demoscan=no
 set demoshop1=no
 set demostore000=no
 
@@ -49,12 +49,12 @@ echo flagdemosdb is %flagdemosdb%
 
 if "%flagdemosdb%"=="no" goto end
 
-set demofire=yes
+set demofire=no
 
-set demohtfm=yes
+set demohtfm=no
 
 set demohtfs=yes
-set demojpeg=yes
+set demojpeg=no
 set demohtq1=yes
 
 :end
