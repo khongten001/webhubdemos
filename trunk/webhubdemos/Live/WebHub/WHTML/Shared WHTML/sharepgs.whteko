@@ -959,7 +959,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~)  -->
+<!--- (~FOR|litecount,1,1|(~drStressRH~)~)   -->
 
 <whdroplet name="drStressRH" show="no">
 <tr>
@@ -979,22 +979,22 @@ RawVMR: (~Request.RawVMR~)
 </tr>
 </whdroplet>
 
-(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~)
+(~FOR|litecount,1,8|(~drStress3MainAppIDs~)~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
-<td><iframe src="(~testprefix~)?(~testapp1~):pgwelcome:"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp1~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp2~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgwelcome"></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgabout::demos"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgabout:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp2~):pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
-<td><iframe src="(~testprefix~)?(~testapp3~):privacypolicy:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp3~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
 <td><iframe src="(~testprefix~)?(~testapp4~):privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
 <td><iframe src="(~testprefix~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgpng"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp2~):privacypolicy" ></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgpng:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
 <td><iframe src="(~testprefix~)?(~testapp4~):pgWelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~SessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~Security.ReadOnlySessionID~).(~RandStr~):2"  ></iframe> </td>
 </tr>
 </whdroplet>
 
