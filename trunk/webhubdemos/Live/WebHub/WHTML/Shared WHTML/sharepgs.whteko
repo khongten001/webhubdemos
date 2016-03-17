@@ -918,11 +918,12 @@ ok
 
 <whpage pageid="pgStressTeenyPages" desc="-Stress Teeny Pages using FrameSet">
 <whprep>
-(~SET|testprefix=(~Request.Scheme~)://(~Request.Authority~)/(~Request.RawVMR~)~)
-(~SET|testapp1=htfd~)
-(~SET|testapp2=adv~)
-(~SET|testapp3=demos~)
-(~SET|testapp4=showcase~)
+(~SET|testprefix=//(~Request.Authority~)/(~Request.RawVMR~)~)
+(~SET|testprefixadv=//(~Request.Authority~)/runadv/(~Request.Runner~)~)
+(~SET|testapp1=demos~)<!--- htfd -->
+(~SET|testapp2=adv~)<!--- adv -->
+(~SET|testapp3=demos~)<!--- demos -->
+(~SET|testapp4=adv~)<!--- showcase -->
 (~MATCH|(~ZMDefaultMapContext~)=DORIS|
 <!--- different AppIDs on db.demos.href.com -->
 	(~SET|testapp1=htfs~)
@@ -959,49 +960,94 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~)   -->
+(~FOR|litecount,1,1|(~drStressRH~)~) 
 
 <whdroplet name="drStressRH" show="no">
 <tr>
 <th style="background-color:#66FF66;">(~litecount~)</th>
-<td> ok </td>
-<td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?htfd:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
+<td> n/a </td>
+<td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:pcv"></iframe> </td>
 <td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?h:nca-demos"></iframe></td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
-<td> ok </td>
-<td> ok  </td>
+<td> n/a </td>
+<td> n/a  </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
-<td> ok </td>
-<td> ok </td>
+<td> n/a </td>
+<td> n/a </td>
 </tr>
 </whdroplet>
 
-(~FOR|litecount,1,8|(~drStress3MainAppIDs~)~)
+<tr>
+<th>&emsp;</th>
+<th>(~TestApp1~):pgwelcome</th>
+<th>(~TestApp2~):pgwelcome</th>
+<th>(~TestApp3~):pgwelcome</th>
+<th>(~TestApp3~):pgabout</th>
+<th>(~TestApp2~):pgWhatIsMyIP</th>
+<th>(~TestApp3~):privacypolicy</th>
+<th>(~TestApp4~):privacypolicy</th>
+<th>pgRemoteCheckVersion</th>
+<th>(~TestApp3~):pgpng</th>
+<th>(~TestApp2~):privacypolicy</th>
+<th>(~TestApp4~):pgabout</th>
+<th>(~TestApp3~):pgTestLoremIpsum</th>
+</tr>
+
+(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
 <td><iframe src="(~testprefix~)?(~testapp1~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp2~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgabout:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp2~):pgWhatIsMyIP:(~SessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):pgWhatIsMyIP:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
 <td><iframe src="(~testprefix~)?(~testapp3~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
-<td><iframe src="(~testprefix~)?(~testapp4~):privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
-<td><iframe src="(~testprefix~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp4~):privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefixadv~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgpng:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp2~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
-<td><iframe src="(~testprefix~)?(~testapp4~):pgWelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
+<td><iframe src="(~testprefixadv~)?(~testapp4~):pgAbout:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~Security.ReadOnlySessionID~).(~RandStr~):2"  ></iframe> </td>
 </tr>
 </whdroplet>
 
+<!---(~FOR|litecount,1,2|(~drStressDisplaySomeLogos~)~) -->
+<whdroplet name="drStressDisplaySomeLogos" show="no">
+<tr>
+<th style="background-color:#FFCC99;">&ensp;</th>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp1~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
+</tr>
+</whdroplet>
+
+
 <!--- (~FOR|litecount,1,1|(~drStressRH~)~) -->
+<!---
 
-<!--- (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~) -->
+(~SET|testprefix=//t06.delphiprefix.modulab.com/(~Request.RawVMR~)~)
+(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~) 
+(~SET|testprefix=//t07.delphiprefix.modulab.com/(~Request.RawVMR~)~)
+(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~) 
 
+(~SET|testprefix=//t06.delphiprefix.modulab.com/(~Request.RawVMR~)~)
+(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~) 
+(~SET|testprefix=//t07.delphiprefix.modulab.com/(~Request.RawVMR~)~)
+(~FOR|litecount,1,2|(~drStress3MainAppIDs~)~) 
+-->
 </table>
 (~CLEAR|testprefix~)
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
