@@ -5,7 +5,7 @@
     <MenuEnabled value="true"/>
     <SplashEnabled value="true"/>
     <SplashEnabled context="ultraann" value="false"/>
-    <StartMinimized value="false"/>
+    <StartMinimized value="true"/>
     <StartMinimized context="META" value="true"/>
     <StartMinimized context="DORIS" value="true"/>
     <StartMinimized context="ultraann" value="true"/>
