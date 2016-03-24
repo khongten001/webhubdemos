@@ -108,6 +108,7 @@ begin
   except
     on E: Exception do
     begin
+      CSSendError(E.StackTrace);
       LogSendException(E);
       Continue := False;
       ErrorText := E.Message;
@@ -165,6 +166,7 @@ begin
   except
     on E: Exception do
     begin
+      CSSendError(E.StackTrace);
       CSSendException(E);
       Continue := False;
       ErrorText := E.Message;
@@ -232,6 +234,7 @@ begin
     except
       on E: Exception do
        begin
+         CSSendError(E.StackTrace);
          CSSendException(E);
          ErrorText := cFn + Chr(183) + E.Message;
          Continue := False;
@@ -312,6 +315,7 @@ begin
   except
     on E: Exception do
     begin
+      CSSendError(E.StackTrace);
       CSSendException(E);
     end;
   end;
