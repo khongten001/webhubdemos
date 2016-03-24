@@ -220,6 +220,7 @@ procedure TDMForWHDBDemo.WHDBAppException(Sender: TObject; E: Exception;
 begin
   { some database demos connect pWebApp.OnError to this event handler }
   Handled := True;
+  CSSendError(E.StackTrace);
   LogSendException(E);  // uses ucCodeSiteInterface and ucLogFil
 
   {$IFDEF CodeSite}
