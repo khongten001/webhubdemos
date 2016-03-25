@@ -931,10 +931,10 @@ ok
 	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testprefixshowcase=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testprefixhtfd=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testapp1=htfs~)
-	(~SET|testapp2=htq1~)
+	(~SET|testapp1=demos~)
+	(~SET|testapp2=demos~)
 	(~SET|testapp3=demos~)
-	(~SET|testapp4=jpeg~)
+	(~SET|testapp4=demos~)
 ~)
 </whprep>
 <whoutput>
@@ -965,7 +965,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-<!--- (~FOR|litecount,1,1|(~drStressRH~)~)   -->
+(~FOR|litecount,1,1|(~drStressRH~)~)
 
 <whdroplet name="drStressRH" show="no">
 <tr>
@@ -975,9 +975,9 @@ RawVMR: (~Request.RawVMR~)
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
 <td><iframe src="(~testprefix~)?r:echo"></iframe> </td>
 <td><iframe src="(~testprefix~)?r:version"></iframe></td>
-<td><iframe src="(~testprefix~)?r:vers"></iframe></td>
+<td><iframe src="(~testprefix~)?h:vers"></iframe></td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
-<td> n/a </td>
+<td><iframe src="(~testprefix~)?h:nct"></iframe></td> 
 <td> n/a  </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
 <td> n/a </td>
