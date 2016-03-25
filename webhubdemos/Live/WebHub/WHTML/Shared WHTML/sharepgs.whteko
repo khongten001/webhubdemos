@@ -1001,7 +1001,7 @@ RawVMR: (~Request.RawVMR~)
 <th>(~TestApp3~):pgTestLoremIpsum</th>
 </tr>
 
-<!--- (~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)  -->
+(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)  
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
