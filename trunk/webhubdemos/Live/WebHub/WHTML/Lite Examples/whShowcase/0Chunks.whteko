@@ -57,7 +57,7 @@ mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
 </whdroplet>
 
 <whdroplet name="drShowcaseExtraHeader">
-<!-- comment for the curious:
+<!-- a comment for the curious:
 current pageid: (~PageID~)
 current filename: (~pagesetting.htmlFilename~)
 bSeqHdr: (~pagesetting.bSeqHdr~)
@@ -70,7 +70,6 @@ levelKeyword: (~pagesetting.levelKeyword~) -->
     <div id="whCurrentLevel" style="text-align:center;width:100%;font-size:small;padding:.5em 0 .5em 0;" >
 		(~Sequencing.ButtonPrior~)
 		This level: <span style="color:#B22222; font-weight:bold;">
-		<!--- (~dynchunk|bar,(~pagesetting.levelKeyword~)~)-->
 		(~pagesetting.levelKeyword~)
 		</span>
 		(~Sequencing.ButtonNext~)
@@ -126,11 +125,7 @@ levelKeyword: (~pagesetting.levelKeyword~) -->
 <whdroplet name="drDemoSpeedbarForShowcase">
 (~GO|pgHelp| id="a-pghelp" |Help~)<br />
 <span class="changing">(~GOR|remoterefresh|Refresh App~)</span><br />
-
-<whdoc>
-You may enable SHUTDOWN if you are running on your own machine. It is disabled on demos.href.com.
-<span class="changing">(~GOR|pgEnterShowcase,SHUTDOWNSHOW|Shut Down Showcase~)</span><br />
-</whdoc>
+(~GO|pgindex| id="a-pgindex" |Index~)
 </whdroplet>
 
 <whdroplet name="drShowcasePageDesc">
