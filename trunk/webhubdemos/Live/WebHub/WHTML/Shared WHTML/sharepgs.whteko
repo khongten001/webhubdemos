@@ -1029,7 +1029,7 @@ RawVMR: (~Request.RawVMR~)
 
 
 <whdroplet name="drStressDisplaySomeLogos" show="no">
-<--- Note: the JPEG demo does not have a logo graphic. -->
+<!--- Note: the JPEG demo does not have a logo graphic. -->
 <tr>
 <th style="background-color:#FFCC99;">&ensp;</th>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp1~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
