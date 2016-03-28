@@ -934,7 +934,7 @@ ok
 	(~SET|testapp1=htfs~)
 	(~SET|testapp2=htq1~)
 	(~SET|testapp3=demos~)
-	(~SET|testapp4=jpeg~)
+	(~SET|testapp4=dbhtml~)
 ~)
 </whprep>
 <whoutput>
@@ -1029,6 +1029,7 @@ RawVMR: (~Request.RawVMR~)
 
 
 <whdroplet name="drStressDisplaySomeLogos" show="no">
+<--- Note: the JPEG demo does not have a logo graphic. -->
 <tr>
 <th style="background-color:#FFCC99;">&ensp;</th>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp1~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
