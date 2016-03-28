@@ -965,26 +965,27 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-(~FOR|litecount,1,1|(~drStressRH~)~)
+(~FOR|litecount,1,3|(~drStressRH~)~)
 
 <whdroplet name="drStressRH" show="no">
 <tr>
-<th style="background-color:#66FF66;">(~litecount~)</th>
-<td><iframe src="(~testprefix~)?htfd:pgwelcome:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe> </td>
+<td> n/a </td>
+<td><iframe src="(~testprefix~)?r:echo"></iframe> </td>
 <td> n/a </td>
 <td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
-<td><iframe src="(~testprefix~)?r:echo"></iframe> </td>
-<td><iframe src="(~testprefix~)?r:version"></iframe></td>
-<td><iframe src="(~testprefix~)?h:vers"></iframe></td>
+<td><iframe src="(~testprefix~)?r:version"></iframe> </td>
+<td><iframe src="(~testprefix~)?r:vers"></iframe> </td>
+<td> n/a  </td>
+<td><iframe src="(~testprefix~)?r:version"></iframe> </td>
+<td> n/a  </td>
 <td><iframe src="(~testprefix~)?r:pcv"></iframe></td> 
-<td>  <iframe src="(~testprefix~)?h:nct"></iframe></td>  
 <td> n/a  </td>
 <td><iframe src="(~testprefix~)?r:ipc" ></iframe></td>
-<td> n/a </td>
 <td> n/a </td>
 </tr>
 </whdroplet>
 
+<whdroplet name="drStressAppIDHeading" show="no">
 <tr>
 <th>&emsp;</th>
 <th>(~TestApp1~):pgwelcome</th>
@@ -1000,8 +1001,10 @@ RawVMR: (~Request.RawVMR~)
 <th>(~TestApp4~):pgabout</th>
 <th>(~TestApp3~):pgTestLoremIpsum</th>
 </tr>
+</whdroplet>
 
-(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)  
+(~drStressAppIDHeading~)
+(~FOR|litecount,1,30|(~drStress3MainAppIDs~)~)  
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
@@ -1020,10 +1023,10 @@ RawVMR: (~Request.RawVMR~)
 </tr>
 </whdroplet>
 
-<!---
+
 (~FOR|litecount,1,2|(~drStressDisplaySomeLogos~)~) 
-(~FOR|litecount,1,31|(~drStress3MainAppIDs~)~) 
--->
+(~FOR|litecount,1,5|(~drStress3MainAppIDs~)~) 
+
 
 <whdroplet name="drStressDisplaySomeLogos" show="no">
 <tr>
