@@ -995,7 +995,7 @@ RawVMR: (~Request.RawVMR~)
 <th>(~TestApp2~):pgWhatIsMyIP</th>
 <th>(~TestApp3~):privacypolicy</th>
 <th>(~TestApp4~):privacypolicy</th>
-<th>pgRemoteCheckVersion</th>
+<th>(~TestApp4~):pgRemoteCheckVersion</th>
 <th>(~TestApp3~):pgpng</th>
 <th>(~TestApp2~):privacypolicy</th>
 <th>(~TestApp4~):pgabout</th>
