@@ -1,12 +1,12 @@
 :: run-stresstest-demos.bat
-:: Copyright (c) 2014 HREF Tools Corp.
+:: Copyright (c) 2014-2016 HREF Tools Corp.
 :: www.href.com
 
 @echo off
 setlocal
 
 set fastseconds=6
-set exename=whLite_x_d20_win32_src.exe
+set exename=whlite_x_d23_win64_src.exe
 
 cd /d %~dp0
 cd ..\WebHub\Apps
@@ -16,7 +16,7 @@ cd ..\WebHub\Apps
 start %exename% /ID=demos  
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=adv
+net start adv1
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=showcase
@@ -28,7 +28,7 @@ d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 start %exename% /ID=demos  
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=adv
+net start adv2
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=showcase
