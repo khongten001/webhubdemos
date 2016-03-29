@@ -936,7 +936,7 @@ ok
 	(~SET|testapp3=demos~)
 	(~SET|testapp4=dbhtml~)
 ~)
-(~MATCH|(~ZMDefaultMapContext~)[ETA|
+(~MATCH|ETA[(~ZMDefaultMapContext~)|
 <!--- shared AppPool on lite.demos.href.com -->
 	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testprefixshowcase=//(~Request.Authority~)/(~Request.RawVMR~)~)
