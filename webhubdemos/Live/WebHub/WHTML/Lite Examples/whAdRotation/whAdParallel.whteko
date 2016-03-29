@@ -56,7 +56,7 @@ mcRun3=(~Request.RawVMR~)
 
 <whpage pageid="cssTest1">
 (~SETPROLOGUETYPE|css~)
-#one { font-color: red; }
+h1 #one { font-color: orange; }
 /*
 Content for some bytes...
 (~drLoremIpsum~)
@@ -65,7 +65,7 @@ Content for some bytes...
 
 <whpage pageid="cssTest2">
 (~SETPROLOGUETYPE|css~)
-#two { font-color: red; }
+h2 #two { font-color: red; }
 /*
 Content for some bytes...
 (~drLoremIpsum~)
@@ -75,7 +75,7 @@ Content for some bytes...
 
 <whpage pageid="cssTest3">
 (~SETPROLOGUETYPE|css~)
-#three { font-color: red; }
+h3 #three { font-color: blue; }
 /*
 Content for some bytes...
 (~drLoremIpsum~)
