@@ -424,6 +424,7 @@ begin
 end;
 
 procedure TDemoExtensions.waImgSrcExecute(Sender: TObject);
+const cFn = 'waImgSrcExecute';
 var
   AFilespec: string;
 begin
@@ -454,7 +455,7 @@ begin
       end
       else
       begin
-        LogSendError('File not found: ' + AFilespec);
+        LogSendError(cFn + ': File not found: ' + AFilespec);
       end;
     end;
   end;
