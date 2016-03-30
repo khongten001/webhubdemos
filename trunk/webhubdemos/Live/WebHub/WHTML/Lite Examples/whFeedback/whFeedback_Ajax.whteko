@@ -15,7 +15,7 @@
 
 	<div class="row collapse">
 	    <div class="small-6 medium-5 columns">
-	      <span class="prefix">Question 1</span>
+	      <span class="prefix">Question 1 *</span>
 	    </div>
 	    <div class="small-12 medium-13 columns">
 		<input type="text" name="inAnswer1" value="abc" />
@@ -32,7 +32,7 @@
 	</div>
 
 	<div class="row collapse">
-		<label>Message</label>
+		<label>Message *</label>
 	    <div class="small-18 columns">
 		<textarea name="txtMessage" rows="4"></textarea>
 	    </div>
@@ -43,6 +43,8 @@
 	<div class="row text-center">
 		<button id="btnSendAnswers" class="button success radius">Send</button>
 	</div>
+
+	<div class="row text-left">* Required fields (leave blank to see error handling). </div>
 
   <a class="close-reveal-modal" aria-label="Close">&#x2612;</a>
 </whpage>
