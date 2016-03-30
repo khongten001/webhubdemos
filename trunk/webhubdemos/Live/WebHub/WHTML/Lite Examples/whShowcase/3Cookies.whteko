@@ -238,7 +238,7 @@ because IIS will not allow the really long URL unless it follows a ? symbol.
 </whpage>
 
 <whpage pageid="pgBounceTestB3">
-(~FLUSH|header~)(~BOUNCE|https://www.google.com/(~RandStr~)~)
+(~FLUSH|header~)(~BOUNCE|https://www.google.com/?(~RandStr~)~)
 </whpage>
 
 </whteko>
