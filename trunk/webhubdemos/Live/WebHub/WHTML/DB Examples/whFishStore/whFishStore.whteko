@@ -359,7 +359,7 @@ cannot use the shared remoterefresh page, and must have its own version.
 </whpage>
 
 <whpage pageid="pgBounceTestB3">
-(~BOUNCE|http://google.com~)
+(~FLUSH|header~)(~BOUNCE|https://www.google.com/(~RandStr~)~)
 </whpage>
 
 </whteko>
