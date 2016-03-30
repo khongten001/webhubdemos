@@ -356,7 +356,6 @@ cannot use the shared remoterefresh page, and must have its own version.
 <p>Try a bounce that goes to google (and please come back!)<p>
 <span class="changing">(~JUMPR|pgBounceTestB3|bounce test B3~)</span></p>
 
-(~drShowcaseGlobalFooter~)
 </whpage>
 
 <whpage pageid="pgBounceTestB3">
