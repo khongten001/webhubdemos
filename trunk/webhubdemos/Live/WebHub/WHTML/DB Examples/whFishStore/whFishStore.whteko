@@ -351,7 +351,8 @@ cannot use the shared remoterefresh page, and must have its own version.
 </whpage>
 
 <whpage pageid="pgBounceTestB2" desc="-bounce test B2">
-<p>You are now on page (~PageID~).</p>
+<p>(~CentralInfo.WebTimeGMT~)</p>
+<p>Hello, you are now on page (~PageID~).</p>
 
 <p>Try a bounce that goes to google (and please come back!)<p>
 <span class="changing">(~JUMPR|pgBounceTestB3|bounce test B3~)</span></p>
