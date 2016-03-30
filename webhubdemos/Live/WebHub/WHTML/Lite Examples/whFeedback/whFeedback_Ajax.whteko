@@ -48,21 +48,24 @@
 </whpage>
 
 <whpage pageid="ajaxtest">
+<whprep>
 (~SETPROLOGUETYPE|json~)(~CHECK|_bContentOk~)(~SET|_ErrorMsg=None~)
-<!--- reference the domain that is allowed to SEND the request to the server -->
-(~NOMATCH|one.delphiprefix.modulab.com[(~Request.Headers~)|(~CLEAR|_bContentOk~)(~SET|_ErrorMsg=AccessDeniedMissingHeader~)~)
+</whprep>
+<!--- for cross-domain support, reference the domain that is allowed to SEND the request to the server -->
+(~NOMATCH|one.delphiprefix.modulab.com[(~Request.Headers~)|(~CLEAR|_bContentOk~)(~SET|_ErrorMsg=Access Denied due to Missing Header~)~)
 (~MATCH|(~Request.RequestMethod~)=OPTIONS|
  (~SET|_responseStatus=OPTIONS~)
+<whdroplet name="drAjaxTestResponse" show="yes">
  (~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://one.delphiprefix.modulab.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
  {"responseStatus": "(~_responseStatus~)", "errorMsg": "(~_ErrorMsg~)"}
  (~CLEAR|_bContentOk~)(~CLEAR|_ErrorMsg~)(~CLEAR|_responseStatus~)
  (~CLOSE|~)
+</whdroplet>
 ~)
 (~IF|_bContentOk|(~NOTASSIGNED|inAnswer1|(~CLEAR|_bContentOk~)(~SET|_ErrorMsg=Answering Question 1 is Required~)~)~)
 (~IF|_bContentOk|(~NOTASSIGNED|TxtVar.txtMessage|(~CLEAR|_bContentOk~)(~SET|_ErrorMsg=Message text is Required~)~)~)
-(~IF|_bContentOk|(~SET|_responseStatus=OK~)<!--- run custom webaction here -->||(~SET|_responseStatus=ERROR~)~)
-(~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://one.delphiprefix.modulab.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~){"responseStatus": "(~_responseStatus~)", "errorMsg": "(~_ErrorMsg~)"}
-(~CLEAR|_bContentOk~)(~CLEAR|_ErrorMsg~)(~CLEAR|_responseStatus~)
+(~IF|_bContentOk|(~SET|_responseStatus=OK~)<!--- could run a custom webaction here -->||(~SET|_responseStatus=ERROR~)~)
+(~drAjaxTestResponse~)
 </whpage>
 
 </whteko>
