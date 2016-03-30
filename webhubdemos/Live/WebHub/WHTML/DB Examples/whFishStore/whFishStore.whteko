@@ -361,7 +361,7 @@ cannot use the shared remoterefresh page, and must have its own version.
 
 <whpage pageid="pgBounceTestB3">
 <!---(~HEADER|XHSE: 201613~)-->
-(~BOUNCE|https://www.google.com/(~RandStr~)~)
+(~BOUNCE|https://www.google.com/?(~RandStr~)~)
 </whpage>
 
 </whteko>
