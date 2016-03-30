@@ -39,7 +39,8 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLogging" value="infotype,note,warning,error,exception"/>
+      <AppSetting name="CodeSiteLogging" value="all" />
+      <AppSetting name="CodeSiteLogging" value="warning,error,exception" context="META"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
     </AppSettings>
@@ -74,6 +75,7 @@
     <TekoFiles>
       <File id="aboutHTFD" filename="..\..\Shared WHTML\about\about-whFeedback.whteko"/>
       <File id="contentHTFD" filename="whFeedback.whteko"/>
+      <File id="contentAjax" filename="whFeedback_Ajax.whteko"/>
       <File id="_headfoot" filename="..\..\Shared WHTML\headfoot.whteko"/>
       <File id="_lingvo_chi" filename="..\..\Shared WHTML\lingvo_chi.whteko"/>
       <File id="_lingvo_deu" filename="..\..\Shared WHTML\lingvo_deu.whteko"/>
