@@ -6,7 +6,7 @@ function sendDemoMessage() {
 	$('#divDataEntryFeedback').show();
 
 	$.ajax( {
-		url:  'http://two.delphiprefix.modulab.com/scripts/runisa.dll?htfd:ajaxtest::002', 
+		url:  'http://lite.demos.href.com/htfd:ajaxtest::001', 
 		data:  $('#formContact').serialize(),
 		type: "POST",
 		crossDomain: true, /* enable this */
