@@ -39,6 +39,9 @@ uses
   Forms,
   ZaphodsMap,
   ucCodeSiteInterface, ucPos, uCode, ucString, ucDlgs, MultiTypeApp, ucLogFil,
+  {$IFNDEF PREVENTGUI}
+  utPanFrm,
+  {$ENDIF}
   whConst, webSplat,
   webApp, webInfoU, whMacroAffixes, htmConst, htWebApp,
   whsample_DWSecurity, whsample_PrototypeJS,
@@ -115,6 +118,9 @@ var
   ErrorText: string;
 begin
   InitStandardWHModules;
+  {$IFNDEF PREVENTGUI}
+  TPackAllowDetach := False; // v3.247
+  {$ENDIF}
   DemoExtensions.Init;  // initialize WebCycle, WebLogin
   if Assigned(DMPrototypeJS) then
     DMPrototypeJS.Init(ErrorText);
