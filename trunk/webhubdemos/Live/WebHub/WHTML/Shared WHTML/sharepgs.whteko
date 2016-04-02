@@ -1037,7 +1037,7 @@ RawVMR: (~Request.RawVMR~)
 <whdroplet name="drStressDisplaySomeLogos" show="no">
 <!--- Note: the JPEG demo does not have a logo graphic. -->
 <tr>
-<th style="background-color:#FFCC99;">&ensp;</th>
+<th style="background-color:#FFCC99;">logo</th>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp1~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
@@ -1045,7 +1045,7 @@ RawVMR: (~Request.RawVMR~)
 <td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
-<td>&emsp;</td>
+<td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp3~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp2~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
 <td><img src="(~mcWhDemoLogoDir~)(~testapp4~).jpg" alt="Logo for (~testapp1~) WebHub demo" /></td>
