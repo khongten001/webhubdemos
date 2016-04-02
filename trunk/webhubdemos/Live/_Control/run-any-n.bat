@@ -7,7 +7,7 @@ del d:\temp\whSessions\1204.var
 del E:\whData\whSessions\1204.var
 
 ::change to folder containing this bat file
-cd /D %~dp0
+cd /D %~dp0..\WebHub\Apps
 
 
 set /P whappid=Enter WebHub AppID in lowercase :  
