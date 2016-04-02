@@ -68,6 +68,7 @@
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="META"/>
       <CookieDomainDefault value=""/>
+      <ReadOnlySessionNumber value="888888"/>
     </Security>
     <Static>
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot" context="META"/>
@@ -94,6 +95,7 @@
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
       <File id="D01" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
+      <File id="M01" filename="..\..\Shared WHTML\monitor.whteko"/>
     </TekoFiles>
   </Application>
 </WebHubAppConfiguration>

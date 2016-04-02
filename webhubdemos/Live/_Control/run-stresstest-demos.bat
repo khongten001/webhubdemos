@@ -19,7 +19,7 @@ d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 net start adv1
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=showcase
+start %exename% /ID=joke
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=htfd
@@ -31,7 +31,7 @@ d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 net start adv2
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
-start %exename% /ID=showcase
+start %exename% /ID=joke
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=htfd
