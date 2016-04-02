@@ -27,8 +27,8 @@ set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\web
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE
-:: LogAppTick;LogHelo;LogSTime;LogIPCMinimal;LOGBAD;LOGBOUNCE
-if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
+:: LogAppTick;LogHelo;LogSTime;LogIPCMinimal;LOGBAD
+if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LOGBOUNCE
 %CSSend% compilerflags "%compilerflags%"
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU

@@ -925,7 +925,7 @@ ok
 (~SET|testapp1=htfd~)<!--- htfd -->
 (~SET|testapp2=adv~)<!--- adv -->
 (~SET|testapp3=demos~)<!--- demos -->
-(~SET|testapp4=showcase~)<!--- showcase -->
+(~SET|testapp4=joke~)<!--- joke or showcase -->
 (~MATCH|(~ZMDefaultMapContext~)=DORIS|
 <!--- different AppIDs on db.demos.href.com -->
 	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
@@ -971,7 +971,7 @@ RawVMR: (~Request.RawVMR~)
 <tr>
 <th colspan="13">(~testprefix~) session #(~SessionID~)</th>
 </tr>
-(~FOR|litecount,1,3|(~drStressRH~)~)
+<!--- (~FOR|litecount,1,3|(~drStressRH~)~) -->
 
 <whdroplet name="drStressRH" show="no">
 <tr>
@@ -994,44 +994,44 @@ RawVMR: (~Request.RawVMR~)
 <whdroplet name="drStressAppIDHeading" show="no">
 <tr>
 <th>&emsp;</th>
-<th>(~TestApp1~):pgwelcome</th>
-<th>(~TestApp2~):pgwelcome</th>
-<th>(~TestApp3~):pgwelcome</th>
-<th>(~TestApp3~):pgabout</th>
-<th>(~TestApp2~):pgWhatIsMyIP</th>
-<th>(~TestApp3~):privacypolicy</th>
-<th>(~TestApp4~):privacypolicy</th>
+<th>(~TestApp1~)</th>
+<th>(~TestApp2~)</th>
+<th>(~TestApp3~)</th>
+<th>(~TestApp3~)</th>
+<th>(~TestApp2~)</th>
+<th>(~TestApp3~)</th>
+<th>(~TestApp4~)</th>
 <th>(~TestApp4~):pgRemoteCheckVersion</th>
-<th>(~TestApp3~):pgpng</th>
-<th>(~TestApp2~):privacypolicy</th>
-<th>(~TestApp4~):pgabout</th>
+<th>(~TestApp3~)</th>
+<th>(~TestApp2~)</th>
+<th>(~TestApp4~)</th>
 <th>(~TestApp3~):pgTestLoremIpsum</th>
 </tr>
 </whdroplet>
 
 (~drStressAppIDHeading~)
-(~FOR|litecount,1,30|(~drStress3MainAppIDs~)~)  
+(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
-<td><iframe src="(~testprefixhtfd~)?(~testapp1~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgwelcome:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgabout:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):pgWhatIsMyIP:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
-<td><iframe src="(~testprefix~)?(~testapp3~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
-<td><iframe src="(~testprefixshowcase~)?(~testapp4~):privacypolicy:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefixhtfd~)?(~testapp1~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
+<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
 <td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
-<td><iframe src="(~testprefix~)?(~testapp3~):pgpng:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):privacypolicy:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
-<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgAbout:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
+<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~Security.ReadOnlySessionID~).(~RandStr~):2"  ></iframe> </td>
 </tr>
 </whdroplet>
 
 
 (~FOR|litecount,1,2|(~drStressDisplaySomeLogos~)~) 
-(~FOR|litecount,1,5|(~drStress3MainAppIDs~)~) 
+(~FOR|litecount,1,4|(~drStress3MainAppIDs~)~) 
 
 
 <whdroplet name="drStressDisplaySomeLogos" show="no">
@@ -1119,6 +1119,7 @@ RawVMR: (~Request.RawVMR~)
 <h1>(~AppID~)</h1>
 <pre>
 Referer: (~Request.Referer~)
+QS: (~Request.QueryString~)
 </pre>
 
 </div>

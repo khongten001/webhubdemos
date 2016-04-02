@@ -5,10 +5,12 @@ setlocal
 del c:\temp\whSessions\1204.var
 del d:\temp\whSessions\1204.var
 del E:\whData\whSessions\1204.var
+del D:\whData\whSessions\1204.var
 
-::change to folder containing this bat file
+::change to folder containing the executables
 cd /D %~dp0..\WebHub\Apps
-
+:: dir *.bat
+:: pause
 
 set /P whappid=Enter WebHub AppID in lowercase :  
 if "%whappid%"=="" goto end
@@ -19,7 +21,7 @@ echo Demo params: %demoparams%
 set exename=whLite.exe
 echo exename is %exename%
 
-set /P qty=Enter Number of instances to start (eg. 1, 3, 5, 10, 20, 30) :  
+set /P qty=Enter Number of instances to start (eg. 1, 2, 3, 5, 10, 20, 30) :  
 if "%qty%"=="" goto end
 echo Qty %qty%
 goto start%qty%
@@ -29,6 +31,10 @@ goto start%qty%
 
 :start1
 start %exename% %demoparams%
+goto end
+
+:start2
+for %%A IN (1 2) DO call run-1.bat %exename% %demoparams%
 goto end
 
 :start3
