@@ -295,7 +295,7 @@ end;
 procedure TDMNexus.Table1OnlyApproved;
 const cFn = 'Table1OnlyApproved';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   with Table1 do
   begin
     //if OnFilterRecord <> TableFilterPendingApprovedRecord then
@@ -306,13 +306,13 @@ begin
       Filtered := True;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMNexus.Table1OnlyMaintain;
 const cFn = 'Table1OnlyMaintain';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   with Table1 do
   begin
     //if OnFilterRecord <> TableFilterEMail then
@@ -323,7 +323,7 @@ begin
       Filtered := True;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMNexus.TableAdminOnlyAmpersand;

@@ -75,7 +75,7 @@ end;
 procedure TfmWhAnimals.waJPEGUpdate(Sender: TObject);
 const cFn = 'waJPEGUpdate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   if Sender is TwhJPEG then
   begin
@@ -93,17 +93,17 @@ begin
       whJPEGImage.ProgressiveEncoding:=True;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmWhAnimals.waJPEGExecute(Sender: TObject);
 {$IFDEF CodeSite}const cFn = 'waJPEGExecute';{$ENDIF}
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
-  {$IFDEF CodeSite}CodeSite.Send('DMBIOLIFE.ClientDataSet1.RecNo',
-    DMBIOLIFE.ClientDataSet1.RecNo);{$ENDIF}
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSSend('DMBIOLIFE.ClientDataSet1.RecNo',
+    S(DMBIOLIFE.ClientDataSet1.RecNo));
+  CSExitMethod(Self, cFn);
 end;
 
 end.

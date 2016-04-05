@@ -204,7 +204,7 @@ begin
       end;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 end.

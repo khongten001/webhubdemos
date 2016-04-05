@@ -332,7 +332,7 @@ begin
     S := Uppercase(pWebApp.StringVar['inKeywords']);
     S := StringReplaceAll(S, '  ', ' ');
     SearchValue := S;
-    {$IFDEF CodeSite}CodeSite.Send('SearchValue', SearchValue);{$ENDIF}
+    CSSend('SearchValue', SearchValue);
     rbSearch1.SearchLogic := slSmart;
     for i := slAnd to slSmart do
     begin

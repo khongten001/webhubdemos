@@ -1020,7 +1020,7 @@ const cFn = 'LabelForField';
 var
   FldDesc: string;
 begin
-  {$IFDEF LogLabel}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  {$IFDEF LogLabel}CSEnterMethod(Self, cFn);{$ENDIF}
   Result := '';
   FldDesc := Cursor.FieldByName('field_description').AsString;
   {$IFDEF LogLabel}CSSend('FldDesc', FldDesc);{$ENDIF}
@@ -1041,7 +1041,7 @@ begin
     else
       Result := CurrentFieldname;  // default to actual field name
   end;
-  {$IFDEF LogLabel}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  {$IFDEF LogLabel}CSExitMethod(Self, cFn);{$ENDIF}
 end;
 
 procedure TDMIBObjCodeGen.MacroLabelsForFields(const CurrentTable: string;

@@ -87,7 +87,7 @@ var
   fld: TField;
   {$IFDEF CodeSite}i: Integer;{$ENDIF}
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
 
   try
@@ -116,16 +116,16 @@ begin
       Result := False;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMShop1.DataModuleCreate(Sender: TObject);
 const cFn = 'DataModuleCreate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   FlagInitDone := False;
   ADOConnectionShop1.LoginPrompt := False;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMShop1.DataModuleDestroy(Sender: TObject);
@@ -139,7 +139,7 @@ var
   s1: string;
   FlagFwd: Boolean;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   Result := FlagInitDone;
 
@@ -213,7 +213,7 @@ begin
       Result := FlagInitDone;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMShop1.WebAppUpdate(Sender: TObject);
@@ -245,7 +245,7 @@ var
   a1, a2: string;
   i: integer;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   // WebDataSource1.Qty@1316=35
   with TwhWebActionEx(Sender).WebApp do
   begin
@@ -256,7 +256,7 @@ begin
         StringVar[a1] := a2; { post single entry to StringVars array }
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 { ------------------------------------------------------------------------- }
@@ -309,7 +309,7 @@ const cFn = 'WebActionOrderListExecute';
 var
   sList: TStringList;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   sList := nil;
   try
     sList := TStringList.create;
@@ -319,7 +319,7 @@ begin
   finally
     FreeAndNil(sList);
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMShop1.waScrollGridExecute(Sender: TObject);
@@ -327,7 +327,7 @@ const cFn = 'waScrollGridExecute';
 var
   a1, a2: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   with TwhWebActionEx(Sender).WebApp do
   begin
@@ -340,7 +340,7 @@ begin
       // Make the grid scroll by setting its command, e.g. Next
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 end.

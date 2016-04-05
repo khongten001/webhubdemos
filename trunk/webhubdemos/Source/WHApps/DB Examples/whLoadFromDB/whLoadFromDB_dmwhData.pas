@@ -205,7 +205,7 @@ var
   aPageDesc: string;
   aTypeField: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   Result := True;
 
   { assume that we are positioned on the database record to load }
@@ -242,14 +242,14 @@ begin
       Result := False;
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 function TDMContent.LoadWebHubTekerosFromDB: Boolean;
 const
   cFn = 'LoadWebHubTekerosFromDB';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   Result := True;
 
   (* excellent tutorial about TClientDataSet:
@@ -294,7 +294,7 @@ begin
     end;
   end;
   WebMessage('');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMContent.SendBufferedStringFromDB(const Value: string;

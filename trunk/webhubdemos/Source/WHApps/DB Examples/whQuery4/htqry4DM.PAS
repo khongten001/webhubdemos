@@ -165,9 +165,9 @@ procedure TDataModuleHTQ4.WebDataForm1SetCommand(Sender: TObject;
   var ThisCommand: string);
 const cFn = 'WebDataForm1SetCommand';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   CSSend('ThisCommand', ThisCommand);
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 //------------------------------------------------------------------------------

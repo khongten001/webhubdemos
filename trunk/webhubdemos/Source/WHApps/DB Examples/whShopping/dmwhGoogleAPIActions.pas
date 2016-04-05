@@ -56,7 +56,7 @@ function TDMGAPI.Init(out ErrorText: string): Boolean;
 const
   cFn = 'Init';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   ErrorText := '';
 
   // reserved for code that should run once, after AppID set
@@ -71,8 +71,8 @@ begin
     end;
   end;
   Result := FlagInitDone;
-{$IFDEF CodeSite}CodeSite.Send('Result', Result);
-  CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMGAPI.waOAuth2CallbackStateExecute(Sender: TObject);
@@ -81,7 +81,7 @@ var
   a1, a2: string;
   targetURL: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
 (*
 Query String (after remap by StreamCatcher): shop1:oauth2callback::state=/profile1294912795&code=4/lR5tzQlU83XlhOJmNmSYIqJlE2oy.QrarjwvN688cgrKXntQAax0uBr3iewI
 *)
@@ -104,7 +104,7 @@ Query String (after remap by StreamCatcher): shop1:oauth2callback::state=/profil
     pWebApp.Command;
   pWebApp.Response.SendBounceTo(targetURL);
 
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMGAPI.waOAuth2StepTokenExecute(Sender: TObject);
@@ -119,7 +119,7 @@ var
   RawHeadersUsed, UnsecretDataUsed: string;
   ExpiresOnAt: TDateTime;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   { this only makes sense AFTER the surfer has been to google and returned
     to an official callback URL, with either an approval code or a refusal
     to participate.
@@ -194,7 +194,7 @@ begin
       end;
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMGAPI.waTestFreebaseExecute(Sender: TObject);
@@ -208,7 +208,7 @@ var
   RequestURL: string;
   ResponseLimit: Integer;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   if (FClientSecret <> '') then
   begin
     FreebaseQueryTerm := pWebApp.StringVar['FreebaseQueryTerm'];
@@ -244,7 +244,7 @@ begin
   else
     pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
       ': unable to look up GoogleAPI credentials');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMGAPI.waTestGeoLocationExecute(Sender: TObject);
@@ -255,7 +255,7 @@ var
   ErrorText, RawHeadersUsed: string;
   InputFilespec: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   if (FClientSecret <> '') then
   begin
     InputFilespec := getHtDemoCodeRoot +
@@ -280,14 +280,14 @@ begin
   else
     pWebApp.Debug.AddPageError(TwhWebAction(Sender).Name +
       ': unable to look up GoogleAPI credentials');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMGAPI.WebAppUpdate(Sender: TObject);
 const
   cFn = 'WebAppUpdate';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
 
@@ -295,7 +295,7 @@ begin
     FSimpleAPIKey);
   pWebApp.AppSetting['GoogleClientID'] := FClientID; // visible in URLs
 
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 end.

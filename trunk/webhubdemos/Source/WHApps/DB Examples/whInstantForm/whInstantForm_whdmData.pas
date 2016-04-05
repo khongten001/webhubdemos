@@ -116,7 +116,7 @@ end;
 function TDMParts.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   // reserved for code that should run once, after AppID set
   if NOT FlagInitDone then
@@ -179,8 +179,8 @@ begin
     end;
   end;
   Result := FlagInitDone;
-  {$IFDEF CodeSite}CodeSite.Send('Result', Result);
-  CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMParts.waPostExecute(Sender: TObject);
@@ -249,10 +249,10 @@ end;
 procedure TDMParts.WebAppUpdate(Sender: TObject);
 const cFn = 'WebAppUpdate';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 end.
