@@ -49,7 +49,7 @@ uses
 function TDataModuleAdmin.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   gfAdmin.WebDataSource := wdsAdmin;
 
@@ -92,8 +92,8 @@ begin
       ErrorText := gfAdmin.ClassName + ' gfAdmin is not usable';
   end;
   Result := (ErrorText = '');
-  {$IFDEF CodeSite}CodeSite.Send('Result', Result);
-  CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSSend(cFn + ': Result', S(Result));
+  CSExitMethod(Self, cFn);
 end;
 
 {------------------------------------------------------------------------------}
@@ -103,7 +103,7 @@ const cFn = 'TableFishCostBeforePost';
 var
   Allow: Boolean;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   with TableFishCost do
   begin
     Allow := DemoExtensions.IsSuperUser(pWebApp.Request.RemoteAddress) or
@@ -128,7 +128,7 @@ begin
         FieldByName('UpdatedBy').AsString := pWebApp.StringVar['SurferName'];
       end
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDataModuleAdmin.waPostPriceExecute(Sender: TObject);
@@ -137,7 +137,7 @@ var
   iKey: Double;
   dPrice: Currency;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
 
   if pos('post',lowercase(pWebApp.Command))>0 then
   begin
@@ -173,7 +173,7 @@ begin
     end;
   end;
 
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 {------------------------------------------------------------------------------}
@@ -182,10 +182,10 @@ procedure TDataModuleAdmin.gfAdminHotField(Sender: TwhdbGrid; aField: TField;
   var s: string);
 const cFn = 'gfAdminHotField';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   CSSend('aField.FieldName', aField.FieldName);
   s:=MacroStart + 'JUMP|AdminP,'+aField.asString+'|'+aField.asString+MacroEnd;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 end.

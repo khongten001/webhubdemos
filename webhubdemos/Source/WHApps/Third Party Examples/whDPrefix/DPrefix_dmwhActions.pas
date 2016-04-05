@@ -223,7 +223,7 @@ var
   AFieldName: string;
   i, iKey: Integer;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited;
 
   iKey := 0;
@@ -287,7 +287,7 @@ begin
       end;
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waCleanup2013LoginExecute(Sender: TObject);
@@ -298,7 +298,7 @@ var
   bFound: Boolean;
   cn: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   bFound := False;
   cn := TwhWebAction(Sender).Name;
   DPREmail := Lowercase(Trim(pWebApp.StringVar['DPREMail']));
@@ -341,7 +341,7 @@ begin
   end
   else
     pWebApp.Response.SendBounceToPage('cleanup2013error', '');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waConfirmOpenIDExecute(Sender: TObject);
@@ -350,7 +350,7 @@ const
 var
   wasEMail, newEMail: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   if pWebApp.IsWebRobotRequest then
     pWebApp.Response.SendBounceToPage('pghomepage', '');
 
@@ -392,7 +392,7 @@ begin
   pWebApp.Session.DeleteStringVarByName('_wasEMail');
   pWebApp.Session.DeleteStringVarByName('DPREMail');
   pWebApp.Response.SendBounceToPage('pgmaintain', '');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waCountPendingExecute(Sender: TObject);
@@ -410,7 +410,7 @@ var
   a1: string;
   ErrorText: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited;
   if FMpfID <> -1 then
   begin
@@ -431,7 +431,7 @@ begin
       end;
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waDeleteSetCommand(Sender: TObject;
@@ -441,7 +441,7 @@ const
 var
   a1: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited;
   FMpfID := -1;
 
@@ -453,7 +453,7 @@ begin
     FMpfID := StrToIntDef(a1, -1);
     LogSendInfo('fMpfID', S(FMpfID), cFn);
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.waPriceExecute(Sender: TObject);
@@ -591,7 +591,7 @@ const
 var
   a1: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited;
   FMpfID := -1;
 
@@ -600,7 +600,7 @@ begin
     a1 := Uncode64String(ThisCommand);
     FMpfID := StrToIntDef(a1, -1);
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.WebAppUpdate(Sender: TObject);
@@ -635,7 +635,7 @@ var
   ErrorText: string;
   b: Boolean;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited;
   Assert(Sender is TwhdbForm);
 
@@ -665,7 +665,7 @@ begin
     end;
   end;
   (Sender as TwhdbForm).AlreadyLocated := True; // attempted.
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPRWebAct.WebDataFormSkipField(Sender: TwhdbForm;

@@ -128,7 +128,7 @@ var
   a0, a1, a2, a3: String;
   i: integer;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   a0 := DefaultsTo(Command, HtmlParam);
   a1 := fSeparator + ' ';
   Assert(Assigned(WebApp), '(no WebApp)');
@@ -151,7 +151,7 @@ begin
   fAlphabet := a1;
   result := a1;
   CSSend('fAlphabet', fAlphabet);
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TWebnxdbAlphabet.DoExecute;
@@ -161,7 +161,7 @@ var
   S1: String;
   svName: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   inherited DoExecute;
   CSSend('Command', Command);
   CSSend('HtmlParam', HtmlParam);
@@ -186,7 +186,7 @@ begin
       CSSend('webdatasource nil'); // this is a reasonable situation
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 function TWebnxdbAlphabet.DoUpdate: boolean;

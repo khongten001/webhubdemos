@@ -113,7 +113,7 @@ const cFn = 'Init';
 var
   DBName, DBUser, DBPass: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   ErrorText := '';
   // reserved for code that should run once, after AppID set
   if NOT FlagInitDone then
@@ -174,7 +174,7 @@ begin
     end;
   end;
   Result := FlagInitDone;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMData.WebAppUpdate(Sender: TObject);

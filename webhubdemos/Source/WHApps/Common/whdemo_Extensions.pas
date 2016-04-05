@@ -610,8 +610,8 @@ begin
   //if (Session.UserAgentID = FHashGoogleMediaPartners) {1 request ago} then
   //begin
   //  { Do NOTHING because human was just interrupted by MediaPartner }
-  //  {$IFDEF CodeSite}CodeSite.Send('Allowing user agent change because ' +
-  //    'prior request was from a Google MediaPartner');{$ENDIF}
+  //  CSSend('Allowing user agent change because ' +
+  //    'prior request was from a Google MediaPartner');
   //end
   //else
   //if (PageID = Sender.Session.PriorPageID) and
@@ -627,8 +627,8 @@ begin
      30-March-2011. }
 
     {Do NOTHING -- do NOT reject the request.}
-  //  {$IFDEF CodeSite}CodeSite.Send('Allowing user agent change ' +
-  //    'to Google MediaPartner');{$ENDIF}
+  //  CSSend('Allowing user agent change ' +
+  //    'to Google MediaPartner');
 
   //end
   //else

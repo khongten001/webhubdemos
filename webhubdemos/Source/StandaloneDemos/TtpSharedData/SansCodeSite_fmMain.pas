@@ -37,7 +37,7 @@ var
   i: Integer;
   s1, s2: string;
 begin
-  //CodeSite.EnterMethod(Self, cFn);
+  //CSEnterMethod(Self, cFn);
   i := StrToInTDef(LeftOfS(' ', ListBox1.Items[ListBox1.ItemIndex]), -1);
   s1 := LabeledEdit1.Text;
   s2 := LabeledEdit2.Text;
@@ -54,7 +54,7 @@ begin
     9: CodeSiteManager.Enabled := SameText(s1, 'True');
     10: CodeSite.SendReminder(s1);
   end;
-  //CodeSite.ExitMethod(Self, cFn);
+  //CSExitMethod(Self, cFn);
 end;
 
 procedure TForm5.FormCreate(Sender: TObject);

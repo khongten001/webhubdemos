@@ -130,7 +130,7 @@ end;
 procedure TfmAppDBHTML.BtnLoadClick(Sender: TObject);
 const cFn = 'BtnLoadClick';
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   if Assigned(DBGrid1.DataSource) then
   begin
@@ -155,7 +155,7 @@ begin
       DMContent.DataSource1.DataSet.Open;
     end;
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 // -----------------------------------------------------------------------------
@@ -204,11 +204,11 @@ procedure TfmAppDBHTML.NoteBadPageID(Sender: TwhConnection;
   const ADesiredPageID: string; var bContinue: Boolean);
 const cFn = 'NoteBadPageID';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+CSEnterMethod(Self, cFn);
   // demonstrate how to catch an invalid PageID request.
   LogSendWarning('ADesiredPageID = ' + ADesiredPageID, cFn);
   bContinue := True;  // logged but not handled
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 end.

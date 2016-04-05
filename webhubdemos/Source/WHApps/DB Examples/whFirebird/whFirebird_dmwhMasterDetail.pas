@@ -92,7 +92,7 @@ function TDMMastDet.Init(out ErrorText: string): Boolean;
 const
   cFn = 'Init';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   ErrorText := '';
 
   // reserved for code that should run once, after AppID set
@@ -181,7 +181,7 @@ begin
   end;
   Result := FlagInitDone;
 
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMMastDet.QueryDetailBeforeOpen(DataSet: TDataSet);
@@ -312,10 +312,10 @@ procedure TDMMastDet.WebAppUpdate(Sender: TObject);
 const
   cFn = 'WebAppUpdate';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   // reserved for when the WebHub application object refreshes
   // e.g. to make adjustments because the config changed.
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 end.

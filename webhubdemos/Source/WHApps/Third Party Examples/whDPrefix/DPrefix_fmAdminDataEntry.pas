@@ -639,7 +639,7 @@ const cFn = 'ManPrefInit';
 var
   dropletName: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   with TwhdbScan(Sender) do
   begin
@@ -648,7 +648,7 @@ begin
     dropletName := 'Scan' + HtmlParam;
     WebApp.SendDroplet(dropletName, drBeforeWhrow);
   end;
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmWhActions.ManPrefRowStart(Sender:TwhdbScanBase;
@@ -664,7 +664,7 @@ const cFn = 'ManPrefExecute';
 var
   DropletKeyword: string;
 begin
-  {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  CSEnterMethod(Self, cFn);
   inherited;
   CSSend('PageID', pWebApp.PageID);
   DropletKeyword := ManPref.HtmlParam;
@@ -676,7 +676,7 @@ begin
   //WebDBAlphabet.Execute;  // repeat the GotoNearest step after filter change!
   if Assigned(ManPref) and Assigned(ManPref.WebDataSource) then
     CSSend('DataSetIsActive', S(ManPref.WebDataSource.DataSetIsActive));
-  {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmWhActions.ManPrefFinish(Sender: TObject);

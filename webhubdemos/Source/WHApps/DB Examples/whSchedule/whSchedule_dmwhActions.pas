@@ -239,7 +239,7 @@ var
   j: Integer;
   Recently: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   with DataSet as TIBOQuery do
   begin
     TheOffsetInHours := StrToIntDef(pWebApp.StringVar['inOffset'], 0);
@@ -261,7 +261,7 @@ begin
     {$ENDIF}
     Params[16].AsString := Recently;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMCodeRageActions.ScanScheduleInit(Sender: TObject);
@@ -270,10 +270,7 @@ const
 var
   dn: string;
 begin
-  // FSavCat := CodeSite.Category;
-{$IFDEF CodeSite}
-  CodeSite.Category := TComponent(Sender).Name;
-  CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); 
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam; // droplet name to base off
@@ -284,8 +281,7 @@ begin
     priorDate := 0;
     priorTime := 0;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
-  // CodeSite.Category := FSavCat;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMCodeRageActions.ScanScheduleRowStart(Sender: TwhdbScanBase;
@@ -321,13 +317,13 @@ var
 begin
 {$IFDEF CodeSite}
   CodeSite.Category := TComponent(Sender).Name;
-  CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); {$ENDIF}
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam; // droplet name to base off
     webApp.SendDroplet(dn, drAfterWhrow);
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);
+{$IFDEF CodeSite}CSExitMethod(Self, cFn);
   CodeSite.Category := ''; {$ENDIF}
 end;
 
@@ -360,7 +356,7 @@ begin
 {$IFDEF CodeSite}
   FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
-  CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); {$ENDIF}
   CSSend('Name', TwhWebAction(Sender).Name);
   CSSend('HtmlParam', TwhWebAction(Sender).HtmlParam);
 
@@ -427,7 +423,7 @@ begin
   finally
     FreeAndNil(q);
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);
+{$IFDEF CodeSite}CSExitMethod(Self, cFn);
   CodeSite.Category := FSavCat; {$ENDIF}
 end;
 
@@ -441,7 +437,7 @@ var
 begin
   // FSavCat := CodeSite.Category;
   // CodeSite.Category := TwhWebAction(Sender).Name;
-  // {$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn);{$ENDIF}
+  // CSEnterMethod(Self, cFn);
   with Sender as TwhWebAction do
   begin
     useFormat := HtmlParam;
@@ -457,7 +453,7 @@ begin
     // CSSend('S1', S1);
     webApp.SendStringImm(s1);
   end;
-  // {$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn);{$ENDIF}
+  // CSExitMethod(Self, cFn);
   // CodeSite.Category := FSavCat;
 end;
 
@@ -482,7 +478,7 @@ begin
 {$IFDEF CodeSite}
   FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
-  CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); {$ENDIF}
   q := nil;
   if SplitThree(TwhWebAction(Sender).HtmlParam, ',', CurrentTable, CurrentPK,
     PKValue) then
@@ -547,7 +543,7 @@ begin
       FreeAndNil(q);
     end;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); 
+{$IFDEF CodeSite}CSExitMethod(Self, cFn); 
   CodeSite.Category := FSavCat;{$ENDIF}
 end;
 
@@ -560,11 +556,11 @@ function TDMCodeRageActions.ResetDBConnection: Boolean;
 const
   cFn = 'ResetDBConnection';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); 
   wds.Close;
   wds.HouseClean;
   Result := IbObj_Prepare(c);
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMCodeRageActions.waRepeatOfExecute(Sender: TObject);
@@ -611,7 +607,7 @@ begin
 {$IFDEF CodeSite}
   FSavCat := CodeSite.Category;
   CodeSite.Category := TwhWebAction(Sender).Name;
-  CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+  CSEnterMethod(Self, cFn); {$ENDIF}
   q := nil;
   DrName := TwhWebAction(Sender).HtmlParam;
   UpdateSQL := pWebApp.Tekeros.TekeroAsString(DrName);
@@ -673,7 +669,7 @@ begin
     end;
   end;
   pWebApp.Response.SendBounceToPageR('pgAdminMenu', '');
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); 
+{$IFDEF CodeSite}CSExitMethod(Self, cFn); 
   CodeSite.Category := FSavCat;{$ENDIF}
 end;
 
@@ -692,27 +688,27 @@ const
 var
   dn: string;
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   with Sender as TwhdbScan do
   begin
     dn := HtmlParam; // droplet name to base off
     // CSSend('about to SendDroplet', dn);
     webApp.SendDroplet(dn, drWithinWhrow);
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 procedure TDMCodeRageActions.IBNativeQueryAboutBeforeOpen(DataSet: TDataSet);
 const
   cFn = 'IBNativeQueryAboutBeforeOpen';
 begin
-{$IFDEF CodeSite}CodeSite.EnterMethod(Self, cFn); {$ENDIF}
+CSEnterMethod(Self, cFn);
   CSSend('ActiveScheduleID', S(ActiveScheduleID));
   with DataSet as TIBOQuery do
   begin
     Params[0].AsInteger := ActiveScheduleID;
   end;
-{$IFDEF CodeSite}CodeSite.ExitMethod(Self, cFn); {$ENDIF}
+CSExitMethod(Self, cFn);
 end;
 
 end.
