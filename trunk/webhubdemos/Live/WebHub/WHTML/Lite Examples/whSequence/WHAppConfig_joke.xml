@@ -1,12 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
     <SplashEnabled value="true"/>
-    <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -20,7 +19,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
@@ -37,8 +36,8 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-          <AppSetting name="CodeSiteLogging" value="error,exception" />
-    </AppSettings>    
+      <AppSetting name="CodeSiteLogging" value="error,exception"/>
+    </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="Summary" value="true"/>
       <ErrorAlertFlag name="LogToFile" value="true"/>
@@ -74,8 +73,8 @@
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot" context="META"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whSequence.whteko"/>
