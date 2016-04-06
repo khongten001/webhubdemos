@@ -53,7 +53,7 @@ implementation
 
 uses
   Forms,
-  MultiTypeApp, ucDlgs, ucLogFil,
+  MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
   webApp, webBase, webSplat, whSharedLog, webCall,
   dmFishAp, tfish, htWebApp, 
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain,
