@@ -920,7 +920,7 @@ ok
 <whprep>
 (~SET|testprefix=//(~Request.Authority~)/(~Request.RawVMR~)~)
 (~SET|testprefixadv=//(~Request.Authority~)/runadv/(~Request.Runner~)~)
-(~SET|testprefixshowcase=//(~Request.Authority~)/runshowcase/(~Request.Runner~)~)
+(~SET|testprefixjoke=//(~Request.Authority~)/runjoke/(~Request.Runner~)~)
 (~SET|testprefixhtfd=//(~Request.Authority~)/runhtfd/(~Request.Runner~)~)
 (~SET|testapp1=htfd~)<!--- htfd -->
 (~SET|testapp2=adv~)<!--- adv -->
@@ -929,7 +929,7 @@ ok
 (~MATCH|(~ZMDefaultMapContext~)=DORIS|
 <!--- different AppIDs on db.demos.href.com -->
 	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixshowcase=//(~Request.Authority~)/(~Request.RawVMR~)~)
+	(~SET|testprefixjoke=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testprefixhtfd=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testapp1=htfs~)
 	(~SET|testapp2=htq1~)
@@ -939,7 +939,7 @@ ok
 (~MATCH|ETA[(~ZMDefaultMapContext~)|
 <!--- shared AppPool on lite.demos.href.com -->
 	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixshowcase=//(~Request.Authority~)/(~Request.RawVMR~)~)
+	(~SET|testprefixjoke=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testprefixhtfd=//(~Request.Authority~)/(~Request.RawVMR~)~)
 ~)
 </whprep>
@@ -1020,11 +1020,11 @@ RawVMR: (~Request.RawVMR~)
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
 <td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
-<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
-<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
-<td><iframe src="(~testprefixshowcase~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~Security.ReadOnlySessionID~).(~RandStr~):2"  ></iframe> </td>
 </tr>
 </whdroplet>
