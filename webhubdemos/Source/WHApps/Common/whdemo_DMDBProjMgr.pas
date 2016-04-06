@@ -159,6 +159,20 @@ begin
       WebMessage(SplashMessage);
 
       {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
+
+      if Assigned(fmWebHubMainForm.Restorer) then
+      begin
+        { avoid Restorer feature on production server
+          with multiple instances -- too much conflict on the
+          WHAppRestorer.xml file during shutdown }
+        CSSend(csmLevel5, 'Restorer.Forget on ZMContext',
+          pWebApp.ZMDefaultMapContext);
+        fmWebHubMainForm.Restorer.Forget;  // cleanup pointers on nested panels
+        FreeAndNil(fmWebHubMainForm.Restorer);
+      end
+      else
+        CSSend('fmWebHubMainForm.Restorer already nil');
+
       fmWebHubMainForm.Caption := pWebApp.AppID;
 
       whDemoCreateSharedPanels;
