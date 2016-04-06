@@ -84,30 +84,18 @@ end;
 procedure TDMForWHFishStore.ProjMgrDataModulesCreate1(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
+  SetCodeSiteLoggingState([]); // no logging during initial startup
   CreateCoreWebHubDataModule;
 end;
 
 procedure TDMForWHFishStore.ProjMgrDataModulesCreate2(
   Sender: TtpProject; const SuggestedAppID: String; var ErrorText: String;
   var Continue: Boolean);
-var
-  UsedAppID: string;
 begin
-  UsedAppID := FFixedAppID;
-  if UsedAppID = '' then
-  begin
-    UsedAppID := SuggestedAppID;
-    if UsedAppID = '' then
-      UsedAppID := 'appvers';
-  end;
-
-  whDemoSetAppId(UsedAppID);  // this refreshes the app
+  whDemoSetAppId('htfs');  // HREF Tools Fish Store
   {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
 
-  // We want to let a parameter determine the AppID served by whLite.exe
-  // See ucString.pas and uCode.pas for DefaultsTo and ParamString functions
   whDemoCreateSharedDataModules;
-
 end;
 
 procedure TDMForWHFishStore.ProjMgrDataModulesCreate3(
@@ -140,6 +128,20 @@ begin
     WebMessage(SplashMessage);
 
     {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
+
+      if Assigned(fmWebHubMainForm.Restorer) then
+      begin
+        { avoid Restorer feature on production server
+          with multiple instances -- too much conflict on the
+          WHAppRestorer.xml file during shutdown }
+        CSSend(csmLevel5, 'Restorer.Forget on ZMContext',
+          pWebApp.ZMDefaultMapContext);
+        fmWebHubMainForm.Restorer.Forget;  // cleanup pointers on nested panels
+        FreeAndNil(fmWebHubMainForm.Restorer);
+      end
+      else
+        CSSend('fmWebHubMainForm.Restorer already nil');
+
     whDemoCreateSharedPanels;
     {M}Application.CreateForm(TfmHTFSPanel, fmHTFSPanel);
 
