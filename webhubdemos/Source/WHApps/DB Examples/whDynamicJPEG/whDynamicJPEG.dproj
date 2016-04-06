@@ -1,4 +1,4 @@
-<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{B18E41BB-F822-4E6D-B2C2-F61C12464A72}</ProjectGuid>
         <MainSource>whDynamicJPEG.dpr</MainSource>
@@ -7,7 +7,7 @@
         <AppType>Application</AppType>
         <FrameworkType>None</FrameworkType>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>14.4</ProjectVersion>
+        <ProjectVersion>18.1</ProjectVersion>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
     </PropertyGroup>
@@ -36,12 +36,13 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
+        <SanitizedProjectName>whDynamicJPEG</SanitizedProjectName>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_UnitSearchPath>h:\;h:\dcu_d17_win32;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Icon_MainIcon>..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <DCC_ExeOutput>D:\Projects\webhubdemos\Live\WebHub\Apps\</DCC_ExeOutput>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Imaging$(DCC_Namespace)</DCC_Namespace>
+        <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;Winapi;Vcl;Vcl.Imaging$(DCC_Namespace);$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <DCC_SymbolReferenceInfo>1</DCC_SymbolReferenceInfo>
         <DCC_DcuOutput>d:\Temp\DelphiTempDCU</DCC_DcuOutput>
@@ -54,17 +55,17 @@
         <DCC_F>false</DCC_F>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
-        <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
-        <DCC_DebugInformation>false</DCC_DebugInformation>
+        <DCC_DebugInformation>0</DCC_DebugInformation>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Manifest_File>None</Manifest_File>
@@ -103,6 +104,8 @@
             <Form>DemoViewSource</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="..\..\Common\whdemo_CodeSite.pas"/>
+        <DCCReference Include="..\..\Common\whdemo_UIHelpers.pas"/>
         <DCCReference Include="h:\whpanel_RemotePages.pas">
             <Form>fmWhDreamweaver</Form>
             <DesignClass>TfmWhDreamweaver</DesignClass>
@@ -193,7 +196,6 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
@@ -204,7 +206,7 @@
 
 <!-- EurekaLog First Line
 [Exception Log]
-EurekaLog Version=7001
+EurekaLog Version=7007
 Activate=0
 AutoCrashOperation=1
 boUseMainModuleOptions=1
@@ -212,6 +214,7 @@ CompatibilityMode=1
 csoAllowedRenderMethods=64
 csoDisabledRenderMethods=-2
 csoShowWindowsThreads=1
+DeleteMapAfterCompile=0
 Email Address=""
 Email Object=""
 Encrypt Password=""
@@ -219,7 +222,6 @@ Errors Number=32
 Errors Terminate=3
 Foreground Tab=0
 loCatchLeaks=0
-loEnableMMDebugMode=0
 loFreeAllLeaks=1
 loHideRTLLeaks=0
 loMaxLeaks=1024

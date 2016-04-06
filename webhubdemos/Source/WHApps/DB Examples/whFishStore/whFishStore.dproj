@@ -4,7 +4,7 @@
         <MainSource>whFishStore.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>15.4</ProjectVersion>
+        <ProjectVersion>18.1</ProjectVersion>
         <Base>True</Base>
         <AppType>Application</AppType>
         <FrameworkType>None</FrameworkType>
@@ -82,6 +82,7 @@
             <Form>fmAppAboutPanel</Form>
         </DCCReference>
         <DCCReference Include="..\..\Common\whdemo_CodeSite.pas"/>
+        <DCCReference Include="..\..\Common\whdemo_UIHelpers.pas"/>
         <DCCReference Include="..\..\Common\whdemo_Extensions.pas">
             <Form>DemoExtensions</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -170,7 +171,6 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
-                <Platform value="OSX32">False</Platform>
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">False</Platform>
             </Platforms>
@@ -178,3 +178,11 @@
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>
 </Project>
+
+<!-- EurekaLog First Line
+[Exception Log]
+EurekaLog Version=7007
+Activate=0
+DeleteMapAfterCompile=0
+Encrypt Password=""
+EurekaLog Last Line -->
