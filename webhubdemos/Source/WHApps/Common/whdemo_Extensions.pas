@@ -677,7 +677,7 @@ begin
           are going to be on static IPs.. for the general public though,
           this is probably as good as you will get it without resorting
           to storing a cookie on the user's machine. }
-        CSSend('allow based on referer');
+        {$IFDEF LOGBAD}CSSend('allow based on referer');{$ENDIF}
         b := False;
       end;
 
@@ -687,13 +687,13 @@ begin
           IP numbers so it is very normal for an AOL browser to change IP numbers
           in the middle of a session.  Allow this.
           Reconfirmed 18-Apr-2008 }
-        CSSend('AOL');
+        {$IFDEF LOGBAD}CSSend('AOL');{$ENDIF}
         b := False;
       end;
 
       if b and HonorLowerSecurity then
       begin
-        CSSend('HonorLowerSecurity');
+        {$IFDEF LOGBAD}CSSend('HonorLowerSecurity');{$ENDIF}
         b := False;
       end;
 
@@ -703,13 +703,14 @@ begin
           PageID := Situations.ChangedIPPageID
         else
           PageID := Situations.HomePageID;
-        CSSend('PageID', PageID);
+        {$IFDEF LOGBAD}CSSend('PageID', PageID);{$ENDIF}
         RejectSession(cUnitName + ', ' + cFn + '()', False);
       end;
     end;
   end
   else
-    CSSend('Allow HREFTools Quality Assurance Agent');
+    {$IFDEF LOGBAD}CSSend('Allow HREFTools Quality Assurance Agent'){$ENDIF};
+    
   {$IFDEF LOGBAD}CSExitMethod(Self, cFn);{$ENDIF}
 end;
 
@@ -726,7 +727,7 @@ var
 const
   cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
-  CSEnterMethod(Self, cFn);
+  //CSEnterMethod(Self, cFn);
   inherited;
   bKeepChecking := InSessionNumber <> 0;
 
@@ -797,7 +798,7 @@ begin
         RejectSession(cUnitName + ', ' + cFn + '()', False);  // was True
     end;
   end;
-  CSExitMethod(Self, cFn);
+  //CSExitMethod(Self, cFn);
 end;
 
 var
