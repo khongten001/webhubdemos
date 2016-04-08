@@ -1,6 +1,7 @@
 :: select-more-demos.bat
-:: Copyright (c) 2011-2015 HREF Tools Corp.
-:: www.href.com
+:: source is in the WebHubDemos svn repository.
+:: Copyright (c) 2011-2016 HREF Tools Corp.
+:: https://www.href.com
 
 :: assume new-ipc WebHub v3
 
@@ -22,6 +23,6 @@ set demobw=no
 
 set demohtsc=yes
 
-set demojoke=no
+set demojoke=yes
 
 :end
