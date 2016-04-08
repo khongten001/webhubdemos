@@ -643,6 +643,12 @@ you win, because it requires so much time, energy and financial resources.</p>
 </whoutput>
 </whpage>
 
+<whpage pageid="pgLogoutBounce">
+(~SESSION|delete~)
+(~CLEAR|*~)
+(~BOUNCE|(~EXPAND|(~DynURL.RawToActiveAuthority~)(~DynURL.ToAppID~):pgwelcome~)~)
+</whpage>
+
 <whpage pageid="pgLogout"  desc="Logout to erase session data">
 <whprep>
 (~SESSION|Delete~)
@@ -919,28 +925,16 @@ ok
 <whpage pageid="pgStressTeenyPages" desc="-Stress Teeny Pages using FrameSet">
 <whprep>
 (~SET|testprefix=//(~Request.Authority~)/(~Request.RawVMR~)~)
-(~SET|testprefixadv=//(~Request.Authority~)/runadv/(~Request.Runner~)~)
-(~SET|testprefixjoke=//(~Request.Authority~)/runjoke/(~Request.Runner~)~)
-(~SET|testprefixhtfd=//(~Request.Authority~)/runhtfd/(~Request.Runner~)~)
 (~SET|testapp1=htfd~)<!--- htfd -->
 (~SET|testapp2=adv~)<!--- adv -->
 (~SET|testapp3=demos~)<!--- demos -->
 (~SET|testapp4=joke~)<!--- joke or showcase -->
 (~MATCH|(~ZMDefaultMapContext~)=DORIS|
 <!--- different AppIDs on db.demos.href.com -->
-	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixjoke=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixhtfd=//(~Request.Authority~)/(~Request.RawVMR~)~)
 	(~SET|testapp1=htfs~)
 	(~SET|testapp2=htq1~)
 	(~SET|testapp3=demos~)
 	(~SET|testapp4=dbhtml~)
-~)
-(~MATCH|ETA[(~ZMDefaultMapContext~)|
-<!--- shared AppPool on lite.demos.href.com -->
-	(~SET|testprefixadv=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixjoke=//(~Request.Authority~)/(~Request.RawVMR~)~)
-	(~SET|testprefixhtfd=//(~Request.Authority~)/(~Request.RawVMR~)~)
 ~)
 </whprep>
 <whoutput>
@@ -1014,17 +1008,17 @@ RawVMR: (~Request.RawVMR~)
 <whdroplet name="drStress3MainAppIDs" show="no">
 <tr>
 <th style="background-color:#FFCC99;">(~litecount~)</th>
-<td><iframe src="(~testprefixhtfd~)?(~testapp1~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp1~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~):demos"></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"></iframe></td>
-<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
-<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"></iframe></td> 
+<td><iframe src="(~testprefix~)?(~testapp4~):pgRemoteCheckVersion:(~Security.ReadOnlySessionID~).(~DynURL.Rand~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
-<td><iframe src="(~testprefixadv~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
-<td><iframe src="(~testprefixjoke~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
+<td><iframe src="(~testprefix~)?(~testapp2~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)" ></iframe></td>
+<td><iframe src="(~testprefix~)?(~testapp4~):pgTestIFrameRcvReferer:(~Security.ReadOnlySessionID~).(~RandStr~)"  ></iframe> </td>
 <td><iframe src="(~testprefix~)?(~testapp3~):pgTestLoremIpsum:(~Security.ReadOnlySessionID~).(~RandStr~):2"  ></iframe> </td>
 </tr>
 </whdroplet>
