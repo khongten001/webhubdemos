@@ -145,4 +145,23 @@ abc: (~INPUTTEXT|inABC~)<br/>
 </body></html>
 </whpage>
 
+<whpage pageid="pgsituationtest" desc="Test the situation syntax">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
+
+<h2>Hello World</h2>
+(~waSimulateBadNews.Execute|AppNotRunning~)
+
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
+(~drPageEnd~)
+</body></html>
+</whpage>
+
+
 </whteko>
