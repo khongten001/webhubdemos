@@ -547,7 +547,10 @@ begin
   if AKeyword = 'AppCoverPage' then
     pWebApp.Response.SimulateAppCoverPage(Now, 5, 'testing system messages')
   else
+  begin
     pWebApp.SendStringImm(Self.ClassName + ': invalid syntax');
+    pWebApp.Response.Close;
+  end;
 end;
 
 function HonorLowerSecurity: Boolean;
