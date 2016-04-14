@@ -45,7 +45,7 @@ uses
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   webLink in 'h:\webLink.pas',
-  whutil_ZaphodsMap in 'H:\whutil_ZaphodsMap.pas',
+  whutil_ZaphodsMap in 'k:\webhub\lib\whutil_ZaphodsMap.pas',
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
   whdemo_UIHelpers in '..\..\..\Common\whdemo_UIHelpers.pas',

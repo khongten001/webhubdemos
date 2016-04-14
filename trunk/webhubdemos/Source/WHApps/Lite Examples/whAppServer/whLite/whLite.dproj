@@ -8,7 +8,7 @@
         <Base>True</Base>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
@@ -134,6 +134,7 @@
         <DCC_Define>CodeSite;Log2CSL;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
+        <DCC_Define>LOGWHMSG;$(DCC_Define)</DCC_Define>
         <DCC_UnitSearchPath>K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Debugger_RunParams>/id=form</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -161,7 +162,7 @@
             <Form>fmTrayForm</Form>
         </DCCReference>
         <DCCReference Include="h:\webLink.pas"/>
-        <DCCReference Include="H:\whutil_ZaphodsMap.pas"/>
+        <DCCReference Include="k:\webhub\lib\whutil_ZaphodsMap.pas"/>
         <DCCReference Include="..\..\..\Common\whdemo_DMProjMgr.pas">
             <Form>DMForWHDemo</Form>
             <DesignClass>TDataModule</DesignClass>
