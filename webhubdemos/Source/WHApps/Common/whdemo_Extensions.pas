@@ -547,6 +547,9 @@ begin
   if AKeyword = 'AppCoverPage' then
     pWebApp.Response.SimulateAppCoverPage(Now, 5, 'testing system messages')
   else
+  if AKeyword = 'WHBusy' then
+    pWebApp.Response.SendCustomError(AKeyword, 500, 13)
+  else
   begin
     pWebApp.SendStringImm(Self.ClassName + ': invalid syntax');
     pWebApp.Response.Close;
