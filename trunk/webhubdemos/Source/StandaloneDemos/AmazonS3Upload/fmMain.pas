@@ -40,6 +40,7 @@ type
     Memo1: TMemo;
     GroupBox4: TGroupBox;
     MemoCustomHeaders: TMemo;
+    ComboRegion: TComboBox;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
@@ -81,7 +82,12 @@ begin
 
     Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
   }
-  AmazonConnectionInfo1.Protocol := 'http';  // or 'https'
+  AmazonConnectionInfo1.Protocol := 'HTTPS';  // or 'https'
+
+  {For buckets outside US-East, configure these 2 extra properties }
+  AmazonConnectionInfo1.UseDefaultEndpoints := false;
+  AmazonConnectionInfo1.StorageEndpoint :=
+    Format('s3-%s.amazonaws.com', [ComboRegion.Items[ComboRegion.ItemIndex]]);
 
   Filespec := FileListBox1.FileName;
 
