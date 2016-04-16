@@ -18,7 +18,8 @@ uses
   Winapi.Windows, Winapi.Messages, SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient,
   Vcl.StdCtrls, Vcl.FileCtrl, Vcl.ExtCtrls, Data.Cloud.CloudAPI,
-  Data.Cloud.AmazonAPI;
+  Data.Cloud.AmazonAPI, Vcl.ActnList, System.Actions, Vcl.StdActns, Vcl.ToolWin,
+  Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.Menus;
 
 type
   TForm2 = class(TForm)
@@ -41,10 +42,21 @@ type
     GroupBox4: TGroupBox;
     MemoCustomHeaders: TMemo;
     ComboRegion: TComboBox;
+    MainMenu1: TMainMenu;
+    File1: TMenuItem;
+    ActionMainMenuBar1: TActionMainMenuBar;
+    ActionList1: TActionList;
+    FileExit1: TFileExit;
+    Exit1: TMenuItem;
+    ools1: TMenuItem;
+    Action1: TAction;
+    ActionCreateBucket: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
+    procedure Action1Execute(Sender: TObject);
   private
     { Private declarations }
+    function StrToRegion(const InRegion: string): TAmazonRegion;
   public
     { Public declarations }
   end;
@@ -54,7 +66,51 @@ var
 
 implementation
 
+uses
+  StdStyleActnCtrls;
+
 {$R *.dfm}
+
+procedure TForm2.Action1Execute(Sender: TObject);
+var
+  StorageService: TAmazonStorageService;
+  ResponseInfo: TCloudResponseInfo;
+  ARegion: TAmazonRegion;
+  InfoMsg: string;
+begin
+  StorageService := nil;
+  ResponseInfo := nil;
+  InfoMsg := '';
+
+  AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
+  AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
+  AmazonConnectionInfo1.UseDefaultEndpoints := false;
+  // NB: make sure this matches against whichever region is listed below.
+  AmazonConnectionInfo1.StorageEndpoint :=
+    Format('s3-%s.amazonaws.com', [ComboRegion.Items[ComboRegion.ItemIndex]]);
+
+  try
+    StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
+    ResponseInfo := TCloudResponseInfo.Create;
+    ARegion := StrToRegion(ComboRegion.Items[ComboRegion.ItemIndex]);
+
+    StorageService.CreateBucket(LabeledEditBucket.Text,
+      TAmazonACLType.amzbaPublicRead,
+      // amzrUSEast1, // The specified location-constraint is not valid (InvalidLocationConstraint)
+      //amzrAPSoutheast1, // Singapore works
+      //amzrUSWest2, // Oregon works
+      ARegion,
+      ResponseInfo);
+    InfoMsg :=
+      Format('ResponseInfo: statuscode %d, message %s',
+      [ResponseInfo.StatusCode,
+      ResponseInfo.StatusMessage]);
+  finally
+    FreeAndNil(StorageService);
+  end;
+
+  Memo1.Lines.Add(InfoMsg);
+end;
 
 procedure TForm2.Button1Click(Sender: TObject);
 var
@@ -201,6 +257,29 @@ begin
 
   // Custom headers are better left to user data entry
   //EditCustomHeader.Text := 'Cache-Control=max-age=31557600'; //'Content-Type=text/html';
+end;
+
+function TForm2.StrToRegion(const InRegion: string): TAmazonRegion;
+begin
+  if InRegion = 'us-east-1' then Result := amzrUSEast1
+  else
+  if InRegion = 'us-west-1' then Result := amzrUSWest1
+  else
+  if InRegion =  'us-west-2' then Result := amzrUSWest2
+  else
+  if InRegion =  'eu-west-1' then Result := amzrEUWest1
+  else
+  if InRegion =  'eu-central-1' then Result := amzrEUCentral1
+  else
+  if InRegion =  'ap-northeast-1' then Result := amzrAPNortheast1
+  //else
+  //if InRegion =  'ap-northeast-2' then Result := // unsupported
+  else
+  if InRegion =  'ap-southeast-1' then Result := amzrAPSoutheast1
+  else
+  if InRegion =  'ap-southeast-2' then Result := amzrAPSoutheast2
+  else
+  if InRegion =  'sa-east-1' then Result := amzrSAEast1;
 end;
 
 end.
