@@ -10,23 +10,24 @@ object Form2: TForm2
   Font.Height = -18
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Menu = MainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 25
   object Panel1: TPanel
     Left = 0
-    Top = 505
+    Top = 534
     Width = 753
-    Height = 235
+    Height = 206
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
     Margins.Bottom = 4
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 401
-    ExplicitHeight = 276
+    ExplicitTop = 505
+    ExplicitHeight = 235
     object Button1: TButton
       Left = 581
       Top = 6
@@ -46,7 +47,7 @@ object Form2: TForm2
       Left = 1
       Top = 1
       Width = 270
-      Height = 233
+      Height = 204
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -55,7 +56,7 @@ object Form2: TForm2
       Caption = 'Source folder'
       Padding.Left = 10
       TabOrder = 1
-      ExplicitHeight = 274
+      ExplicitHeight = 233
       object DriveComboBox1: TDriveComboBox
         Left = 12
         Top = 27
@@ -75,7 +76,7 @@ object Form2: TForm2
         Left = 12
         Top = 58
         Width = 256
-        Height = 173
+        Height = 144
         Align = alClient
         DirLabel = Label1
         FileList = FileListBox1
@@ -87,14 +88,14 @@ object Form2: TForm2
         ItemHeight = 25
         ParentFont = False
         TabOrder = 1
-        ExplicitHeight = 214
+        ExplicitHeight = 173
       end
     end
     object GroupBox3: TGroupBox
       Left = 271
       Top = 1
       Width = 304
-      Height = 233
+      Height = 204
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -103,14 +104,14 @@ object Form2: TForm2
       Caption = 'File to upload'
       Padding.Left = 10
       TabOrder = 2
-      ExplicitHeight = 274
+      ExplicitHeight = 233
       object Label1: TLabel
         Left = 12
         Top = 27
         Width = 290
         Height = 25
         Align = alTop
-        Caption = 'C:\WINDOWS\system32'
+        Caption = 'D:\...\Studio\18.0\bin'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -18
@@ -123,7 +124,7 @@ object Form2: TForm2
         Left = 12
         Top = 52
         Width = 290
-        Height = 179
+        Height = 150
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -133,7 +134,7 @@ object Form2: TForm2
         ItemHeight = 25
         ParentFont = False
         TabOrder = 0
-        ExplicitHeight = 220
+        ExplicitHeight = 179
       end
     end
   end
@@ -148,16 +149,14 @@ object Form2: TForm2
     Margins.Bottom = 4
     Align = alTop
     TabOrder = 1
-    ExplicitLeft = 1
-    ExplicitTop = 40
     object LabeledEditBucket: TLabeledEdit
       Left = 40
       Top = 33
       Width = 298
       Height = 33
-      EditLabel.Width = 206
+      EditLabel.Width = 52
       EditLabel.Height = 25
-      EditLabel.Caption = 'Bucket (try one in US East)'
+      EditLabel.Caption = 'Bucket'
       TabOrder = 0
       Text = 'screenshots.href.com'
     end
@@ -221,7 +220,6 @@ object Form2: TForm2
         Lines.Strings = (
           'Memo1')
         TabOrder = 0
-        ExplicitHeight = 102
       end
     end
   end
@@ -244,9 +242,6 @@ object Form2: TForm2
         '')
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitLeft = 3
-      ExplicitTop = 35
-      ExplicitHeight = 76
     end
   end
   object ComboRegion: TComboBox
@@ -269,11 +264,63 @@ object Form2: TForm2
       'ap-southeast-2'
       'sa-east-1')
   end
+  object ActionMainMenuBar1: TActionMainMenuBar
+    Left = 0
+    Top = 505
+    Width = 753
+    Height = 29
+    Caption = 'ActionMainMenuBar1'
+    Color = clMenuBar
+    ColorMap.DisabledFontColor = 7171437
+    ColorMap.HighlightColor = clWhite
+    ColorMap.BtnSelectedFont = clBlack
+    ColorMap.UnusedColor = clWhite
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Segoe UI'
+    Font.Style = []
+    Spacing = 0
+    ExplicitLeft = 312
+    ExplicitTop = 384
+    ExplicitWidth = 150
+  end
   object AmazonConnectionInfo1: TAmazonConnectionInfo
     TableEndpoint = 'sdb.amazonaws.com'
     QueueEndpoint = 'queue.amazonaws.com'
     StorageEndpoint = 's3.amazonaws.com'
-    Left = 520
-    Top = 192
+    Left = 504
+    Top = 144
+  end
+  object MainMenu1: TMainMenu
+    Left = 368
+    Top = 376
+    object File1: TMenuItem
+      Caption = '&File'
+      object Exit1: TMenuItem
+        Action = FileExit1
+      end
+    end
+    object ools1: TMenuItem
+      Caption = '&Tools'
+      object ActionCreateBucket: TMenuItem
+        Action = Action1
+        Caption = 'Create Bucket in Region'
+      end
+    end
+  end
+  object ActionList1: TActionList
+    Left = 504
+    Top = 88
+    object FileExit1: TFileExit
+      Category = 'File'
+      Caption = 'E&xit'
+      Hint = 'Exit|Quits the application'
+      ImageIndex = 43
+    end
+    object Action1: TAction
+      Caption = 'Action1'
+      OnExecute = Action1Execute
+    end
   end
 end
