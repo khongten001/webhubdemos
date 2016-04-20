@@ -14,6 +14,8 @@ unit fmMain;
 
 interface
 
+{$WARN UNIT_PLATFORM OFF}   // Vcl.FileCtrl is for Windows only.
+
 uses
   Winapi.Windows, Winapi.Messages, SysUtils, System.Variants, System.Classes,
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, IPPeerClient,
@@ -86,6 +88,7 @@ begin
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
+  AmazonConnectionInfo1.Protocol := 'HTTP';  // or 'https'
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
   AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = ComboText);
   // NB: make sure this matches against whichever region is listed below.
@@ -109,6 +112,7 @@ begin
       [ResponseInfo.StatusCode,
       ResponseInfo.StatusMessage]);
   finally
+    FreeAndNil(ResponseInfo);
     FreeAndNil(StorageService);
   end;
 
@@ -142,7 +146,7 @@ begin
 
     Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
   }
-  AmazonConnectionInfo1.Protocol := 'HTTPS';  // or 'https'
+  AmazonConnectionInfo1.Protocol := 'HTTP';  // or 'https'
 
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
 
@@ -284,7 +288,9 @@ begin
   else
   if InRegion =  'ap-southeast-2' then Result := amzrAPSoutheast2
   else
-  if InRegion =  'sa-east-1' then Result := amzrSAEast1;
+  if InRegion =  'sa-east-1' then Result := amzrSAEast1
+  else
+    Result := amzrNotSpecified;
 end;
 
 function TForm2.StrToS3Endpoint(const InRegion: string): string;

@@ -26,8 +26,6 @@ object Form2: TForm2
     Margins.Bottom = 5
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 668
-    ExplicitHeight = 257
     object Button1: TButton
       Left = 726
       Top = 8
@@ -66,7 +64,6 @@ object Form2: TForm2
       Padding.Left = 13
       ParentFont = False
       TabOrder = 1
-      ExplicitHeight = 255
       object DriveComboBox1: TDriveComboBox
         Left = 15
         Top = 27
@@ -85,7 +82,6 @@ object Form2: TForm2
         Font.Style = []
         ParentFont = False
         TabOrder = 0
-        ExplicitTop = 33
       end
       object DirectoryListBox1: TDirectoryListBox
         Left = 15
@@ -107,8 +103,6 @@ object Form2: TForm2
         ItemHeight = 25
         ParentFont = False
         TabOrder = 1
-        ExplicitTop = 64
-        ExplicitHeight = 189
       end
     end
     object GroupBox3: TGroupBox
@@ -130,7 +124,6 @@ object Form2: TForm2
       Padding.Left = 13
       ParentFont = False
       TabOrder = 2
-      ExplicitHeight = 255
       object Label1: TLabel
         Left = 15
         Top = 27
@@ -141,15 +134,14 @@ object Form2: TForm2
         Margins.Right = 4
         Margins.Bottom = 4
         Align = alTop
-        Caption = 'C:\WINDOWS\System32'
+        Caption = 'C:\WINDOWS\system32'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -18
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitTop = 33
-        ExplicitWidth = 195
+        ExplicitWidth = 194
       end
       object FileListBox1: TFileListBox
         Left = 15
@@ -169,7 +161,6 @@ object Form2: TForm2
         ItemHeight = 25
         ParentFont = False
         TabOrder = 0
-        ExplicitHeight = 201
       end
     end
   end
@@ -294,8 +285,6 @@ object Form2: TForm2
           'Memo1')
         ScrollBars = ssBoth
         TabOrder = 0
-        ExplicitTop = 33
-        ExplicitHeight = 188
       end
     end
   end
@@ -338,8 +327,6 @@ object Form2: TForm2
       ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 0
-      ExplicitTop = 33
-      ExplicitHeight = 144
     end
   end
   object ComboRegion: TComboBox
@@ -394,7 +381,6 @@ object Form2: TForm2
     Font.Name = 'Segoe UI'
     Font.Style = []
     Spacing = 0
-    ExplicitTop = 631
   end
   object AmazonConnectionInfo1: TAmazonConnectionInfo
     TableEndpoint = 'sdb.amazonaws.com'
