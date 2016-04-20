@@ -57,6 +57,7 @@ type
   private
     { Private declarations }
     function StrToRegion(const InRegion: string): TAmazonRegion;
+    function StrToS3Endpoint(const InRegion: string): string;
   public
     { Public declarations }
   end;
@@ -77,6 +78,7 @@ var
   ResponseInfo: TCloudResponseInfo;
   ARegion: TAmazonRegion;
   InfoMsg: string;
+  ComboText: string;
 begin
   StorageService := nil;
   ResponseInfo := nil;
@@ -84,17 +86,18 @@ begin
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
-  AmazonConnectionInfo1.UseDefaultEndpoints := false;
+  ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
+  AmazonConnectionInfo1.UseDefaultEndpoints := False; // ('us-east-1' = ComboText);
   // NB: make sure this matches against whichever region is listed below.
-  AmazonConnectionInfo1.StorageEndpoint :=
-    Format('s3-%s.amazonaws.com', [ComboRegion.Items[ComboRegion.ItemIndex]]);
+  AmazonConnectionInfo1.StorageEndpoint := StrToS3Endpoint(ComboText);
+  Memo1.Lines.Add('StorageEndpoint=' + AmazonConnectionInfo1.StorageEndpoint);
 
   try
     StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
     ResponseInfo := TCloudResponseInfo.Create;
     ARegion := StrToRegion(ComboRegion.Items[ComboRegion.ItemIndex]);
 
-    StorageService.CreateBucket(LabeledEditBucket.Text,
+    StorageService.CreateBucket(LowerCase(LabeledEditBucket.Text),
       TAmazonACLType.amzbaPublicRead,
       // amzrUSEast1, // The specified location-constraint is not valid (InvalidLocationConstraint)
       //amzrAPSoutheast1, // Singapore works
@@ -140,10 +143,11 @@ begin
   }
   AmazonConnectionInfo1.Protocol := 'HTTPS';  // or 'https'
 
-  {For buckets outside US-East, configure these 2 extra properties }
-  AmazonConnectionInfo1.UseDefaultEndpoints := false;
+  {For buckets outside us-east-1, configure these 2 extra properties }
+  AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' =
+    ComboRegion.Items[ComboRegion.ItemIndex]);
   AmazonConnectionInfo1.StorageEndpoint :=
-    Format('s3-%s.amazonaws.com', [ComboRegion.Items[ComboRegion.ItemIndex]]);
+    StrToS3Endpoint(ComboRegion.Items[ComboRegion.ItemIndex]);
 
   Filespec := FileListBox1.FileName;
 
@@ -280,6 +284,15 @@ begin
   if InRegion =  'ap-southeast-2' then Result := amzrAPSoutheast2
   else
   if InRegion =  'sa-east-1' then Result := amzrSAEast1;
+end;
+
+function TForm2.StrToS3Endpoint(const InRegion: string): string;
+begin
+  // http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+  if InRegion = 'us-east-1' then
+    Result := 's3.amazonaws.com' // or 's3-external-1.amazonaws.com'
+  else
+    Result := Format('s3-%s.amazonaws.com', [InRegion]);
 end;
 
 end.
