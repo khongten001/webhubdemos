@@ -87,7 +87,7 @@ begin
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
-  AmazonConnectionInfo1.UseDefaultEndpoints := False; // ('us-east-1' = ComboText);
+  AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = ComboText);
   // NB: make sure this matches against whichever region is listed below.
   AmazonConnectionInfo1.StorageEndpoint := StrToS3Endpoint(ComboText);
   Memo1.Lines.Add('StorageEndpoint=' + AmazonConnectionInfo1.StorageEndpoint);
@@ -125,6 +125,7 @@ var
   Data: TArray<Byte>;
   PSrc, PTrg: PByte;
   InfoMsg: string;
+  ComboText: string;
 begin
   stream := nil;
   StorageService := nil;
@@ -143,11 +144,11 @@ begin
   }
   AmazonConnectionInfo1.Protocol := 'HTTPS';  // or 'https'
 
+  ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
+
   {For buckets outside us-east-1, configure these 2 extra properties }
-  AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' =
-    ComboRegion.Items[ComboRegion.ItemIndex]);
-  AmazonConnectionInfo1.StorageEndpoint :=
-    StrToS3Endpoint(ComboRegion.Items[ComboRegion.ItemIndex]);
+  AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = ComboText);
+  AmazonConnectionInfo1.StorageEndpoint := StrToS3Endpoint(ComboText);
 
   Filespec := FileListBox1.FileName;
 
