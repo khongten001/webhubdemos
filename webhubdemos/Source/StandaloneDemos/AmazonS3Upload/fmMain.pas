@@ -23,6 +23,9 @@ uses
   Data.Cloud.AmazonAPI, Vcl.ActnList, System.Actions, Vcl.StdActns, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.Menus;
 
+const
+  cProtocol = 'HTTP';  // http or https
+
 type
   TForm2 = class(TForm)
     AmazonConnectionInfo1: TAmazonConnectionInfo;
@@ -46,7 +49,6 @@ type
     ComboRegion: TComboBox;
     MainMenu1: TMainMenu;
     File1: TMenuItem;
-    ActionMainMenuBar1: TActionMainMenuBar;
     ActionList1: TActionList;
     FileExit1: TFileExit;
     Exit1: TMenuItem;
@@ -88,7 +90,7 @@ begin
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
-  AmazonConnectionInfo1.Protocol := 'HTTP';  // or 'https'
+  AmazonConnectionInfo1.Protocol := cProtocol;
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
   AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = ComboText);
   // NB: make sure this matches against whichever region is listed below.
@@ -146,7 +148,7 @@ begin
 
     Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
   }
-  AmazonConnectionInfo1.Protocol := 'HTTP';  // or 'https'
+  AmazonConnectionInfo1.Protocol := cProtocol;
 
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
 

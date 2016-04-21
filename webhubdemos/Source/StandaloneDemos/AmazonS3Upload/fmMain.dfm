@@ -2,7 +2,7 @@ object Form2: TForm2
   Left = 0
   Top = 0
   Caption = 'Delphi TAmazonStorageService'
-  ClientHeight = 925
+  ClientHeight = 816
   ClientWidth = 941
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -17,15 +17,17 @@ object Form2: TForm2
   TextHeight = 31
   object Panel1: TPanel
     Left = 0
-    Top = 614
+    Top = 521
     Width = 941
-    Height = 311
+    Height = 295
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
     Margins.Bottom = 5
     Align = alClient
     TabOrder = 0
+    ExplicitTop = 558
+    ExplicitHeight = 258
     object Button1: TButton
       Left = 726
       Top = 8
@@ -38,9 +40,9 @@ object Form2: TForm2
       Caption = 'Upload to S3'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -23
+      Font.Height = -15
       Font.Name = 'Segoe UI'
-      Font.Style = []
+      Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
       OnClick = Button1Click
@@ -49,7 +51,7 @@ object Form2: TForm2
       Left = 1
       Top = 1
       Width = 338
-      Height = 309
+      Height = 293
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5
@@ -58,17 +60,18 @@ object Form2: TForm2
       Caption = 'Source folder'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
       Padding.Left = 13
       ParentFont = False
       TabOrder = 1
+      ExplicitHeight = 200
       object DriveComboBox1: TDriveComboBox
         Left = 15
         Top = 27
         Width = 321
-        Height = 31
+        Height = 26
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
@@ -77,7 +80,7 @@ object Form2: TForm2
         DirList = DirectoryListBox1
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -18
+        Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
@@ -87,7 +90,7 @@ object Form2: TForm2
         Left = 15
         Top = 58
         Width = 321
-        Height = 249
+        Height = 233
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
@@ -97,10 +100,10 @@ object Form2: TForm2
         FileList = FileListBox1
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -18
+        Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
-        ItemHeight = 25
+        ItemHeight = 20
         ParentFont = False
         TabOrder = 1
       end
@@ -109,7 +112,7 @@ object Form2: TForm2
       Left = 339
       Top = 1
       Width = 380
-      Height = 309
+      Height = 293
       Margins.Left = 5
       Margins.Top = 5
       Margins.Right = 5
@@ -118,36 +121,37 @@ object Form2: TForm2
       Caption = 'File to upload'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -18
+      Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
       Padding.Left = 13
       ParentFont = False
       TabOrder = 2
+      ExplicitHeight = 200
       object Label1: TLabel
         Left = 15
         Top = 27
         Width = 363
-        Height = 25
+        Height = 20
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
         Margins.Bottom = 4
         Align = alTop
-        Caption = 'C:\WINDOWS\system32'
+        Caption = 'D:\Apps\Embarcadero\Studio\18.0\bin'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -18
+        Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 194
+        ExplicitWidth = 258
       end
       object FileListBox1: TFileListBox
         Left = 15
-        Top = 52
+        Top = 47
         Width = 363
-        Height = 255
+        Height = 244
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
@@ -155,10 +159,10 @@ object Form2: TForm2
         Align = alClient
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
-        Font.Height = -18
+        Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
-        ItemHeight = 25
+        ItemHeight = 20
         ParentFont = False
         TabOrder = 0
       end
@@ -168,7 +172,7 @@ object Form2: TForm2
     Left = 0
     Top = 0
     Width = 941
-    Height = 577
+    Height = 521
     Margins.Left = 5
     Margins.Top = 5
     Margins.Right = 5
@@ -176,22 +180,22 @@ object Form2: TForm2
     Align = alTop
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -15
     Font.Name = 'Segoe UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 1
     object LabeledEditBucket: TLabeledEdit
-      Left = 50
-      Top = 41
+      Left = 16
+      Top = 40
       Width = 373
-      Height = 33
+      Height = 28
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 52
-      EditLabel.Height = 25
+      EditLabel.Width = 44
+      EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
       EditLabel.Margins.Right = 4
@@ -201,52 +205,64 @@ object Form2: TForm2
       Text = 'samples3.embarcadero.com'
     end
     object LabeledEditAccessKey: TLabeledEdit
-      Left = 53
+      Left = 16
       Top = 155
       Width = 373
-      Height = 33
+      Height = 28
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 143
-      EditLabel.Height = 25
+      EditLabel.Width = 120
+      EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
       EditLabel.Margins.Right = 4
       EditLabel.Margins.Bottom = 4
       EditLabel.Caption = 'Bucket Access Key'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
     end
     object LabeledEditSecret: TLabeledEdit
-      Left = 50
-      Top = 245
-      Width = 723
-      Height = 33
+      Left = 16
+      Top = 219
+      Width = 373
+      Height = 28
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 128
-      EditLabel.Height = 25
+      EditLabel.Width = 107
+      EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
       EditLabel.Margins.Right = 4
       EditLabel.Margins.Bottom = 4
       EditLabel.Caption = 'Secret Password'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
     end
     object LabeledEditTargetPath: TLabeledEdit
-      Left = 50
-      Top = 313
+      Left = 16
+      Top = 289
       Width = 723
-      Height = 39
+      Height = 28
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 443
-      EditLabel.Height = 25
+      EditLabel.Width = 377
+      EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
       EditLabel.Margins.Right = 4
@@ -254,7 +270,7 @@ object Form2: TForm2
       EditLabel.Caption = 'Upload Target Path ( blank or end with / example data/ )'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
-      Font.Height = -23
+      Font.Height = -15
       Font.Name = 'Segoe UI'
       Font.Style = []
       ParentFont = False
@@ -289,8 +305,8 @@ object Form2: TForm2
     end
   end
   object GroupBox4: TGroupBox
-    Left = 52
-    Top = 373
+    Left = 16
+    Top = 325
     Width = 849
     Height = 180
     Margins.Left = 4
@@ -330,17 +346,17 @@ object Form2: TForm2
     end
   end
   object ComboRegion: TComboBox
-    Left = 53
+    Left = 16
     Top = 82
-    Width = 370
-    Height = 33
+    Width = 373
+    Height = 28
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
     Margins.Bottom = 4
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
-    Font.Height = -18
+    Font.Height = -15
     Font.Name = 'Segoe UI'
     Font.Style = []
     ItemIndex = 0
@@ -358,29 +374,6 @@ object Form2: TForm2
       'ap-southeast-1'
       'ap-southeast-2'
       'sa-east-1')
-  end
-  object ActionMainMenuBar1: TActionMainMenuBar
-    Left = 0
-    Top = 577
-    Width = 941
-    Height = 37
-    Margins.Left = 4
-    Margins.Top = 4
-    Margins.Right = 4
-    Margins.Bottom = 4
-    UseSystemFont = False
-    Caption = 'ActionMainMenuBar1'
-    Color = clMenuBar
-    ColorMap.DisabledFontColor = 7171437
-    ColorMap.HighlightColor = clWhite
-    ColorMap.BtnSelectedFont = clBlack
-    ColorMap.UnusedColor = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -15
-    Font.Name = 'Segoe UI'
-    Font.Style = []
-    Spacing = 0
   end
   object AmazonConnectionInfo1: TAmazonConnectionInfo
     TableEndpoint = 'sdb.amazonaws.com'
