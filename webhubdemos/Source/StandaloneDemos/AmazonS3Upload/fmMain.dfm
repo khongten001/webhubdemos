@@ -26,8 +26,6 @@ object Form2: TForm2
     Margins.Bottom = 5
     Align = alClient
     TabOrder = 0
-    ExplicitTop = 558
-    ExplicitHeight = 258
     object Button1: TButton
       Left = 726
       Top = 8
@@ -66,10 +64,9 @@ object Form2: TForm2
       Padding.Left = 13
       ParentFont = False
       TabOrder = 1
-      ExplicitHeight = 200
       object DriveComboBox1: TDriveComboBox
         Left = 15
-        Top = 27
+        Top = 22
         Width = 321
         Height = 26
         Margins.Left = 4
@@ -88,9 +85,9 @@ object Form2: TForm2
       end
       object DirectoryListBox1: TDirectoryListBox
         Left = 15
-        Top = 58
+        Top = 48
         Width = 321
-        Height = 233
+        Height = 243
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
@@ -127,10 +124,9 @@ object Form2: TForm2
       Padding.Left = 13
       ParentFont = False
       TabOrder = 2
-      ExplicitHeight = 200
       object Label1: TLabel
         Left = 15
-        Top = 27
+        Top = 22
         Width = 363
         Height = 20
         Margins.Left = 4
@@ -138,20 +134,20 @@ object Form2: TForm2
         Margins.Right = 4
         Margins.Bottom = 4
         Align = alTop
-        Caption = 'D:\Apps\Embarcadero\Studio\18.0\bin'
+        Caption = 'D:\...\PlatformSDKs\android-sdk-windows\tools'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 258
+        ExplicitWidth = 315
       end
       object FileListBox1: TFileListBox
         Left = 15
-        Top = 47
+        Top = 42
         Width = 363
-        Height = 244
+        Height = 249
         Margins.Left = 4
         Margins.Top = 4
         Margins.Right = 4
@@ -166,6 +162,21 @@ object Form2: TForm2
         ParentFont = False
         TabOrder = 0
       end
+    end
+    object Button2: TButton
+      Left = 724
+      Top = 146
+      Width = 175
+      Height = 71
+      Caption = 'Create us-east-1 Bucket'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnClick = Button2Click
     end
   end
   object Panel2: TPanel
@@ -237,7 +248,7 @@ object Form2: TForm2
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 107
+      EditLabel.Width = 106
       EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
@@ -261,7 +272,7 @@ object Form2: TForm2
       Margins.Top = 4
       Margins.Right = 4
       Margins.Bottom = 4
-      EditLabel.Width = 377
+      EditLabel.Width = 374
       EditLabel.Height = 20
       EditLabel.Margins.Left = 4
       EditLabel.Margins.Top = 4
@@ -289,9 +300,9 @@ object Form2: TForm2
       TabOrder = 4
       object Memo1: TMemo
         Left = 2
-        Top = 27
+        Top = 22
         Width = 434
-        Height = 194
+        Height = 199
         Margins.Left = 5
         Margins.Top = 5
         Margins.Right = 5

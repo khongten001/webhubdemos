@@ -55,9 +55,11 @@ type
     ools1: TMenuItem;
     Action1: TAction;
     ActionCreateBucket: TMenuItem;
+    Button2: TButton;
     procedure FormCreate(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
     function StrToRegion(const InRegion: string): TAmazonRegion;
@@ -80,7 +82,6 @@ procedure TForm2.Action1Execute(Sender: TObject);
 var
   StorageService: TAmazonStorageService;
   ResponseInfo: TCloudResponseInfo;
-  ARegion: TAmazonRegion;
   InfoMsg: string;
   ComboText: string;
 begin
@@ -100,14 +101,12 @@ begin
   try
     StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
     ResponseInfo := TCloudResponseInfo.Create;
-    ARegion := StrToRegion(ComboRegion.Items[ComboRegion.ItemIndex]);
 
     StorageService.CreateBucket(LowerCase(LabeledEditBucket.Text),
       TAmazonACLType.amzbaPublicRead,
-      // amzrUSEast1, // The specified location-constraint is not valid (InvalidLocationConstraint)
-      //amzrAPSoutheast1, // Singapore works
-      //amzrUSWest2, // Oregon works
-      ARegion,
+      // Alert! Unless you pass amzrNotSpecified, this exception occurs:
+      // The specified location-constraint is not valid (InvalidLocationConstraint)
+      amzrNotSpecified,
       ResponseInfo);
     InfoMsg :=
       Format('ResponseInfo: statuscode %d, message %s',
@@ -234,6 +233,61 @@ begin
       FreeAndNil(CustomHeaderList);
       SetLength(Data, 0);
     end;
+  end;
+end;
+
+procedure TForm2.Button2Click(Sender: TObject);
+var
+  StorageService: TAmazonStorageService;
+  ResponseInfo: TCloudResponseInfo;
+  Data: TArray<Byte>;
+  msg: String;
+begin
+  ResponseInfo := nil;
+  StorageService := nil;
+  SetLength(Data, 0);
+  Memo1.Clear;
+
+  ComboRegion.ItemIndex := 0; // force us-east-1
+
+  { The use of https here always leads to this exception:
+    First chance exception at $758A5B68. Exception class ENetHTTPCertificateException with message 'Server Certificate Invalid or not present'. Process DemoUploadToAmazonS3.exe (3584)
+
+    Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
+  }
+  // configure AmazonConnectionInfo1 object
+
+  AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
+  AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
+  AmazonConnectionInfo1.Protocol := 'http';  // or 'https'
+  AmazonConnectionInfo1.StorageEndpoint :=   's3.amazonaws.com';
+  AmazonConnectionInfo1.UseDefaultEndpoints := false;
+
+// Create bucket
+// https &  usest1
+
+   try
+    try
+      StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
+      ResponseInfo := TCloudResponseInfo.Create;
+
+      if StorageService.CreateBucket(LabeledEditBucket.Text,
+         amzbaNotSpecified,
+         amzrNotSpecified,
+         ResponseInfo) then
+         ShowMessage('Bucket ' + LabeledEditBucket.Text + ' created succesfully')
+      else
+      begin
+        msg := ' Error creating bucket ' + LabeledEditBucket.Text + '.';
+        if ResponseInfo.StatusCode = 409 then
+          msg := msg + ' Bucket already exists';
+      end;
+    except
+      ShowMessage('Error trying to create bucket ');
+    end;
+  finally
+    FreeAndNil(ResponseInfo);
+    FreeAndNil(StorageService);
   end;
 end;
 
