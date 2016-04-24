@@ -156,7 +156,7 @@ abc: (~INPUTTEXT|inABC~)<br/>
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 
 <h2>Hello World</h2>
-(~waSimulateBadNews.Execute|AppNotRunning~)
+(~waSimulateBadNews.Execute|AppCoverPage~)
 
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)

@@ -22,6 +22,9 @@ mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gr
 </whdroplet>
 
 <whpage pageid="pgEnterFORM" desc="Describe Your Pet">
+<whprep>
+(~MATCH|(~PageCount~)=0|(~CHECKStr|inVeryLoved~)~)
+</whprep>
 (~mcdoctypehtml~)
 <html>
 <head>
@@ -152,11 +155,11 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 <tr><td>(~INPUTSELECTRADIO|inSize,mcSizeList~)</td></tr>
 <tr>
              <td class="prompt">
-             (~INPUTCHECKBOX|inVeryYoung|OnOff=Y,N|class="cbox"~) Pet is very young.
-		<!--- WebHub v3.228 test syntax when INPUTCHECKBOX used with PARAMS -->
-		(~PARAMS|drCheckboxDivClassic,dyn,^|inVeryLoved^Pet is very loved.~)
+		(~INPUTCHECKBOX|inVeryYoung|OffOn|class="cbox"~) Pet is very young.
+		(~INPUTCHECKBOX|inVeryFrisky|OffOn|class="cbox"~) Pet is very frisky.
+		(~INPUTCHECKBOX|inVeryLoud|OffOn|class="cbox"~) Pet is very loud.
+		(~PARAMS|drCheckboxDivNew,dyn,^|inVeryLoved^Pet is very loved.~)
 		(~PARAMS|drCheckboxDivNew,dyn,^|inVeryCute^Pet is very cute.~)
-
              </td>
 </tr>
 
@@ -235,12 +238,8 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 </body></html>
 </whpage>
 
-<whdroplet name="drCheckboxDivClassic">
-<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="cbox abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
-</whdroplet>
-
 <whdroplet name="drCheckboxDivNew">
-<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|OnOff=Y,N|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
+<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|OffOn|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
 </whdroplet>
 
 <whtranslation key="~FormIntro" lingvo="fra" show="no">
@@ -254,7 +253,8 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 <whpage pageid="pgThankYou" desc="Thank You">
 <whprep>
 (~CLEAR|_ErrorMessage~)
-(~MATCH|(~inVeryYoung~)=N|(~MATCH|(~inVeryLoved~)=N|(~SET|_ErrorMessage=Please tick at least one: that your pet is very young or very loved!~)(~BOUNCE|pgEnterForm~)~)~)
+(~MoveToBoolVars|inVeryYoung,inVeryCute~)
+(~IFNOT|inVeryYoung|(~MATCH|(~inVeryLoved~)=0|(~SET|_ErrorMessage=Please tick at least one: that your pet is very young or very loved!~)(~BOUNCE|pgEnterForm~)~)~)
 (~MATCH|(~petFormButton~)=Shortcut|(~BOUNCE|pgShortcut~)~)
 </whprep>
 (~mcdoctypehtml~)
@@ -269,6 +269,10 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 (~chCGILiterals~)
 (~chWHLiterals~)
 <p><b>Not much difference? (~GO|pgDetour|Follow along~) and find out!</b></p>
+
+<h4>BoolVar Test</h4>
+<p>Loved: (~IFStr|inVeryLoved|Great that your pet is loved.||Odd that you say you do not love your pet.~)</p>
+
 </div>
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
