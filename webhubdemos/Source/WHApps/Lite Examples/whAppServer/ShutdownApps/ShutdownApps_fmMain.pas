@@ -29,14 +29,4 @@ begin
   tpSharedLongint1.GlobalInteger := 57;
 end;
 
-(* on create
-  object tpSharedLongint1: TtpSharedInt32
-    GlobalName = 'AppShutdown'
-    GlobalValue = 0
-    IgnoreOwnChanges = True
-    Left = 96
-    Top = 88
-  end
-*)
-
 end.
