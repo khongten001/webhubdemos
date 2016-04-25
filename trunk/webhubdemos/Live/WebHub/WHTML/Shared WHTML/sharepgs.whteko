@@ -514,22 +514,17 @@ you win, because it requires so much time, energy and financial resources.</p>
 <li> AppPath: (~AppPath~)</li>
 <li> AppRoot: (~Static.AppRoot~)</li>
 <li> Command: (~Command~)</li>
-<li> MacroErrorShow: (~MacroErrorShow~)</li>
 <li> Name: (~Name~)</li>
 <li> Project Lingvo: (~ProjectLingvo~) </li>
 <li> Project Syntax: (~ProjectSyntax~) </li>
 <li> RandomSession (SessionNumberEx): <span class="changing">(~SessionNumberEx~)</span></li>
 <li> SessionID (~SessionID~)</li>
-<li> AppInfo.ShareByFile: (~AppInfo.ShareByFile~)</li>
-<li> AppInfo.ShareSessions: (~AppInfo.ShareSessions~)</li>
 <li> ComponentUpdated: (~ComponentUpdated~)</li>
 <li> Version: (~Version~)</li>
 <li> DynURL.ToAppID: (~DynURL.ToAppID~)</li>
 <li> DynURLConfig.UseAppID: (~DynURLConfig.UseAppID~)</li>
-<li> DynURL.RawToActiveAuthorityM : (~DynURL.RawToActiveAuthorityM ~)</li>
 <li> DynURL.ToAuthorityM: (~DynURL.ToAuthorityM~)</li>
 <li> DynURL.ToSessionIDW: <span class="changing">(~DynURL.ToSessionIDW~)</span></li>
-<li> DynURL.UseAppProcessID: (~DynURL.UseAppProcessID~)</li>
 <li> RunTime.ServerProfileID: (~RunTime.ServerProfileID~) </li>
 <li> RunTime.HttpServerID: (~RunTime.HttpServerID~) </li>
 </ul>
@@ -538,23 +533,11 @@ you win, because it requires so much time, energy and financial resources.</p>
 <h4>droplets</h4>
 (~tekeros~)
 
-<h4>Errors</h4>
-(~Errors~)
-
 <h4>Event Macros</h4>
 (~EventMacros~)
 
 <h4>Files</h4>
 (~TekoFiles~)
-
-<!--- <h4>Macros</h4>   do not display these as there are likely to be problems
-      (~Macros~) -->
-
-<h4>Media Servers</h4>
-(~Media~)
-
-<h4>Uploaded Files</h4>
-(~Uploaded Files~)
 
 <h2>TwhSession</h2>
 <ul>
@@ -593,25 +576,15 @@ you win, because it requires so much time, energy and financial resources.</p>
 <tr><td>RequestMethod:</td><td>(~Request.RequestMethod~)</td></tr>
 <tr><td>ExecutablePath:</td><td>(~Request.ExecutablePath~)</td></tr>
 <tr><td>HttpServerSoftwareName:</td><td>(~Request.HttpServerSoftwareName~)</td></tr>
-<tr><td>HttpVersion:</td><td>(~Request.HttpVersion~)</td></tr>
 <tr><td>PhysicalPath:</td><td>(~Request.PhysicalPath~)</td></tr>
 <tr><td>QueryString:</td><td>(~Request.QueryString~)</td></tr>
 <tr><td>ContentType:</td><td>(~Request.ContentType~)</td></tr>
-<tr><td>CGIContentLength:</td><td>(~Request.CGIContentLength~)</td></tr>
 <tr><td>Port:</td><td>(~Request.Port~)</td></tr>
 <tr><td>Host:</td><td>(~Request.Host~)</td></tr>
 <tr><td>Referer:</td><td>(~Request.Referer~)</td></tr>
 <tr><td>RemoteHost:</td><td>(~Request.RemoteHost~)</td></tr>
 <tr><td>RemoteAddress:</td><td><span class="changing">(~Request.RemoteAddress~)</span></td></tr>
-<tr><td>CGIAuthenticatedUsername:</td><td>(~Request.CGIAuthenticatedUsername~)
-</td></tr>
-<tr><td>CGIAuthenticatedPassword:</td><td>(~Request.CGIAuthenticatedPassword~)
-</td></tr>
-<tr><td>CGIAuthenticationMethod:</td><td>(~Request.CGIAuthenticationMethod~)</td></tr>
-<tr><td>CGIAuthenticationRealm:</td><td>(~Request.CGIAuthenticationRealm~)</td></tr>
 <tr><td>UserAgent:</td><td>(~Request.UserAgent~)</td></tr>
-<tr><td>HTTP:</td><td>(~Request.HTTP~)</td></tr>
-<tr><td>HTTPS:</td><td>(~Request.HTTPS~)</td></tr>
 </table>
 
 <h3>App.DynURL</h3>

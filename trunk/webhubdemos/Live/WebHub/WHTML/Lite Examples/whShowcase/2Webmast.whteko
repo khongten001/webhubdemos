@@ -165,12 +165,6 @@ dialog which lets you do just that.  The RTTI dialog comes up when you use the P
  To try this, select <b>Components|WebMailForm|Properties</b> (screen shot above).
 The values you see are mostly read-only. However boolean values can be toggled by double-clicking.
 <p>
-<h3>MacroErrorShow</h3>
-The web application object has a property called MacroErrorShow which is false by default.
-When you are developing your app, set this to true and any unresolved macro calls will
-generate error messages as comments within the HTML.  You can do this through the RTTI dialog.
- From the menu, select <b>WebHubApp > Properties</b>, find MacroErrorShow and double-click.
-<p>
 <h3>Version</h3>
 Most of the WebHub components also carry a version property.
 Look at this to find out precisely which build you are running.
