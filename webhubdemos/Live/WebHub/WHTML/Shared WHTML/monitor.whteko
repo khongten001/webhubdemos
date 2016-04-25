@@ -91,6 +91,13 @@ googlesitemap=exclude
 (~waSimulateBadNews.Execute|AppNotRunning~)
 </whpage>
 
+<whpage pageid="jsontestappnotrunning" desc="-Simulate AppNotRunning in JSON syntax">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppNotRunning~)
+</whpage>
+
 <whpage pageid="pgtestAppIDBusy" desc="-Simulate AppIDBusy">
 <whpagesettings>
 googlesitemap=exclude
