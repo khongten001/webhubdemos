@@ -37,15 +37,4 @@ begin
   end;
 end;
 
-(* on create
-  object tpSharedLongint1: TtpSharedInt32
-    GlobalName = 'AppShutdown'
-    GlobalValue = 0
-    IgnoreOwnChanges = True
-    OnChange = tpSharedLongint1Change
-    Left = 56
-    Top = 32
-  end
-*)
-
 end.
