@@ -248,7 +248,7 @@ CSEnterMethod(Self, cFn);
     // CSSend('sql', S(SQL));
     for j := 1 to 15 do
     begin
-      if pWebApp.BoolVar['inProd' + IntToStr(j)] then
+      if pWebApp.StringVarBool['inProd' + IntToStr(j)] then // wh v3.250+
         Params[j].AsInteger := j
       else
         Params[j].AsInteger := 0;

@@ -28,7 +28,7 @@ mcList=a-Table,b-List,c-Text
 <body>
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
-<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)ckb">
+<!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~DynURL.ToSessionIDW~)">
 <!-- changing:stop-->
 
 <table border="1" width="100%">
@@ -44,16 +44,16 @@ mcList=a-Table,b-List,c-Text
 (~InputSubmit|,Submit~)<br />
 	</td>
 	<td>
-(~InputCheckBox|bShowDynChunk~) show 'Dynchunk' demo.<br />
-(~InputCheckBox|bShowParams~) show 'Param' demo.<br />
-(~InputCheckBox|bShowDebug~) show debug chunk..<br />
+(~InputCheckBox|bShowDynChunk|OffOn~) show 'Dynchunk' demo.<br />
+(~InputCheckBox|bShowParams|OffOn~) show 'Param' demo.<br />
+(~InputCheckBox|bShowDebug|OffOn~) show debug chunk..<br />
 	</td>
 </tr>
 </table>
-(~IF|bShowDynChunk|(~chParamDynChunk~)~)
-(~IF|bShowParams|(~chParamDemo~)~)
+(~IFStr|bShowDynChunk|(~chParamDynChunk~)~)
+(~IFStr|bShowParams|(~chParamDemo~)~)
 </form>
-(~IF|bShowDebug|(~chParamDebug~)~)
+(~IFStr|bShowDebug|(~chParamDebug~)~)
 
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
@@ -67,9 +67,14 @@ on <b>liParam</b>:</p>
 <table border="1" width="100%">
 <tr><td style="text-align:center">
 <table><tr><td style="text-align:center">
-(~IF|bUseSelect|(~InputSelect|liParam,mcList~)~)
-(~IFNOT|bUseSelect|<ul>(~InputSelectRadio|liParam,mcList,<li>,</li>~)</ul>~)
-(~InputCheckBox|bUseSelect~) select as dropdown..<br />
+
+(~IFStr|bUseSelect|
+  (~InputSelect|liParam,mcList~)
+||
+  <ul>(~InputSelectRadio|liParam,mcList,<li>,</li>~)</ul>~)
+~)
+
+(~InputCheckBox|bUseSelect|OffOn~) select as dropdown..<br />
 (~InputSubmit|,Submit~)
 </td></tr></table>
 </td><td style="text-align:center">

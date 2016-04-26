@@ -36,8 +36,8 @@ These icons mean that:
 (~chlightOn~)
 (~chLightOff~)
 
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND,.CKB~)">
-<p>(~inputcheckbox|v1~) Flick The Light Switch (~inputsubmit|submit,Flick the Switch~) </p>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND~)">
+<p>(~inputcheckbox|v1|OffOn~) Flick The Light Switch (~inputsubmit|submit,Flick the Switch~) </p>
 </form>
 (~chPending~)
 </whdroplet>
@@ -51,10 +51,6 @@ These icons mean that:
 </whdroplet>
 
 <whdroplet name="chPending">
-<whdoc for="chPending">
-If and when WebHub SORTS the property lists, it should be possible to compare
-the output with Selenium.  14-Jan-2009.
-</whdoc>
 <h4>BoolVarsPending</h4>
 <span class="changing">(~BoolVarsPending~)</span>
 </whdroplet>
@@ -65,18 +61,17 @@ the output with Selenium.  14-Jan-2009.
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-The value of the checkbox named V1 is (~BoolVar.v1~).</p>
+The value of the checkbox named V1 is (~v1~).</p>
 <p>
 <span id="lightstate">
-(~IF|v1|(~chLightOn~)~)
-(~IFNOT|v1|(~chLightOff~)~)
+(~IFStr|v1|(~chLightOn~)||(~chLightOff~)~)
 </span>
 
 <h2>Test again</h2>
 The submit button on this page re-requests the <b>current</b> page.
 <p>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND,.CKB~)">
-<p>(~inputcheckbox|v1~)The Light Switch (~inputsubmit|submit,See it Work~) </p>
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgCOND~)">
+<p>(~inputcheckbox|v1|OffOn~) The Light Switch (~inputsubmit|submit,See it Work~) </p>
 </form>
 (~chPending~)
 (~drShowcaseGlobalFooter~)
@@ -90,7 +85,7 @@ bNoMore=true
 If you have ever written cgi programs, you know how tricky it is to save the state of checkboxes.
 There are two problems:
 <ol>
-<li>The web server only tells you about 'true' values, so in a
+<li>The http client (and therefore the http server) only report 'true' values, so in a
 database-driven grid you can not easily generically identify unchecked items.
 <li>If the surfer clicks [back] in the browser to go to a form with a checkbox, the
 browser will cache the page and the checkmark will not be updated based on the actual
@@ -98,17 +93,22 @@ session data -- so the logic going forward will be wrong!
 </ol>
 
 <p>
-WebHub solves this in two ways.  To deal with #1, it maintains a list named BoolVarsPending containing 'pending' checkboxes as of the moment that the form goes out to the surfer.  When the form is submitted, the checkboxes are generically
+WebHub solves this.
+<!--- before wh v3.250:
+ in two ways.  To deal with #1, it maintains a list named BoolVarsPending containing 'pending' checkboxes as of the moment that the form goes out to the surfer.  When the form is submitted, the checkboxes are generically
 reconciled against the pending list.  You can see the BoolVarsPending list in the page footer
 within this example.  To deal with #2, WebHub automatically expires pages that use
 checkboxes.  That makes the browser re-load them, so the page is recreated dynamically
-with accurate data.
+with accurate data.-->
+</p>
 <p>
 Test this for yourself.  Go through this example again but use the [back] button in
 your browser to try to confuse the system.  Your 'light switch' should continue to have
 whatever setting you gave it, regardless of how you move forward and backward.
+</p>
 <p>
 (~chCond1~)
+</p>
 (~drShowcaseGlobalFooter~)
 </whpage>
 
