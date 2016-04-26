@@ -56,7 +56,7 @@ mcSelectWallpaper=-None,parch.jpg-Parchment,white3k.jpg-Textured White,blucloud.
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~~Options~)</h1>
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|setpref,.ckb~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|setpref~)">
 <h2>(~~Wallpaper~)</h2>
 <p>(~~SetPrefWallpaperIntro~)</p>
 

@@ -122,7 +122,7 @@ function setAllCheckboxes(b)
 <table id="lr">
 <td>
 
-<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgReadonly1,.ckb,wds.reset~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgReadonly1,wds.reset~)">
 <a href="#" onclick="setAllCheckboxes(true)">Check-All</a>&nbsp;&nbsp;&nbsp;<a href="#" onclick="setAllCheckboxes(false)">Clear-All</a> 
 
 <table id="checker-table">
