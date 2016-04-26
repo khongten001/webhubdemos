@@ -155,7 +155,7 @@ begin
                 except
                   on E: Exception do
                   begin
-                    CSSendException(E);
+                    CSSendException(Self, cFn, E);
                     bEditing := False;
                   end;
                 end;
@@ -199,7 +199,7 @@ begin
       except
         on E: Exception do
         begin
-          CSSendException(E);
+          CSSendException(Self, cFn, E);
         end;
       end;
     end;

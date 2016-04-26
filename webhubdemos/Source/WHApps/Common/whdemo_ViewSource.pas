@@ -390,8 +390,8 @@ begin
               // modern DFM files are no longer binary so this is expected....
               if (E.Message <> 'Invalid stream format') then
               begin
-                CSSendException(E);
-                CSSend('when loading', aFilename);
+                CSSendException(Self, cFn, E);
+                CSSendError('when loading ' + aFilename);
                 pWebApp.Debug.AddPageError(E.Message);
               end;
               aFileContents:= StringLoadfromfileDef(aFilename, '');
