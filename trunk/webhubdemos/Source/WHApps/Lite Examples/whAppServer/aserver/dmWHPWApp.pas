@@ -47,8 +47,6 @@ type
     Action1: TAction;
     tpActionListConnection: TtpActionList;
     Action2: TAction;
-    procedure appProcessCheckBoxes(Sender: TObject;
-      var ProcessCheckBoxes, ClearPending: Boolean);
     procedure actWebCommandLinePropertiesExecute(Sender: TObject);
     procedure appNewSession(Sender: TObject; Session: Cardinal;
       const Command: String);
@@ -108,19 +106,6 @@ begin
 end;
 
 //------------------------------------------------------------------------------
-
-procedure TdmWebHubPowerApp.appProcessCheckBoxes(Sender: TObject;
-  var ProcessCheckBoxes, ClearPending: Boolean);
-begin
-  inherited;
-  ClearPending:=True;
-  with pWebApp do
-    if StringVar['CKB']<>'' then begin
-      //using '@' in a hidden field seems not to be supported by some browsers!
-      StringVar['CKB']:='';
-      ProcessCheckBoxes:=True;
-      end;
-end;
 
 procedure TdmWebHubPowerApp.actWebCommandLinePropertiesExecute(
   Sender: TObject);
