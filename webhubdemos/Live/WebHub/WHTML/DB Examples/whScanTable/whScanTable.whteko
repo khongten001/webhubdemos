@@ -14,8 +14,6 @@ mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|wdsDBX|FileURLDir~)(~Field|wdsDBX|Filen
 (~SET|wdsDBX.IndexOrder=File Number~)
 (~SET|speed=fast~)
 (~SET|fontsize=.8~)
-(~CHECK|grey~)
-(~CHECK|constraint~)
 (~SET|pixels=30~)
 (~CHECK|chkInit~)
 </whdroplet>
@@ -43,7 +41,7 @@ mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|wdsDBX|FileURLDir~)(~Field|wdsDBX|Filen
   padding: 0 0 .2em 0;
 }
 #browseScan-table td.maybeGreyImgNormal {
-  (~IF|grey|background-color:#CCCCCC;~)
+  (~IFStr|grey|background-color:#CCCCCC;~)
   text-align: center;
   padding: 0;
 }
@@ -51,7 +49,7 @@ mcGraphicSrc=(~mcSiteRoot~)demos/(~Field|wdsDBX|FileURLDir~)(~Field|wdsDBX|Filen
   border: 0;
 }
 #browseScan-table td.maybeGreyImgConstrained {
-  (~IF|grey|background-color:#CCCCCC;~)
+  (~IFStr|grey|background-color:#CCCCCC;~)
   text-align: center;
   padding: 0;
 }
@@ -100,7 +98,7 @@ see the range of layout options that have been prepared for you.</p>
 <whrow>
 <tr>
 <td>(~Field|wdsDBX|FileID~)</td>
-<td class="maybeGreyImg(~IF|constraint|Constrained||Normal~)">(~DYNCHUNK|chGraphic,(~speed~)~)</td>
+<td class="maybeGreyImg(~IFStr|constraint|Constrained||Normal~)">(~DYNCHUNK|chGraphic,(~speed~)~)</td>
 <td>(~Field|wdsDBX|Filename~)</td>
 <td class="colorFor(~litExt~)">(~Field|wdsDBX|FileExt~)</td>
 <td>(~Field|wdsDBX|FileDesc~)</td>
@@ -156,7 +154,7 @@ see the range of layout options that have been prepared for you.</p>
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <div class="dcenter">
-<form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterSCAN,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|pgEnterSCAN~)">
 
 <table id="gridoptions" cellspacing="0">
 <tr>
@@ -176,10 +174,10 @@ see the range of layout options that have been prepared for you.</p>
 whether you see all graphics or just links.</span>
 <br /><br />
 <span class="prompt">Graphics on grey background:</span>
-(~INPUTCHECKBOX|grey~)
+(~INPUTCHECKBOX|grey|OffOn~)
 <br /><br />
 <span class="prompt">Constrain graphic size:</span>
-(~INPUTCHECKBOX|constraint~)<br />
+(~INPUTCHECKBOX|constraint|OffOn~)<br />
 (~INPUTRADIO|pixels,10~) 10x10
 (~INPUTRADIO|pixels,20~) 20x20
 (~INPUTRADIO|pixels,30~) 30x30

@@ -28,25 +28,23 @@ This example shows you can get more information than what
 is provided on the SPEED page.  Experiment with the settings
 and checkboxes.
 <p>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|(~PageID~),.ckb~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|(~PageID~)~)">
 <CENTER><table BORDER>
 <CAPTION>Page-Info Display Options</CAPTION>
 <th>Variables<th>Animation</th></tr>
 <td>
-(~inputcheckbox|ShowSessionVars~)  Show Session Vars<br />
+(~inputcheckbox|ShowSessionVars|OffOn~)  Show Session Vars<br />
 <td>
-Timing delay in seconds: (~inputtext|animationdelay,3,3~)
- <br />
-(~inputcheckbox|Animate~)Enable Animation<br />
-(~inputcheckbox|RepeatStats~)Display Repeat Timing Stats
+Timing delay in seconds: (~inputtext|animationdelay,3,3~) <br />
+(~inputcheckbox|RepeatStats|OffOn~)Display Repeat Timing Stats
 <tr>
 <td COLSPAN=2 ALIGN=CENTER>
 (~inputsubmit|submit,Post~)
 </table></CENTER>
 </form>
 
-(~IF|RepeatStats|(~chRepeat_Stats~)~)
-(~IF|ShowSessionVars|(~chSession_Variables~)~)
+(~IFStr|RepeatStats|(~chRepeat_Stats~)~)
+(~IFStr|ShowSessionVars|(~chSession_Variables~)~)
 <hr />
 (~PageCount~) pages served during this session.
 (~drShowcaseGlobalFooter~)

@@ -206,9 +206,9 @@ the orchestrated sequence.
 Sorry, you did not get to the secure page.
 <p> <span class="changing">(~GOR||Return to the welcome page.~)</span></p>
 
-<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgEnterShowcase,.CKB~)">
+<form method="post" accept-charset="UTF-8" action="(~ACTION|Showcase:pgEnterShowcase~)">
 (~inputhidden|Null~)
-(~inputcheckbox|ckbAuthorized~) Check to gain entry
+(~inputcheckbox|ckbAuthorized|OffOn~) Check to gain entry
 (~inputsubmit|submit, Begin~)
 </form>
 (~drShowcaseGlobalFooter~)

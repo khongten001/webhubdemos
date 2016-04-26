@@ -17,7 +17,7 @@
 <div style="margin-left: 3em; font-size: 2em;">
 (~INPUTFORM|pgCBSubmitOne~)
 <p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
-<p>(~INPUTCHECKBOX|cbCBCheckOne|Yes,No| id="cb1" ~) <label id="labelCb1" for="cb1">Check box one</label> </p>
+<p>(~INPUTCHECKBOX|cbCBCheckOne|OffOn~) <label id="labelCb1" for="cbCBCheckOne">Check box one</label> </p>
 (~INPUTSUBMIT|Submit,Submit~)
 (~INPUTFORM|CLOSE~)
 </div>
@@ -37,7 +37,7 @@
 <p><b>Form </b></p>
 (~INPUTFORM|pgCBSubmitTwo~)
 <p>Name: (~INPUTTEXT|cbCheckName2,35~)</p>
-<p>(~INPUTCHECKBOX|cbCBCheckTwo~) Check box two</p>
+<p>(~INPUTCHECKBOX|cbCBCheckTwo|OffOn~) Check box two</p>
 (~INPUTSUBMIT|Submit,Submit~)
 (~INPUTFORM|CLOSE~)
 

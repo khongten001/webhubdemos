@@ -23,8 +23,8 @@
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck02~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bAAA|Yes,No~) I like the letter A<br />
-(~InputCheckBox|bBBB|Yes,No~) I like the letter B<br />
+(~InputCheckBox|bAAA|OffOn~) I like the letter A<br />
+(~InputCheckBox|bBBB|OffOn~) I like the letter B<br />
 <input type="submit" />
 </form>
 
@@ -53,8 +53,8 @@
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck03~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bCCC|Yes,No~) I like the letter C<br />
-(~InputCheckBox|bDDD|Yes,No~) I like the letter D<br />
+(~InputCheckBox|bCCC|OffOn~) I like the letter C<br />
+(~InputCheckBox|bDDD|OffOn~) I like the letter D<br />
 <input type="submit" />
 </form>
 
@@ -82,8 +82,8 @@
 <!-- changing:start--><form method="post" accept-charset="UTF-8" action="(~ACTIONR|pgcheck04#skip~)">
 <!-- changing:stop-->
 
-(~InputCheckBox|bEEE|Yes,No~) I like the letter E<br />
-(~InputCheckBox|bFFF|Yes,No~) I like the letter F<br />
+(~InputCheckBox|bEEE|OffOn~) I like the letter E<br />
+(~InputCheckBox|bFFF|OffOn~) I like the letter F<br />
 <input type="submit" />
 </form>
 

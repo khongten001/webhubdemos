@@ -239,7 +239,7 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 </whpage>
 
 <whdroplet name="drCheckboxDivNew">
-<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|OffOn|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="abc(~IFNOT|(~DYN1~)| notchecked~)">(~DYN2~)</span></div>
+<div class="cboxdiv">(~INPUTCHECKBOX|(~DYN1~)|OffOn|(~IF|_bAddOrEditMode| disabled="disabled"~)~)<span class="abc(~IFStr|(~DYN1~)| || notchecked~)">(~DYN2~)</span></div>
 </whdroplet>
 
 <whtranslation key="~FormIntro" lingvo="fra" show="no">

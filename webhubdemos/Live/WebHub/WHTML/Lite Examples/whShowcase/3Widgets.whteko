@@ -180,12 +180,11 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 <p>
 This example will allow you to try a checkbox or two.
-Watch the BoolVarsPending array below to see how WebHub checks the submitted data against it.
 <p>
-<form method="post" accept-charset="UTF-8" action="(~ACTION|showcase:pgCheckboxes,.CKB~)">
-(~INPUTCHECKBOX|MYCHECKBOX~)My Checkbox is Better
+<form method="post" accept-charset="UTF-8" action="(~ACTION|showcase:pgCheckboxes~)">
+(~INPUTCHECKBOX|MYCHECKBOX|OffOn~)My Checkbox is Better
 <p>
- (~INPUTCHECKBOX|YOURCHECKBOX~)Your Checkbox is Better
+ (~INPUTCHECKBOX|YOURCHECKBOX|OffOn~)Your Checkbox is Better
 <p>
 (~INPUTSUBMIT|submit,POST~)
 </form>

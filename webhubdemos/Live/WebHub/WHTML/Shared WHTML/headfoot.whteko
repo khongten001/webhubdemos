@@ -172,7 +172,7 @@ body {
 </whdroplet>
 
 <whdroplet name="drConditionalSystemInfo" show="no">
-(~IF|showSystemInfo|
+(~IFStr|showSystemInfo|
 <div class="whDemoSectionNav" style="border-color: yellow;">
 (~drSystemInfo~)
 </div>  

@@ -11,6 +11,9 @@ htmlFilename=0Jumps.whteko
 <whpage pageid="pgEnterShowcase" desc="Showcase Main Menu">
 <whpagesettings inherit="a">
 </whpagesettings>
+<whprep>
+<!--- this flag is not used in Showcase, but it could be: (~IfStr|ckbAuthorized|...~) -->
+</whprep>
 <whoutput>
 (~drShowcaseGlobalHeader~)
 (~ANCHORMODIFY|style|
@@ -20,7 +23,7 @@ h2 {text-align: center; font-size: 1.1em; margin: .8em 0 .3em 0;}
 #showcasemainmenu { width: 100%; padding: 1.5em; }
 #showcasemainmenu td { vertical-align: top; padding: 5px; width: 33%; }
 </style>~)
-(~check|ckbAuthorized~)
+
 <h1>Showcase Main Menu</h1>
 <table id="showcasemainmenu">
 <tr>

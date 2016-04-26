@@ -77,7 +77,7 @@ or
 </whdoc>
 
 <h2>(~~Debugging~)</h2>
-(~inputcheckbox|showSystemInfo| id="chkShowSystemInfo" ~) Show System Info
+(~inputcheckbox|showSystemInfo|OffOn~) Show System Info
  (~JUMP|hlpSystemInfo|<img src="(~mcWhDemoMiscDir~)helpicon.jpg" alt="Help" />~)
 <br />
 (~inputsubmit|BtnPref,Preview| id="btnPrefPreview" ~)
