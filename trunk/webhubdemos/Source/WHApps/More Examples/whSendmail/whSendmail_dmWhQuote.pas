@@ -139,7 +139,7 @@ begin
         on E: Exception do
         begin
           CSSendNote('Indy Exception');
-          CSSendException(E);
+          CSSendException(Self, cFn, E);
           WebMailForm.IndySMTP.Disconnect;
         end;
       end;
