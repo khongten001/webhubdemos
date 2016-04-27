@@ -1,5 +1,5 @@
 # WebHubRuntime Upgrade
-# Copyright 2014-2015 HREF Tools Corp. 
+# Copyright 2014-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
 <# Unlike the other powershell scripts, this one is meant to be used some 
