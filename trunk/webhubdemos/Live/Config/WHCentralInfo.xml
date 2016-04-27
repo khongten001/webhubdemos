@@ -380,7 +380,6 @@
   <HubProcess>
     <ClusterID value=""/>
     <DefaultAppID value="appvers"/>
-    <DefaultShutdownCommand value="SHUTDOWN"/>
     <GuardianIntervalSeconds value="360" />
     <LoggingLevel value="warning,error,exception"/>
   </HubProcess>
