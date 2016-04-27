@@ -18,6 +18,7 @@ set demoparams="/ID=%whappid%"
 
 echo Demo params: %demoparams%
 
+set exename=whlite_x_d23_win64_src.exe
 set exename=whLite.exe
 echo exename is %exename%
 
