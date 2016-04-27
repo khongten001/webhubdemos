@@ -1,5 +1,5 @@
 # StreamCatcher via PowerShell
-# Copyright 2014-2015 HREF Tools Corp. 
+# Copyright 2014-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
 # New StreamCatcher users should install by running SCSetup.exe

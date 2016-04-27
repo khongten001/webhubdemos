@@ -1,5 +1,5 @@
 # After WebHubRuntime and WebHubDemos have been installed
-# Copyright 2015 HREF Tools Corp. 
+# Copyright 2015-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
 # call a separate script to init global variables.
