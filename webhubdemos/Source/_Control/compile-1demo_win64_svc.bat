@@ -1,6 +1,7 @@
 @echo off
-set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
-%CSSend% /note "compile-1demo_win64_svc.bat [%1]"
+set CSSend=D:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
+set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
+%CSSend% /note "compile-1demo_win64_svc.bat [%1]" %CSLogPathParams%
 
 call %~dp0\default-compilerdigits.bat
 setlocal
@@ -12,24 +13,29 @@ del d:\temp\DelphiTempDCU\*.dcu
 call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Delphi D%compilerdigits%"
 echo droot %droot%
 
+:: use ZaphodsMap to find Raize CodeSite5 library root
+call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv001 Delphi CodeSite5"
+
 set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
-if "%compilerdigits%"=="17" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE3\Win64
-if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win64
-if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win64
-if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win64
-if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win64
-if "%compilerdigits%"=="22" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win64
-if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win64
+set wbits=64
+if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
+if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
+if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+if "%compilerdigits%"=="21" set raizepath=%cslibroot%\RS-XE7\win%wbits%
+if "%compilerdigits%"=="20" set raizepath=%cslibroot%\RS-XE6\win%wbits%
+if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
+if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
+if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
 
-set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizelib%;%droot%lib\win64\release;"
+set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizepath%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
-if     "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE
+if     "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE
 :: LogAppTick;LogHelo;LogSTime;LogIPCMinimal;LOGBAD
-if NOT "%raizelib%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LOGBOUNCE
-%CSSend% compilerflags "%compilerflags%"
+if NOT "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LOGBOUNCE
+%CSSend% compilerflags "%compilerflags%" %CSLogPathParams%
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 set objpath=K:\WebHub\regex\Pcre-Delphi-Win64-msc
@@ -41,14 +47,14 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 
 if exist %1.cfg REN %1.cfg %1.off
 
-%CSSend% "1demo as-service d%compilerdigits%_win64 %1"
+%CSSend% "1demo as-service d%compilerdigits%_win64 %1" %CSLogPathParams%
 
 :LocalRepeat
 @echo on
 set ok1=yes
 "%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
-if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile"
+if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile" %CSLogPathParams%
 if "%ok1%"=="no" pause
 if "%ok1%"=="no" goto LocalRepeat
 

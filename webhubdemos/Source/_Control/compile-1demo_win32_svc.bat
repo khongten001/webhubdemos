@@ -1,6 +1,7 @@
 @echo off
-set CSSend=P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe
-%CSSend% /note "compile-1demo_win32_svc.bat %1"
+set CSSend=D:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
+set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
+%CSSend% /note "compile-1demo_win32_svc.bat %1" %CSLogPathParams%
 
 call %~dp0\default-compilerdigits.bat
 setlocal
@@ -13,13 +14,19 @@ call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Del
 set dcc=%droot%bin\dcc32.exe
 if not exist %dcc% pause
 
-if "%compilerdigits%"=="23" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RX10\Win32
-if "%compilerdigits%"=="22" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE8\Win32
-if "%compilerdigits%"=="21" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE7\Win32
-if "%compilerdigits%"=="20" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE6\Win32
-if "%compilerdigits%"=="19" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE5\Win32
-if "%compilerdigits%"=="18" set raizelib=K:\Vendors\Raize\CodeSite5\Lib\RS-XE4\Win32
-set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizelib%;%droot%lib\win32\release;
+:: use ZaphodsMap to find Raize CodeSite5 library root
+call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv001 Delphi CodeSite5"
+
+set wbits=32
+if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
+if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
+if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+if "%compilerdigits%"=="21" set raizepath=%cslibroot%\RS-XE7\win%wbits%
+if "%compilerdigits%"=="20" set raizepath=%cslibroot%\RS-XE6\win%wbits%
+if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
+if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
+if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
+set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;%raizepath%;%droot%lib\win32\release;
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;soaprtl;xmlrtl;inet;"
 :: LogInitFinal;LogAppTick;CodeSite;LogTerminate;LogHelo
@@ -38,15 +45,15 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 if exist %1.cfg REN %1.cfg %1.off
 if exist %1.dproj REN %1.dproj %1.dprojoff
 
-%CSSend% "as-service d%compilerdigits%_win32 %1"
+%CSSend% "as-service d%compilerdigits%_win32 %1" %CSLogPathParams%
 
 set okflag=yes
 @echo on
 "%dcc%"  -w -h -b %1.dpr  -n%dcu% -E%outputroot% -D%compilerflags% -LU%pkg% "-u%libsearchpath%" "-R%respath%;%libsearchpath%" -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set okflag=no
 @echo off
-if "%okflag%"=="yes" %CSSend% "Compiled %1.dpr -D%compilerflags% -LU%pkg%"
-if "%okflag%"=="no"  %CSSend% /error "Failed to compile %1.dpr -D%compilerflags% -LU%pkg%"
+if "%okflag%"=="yes" %CSSend% "Compiled %1.dpr -D%compilerflags% -LU%pkg%" %CSLogPathParams%
+if "%okflag%"=="no"  %CSSend% /error "Failed to compile %1.dpr -D%compilerflags% -LU%pkg%" %CSLogPathParams%
 if "%okflag%"=="no"  pause
 
 if exist %1.off REN %1.off %1.cfg
