@@ -1,6 +1,8 @@
-# After WebHubRuntime and WebHubDemos have been installed
+# Configure a custom error response for 500.12 and 500.13 errors
 # Copyright 2015-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
+
+# Thanks to http://forums.iis.net/t/1185503.aspx?creating+a+custom+http+error+for+single+site+in+powershell
 
 # call a separate script to init global variables.
 ## Invoke-Expression ($PSScriptRoot + '\..\WebHub_Appliance_PS\Initialize.ps1')  # loops back and uses custom values
