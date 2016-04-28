@@ -22,7 +22,7 @@ set exename=whlite_x_d23_win64_src.exe
 set exename=whLite.exe
 echo exename is %exename%
 
-set /P qty=Enter Number of instances to start (eg. 1, 2, 3, 5, 10, 20, 30) :  
+set /P qty=Enter Number of instances to start (eg. 1, 2, 3, 5, 10, 15, 20, 30) :  
 if "%qty%"=="" goto end
 echo Qty %qty%
 goto start%qty%
@@ -48,6 +48,10 @@ goto end
 
 :start10
 for %%A IN (0 1 2 3 4 5 6 7 8 9) DO call run-1.bat %exename% %demoparams%
+goto end
+
+:start15
+FOR %%I IN (1 2 3) DO for %%J IN (0 1 2 3 4) DO call run-1.bat %exename% %demoparams%
 goto end
 
 :start20
