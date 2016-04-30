@@ -20,7 +20,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="decode" status="disabled" />
+          <Module name="decode" status="disabled"/>
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
@@ -29,9 +29,9 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="more" context="META"/>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard context="ultraann" value="defprofile"/>
+        <ServerProfileIDStandard value="more" context="META"/>
+        <ServerProfileIDSecure value=""/>
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>
@@ -61,8 +61,8 @@
       <CookieDomainDefault value=""/>
     </Security>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" />
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" />
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whConverter.whteko"/>
