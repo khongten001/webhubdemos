@@ -87,7 +87,7 @@ uses
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
-  whdemo_ViewSource;
+  whdemo_ViewSource, webSysMsg;
 
 {$R *.DFM}
 
@@ -533,22 +533,28 @@ var
 begin
   AKeyword := TwhWebAction(Sender).HtmlParam;
   if AKeyword = 'HubNotFound' then
-    pWebApp.Response.SimulateHubNotFound
+    pWebApp.Response.SimulateSituation(whsitHubNotFound)
   else
   if AKeyword = 'AppNotRunning' then
-    pWebApp.Response.SimulateAppNotRunning
+    pWebApp.Response.SimulateSituation(whsitAppNotRunning)
   else
   if AKeyword = 'RequestTimeout' then
     pWebApp.Response.SimulateRequestTimeout(35)
   else
   if AKeyword = 'AppIDBusy' then
-    pWebApp.Response.SimulateAppIDBusy
+    pWebApp.Response.SimulateSituation(whsitAppIDBusy)
   else
   if AKeyword = 'AppCoverPage' then
     pWebApp.Response.SimulateAppCoverPage(Now, 5, 'testing system messages')
   else
+  if AKeyword = 'UploadError' then
+    pWebApp.Response.SimulateUploadError(True, 45, 0)
+  else
   if AKeyword = 'WHBusy' then
     pWebApp.Response.SendCustomError(AKeyword, 500, 13)
+  else
+  if AKeyword = 'WHStarting' then
+    pWebApp.Response.SendCustomError(AKeyword, 500, 12)
   else
   begin
     pWebApp.SendStringImm(Self.ClassName + ': invalid syntax');
