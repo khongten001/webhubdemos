@@ -535,6 +535,9 @@ begin
   if AKeyword = 'HubNotFound' then
     pWebApp.Response.SimulateSituation(whsitHubNotFound)
   else
+  if AKeyword = 'AppNotDefined' then
+    pWebApp.Response.SimulateAppNotDefined
+  else
   if AKeyword = 'AppNotRunning' then
     pWebApp.Response.SimulateSituation(whsitAppNotRunning)
   else
@@ -547,8 +550,11 @@ begin
   if AKeyword = 'AppCoverPage' then
     pWebApp.Response.SimulateAppCoverPage(Now, 5, 'testing system messages')
   else
-  if AKeyword = 'UploadError' then
+  if AKeyword = 'UploadErrorBig' then
     pWebApp.Response.SimulateUploadError(True, 45, 0)
+  else
+  if AKeyword = 'UploadErrorSlow' then
+    pWebApp.Response.SimulateUploadError(False, 0, 15)
   else
   if AKeyword = 'WHBusy' then
     pWebApp.Response.SendCustomError(AKeyword, 500, 13)
