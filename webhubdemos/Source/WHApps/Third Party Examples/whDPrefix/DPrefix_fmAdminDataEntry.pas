@@ -199,7 +199,7 @@ begin
     end;
   end;
   MsgInfoOk('Passwords assigned ' + FormatDateTime('dddd dd-MMM hh:nn',
-    NowGMT));
+    NowUTC));
 end;
 
 procedure TfmWhActions.ActCheckURLsExecute(Sender: TObject);
@@ -236,7 +236,7 @@ begin
           begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := iStatusCode;
-            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowUTC;
             DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
             Post;
           end;
@@ -248,7 +248,7 @@ begin
           begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := -1;
-            FieldByName('MpfURLTestOnAt').AsDateTime := NowGMT;
+            FieldByName('MpfURLTestOnAt').AsDateTime := NowUTC;
             DMNexus.Stamp(DMNexus.TableAdmin, 'htc');
             Post;
           end;
@@ -399,7 +399,7 @@ begin
   inherited;
   ActAssignPasswordsExecute(ActAssignPasswords);
   Filespec8 := 'd:\DelphiPrefixRegistry_Marketing.' +
-    FormatDateTime('yyyy-mm-dd', NowGMT) + '.utf8.csv';
+    FormatDateTime('yyyy-mm-dd', NowUTC) + '.utf8.csv';
   CSVContents := '';
   Data.ListRadio := 'yes';
   with DMNexus.TableAdmin do
@@ -464,7 +464,7 @@ begin
   // www.streamsend.com needs UTF-8 tab delimited, *no* quotes around text.
   UTF8StringWriteToFile(Filespec8, UTF8String(CSVContents));
   MsgInfoOk(Filespec8 + sLineBreak +
-    'Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowGMT));
+    'Done at ' + FormatDateTime('dddd dd-MMM hh:nn', NowUTC));
 end;
 
 procedure TfmWhActions.ActionPurposeExecute(Sender: TObject);

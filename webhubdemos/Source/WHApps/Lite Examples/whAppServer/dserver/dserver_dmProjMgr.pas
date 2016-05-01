@@ -234,7 +234,7 @@ begin
   UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork;  // required final step for app to get to work
   CSSend('Started instance ' + IntToStr(ProjMgr.InstanceSequence) +
-    ' ' + FormatDateTime('dddd dd-MMM hh:nn:ss', NowGMT) + ' gmt');
+    ' ' + FormatDateTime('dddd dd-MMM hh:nn:ss', NowUTC) + ' utc');
   CSSend('pConnection.AvailableToCalc state',
     WebHubAppState(pConnection.AvailableToCalc));
 end;

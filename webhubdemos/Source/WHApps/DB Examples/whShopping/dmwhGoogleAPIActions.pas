@@ -163,7 +163,7 @@ CSEnterMethod(Self, cFn);
           pWebApp.Response.SendLine('IDToken=' + IDToken);
           pWebApp.StringVar['_token_type'] := TokenType;  // save
           pWebApp.Response.SendLine('TokenType=' + TokenType);
-          ExpiresOnAt := IncSecond(NowGMT, ExpiresInSeconds - 45);
+          ExpiresOnAt := IncSecond(NowUTC, ExpiresInSeconds - 45);
           pWebApp.StringVar['_expires_on_at'] := IntToStr(DateTimeToUnix(ExpiresOnAt));
           pWebApp.Response.SendLine('Expires approximately ' +
             FormatDateTime('dd-MMM hh:nn:ss', ExpiresOnAt) + ' gmt');

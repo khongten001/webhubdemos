@@ -258,7 +258,7 @@ CSEnterMethod(Self, cFn);
     FieldByName('MpfFirstLetter').asString :=
       UpperCase(Copy(pWebApp.StringVar['Mpf Prefix'], 1, 1));
     FieldByName('Mpf Status').asString := 'P'; // new records always Pending
-    FieldByName('Mpf Date Registered').asDateTime := NowGMT;
+    FieldByName('Mpf Date Registered').asDateTime := NowUTC;
 
     for i := 0 to Pred(pWebApp.Session.StringVars.count) do
     begin
@@ -321,7 +321,7 @@ CSEnterMethod(Self, cFn);
           if (Lowercase(Trim(FieldByName('Mpf Email').asString)) = DPREmail) and
             (FieldByName('MpfPassToken').asString = DPRPassword) then
           begin
-            if (NowGMT < FieldByName('MpfPassUntil').asDateTime) then
+            if (NowUTC < FieldByName('MpfPassUntil').asDateTime) then
               bFound := True
             else
               pWebApp.StringVar[cn + '-ErrorMessage'] := 'expired password; ' +
@@ -554,7 +554,7 @@ begin
           begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := IStatusCode;
-            FieldByName('MpfURLTestOnAt').asDateTime := NowGMT;
+            FieldByName('MpfURLTestOnAt').asDateTime := NowUTC;
             DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
             Post;
           end;
@@ -566,7 +566,7 @@ begin
           begin
             Edit;
             FieldByName('MpfURLStatus').AsInteger := -1;
-            FieldByName('MpfURLTestOnAt').asDateTime := NowGMT;
+            FieldByName('MpfURLTestOnAt').asDateTime := NowUTC;
             DMNexus.Stamp(DMNexus.TableAdmin, cUpdatedBy);
             Post;
           end;
