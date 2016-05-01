@@ -182,7 +182,7 @@ body {
 
 <whdroplet name="drCopyright" show="no">
 <div class="copyright">
-Copyright &copy; 1995-(~CentralInfo.YearGMT~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
+Copyright &copy; 1995-(~CentralInfo.YearUTC~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
 <a href="https://www.href.com/contact">contact</a> &emsp; &emsp;
 <a href="http://lite.demos.href.com/demos/privacypolicy">privacy</a>
 </div>
