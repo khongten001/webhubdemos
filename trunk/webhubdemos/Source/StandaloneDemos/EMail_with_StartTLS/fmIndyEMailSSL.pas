@@ -345,7 +345,7 @@ var
   s8: UTF8String;
 begin
   Result := 'Test #' + IntToStr(i) + ' as of ' +
-    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowGMT) + ' gmt' + sLineBreak +
+    FormatDateTime('dddd dd-MMM-yyyy hh:nn', NowUTC) + ' utc' + sLineBreak +
     sLineBreak;
   if cbUTF8.Checked then
   begin

@@ -257,7 +257,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
   DS.FieldByName('UpdatedBy').AsString := UpdatedBy;
-  DS.FieldByName('UpdatedOnAt').AsDateTime := NowGMT;
+  DS.FieldByName('UpdatedOnAt').AsDateTime := NowUTC;
   if DS.FieldByName('UpdateCounter').IsNull then
     DS.FieldByName('UpdateCounter').AsInteger := 0
   else
@@ -274,7 +274,7 @@ begin
   if OpenIDProvider <> '' then
   begin
     // non-blank only when surfer goes through OpenID process
-    DS.FieldByName('MpfOpenIDOnAt').AsDateTime := NowGMT;
+    DS.FieldByName('MpfOpenIDOnAt').AsDateTime := NowUTC;
     DS.FieldByName('MpfOpenIDProviderName').AsString :=
       OpenIDProvider;
   end;
