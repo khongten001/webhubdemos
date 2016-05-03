@@ -1,6 +1,6 @@
 unit whConverter_fmWhProcess;
 (*
-Copyright (c) 2003 HREF Tools Corp.
+Copyright (c) 2003-2016 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 22-Aug-2003, free of charge, to any person
@@ -26,9 +26,9 @@ interface
 
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  UTPANFRM, ExtCtrls, StdCtrls, UpdateOk, tpAction, IniLink,
-  Toolbar, Restorer, tpmemo, Buttons, ComCtrls, tpstatus,
-  webTypes, weblink, tpCompPanel;
+  UTPANFRM, ExtCtrls, StdCtrls, Buttons, Vcl.ComCtrls,
+  UpdateOk, tpAction, Toolbar, iniLink, tpCompPanel, Restorer, tpmemo, tpstatus,
+  webTypes, weblink, webBase;
 
 type
   TfmWhProcess = class(TutParentForm)
@@ -51,12 +51,16 @@ type
   private
     { Private declarations }
     FLastFileType: string;
+    FLastFileTooBig: Boolean;
   public
     { Public declarations }
     function Init: Boolean; override;
-    procedure Uploaded(      sender: TObject;
-                       const ServerKey, FileName, FileType, FileSource: String;
-                             FileSize: Integer;
+    procedure Uploaded(      Sender: TwhBasicApp;
+                       const ServerKey: string;
+                       const UploadFileCount, UploadFileTotal: Integer;
+                       const FileName, FileType, FileSource: string;
+                       const FileSize: Integer;
+                       const FileTooBig: Boolean;
                        var   SaveAs: String;
                        var   KeepNow, KeepOnExit: Boolean);
     end;
@@ -138,32 +142,51 @@ end;
 
 {______________________________________________________________________________}
 
-procedure TfmWhProcess.Uploaded(sender: TObject; const ServerKey,
-  FileName, FileType, FileSource: String; FileSize: Integer;
+procedure TfmWhProcess.Uploaded(Sender: TwhBasicApp; const ServerKey: string;
+  const UploadFileCount, UploadFileTotal: Integer;
+  const FileName, FileType, FileSource: String; const FileSize: Integer;
+  const FileTooBig: Boolean;
   var SaveAs: String; var KeepNow, KeepOnExit: Boolean);
+const cFn = 'Uploaded';
 var
   tempPath: String;
 begin
-  inherited;
+  CSEnterMethod(Self, cFn);
   {This event is called by the WebHub System whenever a file is uploaded.      }
-  LogSendInfo('FileName=' + FileName);
-  LogSendInfo('FileSource=' + FileSource);
-  LogSendInfo('FileType=' + FileType);
+  CSSend('FileName', FileName);
+  CSSend('FileSource', FileSource);
+  CSSend('FileType', FileType);
+  CSSend('FileSize', S(FileSize));
+  CSSend('default SaveAs', SaveAs);
+  CSSend('FileTooBig', S(FileTooBig));
   FLastFileType := FileType;
+  FLastFileTooBig := FileTooBig;
 
-  {Save the uploaded file to a temporary directory, making the file sufficiently
-   unique for our purposes by putting the surfer session number into the
-   filename.}
-  tempPath := TwhAppBase(Sender).AppSetting['TempPath'];
-  ForceDirectories(tempPath);  // make sure target folder exists
+  if NOT FileTooBig then
+  begin
+    {Save the uploaded file to a temporary directory, making the file sufficiently
+     unique for our purposes by putting the surfer session number into the
+     filename.}
+    tempPath := pWebApp.AppSetting['TempPath'];
+    CSSend('tempPath', tempPath);
+    ForceDirectories(tempPath);  // make sure target folder exists
 
-  SaveAs := tempPath + 'whConverterInput' +
-            IntToStr(TwhAppBase(Sender).SessionNumber) + '.dat';
-  LogSendInfo('SaveAs=' + SaveAs);
-  if FileExists(SaveAs) then
-    SysUtils.DeleteFile(SaveAs);
-  KeepNow := True;
-  KeepOnExit := True;
+    SaveAs := tempPath + 'whConverterInput' +
+              IntToStr(TwhAppBase(Sender).SessionNumber) + '.dat';
+    CSSend('SaveAs', SaveAs);
+    if FileExists(SaveAs) then
+      SysUtils.DeleteFile(SaveAs)
+    else
+      ;  // this is normal when a unique file name is uploaded
+    KeepNow := True;
+    KeepOnExit := True;
+  end
+  else
+  begin
+    KeepNow := False;
+    KeepOnExit := False;
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
 {______________________________________________________________________________}
@@ -185,6 +208,7 @@ end;
 {______________________________________________________________________________}
 
 procedure TfmWhProcess.waConvertExecute(Sender: TObject);
+const cFn = 'waConvertExecute';
 var
   tempPath: String;
   inputFilename, outputFilename: String;
@@ -192,57 +216,94 @@ var
   ErrorText: String;
   maximumBytes: Integer;
   convConfigFilespec: string;
+  bContinue: Boolean;
 begin
-  inherited;
-  with TwhWebActionEx(Sender), WebApp do
-  begin
-    if NOT FileExists(ConverterFilename.Caption) then
-    begin
-      SendString('Error: converter "' + ConverterFilename.Caption +
-        '" does not exist.');
-    end
-    else
-    begin
+  CSEnterMethod(Self, cFn);
 
-      if (FLastFileType <> 'image/jpeg') then
+  bContinue := NOT FLastFileTooBig;
+  if NOT bContinue then
+  begin
+    pWebApp.SendStringImm('<p>Error: That file was too large.</p>');
+    bContinue := False;
+  end;
+
+  if bContinue then
+  begin
+    { NB: Count can be 0 when KeepNow in OnUploaded event gets set to False
+      because the uploaded file was too big. }
+    bContinue := pWebApp.Runtime.UploadedFiles.Count > 0;
+    if NOT bContinue then
+      pWebApp.SendStringImm('<p>Error: No uploaded files detected.</p>');
+  end;
+
+  if bContinue then
+  begin
+
+    with TwhWebActionEx(Sender), WebApp do
+    begin
+      bContinue := FileExists(ConverterFilename.Caption);
+      if NOT bContinue then
+      begin
+        SendString('Error: converter "' + ConverterFilename.Caption +
+          '" does not exist.');
+      end;
+      if bContinue then
       begin
 
-        tempPath := AppSetting['TempPath'];
-        convConfigFilespec := tempPath + 'whConverterConfig' +
-          IntToStr(SessionNumber) + '.set';
-        iniConfig.Section := 'CharReplace';
-        inputFilename := tempPath + 'whConverterInput' + IntToStr(SessionNumber) +
-          '.dat';
-
-        if NOT FileExists(inputFilename) then
+        if (FLastFileType <> 'image/jpeg') then
         begin
-          SendString('Error: input file "' + inputFilename + '" does not exist.');
-          Exit;
-        end;
+          tempPath := AppSetting['TempPath'];
+          convConfigFilespec := tempPath + 'whConverterConfig' +
+            IntToStr(SessionNumber) + '.set';
+          iniConfig.Section := 'CharReplace';
+          inputFilename := tempPath + 'whConverterInput' + IntToStr(SessionNumber) +
+            '.dat';
 
+          if NOT FileExists(inputFilename) then
+          begin
+            SendString('Error: input file "' + inputFilename +
+              '" does not exist.');
+            bContinue := False;
+          end;
+        end
+        else
+        begin
+          SendStringImm('Invalid file type: ' + FLastFileType);
+            bContinue := False;
+        end;
+      end;
+
+      if bContinue then
+      begin
         maximumBytes := StrToIntDef(AppSetting['MaximumFreeSize'], 1) * 1024;
         if GetFileSize(inputFilename) > maximumBytes then
         begin
           SendString('With FREE coupon, input file size must be smaller than ' +
             IntToStr(maximumBytes) + ' bytes.');
           DeleteFile(inputFilename);
-          Exit;
+          bContinue := False;
         end;
+      end;
 
-        outputFilename := tempPath + 'whConverterOutput' + IntToStr(SessionNumber) +
-          '.dat';
-        DeleteFile(outputFilename);
+      if bContinue then
+      begin
+          outputFilename := tempPath + 'whConverterOutput' + IntToStr(SessionNumber) +
+            '.dat';
+          DeleteFile(outputFilename);
 
-        FromData := StringVar['inFrom'];
-        ToData := StringVar['inTo'];
+          FromData := StringVar['inFrom'];
+          ToData := StringVar['inTo'];
 
-        if (Length(FromData)<>1) or (Length(ToData)<>1) then
-        begin
-          SendString('Both the "From" and the "To" values must be single characters.');
-          DeleteFile(inputFilename);
-          Exit;
-        end;
+          if (Length(FromData)<>1) or (Length(ToData)<>1) then
+          begin
+            SendString('Both the "From" and the "To" values must be single characters.');
+            DeleteFile(inputFilename);
+            bContinue := False;
+          end;
+      end;
 
+      if bContinue then
+      begin
         {This is where we create a temporary configuration file which guides the
          converter to do its job.  The name of the configuration file is based on
          the surfer session number.}
@@ -271,15 +332,13 @@ begin
         else
         begin
           SendStringImm('Unable to create output file named ' + outputFilename);
-          if ErrorText <> '' then SendStringImm( '<p>Error:' + ErrorText);
+          if ErrorText <> '' then
+            SendStringImm( '<p>Error:' + ErrorText + '</p>');
         end;
-      end
-      else
-      begin
-        SendStringImm('Invalid file type: ' + FLastFileType);
       end;
     end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 {______________________________________________________________________________}

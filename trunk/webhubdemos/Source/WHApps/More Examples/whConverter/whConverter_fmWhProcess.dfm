@@ -87,6 +87,7 @@ inherited fmWhProcess: TfmWhProcess
       end>
     ParentShowHint = False
     ShowHint = True
+    SimpleText = ''
     PanelStatusIndex = 0
   end
   object iniconfig: TIniFileLink
