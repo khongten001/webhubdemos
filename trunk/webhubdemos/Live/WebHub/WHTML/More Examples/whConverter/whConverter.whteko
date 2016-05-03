@@ -28,6 +28,10 @@ conversion service.</p>
 <!-- changing:start-->
 <form method="post" enctype="multipart/form-data" action="(~ACTIONR|pgResult~)">
 <!-- changing:stop-->
+<input type="hidden" name="abc" value="ABC"/>
+<input type="hidden" name="abc2" value="ABC2"/>
+<input type="hidden" name="abc3" value="ABC3"/>
+<input type="hidden" name="abc4" value="ABC4"/>
 <table>
 <tr>
  <td>Coupon Code:</td>
@@ -74,8 +78,8 @@ conversion service.</p>
 <body>
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
-(~waValidateCoupon.execute~)
-(~waConvert.execute~)
+(~waValidateCoupon.execute|~)
+(~waConvert.execute|~)
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
@@ -156,6 +160,30 @@ Browse to your file now<br/>
 
 (~JUMPR|pguploadtest|again~)
 </body></html>
+</whpage>
+
+<whpage pageid="pgtestupload2json">
+<html><head><title>(~pageid~)</title></head>
+<body>
+
+hello from (~version~)
+<form name="newjob"
+      enctype="multipart/form-data" method="post" action="(~ACTIONR|jsonuploadreply~)">
+Browse to file<br/>
+<input type="file" name="InputFile" accept="text/plain,application/rtf" size="30" />
+<br/>
+<input type="hidden" name="sample1" value="SAMPLE1data"/>
+
+<input type="submit" />
+</form>
+
+(~JUMPR|pguploadtest|again~)
+
+</body></html>
+</whpage>
+
+<whpage pageid="jsonuploadreply" desc="-testing json response in wh v3.254">
+{"Message":"(~WebTimeUTC~) Response from (~pageid~)."}
 </whpage>
 
 <whpage pageid="pgUploadTooBig">
