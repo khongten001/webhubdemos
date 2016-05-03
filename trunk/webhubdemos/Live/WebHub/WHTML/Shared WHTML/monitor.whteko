@@ -85,6 +85,20 @@ googlesitemap=exclude
 (~waSimulateBadNews.Execute|HubNotFound~)
 </whpage>
 
+<whpage pageid="pgtestappnotdefined" desc="-Simulate AppNotDefined">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppNotDefined~)
+</whpage>
+
+<whpage pageid="jsontestappnotdefined" desc="-Simulate AppNotDefined in JSON syntax">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|AppNotDefined~)
+</whpage>
+
 <whpage pageid="pgtestappnotrunning" desc="-Simulate AppNotRunning">
 <whpagesettings>
 googlesitemap=exclude
@@ -141,7 +155,42 @@ googlesitemap=exclude
 (~waSimulateBadNews.Execute|RequestTimeout~)
 </whpage>
 
-<whpage pageid="pgTestSimulatedErrors" desc="-Simulating 403 Conditions">
+<whpage pageid="pgtestUploadError" desc="-Simulate UploadError for file too large">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|UploadErrorBig~)
+</whpage>
+
+<whpage pageid="pgtestUploadErrorSlow" desc="-Simulate UploadError for file transfer too slow">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|UploadErrorSlow~)
+</whpage>
+
+<whpage pageid="jsontestUploadError" desc="-Simulate JSON UploadError">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|UploadError~)
+</whpage>
+
+<whpage pageid="pgtestWHBusy" desc="-Simulate WHBusy">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|WHBusy~)
+</whpage>
+
+<whpage pageid="pgtestWHStarting" desc="-Simulate WHStarting">
+<whpagesettings>
+googlesitemap=exclude
+</whpagesettings>
+(~waSimulateBadNews.Execute|WHStarting~)
+</whpage>
+
+<whpage pageid="pgTestSimulatedErrors" desc="-Simulating System Error Conditions">
 <whoutput>
 (~mcdoctypehtml~)
 <html (~ANCHOR|anchHtmlTag~)>
@@ -155,16 +204,22 @@ googlesitemap=exclude
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~PageDesc~)</h1>
 <p>These links are for simulating an error condition.
-All should give status 403 with a visible response as HTML, JSON, etc., 
-depending on the PageID and configuration.</p>
+Most should give status 211 with a visible response as HTML, JSON, etc., 
+depending on the PageID and configuration within IIS.</p>
 <ul>
 
 <li> (~JUMP|pgtestappcoverpage|AppCoverPage~) </li>
+<li> (~JUMP|pgtestappnotdefined|AppNotDefined~) </li>
 <li> (~JUMP|pgtestappnotrunning|AppNotRunning~) </li>
 <li> (~JUMP|pgtestappidbusy|AppIDBusy~) </li>
 <li> (~JUMP|pgtesthubnotfound|HubNotFound~) </li>
 <li> (~JUMP|pgtestrequesttimeout|RequestTimeout~) </li>
+<li> (~JUMP|pgtestuploaderror|UploadError (file too big)~) </li>
+<li> (~JUMP|pgtestuploaderrorslow|UploadError (too slow)~) </li>
+<li> (~JUMP|pgtestwhbusy|rel="nofollow"|WHBusy~) <i>returns IIS 500.13 response</i></li>
+<li> (~JUMP|pgtestwhstarting|rel="nofollow"|WHStarting~) <i>returns IIS 500.12 response</i></li>
 
+<li> (~JUMP|jsontestappnotdefined|rel="nofollow"|JSON AppNotDefined"~) <i>returns IIS 404.4 response</i></li>
 <li> (~JUMP|jsontestappcoverpage|JSON AppCoverPage~) </li>
 <li> (~JUMP|jsontestappidbusy|JSON AppIDBusy~) </li>
 <li> (~JUMP|jsontestrequesttimeout|JSON RequestTimeout~) </li>
