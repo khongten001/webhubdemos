@@ -14,7 +14,7 @@
 <body>
 <div id="whmsgContent">
 	<div align="center">
-	<img src="http://demos.href.com/webhub/demos/img/logos/coderage.jpg" alt="conference logo" />
+	<img src="//img.href.com/webhubdemos/img/logos/coderage.jpg" alt="conference logo" />
 
 	<h2>(~SITUATIONTEXT~)</h2>
 	</div>
@@ -30,15 +30,12 @@ It will not serve pages until the administrator restores regular access.</p>
 <li> Reason: (~REASON~)</li>
 </ul>
 
-<p><a href="(~WHERE~)">Click here to try again.</a></p>
-
 <h2>Reporting Problems to the Site Administrator</h2>
 <p>If you suspect a problem with this site, report the following to the administrator using the 
 contact link below.</p>
 <ul>
 <li> AppID (~APPID~)</li>
 <li> Situation code &quot;(~SITUATION~)&quot; </li>
-<li> URL &quot;(~WHERE~)&quot;</li>
 </ul>
 
 <p>Thank you.</p>
@@ -47,7 +44,7 @@ contact link below.</p>
 HREF Tools Corp.<br/>
 1275 Fourth Street #109<br/>
 Santa Rosa CA 95404 USA<br/>
-<a href="http://www.href.com/contact">contact</a>
+<a href="https://www.href.com/contact">contact</a>
 </p>
 </div>
 </body></html>

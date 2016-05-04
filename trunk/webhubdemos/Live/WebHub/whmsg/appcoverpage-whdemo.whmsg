@@ -14,7 +14,7 @@
 <body>
 <div id="whmsgContent">
 	<div align="center">
-	<img src="http://img.href.com/webhubdemos/whOptions/fast/whlogo.jpg" alt="WebHub logo" />
+	<img src="//img.href.com/webhubdemos/whOptions/fast/whlogo.jpg" alt="WebHub logo" />
 
 	<h2>closed</h2>
 	</div>
@@ -32,7 +32,7 @@ It will not serve pages until/unless the webmaster restores regular access.</p>
 
 <h3>Reporting Problems to the Site Administrator</h3>
 <p>If you suspect a problem with this site, you can help us by reporting the following details to the webmaster using the 
-<a href="http://www.href.com/contact">contact</a> form. <b>Monday-Friday</b>, 4-5pm in California, <b>Live Chat</b> is open at 
+<a href="https://www.href.com/contact">contact</a> form. <b>Monday-Friday</b>, 4-5pm in California, <b>Live Chat</b> is open at 
 <a href="https://www.href.com/techhelp">www.href.com/techhelp</a>.</p>
 <ul>
 <li> AppID (~APPID~)</li>
