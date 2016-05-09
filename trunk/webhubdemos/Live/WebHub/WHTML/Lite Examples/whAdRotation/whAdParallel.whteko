@@ -3,8 +3,8 @@
 <whteko defaultlingvo="eng" designmode="code">
  
 <whmacros>
-mcRun1=scripts/runisa_x_d23_win64_debug.dll
-mcRun2=scripts/runisa_x_d23_win64.dll
+mcRun1=scripts/runisa_x_d24_win64_debug.dll
+mcRun2=scripts/runisa_x_d24_win64.dll
 mcRun3=(~Request.RawVMR~)
 </whmacros>
 

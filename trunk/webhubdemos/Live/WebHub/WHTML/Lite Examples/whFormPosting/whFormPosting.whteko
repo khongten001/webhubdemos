@@ -9,10 +9,10 @@
   notes="This file provides most of the content for the FORM demo.">
 
 <whmacros>
-mcSpeciesList=1-Cat,2-Dog,3-Rodent,4-Bird,5-Reptile,6-Fish,7-Pig,8-Horse,9-Insect,10-Rock,11-Other
-mcPersonalityList=1-Docile,2-Affectionate,3-Playful,4-Active,5-Cranky,6-Vicious,7-Intelligent,8-Trickster,9-Naughty,10-Beastly
-mcSizeList=1-Tiny,2-Small,3-Average,4-Large,5-Enormous
-mcColorList=1-Brown,2-Red,3-Orange,4-Yellow,5-Green,6-Blue,7-Purple,8-Black,9-Gray,10-White
+mcSpeciesList=S01-Cat,S02-Dog,S03-Rodent,S04-Bird,S05-Reptile,S06-Fish,S07-Pig,S08-Horse,S09-Insect,S10-Rock,S11-Other
+mcPersonalityList=P1-Docile,P2-Affectionate,P3-Playful,P4-Active,P5-Cranky,P6-Vicious,P7-Intelligent,P8-Trickster,P9-Naughty
+mcSizeList=SZ1-Tiny,SZ2-Small,SZ3-Average,SZ4-Large,SZ5-Enormous
+mcColorList=C01-Brown,C02-Red,C03-Orange,C04-Yellow,C05-Green,C06-Blue,C07-Purple,C08-Black,C09-Gray,C10-White
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForFORM">

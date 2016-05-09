@@ -86,6 +86,7 @@
       <File id="_sharepgs" filename="..\..\Shared WHTML\sharepgs.whteko"/>
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
       <File id="D01" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
+      <File id="M02" filename="..\..\Shared WHTML\stress.whteko"/>
     </TekoFiles>
   </Application>
   <ComponentConfig>
