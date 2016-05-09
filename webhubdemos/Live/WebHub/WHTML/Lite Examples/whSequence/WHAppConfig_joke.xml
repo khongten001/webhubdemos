@@ -36,7 +36,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLogging" value="error,exception"/>
+      <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="Summary" value="true"/>

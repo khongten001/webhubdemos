@@ -7,6 +7,7 @@ setlocal
 
 set fastseconds=4
 set exename=whlite_x_d23_win64_src.exe
+set exename=whlite.exe
 
 cd /d %~dp0
 cd ..\WebHub\Apps
@@ -17,6 +18,7 @@ start %exename% /ID=demos
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 net start adv1
+if errorlevel 1 start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=joke
@@ -38,6 +40,7 @@ start %exename% /ID=demos
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 net start adv2
+if errorlevel 1 start %exename% /ID=adv
 d:\Apps\HREFTools\miscutil\wait.exe %fastseconds%
 
 start %exename% /ID=joke
