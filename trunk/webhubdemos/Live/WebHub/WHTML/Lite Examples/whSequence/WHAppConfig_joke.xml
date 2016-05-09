@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
@@ -95,6 +95,7 @@
       <File id="_sysinfo" filename="..\..\Shared WHTML\sysinfo.whteko"/>
       <File id="D01" filename="..\..\Shared WHTML\designrefresh_jquery.whteko"/>
       <File id="M01" filename="..\..\Shared WHTML\monitor.whteko"/>
+      <File id="M02" filename="..\..\Shared WHTML\stress.whteko"/>
     </TekoFiles>
   </Application>
 </WebHubAppConfiguration>
