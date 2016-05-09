@@ -28,7 +28,7 @@ googlepriority=0
 
 (~inputform|pgLoginConfirm~)
 <table width="100%">
-<tr><td width=33%>&nbsp;</td><td width=33% valign=center>
+<tr><td width=33%>&nbsp;</td><td width=33% style="vertical-align: middle;">
 <table border="1" width="100%">
 <tr><th (~mcTDc~) colspan=2 align=center>DPR Login</th></tr>
 <tr><td (~mcTDc~)>Name:</td>
