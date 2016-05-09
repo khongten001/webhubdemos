@@ -218,7 +218,7 @@ This is considered a "Lite" demo, which means that there are no
 database requirements, and implies it can be served by
 just about <i>any</i> web application compiled with WebHub Object Pascal Components.
 (The only exception would be if a company decided to remove standard functionality, which is rare.)
-On the demos.href.com server, we run the Lite demos with whLite.exe. Delphi programmers can
+On the lite.demos.href.com server, we run the Lite demos with whLite.exe. Delphi programmers can
 make a program equivalent to whLite by running the WebHub "new project" wizard. Instructions are in the WebHub Manual.
 </whdroplet>
 

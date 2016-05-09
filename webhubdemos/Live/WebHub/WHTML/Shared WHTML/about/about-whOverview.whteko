@@ -17,7 +17,7 @@ mcWhDemoLiteDEMOS=Lite
 <li> (~drAboutLiteDemo~)</li>
 <li> NB: this overview demo links to more than two dozen other WebHub applications.
 Those links are only valid if those applications are available!  They will be available 
-if you are testing this on http://demos.href.com, but they might not be running (yet) on 
+if you are testing this on http://lite.demos.href.com, but they might not be running (yet) on 
 your own test platform. Use the [More] link next to each description to find out the 
 required setup for any application you are interested in.
 </li>
@@ -29,7 +29,7 @@ This web application provides an overview of more than two dozen WebHub demos,
 developed from 1995 to now.  Over time, various people have added content ideas, 
 explanatory notes, graphics and page layout ideas.
 <p>You may test the WebHub demos on your development machine or 
-on demos.href.com.  Please take your time, 
+on lite.demos.href.com.  Please take your time, 
 and try all the links... there are many hidden goodies.</p>
 </whtranslation>
 

@@ -16,12 +16,13 @@ mcWhDemoLiteHTFD=Lite
 <ol>
 <li> (~drAboutLiteDemo~)</li>
 <li> You must have access to an outgoing mail server if you want to 
-see this demo work on your own machine.  If you are testing on demos.href.com, 
+see this demo work on your own machine.  If you are testing on 
+more.demos.href.com, 
 then don't worry -- everything has already been set up for you.
 </li>
 <li> If you are testing on your own machine, change the mail server to one 
 that you have permission to use.  Do this through the <b>Mail Panel</b> or 
-edit the application's INI file using the menu: <b>HTFD|Edit Ini File</b>.
+edit the application's config file using the menu: <b>WebHubApp > Edit Config File</b>.
 </li>
 </ol>
 </whdroplet>
