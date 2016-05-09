@@ -17,11 +17,11 @@ bSeqHdr=false
 <h2>(~PageDesc~)</h2>
 <table>
 <tr>
-<td valign="top">
+<td style="vertical-align: top;">
 <b>(~ulpgHelp~)</b>
 </td>
 (~mcVerticalLine~)
-<td valign="top">
+<td style="vertical-align: top;">
 (~tpHelp~)
 </td></tr></table>
 (~drShowcaseGlobalFooter~)
@@ -58,7 +58,7 @@ Demo?  What do the icons mean?  How can I <a href="https://store.www.href.com/hr
 <h2>(~PageDesc~)</h2>
 <table>
 <tr>
-<td VALIGN=TOP>
+<td style="vertical-align: top;">
 <dl id="dlShowcaseNav">
 (~GO|pgHTML|<dt>Easier HTML</dt>~)
 
@@ -169,7 +169,7 @@ Demo?  What do the icons mean?  How can I <a href="https://store.www.href.com/hr
 
 </td>
 (~mcVerticalLine~)
-<td VALIGN=TOP>
+<td style="vertical-align: top;">
 <p>The information hierarchy for this demo has three major levels.
 </p>
 <p>We have provided <b>Back</b> and <b>Next</b> sequence buttons to make it

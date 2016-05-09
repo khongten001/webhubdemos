@@ -20,15 +20,15 @@
  <th>All StringVars<br />(TWhSession.StringVars)</th>
 </tr>
 <tr>
- <td valign="top">(~Request.FormData~)&nbsp;</td>
- <td valign="top">(~StringVars~)</td>
+ <td style="vertical-align: top;">(~Request.FormData~)&nbsp;</td>
+ <td style="vertical-align: top;">(~StringVars~)</td>
 </tr>
 <tr>
  <th>BoolVars<br />(TWhSession.BoolVars)</th>
- <th>BoolVarsPending<br />(TWhSession.BoolVarsPending)</th>
+ <th>&nbsp;</th>
 </tr>
 <tr>
- <td>(~BoolVars~)</td><td>(~BoolVarsPending~)&nbsp;</td>
+ <td>(~BoolVars~)</td><td>&nbsp;</td>
 </tr>
 </table>
 </whdroplet>

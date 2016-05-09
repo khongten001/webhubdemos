@@ -137,16 +137,16 @@ on <b>liParam</b>:</p>
 <whdroplet name="chParamDebug">
 <table id="paramDebug" border="0" cellpadding="3" width="100%">
 <tr>
-	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	<td style="vertical-align: top;"><span style="font-weight:700;text-decoration:underline;">
 	FormData:</span><br />(~FormData~)
 	</td>
-	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	<td style="vertical-align: top;"><span style="font-weight:700;text-decoration:underline;">
 	StringVars:</span><br />(~StringVars~)
 	</td>
-	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	<td style="vertical-align: top;"><span style="font-weight:700;text-decoration:underline;">
 	BoolVars:</span><br />(~BoolVars~)
 	</td>
-	<td valign="top"><span style="font-weight:700;text-decoration:underline;">
+	<td style="vertical-align: top;"><span style="font-weight:700;text-decoration:underline;">
 	BoolVarsPending:</span><br />(~BoolVarsPending~)
 	</td>
 </tr>

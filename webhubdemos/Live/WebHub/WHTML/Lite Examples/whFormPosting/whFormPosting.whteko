@@ -143,7 +143,7 @@ search, tel, url, email, datetime, date, month, week, time, datetime-local, numb
 </tr>
 </table>
 </td>
-<td valign="middle">
+<td style="vertical-align: middle;">
 <table id="inputright">
 <tr>
 	<td class="prompt">
