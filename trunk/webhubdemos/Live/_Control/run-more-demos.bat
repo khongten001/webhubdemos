@@ -1,16 +1,23 @@
 :: run-more-demos.bat
-:: Copyright (c) 2011-2015 HREF Tools Corp.
+:: Copyright (c) 2011-2016 HREF Tools Corp.
 :: www.href.com
 
 @echo off
 setlocal
 
-set fastseconds=25
-set slowseconds=35
+:: set zmcontext variable
+call %ZaphodsMap%zmset.bat zmcontext AsDefaultContext
+
 
 call %ZaphodsMap%zmset.bat flagdemosmore UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demosmore"
 echo flagdemosmore is %flagdemosmore%
 if NOT %flagdemosmore%==yes goto end
+set fastseconds=25
+if "%zmcontext%"=="DEMOS" set fastseconds=10
+set slowseconds=35
+if "%zmcontext%"=="DEMOS" set slowseconds=15
+:: change to the location of this bat file
+
 
 cd /d %~dp0
 call .\select-more-demos.bat
