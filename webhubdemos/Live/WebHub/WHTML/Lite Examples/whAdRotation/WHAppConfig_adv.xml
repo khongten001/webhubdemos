@@ -35,11 +35,10 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="lite" context="META"/>
-        <ServerProfileIDStandard context="ultraann" value="newipc"/>
         <ServerProfileIDSecure value="ssl"/>
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
-        <UseAppProcessID value="false"/>
+        <UseAppProcessID value="true"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
