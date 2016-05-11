@@ -7,15 +7,18 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="false"/>
     <StartMinimized value="true"/>
     <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="enabled-gui"/>
           <Module name="email" status="enabled" context="META"/>
+          <Module name="email" status="enabled" context="DORIS"/>
           <Module name="dreamweaver" status="disabled"/>
           <Module name="dwsecurity" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
@@ -32,16 +35,16 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="lite" context="META"/>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="lite" context="META"/>
+        <ServerProfileIDStandard value="lite" context="DORIS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
-      <AppSetting name="DesignRefreshEnabled" value="True"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
+      <AppSetting name="DesignRefreshEnabled" value="False"/>
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
@@ -60,6 +63,7 @@
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
       <ReadOnlySessionNumber value="888888"/>
     </Security>

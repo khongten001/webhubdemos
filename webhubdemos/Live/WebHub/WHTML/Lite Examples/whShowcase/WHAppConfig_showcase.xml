@@ -5,8 +5,10 @@
     <MenuEnabled value="true"/>
     <SplashEnabled value="true"/>
     <SplashEnabled context="META" value="false"/>
+    <SplashEnabled context="DEMOS" value="false"/>
     <StartMinimized value="true"/>
     <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -32,6 +34,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="lite" context="META"/>
+        <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <ServerProfileIDSecure value="ssl"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -40,13 +43,13 @@
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="DemoGraphic" value="yes"/>
-      <AppSetting name="DesignRefreshEnabled" value="True"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" context="META"/>
+      <AppSetting name="DesignRefreshEnabled" value="false"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="LogToFile" value="true"/>
       <ErrorAlertFlag name="Summary" value="true"/>
       <ErrorAlertFlag name="Summary" context="META" value="false"/>
+      <ErrorAlertFlag name="Summary" context="DEMOS" value="false"/>
     </ErrorAlertFlags>
     <ErrorSituations>
       <ErrorSituation name="RejectSession" logToFile="true"/>
@@ -74,8 +77,11 @@
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
       <CookieDomainDefault value="lite.demos.href.com" context="META"/>
+      <CookieDomainDefault value="db.demos.href.com" context="DORIS"/>
+      <CookieDomainDefault value="nano.lite.demos.href.com" context="DEMOS"/>
       <ReadOnlySessionNumber value="888888"/>
     </Security>
     <Situations>
