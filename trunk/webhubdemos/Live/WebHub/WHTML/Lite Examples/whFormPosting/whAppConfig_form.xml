@@ -10,7 +10,7 @@
     <SplashEnabled value="false" context="DEMOS"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
-    <StartMinimized value="true" context="DORIS"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -40,7 +40,7 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" />
+      <AppSetting name="CodeSiteLogging" value="warning,error,exception" />
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="False"/>
     </AppSettings>
