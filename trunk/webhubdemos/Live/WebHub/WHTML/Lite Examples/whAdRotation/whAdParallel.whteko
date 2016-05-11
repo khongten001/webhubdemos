@@ -231,4 +231,25 @@ Content for some bytes...
 */
 </whpage>
 
+
+<whpage pageid="pgTestReturn2PID">
+<whoutput>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+
+<h1>Link Test</h1>
+<p>(~CentralInfo.WebTimeUTC~)</p>
+<p style="padding: 0.1em 4em 8em 4em;">(~JUMP|pgTestReturn2PID|click here~)</p>
+
+(~drPageEnd~)
+
+</body></html> 
+</whoutput>
+</whpage>
+
 </whteko>
