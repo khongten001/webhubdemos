@@ -4,9 +4,11 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -29,14 +31,15 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="more" context="META"/>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="more" context="DEMOS"/>
+        <ServerProfileIDStandard value="more" context="META"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-          <AppSetting name="CodeSiteLogging" value="error,exception" />
+          <AppSetting name="CodeSiteLogging" value="warning,error,exception" />
     </AppSettings>    
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
@@ -50,6 +53,7 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <AdminSessionNumber value="1204" context="META"/>
       <CookieDomainDefault value=""/>
     </Security>
