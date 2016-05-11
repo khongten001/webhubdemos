@@ -5,11 +5,16 @@
 @echo off
 setlocal
 
+:: set zmcontext variable
+call %ZaphodsMap%zmset.bat zmcontext AsDefaultContext
+
 call %ZaphodsMap%zmset.bat flagdemoslite UsingKey2Value "HREFTools/WebHub/cv004 SystemStartup demoslite"
 echo flagdemoslite is %flagdemoslite%
 
 set fastseconds=9
+if "%zmcontext%"=="DEMOS" set fastseconds=4
 set slowseconds=20
+if "%zmcontext%"=="DEMOS" set slowseconds=10
 
 :: change to the location of this bat file
 cd /d %~dp0
@@ -17,6 +22,7 @@ call .\select-lite-demos.bat
 
 set covermin=9999
 set coverlite=try this demo on http://lite.demos.href.com/
+if "%zmcontext%"=="DEMOS" set coverlite=try this demo on http://nano.lite.demos.href.com/
 
 cd /d %~dp0
 cd ..\WebHub\Apps
