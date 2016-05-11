@@ -1,19 +1,21 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="dwsecurity" status="disabled"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
           <Module name="w3validation" status="enabled"/>
@@ -30,8 +32,9 @@
   <Application>
     <AppProperties>
       <DynURLConfig>
-        <ServerProfileIDStandard value="more" context="META"/>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDStandard value="more" context="META"/>
+        <ServerProfileIDStandard value="more" context="DEMOS"/>
         <ServerProfileIDSecure value="ssl"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -54,8 +57,10 @@
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
       <CookieDomainDefault value="more.demos.href.com" context="META"/>
+      <CookieDomainDefault value="nano.more.demos.href.com" context="DEMOS"/>
     </Security>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg"/>
@@ -81,6 +86,7 @@
   <ComponentConfig>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\htun\" context="META"/>
+      <Item id="DiskFolder" value="D:\temp\w3validation\htun\" context="DEMOS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

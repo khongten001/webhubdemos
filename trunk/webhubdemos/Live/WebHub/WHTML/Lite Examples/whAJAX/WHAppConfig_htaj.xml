@@ -4,15 +4,18 @@
   <Startup>
     <MenuEnabled value="true"/>
     <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
     <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
+          <Module name="dreamweaver" status="disabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
           <Module name="lingvo" status="enabled"/>
         </GUIOptional>
@@ -64,6 +67,7 @@
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
     </Security>
     <Situations>
@@ -72,7 +76,8 @@
     </Situations>
     <Static>
       <AppRoot value="/" context="META"/>
-      <AppRoot value="http://demos.href.com/"/>
+      <AppRoot value="/" context="DEMOS"/>
+      <AppRoot value="http://lite.demos.href.com/"/>
     </Static>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg"/>
