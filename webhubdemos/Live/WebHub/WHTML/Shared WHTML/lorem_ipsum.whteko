@@ -32,7 +32,10 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 <h2>Lorem Ipsum</h2>
 <p><i>from <a href="http://www.lipsum.com/">http://www.lipsum.com</a>...</i></p>
 <form method="post" action="(~ACTIONR|pgTestLoremIpsum~)">
-Number of repeats: (~INPUTTEXT|NLoremRepeats~) <input type="submit" />
+Number of repeats: (~INPUTTEXT|NLoremRepeats~) 
+<div style="padding: 1.5em 2em 1.5em 2em;">
+<input type="submit" />
+</div>
 </form>
 
 <h3>Repeating (~NLoremRepeats~) times...</h3>
