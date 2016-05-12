@@ -1,0 +1,6 @@
+# robots.txt for http://demos.href.com/
+#
+User-agent: *
+
+Allow: /index.html
+Disallow: /
