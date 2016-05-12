@@ -1,9 +1,10 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <Variables begin="{" end="}">
     <Var name="DataPath" value="D:\whAppliance\whConfig\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
+    <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
     <Var name="AppConfigPath" value="D:\Apps\HREFTools\WebHub\config\"/>
   </Variables>
   <KeyGroups>
@@ -16,7 +17,7 @@
         <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
         <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
         <Key2File name="SystemMessages" filename="{DataPath}WHSystemMessages.xml"/>
-        <Key2Folder name="CoverPageInfo" folder="{RootForWHDataFolders}whCoverPageInfo"/>
+        <Key2Folder name="CoverPageInfo" folder="{RootForWHSwapFolders}whCoverPageInfo"/>
       </Keys>
     </KeyGroup>
     <KeyGroup name="ZMAdmin">
