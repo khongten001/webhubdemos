@@ -113,10 +113,6 @@
             <Form>dmWhQuote</Form>
             <DesignClass>TdmWhQuote</DesignClass>
         </DCCReference>
-        <DCCReference Include="h:\whMail.pas">
-            <Form>DataModuleWhMail</Form>
-            <DesignClass>TDataModule</DesignClass>
-        </DCCReference>
         <DCCReference Include="h:\tpProj.pas"/>
         <DCCReference Include="..\..\Common\whdemo_DMProjMgr.pas">
             <Form>DMForWHDemo</Form>
@@ -124,6 +120,10 @@
         </DCCReference>
         <DCCReference Include="whSendMail_dmProjMgr.pas">
             <Form>DMForWHSendMail</Form>
+            <DesignClass>TDataModule</DesignClass>
+        </DCCReference>
+        <DCCReference Include="h:\whMail.pas">
+            <Form>DataModuleWhMail</Form>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="htmaildm.pas">
