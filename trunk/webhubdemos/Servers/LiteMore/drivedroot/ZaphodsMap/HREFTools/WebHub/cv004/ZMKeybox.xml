@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
+  <Variables begin="{" end="}">
+    <Var name="DataPath" value="D:\Projects\WebHubDemos\Live\Config\"/>
+    <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
+    <Var name="AppConfigPath" value="D:\Apps\HREFTools\WebHub\config\"/>
+  </Variables>
+  <KeyGroups>
+    <KeyGroup name="WebHub">
+      <Keys>
+        <Key2File name="CentralInfo" filename="{DataPath}WHCentralInfo.xml"/>
+        <Key2File name="NetworkInfo" filename="{DataPath}WHNetworkInfo.xml"/>
+        <Key2File name="License" filename="{DataPath}WHLicense.xml"/>
+        <Key2File name="ServiceControl" filename="{DataPath}WHServiceControl.xml"/>
+        <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
+        <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
+        <Key2File name="SystemMessages" filename="{DataPath}WHSystemMessages.xml"/>
+        <Key2Folder name="CoverPageInfo" folder="{RootForWHDataFolders}whCoverPageInfo"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="ZMAdmin">
+      <Keys>
+        <Key2File name="ZMAdminCustomPanel" filename="{AppConfigPath}ZMAdminPanel-WebHub-cv004.xml"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="SystemStartup">
+      <Keys>
+        <Key2Value name="demoslite" value="yes"/>
+        <Key2Value name="demosmore" value="yes"/>
+        <Key2Value name="demosdb" value="no"/>
+      </Keys>
+    </KeyGroup>
+  </KeyGroups>
+</ZMKeybox>

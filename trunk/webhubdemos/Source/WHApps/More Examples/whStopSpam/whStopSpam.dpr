@@ -28,11 +28,14 @@ uses
   ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
+  tpShareB in 'k:\webhub\tpack\tpShareB.pas',
+  ucAppInst in 'k:\webhub\tpack\ucAppInst.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},
   utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   NativeXml in 'h:\NativeXml.pas',
   ZaphodsMap in 'h:\ZaphodsMap.pas',
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas',
   whdemo_Initialize in '..\..\Common\whdemo_Initialize.pas',
   whdemo_About in '..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_CodeSite in '..\..\Common\whdemo_CodeSite.pas',
@@ -59,6 +62,7 @@ uses
 
 (* when compiling with source, could use these units
   cgiServ in 'K:\WebHub\lib\whvcl\cgiServ.pas',
+  webCall in 'K:\WebHub\lib\whvcl\webCall.pas',
 
   webSOAPPublish in 'K:\WebHub\lib\whplus\webSOAPPublish.pas',
   webSOAPInvoke in 'K:\WebHub\lib\whplus\webSOAPInvoke.pas',
