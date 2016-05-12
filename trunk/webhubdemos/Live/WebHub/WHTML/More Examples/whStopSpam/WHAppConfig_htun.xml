@@ -36,7 +36,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="more" context="META"/>
-        <ServerProfileIDStandard value="moredebug" context="DEMOS"/>
+        <ServerProfileIDStandard value="more" context="DEMOS"/>
         <ServerProfileIDSecure value="ssl"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
