@@ -88,6 +88,7 @@
   <ComponentConfig>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\htcl\" context="META"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\htcl\" context="DEMOS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

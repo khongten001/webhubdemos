@@ -55,7 +55,6 @@
         <Page function="refresh" pageID="remoterefresh"/>
       </RemoteAccessPages>
       <AllowedIPRange value="1800-1900"/>
-      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
@@ -89,7 +88,7 @@
   <ComponentConfig>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\htun\" context="META"/>
-      <Item id="DiskFolder" value="D:\temp\w3validation\htun\" context="DEMOS"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\htun\" context="DEMOS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

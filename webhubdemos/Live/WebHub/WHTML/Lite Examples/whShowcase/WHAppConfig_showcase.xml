@@ -155,6 +155,7 @@
     </whMailForm>
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\showcase\"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\showcase\" context="DEMOS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
