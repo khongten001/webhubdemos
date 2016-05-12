@@ -82,7 +82,7 @@
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Platform>x86</DCC_Platform>
         <DCC_ExeOutput>D:\Projects\WebHubDemos\Live\WebHub\Apps</DCC_ExeOutput>
-        <DCC_Define>PREVENTSVCMGR;$(DCC_Define)</DCC_Define>
+        <DCC_Define>PREVENTSVCMGR;CodeSite;Log2CSL;$(DCC_Define)</DCC_Define>
         <DCC_UsePackage>vcl;vclx;vcldb;soaprtl;xmlrtl;inet;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_K>false</DCC_K>
         <DCC_F>false</DCC_F>
@@ -131,12 +131,10 @@
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <Icon_MainIcon>..\..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;k:\webhub\lib\whrun;k:\vendors\raize\codesite5\lib\rx10\$(platform)</DCC_UnitSearchPath>
-        <DCC_Define>CodeSite;Log2CSL;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
-        <DCC_Define>LOGWHMSG;$(DCC_Define)</DCC_Define>
         <DCC_UnitSearchPath>K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <Debugger_RunParams>/id=form</Debugger_RunParams>
+        <Debugger_RunParams>/id=htun</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win64)'!=''">

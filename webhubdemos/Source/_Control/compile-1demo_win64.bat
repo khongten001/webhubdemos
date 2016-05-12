@@ -33,7 +33,7 @@ set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_w
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 :: exclude WebHub packages
-set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib"
+set pkg="dbrtl;inet;soaprtl;soapserver;vclactnband;vcldb;vclimg;vclsmp;vcl;vclx;vcldb;xmlrtl;ldiRegExLib;ZaphodsMapLib"
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
