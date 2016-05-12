@@ -1,14 +1,6 @@
 :: select-more-demos.bat
-:: Copyright (c) 2011 HREF Tools Corp.
+:: Copyright (c) 2011-2016 HREF Tools Corp.
 :: www.href.com
-
-call %ZaphodsMap%\zmset.bat whipc UsingKey2Value "HREFTools\Install WebHub ipc old"
-
-echo .
-echo ***
-echo ipc is %whipc%
-echo ***
-echo .
 
 :: htcv includes file upload feature
 set demohtcv=yes
@@ -19,16 +11,14 @@ set demohtasync=yes
 
 set demohtdr=yes
 
-if "%whipc%"=="old" set demohtob=yes
-if "%whipc%"=="x" set demohtob=no
+set demohtob=no
+
+set demohtoi=no
 
 set demohtol=no
 
 set demohtem=yes
 
-if "%whipc%"=="old" set demohtgr=yes
-if "%whipc%"=="x" set demohtgr=no
-
-set demohtoi=yes
+set demohtgr=no
 
 :end
