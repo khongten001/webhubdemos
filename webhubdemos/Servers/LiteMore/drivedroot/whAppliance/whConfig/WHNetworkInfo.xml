@@ -26,6 +26,7 @@
       <Runner id="isapi64" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa64.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
+        <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
@@ -34,6 +35,7 @@
       <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d23_win64_debug.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
+        <LoggingLevel value="all"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
