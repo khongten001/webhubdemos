@@ -1,4 +1,4 @@
-# robots.txt for http://lite.demos.href.com/
+# robots.txt for http://more.demos.href.com/
 #
 User-agent: *
 
