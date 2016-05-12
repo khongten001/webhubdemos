@@ -1,11 +1,11 @@
 <whteko defaultlingvo="eng" designmode="code">
 
 <whmacros>
-mcImgOutlineDir=(~mcSiteRoot~)demos/whOutline/
-OutlineFolderClosed=<img hspace="2" src="(~mcImgOutlineDir~)foldclsdNAV.gif">
-OutlineFolderOpen=<img hspace="2" src="(~mcImgOutlineDir~)foldopenNAV.gif">
-OutlinePage=<img hspace="2" src="(~mcImgOutlineDir~)pagedoc.gif">
-OutlinePointer=&nbsp;<img src="(~mcImgOutlineDir~)eye_lf.gif">
+mcImgOutlineDir=//img.href.com/webhubdemos/whOutline/
+OutlineFolderClosed=<img hspace="2" src="(~mcImgOutlineDir~)foldclsdNAV.png">
+OutlineFolderOpen=<img hspace="2" src="(~mcImgOutlineDir~)foldopenNAV.png">
+OutlinePage=<img hspace="2" src="(~mcImgOutlineDir~)pagedoc.png">
+OutlinePointer=&nbsp;<img src="(~mcImgOutlineDir~)eye_lf.png">
 </whmacros>
 
 <whdroplet name="drDemoSpeedbarForhtol">
