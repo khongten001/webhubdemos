@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
   <Variables begin="{" end="}">
@@ -30,6 +30,14 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
+      </Runner>
+      <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d23_win64_debug.dll">
+        <Interface value="isapi"/>
+        <DelayMS value="0"/>
+        <RequestValidation value="true"/>
+        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
+        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+        <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
       </Runner>
     </Runners>
     <ServerProfiles>
@@ -67,6 +75,19 @@
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="moredebug">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="more.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapidebug"/>
+        <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
