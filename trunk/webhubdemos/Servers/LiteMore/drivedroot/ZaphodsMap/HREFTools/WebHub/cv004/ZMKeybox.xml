@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <Variables begin="{" end="}">
-    <Var name="DataPath" value="D:\Projects\WebHubDemos\Live\Config\"/>
+    <Var name="DataPath" value="D:\whAppliance\whConfig\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
     <Var name="AppConfigPath" value="D:\Apps\HREFTools\WebHub\config\"/>
   </Variables>
