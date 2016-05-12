@@ -1,0 +1,8 @@
+# robots.txt for http://db.demos.href.com/
+#
+User-agent: *
+
+Allow: /robots.txt
+Allow: /index.html
+
+Disallow: /
