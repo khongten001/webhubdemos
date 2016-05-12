@@ -25,6 +25,7 @@ Duis augue tortor, ultrices ac tincidunt sed, placerat a enim. Praesent euismod,
 <html>
 <head>
 <title>(~PageDesc~)</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
 </head>
 <body>
 
