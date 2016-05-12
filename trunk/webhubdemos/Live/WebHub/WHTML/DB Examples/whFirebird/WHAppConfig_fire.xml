@@ -100,5 +100,9 @@
       <KeyFields value="EMP_NO"/>
       <Prompts macroPrefix="mcPrompt"/>
     </whdbSource>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="D:\temp\w3validation\fire\" context="META"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\fire\" context="DEMOS"/>
+    </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

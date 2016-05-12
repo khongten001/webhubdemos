@@ -95,5 +95,9 @@
         <Item id="All" value="*"/>
       </DisplaySets>
     </whdbSource>
+    <whWebAction componentName="waLinkW3Validation">
+      <Item id="DiskFolder" value="D:\temp\w3validation\htfm\" context="META"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\htfm\" context="DEMOS"/>
+    </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
