@@ -100,8 +100,13 @@ procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate2(
 begin
   { This event handler, DataModulesCreate2, is reserved for setting the WebHub
     AppID and refreshing the application object. }
-  pWebApp.AppID := SuggestedAppID;  // e.g. from /id=adv on command line
+  pWebApp.AppID := 'dpr';
   pWebApp.Refresh;
+  with pWebApp do
+  begin
+    Response.HttpMinorVersion := 1;
+    Security.BuiltInPagesEnabled := False;
+  end;
   {$IFDEF CodeSite}
   UseWebHubSharedLog;
   {$ENDIF}
@@ -114,14 +119,6 @@ begin
     non-visual datamodules which depend on the AppID having been set,
     such as standard WebHub modules (email, dreamweaver, etc.) and custom
     datamodules containing database access components. }
-
-  with pWebApp do
-  begin
-    AppID := 'dpr';
-    Refresh;
-    Response.HttpMinorVersion := 1;
-    Security.BuiltInPagesEnabled := False;
-  end;
 
   CreateStandardWHModules;
   Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
