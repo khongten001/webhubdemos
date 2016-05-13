@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap200605.xsl"?>
+<InstallationConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zaphodsmap.com/zmdesign/xsd/ZaphodsInstaller200512.xsd">
+  <InstallFolders>
+    <Product name="WebHubRuntime" folder="d:\Apps\HREFTools\WebHub"/>
+    <Product name="WebHubDemos" folder="d:\Projects\WebHubDemos\"/>
+  </InstallFolders>
+  <InstallerSettings>
+    <Setting name="WebHubRunnerISAPI" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
+    <Setting name="WebHubRuntimeDataPath" value="D:\whData\whConfig\"/>
+    <Setting name="WebHubRunnerCGIBin" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
+    <Setting name="WebHubRunnerISAPIActive" value="true"/>
+    <Setting name="WebHubRunnerCGIBinActive" value="true"/>
+    <Setting name="WebHubXSDStdActive" value="true"/>
+    <Setting name="WebHubXSDCustomActive" value="false"/>
+    <Setting name="WebHubHTTPMicrosoftActive" value="true"/>
+    <Setting name="WebHubHTTPApacheActive" value="true"/>
+    <Setting name="WebHubHTTPSambarActive" value="false"/>
+    <Setting name="WebHubRunnerISAPI64Active" value="false"/>
+  </InstallerSettings>
+</InstallationConfiguration>
