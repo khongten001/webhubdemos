@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<IndexMakerConfiguration>
+  <Local>
+  	<Settings>
+		<Setting id="css" value="/HREFSiteDesign/css/hrefindex.css" />
+		<Setting id="css" value="http://www.href.com/HREFSiteDesign/css/hrefindex.css" context="ultraann"/>
+		<Setting id="IconDir" value="/planet/~icons/" />
+		<Setting id="MailTo" value="" />
+		<Setting id="GlobalFooter" value="HREF Tools Corp., 1585 Terrace Way #109, Santa Rosa CA 95404 USA; &lt;a href=&quot;http://www.href.com/&quot;&gt;www.href.com&lt;/a&gt;" />
+	</Settings>
+    <Paths>
+ 		<Path spec="e:\http\href.com\www.href.com\pub\" url="/pub/" />
+	</Paths>
+  </Local>
+</IndexMakerConfiguration>

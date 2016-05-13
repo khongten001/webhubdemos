@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<IndexMakerConfiguration>
+  <Settings>
+	<Setting id="DefaultIcon" value="unknown.jpg" />
+	<Setting id="DescriptionName" value="#fildesc.txt" />
+	<Setting id="SubDirIcon" value="menu.jpg" />
+	<Setting id="ParDirIcon" value="back.jpg" />
+	<Setting id="Footer" value="#footer" />
+	<Setting id="Header" value="#header" />
+  </Settings>
+  <HideFiles>
+	<HideFile id="1" value="#*" />
+	<HideFile id="2" value="*.bak" />
+	<HideFile id="3" value="*.ctr" />
+	<HideFile id="4" value="~*" />
+	<HideFile id="5" value="index.htm*" />
+	<HideFile id="6" value="default.htm*" />
+  </HideFiles>
+  <Icons>
+	<Icon mime="application/*" image="binary.jpg" />
+	<Icon mime="application/msaccess" image="access.jpg" />
+	<Icon mime="application/msexcel" image="excel.jpg" />
+	<Icon mime="application/mspowerpoint" image="ppt.jpg" />
+	<Icon mime="application/msword" image="word.jpg" />
+	<Icon mime="application/mswrite" image="rtf.jpg" />
+	<Icon mime="application/pdf" image="pdf.jpg" />
+	<Icon mime="application/x-java-class" image="applet.jpg" />
+	<Icon mime="application/x-ms-shortcut" image="shortcut.jpg" />
+	<Icon mime="application/x-visio-drawing" image="visio.jpg" />
+	<Icon mime="application/xml" image="xmldoc.jpg" />
+	<Icon mime="application/zip" image="zip.jpg" />
+	<Icon mime="audio/*" image="sound.jpg" />
+	<Icon mime="image/gif" image="gifdoc.gif" />
+	<Icon mime="image/jpeg" image="jpegdoc.jpg" />
+	<Icon mime="image/jpg" image="jpegdoc.jpg" />
+	<Icon mime="image/png" image="pngdoc.png" />
+	<Icon mime="image/*" image="image.jpg" />
+	<Icon mime="image/x-windows-bmp" image="bmp.jpg" />
+	<Icon mime="text/*" image="text.jpg" />
+	<Icon mime="text/html" image="htmldoc.png" />
+	<Icon mime="text/rtf" image="rtf.jpg" />
+	<Icon mime="video/*" image="movie.jpg" />
+	<Icon mime="wwwserver/redirection" image="inet.jpg" />
+  </Icons>
+  <Types>
+	<Type ext="@" mime="application/octet-stream" />
+	<Type ext=".arj" mime="application/x-arj" />
+	<Type ext=".au" mime="audio/basic" />
+	<Type ext=".avi" mime="video/msvideo" />
+	<Type ext=".bin" mime="application/octet-stream" />
+	<Type ext=".bmp" mime="image/x-windows-bmp" />
+	<Type ext=".c" mime="text/plain" />
+	<Type ext=".cgi" mime="wwwserver/shellcgi" />
+	<Type ext=".class" mime="application/x-java-class" />
+	<Type ext=".cpp" mime="text/plain" />
+	<Type ext=".dcgi" mime="wwwserver/doscgi" />
+	<Type ext=".def" mime="text/plain" />
+	<Type ext=".dll" mime="application/octet-stream" />
+	<Type ext=".doc" mime="application/msword" />
+	<Type ext=".exe" mime="application/octet-stream" />
+	<Type ext=".gif" mime="image/gif" />
+	<Type ext=".gz" mime="application/x-gzip" />
+	<Type ext=".h" mime="text/plain" />
+	<Type ext=".hlp" mime="application/x-winhelp" />
+	<Type ext=".htm" mime="text/html" />
+	<Type ext=".html" mime="text/html" />
+	<Type ext=".html-ssi" mime="wwwserver/html-ssi" />
+	<Type ext=".ini" mime="text/plain" />
+	<Type ext=".isa" mime="wwwserver/isapi" />
+	<Type ext=".java" mime="text/x-java-source" />
+	<Type ext=".jpeg" mime="image/jpeg" />
+	<Type ext=".jpg" mime="image/jpeg" />
+	<Type ext=".js" mime="application/x-javascript" />
+	<Type ext=".lnk" mime="application/x-ms-shortcut" />
+	<Type ext=".ls" mime="application/x-javascript" />
+	<Type ext=".lzh" mime="application/x-lzh" />
+	<Type ext=".map" mime="wwwserver/imagemap" />
+	<Type ext=".mocha" mime="application/x-javascript" />
+	<Type ext=".mov" mime="video/quicktime" />
+	<Type ext=".mpe" mime="video/mpeg" />
+	<Type ext=".mpeg" mime="video/mpeg" />
+	<Type ext=".mpg" mime="video/mpeg" />
+	<Type ext=".pdf" mime="application/pdf" />
+	<Type ext=".plx" mime="wwwserver/isapi" />
+	<Type ext=".png" mime="image/png" />
+	<Type ext=".ps" mime="application/postscript" />
+	<Type ext=".qt" mime="video/quicktime" />
+	<Type ext=".ra" mime="application/x-pn-realaudio" />
+	<Type ext=".ram" mime="application/x-pn-realaudio" />
+	<Type ext=".rc" mime="text/plain" />
+	<Type ext=".rtf" mime="application/rtf" />
+	<Type ext=".rtx" mime="text/richtext" />
+	<Type ext=".scgi" mime="wwwserver/shellcgi" />
+	<Type ext=".shtml" mime="wwwserver/html-ssi" />
+	<Type ext=".snd" mime="audio/basic" />
+	<Type ext=".tar" mime="application/x-tar" />
+	<Type ext=".tif" mime="image/tiff" />
+	<Type ext=".tiff" mime="image/tiff" />
+	<Type ext=".tsv" mime="text/tab-separated-values" />
+	<Type ext=".txt" mime="text/plain" />
+	<Type ext=".url" mime="wwwserver/redirection" />
+	<Type ext=".vox" mime="audio/voxware" />
+	<Type ext=".xml" mime="application/xml" />
+	<Type ext=".wav" mime="audio/wav" />
+	<Type ext=".wcgi" mime="wwwserver/wincgi" />
+	<Type ext=".wri" mime="application/mswrite" />
+	<Type ext=".wrl" mime="x-world/x-vrml" />
+	<Type ext=".wsa" mime="wwwserver/wsapi" />
+	<Type ext=".zip" mime="application/zip" />
+  </Types>
+</IndexMakerConfiguration>
