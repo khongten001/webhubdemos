@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
+<!-- master copy:
+     webhubdemos\Servers\DB\drivedroot\AppsData\ZaphodsMap\HREFTools\WebHub\cv004\ZMKeybox.xml -->
+  <Variables begin="{" end="}">
+    <Var name="DataPath" value="E:\whData\whConfig\"/>
+    <Var name="AppConfigPath" value="d:\Apps\HREFTools\WebHub\config\"/>
+    <Var name="RootForWHDataFolders" value="E:\whData\"/>
+    <Var name="RootForWHSwapFolders" value="E:\whData\"/>
+  </Variables>
+  <KeyGroups>
+    <KeyGroup name="WebHub">
+      <Keys>
+        <Key2File name="CentralInfo" filename="D:\Projects\webhubdemos\Live\Config\WHCentralInfo.xml"/>
+        <Key2File name="NetworkInfo" filename="D:\Projects\webhubdemos\Live\Config\WHNetworkInfo-lite.xml"/>
+        <Key2File name="NetworkInfo" filename="D:\Projects\webhubdemos\Live\Config\WHNetworkInfo-db.xml" CONTEXT="DORIS"/>
+        <Key2File name="License" filename="{DataPath}WHLicense.xml"/>
+        <Key2File name="ServiceControl" filename="{DataPath}WHServiceControl.xml"/>
+        <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
+        <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
+        <Key2File name="SystemMessages" filename="D:\Projects\WebHubDemos\Live\Config\WHSystemMessages.xml"/>
+        <Key2Folder name="CoverPageInfo" folder="{RootForWHSwapFolders}whCoverPageInfo"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="ZMAdmin">
+      <Keys>
+        <Key2File name="ZMAdminCustomPanel" filename="{AppConfigPath}ZMAdminPanel-WebHub-cv004.xml"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="SystemStartup">
+      <Keys>
+        <Key2Value name="demoslite" value="yes"/>
+        <Key2Value name="demoslite" value="no" context="DORIS" />
+        <Key2Value name="demosmore" value="yes"/>
+        <Key2Value name="demosmore" value="no" context="DORIS" />
+        <Key2Value name="demosdb" value="no"/>
+        <Key2Value name="demosdb" value="yes" context="DORIS" />
+        <Key2Value name="demoshosted" value="no"/>
+      </Keys>
+    </KeyGroup>
+  </KeyGroups>
+</ZMKeybox>
