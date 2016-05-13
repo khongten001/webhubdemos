@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
+  <Variables begin="{" end="}">
+    <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
+    <Var name="RootForWHDataFolders" value="C:\ProgramData\WebHubData\"/>
+    <!-- example c:\ProgramData\WebHubData\ -->
+  </Variables>
+  <WebHubAppGroups>
+    <WebHubAppGroup name="HREF Tools Standard">
+      <WebHubApps>
+        <WebHubApp appID="appvers">
+          <Nickname value="App Version"/>
+          <ConfigFolder value="{AppPath}config\whcp\"/>
+          <ConfigFilename value="WHAppConfig_appvers.xml"/>
+          <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
+          <ShareSessions value="true"/>
+          <ShareByFile value="true"/>
+        </WebHubApp>
+      </WebHubApps>
+    </WebHubAppGroup>
+  </WebHubAppGroups>
+  <HubProcess>
+    <ClusterID value=""/>
+    <DefaultAppID value="appvers"/>
+    <DefaultShutdownCommand value="SHUTDOWN"/>
+    <GuardianIntervalSeconds value="360"/>
+    <RandomNextInstance value="false"/>
+  </HubProcess>
+  <Sessions>
+    <SessionDebug value="false"/>
+    <SessionDigits value="9"/>
+    <SessionFolder value="{RootForWHDataFolders}whSessions\"/>
+    <SessionLifeMinutes value="120"/>
+    <SessionMaxActive value="0"/>
+    <SessionSweepIntervalMS value="120000"/>
+  </Sessions>
+  <RunnerConfiguration>
+    <RunnerTimeoutSec value="8"/>
+    <RunnerEchoEnabled value="true"/>
+  </RunnerConfiguration>
+</CentralInfo>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
+  <Variables begin="{" end="}" >
+    <Var name="RootForWHDataFolders" value="" /><!-- example c:\ProgramData\WebHubData\ -->
+  </Variables>
+  <HttpServers>
+	<HttpServer id="iis" nameStartsWith="Microsoft" 
+		   sendHttpVersion="true" 
+		   sendHttpColon="false" 
+		   httpForceCase="none" />
+  </HttpServers>
+  <LocalMachine>
+  	<ConnectionLayer>
+		<SharedLogFolder value="{RootForWHDataFolders}whLogs\" />
+		<WorkingFolder value="{RootForWHDataFolders}whIPC\" />
+  	</ConnectionLayer>
+	<Runners/>
+  	<ServerProfiles/>
+  </LocalMachine>
+</WebHubNetworkInfo>
