@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
   <Variables begin="{" end="}">
@@ -24,7 +24,7 @@
         <UploadMaxFileSizeKB value="30"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="nano.lite.demos.href.com:80"/>
-        <AdvancedFlags value="none"/>
+        <AdvancedFlags value="hseurl"/>
       </Runner>
       <Runner id="isapi64" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa64.dll">
         <Interface value="isapi"/>
@@ -34,6 +34,7 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
+        <AdvancedFlags value="hseurl"/>
       </Runner>
       <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d23_win64_debug.dll">
         <Interface value="isapi"/>
@@ -43,6 +44,7 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
         <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
+        <AdvancedFlags value="hseurl"/>
       </Runner>
     </Runners>
     <ServerProfiles>
