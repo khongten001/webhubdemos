@@ -86,7 +86,7 @@ end;
 procedure TDMForWHDBDemo.ProjMgrBeforeFirstCreate(
   Sender: TtpProject; var ErrorText: String; var Continue: Boolean);
 begin
-//
+  SetCodeSiteLoggingState([]); // none initially
 end;
 
 procedure TDMForWHDBDemo.ProjMgrDataModulesCreate1(
@@ -109,13 +109,18 @@ begin
       UsedAppID := 'appvers';
   end;
 
-  whDemoSetAppId(UsedAppID);  // this refreshes the app
-  {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF} // this resets to using the shared log
-
-  // We want to let a parameter determine the AppID served by whLite.exe
-  // See ucString.pas and uCode.pas for DefaultsTo and ParamString functions
-  whDemoCreateSharedDataModules;
-
+  Continue := whDemoSetAppId(UsedAppID);  // this refreshes the app
+  if Continue then
+  begin
+    ResetLogFileSpec;
+    SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
+    whDemoCreateSharedDataModules;
+  end
+  else
+  begin
+    CSSendError('unable to set AppID');
+  end;
+ 
 end;
 
 procedure TDMForWHDBDemo.ProjMgrDataModulesCreate3(
