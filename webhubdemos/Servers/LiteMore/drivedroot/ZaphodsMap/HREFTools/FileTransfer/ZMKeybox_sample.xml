@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
+  <KeyGroups>
+    <KeyGroup name="FTP">
+      <Keys>
+        <!-- obtain your credentials from Customer Service at HREF Tools Corp. -->
+        <!-- https://www.href.com/contact -->
+        <Key2Value name="webhubcom-host" value="tbd"/>
+        <Key2Value name="webhubcom-user" value="youruser"/>
+        <Key2Value name="webhubcom-pass" value="yourpassword"/>
+      </Keys>
+    </KeyGroup>
+  </KeyGroups>
+</ZMKeybox>
