@@ -901,10 +901,12 @@ end;
 
 procedure TDemoExtensions.DemoAppExecute(Sender: TwhRespondingApp;
   var bContinue: Boolean);
+const cFn = 'DemoAppExecute';
 var
   SurferHostname: string;
   SurferHostid: string;
 begin
+  CSEnterMethod(Self, cFn);
   if pWebApp.SessionNumber <> 0 then
   begin
     if Assigned(FDomainIDList) then
@@ -916,7 +918,7 @@ begin
         pWebApp.StringVar['_hostID'] := SurferHostid;  // remember
       end;
     end;
-    if NOT pWebApp.IsWebRobotRequest then
+    if (NOT pWebApp.IsWebRobotRequest) then
     begin
       if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and
         (NOT IsHREFToolsQATestAgent) then
@@ -930,6 +932,9 @@ begin
         begin
           if (NOT HonorLowerSecurity) then
           begin
+            CSSend('Sender.Request.Referer', Sender.Request.Referer);
+            CSSend('Sender.PageID', Sender.PageID);
+            CSSend('pWebApp.Session.PriorScheme', pWebApp.Session.PriorScheme);
             Sender.RejectSession('Blank referer, scheme ' +
               pWebApp.Session.PriorScheme + ', without security token', False);
           end;
@@ -937,6 +942,7 @@ begin
       end;
     end;
   end;
+  CSExitMethod(Self, cFn);
 end;
 
 end.
