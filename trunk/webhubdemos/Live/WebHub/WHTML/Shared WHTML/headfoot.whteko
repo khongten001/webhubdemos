@@ -8,7 +8,7 @@
 
 <whmacros>
 mcdoctypehtml=<![CDATA[<!DOCTYPE HTML>]]>
-mcImgHrefCom=(~MATCH|(~Request.Scheme~)!HTTP|//img.href.com/||//d379xgascauhff.cloudfront.net/~)<!--- pending HTTPS cert for img.href.com; currently on AWS CloudFront. -->
+mcImgHrefCom=//img.href.com/<!--- assumes presence of valid HTTPS cert for img.href.com -->
 mcSiteRoot=/webhub/
 mcLitePic=<img src="(~mcWhDemoMiscDir~)vcl-lite.jpg" alt="VCL Lite" />
 </whmacros>
