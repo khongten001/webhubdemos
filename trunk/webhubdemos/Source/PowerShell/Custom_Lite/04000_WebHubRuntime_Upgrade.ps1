@@ -43,7 +43,7 @@ if ($Global:FlagInstallWebHubRuntime) {
 	New-Variable -Name filespec -Value ($Global:FolderInstallers + 'HREFTools\' + $whrunsetup) -Option private
 
 	# delete any prior version from disk
-	Delete $filespec
+	Del $filespec
 
 	$InfoMsg = ('Downloading ' + $whrunsetup)
 	echo $InfoMsg
