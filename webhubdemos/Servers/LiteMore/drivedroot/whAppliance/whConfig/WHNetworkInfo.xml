@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
   <Variables begin="{" end="}">
@@ -69,6 +69,19 @@
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+      <ServerProfile id="litedebug">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="lite.demos.href.com:80"/>
+        <AllowDynamicAuthority value="false"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapidebug"/>
+        <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
