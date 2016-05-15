@@ -15,11 +15,11 @@
 <p><i>(~CentralInfo.WebTimeGMT~)</i></p>
 
 <div style="margin-left: 3em; font-size: 2em;">
-(~INPUTFORM|pgCBSubmitOne~)
+<form method="post" action="(~ACTION|pgCBSubmitOne,ThisCommandIsExtraLongForTestingPurposesPleaseIgnore01234567890A01234567890Z~)">
 <p>Name: (~INPUTTEXT|cbCheckName1,35~)</p>
 <p>(~INPUTCHECKBOX|cbCBCheckOne|OffOn~) <label id="labelCb1" for="cbCBCheckOne">Check box one</label> </p>
 (~INPUTSUBMIT|Submit,Submit~)
-(~INPUTFORM|CLOSE~)
+</form>
 </div>
 
 <whdroplet name="drCBFooter" show="yes">
@@ -48,6 +48,16 @@
 (~INPUTFORM|CLOSE~)
 
 <p>(~GO|pgCBSubmitTwo|Go to next page~)</p>
+<h5>Command Confirmation</h5>
+<p>This just echos back the WebHub command string:</p>
+<pre style="font-weight:900;">
+(~Command~)
+</pre>
+<p>and the query string as a whole</p>
+<pre style="font-weight:900;">
+(~Request.QueryString~)
+</pre>
+
 (~drCBFooter~)
 </whpage>
 
