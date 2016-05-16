@@ -6,3 +6,4 @@ Allow: /robots.txt
 Allow: /index.html
 
 Disallow: /
+Crawl-delay: 90
