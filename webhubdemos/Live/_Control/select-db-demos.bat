@@ -2,7 +2,6 @@
 :: Copyright (c) 2011-2016 HREF Tools Corp.
 :: www.href.com
 
-:: init all to NO
 set demodbhtml=no
 set demodpr=no
 set democoderage=yes
@@ -11,8 +10,8 @@ set demohtcl=no
 set demohtfm=no
 set demohtfs=yes
 set demohtq1=yes
-set demohtq2=yes
-set demohtq3=yes
+set demohtq2=no
+set demohtq3=no
 set demohtq4=yes
 set demohtru=no
 set demojpeg=yes
@@ -24,7 +23,7 @@ set compiledbhtml=yes
 set compiledpr=yes
 set compilecoderage=yes
 set compilefire=yes
-set compilehtcl=yes
+set compilehtcl=no
 set compilehtfm=yes
 set compilehtfs=yes
 set compilehtq1=yes
@@ -49,12 +48,5 @@ echo flagdemosdb is %flagdemosdb%
 
 if "%flagdemosdb%"=="no" goto end
 
-set demofire=yes
-
-set demohtfm=yes
-
-set demohtfs=yes
-set demojpeg=yes
-set demohtq1=yes
 
 :end
