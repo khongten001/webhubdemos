@@ -9,6 +9,12 @@
         <Projects Include="FireMonkey_DemoUploadToAmazonS3.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="DemoCleanupFilesAmazonS3.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="DemoCleanupLinks.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -35,14 +41,32 @@
     <Target Name="FireMonkey_DemoUploadToAmazonS3:Make">
         <MSBuild Projects="FireMonkey_DemoUploadToAmazonS3.dproj" Targets="Make"/>
     </Target>
+    <Target Name="DemoCleanupFilesAmazonS3">
+        <MSBuild Projects="DemoCleanupFilesAmazonS3.dproj"/>
+    </Target>
+    <Target Name="DemoCleanupFilesAmazonS3:Clean">
+        <MSBuild Projects="DemoCleanupFilesAmazonS3.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DemoCleanupFilesAmazonS3:Make">
+        <MSBuild Projects="DemoCleanupFilesAmazonS3.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DemoCleanupLinks">
+        <MSBuild Projects="DemoCleanupLinks.dproj"/>
+    </Target>
+    <Target Name="DemoCleanupLinks:Clean">
+        <MSBuild Projects="DemoCleanupLinks.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DemoCleanupLinks:Make">
+        <MSBuild Projects="DemoCleanupLinks.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DemoUploadToAmazonS3;FireMonkey_DemoUploadToAmazonS3"/>
+        <CallTarget Targets="DemoUploadToAmazonS3;FireMonkey_DemoUploadToAmazonS3;DemoCleanupFilesAmazonS3;DemoCleanupLinks"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DemoUploadToAmazonS3:Clean;FireMonkey_DemoUploadToAmazonS3:Clean"/>
+        <CallTarget Targets="DemoUploadToAmazonS3:Clean;FireMonkey_DemoUploadToAmazonS3:Clean;DemoCleanupFilesAmazonS3:Clean;DemoCleanupLinks:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DemoUploadToAmazonS3:Make;FireMonkey_DemoUploadToAmazonS3:Make"/>
+        <CallTarget Targets="DemoUploadToAmazonS3:Make;FireMonkey_DemoUploadToAmazonS3:Make;DemoCleanupFilesAmazonS3:Make;DemoCleanupLinks:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
