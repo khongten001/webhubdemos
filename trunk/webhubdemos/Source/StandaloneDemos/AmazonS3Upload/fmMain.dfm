@@ -134,14 +134,14 @@ object Form2: TForm2
         Margins.Right = 4
         Margins.Bottom = 4
         Align = alTop
-        Caption = 'D:\...\PlatformSDKs\android-sdk-windows\tools'
+        Caption = 'C:\WINDOWS\system32'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 315
+        ExplicitWidth = 158
       end
       object FileListBox1: TFileListBox
         Left = 15
