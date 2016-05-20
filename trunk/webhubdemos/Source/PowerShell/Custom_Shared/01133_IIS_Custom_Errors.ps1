@@ -23,21 +23,40 @@ if (! (Test-Path ($env:USERPROFILE + '\Documents\WindowsPowerShell\Modules\Mod_I
 copy ($PSScriptRoot + '\..\WebHub_Appliance_PS\Mod_IIS_Setup.psm1')   $env:USERPROFILE\Documents\WindowsPowerShell\Modules\Mod_IIS_Setup\Mod_IIS_Setup.psm1
 Import-Module Mod_IIS_Setup
 
-New-Variable -Name AWebSiteName  -Value "WebHub Lite Demos" -Option private
 New-Variable -Name ErrorFilePath -Value "D:\Projects\webhubdemos\Live\WebHub\whmsg\" -Option private
 
 # Enable then configure custom errors for a web site
-PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
-ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
-ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
-ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+New-Variable -Name AWebSiteName  -Value "WebHub Lite Demos" -Option private
+New-Variable -Name SiteExists -Value ( (Get-WebSite $AWebSiteName -ErrorAction SilentlyContinue) -ne $null )  -Option private
+if ($SiteExists) {
+	# should exist on lite.demos.href.com server
+	PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
+	ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
+	ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
+	ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+}
 
 $AWebSiteName = "WebHub More Demos"
-PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
-ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
-ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
-ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+$SiteExists = ( (Get-WebSite $AWebSiteName -ErrorAction SilentlyContinue) -ne $null )
+if ($SiteExists) {
+	# should exist on lite.demos.href.com server
+	PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
+	ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
+	ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
+	ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+}
+
+$AWebSiteName = "WebHub DB Demos"
+$SiteExists = ( (Get-WebSite $AWebSiteName -ErrorAction SilentlyContinue) -ne $null )
+if ($SiteExists) {
+	# should exist on db.demos.href.com server
+	PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
+	ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
+	ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
+	ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+}
 
 Remove-Variable AWebSiteName
 Remove-Variable ErrorFilePath
+Remove-Variable SiteExists
 
