@@ -44,7 +44,6 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
-      <AppSetting name="CodeSiteLogging" value="all" context="DEMOS"/>
       <AppSetting name="demographic" value="no"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
