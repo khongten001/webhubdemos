@@ -1,3 +1,6 @@
+# Master copy is in the WebHubDemos svn repo
+# webhubdemos\Source\PowerShell\Custom_Shared\01133_IIS_Custom_Errors.ps1
+
 # Configure several custom error responses within Microsoft IIS, e.g. for 500.12 and 500.13 errors
 # Copyright 2015-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
