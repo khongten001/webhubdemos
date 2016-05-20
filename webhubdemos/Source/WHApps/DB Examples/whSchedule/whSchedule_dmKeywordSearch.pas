@@ -298,7 +298,7 @@ begin
       if S <> '' then
       begin
         if S[1] = #65279 then
-          LogSendWarning(IntToStr(i) + ': Blurb starts with BOM!');
+          CSSendNote(IntToStr(i) + ': Blurb starts with BOM!');
           //S := '<span style="color:red;">leading BOM</span><br/>' + S;
         S := S + '<br/>';
       end;
