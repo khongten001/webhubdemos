@@ -12,10 +12,9 @@
   <KeyGroups>
     <KeyGroup name="WebHub">
       <Keys>
-        <Key2File name="CentralInfo" filename="D:\Projects\webhubdemos\Live\Config\WHCentralInfo.xml"/>
-        <Key2File name="NetworkInfo" filename="D:\Projects\webhubdemos\Live\Config\WHNetworkInfo-lite.xml"/>
-        <Key2File name="NetworkInfo" filename="D:\Projects\webhubdemos\Live\Config\WHNetworkInfo-db.xml" CONTEXT="DORIS"/>
-        <Key2File name="License" filename="{DataPath}WHLicense.xml"/>
+        <Key2File name="CentralInfo" filename="{DataPath}WHCentralInfo.xml"/>
+        <Key2File name="NetworkInfo" filename="{DataPath}WHNetworkInfo.xml" />
+        <Key2File name="License"     filename="{DataPath}WHLicense.xml"/>
         <Key2File name="ServiceControl" filename="{DataPath}WHServiceControl.xml"/>
         <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
         <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
