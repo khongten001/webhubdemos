@@ -56,6 +56,16 @@ if ($SiteExists) {
 	ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
 }
 
+$AWebSiteName = "Delphi Prefix Registry"
+$SiteExists = ( (Get-WebSite $AWebSiteName -ErrorAction SilentlyContinue) -ne $null )
+if ($SiteExists) {
+	# should exist on db.demos.href.com server
+	PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
+	ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
+	ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
+	ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+}
+
 Remove-Variable AWebSiteName
 Remove-Variable ErrorFilePath
 Remove-Variable SiteExists
