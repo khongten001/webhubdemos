@@ -26,7 +26,7 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <UploadMaxFileSizeKB value="30"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
-        <AdminAccess scheme="http" authority="nano.lite.demos.href.com:80"/>
+        <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
         <AdvancedFlags value="hseurl"/>
       </Runner>
       <Runner id="isapi64" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa64.dll">
