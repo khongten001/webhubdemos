@@ -1,6 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
+<!--- master copy of this file is in the WebHubDemos svn repository:
+	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
+-->
   <Variables begin="{" end="}">
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
     <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
