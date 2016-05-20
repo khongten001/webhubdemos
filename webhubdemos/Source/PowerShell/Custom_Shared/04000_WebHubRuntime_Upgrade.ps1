@@ -1,3 +1,6 @@
+# Master copy is in the WebHubDemos svn repo
+# webhubdemos\Source\PowerShell\Custom_Shared\04000_WebHubRuntime_Upgrade.ps1
+
 # WebHubRuntime Upgrade
 # Copyright 2014-2016 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
