@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<title>IIS Detailed Error - Unknown status</title>
+<style type="text/css"> 
+#content {
+	display: none;
+	}
+</style>
+<script type="text/javascript">
+var
+	host = location.host,
+	situation = '(~SITUATION~)',
+	isMobileDevice = {
+		Android: function() {
+			return navigator.userAgent.match(/Android/i);
+		},
+		iOS: function() {
+			return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+		},
+		Windows: function() {
+			return navigator.userAgent.match(/IEMobile/i);
+		},
+		any: function() {
+			return navigator.userAgent.match(/Android|iPhone|iPad|iPod|IEMobile/i);
+		}
+	};	
+function gotoErrorIntercept(reason) {
+	document.location = 'http://demos.href.com/';
+}
+function setErrorText() {
+	if (host.indexOf('kiosk') == 0) {
+		if ((isMobileDevice.any()) || (self != top)/* i.e. simulation in iframe*/)
+			gotoErrorIntercept('(???) ' +  'Unknown response status');
+	}
+	else
+		document.getElementById('content').style.display = 'block';
+}
+document.addEventListener('DOMContentLoaded', function(){setTimeout(function(){setErrorText()}, 200)});
+</script>
+</head> 
+<body> 
+<div id="content"> 
+<div class="content-container"> 
+  <h3>HTTP Error - Status Unknown</h3> 
+  <h4>The web server has returned a response status code that does not have a specific handler.</h4> 
+</div> 
+<div class="content-container"> 
+ <fieldset><h4>Most likely causes:</h4> 
+  <ul>
+    <li>The web server has returned a response status code that does not have a specific handler. Please return to the home page of the site.</li>
+  </ul> 
+ </fieldset> 
+</div> 
+</div>
+<div>
+<div class="content-container">
+  <!--<p class="note">Note: This is a simulation of an unhandled http status code in the response.</p>-->
+</div>
+</div> 
+</body> 
+</html>
