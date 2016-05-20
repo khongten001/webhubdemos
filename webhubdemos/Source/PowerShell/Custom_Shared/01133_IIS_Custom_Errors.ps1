@@ -30,13 +30,13 @@ New-Variable -Name ErrorFilePath -Value "D:\Projects\webhubdemos\Live\WebHub\whm
 PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
 ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
 ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
-ConfigureCustomError      $AWebSiteName 400 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
 
 $AWebSiteName = "WebHub More Demos"
 PrepareEnableCustomErrors $AWebSiteName        ($ErrorFilePath + "whdemos_IISDefault-Custom.html")
 ConfigureCustomError      $AWebSiteName 500 12 ($ErrorFilePath + "whdemos_500_12_starting.html")
 ConfigureCustomError      $AWebSiteName 500 13 ($ErrorFilePath + "whdemos_500_13_busy.html")
-ConfigureCustomError      $AWebSiteName 400 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
+ConfigureCustomError      $AWebSiteName 404 4  ($ErrorFilePath + "whdemos_404_4_appnotdefined.html")
 
 Remove-Variable AWebSiteName
 Remove-Variable ErrorFilePath
