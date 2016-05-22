@@ -26,7 +26,8 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 	echo $InfoMsg
 
 	Set-Location "D:\Projects\WebHubDemos\Live\Library64"
-	Start-Process "d:\Apps\Utilities\7Zip\7z.exe" -ArgumentList ("x " + $destination) -NoNewWindow -Wait
+	# extract WITHOUT using directory names
+	Start-Process "d:\Apps\Utilities\7Zip\7z.exe" -ArgumentList ("e " + $destination) -NoNewWindow -Wait
 	ls "D:\Projects\WebHubDemos\Live\Library64\vcl*.bpl"
 
 	$source = "http://data.rubicon.href.com/FirebirdSQL_Client/fbclient_win64.dll"
@@ -59,7 +60,8 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 	echo $InfoMsg
 
 	Set-Location "D:\Projects\WebHubDemos\Live\Library"
-	Start-Process "d:\Apps\Utilities\7Zip\7z.exe" -ArgumentList ("x " + $destination) -NoNewWindow -Wait
+	# e means extract without directory names
+	Start-Process "d:\Apps\Utilities\7Zip\7z.exe" -ArgumentList ("e " + $destination) -NoNewWindow -Wait
 	ls "D:\Projects\WebHubDemos\Live\Library\vcl*.bpl"
 
 	$source = "http://data.rubicon.href.com/FirebirdSQL_Client/fbclient_win32.dll"
