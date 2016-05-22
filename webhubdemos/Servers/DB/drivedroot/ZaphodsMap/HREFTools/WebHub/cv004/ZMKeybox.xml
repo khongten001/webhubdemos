@@ -5,8 +5,8 @@
      webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\WebHub\cv004\ZMKeybox.xml -->
   <Variables begin="{" end="}">
     <Var name="DataPath" value="D:\whAppliance\whConfig\"/>
-    <Var name="AppConfigPath" value="d:\Apps\HREFTools\WebHub\config\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
+    <Var name="AppConfigPath" value="D:\Apps\HREFTools\WebHub\config\"/>
     <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
   </Variables>
   <KeyGroups>
