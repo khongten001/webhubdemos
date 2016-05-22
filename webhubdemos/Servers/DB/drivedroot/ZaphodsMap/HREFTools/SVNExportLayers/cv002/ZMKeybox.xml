@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
+  <KeyGroups>
+    <KeyGroup name="SVNExportLayers">
+      <Keys>
+        <Key2Folder name="svnexe" folder="D:\Apps\Utilities\SVN\Console\"/>
+        <Key2Folder name="layers" folder="d:\AppsData\SVNExportLayers\"/>
+        <Key2Value name="pauseAtEnd" value="enabled"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="MetaLayers">
+      <Keys>
+        <Key2Value name="href-shareware-and-winbin32" value="-1" context="DORIS"/>
+        <Key2Value name="href-shareware-and-winbin64" value="00010" context="DORIS"/>
+        <Key2Value name="ftpserver" value="-1" context="DORIS"/>
+        <Key2Value name="webhubruntime" value="00040" context="DORIS"/>
+        <Key2Value name="webhubdemosapate" value="00102" context="DORIS"/>
+      </Keys>
+    </KeyGroup>
+  </KeyGroups>
+</ZMKeybox>
