@@ -16,7 +16,7 @@ Import-Module WebAdministration
 # Disable Data Execution Prevention (for Hub, runner plus all custom WebHub EXEs)
 Start-Process 'bcdedit.exe' -ArgumentList '/set nx OptIn'
 
-$AWebSite = "IIS:\Sites\WebHub Demos"
+$AWebSite = "IIS:\Sites\WebHub DB Demos"
 $InfoMsg = 'VirtualDirectory "/seleniumgridoutput"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
@@ -27,8 +27,8 @@ $InfoMsg = 'HostHeader "local-db.demos.href.com"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 echo $InfoMsg
 
-New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "db.demos.href.com"    # useful on real production server
-New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "local-db.demos.href.com"
+New-WebBinding -Name 'WebHub DB Demos' -Port 80 -HostHeader "db.demos.href.com"    # useful on real production server
+New-WebBinding -Name 'WebHub DB Demos' -Port 80 -HostHeader "local-db.demos.href.com"
 # HOSTS entry for local testing
 Add-Content c:\Windows\System32\Drivers\Etc\Hosts ("`r`n127.0.0.1	   local-db.demos.href.com`r`n")
 
@@ -37,7 +37,7 @@ GrantIUSRSModifyLogs "whLogs"
 
 Start-Process 'iisreset' -NoNewWindow -Wait
 
-StartHttpRunnerEcho 'local-db.demos.href.com' 'scripts' $True $True  # Yes new ipc; Yes 32bit
+StartHttpRunnerEcho 'local-db.demos.href.com' 'scripts' $True $False  # Yes new ipc; not-32bit
 
 # Live\Library\*.bpl
 Invoke-Expression ($PSScriptRoot + "\01253_WebHubRuntime_DemosDB_LibraryPath.ps1")
