@@ -11,6 +11,7 @@
     <AppCoverPage appID="htun" value="{WebHubDemoMsgRoot}appcoverpage-htun.whmsg"/>
     <AppCoverPage appID="coderage" value="{WebHubDemoMsgRoot}appcoverpage-coderage.whmsg"/>
     <AppCoverPage appID="dpr" value="{WebHubDemoMsgRoot}appcoverpage-dpr.whmsg"/>
+    <AppIDBusy appID="" value="{SysMsgRoot}appidbusy.whmsg"/>
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="coderage" value="{WebHubDemoMsgRoot}appnotrunning-coderage.whmsg"/>
