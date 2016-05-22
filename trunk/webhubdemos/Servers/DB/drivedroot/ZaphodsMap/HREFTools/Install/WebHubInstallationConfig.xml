@@ -9,13 +9,13 @@
     <Setting name="WebHubRunnerISAPI" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
     <Setting name="WebHubRuntimeDataPath" value="D:\whData\whConfig\"/>
     <Setting name="WebHubRunnerCGIBin" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
-    <Setting name="WebHubRunnerISAPIActive" value="true"/>
+    <Setting name="WebHubRunnerISAPIActive" value="false"/>
+    <Setting name="WebHubRunnerISAPI64Active" value="true"/>
     <Setting name="WebHubRunnerCGIBinActive" value="true"/>
     <Setting name="WebHubXSDStdActive" value="true"/>
     <Setting name="WebHubXSDCustomActive" value="false"/>
     <Setting name="WebHubHTTPMicrosoftActive" value="true"/>
     <Setting name="WebHubHTTPApacheActive" value="true"/>
     <Setting name="WebHubHTTPSambarActive" value="false"/>
-    <Setting name="WebHubRunnerISAPI64Active" value="false"/>
   </InstallerSettings>
 </InstallationConfiguration>
