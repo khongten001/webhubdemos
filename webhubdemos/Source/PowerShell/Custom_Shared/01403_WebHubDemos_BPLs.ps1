@@ -8,8 +8,6 @@ Invoke-Expression ($PSScriptRoot + "\Initialize.ps1")
 $InfoMsg = ('/note "Delphi Redist Files for WebHubDemos"')
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
-{
-
 # 64-bit files
 
 	$source = "https://archiveinstallers.s3.amazonaws.com/win64/D24_redist_win64.7z"
@@ -77,4 +75,3 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 		Copy "D:\Projects\WebHubDemos\Live\Library\fbclient_win32.dll" "D:\Projects\WebHubDemos\Live\Library\fbclient.dll"
 	}
 
-}
