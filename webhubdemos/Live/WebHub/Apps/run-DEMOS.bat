@@ -2,7 +2,7 @@ setlocal
 
 :: set zmcontext variable
 call %ZaphodsMap%zmset.bat zmcontext AsDefaultContext
-set compilerdigits=23
+set compilerdigits=24
 
 ::change to folder containing this bat file
 cd /D %~dp0
