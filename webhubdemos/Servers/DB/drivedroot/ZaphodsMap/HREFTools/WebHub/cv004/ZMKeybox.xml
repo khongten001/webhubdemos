@@ -2,12 +2,12 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
 <!-- master copy:
-     webhubdemos\Servers\DB\drivedroot\AppsData\ZaphodsMap\HREFTools\WebHub\cv004\ZMKeybox.xml -->
+     webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\WebHub\cv004\ZMKeybox.xml -->
   <Variables begin="{" end="}">
-    <Var name="DataPath" value="E:\whData\whConfig\"/>
+    <Var name="DataPath" value="D:\whAppliance\whConfig\"/>
     <Var name="AppConfigPath" value="d:\Apps\HREFTools\WebHub\config\"/>
-    <Var name="RootForWHDataFolders" value="E:\whData\"/>
-    <Var name="RootForWHSwapFolders" value="E:\whData\"/>
+    <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
+    <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
   </Variables>
   <KeyGroups>
     <KeyGroup name="WebHub">
