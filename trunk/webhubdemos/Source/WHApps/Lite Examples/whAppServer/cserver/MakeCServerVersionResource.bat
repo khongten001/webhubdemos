@@ -3,7 +3,7 @@ setlocal
 :: change the following line for each change in BuildNo
 set fileversion=2,0,0,87
 set productversion=2,0
-set compilerdigits=23
+set compilerdigits=24
 
 :: use ZaphodsMap to find compiler
 :: zmset.bat and ZMLookup.exe are FREE from HREF Tools Corp. via www.zaphodsmap.com

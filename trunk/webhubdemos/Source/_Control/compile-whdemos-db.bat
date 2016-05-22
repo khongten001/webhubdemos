@@ -3,8 +3,8 @@ set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
 %CSSend% /note "compile-whdemos-db.bat" %CSLogPathParams%
 
 set bdecomp=22
-set ibocomp=23
-set compilerdigits=22
+set ibocomp=24
+set compilerdigits=24
 set comp3=D%compilerdigits%
 
 if NOT "%comp3%%bits%"=="D" goto Continue00
