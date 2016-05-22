@@ -2,7 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
 <!--- master copy of this file is in the WebHubDemos svn repository:
-	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
+	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
 -->
   <Variables begin="{" end="}">
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
@@ -13,7 +13,7 @@
   </HttpServers>
   <LocalMachine>
     <ConnectionLayer>
-      <SharedLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+      <SharedLogFolder value="{RootForWHDataFolders}whLogs\"/>
       <WorkingFolder value="{RootForWHSwapFolders}whIPC\"/>
     </ConnectionLayer>
     <Runners>
@@ -24,9 +24,9 @@
         <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <UploadMaxFileSizeKB value="30"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
-        <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
+        <UploadMaxFileSizeKB value="2"/>
+        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
+        <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
         <AdvancedFlags value="hseurl"/>
       </Runner>
       <Runner id="isapi64" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa64.dll">
@@ -35,85 +35,50 @@
         <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+        <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
         <AdvancedFlags value="hseurl"/>
       </Runner>
-      <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d23_win64_debug.dll">
-        <Interface value="isapi"/>
-        <DelayMS value="0"/>
-        <LoggingLevel value="all"/>
-        <RequestValidation value="true"/>
-        <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
-        <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
-        <AdvancedFlags value="hseurl"/>
-      </Runner>
+      
     </Runners>
     <ServerProfiles>
       <ServerProfile id="defprofile">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
-        <Authority value="lite.demos.href.com:80"/>
-        <AllowDynamicAuthority value="true"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapi"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
-      <ServerProfile id="lite">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="lite.demos.href.com:80"/>
+        <Authority value="db.demos.href.com:80"/>
         <AllowDynamicAuthority value="false"/>
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
-      <ServerProfile id="litedebug">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="lite.demos.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapidebug"/>
         <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="more">
+     
+     
+       <ServerProfile id="db">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
-        <Authority value="more.demos.href.com:80"/>
+        <Authority value="db.demos.href.com:80"/>
         <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
         <URLUseShortFormat value="true"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
+        <URLUseLingvo value="true"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="moredebug">
+      <ServerProfile id="dpr">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
-        <Authority value="more.demos.href.com:80"/>
+        <Authority value="delphiprefix.href.com:80"/>
         <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapidebug"/>
-        <URLUseShortFormat value="false"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
+        <URLUseLingvo value="true"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
       <ServerProfile id="shortformat">
@@ -132,7 +97,7 @@
       <ServerProfile id="ssl">
         <HttpServerID value="iis"/>
         <Scheme value="https"/>
-        <Authority value="lite.demos.href.com:443"/>
+        <Authority value="db.demos.href.com:443"/>
         <AllowDynamicAuthority value="false"/>
         <RunnerPath value="/scripts/"/>
         <RunnerID value="isapi"/>
@@ -142,54 +107,39 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="moressl">
-        <HttpServerID value="iis"/>
-        <Scheme value="https"/>
-        <Authority value="more.demos.href.com:443"/>
-        <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapi"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
-      <ServerProfile id="longhand">
-        <HttpServerID value="iis"/>
+      <ServerProfile id="cgiprofile">
+        <HttpServerID value="apache"/>
         <Scheme value="http"/>
-        <Authority value="lite.demos.href.com:80"/>
-        <AllowDynamicAuthority value="false"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapi"/>
+        <Authority value="demos.href.com:8082"/>
+        <AllowDynamicAuthority value="true"/>
+        <RunnerPath value="/cgi-bin/"/>
+        <RunnerID value="cgibin"/>
         <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
+        <URLForceCase value="lower"/>
         <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
-      </ServerProfile>
-      <ServerProfile id="isaprofile">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="localhost:80"/>
-        <RunnerPath value="/scripts/"/>
-        <RunnerID value="isapi64"/>
-        <URLUseShortFormat value="false"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-        <URLUseScheme value="false"/>
+        <URLUseScheme value="true"/>
       </ServerProfile>
     </ServerProfiles>
   </LocalMachine>
   <OtherMachines>
     <ServerProfiles>
-      <ServerProfile id="db">
+      <ServerProfile id="lite">
         <HttpServerID value="iis"/>
         <Scheme value="http"/>
-        <Authority value="db.demos.href.com:80"/>
+        <Authority value="lite.demos.href.com:80"/>
         <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="false"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+      </ServerProfile>
+      <ServerProfile id="more">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="more.demos.href.com:80"/>
+        <URLRunnerSpec value="/scripts/runisa.dll"/>
+        <URLUseShortFormat value="true"/>
         <URLDelimiter value=":"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
@@ -200,17 +150,7 @@
         <Authority value="delphiprefix.href.com:80"/>
         <URLRunnerSpec value="/scripts/runisa.dll"/>
         <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
-        <URLForceCase value="none"/>
-        <URLUseLingvo value="false"/>
-      </ServerProfile>
-      <ServerProfile id="dpr">
-        <HttpServerID value="iis"/>
-        <Scheme value="http"/>
-        <Authority value="delphiprefix.href.com:80"/>
-        <URLRunnerSpec value="/scripts/runisa.dll"/>
-        <URLUseShortFormat value="true"/>
-        <URLDelimiter value=":"/>
+        <URLDelimiter value="/"/>
         <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
       </ServerProfile>
