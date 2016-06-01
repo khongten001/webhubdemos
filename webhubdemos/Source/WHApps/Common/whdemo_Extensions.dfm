@@ -92,4 +92,10 @@ object DemoExtensions: TDemoExtensions
     Left = 448
     Top = 32
   end
+  object waAWSKey2Filename: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waAWSKey2FilenameExecute
+    Left = 448
+    Top = 96
+  end
 end
