@@ -1,7 +1,7 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
-<whdoc for="pgEvaporateExample">
+<whdoc for="pgAWSStartFileUpload">
 This example has been inspired from
 http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 27-May-2016
@@ -16,30 +16,25 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 </whprep>
 (~drShowcaseGlobalHeader~)
 
-<!-- JSON Policy
-(~drShowcaseFileUploadPolicy~)
--->
-
-
 <h2>File Upload</h2>
+<p>Reference: <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload</a></p>
+
       <div>
 	<form method="post" accept-charset="UTF-8" 
-	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
+	action="http://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
-	Key to upload: <input type="input" name="key" value="user/webhubdemos/" /><br />
+	Key to upload: <input type="input" name="key" value="user/webhubdemos/RubberDucky.jpg" /><br />
 	    <input type="hidden" name="acl" value="public-read" />
 	    <input type="hidden" name="success_action_redirect" value="http://lite.demos.href.com/webhub/demos/whShowcase/file_upload_thanks.txt" />
-	    Content-Type: <input type="input" name="Content-Type" value="image/jpg" /><br />
+	    Content-Type: <input type="input" name="Content-Type" value="image/jpeg" /><br />
 	    <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
 	    Tags for File: <input type="input" name="x-amz-meta-tag" value="" /><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
 	    <input type="hidden" name="Policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
-
-<!--	    <input type="hidden" name="Signature" value="F7R4An3Jlib956h6CH3EO9RqOs8=" /> -->
 	    <input type="hidden" name="Signature" 
-             value="(~SHA1|out-base64; (~drShowcaseFileUploadPolicy~); (~waFileContent.Execute|(~AppSetting.FileContent-FileUploadSecret~)~)~)" />
+             value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
 
-	    File: <input type="file" name="file" ACCEPT="image/*" /> <br />
+	    File: <input type="file" name="file" ACCEPT="image/jpeg" /> <br />
 
 	    <!-- The elements after this will be ignored -->
 	    <input type="submit" name="btnSubmit" value="Upload to Amazon S3" />
