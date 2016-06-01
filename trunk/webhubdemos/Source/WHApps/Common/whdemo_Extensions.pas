@@ -37,6 +37,7 @@ type
     waWaitSeconds: TwhWebAction;
     waSimulateBadNews: TwhWebAction;
     waTextFileContent: TwhWebAction;
+    waAWSKey2Filename: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -51,6 +52,7 @@ type
     procedure waWaitSecondsExecute(Sender: TObject);
     procedure waSimulateBadNewsExecute(Sender: TObject);
     procedure waTextFileContentExecute(Sender: TObject);
+    procedure waAWSKey2FilenameExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -327,6 +329,28 @@ begin
   CSExitMethod(Self, cFn);
 end;
 
+procedure TDemoExtensions.waAWSKey2FilenameExecute(Sender: TObject);
+const cFn = 'waAWSKey2FilenameExecute';
+var
+  a1, akey: string;
+  x: Integer;
+begin
+  CSEnterMethod(Self, cFn);
+  x := Pos('key=', pWebApp.Command);
+  if x > 0 then
+  begin
+    a1 := TwhWebAction(Sender).HtmlParam;
+    akey := Copy(pWebApp.Command, x + 4, MaxInt);
+    akey := LeftOfS('&', akey);
+    if a1 <> '' then
+      akey := Copy(akey, Succ(Length(a1)), MaxInt); // strip prefix
+    pWebApp.SendStringImm(akey);
+  end
+  else
+    CSSend(cFn + ': "key=" not found in command');
+  CSExitMethod(Self, cFn);
+end;
+
 procedure TDemoExtensions.waCauseAVExecute(Sender: TObject);
 const cFn = 'waCauseAVExecute';
 var
@@ -532,26 +556,26 @@ end;
 procedure TDemoExtensions.waTextFileContentExecute(Sender: TObject);
 const cFn = 'waTextFileContentExecute';
 var
-  PEMFilespec: string;
-  PEMContents: string;
+  AFilespec: string;
+  FileContents: string;
 begin
   CSEnterMethod(Self, cFn);
 
-  PEMFilespec := TwhWebAction(Sender).HtmlParam;
-  CSSend('HtmlParam', PEMFilespec);
+  AFilespec := TwhWebAction(Sender).HtmlParam;
+  CSSend('HtmlParam', AFilespec);
 
-  PEMFilespec := pWebApp.MoreIfParentild(PEMFilespec);
-  if (PEMFilespec<>'') and (NOT FileExists(PEMFilespec)) then
+  AFilespec := pWebApp.MoreIfParentild(AFilespec);
+  if (AFilespec<>'') and (NOT FileExists(AFilespec)) then
   begin
-    CSSend(cFn + ': prepending AppPath to PEMFilespec [' + PEMFilespec + ']');
-    PEMFilespec := pWebApp.AppPath + PEMFilespec;
+    CSSend(cFn + ': prepending AppPath to PEMFilespec [' + AFilespec + ']');
+    AFilespec := pWebApp.AppPath + AFilespec;
   end;
 
-  if (PEMFilespec<>'') and FileExists(PEMFilespec) then
+  if (AFilespec<>'') and FileExists(AFilespec) then
   begin
-    PEMContents := StringLoadFromFile(PEMFilespec);
+    FileContents := StringLoadFromFile(AFilespec);
     //CSSend('Contents', PEMContents);
-    pWebApp.SendStringImm(PEMContents);
+    pWebApp.SendStringImm(FileContents);
   end
   else
   begin
@@ -942,7 +966,6 @@ const cFn = 'DemoAppExecute';
 var
   SurferHostname: string;
   SurferHostid: string;
-  bAllow: Boolean;
 begin
   CSEnterMethod(Self, cFn);
   if pWebApp.SessionNumber <> 0 then
@@ -961,7 +984,6 @@ begin
       if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and
         (NOT IsHREFToolsQATestAgent) then
       begin
-        //bAllow := False;
         { do not allow blank referer within the showcase or htsc demos
           unless on the home page  or  switching http/https }
         if (Sender.Request.Referer = '') and
