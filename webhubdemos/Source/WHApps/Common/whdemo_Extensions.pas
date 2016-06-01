@@ -36,6 +36,7 @@ type
     waCauseAV: TwhWebAction;
     waWaitSeconds: TwhWebAction;
     waSimulateBadNews: TwhWebAction;
+    waTextFileContent: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -49,6 +50,7 @@ type
     procedure waCauseAVExecute(Sender: TObject);
     procedure waWaitSecondsExecute(Sender: TObject);
     procedure waSimulateBadNewsExecute(Sender: TObject);
+    procedure waTextFileContentExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -527,6 +529,41 @@ begin
   end;
 end;
 
+procedure TDemoExtensions.waTextFileContentExecute(Sender: TObject);
+const cFn = 'waTextFileContentExecute';
+var
+  PEMFilespec: string;
+  PEMContents: string;
+begin
+  CSEnterMethod(Self, cFn);
+
+  PEMFilespec := TwhWebAction(Sender).HtmlParam;
+  CSSend('HtmlParam', PEMFilespec);
+
+  PEMFilespec := pWebApp.MoreIfParentild(PEMFilespec);
+  if (PEMFilespec<>'') and (NOT FileExists(PEMFilespec)) then
+  begin
+    CSSend(cFn + ': prepending AppPath to PEMFilespec [' + PEMFilespec + ']');
+    PEMFilespec := pWebApp.AppPath + PEMFilespec;
+  end;
+
+  if (PEMFilespec<>'') and FileExists(PEMFilespec) then
+  begin
+    PEMContents := StringLoadFromFile(PEMFilespec);
+    //CSSend('Contents', PEMContents);
+    pWebApp.SendStringImm(PEMContents);
+  end
+  else
+  begin
+    pWebApp.Debug.AddPageError(Format(
+      '%s: Invalid syntax. Expected filename, either as ' +
+      'full path or relative to the app-level config file.',
+        [TwhWebAction(Sender).Name]));
+  end;
+
+  CSExitMethod(Self, cFn);
+end;
+
 procedure TDemoExtensions.waSimulateBadNewsExecute(Sender: TObject);
 var
   AKeyword: string;
@@ -905,6 +942,7 @@ const cFn = 'DemoAppExecute';
 var
   SurferHostname: string;
   SurferHostid: string;
+  bAllow: Boolean;
 begin
   CSEnterMethod(Self, cFn);
   if pWebApp.SessionNumber <> 0 then
@@ -923,6 +961,7 @@ begin
       if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and
         (NOT IsHREFToolsQATestAgent) then
       begin
+        //bAllow := False;
         { do not allow blank referer within the showcase or htsc demos
           unless on the home page  or  switching http/https }
         if (Sender.Request.Referer = '') and
