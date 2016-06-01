@@ -17,26 +17,31 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 (~drShowcaseGlobalHeader~)
 
 <h2>File Upload</h2>
-<p>Reference: <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload</a></p>
+<p>References: 1. <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload</a>;
+2. <a href="https://aws.amazon.com/articles/1434">Browser Uploads to S3 using HTML POST Forms</a>.</p>
 
       <div>
+	<h3>Select a JPEG image to upload</h3>
 	<form method="post" accept-charset="UTF-8" 
-	action="http://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
+	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
-	Key to upload: <input type="input" name="key" value="user/webhubdemos/RubberDucky.jpg" /><br />
+	    <input type="hidden" name="key" value="user/webhubdemos/${filename}" />
 	    <input type="hidden" name="acl" value="public-read" />
 	    <input type="hidden" name="success_action_redirect" value="http://lite.demos.href.com/webhub/demos/whShowcase/file_upload_thanks.txt" />
-	    Content-Type: <input type="input" name="Content-Type" value="image/jpeg" /><br />
+	    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
 	    <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
 	    Tags for File: <input type="input" name="x-amz-meta-tag" value="" /><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
-	    <input type="hidden" name="Policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
-	    <input type="hidden" name="Signature" 
-             value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
+	<!---    <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />  -->
+		<input type="hidden" name="policy" value="eyJleHBpcmF0aW9uIjoiMjAxNi0wNy0wMVQxMjowMDowMC4wMDBaIiwiY29uZGl0aW9ucyI6W3siYnVja2V0IjoicHJvdGVjdGVkLWZpbGVzLmRlbW9zLmhyZWYuY29tIn0sWyJzdGFydHMtd2l0aCIsIiRrZXkiLCJ1c2VyL3dlYmh1YmRlbW9zLyJdLHsiYWNsIjoicHVibGljLXJlYWQifSx7InN1Y2Nlc3NfYWN0aW9uX3JlZGlyZWN0IjogImh0dHA6Ly9saXRlLmRlbW9zLmhyZWYuY29tL3dlYmh1Yi9kZW1vcy93aFNob3djYXNlL2ZpbGVfdXBsb2FkX3RoYW5rcy50eHQifSxbInN0YXJ0cy13aXRoIiwiJENvbnRlbnQtVHlwZSIsImltYWdlLyJdLHsieC1hbXotbWV0YS11dWlkIjoiMTQzNjUxMjM2NTEyNzQifSxbInN0YXJ0cy13aXRoIiwiJHgtYW16LW1ldGEtdGFnIiwiIl0sWyJjb250ZW50LWxlbmd0aC1yYW5nZSIsMCwxMDQ4NTc2MDBdXX0="/>
+	<!---    <input type="hidden" name="signature" 
+             value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" /> -->
+		<input type="hidden" name="signature" value="KHN0ZGluKT0gNjMxMTUzNDE0YTY3ODU3MTgzMzY1ODM0NDI1MDYxNjQ5MDFlZGI3ZQo="/>
 
-	    File: <input type="file" name="file" ACCEPT="image/jpeg" /> <br />
+<!--- ACCEPT="image/jpeg" -->
+	    File to upload to S3: <input type="file" name="file" /> <br />
 
-	    <!-- The elements after this will be ignored -->
+	    <!--- All elements after the FILE will be ignored so just go to the SUBMIT button now. -->
 	    <input type="submit" name="btnSubmit" value="Upload to Amazon S3" />
 
 	</form>
