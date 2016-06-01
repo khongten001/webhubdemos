@@ -27,7 +27,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 	
 	    <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
 	    <input type="hidden" name="acl" value="authenticated-read" />
-	    <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionID~):" />
+	    <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionNumber~):" />
 	    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
 	    <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
