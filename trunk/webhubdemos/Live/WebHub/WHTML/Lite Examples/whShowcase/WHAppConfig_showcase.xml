@@ -41,6 +41,7 @@
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="DemoGraphic" value="yes"/>
       <AppSetting name="DesignRefreshEnabled" value="False"/>
+      <AppSetting name="TextFileContent-FileUploadSecret" value="D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-004-fileupload-secret.txt"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="LogToFile" value="true"/>
@@ -115,6 +116,7 @@
       <File id="L3Timing" filename="3Timing.whteko"/>
       <File id="L3Togeth" filename="3Togeth.whteko"/>
       <File id="L3Widgets" filename="3Widgets.whteko"/>
+      <File id="L3Upload"  filename="3AWSFileUpload.whteko"/>
       <File id="L4Expire" filename="4Expire.whteko"/>
       <File id="about" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
       <File id="XEmail" filename="XEmail.whteko"/>
