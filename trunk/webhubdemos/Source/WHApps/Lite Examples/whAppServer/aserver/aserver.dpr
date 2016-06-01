@@ -43,9 +43,9 @@ uses
   uCode,
   updateOk,
   webLink in 'h:\webLink.pas',
-  utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
-  utmainfm in 'h:\utMainFm.pas' {fmMainForm},
-  uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
+  utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
+  utMainFm in 'h:\utMainFm.pas' {fmMainForm},
+  utTrayFm in 'h:\utTrayFm.pas' {fmTrayForm},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
@@ -55,10 +55,11 @@ uses
   dmWHPWApp in 'dmWHPWApp.pas' {dmWebHubPowerApp: TdmWebHubPowerApp},
   whpwMain in 'whpwMain.pas' {fmWebHubPowerMainForm},
   fmsetups in 'fmsetups.pas' {fmAppsetups},
-  whhtml in 'h:\whHtml.pas' {fmAppHTML},
+  whHtml in 'h:\whHtml.pas' {fmAppHTML},
   whgui_CoverPage in 'h:\whgui_CoverPage.pas' {whfmCoverPage},
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whAppOut in 'h:\whAppOut.pas' {fmAppOut},
+  webCall,
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   whAppIn in 'h:\whAppIn.pas' {fmAppIn};
@@ -106,6 +107,8 @@ begin
   {M}Application.CreateForm(TfmAppAboutPanel, fmAppAboutPanel);
   {M}Application.CreateForm(TfmAppOut, fmAppOut);
   InitCoreWebHubDataModuleGUI;
+
+  pConnection.MarkReadyToWork;
 
   {M}Application.Run;
 end.
