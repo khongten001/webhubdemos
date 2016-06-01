@@ -1,1 +1,1 @@
-{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/"],{"acl":"public-read"}]}
+{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},{"key":"user/webhubdemos/testimage.jpg"},{"acl":"public-read"}]}

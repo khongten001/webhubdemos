@@ -25,13 +25,13 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 	<form method="post" accept-charset="UTF-8" 
 	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
-	    <input type="hidden" name="key" value="user/webhubdemos/${filename}" />
+	    <input type="hidden" name="key" value="user/webhubdemos/testimage.jpg" />
 	    <input type="hidden" name="acl" value="public-read" />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
 	    <input type="hidden" name="policy"    value="(~waTextFileContent.Execute|D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-003-upload.policy.viaopenssl.base64.txt~)"/>
 	    <input type="hidden" name="signature" value="(~waTextFileContent.Execute|D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-023-upload.policy.viaopenssl.signed.base64.txt~)"/>
 
-	    File to upload to S3: <input type="file" name="file" ACCEPT="image/jpeg" /> <br />
+	    File to upload to S3: <input type="file" name="file" accept="image/jpeg" /> <br />
 
 	    <!--- All elements after the FILE will be ignored so just go to the SUBMIT button now. -->
 	    <input type="submit" name="btnSubmit" value="Upload to Amazon S3" />
