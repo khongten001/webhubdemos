@@ -86,4 +86,10 @@ object DemoExtensions: TDemoExtensions
     Left = 288
     Top = 280
   end
+  object waTextFileContent: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waTextFileContentExecute
+    Left = 448
+    Top = 32
+  end
 end
