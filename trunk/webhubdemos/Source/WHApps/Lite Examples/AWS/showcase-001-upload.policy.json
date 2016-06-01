@@ -1,1 +1,1 @@
-{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/"],{"acl":"public-read"}]}
+{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/"],{"acl":"public-read"},{"success_action_redirect": "http://lite.demos.href.com/webhub/demos/whShowcase/file_upload_thanks.txt"},["starts-with","$Content-Type","image/"],["content-length-range",0,104857600]]}
