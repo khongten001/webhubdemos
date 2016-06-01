@@ -12,6 +12,7 @@ call %ZaphodsMap%zmset.bat dbname UsingKey2Value "FirebirdSQL Credentials-WebHub
 if errorlevel 1 pause
 call %ZaphodsMap%zmset.bat u UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan user SYSDBA"
 call %ZaphodsMap%zmset.bat p UsingKey2Value "FirebirdSQL Credentials-WebHubDemo-scan pass masterkey"
+call %ZaphodsMap%zmset.bat FireFolder UsingKey2Folder "FirebirdSQL Program 2.5 D:\Apps\FirebirdSQL\2.5\"
 
 @echo off
 cls
@@ -23,5 +24,5 @@ echo Using credentials: user [%u%] and password [%p%]
 pause
 
 @echo on
-D:\Apps\Firebird\Firebird_2_5\bin\gbak -v -z -recreate_database overwrite -user %u% -password %p% %f%\whScanTable-backup.fbk %dbname%
+%FireFolder%bin\gbak -v -z -recreate_database overwrite -user %u% -password %p% %f%\whScanTable-backup.fbk %dbname%
 pause
