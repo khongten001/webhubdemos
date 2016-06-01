@@ -7,31 +7,33 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 27-May-2016
 </whdoc>
 <whdroplet name="drShowcaseFileUploadPolicy">
-{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/"],{"acl":"public-read"},{"success_action_redirect": "http://lite.demos.href.com/webhub/demos/whShowcase/file_upload_thanks.txt"},["starts-with","$Content-Type","image/"],{"x-amz-meta-uuid":"14365123651274"},["starts-with","$x-amz-meta-tag",""]]}
+{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$success_action_redirect","(~Request.Scheme~)://(~Request.Host~)/"],["starts-with","$Content-Type","image/"],["content-length-range",0,100000]]}
 </whdroplet>
+
 <whpage pageid="pgAWSStartFileUpload" desc="Upload files directly to AWS S3">
 <whpagesettings>
 </whpagesettings>
-<whprep>
-</whprep>
 (~drShowcaseGlobalHeader~)
 
 <h2>File Upload</h2>
 <p>References: 1. <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload</a>;
-2. <a href="https://aws.amazon.com/articles/1434">Browser Uploads to S3 using HTML POST Forms</a>.</p>
+2. <a href="https://aws.amazon.com/articles/1434">Browser Uploads to S3</a>.</p>
 
       <div>
 	<h3>Select a JPEG image to upload</h3>
+	<p>Note: Maximum allowed filesize is 100,000 bytes.</p>
 	<form method="post" accept-charset="UTF-8" 
 	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
 	    <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
-	    <input type="hidden" name="acl" value="public-read" />
-	    <input type="hidden" name="success_action_redirect" value="http://lite.demos.href.com/webhub/demos/whShowcase/file_upload_thanks.txt" />
+	    <input type="hidden" name="acl" value="authenticated-read" />
+	    <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionID~):" />
 	    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
-	    <input type="hidden" name="policy"    value="(~waTextFileContent.Execute|D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-003-upload.policy.viaopenssl.base64.txt~)"/>
-	    <input type="hidden" name="signature" value="(~waTextFileContent.Execute|D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-011-upload.policy.viaopenssl.signed.base64.txt~)"/>
+	    <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
+
+		<input type="hidden" name="signature" 
+		value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
 
 	    File to upload to S3: <input type="file" name="file" accept="image/jpeg" /> <br />
 
@@ -41,6 +43,30 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 	</form>
       </div>
 
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgAWSFileUploadSuccess" desc="-Successful File Upload">
+<whpagesettings>
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+
+<h2>Successful File Upload</h2>
+(~CentralInfo.WebTimeUTC~)
+<p>Congratulations! Your file has been uploaded to S3.</p>
+<!-- WebHub Command String: (~Command~) -->
+<p><b>(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)</b></p>
+<img src="//dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2R6b3cwajR4b2hha24uY2xvdWRmcm9udC5uZXQvdXNlci93ZWJodWJkZW1vcy9zaG93Y2FzZS8qLmpwZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTUyMjU5MTM4NH19fV19&Signature=XsxDpcBev5adIQSL11MrfZiF5lRKyO9zefVNN2DbjfBC0kaNZ1WP~bFNxE4lh9~REXkMWeNcFEgLPxt-V7RoQJIEYg~VvdQIkYgjMrKTIIbX6o2nc41aUlNvNDtXaAey27NAYfMu0ev3lEJS0K7lonRce9uOG2TF-zNeONJwUhSqS689gab2BuVtjWN8oq2jy7Kfxqsor9F144HYwaWCfwM4j-DYad4ptFZZ75MoUXXxiakO-uCdvwHvGymp8sc4537hNYwmHSP4nWJhhMWqP-ICIwHM7mfrPb7hm1ozcQhQ6lp-EtWDjHha8wt42S3lkeh0mDLZzo3XSz0fgJFboQ__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ" alt="uploaded image" />
+
+<h4>Protected</h4>
+<p>Optionally, content uploaded to S3 can be protected such that it is not available to the public.  
+Files are slightly protected, in this demo.</p>
+<p>Your graphic is not available through direct download, ie. this link 
+will give you an Access Denied error: 
+<a href="https://protected-files.demos.href.com.s3.amazonaws.com/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)">try me</a>.</p>
+<p>The reason your image displays above is that its URL is uses AWS CloudFront with a signed policy.</p>
+
+<p>(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
 (~drShowcaseGlobalFooter~)
 </whpage>
 
