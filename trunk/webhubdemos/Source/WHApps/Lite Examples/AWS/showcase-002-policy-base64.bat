@@ -1,7 +1,7 @@
 setlocal
 
-set  inputfilespec=showcase.upload.policy.json
-set outputfilespec=showcase.upload.policy.viaopenssl.base64.txt
+set  inputfilespec=showcase-001-upload.policy.json
+set outputfilespec=showcase-003-upload.policy.viaopenssl.base64.txt
 
 CD /D %~dp0
 

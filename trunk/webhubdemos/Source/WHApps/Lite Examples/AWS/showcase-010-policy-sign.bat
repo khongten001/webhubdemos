@@ -2,9 +2,9 @@ setlocal
 
 set opensslpath=D:\Apps\OpenSSL\OpenSSL-Win64\bin\
 
-set   inputfilespec=showcase.upload.policy.viaopenssl.base64.txt
-set outputfilespec1=showcase.upload.policy.viaopenssl.signed.txt
-set outputfilespec2=showcase.upload.policy.viaopenssl.signed.base64.txt
+set   inputfilespec=showcase-003-upload.policy.viaopenssl.base64.txt
+set outputfilespec1=showcase-020.upload.policy.viaopenssl.signed.txt
+set outputfilespec2=showcase-021.upload.policy.viaopenssl.signed.base64.txt
 
 set /P secretkey=Enter secret key :
 
@@ -14,6 +14,8 @@ type %filespec% | %opensslpath%openssl.exe dgst -hmac %secretkey% -sha1 > %outpu
 
 type %filespec% | %opensslpath%openssl.exe dgst -hmac %secretkey% -sha1 | %opensslpath%openssl.exe base64 > %outputfilespec2% 
 
-dir showcase.upload.policy.viaopenssl.signed*
+dir showcase-02?-upload.policy.viaopenssl.signed*
 
+type %outputfilespec2%
 pause
+
