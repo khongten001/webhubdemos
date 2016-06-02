@@ -26,7 +26,8 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 
       <div>
 	<h3>Select a JPEG image to upload</h3>
-	<p>Note: Maximum allowed filesize is 100,000 bytes.</p>
+	<p>Notes: Maximum allowed filesize is currently <b>100,000 bytes</b>; please select JPG image with a <b>lowercase filename</b>
+on your local system; and, you will need to accept Amazon's https certificate on the results page.</p>
 	<form method="post" accept-charset="UTF-8" 
 	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
