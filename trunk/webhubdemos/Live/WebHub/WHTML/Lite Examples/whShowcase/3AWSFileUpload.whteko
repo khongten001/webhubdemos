@@ -7,7 +7,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 27-May-2016
 </whdoc>
 <whdroplet name="drShowcaseFileUploadPolicy">
-{"expiration":"2016-07-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$success_action_redirect","(~Request.Scheme~)://(~Request.Host~)/"],["starts-with","$Content-Type","image/"],["content-length-range",0,100000]]}
+{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$success_action_redirect","(~Request.Scheme~)://(~Request.Host~)/"],["starts-with","$Content-Type","image/"],["content-length-range",0,400000]]}
 </whdroplet>
 
 <whpage pageid="pgAWSStartFileUpload" desc="Upload files directly to AWS S3">
@@ -26,7 +26,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 
       <div>
 	<h3>Select a JPEG image to upload</h3>
-	<p>Notes: Maximum allowed filesize is currently <b>100,000 bytes</b>; please select JPG image with a <b>lowercase filename</b>
+	<p>Notes: Maximum allowed filesize is currently <b>400,000 bytes</b>; please select JPG image with a <b>lowercase filename</b>
 on your local system; and, you will need to accept Amazon's https certificate on the results page.</p>
 	<form method="post" accept-charset="UTF-8" 
 	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
@@ -67,6 +67,12 @@ here for you to view:</p>
 <div>
 <img style="border: solid 1px blue; padding: 0.1em;" src="//dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2R6b3cwajR4b2hha24uY2xvdWRmcm9udC5uZXQvdXNlci93ZWJodWJkZW1vcy9zaG93Y2FzZS8qLmpwZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTUyMjU5MTM4NH19fV19&Signature=XsxDpcBev5adIQSL11MrfZiF5lRKyO9zefVNN2DbjfBC0kaNZ1WP~bFNxE4lh9~REXkMWeNcFEgLPxt-V7RoQJIEYg~VvdQIkYgjMrKTIIbX6o2nc41aUlNvNDtXaAey27NAYfMu0ev3lEJS0K7lonRce9uOG2TF-zNeONJwUhSqS689gab2BuVtjWN8oq2jy7Kfxqsor9F144HYwaWCfwM4j-DYad4ptFZZ75MoUXXxiakO-uCdvwHvGymp8sc4537hNYwmHSP4nWJhhMWqP-ICIwHM7mfrPb7hm1ozcQhQ6lp-EtWDjHha8wt42S3lkeh0mDLZzo3XSz0fgJFboQ__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ" alt="uploaded image" />
 </div>
+
+<h4>Upload Policy</h4>
+<p>This is the policy json used to enable your upload:</p>
+<pre>
+(~drShowcaseFileUploadPolicy~)
+</pre>
 
 <h4>Protected</h4>
 <p>Optionally, content uploaded to S3 can be protected such that it is not available to the public.  
