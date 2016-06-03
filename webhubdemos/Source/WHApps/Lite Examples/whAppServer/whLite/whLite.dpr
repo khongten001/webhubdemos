@@ -47,7 +47,7 @@ uses
   webLink in 'h:\webLink.pas',
   whutil_ZaphodsMap in 'k:\webhub\lib\whutil_ZaphodsMap.pas',
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
-  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
+  whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas' {dmwhUIHelpers: TDataModule},
   whdemo_UIHelpers in '..\..\..\Common\whdemo_UIHelpers.pas',
   whdemo_Initialize in '..\..\..\Common\whdemo_Initialize.pas',
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDemoViewSource},
@@ -65,8 +65,18 @@ uses
   whSample_GoogleSitemap in 'k:\webhub\lib\whSample_GoogleSitemap.pas',
   whSample_DMGoogleSitemap in 'k:\webhub\lib\whSample_DMGoogleSitemap.pas',
   whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
+  ucAWS_Security in 'H:\ucAWS_Security.pas',
+  ucAWS_S3_Upload in 'H:\ucAWS_S3_Upload.pas',
   uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
-  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas';
+  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas'
+  {$IFDEF AWSSUPPORT}
+  ,
+  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
+  PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
+  Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas'
+  {$ENDIF}
+  ;
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos
