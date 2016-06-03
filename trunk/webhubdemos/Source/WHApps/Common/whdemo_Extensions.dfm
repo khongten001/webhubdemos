@@ -98,4 +98,10 @@ object DemoExtensions: TDemoExtensions
     Left = 448
     Top = 96
   end
+  object waAWSCloudFrontSecurityProvider: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waAWSCloudFrontSecurityProviderExecute
+    Left = 448
+    Top = 168
+  end
 end
