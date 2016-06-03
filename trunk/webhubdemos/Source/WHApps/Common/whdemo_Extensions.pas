@@ -18,8 +18,10 @@ uses
   Windows, SysUtils, Classes, Controls,
   System.Actions, Vcl.ActnList,
   MultiTypeApp, updateOk, tpAction, tpActionGUI, tpShareI,
-  whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha,
-  ucAWS_CloudFront_PrivateURLs;
+{$IFDEF AWSSUPPORT}
+ucAWS_CloudFront_PrivateURLs,
+{$ENDIF}
+  whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
   TDemoExtensions = class(TDataModule)
@@ -62,7 +64,9 @@ type
     FAdminIpNumber: string;
     FServerIpNumber: string;
     FDomainIDList: TStringList;
+{$IFDEF AWSSUPPORT}
     FCFSP: TCloudFrontSecurityProvider;
+{$ENDIF}
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; // uses webSend
@@ -348,6 +352,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
+{$IFDEF AWSSUPPORT}
   if NOT Assigned(fcfsp) then
     FCFSP := TCloudFrontSecurityProvider.Create;
 
@@ -383,6 +388,7 @@ begin
   end
   else
     pWebApp.SendStringImm(FCFSP.Policy);
+{$ENDIF}
 
   CSExitMethod(Self, cFn);
 end;
