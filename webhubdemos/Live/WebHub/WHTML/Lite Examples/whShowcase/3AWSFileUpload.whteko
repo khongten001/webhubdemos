@@ -64,7 +64,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 <p><b>(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)</b></p>
 <p>If you uploaded a jpg image whose file extension was in lowercase on your own system, it should appear
 here for you to view:</p>
-<div>
+<div style="padding-bottom: 2em;">
 <img style="border: solid 1px blue; padding: 0.1em;" src="//dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2R6b3cwajR4b2hha24uY2xvdWRmcm9udC5uZXQvdXNlci93ZWJodWJkZW1vcy9zaG93Y2FzZS8qLmpwZyIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTUyMjU5MTM4NH19fV19&Signature=XsxDpcBev5adIQSL11MrfZiF5lRKyO9zefVNN2DbjfBC0kaNZ1WP~bFNxE4lh9~REXkMWeNcFEgLPxt-V7RoQJIEYg~VvdQIkYgjMrKTIIbX6o2nc41aUlNvNDtXaAey27NAYfMu0ev3lEJS0K7lonRce9uOG2TF-zNeONJwUhSqS689gab2BuVtjWN8oq2jy7Kfxqsor9F144HYwaWCfwM4j-DYad4ptFZZ75MoUXXxiakO-uCdvwHvGymp8sc4537hNYwmHSP4nWJhhMWqP-ICIwHM7mfrPb7hm1ozcQhQ6lp-EtWDjHha8wt42S3lkeh0mDLZzo3XSz0fgJFboQ__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ" alt="uploaded image" />
 <br/>#1. URL for showcase/*.jpg is allowed until April 2018
 </div>
@@ -104,7 +104,7 @@ The expiration happens in April 2018.</p>
 Reference: <a href="https://en.wikipedia.org/wiki/Hash-based_message_authentication_code">HMAC</a></p>
 <p>Here is an image link to your file which will work only for the next 1 minute. If you try to open it in a 
 separate browser window after a minute has elapsed, you will get the Access Denied response from the Amazon S3 server.</p>
-<div>
+<div style="padding-bottom: 2em;">
 <img style="border: solid 2px green; padding: 0.1em;" 
 src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~Request.RemoteAddress~)/32~)" alt="uploaded image with timeout in 1 minute" />
 <br/>#2. URL for this image is allowed for 1 minute for 1 ip number
