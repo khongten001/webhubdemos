@@ -38,6 +38,7 @@ type
     waSimulateBadNews: TwhWebAction;
     waTextFileContent: TwhWebAction;
     waAWSKey2Filename: TwhWebAction;
+    waAWSCloudFrontSecurityProvider: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -53,6 +54,7 @@ type
     procedure waSimulateBadNewsExecute(Sender: TObject);
     procedure waTextFileContentExecute(Sender: TObject);
     procedure waAWSKey2FilenameExecute(Sender: TObject);
+    procedure waAWSCloudFrontSecurityProviderExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -89,9 +91,10 @@ uses
   {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF}
   DateUtils, Math, TypInfo,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
+  ucMsTime,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
-  whdemo_ViewSource, webSysMsg;
+  whdemo_ViewSource, webSysMsg, ucAWS_CloudFront_PrivateURLs;
 
 {$R *.DFM}
 
@@ -326,6 +329,60 @@ begin
     Sleep(1000);
     Application.ProcessMessages;
   end;
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TDemoExtensions.waAWSCloudFrontSecurityProviderExecute(
+  Sender: TObject);
+const cFn = 'waAWSCloudFrontSecurityProviderExecute';
+var
+  cfsp: TCloudFrontSecurityProvider;
+  url: string;
+  minutesToLiveStr: string;
+  restrictByIPStr: string;
+  protectedURL: string;
+  expiresOnAt: TDateTime;
+begin
+  CSEnterMethod(Self, cFn);
+  cfsp := nil;
+
+  if SplitThree(TwhWebAction(Sender).HtmlParam, ' | ', url, minutesToLiveStr,
+    restrictByIPStr) then
+  begin
+    url := pWebApp.Expand(url);
+    CSSend('url', url);
+
+    minutesToLiveStr := pWebApp.MoreIfParentild(minutesToLiveStr);
+    CSSend('minutesToLiveStr', minutesToLiveStr);
+
+    expiresOnAt := IncMinute(NowUTC, StrToIntDef(minutesToLiveStr, 1));
+    CSSend(csmLevel6, 'expiresOnAt',
+      FormatDateTime('yyyy-mm-dd hh:nn:ss', expiresOnAt));
+
+    CSSend('restrictByIPStr', restrictByIPStr);
+
+    try
+      cfsp := TCloudFrontSecurityProvider.Create;
+      cfsp.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
+      cfsp.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
+        'Lite Examples\AWS\';
+      // The PEM is issued by AWS.
+      cfsp.PrivateKeyPEM := StringLoadFromFile(cfsp.DiskFolder +
+        'demos.cloudfront.pem');
+      //cfsp.Policy := StringLoadFromFile(cfsp.DiskFolder +
+      //  'demos.cloudfront.policy.json');  // sample on disk
+      cfsp.Policy := cfsp.GetPolicyAsStr(
+        url.Replace('http:', 'http*:'), // allow https if asking for http
+        expiresOnAt, restrictByIPStr);
+      CSSend(csmLevel5, 'cfsp.Policy', cfsp.Policy);
+
+      protectedURL := cfsp.GetCustomUrl(url);
+      pWebApp.SendStringImm(protectedURL);
+    finally
+      FreeAndNil(cfsp);
+    end;
+  end;
+
   CSExitMethod(Self, cFn);
 end;
 
