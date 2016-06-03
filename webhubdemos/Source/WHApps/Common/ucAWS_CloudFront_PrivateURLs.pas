@@ -24,8 +24,9 @@ type TCloudFrontSecurityProvider = class(TObject)
     function GetCustomUrl(const url, policyPlain: string): string;
       overload;
 
-/// <param name="url">absolute url starting from http and ending with the file
-/// to be retrieved.
+/// <param name="url">Absolute url starting from http and ending with the file
+/// to be retrieved.  If you start with http://, the policy will be signed for
+/// http*// so that both http and https will work for the same file.
 /// </param>
 /// <param name="expirationUTC">Expiration TDateTime for the policy. Required.
 /// </param>
@@ -58,15 +59,18 @@ const cFn = 'GetPolicyAsStr';
 var
   sb: TStringBuilder;
   epoch: Int64;
+  flexURL: string;
 begin
   sb := nil;
+  flexURL := url.Replace('http:', 'http*:'); // allow https if asking for http
+
   try
     sb := TStringBuilder.Create;  // without any whitespace
     sb.Append('{');
     sb.Append('"Statement":[');
     sb.Append('{');
     sb.Append('"Resource":"');
-      sb.Append(url);
+      sb.Append(flexURL);
       sb.Append('",');
     sb.Append('"Condition":{');
     if allowedCidr <> '' then
@@ -139,6 +143,7 @@ var
   signatureFromOpenSSL: string;
 begin
   {$IFDEF LOGAWSSign}CSEnterMethod(Self, cFn);{$ENDIF}
+
   { Excellent guide to building the url string:
   http://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/private-content-creating-signed-url-custom-policy.html#private-content-custom-policy-statement-examples
   }
@@ -148,7 +153,7 @@ begin
   policyBase64 := StringToBase64NoCRLF(UTF8String(policyPlain));
 
   {$IFDEF LOGAWSSign}
-  CSSend('policyPlain', policyPlain);
+  CSSend(cFn + ': policyPlain', policyPlain);
   LogToCodeSiteKeepCRLF(cFn + ': should have NoCRLF: policyBase64', policyBase64);
   {$ENDIF}
 
@@ -167,34 +172,21 @@ begin
        .Replace('+', '-', [rfReplaceAll])
        .Replace('=', '_', [rfReplaceAll])
        .Replace('/', '~', [rfReplaceAll]);
+
+  {$IFDEF LOGAWSSign}
   LogToCodeSiteKeepCRLF('After replacements, signatureFromOpenSSL', signatureFromOpenSSL);
+  CSSend('FPrivateKeyID', FKeyPairID);
+  {$ENDIF}
 
-  {$IFDEF LOGAWSSign}CSSend('FPrivateKeyID', FKeyPairID);{$ENDIF}
-(*
-  signatureAttempt := BytesToBase64(sigAttemptBytes);
-  CSSend('signatureAttempt as Base64', signatureAttempt);
-  signatureAttempt := signatureAttempt.Replace('+', '-').Replace('=', '_')
-    .Replace('/', '~');
-
-  signatureFromOpenSSL := stringLoadFromFile(DiskFolder +
-    'demos.url.signed64.txt')
-     .Replace(sLineBreak, '').Replace('+', '-').Replace('=', '_').Replace('/', '~');
-
-  UTF8StringwriteToFile(DiskFolder + 'demos.url.signed64.replaced.txt',
-    UTF8String(signatureFromOpenSSL), False);
-*)
-
-  // return url + string.Format("?Policy={0}&Signature={1}&Key-Pair-Id={2}", getUrlSafeString(Encoding.ASCII.GetBytes(policy)), signature, privateKeyId);
+  // return url + string.Format("?Policy={0}&Signature={1}&Key-Pair-Id={2}",
+  // getUrlSafeString(Encoding.ASCII.GetBytes(policy)),
+  // signature, privateKeyId);
   Result := url + '?' + Format(
     'Policy=%s&Signature=%s&Key-Pair-Id=%s',
-    //getUrlSafeString
     [getUrlSafeString(policyBase64), signatureFromOpenSSL, FKeyPairID]);
 
   {$IFDEF LOGAWSSign}
   LogToCodeSiteKeepCRLF(cFn + ': Result', Result);
-  //UTF8StringwriteToFile(DiskFolder + 'demos.url.signed64.attempt.allhoops.txt',
-  //  UTF8String(Result), False);
-
   CSExitMethod(Self, cFn);
   {$ENDIF}
 end;
