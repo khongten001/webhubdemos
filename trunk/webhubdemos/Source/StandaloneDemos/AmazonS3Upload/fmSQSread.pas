@@ -1,5 +1,7 @@
 unit fmSQSread;
 
+(* example project to read messages from Amazon Simple Queue Service *)
+
 interface
 
 uses
