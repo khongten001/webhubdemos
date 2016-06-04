@@ -90,8 +90,7 @@ document.addEventListener('DOMContentLoaded', prepareFileUpload);
 	 * Output the date in the RFC 1123, same output from JavaScript new Date().toUTCString()
 	 * The pattern is EEE, dd MMM yyyy HH:mm:ss zzz
 </whdoc>
-(~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://lite-local.demos.modulab.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
-Sun, 05 Jun 2016 18:19:20 GMT(~Close|~)
+(~FLUSH|~)(~drCrossOriginHeaders~)Sun, 01 Apr 2018 14:15:16 GMT(~Close|~)
 </whpage>
 
 <whdroplet name="drCrossOriginHeaders">
