@@ -30,6 +30,8 @@ set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 :: flags off: ;LogAppTick;LOGIPC;LogHELO
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
+if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
+if "%1"=="DServer" set compilerflags=%compilerflags%;AWSSUPPORT
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\
 
 :: extra parameters for Delphi XE2
