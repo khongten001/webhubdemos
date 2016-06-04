@@ -26,6 +26,12 @@ whMacros in 'k:\webhub\lib\whvcl\whMacros.pas',
 
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},
+  {$IFDEF AWSSUPPORT}
+  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
+  PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
+  Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas',
+  {$ENDIF}
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',

@@ -133,7 +133,7 @@
         <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;k:\webhub\lib\whrun;k:\vendors\raize\codesite5\lib\rx10.1\$(platform)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
-        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
+        <DCC_Define>DEBUG;AWSSUPPORT;$(DCC_Define)</DCC_Define>
         <DCC_UnitSearchPath>K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Debugger_RunParams>/id=showcase</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -211,14 +211,18 @@
         <DCCReference Include="k:\webhub\lib\whSample_GoogleSitemap.pas"/>
         <DCCReference Include="k:\webhub\lib\whSample_DMGoogleSitemap.pas"/>
         <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
-        <DCCReference Include="K:\WebHub\tpack\ucAWS_Security.pas"/>
-        <DCCReference Include="K:\WebHub\tpack\ucAWS_S3_Upload.pas"/>
+        <DCCReference Include="K:\webhub\tpack\ucAWS_Security.pas"/>
+        <DCCReference Include="K:\webhub\tpack\ucAWS_S3_Upload.pas"/>
         <DCCReference Include="k:\webhub\lib\uAutoDataModules.pas"/>
-        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas"/>
+        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas">
+            <Form>$IFDEF AWSSUPPORT</Form>
+        </DCCReference>
         <DCCReference Include="..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas"/>
         <DCCReference Include="..\..\..\Common\uChilkatInterface.pas"/>
         <DCCReference Include="..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas"/>
-        <DCCReference Include="..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas"/>
+        <DCCReference Include="..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas">
+            <Form>$ENDIF</Form>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -292,7 +296,16 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -603,16 +616,7 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
