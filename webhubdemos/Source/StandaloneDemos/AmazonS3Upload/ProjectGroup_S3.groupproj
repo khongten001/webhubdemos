@@ -15,6 +15,9 @@
         <Projects Include="DemoCleanupLinks.dproj">
             <Dependencies/>
         </Projects>
+        <Projects Include="Demo_SQS_Amazon.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -59,14 +62,23 @@
     <Target Name="DemoCleanupLinks:Make">
         <MSBuild Projects="DemoCleanupLinks.dproj" Targets="Make"/>
     </Target>
+    <Target Name="Demo_SQS_Amazon">
+        <MSBuild Projects="Demo_SQS_Amazon.dproj"/>
+    </Target>
+    <Target Name="Demo_SQS_Amazon:Clean">
+        <MSBuild Projects="Demo_SQS_Amazon.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Demo_SQS_Amazon:Make">
+        <MSBuild Projects="Demo_SQS_Amazon.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="DemoUploadToAmazonS3;FireMonkey_DemoUploadToAmazonS3;DemoCleanupFilesAmazonS3;DemoCleanupLinks"/>
+        <CallTarget Targets="DemoUploadToAmazonS3;FireMonkey_DemoUploadToAmazonS3;DemoCleanupFilesAmazonS3;DemoCleanupLinks;Demo_SQS_Amazon"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="DemoUploadToAmazonS3:Clean;FireMonkey_DemoUploadToAmazonS3:Clean;DemoCleanupFilesAmazonS3:Clean;DemoCleanupLinks:Clean"/>
+        <CallTarget Targets="DemoUploadToAmazonS3:Clean;FireMonkey_DemoUploadToAmazonS3:Clean;DemoCleanupFilesAmazonS3:Clean;DemoCleanupLinks:Clean;Demo_SQS_Amazon:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="DemoUploadToAmazonS3:Make;FireMonkey_DemoUploadToAmazonS3:Make;DemoCleanupFilesAmazonS3:Make;DemoCleanupLinks:Make"/>
+        <CallTarget Targets="DemoUploadToAmazonS3:Make;FireMonkey_DemoUploadToAmazonS3:Make;DemoCleanupFilesAmazonS3:Make;DemoCleanupLinks:Make;Demo_SQS_Amazon:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
