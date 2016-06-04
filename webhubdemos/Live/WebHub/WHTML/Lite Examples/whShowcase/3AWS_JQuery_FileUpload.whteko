@@ -1,6 +1,13 @@
 <!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code">
 
+<whdoc for="JQuery File Upload">
+See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
+</whdoc>
+
+
+
+
 <whdoc for="pgEvaporateExample">
 This example has been copied from the evaporate_example.html 
 Original located here: https://github.com/TTLabs/EvaporateJS
