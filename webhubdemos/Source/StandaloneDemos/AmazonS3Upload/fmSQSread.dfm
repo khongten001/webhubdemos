@@ -14,19 +14,19 @@ object Form5: TForm5
   PixelsPerInch = 120
   TextHeight = 16
   object Memo1: TMemo
-    Left = 208
+    Left = 24
     Top = 8
-    Width = 185
-    Height = 89
+    Width = 585
+    Height = 137
     Lines.Strings = (
       'Memo1')
     TabOrder = 0
   end
   object Button1: TButton
-    Left = 288
+    Left = 168
     Top = 160
-    Width = 75
-    Height = 25
+    Width = 195
+    Height = 65
     Caption = 'Button1'
     TabOrder = 1
     OnClick = Button1Click
