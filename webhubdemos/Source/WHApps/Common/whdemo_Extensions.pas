@@ -42,6 +42,7 @@ type
     waTextFileContent: TwhWebAction;
     waAWSKey2Filename: TwhWebAction;
     waAWSCloudFrontSecurityProvider: TwhWebAction;
+    waEvaporateSign: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -58,6 +59,7 @@ type
     procedure waTextFileContentExecute(Sender: TObject);
     procedure waAWSKey2FilenameExecute(Sender: TObject);
     procedure waAWSCloudFrontSecurityProviderExecute(Sender: TObject);
+    procedure waEvaporateSignExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -266,7 +268,9 @@ begin
   CSEnterMethod(Self, cFn);
   FMonitorFilespec := ''; // for use with WebHubGuardian
   FDomainIDList := nil;
+{$IFDEF AWSSUPPORT}
   FCFSP := nil;
+{$ENDIF}
   CSExitMethod(Self, cFn);
 end;
 
@@ -278,7 +282,9 @@ begin
     DeleteFile(FMonitorFilespec);
   end;
   FreeAndNil(FDomainIDList);
+{$IFDEF AWSSUPPORT}
   FreeAndNil(FCFSP);
+{$ENDIF}
   DemoExtensions := nil;
 end;
 
@@ -475,6 +481,35 @@ var
 begin
   SecondsToDelay := StrToIntDef(TwhWebAction(Sender).HtmlParam, 0) * 1000;
   Sleep(SecondsToDelay);
+end;
+
+procedure TDemoExtensions.waEvaporateSignExecute(Sender: TObject);
+const cFn = 'waEvaporateSignExecute';
+var
+  x: Integer;
+  evaporateLines: TStringList;
+begin
+  CSEnterMethod(Self, cFn);
+
+  evaporateLines := nil;
+
+  LogToCodeSiteKeepCRLF('Command', pWebApp.Command);
+  LogToCodeSiteKeepCRLF('QS', pWebApp.Request.QueryString);
+
+  x := Pos('?to_sign=', pWebApp.Command);
+  if x > 0 then
+  begin
+    try
+      evaporateLines := TStringList.Create;
+      evaporateLines.Text := Copy(pWebApp.Command, X + 9, MaxInt);
+      LogToCodeSiteKeepCRLF('evaporateLines.Text', evaporateLines.Text);
+      pWebApp.SendStringImm('test_12345');
+    finally
+      FreeAndNil(evaporateLines);
+    end;
+  end;
+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.waFromListExecute(Sender: TObject);

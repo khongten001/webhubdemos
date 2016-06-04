@@ -104,4 +104,10 @@ object DemoExtensions: TDemoExtensions
     Left = 448
     Top = 168
   end
+  object waEvaporateSign: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waEvaporateSignExecute
+    Left = 448
+    Top = 240
+  end
 end
