@@ -5,8 +5,14 @@
 This example has been copied from the evaporate_example.html 
 Original located here: https://github.com/TTLabs/EvaporateJS
 Downloaded 27-May-2016
+
+
+See also:
+http://www.jqueryajaxphp.com/direct-upload-to-amazon-s3-using-evaporatejs-and-php/
 </whdoc>
-<whpage pageid="pgEvaporateExample" desc="Upload files directly to AWS S3 using Evaporate JavaScript">
+
+
+<whpage pageid="pgAWSEvaporateExample" desc="Upload files directly to AWS S3 using Evaporate JavaScript">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
@@ -26,9 +32,10 @@ bNoMore=true
          
          var _e_ = new Evaporate({
             signerUrl: '(~ACTIONR|ajaxEvaporateSignAuth,(~waLSec.execute|out,120~),~)',
-            timeUrl: '(~ACTIONR|ajaxEvaporateTimestamp,(~waLSec.execute|out,120~),~)',
             aws_key: 'AKIAI35IN4YICFYEONOA',
-            bucket: 'protected-files.demos.href.com'
+            timeUrl: '(~ACTIONR|ajaxEvaporateTimestamp,(~waLSec.execute|out,120~),~)',
+            bucket: 'protected-files.demos.href.com', /* Oregon */
+	    aws_url: 'https://s3-us-west-2.amazonaws.com' 
          });
       
 
@@ -60,6 +67,10 @@ document.addEventListener('DOMContentLoaded', prepareFileUpload);
       
       </script>
 
+<h4>RFC 1123 date</h4>
+<div id="rfc1123">
+<script>document.getElementById('rfc1123').innerHTML = new Date().toUTCString();</script>
+</div>
 <P><!--- to match a close-para in the footer -->
 
 (~drShowcaseGlobalFooter~)
@@ -71,12 +82,15 @@ document.addEventListener('DOMContentLoaded', prepareFileUpload);
 	 * The pattern is EEE, dd MMM yyyy HH:mm:ss zzz
 </whdoc>
 (~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://lite-local.demos.modulab.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
-(~CentralInfo.WebTimeUTC~)(~Close|~)
+Sun, 05 Jun 2016 18:19:20 GMT(~Close|~)
 </whpage>
 
-<whpage pageid="ajaxEvaporateSignAuth" desc="-sign the file upload">
-(~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://lite-local.demos.modulab.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
-This needs to return a signature...ok(~CLOSE|~)
+<whdroplet name="drCrossOriginHeaders">
+(~SET|allowDomain=Access-Control-Allow-Origin: (~Request.Scheme~)://(~Request.Host~)~)
+(~HEADER|(~allowDomain~)~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)(~CLEAR|allowDomain~)
+</whdroplet>
+<whpage pageid="ajaxEvaporateSignAuth" desc="-sign the port of the file upload URL requested by evaporate.js">
+(~FLUSH|~)(~drCrossOriginHeaders~)(~AWSSignature2|(~waEvaporateSign.Execute|~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)(~CLOSE|~)
 </whpage>
 
 </whteko>
