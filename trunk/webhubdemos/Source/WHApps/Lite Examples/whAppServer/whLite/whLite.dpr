@@ -34,10 +34,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  {$IFDEF CodeSite}
-  CodeSiteLogging,
-  {$ENDIF }
-  whSharedLog in 'h:\whSharedLog.pas',
+  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   uCode,
@@ -80,8 +77,11 @@ uses
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos
-{..$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
-{..$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
+
+{$IFDEF DEBUG}
+{$R HTICONS.RES}   // component icons for combo bar, needed if compiling without WH package
+{$R HTGLYPHS.RES}  // icons for WebHub UI features, needed if compiling without WH package
+{$ENDIF}
 
 begin
   {M}Application.Initialize;

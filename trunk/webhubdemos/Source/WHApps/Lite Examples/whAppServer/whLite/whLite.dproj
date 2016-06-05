@@ -77,7 +77,7 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Keys>CompanyName=HREF Tools Corp.;FileDescription=;FileVersion=1.0.0.0;InternalName=whlite.exe;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=WebHub Lite;ProductVersion=1.0.0.0;Comments=;ServiceName=Lite</VerInfo_Keys>
         <DCC_DependencyCheckOutputName>..\..\..\..\..\Live\WebHub\Apps\whLite.exe</DCC_DependencyCheckOutputName>
-        <DCC_UnitSearchPath>h:\;h:\dcu_d24_$(Platform);D:\Projects\webhubdemos\Source\WHApps\Externals\chilkat-9.5.0-delphi;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>h:\;h:\dcu_d24_$(Platform);D:\Projects\webhubdemos\Source\WHApps\Externals\chilkat-9.5.0-delphi;k:\vendors\raize\codesite5\lib\rx10.1\$(platform);$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <DCC_MapFile>3</DCC_MapFile>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Platform>x86</DCC_Platform>
@@ -94,10 +94,8 @@
         <DCC_DcuOutput>D:\temp\DelphiTempDCU\$(platform)\$(Config)</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
-        <DCC_UnitSearchPath>k:\vendors\raize\codesite5\lib\rx10\win32;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Icon_MainIcon>..\..\..\Common\webhubApplication.ico</Icon_MainIcon>
         <DCC_Namespace>System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win$(DCC_Namespace);$(DCC_Namespace)</DCC_Namespace>
-        <Debugger_RunParams>/id=adv</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -120,7 +118,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
-        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <DCC_GenerateStackFrames>true</DCC_GenerateStackFrames>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
@@ -130,12 +127,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3)'!=''">
         <Icon_MainIcon>..\..\..\Common\webhubApplication.ico</Icon_MainIcon>
-        <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;k:\webhub\lib\whrun;k:\vendors\raize\codesite5\lib\rx10.1\$(platform)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;k:\webhub\lib\whrun</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <DCC_Define>DEBUG;AWSSUPPORT;$(DCC_Define)</DCC_Define>
         <DCC_UnitSearchPath>K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <Debugger_RunParams>/id=showcase</Debugger_RunParams>
+        <Debugger_RunParams>/id=adv</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileDescription=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=;ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win64)'!=''">
@@ -148,7 +145,7 @@
         <DelphiCompile Include="$(MainSource)">
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
-        <DCCReference Include="h:\whSharedLog.pas"/>
+        <DCCReference Include="h:\ucCodeSiteInterface.pas"/>
         <DCCReference Include="h:\MultiTypeApp.pas"/>
         <DCCReference Include="h:\tpProj.pas"/>
         <DCCReference Include="h:\utPanFrm.pas">
@@ -198,7 +195,9 @@
         <DCCReference Include="h:\whMain.pas">
             <Form>fmWebHubMainForm</Form>
         </DCCReference>
-        <DCCReference Include="k:\webhub\lib\htWebApp.pas"/>
+        <DCCReference Include="h:\htWebApp.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webCall.pas"/>
+        <DCCReference Include="k:\webhub\lib\whvcl\webInfoU.pas"/>
         <DCCReference Include="h:\whMail.pas">
             <Form>DataModuleWhMail</Form>
             <DesignClass>TDataModule</DesignClass>
@@ -211,8 +210,8 @@
         <DCCReference Include="k:\webhub\lib\whSample_GoogleSitemap.pas"/>
         <DCCReference Include="k:\webhub\lib\whSample_DMGoogleSitemap.pas"/>
         <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
-        <DCCReference Include="K:\webhub\tpack\ucAWS_Security.pas"/>
-        <DCCReference Include="K:\webhub\tpack\ucAWS_S3_Upload.pas"/>
+        <DCCReference Include="H:\ucAWS_Security.pas"/>
+        <DCCReference Include="H:\ucAWS_S3_Upload.pas"/>
         <DCCReference Include="k:\webhub\lib\uAutoDataModules.pas"/>
         <DCCReference Include="k:\webhub\lib\uAutoPanels.pas">
             <Form>$IFDEF AWSSUPPORT</Form>
@@ -296,16 +295,7 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployClass Name="DependencyModule">
-                    <Platform Name="Win32">
-                        <Operation>0</Operation>
-                        <Extensions>.dll;.bpl</Extensions>
-                    </Platform>
-                    <Platform Name="OSX32">
-                        <Operation>1</Operation>
-                        <Extensions>.dylib</Extensions>
-                    </Platform>
-                </DeployClass>
+                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
                 <DeployClass Name="ProjectOSXResource">
                     <Platform Name="OSX32">
                         <RemoteDir>Contents\Resources</RemoteDir>
@@ -616,7 +606,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
-                <DeployClass Name="ProjectiOSDeviceResourceRules"/>
+                <DeployClass Name="DependencyModule">
+                    <Platform Name="Win32">
+                        <Operation>0</Operation>
+                        <Extensions>.dll;.bpl</Extensions>
+                    </Platform>
+                    <Platform Name="OSX32">
+                        <Operation>1</Operation>
+                        <Extensions>.dylib</Extensions>
+                    </Platform>
+                </DeployClass>
                 <ProjectRoot Platform="iOSDevice64" Name="$(PROJECTNAME).app"/>
                 <ProjectRoot Platform="Win64" Name="$(PROJECTNAME)"/>
                 <ProjectRoot Platform="iOSDevice32" Name="$(PROJECTNAME).app"/>
