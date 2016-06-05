@@ -3,11 +3,9 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
     <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
     <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -15,10 +13,8 @@
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dreamweaver" status="enabled" context="META"/>
           <Module name="dreamweaver" status="enabled" context="DORIS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled" context="META"/>
           <Module name="dwsecurity" status="enabled" context="DORIS"/>
           <Module name="lingvo" status="enabled"/>
           <Module name="googlesitemap" status="disabled"/>
@@ -26,10 +22,8 @@
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
-          <Module name="appin" status="disabled" context="META"/>
           <Module name="appin" status="disabled" context="DORIS"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="appout" status="disabled" context="META"/>
           <Module name="appout" status="disabled" context="DORIS"/>
           <Module name="decode" status="disabled" />
           <Module name="whteko" status="enabled-gui"/>
@@ -41,7 +35,6 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="db" context="META"/>
         <ServerProfileIDStandard value="db" context="DORIS"/>
         <ServerProfileIDSecure value="ssl" context="DORIS"/>
       </DynURLConfig>
@@ -64,10 +57,8 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
-      <CookieDomainDefault value="db.demos.href.com" context="META"/>
       <CookieDomainDefault value="db.demos.href.com" context="DORIS"/>
     </Security>
     <StreamCatcherInterface>
@@ -101,8 +92,7 @@
       <Prompts macroPrefix="mcPrompt"/>
     </whdbSource>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="D:\temp\w3validation\fire\" context="META"/>
-      <Item id="DiskFolder" value="E:\whSwap\w3validation\fire\" context="DEMOS"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\fire\" context="DORIS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

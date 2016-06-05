@@ -3,10 +3,10 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <StartMinimized context="DORIS" value="true"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -31,7 +31,8 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="db" context="META"/>
+        <ServerProfileIDStandard value="db" context="DORIS"/>
+        <ServerProfileIDStandard value="db" context="DEMOS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
@@ -53,7 +54,8 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
+      <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
       <CookieDomainDefault value="db.demos.href.com"/>
     </Security>
