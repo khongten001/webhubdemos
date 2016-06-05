@@ -3,31 +3,32 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
+    <MenuEnabled value="false" context="DEMOS"/>
+    <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
-    <StartMinimized context="DORIS" value="true"/>
+    <StartMinimized value="true" context="DEMOS"/>
+    <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dreamweaver" status="enabled" context="META"/>
+          <Module name="dreamweaver" status="enabled" context="DEMOS"/>
           <Module name="dreamweaver" status="enabled" context="DORIS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled" context="META"/>
+          <Module name="dwsecurity" status="enabled" context="DEMOS"/>
           <Module name="dwsecurity" status="enabled" context="DORIS"/>
           <Module name="lingvo" status="enabled"/>
           <Module name="w3validation" status="enabled"/>
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
-          <Module name="appin" status="disabled" context="META"/>
+          <Module name="appin" status="disabled" context="DEMOS"/>
           <Module name="appin" status="disabled" context="DORIS"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="appout" status="disabled" context="META"/>
+          <Module name="appout" status="disabled" context="DEMOS"/>
           <Module name="appout" status="disabled" context="DORIS"/>
           <Module name="decode" status="disabled" />
           <Module name="whteko" status="enabled-gui"/>
@@ -39,7 +40,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="db" context="META"/>
+        <ServerProfileIDStandard value="db" context="DEMOS"/>
         <ServerProfileIDStandard value="db" context="DORIS"/>
         <ServerProfileIDStandard value="defprofile" context="qa"/>
       </DynURLConfig>
@@ -62,7 +63,7 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
+      <AdminSessionNumber value="1204" context="DEMOS"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
     </Security>
     <StreamCatcherInterface>
@@ -87,8 +88,7 @@
   </Application>
   <ComponentConfig>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="D:\temp\w3validation\htcl\" context="META"/>
-      <Item id="DiskFolder" value="E:\whSwap\w3validation\htcl\" context="DEMOS"/>
+      <Item id="DiskFolder" value="E:\whSwap\w3validation\htcl\" context="DORIS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

@@ -6,18 +6,15 @@
   </Variables>
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
     <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="false"/>
     <StartMinimized value="true"/>
-    <StartMinimized value="true" context="META"/>
     <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="enabled-gui"/>
-          <Module name="email" status="enabled" context="META"/>
           <Module name="email" status="enabled" context="DORIS"/>
           <Module name="dreamweaver" status="disabled"/>
           <Module name="dwsecurity" status="disabled"/>
@@ -36,7 +33,6 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="lite" context="META"/>
         <ServerProfileIDStandard value="lite" context="DORIS"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
@@ -62,7 +58,6 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
       <CookieDomainDefault value=""/>
       <ReadOnlySessionNumber value="888888"/>

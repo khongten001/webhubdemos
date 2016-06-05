@@ -3,7 +3,6 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
     <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="true"/>
@@ -30,7 +29,6 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="lite" context="META"/>
         <ServerProfileIDStandard value="lite" context="DEMOS"/>
         <UseAppProcessID value="false"/>
       </DynURLConfig>
@@ -67,13 +65,11 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
       <ReadOnlySessionNumber value="888888"/>
     </Security>
     <Static>
-      <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot" context="META"/>
       <ExportFolder value="D:\projects\webhubdemos\Live\WebRoot" context="DEMOS"/>
     </Static>
     <StreamCatcherInterface>

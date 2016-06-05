@@ -1,13 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
     <MenuEnabled value="false" context="DORIS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
     <StartMinimized value="true" context="DORIS"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -15,10 +13,8 @@
         <GUIOptional>
           <Module name="email" status="disabled"/>
           <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dreamweaver" status="enabled" context="META"/>
           <Module name="dreamweaver" status="enabled" context="DORIS"/>
           <Module name="dwsecurity" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled" context="META"/>
           <Module name="dwsecurity" status="enabled" context="DORIS"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
@@ -26,10 +22,8 @@
         </GUIOptional>
         <GUI>
           <Module name="appin" status="enabled-gui"/>
-          <Module name="appin" status="disabled" context="META"/>
           <Module name="appin" status="disabled" context="DORIS"/>
           <Module name="appout" status="enabled-gui"/>
-          <Module name="appout" status="disabled" context="META"/>
           <Module name="appout" status="disabled" context="DORIS"/>
           <Module name="decode" status="disabled"/>
           <Module name="whteko" status="enabled-gui"/>
@@ -41,17 +35,13 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="db" context="META"/>
         <ServerProfileIDStandard value="db" context="DORIS"/>
-        <ServerProfileIDStandard value="defprofile" context="qa"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
-      <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" context="ultraann"/>
-      <AppSetting name="CodeSiteLogging" value="all" context="DORIS"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
@@ -65,16 +55,12 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DORIS"/>
     </Security>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value=""/>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="META"/>
       <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\demos.href.com\Config\SCWebSiteConfig_demos.href.com.cfg" context="DORIS"/>
-      <WebRobotIniSection value=""/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="META"/>
-      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering" context="DORIS"/>
+      <WebRobotIniSection value="demos.href.com.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
       <File id="about" filename="..\..\Shared WHTML\about\about-whQuery4.whteko"/>

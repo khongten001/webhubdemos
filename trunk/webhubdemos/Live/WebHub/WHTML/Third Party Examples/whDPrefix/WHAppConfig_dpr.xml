@@ -5,7 +5,7 @@
     <MenuEnabled value="true"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="META"/>
+    <StartMinimized value="true" context="DEMOS"/>
     <StartMinimized value="true" context="WESLEY"/>
     <TrayIconEnabled value="true"/>
     <Modules>
@@ -31,7 +31,6 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="shortdpr" context="META"/>
         <ServerProfileIDStandard value="shortdpr" context="WESLEY"/>
         <UseAppID value="true"/>
       </DynURLConfig>
@@ -48,7 +47,6 @@
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
       <AppSetting name="ShowSessionVars" value="False" />
-      <AppSetting name="ShowSessionVars" value="False" context="WESLEY" />
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>

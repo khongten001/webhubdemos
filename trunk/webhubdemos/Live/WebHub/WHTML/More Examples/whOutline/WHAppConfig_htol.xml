@@ -3,7 +3,6 @@
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
-    <MenuEnabled value="false" context="META"/>
     <MenuEnabled value="false" context="DEMOS"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="true"/>
@@ -31,7 +30,6 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
 	    <ServerProfileIDStandard value="more" context="DEMOS"/>
-        <ServerProfileIDStandard value="more" context="META"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
@@ -51,7 +49,6 @@
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
-      <AdminSessionNumber value="1204" context="META"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
       <CookieDomainDefault value=""/>
     </Security>
