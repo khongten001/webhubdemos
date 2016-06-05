@@ -40,7 +40,7 @@ type
     procedure ProjMgrDataModulesCreate3(Sender: TtpProject;
       var ErrorText: String; var Continue: Boolean);
     procedure ProjMgrDataModulesInit(Sender: TtpProject;
-      var ErrorText: String; var Continue: Boolean);
+      var ErrorText: String; var bContinue: Boolean);
     procedure ProjMgrGUICreate(Sender: TtpProject;
       const ShouldEnableGUI: Boolean; var ErrorText: String;
       var Continue: Boolean);
@@ -185,16 +185,16 @@ begin
 end;
 
 procedure TDMForWHDemo.ProjMgrDataModulesInit(Sender: TtpProject;
-  var ErrorText: String; var Continue: Boolean);
+  var ErrorText: String; var bContinue: Boolean);
 const cFn = 'ProjMgrDataModulesInit';
 begin
   CSEnterMethod(Self, cFn);
   InitCoreWebHubDataModule;
   whDemoInit;
   whDemoSetDelphiSourceLocation(FSourceSubDir, FIsRelativePath);
-  Continue := dmwhUIHelpers.Init(ErrorText);
-  if Continue then
-    Continue := dmwhCodeSiteHelper.Init(ErrorText);
+  bContinue := dmwhUIHelpers.Init(ErrorText);
+  if bContinue then
+    bContinue := dmwhCodeSiteHelper.Init(ErrorText);
   CSExitMethod(Self, cFn);
 end;
 
@@ -210,7 +210,7 @@ begin
   begin
     try
       {M}Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm);
-      if Pos(pWebApp.ZMDefaultMapContext, ',DEMOS,META,DORIS,ultraann,') > 0
+      if Pos(pWebApp.ZMDefaultMapContext, ',DEMOS,DORIS,ultraann,') > 0
       then
       begin
         if Assigned(fmWebHubMainForm.Restorer) then
