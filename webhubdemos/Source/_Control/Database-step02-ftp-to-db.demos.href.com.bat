@@ -13,7 +13,7 @@ cd %~dp0
 :: switch to the location of the 7z files
 cd ..\..\Live\WebHub\Apps
 
-set h=nano.db.demos.href.com
+set h=db.demos.href.com
 call %ZaphodsMap%zmset.bat u UsingKey2Value "HREFTools\FileTransfer FTP webhubdemos-database-user"
 call %ZaphodsMap%zmset.bat p UsingKey2Value "HREFTools\FileTransfer FTP webhubdemos-database-pass"
 
