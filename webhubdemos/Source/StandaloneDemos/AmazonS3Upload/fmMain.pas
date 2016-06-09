@@ -23,14 +23,11 @@ uses
   Data.Cloud.AmazonAPI, Vcl.ActnList, System.Actions, Vcl.StdActns, Vcl.ToolWin,
   Vcl.ActnMan, Vcl.ActnCtrls, Vcl.ActnMenus, Vcl.Menus;
 
-const
-  cProtocol = 'HTTP';  // http or https
-
 type
   TForm2 = class(TForm)
     AmazonConnectionInfo1: TAmazonConnectionInfo;
     Panel1: TPanel;
-    Button1: TButton;
+    ButtonUploadToS3: TButton;
     GroupBox2: TGroupBox;
     DriveComboBox1: TDriveComboBox;
     DirectoryListBox1: TDirectoryListBox;
@@ -56,12 +53,14 @@ type
     Action1: TAction;
     ActionCreateBucket: TMenuItem;
     Button2: TButton;
+    LabeledEditProtocol: TLabeledEdit;
     procedure FormCreate(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure ButtonUploadToS3Click(Sender: TObject);
     procedure Action1Execute(Sender: TObject);
     procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
+    function ActiveProtocol: string;
   public
     { Public declarations }
   end;
@@ -76,6 +75,56 @@ uses
 
 {$R *.dfm}
 
+procedure TForm2.FormCreate(Sender: TObject);
+var
+  SampleDirectory: string;
+  i: Integer;
+{$I amazon_secret_info.txt}  // you can comment this INCLUDE if you prefer to paste values at runtime
+begin
+  // Initialize the controls for easier repeat tests
+  Memo1.Clear;
+
+  LabeledEditTargetPath.Text := 'testfolder_' + FormatDateTime('yyyymmdd',
+    Now) + '/';
+
+  // you can set the default directory here
+  SampleDirectory := 'D:\Apps\Embarcadero\Studio\18.0\Images\Icons';
+  SampleDirectory := 'D:\Projects';
+  if SysUtils.Directoryexists(SampleDirectory) then
+    DirectoryListBox1.Directory := SampleDirectory;
+
+  if cAKey <> 'AK...'  then
+  begin
+    // seems that a valid INC file is available
+    LabeledEditAccessKey.Text := cAKey;  // key
+    LabeledEditSecret.Text := cSAKey;    // secret key
+    LabeledEditBucket.Text := cBName;    // bucket name
+
+    // set region combobox based on cS3Region
+    ComboRegion.ItemIndex := -1;
+    for i := 0 to Pred(ComboRegion.Items.Count) do
+    begin
+      if ComboRegion.Items[I] = cS3Region then
+      begin
+        ComboRegion.ItemIndex := I;
+        break;
+      end;
+    end;
+
+  end
+  else
+  begin
+    // use example from docwiki
+    // http://docwiki.embarcadero.com/RADStudio/XE8/en/Amazon_and_Cloud_Computing_with_DataSnap
+    LabeledEditAccessKey.Text := 'AKIAJ32REXDJHV2X4JSQ';
+    LabeledEditSecret.Text := 'uW3f0fucxqotP/UXQAv/xhiaGt8UAAhHcYDaqxmW';
+    LabeledEditBucket.Text := 'samples3.embarcadero.com';
+  end;
+
+  // Custom headers are better left to user data entry
+  //EditCustomHeader.Text := 'Cache-Control=max-age=31557600'; //'Content-Type=text/html';
+end;
+
 procedure TForm2.Action1Execute(Sender: TObject);
 var
   StorageService: TAmazonStorageService;
@@ -89,7 +138,7 @@ begin
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
-  AmazonConnectionInfo1.Protocol := cProtocol;
+  AmazonConnectionInfo1.Protocol := ActiveProtocol;
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
   AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = ComboText);
   // NB: make sure this matches against whichever region is listed below.
@@ -118,7 +167,12 @@ begin
   Memo1.Lines.Add(InfoMsg);
 end;
 
-procedure TForm2.Button1Click(Sender: TObject);
+function TForm2.ActiveProtocol: string;
+begin
+  Result := LabeledEditProtocol.Text;
+end;
+
+procedure TForm2.ButtonUploadToS3Click(Sender: TObject);
 var
   ResponseInfo: TCloudResponseInfo;
   Filespec: string;
@@ -145,7 +199,7 @@ begin
 
     Tested: domain cname, domain on amazonaws.com, domain cname that has https cert.
   }
-  AmazonConnectionInfo1.Protocol := cProtocol;
+  AmazonConnectionInfo1.Protocol := ActiveProtocol;
 
   ComboText := ComboRegion.Items[ComboRegion.ItemIndex];
 
@@ -257,14 +311,11 @@ begin
 
   AmazonConnectionInfo1.AccountName := LabeledEditAccessKey.Text;
   AmazonConnectionInfo1.AccountKey := LabeledEditSecret.Text;
-  AmazonConnectionInfo1.Protocol := 'http';  // or 'https'
+  AmazonConnectionInfo1.Protocol := ActiveProtocol;
   AmazonConnectionInfo1.StorageEndpoint :=   's3.amazonaws.com';
   AmazonConnectionInfo1.UseDefaultEndpoints := false;
 
-// Create bucket
-// https &  usest1
-
-   try
+  try
     try
       StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
       ResponseInfo := TCloudResponseInfo.Create;
@@ -273,7 +324,8 @@ begin
          amzbaNotSpecified,
          amzrNotSpecified,
          ResponseInfo) then
-         ShowMessage('Bucket ' + LabeledEditBucket.Text + ' created succesfully')
+         ShowMessage('Bucket ' + LabeledEditBucket.Text +
+           ' created succesfully over ' + AmazonConnectionInfo1.Protocol)
       else
       begin
         msg := ' Error creating bucket ' + LabeledEditBucket.Text + '.';
@@ -287,39 +339,6 @@ begin
     FreeAndNil(ResponseInfo);
     FreeAndNil(StorageService);
   end;
-end;
-
-procedure TForm2.FormCreate(Sender: TObject);
-var
-  SampleDirectory: string;
-{$I amazon_secret_info.txt}  // you can comment this INCLUDE out
-begin
-  Memo1.Clear;
-  // you can set the default directory here
-  SampleDirectory := 'D:\Apps\Embarcadero\Studio\18.0\Images\Icons';
-  SampleDirectory := 'D:\Projects';
-  if SysUtils.Directoryexists(SampleDirectory) then
-    DirectoryListBox1.Directory := SampleDirectory;
-
-  LabeledEditAccessKey.Text := cAKey;
-  if LabeledEditAccessKey.Text = '' then
-  begin
-    // use example from docwiki
-    // http://docwiki.embarcadero.com/RADStudio/XE8/en/Amazon_and_Cloud_Computing_with_DataSnap
-    LabeledEditAccessKey.Text := 'AKIAJ32REXDJHV2X4JSQ';
-  end;
-  LabeledEditSecret.Text := cSAKey;
-  if LabeledEditSecret.Text = '' then
-    LabeledEditSecret.Text := 'uW3f0fucxqotP/UXQAv/xhiaGt8UAAhHcYDaqxmW';
-  LabeledEditBucket.Text := cBName;
-  if LabeledEditBucket.Text = '' then
-    LabeledEditBucket.Text := 'samples3.embarcadero.com';
-
-  LabeledEditTargetPath.Text := 'testfolder_' + FormatDateTime('yyyymmdd',
-    Now) + '/';
-
-  // Custom headers are better left to user data entry
-  //EditCustomHeader.Text := 'Cache-Control=max-age=31557600'; //'Content-Type=text/html';
 end;
 
 end.

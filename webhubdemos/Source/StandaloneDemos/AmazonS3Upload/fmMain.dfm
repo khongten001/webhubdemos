@@ -26,7 +26,7 @@ object Form2: TForm2
     Margins.Bottom = 5
     Align = alClient
     TabOrder = 0
-    object Button1: TButton
+    object ButtonUploadToS3: TButton
       Left = 726
       Top = 8
       Width = 173
@@ -43,7 +43,7 @@ object Form2: TForm2
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnClick = Button1Click
+      OnClick = ButtonUploadToS3Click
     end
     object GroupBox2: TGroupBox
       Left = 1
@@ -134,14 +134,14 @@ object Form2: TForm2
         Margins.Right = 4
         Margins.Bottom = 4
         Align = alTop
-        Caption = 'C:\WINDOWS\system32'
+        Caption = 'd:\apps\embarcadero\studio\18.0\bin'
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -15
         Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
-        ExplicitWidth = 158
+        ExplicitWidth = 252
       end
       object FileListBox1: TFileListBox
         Left = 15
@@ -217,7 +217,7 @@ object Form2: TForm2
     end
     object LabeledEditAccessKey: TLabeledEdit
       Left = 16
-      Top = 155
+      Top = 139
       Width = 373
       Height = 28
       Margins.Left = 4
@@ -241,7 +241,7 @@ object Form2: TForm2
     end
     object LabeledEditSecret: TLabeledEdit
       Left = 16
-      Top = 219
+      Top = 195
       Width = 373
       Height = 28
       Margins.Left = 4
@@ -264,8 +264,8 @@ object Form2: TForm2
       TabOrder = 2
     end
     object LabeledEditTargetPath: TLabeledEdit
-      Left = 16
-      Top = 289
+      Left = 18
+      Top = 321
       Width = 723
       Height = 28
       Margins.Left = 4
@@ -288,9 +288,9 @@ object Form2: TForm2
       TabOrder = 3
     end
     object GroupBox1: TGroupBox
-      Left = 463
+      Left = 424
       Top = 13
-      Width = 438
+      Width = 477
       Height = 223
       Margins.Left = 5
       Margins.Top = 5
@@ -301,7 +301,7 @@ object Form2: TForm2
       object Memo1: TMemo
         Left = 2
         Top = 22
-        Width = 434
+        Width = 473
         Height = 199
         Margins.Left = 5
         Margins.Top = 5
@@ -312,14 +312,42 @@ object Form2: TForm2
           'Memo1')
         ScrollBars = ssBoth
         TabOrder = 0
+        ExplicitWidth = 434
       end
+    end
+    object LabeledEditProtocol: TLabeledEdit
+      Left = 16
+      Top = 253
+      Width = 373
+      Height = 28
+      Hint = 'Enter http or https'
+      Margins.Left = 4
+      Margins.Top = 4
+      Margins.Right = 4
+      Margins.Bottom = 4
+      EditLabel.Width = 152
+      EditLabel.Height = 20
+      EditLabel.Margins.Left = 4
+      EditLabel.Margins.Top = 4
+      EditLabel.Margins.Right = 4
+      EditLabel.Margins.Bottom = 4
+      EditLabel.Caption = 'Protocol (http or https)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -15
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 5
+      Text = 'http'
+      TextHint = 'Enter http or https'
     end
   end
   object GroupBox4: TGroupBox
     Left = 16
-    Top = 325
+    Top = 376
     Width = 849
-    Height = 180
+    Height = 129
     Margins.Left = 4
     Margins.Top = 4
     Margins.Right = 4
@@ -336,7 +364,7 @@ object Form2: TForm2
       Left = 2
       Top = 27
       Width = 845
-      Height = 151
+      Height = 100
       Margins.Left = 4
       Margins.Top = 4
       Margins.Right = 4
@@ -354,6 +382,7 @@ object Form2: TForm2
       ParentFont = False
       ScrollBars = ssVertical
       TabOrder = 0
+      ExplicitHeight = 151
     end
   end
   object ComboRegion: TComboBox
@@ -390,12 +419,12 @@ object Form2: TForm2
     TableEndpoint = 'sdb.amazonaws.com'
     QueueEndpoint = 'queue.amazonaws.com'
     StorageEndpoint = 's3.amazonaws.com'
-    Left = 504
+    Left = 584
     Top = 144
   end
   object MainMenu1: TMainMenu
-    Left = 720
-    Top = 88
+    Left = 808
+    Top = 64
     object File1: TMenuItem
       Caption = '&File'
       object Exit1: TMenuItem
@@ -411,8 +440,8 @@ object Form2: TForm2
     end
   end
   object ActionList1: TActionList
-    Left = 504
-    Top = 88
+    Left = 584
+    Top = 64
     object FileExit1: TFileExit
       Category = 'File'
       Caption = 'E&xit'

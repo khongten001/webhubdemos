@@ -29,7 +29,9 @@ protect the download of the items as shown on the next page. </li>
       <div>
 	<h3>Select a JPEG image to upload</h3>
 	<p>Notes: Maximum allowed filesize is currently <b>400,000 bytes</b>; please select JPG image with a <b>lowercase file extension</b>
-on your local system; and, you will need to accept Amazon's https certificate on the results page.</p>
+on your local system; and, you will need to accept Amazon's https certificate on the results page. The Cache-Control header will be set to 
+4 weeks, so if you upload the same filename twice in the same month using different content, you should see the cached, older content.</p>
+	
 	<form method="post" accept-charset="UTF-8" 
 	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
 	
@@ -37,6 +39,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 	    <input type="hidden" name="acl" value="authenticated-read" />
 	    <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionNumber~):" />
 	    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
+	    <input type="hidden" name="Cache-Control" value="max-age=2419200"<!---4 weeks -->/><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
 	    <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
 
