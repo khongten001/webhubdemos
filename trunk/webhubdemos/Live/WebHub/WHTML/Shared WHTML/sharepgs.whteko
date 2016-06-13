@@ -71,12 +71,14 @@ AppID demos? Ok.
  (~HIDE|pgEnter(~AppID~)|(~~Entrance~)~)
 ||
 <!--- special processing for the DEMOS demo which runs on multiple domains -->
-(~MATCH|(~Request.Host~)!lite.demos| (~HIDE|pgEnterLiteDemos|(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!more.demos| (~HIDE|pgEnterMoreDemos|(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!db.demos| (~HIDE|pgEnterDemos|(~~Entrance~)~)~)
-(~HIDE|pgEnterDemos|(~~Entrance~)~)
-(~MATCH|(~Request.Host~)=demos.href.com| (~HIDE|pgEnterDemos|(~~Entrance~)~)~)
-(~NOMATCH|href.com[(~Request.Host~)| (~HIDE|pgEnterLiteDemos|(~~Entrance~)~)~)
+(~CLEAR|_FlagEnt~)
+(~MATCH|(~Request.Host~)!lite.demos|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!more.demos|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterMoreDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)!db.demos|           (~CHECK|_FlagEnt~)(~HIDE|pgEnterDemos|     id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~MATCH|(~Request.Host~)=demos.href.com|     (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~NOMATCH|href.com[(~Request.Host~)|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~IFNOT|_FlagEnt|(~HIDE|pgEnterDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
+(~CLEAR|_FlagEnt~)
 ~)
 </whdroplet>
 
