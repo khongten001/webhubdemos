@@ -14,16 +14,19 @@ unit uChilkatInterface;
 
 interface
 
+{$I hrefdefines.inc}
+
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
   : string): string;
 
-//function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
-//  : string): string;
+function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
+  : string): string;
 
 implementation
 
 uses
   SysUtils, System.Classes,
+  {$IFDEF Delphi21UP}System.NetEncoding,{$ENDIF} // available in XE7
   Rsa, PrivateKey, // REQUIRES ChilkatDelphiXE.dll, otherwise EXE will exit !!
   IdCTypes, IdSSLOpenSSLHeaders, // REQUIRES Indy units that ship with Delphi
   ucCodeSiteInterface;
@@ -116,8 +119,7 @@ begin
   {$ENDIF}
 end;
 
-function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
-  : string): string;
+function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM: string): string;
 const
   cFn = 'Indy_OpenSSL_Sign_SHA1';
 var
@@ -126,45 +128,53 @@ var
   BP: pBIO;
   LKey: pEVP_PKEY;
   StringToSign8, PrivateKeyPEM8: UTF8String;
-  iFinal: TIdC_INT;
+  arrayOfBytes: TBytes;
 begin
-{$IFDEF LOGAWSSign}
-  CSEnterMethod(nil, cFn);
-
-  CSSend('StringToSign', StringToSign);
-  CSSend('PrivateKeyPEM', PrivateKeyPEM);
-{$ENDIF}
-
- {for the first command, you would initialize a signing ctx with
- EVP_SignInit(EVP_sha1()), then feed the raw .json data to it
- with EVP_SignUpdate(), and then sign it with the PEM key using
- EVP_SignFinal(),
- where the key is loaded with PEM_ASN1_read(d2i_PrivateKey()) or
- PEM_read_bio_PrivateKey().
- Then you can feed the final hash through TIdEncoderMIME to base64 encode it.
- }
-
+  // we start with having both the StringToSign and the key in PEM format.
   StringToSign8 := UTF8String(StringToSign);
   PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
 
-  BP := BIO_new_mem_buf(@PrivateKeyPEM8, Length(PrivateKeyPEM8));
+  BP := BIO_new_mem_buf(PAnsiChar(PrivateKeyPEM8), Length(PrivateKeyPEM8));
+  if BP = nil then
+    raise Exception.Create('out of memory!');
 
-  LKey := PEM_read_bio_PrivateKey(BP,
-    nil,
-    nil,  // no password callback on the PEM itself
-    nil);
+  try
+    LKey := PEM_read_bio_PrivateKey(BP,
+      nil,
+      nil, // no password callback on the PEM itself
+      nil);
+    if LKey = nil then
+      raise Exception.Create('cannot load private key!');
+  finally
+    BIO_free(BP);
+  end;
 
-  x := EVP_SignInit(@ctx, EVP_sha1());
-  EVP_SignUpdate(@ctx, @StringToSign8, Length(StringToSign8));
+  try
+    SetLength(arrayOfbytes, EVP_PKEY_size(LKey));
 
-  iFinal := EVP_SignFinal(@ctx, @StringToSign8, @x, LKey);
+    if EVP_SignInit(@ctx, EVP_sha1()) <> 1 then
+      raise Exception.Create('cannot initialize signing context');
 
-  ///////???? where is the content to be base64'd ??
+    try
+      if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8), Length(StringToSign8))
+<> 1 then
+        raise Exception.Create('signing failed');
 
-  {$IFDEF LOGAWSSign}
-  CSSend('iFinal', S(iFinal));
-  CSExitMethod(nil, cFn);
-  {$ENDIF}
+      if EVP_SignFinal(@ctx, @arrayOfBytes, @x, LKey) <> 1 then
+        raise Exception.Create('signing failed');
+    finally
+      EVP_MD_CTX_cleanup(@ctx);
+    end;
+  finally
+    EVP_PKEY_free(LKey);
+  end;
+
+  // SetLength(arrayOfBytes, x);
+  // Result := TNetEncoding.Base64.EncodeBytesToString(arrayOfBytes);
+  Result := TNetEncoding.Base64.EncodeBytesToString(PByte(arrayOfBytes), x);
+
+  SetLength(arrayOfbytes, 0);
+
 end;
 
 end.
