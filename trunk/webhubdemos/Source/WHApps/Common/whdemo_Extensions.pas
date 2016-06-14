@@ -958,16 +958,22 @@ begin
         end
         else
         begin
-          {$IF Defined(CodeSite) and (NOT Defined(LogSTime))}CSSend(Self.Name + #183 + cFn + #183 +
-            'HaveSessionCookie',
-            GetEnumName(TypeInfo(TwhSessionNumberCookieState), Ord(HaveSessionCookie)));
-          {$IFEND}
           if (HaveSessionCookie = whsncPresent) then
           begin
-            { worst case.. user fakes a cookie or comes back days later with the
-              non-stored session cookie still loaded in the browser }
-            CSSendError('unexpected session cookie in ' + cFn);
-            bForceNewSession := True;
+            CSSendWarning(Format(
+              'unexpected session cookie %s in %s.%s %s on %s ' +
+              'while %d.var exists=%s. IP %s; Agent %s; PageCount %d; QS %s',
+              [pWebApp.AppInfo.SessionCookieName,
+               Self.Name, cFn,
+               GetEnumName(TypeInfo(TwhSessionNumberCookieState),
+               Ord(pWebApp.HaveSessionCookie)),
+               pWebApp.Request.Host,
+               InSessionNumber,
+               S(FileExists(pWebApp.Session.SessionFileName)),
+               pWebApp.Request.RemoteAddress,
+               pWebApp.Request.UserAgent, pWebApp.Session.PageCount,
+               pWebApp.Request.QueryString]));
+            bForceNewSession := False;
           end;
         end;
       end;
