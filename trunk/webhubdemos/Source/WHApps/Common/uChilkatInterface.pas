@@ -17,12 +17,17 @@ interface
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
   : string): string;
 
+//function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
+//  : string): string;
+
 implementation
 
 uses
-  SysUtils,
+  SysUtils, System.Classes,
   Rsa, PrivateKey, // REQUIRES ChilkatDelphiXE.dll, otherwise EXE will exit !!
+  IdCTypes, IdSSLOpenSSLHeaders, // REQUIRES Indy units that ship with Delphi
   ucCodeSiteInterface;
+
 
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
   : string): string;
@@ -107,6 +112,57 @@ begin
   CkRsa_Dispose(Rsa);
 
   {$IFDEF LOGAWSSign}
+  CSExitMethod(nil, cFn);
+  {$ENDIF}
+end;
+
+function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
+  : string): string;
+const
+  cFn = 'Indy_OpenSSL_Sign_SHA1';
+var
+  x: TIdC_INT;
+  ctx: EVP_MD_CTX;
+  BP: pBIO;
+  LKey: pEVP_PKEY;
+  StringToSign8, PrivateKeyPEM8: UTF8String;
+  iFinal: TIdC_INT;
+begin
+{$IFDEF LOGAWSSign}
+  CSEnterMethod(nil, cFn);
+
+  CSSend('StringToSign', StringToSign);
+  CSSend('PrivateKeyPEM', PrivateKeyPEM);
+{$ENDIF}
+
+ {for the first command, you would initialize a signing ctx with
+ EVP_SignInit(EVP_sha1()), then feed the raw .json data to it
+ with EVP_SignUpdate(), and then sign it with the PEM key using
+ EVP_SignFinal(),
+ where the key is loaded with PEM_ASN1_read(d2i_PrivateKey()) or
+ PEM_read_bio_PrivateKey().
+ Then you can feed the final hash through TIdEncoderMIME to base64 encode it.
+ }
+
+  StringToSign8 := UTF8String(StringToSign);
+  PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
+
+  BP := BIO_new_mem_buf(@PrivateKeyPEM8, Length(PrivateKeyPEM8));
+
+  LKey := PEM_read_bio_PrivateKey(BP,
+    nil,
+    nil,  // no password callback on the PEM itself
+    nil);
+
+  x := EVP_SignInit(@ctx, EVP_sha1());
+  EVP_SignUpdate(@ctx, @StringToSign8, Length(StringToSign8));
+
+  iFinal := EVP_SignFinal(@ctx, @StringToSign8, @x, LKey);
+
+  ///////???? where is the content to be base64'd ??
+
+  {$IFDEF LOGAWSSign}
+  CSSend('iFinal', S(iFinal));
   CSExitMethod(nil, cFn);
   {$ENDIF}
 end;
