@@ -6,7 +6,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 </whdoc>
 
 <whdroplet name="drRenderJqFileUploadJS">
-(~ANCHORMODIFY|anchJQuery|<!-- Note: JQuery included for Zurb Foundation -->
+(~ANCHORMODIFY|anchPageEndJS|<!-- Note: JQuery included for Zurb Foundation -->
 
       <!-- jQuery UI styles -->
 
@@ -74,7 +74,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 </whdroplet>
 
 
-<whpage pageid="pgAWSJqFileUpload" desc="Upload files directly to AWS S3 using Jquery fileupload">
+<whpage pageid="pgAWSJqFileUpload" desc="-Upload files to AWS S3 using JQuery fileupload">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
