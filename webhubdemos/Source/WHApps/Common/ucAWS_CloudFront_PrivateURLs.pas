@@ -1,5 +1,8 @@
 unit ucAWS_CloudFront_PrivateURLs;
 
+{$I hrefdefines.inc}
+{$DEFINE LOGAWSSign}
+
 interface
 
 uses
@@ -49,7 +52,6 @@ implementation
 
 uses
   DateUtils, Classes,
-  //ucLogFil,
   ucMsTime, ucString, ucAWS_Security, ucCodeSiteInterface,
   uChilkatInterface;
 
@@ -140,7 +142,7 @@ begin
   else
     CSSendNote('Indy answer matches Chilkat');
 
-  Result := ChilkatAnswer;
+  Result := IndyAnswer;
 
   {$IFDEF LOGAWSSign}CSExitMethod(Self, cFn);{$ENDIF}
 end;
@@ -173,18 +175,19 @@ begin
   }
   signatureFromOpenSSL := sign(policyPlain);
   {$IFDEF LOGAWSSign}
-  LogToCodeSiteKeepCRLF('signatureFromOpenSSL', signatureFromOpenSSL);
+  LogToCodeSiteKeepCRLF('signatureFromOpenSSL, BEFORE', signatureFromOpenSSL);
   CSSend('Length of signatureFromOpenSSL', S(Length(signatureFromOpenSSL)));
   {$ENDIF}
 
   signatureFromOpenSSL := signatureFromOpenSSL
        //.Replace(#13, '',  [rfReplaceAll])
+       //.Replace(#10, '',  [rfReplaceAll])
        .Replace('+', '-', [rfReplaceAll])
        .Replace('=', '_', [rfReplaceAll])
        .Replace('/', '~', [rfReplaceAll]);
 
   {$IFDEF LOGAWSSign}
-  LogToCodeSiteKeepCRLF('After replacements, signatureFromOpenSSL', signatureFromOpenSSL);
+  LogToCodeSiteKeepCRLF('signatureFromOpenSSL, AFTER', signatureFromOpenSSL);
   CSSend('FPrivateKeyID', FKeyPairID);
   {$ENDIF}
 
