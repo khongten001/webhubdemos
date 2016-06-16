@@ -159,6 +159,7 @@ body {
     <script>
       $(document).foundation();
     </script>
+   (~ANCHOR|anchPageEndJS~)
 </whdroplet>
 
 <whdroplet name="drLingvoLinkList">
