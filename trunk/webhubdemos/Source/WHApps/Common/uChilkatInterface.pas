@@ -29,7 +29,7 @@ uses
   {$IFDEF Delphi21UP}System.NetEncoding,{$ENDIF} // available in XE7
   Rsa, PrivateKey, // REQUIRES ChilkatDelphiXE.dll, otherwise EXE will exit !!
   IdCTypes, IdSSLOpenSSLHeaders, // REQUIRES Indy units that ship with Delphi
-  ucCodeSiteInterface;
+  ucCodeSiteInterface, ucAWS_Security;
 
 
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
@@ -119,62 +119,107 @@ begin
   {$ENDIF}
 end;
 
-function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM: string): string;
+function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
+  : string): string;
 const
   cFn = 'Indy_OpenSSL_Sign_SHA1';
 var
-  x: TIdC_INT;
   ctx: EVP_MD_CTX;
   BP: pBIO;
   LKey: pEVP_PKEY;
   StringToSign8, PrivateKeyPEM8: UTF8String;
+  lenPKey, lenOutput: Integer;
   arrayOfBytes: TBytes;
 begin
-  // we start with having both the StringToSign and the key in PEM format.
-  StringToSign8 := UTF8String(StringToSign);
-  PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
-
-  BP := BIO_new_mem_buf(PAnsiChar(PrivateKeyPEM8), Length(PrivateKeyPEM8));
-  if BP = nil then
-    raise Exception.Create('out of memory!');
+{$IFDEF LOGAWSSign}
+  CSEnterMethod(nil, cFn);
+  CSSend('StringToSign', StringToSign);
+{$ENDIF}
+  Result := '';
 
   try
-    LKey := PEM_read_bio_PrivateKey(BP,
-      nil,
-      nil, // no password callback on the PEM itself
-      nil);
-    if LKey = nil then
-      raise Exception.Create('cannot load private key!');
-  finally
-    BIO_free(BP);
-  end;
+    // we start with having both the StringToSign and the key in PEM format.
+    IdSSLOpenSSLHeaders.Load;
 
-  try
-    SetLength(arrayOfbytes, EVP_PKEY_size(LKey));
+    StringToSign8 := UTF8String(StringToSign);
+    PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
 
-    if EVP_SignInit(@ctx, EVP_sha1()) <> 1 then
-      raise Exception.Create('cannot initialize signing context');
+    BP := BIO_new_mem_buf(PAnsiChar(PrivateKeyPEM8), Length(PrivateKeyPEM8));
+    if BP = nil then
+      raise Exception.Create('out of memory!');
 
     try
-      if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8), Length(StringToSign8))
-<> 1 then
-        raise Exception.Create('signing failed');
-
-      if EVP_SignFinal(@ctx, @arrayOfBytes, @x, LKey) <> 1 then
-        raise Exception.Create('signing failed');
+      CSSend('about to call PEM_read_bio_PrivateKey');
+      LKey := PEM_read_bio_PrivateKey(BP, nil, nil,
+        // no password callback on the PEM itself
+        nil);
+      if LKey = nil then
+        raise Exception.Create('cannot load private key!');
     finally
-      EVP_MD_CTX_cleanup(@ctx);
+      CSSend('PEM_read_bio_PrivateKey ok');
+      BIO_free(BP);
     end;
-  finally
-    EVP_PKEY_free(LKey);
+
+    try
+      lenPKey := EVP_PKEY_size(LKey);
+      CSSend('lenPKey', S(lenPKey));
+
+      if lenPKey > 0 then
+      begin
+        SetLength(arrayOfBytes, lenPKey);
+
+        CSSend('about to call EVP_SignInit');
+        if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
+          raise Exception.Create('cannot initialize signing context');
+        CSSend('EVP_SignInit ok');
+
+        try
+          CSSend('about to call EVP_SignUpdate');
+          if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8),
+            Length(StringToSign8)) <> 1 then
+            raise Exception.Create('signing failed');
+
+          CSSend('about to call EVP_SignFinal');
+          if EVP_SignFinal(@ctx, @arrayOfBytes[1], @lenOutput, LKey) <> 1 then
+            raise Exception.Create('signing failed');
+          CSSend('lenOutput', S(lenOutput));
+
+        finally
+          CSSend('about to call EVP_MD_CTX_cleanup');
+          EVP_MD_CTX_cleanup(@ctx);
+        end;
+
+
+        if lenOutput > 0 then
+        begin
+          CSSend('about to base64 encode');
+          Result := TNetEncoding.Base64.EncodeBytesToString(@arrayOfBytes[0],
+            lenOutput)
+        end;
+
+      end
+      else
+        CSSendError('no data');
+    finally
+      CSSend('about to call EVP_PKEY_free');
+      EVP_PKEY_free(LKey);
+    end;
+
+  except
+    on E: Exception do
+    begin
+      CSSendException(E);
+    end;
   end;
 
-  // SetLength(arrayOfBytes, x);
-  // Result := TNetEncoding.Base64.EncodeBytesToString(arrayOfBytes);
-  Result := TNetEncoding.Base64.EncodeBytesToString(PByte(arrayOfBytes), x);
+  CSSend('Result', Result);
+  IdSSLOpenSSLHeaders.Unload;
 
   SetLength(arrayOfbytes, 0);
 
+{$IFDEF LOGAWSSign}
+  CSExitMethod(nil, cFn);
+{$ENDIF}
 end;
 
 end.
