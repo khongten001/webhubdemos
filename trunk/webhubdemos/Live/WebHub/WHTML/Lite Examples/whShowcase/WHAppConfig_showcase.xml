@@ -38,10 +38,17 @@
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
+      <!--- local testing of download from protected CloudFront -->
+      <AppSetting name="AWSCloudFrontAllowIP" value="127.0.0.1"/>
+      <AppSetting name="AWSCloudFrontAllowIP" value="104.156.228.101" context="ultraann"/>
+      <!--- CodeSite logging level -->
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="CodeSiteLogging" value="all" context="ultraann"/>
+      <!--- This showcase demo has its own graphic -->
       <AppSetting name="DemoGraphic" value="yes"/>
+      <!--- Enable WebHub app refresh from browser -->
       <AppSetting name="DesignRefreshEnabled" value="False"/>
+      <!--- filename used for file upload example -->
       <AppSetting name="TextFileContent-FileUploadSecret" value="D:\Projects\webhubdemos\Source\WHApps\Lite Examples\AWS\showcase-004-fileupload-secret.txt"/>
     </AppSettings>
     <ErrorAlertFlags>
