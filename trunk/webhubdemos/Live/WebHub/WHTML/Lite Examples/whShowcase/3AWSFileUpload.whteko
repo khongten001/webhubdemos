@@ -25,6 +25,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 <li> <a href="https://www.chilkatsoft.com/delphiDll.asp">Download Chilkat RSA wrapper</a>. This is recommended if you want to 
 protect the download of the items as shown on the next page. </li>
 <li> <a href="https://www.openssl.org/docs/manmaster/crypto/EVP_SignInit.html">OpenSSL manual, EVP_SignInit function</a> </li>
+
 </ol>
 
       <div>
@@ -54,6 +55,10 @@ on your local system; and, you will need to accept Amazon's https certificate on
 
 	</form>
       </div>
+
+<p style="padding-top: 2em;">
+Under construction, alternate UI: (~JUMP|pgAWSJqFileUpload|File upload using JQuery~)
+</p>
 
 (~drShowcaseGlobalFooter~)
 </whpage>

@@ -126,6 +126,7 @@
       <File id="L3Widgets" filename="3Widgets.whteko"/>
       <File id="L3Upload"   filename="3AWSFileUpload.whteko"/>
       <File id="L3JQUpload" filename="3AWS_JQuery_FileUpload.whteko"/>
+      <File id="L3EvapUpload" filename="3AWS_Evaporate_FileUpload.whteko"/>
       <File id="L4Expire" filename="4Expire.whteko"/>
       <File id="about" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
       <File id="XEmail" filename="XEmail.whteko"/>
