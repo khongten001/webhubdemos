@@ -1,0 +1,89 @@
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "http://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko defaultlingvo="eng" designmode="code">
+
+<whdoc for="pgEvaporateExample">
+This example has been copied from the evaporate_example.html 
+Original located here: https://github.com/TTLabs/EvaporateJS
+Downloaded 27-May-2016
+
+
+See also:
+http://www.jqueryajaxphp.com/direct-upload-to-amazon-s3-using-evaporatejs-and-php/
+</whdoc>
+
+
+<whpage pageid="pgAWSEvaporateExample" desc="-Upload files to AWS S3 using Evaporate JavaScript">
+<whpagesettings inherit="a">
+bNoMore=true
+</whpagesettings>
+(~drShowcaseGlobalHeader~)
+(~ANCHORMODIFY|anchJavascript|      <!-- Note: JQuery included for Zurb Foundation -->
+      <script language="javascript" type="text/javascript" src="/webhub/demos/js/evaporate.js"></script>
+~)
+
+<h1 style="color:red; background-color: yellow;">Under Construction</a></h1>
+
+<h2>File Upload</h2>
+      <div>
+         <input type="file" id="files"  multiple />
+      </div>
+            
+      <script language="javascript">
+      
+         var files;
+         
+         var _e_ = new Evaporate({
+            signerUrl: '(~ACTIONR|ajaxEvaporateSignAuth,(~waLSec.execute|out,120~),~)',
+            aws_key: 'AKIAI35IN4YICFYEONOA',
+            timeUrl: '(~ACTIONR|ajaxEvaporateTimestamp,(~waLSec.execute|out,120~),~)',
+            bucket: 'protected-filedrRenderJqFileUploadJSs.demos.href.com', /* Oregon */
+	    aws_url: 'https://s3-us-west-2.amazonaws.com' 
+         });
+      
+
+function prepareFileUpload() {
+         $('#files').change(function(evt){
+            files = evt.target.files;
+            
+            for (var i = 0; i < files.length; i++){
+            
+               _e_.add({
+                  name: 'test_' + Math.floor(1000000000*Math.random()),
+                  file: files[i],
+                  complete: function(){
+                     console.log('complete................yay!');
+                  },
+                  progress: function(progress){
+                     console.log('making progress: ' + progress);
+                  }
+               });
+            }
+            
+            $(evt.target).val('');
+            
+         });
+}
+
+document.addEventListener('DOMContentLoaded', prepareFileUpload);
+
+      
+      </script>
+
+<h4>RFC 1123 date</h4>
+<div id="rfc1123">
+<script>document.getElementById('rfc1123').innerHTML = new Date().toUTCString();</script>
+</div>
+<P><!--- to match a close-para in the footer -->
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="ajaxEvaporateTimestamp" desc="-timestamp for Evaporate.JS">
+<whdoc for="timestamp">
+	 * Output the date in the RFC 1123, same output from JavaScript new Date().toUTCString()
+	 * The pattern is EEE, dd MMM yyyy HH:mm:ss zzz
+</whdoc>
+(~FLUSH|~)(~drCrossOriginHeaders~)Sun, 01 Apr 2018 14:15:16 GMT(~Close|~)
+</whpage>
+
+</whteko>
