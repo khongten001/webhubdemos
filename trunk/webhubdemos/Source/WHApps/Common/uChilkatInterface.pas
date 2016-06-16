@@ -149,59 +149,48 @@ begin
       raise Exception.Create('out of memory!');
 
     try
-      CSSend('about to call PEM_read_bio_PrivateKey');
       LKey := PEM_read_bio_PrivateKey(BP, nil, nil,
         // no password callback on the PEM itself
         nil);
       if LKey = nil then
         raise Exception.Create('cannot load private key!');
     finally
-      CSSend('PEM_read_bio_PrivateKey ok');
       BIO_free(BP);
     end;
 
     try
       lenPKey := EVP_PKEY_size(LKey);
-      CSSend('lenPKey', S(lenPKey));
 
       if lenPKey > 0 then
       begin
         SetLength(arrayOfBytes, lenPKey);
 
-        CSSend('about to call EVP_SignInit');
         if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
           raise Exception.Create('cannot initialize signing context');
-        CSSend('EVP_SignInit ok');
 
         try
-          CSSend('about to call EVP_SignUpdate');
           if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8),
             Length(StringToSign8)) <> 1 then
             raise Exception.Create('signing failed');
 
-          CSSend('about to call EVP_SignFinal');
           if EVP_SignFinal(@ctx, @arrayOfBytes[1], @lenOutput, LKey) <> 1 then
             raise Exception.Create('signing failed');
-          CSSend('lenOutput', S(lenOutput));
 
         finally
-          CSSend('about to call EVP_MD_CTX_cleanup');
           EVP_MD_CTX_cleanup(@ctx);
         end;
 
 
         if lenOutput > 0 then
         begin
-          CSSend('about to base64 encode');
           Result := TNetEncoding.Base64.EncodeBytesToString(@arrayOfBytes[0],
             lenOutput)
         end;
 
       end
       else
-        CSSendError('no data');
+        CSSendError(cFn + ': no data');
     finally
-      CSSend('about to call EVP_PKEY_free');
       EVP_PKEY_free(LKey);
     end;
 
@@ -212,12 +201,11 @@ begin
     end;
   end;
 
-  CSSend('Result', Result);
   IdSSLOpenSSLHeaders.Unload;
-
   SetLength(arrayOfbytes, 0);
 
 {$IFDEF LOGAWSSign}
+  CSSend(cFn + ': Result', Result);
   CSExitMethod(nil, cFn);
 {$ENDIF}
 end;
