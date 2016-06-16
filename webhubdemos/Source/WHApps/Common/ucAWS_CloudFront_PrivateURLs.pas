@@ -127,10 +127,20 @@ end;
 
 function TCloudFrontSecurityProvider.Sign(const StringToSign: string): string;
 const cFn = 'Sign';
+var
+  IndyAnswer, ChilkatAnswer: string;
 begin
   {$IFDEF LOGAWSSign}CSEnterMethod(Self, cFn);{$ENDIF}
 
-  Result := Chilkat_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
+  IndyAnswer := Indy_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
+  ChilkatAnswer := Indy_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
+
+  if IndyAnswer <> ChilkatAnswer then
+    CSSendError('Indy <> Chilkat')
+  else
+    CSSendNote('Indy answer matches Chilkat');
+
+  Result := ChilkatAnswer;
 
   {$IFDEF LOGAWSSign}CSExitMethod(Self, cFn);{$ENDIF}
 end;
