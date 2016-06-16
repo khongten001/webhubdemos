@@ -24,6 +24,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 <li> <a href="http://needs-be.blogspot.com/2016/06/using-openssl-on-windows-to-sign-file.html">OpenSSL on Windows for File Upload</a> </li>
 <li> <a href="https://www.chilkatsoft.com/delphiDll.asp">Download Chilkat RSA wrapper</a>. This is recommended if you want to 
 protect the download of the items as shown on the next page. </li>
+<li> <a href="https://www.openssl.org/docs/manmaster/crypto/EVP_SignInit.html">OpenSSL manual, EVP_SignInit function</a> </li>
 </ol>
 
       <div>
@@ -56,6 +57,10 @@ on your local system; and, you will need to accept Amazon's https certificate on
 
 (~drShowcaseGlobalFooter~)
 </whpage>
+
+<whmacros>
+mcCloudFrontRestrictIP=(~MATCH|(~ZMDefaultMapContext~)=DEMOS|(~Request.RemoteAddress~)||(~AppSetting.AWSCloudFrontAllowIP~)~)
+</whmacros>
 
 <whpage pageid="pgAWSFileUploadSuccess" desc="-Successful File Upload">
 <whpagesettings>
@@ -111,22 +116,17 @@ Reference: <a href="https://en.wikipedia.org/wiki/Hash-based_message_authenticat
 separate browser window after a minute has elapsed, you will get the Access Denied response from the Amazon S3 server.</p>
 <div style="padding-bottom: 2em;">
 <img style="border: solid 2px green; padding: 0.1em;" 
-src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~Request.RemoteAddress~)/32~)" alt="uploaded image with timeout in 1 minute" />
+src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="uploaded image with timeout in 1 minute" />
 <br/>#2. URL for this image is allowed for 1 minute for 1 ip number
 </div>
 
-<p>The policy used for the second variation of the download follows &ndash; note the presence of your IP number <b>(~Request.RemoteAddress~)</b>, 
-and that the resource is your file rather than *.jpg:</p>
+<p>The policy used for the second variation of the download follows &ndash; note the presence of an IP number <b>(~mcCloudFrontRestrictIP~)</b>, 
+and that the resource is your specific file rather than any wildcard *.jpg:</p>
 <pre id="preDownloadPolicy">
 <script>
 document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSCloudFrontSecurityProvider.Execute|policy~), null, 2); /* indented with 2 spaces */
 </script>
 </pre>
-
-<pre>
-
-</pre>
-
 
 <p style="padding-top: 2em;">(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
 
