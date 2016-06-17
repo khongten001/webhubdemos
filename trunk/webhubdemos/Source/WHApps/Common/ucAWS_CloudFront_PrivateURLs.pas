@@ -62,10 +62,11 @@ var
   sb: TStringBuilder;
   epoch: Int64;
   flexURL: string;
+  dt: TDateTime;
 begin
   sb := nil;
   flexURL := url.Replace('http:', 'http*:'); // allow https if asking for http
-
+  
   try
     sb := TStringBuilder.Create;  // without any whitespace
     sb.Append('{');
@@ -79,18 +80,25 @@ begin
     begin
       sb.AppendFormat('"IpAddress":{"AWS:SourceIp":"%s"}',
         [allowedCidr]);
-      sb.Append(',');
     end;
     if expirationUTC < NowUTC then
       LogProgrammerErrorToCodeSite(Format('%s: %s utc expires in the PAST', [cFn,
         FormatDateTime('yyyy-mm-dd hh:nn:ss', expirationUTC)]));
 
-    epoch := DateTimeToUnix(IncMinute(NowUTC, -5), True);
-    sb.AppendFormat('"DateGreaterThan":{"AWS:EpochTime":%d},',
+    if false then
+    begin
+    epoch := DateTimeToUnix(IncMinute(NowUTC, -15), True);
+    sb.Append(',');
+    sb.AppendFormat('"DateGreaterThan":{"AWS:EpochTime":%d}',
       [epoch]); // allow for some slow clocks
+    end;
 
-    epoch := DateTimeToUnix(expirationUTC, True);
-    sb.AppendFormat('"DateLessThan":{"AWS:EpochTime":%d}', [ epoch ]);
+    if expirationUTC <> 0 then
+    begin
+      dt := EncodeDateTime(2016,6,23,1,2,3,0);
+      epoch := DateTimeToUnix(dt, True);
+      sb.AppendFormat(',"DateLessThan":{"AWS:EpochTime":%d}', [ epoch ]);
+    end;
 
     sb.Append('}');
     sb.Append('}');
@@ -106,21 +114,10 @@ end;
 
 function TCloudFrontSecurityProvider.getUrlSafeString(
   const unsafeURLStr: string): string;
-//var
-//  data8: UTF8String;
 begin
-  //data8 := UTF8String(unsafeURLStr);
-  //Result := BytesToBase64(data8);
   result := unsafeURLStr;
   Result := Result.Replace('+', '-').Replace('=', '_').Replace('/', '~');
 end;
-
-{function TCloudFrontSecurityProvider.PEMtoDER(
-  const PEM: string): TBytes;
-begin
-  Result := TNetEncoding.Base64.DecodeStringToBytes(PEM);
-end;}
-
 
 procedure TCloudFrontSecurityProvider.SetPolicy(const Value: string);
 begin
@@ -134,11 +131,17 @@ var
 begin
   {$IFDEF LOGAWSSign}CSEnterMethod(Self, cFn);{$ENDIF}
 
+  LogToCodeSiteKeepCRLF('PrivateKeyPEM', PrivateKeyPEM);
+
   IndyAnswer := Indy_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
-  ChilkatAnswer := Indy_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
+  ChilkatAnswer := Chilkat_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
 
   if IndyAnswer <> ChilkatAnswer then
-    CSSendError('Indy <> Chilkat')
+  begin
+    CSSendError('Indy answer does NOT equal Chilkat answer');
+    LogToCodeSiteKeepCRLF('IndyAnswer', IndyAnswer);
+    LogToCodeSiteKeepCRLF('ChilkatAnswer', ChilkatAnswer);
+  end
   else
     CSSendNote('Indy answer matches Chilkat');
 
