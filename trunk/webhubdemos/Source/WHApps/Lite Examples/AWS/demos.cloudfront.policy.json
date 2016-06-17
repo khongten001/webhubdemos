@@ -1,1 +1,1 @@
-{"Statement":[{"Resource":"http://dzow0j4xohakn.cloudfront.net/AUPostageStamps.jpg","Condition":{"IpAddress":{"AWS:SourceIp":"209.222.18.35/32"},"DateLessThan":{"AWS:EpochTime":1467338584}}}]}
+{"Statement":[{"Resource":"http*://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/tiny-checkmark.jpg","Condition":{"IpAddress":{"AWS:SourceIp":"104.156.228.169/32"},"DateLessThan":{"AWS:EpochTime":1466643723}}}]}
