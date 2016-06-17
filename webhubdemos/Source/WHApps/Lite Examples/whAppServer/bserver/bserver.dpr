@@ -38,7 +38,7 @@ uses
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas',
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',

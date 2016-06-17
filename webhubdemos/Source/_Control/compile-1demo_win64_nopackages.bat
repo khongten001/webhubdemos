@@ -25,7 +25,7 @@ if "%compilerdigits%"=="20" set raizepath=%cslibroot%\RS-XE6\win%wbits%
 if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
 if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
 if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;D:\Projects\webhubdemos\Source\WHApps\Common;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 :: flags off: ;LogAppTick;LOGIPC;LogHELO

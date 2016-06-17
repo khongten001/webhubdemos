@@ -66,7 +66,7 @@ uses
   ucAWS_S3_Upload in 'H:\ucAWS_S3_Upload.pas',
   uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
   uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas',
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas'
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas'
   ;
 
 (* only if you want to compile with Chilkat RSA for comparison,

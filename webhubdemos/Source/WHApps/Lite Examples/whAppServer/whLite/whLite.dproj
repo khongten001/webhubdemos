@@ -210,9 +210,9 @@
         <DCCReference Include="k:\webhub\lib\whcfg_App.pas"/>
         <DCCReference Include="H:\ucAWS_Security.pas"/>
         <DCCReference Include="H:\ucAWS_S3_Upload.pas"/>
-        <DCCReference Include="k:\webhub\lib\uAutoDataModules.pas"/>
-        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas"/>
-        <DCCReference Include="..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas"/>
+        <DCCReference Include="H:\uAutoDataModules.pas"/>
+        <DCCReference Include="H:\uAutoPanels.pas"/>
+        <DCCReference Include="H:\ucAWS_CloudFront_PrivateURLs.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

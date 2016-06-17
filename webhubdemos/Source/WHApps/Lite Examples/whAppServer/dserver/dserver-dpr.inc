@@ -22,12 +22,7 @@
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   whdemo_ColorScheme in '..\..\..\Common\whdemo_ColorScheme.pas' {DataModuleColorScheme: TDataModule},
   whcfg_App in 'h:\whcfg_App.pas',
-  {$IFDEF AWSSUPPORT}
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
-  uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
-  PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
-  Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas',
-  {$ENDIF}
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas',
   uCode,
 
 (* save for compiling with source

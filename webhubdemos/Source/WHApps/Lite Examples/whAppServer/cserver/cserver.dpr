@@ -10,23 +10,9 @@ uses
   utTrayFm in 'H:\utTrayFm.pas' {fmTrayForm},
   uAutoDataModules in 'H:\uAutoDataModules.pas',
   uAutoPanels in 'H:\uAutoPanels.pas',
-
-(*webBase in 'k:\webhub\lib\whvcl\webBase.pas',
-webCall in 'k:\webhub\lib\whvcl\webCall.pas',
-webCore in 'k:\webhub\lib\whvcl\webCore.pas',
-webSend in 'k:\webhub\lib\whvcl\webSend.pas',
-webRead in 'k:\webhub\lib\whvcl\webRead.pas',
-whxpGlobal in 'k:\webhub\lib\whvcl\whxpGlobal.pas',
-whxpUtils  in 'k:\webhub\lib\whvcl\whxpUtils.pas',
-whutil_ZaphodsMap in 'k:\webhub\lib\whutil_ZaphodsMap.pas',
-whMacros in 'k:\webhub\lib\whvcl\whMacros.pas',
-
-  htWebApp in 'K:\webhub\lib\htWebApp.pas',
-*)
-
   CServer_dmProjMgr in 'CServer_dmProjMgr.pas' {DMForWHDemoC: TDataModule},
   cfmwhCustom in 'cfmwhCustom.pas' {fmAppCustomPanel},
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas',
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_DMProjMgr in '..\..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',
