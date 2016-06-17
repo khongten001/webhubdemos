@@ -101,7 +101,7 @@ begin
       LogProgrammerErrorToCodeSite(Format('%s: %s utc expires in the PAST', [cFn,
         FormatDateTime('yyyy-mm-dd hh:nn:ss', expirationUTC)]));
 
-    epoch := DateTimeToUnix(IncMinute(NowUTC, -15), True);
+    epoch := DateTimeToUnix(IncMinute(NowUTC, -5), True);
     sb.Append(',');
     sb.AppendFormat('"DateGreaterThan":{"AWS:EpochTime":%d}',
       [epoch]); // allow for some slow clocks
