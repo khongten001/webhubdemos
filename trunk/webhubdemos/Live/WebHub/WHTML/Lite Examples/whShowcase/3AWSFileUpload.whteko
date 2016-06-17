@@ -122,7 +122,7 @@ Reference: <a href="https://en.wikipedia.org/wiki/Hash-based_message_authenticat
 separate browser window after a minute has elapsed, you will get the Access Denied response from the Amazon S3 server.</p>
 <div style="padding-bottom: 2em;">
 <img style="border: solid 2px green; padding: 0.1em;" 
-src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1440 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" />
+src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://dzow0j4xohakn.cloudfront.net/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" />
 <br/>#2. URL for this image is allowed for a limited time by 1 ip number
 </div>
 
