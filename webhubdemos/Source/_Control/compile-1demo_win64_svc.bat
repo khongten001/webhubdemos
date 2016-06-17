@@ -29,7 +29,7 @@ if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
 if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
 if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
 
-set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizepath%;%droot%lib\win64\release;"
+set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizepath%;%droot%lib\win64\release;D:\Projects\webhubdemos\Source\WHApps\Common;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE

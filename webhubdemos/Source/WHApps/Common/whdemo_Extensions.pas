@@ -276,9 +276,7 @@ begin
     DeleteFile(FMonitorFilespec);
   end;
   FreeAndNil(FDomainIDList);
-{$IFDEF AWSSUPPORT}
   FreeAndNil(FCFSP);
-{$ENDIF}
   DemoExtensions := nil;
 end;
 
@@ -352,7 +350,6 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-{$IFDEF AWSSUPPORT}
   if NOT Assigned(fcfsp) then
     FCFSP := TCloudFrontSecurityProvider.Create;
 
@@ -388,7 +385,6 @@ begin
   end
   else
     pWebApp.SendStringImm(FCFSP.Policy);
-{$ENDIF}
 
   CSExitMethod(Self, cFn);
 end;
