@@ -28,7 +28,7 @@ if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
 if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;D:\Projects\webhubdemos\Source\WHApps\Common;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 :: async requires OTL OmniThreadLibrary
 :: showcase: AWS file upload and file download requires Chilkat
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only;D:\Projects\webhubdemos\Source\WHApps\Externals\chilkat-9.5.0-delphi

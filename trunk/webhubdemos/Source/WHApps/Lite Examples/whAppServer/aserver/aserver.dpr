@@ -60,7 +60,7 @@ uses
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whAppOut in 'h:\whAppOut.pas' {fmAppOut},
   webCall,
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas',
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   whAppIn in 'h:\whAppIn.pas' {fmAppIn};
