@@ -381,11 +381,11 @@ begin
     FCFSP.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
     FCFSP.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
         'Lite Examples\AWS\';
-      // The PEM is issued by AWS.
+
+    // The PEM is issued by AWS. Secret. Not in version control.
     FCFSP.PrivateKeyPEM := StringLoadFromFile(FCFSP.DiskFolder +
         'demos.cloudfront.pem');
-      //cfsp.Policy := StringLoadFromFile(cfsp.DiskFolder +
-      //  'demos.cloudfront.policy.json');  // sample on disk
+
     FCFSP.Policy := FCFSP.GetPolicyAsStr(url, expiresOnAt, restrictByIPStr);
     CSSend(csmLevel5, cFn + ': Policy', FCFSP.Policy);
 
