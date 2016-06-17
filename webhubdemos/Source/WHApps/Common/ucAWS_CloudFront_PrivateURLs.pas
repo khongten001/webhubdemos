@@ -63,7 +63,6 @@ var
   sb: TStringBuilder;
   epoch: Int64;
   flexURL: string;
-  dt: TDateTime;
 begin
   sb := nil;
   flexURL := url.Replace('http:', 'http*:'); // allow https if asking for http
@@ -86,18 +85,14 @@ begin
       LogProgrammerErrorToCodeSite(Format('%s: %s utc expires in the PAST', [cFn,
         FormatDateTime('yyyy-mm-dd hh:nn:ss', expirationUTC)]));
 
-    if false then
-    begin
     epoch := DateTimeToUnix(IncMinute(NowUTC, -15), True);
     sb.Append(',');
     sb.AppendFormat('"DateGreaterThan":{"AWS:EpochTime":%d}',
       [epoch]); // allow for some slow clocks
-    end;
 
     if expirationUTC <> 0 then
     begin
-      dt := EncodeDateTime(2016,6,23,1,2,3,0);
-      epoch := DateTimeToUnix(dt, True);
+      epoch := DateTimeToUnix(expirationUTC, True);
       sb.AppendFormat(',"DateLessThan":{"AWS:EpochTime":%d}', [ epoch ]);
     end;
 
@@ -130,7 +125,7 @@ function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
 const
   cFn = 'Indy_OpenSSL_Sign_SHA1';
 var
-  ctx: EVP_MD_CTX;
+  pCtx: PEVP_MD_CTX;
   BP: pBIO;
   LKey: pEVP_PKEY;
   StringToSign8, PrivateKeyPEM8: UTF8String;
@@ -143,6 +138,7 @@ begin
   CSSend('StringToSign', StringToSign);
 {$ENDIF}
   Result := '';
+  pCtx := nil;
 
   try
     // we start with having both the StringToSign and the key in PEM format.
@@ -172,19 +168,26 @@ begin
       begin
         SetLength(arrayOfBytes, lenPKey);
 
-        if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
-          raise Exception.Create('cannot initialize signing context');
-
         try
-          if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8),
-            Length(StringToSign8)) <> 1 then
-            raise Exception.Create('signing failed');
+          pCtx := AllocMem(SizeOf(EVP_MD_CTX));
+          EVP_MD_CTX_init(pCtx);
 
-          if EVP_SignFinal(@ctx, @arrayOfBytes[0], @lenOutput, LKey) <> 1 then
-            raise Exception.Create('signing failed');
+          if EVP_SignInit(pCtx, EVP_sha1) <> 1 then
+            raise Exception.Create('cannot initialize signing context');
 
+          try
+            if EVP_SignUpdate(pCtx, PAnsiChar(StringToSign8),
+              Length(StringToSign8)) <> 1 then
+              raise Exception.Create('signing failed');
+
+            if EVP_SignFinal(pCtx, @arrayOfBytes[0], @lenOutput, LKey) <> 1 then
+              raise Exception.Create('signing failed');
+
+          finally
+            EVP_MD_CTX_cleanup(pCtx);
+          end;
         finally
-          EVP_MD_CTX_cleanup(@ctx);
+          FreeMem(pCtx);
         end;
 
 
