@@ -52,8 +52,9 @@ implementation
 
 uses
   DateUtils, Classes,
+  {$IFDEF Delphi21UP}System.NetEncoding,{$ENDIF} // available in XE7
   ucMsTime, ucString, ucAWS_Security, ucCodeSiteInterface,
-  uChilkatInterface;
+  IdCTypes, IdSSLOpenSSLHeaders; // REQUIRES Indy units that ship with Delphi
 
 function TCloudFrontSecurityProvider.GetPolicyAsStr(const url: string;
   const expirationUTC: TDateTime; const allowedCidr: string): string;
@@ -124,26 +125,118 @@ begin
   FPolicy := StripWhitespace(Value);
 end;
 
+function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
+  : string): string;
+const
+  cFn = 'Indy_OpenSSL_Sign_SHA1';
+var
+  ctx: EVP_MD_CTX;
+  BP: pBIO;
+  LKey: pEVP_PKEY;
+  StringToSign8, PrivateKeyPEM8: UTF8String;
+  lenPKey, lenOutput: Integer;
+  arrayOfBytes: TBytes;
+  //catchOutput8: UTF8String;
+begin
+{$IFDEF LOGAWSSign}
+  CSEnterMethod(nil, cFn);
+  CSSend('StringToSign', StringToSign);
+{$ENDIF}
+  Result := '';
+
+  try
+    // we start with having both the StringToSign and the key in PEM format.
+    IdSSLOpenSSLHeaders.Load;
+
+    StringToSign8 := UTF8String(StringToSign);
+    PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
+
+    BP := BIO_new_mem_buf(PAnsiChar(PrivateKeyPEM8), Length(PrivateKeyPEM8));
+    if BP = nil then
+      raise Exception.Create('out of memory!');
+
+    try
+      LKey := PEM_read_bio_PrivateKey(BP, nil, nil,
+        // no password callback on the PEM itself
+        nil);
+      if LKey = nil then
+        raise Exception.Create('cannot load private key!');
+    finally
+      BIO_free(BP);
+    end;
+
+    try
+      lenPKey := EVP_PKEY_size(LKey);
+
+      if lenPKey > 0 then
+      begin
+        SetLength(arrayOfBytes, lenPKey);
+
+        if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
+          raise Exception.Create('cannot initialize signing context');
+
+        try
+          if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8),
+            Length(StringToSign8)) <> 1 then
+            raise Exception.Create('signing failed');
+
+          if EVP_SignFinal(@ctx, @arrayOfBytes[0], @lenOutput, LKey) <> 1 then
+            raise Exception.Create('signing failed');
+
+        finally
+          EVP_MD_CTX_cleanup(@ctx);
+        end;
+
+
+        if lenOutput > 0 then
+        begin
+          Result := TNetEncoding.Base64.EncodeBytesToString(@arrayOfBytes[0],
+            lenOutput)
+        end;
+
+      end
+      else
+        CSSendError(cFn + ': no data');
+    finally
+      EVP_PKEY_free(LKey);
+    end;
+
+  except
+    on E: Exception do
+    begin
+      CSSendException(E);
+    end;
+  end;
+
+  IdSSLOpenSSLHeaders.Unload;
+  SetLength(arrayOfBytes, 0);
+
+{$IFDEF LOGAWSSign}
+  CSSend(cFn + ': Result', Result);
+  CSExitMethod(nil, cFn);
+{$ENDIF}
+end;
+
 function TCloudFrontSecurityProvider.Sign(const StringToSign: string): string;
 const cFn = 'Sign';
 var
-  IndyAnswer, ChilkatAnswer: string;
+  IndyAnswer: string;
+  // ChilkatAnswer: string;
 begin
   {$IFDEF LOGAWSSign}CSEnterMethod(Self, cFn);{$ENDIF}
 
-  LogToCodeSiteKeepCRLF('PrivateKeyPEM', PrivateKeyPEM);
-
   IndyAnswer := Indy_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
-  ChilkatAnswer := Chilkat_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
+  IndyAnswer := IndyAnswer.Replace(#13,'').Replace(#10,'');
+  //ChilkatAnswer := Chilkat_OpenSSL_Sign_SHA1(StringToSign, PrivateKeyPEM);
 
-  if IndyAnswer <> ChilkatAnswer then
-  begin
-    CSSendError('Indy answer does NOT equal Chilkat answer');
-    LogToCodeSiteKeepCRLF('IndyAnswer', IndyAnswer);
-    LogToCodeSiteKeepCRLF('ChilkatAnswer', ChilkatAnswer);
-  end
-  else
-    CSSendNote('Indy answer matches Chilkat');
+  //if IndyAnswer <> ChilkatAnswer then
+  //begin
+  //  CSSendError('Indy answer does NOT equal Chilkat answer');
+  //  LogToCodeSiteKeepCRLF('IndyAnswer', IndyAnswer);
+  //  LogToCodeSiteKeepCRLF('ChilkatAnswer', ChilkatAnswer);
+  //end
+  //else
+  //  CSSendNote('Indy answer matches Chilkat');
 
   Result := IndyAnswer;
 
