@@ -147,7 +147,6 @@ var
   StringToSign8, PrivateKeyPEM8: UTF8String;
   lenPKey, lenOutput: Integer;
   arrayOfBytes: TBytes;
-  //catchOutput8: UTF8String;
 begin
 {$IFDEF LOGAWSSign}
   CSEnterMethod(nil, cFn);
