@@ -1,7 +1,23 @@
 unit ucAWS_CloudFront_PrivateURLs;
 
 {$I hrefdefines.inc}
-{$DEFINE LOGAWSSign}
+
+{ ---------------------------------------------------------------------------- }
+{ *                                                                          * }
+{ *  ucAWS_CloudFront_PrivateURLs                                            * }
+{ *                                                                          * }
+{ *  Pascal routines to be used with AWS CloudFront for secure URLs          * }
+{ *  Part of WebHubDemos.                                                    * }
+{ *                                                                          * }
+{ *  Requires D22+                                                           * }
+{ *                                                                          * }
+{ *  This file is licensed under a Creative Commons Attribution 2.5 License. * }
+{ *  http://creativecommons.org/licenses/by/2.5/                             * }
+{ *  If you use this file, please keep this notice intact.                   * }
+{ *                                                                          * }
+{ *  Copyright (c) 2016 HREF Tools Corp.                                     * }
+{ *                                                                          * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
