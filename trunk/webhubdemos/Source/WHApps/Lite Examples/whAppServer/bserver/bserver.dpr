@@ -38,12 +38,7 @@ uses
   utpanfrm in 'h:\utPanFrm.pas' {utParentForm},
   utmainfm in 'h:\utMainFm.pas' {fmMainForm},
   uttrayfm in 'h:\utTrayFm.pas' {fmTrayForm},
-  {$IFDEF AWSSUPPORT}
   ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
-  uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
-  PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
-  Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas',
-  {$ENDIF}
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
   whdemo_CodeSite in '..\..\..\Common\whdemo_CodeSite.pas',

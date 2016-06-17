@@ -1,4 +1,4 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{53BCC7DF-3BC2-478E-A2B4-2B4E5AA37C64}</ProjectGuid>
         <MainSource>whLite.dpr</MainSource>
@@ -211,9 +211,7 @@
         <DCCReference Include="H:\ucAWS_Security.pas"/>
         <DCCReference Include="H:\ucAWS_S3_Upload.pas"/>
         <DCCReference Include="k:\webhub\lib\uAutoDataModules.pas"/>
-        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas">
-            <Form>$IFDEF AWSSUPPORT</Form>
-        </DCCReference>
+        <DCCReference Include="k:\webhub\lib\uAutoPanels.pas"/>
         <DCCReference Include="..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

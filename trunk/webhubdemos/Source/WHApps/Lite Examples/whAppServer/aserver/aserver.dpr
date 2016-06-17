@@ -60,12 +60,7 @@ uses
   whutil_ZaphodsMap in 'h:\whutil_ZaphodsMap.pas',
   whAppOut in 'h:\whAppOut.pas' {fmAppOut},
   webCall,
-  {$IFDEF AWSSUPPORT}
   ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
-  uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
-  PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
-  Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas',
-  {$ENDIF}
   whcfg_App in 'h:\whcfg_App.pas',
   uAutoDataModules in 'h:\uAutoDataModules.pas',
   whAppIn in 'h:\whAppIn.pas' {fmAppIn};
