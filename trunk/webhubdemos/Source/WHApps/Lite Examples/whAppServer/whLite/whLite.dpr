@@ -54,7 +54,7 @@ uses
   whpanel_Mail in 'h:\whpanel_Mail.pas' {fmWebMail},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
-  htWebApp in 'h:\htWebApp.pas',
+  htWebApp in 'H:\htWebApp.pas',
   whMail in 'h:\whMail.pas' {DataModuleWhMail: TDataModule},
   whAppOut in 'h:\whAppOut.pas',
   webTypes in 'h:\webTypes.pas',
@@ -65,15 +65,15 @@ uses
   ucAWS_Security in 'H:\ucAWS_Security.pas',
   ucAWS_S3_Upload in 'H:\ucAWS_S3_Upload.pas',
   uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
-  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas'
-  {$IFDEF AWSSUPPORT}
-  ,
-  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas',
+  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas',
+  ucAWS_CloudFront_PrivateURLs in '..\..\..\Common\ucAWS_CloudFront_PrivateURLs.pas'
+  ;
+
+(* only if you want to compile with Chilkat RSA for comparison,
   uChilkatInterface in '..\..\..\Common\uChilkatInterface.pas',
   PrivateKey in '..\..\..\Externals\chilkat-9.5.0-delphi\PrivateKey.pas',
   Rsa in '..\..\..\Externals\chilkat-9.5.0-delphi\Rsa.pas'
-  {$ENDIF}
-  ;
+*)
 
 {$R *.RES}
 {$R h:\HTDEMOS.RES}  // main icon for WebHub demos

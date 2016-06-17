@@ -19,16 +19,12 @@ interface
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
   : string): string;
 
-function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
-  : string): string;
-
 implementation
 
 uses
   SysUtils, System.Classes,
   {$IFDEF Delphi21UP}System.NetEncoding,{$ENDIF} // available in XE7
   Rsa, PrivateKey, // REQUIRES ChilkatDelphiXE.dll, otherwise EXE will exit !!
-  IdCTypes, IdSSLOpenSSLHeaders, // REQUIRES Indy units that ship with Delphi
   ucCodeSiteInterface, ucAWS_Security;
 
 
@@ -117,99 +113,6 @@ begin
   {$IFDEF LOGAWSSign}
   CSExitMethod(nil, cFn);
   {$ENDIF}
-end;
-
-function Indy_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
-  : string): string;
-const
-  cFn = 'Indy_OpenSSL_Sign_SHA1';
-var
-  ctx: EVP_MD_CTX;
-  BP: pBIO;
-  LKey: pEVP_PKEY;
-  StringToSign8, PrivateKeyPEM8: UTF8String;
-  lenPKey, lenOutput: Integer;
-  //arrayOfBytes: TBytes;
-  catchOutput8: UTF8String;
-begin
-{$IFDEF LOGAWSSign}
-  CSEnterMethod(nil, cFn);
-  CSSend('StringToSign', StringToSign);
-{$ENDIF}
-  Result := '';
-
-  try
-    // we start with having both the StringToSign and the key in PEM format.
-    IdSSLOpenSSLHeaders.Load;
-
-    StringToSign8 := UTF8String(StringToSign);
-    PrivateKeyPEM8 := UTF8String(PrivateKeyPEM);
-
-    BP := BIO_new_mem_buf(PAnsiChar(PrivateKeyPEM8), Length(PrivateKeyPEM8));
-    if BP = nil then
-      raise Exception.Create('out of memory!');
-
-    try
-      LKey := PEM_read_bio_PrivateKey(BP, nil, nil,
-        // no password callback on the PEM itself
-        nil);
-      if LKey = nil then
-        raise Exception.Create('cannot load private key!');
-    finally
-      BIO_free(BP);
-    end;
-
-    try
-      lenPKey := EVP_PKEY_size(LKey);
-
-      if lenPKey > 0 then
-      begin
-        SetLength(catchOutput8, lenPKey);
-
-        if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
-          raise Exception.Create('cannot initialize signing context');
-
-        try
-          if EVP_SignUpdate(@ctx, PAnsiChar(StringToSign8),
-            Length(StringToSign8)) <> 1 then
-            raise Exception.Create('signing failed');
-
-          if EVP_SignFinal(@ctx, @catchOutput8[1], @lenOutput, LKey) <> 1 then
-            raise Exception.Create('signing failed');
-
-        finally
-          EVP_MD_CTX_cleanup(@ctx);
-        end;
-
-
-        if lenOutput > 0 then
-        begin
-          Result := //string(catchOutput8);
-          TNetEncoding.Base64.EncodeBytesToString(@catchOutput8[1],
-            lenOutput)
-        end;
-
-      end
-      else
-        CSSendError(cFn + ': no data');
-    finally
-      EVP_PKEY_free(LKey);
-    end;
-
-  except
-    on E: Exception do
-    begin
-      CSSendException(E);
-    end;
-  end;
-
-  IdSSLOpenSSLHeaders.Unload;
-  SetLength(catchOutput8, 0);
-
-{$IFDEF LOGAWSSign}
-  CSSend(cFn + ': Result', Result);
-  CSExitMethod(nil, cFn);
-{$ENDIF}
 end;
 
 end.

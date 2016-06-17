@@ -18,9 +18,7 @@ uses
   Windows, SysUtils, Classes, Controls,
   System.Actions, Vcl.ActnList,
   MultiTypeApp, updateOk, tpAction, tpActionGUI, tpShareI,
-{$IFDEF AWSSUPPORT}
-ucAWS_CloudFront_PrivateURLs,
-{$ENDIF}
+  ucAWS_CloudFront_PrivateURLs,
   whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
 type
@@ -66,9 +64,7 @@ type
     FAdminIpNumber: string;
     FServerIpNumber: string;
     FDomainIDList: TStringList;
-{$IFDEF AWSSUPPORT}
     FCFSP: TCloudFrontSecurityProvider;
-{$ENDIF}
     function IsHREFToolsQATestAgent: Boolean;
   protected
     procedure DemoAppExecute(Sender: TwhRespondingApp; // uses webSend
@@ -268,9 +264,7 @@ begin
   CSEnterMethod(Self, cFn);
   FMonitorFilespec := ''; // for use with WebHubGuardian
   FDomainIDList := nil;
-{$IFDEF AWSSUPPORT}
   FCFSP := nil;
-{$ENDIF}
   CSExitMethod(Self, cFn);
 end;
 
