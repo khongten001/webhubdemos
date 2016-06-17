@@ -129,7 +129,8 @@ var
   LKey: pEVP_PKEY;
   StringToSign8, PrivateKeyPEM8: UTF8String;
   lenPKey, lenOutput: Integer;
-  arrayOfBytes: TBytes;
+  //arrayOfBytes: TBytes;
+  catchOutput8: UTF8String;
 begin
 {$IFDEF LOGAWSSign}
   CSEnterMethod(nil, cFn);
@@ -163,7 +164,7 @@ begin
 
       if lenPKey > 0 then
       begin
-        SetLength(arrayOfBytes, lenPKey);
+        SetLength(catchOutput8, lenPKey);
 
         if EVP_SignInit(@ctx, EVP_sha1) <> 1 then
           raise Exception.Create('cannot initialize signing context');
@@ -173,7 +174,7 @@ begin
             Length(StringToSign8)) <> 1 then
             raise Exception.Create('signing failed');
 
-          if EVP_SignFinal(@ctx, @arrayOfBytes[1], @lenOutput, LKey) <> 1 then
+          if EVP_SignFinal(@ctx, @catchOutput8[1], @lenOutput, LKey) <> 1 then
             raise Exception.Create('signing failed');
 
         finally
@@ -183,7 +184,8 @@ begin
 
         if lenOutput > 0 then
         begin
-          Result := TNetEncoding.Base64.EncodeBytesToString(@arrayOfBytes[0],
+          Result := //string(catchOutput8);
+          TNetEncoding.Base64.EncodeBytesToString(@catchOutput8[1],
             lenOutput)
         end;
 
@@ -202,7 +204,7 @@ begin
   end;
 
   IdSSLOpenSSLHeaders.Unload;
-  SetLength(arrayOfbytes, 0);
+  SetLength(catchOutput8, 0);
 
 {$IFDEF LOGAWSSign}
   CSSend(cFn + ': Result', Result);
