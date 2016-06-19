@@ -204,17 +204,20 @@ bNoMore=true
 
 <whpage pageid="ajaxJQFileUploadStarting" desc="-call back: indicates file upload started">
 (~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
-(~waCodeSite.Execute|warning|testing,hello~)
-(~waCodeSite.Execute|userip|(~Request.RemoteAddress~)~)
+(~waCodeSite.Execute|warning|testwarning,hello~)
+(~waCodeSite.Execute|info|userip,(~Request.RemoteAddress~)~)
+(~waCodeSite.Execute|info|fname,(~filedetails[fname]~)~)
 {
     "ShowcaseResponse": {
 	"Version": "1.0",
 	"Function": "JQFileUploadStarting",
 	"ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
-	"Error": ""<!--- blank or Ennn such as E100 -->
+	"Error": "",<!--- blank or Ennn such as E100 -->
+	"ConfirmFilename": "(~filedetails[fname]~)",
+	<!--- 65 below means 65 minutes -->
+	"SignURL": "(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/(~filedetails[fname]~) | 65 | (~mcCloudFrontRestrictIP~)/32~)"
     }
-}
-(~CLOSE|~)
+}(~CLOSE|~)
 </whpage>
 
 </whteko>
