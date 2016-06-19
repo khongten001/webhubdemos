@@ -14,6 +14,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 <whpagesettings>
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
+(~waCodeSite.Execute|warning|testing,hello~)
 
 <h2>File Upload</h2>
 <p>References:</p>
@@ -69,7 +70,7 @@ mcCloudFrontRestrictIP=(~MATCH|(~ZMDefaultMapContext~)=DEMOS|(~Request.RemoteAdd
 <whpagesettings>
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-(~waCodeSite.Execute|Info|url,(~Request.QueryString~)~)
+(~waCodeSite.Execute|warning|testing,(~Request.QueryString~)~)
 <h2>Successful File Upload</h2>
 (~CentralInfo.WebTimeUTC~)
 <p>Congratulations! Your file has been uploaded to S3.</p>
