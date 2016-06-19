@@ -72,9 +72,11 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 
 ~)
 </whdroplet>
+<whdroplet name="drShowcaseJqFileUploadPolicy">
+{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type","image/"],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
+</whdroplet>
 
-
-<whpage pageid="pgAWSJqFileUpload" desc="-Upload files to AWS S3 using JQuery fileupload">
+<whpage pageid="pgAWSJqFileUpload" desc="Upload files to AWS S3 using JQuery fileupload">
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
@@ -86,27 +88,27 @@ bNoMore=true
 <h2>File Upload</h2>
       <div>
 <!-- The file upload form used as target for the file upload widget -->
+<div class="log"></div>
 <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com" method="POST" enctype="multipart/form-data">
     
    <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
    <input type="hidden" name="acl" value="authenticated-read" />
-   <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionNumber~):" />
+ 
    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
    <input type="hidden" name="Cache-Control" value="max-age=2419200"<!---4 weeks -->/><br />
    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
-   <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
-   <input type="hidden" name="signature" value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
+   <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseJqFileUploadPolicy~)~)" />
+   <input type="hidden" name="signature" value="(~AWSSignature2|(~drShowcaseJqFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
+<!--    <input type="hidden" name="success_action_status" vale="201"/> -->
 
-
-    <!-- Redirect browsers with JavaScript disabled to the origin page -->
-   <!--  <noscript><input type="hidden" name="redirect" value="https://blueimp.github.io/jQuery-File-Upload/"></noscript> -->
+   
     <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
     <div class="fileupload-buttonbar">
         <div class="fileupload-buttons">
             <!-- The fileinput-button span is used to style the file input field as button -->
             <span class="fileinput-button">
                 <span>Add files.</span>
-                <input type="file" name="files[]" multiple>
+                <input name='file' type='file'>
             </span>
             <button type="submit" class="start">Start upload</button>
             <button type="reset" class="cancel">Cancel upload</button>
@@ -195,5 +197,20 @@ bNoMore=true
 (~SET|allowDomain=Access-Control-Allow-Origin: (~Request.Scheme~)://(~Request.Host~)~)
 (~HEADER|(~allowDomain~)~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)(~CLEAR|allowDomain~)
 </whdroplet>
+
+<whpage pageid="ajaxJQFileUploadStarting" desc="-call back: indicates file upload started">
+(~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
+(~waCodeSite.Execute|warning|testing,hello~)
+(~waCodeSite.Execute|userip|(~Request.RemoteAddress~)~)
+{
+    "ShowcaseResponse": {
+	"Version": "1.0",
+	"Function": "JQFileUploadStarting",
+	"ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
+	"Error": ""<!--- blank or Ennn such as E100 -->
+    }
+}
+(~CLOSE|~)
+</whpage>
 
 </whteko>
