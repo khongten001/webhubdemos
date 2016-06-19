@@ -27,10 +27,14 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
    height: auto !important;
    min-height:200px !important;
 }
-</style>
+</style>  
+      <script>
+        var file_upload_options = {
+          sign_url : "(~ACTIONR|ajaxJQFileUploadStarting,(~waLSec.execute|out,120~),~)" 
+        }
+      </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-
-      <script src="/webhub/demos/js/jQuery-File-Upload-master/js/tmpl.min.js"></script>
+     <script src="/webhub/demos/js/jQuery-File-Upload-master/js/tmpl.min.js"></script>
       <!-- The Templates plugin is included to render the upload/download listings -->
       <script src="/webhub/demos/js/jQuery-File-Upload-master/js/tmpl.min.js"></script>
       <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
