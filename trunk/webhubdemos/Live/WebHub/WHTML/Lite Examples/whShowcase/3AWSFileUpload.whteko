@@ -69,7 +69,7 @@ mcCloudFrontRestrictIP=(~MATCH|(~ZMDefaultMapContext~)=DEMOS|(~Request.RemoteAdd
 <whpagesettings>
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-
+(~waCodeSite.Execute|Info|url,(~Request.QueryString~)~)
 <h2>Successful File Upload</h2>
 (~CentralInfo.WebTimeUTC~)
 <p>Congratulations! Your file has been uploaded to S3.</p>
