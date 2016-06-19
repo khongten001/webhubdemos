@@ -895,9 +895,9 @@ var
 const
   cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
-  //CSEnterMethod(Self, cFn);
+  CSEnterMethod(Self, cFn);
   inherited;
-  bKeepChecking := InSessionNumber <> 0;
+  bKeepChecking := FALSE; // (InSessionNumber <> 0);
 
   { web robots are expected to come in with a (single) session number. }
   { v3.204: Security.ReadOnlySession }
@@ -972,7 +972,7 @@ begin
         RejectSession(cUnitName + ', ' + cFn + '()', False);  // was True
     end;
   end;
-  //CSExitMethod(Self, cFn);
+  CSExitMethod(Self, cFn);
 end;
 
 var
