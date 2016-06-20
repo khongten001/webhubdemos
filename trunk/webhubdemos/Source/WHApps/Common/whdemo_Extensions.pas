@@ -205,6 +205,8 @@ begin
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
+  pWebApp.Situations.SideDoorPageIDs :=  // requires wh v3.258+ 19-Jun-2016
+    'pgAWSStartFileUpload,pgAWSJqFileUpload';
 
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
@@ -892,12 +894,13 @@ var
   QueryStringWithoutCommand: string;
   x: Integer;
   bKeepChecking: Boolean;
+  InfoMsg: string;
 const
   cDomainLevels = 3; // demos.href.com has 3 levels.
 begin
   CSEnterMethod(Self, cFn);
   inherited;
-  bKeepChecking := FALSE; // (InSessionNumber <> 0);
+  bKeepChecking := (InSessionNumber <> 0);
 
   { web robots are expected to come in with a (single) session number. }
   { v3.204: Security.ReadOnlySession }
@@ -950,8 +953,8 @@ begin
         begin
           if (HaveSessionCookie = whsncPresent) then
           begin
-            CSSendWarning(Format(
-              'unexpected session cookie %s in %s.%s %s on %s ' +
+            InfoMsg := Format(
+              'session cookie %s in %s.%s %s on %s ' +
               'while %d.var exists=%s. IP %s; Agent %s; PageCount %d; QS %s',
               [pWebApp.AppInfo.SessionCookieName,
                Self.Name, cFn,
@@ -962,8 +965,16 @@ begin
                S(FileExists(pWebApp.Session.SessionFileName)),
                pWebApp.Request.RemoteAddress,
                pWebApp.Request.UserAgent, pWebApp.Session.PageCount,
-               pWebApp.Request.QueryString]));
-            bForceNewSession := False;
+               pWebApp.Request.QueryString]);
+            if pWebApp.AppInfo.SessionNumberLocation <> whsnlURL then
+            begin
+              // Session Cookie is in use, so there will not be a session # in
+              // the URL.
+              CSSendNote(InfoMsg);
+              bForceNewSession := False; // June 2016: do not reject
+            end
+            else
+              CSSendWarning('unexpected ' + InfoMsg);
           end;
         end;
       end;
@@ -1076,7 +1087,8 @@ begin
     end;
     if (NOT pWebApp.IsWebRobotRequest) then
     begin
-      if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc')) and
+      if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc'))
+      and
         (NOT IsHREFToolsQATestAgent) then
       begin
         { do not allow blank referer within the showcase or htsc demos
@@ -1088,9 +1100,10 @@ begin
         begin
           if (NOT HonorLowerSecurity) then
           begin
-            CSSend('Sender.Request.Referer', Sender.Request.Referer);
-            CSSend('Sender.PageID', Sender.PageID);
-            CSSend('pWebApp.Session.PriorScheme', pWebApp.Session.PriorScheme);
+            CSSend(cFn + ': Sender.Request.Referer', Sender.Request.Referer);
+            CSSend(cFn + ': Sender.PageID', Sender.PageID);
+            CSSend(cFn + ': pWebApp.Session.PriorScheme',
+              pWebApp.Session.PriorScheme);
             Sender.RejectSession('Blank referer, scheme ' +
               pWebApp.Session.PriorScheme + ', without security token', False);
           end;
