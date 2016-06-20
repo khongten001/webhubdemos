@@ -110,4 +110,10 @@ object DemoExtensions: TDemoExtensions
     Left = 448
     Top = 240
   end
+  object waJQFileUpload: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waJQFileUploadExecute
+    Left = 448
+    Top = 304
+  end
 end

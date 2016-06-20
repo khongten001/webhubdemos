@@ -41,6 +41,7 @@ type
     waAWSKey2Filename: TwhWebAction;
     waAWSCloudFrontSecurityProvider: TwhWebAction;
     waEvaporateSign: TwhWebAction;
+    waJQFileUpload: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -58,6 +59,7 @@ type
     procedure waAWSKey2FilenameExecute(Sender: TObject);
     procedure waAWSCloudFrontSecurityProviderExecute(Sender: TObject);
     procedure waEvaporateSignExecute(Sender: TObject);
+    procedure waJQFileUploadExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -93,9 +95,9 @@ implementation
 
 uses
   {$IFDEF EUREKALOG}ExceptionLog7, EExceptionManager,{$ENDIF}
-  DateUtils, Math, TypInfo,
+  DateUtils, Math, TypInfo, JSON,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
-  ucMsTime,
+  ucMsTime, ucJSONWrapper,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
   whdemo_ViewSource, webSysMsg;
@@ -573,6 +575,77 @@ begin
       end;
     end;
   end;
+end;
+
+procedure TDemoExtensions.waJQFileUploadExecute(Sender: TObject);
+const cFn = 'waJQFileUploadExecute';
+var
+  actionKeywords: string;
+  tempStr: string;
+  urlPrefix, aMinutes, aRestrictIP: string;
+  allFileuploadDataStr: string;
+var
+  JSON: Variant;
+  Pair: TJSONPair;
+  TempArray: TJSONArray;
+  ResourceURLPair: TJSONPair;
+begin
+  CSEnterMethod(Self, cFn);
+  TempArray := nil;
+
+  try
+    if SplitString(TwhWebAction(Sender).HtmlParam, ' | ', actionKeywords, tempStr)
+    then
+      SplitThree(tempStr, ' | ', urlPrefix, aMinutes, aRestrictIP);
+      actionKeywords := Trim(LowerCase(actionKeywords));
+
+    if actionKeywords = 'echo fname list' then
+    begin
+      CSSend(pWebApp.Request.FormData.Text);
+      allFileuploadDataStr := pWebApp.StringVar['allFileuploadDataStr'];
+      CSSend('allFileuploadDataStr', allFileuploadDataStr);
+
+      TempArray := TJSONArray.Create;
+      JSON := VarJSONParse(allFileuploadDataStr);
+      for Pair in VarAsJSONObject(JSON.file_details.f_name) do
+      begin
+        // iterate through key-value pairs
+        CSSend(Pair.JsonString.Value);
+        TempArray.AddElement('afilename.jpg');
+      end;
+      CSSend('FileName Array ToJSON', TempArray.ToJSON);
+      pWebApp.SendStringImm(TempArray.ToJSON);
+    end
+    else
+    if actionKeywords = 'sign fname list' then
+    begin
+      CSSend('urlPrefix', urlPrefix);
+      CSSend('aMinutes', aMinutes);
+      CSSend('aRestrictIP', aRestrictIP);
+      CSSend(pWebApp.Request.FormData.Text);
+      TempArray := TJSONArray.Create;
+      ResourceURLPair := TJSONPair.Create;
+
+      ResourceURLPair.JsonString := 'left';
+      ResourceURLPair.JsonString := 'right';
+      TempArray.AddElement(ResourceURLPair);
+
+      // waAWSCloudFrontSecurityProvider
+      // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
+      //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
+      CSSend('FileName Array ToJSON', TempArray.ToJSON);
+      pWebApp.SendStringImm(TempArray.ToJSON);
+    end
+    else
+    begin
+      CSSendWarning('Invalid HtmlParam=' + TwhWebAction(Sender).HtmlParam);
+      pWebApp.Debug.AddPageError('Invalid syntax for ' + waJQFileUpload.Name);
+    end;
+  finally
+    FreeAndNil(TempArray);
+  end;
+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDemoExtensions.waLSecExecute(Sender: TObject);
