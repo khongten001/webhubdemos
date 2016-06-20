@@ -202,11 +202,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  pWebApp.Security.CheckSurferIP := True;
-  pWebApp.Security.CheckUserAgent := True;
   pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
-  pWebApp.Situations.SideDoorPageIDs :=  // requires wh v3.258+ 19-Jun-2016
-    'pgAWSStartFileUpload,pgAWSJqFileUpload';
 
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
@@ -238,6 +234,7 @@ begin
       pWebApp.DynURL.CurrentServerProfile.Authority));
   {$IFNDEF LogSTime}CSSend('FServerIpNumber', FServerIpNumber);{$ENDIF}
 
+  pWebApp.UseSharedLogFolder := False;
   SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
 
   CSExitMethod(Self, cFn);
@@ -821,7 +818,7 @@ begin
 { processing to catch cases where a surfers IP# changes in mid-session,
   it rejects continuation if the refering page is not in the same domain
   as the server producing this page. catches someone copying a session#
-  This code is only called if TwhAppBase.Security.CheckSurferIP is true.
+  This code is only called if Security.CheckSurferIP is true.
   It is false by default. }
   {$IFDEF LOGBAD}CSEnterMethod(Self, cFn);{$ENDIF}
   inherited;
@@ -857,8 +854,8 @@ begin
           IP numbers so it is very normal for an AOL browser to change IP numbers
           in the middle of a session.  Allow this.
           Reconfirmed 18-Apr-2008 }
-        {$IFDEF LOGBAD}CSSend('AOL');{$ENDIF}
-        b := False;
+        CSSend('AOL user agent');
+        //b := False;  // do not allow until further notice, June 2016.
       end;
 
       if b and HonorLowerSecurity then
