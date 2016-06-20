@@ -41,6 +41,9 @@ type
     miTestAlert: TMenuItem;
     miGoogleLoginUser: TMenuItem;
     miLoginGooglePass: TMenuItem;
+    AmazonAWS1: TMenuItem;
+    N4: TMenuItem;
+    LogintoAWSemailandpass1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -63,6 +66,8 @@ type
     procedure GoogleMail1Click(Sender: TObject);
     procedure miURLClick(Sender: TObject);
     procedure miTestAlertClick(Sender: TObject);
+    procedure AmazonAWS1Click(Sender: TObject);
+    procedure LogintoAWSemailandpass1Click(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -633,6 +638,34 @@ begin
   FChromium1.Load(cSample);
 end;
 
+procedure TfmChromiumWrapper.LogintoAWSemailandpass1Click(Sender: TObject);
+const cFn = 'LogintoAWSemailandpass1Click';
+var
+  JSText: string;
+  email: string;
+  pass: string;
+begin
+  CSEnterMethod(Self, cFn);
+  if ParamCount = 2 then
+  begin
+    email := ParamStr(1);
+    pass := ParamStr(2);
+    JSText := 'document.getElementById("ap_email").value = "' + email + '";';
+    //CSSend('JSText', JSText);
+    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+
+    JSText := 'document.getElementById("ap_password").value = "' + pass + '";';
+    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+  end
+  else
+  begin
+    MsgErrorOk('2 command line parameters are required for ' +
+    'Quick Login at AWS: email and password');
+  end;
+
+  CSExitMethod(Self, cFn);
+end;
+
 (*
 procedure TfmChromiumWrapper.OnPressEvent(const AEvent: ICefDomEvent);
 const cFn = 'OnPressEvent';
@@ -707,6 +740,14 @@ begin
   CSExitMethod(Self, cFn);
 end;
 *)
+
+procedure TfmChromiumWrapper.AmazonAWS1Click(Sender: TObject);
+const
+  cAWS = 'https://aws.amazon.com/console/';
+begin
+  Self.Caption := cAWS;
+  FChromium1.Load(cAWS);
+end;
 
 procedure TfmChromiumWrapper.Chromium1LoadEnd(Sender: TObject;
   const browser: ICefBrowser;
