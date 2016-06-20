@@ -202,6 +202,11 @@ bNoMore=true
 (~HEADER|(~allowDomain~)~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)(~CLEAR|allowDomain~)
 </whdroplet>
 
+<whdoc for="waJQFileUpload">
+usage: (~waJQFileUpload.Execute|echo fname list~)
+usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
+       spaces around vertical bars are required as shown.
+</whdoc>
 <whpage pageid="ajaxJQFileUploadStarting" desc="-call back: indicates file upload started">
 (~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
 (~waCodeSite.Execute|warning|testwarning,hello~)
@@ -213,9 +218,10 @@ bNoMore=true
 	"Function": "JQFileUploadStarting",
 	"ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
 	"Error": "",<!--- blank or Ennn such as E100 -->
-	"ConfirmFilename": "(~filedetails[fname]~)",
+	"ConfirmedFilenameList": "(~waJQFileUpload.Execute|echo fname list~)",
+	"TestFilename": "(~filedetails[fname]~)",
 	<!--- 65 below means 65 minutes -->
-	"SignURL": "(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/(~filedetails[fname]~) | 65 | (~mcCloudFrontRestrictIP~)/32~)"
+	"SignList": "(~waJQFileUpload.Execute|sign fname list|(~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)"
     }
 }(~CLOSE|~)
 </whpage>
