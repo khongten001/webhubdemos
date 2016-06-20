@@ -970,6 +970,8 @@ begin
             begin
               // Session Cookie is in use, so there will not be a session # in
               // the URL.
+              if pWebApp.Session.PageCount > 1 then
+                CSSendWarning('unexpected call to ' + cFn);
               CSSendNote(InfoMsg);
               bForceNewSession := False; // June 2016: do not reject
             end
