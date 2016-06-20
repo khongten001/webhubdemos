@@ -104,6 +104,17 @@ object fmChromiumWrapper: TfmChromiumWrapper
       object N3: TMenuItem
         Caption = '-'
       end
+      object AmazonAWS1: TMenuItem
+        Caption = 'Amazon AWS'
+        OnClick = AmazonAWS1Click
+      end
+      object LogintoAWSemailandpass1: TMenuItem
+        Caption = 'Login to AWS, email and pass'
+        OnClick = LogintoAWSemailandpass1Click
+      end
+      object N4: TMenuItem
+        Caption = '-'
+      end
       object miEnterURL: TMenuItem
         Caption = 'Enter &URL'
         OnClick = miEnterURLClick

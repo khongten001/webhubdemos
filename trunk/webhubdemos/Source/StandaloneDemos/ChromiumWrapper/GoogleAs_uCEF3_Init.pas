@@ -153,6 +153,7 @@ var
   WindowlessRenderingEnabled: Boolean;
   i: Integer;
   NoSandbox: Boolean;
+  UserDataPath, AcceptLanguageList: string;
 begin
   CSEnterMethod(nil, cFn);
 
@@ -253,25 +254,28 @@ begin
   NoSandbox := False;
   WindowsSandboxInfo := nil;
   WindowlessRenderingEnabled := True;
+  UserDataPath := ''; // use default
+  AcceptLanguageList := ''; // use default
 
 (*
-CefLoadLib syntax as of 8-Oct-2015:
+CefLoadLib syntax as of 20-Jun-2016:
 
-function CefLoadLib(const Cache, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
+function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
   LogSeverity: TCefLogSeverity; JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
   SingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled: Boolean; RemoteDebuggingPort: Integer;
   UncaughtExceptionStackSize: Integer; ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean; BackgroundColor: TCefColor;
-  WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
+  const AcceptLanguageList: ustring; WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
 *)
 
-  IsFirstInit := CefLoadLib(cache, UserAgent, ProductVersion, Locale, LogFile,
+  IsFirstInit := CefLoadLib(cache, UserDataPath, UserAgent, ProductVersion, Locale, LogFile,
     BrowserSubprocessPath,
     LOGSEVERITY_DISABLE, JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
     FlagSingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled,
     RemoteDebuggingPort,
     UncaughtExceptionStackSize, ContextSafetyImplementation,
     PersistSessionCookies, IgnoreCertificateErrors, BackgroundCefColor,
+    AcceptLanguageList,
     WindowsSandboxInfo, WindowlessRenderingEnabled
     );
   if IsFirstInit then
