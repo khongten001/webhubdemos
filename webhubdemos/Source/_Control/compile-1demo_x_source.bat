@@ -86,7 +86,7 @@ if "%compilerdigits%"=="21" set raizepath=%cslibroot%\RS-XE7\win%wbits%
 if "%compilerdigits%"=="20" set raizepath=%cslibroot%\RS-XE6\win%wbits%
 if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
 if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
-P:\AllHREFToolsProducts\Pak\AllSetupProduction\PakUtilities\CodeSiteConsole.exe raizepath "%raizepath%"
+%CSSend% raizepath "%raizepath%" %CSLogPathParams%
 
 ::win64
 if "%raizepath%"=="" goto continue041
