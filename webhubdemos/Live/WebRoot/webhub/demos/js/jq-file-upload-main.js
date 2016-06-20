@@ -129,10 +129,10 @@ $(function() {
             console.log(n);
              var localFilesArr       = new Array();
                 var jsonArg1            = new Object();
-                jsonArg1.fname          = n.files[0].name,
-                jsonArg1.ftype          = n.files[0].type,
-                jsonArg1.fsize          = n.files[0].size,
-                jsonArg1.flastmodified  =n.files[0].lastModified
+                jsonArg1.fname          = n.files[0].name;
+                jsonArg1.ftype          = n.files[0].type;
+                jsonArg1.fsize          = n.files[0].size;
+                jsonArg1.flastmodified  =n.files[0].lastModified;
 
                 $.ajax({
                     url: file_upload_options.sign_url,
