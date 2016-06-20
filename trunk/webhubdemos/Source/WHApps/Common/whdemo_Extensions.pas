@@ -1179,12 +1179,17 @@ begin
         begin
           if (NOT HonorLowerSecurity) then
           begin
+            if PosCI(Sender.PageID, pWebApp.Situations.SideDoorPageIDs) = 0
+            then
+            begin
             CSSend(cFn + ': Sender.Request.Referer', Sender.Request.Referer);
             CSSend(cFn + ': Sender.PageID', Sender.PageID);
             CSSend(cFn + ': pWebApp.Session.PriorScheme',
               pWebApp.Session.PriorScheme);
             Sender.RejectSession('Blank referer, scheme ' +
-              pWebApp.Session.PriorScheme + ', without security token', False);
+              pWebApp.Session.PriorScheme + 
+              ', without security token, and not using a side door.', False);
+            end;
           end;
         end;
       end;
