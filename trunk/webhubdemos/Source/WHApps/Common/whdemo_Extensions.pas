@@ -602,7 +602,7 @@ begin
     if actionKeywords = 'echo fname list' then
     begin
       CSSend(pWebApp.Request.FormData.Text);
-      allFileuploadDataStr := pWebApp.StringVar['allFileuploadDataStr'];
+      allFileuploadDataStr := pWebApp.StringVar['fileDetails'];
       CSSend('allFileuploadDataStr', allFileuploadDataStr);
 
       TempArray := TJSONArray.Create;
