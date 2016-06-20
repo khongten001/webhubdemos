@@ -41,7 +41,7 @@
       <!--- local testing of download from protected CloudFront -->
       <AppSetting name="AWSCloudFrontAllowIP" value="127.0.0.1"/>
       <AppSetting name="AWSCloudFrontAllowIP" value="104.156.228.101" context="ultraann"/>
-      <AppSetting name="AWSCloudFrontAllowIP" value="202.142.91.224" context="HARMAN"/>
+      <AppSetting name="AWSCloudFrontAllowIP" value="202.142.91.83" context="HARMAN"/>
       <!--- CodeSite logging level -->
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="CodeSiteLogging" value="all" context="ultraann"/>
