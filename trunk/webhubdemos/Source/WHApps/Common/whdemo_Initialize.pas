@@ -204,16 +204,22 @@ begin
 end;
 
 procedure TDemoHelperComponent.DemoAppUpdate(Sender: TObject);
+const cFn = 'DemoAppUpdate';
 begin
-  pWebApp.UseSharedLogFolder := False;
-  SetCodeSiteLoggingStateFromText(pWebApp.AppSetting['CodeSiteLogging']);
+  CSEnterMethod(Self, cFn);
 
   { To demonstrate the INDEX and other built-in pages, the demos use
     Security.BuiltInPagesEnabled True.  Normally, on a production server,
     Security.BuiltInPagesEnabled would be FALSE. }
-  pWebApp.Security.CheckSurferIP := True;
-  // See also: TwhAppBase.OnBadIP handler.
   pWebApp.Security.BuiltInPagesEnabled := True;
+  
+  pWebApp.Security.CheckSurferIP := True;
+  pWebApp.Security.CheckUserAgent := True;
+  if pWebApp.AppID = 'showcase' then
+  begin
+    pWebApp.Situations.SideDoorPageIDs :=  // requires wh v3.258+ 19-Jun-2016
+      'pgAWSStartFileUpload,pgAWSJqFileUpload';
+  end;
 
   // HTTP 1.1 specification
   pWebApp.Response.HttpMajorVersion := 1;
@@ -235,11 +241,15 @@ begin
     if pWebApp.Situations.FrontDoorPageID = '' then
       pConnection.OnFrontDoorTriggered := nil
     else
-      pConnection.OnFrontDoorTriggered := dmDWSecurity.FrontDoorTriggered;
+    begin
+      if Assigned(dmDWSecurity) then
+        pConnection.OnFrontDoorTriggered := dmDWSecurity.FrontDoorTriggered;
+    end;
   end;
 
   pWebApp.Debug.ErrorAlerts := [eaSummary, eaLogToFile];
 
+  CSExitMethod(Self, cFn);
 end;
 
 //------------------------------------------------------------------------------
