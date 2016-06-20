@@ -594,52 +594,59 @@ begin
   TempArray := nil;
 
   try
-    if SplitString(TwhWebAction(Sender).HtmlParam, ' | ', actionKeywords, tempStr)
-    then
-      SplitThree(tempStr, ' | ', urlPrefix, aMinutes, aRestrictIP);
-      actionKeywords := Trim(LowerCase(actionKeywords));
+    try
+      if SplitString(TwhWebAction(Sender).HtmlParam, ' | ', actionKeywords, tempStr)
+      then
+        SplitThree(tempStr, ' | ', urlPrefix, aMinutes, aRestrictIP);
+        actionKeywords := Trim(LowerCase(actionKeywords));
 
-    if actionKeywords = 'echo fname list' then
-    begin
-      CSSend(pWebApp.Request.FormData.Text);
-      allFileuploadDataStr := pWebApp.StringVar['fileDetails'];
-      CSSend('allFileuploadDataStr', allFileuploadDataStr);
-
-      TempArray := TJSONArray.Create;
-      JSON := VarJSONParse(allFileuploadDataStr);
-      for Pair in VarAsJSONObject(JSON.file_details.f_name) do
+      if actionKeywords = 'echo fname list' then
       begin
-        // iterate through key-value pairs
-        CSSend(Pair.JsonString.Value);
+        CSSend(pWebApp.Request.FormData.Text);
+        allFileuploadDataStr := pWebApp.StringVar['fileDetails'];
+        CSSend('allFileuploadDataStr', allFileuploadDataStr);
 
-        TempArray.AddElement(TJSONString.Create('afilename.jpg'));
+        TempArray := TJSONArray.Create;
+        {JSON := VarJSONParse(allFileuploadDataStr);
+        for Pair in VarAsJSONObject(JSON.file_details.f_name) do
+        begin
+          // iterate through key-value pairs
+          CSSend(Pair.JsonString.Value);
 
+          TempArray.AddElement(TJSONString.Create('afilename.jpg'));
+
+        end;}
+        CSSend('FileName Array ToJSON', TempArray.ToJSON);
+        pWebApp.SendStringImm(TempArray.ToJSON);
+      end
+      else
+      if actionKeywords = 'sign fname list' then
+      begin
+        CSSend('urlPrefix', urlPrefix);
+        CSSend('aMinutes', aMinutes);
+        CSSend('aRestrictIP', aRestrictIP);
+        CSSend(pWebApp.Request.FormData.Text);
+        TempArray := TJSONArray.Create;
+
+        ResourceURLPair := TJSONPair.Create('left', 'right');
+        TempArray.AddElement(TJSONObject(ResourceURLPair));
+
+        // waAWSCloudFrontSecurityProvider
+        // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
+        //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
+        CSSend('FileName Array ToJSON', TempArray.ToJSON);
+        pWebApp.SendStringImm(TempArray.ToJSON);
+      end
+      else
+      begin
+        CSSendWarning('Invalid HtmlParam=' + TwhWebAction(Sender).HtmlParam);
+        pWebApp.Debug.AddPageError('Invalid syntax for ' + waJQFileUpload.Name);
       end;
-      CSSend('FileName Array ToJSON', TempArray.ToJSON);
-      pWebApp.SendStringImm(TempArray.ToJSON);
-    end
-    else
-    if actionKeywords = 'sign fname list' then
-    begin
-      CSSend('urlPrefix', urlPrefix);
-      CSSend('aMinutes', aMinutes);
-      CSSend('aRestrictIP', aRestrictIP);
-      CSSend(pWebApp.Request.FormData.Text);
-      TempArray := TJSONArray.Create;
-
-      ResourceURLPair := TJSONPair.Create('left', 'right');
-      TempArray.AddElement(TJSONObject(ResourceURLPair));
-
-      // waAWSCloudFrontSecurityProvider
-      // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
-      //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
-      CSSend('FileName Array ToJSON', TempArray.ToJSON);
-      pWebApp.SendStringImm(TempArray.ToJSON);
-    end
-    else
-    begin
-      CSSendWarning('Invalid HtmlParam=' + TwhWebAction(Sender).HtmlParam);
-      pWebApp.Debug.AddPageError('Invalid syntax for ' + waJQFileUpload.Name);
+    except
+      on E: Exception do
+      begin
+        CSSendException(Self, cFn, E); // silent ignore for now.
+      end;
     end;
   finally
     FreeAndNil(TempArray);
