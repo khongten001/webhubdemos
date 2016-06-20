@@ -611,7 +611,9 @@ begin
       begin
         // iterate through key-value pairs
         CSSend(Pair.JsonString.Value);
-        TempArray.AddElement('afilename.jpg');
+
+        TempArray.AddElement(TJSONString.Create('afilename.jpg'));
+
       end;
       CSSend('FileName Array ToJSON', TempArray.ToJSON);
       pWebApp.SendStringImm(TempArray.ToJSON);
@@ -624,11 +626,9 @@ begin
       CSSend('aRestrictIP', aRestrictIP);
       CSSend(pWebApp.Request.FormData.Text);
       TempArray := TJSONArray.Create;
-      ResourceURLPair := TJSONPair.Create;
 
-      ResourceURLPair.JsonString := 'left';
-      ResourceURLPair.JsonString := 'right';
-      TempArray.AddElement(ResourceURLPair);
+      ResourceURLPair := TJSONPair.Create('left', 'right');
+      TempArray.AddElement(TJSONObject(ResourceURLPair));
 
       // waAWSCloudFrontSecurityProvider
       // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
