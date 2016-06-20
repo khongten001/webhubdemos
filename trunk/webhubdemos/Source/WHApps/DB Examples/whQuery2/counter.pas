@@ -89,7 +89,9 @@ end;
 
 procedure TfmCounterPanel.htWebAppNewSession(Sender: TObject;
   Session: Cardinal; const Command: String);
+const cFn = 'htWebAppNewSession';
 begin
+  CSEnterMethod(Self, cFn);
   inherited;
   with pWebApp do
   begin
@@ -106,6 +108,7 @@ begin
   // properties.
   if Assigned(DMQuery2) then
     DMQuery2.WebAppNewSession(Sender, Session, Command);
+  CSExitMethod(Self, cFn);
 end;
 
 function TfmCounterPanel.CounterFilespec: string;
