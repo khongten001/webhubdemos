@@ -256,13 +256,16 @@ end;
 
 procedure TDMQuery2.WebAppNewSession(Sender: TObject; Session: Integer;
   const Command: String);
+const cFn = 'WebAppNewSession';
 begin
+  CSEnterMethod(Self, cFn);
   // note this procedure is called from the OnNewSession event in counter.pas
 
   // The purpose of this is to demonstrate that we can set the pageheight on
   // a per-site-visitor basis.
   // 0 gives all rows, so let's avoid that by adding 1.
   pWebApp.StringVarInt['WebDataScan1.PageHeight'] := Random(14) + 1;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMQuery2.WebAppUpdate(Sender: TObject);
