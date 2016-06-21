@@ -1126,7 +1126,7 @@ begin
       end;
 
       if bForceNewSession then
-        RejectSession(cUnitName + ', ' + cFn + '()', False);  // was True
+        RejectSession(cUnitName + ', ' + cFn + '()', False);  
     end;
   end;
   CSExitMethod(Self, cFn);
