@@ -86,6 +86,8 @@ type
       var Handled, ReDoPage: Boolean);
     function Init: Boolean;
     function IsSuperuser(const InSurferIP: string): Boolean;
+    function AWSCloudFrontSecurityURL(const url, minutesToLiveStr,
+    restrictByIPStr: string): string;
   end;
 
 var
@@ -258,6 +260,39 @@ begin
     pWebApp.Debug.AddPageError('invalid FEATURE syntax: ' + InputData);
 end;
 
+function TDemoExtensions.AWSCloudFrontSecurityURL(const url, minutesToLiveStr,
+    restrictByIPStr: string): string;
+const cFn = 'AWSCloudFrontSecurityURL';
+var
+  expiresOnAt: TDateTime;
+begin
+  CSEnterMethod(Self, cFn);
+
+  if NOT Assigned(fcfsp) then
+    FCFSP := TCloudFrontSecurityProvider.Create;
+
+  CSSend(cFn + ': url', url);
+
+  expiresOnAt := IncMinute(NowUTC, StrToIntDef(minutesToLiveStr, 1));
+  CSSend(csmLevel6, 'expiresOnAt',
+      FormatDateTime('yyyy-mm-dd hh:nn:ss', expiresOnAt));
+
+  FCFSP.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
+  FCFSP.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
+      'Lite Examples\AWS\';
+
+  // The PEM is issued by AWS. Secret. Not in version control.
+  FCFSP.PrivateKeyPEM := StringLoadFromFile(FCFSP.DiskFolder +
+      'demos.cloudfront.pem');
+
+  FCFSP.Policy := FCFSP.GetPolicyAsStr(url, expiresOnAt, restrictByIPStr);
+  CSSend(csmLevel5, cFn + ': Policy', FCFSP.Policy);
+
+  Result := FCFSP.GetCustomUrl(url);
+
+  CSExitMethod(Self, cFn);
+end;
+
 procedure TDemoExtensions.DataModuleCreate(Sender: TObject);
 const
   cFn = 'DataModuleCreate';
@@ -347,7 +382,6 @@ var
   minutesToLiveStr: string;
   restrictByIPStr: string;
   protectedURL: string;
-  expiresOnAt: TDateTime;
 begin
   CSEnterMethod(Self, cFn);
 
@@ -362,26 +396,13 @@ begin
 
     minutesToLiveStr := pWebApp.MoreIfParentild(minutesToLiveStr);
 
-    expiresOnAt := IncMinute(NowUTC, StrToIntDef(minutesToLiveStr, 1));
-    //CSSend(csmLevel6, 'expiresOnAt',
-    //  FormatDateTime('yyyy-mm-dd hh:nn:ss', expiresOnAt));
-
     // use /32 on the CIDR to restrict to a single IP
     restrictByIPStr := pWebApp.Expand(restrictByIPStr);
     CSSend('restrictByIPStr', restrictByIPStr);
 
-    FCFSP.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
-    FCFSP.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
-        'Lite Examples\AWS\';
+    protectedURL := AWSCloudFrontSecurityURL(url, minutesToLiveStr,
+      restrictByIPStr);
 
-    // The PEM is issued by AWS. Secret. Not in version control.
-    FCFSP.PrivateKeyPEM := StringLoadFromFile(FCFSP.DiskFolder +
-        'demos.cloudfront.pem');
-
-    FCFSP.Policy := FCFSP.GetPolicyAsStr(url, expiresOnAt, restrictByIPStr);
-    CSSend(csmLevel5, cFn + ': Policy', FCFSP.Policy);
-
-    protectedURL := FCFSP.GetCustomUrl(url);
     pWebApp.SendStringImm(protectedURL);
   end
   else
@@ -672,11 +693,10 @@ begin
         TempJO.AddPair('awsPolicy64', outputRec.awsPolicy64);
         TempJO.AddPair('awsUploadSignature', outputRec.awsUploadSignature);
 
-        // waAWSCloudFrontSecurityProvider
-        // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
-        //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
-
-        outputRec.awsDownloadURL := 'https://pending';
+        outputRec.awsDownloadURL := AWSCloudFrontSecurityURL(
+          pWebApp.Request.Scheme + '://' + s3BucketName + '/' + urlPrefix +
+          incomingRec.fname, aMinutes, aRestrictIP);
+        CSSend('outputRec.awsDownloadURL', outputRec.awsDownloadURL);
         TempJO.AddPair('awsDownloadURL', outputRec.awsDownloadURL);
 
         CSSend('ToJSON', TempJO.ToJSON);
