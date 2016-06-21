@@ -8,9 +8,11 @@
     </CORSRule>
     <CORSRule>
         <AllowedOrigin>https://*.demos.modulab.com</AllowedOrigin>
-         <AllowedOrigin>http://*.demos.modulab.com</AllowedOrigin>
+        <AllowedOrigin>http://*.demos.modulab.com</AllowedOrigin>
         <AllowedOrigin>https://*.demos.href.com</AllowedOrigin>
-         <AllowedOrigin>http://*.demos.href.com</AllowedOrigin>
+        <AllowedOrigin>http://*.demos.href.com</AllowedOrigin>
+        <AllowedOrigin>https://*.ilu4.com</AllowedOrigin>
+        <AllowedOrigin>http://*.ilu4.com</AllowedOrigin>
         <AllowedMethod>HEAD</AllowedMethod>
         <AllowedMethod>PUT</AllowedMethod>
         <AllowedMethod>POST</AllowedMethod>
