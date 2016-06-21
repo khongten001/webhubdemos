@@ -274,7 +274,7 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
     "Error": "",<!--- blank or Ennn such as E100 -->
     "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
     <!--- 65 below means 65 minutes -->
-    "SignData": (~waJQFileUpload.Execute|sign fname | (~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
   }
 }(~CLOSE|~)
 </whpage>

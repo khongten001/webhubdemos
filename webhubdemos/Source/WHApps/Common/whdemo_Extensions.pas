@@ -100,7 +100,7 @@ uses
   ucMsTime, ucJSONWrapper,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
-  whdemo_ViewSource, webSysMsg;
+  whdemo_ViewSource, webSysMsg, ucAWS_S3_Upload, ucAWS_Security;
 
 {$R *.DFM}
 
@@ -581,7 +581,7 @@ procedure TDemoExtensions.waJQFileUploadExecute(Sender: TObject);
 const cFn = 'waJQFileUploadExecute';
 var
   actionKeywords: string;
-  urlPrefix, aMinutes, aRestrictIP: string;
+  s3BucketName, urlPrefix, aMinutes, aRestrictIP: string;
   fileDetailJSONStr: string;
   InfoMsg: string;
 var
@@ -600,11 +600,13 @@ type
     awsResource: string;
     awsPolicy: string;
     awsPolicy64: string;
-    awsSignature: string;
+    awsUploadSignature: string;
+    awsDownloadURL: string;
   end;
 var
   incomingRec: TIncomingRec;
   outputRec: TOutputRec;
+  FileUploadSecret: string;
 begin
   CSEnterMethod(Self, cFn);
 
@@ -621,8 +623,8 @@ begin
         actionKeywords := Trim(SavHtmlParam)
       else
       begin
-        if SplitFour(SavHtmlParam, ' | ', actionKeywords, urlPrefix, aMinutes,
-          aRestrictIP) then
+        if SplitFive(SavHtmlParam, ' | ', actionKeywords, s3BucketName,
+          urlPrefix, aMinutes, aRestrictIP) then
           actionKeywords := Trim(LowerCase(actionKeywords));
       end;
 
@@ -647,17 +649,36 @@ begin
         CSSend(pWebApp.Request.FormData.Text);
 
         outputRec.awsResource := urlPrefix + incomingRec.fname;
-        outputRec.awsPolicy := '{policy}';
-        outputRec.awsPolicy64 := 'AAA';
-        outputRec.awsSignature := 'http://etc';
+        outputRec.awsPolicy := FileUploadPolicy(
+          IncMinute(nowUTC, StrToIntDef(aMinutes, 30)),
+          s3BucketName,
+          'authenticated-read', // acl
+          '', urlPrefix, incomingRec.ftype,
+          400 * 1024 * 1024, // max file size bytes
+          7 * 1440 * 60, // cache for 7 days
+          0);
+        CSSend(csmLevel7, 'outputRec.awsPolicy', outputRec.awsPolicy);
+        outputRec.awsPolicy64 :=
+          StringToBase64NoCRLF(UTF8String(outputRec.awsPolicy));
+        FileUploadSecret := StringLoadFromFile(
+          pWebApp.AppSetting['TextFileContent-FileUploadSecret']);
+        CSSend('FileUploadSecret', FileUploadSecret);
+        outputRec.awsUploadSignature :=
+          AWS_Signature_for_FileUpload(outputRec.awsPolicy64, FileUploadSecret);
 
         TempJO := TJSONObject.Create;
         TempJO.AddPair('awsResource', outputRec.awsResource);
-        TempJO.AddPair('awsPolicy', outputRec.awsPolicy);
+        //TempJO.AddPair('awsPolicy', outputRec.awsPolicy);  See CSL for detail
+        TempJO.AddPair('awsPolicy64', outputRec.awsPolicy64);
+        TempJO.AddPair('awsUploadSignature', outputRec.awsUploadSignature);
 
         // waAWSCloudFrontSecurityProvider
         // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
         //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
+
+        outputRec.awsDownloadURL := 'https://pending';
+        TempJO.AddPair('awsDownloadURL', outputRec.awsDownloadURL);
+
         CSSend('ToJSON', TempJO.ToJSON);
         pWebApp.SendStringImm(TempJO.ToJSON);
       end
