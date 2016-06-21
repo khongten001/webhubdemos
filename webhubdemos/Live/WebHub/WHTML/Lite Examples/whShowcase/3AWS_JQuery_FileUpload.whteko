@@ -265,20 +265,17 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
 </whdoc>
 <whpage pageid="ajaxJQFileUploadStarting" desc="-call back: indicates file upload started">
 (~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
-(~waCodeSite.Execute|warning|testwarning,hello~)
 (~waCodeSite.Execute|info|userip,(~Request.RemoteAddress~)~)
-(~waCodeSite.Execute|info|fname,(~filedetails[fname]~)~)
 {
-    "ShowcaseResponse": {
-  "Version": "1.0",
-  "Function": "JQFileUploadStarting",
-  "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
-  "Error": "",<!--- blank or Ennn such as E100 -->
-  "ConfirmedFilenameList": "(~waJQFileUpload.Execute|echo fname list~)",
-  "TestFilename": "(~filedetails[fname]~)",
-  <!--- 65 below means 65 minutes -->
-  "SignList": "(~waJQFileUpload.Execute|sign fname list|(~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)"
-    }
+  "ShowcaseResponse": {
+    "Version": "1.0",
+    "Function": "JQFileUploadStarting",
+    "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
+    "Error": "",<!--- blank or Ennn such as E100 -->
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
+    <!--- 65 below means 65 minutes -->
+    "SignData": (~waJQFileUpload.Execute|sign fname | (~Request.Scheme~)://protected-files.demos.href.com/user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+  }
 }(~CLOSE|~)
 </whpage>
 
