@@ -581,66 +581,92 @@ procedure TDemoExtensions.waJQFileUploadExecute(Sender: TObject);
 const cFn = 'waJQFileUploadExecute';
 var
   actionKeywords: string;
-  tempStr: string;
   urlPrefix, aMinutes, aRestrictIP: string;
-  allFileuploadDataStr: string;
+  fileDetailJSONStr: string;
+  InfoMsg: string;
 var
   JSON: Variant;
-  Pair: TJSONPair;
-  TempArray: TJSONArray;
-  ResourceURLPair: TJSONPair;
+  TempJO: TJSONObject;
+  SavHtmlParam: string;
+type
+  TIncomingRec = record
+    fname: string;
+    ftype: string;
+    fsize: string;
+    flastmodified: string;
+  end;
+type
+  TOutputRec = record
+    awsResource: string;
+    awsPolicy: string;
+    awsPolicy64: string;
+    awsSignature: string;
+  end;
+var
+  incomingRec: TIncomingRec;
+  outputRec: TOutputRec;
 begin
   CSEnterMethod(Self, cFn);
-  TempArray := nil;
 
+  //CSSend(pWebApp.Request.FormData.Text);
+  fileDetailJSONStr := pWebApp.StringVar['fileDetails'];
+  CSSend('fileDetails', fileDetailJSONStr);
+  SavHtmlParam := TwhWebAction(Sender).HtmlParam;
+  CSSend('SavHtmlParam', SavHtmlParam);
+
+  if fileDetailJSONStr <> '' then
   try
     try
-      if SplitString(TwhWebAction(Sender).HtmlParam, ' | ', actionKeywords, tempStr)
-      then
-        SplitThree(tempStr, ' | ', urlPrefix, aMinutes, aRestrictIP);
-        actionKeywords := Trim(LowerCase(actionKeywords));
-
-      if actionKeywords = 'echo fname list' then
+      if Pos('|', SavHtmlParam) = 0 then
+        actionKeywords := Trim(SavHtmlParam)
+      else
       begin
-        CSSend(pWebApp.Request.FormData.Text);
-        allFileuploadDataStr := pWebApp.StringVar['fileDetails'];
-        CSSend('allFileuploadDataStr', allFileuploadDataStr);
+        if SplitFour(SavHtmlParam, ' | ', actionKeywords, urlPrefix, aMinutes,
+          aRestrictIP) then
+          actionKeywords := Trim(LowerCase(actionKeywords));
+      end;
 
-        TempArray := TJSONArray.Create;
-        {JSON := VarJSONParse(allFileuploadDataStr);
-        for Pair in VarAsJSONObject(JSON.file_details.f_name) do
-        begin
-          // iterate through key-value pairs
-          CSSend(Pair.JsonString.Value);
+      CSSend('actionKeywords', actionKeywords);
+      JSON := VarJSONParse(fileDetailJSONStr);
+      incomingRec.fname := JSON.fname;
+      incomingRec.ftype := JSON.ftype;
+      incomingRec.fsize := JSON.fsize;
+      incomingRec.flastmodified := JSON.flastmodified;
+      CSSend('incomingRec.fname', incomingRec.fname);
 
-          TempArray.AddElement(TJSONString.Create('afilename.jpg'));
-
-        end;}
-        CSSend('FileName Array ToJSON', TempArray.ToJSON);
-        pWebApp.SendStringImm(TempArray.ToJSON);
+      if actionKeywords = 'echo fname' then
+      begin
+        pWebApp.SendStringImm(incomingRec.fname);
       end
       else
-      if actionKeywords = 'sign fname list' then
+      if actionKeywords = 'sign fname' then
       begin
         CSSend('urlPrefix', urlPrefix);
         CSSend('aMinutes', aMinutes);
         CSSend('aRestrictIP', aRestrictIP);
         CSSend(pWebApp.Request.FormData.Text);
-        TempArray := TJSONArray.Create;
 
-        ResourceURLPair := TJSONPair.Create('left', 'right');
-        TempArray.AddElement(TJSONObject(ResourceURLPair));
+        outputRec.awsResource := urlPrefix + incomingRec.fname;
+        outputRec.awsPolicy := '{policy}';
+        outputRec.awsPolicy64 := 'AAA';
+        outputRec.awsSignature := 'http://etc';
+
+        TempJO := TJSONObject.Create;
+        TempJO.AddPair('awsResource', outputRec.awsResource);
+        TempJO.AddPair('awsPolicy', outputRec.awsPolicy);
 
         // waAWSCloudFrontSecurityProvider
         // pWebApp.SendMacro(Format('waAWSCloudFrontSecurityProvider.Execute|%s | %s | %s' +
         //[urlPrefix + {fname}'', aMinutes, aRestrictIP]));
-        CSSend('FileName Array ToJSON', TempArray.ToJSON);
-        pWebApp.SendStringImm(TempArray.ToJSON);
+        CSSend('ToJSON', TempJO.ToJSON);
+        pWebApp.SendStringImm(TempJO.ToJSON);
       end
       else
       begin
         CSSendWarning('Invalid HtmlParam=' + TwhWebAction(Sender).HtmlParam);
-        pWebApp.Debug.AddPageError('Invalid syntax for ' + waJQFileUpload.Name);
+        InfoMsg := 'Invalid syntax for ' + waJQFileUpload.Name;
+        CSSendWarning(InfoMsg);
+        pWebApp.Debug.AddPageError(InfoMsg);
       end;
     except
       on E: Exception do
@@ -649,7 +675,7 @@ begin
       end;
     end;
   finally
-    FreeAndNil(TempArray);
+    //
   end;
 
   CSExitMethod(Self, cFn);
