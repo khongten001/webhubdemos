@@ -12,7 +12,7 @@ interface
 
 uses
   SysUtils, Classes,
-  webSend, htmlBase, whcfg_App;
+  webSend, webCall, htmlBase, whcfg_App;
 
 function whDemoSetAppId(const whDemoAppID: string): Boolean;
 procedure whDemoCreateSharedPanels;
@@ -28,6 +28,8 @@ type
       procedure CalcDemoButtonLinks(Sender: TwhRespondingApp; var bContinue: Boolean);
       procedure DemoAppUpdate(Sender: TObject);
       procedure DemoForceConfig(Sender: TwhAppPropertyCategory);
+      procedure DemoFrontDoorTriggered(Sender: TwhConnection;
+        const ADesiredPageID: string);
     end;
 
 var
@@ -45,7 +47,7 @@ uses
   whConst, webSplat,
   webApp, webInfoU, whMacroAffixes, htmConst, htWebApp,
   whsample_DWSecurity, whsample_PrototypeJS,
-  webCall, whdemo_Extensions, whdemo_ViewSource,
+  whdemo_Extensions, whdemo_ViewSource,
   whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
 
@@ -62,11 +64,15 @@ begin
     pWebApp.AppID := whDemoAppID;
     pWebApp.Refresh;  // instantiate nested components
     Result := pConnection <> nil;
-    if NOT Result then
+    if Result then
+      DemoHelperComponent.DemoAppUpdate(pWebApp) // call once
+    else
       CSSendError(cFn + ': pConnection nil here');
   end
   else
     CSSendError(cFn + ': pWebApp nil here');
+
+
   CSExitMethod(nil, cFn);
 end;
 
@@ -212,7 +218,7 @@ begin
     Security.BuiltInPagesEnabled True.  Normally, on a production server,
     Security.BuiltInPagesEnabled would be FALSE. }
   pWebApp.Security.BuiltInPagesEnabled := True;
-  
+
   pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   if pWebApp.AppID = 'showcase' then
@@ -239,16 +245,60 @@ begin
   if Assigned(pConnection) then
   begin
     if pWebApp.Situations.FrontDoorPageID = '' then
-      pConnection.OnFrontDoorTriggered := nil
+    begin
+      pConnection.OnFrontDoorTriggered := nil;
+      CSSend('OnFrontDoorTriggered nil because there is no FrontDoorPageID');
+    end
     else
     begin
-      if Assigned(dmDWSecurity) then
-        pConnection.OnFrontDoorTriggered := dmDWSecurity.FrontDoorTriggered;
+      if Assigned(DemoHelperComponent) then
+      begin
+        pConnection.OnFrontDoorTriggered :=
+          DemoHelperComponent.DemoFrontDoorTriggered;
+        CSSend('OnFrontDoorTriggered := DemoHelperComponent.FrontDoorTriggered');
+      end
+      else
+        CSSend('OnFrontDoorTriggered nil because DemoHelperComponent is nil');
     end;
-  end;
+  end
+  else
+    CSSend('OnFrontDoorTriggered nil because pConnection is nil');
 
   pWebApp.Debug.ErrorAlerts := [eaSummary, eaLogToFile];
 
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TDemoHelperComponent.DemoFrontDoorTriggered(Sender: TwhConnection;
+  const ADesiredPageID: string);
+const cFn = 'DemoFrontDoorTriggered';
+var
+  AllowedPages: string;
+  story1: string;
+begin
+  CSEnterMethod(Self, cFn);
+
+  AllowedPages := ',' + pWebApp.RemoteDesign.RemotePageIDs + ',' +
+    pWebApp.Situations.FrontDoorPageID + ',' +
+    pWebApp.Situations.SideDoorPageIDs + ',';
+  //CSSend(cFn + ': aDesiredPageID', aDesiredPageID);
+  //CSSend(cFn + ': AllowedPages', AllowedPages);
+
+  if (PosCI(',' + aDesiredPageID + ',', AllowedPages) > 0) then
+  begin
+    {the desired page is on the list of allowed pages (for use with Dreamweaver)
+     therefore we reverse the FrontDoor effect by resetting pWebApp.PageID }
+    {or, the session number is the AdminSessionNumber so it is allowed in}
+    pWebApp.PageID := aDesiredPageID;
+    CSSend(cFn + ' Approved: ' + aDesiredPageID + ' instead of FrontDoor');
+  end
+  else
+  begin
+    story1 := 'PageID ' + aDesiredPageID +
+      ' does not bypass the FrontDoor setting.';
+    CSSend(story1);
+    // the surfer will be bounced to the Frontdoor.
+  end;
   CSExitMethod(Self, cFn);
 end;
 
