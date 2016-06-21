@@ -605,7 +605,8 @@ end;
 
 procedure TDMDPRWebAct.WebAppUpdate(Sender: TObject);
 begin
-  // placeholder
+  // allow monitoring access to this page
+  pWebApp.Situations.SideDoorPageIDs := 'pgWebEye';
 end;
 
 procedure TDMDPRWebAct.WebDataFormField(Sender: TwhdbForm; aField: TField;
