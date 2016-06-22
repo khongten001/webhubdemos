@@ -167,7 +167,7 @@ bNoMore=true
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="fileinput-button">
           <span>Add files.</span>
-          <input name='file[]' type='file' multiple>
+          <input name='file' type='file' multiple>
         </span>
         <button type="submit" class="start">Start upload</button>
         <button type="reset" class="cancel">Cancel upload</button>
