@@ -84,7 +84,7 @@ $(function() {
             autoUpload: false,
             dataType: "json",
             sequentialUploads: false,
-            add: function(t, n) {
+/*            add: function(t, n) {
                 console.log(n.files);
                 var localFilesArr       = new Array();
                 var jsonArg1            = new Object();
@@ -115,7 +115,7 @@ $(function() {
                         
                     }
                 }),n.submit() 
-            },
+            },*/
             send: function(e, t) {
                 
                 $(".progress").fadeIn()
