@@ -139,7 +139,7 @@ $(function() {
         });
 
 
-        e.bind('fileuploadadded', function (e, n) {
+/*        e.bind('fileuploadadded', function (e, n) {
             console.log(n);
              var localFilesArr       = new Array();
                 var jsonArg1            = new Object();
@@ -160,7 +160,7 @@ $(function() {
                     }
                 })
         });
-
+*/
         //DropZone setup 
         $(document).bind('dragover', function (e) {
             var dropZone = $('#dropzone'),
