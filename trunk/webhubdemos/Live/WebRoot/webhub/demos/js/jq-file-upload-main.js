@@ -67,6 +67,9 @@ $(function() {
         'use strict';
         // Initialize the jQuery File Upload widget:
         var e = $("#fileupload");
+
+
+
     e.fileupload({
         // Uncomment the following to send cross-domain cookies:
         //xhrFields: {withCredentials: true},
@@ -81,7 +84,7 @@ $(function() {
             autoUpload: false,
             dataType: "json",
             sequentialUploads: false,
-           /* add: function(t, n) {
+            add: function(t, n) {
                 console.log(n.files);
                 var localFilesArr       = new Array();
                 var jsonArg1            = new Object();
@@ -97,11 +100,22 @@ $(function() {
                     data: {
                        fileDetails: JSON.stringify(jsonArg1)
                     },
-                    success: function(t) {
-                        e.find("input[name=key]").val(t.key), e.find("input[name=policy]").val(t.policy), e.find("input[name=signature]").val(t.signature)
+                    success: function(data) {
+                        console.log(data);
+                        var fileName = data.ShowcaseResponse.ConfirmedFname;
+                        var ResponseType = data.ShowcaseResponse.ResponseType;
+                        var SignData = data.ShowcaseResponse.SignData;
+                        if(ResponseType == "OK"){
+                            var key = SignData.awsResource;
+                            var policy = SignData.awsPolicy64;
+                            var signature = SignData.awsUploadSignature;
+                            var awsDownloadURL = SignData.awsDownloadURL;
+                            e.find("input[name=key]").val(key), e.find("input[name=policy]").val(policy), e.find("input[name=signature]").val(signature)
+                        }
+                        
                     }
-                })
-            },*/
+                }),n.submit() 
+            },
             send: function(e, t) {
                 
                 $(".progress").fadeIn()
