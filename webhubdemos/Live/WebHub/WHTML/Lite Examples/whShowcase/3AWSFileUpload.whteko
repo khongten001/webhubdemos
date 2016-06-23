@@ -15,17 +15,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 
-<h2>File Upload</h2>
-<p>References:</p>
-<ol>
-<li> <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload details</a> </li>
-<li> <a href="https://aws.amazon.com/articles/1434">Browser Uploads to S3: overview</a></li>
-<li> <a href="http://needs-be.blogspot.com/2016/05/how-to-set-up-and-serve-private-content.html">How to Set Up and Serve Private Content</li>
-<li> <a href="http://needs-be.blogspot.com/2016/06/using-openssl-on-windows-to-sign-file.html">OpenSSL on Windows for File Upload</a> </li>
-<li> <a href="https://www.openssl.org/docs/manmaster/crypto/EVP_SignInit.html">OpenSSL manual, EVP_SignInit function</a> </li>
-<li> <a href="https://aws.amazon.com/blogs/aws/new-aws-certificate-manager-deploy-ssltls-based-apps-on-aws/">HTTPS cert from Amazon for use with CloudFront</a> </li>
-</ol>
-
+<h2>File Upload to AWS S3</h2>
       <div>
 	<h3>Select a JPEG image to upload</h3>
 	<p>Notes: Maximum allowed filesize is currently <b>400,000 bytes</b>; please select JPG image with a <b>lowercase file extension</b>
@@ -54,8 +44,21 @@ on your local system; and, you will need to accept Amazon's https certificate on
 	</form>
       </div>
 
+<h3>References</h3>
+<ol>
+<li> <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html">AWS Docs, file upload details</a> </li>
+<li> <a href="https://aws.amazon.com/articles/1434">Browser Uploads to S3: overview</a></li>
+<li> <a href="http://needs-be.blogspot.com/2016/05/how-to-set-up-and-serve-private-content.html">How to Set Up and Serve Private Content</li>
+<li> <a href="http://needs-be.blogspot.com/2016/06/using-openssl-on-windows-to-sign-file.html">OpenSSL on Windows for File Upload</a> </li>
+<li> <a href="https://www.openssl.org/docs/manmaster/crypto/EVP_SignInit.html">OpenSSL manual, EVP_SignInit function</a> </li>
+<li> <a href="https://aws.amazon.com/blogs/aws/new-aws-certificate-manager-deploy-ssltls-based-apps-on-aws/">HTTPS cert from Amazon for use with CloudFront</a> </li>
+<li> <a href="http://screenshots.href.com/googlechrome/google-chrome-xhr.png">See XHR content using Google Chrome Developer Tools</a> </li>
+</ol>
+
+<h3>See Also</h3>
 <p style="padding-top: 2em;">
-Under construction, alternate UI: (~JUMP|pgAWSJqFileUpload|File upload using JQuery~)
+Alternate, fancier user interface: (~JUMP|pgAWSJqFileUpload|File upload using JQuery~) with drag and drop, support for multiple files, 
+and call-backs to the WebHub application for the secure signatures. 
 </p>
 
 (~drShowcaseGlobalFooter~)
