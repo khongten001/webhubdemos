@@ -35,7 +35,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 
 		<input type="hidden" name="signature" 
 		value="(~AWSSignature2|(~drShowcaseFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
-
+ 
 	    File to upload to S3: <input type="file" name="file" accept="image/jpeg" /> <br />
 
 	    <!--- All elements after the FILE will be ignored so just go to the SUBMIT button now. -->
@@ -136,7 +136,7 @@ and that the resource is your specific file rather than any wildcard *.jpg:</p>
 document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSCloudFrontSecurityProvider.Execute|policy~), null, 2); /* indented with 2 spaces */
 </script>
 </pre>
-
+  
 <p style="padding-top: 2em;">(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
 
 (~drShowcaseGlobalFooter~)
