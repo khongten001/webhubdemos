@@ -224,7 +224,7 @@ begin
   if pWebApp.AppID = 'showcase' then
   begin
     pWebApp.Situations.SideDoorPageIDs :=  // requires wh v3.258+ 19-Jun-2016
-      'pgAWSStartFileUpload,pgAWSJqFileUpload';
+      'pgAWSStartFileUpload,pgAWSJqFileUpload,pgDownload';
   end;
 
   // HTTP 1.1 specification
