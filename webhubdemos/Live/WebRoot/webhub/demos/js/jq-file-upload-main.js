@@ -66,24 +66,18 @@
 $(function() {
         'use strict';
         // Initialize the jQuery File Upload widget:
-        var e = $("#fileupload");
-
-
-
-    e.fileupload({
-        // Uncomment the following to send cross-domain cookies:
-        //xhrFields: {withCredentials: true},
-        url: e.attr("action")
-    });
+        var form= $("#fileupload");
 
         
-         e.fileupload('option',{
+         form.fileupload({
             dropZone: $('#dropzone'),
-            url: e.attr("action"),
+            acceptFileTypes: /(\.|\/)(gif|jpe?g|png|mp3|mp4)$/i,
+            maxFileSize: 400000, //400kbytes //400000
+            url: form.attr("action"),
             type: "POST",
             autoUpload: false,
-            dataType: "json",
-            sequentialUploads: false,
+            dataType: "XML",
+            sequentialUploads: true,
 /*            add: function(t, n) {
                 console.log(n.files);
                 var localFilesArr       = new Array();
@@ -125,23 +119,68 @@ $(function() {
                 $(".bar").css("width", n + "%")
             },
             fail: function(e, t) {
-                console.log("fail")
+              /*  console.log(t.context);*/
+                var ErrMessage  = $(t.jqXHR.responseXML).find("Message").text();
+                if(ErrMessage){
+                    t.context.find('strong.error').html("Error : "+ ErrMessage);
+                }else{
+                   t.context.find('strong.error').html("Error : "+ file.error); 
+                }
+                 
+                 //t.context.html(ErrMessage); 
             },
-            success: function(e) {
-                var t = decodeURIComponent($(e).find("Location").text());
-                $("#photo_file").val(t)
+            success: function(e,t) {
+               
+               //if t=="nocontent" upload complete :) 
+
+                /*var t = decodeURIComponent($(e).find("Location").text());
+                   $.ajax({
+                        url: file_upload_options.sign_url,
+                        type: "POST",
+                        dataType: "json",
+                        data: {
+                           fileDetails: JSON.stringify(jsonArg1)
+                        },
+                        success: function(data) {
+                            var fileName = data.ShowcaseResponse.ConfirmedFname;
+                            var ResponseType = data.ShowcaseResponse.ResponseType;
+                            var SignData = data.ShowcaseResponse.SignData;
+                            if(ResponseType == "OK"){
+                                var key = SignData.awsResource;
+                                var policy = SignData.awsPolicy64;
+                                var signature = SignData.awsUploadSignature;
+                                var awsDownloadURL = SignData.awsDownloadURL;
+                                e.find("input[name=key]").val(key), e.find("input[name=policy]").val(policy), e.find("input[name=signature]").val(signature)
+                            }
+                            
+                        }
+                    });*/
             },
             done: function(e, t) {
+
                 $(".progress").fadeOut(300, function() {
                     $(".bar").css("width", 0)
                 })
+
             }
         });
 
-
-/*        e.bind('fileuploadadded', function (e, n) {
-            console.log(n);
-             var localFilesArr       = new Array();
+        form.bind('fileuploadsubmit', function (e, n) {
+               var file_type = n.files[0].type;
+               n.formData = {
+                    'Content-Type': file_type,
+                    'key': form.find("input[name=key]").val(),
+                    'acl': form.find("input[name=acl]").val(),
+                    'Cache-Control': form.find("input[name=Cache-Control]").val(),
+                    'AWSAccessKeyId': form.find("input[name=AWSAccessKeyId]").val(),
+                    'policy': form.find("input[name=policy]").val(),
+                    'signature': form.find("input[name=signature]").val(),
+                };
+        });
+       form.bind('fileuploadadded', function (e, n) {
+              //var file_type = n.files[0].type;
+               //e.find("input[name=Content-Type]").val(file_type);
+             /*var localFilesArr       = new Array();
                 var jsonArg1            = new Object();
                 jsonArg1.fname          = n.files[0].name;
                 jsonArg1.ftype          = n.files[0].type;
@@ -156,11 +195,11 @@ $(function() {
                        fileDetails: JSON.stringify(jsonArg1)
                     },
                     success: function(t) {
-                        e.find("input[name=key]").val(t.key), e.find("input[name=policy]").val(t.policy), e.find("input[name=signature]").val(t.signature)
+                        form.find("input[name=key]").val(t.key), e.find("input[name=policy]").val(t.policy), e.find("input[name=signature]").val(t.signature)
                     }
-                })
+                })*/
         });
-*/
+
         //DropZone setup 
         $(document).bind('dragover', function (e) {
             var dropZone = $('#dropzone'),
