@@ -27,6 +27,10 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
    height: auto !important;
    min-height:200px !important;
 }
+/*Messages Color */
+strong.error{
+  color:#e40808 !important;
+}
 /*Drop zone effect */
 #dropzone {
     background: transparent;
@@ -99,35 +103,10 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
       <script src="/webhub/demos/js/jQuery-File-Upload/js/cors/jquery.xdr-transport.js"></script>
       <![endif]-->
 
-      <script type="text/javascript">
-         $(function(){
-            $("#ajaxtest").on("click",function(){
-                var localFilesArr       = new Array();
-                var jsonArg1            = new Object();
-                jsonArg1.fname          = "SomeJpgFile.jpg";
-                jsonArg1.ftype          = "image/jpeg";
-                jsonArg1.fsize          = "119572";
-                jsonArg1.flastmodified  = "1466365896100";
-                $.ajax({
-                    url: file_upload_options.sign_url,
-                    type: "POST",
-                    dataType: "html",
-                    data: {
-                       fileDetails: JSON.stringify(jsonArg1)
-                    },
-                    success:function(data)
-                    {
-                       $("#ajaxTextResult").html(data);
-                    } 
-                })
-            });
-         })
-      </script>
-
 ~)
 </whdroplet>
 <whdroplet name="drShowcaseJqFileUploadPolicy">
-{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type","image/"],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
+{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type",""],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
 </whdroplet>
 
 <whpage pageid="pgAWSJqFileUpload" desc="Upload files to AWS S3 using JQuery fileupload">
@@ -141,11 +120,6 @@ bNoMore=true
 
 <h2>File Upload using JQuery File Upload</h2>
 
-<button id="ajaxtest">Ajax Test</button>
-<div style="" id="ajaxTextResult">
-  
-</div>
-
 <div id="JQfileUploadDemo">
   <!-- The file upload form used as target for the file upload widget -->
   <div class="log"></div>
@@ -154,7 +128,7 @@ bNoMore=true
     <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
     <input type="hidden" name="acl" value="authenticated-read" />
     
-    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
+    <!--- <input type="hidden" name="Content-Type" value="image/jpeg" /><br /> --> 
     <input type="hidden" name="Cache-Control" value="max-age=2419200"<!---4 weeks -->/><br />
     <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
     <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseJqFileUploadPolicy~)~)" />
@@ -194,10 +168,12 @@ bNoMore=true
     <tr class="template-upload fade">
       <td>
         <span class="preview"></span>
+        <input name="Content-Type" type="hidden" value="{%=file.type%}" />
       </td>
       <td>
         <p class="name">{%=file.name%}</p>
         <strong class="error"></strong>
+        <strong class="success"></strong>
       </td>
       <td>
         <p class="size">Processing...</p>
@@ -216,7 +192,7 @@ bNoMore=true
   </script>
   <!-- The template to display files available for download -->
   <script id="template-download" type="text/x-tmpl">
-    {% for (var i=0, file; file=o.files[i]; i++) { %}
+    {% for (var i=0, file; file=o.files[i]; i++) { alert(0); %}
       <tr class="template-download fade">
         <td>
           <span class="preview">
