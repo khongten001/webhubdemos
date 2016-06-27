@@ -67,19 +67,18 @@ AppID demos? Ok.
 </li>
 
 <whdroplet name="drHideToDemoEntrance" show="no">
-(~NOMATCH|(~AppID~)=demos|
- (~HIDE|pgEnter(~AppID~)|(~~Entrance~)~)
-||
-<!--- special processing for the DEMOS demo which runs on multiple domains -->
 (~CLEAR|_FlagEnt~)
-(~MATCH|(~Request.Host~)!lite.demos|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!more.demos|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterMoreDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)!db.demos|           (~CHECK|_FlagEnt~)(~HIDE|pgEnterDemos|     id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~MATCH|(~Request.Host~)=demos.href.com|     (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~NOMATCH|href.com[(~Request.Host~)|         (~CHECK|_FlagEnt~)(~HIDE|pgEnterLiteDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~IFNOT|_FlagEnt|(~HIDE|pgEnterDemos| id="a2-pgenterdemos" |(~~Entrance~)~)~)
-(~CLEAR|_FlagEnt~)
+(~NOMATCH|(~AppID~)=demos| (~HIDE|pgEnter(~AppID~)|(~~Entrance~)~) ~)
+
+(~MATCH|(~AppID~)=demos|<!--- special processing for the DEMOS demo which runs on multiple domains -->
+  (~MATCH|(~Request.Host~)!lite.demos|     (~mcAH2~) ~)
+  (~MATCH|(~Request.Host~)!more.demos|     (~mcAH3~) ~)
+  (~MATCH|(~Request.Host~)!db.demos|       (~mcAH4~) ~)
+  (~MATCH|(~Request.Host~)=demos.href.com| (~mcAH5~) ~) 
+(~NOMATCH|href.com[(~Request.Host~)|       (~mcAH6~) ~)
+  (~IFNOT|_FlagEnt|                        (~mcAH7~) ~)
 ~)
+(~CLEAR|_FlagEnt~)
 </whdroplet>
 
 <whdroplet name="drLinkToAllDemos" show="no">
@@ -102,6 +101,14 @@ AppID demos? Ok.
 </whoutput>
 </whpage>
 
+<whmacros>
+mcAH2=(~CHECK|_FlagEnt~) (~HIDE|pgEnterLiteDemos| id="ah2-pgenterdemos" |(~~Entrance~)~)
+mcAH3=(~CHECK|_FlagEnt~) (~HIDE|pgEnterMoreDemos| id="ah3-pgenterdemos" |(~~Entrance~)~)
+mcAH4=(~CHECK|_FlagEnt~) (~HIDE|pgEnterDemos|     id="ah4-pgenterdemos" |(~~Entrance~)~)
+mcAH5=(~CHECK|_FlagEnt~) (~HIDE|pgEnterLiteDemos| id="ah5-pgenterdemos" |(~~Entrance~)~)
+mcAH6=(~CHECK|_FlagEnt~) (~JUMP|pgEnterLiteDemos| id="ah6-pgenterdemos" |(~~Entrance~)~)
+mcAH7=                   (~HIDE|pgEnterDemos|     id="ah7-pgenterdemos" |(~~Entrance~)~)
+</whmacros>
 
 <whpage pageid="pgSetup" desc="Setup Instructions and/or Requirements for this Demo">
 <whoutput>
