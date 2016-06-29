@@ -9,68 +9,34 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 (~ANCHORMODIFY|anchPageEndJS|<!-- Note: JQuery included for Zurb Foundation -->
 
       <!-- jQuery UI styles -->
-
+<!-- 
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/dark-hive/jquery-ui.css" id="theme">
-
+-->
       <link rel="stylesheet" href="/webhub/demos/js/jQuery-File-Upload/css/jquery.fileupload.css">
+      <link rel="stylesheet" href="/webhub/demos/js/jq-file-upload-main.css">
+<!--  
       <link rel="stylesheet" href="/webhub/demos/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
+-->
 <style>
-/* Adjust the jQuery UI widget font-size: */
-.ui-widget {
-    font-size: 0.95em;
-}
-/*howcase design fix*/
-.fileinput-button{
-   top:-9px;
-}
 #whdemopagecontent{
    height: auto !important;
    min-height:200px !important;
 }
-/*Messages Color */
-strong.error{
-  color:#e40808 !important;
-}
-/*Drop zone effect */
-#dropzone {
-    background: transparent;
-    /* width: 150px; */
-    border: 3px dashed #CCC;
-    line-height: 50px;
-    display: flex;
-    height: 100px;
-    color: #7e7b7b;
-    vertical-align: top;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-#dropzone.in {
-    width: 100%;
-    height: 200px;
-    line-height: 200px;
-    font-size: larger;
-}
-#dropzone.hover {
-    background: lawngreen;
-}
-#dropzone.fade {
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    -ms-transition: all 0.3s ease-out;
-    -o-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-    opacity: 1;
-}
 </style>  
       <script>
         var file_upload_options = {
-          sign_url : "(~ACTIONR|ajaxJQFileUploadStarting,(~waLSec.execute|out,120~),~)" 
+          /* Allow webhub Ajax Callback */
+          allow_start_action:true,
+          allow_complete_action:true,
+          allow_fail_action:true,
+
+          upload_start_action : "(~ACTIONR|ajaxJQFileUploadStarting,(~waLSec.execute|out,120~),~)",
+          upload_complete_action : "(~ACTIONR|ajaxJQFileUploadComplete,(~waLSec.execute|out,120~),~)",
+          upload_fail_action :  "(~ACTIONR|ajaxJQFileUploadFail,(~waLSec.execute|out,120~),~)",
+          download_url : "(~ACTIONR|ajaxJQFileUploadDownloadUrl,(~waLSec.execute|out,120~),~)"
         }
       </script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+      < <script src="/webhub/demos/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script> 
       <!-- The Templates plugin is included to render the upload/download listings -->
       <script src="/webhub/demos/js/tmpl.min.js"></script>
       <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
@@ -95,7 +61,7 @@ strong.error{
       <!-- The File Upload user interface plugin -->
       <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
       <!-- The File Upload jQuery UI plugin -->
-      <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-jquery-ui.js"></script>
+    <!--  <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-jquery-ui.js"></script>  -->
       <!-- The main application script -->
       <script src="/webhub/demos/js/jq-file-upload-main.js"></script>
       <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
@@ -118,12 +84,38 @@ bNoMore=true
 
 <h1 style="color:red; background-color: yellow;">Under Construction</a></h1>
 
-<h2>File Upload using JQuery File Upload</h2>
+<h2>File Upload to S3 using JQuery Plugins</h2>
 
 <div id="JQfileUploadDemo">
-  <!-- The file upload form used as target for the file upload widget -->
-  <div class="log"></div>
   <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com" method="POST" enctype="multipart/form-data">
+    
+    <div class="fileUploadErrMsgs"></div>
+    <table role="presentation" class="fileUploadList">
+        <thead>
+          <th class="nameTH">File Name</th>
+          <th class="extTH">Extension</th>
+          <th class="sizeTH">Size</th>
+          <th class="downloadTH">Download </th>
+        </thead>
+        <tbody class="files"></tbody>
+    </table>
+    <div class="fileupload-progress fade" style="">
+        <!-- The global progress bar -->
+      <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+    </div>
+    <div id="dropzone" class="fade well">Drop files here</div>
+
+    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
+    <div class="fileupload-buttonbar">
+      <!-- The global progress state -->
+      <div class="fileupload-buttons">
+        <!-- The fileinput-button span is used to style the file input field as button -->
+        <span class="fileinput-button">
+          <span>Upload</span>
+          <input name='file' type='file' multiple>
+        </span>
+      </div>
+    </div><!-- fileupload-buttonbar -->
     
     <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
     <input type="hidden" name="acl" value="authenticated-read" />
@@ -134,91 +126,8 @@ bNoMore=true
     <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseJqFileUploadPolicy~)~)" />
     <input type="hidden" name="signature" value="(~AWSSignature2|(~drShowcaseJqFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
     <!--    <input type="hidden" name="success_action_status" vale="201"/> -->
-    
-    <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
-    <div class="fileupload-buttonbar">
-      <div class="fileupload-buttons">
-        <!-- The fileinput-button span is used to style the file input field as button -->
-        <span class="fileinput-button">
-          <span>Add files.</span>
-          <input name='file' type='file' multiple>
-        </span>
-        <button type="submit" class="start">Start upload</button>
-        <button type="reset" class="cancel">Cancel upload</button>
-        <button type="button" class="delete">Delete</button>
-        <input type="checkbox" class="toggle">
-        <!-- The global file processing state -->
-        <span class="fileupload-process"></span>
-      </div>
-      <!-- The global progress state -->
-      <div class="fileupload-progress fade" style="display:none">
-        <!-- The global progress bar -->
-        <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
-        <!-- The extended global progress state -->
-        <div class="progress-extended">&nbsp;</div>
-      </div>
-    </div>
-    <div id="dropzone" class="fade well">Drop files here</div>
-    <!-- The table listing the files available for upload/download -->
-    <table role="presentation"><tbody class="files"></tbody></table>
   </form>
-  <!-- The template to display files available for upload -->
-  <script id="template-upload" type="text/x-tmpl">
-  {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <tr class="template-upload fade">
-      <td>
-        <span class="preview"></span>
-        <input name="Content-Type" type="hidden" value="{%=file.type%}" />
-      </td>
-      <td>
-        <p class="name">{%=file.name%}</p>
-        <strong class="error"></strong>
-        <strong class="success"></strong>
-      </td>
-      <td>
-        <p class="size">Processing...</p>
-        <div class="progress"></div>
-      </td>
-      <td>
-        {% if (!i && !o.options.autoUpload) { %}
-          <button class="start" disabled>Start</button>
-          {% } %}
-          {% if (!i) { %}
-            <button class="cancel">Cancel</button>
-            {% } %}
-          </td>
-        </tr>
-        {% } %}
-  </script>
-  <!-- The template to display files available for download -->
-  <script id="template-download" type="text/x-tmpl">
-    {% for (var i=0, file; file=o.files[i]; i++) { alert(0); %}
-      <tr class="template-download fade">
-        <td>
-          <span class="preview">
-            {% if (file.thumbnailUrl) { %}
-              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
-              {% } %}
-            </span>
-          </td>
-          <td>
-            <p class="name">
-              <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
-            </p>
-            {% if (file.error) { %}
-              <div><span class="error">Error</span> {%=file.error%}</div>
-              {% } %}
-            </td>
-            <td>
-              <span class="size">{%=o.formatFileSize(file.size)%}</span>
-            </td>
-            <td>
-              <button class="delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>Delete</button>
-                <input type="checkbox" name="delete" value="1" class="toggle">
-              </td>
-            </tr>
-            {% } %}
-  </script>
+ 
 </div><!-- #JQfileUploadDemo -->
 
 <p><!--- to match a close-para in the footer -->
@@ -252,5 +161,49 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
   }
 }(~CLOSE|~)
 </whpage>
-
+<whpage pageid="ajaxJQFileUploadComplete" desc="-call back: indicates file upload complete">
+(~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
+(~waCodeSite.Execute|info|userip,(~Request.RemoteAddress~)~)
+{
+  "ShowcaseResponse": {
+    "Version": "1.0",
+    "Function": "JQFileUploadComplete",
+    "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
+    "Error": "",<!--- blank or Ennn such as E100 -->
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
+    <!--- 65 below means 65 minutes -->
+    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+  }
+}(~CLOSE|~)
+</whpage>
+<whpage pageid="ajaxJQFileUploadFail" desc="-call back: indicates file upload fail">
+(~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
+(~waCodeSite.Execute|info|userip,(~Request.RemoteAddress~)~)
+{
+  "ShowcaseResponse": {
+    "Version": "1.0",
+    "Function": "JQFileUploadFail",
+    "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
+    "Error": "",<!--- blank or Ennn such as E100 -->
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
+    <!--- 65 below means 65 minutes -->
+    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+  }
+}(~CLOSE|~)
+</whpage>
+<whpage pageid="ajaxJQFileUploadDownloadUrl" desc="-call back: indicates file Download Url Request">
+(~FLUSH|~)(~SETPROLOGUETYPE|application/json~)
+(~waCodeSite.Execute|info|userip,(~Request.RemoteAddress~)~)
+{
+  "ShowcaseResponse": {
+    "Version": "1.0",
+    "Function": "JQFileUploadDownloadUrl",
+    "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
+    "Error": "",<!--- blank or Ennn such as E100 -->
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
+    <!--- 65 below means 65 minutes -->
+    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+  }
+}(~CLOSE|~)
+</whpage>
 </whteko>
