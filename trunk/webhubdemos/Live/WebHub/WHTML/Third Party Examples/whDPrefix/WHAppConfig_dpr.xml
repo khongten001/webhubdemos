@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
@@ -32,21 +32,23 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortdpr" context="WESLEY"/>
+        <ForceCase value="none"/>
         <UseAppID value="true"/>
+        <UseAppProcessID value="false"/>
       </DynURLConfig>
       <ProjectSyntax value="0214"/>
       <ProjectLingvo value="eng"/>
     </AppProperties>
     <AppSettings>
-      <AppSetting name="Advertise" value="True" />
-      <AppSetting name="Advertise" value="False" context="ultraann" />
+      <AppSetting name="Advertise" value="True"/>
+      <AppSetting name="Advertise" value="False" context="ultraann"/>
       <AppSetting name="AlphaLetters" value="26"/>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" context="WESLEY" />
+      <AppSetting name="DesignRefreshEnabled" value="False" context="WESLEY"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
-      <AppSetting name="ShowSessionVars" value="False" />
+      <AppSetting name="ShowSessionVars" value="False"/>
     </AppSettings>
     <PageGeneration>
       <AutoPageFooter dropletName="None"/>
@@ -67,7 +69,7 @@
       <AppRoot value="/webhub/demos/whDPrefix/" context="ultraann"/>
     </Static>
     <StreamCatcherInterface>
-      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg" />
+      <WebRobotIniFilespec value="D:\Projects\webhubdemos\Live\scwebsites\wwwDPR\Config\SCWebSiteConfig_wwwDPR.cfg"/>
       <WebRobotIniSection value="wwwDPR.WebHubURLFiltering"/>
     </StreamCatcherInterface>
     <TekoFiles>
