@@ -149,6 +149,12 @@ $(function() {
         */ 
         form.bind('fileuploadsubmit', function (e, data) {
                var file_type = data.files[0].type;
+              // var ext_ = file.name.split('.').pop();
+
+               if(file_type==""){
+                    file_type = "application/octet-stream";
+               }
+               console.log("File Type : "+ file_type);
                data.formData = {
                     'Content-Type': file_type,
                     'key': form.find("input[name=key]").val(),
@@ -199,10 +205,15 @@ function addFileToList(data){
           var rows = $();
           $.each(data.files, function (index, file) {
            // console.log(file);
+           var fcontentType =  file.type;
+           if(fcontentType==""){
+                    fcontentType = "application/octet-stream";
+            }
             var row = $('<tr class="template-download fade">' +
                             '<td class="nameTD"><p class="fname"></p></td>' +
                             '<td class="extTD"><span class="fext"></span></td>' +
                             '<td class="sizeTD"><span class="fsize"></span></td>' +
+                            '<td class="contentTypeTD"><span class="fcontentType"></span></td>' +
                             '<td class="downloadTD"><a title="Test download of your file from AWS CloudFront" data-file="" class="fdownload" onClick="downloadAjaxFile(this);"><span>&#x1f4be;</span></a></td>' +
                             '' +
                          '</tr>');
@@ -210,6 +221,7 @@ function addFileToList(data){
                 row.find('.fname').append(file.name);
                 var ext_ = file.name.split('.').pop();
                 row.find('.fext').append("."+ext_);
+                row.find('.fcontentType').append(fcontentType);
                 row.find('.fdownload').attr('data-file',file.name);
                 rows = rows.add(row);
         });
