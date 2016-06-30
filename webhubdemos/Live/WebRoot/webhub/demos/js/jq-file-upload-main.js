@@ -210,7 +210,7 @@ function addFileToList(data){
                 row.find('.fname').append(file.name);
                 var ext_ = file.name.split('.').pop();
                 row.find('.fext').append("."+ext_);
-                row.find('.fdownload').attr('data-file',file.name.replace(ext_,""));
+                row.find('.fdownload').attr('data-file',file.name);
                 rows = rows.add(row);
         });
         $('table.fileUploadList tbody.files').append(rows);
