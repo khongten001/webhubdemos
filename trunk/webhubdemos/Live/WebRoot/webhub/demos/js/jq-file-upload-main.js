@@ -226,27 +226,23 @@ function addShowErr(msg){
     var filename = $(aTagObj).attr('data-file');
     filename = (escapeJQFilename(filename));
     var jsonArg1            = new Object();
-        jsonArg1.fname          = filename;
+        jsonArg1.fileToSign          = filename;
      $.ajax({
         url: file_upload_options.download_url,
         type: "POST",
         dataType: "json",
         data: {
-           fileDetails: JSON.stringify(jsonArg1)
+           fileDetails: JSON.stringify(jsonArg1),
+           filetosign: filename
         },
         success: function(data) {
-            console.log("WH AJAX DATA (File Download Url) ");
-            console.log(data);
-            var fileName = data.ShowcaseResponse.ConfirmedFname;
+           
             var ResponseType = data.ShowcaseResponse.ResponseType;
-            var SignData = data.ShowcaseResponse.SignData;
             if(ResponseType == "OK"){
-                var key = SignData.awsResource;
-                var policy = SignData.awsPolicy64;
-                var signature = SignData.awsUploadSignature;
-                var awsDownloadURL = SignData.awsDownloadURL;
-                console.log("Download Url : " + awsDownloadURL);
-               download_file_url(awsDownloadURL);
+                 console.log("WH AJAX DATA (File Download Url) ");
+                var download_url = data.ShowcaseResponse.URL;
+                console.log(download_url);
+               download_file_url(download_url);
             }
             
         }
