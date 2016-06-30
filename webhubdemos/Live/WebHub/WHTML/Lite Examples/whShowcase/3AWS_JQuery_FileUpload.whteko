@@ -87,8 +87,6 @@ bNoMore=true
 (~drRenderJqFileUploadCSS~)
 (~drRenderJqFileUploadJS~)
 
-<h1 style="color:red; background-color: yellow;">Under Construction</h1>
-
 <h2>File Upload to S3 using JQuery Plugins</h2>
 
 <div id="JQfileUploadDemo">
