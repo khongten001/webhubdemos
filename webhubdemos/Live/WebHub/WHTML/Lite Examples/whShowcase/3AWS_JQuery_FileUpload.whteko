@@ -134,7 +134,16 @@ bNoMore=true
     <input type="hidden" name="signature" value="(~AWSSignature2|(~drShowcaseJqFileUploadPolicy~); (~waTextFileContent.Execute|(~AppSetting.TextFileContent-FileUploadSecret~)~)~)" />
     <!--    <input type="hidden" name="success_action_status" vale="201"/> -->
   </form>
- 
+
+<p><h4>Notes</h4>
+<ol>
+<li> WebHub v3.258+ is required to compile this demo. </li>
+<li> File size limit is set to 400kb in this demo </li>
+<li> Download is restricted to your ip number, for a set number of minutes </li>
+<li> To learn more about upload/download to Amazon storage, see (~JUMP|pgAWSStartFileUpload|File Upload to S3 without JQuery~).</li>
+</ol>
+
+
 </div><!-- #JQfileUploadDemo -->
 
 
