@@ -101,6 +101,7 @@ bNoMore=true
             <th class="nameTH">File Name</th>
             <th class="extTH">Extension</th>
             <th class="sizeTH">Size</th>
+            <th class="contentTypeTH">Content Type</th>
             <th class="downloadTH">Download </th>
           </tr>
         </thead>
