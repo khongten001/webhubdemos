@@ -154,11 +154,12 @@ table.fileUploadList td a.fdownload:active {
     border-radius: 4px;
     background-color: #ffebeb;
     display: none;
+
 }
 
 .fileUploadErrMsgs p {
-    font-size: 14px;
-    font-weight: bold;
+    font-size: 12px;
+    font-weight: normal;
     color: #ca2f0b;
     line-height: 20px;
     margin: 0px;
