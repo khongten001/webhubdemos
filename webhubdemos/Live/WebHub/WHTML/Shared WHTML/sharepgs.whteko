@@ -519,6 +519,7 @@ you win, because it requires so much time, energy and financial resources.</p>
 <h2>TwhApplication</h2>
 <ul>
 <li> AppID: (~AppID~)</li>
+<li> AppProcessID: (~AppProcessID~) </li>
 <li> AppPath: (~AppPath~)</li>
 <li> AppRoot: (~Static.AppRoot~)</li>
 <li> Command: (~Command~)</li>
