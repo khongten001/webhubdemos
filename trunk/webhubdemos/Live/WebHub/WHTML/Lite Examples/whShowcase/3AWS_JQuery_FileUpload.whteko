@@ -36,7 +36,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
           download_url : "(~ACTIONR|ajaxJQFileUploadDownloadUrl,(~waLSec.execute|out,120~),~)"
         }
       </script>
-      < <script src="/webhub/demos/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script> 
+      <script src="/webhub/demos/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script> 
       <!-- The Templates plugin is included to render the upload/download listings -->
       <!-- <script src="/webhub/demos/js/tmpl.min.js"></script> -->
       <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
