@@ -13,14 +13,18 @@ $(function() {
             dataType: "XML",
             uploadTemplateId: null,
             downloadTemplateId: null,
+            sequentialUploads: true, //Set this option to true to issue all file upload requests in a sequential order instead of simultaneous requests.
             add: function(e, data) {
-                $(".fileupload-progress").fadeIn();
                  //console.log(data.files);
                 //Validations will be here 
                 if(data.files[0].size > maxFileSizeCustom){
                     var ErrMessage = "File is too large";
                     addShowErr(data.files[0].name+ ", " + ErrMessage +", "+ formatFileSize_jqupload(data.files[0].size));                  
                 }else{
+                    //No Error Good To Go
+                    $(".fileupload-progress").fadeIn();
+                    $(".current_file").fadeIn();
+                    $(".current_file").html("Please wait...");
                      if(file_upload_options.allow_start_action==true){
                             var jsonArg1            = new Object();
                             jsonArg1.fname          = data.files[0].name,
@@ -53,6 +57,11 @@ $(function() {
             },
             send: function(e, data) { },
             success: function(e,t) { },
+            progress: function(e, data) {
+                var n = Math.round(data.loaded / data.total * 100);
+                $(".current_file").html("<b>" +n + "%</b> " + " " + short_file_name(data.files[0].name) +"  &nbsp;&nbsp;(<b><i>"+ formatFileSize_jqupload(data.bitrate)+"/s</i></b>)");
+               // console.log(n + "%");
+            },
             progressall: function(e, data) {
                 var n = Math.round(data.loaded / data.total * 100);
                 $(".fileupload-progress .progress").css("width", n + "%");
@@ -132,13 +141,17 @@ $(function() {
                 console.log("All upload Complete");
                  setTimeout(function(){
                      $(".fileupload-progress").fadeOut(300, function() {
-                        $(".fileupload-progress .progress").css("width", 0)
+                        $(".fileupload-progress .progress").css("width", 0);
+                        $(".current_file").html('').hide();
                     });
                 },1500);
                 setTimeout(function(){
                     $('.fileUploadErrMsgs').html('');
                     $('.fileUploadErrMsgs').hide('fast');
                 },4500);
+            },
+            beforeSend: function(xhr, data) {
+                
             }
         });
 
@@ -150,7 +163,6 @@ $(function() {
         form.bind('fileuploadsubmit', function (e, data) {
                var file_type = data.files[0].type;
               // var ext_ = file.name.split('.').pop();
-
                if(file_type==""){
                     file_type = "application/octet-stream";
                }
@@ -229,10 +241,11 @@ function addFileToList(data){
     }
 }
 function addShowErr(msg){
-    $('.fileUploadErrMsgs').append("<p>Error : " + msg +"</p>");
+    $('.fileUploadErrMsgs').append("<p><b>Error :</b> " + msg +"</p>");
     $('.fileUploadErrMsgs').fadeIn("slow");
     setTimeout(function(){
         $('.fileUploadErrMsgs').fadeOut("slow");
+        $('.fileUploadErrMsgs').html('');
     },10000);
 }
  function downloadAjaxFile(aTagObj){
@@ -260,7 +273,7 @@ function addShowErr(msg){
             }
             
         }
-  });
+    });
 }
 
 
@@ -271,16 +284,6 @@ function download_file_url(awsDownloadURL,fileName){
          var this_ = $(this); 
          setTimeout(function(){ this_.remove(); },2000);
     });
-    /*if(window.VBArray){
-        //alert('1');
-        var alink = document.createElement('a');
-        alink.href = awsDownloadURL;
-        alink.target = '_Blank';
-        document.body.appendChild(alink);
-        alink.click();
-    }else{
-        window.location.href = awsDownloadURL;
-    }*/
 }
 function escapeJQFilename(filename) {
     var temp = filename;
@@ -307,3 +310,9 @@ function formatFileSize_jqupload(bytes) {
     }
     return (bytes / 1000).toFixed(2) + ' KB';
 } 
+function short_file_name(str) {
+  if (str.length > 35) {
+    return str.substr(0, 20) + '...' + str.substr(str.length-10, str.length);
+  }
+  return str;
+}

@@ -124,6 +124,7 @@ table.fileUploadList td a.fdownload:active {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
     height: 10px;
     margin: 10px auto;
+    margin-top:2px;
     overflow: hidden;
     width: 100%;
     display: none;
@@ -139,11 +140,15 @@ table.fileUploadList td a.fdownload:active {
     line-height: 20px;
     text-align: center;
     transition: width 0.6s ease 0s;
-    border-radius: 4px;
     padding: 0;
     width: 0;
+    border:none;
+    margin-bottom:0;
 }
-
+.current_file{
+    font-size: 11px;
+    display: none;
+}
 
 /*ErrMessages  */
 
