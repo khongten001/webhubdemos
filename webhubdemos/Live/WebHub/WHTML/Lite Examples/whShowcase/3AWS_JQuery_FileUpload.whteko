@@ -107,6 +107,7 @@ bNoMore=true
         </thead>
         <tbody class="files"></tbody>
     </table>
+    <div class="current_file"></div>
     <div class="fileupload-progress fade" style="">
         <!-- The global progress bar -->
       <div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
@@ -138,7 +139,6 @@ bNoMore=true
  
 </div><!-- #JQfileUploadDemo -->
 
-<p><!--- to match a close-para in the footer -->
 
 (~drShowcaseGlobalFooter~)
 
