@@ -51,7 +51,7 @@ mcSeqDir=(~mcSiteRoot~)demos/whShowcase/sequence/
 <whdroplet name="drShowcaseGlobalFooter">
 (~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseFooter~)||<!-- bSeqHdr is not true-->~)
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
-</div>
+<!--- </div> This Close Div cause of HTML structure break : Harman-->
 (~drPageEnd~)
 </body></html>
 </whdroplet>
