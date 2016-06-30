@@ -5,10 +5,9 @@
 See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 </whdoc>
 
-<whdroplet name="drRenderJqFileUploadJS">
-(~ANCHORMODIFY|anchPageEndJS|<!-- Note: JQuery included for Zurb Foundation -->
-
-      <!-- jQuery UI styles -->
+<whdroplet name="drRenderJqFileUploadCSS">
+(~ANCHORMODIFY|style|
+<!-- jQuery UI styles -->
 <!-- 
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/dark-hive/jquery-ui.css" id="theme">
 -->
@@ -17,12 +16,17 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 <!--  
       <link rel="stylesheet" href="/webhub/demos/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 -->
-<style>
-#whdemopagecontent{
-   height: auto !important;
-   min-height:200px !important;
-}
-</style>  
+    <style>
+      #whdemopagecontent{
+         height: auto !important;
+         min-height:200px !important;
+      }
+    </style>  
+~)
+</whdroplet>
+<whdroplet name="drRenderJqFileUploadJS">
+(~ANCHORMODIFY|anchPageEndJS|<!-- Note: JQuery included for Zurb Foundation -->
+
       <script>
         var file_upload_options = {
           /* Allow webhub Ajax Callback */
@@ -40,9 +44,9 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
       <!-- The Templates plugin is included to render the upload/download listings -->
       <!-- <script src="/webhub/demos/js/tmpl.min.js"></script> -->
       <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
-      <script src="/webhub/demos/js/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+     <!--  <script src="/webhub/demos/js/JavaScript-Load-Image/js/load-image.all.min.js"></script> -->
       <!-- The Canvas to Blob plugin is included for image resizing functionality -->
-      <script src="/webhub/demos/js/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+      <!-- <script src="/webhub/demos/js/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script> -->
 
       <!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
       <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.iframe-transport.js"></script>
@@ -51,17 +55,17 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
       <!-- The File Upload processing plugin -->
       <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-process.js"></script>
       <!-- The File Upload image preview & resize plugin -->
-      <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-image.js"></script>
+      <!-- <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-image.js"></script> -->
       <!-- The File Upload audio preview plugin -->
-      <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script>
+      <!-- <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-audio.js"></script> -->
       <!-- The File Upload video preview plugin -->
-      <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-video.js"></script>
+      <!-- <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-video.js"></script> -->
       <!-- The File Upload validation plugin -->
       <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-validate.js"></script>
       <!-- The File Upload user interface plugin -->
       <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-ui.js"></script>
       <!-- The File Upload jQuery UI plugin -->
-    <!--  <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-jquery-ui.js"></script>  -->
+      <!--  <script src="/webhub/demos/js/jQuery-File-Upload/js/jquery.fileupload-jquery-ui.js"></script>  -->
       <!-- The main application script -->
       <script src="/webhub/demos/js/jq-file-upload-main.js"></script>
       <!-- The XDomainRequest Transport is included for cross-domain file deletion for IE 8 and IE 9 -->
@@ -80,6 +84,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
+(~drRenderJqFileUploadCSS~)
 (~drRenderJqFileUploadJS~)
 
 <h1 style="color:red; background-color: yellow;">Under Construction</h1>
@@ -113,7 +118,7 @@ bNoMore=true
       <div class="fileupload-buttons">
         <!-- The fileinput-button span is used to style the file input field as button -->
         <span class="fileinput-button">
-          <span>Upload</span>
+          <span>Select File to Upload</span>
           <input name='file' type='file' multiple>
         </span>
       </div>
