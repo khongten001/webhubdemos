@@ -38,7 +38,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
       </script>
       < <script src="/webhub/demos/js/jQuery-File-Upload/js/vendor/jquery.ui.widget.js"></script> 
       <!-- The Templates plugin is included to render the upload/download listings -->
-      <script src="/webhub/demos/js/tmpl.min.js"></script>
+      <!-- <script src="/webhub/demos/js/tmpl.min.js"></script> -->
       <!-- The Load Image plugin is included for the preview images and image resizing functionality -->
       <script src="/webhub/demos/js/JavaScript-Load-Image/js/load-image.all.min.js"></script>
       <!-- The Canvas to Blob plugin is included for image resizing functionality -->
@@ -82,7 +82,7 @@ bNoMore=true
 (~drShowcaseGlobalHeader~)
 (~drRenderJqFileUploadJS~)
 
-<h1 style="color:red; background-color: yellow;">Under Construction</a></h1>
+<h1 style="color:red; background-color: yellow;">Under Construction</h1>
 
 <h2>File Upload to S3 using JQuery Plugins</h2>
 
@@ -92,10 +92,12 @@ bNoMore=true
     <div class="fileUploadErrMsgs"></div>
     <table role="presentation" class="fileUploadList">
         <thead>
-          <th class="nameTH">File Name</th>
-          <th class="extTH">Extension</th>
-          <th class="sizeTH">Size</th>
-          <th class="downloadTH">Download </th>
+          <tr>
+            <th class="nameTH">File Name</th>
+            <th class="extTH">Extension</th>
+            <th class="sizeTH">Size</th>
+            <th class="downloadTH">Download </th>
+          </tr>
         </thead>
         <tbody class="files"></tbody>
     </table>
