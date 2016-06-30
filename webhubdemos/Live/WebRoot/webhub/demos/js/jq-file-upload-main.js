@@ -208,8 +208,9 @@ function addFileToList(data){
                          '</tr>');
                 row.find('.fsize').text(formatFileSize_jqupload(file.size));
                 row.find('.fname').append(file.name);
-                row.find('.fext').append("."+file.name.split('.').pop());
-                row.find('.fdownload').attr('data-file',file.name);
+                var ext_ = file.name.split('.').pop();
+                row.find('.fext').append("."+ext_);
+                row.find('.fdownload').attr('data-file',file.name.replace(ext_,""));
                 rows = rows.add(row);
         });
         $('table.fileUploadList tbody.files').append(rows);
@@ -242,7 +243,8 @@ function addShowErr(msg){
                  console.log("WH AJAX DATA (File Download Url) ");
                 var download_url = data.ShowcaseResponse.URL;
                 console.log(download_url);
-               download_file_url(download_url);
+                //alert(download_url);
+               download_file_url(download_url,filename);
             }
             
         }
@@ -250,8 +252,14 @@ function addShowErr(msg){
 }
 
 
-function download_file_url(awsDownloadURL){
-    if(window.VBArray){
+function download_file_url(awsDownloadURL,fileName){
+    $("<a href='"+awsDownloadURL+"' target='_blank' download='"+fileName+"' class='downloadLnk' style='display:none;'>Download File</a>").appendTo( "body" );
+    setTimeout(function(){ $('.downloadLnk')[0].click(); },300);
+    $(document).on('click','.downloadLnk',function(){
+         var this_ = $(this); 
+         setTimeout(function(){ this_.remove(); },2000);
+    });
+    /*if(window.VBArray){
         //alert('1');
         var alink = document.createElement('a');
         alink.href = awsDownloadURL;
@@ -260,7 +268,7 @@ function download_file_url(awsDownloadURL){
         alink.click();
     }else{
         window.location.href = awsDownloadURL;
-    }
+    }*/
 }
 function escapeJQFilename(filename) {
     var temp = filename;
