@@ -98,6 +98,8 @@ $(function() {
                 var ErrMessage  = $(data.jqXHR.responseXML).find("Message").text();
                 if(ErrMessage){
                     addShowErr(data.files[0].name+ " " + ErrMessage);
+                }else{
+                    addShowErr(data.files[0].name+ ", <b><i>Unknown Error or (CORS)</i></b> ");
                 }
             },
             
