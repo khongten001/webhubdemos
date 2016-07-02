@@ -1,15 +1,16 @@
 setlocal
 
+d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=dpr --minutes=3 "--reason=upgrading web application"
+
 start TaskMgr
 rem wait until whDPrefix.exe is out of memory
 pause
 
-d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=dpr --minutes=1 "--reason=upgrading web application"
 
 cd /d %~dp0
 cd ..\WebHub\Apps
 
-if "%flagdemosdb%"=="yes" d:\Apps\Utilities\7Zip\7z.exe x Database-dpr.7z -aoa
+d:\Apps\Utilities\7Zip\7z.exe x Database-dpr.7z -aoa
 if errorlevel 1 pause
 
 :: No drive H on WESLEY server, July 2016
