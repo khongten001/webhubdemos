@@ -86,7 +86,6 @@ $(function() {
                             console.log(data);
                             var fileName = data.ShowcaseResponse.ConfirmedFname;
                             var ResponseType = data.ShowcaseResponse.ResponseType;
-                            var SignData = data.ShowcaseResponse.SignData;
                             if(ResponseType == "OK"){
                                 console.log("Upload Fail Action Ajax Complete");
                             }
