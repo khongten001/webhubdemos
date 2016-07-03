@@ -90,7 +90,7 @@ bNoMore=true
 <h2>File Upload to S3 using JQuery Plugins</h2>
 
 <div id="JQfileUploadDemo">
-  <form id="fileupload" action="https://protected-files.demos.href.com" method="POST" enctype="multipart/form-data">
+  <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com" method="POST" enctype="multipart/form-data">
     
     <div class="fileUploadErrMsgs"></div>
     <table role="presentation" class="fileUploadList">
@@ -185,9 +185,7 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
     "Function": "JQFileUploadComplete",
     "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
     "Error": "",<!--- blank or Ennn such as E100 -->
-    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
-    <!--- 65 below means 65 minutes -->
-    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)"
   }
 }(~CLOSE|~)
 </whpage>
@@ -200,9 +198,7 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
     "Function": "JQFileUploadFail",
     "ResponseType": "OK",<!--- Status is "OK" or "ERROR" -->
     "Error": "",<!--- blank or Ennn such as E100 -->
-    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)",
-    <!--- 65 below means 65 minutes -->
-    "SignData": (~waJQFileUpload.Execute|sign fname | protected-files.demos.href.com | user/webhubdemos/showcase/ | 65 | (~mcCloudFrontRestrictIP~)/32~)
+    "ConfirmedFname": "(~waJQFileUpload.Execute|echo fname~)"
   }
 }(~CLOSE|~)
 </whpage>
