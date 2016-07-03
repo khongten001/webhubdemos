@@ -76,7 +76,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 ~)
 </whdroplet>
 <whdroplet name="drShowcaseJqFileUploadPolicy">
-{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type",""],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
+{"expiration":"2020-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files.demos.href.com"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type",""],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
 </whdroplet>
 
 <whpage pageid="pgAWSJqFileUpload" desc="Upload files to AWS S3 using JQuery fileupload">
@@ -90,7 +90,7 @@ bNoMore=true
 <h2>File Upload to S3 using JQuery Plugins</h2>
 
 <div id="JQfileUploadDemo">
-  <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com" method="POST" enctype="multipart/form-data">
+  <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
     
     <div class="fileUploadErrMsgs"></div>
     <table role="presentation" class="fileUploadList">
