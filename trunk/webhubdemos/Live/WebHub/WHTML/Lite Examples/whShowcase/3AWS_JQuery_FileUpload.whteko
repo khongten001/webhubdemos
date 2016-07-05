@@ -90,7 +90,7 @@ bNoMore=true
 <h2>File Upload to S3 using JQuery Plugins</h2>
 
 <div id="JQfileUploadDemo">
-  <form id="fileupload" action="https://protected-files.demos.href.com.s3.amazonaws.com/" method="POST" enctype="multipart/form-data">
+  <form id="fileupload" action="https://protected-files-webhubdemos.s3-accelerate.amazonaws.com/" method="POST" enctype="multipart/form-data">
     
     <div class="fileUploadErrMsgs"></div>
     <table role="presentation" class="fileUploadList">
