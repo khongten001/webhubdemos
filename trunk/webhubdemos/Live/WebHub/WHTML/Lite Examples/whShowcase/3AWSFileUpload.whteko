@@ -53,6 +53,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 <li> <a href="https://www.openssl.org/docs/manmaster/crypto/EVP_SignInit.html">OpenSSL manual, EVP_SignInit function</a> </li>
 <li> <a href="https://aws.amazon.com/blogs/aws/new-aws-certificate-manager-deploy-ssltls-based-apps-on-aws/">HTTPS cert from Amazon for use with CloudFront</a> </li>
 <li> <a href="http://screenshots.href.com/googlechrome/google-chrome-xhr.png">See XHR content using Google Chrome Developer Tools</a> </li>
+<li> <a href="http://docs.aws.amazon.com/AmazonS3/latest/dev/transfer-acceleration.html">Amazon S3 Transfer Acceleration</a> </li>
 </ol>
 
 <h3>See Also</h3>
