@@ -23,7 +23,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 4 weeks, so if you upload the same filename twice in the same month using different content, you should see the cached, older content.</p>
 	
 	<form method="post" accept-charset="UTF-8" 
-	action="https://protected-files.demos.href.com.s3.amazonaws.com" enctype="multipart/form-data">
+	action="https://protected-files.demos.href.com<!---.s3.amazonaws.com-->" enctype="multipart/form-data">
 	
 	    <input type="hidden" name="key" value="user/webhubdemos/showcase/${filename}" />
 	    <input type="hidden" name="acl" value="authenticated-read" />
