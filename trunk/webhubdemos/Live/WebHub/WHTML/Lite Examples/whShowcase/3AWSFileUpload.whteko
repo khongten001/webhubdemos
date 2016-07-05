@@ -66,7 +66,7 @@ and call-backs to the WebHub application for the secure signatures.
 
 <whmacros>
 mcCloudFrontRestrictIP=(~MATCH|(~ZMDefaultMapContext~)=DEMOS|(~Request.RemoteAddress~)||(~AppSetting.AWSCloudFrontAllowIP~)~)
-mcCloudFrontDomain=protected-files.demos.href.com<!--- was dzow0j4xohakn.cloudfront.net -->
+mcCloudFrontDomain=protected-files.demos.href.com
 mcCloudFrontWeakPolicy64=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wcm90ZWN0ZWQtZmlsZXMuZGVtb3MuaHJlZi5jb20vKi5qcGciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjI1NDQ1MjN9fX1dfQ__
 mcCloudFrontWeakPolicyJSON={"Statement":[{"Resource":"http*://protected-files.demos.href.com/*.jpg","Condition":{"DateLessThan":{"AWS:EpochTime":1522544523}}}]}
 </whmacros>
