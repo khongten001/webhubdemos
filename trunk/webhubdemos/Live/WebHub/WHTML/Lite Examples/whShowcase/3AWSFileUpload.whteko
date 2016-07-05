@@ -67,7 +67,7 @@ and call-backs to the WebHub application for the secure signatures.
 
 <whmacros>
 mcCloudFrontRestrictIP=(~MATCH|(~ZMDefaultMapContext~)=DEMOS|(~Request.RemoteAddress~)||(~AppSetting.AWSCloudFrontAllowIP~)~)
-mcCloudFrontDomain=protected-files.demos.href.com
+mcCloudFrontCNAME=protected-files.demos.href.com
 mcCloudFrontWeakPolicy64=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cCo6Ly9wcm90ZWN0ZWQtZmlsZXMuZGVtb3MuaHJlZi5jb20vKi5qcGciLCJDb25kaXRpb24iOnsiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE1MjI1NDQ1MjN9fX1dfQ__
 mcCloudFrontWeakPolicyJSON={"Statement":[{"Resource":"http*://protected-files.demos.href.com/*.jpg","Condition":{"DateLessThan":{"AWS:EpochTime":1522544523}}}]}
 </whmacros>
@@ -86,7 +86,7 @@ mcCloudFrontWeakPolicyJSON={"Statement":[{"Resource":"http*://protected-files.de
 here for you to view:</p>
 <div style="padding-bottom: 2em;">
 <img style="border: solid 1px blue; padding: 0.1em;" 
-src="//(~mcCloudFrontDomain~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)?Policy=(~mcCloudFrontWeakPolicy64~)&Signature=EPZRrZx4aeokAh-xZTlBPrbE3EOmaWcYjvL1Knn~fr1wmVeg5HXJZRq8gK6a3u84MmfMkBUMmIAdZFoQZZULHjIZ5lYYfbGwvGJhdrGSOWZiDDEO6DJNd-LB9OZ38oApaCrv1r4XkAq1ObuV6SfhPxTLSM6tyN3fhF5uzGj6-S~jFoqopx8Y8iNfCx62UV6P~RE7QQWn7XgoSwRg3eOXRNuB47rK4GKqR7X92biC1zBBTgwTLjGXl7c-33kxY9GtDT6xwMX7a~9A3g3S8jM0I3rwbl~oCIdMZVNc4vmbZ8i~seG0ktxIWoxN60Q-dd0iVDuUr0rDarW4q1qCCIg~Yw__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ" alt="uploaded image" />
+src="//(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)?Policy=(~mcCloudFrontWeakPolicy64~)&Signature=EPZRrZx4aeokAh-xZTlBPrbE3EOmaWcYjvL1Knn~fr1wmVeg5HXJZRq8gK6a3u84MmfMkBUMmIAdZFoQZZULHjIZ5lYYfbGwvGJhdrGSOWZiDDEO6DJNd-LB9OZ38oApaCrv1r4XkAq1ObuV6SfhPxTLSM6tyN3fhF5uzGj6-S~jFoqopx8Y8iNfCx62UV6P~RE7QQWn7XgoSwRg3eOXRNuB47rK4GKqR7X92biC1zBBTgwTLjGXl7c-33kxY9GtDT6xwMX7a~9A3g3S8jM0I3rwbl~oCIdMZVNc4vmbZ8i~seG0ktxIWoxN60Q-dd0iVDuUr0rDarW4q1qCCIg~Yw__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ" alt="uploaded image" />
 <br/>#1. URL for showcase/*.jpg is allowed until April 2018
 </div>
 
@@ -126,7 +126,7 @@ Reference: <a href="https://en.wikipedia.org/wiki/Hash-based_message_authenticat
 separate browser window after a minute has elapsed, you will get the Access Denied response from the Amazon S3 server.</p>
 <div style="padding-bottom: 2em;">
 <img style="border: solid 2px green; padding: 0.1em;" 
-src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontDomain~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" />
+src="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" />
 <br/>#2. URL for this image is allowed for a limited time by 1 ip number
 </div>
 

@@ -213,7 +213,7 @@ usage: (~waJQFileUpload|sign fname list | url prefix | minutes | ip~)
     "Error": "",<!--- blank or Ennn such as E100 -->
     <!--- 15 below means 15 minutes -->
     <!--- post filetosign session string to obtain the link -->
-    "URL": "(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontDomain~)/user/webhubdemos/showcase/(~fileToSign~) | 15 | (~mcCloudFrontRestrictIP~)/32~)"
+    "URL": "(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~fileToSign~) | 15 | (~mcCloudFrontRestrictIP~)/32~)"
   }
 }(~CLOSE|~)
 </whpage>
