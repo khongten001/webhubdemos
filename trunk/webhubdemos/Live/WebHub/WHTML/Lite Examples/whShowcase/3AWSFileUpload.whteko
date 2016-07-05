@@ -103,7 +103,7 @@ document.getElementById('preUploadPolicy').innerHTML = JSON.stringify((~drShowca
 Files are slightly protected, in this demo.</p>
 <p>Your graphic is not available through direct download, ie. this link 
 will give you an Access Denied error: 
-<a href="https://protected-files.demos.href.com.s3.amazonaws.com/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)">try me</a>.</p>
+<a title="intentional link with Access Denied" href="https://protected-files.demos.href.com.s3.amazonaws.com/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~)">try me</a>.</p>
 <p>The reason your image displays above is that its URL is uses AWS CloudFront with a signed policy.</p>
 
 <h5>Download Policy</h5>
