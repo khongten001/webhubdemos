@@ -40,7 +40,7 @@ if ($Global:FlagInstallWebHubRuntime) {
 	New-Variable -Name filespec -Value ($Global:FolderInstallers + 'HREFTools\' + $whrunsetup) -Option private
 
 	# delete any prior version from disk
-	Del $filespec
+	if (Test-Path $filespec) { Del $filespec }
 
 	if ($Global:ZMGlobalContext -eq 'DORIS') {
 	
