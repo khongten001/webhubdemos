@@ -143,18 +143,34 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 </whpage>
 
 <whpage pageid="pgEDeliverURLs" desc="Test Secure CloudFront URLs">
+<whprep>
+(~NOTASSIGNED|whver|(~SET|whver=3.259~)~)
+(~NOTASSIGNED|extraip|(~SET|extraip=none~)~)
+(~SET|resource=https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v(~whver~)_Setup.exe~)
+</whprep>
 (~drShowcaseGlobalHeader~)
-(~SET|whver=3.259~)
 <h2>In-House Testing</h2>
+<form method="post" action="(~ACTIONR|pgEDeliverURLs~)">
+	Version: (~INPUTTEXT|whver~)
+	Extra IP: (~INPUTTEXT|extraip~) 
+	<input type="submit"/>
+</form>
+
 <p>These are restricted to a single IP, and are valid for one year.</p>
 <ol style="padding-bottom: 4em;">
 <li> db.demos<br/>
-(~waAWSCloudFrontSecurityProvider.Execute|https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v(~whver~)_Setup.exe | 525600 | 52.90.88.0/32~)
+(~waAWSCloudFrontSecurityProvider.Execute|(~resource~) | 525600 | 52.90.88.0/32~)
 </li>
 
 <li> lite.demos<br/>
-(~waAWSCloudFrontSecurityProvider.Execute|https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v(~whver~)_Setup.exe | 525600 | 54.197.25.83/32~)
+(~waAWSCloudFrontSecurityProvider.Execute|(~resource~) | 525600 | 54.197.25.83/32~)
 </li>
+
+(~MATCH|(~extraip~)[,52.63.202.80,208.201.252.8,|
+	<li> (~extraip~)<br/>
+	(~waAWSCloudFrontSecurityProvider.Execute|(~resource~) | 525600 | (~extraip~)/32~)
+	</li>
+~)
 
 </ol>
 
