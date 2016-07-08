@@ -142,7 +142,7 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 (~drShowcaseGlobalFooter~)
 </whpage>
 
-<whpage pageid="pgEDeliverURLs" desc="-Testing CloudFront URLs">
+<whpage pageid="pgEDeliverURLs" desc="Test Secure CloudFront URLs">
 (~drShowcaseGlobalHeader~)
 (~SET|whver=3.259~)
 <h2>In-House Testing</h2>
