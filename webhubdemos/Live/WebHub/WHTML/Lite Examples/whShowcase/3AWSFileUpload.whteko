@@ -76,7 +76,6 @@ mcCloudFrontWeakPolicyJSON={"Statement":[{"Resource":"http*://protected-files.de
 <whpagesettings>
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
-(~waCodeSite.Execute|warning|testing,(~Request.QueryString~)~)
 <h2>Successful File Upload</h2>
 (~CentralInfo.WebTimeUTC~)
 <p>Congratulations! Your file has been uploaded to S3.</p>
@@ -139,6 +138,25 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 </pre>
   
 <p style="padding-top: 2em;">(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
+
+(~drShowcaseGlobalFooter~)
+</whpage>
+
+<whpage pageid="pgEDeliverURLs" desc="-Testing CloudFront URLs">
+(~drShowcaseGlobalHeader~)
+(~SET|whver=3.259~)
+<h2>In-House Testing</h2>
+<p>These are restricted to a single IP, and are valid for one year.</p>
+<ol style="padding-bottom: 4em;">
+<li> db.demos<br/>
+(~waAWSCloudFrontSecurityProvider.Execute|https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v(~whver~)_Setup.exe | 525600 | 52.90.88.0/32~)
+</li>
+
+<li> lite.demos<br/>
+(~waAWSCloudFrontSecurityProvider.Execute|https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v(~whver~)_Setup.exe | 525600 | 54.197.25.83/32~)
+</li>
+
+</ol>
 
 (~drShowcaseGlobalFooter~)
 </whpage>
