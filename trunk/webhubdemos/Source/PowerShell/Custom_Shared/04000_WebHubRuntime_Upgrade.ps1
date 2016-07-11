@@ -58,7 +58,7 @@ if ($Global:FlagInstallWebHubRuntime) {
 		if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
 	}
 
-	if ($use_cloudfront = 'N' {
+	if ($use_cloudfront = 'N') {
 
 		New-Variable -Name webhub_ftp_host -Value '' -Option private
 		New-Variable -Name webhub_ftp_user -Value '' -Option private
