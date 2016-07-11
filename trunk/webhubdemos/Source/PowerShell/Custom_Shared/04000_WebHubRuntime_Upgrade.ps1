@@ -49,13 +49,14 @@ if ($Global:FlagInstallWebHubRuntime) {
 		Invoke-WebRequest $source -OutFile $filespec 
 		if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
 	}
-	else if ($Global:ZMGlobalContext -eq 'DEMOS') {
+	else {
+	if ($Global:ZMGlobalContext -eq 'DEMOS') {
 		# The Setup binary 
 		$source = "https://edeliver.href.com/WebHub/WebHub_Central/WebHub_X_Runtime_System_v3.260_Setup.exe?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9lZGVsaXZlci5ocmVmLmNvbS9XZWJIdWIvV2ViSHViX0NlbnRyYWwvV2ViSHViX1hfUnVudGltZV9TeXN0ZW1fdjMuMjYwX1NldHVwLmV4ZSIsIkNvbmRpdGlvbiI6eyJJcEFkZHJlc3MiOnsiQVdTOlNvdXJjZUlwIjoiNTQuMTk3LjI1LjgzLzMyIn0sIkRhdGVHcmVhdGVyVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNDY4MjY5NDA4fSwiRGF0ZUxlc3NUaGFuIjp7IkFXUzpFcG9jaFRpbWUiOjE0OTk4MDU3MDh9fX1dfQ__&Signature=ZZMHo2LJbZf06OIkO0D8kJvjNBfUlVjG199Ze7fif9MVFKqhzJz9Rnepn-WOEYDZ1yQFmIFlZmCDAwGdYKa3QYnQtNmAMaInWkEcv0iw877-H2FG8uYEqOfxuCN9V9zslH4AzYylpv11enaCPCZxv8PH0g4RAj5tH2zweq8noO1zdUqX8v4oM3a95Bx4BzCGeIY0jp2f9YQbnjyiOoYbZU377vWSSzRu8ghR461UoeRGKokFiLtRBL9ew5uR7cmUhNBTQ0jtOvfy9T6-o2sVpeOVbLsNcHqMFEt-IUHDd0EsjuJtm-~QZFXnSGE3cBDFWRP6kYBdB6vzX2EF0v2sNw__&Key-Pair-Id=APKAIGAY3EJC77HVGRFQ"
 		Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
 		Invoke-WebRequest $source -OutFile $filespec 
 		if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
-	}
+	}}
 	else {
 
 		# Login credentials from a ZMKeyBox file.
