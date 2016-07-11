@@ -45,8 +45,9 @@ if ($Global:FlagInstallWebHubRuntime) {
 
 	if ($use_cloudfront -eq 'Y') {
 		New-Variable -Name response -Value "" -Option private
-		$response = Invoke-RestMethod -Url https://www.href.com/edeliver:ajaxWHRunTimeSetup
+		$response = Invoke-RestMethod -Uri https://www.href.com/edeliver:ajaxWHRunTimeSetup
 		$source = $response.EDeliverResponse.URL
+		Start-Process $Global:CSConsole -ArgumentList ($source) -NoNewWindow -Wait
 		Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
 		Invoke-WebRequest $source -OutFile $filespec 
 		if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
