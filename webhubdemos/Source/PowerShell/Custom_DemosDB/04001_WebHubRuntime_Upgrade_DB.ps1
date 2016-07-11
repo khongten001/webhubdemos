@@ -1,5 +1,4 @@
 # Master copy is in the WebHubDemos svn repo
-# webhubdemos\Source\PowerShell\Custom_Shared\04000_WebHubRuntime_Upgrade.ps1
 
 # WebHubRuntime Upgrade
 # Copyright 2014-2016 HREF Tools Corp. 
@@ -40,30 +39,18 @@ if ($Global:FlagInstallWebHubRuntime) {
 	# delete any prior version from disk
 	if (Test-Path $filespec) { Del $filespec }
 
-	if ($use_cloudfront -eq 'N') {
+	if ($Global:ZMGlobalContext -eq 'DORIS') {
+		$use_cloudfront = 'Y'
+	}
 
-		New-Variable -Name webhub_ftp_host -Value '' -Option private
-		New-Variable -Name webhub_ftp_user -Value '' -Option private
-		New-Variable -Name webhub_ftp_pass -Value '' -Option private
-
-		# Login credentials from a ZMKeyBox file.
-		$webhub_ftp_host=&($env:ZaphodsMap + 'ZMLookup.exe') /Key2Value "HREFTools\FileTransfer" FTP "webhubcom-host" "href.com" 2>&1
-		$webhub_ftp_user=&($env:ZaphodsMap + 'ZMLookup.exe') /Key2Value "HREFTools\FileTransfer" FTP "webhubcom-user" "user" 2>&1
-		$webhub_ftp_pass=&($env:ZaphodsMap + 'ZMLookup.exe') /Key2Value "HREFTools\FileTransfer" FTP "webhubcom-pass" "pass" 2>&1
-	
-		cls
-	
-		$InfoMsg = ('Downloading ' + $whrunsetup)
-		echo $InfoMsg
-		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-		$cmd = ("-u " + $webhub_ftp_user + " -p " + $webhub_ftp_pass + " " + $webhub_ftp_host + " . /" + $whrunsetup)
-		$InfoMsg = '"ftp cmd" "' + $cmd + '"'
-		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-		Start-Process "d:\Apps\Utilities\ncFTP\ncFTPGet.exe" -ArgumentList $cmd -NoNewWindow -Wait 
-	
-		Remove-Variable -Name webhub_ftp_host 
-		Remove-Variable -Name webhub_ftp_user 
-		Remove-Variable -Name webhub_ftp_pass 
+	if ($use_cloudfront -eq 'Y') {
+		New-Variable -Name response -Value "" -Option private
+		$response = Invoke-RestMethod -Url https://www.href.com/edeliver:ajaxWHRunTimeSetup
+		$source = $response.EDeliverResponse.URL
+		Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
+		Invoke-WebRequest $source -OutFile $filespec 
+		if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
+		Remove-Variable -Name response
 	}
 
 	if (! (Test-Path $filespec)) { 
