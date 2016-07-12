@@ -141,11 +141,11 @@ var
   ErrorText: string;
   DivName: string;
   Cache, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
-  //LogSeverity: TCefLogSeverity;
   JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
   FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled: Boolean;
   RemoteDebuggingPort: Integer;
-  ReleaseDCheck: Boolean; UncaughtExceptionStackSize: Integer;
+  ReleaseDCheck: Boolean; 
+  UncaughtExceptionStackSize: Integer;
   ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean;
   BackgroundCefColor: Cardinal;
@@ -246,7 +246,7 @@ begin
   CommandLineArgsDisabled := True;
   PackLoadingDisabled := False;
   RemoteDebuggingPort := 0;
-  ReleaseDCheck := False;  // easier debugging even after release
+  // ReleaseDCheck := False;  // easier debugging even after release
   UncaughtExceptionStackSize := 0;
   ContextSafetyImplementation := 0;
   PersistSessionCookies := False;
@@ -267,8 +267,14 @@ function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean; BackgroundColor: TCefColor;
   const AcceptLanguageList: ustring; WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
 *)
-
-  IsFirstInit := CefLoadLib(cache, UserDataPath, UserAgent, ProductVersion, Locale, LogFile,
+  
+  IsFirstInit := IsPrimaryProcess and 
+    CefLoadLib(cache, 
+    UserDataPath, 
+    UserAgent, 
+    ProductVersion, 
+    Locale, 
+    LogFile,
     BrowserSubprocessPath,
     LOGSEVERITY_DISABLE, JavaScriptFlags, ResourcesDirPath, LocalesDirPath,
     FlagSingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled,
