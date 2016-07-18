@@ -7,11 +7,13 @@
 
 <# Unlike the other powershell scripts, this one is meant to be used some 
    days, weeks or months AFTER the initial server build.  This upgrades 
-   WebHub Runtime by downloading new files via ftp and then running a 
-   silent install.
+   WebHub Runtime by downloading new files via ftp or from a private 
+   CloudFront url, followed by running a silent install.
 
    FTP credentials are assumed to be stored in a ZMKeybox.xml file in 
    %ZaphodsMap%HREFTools\FileTransfer  under KeyGroup FTP.  
+
+   CloudFront Access is restricted by IPv4.
 
    The latest WebHub release is defined here:
    https://www.href.com/whversion
@@ -31,14 +33,57 @@ if ($Global:FlagInstallWebHubRuntime) {
 	New-Variable -Name webhub_version  -Value '' -Option private
 	New-Variable -Name use_cloudfront  -Value 'N' -Option private
 
-	Start-Process $Global:CSConsole -ArgumentList '"Enter WebHub version to download"' -NoNewWindow 
-	$webhub_version = read-host "Enter WebHub version to download: " 
+	if ($Global:ZMGlobalContext -eq 'DEMOS') {
+		$use_cloudfront = 'Y'
+	}
+	if ($Global:ZMGlobalContext -eq 'DORIS') {
+		$use_cloudfront = 'Y'
+	}
+
+
+	if ($use_cloudfront -eq 'N') {
+		Start-Process $Global:CSConsole -ArgumentList '"Enter WebHub version to download"' -NoNewWindow 
+		$webhub_version = read-host "Enter WebHub version to download: " 
+	}
+
+	if ($use_cloudfront -eq 'Y') {
+		New-Variable -Name response -Value "" -Option private
+		New-Variable -Name postParams     -Value "" -Option private
+		New-Variable -Name source   -Value "" -Option private
+		$response = Invoke-RestMethod -Uri https://www.href.com/pub/relnotes/WebHub_Release_Status.json
+		$webhub_version = $response.WebHubReleaseInfo.InHouse.v
+		Start-Process $Global:CSConsole -ArgumentList ('/note "InHouse v' + $webhub_version + '"') -NoNewWindow -Wait
+	}
 
 	New-Variable -Name whrunsetup -Value ("WebHub_X_Runtime_System_v" + $webhub_version + "_Setup.exe") -Option private
 	New-Variable -Name filespec -Value ($Global:FolderInstallers + 'HREFTools\' + $whrunsetup) -Option private
 
 	# delete any prior version from disk
 	if (Test-Path $filespec) { Del $filespec }
+
+	if ($use_cloudfront -eq 'Y') {
+	
+		if ($response.WebHubReleaseInfo.InHouse.status -eq 'c') {
+
+			$postParams = @{whver=$webhub_version}
+			$response = Invoke-RestMethod -Uri 'https://www.href.com/edeliver:ajaxWHRunTimeSetup' -Method POST -Body $postParams -ContentType "application/x-www-form-urlencoded"
+			#Start-Process $Global:CSConsole -ArgumentList ($response ) -NoNewWindow -Wait
+	
+			Start-Process $Global:CSConsole -ArgumentList ('/note "resource ' + $response.EDeliverResponse.Resource + '"') -NoNewWindow -Wait
+	
+			$source = $response.EDeliverResponse.URL
+	
+			Start-Process $Global:CSConsole -ArgumentList ('/note "source url ' + $source + '"') -NoNewWindow -Wait
+			Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
+			Invoke-WebRequest $source -OutFile $filespec 
+			if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
+			Remove-Variable -Name response
+			Remove-Variable -Name postParams
+			Remove-Variable -Name source
+		} else {
+			Start-Process $Global:CSConsole -ArgumentList ('/warning "WebHub Runtime Setup is not currently ready for download."') -NoNewWindow -Wait
+		}
+	}
 
 	if ($use_cloudfront -eq 'N') {
 
