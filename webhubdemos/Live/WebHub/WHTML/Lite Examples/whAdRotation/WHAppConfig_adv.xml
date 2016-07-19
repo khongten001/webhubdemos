@@ -80,7 +80,6 @@
       <ReadOnlySessionNumber value="888888"/>
     </Security>
     <Situations>
-      <ChangedIP pageID="pgBadIP"/>
       <Home pageID="pgWelcome"/>
     </Situations>
     <Static>
