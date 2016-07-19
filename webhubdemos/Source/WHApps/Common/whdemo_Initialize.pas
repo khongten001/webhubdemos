@@ -194,7 +194,6 @@ begin
   else
   if Sender is TwhAppSituations then
   begin
-    TwhAppSituations(Sender).ChangedIPPageID := 'pgBadIP';
     TwhAppSituations(Sender).InvalidPageID := 'InvalidPage';
   end
   else
