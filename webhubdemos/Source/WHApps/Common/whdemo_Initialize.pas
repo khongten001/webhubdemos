@@ -46,7 +46,8 @@ uses
   {$ENDIF}
   whConst, webSplat,
   webApp, webInfoU, whMacroAffixes, htmConst, htWebApp,
-  whsample_DWSecurity, whsample_PrototypeJS,
+  //whsample_DWSecurity, 
+  whsample_PrototypeJS,
   whdemo_Extensions, whdemo_ViewSource,
   whpanel_Mail,
   whutil_ZaphodsMap, uAutoDataModules, uAutoPanels, whdemo_About;
@@ -219,7 +220,6 @@ begin
     Security.BuiltInPagesEnabled would be FALSE. }
   pWebApp.Security.BuiltInPagesEnabled := True;
 
-  pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
   if pWebApp.AppID = 'showcase' then
   begin

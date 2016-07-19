@@ -280,9 +280,7 @@ const cFn = 'ProjMgrStartupComplete';
 begin
   CSEnterMethod(Self, cFn);
   { override anything else that was in v3.189- and use these handlers }
-  pWebApp.Security.CheckSurferIP := True;
   pWebApp.Security.CheckUserAgent := True;
-  pWebApp.OnBadIP := DemoExtensions.DemoAppBadIP;
   pWebApp.OnBadBrowser := DemoExtensions.DemoAppBadBrowser;
 
   UncoverAppOnStartup(pWebApp.AppID);
