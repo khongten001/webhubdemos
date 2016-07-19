@@ -24,13 +24,6 @@ WebHub makes sites more secure by defining a <b>session number</b> for each surf
 When a new surfer -- meaning someone without a session number or someone with an expired session number --
 comes in, WebHub sends that surfer to the page you specify.
 <p>
-The system also tracks the IP number that belongs with a
-session number.  If someone tries to use another person's
-session number on their own machine with a different IP,
-they will be assigned a new session number.  If you are
-building a custom WebApp with the components, you can
-further customize the OnBadIP event handler.
-<p>
 The data entered by the surfer is kept on the web server
 machine, in the TwhSession object.  The Session ID travels
 back and forth in the URL, but that is just a number.

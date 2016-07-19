@@ -408,15 +408,6 @@ code that gets triggered under specific circumstances</td>
 <td>Delphi/Pascal</td>
 </tr>
 
-<tr><td>Monitoring of <br /> IP Number</td>
-<td>Component:<br />TwhRespondingApp<br />Event:<br />OnBadIP event</td>
-<td>Monitors to see if a user's IP address changes during trhe session, which can
-be evidence of an AOL user, or can indicate the use of a clipboarded URL with
-a previously assigned SessionID.  Can also be used to facilitate quick tracking of
-hackers, spammers, perpetrators of internet CC fraud or other Net misuses</td>
-<td>v. 1.50  </td>
-<td>Delphi/Pascal</td></tr>
-
 <tr><td>Session data kept  on the server--no reliance on Cookies or
 Hidden Fields for state management</td>
 <td>Component:<br />  TWhSession

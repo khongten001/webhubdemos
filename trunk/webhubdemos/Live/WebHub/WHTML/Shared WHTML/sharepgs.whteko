@@ -22,8 +22,6 @@
 
           InvalidPage -- Gives notice of invalid page request
 
-          pgBadIP -- Error message when IP number changes.
-
           WHProperties -- display current properties
 
           remotedesign,remotepreview,remoterefresh -- use with Dreamweaver">
@@ -153,38 +151,6 @@ application <code>(~AppID~)</code>.</p>
 </whoutput>
 </whpage>
 
-
-<whpage pageid="pgBadIP" desc="IP Number changed">
-<whdoc>
-To cause this error, start a demo, click into a page, note your session#, then go to a
-different machine and request the same demo with the same session #.
-</whdoc>
-<whoutput>
-(~mcdoctypehtml~)
-<html (~ANCHOR|anchHtmlTag~)>
-<head>
-(~drHead~)
-</head>
-<body>
-(~drPageBegin~)
-<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
-<h2>Invalid IP Number</h2>
-<p>Alert! You have requested a URL under a session number associated
-with a different IP number.  The request was denied for security reasons.</p>
-
-<p>Note:  This message is intended for IP numbers that switch due to use
-of a clipboarded URL from another machine, BUT <b>it will also be triggered for AOL
-users</b> (AOL pools IP numbers, and surfers' IP numbers will change basically
-with each page request!), <b>and by users testing this demo on their local machines</b>.
-The latter occurs because even though they refer to the same machine, the actual machine
-number, localhost and 127.0.0.1 are not equivalent, so the test match fails.</p>
-
-<p>Delphi programmers can alter how and when this pages gets triggered, by
-customizing the onBadIP event of the TwhAppBase.</p>
-</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
-(~drPageEnd~)</body></html>
-</whoutput>
-</whpage>
 
 <whpage pageid="pgAbout" desc="About a WebHub Demo">
 <whoutput>
