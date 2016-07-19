@@ -79,7 +79,6 @@ type
     procedure DemoAppPageErrors(Sender: TwhAppDebug; var Continue: Boolean);
   public
     { Public declarations }
-    procedure DemoAppBadIP(Sender: TwhRespondingApp; var bContinue: Boolean);
     procedure DemoAppBadBrowser(Sender: TwhRespondingApp;
       var bContinue: Boolean);
     procedure DemoAppExceptionHandler(Sender: TObject; E: Exception;
@@ -146,7 +145,6 @@ begin
     end;
 
     pWebApp.OnBadBrowser := DemoAppBadBrowser;
-    pWebApp.OnBadIP := DemoAppBadIP;
     pWebApp.OnNewSession := DemoAppNewSession;
     pWebApp.OnPageComplete := DemoAppPageComplete;
 
@@ -953,78 +951,6 @@ begin
       Sender.PageID := Sender.Situations.HomePageID;
     Sender.RejectSession(cUnitName + ', ' + cFn + '()');
   end;
-  {$IFDEF LOGBAD}CSExitMethod(Self, cFn);{$ENDIF}
-end;
-
-procedure TDemoExtensions.DemoAppBadIP(Sender: TwhRespondingApp;
-  var bContinue: Boolean);
-const cFn = 'DemoAppBadIP';
-var
-  b: Boolean;
-begin
-{ processing to catch cases where a surfers IP# changes in mid-session,
-  it rejects continuation if the refering page is not in the same domain
-  as the server producing this page. catches someone copying a session#
-  This code is only called if Security.CheckSurferIP is true.
-  It is false by default. }
-  {$IFDEF LOGBAD}CSEnterMethod(Self, cFn);{$ENDIF}
-  inherited;
-  // bContinue defaults to false and will produce a fixed-format error
-  // message unless we reset it here. Resetting the value also allows
-  // us to provide a custom message.
-  bContinue := True;
-
-  b := NOT IsHREFToolsQATestAgent;
-  if b then
-  begin
-    with Sender, Request do
-    begin
-      // determine the domain
-      if PosCI(ExtractParentDomain(Request.Host) + '.', Referer) > 0 then
-      begin
-        { The surfer's IP changed and the referer includes the domain
-          of this server. let it go by!
-
-          Please Note: The NT HOSTS file can make your browser believe that
-          it is a machine on an arbitrary domain. This makes this check
-          undesirable if you are positive that all your client machines
-          are going to be on static IPs.. for the general public though,
-          this is probably as good as you will get it without resorting
-          to storing a cookie on the user's machine. }
-        {$IFDEF LOGBAD}CSSend('allow based on referer');{$ENDIF}
-        b := False;
-      end;
-
-      if b and (PosCI('AOL', Request.UserAgent) > 0) then
-      begin
-        { AOL has a long history of pooling requests by its users among many
-          IP numbers so it is very normal for an AOL browser to change IP numbers
-          in the middle of a session.  Allow this.
-          Reconfirmed 18-Apr-2008 }
-        CSSend('AOL user agent');
-        //b := False;  // do not allow until further notice, June 2016.
-      end;
-
-      if b and HonorLowerSecurity then
-      begin
-        {$IFDEF LOGBAD}CSSend('HonorLowerSecurity');{$ENDIF}
-        b := False;
-      end;
-
-      if b then
-      begin
-        if Situations.ChangedIPPageID <> '' then
-          PageID := Situations.ChangedIPPageID
-        else
-          PageID := Situations.HomePageID;
-        {$IFDEF LOGBAD}CSSend('PageID', PageID);{$ENDIF}
-        RejectSession(cUnitName + ', ' + cFn + '()', False);
-      end;
-    end;
-  end
-  else
-    {$IFDEF LOGBAD}CSSend('Allow HREFTools Quality Assurance Agent'){$ENDIF};
-    
   {$IFDEF LOGBAD}CSExitMethod(Self, cFn);{$ENDIF}
 end;
 
