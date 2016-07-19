@@ -12,10 +12,8 @@
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
-          <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dreamweaver" status="enabled" context="DORIS"/>
-          <Module name="dwsecurity" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled" context="DORIS"/>
+          <Module name="dreamweaver" status="disabled"/>
+          <Module name="dwsecurity" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="w3validation" status="enabled"/>
@@ -43,7 +41,6 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
-      <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" context="ultraann"/>
     </AppSettings>
     <ErrorAlertFlags>
       <ErrorAlertFlag name="ShowPageCreationExceptions"/>
@@ -63,7 +60,6 @@
         <Page function="refresh" pageID="remoterefresh"/>
       </RemoteAccessPages>
       <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
-      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>

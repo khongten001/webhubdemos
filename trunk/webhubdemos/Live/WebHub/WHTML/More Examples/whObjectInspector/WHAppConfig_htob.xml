@@ -11,8 +11,8 @@
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="enabled-gui"/>
-          <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="dreamweaver" status="disabled"/>
+          <Module name="dwsecurity" status="disabled"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
         </GUIOptional>
@@ -42,7 +42,6 @@
         <Page function="refresh" pageID="remoterefresh"/>
       </RemoteAccessPages>
       <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
-      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>

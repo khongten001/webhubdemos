@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
@@ -62,7 +62,6 @@
         <Page function="refresh" pageID="remoterefresh"/>
       </RemoteAccessPages>
       <AllowedIPRange value="1800-1900"/>
-      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>

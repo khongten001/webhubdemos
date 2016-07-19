@@ -13,8 +13,8 @@
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
-          <Module name="dreamweaver" status="enabled-gui"/>
-          <Module name="dwsecurity" status="enabled-gui"/>
+          <Module name="dreamweaver" status="disabled"/>
+          <Module name="dwsecurity" status="disabled"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
         </GUIOptional>
@@ -42,16 +42,6 @@
       <AppSetting name="CodeSiteLogging" value="infotype,warning,error,exception" context="ultraann" />
       <AppSetting name="demographic" value="no"/>
     </AppSettings>
-    <RemoteDesignDefaultInterface>
-      <AllowedSessionIDRange value="1800-1900"/>
-      <RemoteAccessPages>
-        <Page function="design" pageID="remotedesign"/>
-        <Page function="preview" pageID="remotepreview"/>
-        <Page function="refresh" pageID="remoterefresh"/>
-      </RemoteAccessPages>
-      <AllowedIPRange value="192.168.1.*;127.0.0.1"/>
-      <TestingServerURLPrefixMappedTo value="D:\temp\Dreamweaver\"/>
-    </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
       <AdminSessionNumber value="1204" context="DEMOS"/>
