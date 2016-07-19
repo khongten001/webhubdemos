@@ -42,13 +42,11 @@
       <AppSetting name="demographic" value="no"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
-      <AllowedSessionIDRange value="192.168.1.*;127.0.0.1"/>
       <RemoteAccessPages>
         <Page function="design" pageID="remotedesign"/>
         <Page function="preview" pageID="remotepreview"/>
         <Page function="refresh" pageID="remoterefresh"/>
       </RemoteAccessPages>
-      <AllowedIPRange value="1800-1900"/>
     </RemoteDesignDefaultInterface>
     <Security>
       <AdminSessionNumber value="1800"/>
