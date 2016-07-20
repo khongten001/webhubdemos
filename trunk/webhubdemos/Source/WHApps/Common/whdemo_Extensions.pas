@@ -867,7 +867,7 @@ begin
   Result := False;
   if (pos('waLSec', pWebApp.Command) > 0) then
   begin
-    { This can be set by waLSec web action, in WebHub Demos. }
+    { This can be set by waLSec web action, in WebHub Demos, see showcase. }
     pWebApp.Expand(MacroStart + 'waLSec.execute|in' + MacroEnd);
     if pWebApp.BoolVar['_LowerSecurity'] then
     begin
@@ -1064,16 +1064,16 @@ var
 procedure TDemoExtensions.DemoAppPageComplete(Sender: TwhRespondingApp;
   const PageContent: UTF8String);
 var
-  S: string;
+  S1: string;
   AFolder, AFilename: string;
 begin
   if IsHREFToolsQATestAgent and
     (Sender.SessionID = pWebApp.Security.AdminSessionID) then
   begin
     { archive page content for functionality test sequences }
-    S := pWebApp.Request.Headers.Values['X-Selenium-PageCount'];
-    if S <> '' then
-      TestNumber := StrToIntDef(S, 1)
+    S1 := pWebApp.Request.Headers.Values['X-Selenium-PageCount'];
+    if S1 <> '' then
+      TestNumber := StrToIntDef(S1, 1)
     else
       Inc(TestNumber);
 
@@ -1083,6 +1083,12 @@ begin
     ForceDirectories(AFolder);
     AFilename := Format('test%d.txt', [TestNumber]);
     UTF8StringWriteToFile(AFolder + AFilename, PageContent);
+  end;
+  if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc'))
+  then
+  begin
+    pWebApp.AddCookie('WHPartTwo', S(pWebApp.Session.PageCount), '',
+      IncMinute(NowUTC, 10), pWebApp.Security.CookieDomainDefault, False);
   end;
 end;
 
@@ -1157,6 +1163,7 @@ begin
         pWebApp.StringVar['_hostID'] := SurferHostid;  // remember
       end;
     end;
+
     if (NOT pWebApp.IsWebRobotRequest) then
     begin
       if (SameText(Sender.AppID, 'showcase') or SameText(Sender.AppID, 'htsc'))
@@ -1175,13 +1182,21 @@ begin
             if PosCI(Sender.PageID, pWebApp.Situations.SideDoorPageIDs) = 0
             then
             begin
-            CSSend(cFn + ': Sender.Request.Referer', Sender.Request.Referer);
-            CSSend(cFn + ': Sender.PageID', Sender.PageID);
-            CSSend(cFn + ': pWebApp.Session.PriorScheme',
-              pWebApp.Session.PriorScheme);
-            Sender.RejectSession('Blank referer, scheme ' +
-              pWebApp.Session.PriorScheme + 
-              ', without security token, and not using a side door.', False);
+              CSSend(cFn + ': Sender.Request.Referer', Sender.Request.Referer);
+              CSSend(cFn + ': Sender.PageID', Sender.PageID);
+              CSSend(cFn + ': pWebApp.Session.PriorScheme',
+                pWebApp.Session.PriorScheme);
+
+              if pWebApp.Request.CookiesIn.Values['WHPartTwo'] =
+                S(pWebApp.Session.PageCount) then
+                CSSend(cFn + ': allowed due to cookie match')
+              else
+              begin
+                Sender.RejectSession('Blank referer, scheme ' +
+                  pWebApp.Session.PriorScheme +
+                  ', without security token, second cookie is missing, ' +
+                  'and not using a side door.', False);
+              end;
             end;
           end;
         end;
