@@ -83,7 +83,7 @@ type
     function Init: Boolean; override;
     procedure WebAppOutputClose(Sender: TObject);
     procedure WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
-      const ADesiredPageID: string);
+      const ADesiredPageID: string; var bDoFrontDoorBounce: Boolean);
   end;
 
 var
@@ -721,11 +721,10 @@ begin
 end;
 
 procedure TfmWhActions.WebCommandLineFrontDoorTriggered(Sender: TwhConnection;
-  const ADesiredPageID: string);
+  const ADesiredPageID: string; var bDoFrontDoorBounce: Boolean);
 begin
-  if (pWebApp.SessionNumber = pWebApp.WebRobotSession) and
-    SameText(aDesiredPageID, 'pgWebEye') then
-    pWebApp.PageID := aDesiredPageID;  // this reroutes the request to run aDesiredPageID
+  bDoFrontDoorBounce := (NOT pWebApp.IsWebRobotRequest) or 
+    (NOT SameText(aDesiredPageID, 'pgWebEye'));
 end;
 
 end.

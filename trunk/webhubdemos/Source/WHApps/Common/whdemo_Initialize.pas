@@ -29,7 +29,7 @@ type
       procedure DemoAppUpdate(Sender: TObject);
       procedure DemoForceConfig(Sender: TwhAppPropertyCategory);
       procedure DemoFrontDoorTriggered(Sender: TwhConnection;
-        const ADesiredPageID: string);
+        const ADesiredPageID: string; var bDoFrontDoorBounce: Boolean);
     end;
 
 var
@@ -269,7 +269,7 @@ begin
 end;
 
 procedure TDemoHelperComponent.DemoFrontDoorTriggered(Sender: TwhConnection;
-  const ADesiredPageID: string);
+  const ADesiredPageID: string; var bDoFrontDoorBounce: Boolean);
 const cFn = 'DemoFrontDoorTriggered';
 var
   AllowedPages: string;
@@ -286,17 +286,17 @@ begin
   if (PosCI(',' + aDesiredPageID + ',', AllowedPages) > 0) then
   begin
     {the desired page is on the list of allowed pages (for use with Dreamweaver)
-     therefore we reverse the FrontDoor effect by resetting pWebApp.PageID }
-    {or, the session number is the AdminSessionNumber so it is allowed in}
-    pWebApp.PageID := aDesiredPageID;
-    CSSend(cFn + ' Approved: ' + aDesiredPageID + ' instead of FrontDoor');
+     therefore we reverse the FrontDoor effect }
+    CSSend(cFn + ': Approved: ' + aDesiredPageID);
+    bDoFrontDoorBounce := False;
   end
   else
   begin
-    story1 := 'PageID ' + aDesiredPageID +
+    story1 := cFn + ': PageID ' + aDesiredPageID +
       ' does not bypass the FrontDoor setting.';
     CSSend(story1);
     // the surfer will be bounced to the Frontdoor.
+    bDoFrontDoorBounce := True;
   end;
   CSExitMethod(Self, cFn);
 end;
