@@ -142,7 +142,7 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 to see whether we can control the save-as filename 
 for a CloudFront URL.</p>
 <p>
-<a download="arbitrary_filename.bin" 
+<a download="arbitrary_filename" 
 href="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" 
 title="download from CloudFront now">CLICK HERE TO TEST</a><br/>
 #3 Download and Save-As
