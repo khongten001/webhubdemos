@@ -136,7 +136,16 @@ and that the resource is your specific file rather than any wildcard *.jpg:</p>
 document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSCloudFrontSecurityProvider.Execute|policy~), null, 2); /* indented with 2 spaces */
 </script>
 </pre>
-  
+
+<h5>Download from Protected URL</h5>
+<p>Now we test the download attribute to see whether we can control the save-as filename 
+for a CloudFront URL.</p>
+<p>
+<a download="arbitrary_filename.bin" 
+href="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" 
+title="download from CloudFront now">CLICK HERE TO TEST</a>
+</p>
+
 <p style="padding-top: 2em;">(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
 
 (~drShowcaseGlobalFooter~)
