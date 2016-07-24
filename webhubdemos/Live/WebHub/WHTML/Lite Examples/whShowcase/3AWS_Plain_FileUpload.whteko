@@ -138,12 +138,14 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 </pre>
 
 <h5>Download from Protected URL</h5>
-<p>Now we test the download attribute to see whether we can control the save-as filename 
+<p>Now we test the <a href="http://www.w3schools.com/tags/att_a_download.asp">download attribute</a> 
+to see whether we can control the save-as filename 
 for a CloudFront URL.</p>
 <p>
 <a download="arbitrary_filename.bin" 
-href="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" alt="image file protected by ip and timeout" 
-title="download from CloudFront now">CLICK HERE TO TEST</a>
+href="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" 
+title="download from CloudFront now">CLICK HERE TO TEST</a><br/>
+#3 Download and Save-As
 </p>
 
 <p style="padding-top: 2em;">(~JUMP|pgAWSStartFileUpload|Upload Again~)</p>
