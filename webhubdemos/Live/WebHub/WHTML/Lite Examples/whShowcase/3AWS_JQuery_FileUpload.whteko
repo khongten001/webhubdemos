@@ -12,7 +12,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
       <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/dark-hive/jquery-ui.css" id="theme">
 -->
       <link rel="stylesheet" href="/webhub/demos/js/jQuery-File-Upload/css/jquery.fileupload.css">
-      <link rel="stylesheet" href="/webhub/demos/js/jq-file-upload-main.css">
+      <link rel="stylesheet" href="/webhub/demos/c/jq-file-upload-main.css">
 <!---  
       <link rel="stylesheet" href="/webhub/demos/js/jQuery-File-Upload/css/jquery.fileupload-ui.css">
 -->
