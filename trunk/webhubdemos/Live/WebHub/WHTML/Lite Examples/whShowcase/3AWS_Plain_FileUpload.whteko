@@ -7,7 +7,7 @@ http://docs.aws.amazon.com/AmazonS3/latest/dev/HTTPPOSTForms.html
 27-May-2016
 </whdoc>
 <whdroplet name="drShowcaseFileUploadPolicy">
-{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files-webhubdemos"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$success_action_redirect","(~Request.Scheme~)://(~Request.Host~)/"],["starts-with","$Content-Type","image/"],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
+{"expiration":"2016-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files-webhubdemos"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$success_action_redirect","(~Request.Scheme~)://(~Request.Host~)/"],["starts-with","$Content-Type","image/"],["starts-with","$Content-Disposition","attachment; filename="],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
 </whdroplet>
 
 <whpage pageid="pgAWSStartFileUpload" desc="Upload files directly to AWS S3">
@@ -29,6 +29,7 @@ on your local system; and, you will need to accept Amazon's https certificate on
 	    <input type="hidden" name="acl" value="authenticated-read" />
 	    <input type="hidden" name="success_action_redirect" value="(~Request.Scheme~)://(~Request.Host~)(~DynURL.ToAppID~):pgAWSFileUploadSuccess:(~RawSessionNumber~):" />
 	    <input type="hidden" name="Content-Type" value="image/jpeg" /><br />
+	    <input type="hidden" name="Content-Disposition" value="attachment; filename=${filename}" /><br />
 	    <input type="hidden" name="Cache-Control" value="max-age=2419200"<!---4 weeks -->/><br />
 	    <input type="hidden" name="AWSAccessKeyId" value="AKIAISE6ZP6AFHGQJX7Q" />
 	    <input type="hidden" name="policy" value="(~Code64String|in-stripwhitespace,out-nocrlf; (~drShowcaseFileUploadPolicy~)~)" />
