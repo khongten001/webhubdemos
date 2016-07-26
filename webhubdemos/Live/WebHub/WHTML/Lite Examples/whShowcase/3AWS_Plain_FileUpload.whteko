@@ -139,9 +139,12 @@ document.getElementById('preDownloadPolicy').innerHTML = JSON.stringify((~waAWSC
 </pre>
 
 <h5>Download from Protected URL</h5>
-<p>Now we test the <a href="http://www.w3schools.com/tags/att_a_download.asp">download attribute</a> 
-to see whether we can control the save-as filename 
-for a CloudFront URL.</p>
+<p>Sadly, the <a href="http://www.w3schools.com/tags/att_a_download.asp">HTML5 download attribute</a> does not work 
+for the purpose of controlling the save-as filename of a CloudFront URL.</p>
+<p>What does work is to set the Content-Disposition header.  This is done during the file upload, such that the desired 
+filename is available at the time of download.  Aside from preventing the file from opening in a separate tab in the 
+browser, this also enables control of the filename so that you can store the file on a different name than 
+what is used when downloading (this is a rare use case).</p>
 <p>
 <a download="arbitrary_filename" 
 href="(~waAWSCloudFrontSecurityProvider.Execute|(~Request.Scheme~)://(~mcCloudFrontCNAME~)/user/webhubdemos/showcase/(~waAWSKey2Filename.Execute|user/webhubdemos/showcase/~) | 1 | (~mcCloudFrontRestrictIP~)/32~)" 
