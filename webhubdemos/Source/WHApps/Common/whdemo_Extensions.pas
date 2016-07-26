@@ -99,6 +99,7 @@ uses
   DateUtils, Math, TypInfo, JSON,
   ucVers, ucString, ucBase64, ucLogFil, ucPos, ucCodeSiteInterface, uCode,
   ucMsTime, ucJSONWrapper,
+  whBuildInfo,
   whConst, webApp, htWebApp, whMacroAffixes, webCore, whutil_ZaphodsMap,
   webSock, runConst, whcfg_AppInfo, whSharedLog, whxpGlobal, webCall,
   whdemo_ViewSource, webSysMsg, ucAWS_S3_Upload, ucAWS_Security;
@@ -675,8 +676,12 @@ begin
           '', // success url
           urlPrefix, // key starts with
           incomingRec.ftype, // content type
+          
+          //{$IF cWebHubVersion >= 3.263}
           // ["starts-with","$Content-Disposition","attachment"]
           'attachment',
+          //{$IFEND}
+          
           400 * 1024 * 1024, // max file size bytes
           7 * 1440 * 60, // cache for 7 days
           0);
