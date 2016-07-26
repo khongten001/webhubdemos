@@ -76,7 +76,7 @@ See https://github.com/blueimp/jQuery-File-Upload/wiki/Upload-directly-to-S3
 ~)
 </whdroplet>
 <whdroplet name="drShowcaseJqFileUploadPolicy">
-{"expiration":"2020-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files-webhubdemos"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type",""],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
+{"expiration":"2020-08-01T12:00:00.000Z","conditions":[{"bucket":"protected-files-webhubdemos"},["starts-with","$key","user/webhubdemos/showcase/"],{"acl":"authenticated-read"},["starts-with","$Content-Type",""],["starts-with","$Content-Disposition","attachment"],{"Cache-Control":"max-age=2419200"},["content-length-range",0,400000]]}
 </whdroplet>
 
 <whpage pageid="pgAWSJqFileUpload" desc="Upload files to AWS S3 using JQuery fileupload">
