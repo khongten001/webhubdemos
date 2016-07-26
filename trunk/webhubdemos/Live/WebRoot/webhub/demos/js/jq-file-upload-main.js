@@ -170,6 +170,7 @@ $(function() {
                console.log("File Type : "+ file_type);
                data.formData = {
                     'Content-Type': file_type,
+                    'Content-Disposition': 'attachment',
                     'key': form.find("input[name=key]").val(),
                     'acl': form.find("input[name=acl]").val(),
                     'Cache-Control': form.find("input[name=Cache-Control]").val(),
