@@ -672,7 +672,11 @@ begin
           IncMinute(nowUTC, StrToIntDef(aMinutes, 30)),
           s3BucketName,
           'authenticated-read', // acl
-          '', urlPrefix, incomingRec.ftype,
+          '', // success url
+          urlPrefix, // key starts with
+          incomingRec.ftype, // content type
+          // ["starts-with","$Content-Disposition","attachment"]
+          'attachment',
           400 * 1024 * 1024, // max file size bytes
           7 * 1440 * 60, // cache for 7 days
           0);
