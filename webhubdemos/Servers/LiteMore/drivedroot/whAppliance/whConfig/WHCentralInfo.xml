@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
-<!--- master copy of this file is in the WebHubDemos svn repository:
-	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
--->
   <Variables begin="{" end="}">
     <Var name="AppPath" value="D:\Apps\HREFTools\WebHub\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
     <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
   </Variables>
+  <!--- master copy of this file is in the WebHubDemos svn repository:
+	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
+-->
   <WebHubAppGroups>
     <WebHubAppGroup name="HREF Tools Standard">
       <WebHubApps>
@@ -268,6 +268,7 @@
           <SessionNumberLocation value="URL"/>
         </WebHubApp>
         <WebHubApp appID="showcase">
+          <Active value="true"/>
           <Nickname value="Showcase"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whShowcase\"/>
           <ConfigFilename value="WHAppConfig_showcase.xml"/>
@@ -279,7 +280,7 @@
           <Deployment>
             <DefaultStartup mode="application" stopWithHub="true" numToStartWithHub="0"/>
             <ExecutableFolder value="D:\Projects\webhubdemos\Live\WebHub\Apps\"/>
-            <ExecutableFilename value="DServer_x_d24_win64.exe"/>
+            <ExecutableFilename value="whlite.exe"/>
             <DebugMode value="false"/>
             <Instances numToRunMinimum="0" numToRunMaximum="0" delaySecBetween="3"/>
           </Deployment>
