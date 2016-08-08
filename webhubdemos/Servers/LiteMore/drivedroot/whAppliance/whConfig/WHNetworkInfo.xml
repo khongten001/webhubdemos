@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
-<!--- master copy of this file is in the WebHubDemos svn repository:
+  <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
 -->
   <Variables begin="{" end="}">
@@ -24,7 +24,7 @@
         <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <UploadMaxFileSizeKB value="30"/>
+        <UploadMaxFileSizeKB value="95"/>
         <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
         <AdvancedFlags value="hseurl"/>
