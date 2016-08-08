@@ -45,7 +45,7 @@
       <AppSetting name="ConverterConfig" value="d:\projects\webhubdemos\Live\DelphiApps\CharReplaceConfig1.set"/>
       <AppSetting name="TempPath" value="d:\temp\whConverter\"/>
       <AppSetting name="TempPath" value="d:\whAppliance\whConverter\" context="DEMOS"/>
-      <AppSetting name="MaximumFreeSize" value="195"/>
+      <AppSetting name="MaximumFreeSize" value="95"/>
     </AppSettings>
     <RemoteDesignDefaultInterface>
       <AllowedSessionIDRange value="1800-1900"/>
