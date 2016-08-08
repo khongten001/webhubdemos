@@ -16,9 +16,12 @@ Start-Process 'bcdedit.exe' -ArgumentList '/set nx OptIn'
 # with WebHub apps - 64bit - StreamCatcher involved
 CreateWebHubWebSite 'lite-local.demos.href.com' 'WebHub Demos' D:\isites\demos.href.com $False $False   # writeTest, 32bit
 NewWebHubVirtualPath 'WebHub Demos'	'scripts' $False ""  # 64bit; default runner location
+New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "lite.demos.href.com"    
+New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "more.demos.href.com"    
+New-WebBinding -Name 'WebHub Demos' -Port 80 -HostHeader "secure.demos.href.com"    
 
 Start-Process 'iisreset' -NoNewWindow -Wait
 
 StartHttpRunnerEcho 'lite-local.demos.href.com' 'scripts' $True $False  # Yes new ipc; No 32bit
 
-Start "http://lite.demos.href.com/scripts/runisa.dll?h:pcv"
+Start "http://lite-local.demos.href.com/scripts/runisa.dll?h:pcv"
