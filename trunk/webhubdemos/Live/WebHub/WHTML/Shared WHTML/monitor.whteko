@@ -51,10 +51,6 @@ on the same DOMAIN. This is a security rule enforced by the web browser.
 </whpage>
 
 <whpage pageid="pgRemoteCheckVersion" desc="-Check WebHub Component Version from any domain">
-<whdoc for="pgCheckVersion">
-This mini page could be called by JavaScript / AJAX. A tag of some sort (span, p, etc.) must surround 
-the content.
-</whdoc>
 <html><head>
 <style type="text/css">
 body {font-family:"Trebuchet MS"; margin: 0; padding: 0; }
