@@ -223,7 +223,7 @@ begin
   bContinue := NOT FLastFileTooBig;
   if NOT bContinue then
   begin
-    pWebApp.SendStringImm('<p>Error: That file was too large.</p>');
+    pWebApp.SendStringImm('<p>Error: That file was exceeded the upload limit for the WebHub runner.</p>');
     bContinue := False;
   end;
 
