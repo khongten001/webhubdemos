@@ -183,7 +183,7 @@ Browse to file<br/>
 </whpage>
 
 <whpage pageid="jsonuploadreply" desc="-testing json response in wh v3.254">
-{"Message":"(~WebTimeUTC~) Response from (~pageid~)."}
+{"Message":"(~CentralInfo.WebTimeUTC~) Response from (~pageid~)."}
 </whpage>
 
 <whpage pageid="pgUploadTooBig">
