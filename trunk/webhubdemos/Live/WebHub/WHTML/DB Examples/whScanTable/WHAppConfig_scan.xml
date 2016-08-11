@@ -55,7 +55,8 @@
       <AdminSessionNumber value="1204" context="DORIS"/>
     </Security>
     <Situations>
-      <FrontDoor pageID="pgWelcome"/>
+      <Home pageID="pgWelcome"/>
+      <FrontDoor pageID="pgEnterScan"/>
     </Situations>
     <StreamCatcherInterface>
       <WebRobotIniFilespec value=""/>
