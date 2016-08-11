@@ -1,14 +1,23 @@
 unit whScanTable_whdmData;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this file *)
+{ ---------------------------------------------------------------------------- }
+{ *                                                                          * }
+{ * Copyright (c) 1997-2016 HREF Tools Corp.                                 * }
+{ * Released to the public under a Creative Commons License                  * }
+{ *                                                                          * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
 uses
   SysUtils, Classes,
-  webLink, wdbScan, Data.DB, Datasnap.DBClient, SimpleDS, updateOK, tpAction,
-  webTypes, wdbSSrc, wdbxSource;
+  Data.DB, Datasnap.DBClient, SimpleDS,
+  {Reference http://www.codenewsfast.com/cnf/article/0/waArticleBookmark.7311195
+   Exception "unknown driver Firebird" exception is raised if DBXFirebird unit
+   omitted from uses clause. }
+  Data.DBXFirebird,
+  updateOK, tpAction,
+  webLink, wdbScan, webTypes, wdbSSrc, wdbxSource, wdbSource;
 
 type
   TDMData = class(TDataModule)
@@ -39,10 +48,6 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  {Reference http://www.codenewsfast.com/cnf/article/0/waArticleBookmark.7311195
-   Exception "unknown driver Firebird" exception is raised if DBXFirebird unit
-   omitted from uses clause. }
-  DBXFirebird,
   MultiTypeApp,
   ucIbAndFbCredentials, ucCodeSiteInterface,
   htWebApp,
@@ -50,7 +55,6 @@ uses
   webSend,   // declaration of drBeforeTag
   webScan,
   whdemo_ViewSource,  // getHtDemoDataRoot is in this unit.
-  wdbSource,
   ucDlgs;  // ucDlgs is part of TPack. msgErrorOk is in this unit.
 
 { TDMData }
