@@ -1,6 +1,6 @@
 program whScanTable;    {Free-form dynamic table display}
 (*
-Copyright (c) 1997-2011 HREF Tools Corp.
+Copyright (c) 1997-2016 HREF Tools Corp.
 
 Original Author: Ann Lynnworth, HREF Tools Corp.
 Based on the work of Robert Martin and Michael S. Davis at www.seacom.net
@@ -46,14 +46,13 @@ uses
   whsample_EvtHandlers in 'h:\whsample_EvtHandlers.pas' {whdmCommonEventHandlers: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
   scanfm in 'scanfm.pas' {fmDBPanel},
-  wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
-  wdbxSource in 'k:\webhub\lib\whdb\wdbxSource.pas',
-  wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
-  wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
-  wbdeGrid in 'k:\webhub\lib\whdb\wbdeGrid.pas',
-  wbdeSource in 'k:\webhub\lib\whdb\wbdeSource.pas',
-  webApp in 'k:\webhub\lib\whvcl\webApp.pas',
-  htWebApp in 'k:\webhub\lib\htWebApp.pas',
+  //wdbSSrc in 'k:\webhub\lib\whdb\wdbSSrc.pas',
+  //wdbxSource in 'k:\webhub\lib\whdb\wdbxSource.pas',
+  //wdbSource in 'k:\webhub\lib\whdb\wdbSource.pas',
+  //wdbScan in 'k:\webhub\lib\whdb\wdbScan.pas',
+  //webApp in 'k:\webhub\lib\whvcl\webApp.pas',
+  //webCall in 'k:\webhub\lib\whvcl\webCall.pas',
+  htWebApp in 'H:\htWebApp.pas',
   ucScnDir in 'ucScnDir.pas',
   whScanTable_dmProjMgr in 'whScanTable_dmProjMgr.pas' {DMForWHScanTable: TDataModule},
   ucIbAndFbCredentials in 'H:\ucIbAndFbCredentials.pas',
