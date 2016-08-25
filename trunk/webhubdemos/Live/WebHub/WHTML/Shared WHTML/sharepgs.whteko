@@ -256,39 +256,31 @@ Additional content may come from a database or other sources.</i></p>
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
 <h1>(~~Download~)</h1>
-<p>The WebHub demos compile with Embarcadero Delphi XE3 through XE7 plus the
+<p>The WebHub demos compile with Embarcadero Delphi plus the
 WebHub Components from HREF Tools Corp. </p>
 <p>It is a good idea to check which version of WebHub this page was created by.
 To do this, look for the version number in the page footer.  (The answer is (~version~) 
 compiled with (~CentralInfo.PascalCompilerCode~) for this 
 <span style="padding: 0.1em 0.4em 0.1em 0.4em; background-color:yellow;">(~AppID~)</span> app.)
 Compare this against the information on
-<a href="http://www.href.com/whVersion">this page</a>, where HREF indicates the latest
+<a href="https://www.href.com/whVersion">this page</a>, where HREF indicates the latest
 release of WebHub.  Generally, these versions are in sync but occasionally there are
 delays in updating the demos.  </p>
 <p>Be sure to read the instructions in the Source\Doc directory.  For easiest compilation, map drive H: to your WebHub lib\ directory.
 If you do not wish to map drive H:, edit the paths (to PAS files) in the project source (DPR file) for any demo you want to compile.</p>
 
 <h3>Access through SubVersion ("SVN")</h3>
-<p>If you have a recent Delphi IDE, you can open the demos from inside Delphi as follows:</p>
+<p>If you have a recent <b>Delphi IDE</b>, you can open the demos from inside Delphi using the menu, <b>File > Open from Version Control</b>.</p>
 <ol>
-<li> File > Open from Version Control </li>
-<li> URL: http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/ </li>
+<li> URL: https://svn.code.sf.net/p/webhubdemos/code/trunk/webhubdemos/ </li>
 <li> Destination: d:\projects\webhubdemos\</li>
-<li> user account is <b>webhubber</b></li>
-<li> password is <b>demos</b></li>
-</ol>
-
-<p>If you have any SubVersion client, you may checkout the WebHub demos using the following details.</p>
-<ol>
-<li> ideal sandbox path is <b>d:\Projects\</b></li>
-<li> URL for the files you want is <b>http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos</b></li>
-<li> user account is <b>webhubber</b></li>
-<li> password is <b>demos</b></li>
+<li> user account: Anonymous or your sourceforge login </li>
+<li> password: not required for readonly usage </li>
 <li> Note that if you include all the Externals, you will receive many extra files which are only needed 
 for compiling a small subset of projects.  Generally, you can skip the Externals until you take an interest 
 in a project that requires it. So: feel free to <b>uncheck the box for Externals</b>.</li>
 </ol>
+
 <p>If you do not already have a SVN client package, one to consider
 is <a href="http://tortoisesvn.net/downloads">Tortoise SVN</a>.  It is free and
 actively maintained.  Another is
