@@ -1,11 +1,12 @@
 :: svn-update-webhubdemos.bat
-:: For svn login, visit http://lite.demos.href.com/demos:pgDownload::demos
+:: For credentials, use your sourceforge account 
 
 
 @echo off
 setlocal
 
-set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk
+set src=https://svn.code.sf.net/p/webhubdemos/code/trunk
+
 if exist D:\Apps\Utilities\SVN\Collabnet\svn.exe       set svndir=D:\Apps\Utilities\SVN\Collabnet\
 if exist D:\Apps\Utilities\SVN\TortoiseSVN\bin\svn.exe set svndir=D:\Apps\Utilities\SVN\TortoiseSVN\bin\
 

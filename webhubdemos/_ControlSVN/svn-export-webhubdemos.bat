@@ -1,12 +1,12 @@
 :: svn-export-webhubdemos.bat
-:: For svn login, visit http://lite.demos.href.com/demos:pgDownload::demos
+:: For credentials, use your sourceforge account 
 
 
 @echo off
 setlocal
 
-set src=http://svn.href.com/svn-public/projects/project-whdemos/trunk/webhubdemos/
-set svndir=d:\Apps\Utilities\SVN\Console
+set src=https://svn.code.sf.net/p/webhubdemos/code/trunk
+set svndir=D:\Apps\Utilities\SVN\CollabNet
 
 cd /d %~dp0
 cd ..
