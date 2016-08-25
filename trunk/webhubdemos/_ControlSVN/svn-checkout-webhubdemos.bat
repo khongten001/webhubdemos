@@ -5,8 +5,8 @@
 @echo off
 setlocal
 
-set src=https://svn.code.sf.net/p/webhubdemos/code/trunk/webhubdemos
-set svndir=d:\Apps\Utilities\SVN\Console
+set src=https://svn.code.sf.net/p/webhubdemos/code/trunk
+set svndir=D:\Apps\Utilities\SVN\CollabNet
 
 cd /d %~dp0
 cd ..
