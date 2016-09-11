@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
-<!--- master copy of this file is in the WebHubDemos svn repository:
+  <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
 -->
   <Variables begin="{" end="}">
@@ -39,7 +39,6 @@
         <AdminAccess scheme="http" authority="localhost:80"/>
         <AdvancedFlags value="hseurl"/>
       </Runner>
-      
     </Runners>
     <ServerProfiles>
       <ServerProfile id="defprofile">
@@ -107,18 +106,31 @@
         <URLUseLingvo value="false"/>
         <URLUseScheme value="false"/>
       </ServerProfile>
-      <ServerProfile id="cgiprofile">
-        <HttpServerID value="apache"/>
+      <ServerProfile id="profiledynhelp">
+        <HttpServerID value="iis"/>
         <Scheme value="http"/>
-        <Authority value="demos.href.com:8082"/>
-        <AllowDynamicAuthority value="true"/>
-        <RunnerPath value="/cgi-bin/"/>
-        <RunnerID value="cgibin"/>
+        <Authority value="webhub.com:80"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi"/>
+        <URLUseShortFormat value="true"/>
+        <URLDelimiter value=":"/>
+        <URLForceCase value="none"/>
+        <URLUseLingvo value="false"/>
+        <URLUseScheme value="false"/>
+      </ServerProfile>
+
+     
+      <ServerProfile id="isaprofile">
+        <HttpServerID value="iis"/>
+        <Scheme value="http"/>
+        <Authority value="localhost:80"/>
+        <RunnerPath value="/scripts/"/>
+        <RunnerID value="isapi64"/>
         <URLUseShortFormat value="false"/>
         <URLDelimiter value=":"/>
-        <URLForceCase value="lower"/>
+        <URLForceCase value="none"/>
         <URLUseLingvo value="false"/>
-        <URLUseScheme value="true"/>
+        <URLUseScheme value="false"/>
       </ServerProfile>
     </ServerProfiles>
   </LocalMachine>

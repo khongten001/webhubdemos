@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
-<!--- master copy of this file is in the WebHubDemos svn repository:
-	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
--->
   <Variables begin="{" end="}">
-    <Var name="AppPath" value="D:\Apps\HREFTools\WebHub\"/>
+    <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
     <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
   </Variables>
+  <!--- master copy of this file is in the WebHubDemos svn repository:
+	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
+-->
   <WebHubAppGroups>
     <WebHubAppGroup name="HREF Tools Standard">
       <WebHubApps>
@@ -21,6 +21,23 @@
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
           <SessionNumberLocation value="URL"/>
+        </WebHubApp>
+      </WebHubApps>
+    </WebHubAppGroup>
+    <WebHubAppGroup name="WebHub Documentation">
+      <WebHubApps>
+        <WebHubApp appID="dynhelp">
+          <Nickname value="DynHelp"/>
+          <ConfigFolder value="D:\Projects\dynhelp\Live\WebHub\whteko\"/>
+          <ConfigFilename value="WHAppConfig_dynhelp.xml"/>
+          <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
+          <ShareSessions value="true"/>
+          <ShareByFile value="true"/>
+          <SessionCookieName value="WHHELPSESSION"/>
+          <SessionNumberLocation value="CookieFixedDomain"/>
+          <Deployment>
+            <DefaultStartup mode="application"/>
+          </Deployment>
         </WebHubApp>
       </WebHubApps>
     </WebHubAppGroup>
