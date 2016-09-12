@@ -7,10 +7,12 @@
   <Situations>
     <AllSituationsDefault appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AllSituationsDefault appID="dpr" value="{WebHubDemoMsgRoot}allsituations-dpr.whmsg"/>
+    <AllSituationsDefault appID="dynhelp" value="D:\Projects\DynHelp\Live\WebHub\whmsg\allsituations-dynhelp.whmsg"/>
     <AppCoverPage appID="" value="{WebHubDemoMsgRoot}appcoverpage-whdemo.whmsg"/>
     <AppCoverPage appID="htun" value="{WebHubDemoMsgRoot}appcoverpage-htun.whmsg"/>
     <AppCoverPage appID="coderage" value="{WebHubDemoMsgRoot}appcoverpage-coderage.whmsg"/>
     <AppCoverPage appID="dpr" value="{WebHubDemoMsgRoot}appcoverpage-dpr.whmsg"/>
+    <AppCoverPage appID="dynhelp" value="D:\Projects\DynHelp\Live\WebHub\whmsg\appcoverpage-dynhelp.whmsg"/>
     <AppIDBusy appID="" value="{SysMsgRoot}appidbusy.whmsg"/>
     <AppNotDefined appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
     <AppNotRunning appID="" value="{WebHubDemoMsgRoot}othersituation-whdemo.whmsg"/>
