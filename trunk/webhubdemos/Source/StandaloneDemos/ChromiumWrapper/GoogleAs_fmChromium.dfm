@@ -5,6 +5,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
   Margins.Top = 0
   Margins.Right = 0
   Margins.Bottom = 0
+  ActiveControl = Panel1
   Caption = 'fmChromiumWrapper'
   ClientHeight = 377
   ClientWidth = 506
@@ -16,6 +17,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
   Font.Style = []
   Menu = MainMenu1
   OldCreateOrder = False
+  Visible = True
   OnActivate = FormActivate
   OnCreate = FormCreate
   OnDestroy = FormDestroy
@@ -33,6 +35,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
     Margins.Right = 0
     Margins.Bottom = 0
     Align = alClient
+    Caption = 'loading...'
     Color = clMoneyGreen
     ParentBackground = False
     TabOrder = 0
@@ -70,6 +73,10 @@ object fmChromiumWrapper: TfmChromiumWrapper
     Top = 72
     object miFile: TMenuItem
       Caption = 'File'
+      object miPrintPdf: TMenuItem
+        Caption = 'Print to PDF'
+        OnClick = miPrintPdfClick
+      end
       object miExit: TMenuItem
         Caption = 'E&xit'
         OnClick = miExitClick
@@ -119,25 +126,6 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = 'Enter &URL'
         OnClick = miEnterURLClick
       end
-      object miTestAlert: TMenuItem
-        Caption = 'Test JavaScript Alert'
-        OnClick = miTestAlertClick
-      end
-      object N2: TMenuItem
-        Caption = '-'
-      end
-      object miTestVideo1: TMenuItem
-        Caption = 'Test &Video'
-        OnClick = TestVideo1Click
-      end
-      object SlowPageTest1: TMenuItem
-        Caption = 'Slow Page Test'
-        OnClick = SlowPageTest1Click
-      end
-      object LargePageTest1: TMenuItem
-        Caption = 'Large Page Test'
-        OnClick = LargePageTest1Click
-      end
       object N1: TMenuItem
         Caption = '-'
       end
@@ -152,6 +140,24 @@ object fmChromiumWrapper: TfmChromiumWrapper
       object miLoginGooglePass: TMenuItem
         Caption = 'Login to Google: fill Password only'
         OnClick = miLoginGooglePassClick
+      end
+    end
+    object miTest: TMenuItem
+      Caption = 'Test'
+      object estVideo1: TMenuItem
+        Caption = 'Test &Video'
+      end
+      object SlowPageTest1: TMenuItem
+        Caption = 'Slow Page Test'
+      end
+      object LargePageTest1: TMenuItem
+        Caption = 'Large Page Test'
+      end
+      object N2: TMenuItem
+        Caption = '-'
+      end
+      object estJavaScriptAlert1: TMenuItem
+        Caption = 'Test JavaScript Alert'
       end
     end
     object View1: TMenuItem

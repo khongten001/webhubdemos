@@ -10,14 +10,12 @@ uses
   cefvcl, ceflib, cefgui, ceferr;
 
 type
-
   // https://groups.google.com/forum/#!topic/delphichromiumembedded/F5PnymYBLww
   TfmChromiumWrapper = class(TForm)
     MainMenu1: TMainMenu;
     miFile: TMenuItem;
     miExit: TMenuItem;
     miBookmarks: TMenuItem;
-    miTestVideo1: TMenuItem;
     miGoogle: TMenuItem;
     N1: TMenuItem;
     QuickLogin1: TMenuItem;
@@ -25,9 +23,6 @@ type
     Help1: TMenuItem;
     miAbout: TMenuItem;
     GooglePlus1: TMenuItem;
-    SlowPageTest1: TMenuItem;
-    N2: TMenuItem;
-    LargePageTest1: TMenuItem;
     miGoogleCalendar1: TMenuItem;
     miGoogleWebmasterTools: TMenuItem;
     miEnterURL: TMenuItem;
@@ -38,12 +33,18 @@ type
     miURL: TMenuItem;
     PanelURL: TPanel;
     MemoURL: TMemo;
-    miTestAlert: TMenuItem;
     miGoogleLoginUser: TMenuItem;
     miLoginGooglePass: TMenuItem;
     AmazonAWS1: TMenuItem;
     N4: TMenuItem;
     LogintoAWSemailandpass1: TMenuItem;
+    miTest: TMenuItem;
+    estVideo1: TMenuItem;
+    SlowPageTest1: TMenuItem;
+    LargePageTest1: TMenuItem;
+    estJavaScriptAlert1: TMenuItem;
+    N2: TMenuItem;
+    miPrintPdf: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -68,6 +69,7 @@ type
     procedure miTestAlertClick(Sender: TObject);
     procedure AmazonAWS1Click(Sender: TObject);
     procedure LogintoAWSemailandpass1Click(Sender: TObject);
+    procedure miPrintPdfClick(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -372,6 +374,15 @@ begin
   MemoURL.Lines.Add(InURL);
 end;
 
+(*procedure TfmChromiumWrapper.OnPdfPrintFinished(const path: ustring;
+  ok: Boolean);
+  const cFn = 'OnPdfPrintFinished';
+begin
+  CSEnterMethod(Self, cFn);
+  //
+  CSExitMethod(Self, cFn);
+end; *)
+
 procedure TfmChromiumWrapper.miAboutClick(Sender: TObject);
 var
   Delphi: string;
@@ -441,13 +452,15 @@ begin
   MemoURL.Clear;
   MemoURL.WordWrap := False;
   miURL.Checked := False;
-  Self.Top := 10; // xTop;
-  Self.Left := 150; //xLeft;
+  Self.Top := 10;
+  Self.Left := 150;
   Self.Height := 768 + 120;
   Self.Width := 1024 + 120;
   Application.Title := 'Chromium Embedded Framework 3';
   if (ParamCount >= 1) then
-    Self.Caption := ParamStr(1); // email address
+    Self.Caption := ParamStr(1) // email address
+  else
+    Self.Caption := 'GoogleAs';
   FActiveTitle := Application.Title;
   FStartURL := 'https://plus.google.com';
   FChromium1 := nil;
@@ -571,6 +584,49 @@ begin
       miLoginGooglePass.Caption + ']');
   end;
 
+  CSExitMethod(Self, cFn);
+end;
+
+procedure TfmChromiumWrapper.miPrintPdfClick(Sender: TObject);
+const
+  cFn = 'miPrintPdfClick';
+var
+  CefPdfPrintSettings: TCefPdfPrintSettings;
+  // titleStr: TCefStringUtf16;
+  EmptyCefStringUtf16: TCefStringUtf16;
+  OutputPDFFilespec: string;
+begin
+  CSEnterMethod(Self, cFn);
+
+  // cef_browser_host_t::PrintToPDF
+  EmptyCefStringUtf16 := Default (TCefStringUtf16);
+
+  CSSend('IsPrimaryProcess', S(IsPrimaryProcess));
+  // recPrintSettings.header_footer_title.str := 'Test Title';
+  // recPrintSettings.header_footer_title.length := 10;
+  // recPrintSettings.backgrounds_enabled := 0;
+
+  CefPdfPrintSettings.backgrounds_enabled := 1;
+  CefPdfPrintSettings.header_footer_enabled := 0;
+  CefPdfPrintSettings.header_footer_title := EmptyCefStringUtf16;
+  CefPdfPrintSettings.header_footer_url := EmptyCefStringUtf16;
+  CefPdfPrintSettings.landscape := 0;
+  CefPdfPrintSettings.margin_bottom := 0;
+  CefPdfPrintSettings.margin_left := 0;
+  CefPdfPrintSettings.margin_right := 0;
+  CefPdfPrintSettings.margin_top := 0;
+  CefPdfPrintSettings.margin_type := PDF_PRINT_MARGIN_DEFAULT;
+  CefPdfPrintSettings.page_height := 0;
+  CefPdfPrintSettings.page_width := 0;
+  CefPdfPrintSettings.selection_only := 0;
+
+  OutputPDFFilespec := IncludeTrailingPathDelimiter
+    (GetEnvironmentVariable('AppData')) + 'pdf' + PathDelim + 'GoogleAs_' +
+    FormatDateTime('yyyy-mm-dd_hhnn', Now) + '.pdf';
+  CSSend('OutputPDFFilespec', OutputPDFFilespec);
+
+  FChromium1.browser.MainFrame.browser.Host.PrintToPdf(OutputPDFFilespec,
+    @CefPdfPrintSettings, nil);
   CSExitMethod(Self, cFn);
 end;
 
@@ -785,11 +841,11 @@ begin
   else
     ZoomShouldBe := FZoomWhenNormal;
 
-  if FChromium1.Browser.{$IFDEF CEF3}Host.{$ENDIF}ZoomLevel <> ZoomShouldBe then
+  if FChromium1.Browser.Host.ZoomLevel <> ZoomShouldBe then
   begin
-    FChromium1.Browser.{$IFDEF CEF3}Host.{$ENDIF}ZoomLevel := ZoomShouldBe;
+    FChromium1.Browser.Host.ZoomLevel := ZoomShouldBe;
     CSSend('Adjusted to ZoomLevel',
-      FloatToStr(FChromium1.Browser.{$IFDEF CEF3}Host.{$ENDIF}ZoomLevel));
+      FloatToStr(FChromium1.Browser.Host.ZoomLevel));
   end;
 
   if Assigned(frame) then
@@ -802,7 +858,7 @@ begin
     // before you try to search for the element and attach the event if found
     *)
   end;
-  {$IFNDEF CEF3}Result := True;{$ENDIF}
+
   CSExitMethod(Self, cFn);
 end;
 

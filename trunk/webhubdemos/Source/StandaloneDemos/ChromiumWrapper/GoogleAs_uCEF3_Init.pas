@@ -14,6 +14,7 @@ function CacheFolderRoot: string;
 procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
+function IsPrimaryProcess: Boolean;
 
 var
   SharedFlag: TSharedStr = nil;
@@ -36,12 +37,12 @@ uses
 function IsPrimaryProcess: Boolean;
 const cFn = 'IsPrimaryProcess';
 begin
-  CSEnterMethod(nil, cFn);
+  //CSEnterMethod(nil, cFn);
   Result := ParamCount = 0;
   if (ParamCount >= 1) then
     Result := Copy(ParamStr(1), 1, 6) <> '--type';
-  CSSend(cFn + ': Result', S(Result));
-  CSExitMethod(nil, cFn);
+  //CSSend(cFn + ': Result', S(Result));
+  //CSExitMethod(nil, cFn);
 end;
 
 function PrimaryProcessPID: Integer;
@@ -80,6 +81,15 @@ function CacheFolderRoot: string;
 const cFn = 'CacheFolderRoot';
 var
   Extra: string;
+
+  function AppDataGoogleAsCache: string;
+  begin
+    // for Windows: write end-user files to the data area (not program files)
+    Result :=
+      IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
+        'GoogleAs' + PathDelim + 'cache';
+  end;
+
 begin
   CSEnterMethod(nil, cFn);
   if IsPrimaryProcess then
@@ -102,8 +112,7 @@ begin
         end;
       end;
     end;
-    Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
-      'cache' + Extra;
+    Result := AppDataGoogleAsCache + Extra;
     try
       ForceDirectories(Result);
     except
@@ -113,12 +122,11 @@ begin
         CSSendException(E);
         MsgErrorOk(E.Message + sLineBreak + sLineBreak + Result);
       end;
-
     end;
   end
   else
   begin
-    CSSendError('should not call this way');
+    CSSendError(cFn + ': should not call this way');
     if Assigned(SharedCache) then
     begin
       CSSend('SharedCache exists');
@@ -127,8 +135,7 @@ begin
     else
     begin
       CSSendWarning('SharedCache does not exist');
-      Result := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
-        'cache';
+      Result := AppDataGoogleAsCache;
     end;
   end;
   CSSend(cFn + ': Result', Result);
@@ -144,7 +151,7 @@ var
   JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
   FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled: Boolean;
   RemoteDebuggingPort: Integer;
-  ReleaseDCheck: Boolean; 
+  //ReleaseDCheck: Boolean;
   UncaughtExceptionStackSize: Integer;
   ContextSafetyImplementation: Integer;
   PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean;
@@ -154,6 +161,7 @@ var
   i: Integer;
   NoSandbox: Boolean;
   UserDataPath, AcceptLanguageList: string;
+  FlagIsPrimaryProcess: Boolean;
 begin
   CSEnterMethod(nil, cFn);
 
@@ -162,19 +170,24 @@ begin
   for i := 1 to ParamCount do
     CSSend('ParamStr(' + S(i) +')', ParamStr(i));
 
-  SharedInstanceCount := TSharedInt.Create(nil);
-  SharedInstanceCount.Name := 'SharedInstanceCount';
-
-  SharedFlag := TSharedStr.Create(nil);
+  SharedFlag := TSharedStr.CreateNamed(nil, 
+    'GoogleAsStartup', 
+    1024, 
+    cReadWriteSharedMem,  // not readonly
+    cLocalSharedMem);     // no need for global memory
   SharedFlag.Name := 'SharedFlag';
+  SharedFlag.IgnoreOwnChanges := True;   // dual process !!
 
-  SharedInstanceCount.GlobalName := ExtractFilename(ParamStr(0));
+  SharedInstanceCount := TSharedInt.CreateNamed(nil, 
+    ExtractFilename(ParamStr(0)),
+    cReadWriteSharedMem,  // not readonly
+    cLocalSharedMem);     // no need for global memory
+
   SharedInstanceCount.GlobalInteger := SharedInstanceCount.GlobalInteger + 1;
-  CSSend('SharedInstanceCount.GlobalInteger',
+  CSSend(SharedInstanceCount.GlobalName + '.GlobalInteger',
     S(SharedInstanceCount.GlobalInteger));
 
-  SharedFlag.GlobalName := 'GoogleAsStartup';
-  SharedFlag.IgnoreOwnChanges := True;   // dual process !!
+  FlagIsPrimaryProcess := IsPrimaryProcess;
 
   CSSend('about to figure DivName');
   DivName := 'GoogleAs_' + IntToStr(PrimaryProcessPID);
@@ -193,7 +206,7 @@ begin
       [SharedCache.GlobalName, ('Local\' + DivName)]));
   SharedCache.IgnoreOwnChanges := True;
 
-  if IsPrimaryProcess then
+  if (FlagIsPrimaryProcess) then
   begin
     Cache := CacheFolderRoot;
     CSSend('Cache', Cache);
@@ -232,9 +245,9 @@ begin
       CSSendException(E);
     end;
   end;
-  //UserAgent := ''; // if overridden, default value is lost.
-  UserAgent :=
-    'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.73 Safari/537.36';
+  UserAgent := ''; // if overridden, default value is lost.
+  //UserAgent :=
+  //  'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/27.0.1453.73 Safari/537.36';
   ProductVersion := '';
   Locale := '';
   LogFile := '';
@@ -246,7 +259,6 @@ begin
   CommandLineArgsDisabled := True;
   PackLoadingDisabled := False;
   RemoteDebuggingPort := 0;
-  // ReleaseDCheck := False;  // easier debugging even after release
   UncaughtExceptionStackSize := 0;
   ContextSafetyImplementation := 0;
   PersistSessionCookies := False;
@@ -268,7 +280,8 @@ function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale
   const AcceptLanguageList: ustring; WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
 *)
   
-  IsFirstInit := IsPrimaryProcess and 
+  //  CSSend('about to call CefLoadLib');
+  IsFirstInit := //IsPrimaryProcess and 
     CefLoadLib(cache, 
     UserDataPath, 
     UserAgent, 
@@ -284,18 +297,17 @@ function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale
     AcceptLanguageList,
     WindowsSandboxInfo, WindowlessRenderingEnabled
     );
-  if IsFirstInit then
+  //CSSend('Done calling CefLoadLib');
+
+  CSSend('FlagIsPrimaryProcess', S(FlagIsPrimaryProcess));
+  //CSSend('IsFirstInit', S(IsFirstInit));
+
+  if FlagIsPrimaryProcess and (NOT IsFirstInit) then
   begin
-    //
-  end
-  else
-  begin
-    ErrorText := 'Did not load CEF3 DLL library files';
-    CSSendWarning(ErrorText);
+    ErrorText := 'Unable to load CEF3 DLL library files';
+    CSSendError(ErrorText);
   end;
-
-  CSSend('IsFirstInit', S(IsFirstInit));
-
+  
   CSExitMethod(nil, cFn);
 end;
 
@@ -322,27 +334,49 @@ begin
 end;
 
 procedure ConditionalStartup(const Flag: Boolean);
+const cFn = 'ConditionalStartup';
+//var
+//  TempStr: string;
 begin
+  CSEnterMethod(nil, cFn);
   if Flag then
   begin
     Application.Initialize;
     Application.MainFormOnTaskbar := True;
 
+    CSSend(csmLevel5, 'Creating TfmChromiumWrapper');
+    // must create Chromium wrapper form first -- MainForm
     Application.CreateForm(TfmChromiumWrapper, fmChromiumWrapper);
 
-    CSSendNote('About to call Application.Run');
+    CSSend(csmLevel5, 'About to call Application.Run');
     Application.Run;
   end
   else
   begin
-    CSSendError('FYI: nested process for CEF3 rendering and WebKit call-backs');
+    CSSendNote('FYI: nested process for CEF3 rendering and WebKit call-backs');
   end;
+  CSExitMethod(nil, cFn);
 end;
 
 initialization
-finalization
-  FreeAndNil(SharedFlag);
-  FreeAndNil(SharedInstanceCount);
-  FreeAndNil(SharedCache);
+  {$IFDEF CodeSite}
+  {$IFDEF DEBUG}
+  SetCodeSiteLoggingState([cslAll]); // Developer DEBUG mode
+  {$ELSE}
+  SetCodeSiteLoggingState([cslWarning, cslError, cslException]); // default, until configuration is loaded.
+  {$ENDIF}
+  {$ENDIF}
 
+finalization
+  try
+    FreeAndNil(SharedFlag);
+    FreeAndNil(SharedInstanceCount);
+    FreeAndNil(SharedCache);
+  except
+    on E: Exception do
+    begin
+      CSSendError('finalization of uCEF3_Init.pas');
+      CSSendException(E);
+    end;
+  end;
 end.
