@@ -10,6 +10,7 @@ uses
   ucCodeSiteInterface,
   ceflib;
 
+function AppDataGoogleAs: string;
 function CacheFolderRoot: string;
 procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
@@ -24,7 +25,7 @@ var
 implementation
 
 uses
-  {$IFDEF Delphi15}Windows,{$ENDIF}
+  ActiveX, // CoInitialize
   Forms, IOUtils
   {$IFDEF Delphi16UP}
   ,
@@ -77,6 +78,14 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
+function AppDataGoogleAs: string;
+begin
+  // for Windows: write end-user files to the data area (not program files)
+  Result :=
+    IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
+      'GoogleAs' + PathDelim;
+end;
+
 function CacheFolderRoot: string;
 const cFn = 'CacheFolderRoot';
 var
@@ -85,9 +94,7 @@ var
   function AppDataGoogleAsCache: string;
   begin
     // for Windows: write end-user files to the data area (not program files)
-    Result :=
-      IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
-        'GoogleAs' + PathDelim + 'cache';
+    Result := AppDataGoogleAs + 'cache';
   end;
 
 begin
@@ -359,6 +366,7 @@ begin
 end;
 
 initialization
+  CoInitialize(nil);  // for WinShellOpen of PDF files
   {$IFDEF CodeSite}
   {$IFDEF DEBUG}
   SetCodeSiteLoggingState([cslAll]); // Developer DEBUG mode
