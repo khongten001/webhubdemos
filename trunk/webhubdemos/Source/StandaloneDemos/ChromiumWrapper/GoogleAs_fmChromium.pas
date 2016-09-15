@@ -71,6 +71,8 @@ type
     procedure LogintoAWSemailandpass1Click(Sender: TObject);
     procedure miPrintPdfClick(Sender: TObject);
   strict private
+    procedure OnPDFPrintComplete(const path: ustring; ok: Boolean);
+  strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
     FChromium1: TChromium;
@@ -126,7 +128,8 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo, Dialogs, DateUtils,
-  uCode, ucDlgs, ucCodeSiteInterface, GoogleAs_uCEF3_Init;
+  uCode, ucDlgs, ucCodeSiteInterface, ucShell,
+  GoogleAs_uCEF3_Init;
 
 procedure TfmChromiumWrapper.MakeWindowFullScreen;  // F11
 const cFn = 'MakeWindowFullScreen';
@@ -374,6 +377,47 @@ begin
   MemoURL.Lines.Add(InURL);
 end;
 
+procedure TfmChromiumWrapper.OnPDFPrintComplete(const path: ustring;
+  ok: Boolean);
+const cFn = 'OnPDFPrintComplete';
+var
+  bFileExists: Boolean;
+  InfoMsg: string;
+begin
+  CSEnterMethod(Self, cFn);
+  bFileExists := FileExists(path);
+  CSSend('bFileExists', S(bFileExists));
+
+  if NOT bFileExists then
+  begin
+    InfoMsg := cFn + ': File does not exist: ' + path;
+    CSSendError(InfoMsg);
+    MsgErrorOk(InfoMsg);
+  end
+  else
+  begin
+    (*
+    https://www.adobe.com/devnet-docs/acrobatetk/tools/AdminGuide/pdfviewer.html
+
+    Setting the Default PDF Viewer
+
+    Since 10.x, it has been possible to have both Acrobat and Reader on the same machine.
+
+    The default handler can be set in the following ways:
+
+    For 10.0 and later, the product allows the user to specify the default PDF handler on first launch if a default handler is not already set.
+    For 11.0 and later, by default, Acrobat will wrest ownership from an existing Reader install. You can change this behavior by setting LEAVE_PDFOWNERSHIP to YES.
+    Preset that choice via a registry preference stored at HKLM\SOFTWARE\Adobe\Installer\{product GUID}\DEFAULT_VERB.
+    Configure the installer prior to deployment via the Wizard, command line, or registry.
+    Via the user interface by choosing Preferences > General > Select Default PDF Handler.
+   *)
+    if AskQuestionYesNo('View ' + path + ' now?') then
+      WinShellOpen(path);
+  end;
+
+  CSExitMethod(Self, cFn);
+end;
+
 (*procedure TfmChromiumWrapper.OnPdfPrintFinished(const path: ustring;
   ok: Boolean);
   const cFn = 'OnPdfPrintFinished';
@@ -598,7 +642,6 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  // cef_browser_host_t::PrintToPDF
   EmptyCefStringUtf16 := Default (TCefStringUtf16);
 
   CSSend('IsPrimaryProcess', S(IsPrimaryProcess));
@@ -620,13 +663,15 @@ begin
   CefPdfPrintSettings.page_width := 0;
   CefPdfPrintSettings.selection_only := 0;
 
-  OutputPDFFilespec := IncludeTrailingPathDelimiter
-    (GetEnvironmentVariable('AppData')) + 'pdf' + PathDelim + 'GoogleAs_' +
+  OutputPDFFilespec := AppDataGoogleAs + 'pdf';
+  ForceDirectories(OutputPDFFilespec);
+  OutputPDFFilespec := OutputPDFFilespec + PathDelim + 'GoogleAs_' +
     FormatDateTime('yyyy-mm-dd_hhnn', Now) + '.pdf';
   CSSend('OutputPDFFilespec', OutputPDFFilespec);
 
-  FChromium1.browser.MainFrame.browser.Host.PrintToPdf(OutputPDFFilespec,
-    @CefPdfPrintSettings, nil);
+  // cef_browser_host_t::PrintToPDF
+  FChromium1.browser.MainFrame.browser.Host.PrintToPdfProc(OutputPDFFilespec,
+    @CefPdfPrintSettings, OnPDFPrintComplete);
   CSExitMethod(Self, cFn);
 end;
 
