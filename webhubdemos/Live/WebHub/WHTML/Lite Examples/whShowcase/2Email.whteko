@@ -82,7 +82,9 @@ When the surfer clicks the [submit] button on the page,
 any data they have entered will be sent to the e-mail account you've
 specified.
 <p>
-Copy the <code>whMailForm componentName="WebMailForm"</code> section from the showcase configuration file to use as a basis, or look up TwhMailForm in the WebHub Help/Reference.</p>
+Copy the <code>whMailForm componentName="WebMailForm"</code> section 
+from the showcase configuration file to use as a basis, or look up TwhMailForm in the 
+<a href="http://webhub.com/dynhelp:search">WebHub Help/Reference</a>.</p>
 
 <pre>
 [WebMailForm.FEEDBACK]
@@ -115,7 +117,10 @@ not that you want the message to come from someone named MsgFrom^!
 <li> (~MAILTO|info5@href.com||true~) </li>
 <li> (~MAILTO|info6@href.com||false~) </li>
 <li> (~MAILTO|info7@href.com|title="hello"||true~)</li>
+<li> (~SET|_emailTarget=info@href.com~)(~MAILTO|(~_emailTarget~)||true~) </li>
+<li> (~SET|_emailTarget=info@href.com~)(~SET|_emailVisible=info~)(~MAILTO|(~_emailTarget~)|(~_emailVisible~)|true~) </li>
 </ol>
+(~CLEAR|_emailTarget~)
 (~drShowcaseGlobalFooter~)
 </whpage>
 
