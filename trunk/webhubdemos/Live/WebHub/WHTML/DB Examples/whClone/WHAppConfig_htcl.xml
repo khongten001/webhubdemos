@@ -26,7 +26,6 @@
           <Module name="appout" status="enabled-gui"/>
           <Module name="appout" status="disabled" context="DEMOS"/>
           <Module name="appout" status="disabled" context="DORIS"/>
-          <Module name="decode" status="disabled" />
           <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
