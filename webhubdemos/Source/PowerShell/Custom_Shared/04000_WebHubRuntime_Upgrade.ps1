@@ -67,16 +67,20 @@ if ($Global:FlagInstallWebHubRuntime) {
 
 			$postParams = @{whver=$webhub_version}
 			$response = Invoke-RestMethod -Uri 'https://www.href.com/edeliver:ajaxWHRunTimeSetup' -Method POST -Body $postParams -ContentType "application/x-www-form-urlencoded"
-			#Start-Process $Global:CSConsole -ArgumentList ($response ) -NoNewWindow -Wait
-	
+
 			Start-Process $Global:CSConsole -ArgumentList ('/note "resource ' + $response.EDeliverResponse.Resource + '"') -NoNewWindow -Wait
 	
 			$source = $response.EDeliverResponse.URL
+			if ($source -eq '') {
+				Start-Process $Global:CSConsole -ArgumentList ('/error "response did not provide download/source url."') -NoNewWindow -Wait
+				Start-Process $Global:CSConsole -ArgumentList ($response ) -NoNewWindow -Wait  # D:\whAppliance\whLogs
+			} else {
 	
-			Start-Process $Global:CSConsole -ArgumentList ('/note "source url ' + $source + '"') -NoNewWindow -Wait
-			Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
-			Invoke-WebRequest $source -OutFile $filespec 
-			if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
+				Start-Process $Global:CSConsole -ArgumentList ('/note "source url ' + $source + '"') -NoNewWindow -Wait
+				Start-Process $Global:CSConsole -ArgumentList ('Downloading ' + $whrunsetup ) -NoNewWindow -Wait
+				Invoke-WebRequest $source -OutFile $filespec 
+				if (! $?) { Start-Process $Global:CSConsole -ArgumentList ('/Error "Download Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait }
+			}
 			Remove-Variable -Name response
 			Remove-Variable -Name postParams
 			Remove-Variable -Name source
