@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubNetworkInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubNetworkInfo201512.xsd">
   <!--- master copy of this file is in the WebHubDemos svn repository:
@@ -27,7 +27,7 @@
         <UploadMaxFileSizeKB value="2"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="db.demos.href.com:80"/>
-        <AdvancedFlags value="hseurl"/>
+        <AdvancedFlags value=""/>
       </Runner>
       <Runner id="isapi64" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa64.dll">
         <Interface value="isapi"/>
@@ -37,7 +37,7 @@
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
-        <AdvancedFlags value="hseurl"/>
+        <AdvancedFlags value=""/>
       </Runner>
     </Runners>
     <ServerProfiles>
