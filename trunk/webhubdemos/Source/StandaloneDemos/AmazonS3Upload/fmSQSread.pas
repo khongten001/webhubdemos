@@ -49,14 +49,15 @@ begin
   AmazonConnectionInfo1.AccountKey := cSAKey;
   AmazonConnectionInfo1.Protocol := cProtocol;
 
-  //AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = cS3Region);
+  AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = cS3Region);
+
+  Memo1.Lines.Add(cAKey);
+  Memo1.Lines.Add(cQueueURL);
 
   try
     aqs := TAmazonQueueService.Create(AmazonConnectionInfo1);
     ResponseInfo := TCloudResponseInfo.Create;
-    messageList := aqs.GetMessages(
-      'https://sqs.us-west-2.amazonaws.com/653403938628/' +
-      'hreftools_email_problems', 100, 0, ResponseInfo);
+    messageList := aqs.GetMessages(cQueueURL, 100, 0, ResponseInfo);
     InfoMsg :=
       Format('ResponseInfo: statuscode %d, message %s',
       [ResponseInfo.StatusCode,
