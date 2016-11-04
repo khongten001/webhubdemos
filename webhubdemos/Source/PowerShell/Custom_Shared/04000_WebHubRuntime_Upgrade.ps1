@@ -105,8 +105,15 @@ if ($Global:FlagInstallWebHubRuntime) {
 		$InfoMsg = ('Downloading ' + $whrunsetup)
 		echo $InfoMsg
 		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
+
+		#ncFtpGet
+		#http://www.ncftp.com/ncftp/doc/ncftpget.html
+		#-F
+		#    Use passive (PASV) data connections.  The default is to use passive, but to fallback to regular if the passive connection fails or times out. 
+
 		$cmd = ("-u " + $webhub_ftp_user + " -p " + $webhub_ftp_pass + " " + $webhub_ftp_host + " . /" + $whrunsetup)
 		$InfoMsg = '"ftp cmd" "' + $cmd + '"'
+
 		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 		Start-Process "d:\Apps\Utilities\ncFTP\ncFTPGet.exe" -ArgumentList $cmd -NoNewWindow -Wait 
 	
