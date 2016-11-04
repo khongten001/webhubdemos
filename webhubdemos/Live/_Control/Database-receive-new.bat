@@ -34,6 +34,8 @@ if errorlevel 1 pause
 if exist H:\NUL cd /d h:\
 if exist H:\NUL d:\Apps\Utilities\7Zip\7z.exe x d:\Projects\WebHubDemos\live\WebHub\Apps\DriveH-source.7z -aoa
 
-:: now call startup procedure
+:: webhub.com/dynhelp runs on db.demos server as of October 2016
+set start DynHelp
 
+:: now call startup procedure
 endlocal
