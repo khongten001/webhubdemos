@@ -1,4 +1,4 @@
-D:\Apps\HREFTools\WebHub\bin\ShutdownWHApps.exe
+D:\Apps\HREFTools\WebHub\bin\whadmin.exe 0
 
 net stop w3svc
 net stop hub
@@ -9,5 +9,5 @@ del C:\temp\whTemp\ipc\*.* /q
 net start w3svc
 net start hub
 
-echo Start DServer X instances now
+echo Start WebHub Lite instances now
 pause

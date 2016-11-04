@@ -37,7 +37,6 @@ set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="dbrtl;inet;soaprtl;soapserver;vclactnband;vcldb;vclimg;vclsmp;vcl;vclx;vcldb;xmlrtl;ldiRegExLib;ZaphodsMapLib"
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-if "%1"=="DServer" set compilerflags=%compilerflags%;AWSSUPPORT
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
 :: extra parameters for Delphi XE2
