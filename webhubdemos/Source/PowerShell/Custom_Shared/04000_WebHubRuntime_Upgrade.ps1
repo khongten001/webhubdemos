@@ -33,10 +33,13 @@ if ($Global:FlagInstallWebHubRuntime) {
 	New-Variable -Name webhub_version  -Value '' -Option private
 	New-Variable -Name use_cloudfront  -Value 'N' -Option private
 
-	if ($Global:ZMGlobalContext -eq 'DEMOS') {
+	if ($Global:ZMGlobalContext -eq 'DEMOS') {  # lite.demos.href.com
 		$use_cloudfront = 'Y'
 	}
-	if ($Global:ZMGlobalContext -eq 'DORIS') {
+	if ($Global:ZMGlobalContext -eq 'DORIS') {  # db.demos.href.com
+		$use_cloudfront = 'Y'
+	}
+	if ($Global:ZMGlobalContext -eq 'WESLEY') { # delphi prefix registry 
 		$use_cloudfront = 'Y'
 	}
 
