@@ -1,11 +1,16 @@
+:: DPR-receive-new.bat
+:: Delphi Prefix Registry, receive new binary files on production server
+
 setlocal
+
+d:\Apps\HREFTools\WebHub\bin\whadmin.exe app instances stop --appid=dpr 
+d:\Apps\HREFTools\MiscUtil\wait.exe 5
 
 d:\Apps\HREFTools\WebHub\bin\whadmin.exe app cover --appid=dpr --minutes=3 "--reason=upgrading web application"
 
 start TaskMgr
 rem wait until whDPrefix.exe is out of memory
 pause
-
 
 cd /d %~dp0
 cd ..\WebHub\Apps
