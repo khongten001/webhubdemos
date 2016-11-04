@@ -36,7 +36,6 @@ if     "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE
 :: LogAppTick;LogHelo;LogSTime;LogIPCMinimal;LOGBAD
 if NOT "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LOGBOUNCE
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-if "%1"=="DServer" set compilerflags=%compilerflags%;AWSSUPPORT
 %CSSend% compilerflags "%compilerflags%" %CSLogPathParams%
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU

@@ -8,13 +8,8 @@ set compilerdigits=24
 cd /D %~dp0
 
 ::start the WebHub advertising demo
-if     "%zmcontext%"=="NYX"		goto %zmcontext%
 if     "%zmcontext%"=="ultraann"	goto %zmcontext%
 goto others
-
-:NYX
-start DServer_x_d%compilerdigits%_win64.exe /ID=adv
-goto end
 
 :ultraann
 start whlite_x_d%compilerdigits%_win64_src.exe /ID=adv
