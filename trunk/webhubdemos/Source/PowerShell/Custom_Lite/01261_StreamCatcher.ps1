@@ -45,7 +45,7 @@ Stop-Service w3svc
 DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v" + $SCVer + "-win64-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
 Start-Service w3svc
 $srcbase = "http://archiveinstallers.s3.amazonaws.com/win32"
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1.1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
 
 # enable d:\Apps\HREFTools\StreamCatcher\Application\StreamCatcher.dll
 # credit: http://learningpcs.blogspot.com.au/2011/08/powershell-iis-7-adding-isapi-filters.html
