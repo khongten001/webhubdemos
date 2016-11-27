@@ -103,7 +103,7 @@ begin
   if EditEMailTo.Text = '' then
     EditEMailTo.Text := 'info@href.com';
   if EditMailhost.Text = '' then
-    EditMailhost.Text := 'smtplocal.href.com';  
+    EditMailhost.Text := 'email-smtp.us-west-2.amazonaws.com';  
   if EditMailPort.Text = '' then
     EditMailPort.Text := '25';
   if EditSubject.Text = '' then
