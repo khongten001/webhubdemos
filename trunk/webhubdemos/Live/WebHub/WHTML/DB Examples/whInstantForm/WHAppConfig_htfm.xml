@@ -85,7 +85,7 @@
       </DisplaySets>
     </whdbSource>
     <whWebAction componentName="waLinkW3Validation">
-		<Item id="DiskFolder" value="E:\whSwap\w3validation\htfm\" context="DORIS"/>
+		<Item id="DiskFolder" value="C:\whSwap\w3validation\htfm\" context="DORIS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
