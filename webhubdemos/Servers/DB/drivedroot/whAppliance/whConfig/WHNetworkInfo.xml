@@ -6,7 +6,7 @@
 -->
   <Variables begin="{" end="}">
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
   </Variables>
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
