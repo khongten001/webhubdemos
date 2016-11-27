@@ -8,6 +8,7 @@
   </Variables>
   <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
+	USE CASE SENSITIVE FILESPECS !
 -->
   <WebHubAppGroups>
     <WebHubAppGroup name="HREF Tools Standard">
@@ -28,7 +29,7 @@
       <WebHubApps>
         <WebHubApp appID="dynhelp">
           <Nickname value="DynHelp"/>
-          <ConfigFolder value="D:\Projects\dynhelp\Live\WebHub\whteko\"/>
+          <ConfigFolder value="D:\Projects\DynHelp\Live\WebHub\whteko\"/>
           <ConfigFilename value="WHAppConfig_dynhelp.xml"/>
           <ErrorLogFolder value="{RootForWHDataFolders}whLogs\"/>
           <ShareSessions value="true"/>
