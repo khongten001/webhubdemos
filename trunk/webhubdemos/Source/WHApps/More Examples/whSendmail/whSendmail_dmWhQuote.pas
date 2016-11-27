@@ -65,7 +65,7 @@ uses
 {$R *.DFM}
 
 const
-  cOutgoingMailServer = 'smtplocal.href.com'; // replace with your mail server
+  cOutgoingMailServer = 'email-smtp.us-west-2.amazonaws.com'; // replace with your mail server
   cOutgoingMailPort = 25;
 
 procedure TdmWhQuote.Init;
