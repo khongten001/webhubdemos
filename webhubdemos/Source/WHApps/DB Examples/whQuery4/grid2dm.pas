@@ -29,9 +29,11 @@ project.  Here we have the code for the second grid (search by salary).
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DB, Bde.DBTables, wbdeSource, UpdateOk, WebTypes, WebLink, WdbLink, webScan,
-  WdbScan, wdbGrid, wbdeGrid{bde}, tpAction, wdbSSrc, wdbSource;
+  Windows, Messages, SysUtils, Classes, Forms, 
+  DB, Bde.DBTables, MidasLib,
+  tpAction, updateOk, 
+  webTypes, webLink, wdbLink, webScan, wdbScan, wdbGrid, wbdeGrid{bde}, wbdeSource, 
+  wdbSSrc, wdbSource;
 
 type
   TDataModuleGrid2 = class(TDataModule)

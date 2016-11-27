@@ -25,9 +25,10 @@ THE SOFTWARE.
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, wdbScan, wdbGrid, wbdeGrid{bde}, updateOK, tpAction, webTypes, wdbSSrc, wdbSource,
-  wbdeSource, Bde.DBTables, Data.DB;
+  SysUtils, Classes, Bde.DBTables, Data.DB, MidasLib,
+  updateOK, tpAction, 
+  webLink, wdbScan, wdbGrid, wbdeGrid, webTypes, wdbSSrc, wdbSource,
+  wbdeSource;
 
 type
   TDMHTQ1 = class(TDataModule)
@@ -87,7 +88,8 @@ begin
       //set database directory
       with query1 do
       begin
-        DatabaseName := getHtDemoDataRoot + 'iso639\Paradox\';
+        // case sensitive path
+        DatabaseName := getHtDemoDataRoot + 'iso639\paradox\'; 
         SQL.Text := 'SELECT d.LangIndexNo, d.LangID, c1.CountryName, ' +
           'd.NameType, d.LangName ' +
           'FROM "LanguageIndex.db" d, "CountryCode.db" c1 ' +
