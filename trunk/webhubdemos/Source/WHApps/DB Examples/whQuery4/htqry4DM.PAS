@@ -27,8 +27,8 @@ THE SOFTWARE.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  Bde.DBTables, DB, 
+  Windows, Messages, SysUtils, Classes, Forms, 
+  Bde.DBTables, DB, MidasLib,
   UpdateOk, tpAction, 
   WebTypes, wbdeSource, wdbForm,
   WebLink, WdbLink, WdbScan, wdbGrid, wbdeGrid{bde}, WebSend, webScan, wdbLstBx, wdbSSrc,

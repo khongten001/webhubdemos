@@ -1,13 +1,11 @@
 unit whClone_dmwhGridsNScans;
 
-(* original filename: whsample_DMInit.pas *)
-(* no copyright claimed for this WebHub sample file *)
-
 interface
 
 uses
-  SysUtils, Classes,
-  webLink, wdbGrid, wbdeGrid{bde}, updateOK, tpAction, webTypes, wdbScan, wdbSource, wdbSSrc;
+  SysUtils, Classes, MidasLib,
+  updateOK, tpAction, 
+  webLink, wdbGrid, wbdeGrid, webTypes, wdbScan, wdbSource, wdbSSrc;
 
 type
   TDMGridsNScans = class(TDataModule)

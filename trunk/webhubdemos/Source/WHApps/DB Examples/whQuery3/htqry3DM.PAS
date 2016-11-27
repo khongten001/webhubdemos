@@ -24,10 +24,10 @@ THE SOFTWARE.
 interface
 
 uses
-  Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
-  DB, Bde.DBTables, 
-  wdbSource, wbdeSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, 
+  Windows, SysUtils, Classes, Forms, 
+  DB, Bde.DBTables, MidasLib,
   UpdateOk, tpAction,
+  wdbSource, wbdeSource, wdbLink, wdbScan, wdbGrid, wbdeGrid{bde}, 
   WebTypes, WebLink, WebPage, WebPHub, webScan, wdbSSrc;
 
 type
