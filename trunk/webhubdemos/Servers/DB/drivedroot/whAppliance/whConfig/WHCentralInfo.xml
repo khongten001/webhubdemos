@@ -4,7 +4,7 @@
   <Variables begin="{" end="}">
     <Var name="AppPath" value="d:\Apps\HREFTools\WebHub\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
   </Variables>
   <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\DB\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
