@@ -4,7 +4,7 @@
   <Variables begin="{" end="}">
     <Var name="DataPath" value="D:\whAppliance\whConfig\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="E:\whSwap\"/>
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
     <Var name="AppConfigPath" value="D:\Apps\HREFTools\WebHub\config\"/>
   </Variables>
   <KeyGroups>
