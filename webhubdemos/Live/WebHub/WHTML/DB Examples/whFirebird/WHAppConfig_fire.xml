@@ -89,7 +89,7 @@
       <Prompts macroPrefix="mcPrompt"/>
     </whdbSource>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="E:\whSwap\w3validation\fire\" context="DORIS"/>
+      <Item id="DiskFolder" value="C:\whSwap\w3validation\fire\" context="DORIS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>

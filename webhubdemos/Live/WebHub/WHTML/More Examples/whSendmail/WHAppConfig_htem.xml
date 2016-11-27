@@ -82,7 +82,7 @@
   <ComponentConfig>
     <whMailForm componentName="WebMailForm">
       <Item name="safemail">
-        <Host value="smtplocal.href.com"/>
+        <Host value="email-smtp.us-west-2.amazonaws.com"/>
         <Port value="25"/>
         <From value="inEMail^"/>
         <To value="inEMail^"/>
