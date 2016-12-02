@@ -42,6 +42,9 @@ if ($Global:FlagInstallWebHubRuntime) {
 	if ($Global:ZMGlobalContext -eq 'WESLEY') { # delphi prefix registry 
 		$use_cloudfront = 'Y'
 	}
+	if ($Global:ZMGlobalContext -eq 'NYX') { # delphi prefix registry 
+		$use_cloudfront = 'Y'
+	}
 
 
 	if ($use_cloudfront -eq 'N') {
