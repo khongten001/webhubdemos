@@ -1,6 +1,6 @@
 setlocal
 
-set thisdate=2012-12-04
+set thisdate=2016-12-02
 
 :: use ZaphodsMap to find credentials
 call %ZaphodsMap%zmset.bat dbname UsingKey2Value "FirebirdSQL Credentials-CodeRageSchedule database"
@@ -15,6 +15,6 @@ pause
 
 cd /d %~dp0
 
-d:\Apps\Firebird\Firebird_2_5\bin\gbak -v -z -recreate_database overwrite -user %u% -password %p% backup\coderage_%thisdate%.fbk %dbname%
+D:\Apps\FirebirdSQL\2.5\bin\gbak -v -z -recreate_database overwrite -user %u% -password %p% backup\coderage_%thisdate%.fbk %dbname%
 
 pause
