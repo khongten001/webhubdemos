@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
     <MenuEnabled value="true"/>
     <SplashEnabled value="true"/>
     <StartMinimized value="false"/>
-    <StartMinimized value="true" context="DEMOS"/>
-    <StartMinimized value="true" context="WESLEY"/>
+    <StartMinimized value="true" context="NYX"/>
     <TrayIconEnabled value="true"/>
     <Modules>
       <StandardModules>
@@ -30,7 +29,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
-        <ServerProfileIDStandard value="shortdpr" context="WESLEY"/>
+        <ServerProfileIDStandard value="shortdpr" context="NYX"/>
         <ForceCase value="none"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>
@@ -44,7 +43,7 @@
       <AppSetting name="AlphaLetters" value="26"/>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
-      <AppSetting name="DesignRefreshEnabled" value="False" context="WESLEY"/>
+      <AppSetting name="DesignRefreshEnabled" value="False" context="NYX"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
       <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
       <AppSetting name="ShowSessionVars" value="False"/>
@@ -55,7 +54,7 @@
     </PageGeneration>
     <Security>
       <CookieDomainDefault value="delphiprefix.modulab.com"/>
-      <CookieDomainDefault context="WESLEY" value="delphiprefix.href.com"/>
+      <CookieDomainDefault context="NYX" value="delphiprefix.href.com"/>
       <ReadOnlySessionNumber value="999999"/>
     </Security>
     <Situations>
