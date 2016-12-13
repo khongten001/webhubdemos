@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <WebHubAppConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubAppConfiguration201601.xsd">
   <Startup>
@@ -21,7 +21,7 @@
         <GUI>
           <Module name="appin" status="enabled-gui"/>
           <Module name="appout" status="enabled-gui"/>
-                    <Module name="whteko" status="enabled-gui"/>
+          <Module name="whteko" status="enabled-gui"/>
         </GUI>
       </StandardModules>
     </Modules>
@@ -124,7 +124,7 @@
       <File id="L3Timing" filename="3Timing.whteko"/>
       <File id="L3Togeth" filename="3Togeth.whteko"/>
       <File id="L3Widgets" filename="3Widgets.whteko"/>
-      <File id="L3Upload"   filename="3AWS_Plain_FileUpload.whteko"/>
+      <File id="L3Upload" filename="3AWS_Plain_FileUpload.whteko"/>
       <File id="L3JQUpload" filename="3AWS_JQuery_FileUpload.whteko"/>
       <File id="L4Expire" filename="4Expire.whteko"/>
       <File id="about" filename="..\..\Shared WHTML\about\about-whShowcase.whteko"/>
@@ -161,6 +161,10 @@
     <whWebAction componentName="waLinkW3Validation">
       <Item id="DiskFolder" value="D:\temp\w3validation\showcase\"/>
       <Item id="DiskFolder" value="E:\whSwap\w3validation\showcase\" context="DEMOS"/>
+    </whWebAction>
+    <whWebAction componentName="waAWSCloudFrontSecurityProvider">
+      <Item id="KeyPairID" value="APKAIGAY3EJC77HVGRFQ"/>
+      <Item id="PrivateKeyPEM" value="demos.cloudfront.pem"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
