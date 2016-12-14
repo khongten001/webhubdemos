@@ -268,21 +268,24 @@ begin
   CSEnterMethod(Self, cFn);
 
   if NOT Assigned(fcfsp) then
+  begin
+    CSSendNote('Using WebHubDemos credentials');
     FCFSP := TCloudFrontSecurityProvider.Create;
+    FCFSP.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
+    CSSend('FCFSP.KeyPairID', FCFSP.KeyPairID);
+    FCFSP.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
+        'Lite Examples\AWS\';
+
+    // The PEM is issued by AWS. Secret. Not in version control.
+    FCFSP.PrivateKeyPEM := StringLoadFromFile(FCFSP.DiskFolder +
+        'demos.cloudfront.pem');
+  end;
 
   CSSend(cFn + ': url', url);
 
   expiresOnAt := IncMinute(NowUTC, StrToIntDef(minutesToLiveStr, 1));
   CSSend(csmLevel6, 'expiresOnAt',
       FormatDateTime('yyyy-mm-dd hh:nn:ss', expiresOnAt));
-
-  FCFSP.KeyPairID := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
-  FCFSP.DiskFolder := getWebHubDemoInstallRoot + 'Source\WHApps\' +
-      'Lite Examples\AWS\';
-
-  // The PEM is issued by AWS. Secret. Not in version control.
-  FCFSP.PrivateKeyPEM := StringLoadFromFile(FCFSP.DiskFolder +
-      'demos.cloudfront.pem');
 
   FCFSP.Policy := FCFSP.GetPolicyAsStr(url, expiresOnAt, restrictByIPStr);
   CSSend(csmLevel5, cFn + ': Policy', FCFSP.Policy);
@@ -381,11 +384,30 @@ var
   minutesToLiveStr: string;
   restrictByIPStr: string;
   protectedURL: string;
+var
+  tempStr: string;
 begin
   CSEnterMethod(Self, cFn);
 
   if NOT Assigned(fcfsp) then
     FCFSP := TCloudFrontSecurityProvider.Create;
+    
+	tempStr := TwhWebAction(Sender).StringFromConfig('KeyPairID', '');
+	if tempStr = '' then
+		tempStr := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
+		FCFSP.KeyPairID := tempStr;
+	tempStr := TwhWebAction(Sender).StringFromConfig('DiskFolder', '');
+	if tempStr = '' then  // blank in XML for showcase demo.
+		tempStr := getWebHubDemoInstallRoot + 'Source\WHApps\' +
+		'Lite Examples\AWS\';
+	FCFSP.DiskFolder := tempStr;
+	
+	// The PEM is issued by AWS. Secret. Not in version control.
+	tempStr := TwhWebAction(Sender).StringFromConfig('PrivateKeyPEM', '');
+	if tempStr = '' then
+  		tempStr := StringLoadFromFile(FCFSP.DiskFolder +
+		'demos.cloudfront.pem');
+	FCFSP.PrivateKeyPEM := tempStr;
 
   if SplitThree(TwhWebAction(Sender).HtmlParam, ' | ', url, minutesToLiveStr,
     restrictByIPStr) then
