@@ -369,18 +369,10 @@ begin
 end;*)
 
 procedure TfmCodeGenerator.TranslateOutgoingStringBreaks(var AString: string);
-(*var
-  SAnsi: AnsiString;
-  Raw: TBytes;*)
 const
   // http://www.fileformat.info/info/unicode/char/2029/index.htm
   cParaBreak: UnicodeString = #$2029; // '#CRLF#';
 begin
-  (* was required during transition from CHARSET None to CHARSET UTF8. *)
-  (*Raw := BytesOf(AString);
-  SAnsi := UTF8ToAnsiCodePage(UTF8String(Raw), 1252);
-  AString := AnsiCodePageToUnicode(SAnsi, 1252); *)
-
   // unicode parabreak
   AString := StringReplaceAll(AString, sLineBreak, cParaBreak);
 end;
