@@ -230,7 +230,7 @@ begin
       try
         json := TJSONObject.Create;
 
-        if (json.Parse(BytesOf(SResponse), 0) >= 0) then
+        if (json.Parse(TEncoding.Unicode.GetBytes(SResponse), 0) >= 0) then
         begin
 
           CSSend('json.Count', S(json.Count));
@@ -244,7 +244,7 @@ begin
             begin
               jsonProfile := TJSONObject.Create;
               S1 := {$IFDEF Delphi20UP}json.Pairs[1]{$ELSE}json.Get(1){$ENDIF}.JSONValue.ToString;
-              jsonProfile.Parse(BytesOf(S1), 0); // 0-based parsing ! ! !
+              jsonProfile.Parse(TEncoding.Unicode.GetBytes(S1), 0); // 0-based parsing ! ! !
               CSSend('jsonProfile.Size', S({$IFDEF Delphi20UP}json.Count{$ELSE}json.Size{$ENDIF}));
               for I := 0 to Pred({$IFDEF Delphi20UP}jsonProfile.Count{$ELSE}jsonProfile.Size{$ENDIF}) do
               begin
