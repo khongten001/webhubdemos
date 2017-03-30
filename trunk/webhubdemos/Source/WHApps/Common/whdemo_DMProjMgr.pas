@@ -1,7 +1,7 @@
 unit whdemo_DMProjMgr;  { initialization shared by all webhub demos }
 
 (*
-Copyright (c) 2004-2016 HREF Tools Corp.
+Copyright (c) 2004-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 31-Mar-2010, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -74,8 +74,14 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
+  whBuildInfo,
+  {$IF cWebHubVersion <= 3.268} // uses whBuildInfo (DCU not PAS)
+  ucCodeSiteInterface, // compiles in v3.268
+  {$ELSE}
+  ZM_CodeSiteInterface,
+  {$IFEND}
   MultiTypeApp,
-  ucDlgs, ucCodeSiteInterface, whSharedLog,
+  ucDlgs, whSharedLog,
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whutil_ZaphodsMap, whdemo_CodeSite, whdemo_UIHelpers,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
