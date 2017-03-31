@@ -33,7 +33,13 @@ implementation
 
 uses
   MultiTypeApp, {$IFDEF LOG2CSL}whSharedLog, {$ENDIF}
-  ucCodeSiteInterface, uCode,
+  whBuildInfo,
+  {$IF cWebHubVersion <= 3.268} // uses whBuildInfo (DCU not PAS)
+  ucCodeSiteInterface, // compiles in v3.268
+  {$ELSE}
+  ZM_CodeSiteInterface,
+  {$IFEND}
+  uCode,
   ucShellProcessCntrl,  // GetCurrentProcessID
   whutil_ZaphodsMap, htWebApp, webCall, webApp,
   cfmwhCustom;
