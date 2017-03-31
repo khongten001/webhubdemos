@@ -1,6 +1,6 @@
 program whLite;  {A fairly generic WebHub application.}
 (*
-Copyright (c) 1999-2016 HREF Tools Corp.
+Copyright (c) 1999-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -34,7 +34,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   uCode,
