@@ -29,6 +29,7 @@
     <AppProperties>
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
+        <ServerProfileIDSecure value="ssl"/>
         <ForceCase value="lower"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>
