@@ -3,8 +3,9 @@
 <CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="D:\Apps\HREFTools\WebHub\"/>
+    <Var name="LogFolder" value="D:\whAppliance\whLogs\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
+    <Var name="RootForWHSwapFolders" value="D:\whAppliance\"/><!--- consider using C:\whSwap\ when D is not a nearby SSD -->
   </Variables>
   <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
@@ -16,7 +17,7 @@
           <Nickname value="App Version"/>
           <ConfigFolder value="{AppPath}config\whcp\"/>
           <ConfigFilename value="WHAppConfig_appvers.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -30,7 +31,7 @@
           <Nickname value="Code Rage Conference"/>
           <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whSchedule\"/>
           <ConfigFilename value="WHAppConfig_coderage.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="WHSESSION"/>
@@ -40,7 +41,7 @@
           <Nickname value="Cloning"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whClone\"/>
           <ConfigFilename value="WHAppConfig_htcl.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -50,7 +51,7 @@
           <Nickname value="Firebird"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whFirebird\"/>
           <ConfigFilename value="WHAppConfig_fire.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="WHSESSION"/>
@@ -60,7 +61,7 @@
           <Nickname value="Fish Store"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whFishStore\"/>
           <ConfigFilename value="WHAppConfig_htfs.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -70,7 +71,7 @@
           <Nickname value="Instant Form"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whInstantForm\"/>
           <ConfigFilename value="WHAppConfig_htfm.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -80,7 +81,7 @@
           <Nickname value="Load from DB"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whLoadFromDB\"/>
           <ConfigFilename value="WHAppConfig_dbhtml.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -90,7 +91,7 @@
           <Nickname value="Query Example 1"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whQuery1\"/>
           <ConfigFilename value="WHAppConfig_htq1.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -100,7 +101,7 @@
           <Nickname value="Query Example 2"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whQuery2\"/>
           <ConfigFilename value="WHAppConfig_htq2.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -110,7 +111,7 @@
           <Nickname value="Query Example 3"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whQuery3\"/>
           <ConfigFilename value="WHAppConfig_htq3.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -120,7 +121,7 @@
           <Nickname value="Query Example 4"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whQuery4\"/>
           <ConfigFilename value="WHAppConfig_htq4.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -130,7 +131,7 @@
           <Nickname value="Dynamic JPEG"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whDynamicJPEG\"/>
           <ConfigFilename value="WHAppConfig_jpeg.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -140,7 +141,7 @@
           <Nickname value="Scan Table"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whScanTable\"/>
           <ConfigFilename value="WHAppConfig_scan.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -150,7 +151,7 @@
           <Nickname value="Shopping"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\DB Examples\whShopping\"/>
           <ConfigFilename value="WHAppConfig_shop1.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whsession"/>
@@ -164,7 +165,7 @@
           <Nickname value="DelphiPrefixRegistry"/>
           <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHtml\Third Party Examples\whDPrefix\"/>
           <ConfigFilename value="WHAppConfig_dpr.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="dprsession"/>
@@ -178,7 +179,7 @@
           <Nickname value="Advertising"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whAdRotation\"/>
           <ConfigFilename value="WHAppConfig_adv.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whsession"/>
@@ -188,7 +189,7 @@
           <Nickname value="Feedback"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whFeedback\"/>
           <ConfigFilename value="WHAppConfig_htfd.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -205,7 +206,7 @@
           <Nickname value="Form Posting"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whFormPosting\"/>
           <ConfigFilename value="WHAppConfig_form.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -215,7 +216,7 @@
           <Nickname value="HTTPS"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whHTTPS\"/>
           <ConfigFilename value="WHAppConfig_fast.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whsession"/>
@@ -234,7 +235,7 @@
           <Nickname value="Options"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whOverview\"/>
           <ConfigFilename value="WHAppConfig_demos.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -251,7 +252,7 @@
           <Nickname value="Security"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whSecurity\"/>
           <ConfigFilename value="WHAppConfig_htsc.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="WHSESSION"/>
@@ -261,7 +262,7 @@
           <Nickname value="Sequence"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whSequence\"/>
           <ConfigFilename value="WHAppConfig_joke.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -272,7 +273,7 @@
           <Nickname value="Showcase"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\Lite Examples\whShowcase\"/>
           <ConfigFilename value="WHAppConfig_showcase.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whcookie"/>
@@ -293,7 +294,7 @@
           <Nickname value="ASync Demo"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whASyncDemo\"/>
           <ConfigFilename value="WHAppConfig_htasync.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -303,7 +304,7 @@
           <Nickname value="Converter"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whConverter\"/>
           <ConfigFilename value="WHAppConfig_htcv.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="n/a"/>
@@ -313,7 +314,7 @@
           <Nickname value="DFM to HTML"/>
           <ConfigFolder value="D:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOpenID\"/>
           <ConfigFilename value="WHAppConfig_htoi.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -323,7 +324,7 @@
           <Nickname value="Dropdown"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whDropdown\"/>
           <ConfigFilename value="WHAppConfig_htdr.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -333,7 +334,7 @@
           <Nickname value="Object Inspector"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whObjectInspector\"/>
           <ConfigFilename value="WHAppConfig_htob.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -343,7 +344,7 @@
           <Nickname value="Outline"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whOutline\"/>
           <ConfigFilename value="WHAppConfig_htol.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -353,7 +354,7 @@
           <Nickname value="SendMail"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whSendMail\"/>
           <ConfigFilename value="WHAppConfig_htem.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value="whsession"/>
@@ -363,7 +364,7 @@
           <Nickname value="Stop Spam"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whStopSpam\"/>
           <ConfigFilename value="WHAppConfig_htun.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -373,7 +374,7 @@
           <Nickname value="Text to Table"/>
           <ConfigFolder value="d:\projects\webhubdemos\Live\WebHub\WHTML\More Examples\whText2Table\"/>
           <ConfigFilename value="WHAppConfig_htgr.xml"/>
-          <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
           <ShareSessions value="true"/>
           <ShareByFile value="true"/>
           <SessionCookieName value=""/>
@@ -384,7 +385,6 @@
   </WebHubAppGroups>
   <HubProcess>
     <ClusterID value=""/>
-    <DefaultAppID value="appvers"/>
     <GuardianIntervalSeconds value="360"/>
     <LoggingLevel value="warning,error,exception"/>
   </HubProcess>
