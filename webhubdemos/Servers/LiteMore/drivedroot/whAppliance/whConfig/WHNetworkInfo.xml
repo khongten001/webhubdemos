@@ -5,15 +5,16 @@
 	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
 -->
   <Variables begin="{" end="}">
+    <Var name="LogFolder" value="\whSwap\whLogs\"/>
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/><!--- D drive is almost full and C is fast SSD -->
   </Variables>
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
   </HttpServers>
   <LocalMachine>
     <ConnectionLayer>
-      <SharedLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+      <SharedLogFolder value="{LogFolders}"/>
       <WorkingFolder value="{RootForWHSwapFolders}whIPC\"/>
     </ConnectionLayer>
     <Runners>
@@ -25,7 +26,7 @@
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <UploadMaxFileSizeKB value="95"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
         <AdvancedFlags value=""/>
       </Runner>
@@ -35,17 +36,17 @@
         <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
         <AdvancedFlags value=""/>
       </Runner>
-      <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d23_win64_debug.dll">
+      <Runner id="isapidebug" filespec="d:\apps\hreftools\webhub\bin\whrunner\runisa_x_d25_win64_debug.dll">
         <Interface value="isapi"/>
         <DelayMS value="0"/>
         <LoggingLevel value="all"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-        <ErrorLogFolder value="{RootForWHSwapFolders}whLogs\"/>
+          <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
         <AdvancedFlags value=""/>
       </Runner>
