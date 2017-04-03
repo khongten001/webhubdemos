@@ -13,7 +13,7 @@
     <Setting name="WebHubXSDStdActive" value="true"/>
     <Setting name="WebHubXSDCustomActive" value="true"/>
     <Setting name="WebHubHTTPMicrosoftActive" value="true"/>
-    <Setting name="WebHubRuntimeDataPath" value="D:\Projects\WebHubDemos\Live\Config\"/>
+    <Setting name="WebHubRuntimeDataPath" value="D:\whAppliance\whConfig\"/>
     <Setting name="WebHubHTTPApacheActive" value="false"/>
     <Setting name="WebHubRunnerISAPI64" value="D:\Apps\HREFTools\WebHub\bin\whRunner\"/>
   </InstallerSettings>
