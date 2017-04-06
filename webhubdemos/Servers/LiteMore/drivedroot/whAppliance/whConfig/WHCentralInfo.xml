@@ -3,9 +3,9 @@
 <CentralInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://static.webhub.com/xsd/cv004/WebHubCentralInfo201512.xsd">
   <Variables begin="{" end="}">
     <Var name="AppPath" value="D:\Apps\HREFTools\WebHub\"/>
-    <Var name="LogFolder" value="\whSwap\whLogs\"/>
+    <Var name="LogFolder" value="C:\whSwap\whLogs\"/>
     <Var name="RootForWHDataFolders" value="D:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="D:\whSwap\"/><!--- using C:\whSwap\ when D drive is almost full and C is fast SSD -->
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/><!--- using C:\whSwap\ when D drive is almost full and C is fast SSD -->
   </Variables>
   <!--- master copy of this file is in the WebHubDemos svn repository:
 	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHCentralInfo.xml 
