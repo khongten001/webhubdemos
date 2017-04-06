@@ -5,7 +5,7 @@
 	webhubdemos\Servers\LiteMore\drivedroot\whAppliance\whConfig\WHNetworkInfo.xml 
 -->
   <Variables begin="{" end="}">
-    <Var name="LogFolder" value="\whSwap\whLogs\"/>
+    <Var name="LogFolder" value="C:\whSwap\whLogs\"/>
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
     <Var name="RootForWHSwapFolders" value="C:\whSwap\"/><!--- D drive is almost full and C is fast SSD -->
   </Variables>
