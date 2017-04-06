@@ -18,7 +18,7 @@
         <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
         <Key2File name="SystemMessages" filename="{DataPath}WHSystemMessages.xml"/>
         <Key2Folder name="CoverPageInfo" folder="{RootForWHSwapFolders}whCoverPageInfo"/>
-        <Key2Folder name="WHTEMP" folder="{RootForWHSwapFolders}"/>
+        <Key2Folder name="WHTemp" folder="{RootForWHSwapFolders}"/>
       </Keys>
     </KeyGroup>
     <KeyGroup name="ZMAdmin">
