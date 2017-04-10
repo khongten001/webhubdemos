@@ -4,7 +4,7 @@ uses
   CodeSiteLogging in 'alternate\CodeSiteLogging.pas',
   Vcl.Forms,
   SansCodeSite_fmMain in 'SansCodeSite_fmMain.pas' {Form5},
-  ucCodeSiteInterface in 'K:\WebHub\tpack\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'K:\WebHub\ZaphodsMap\ZM_CodeSiteInterface.pas',
   tpStreams in 'K:\WebHub\tpack\tpStreams.pas',
   tpShareB in 'K:\WebHub\tpack\tpShareB.pas';
 
