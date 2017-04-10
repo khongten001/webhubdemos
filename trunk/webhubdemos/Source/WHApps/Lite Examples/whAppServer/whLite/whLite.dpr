@@ -33,13 +33,9 @@ THE SOFTWARE.
 (* See "How to Work with WebHub Demos.rtf" in the webhubdemos\source\docs folder
    for information about "drives" H: and K:. *)
 
+{$I hrefdefines.inc}
+
 uses
-  whBuildInfo,
-  {$IF cWebHubVersion <= 3.268} // uses whBuildInfo (DCU not PAS)
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas', // compiles in v3.268
-  {$ELSE}
-  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
-  {$IFEND}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   uCode,

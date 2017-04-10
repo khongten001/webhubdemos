@@ -1,12 +1,6 @@
 program cserver;  // Lite WebHub application server to be compiled as-service
 
 uses
-  whBuildInfo,
-  {$IF cWebHubVersion <= 3.268} // uses whBuildInfo (DCU not PAS)
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas', // compiles in v3.268
-  {$ELSE}
-  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
-  {$IFEND}
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   MultiTypeAppSvc in 'h:\MultiTypeAppSvc.pas',
   tpProj in 'H:\tpProj.pas',
@@ -37,7 +31,6 @@ begin
   DMForWHDemoC.SetDemoFacts('adv', 'Lite Examples\whAppServer\cserver', True);
   DMForWHDemoC.ProjMgr.ManageStartup;
   {M}Application.Run;
-  {$IFDEF LogInitFinal}CSSend('dpr ending');{$ENDIF}
 end.
 
 

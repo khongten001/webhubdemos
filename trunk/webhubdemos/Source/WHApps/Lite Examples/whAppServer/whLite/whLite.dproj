@@ -134,7 +134,7 @@
         <DCC_UnitSearchPath>k:\webhub\tpack;k:\webhub\zaphodsmap;k:\webhub\lib;k:\webhub\lib\whvcl;k:\webhub\lib\wheditors;k:\webhub\lib\whplus;k:\webhub\regex;k:\webhub\lib\whrun</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
-        <DCC_Define>DEBUG;LOGIPC;LOGIPCMinimal;LOGSHARE;$(DCC_Define)</DCC_Define>
+        <DCC_Define>DEBUG;LOGIPC;LOGIPCMinimal;LOGSHARE;LOGTPStream;$(DCC_Define)</DCC_Define>
         <DCC_UnitSearchPath>K:\WebHub\regex\Pcre-Delphi-Win32-bcc6;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <Debugger_RunParams>/id=adv</Debugger_RunParams>
         <VerInfo_Keys>CompanyName=;FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName);FileDescription=$(MSBuildProjectName);ProductName=$(MSBuildProjectName)</VerInfo_Keys>
@@ -171,7 +171,6 @@
         </DCCReference>
         <DCCReference Include="..\..\..\Common\whdemo_CodeSite.pas">
             <Form>dmwhUIHelpers</Form>
-            <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\..\..\Common\whdemo_UIHelpers.pas"/>
