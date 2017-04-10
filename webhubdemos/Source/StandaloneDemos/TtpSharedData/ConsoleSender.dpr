@@ -6,7 +6,7 @@ uses
   CodeSiteLogging in 'D:\Projects\webhubdemos\Source\StandaloneDemos\TtpSharedData\alternate\CodeSiteLogging.pas',
   SysUtils,
   NativeXml in 'k:\webhub\ZaphodsMap\NativeXml.pas',
-  ucCodeSiteInterface in 'k:\webhub\tpack\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'k:\webhub\ZaphodsMap\ZM_CodeSiteInterface.pas',
   ucString in 'k:\webhub\tpack\ucString.pas',
   ucLogFil in 'k:\webhub\tpack\ucLogFil.pas',
   ucAnsiUtil in 'k:\webhub\tpack\ucAnsiUtil.pas',

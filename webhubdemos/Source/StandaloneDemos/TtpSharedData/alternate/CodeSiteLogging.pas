@@ -2,7 +2,7 @@ unit CodeSiteLogging; // placeholder unit for use when CodeSite not available
                       // for example, when compiling with FreePascal
 
 (*
-  Copyright (c) 2011-2014 HREF Tools Corp.
+  Copyright (c) 2011-2017 HREF Tools Corp.
 
   Permission is hereby granted, on 23-Jul-2011, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
