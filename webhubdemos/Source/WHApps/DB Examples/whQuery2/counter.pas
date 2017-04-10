@@ -1,6 +1,6 @@
 unit counter;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2016 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2017 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 ////////////////////////////////////////////////////////////////////////////////
 
 // The key to the counter is the OnNewSession event which is on the
@@ -48,7 +48,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucString, ucLogFil, ucCodeSiteInterface,
+  ucString, ucLogFil, ZM_CodeSiteInterface,
   webApp,
   whQuery2_whdmData; // non-gui
 

@@ -21,7 +21,7 @@ WHBridge2EditPad.exe --verb=ExprHelp "--word=%WORD%"
 uses
   FMX.Forms,
   FMX.Dialogs,
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   uCode,
   ucVers,
   SysUtils,

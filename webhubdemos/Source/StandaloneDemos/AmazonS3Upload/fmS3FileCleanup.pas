@@ -35,7 +35,7 @@ implementation
 {$R *.dfm}
 
 uses
-  ucString, ucDlgs, ucCodeSiteInterface,  // in TPack
+  ucString, ucDlgs, ZM_CodeSiteInterface,  // in TPack
   uAWS_S3;                                // in this demo
 
 {$I amazon_secret_info.txt}  // copy amazon_secret_info.sample.txt, then adjust

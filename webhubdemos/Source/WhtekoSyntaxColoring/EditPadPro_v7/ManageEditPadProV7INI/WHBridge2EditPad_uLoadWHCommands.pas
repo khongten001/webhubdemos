@@ -31,7 +31,7 @@ implementation
 
 uses
   Windows,
-  ucString, ucLogFil, ucCodeSiteInterface;
+  ucString, ucLogFil, ZM_CodeSiteInterface;
 
 function GetStringListResource(const inResName: string): TStringList;
 const cFn = 'GetStringListResource';

@@ -1,7 +1,7 @@
 unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://lite.demos.href.com }
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1998-2015 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1998-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
 { * development license from HREF Tools Corp. before using this file, and    * }
@@ -85,7 +85,7 @@ implementation
 uses
   Forms,
   ZaphodsMap,
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   whutil_ZaphodsMap, webApp, whMacroAffixes, htStream,
   htmlBase,      // PrologueMode property
   ucDlgs, ucLogFil, ucString;

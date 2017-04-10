@@ -1,6 +1,6 @@
 unit whSchedule_whpanelInterrupt;
 ////////////////////////////////////////////////////////////////////////////////
-//  Copyright (c) 1995-2016 HREF Tools Corp.  All Rights Reserved Worldwide.  //
+//  Copyright (c) 1995-2017 HREF Tools Corp.  All Rights Reserved Worldwide.  //
 //                                                                            //
 //  This source code file is part of WebHub v3.2x.  Please obtain a WebHub    //
 //  development license from HREF Tools Corp. before using this file, and     //

@@ -1,6 +1,6 @@
 program whScanTable;    {Free-form dynamic table display}
 (*
-Copyright (c) 1997-2016 HREF Tools Corp.
+Copyright (c) 1997-2017 HREF Tools Corp.
 
 Original Author: Ann Lynnworth, HREF Tools Corp.
 Based on the work of Robert Martin and Michael S. Davis at www.seacom.net

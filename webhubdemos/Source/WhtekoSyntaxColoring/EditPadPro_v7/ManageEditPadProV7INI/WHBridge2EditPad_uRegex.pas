@@ -24,7 +24,7 @@ implementation
 uses
   Classes, SysUtils, TypInfo,
   ldi.RegEx.RegularExpressions,
-  uCode, ucShell, ucString, ucLogFil, ucCodeSiteInterface,
+  uCode, ucShell, ucString, ucLogFil, ZM_CodeSiteInterface,
   WHBridge2EditPad_uIni, WHBridge2EditPad_uBookmark,
   whBridge2EditPad_fmSelectFilespec;
 

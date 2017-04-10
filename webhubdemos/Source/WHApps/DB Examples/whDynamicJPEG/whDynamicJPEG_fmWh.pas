@@ -60,7 +60,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   webApp, webInfou, whdemo_ViewSource, whDynamicJPEG_dmwhData;
 
 function TfmWhAnimals.Init: boolean;

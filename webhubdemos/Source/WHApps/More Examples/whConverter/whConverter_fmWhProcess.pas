@@ -1,6 +1,6 @@
 unit whConverter_fmWhProcess;
 (*
-Copyright (c) 2003-2016 HREF Tools Corp.
+Copyright (c) 2003-2017 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 22-Aug-2003, free of charge, to any person
@@ -75,7 +75,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   DateUtils,
-  ucShell, ucLogFil, ucFile, ucDlgs, ucCodeSiteInterface,
+  ucShell, ucLogFil, ucFile, ucDlgs, ZM_CodeSiteInterface,
   webApp;
 
 function TfmWhProcess.Init: Boolean;

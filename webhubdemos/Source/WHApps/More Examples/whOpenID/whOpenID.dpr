@@ -1,6 +1,6 @@
 program whOpenID;
 (*
-Copyright (c) 2013-2015 HREF Tools Corp.
+Copyright (c) 2013-2017 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 9-Jan-2013, free of charge, to any person
@@ -26,7 +26,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   utpanfrm in 'h:\utpanfrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},

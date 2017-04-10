@@ -1,7 +1,7 @@
 unit whSchedule_dmKeywordSearch;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2012-2014 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 20122017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * WebHub datamodule for searching the keyword index using Rubicon.         * }
 { * Shared by WebHub Demo and Code News Fast web application.                * }
@@ -70,7 +70,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo, Character,
-  ucCodeSiteInterface, ucString,
+  ZM_CodeSiteInterface, ucString,
   webApp, htWebApp, whMacroAffixes, webSend,
   uFirebird_Connect_CodeRageSchedule, ucIbAndFbCredentials;
 

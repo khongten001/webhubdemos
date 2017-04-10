@@ -1,7 +1,7 @@
 unit whQuery2_whdmData;
 
 (*
-Copyright (c) 1999-2014 HREF Tools Corp.
+Copyright (c) 19992017 HREF Tools Corp.
 
 Permission is hereby granted, on 30-Jan-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -77,7 +77,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface, ucPos, ucDlgs,
+  ZM_CodeSiteInterface, ucPos, ucDlgs,
   whMacroAffixes, webScan, webSend, webApp, htWebApp, whdemo_ViewSource;
 
 { TDMQuery2 }

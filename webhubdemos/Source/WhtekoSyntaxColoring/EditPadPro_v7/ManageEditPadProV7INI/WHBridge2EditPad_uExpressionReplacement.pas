@@ -29,7 +29,7 @@ implementation
 uses
   SysUtils, FMX.Memo, FMX.Edit,
   whMacroAffixes,
-  ucString, uCode, ucLogFil, ucCodeSiteInterface;
+  ucString, uCode, ucLogFil, ZM_CodeSiteInterface;
 
 function FindImportantInputText: Boolean;
 const cFn = 'FindImportantInputText';

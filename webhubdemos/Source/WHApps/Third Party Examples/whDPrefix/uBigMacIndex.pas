@@ -30,7 +30,7 @@ implementation
 
 uses
   SysUtils, Classes,
-  ucString, ucCodeSiteInterface, whdemo_ViewSource;
+  ucString, ZM_CodeSiteInterface, whdemo_ViewSource;
 
 var
   BigMacList: TStringList = nil;

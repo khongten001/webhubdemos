@@ -33,7 +33,7 @@ implementation
 {$R *.fmx}
 
 uses
-  ucString, uCode, ucCodeSiteInterface,
+  ucString, uCode, ZM_CodeSiteInterface,
   WHBridge2EditPad_uSearchDir;
 
 var

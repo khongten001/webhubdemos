@@ -1,7 +1,7 @@
 unit whdemo_CodeSite;
 
 (*
-Copyright (c) 2014 HREF Tools Corp.
+Copyright (c) 2014-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 7-Jul-2014, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -63,7 +63,7 @@ implementation
 {$R *.dfm}
 
 uses
-  ucCodeSiteInterface, ucString,
+  ZM_CodeSiteInterface, ucString,
   webApp, htWebApp;
 
 procedure TdmwhCodeSiteHelper.DataModuleCreate(Sender: TObject);

@@ -55,7 +55,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface, ucString,
+  ZM_CodeSiteInterface, ucString,
   webApp, webScan, htWebApp, whMacroAffixes,
   whdemo_ViewSource,
   tfish, uTranslations, AdminDM;

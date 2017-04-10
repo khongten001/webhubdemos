@@ -1,6 +1,6 @@
 unit scanfm;
 (*
-Copyright (c) 1997-2014 HREF Tools Corp.
+Copyright (c) 19972017 HREF Tools Corp.
 Author: Ann Lynnworth
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
@@ -62,7 +62,7 @@ uses
    omitted from uses clause. }
   DBXFirebird,
   MultiTypeApp,
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   whScanTable_whdmData,
   ucDlgs;  // ucDlgs is part of TPack. msgErrorOk is in this unit.
 

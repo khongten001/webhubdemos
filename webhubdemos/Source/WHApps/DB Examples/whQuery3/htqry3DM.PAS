@@ -52,7 +52,7 @@ var
 implementation
 
 uses 
-  ucPos, ucCodeSiteInterface,
+  ucPos, ZM_CodeSiteInterface,
   whdemo_ViewSource, webApp;
 
 {$R *.DFM}

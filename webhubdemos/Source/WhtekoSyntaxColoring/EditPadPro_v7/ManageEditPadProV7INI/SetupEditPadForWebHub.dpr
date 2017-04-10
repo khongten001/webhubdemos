@@ -4,7 +4,7 @@ program SetupEditPadForWebHub;
 
 uses
   FMX.Forms,
-  ucCodeSiteInterface in 'k:\webhub\tpack\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'k:\webhub\tpack\ZM_CodeSiteInterface.pas',
   ucString in 'k:\webhub\tpack\ucString.pas',
   SetupEditPadForWebHub_fmMain in 'SetupEditPadForWebHub_fmMain.pas' {Form2},
   SetupEditPadForWebHub_uDownload in 'SetupEditPadForWebHub_uDownload.pas',

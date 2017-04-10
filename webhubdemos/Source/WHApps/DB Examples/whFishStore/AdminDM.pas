@@ -36,7 +36,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucString, ucCodeSiteInterface,
+  ucString, ZM_CodeSiteInterface,
   webApp, whMacroAffixes,
   whdemo_ViewSource,
   whFishStore_fmWhPanel, tFish, whFishStore_dmwhBiolife, whdemo_Extensions;

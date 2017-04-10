@@ -60,7 +60,7 @@ uses
   {$IFDEF EUREKALOG}
   ExceptionLog7, EExceptionManager,
   {$ENDIF}
-  MultiTypeApp, ucDlgs, ucLogFil, ucCodeSiteInterface,
+  MultiTypeApp, ucDlgs, ucLogFil, ZM_CodeSiteInterface,
   whSharedLog,
   whutil_ZaphodsMap,
   webApp, webBase, webSplat, dmWHApp, webCall,
@@ -240,7 +240,7 @@ begin
   { some database demos connect pWebApp.OnError to this event handler }
   Handled := True;
   CSSendError(E.StackTrace);
-  LogSendException(E);  // uses ucCodeSiteInterface and ucLogFil
+  LogSendException(E);  // uses ZM_CodeSiteInterface and ucLogFil
 
   {$IFDEF CodeSite}
   HREFTestLog('exception', E.Message, '');

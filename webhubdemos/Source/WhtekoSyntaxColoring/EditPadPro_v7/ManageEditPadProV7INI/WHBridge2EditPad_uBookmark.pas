@@ -13,7 +13,7 @@ implementation
 
 uses
   Classes, SysUtils,
-  ucLogFil, uCode, ucShell, ucString, ucCodeSiteInterface;
+  ucLogFil, uCode, ucShell, ucString, ZM_CodeSiteInterface;
 
 function WHBridgeDataPath: string;
 var

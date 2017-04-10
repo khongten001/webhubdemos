@@ -1,6 +1,6 @@
 program whDynamicJPEG;
 (*
-Copyright (c) 2003-2014 HREF Tools Corp.
+Copyright (c) 20032017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -28,7 +28,7 @@ uses
   {$IFDEF CodeSite}
   CodeSiteLogging,
   {$ENDIF}
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   utPanFrm in 'h:\utPanFrm.pas' {utParentForm},
   utMainFm in 'h:\utMainFm.pas' {fmMainForm},

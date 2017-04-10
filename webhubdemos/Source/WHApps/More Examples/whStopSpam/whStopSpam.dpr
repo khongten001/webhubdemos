@@ -1,6 +1,6 @@
 program whStopSpam;     {demonstrates SOAP plus using the MAILTO macro to lessen likelihood of spam when email addresses are published}
 (*
-Copyright (c) 2002-2014 HREF Tools Corp.
+Copyright (c) 20022017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -25,7 +25,7 @@ THE SOFTWARE.
    for information about "drives" H: and K:. *)
 
 uses
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   MultiTypeApp in 'h:\MultiTypeApp.pas',
   tpProj in 'h:\tpProj.pas',
   tpShareB in 'k:\webhub\tpack\tpShareB.pas',

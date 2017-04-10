@@ -2,7 +2,7 @@ unit whScanTable_dmProjMgr;
 
 { ---------------------------------------------------------------------------- }
 { *                                                                          * }
-{ * Copyright (c) 1997-2016 HREF Tools Corp.                                 * }
+{ * Copyright (c) 1997-2017 HREF Tools Corp.                                 * }
 { * Released to the public under a Creative Commons License                  * }
 { *                                                                          * }
 { ---------------------------------------------------------------------------- }

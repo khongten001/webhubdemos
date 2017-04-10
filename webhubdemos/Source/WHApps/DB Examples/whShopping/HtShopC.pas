@@ -1,6 +1,6 @@
 unit htshopc;
 (*
-  Copyright (c) 1998-2014 HREF Tools Corp.
+  Copyright (c) 19982017 HREF Tools Corp.
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
   obtaining a copy of this file (the "Software"), to deal in the Software
@@ -77,7 +77,7 @@ implementation
 {$R *.DFM}
 
 uses
-  ucString, ucCodeSiteInterface,
+  ucString, ZM_CodeSiteInterface,
   webApp, whMail, whdemo_ViewSource, whShopping_dmShop;
 
 function TfmShopPanel.Init: Boolean;

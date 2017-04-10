@@ -1,7 +1,7 @@
 unit whSendmail_dmWhQuote; { custom code for emailing a quote - WebHub demo. }
 
 (*
-  Copyright (c) 2003-2014 HREF Tools Corp.
+  Copyright (c) 20032017 HREF Tools Corp.
   Author: Ann Lynnworth
 
   Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
@@ -58,7 +58,7 @@ uses
 {$IFDEF INDYSMTP}
   IdAttachment, IdAttachmentFile,
 {$ENDIF}
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   ucFile, ucOther, ucWinAPI,
   whMail, webApp, webPrologue, whMacroAffixes;
 
