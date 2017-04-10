@@ -2,7 +2,7 @@ setlocal
 
 cd /d %~dp0
 
-set comp3=D24
+set comp3=D25
 set bits=64
 
 :: new ipc whLite.exe
