@@ -1,7 +1,7 @@
 unit whSchedule_dmKeywordSearch;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 20122017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 2012-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * WebHub datamodule for searching the keyword index using Rubicon.         * }
 { * Shared by WebHub Demo and Code News Fast web application.                * }

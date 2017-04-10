@@ -4,7 +4,7 @@ unit wnxdbAlpha; { TWebnxdbAlphabet, a WebHub action component }
   http://www.href.com/pub/WebAct/db }
 
 (*
-  Copyright (c) 19952017 HREF Tools Corp.
+  Copyright (c) 1995-2017 HREF Tools Corp.
 
   Permission is hereby granted, on 27-Feb-2003, free of charge, to any person
   obtaining a copy of this software (the "Software"), to deal in the Software
