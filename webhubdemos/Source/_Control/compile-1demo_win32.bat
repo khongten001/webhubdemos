@@ -20,14 +20,10 @@ if not exist %dcc% %CSSend% /error "Does not exist: [%dcc%]" %CSLogPathParams%
 if not exist %dcc% pause
 
 set wbits=32
+if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
 if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
 if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
 if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
-if "%compilerdigits%"=="21" set raizepath=%cslibroot%\RS-XE7\win%wbits%
-if "%compilerdigits%"=="20" set raizepath=%cslibroot%\RS-XE6\win%wbits%
-if "%compilerdigits%"=="19" set raizepath=%cslibroot%\RS-XE5\win%wbits%
-if "%compilerdigits%"=="18" set raizepath=%cslibroot%\RS-XE4\win%wbits%
-if "%compilerdigits%"=="17" set raizepath=%cslibroot%\RS-XE3\win%wbits%
 
 set eurpath=D:\vcl\EurekaLog7\Lib\Win32\Release\Delphi%compilerdigits%
 
@@ -38,11 +34,10 @@ set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\External
 set outputroot=%~dp0..\..\Live\WebHub\Apps
 :: vcldbx requires bdertl !!! Not available immediately when XE7 shipped.
 set pkg=vcl;vclx;vcldb;soaprtl;xmlrtl;inet;ldiRegExLib;ZaphodsMapLib;WebHub;WebHubDB
+if "%compilerdigits%"=="25" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="24" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="23" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx;bdertl
-if "%compilerdigits%"=="21" set pkg=%pkg%;vcldbx
-if "%compilerdigits%"=="20" set pkg=%pkg%;vcldbx
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
