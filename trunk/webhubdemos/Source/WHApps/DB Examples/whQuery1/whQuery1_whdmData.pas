@@ -1,7 +1,7 @@
 unit whQuery1_whdmData;
 
 (*
-Copyright (c) 19992017 HREF Tools Corp.
+Copyright (c) 1999-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 26-Jan-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

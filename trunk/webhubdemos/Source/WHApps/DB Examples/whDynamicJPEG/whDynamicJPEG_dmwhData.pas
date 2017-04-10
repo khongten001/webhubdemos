@@ -1,7 +1,7 @@
 unit whDynamicJPEG_dmwhData;
 
 (*
-Copyright (c) 20032017 HREF Tools Corp.
+Copyright (c) 2003-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 29-Jan-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

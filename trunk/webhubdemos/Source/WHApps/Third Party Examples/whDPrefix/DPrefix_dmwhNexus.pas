@@ -1,7 +1,7 @@
 unit DPrefix_dmwhNexus;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 19992017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1999-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of the Delphi Prefix Registry.             * }
 { *                                                                          * }
