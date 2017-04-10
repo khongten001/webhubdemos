@@ -14,11 +14,12 @@ if "%zmcontext%"=="DORIS" goto Doris
 goto General
 
 :Doris
-set svndir=D:\Apps\Utilities\SVN\Collabnet\
+:: case-sensitive path when file is on AWS S3
+set svndir=D:\Apps\Utilities\SVN\CollabNet\
 goto Continue01
 
 :General
-if exist D:\Apps\Utilities\SVN\Collabnet\svn.exe       set svndir=D:\Apps\Utilities\SVN\Collabnet\
+if exist D:\Apps\Utilities\SVN\CollabNet\svn.exe       set svndir=D:\Apps\Utilities\SVN\CollabNet\
 if exist D:\Apps\Utilities\SVN\TortoiseSVN\bin\svn.exe set svndir=D:\Apps\Utilities\SVN\TortoiseSVN\bin\
 
 :Continue01
