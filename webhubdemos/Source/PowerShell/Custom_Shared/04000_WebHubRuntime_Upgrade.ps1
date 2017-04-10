@@ -39,9 +39,6 @@ if ($Global:FlagInstallWebHubRuntime) {
 	if ($Global:ZMGlobalContext -eq 'DORIS') {  # db.demos.href.com
 		$use_cloudfront = 'Y'
 	}
-	if ($Global:ZMGlobalContext -eq 'WESLEY') { # delphi prefix registry 
-		$use_cloudfront = 'Y'
-	}
 	if ($Global:ZMGlobalContext -eq 'NYX') { # delphi prefix registry 
 		$use_cloudfront = 'Y'
 	}
@@ -91,6 +88,8 @@ if ($Global:FlagInstallWebHubRuntime) {
 			Remove-Variable -Name postParams
 			Remove-Variable -Name source
 		} else {
+
+			Start-Process $Global:CSConsole -ArgumentList ('/note "See https://www.href.com/pub/relnotes/WebHub_Release_Status.json"') -NoNewWindow -Wait
 			Start-Process $Global:CSConsole -ArgumentList ('/warning "WebHub Runtime Setup is not currently ready for download."') -NoNewWindow -Wait
 		}
 	}
