@@ -8,7 +8,7 @@ implementation
 
 uses
   Classes, SysUtils, IniFiles,
-  ucLogFil, ucCodeSiteInterface,
+  ucLogFil, ZM_CodeSiteInterface,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uPaths;
 
 function WriteHREFToolsColorsToEditPadINI: Boolean;

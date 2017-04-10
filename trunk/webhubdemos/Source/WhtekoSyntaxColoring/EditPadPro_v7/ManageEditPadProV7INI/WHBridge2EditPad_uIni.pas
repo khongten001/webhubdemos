@@ -8,7 +8,7 @@ implementation
 
 uses
   Classes, SysUtils, IniFiles,
-  ucLogFil, ucString, ucCodeSiteInterface;
+  ucLogFil, ucString, ZM_CodeSiteInterface;
 
 function EPPExtractFileList(const InEditPadIniFilespec: string): string;
 const cFn = 'EPPExtractFileList';

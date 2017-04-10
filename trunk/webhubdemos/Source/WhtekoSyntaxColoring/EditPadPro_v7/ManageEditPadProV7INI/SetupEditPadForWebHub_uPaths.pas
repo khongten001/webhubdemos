@@ -15,7 +15,7 @@ uses
   Classes, SysUtils,
   //Registry,
   Windows,
-  ucCodeSiteInterface, ucString, ucLogFil;
+  ZM_CodeSiteInterface, ucString, ucLogFil;
 
 function EditPadPlusDataRoot: string;
 const cFn = 'EditPadPlusDataRoot';

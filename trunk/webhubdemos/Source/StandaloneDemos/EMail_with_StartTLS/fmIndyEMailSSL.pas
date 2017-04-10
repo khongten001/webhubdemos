@@ -101,7 +101,7 @@ uses
   CodeSiteLogging,
   TypInfo,
   IdGlobal,
-  ucString, ucLogFil, ucMsTime, ucDlgs, uCode, ucCodeSiteInterface;
+  ucString, ucLogFil, ucMsTime, ucDlgs, uCode, ZM_CodeSiteInterface;
 
 const
   cFromName = 'Indy SMTP';

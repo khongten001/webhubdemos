@@ -1,7 +1,7 @@
 program Test_Indy_Smtp;
 
 (*
-Copyright (c) 2013-2015 HREF Tools Corp.
+Copyright (c) 2013-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 29-Dec-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -25,7 +25,7 @@ THE SOFTWARE.
 {$I hrefdefines.inc}
 
 uses
-  ucCodeSiteInterface in 'h:\ucCodeSiteInterface.pas',
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   MultiTypeApp,
   fmIndyEMailSSL in 'fmIndyEMailSSL.pas' {Form3},
   Test_Indy_Smtp_dmProjMgr in 'Test_Indy_Smtp_dmProjMgr.pas' {DataModule1: TDataModule};

@@ -47,7 +47,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucString, ucLogFil, ucCodeSiteInterface, ucIbObjPrepare,
+  ucString, ucLogFil, ZM_CodeSiteInterface, ucIbObjPrepare,
   webApp, webSend, webScan, htWebApp,
   uFirebird_Connect_Employee, ucIbAndFbCredentials, whFirebird_dmdbProjMgr;
 

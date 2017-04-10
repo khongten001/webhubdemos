@@ -1,7 +1,7 @@
 unit DPrefix_Client_uInitialize;
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2014 HREF Tools Corp.  All Rights Reserved Worldwide.      * }
+{ * Copyright (c) 2014-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of the Delphi Prefix Registry.             * }
 { *                                                                          * }

@@ -73,7 +73,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   {$IFDEF Delphi20UP}JSON, {$ELSE} DBXJSON, {$ENDIF}
   IdSSLOpenSSLHeaders,
-  ucLogFil, ucCodeSiteInterface, ucURLEncode, ucString, ucHTTPS,
+  ucLogFil, ZM_CodeSiteInterface, ucURLEncode, ucString, ucHTTPS,
   webApp, htWebApp;
 
 { TDMWHOpenIDviaJanrain }

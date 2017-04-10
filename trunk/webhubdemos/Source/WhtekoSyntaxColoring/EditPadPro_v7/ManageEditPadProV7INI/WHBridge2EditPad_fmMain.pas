@@ -29,7 +29,7 @@ implementation
 {$R *.fmx}
 
 uses
-  ucShell, uCode, ucCodeSiteInterface,
+  ucShell, uCode, ZM_CodeSiteInterface,
   WHBridge2EditPad_uIni, WHBridge2EditPad_uRegex;
 
 procedure TForm3.Button1Click(Sender: TObject);

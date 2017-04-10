@@ -59,7 +59,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   webApp, whMacroAffixes, whdemo_ViewSource;
 
 {$R *.DFM}

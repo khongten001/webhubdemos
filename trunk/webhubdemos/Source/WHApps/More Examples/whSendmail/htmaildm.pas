@@ -36,7 +36,7 @@ var
 implementation
 
 uses
-  ucCodeSiteInterface, ucLogFil,
+  ZM_CodeSiteInterface, ucLogFil,
   webPrologue, whMail, whpanel_Mail;
 
 {$R *.DFM}

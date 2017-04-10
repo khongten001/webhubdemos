@@ -5,7 +5,7 @@ program DemoUploadToAmazonS3;
 // webhubdemos\Source\StandaloneDemos\AmazonS3Upload
 
 (*
-Copyright (c) 2013-2016 HREF Tools Corp.
+Copyright (c) 2013-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 22-Aug-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software

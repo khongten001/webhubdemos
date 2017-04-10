@@ -33,7 +33,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucString, ucCodeSiteInterface,
+  ucString, ZM_CodeSiteInterface,
   webApp, htWebApp, webVars;
 
 { TDMSessWatch }

@@ -1,7 +1,7 @@
 unit htqry4dm;
 
 (*
-Copyright (c) 1999-2016 HREF Tools Corp.
+Copyright (c) 1999-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -72,7 +72,7 @@ implementation
 
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
-  ucCodeSiteInterface,
+  ZM_CodeSiteInterface,
   webApp, htWebApp, whMacroAffixes,
   whdemo_ViewSource, grid2DM;
 

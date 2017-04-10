@@ -2,7 +2,7 @@ unit whScanTable_whdmData;
 
 { ---------------------------------------------------------------------------- }
 { *                                                                          * }
-{ * Copyright (c) 1997-2016 HREF Tools Corp.                                 * }
+{ * Copyright (c) 1997-2017 HREF Tools Corp.                                 * }
 { * Released to the public under a Creative Commons License                  * }
 { *                                                                          * }
 { ---------------------------------------------------------------------------- }
@@ -49,7 +49,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   MultiTypeApp,
-  ucIbAndFbCredentials, ucCodeSiteInterface,
+  ucIbAndFbCredentials, ZM_CodeSiteInterface,
   htWebApp,
   webApp,    // global pointer pWebApp is in this unit
   webSend,   // declaration of drBeforeTag

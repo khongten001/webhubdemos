@@ -36,7 +36,7 @@ implementation
 uses
 {$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   NativeXml, ZaphodsMap,
-  ucHttps, ucCodeSiteInterface,
+  ucHttps, ZM_CodeSiteInterface,
   webApp, htWebApp;
 
 { TDMSOAPClient }

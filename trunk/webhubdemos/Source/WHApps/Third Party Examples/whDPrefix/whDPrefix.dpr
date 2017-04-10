@@ -1,7 +1,7 @@
 program whDPrefix;  { Delphi Prefix Registry WebHub App }
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 2013-2016 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 2013-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
 { *                                                                          * }
 { * This source code file is part of the Delphi Prefix Registry.             * }
 { *                                                                          * }

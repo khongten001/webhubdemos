@@ -25,7 +25,7 @@ uses
   SysUtils, System.Classes,
   {$IFDEF Delphi21UP}System.NetEncoding,{$ENDIF} // available in XE7
   Rsa, PrivateKey, // REQUIRES ChilkatDelphiXE.dll, otherwise EXE will exit !!
-  ucCodeSiteInterface, ucAWS_Security;
+  ZM_CodeSiteInterface, ucAWS_Security;
 
 
 function Chilkat_OpenSSL_Sign_SHA1(const StringToSign, PrivateKeyPEM
