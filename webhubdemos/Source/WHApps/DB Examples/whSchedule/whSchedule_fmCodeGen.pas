@@ -89,7 +89,7 @@ implementation
 uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   IB_Export, IB_Import,
-  ucLogFil, ucDlgs, ucString, ucAnsiUtil,
+  ucLogFil, ucDlgs, ucString, 
   ucIbAndFbCredentials, ucIBObjCodeGen_Bootstrap, ucIBObjCodeGen,
   webApp, webLink,
   uFirebird_Connect_CodeRageSchedule, uFirebird_SQL_Snippets_CodeRageSchedule,
