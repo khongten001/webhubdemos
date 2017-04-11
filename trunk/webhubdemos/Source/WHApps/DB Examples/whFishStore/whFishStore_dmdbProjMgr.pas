@@ -52,7 +52,7 @@ implementation
 {$R *.dfm}
 
 uses
-  Forms,
+  MidasLib, // avoid MIDAS.DLL uppercase
   MultiTypeApp, ucDlgs, ucLogFil, ZM_CodeSiteInterface,
   webApp, webBase, webSplat, whSharedLog, webCall,
   dmFishAp, tfish, htWebApp, 

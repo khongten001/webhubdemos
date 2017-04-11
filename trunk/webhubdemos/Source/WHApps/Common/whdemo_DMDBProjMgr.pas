@@ -60,7 +60,6 @@ uses
   {$IFDEF EUREKALOG}
   ExceptionLog7, EExceptionManager,
   {$ENDIF}
-  MidasLib, // avoid MIDAS.DLL uppercase
   MultiTypeApp, ucDlgs, ucLogFil, ZM_CodeSiteInterface,
   whSharedLog,
   whutil_ZaphodsMap,
