@@ -3,7 +3,7 @@
 <InstallationConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zaphodsmap.com/zmdesign/xsd/ZaphodsInstaller200512.xsd">
   <InstallFolders>
     <Product name="WebHubRuntime" folder="d:\Apps\HREFTools\WebHub"/>
-    <Product name="WebHubDemos" folder="d:\Projects\WebHubDemos\"/>
+    <Product name="WebHubDemos" folder="d:\Projects\webhubdemos\"/><!--- lowercase -->
   </InstallFolders>
   <InstallerSettings>
     <Setting name="WebHubRunnerISAPI" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
