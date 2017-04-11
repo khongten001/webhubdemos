@@ -100,7 +100,7 @@
       </ItemList>
     </whListGrid>
     <whWebAction componentName="waLinkW3Validation">
-      <Item id="DiskFolder" value="C:\whSwap\w3validation\form\" context="DORIS"/>
+      <Item id="DiskFolder" value="C:\whSwap\w3validation\htfs\" context="DORIS"/>
     </whWebAction>
   </ComponentConfig>
 </WebHubAppConfiguration>
