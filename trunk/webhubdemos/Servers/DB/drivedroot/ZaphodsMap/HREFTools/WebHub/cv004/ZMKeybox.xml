@@ -18,7 +18,7 @@
         <Key2File name="ServiceControl" filename="{DataPath}WHServiceControl.xml"/>
         <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
         <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
-        <Key2File name="SystemMessages" filename="D:\Projects\WebHubDemos\Live\Config\WHSystemMessages.xml"/>
+        <Key2File name="SystemMessages" filename="D:\Projects\webhubdemos\Live\Config\WHSystemMessages.xml"/>
         <Key2Folder name="CoverPageInfo" folder="{RootForWHSwapFolders}whCoverPageInfo"/>
       </Keys>
     </KeyGroup>
