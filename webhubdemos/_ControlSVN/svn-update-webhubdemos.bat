@@ -15,7 +15,8 @@ goto General
 
 :Doris
 :: case-sensitive path when file is on AWS S3
-set svndir=D:\Apps\Utilities\SVN\CollabNet\
+:: do not use CollabNet on DORIS because is has DLL files loading uppercase for SSL
+set svndir=D:\Apps\Utilities\SVN\TortoiseSVN\bin\
 goto Continue01
 
 :General
