@@ -1,5 +1,5 @@
 :: select-more-demos.bat
-:: Copyright (c) 2011-2016 HREF Tools Corp.
+:: Copyright (c) 2011-2017 HREF Tools Corp.
 :: www.href.com
 
 :: htcv includes file upload feature (direct to WebHub server)
@@ -8,7 +8,7 @@ set demohtcv=yes
 
 set demohtun=yes
 
-set demohtasync=yes
+set demohtasync=no
 
 set demohtdr=yes
 
