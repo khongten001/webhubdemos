@@ -7,14 +7,15 @@
   <Variables begin="{" end="}">
     <Var name="LogFolder" value="C:\whSwap\whLogs\"/>
     <Var name="RootForWHDataFolders" value="d:\whAppliance\"/>
-    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/><!--- D drive is almost full and C is fast SSD -->
+    <!--- on EC2 lite.demos.href.com, D drive is almost full while C is fast SSD -->
+    <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
   </Variables>
   <HttpServers>
     <HttpServer id="iis" nameStartsWith="Microsoft" sendHttpVersion="true" sendHttpColon="false" httpForceCase="none"/>
   </HttpServers>
   <LocalMachine>
     <ConnectionLayer>
-      <SharedLogFolder value="{LogFolders}"/>
+      <SharedLogFolder value="{LogFolder}"/>
       <WorkingFolder value="{RootForWHSwapFolders}whIPC\"/>
     </ConnectionLayer>
     <Runners>
@@ -26,7 +27,7 @@
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <UploadMaxFileSizeKB value="95"/>
-          <ErrorLogFolder value="{LogFolder}"/>
+        <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="http" authority="lite.demos.href.com:80"/>
         <AdvancedFlags value=""/>
       </Runner>
@@ -36,7 +37,7 @@
         <LoggingLevel value="warning,error,exception"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-          <ErrorLogFolder value="{LogFolder}"/>
+        <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="http" authority="localhost:80"/>
         <AdvancedFlags value=""/>
       </Runner>
@@ -46,7 +47,7 @@
         <LoggingLevel value="all"/>
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
-          <ErrorLogFolder value="{LogFolder}"/>
+        <ErrorLogFolder value="{LogFolder}"/>
         <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
         <AdvancedFlags value=""/>
       </Runner>
