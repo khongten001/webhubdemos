@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko defaultlingvo="eng" designmode="code" designdynsrc="localdemoSHOWCASE">
 
@@ -41,9 +41,9 @@ Map that to 127.0.0.1 or, even better, to your local ip number such as 192.168.1
 Reference: <a href="http://en.wikipedia.org/wiki/Hosts_%28file%29">Wikipedia, Hosts file</a>.</p>
 
 <!--- Only set Marzipan if Chocolate cookie is blank -->
-(~Match|(~cookie.chocolate~)!*|(~COOKIE|marzipan=Sure|1~)~)
+(~Match|(~cookie.Chocolate~)!*|(~COOKIE|Marzipan=Sure|1~)~)
 <!--- Set Every Time -->
-(~COOKIE|chocolate=Chip|1~)
+(~COOKIE|Chocolate=Chip|1~)
 
 <h4><span class="changing">(~JumpR|pgSetCookie|Click this link to see the cookies displayed.~)</span></h4>
 (You have to come back to this page to see the cookies.)
