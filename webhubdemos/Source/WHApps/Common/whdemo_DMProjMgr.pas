@@ -186,7 +186,7 @@ begin
   CSEnterMethod(Self, cFn);
   Application.CreateForm(TdmwhCodeSiteHelper, dmwhCodeSiteHelper);
   Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
-  if pWebApp.AppID = 'showcase' then
+    if Pos(pWebApp.AppID, ',showcase,htaj,') > 0 then
     Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
   CSExitMethod(Self, cFn);
 end;
