@@ -146,24 +146,10 @@ at http://www.degraeve.com/reference/simple-ajax-example.php
 <whpagesettings inherit="a">
 bNoMore=true
 </whpagesettings>
-(~mcdoctypehtml~)
-<html>
-<head>
-(~ANCHOR|anRefresh~) (~waLingvo.execute~)
-<meta charset="UTF-8" />
-<meta name="description" content="This page is summarized as (~pagedesc~)" />
-<meta name="generator" content="(~version~)" />
-<title>Page (~PageID~): (~PageDesc~) (in the "(~AppID~)" WebHub Demo)</title>
-(~HEADER|Cache-Control: no-cache, no-store, must-revalidate~)
-<link rel="stylesheet" type="text/css" href="(~mcSiteRoot~)demos/c/whdemos.css" />
-	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
-<style type="text/css">
-  (~ASSIGNED|litWallpaper|body {background: url(http://img.href.com/webhubdemos/img/textures/(~litWallpaper~)) repeat; }~)
-.currentnode {
-  font-weight:700;
-  color: #A22222;
-}</style>
+(~drShowcaseGlobalHeader~)
 
+(~ANCHORMODIFY|anchJavaScript|
+	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
     <script type="text/javascript">
 		function setAJAXEvents()
 		{
@@ -171,21 +157,24 @@ bNoMore=true
 		}
 		onload = setAJAXEvents
 	</script>
-</head>
-<body>
-(~drPageBegin~)
-<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
-(~MATCH|(~pagesetting.bSeqHdr~)=true|(~drShowcaseExtraHeader~)~)
+~)
+(~ANCHORMODIFY|anchStyle|
+<style>
+.currentnode {
+  font-weight:700;
+  color: #A22222;
+}</style>
+~)
 
 <form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">
   <p>Enter a word: <input name="w" type="text" />  
   </p>
   <div id="result"></div>
 </form>
-<br/><br/>
-<h2>See Also</h2>
+
+<h2 style="padding-top: 2em;">See Also</h2>
 <p>See also the (~JUMP|htaj:pgwelcome|WebHub AJAX Demo~)</p>
-</div>
+
 (~drShowcaseGlobalFooter~)
 </whpage>
 
