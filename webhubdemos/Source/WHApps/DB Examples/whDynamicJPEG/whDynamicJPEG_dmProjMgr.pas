@@ -1,7 +1,7 @@
 unit whDynamicJPEG_dmProjMgr;
 
 (*
-Copyright (c) 2013 HREF Tools Corp.
+Copyright (c) 2013-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 29-Jan-2013, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -55,6 +55,7 @@ implementation
 {$R *.dfm}
 
 uses
+  MidasLib,  // avoid MIDAS.DLL uppercase issue
   MultiTypeApp, whDynamicJPEG_fmWh, whDynamicJPEG_dmwhData;
 
 procedure TDMForWHDynamicJPEG.ProjMgrDataModulesCreate3(Sender: TtpProject;
