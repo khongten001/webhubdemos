@@ -177,13 +177,11 @@ much easier--and it doesn't require custom cgi programming.
 
 <whdroplet name="barSurferTracking">
 (~GO|PGCOOKIES|Cookies~)(~mcHeadingSeparator~)
-(~GO|PGCHARGING|Microcharging~)
 </whdroplet>
 
 
 <whdroplet name="ulPgSurferTracking">
 (~GO|PGCOOKIES|Cookies~)<br/>
-(~GO|PGCHARGING|Microcharging Surfers~)<br/>
 </whdroplet>
 
 

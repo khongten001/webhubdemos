@@ -151,8 +151,6 @@ Demo?  What do the icons mean?  How can I <a href="https://store.www.href.com/hr
 (~GO|pgDelCookie|<dd>Deleting Cookies</dd>~)
 (~GO|pgSetCookieAdvanced|<dd>Setting Arbitrary Cookies</dd>~)
 
-(~GO|pgCharging|<dd class="ddem">Microcharging Surfers</dd>~)
-
 (~GO|pgJava|<dt>Java, JavaScript and XML</dt>~)
 
 (~GO|pgjavacl|<dd>Clock Example</dd>~)

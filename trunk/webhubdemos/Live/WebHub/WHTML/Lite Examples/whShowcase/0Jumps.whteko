@@ -56,8 +56,7 @@ h2 {text-align: center; font-size: 1.1em; margin: .8em 0 .3em 0;}
 (~GO|PGFORMTOMAIL|(~mcRedCube~)~)&nbsp;Form-to-Mail Feature
 
 <h2>(~GO|pgSURFERTRACKING|Surfer Tracking~)</h2>
-(~GO|PGCOOKIES|(~mcRedCube~)~)&nbsp;Cookies<br />
-(~GO|PGCHARGING|(~mcRedCube~)~)&nbsp;Microcharging Surfers
+(~GO|PGCOOKIES|(~mcRedCube~)~)&ensp;Cookies
 
 </td>
 

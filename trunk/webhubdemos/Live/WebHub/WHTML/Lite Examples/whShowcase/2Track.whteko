@@ -49,38 +49,4 @@ and you can use cookie values in a variety of ways.</p>
 </span>
 </whdroplet>
 
-
-<whpage pageid="pgCharging" desc="Microcharging Surfers">
-<whpagesettings inherit="a">
-bNoMore=true
-</whpagesettings>
-(~drShowcaseGlobalHeader~)
-<p>WebHub has properties to keep a running tally of "micro charges."
-These are small fees that you associate with any macro and/or any page.
-A common use for microcharging is to assess a cost for graphics, video files, or audio files.
-You could set up a macro, and then each time that macro is expanded,
-the total cost assessed for that surfer will go up.  For example, the following syntax charges
-$3.00 for a newspaper and $4.00 for a disk.</p>
-<pre>
-mcChgPaperIMG=&lt;img src=(~ mcImgShowcaseDir~)skpaper.JPG>|$=3<br />
-mcChgDiskIMG=&lt;img src=(~ mcImgShowcaseDir~)skdskguy.JPG>|$=4
-</pre>
-<p>Microcharges are stored as arbitrary units in a longint, but
-you may convert those units to any convenient currency unit.
-Here we are assuming $1.00 units.</p>
-<p>This page uses the two charging macros shown above to display graphics. </p>
-<p>You are being charged: </p>
-<b>$3.00</b> for this newspaper: (~mcChgPaperIMG~)
-<p>and</p>
-<p><b>$4.00 </b> for this disk: (~mcChgDiskIMG~)
-</p>
-<p><span class="changing">(~JumpR|pgCharging|I am rich! Run up my bill! I want to Download Again!~)</span></p>
-(~drShowcaseGlobalFooter~)
-</whpage>
-
-<whdroplet name="ulPgCharging">
-<span class="changing">(~GOR|PGTOTAL|Show Me The Bill~)</span><br/>
-(~Go|pgSURFERTRACKING|Too Rich for My Blood~)<br/>
-</whdroplet>
-
 </whteko>
