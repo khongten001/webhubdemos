@@ -72,7 +72,6 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   whBuildInfo,
   {$IF cWebHubVersion <= 3.268} // uses whBuildInfo (DCU not PAS)
@@ -85,7 +84,7 @@ uses
   ucLogFil, webApp, webBase, webSplat, dmWHApp, htWebApp, webCall,
   whutil_ZaphodsMap, whdemo_CodeSite, whdemo_UIHelpers,
   whdemo_Extensions, whdemo_Initialize, whdemo_ViewSource, whMain, whConst,
-  whsample_PrototypeJS,
+  webAjax, whsample_PrototypeJS,  // for showcase demo
   whpanel_RemotePages, whpanel_Mail, uAutoPanels;
 
 { TDMForWHDemo }
@@ -187,6 +186,8 @@ begin
   CSEnterMethod(Self, cFn);
   Application.CreateForm(TdmwhCodeSiteHelper, dmwhCodeSiteHelper);
   Application.CreateForm(TdmwhUIHelpers, dmwhUIHelpers);
+  if pWebApp.AppID = 'showcase' then
+    Application.CreateForm(TDMPrototypeJS, DMPrototypeJS);
   CSExitMethod(Self, cFn);
 end;
 
@@ -201,6 +202,11 @@ begin
   bContinue := dmwhUIHelpers.Init(ErrorText);
   if bContinue then
     bContinue := dmwhCodeSiteHelper.Init(ErrorText);
+  if bContinue then
+  begin
+    if Pos(pWebApp.AppID, ',showcase,htaj,') > 0 then
+      bContinue := DMPrototypeJS.Init(ErrorText);   
+  end;
   CSExitMethod(Self, cFn);
 end;
 
