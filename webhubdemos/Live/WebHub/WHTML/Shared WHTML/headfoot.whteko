@@ -185,7 +185,7 @@ body {
 <div class="copyright">
 Copyright &copy; 1995-(~CentralInfo.YearUTC~) HREF Tools Corp.  All Rights Reserved Worldwide. &emsp;
 <a href="https://www.href.com/contact">contact</a> &emsp; &emsp;
-<a href="http://lite.demos.href.com/demos/privacypolicy">privacy</a>
+<a href="https://secure.demos.href.com/demos/privacypolicy">privacy</a>
 </div>
 </whdroplet>
 
@@ -209,7 +209,7 @@ It is now <span class="changing">(~CentralInfo.WebTimeGMT~)</span>.
   (~JUMPR|DO,waLinkW3Validation.export^checkme.html|onclick="window.open(this.href);return false;"|export~) &nbsp;&nbsp;
 </span>
   <a onclick="window.open(this.href);return false;" 
-	href="http://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)">validator.w3.org</a>
+	href="https://validator.w3.org/check?uri=http%3A%2F%2F(~waLinkW3Validation.execute|url,checkme.html~)">validator.w3.org</a>
 </div>~)~)
 </whdroplet>
 
