@@ -136,7 +136,7 @@ bNoMore=true
 (~drShowcaseGlobalFooter~)
 </whpage>
 
-<whpage pageid="pgSimpleAjax" desc="Simple Ajax Example">
+<whpage pageid="pgSimpleAjax" desc="Ajax Observer Example">
 <whdoc for="credits">
 17-Jul-2006
 
@@ -148,32 +148,48 @@ bNoMore=true
 </whpagesettings>
 (~drShowcaseGlobalHeader~)
 
-(~ANCHORMODIFY|anchJavaScript|
-	(~JS|ScriptTag|src="https://ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js"~)
-    <script type="text/javascript">
+(~ANCHORMODIFY|anchPageEndJS|
+	<script src="http://ksylvest.github.io/jquery-observer/javascripts/jquery.observer.js" ></script>
+	<script type="text/javascript">
 		function setAJAXEvents()
 		{
-			(~AJAXObserver|tagtype="form" id="f1" frequency="1"|update="result" position=""~)
+		  $('#f1').observe(function () { 
+			var datastring = $("#f1").serialize();
+
+		    <!--- put the content from the pgSimpleAjaxFillin page into the resultDiv div -->
+			$.ajax({
+			    type: "POST",
+			    url: "(~Request.Scheme~)://(~Request.Host~)(~ACTION|pgSimpleAjaxFillin~)",
+			    data: datastring,
+			    dataType: "html",
+			    success: function(data) {
+			  	// $('#resultDiv').innerHTML = data;
+				jQuery("#resultDiv").html(data); // data is the HTML text
+			    },
+			    error: function() {
+			        alert('error!');
+			    }
+			});
+		  });
 		}
 		onload = setAJAXEvents
 	</script>
 ~)
-(~ANCHORMODIFY|anchStyle|
-<style>
-.currentnode {
-  font-weight:700;
-  color: #A22222;
-}</style>
-~)
+
+<div style="padding-bottom: 2em;">
+This example is done using JQuery and JQuery.Observer.  When something is typed 
+in the input field, an &quot;ajax&quot; call is used to obtain extra data from 
+the server. That data is placed into a previously invisible HTML <i>&lt;div_tag></i>.
+</div>
 
 <form id="f1" accept-charset="UTF-8" method="post" action="(~ACTIONR|pgSimpleAjaxFillin~)">
-  <p>Enter a word: <input name="w" type="text" />  
-  </p>
-  <div id="result"></div>
+  <p>Enter a word: (~INPUTTEXT|w~) </p>
+  <div id="resultDiv"></div>
 </form>
 
 <h2 style="padding-top: 2em;">See Also</h2>
-<p>See also the (~JUMP|htaj:pgwelcome|WebHub AJAX Demo~)</p>
+<p>See also the (~JUMP|htaj:pgwelcome|WebHub AJAX Demo~) and 
+(~JUMP|pgAWSJqFileUpload|JQuery File Upload to AWS S3~).</p>
 
 (~drShowcaseGlobalFooter~)
 </whpage>
