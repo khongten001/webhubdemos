@@ -3,105 +3,66 @@
 <whteko  
 	defaultlingvo="eng"  
 	designlingvo="eng" 
-	   
-	designdynsrc="practiceADV"  
 	designmode="code">
  
-<whmacros>
-mcProto15=www.prototypejs.org/assets/2008/1/25/prototype-1.5.1.2.js
-mcProto16=prototypejs.org/assets/2009/8/31/prototype.js
-mcProto17=ajax.googleapis.com/ajax/libs/prototype/1.7.0.0/prototype.js
-mcProto1710=ajax.googleapis.com/ajax/libs/prototype/1.7.1.0/prototype.js
-mcProtoList=15-v1.5.1.2,16-v1.6.1,17-1.7.0.0,1710-1.7.1.0
-</whmacros>
-
 <whdoc for="ajax-components">
-AJAXEvent is a TwhWebAction in whsample_PrototypeJS.pas
-AJAXObserver is a TwhWebAction in whsample_PrototypeJS.pas as of WebHub v3.202.
+If you want to use Prototype.js instead of JQuery, please see AJAXEvent which is a TwhWebAction in whsample_PrototypeJS.pas.
 </whdoc>
 
 <whpage pageid="pgEnterHTAJ" desc="Using WebHub with Prototype library for AJAX">
-<whprep>
-(~NOTASSIGNED|protoVers|(~SET|protoVers=1710~)~)
-</whprep>
 <whoutput>
 (~mcdoctypehtml~)
 <html>
 <head>
 	(~drHead~)
-	<script src="//(~DYNCHUNK|mcProto,(~protoVers~)~)"></script>
-  <script type="text/javascript">
-		function setAJAXEvents()
-		{
-			(~AJAXEvent|tagtype="a href" id="showtime"|update="showtime1" position=""~)
-			(~AJAXObserver|tagtype="form" id="form1" frequency="1"|update="showform1" position="" method="post"~)
-			(~AJAXObserver|tagtype="form" id="form2" frequency=""|update="showform2" position="" method="post"~)
-		}
-		onload = setAJAXEvents
-	</script>
-	(~drCommandStyles~)
+	
 	<style type="text/css">
-	/*body {font-family:Arial, Helvetica, sans-serif; font-size: 80%; text-align: center}*/
 	#content {margin:auto; width: 50em; text-align: left;}
 	</style>
 </head>
 <body>
 (~drPageBegin~)
 <div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
-<h1>Select Prototype Library to Test</h1>
-<p><i>These examples should work with ALL FOUR libraries.</i></p>
-<p>Current javascript library: <b><code>//(~DYNCHUNK|mcProto,(~protoVers~)~)</code></b></p>
-(~INPUTFORM|pgEnterHTAJ~)
-Alternate Prototype Library: (~INPUTSELECT|protoVers,mcProtoList,1~)
-<input type="submit" value="go" />
-</form>
-
 
 <h1>Three Simple AJAX Examples</h1>
-<h2>1. AJAXEvent</h2>
-<p>Use this command when you require an AJAX update to occur following a Javascript event for a specified HTML element.</p>
-<span class="syntax"><span class="parentil">(~.</span>
-<span class="syntaxcommand">AJAXEvent</span>|tagtype="" id="" event=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span>
-<span class="syntaxoption">|confirm="" before="" after="" condition=""</span>
-<span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
-<p>One example would be partial page content update following the onclick event of an a href tag.</p>
+<h2>1. AJAX Event</h2>
+<p>One example would be partial page content update following the <b>onclick</b> event of an a href tag.</p>
 <p>To show the webserver date and time, (using the onclick event of an a href tag) (~JUMP|gettime1|id="showtime"|Click here~)</p>
 
-<div id="showtime1"></div>
+<div id="showtime1" style="background-color: azure; color: #666677; border: solid 1px BlueViolet; padding: 0.2em; margin-bottom: 1.5em;">
+<!--- content filled by ajax call -->
+</div>
 
 
-<h2>2. AJAXObserver</h2>
-<p>Use this command to observe all elements within a form or an individual form element and fire an AJAX event at a certain frequency or on a change of value.</p>
-<span class="syntax"><span class="parentil">(~.</span>
-<span class="syntaxcommand">AJAXObserver</span>|tagtype="" id="" frequency=""|update="" position="" mode="" evalscripts="" method=""  url="" post="" submit="" onXXXXXX= ....<span class="syntaxbracket">[</span>
-<span class="syntaxoption">|confirm="" before="" after="" condition=""</span><span class="syntaxbracket">]</span><span class="parentil">~)</span></span>
-Example1: Type something into the input box below. The contents are examined every second and if a change is detected, the form contents are posted to the server and sent back with the time stamp.
-<form id="form1" action="(~ACTION|AjaxObserverText1~)">(~INPUTTEXT|sampletext1~)</form>
+<h2>2. AJAX Observer</h2>
+<p>Use this command to observe all elements within a form or an individual form element and fire an AJAX event on a change of value.</p>
 
-<div id="showform1"></div>
+<p>Example1: Type something into the input box below. The contents are examined every second and if a change is detected, the form contents are posted to the server and sent back with the time stamp.
+( Credits: <a href="http://ksylvest.github.io/jquery-observer/">jquery-observer plug-in</a> ) </p>
+
+<form id="form1" action="(~ACTION|AjaxObserverText1~)"><input type="text" id="sampletext1" name="sampletext1" placeholder="something" value="(~IfNotBlankSV|(~sampletext1~)~)"/></form>
+
+<div id="showform1" style="background-color: cornsilk; color: red; border: solid 1px BlueViolet; padding: 0.2em; margin-bottom: 1.5em;">
+<!--- content filled by ajax call -->
+</div>
+
 
 Example2: Type something into the input box below. Only when you exit the data entry box and a change has been detected are the form contents are posted to the server and sent back with the time stamp.
-<form id="form2" action="(~ACTION|AjaxObserverText2~)">(~INPUTTEXT|sampletext2~)</form>
+This uses the focusout event in JQuery.
+<form id="form2" action="(~ACTION|AjaxObserverText2~)">(~INPUTTEXT|sampletext2| id="sampletext2" ~)</form>
 
-<div id="showform2"></div>
-
-
+ 
+<div id="showform2" style="background-color: BlanchedAlmond; color: DarkBlue; border: solid 1px green; padding: 0.2em; margin-bottom: 1.5em;">
+<!--- content filled by ajax call -->
+</div>
 
 <h1 style="margin-top:2em;">Learning how to use AJAX with WebHub</h1>
-<i>The <b>Prototype</b> library has the advantage of being very stable and in wide use. Its features are limited however.
-Most development on Prototype stopped prior to year 2012. An alternative JavaScript library to consider is called <b>JQuery</b>.
-This decision of <b>Prototype versus JQuery</b> should be made <i>before</i> trying to learn any specific syntax that 
-combines that libraries function with WebHub techniques. Generally, for new projects, the use of JQuery is recommended.
-At this time, there is no public WebHub demo that uses JQuery, and that is because there is no need to wrap JQuery into 
-specific WebHub webactions.</i>
-<h2>WebHub wrappers for the Prototype JavaScript Library</h2>
 <ol>
 <li> Open the [(~JUMP|viewfiles,htaj|Source~)] link in a new window.  View the source of the whAJAX.whteko file. Pay special attention to:<br/><br/>
 <ul>
-<li style="list-style-type:disc">the JS command within the <i>&lt;head_tag&gt;</i> </li>
-<li style="list-style-type:disc">function setAJAXEvents within the <i>&lt;head_tag&gt;</i> </li>
-<li style="list-style-type:disc">the calls to AJAXEvent, AJAXObserver.</li>
-<li style="list-style-type:disc">the page definitions for gettime1, AjaxObserverText1, gettime2, AjaxObserverText2</li>
+<li style="list-style-type:disc">the use of jquery and jquery.observer JS near the <i>&lt;/body_tag&gt;</i> </li>
+<li style="list-style-type:disc">functions to set the required events, near the <i>&lt;/body_tag&gt;</i> </li>
+<li style="list-style-type:disc">the WebHub page definitions for gettime1, AjaxObserverText1, AjaxObserverText2</li>
 </ul>
 </li>
 </ol>
@@ -109,24 +70,40 @@ specific WebHub webactions.</i>
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
 
+	<script src="http://ksylvest.github.io/jquery-observer/javascripts/jquery.observer.js" ></script>
+	
+<script type="text/javascript"><!--- custom functions, after jquery js -->
+  $('#showtime').click(function() {
+    <!--- put the content from the gettime1 page into the showtime1 div -->
+    $('#showtime1').load(  "(~ACTION|gettime1~)"  );
+  	return false;
+  });
+  
+  $('#form1').observe(function () { 
+    <!--- put the content from the AjaxObserverText1 page into the showform1 div -->
+  	$('#showform1').load(  "(~ACTION|AjaxObserverText1~)"  );
+  });
+  
+  $('#sampletext2').focusout(function() {
+    <!--- put the content from the AjaxObserverText2 page into the showform2 div -->
+  	$('#showform2').load(  "(~ACTION|AjaxObserverText2~)"  );
+  });
+  
+</script>
+
 </body></html> 
 </whoutput>
 </whpage>
 
 <whpage pageid="gettime1">
-<!--- for earlier versions of WebHub <p>The time is (~webserver.webtime~) - (~sampletext1~)</p> -->
-(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span></p>
-</whpage>
-
-<whpage pageid="gettime2">
 (~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span></p>
 </whpage>
 
 <whpage  pageid="AjaxObserverText1">
-(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext1|(~sampletext1~)~)</p>
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> &mdash; (~ASSIGNED|sampletext1|(~sampletext1~)~)</p>
 </whpage>
 <whpage pageid="AjaxObserverText2">
-(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> - (~ASSIGNED|sampletext2|(~sampletext2~)~)</p>
+(~EXPIRES|0~)<p>The time is <span class="changing">(~CentralInfo.WebTimeGMT~)</span> &mdash; (~ASSIGNED|sampletext2|(~sampletext2~)~)</p>
 </whpage>
 
 
