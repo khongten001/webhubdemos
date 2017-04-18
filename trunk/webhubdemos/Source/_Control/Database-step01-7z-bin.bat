@@ -11,11 +11,10 @@ cd ..\..\Live\WebHub\Apps
 del Database-bin.7z
 del Database-Library??-bin.7z
 
-del DriveH-source.7z
-
-set t=DriveH-source.7z
-d:\Apps\Utilities\7Zip\7z.exe a %t% h:\*.pas h:\*.dfm
-if errorlevel 1 pause
+:: off Apr 2017 del DriveH-source.7z
+:: off Apr 2017 set t=DriveH-source.7z
+:: off Apr 2017 d:\Apps\Utilities\7Zip\7z.exe a %t% h:\*.pas h:\*.dfm
+:: off Apr 2017 if errorlevel 1 pause
 
 set t=Database-dpr.7z
 d:\Apps\Utilities\7Zip\7z.exe a %t% whDPrefix.exe
@@ -37,6 +36,11 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% whDynamicJPEG.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whFirebird.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whFishStore.exe
 d:\Apps\Utilities\7Zip\7z.exe a %t% whScanTable.exe
+if errorlevel 1 pause
+
+:: DynHelp for webhub.com, running on same server as db.demos.href.com
+:: April 2017
+if EXIST "D:\HREF\semele\drived\projects\dynhelp\Live\WebHub\WHApps\DynHelp.exe" d:\Apps\Utilities\7Zip\7z.exe a %t% "D:\HREF\semele\drived\projects\dynhelp\Live\WebHub\WHApps\DynHelp.exe"
 if errorlevel 1 pause
 
 set bits=32
