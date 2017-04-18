@@ -14,7 +14,8 @@ set demohtdr=yes
 
 set demohtob=no
 
-set demohtoi=yes
+:: Open ID demo needs work - April 2017
+set demohtoi=no
 
 set demohtol=no
 
