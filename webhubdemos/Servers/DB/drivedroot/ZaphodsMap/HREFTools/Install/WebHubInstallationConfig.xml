@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap200605.xsl"?>
 <!--- master copy in 
 D:\Projects\webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\Install
@@ -6,7 +6,8 @@ D:\Projects\webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\Install
 <InstallationConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.zaphodsmap.com/zmdesign/xsd/ZaphodsInstaller200512.xsd">
   <InstallFolders>
     <Product name="WebHubRuntime" folder="d:\Apps\HREFTools\WebHub"/>
-    <Product name="WebHubDemos" folder="d:\Projects\webhubdemos\"/><!--- lowercase -->
+    <!--- lowercase path for webhubdemos -->
+    <Product name="WebHubDemos" folder="d:\Projects\webhubdemos\"/>
   </InstallFolders>
   <InstallerSettings>
     <Setting name="WebHubRunnerISAPI" value="d:\Apps\HREFTools\WebHub\bin\WHRunner\"/>
