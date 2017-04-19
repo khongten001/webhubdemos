@@ -4,7 +4,7 @@ set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
 
 set bdecomp=22
 set ibocomp=25
-set compilerdigits=25
+call %~dp0set-compilerdigits.bat
 set comp3=D%compilerdigits%
 
 if NOT "%comp3%%bits%"=="D" goto Continue00

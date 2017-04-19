@@ -20,10 +20,7 @@ if not exist %dcc% %CSSend% /error "Does not exist: [%dcc%]" %CSLogPathParams%
 if not exist %dcc% pause
 
 set wbits=32
-if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
-if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
-if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
-if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+call %~dp0set-raizepath.bat
 
 set eurpath=D:\vcl\EurekaLog7\Lib\Win32\Release\Delphi%compilerdigits%
 
