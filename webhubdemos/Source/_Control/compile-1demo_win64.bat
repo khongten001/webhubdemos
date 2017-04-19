@@ -18,11 +18,7 @@ if not exist %dcc% pause
 call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv001 Delphi CodeSite5"
 
 set wbits=64
-:: (D25)
-if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
-if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
-if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
-if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+call %~dp0set-raizepath.bat
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"

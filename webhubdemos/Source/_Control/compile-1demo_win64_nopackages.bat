@@ -17,10 +17,7 @@ if not exist %dcc% pause
 call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv001 Delphi CodeSite5"
 
 set wbits=64
-if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
-if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
-if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
-if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+call %~dp0set-raizepath.bat
 set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=

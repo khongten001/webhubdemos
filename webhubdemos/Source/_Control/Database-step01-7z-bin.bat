@@ -58,7 +58,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
 :: Berlin compiler win64 is good for the rest of the non-BDE projects
 set bits=64
-set compilerdigits=25
+call %~dp0set_compilerdigits.bat
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
 set t=Database-Library%bits%-bin.7z
 

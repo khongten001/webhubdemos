@@ -32,12 +32,8 @@ set flags=-b -W-SYMBOL_PLATFORM -W-UNIT_PLATFORM  -$O- -$W+ -$J+ -$Q+ -$C- -$Y- 
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
-:: (D25)
 set wbits=32
-if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
-if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
-if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
-if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+call %~dp0set-raizepath.bat
 %CSSend% raizepath "%raizepath%" %CSLogPathParams%
 
 set eurparams=
@@ -74,12 +70,8 @@ ren %outputroot%\%1.exe %1_x_d%compilerdigits%_win32_src.exe
 if errorlevel 1 set ok=locked
 if "%ok%"=="locked" %CSSend% /error "target file is locked; unable to rename to %1_x_d%compilerdigits%_win32_src.exe" %CSLogPathParams%
 
-:: (D25)
 set wbits=64
-if "%compilerdigits%"=="25" set raizepath=%cslibroot%\RX10.2\win%wbits%
-if "%compilerdigits%"=="24" set raizepath=%cslibroot%\RX10.1\win%wbits%
-if "%compilerdigits%"=="23" set raizepath=%cslibroot%\RX10\win%wbits%
-if "%compilerdigits%"=="22" set raizepath=%cslibroot%\RS-XE8\win%wbits%
+call %~dp0set-raizepath.bat
 %CSSend% raizepath "%raizepath%" %CSLogPathParams%
 
 ::win64
