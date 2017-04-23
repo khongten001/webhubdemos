@@ -27,7 +27,7 @@ function OpenJSorCSSorOtherFile(const InFindThisFilename, EPPFilespec
   : string; out FoundInFilespecs: TStringBuilder): Boolean;
 const cFn = 'OpenJSorCSSorOtherFile';
 var
-  AFilename: string;
+  AFilespec: string;
   AMask: string;
   EPPRootFolder: string;
   AFileExt: string;
@@ -46,16 +46,16 @@ begin
   EPPRootFolder := ExtractFilePath(EPPFilespec);
   //CSSend('EPPRootFolder', EPPRootFolder);
 
-  for AFilename in TDirectory.GetFiles(EPPRootFolder, AMask, SearchOption, nil)
+  for AFilespec in TDirectory.GetFiles(EPPRootFolder, AMask, SearchOption, nil)
   do
   begin
-    //CSSend('Considering', AFilename);
-    if SameText(ExtractFilename(AFilename), ExtractFilename(InFindThisFilename))
+    //CSSend('Considering', AFilespec);
+    if SameText(ExtractFilename(AFilespec), ExtractFilename(InFindThisFilename))
     then
     begin
       if FlagAny then
         FoundInFilespecs.Append(sLineBreak);
-      FoundInFilespecs.Append(AFilename);
+      FoundInFilespecs.Append(AFilespec);
       FlagAny := True;
       //CSSend('FoundInFilespecs', FoundInFilespecs.ToString);
       Result := True;
