@@ -21,10 +21,10 @@ call %ZaphodsMap%zmset.bat p UsingKey2Value "HREFTools\FileTransfer FTP wesleywh
 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-dpr.7z
 if errorlevel 1 pause
 
-:: no need for library on cnf server
-rem off Oct-2015 call %~dp0\default-compilerdigits.bat
-rem off Oct-2015 D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-Library-d%compilerdigits%.7z
-rem off Oct-2015 if errorlevel 1 pause
+:: use win64 packages on cnf server
+call %~dp0\set-compilerdigits.bat
+D:\Apps\Utilities\NcFTP\ncftpput.exe -u %u% -p %p% %h% /Live/WebHub/Apps Database-Library-d%compilerdigits%.7z
+if errorlevel 1 pause
 
 :TheEnd
 endlocal
