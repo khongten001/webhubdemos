@@ -2,10 +2,10 @@ set CSSend=D:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
 set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
 %CSSend% /note "compile-whdemos-db.bat" %CSLogPathParams%
 
-set bdecomp=22
-set ibocomp=25
+set bdecomp=25
 call %~dp0set-compilerdigits.bat
 set comp3=D%compilerdigits%
+set ibocomp=%compilerdigits%
 
 if NOT "%comp3%%bits%"=="D" goto Continue00
 
@@ -63,19 +63,25 @@ del %~dp0\..\..\Live\WebHub\Apps\whRubicon.exe
 if NOT "%compilehtru%"=="no" cd %droot%\Third Party Examples\whRubicon
 if NOT "%compilehtru%"=="no" call %cbat% whRubicon
 
+:ContinueDPR
 ::whDPrefix uses NexusDB not BDE
 :: NexusDB v4.004 as of 28-Apr-2014
-:: Sometimes, use same version of WebHub as CodeNewsFast so libraries are shared
 @del %~dp0\..\..\Live\WebHub\Apps\whDPrefix*.exe 
-if "%compiledpr%"=="no" goto END
+call %~dp0\called-only-MakeResFile.bat whDPrefix DelphiPrefixRegistry
+copy "%droot%\..\TempBuild\res\ver_whDPrefix.RES" "%droot%\Third Party Examples\whDPrefix"
+del %droot%\..\TempBuild\res\ver_whDPrefix*
+:: Sometimes, use same version of WebHub as CodeNewsFast so libraries are shared
+if "%compiledpr%"=="no" goto Continue03
 cd %droot%\Third Party Examples\whDPrefix
 set compilerdigits=%ibocomp%
-REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
+:: whDPrefix needs to compile as-service
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
+REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
 
 :::::::::::::::::::::::::::::::
 :: Now demos which use IBObjects
 :::::::::::::::::::::::::::::::
+:Continue03
 %CSSend% /note "IBObjects required" %CSLogPathParams%
 
 set compilerdigits=%ibocomp%
