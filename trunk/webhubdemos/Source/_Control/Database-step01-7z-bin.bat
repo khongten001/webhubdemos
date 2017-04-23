@@ -44,10 +44,10 @@ if EXIST "D:\HREF\semele\drived\projects\dynhelp\Live\WebHub\WHApps\DynHelp.exe"
 if errorlevel 1 pause
 
 set bits=32
-set compilerdigits=22
+call %~dp0\set-compilerdigits.bat
 set t=Database-Library%bits%-bin.7z
 
-:: XE8 D22 compiler has bde support, win32
+:: D25 compiler has bde support, win32
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
 
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ldiRegExLib_d??_win32.bpl
@@ -56,7 +56,7 @@ d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubDB_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\WebHubBDE_d??_win32.bpl
 d:\Apps\Utilities\7Zip\7z.exe a %t% %sdir%\ZaphodsMapLib_d??_win32.bpl
 
-:: Berlin compiler win64 is good for the rest of the non-BDE projects
+:: latest win64 is good for the rest of the non-BDE projects
 set bits=64
 call %~dp0set_compilerdigits.bat
 set sdir=h:\pkg_d%compilerdigits%_win%bits%
