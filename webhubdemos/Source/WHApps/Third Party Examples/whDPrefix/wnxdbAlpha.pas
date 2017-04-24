@@ -33,7 +33,7 @@ unit wnxdbAlpha; { TWebnxdbAlphabet, a WebHub action component }
 interface
 
 uses
-  Windows, SysUtils, Classes,
+  SysUtils, Classes,
   updateOk, ucString,
   webTypes, webLink, wdbSSrc, wdbSource;
 
@@ -74,7 +74,6 @@ type
 implementation
 
 uses
-{$IFDEF CodeSite}CodeSiteLogging, {$ENDIF}
   nxdb, // TnxTable
   ZM_CodeSiteInterface,
   whMacroAffixes;
@@ -161,7 +160,7 @@ var
   S1: String;
   svName: string;
 begin
-CSEnterMethod(Self, cFn);
+  CSEnterMethod(Self, cFn);
   inherited DoExecute;
   CSSend('Command', Command);
   CSSend('HtmlParam', HtmlParam);
