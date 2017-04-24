@@ -49,7 +49,8 @@ uses
   DPrefix_dmNexus in 'DPrefix_dmNexus.pas' {DMNexus: TDataModule},
   DPrefix_dmwhActions in 'DPrefix_dmwhActions.pas' {DMDPRWebAct: TDataModule},
   DPrefix_dmwhNexus in 'DPrefix_dmwhNexus.pas' {DMWHNexus: TDataModule},
-  DPrefix_dmwhApi in 'DPrefix_dmwhApi.pas' {DMWHAPI: TDataModule};
+  DPrefix_dmwhApi in 'DPrefix_dmwhApi.pas' {DMWHAPI: TDataModule},
+  DPrefix_dmAdminDataEntry in 'DPrefix_dmAdminDataEntry.pas' {DMAdminDataEntry: TDataModule};
 
 {$IFDEF DEBUG}
 {$R *.RES}
