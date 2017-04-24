@@ -43,7 +43,7 @@ set ok=y
 "%dcc%"  -w -h -b %1.dpr  -nd:\temp\DelphiTempDCU -E%outputroot% -DCodeSite;Log2CSL -D%compilerflags% -LU%pkg% -u%libsearchpath%;%RaizePath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok=n
 if "%ok%"=="n" %CSSend% /error "D%compilerdigits% %1.dpr" %CSLogPathParams%
-if "%ok%"=="y" %CSSend% "success D%compilerdigits% %1.dpr" %CSLogPathParams%
+if "%ok%"=="y" %CSSend% "success D%compilerdigits% %1.dpr Win%wbits%" %CSLogPathParams%
 if "%ok%"=="n" pause
 
 @echo off
