@@ -30,6 +30,7 @@
       <DynURLConfig>
         <ServerProfileIDStandard value="defprofile"/>
         <ServerProfileIDStandard value="shortdpr" context="NYX"/>
+        <ServerProfileIDSecure value="dprsecureprofile" context="NYX"/>
         <ForceCase value="none"/>
         <UseAppID value="true"/>
         <UseAppProcessID value="false"/>
@@ -39,10 +40,8 @@
     </AppProperties>
     <AppSettings>
       <AppSetting name="Advertise" value="True"/>
-      <AppSetting name="Advertise" value="False" context="ultraann"/>
       <AppSetting name="AlphaLetters" value="26"/>
       <AppSetting name="CodeSiteLogging" value="warning,error,exception"/>
-      <AppSetting name="CodeSiteLogging" value="all" context="NYX"/>
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="NYX"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
