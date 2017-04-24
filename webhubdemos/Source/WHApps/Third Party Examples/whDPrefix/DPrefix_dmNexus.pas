@@ -72,10 +72,12 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Character,
-  ZM_CodeSiteInterface, ucMsTime, ucPos, ucString,
-  webApp, htWebApp, whdemo_ViewSource, DPrefix_dmWhActions, whdemo_Extensions;
+  ZM_CodeSiteInterface, 
+  ucMsTime, ucPos, ucString,
+  webApp, htWebApp, 
+  whdemo_ViewSource, whdemo_Extensions,
+  DPrefix_dmWhActions;
 
 
 { TDMNexus }
@@ -161,17 +163,22 @@ begin
 end;
 
 function TDMNexus.Init(out ErrorText: string): Boolean;
-var
-  a1: string;
+const cFn = 'Init';
+//var
+//  a1: string;
 begin
-  // reserved for code that should run once, after AppID set
+  CSEnterMethod(Self, cFn);
+
   ErrorText := '';
   if NOT FlagInitDone then
   begin
     if Assigned(pWebApp) and pWebApp.IsUpdated then
     begin
-      a1 := pWebApp.AppSetting[cManPrefDatabase];
+      //a1 := pWebApp.AppSetting[cManPrefDatabase];
+      CSSend('getHtDemoDataRoot', getHtDemoDataRoot);
       nxDatabase1.AliasPath := getHtDemoDataRoot + 'whDPrefix';
+      CSSend('Exists', S(DirectoryExists(nxDatabase1.AliasPath)));
+      CSSend('nxDatabase1.AliasPath', nxDatabase1.AliasPath);
       nxDatabase1.Active := True;
       Table1.Filtered := True;
       try
@@ -179,7 +186,7 @@ begin
       except
         on E: Exception do
         begin
-          LogSendException(E);
+          CSSendException(Self, cFn, E);
           Table1.IndexName := '';
           Table1.Open;
         end;
@@ -195,6 +202,7 @@ begin
     end;
   end;
   Result := FlagInitDone;
+  CSExitMethod(Self, cFn);
 end;
 
 function TDMNexus.IsAllowedRemoteDataEntryField(

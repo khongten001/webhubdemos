@@ -67,13 +67,13 @@ uses
   MultiTypeApp,
   ucLogFil, ZM_CodeSiteInterface,
   {$IFNDEF PREVENTGUI}ucDlgs, uAutoPanels, whMain,{$ENDIF}
-  dmWHApp, whAppOut, webApp, webCall, whcfg_App, webBase, webSplat, 
+  dmWHApp, whAppOut, webApp, webCall, whcfg_App, webBase, webSplat,
   whSharedLog, uAutoDataModules, whutil_ZaphodsMap, htWebApp,
   whOpenID_dmwhAction,
   whdemo_ViewSource,
   whdemo_About, whdemo_Extensions, whdemo_UIHelpers, whdemo_CodeSite,
   DPrefix_dmNexus, DPrefix_dmWhActions, DPrefix_dmWhNexus,
-  DPrefix_dmwhApi,
+  DPrefix_dmwhApi, DPrefix_dmAdminDataEntry,
   DPrefix_fmAdminDataEntry, whgui_Menu;
 
 procedure TDMDPrefixProjMgr.ProjMgrBeforeFirstCreate(
@@ -137,6 +137,8 @@ begin
 
   Application.CreateForm(TDMWHAPI, DMWHAPI);
 
+  Application.CreateForm(TDMAdminDataEntry, DMAdminDataEntry);
+
   { Special Comment for DataModules - do not delete!
 
     This comment is used by the WebHub Wizard to position non-gui CreateForm
@@ -160,6 +162,8 @@ begin
     Continue := DMDPRWebAct.Init(ErrorText);
   if Continue then
     Continue := DMWHOpenIDviaJanrain.Init(ErrorText);
+  if Continue then
+    Continue := DMAdminDataEntry.Init(ErrorText);
 
   if Continue then
   begin
@@ -183,6 +187,9 @@ begin
   if Continue then
     Continue := dmwhCodeSiteHelper.Init(Errortext);
 
+  pWebApp.Response.OnClose := DMAdminDataEntry.WebAppOutputClose;
+  pConnection.OnFrontDoorTriggered :=
+    DMAdminDataEntry.WebCommandLineFrontDoorTriggered;
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;
@@ -227,11 +234,9 @@ begin
 
     InitCoreWebHubDataModuleGUI;
     InitStandardWHModulesGUI;
-  pWebApp.Response.OnClose := fmWhActions.WebAppOutputClose;
-  pConnection.OnFrontDoorTriggered :=
-    fmWhActions.WebCommandLineFrontDoorTriggered;
 
-  fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
+    if Assigned(fmAppOut) then
+      fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
     WebMessage('0');         // required to close splash screen
   end;
 {$ENDIF}
