@@ -15,7 +15,7 @@ mcWhDemoCreditIdeaDPR=Stephen Healey, Ray Kanopka
 mcWhDemoCreditFirstDraftDPR=Stephen Healey
 mcWhDemoCreditGraphicsDPR=Stephen Healey
 mcWhDemoCreditCopyDPR=Stephen Healey
-mcWhDemoUpdatedDPR=7-Oct-2014
+mcWhDemoUpdatedDPR=23-Apr-2017
 mcWhDemoKeywordsDPR=Prefix,Component,Registry
 mcWhDemoLiteDPR=No
 </whmacros>
@@ -23,7 +23,7 @@ mcWhDemoLiteDPR=No
 <whdroplet name="drDemoSetupDPR">
 <ol>
 <li> NexusDB is required </li>
-<li> An OpenID processing account at janrain.com is required </li>
+<li> For development, an OpenID processing account at janrain.com is required. </li>
 </ol>
 </whdroplet>
 
@@ -35,6 +35,13 @@ The DPR is a public registry used by the Delphi community for reserving componen
 <whtranslation key="~whDemoLongDescDPR">
 The DELPHI PREFIX REGISTRY (DPxR) has been designed to LIST component creators, the PREFIXES they use 
 and sufficient contact details, without disclosing email addresses.
+<div>
+CodeRage 9 included a session about multi-device web application development with Delphi, 
+featuring the Delphi Prefix Registry in the second half of the presentation.
+	<div class="text-center">
+	<a href="https://youtu.be/rFi2utKe3o8">You-Tube: Web-Centric Multi-Device Apps with Delphi</a>
+	</div>
+</div>
 </whtranslation>
 
 </whteko>
