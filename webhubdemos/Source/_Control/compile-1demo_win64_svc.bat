@@ -20,16 +20,16 @@ set dcc=%droot%bin\dcc64.exe
 if not exist %dcc% pause
 
 set wbits=64
-call %~dp0set-raizepath.bat
+call %~dp0\set-raizepath.bat
 
 set libsearchpath="K:\webhub\lib;K:\webhub\lib\whvcl;K:\webhub\lib\whplus;K:\webhub\lib\whplus\cc;K:\webhub\lib\whdb;K:\webhub\tpack;K:\webhub\lib\wheditors;K:\webhub\lib\whrun;k:\webhub\zaphodsmap;k:\webhub\regex;%raizepath%;%droot%lib\win64\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE
-:: LogAppTick;LogHelo;LogSTime;LogIPCMinimal;LOGBAD
-if NOT "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL;LOGBOUNCE
+if NOT "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-%CSSend% compilerflags "%compilerflags%" %CSLogPathParams%
+%CSSend% compilerflags %compilerflags% 
+%CSSend% CSLogPathParams %CSLogPathParams%
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
 set objpath=K:\WebHub\regex\Pcre-Delphi-Win64-msc
@@ -37,9 +37,6 @@ set objpath=K:\WebHub\regex\Pcre-Delphi-Win64-msc
 :: extra parameters for Delphi XE2+
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
-
-
-if exist %1.cfg REN %1.cfg %1.off
 
 %CSSend% "1demo as-service d%compilerdigits%_win64 %1" %CSLogPathParams%
 
@@ -53,6 +50,5 @@ if "%ok1%"=="no" pause
 if "%ok1%"=="no" goto LocalRepeat
 
 @echo off
-if exist %1.off REN %1.off %1.cfg
 
 endlocal

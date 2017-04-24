@@ -4,10 +4,9 @@ setlocal
 :: %2 should be Display Name (sorry no spaces here either, and no surrounding quotes)
 
 set productversion=3,0
-set fileversion=3,2,0,0
-set CSSend=d:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
+set fileversion=3,2,0,1
 
-%CSSend% called-only-MakeResFile.bat %1 %2
+%CSSend% called-only-MakeResFile.bat %1 %2 %CSLogPathParams%
 
 :: Make version resource file for WebHub demo module
 :: Change the following lines for each change in the VersionNo and the BuildNo
@@ -15,7 +14,7 @@ set CSSend=d:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
 :: use ZaphodsMap to find default context of computer
 call %ZaphodsMap%zmset.bat zmcontext AsDefaultContext
 call %~dp0set-compilerdigits.bat
-%CSSend% compilerdigits %compilerdigits%
+%CSSend% compilerdigits %compilerdigits% %CSLogPathParams%
 
 :: get this year for copyright notice
 call %ZaphodsMap%zmset.bat MiscUtil UsingKey2Folder "HREFTools\Production\cv001 Utilities MiscUtil"
@@ -23,15 +22,15 @@ call %MiscUtil%\set-ymd.bat thisyear yyyy
 :: get Delphi Compiler root folder
 call %ZaphodsMap%zmset.bat droot UsingKey2Folder "HREFTools\Production\cv001 Delphi D%compilerdigits%"
 
-%CSSend% droot %droot%
+%CSSend% droot %droot% %CSLogPathParams%
 
 :: ServiceName is passed in as the first command line parameter
 if "%1"=="" goto errorblankparam1
 
 set resfilenamenoext=%1_ver
 set servicename=%1
-%CSSend% servicename %servicename%
-%CSSend% /note "param#2 for display name [%2]"
+%CSSend% servicename %servicename% %CSLogPathParams%
+%CSSend% /note "param#2 for display name [%2]" %CSLogPathParams%
 
 set filepurpose=Public Demo using WebHub Components
 
@@ -44,7 +43,7 @@ if errorlevel 1 pause
 SET resfilenamenoext=ver_%1
 
 cls
-%CSSend% "Making version resource file" %resfilenamenoext%.rc
+%CSSend% "Making version resource file" %resfilenamenoext%.rc %CSLogPathParams%
 
 echo 1 VERSIONINFO > %resfilenamenoext%.rc
 echo FILEVERSION %fileversion% >> %resfilenamenoext%.rc

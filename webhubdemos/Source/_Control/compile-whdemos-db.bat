@@ -1,5 +1,3 @@
-set CSSend=D:\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe
-set CSLogPathParams=/LogPath=D:\Projects\webhubdemos\Source\TempBuild
 %CSSend% /note "compile-whdemos-db.bat" %CSLogPathParams%
 
 set bdecomp=25
@@ -158,6 +156,8 @@ if NOT "%compilescan%"=="no" call %cbat% whScanTable
 goto end
 
 :END
+echo on
 %CSSend% "Complete" %CSLogPathParams%
 %CSSend% "intentional pause..." %CSLogPathParams%
+dir %~dp0\..\TempBuild\*.csl
 pause
