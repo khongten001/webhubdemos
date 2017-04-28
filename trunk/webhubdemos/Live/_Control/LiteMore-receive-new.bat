@@ -15,7 +15,7 @@ if errorlevel 1 pause
 cd /D C:\Library64
 if errorlevel 1 pause
 
-d:\Apps\Utilities\7Zip\7z.exe x %~dp0..\Library64\LiteMore-Library64-bin.7z -aoa
+d:\Apps\Utilities\7Zip\7z.exe x .\LiteMore-Library64-bin.7z -aoa
 if errorlevel 1 pause
 
 :: now call startup procedure
