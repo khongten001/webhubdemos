@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <Variables begin="{" end="}">
@@ -18,7 +18,6 @@
         <Key2File name="EditorAutoFill" filename="{AppConfigPath}WHEditorAutoFill.txt"/>
         <Key2File name="SystemMessages" filename="D:\Projects\WebHubDemos\Live\Config\WHSystemMessages.xml"/>
         <Key2Folder name="CoverPageInfo" folder="{RootForWHSwapFolders}whCoverPageInfo"/>
-        <Key2Folder name="WHTemp" folder="{RootForWHSwapFolders}"/>
       </Keys>
     </KeyGroup>
     <KeyGroup name="ZMAdmin">
