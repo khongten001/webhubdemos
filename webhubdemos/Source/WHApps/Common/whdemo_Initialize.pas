@@ -62,6 +62,7 @@ begin
     // Ensure that extra settings for demos are reset whenever app refreshes.
     AddAppUpdateHandler(DemoHelperComponent.DemoAppUpdate);
     pWebApp.OnAfterLoadFromConfig := DemoHelperComponent.DemoForceConfig;
+    CSSend(csmLevel5, cFn + ': whDemoAppID', whDemoAppID);
     pWebApp.AppID := whDemoAppID;
     pWebApp.Refresh;  // instantiate nested components
     Result := pConnection <> nil;
