@@ -1,6 +1,6 @@
 program whStopSpam;     {demonstrates SOAP plus using the MAILTO macro to lessen likelihood of spam when email addresses are published}
 (*
-Copyright (c) 20022017 HREF Tools Corp.
+Copyright (c) 2002-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
