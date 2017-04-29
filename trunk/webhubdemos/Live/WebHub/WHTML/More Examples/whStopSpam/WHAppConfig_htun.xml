@@ -12,8 +12,6 @@
       <StandardModules>
         <GUIOptional>
           <Module name="email" status="disabled"/>
-          <Module name="dreamweaver" status="disabled"/>
-          <Module name="dwsecurity" status="disabled"/>
           <Module name="googlesitemap" status="disabled"/>
           <Module name="lingvo" status="enabled"/>
           <Module name="w3validation" status="enabled"/>
