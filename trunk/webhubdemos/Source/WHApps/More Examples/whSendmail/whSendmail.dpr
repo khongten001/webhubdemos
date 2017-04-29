@@ -1,6 +1,6 @@
 program whSendmail;     {Examples that involve generating custom e-mail from a web site.}
 (*
-Copyright (c) 19972017 HREF Tools Corp.
+Copyright (c) 1997-2017 HREF Tools Corp.
 
 Permission is hereby granted, on 04-Jun-2004, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
