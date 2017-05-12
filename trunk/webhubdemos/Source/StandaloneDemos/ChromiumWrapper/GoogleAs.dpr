@@ -13,9 +13,7 @@ uses
   ceferr in 'Externals\CEF3\src\ceferr.pas',
   cefvcl in 'Externals\CEF3\src\cefvcl.pas',
   GoogleAs_uCEF3_Init in 'GoogleAs_uCEF3_Init.pas',
-  GoogleAs_fmChromium in 'GoogleAs_fmChromium.pas' {fmChromiumWrapper},
-  Vcl.Themes,
-  Vcl.Styles;
+  GoogleAs_fmChromium in 'GoogleAs_fmChromium.pas' {fmChromiumWrapper};
 
 {$R *.res}
 
