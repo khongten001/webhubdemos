@@ -73,7 +73,7 @@ if "%compiledpr%"=="no" goto Continue03
 cd %droot%\Third Party Examples\whDPrefix
 set compilerdigits=%ibocomp%
 :: whDPrefix needs to compile as-service
-call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64.bat whDPrefix
+call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_svc.bat whDPrefix
 REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
 
 :::::::::::::::::::::::::::::::
