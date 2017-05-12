@@ -286,7 +286,7 @@ begin
 
   if (PosCI(',' + aDesiredPageID + ',', AllowedPages) > 0) then
   begin
-    {the desired page is on the list of allowed pages (for use with Dreamweaver)
+    {the desired page is on the list of allowed pages 
      therefore we reverse the FrontDoor effect }
     CSSend(cFn + ': Approved: ' + aDesiredPageID);
     bDoFrontDoorBounce := False;
