@@ -28,7 +28,7 @@ set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\External
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 :: exclude WebHub packages
 set pkg="dbrtl;inet;soaprtl;soapserver;vclactnband;vcldb;vclimg;vclsmp;vcl;vclx;vcldb;xmlrtl;ldiRegExLib;ZaphodsMapLib"
-set compilerflags=use_IBO;USE_TIBODataset;INHOUSE
+set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
 set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
