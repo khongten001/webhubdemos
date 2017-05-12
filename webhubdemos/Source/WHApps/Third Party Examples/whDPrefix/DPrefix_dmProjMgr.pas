@@ -117,7 +117,7 @@ procedure TDMDPrefixProjMgr.ProjMgrDataModulesCreate3(
 begin
   { This event handler, DataModulesCreate3, is reserved for the creation of
     non-visual datamodules which depend on the AppID having been set,
-    such as standard WebHub modules (email, dreamweaver, etc.) and custom
+    such as standard WebHub modules (email, etc.) and custom
     datamodules containing database access components. }
 
   CreateStandardWHModules;
