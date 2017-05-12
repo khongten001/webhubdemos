@@ -7,7 +7,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
   Margins.Bottom = 0
   ActiveControl = Panel1
   Caption = 'fmChromiumWrapper'
-  ClientHeight = 377
+  ClientHeight = 357
   ClientWidth = 506
   Color = clPurple
   Font.Charset = DEFAULT_CHARSET
@@ -29,7 +29,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
     Left = 0
     Top = 39
     Width = 506
-    Height = 338
+    Height = 318
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -128,10 +128,6 @@ object fmChromiumWrapper: TfmChromiumWrapper
       end
       object N1: TMenuItem
         Caption = '-'
-      end
-      object QuickLogin1: TMenuItem
-        Caption = 'Login to Google, User and Pass'
-        OnClick = QuickLogin1Click
       end
       object miGoogleLoginUser: TMenuItem
         Caption = 'Login to Google: fill Username only'
