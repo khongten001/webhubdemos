@@ -18,7 +18,6 @@ type
     miBookmarks: TMenuItem;
     miGoogle: TMenuItem;
     N1: TMenuItem;
-    QuickLogin1: TMenuItem;
     Panel1: TPanel;
     Help1: TMenuItem;
     miAbout: TMenuItem;
@@ -50,23 +49,22 @@ type
     procedure FormActivate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure miExitClick(Sender: TObject);
-    procedure TestVideo1Click(Sender: TObject);
     procedure miGoogleClick(Sender: TObject);
-    procedure QuickLogin1Click(Sender: TObject);
     procedure miGoogleLoginUserClick(Sender: TObject);
-    procedure miLoginGooglePassClick(Sender: TObject);
-    procedure FormResize(Sender: TObject);
-    procedure miAboutClick(Sender: TObject);
-    procedure GooglePlus1Click(Sender: TObject);
-    procedure SlowPageTest1Click(Sender: TObject);
-    procedure LargePageTest1Click(Sender: TObject);
     procedure miGoogleCalendar1Click(Sender: TObject);
     procedure miGoogleWebmasterToolsClick(Sender: TObject);
     procedure miEnterURLClick(Sender: TObject);
-    procedure GoogleAdsense1Click(Sender: TObject);
-    procedure GoogleMail1Click(Sender: TObject);
+    procedure miLoginGooglePassClick(Sender: TObject);
     procedure miURLClick(Sender: TObject);
     procedure miTestAlertClick(Sender: TObject);
+    procedure miAboutClick(Sender: TObject);
+    procedure TestVideo1Click(Sender: TObject);
+    procedure FormResize(Sender: TObject);
+    procedure GooglePlus1Click(Sender: TObject);
+    procedure SlowPageTest1Click(Sender: TObject);
+    procedure LargePageTest1Click(Sender: TObject);
+    procedure GoogleAdsense1Click(Sender: TObject);
+    procedure GoogleMail1Click(Sender: TObject);
     procedure AmazonAWS1Click(Sender: TObject);
     procedure LogintoAWSemailandpass1Click(Sender: TObject);
     procedure miPrintPdfClick(Sender: TObject);
@@ -572,7 +570,7 @@ end;
 
 procedure TfmChromiumWrapper.miGoogleClick(Sender: TObject);
 const
-  cGoogle = 'http://www.google.com/';
+  cGoogle = 'https://www.google.com/';
 begin
   Self.Caption := cGoogle;
   FChromium1.Load(cGoogle);
@@ -583,13 +581,17 @@ const cFn = 'miGoogleLoginUserClick';
 var
   JSText: string;
   email: string;
+const
+  cFieldIdentifier = 'identifierId'; // html id attribute
 begin
   CSEnterMethod(Self, cFn);
   if ParamCount >= 1 then
   begin
     email := ParamStr(1);
-    JSText := 'document.getElementById("Email").value = "' + email + '";';
-    //CSSend('JSText', JSText);
+    CSSend('email', email);
+    JSText := Format('document.getElementById("%s").value = "%s";',
+      [cFieldIdentifier, email]);
+    CSSend('JSText', JSText);
     FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
   end
   else
@@ -777,34 +779,6 @@ begin
   CSExitMethod(Self, cFn);
 end;
 *)
-
-procedure TfmChromiumWrapper.QuickLogin1Click(Sender: TObject);
-const cFn = 'QuickLogin1Click';
-var
-  JSText: string;
-  email: string;
-  pass: string;
-begin
-  CSEnterMethod(Self, cFn);
-  if ParamCount = 2 then
-  begin
-    email := ParamStr(1);
-    pass := ParamStr(2);
-    JSText := 'document.getElementById("Email").value = "' + email + '";';
-    //CSSend('JSText', JSText);
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-
-    JSText := 'document.getElementById("Passwd").value = "' + pass + '";';
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-  end
-  else
-  begin
-    MsgErrorOk('2 command line parameters are required for ' +
-    'Quick Login at Google Plus: email and password');
-  end;
-
-  CSExitMethod(Self, cFn);
-end;
 
 procedure TfmChromiumWrapper.ShowPopupMenu;
 const cFn = 'ShowPopupMenu';
