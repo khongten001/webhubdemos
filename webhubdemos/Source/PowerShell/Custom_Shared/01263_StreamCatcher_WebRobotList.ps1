@@ -35,8 +35,8 @@ if (Test-Path D:\whAppliance\scConfig) {
 	Copy $TempFilespec D:\whAppliance\scConfig\webrobotlist.txt
 }
 
-
-Delete $TempFilespec
+# erase temporary copy
+Del $TempFilespec
 
 Start-Process 'iisreset' -NoNewWindow -Wait
 
