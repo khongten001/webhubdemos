@@ -1,12 +1,11 @@
 # StreamCatcher via PowerShell
-# Copyright 2014-2016 HREF Tools Corp. 
+# Copyright 2014-2017 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
 # New StreamCatcher users should install by running SCSetup.exe
 # This PowerShell script is intended only for users who already have configuration files.
 
 # Please note that URLs will change when new releases occur.
-
 function DownloadHTTP($source, $destination) {
 	Start-Process $Global:CSConsole -ArgumentList ('Downloading "' + $source + '"') -NoNewWindow -Wait
 	Start-Process $Global:CSConsole -ArgumentList ('Destination "' + $destination + '"') -NoNewWindow -Wait
@@ -30,19 +29,29 @@ $InfoMsg = '"Install StreamCatcher on D"'
 echo $InfoMsg
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
-$srcbase = "http://archiveinstallers.s3.amazonaws.com/win64"
+Set-Location D:\AppsData  # for StreamCatcher master config files
+Start-Process "svn.exe" -ArgumentList "update" -Wait -NoNewWindow 
+
+Set-Location D:\ZaphodsMap  # for ZaphodsMap config files
+Start-Process "svn.exe" -ArgumentList "update" -Wait -NoNewWindow 
+
+Set-Location D:\whAppliance  # for StreamCatcher config files
+Start-Process "svn.exe" -ArgumentList "update" -Wait -NoNewWindow 
+
 $trgbase = "D:\Apps\HREFTools\StreamCatcher\Application"
 if (!(Test-Path $trgbase)) {mkdir $trgbase}
 
+# StreamCatcher v1.9.0.7+ is for 64-bit Windows
 DownloadHTTP ("http://www.streamcatcher.com/webrobotlist.txt") "D:\AppsData\StreamCatcher\Administrator\Config\webrobotlist.txt"
+$srcbase = "http://archiveinstallers.s3.amazonaws.com/win64"
 DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCConsole-v" + $SCVer + "-win64-SCConsole.exe") ($trgbase + "\SCConsole.exe")
+
 # stop IIS so that any existing DLL can be replaced.
 Stop-Service w3svc
 DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-StreamCatcher.dll-v" + $SCVer + "-win64-StreamCatcher.dll") ($trgbase + "\StreamCatcher.dll")
 Start-Service w3svc
-
 $srcbase = "http://archiveinstallers.s3.amazonaws.com/win32"
-DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
+DownloadHTTP ($srcbase + "/HREFTools-StreamCatcher-Application-SCUserAgentScan-v1.1-win32-SCUserAgentScan.exe") ($trgbase + "\SCUserAgentScan.exe")
 
 # enable StreamCatcher.dll
 # credit: http://learningpcs.blogspot.com.au/2011/08/powershell-iis-7-adding-isapi-filters.html
