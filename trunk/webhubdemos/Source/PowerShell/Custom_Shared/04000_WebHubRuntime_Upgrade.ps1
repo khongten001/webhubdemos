@@ -23,7 +23,7 @@
 Invoke-Expression "$PSScriptRoot\Initialize.ps1"
 
 $InfoMsg = ('"Upgrade WebHubRuntime" ' + $Global:FlagInstallWebHubRuntime)
-echo $InfoMsg
+Write-Output $InfoMsg
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
 if ($Global:FlagInstallWebHubRuntime) {
@@ -108,7 +108,7 @@ if ($Global:FlagInstallWebHubRuntime) {
 		cls
 	
 		$InfoMsg = ('Downloading ' + $whrunsetup)
-		echo $InfoMsg
+		Write-Output $InfoMsg
 		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
 		#ncFtpGet
@@ -129,28 +129,28 @@ if ($Global:FlagInstallWebHubRuntime) {
 
 	if (! (Test-Path $filespec)) { 
 		Start-Process $Global:CSConsole -ArgumentList ('/error ' + $filespec) -NoNewWindow 
-		echo ERROR
+		Write-Output ERROR
 		$x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 		Start-Process $Global:CSConsole -ArgumentList '"Continuing"' -NoNewWindow 
 	} else {
 	
 		$InfoMsg = 'silent install of WebHub Runtime'
-		echo $InfoMsg
+		Write-Output $InfoMsg
 		Start-Process $Global:CSConsole -ArgumentList ('"' + $InfoMsg + '"') -NoNewWindow 
 		Start-Process ($Global:FolderInstallers + "HREFTools\WebHub_X_Runtime_System_v" + $webhub_version + "_Setup.exe") -ArgumentList "/S /DIR=d:\Apps\HREFTools\WebHub" -NoNewWindow -Wait
 	
 		$InfoMsg = 'clone win64 runner DLL'
-		echo $InfoMsg
+		Write-Output $InfoMsg
 		Stop-Service w3svc
 		Copy D:\Apps\HREFTools\WebHub\bin\whRunner\runisa64.dll D:\Apps\HREFTools\WebHub\bin\whRunner\runisa.dll 
 		
 		$InfoMsg = 'IISReset so that new ISAPI runner becomes active'
-		echo $InfoMsg
+		Write-Output $InfoMsg
 		Start-Process $Global:CSConsole -ArgumentList ('"' + $InfoMsg + '"') -NoNewWindow 
 		Start-Process "IISReset" -NoNewWindow -Wait
 	
 		$InfoMsg = ('/note "Done upgrading WebHubRuntime to ' + $webhub_version + '"')
-		echo $InfoMsg
+		Write-Output $InfoMsg
 		Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 	}
 

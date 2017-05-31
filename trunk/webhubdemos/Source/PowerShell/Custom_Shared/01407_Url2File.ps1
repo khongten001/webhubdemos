@@ -15,7 +15,7 @@ function DownloadHTTP($source, $destination) {
 Invoke-Expression ($PSScriptRoot + '\..\WebHub_Appliance_PS\Initialize.ps1')  # loops back and uses custom values
 
 $InfoMsg = '"Install URL2File Utility"'
-echo $InfoMsg
+Write-Output $InfoMsg
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
 $trgbase = "D:\Apps\Utilities\Url2File"

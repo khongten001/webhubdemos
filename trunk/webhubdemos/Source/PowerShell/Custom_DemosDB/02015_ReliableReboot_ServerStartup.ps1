@@ -14,4 +14,4 @@ Register-ScheduledTask -TaskName "Server Startup" -InputObject $D
 
 $InfoMsg = ('"AutoStart" "server-startup.bat"')
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow -Wait
-echo $InfoMsg
+Write-Output $InfoMsg

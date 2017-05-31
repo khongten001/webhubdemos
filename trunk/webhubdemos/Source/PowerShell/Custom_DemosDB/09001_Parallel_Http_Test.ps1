@@ -17,7 +17,7 @@ Set-Variable vmr "scripts/runisa_x_d23_win64.dll" -Scope script -Option ReadOnly
 Remove-Variable urlPrefix -Force
 Set-Variable urlPrefix ("http://" + $authority + "/" + $vmr + "?") -Scope script -option ReadOnly
 
-#echo $urlPrefx
+#Write-Output $urlPrefx
 
 
 function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize) 
@@ -69,7 +69,7 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
     $testObj | Add-Member -type NoteProperty -name IExpectedSize -value 20167
     $collectionGoal += $testObj
 
-     #echo $collectionGoal
+     #Write-Output $collectionGoal
 
 #  ForEach -Parallel is valid only in a Windows PowerShell *Workflow*  (not valid in a regular function)
 
@@ -79,35 +79,35 @@ function SizeCloseTo{ Param ([int]$actualSize, [int]$expectedSize)
 WorkFlow Http-WebHub-Runner-Workflow { Param($NRepeat, $collectionGoal)
     
     $InfoMsg = ('"parallel testing" "of ' + $NRepeat + ' SETS of http requests"')
-    echo $InfoMsg
+    Write-Output $InfoMsg
     #Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
     ForEach ($number in 1..$NRepeat ) {	
-        echo ('Loop Counter: ' + $number)
+        Write-Output ('Loop Counter: ' + $number)
             
 	    ForEach -parallel ($objTest in $collectionGoal) {              
-		    #echo ('inner Number: ' + $number)
-            #echo ("AURL " + $objTest.AURL)
+		    #Write-Output ('inner Number: ' + $number)
+            #Write-Output ("AURL " + $objTest.AURL)
 		    $Content = Invoke-WebRequest $objTest.AURL -TimeoutSec 9 
             $charlen = [int]$Content.RawContentLength;
-            #echo $charlen
+            #Write-Output $charlen
             $aok = SizeCloseTo $charlen $objTest.IExpectedSize;
             
             if ($aok) {
-		        #echo ($objTest.AURL + " has length " + $charlen)
-                #echo ('ok ' + $charlen)
+		        #Write-Output ($objTest.AURL + " has length " + $charlen)
+                #Write-Output ('ok ' + $charlen)
             } else {
                 Write-Error ($objTest.AURL + " " + [string]$charLen + " Fails")
                 $workflow:ErrorCount++
             }
 	    }
     }
-    echo ('Error Count ' + $workflow:ErrorCount)
+    Write-Output ('Error Count ' + $workflow:ErrorCount)
 }
 
 cls
 Measure-Command { Http-WebHub-Runner-Workflow 200 $collectionGoal }
-echo sleeping...
+Write-Output sleeping...
 Start-Sleep -Seconds 90
 Http-WebHub-Runner-Workflow 2 $collectionGoal
 

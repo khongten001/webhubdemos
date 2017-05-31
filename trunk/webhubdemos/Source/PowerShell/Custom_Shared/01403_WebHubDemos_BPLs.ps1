@@ -15,7 +15,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 
 	$InfoMsg = ('Downloading ' + $source)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 	Invoke-WebRequest $source -OutFile $destination
 	if (! $?) { 
 		Start-Process $Global:CSConsole -ArgumentList ('/Error "Download D24_redist_win64.7z; Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait 
@@ -23,7 +23,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 
 	$InfoMsg = ('Unzipping ' + $destination)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 
 	Set-Location "D:\Projects\WebHubDemos\Live\Library64"
 	# extract WITHOUT using directory names
@@ -34,7 +34,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 	$destination = "D:\Projects\WebHubDemos\Live\Library64\fbclient_win64.dll"
 	$InfoMsg = ('Downloading ' + $source)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 	Invoke-WebRequest $source -OutFile $destination
 	if (! $?) { 
 		Start-Process $Global:CSConsole -ArgumentList ('/Error "Download fbclient_win64.dll; Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait 
@@ -49,7 +49,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 
 	$InfoMsg = ('Downloading ' + $source)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 	Invoke-WebRequest $source -OutFile $destination
 	if (! $?) { 
 		Start-Process $Global:CSConsole -ArgumentList ('/Error "Download D22_redist_upd1_win32.7z; Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait 
@@ -57,7 +57,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 
 	$InfoMsg = ('Unzipping ' + $destination)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 
 	Set-Location "D:\Projects\WebHubDemos\Live\Library"
 	# e means extract without directory names
@@ -68,7 +68,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 	$destination = "D:\Projects\WebHubDemos\Live\Library\fbclient_win32.dll"
 	$InfoMsg = ('Downloading ' + $source)
 	Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-	echo $InfoMsg
+	Write-Output $InfoMsg
 	Invoke-WebRequest $source -OutFile $destination
 	if (! $?) { 
 		Start-Process $Global:CSConsole -ArgumentList ('/Error "Download fbclient_win32.dll; Exit code ' + $LastExitCode.ToString + '"')  -NoNewWindow -Wait 
