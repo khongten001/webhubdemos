@@ -31,5 +31,8 @@ Start-Process "svn.exe" -ArgumentList ("export " + $svnurl + " " + "C:\Temp\Powe
 Remove-Variable -Name Trg
 Remove-Variable -Name svnurl
 
+Set-Location "C:\Temp\PowerShell\Custom"
+DIR 
+
 <# ************************** #>
 
