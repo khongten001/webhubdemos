@@ -25,11 +25,11 @@ Start-Process $Global:CSConsole -ArgumentList '-Note "Recommended providers are 
 Start-Process $Global:CSConsole -ArgumentList ('"Opening the REQUEST file in Notepad for your convenience" "' + $REQFilespec + '"') -NoNewWindow -Wait
 Start-Process "Notepad" -ArgumentList $REQFilespec -NoNewWindow -Wait
 
-echo .
-echo .
-echo "Press any key to continue -- best to do this"
-echo "AFTER you have submitted the REQUEST..."
-echo $REQFilespec
+Write-Output .
+Write-Output .
+Write-Output "Press any key to continue -- best to do this"
+Write-Output "AFTER you have submitted the REQUEST..."
+Write-Output $REQFilespec
 $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 # http://technet.microsoft.com/en-us/library/ee692792.aspx
@@ -45,12 +45,12 @@ $x | out-file -filepath $CERFilespec -encoding ASCII
 Start-Process $Global:CSConsole -ArgumentList ('"Opening the RESPONSE CERTIFICATE file in Notepad for your convenience" "' + $CERFilespec + '"') -NoNewWindow -Wait
 Start-Process "Notepad" -ArgumentList $CERFilespec -NoNewWindow -Wait
 
-echo .
-echo .
-echo "Press any key to continue -- "
-echo "AFTER you have saved the CERTIFICATE file"
-echo $CERFilespec
-echo "(from Notepad)..."
+Write-Output .
+Write-Output .
+Write-Output "Press any key to continue -- "
+Write-Output "AFTER you have saved the CERTIFICATE file"
+Write-Output $CERFilespec
+Write-Output "(from Notepad)..."
 $x = $host.UI.RawUI.ReadKey("NoEcho,IncludeKeyDown")
 
 Start-Process "CERTREQ" -ArgumentList ('-Accept "' + $CERFilespec + '"') -NoNewWindow -Wait

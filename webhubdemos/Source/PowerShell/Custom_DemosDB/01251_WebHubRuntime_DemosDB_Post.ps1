@@ -19,13 +19,13 @@ Start-Process 'bcdedit.exe' -ArgumentList '/set nx OptIn'
 $AWebSite = "IIS:\Sites\WebHub DB Demos"
 $InfoMsg = 'VirtualDirectory "/seleniumgridoutput"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-echo $InfoMsg
+Write-Output $InfoMsg
 if (! (Test-Path D:\Apps\Selenium\HREFTools\test-output)) { mkdir D:\Apps\Selenium\HREFTools\test-output }
 New-Item ($AWebSite +'\seleniumgridoutput') -physicalPath 'D:\Apps\Selenium\HREFTools\test-output' -type VirtualDirectory   # requires WebAdministration
 
 $InfoMsg = 'HostHeader "local-db.demos.href.com"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-echo $InfoMsg
+Write-Output $InfoMsg
 
 New-WebBinding -Name 'WebHub DB Demos' -Port 80 -HostHeader "db.demos.href.com"    # useful on real production server
 New-WebBinding -Name 'WebHub DB Demos' -Port 80 -HostHeader "local-db.demos.href.com"
@@ -44,5 +44,5 @@ Invoke-Expression ($PSScriptRoot + "\01253_WebHubRuntime_DemosDB_LibraryPath.ps1
 
 $InfoMsg = ('"WebHub Connection Layer has been reset; Done adjusting" ' + $Filespec)
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -Wait -NoNewWindow 
-echo $InfoMsg
+Write-Output $InfoMsg
 
