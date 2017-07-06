@@ -1,0 +1,98 @@
+# lite.demos.href.com initialization sample file
+
+# use this file (renamed) as Custom\Initialize.ps1 together with 
+# these files in WebHub_Appliance_PS   
+#     SVN REPO URL: https://svn.code.sf.net/p/webhubapplianceps/code/trunk/PowerShell/WebHub_Appliance_PS
+
+# http://blogs.msdn.com/b/powershell/archive/2006/12/24/boolean-values-and-operators.aspx
+
+# Enter 1 for True, 0 for False or use $True and $False constants
+
+$Global:PreventGUI = 0;					# 0 for Windows system with GUI.  1 for AWS EC2 Win2016 Nano server without GUI.
+
+$Global:DDrive = "D:";    # Usually drive D but might need to be overridden for some servers
+$Global:FlagDisableUAC = 0;
+$Global:FolderInstallers = ($Global:DDrive + '\Downloads\');		# Parent path for Installer programs or perhaps D:\Installers\
+$Global:FolderUtilities = ($Global:DDrive + '\Apps\Utilities\')		# Parent path for installed Utilitiy programs (see also below, $Global:Path adjustments)
+$Global:FolderEditors = ($Global:DDrive + '\Apps\Utilities\')		# Parent path for installed Editor programs (TedNPad, EditPad...)
+$Global:FolderZM = ($Global:DDrive + '\ZaphodsMap\');	
+$Global:EzUtil = ($Global:DDrive + '\Apps\HREFTools\PowerShell\EzUtil_PowerShellHelpers.ps1');
+
+# These flags determine whether particular software packages are installed
+$Global:FlagDisableIIS_SSL3_RC4 = 1;			# Add registry entries to disable insecure SSLv3 with RC4
+							#__ Recommended on public servers.
+$Global:FlagDisableJITDebugging = 0;			# Disable Just in Time Debugging
+							#__ Recommended on production servers.  Contraindicated on development systems.
+$Global:FlagInstallAWSCLI = 1;				# Install Amazon Web Services Command Line Interface
+							#__ Recommended if you have files on S3 buckets to transfer to/from the server.
+$Global:FlagInstallBDE = 0;				# Borland Database Engine 32-bit.
+$Global:FlagInstallEditPadPro = 1;			# Just Great Software: development editor EditPad Pro has WebHub plug-ins
+							#__ Recommended on development and staging servers.
+$Global:FlagInstallExamDiff = 1;			# Free trial version of ExamDiff Pro.
+							#__ Recommended on development servers.
+$Global:FlagInstallFileZillaServer = 1;			# Open source ftp server.
+							# If you need ftp, this is a recommended alternative to using the Microsoft FTP server.
+$Global:FlagInstallFirebird = 0;			# Open source FirebirdSQL server 
+							#__ Recommended but only required if your custom apps will use FirebirdSQL.
+$Global:FlagInstallGoogleChrome = 1;			#__ Recommended on development systems only.
+$Global:FlagInstall_IISBrotli = 1;			# Brotli compression scheme preferred by google
+							#__ Highly recommmended on production servers with public content.
+							#__ Non-essential on development and staging systems.
+$Global:FlagInstallIB_SQL = 0;				# Free admin utility for Interbase and Firebird SQL server from IBObjects.
+$Global:FlagInstallLetsEncryptWinSimple = 1;		# Free https certificates for use with IIS.
+							#__ Highly recommended on staging and production systems.
+							#__ Requires a public ip when certificate is granted.
+$Global:FlagInstallRemBoot = 0;				# Remote Reboot utility from HREF Tools Corp.
+							#__ Helpful with bare metal systems if remote access is shaky due to networking or other troubles.
+$Global:FlagInstallRemoteDesktop = 1;			# Enable Remote Desktop Protocol "RDP" connections.  
+							#__ Setting to 1 will be fine on a system that already has it enabled, such as EC2. 
+							#__ Optionally customize the RDP port below.
+$Global:FlagInstallTortoiseSVN = 1;			# Tortoise Subversion client (gui)
+							#__ Recommended on all systems except Windows Server Nano where it does not work.
+$Global:FlagInstallWebHubRuntime = 1;			# WebHub Runtime Setup from HREF Tools Corp.
+							#__ This is a core requirement of a WebHub Appliance.  
+$Global:FlagInstallWebHubDemos = 1;			# Open-source WebHubDemos project from HREF Tools Corp.
+							#__ Recommended for developers as a source code base to search for example syntax.
+							#__ See http://lite.demos.href.com/demos to try some demos.
+$Global:FlagInstallWindowsAdminRename = 1;		# Rename the Administrator account
+							#__ You will be prompted to enter a new password for the renamed account.
+							#__ Recommended security enhancement.
+$Global:FlagInstallWindowsAutoLogon = 1;		# SysInternals AutoLogon feature
+							#__ Recommended on staging and production servers if, and only if, any custom
+							#__ WebHub applications do NOT run as-service.
+$Global:FlagKeep_InkAndHandwritingServices = 0;		# $false is good for "Microsoft Windows Server 2012 R2 Standard"; 
+							#__ $true might be good for Win10 developers to avoid some overhead.
+$Global:RemoteDesktopPort = 3390;			# optionaly change the RDP port here
+							#__ This variable takes effect only if FlagInstallRemoteDesktop is true. 
+$Global:TimeZone = "UTC"				# Windows server timezone.  "UTC" is recommended on staging and production systems.
+							#__ To keep the default time zone, set this to blank.
+$Global:ZMGlobalContext = 'DEMOS';			# ZaphodsMap nickname for the machine configuration. 
+							#__ WebHub machines should use this.  Consider: DEVELOP, STAGING, PRODUCTION.
+$Global:WindowsAdministratorName = 'GraceHopper';
+$Global:WindowsUpdateTime = "3:00"			# UTC!! This time on Sunday for the so-called Windows "Maintenance Window" during which Updates are applied.
+
+
+# Very Important WebHub Decisions
+$Global:FolderRootForWHDataFolders = ($Global:DDrive + '\whAppliance\');	
+$Global:FolderWebHubData = ($Global:DDrive + '\whAppliance\whConfig\');	
+$Global:WebHubVersion = '3.270';			# WebHub Runtime version as of 18-May-2017
+							#__ There is some flexibility here. Generally you can use older versions going back 
+							#__ at least two years.  
+$Global:WebHubUseDefaultLiteLicense = 1;                # if 0, you should provide your own WHLicense.xml
+
+
+# # #
+# Less Critical Folder Customizations
+# # #
+
+$Global:CSDispatcher = "C:\Program Files (x86)\Raize\CS5\Bin\CSDispatcher.exe"  # Could be on drive D:, depending on how/when CodeSite was installed
+$Global:CSConsole = ($Global:DDrive + '\Apps\HREFTools\MiscUtil\CodeSiteConsole.exe')	  # command-line utility to write to Raize CodeSite log
+$Global:Path_ExamDiffPro = ($Global:FolderUtilities + 'ExamDiffPro9')	# ExamDiffPro utility, recommended for use with TortoiseSVN
+
+
+
+# ! ! ! ! ! !
+# 
+# Delete the rest of the lines in this file when making your Custom\Initialize.ps1 file !
+# 
+# ! ! ! ! ! !
