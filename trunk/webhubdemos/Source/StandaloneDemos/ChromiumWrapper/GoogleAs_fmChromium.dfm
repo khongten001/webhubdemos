@@ -7,7 +7,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
   Margins.Bottom = 0
   ActiveControl = Panel1
   Caption = 'fmChromiumWrapper'
-  ClientHeight = 357
+  ClientHeight = 337
   ClientWidth = 506
   Color = clPurple
   Font.Charset = DEFAULT_CHARSET
@@ -29,7 +29,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
     Left = 0
     Top = 39
     Width = 506
-    Height = 318
+    Height = 298
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -88,38 +88,7 @@ object fmChromiumWrapper: TfmChromiumWrapper
         Caption = '&Google Search'
         OnClick = miGoogleClick
       end
-      object GooglePlus1: TMenuItem
-        Caption = 'Google &Plus'
-        OnClick = GooglePlus1Click
-      end
-      object miGoogleCalendar1: TMenuItem
-        Caption = 'Google &Calendar'
-        OnClick = miGoogleCalendar1Click
-      end
-      object miGoogleWebmasterTools: TMenuItem
-        Caption = 'Google &Webmaster Tools'
-        OnClick = miGoogleWebmasterToolsClick
-      end
-      object GoogleAdsense1: TMenuItem
-        Caption = 'Google &Adsense'
-        OnClick = GoogleAdsense1Click
-      end
-      object GoogleMail1: TMenuItem
-        Caption = 'Google &Mail'
-        OnClick = GoogleMail1Click
-      end
       object N3: TMenuItem
-        Caption = '-'
-      end
-      object AmazonAWS1: TMenuItem
-        Caption = 'Amazon AWS'
-        OnClick = AmazonAWS1Click
-      end
-      object LogintoAWSemailandpass1: TMenuItem
-        Caption = 'Login to AWS, email and pass'
-        OnClick = LogintoAWSemailandpass1Click
-      end
-      object N4: TMenuItem
         Caption = '-'
       end
       object miEnterURL: TMenuItem
@@ -136,6 +105,9 @@ object fmChromiumWrapper: TfmChromiumWrapper
       object miLoginGooglePass: TMenuItem
         Caption = 'Login to Google: fill Password only'
         OnClick = miLoginGooglePassClick
+      end
+      object N5: TMenuItem
+        Caption = '-'
       end
     end
     object miTest: TMenuItem
