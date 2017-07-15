@@ -6,8 +6,8 @@
         <Url value="https://plus.google.com/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
         </Fields>
     </WebSite>
     <WebSite id="AWS">
@@ -24,8 +24,8 @@
         <Url value="https://mail.google.com/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
         </Fields>
     </WebSite>
     <WebSite id="GoogleAdSense">
@@ -33,8 +33,17 @@
         <Url value="https://www.google.com/adsense"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+        </Fields>
+    </WebSite>
+    <WebSite id="GoogleWebmaster">
+    	<Caption lingvo="en" value="Google Webmaster Tools"/>
+        <Url value="https://www.google.com/webmasters/tools/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
         </Fields>
     </WebSite>
     <WebSite id="007">
@@ -42,8 +51,8 @@
         <Url value="https://www.007names.com/"/>
         <InputPattern value="all"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+	        <Field num="01" lingvo="en" prompt="username" htmlField="j_idt45:usernameTop"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="j_idt45:passwordTop"/>
         </Fields>
     </WebSite>
   </WebSites>
