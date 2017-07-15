@@ -4,6 +4,7 @@
     <WebSite id="GooglePlus">
     	<Caption lingvo="en" value="GooglePlus"/>
         <Url value="https://plus.google.com/"/>
+        <InputPattern value="individual"/>
         <Fields>
 	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
 	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
@@ -11,7 +12,35 @@
     </WebSite>
     <WebSite id="AWS">
     	<Caption lingvo="en" value="AWS Console"/>
-        <Url value="https://aws.amazon.com/console/"/>
+        <Url value="https://console.aws.amazon.com/console/home"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email" htmlField="ap_email"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="ap_password"/>
+        </Fields>
+    </WebSite>
+    <WebSite id="GMail">
+    	<Caption lingvo="en" value="GMail"/>
+        <Url value="https://mail.google.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+        </Fields>
+    </WebSite>
+    <WebSite id="GoogleAdSense">
+    	<Caption lingvo="en" value="Google AdSense"/>
+        <Url value="https://www.google.com/adsense"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+        </Fields>
+    </WebSite>
+    <WebSite id="007">
+    	<Caption lingvo="en" value="007 Names"/>
+        <Url value="https://www.007names.com/"/>
+        <InputPattern value="all"/>
         <Fields>
 	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
 	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
