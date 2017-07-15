@@ -100,7 +100,7 @@ begin
         FieldNodeList := TXmlNodeList.Create;
 
         ADoc.Root.FindNodes('WebSite', WebNodeList);
-        CSSend('WebNodeList.Count', S(WebNodeList.Count));
+        //CSSend('WebNodeList.Count', S(WebNodeList.Count));
 
         for WebSiteNode in WebNodeList do
         begin
@@ -108,15 +108,15 @@ begin
 
           ABookmark.caption_en := ADoc.ZNodeAttr(WebSiteNode,
             ['Caption', '@lingvo', 'en'], cxOptional, '', 'value');
-          CSSend('ABookmark.caption_en', ABookmark.caption_en);
+          //CSSend('ABookmark.caption_en', ABookmark.caption_en);
 
           ABookmark.url := ADoc.ZNodeAttr(WebSiteNode,
             ['Url'], cxOptional, '', 'value');
-          CSSend('ABookmark.url', ABookmark.url);
+          //CSSend('ABookmark.url', ABookmark.url);
 
           InputPatternStr := ADoc.ZNodeAttr(WebSiteNode,
             ['InputPattern'], cxOptional, '', 'value');
-          CSSend('InputPatternStr', InputPatternStr);
+          //CSSend('InputPatternStr', InputPatternStr);
 
           if InputPatternStr = 'individual' then
             ABookmark.InputPattern := lipIndividual
@@ -124,9 +124,9 @@ begin
             ABookmark.InputPattern := lipAll;
 
           WebSiteNode.FindNodes('Field', FieldNodeList);
-          CSSend('Found Field Nodes; Count', S(FieldNodeList.Count));
+          //CSSend('Found Field Nodes; Count', S(FieldNodeList.Count));
 
-          SetLength(ABookmark.htmlFields, Length(ABookmark.htmlFields));
+          SetLength(ABookmark.htmlFields, FieldNodeList.Count);
 
           for J := 0 to Pred(FieldNodeList.Count) do
           begin
@@ -136,7 +136,7 @@ begin
               FieldNodeList[J].AttributeByName['prompt'];
             AHtmlField.htmlID :=
               FieldNodeList[J].AttributeByName['htmlField'];
-            CSSend('AHtmlField.htmlID', AHtmlField.htmlID);
+            //CSSend('AHtmlField.htmlID', AHtmlField.htmlID);
             ABookmark.htmlFields[J] := AHtmlField;
           end;
           Result.Add(ABookmark);

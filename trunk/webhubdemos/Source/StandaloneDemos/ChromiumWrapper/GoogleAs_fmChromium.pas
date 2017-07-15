@@ -1,6 +1,26 @@
 unit GoogleAs_fmChromium;
 
-{$I hrefdefines.inc}
+(*
+Permission is hereby granted, on 14-Jul-2017, free of charge, to any person
+obtaining a copy of this file (the "Software"), to deal in the Software
+without restriction, including without limitation the rights to use, copy,
+modify, merge, publish, distribute, sublicense, and/or sell copies of the
+Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+
+Author: Ann Lynnworth at HREF Tools Corp.
+*)
 
 interface
 
@@ -16,19 +36,15 @@ type
     miFile: TMenuItem;
     miExit: TMenuItem;
     miBookmarks: TMenuItem;
-    miGoogle: TMenuItem;
     N1: TMenuItem;
     Panel1: TPanel;
     Help1: TMenuItem;
     miAbout: TMenuItem;
     miEnterURL: TMenuItem;
-    N3: TMenuItem;
     View1: TMenuItem;
     miURL: TMenuItem;
     PanelURL: TPanel;
     MemoURL: TMemo;
-    miGoogleLoginUser: TMenuItem;
-    miLoginGooglePass: TMenuItem;
     miTest: TMenuItem;
     estVideo1: TMenuItem;
     SlowPageTest1: TMenuItem;
@@ -36,34 +52,28 @@ type
     estJavaScriptAlert1: TMenuItem;
     N2: TMenuItem;
     miPrintPdf: TMenuItem;
-    N5: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure miExitClick(Sender: TObject);
-    procedure miGoogleClick(Sender: TObject);
-    procedure miGoogleLoginUserClick(Sender: TObject);
-    procedure miBookmarkClick(Sender: TObject);
-    procedure miGoogleWebmasterToolsClick(Sender: TObject);
     procedure miEnterURLClick(Sender: TObject);
-    procedure miLoginGooglePassClick(Sender: TObject);
     procedure miURLClick(Sender: TObject);
     procedure miTestAlertClick(Sender: TObject);
     procedure miAboutClick(Sender: TObject);
     procedure TestVideo1Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
-    procedure AutoFillIndividualField(Sender: TObject);
     procedure SlowPageTest1Click(Sender: TObject);
     procedure LargePageTest1Click(Sender: TObject);
-    procedure GoogleMail1Click(Sender: TObject);
-    procedure LoginInputPatternAll(Sender: TObject);
     procedure miPrintPdfClick(Sender: TObject);
   strict private
     procedure OnPDFPrintComplete(const path: ustring; ok: Boolean);
   strict private
     FCurrentWebSite: string;
     FBookmarkList: TGoogleAsBookmarkList;
+    procedure miBookmarkClick(Sender: TObject);
+    procedure LoginInputPatternAll(Sender: TObject);
+    procedure AutoFillIndividualField(Sender: TObject);
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -531,14 +541,6 @@ begin
   //CSExitMethod(Self, cFn);
 end;
 
-procedure TfmChromiumWrapper.GoogleMail1Click(Sender: TObject);
-const
-  cGoogle = 'http://mail.google.com/';
-begin
-  Self.Caption := cGoogle;
-  FChromium1.Load(cGoogle);
-end;
-
 procedure TfmChromiumWrapper.AutoFillIndividualField(Sender: TObject);
 const
   cFn = 'AutoFillIndividualField';
@@ -553,7 +555,9 @@ var
 begin
   CSEnterMethod(Self, cFn);
   mi := TMenuItem(Sender);
+  CSSend('Sender.Name', mi.Name);
   bContinue := True;
+
   for mark in FBookmarkList do
   begin
     if NOT bContinue then break;
@@ -565,20 +569,29 @@ begin
       begin
         FCurrentWebSite := mark.id;
         CSSend('mark.id', mark.id);
-        CSSend('tag', S(mi.Tag));
+        //CSSend('tag', S(mi.Tag));
 
         I := Tag;
-        CSSend( S(I), S(II));
-        if ParamCount >= I then
+        if I <> II then
+        begin
+          CSSendWarning('I not II');
+          CSSend('guiNum', S(mark.htmlFields[II].guiNum));
+          CSSend('Tag', S(I));
+        end;
+        //CSSend('ParamCount', S(ParamCount));
+
+        if ParamCount >= I+2 then
         begin
 
-          CSSend(mark.htmlFields[I].htmlID, ParamStr(I+1));
+          CSSend(mark.htmlFields[II].htmlID, ParamStr(I+2));
 
           JSText := Format('document.getElementById("%s").value = "%s";',
-            [mark.htmlFields[I].htmlID, ParamStr(I+1)]);
-          CSSend('JSText', JSText);
+            [mark.htmlFields[II].htmlID, ParamStr(I+2)]);
+          CSSend('JSText going to CEF library', JSText);
           FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-        end;
+        end
+        else
+          CSSendError('ParamCount should be at least ' + S(I+2));
         bContinue := False;
         break;
       end;
@@ -616,70 +629,6 @@ begin
   CSExitMethod(Self, cFn);
 end;
 
-procedure TfmChromiumWrapper.miGoogleClick(Sender: TObject);
-const
-  cGoogle = 'https://www.google.com/';
-begin
-  Self.Caption := cGoogle;
-  FChromium1.Load(cGoogle);
-end;
-
-procedure TfmChromiumWrapper.miGoogleLoginUserClick(Sender: TObject);
-const cFn = 'miGoogleLoginUserClick';
-var
-  JSText: string;
-  email: string;
-const
-  cFieldIdentifier = 'identifierId'; // html id attribute
-begin
-  CSEnterMethod(Self, cFn);
-  if ParamCount >= 1 then
-  begin
-    email := ParamStr(1);
-    CSSend('email', email);
-    JSText := Format('document.getElementById("%s").value = "%s";',
-      [cFieldIdentifier, email]);
-    CSSend('JSText', JSText);
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-  end
-  else
-  begin
-    MsgErrorOk('at least 1 command line parameter is required for ' +
-      miGoogleLoginUser.Caption);
-  end;
-
-  CSExitMethod(Self, cFn);
-end;
-
-procedure TfmChromiumWrapper.miGoogleWebmasterToolsClick(Sender: TObject);
-const
-  cAddr = 'http://www.google.com/webmasters/tools/';
-begin
-  Self.Caption := cAddr;
-  FChromium1.Load(cAddr);
-end;
-
-procedure TfmChromiumWrapper.miLoginGooglePassClick(Sender: TObject);
-const cFn = 'miLoginGooglePassClick';
-var
-  JSText: string;
-  pass: string;
-begin
-  CSEnterMethod(Self, cFn);
-  if ParamCount = 2 then
-  begin
-    pass := ParamStr(2);
-    JSText := 'document.getElementById("Passwd").value = "' + pass + '";';
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-  end
-  else
-  begin
-    MsgErrorOk('2 command line parameters are required for [' +
-      miLoginGooglePass.Caption + ']');
-  end;
-
-  CSExitMethod(Self, cFn);
-end;
 
 procedure TfmChromiumWrapper.miPrintPdfClick(Sender: TObject);
 const
@@ -751,6 +700,7 @@ begin
       begin
         FCurrentWebSite := ABookmark.Url;
         FStartURL  := ABookmark.Url;
+        Self.Caption := ParamStr(2) + ' on ' + ABookmark.Caption_en;
         if ABookmark.InputPattern = lipAll then
         begin
           mi2 := TMenuItem.Create(mi);
@@ -764,10 +714,10 @@ begin
           for I := 0 to High(ABookmark.HtmlFields) do
           begin
             mi2 := TMenuItem.Create(mi);
-            mi2.Name := 'mi' + ABookmark.id + 'Field' + S(I);
+            mi2.Tag := ABookmark.HtmlFields[I].guiNum;
+            mi2.Name := 'mi' + ABookmark.id + 'Field' + S(mi2.Tag);
             mi2.Caption := 'Auto-Fill ' + ABookmark.Caption_en + ' ' +
               ABookmark.HtmlFields[I].guiPrompt_en;
-            mi2.Tag := ABookmark.HtmlFields[I].guiNum;
             mi2.OnClick := AutoFillIndividualField;
             miBookmarks.Add(mi2);
           end;
