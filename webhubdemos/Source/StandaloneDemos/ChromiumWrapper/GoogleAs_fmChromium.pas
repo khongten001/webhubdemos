@@ -5,9 +5,9 @@ unit GoogleAs_fmChromium;
 interface
 
 uses
-  Windows, Messages, Graphics, Controls, Menus, Forms, StdCtrls, ExtCtrls,
+  Windows, Graphics, Controls, Menus, Forms, StdCtrls, ExtCtrls,
   SysUtils, Variants, Classes,
-  cefvcl, ceflib, cefgui, ceferr;
+  cefvcl, ceflib, cefgui, ceferr, GoogleAs_uBookmark;
 
 type
   // https://groups.google.com/forum/#!topic/delphichromiumembedded/F5PnymYBLww
@@ -21,12 +21,7 @@ type
     Panel1: TPanel;
     Help1: TMenuItem;
     miAbout: TMenuItem;
-    GooglePlus1: TMenuItem;
-    miGoogleCalendar1: TMenuItem;
-    miGoogleWebmasterTools: TMenuItem;
     miEnterURL: TMenuItem;
-    GoogleAdsense1: TMenuItem;
-    GoogleMail1: TMenuItem;
     N3: TMenuItem;
     View1: TMenuItem;
     miURL: TMenuItem;
@@ -34,9 +29,6 @@ type
     MemoURL: TMemo;
     miGoogleLoginUser: TMenuItem;
     miLoginGooglePass: TMenuItem;
-    AmazonAWS1: TMenuItem;
-    N4: TMenuItem;
-    LogintoAWSemailandpass1: TMenuItem;
     miTest: TMenuItem;
     estVideo1: TMenuItem;
     SlowPageTest1: TMenuItem;
@@ -44,6 +36,7 @@ type
     estJavaScriptAlert1: TMenuItem;
     N2: TMenuItem;
     miPrintPdf: TMenuItem;
+    N5: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormActivate(Sender: TObject);
@@ -51,7 +44,7 @@ type
     procedure miExitClick(Sender: TObject);
     procedure miGoogleClick(Sender: TObject);
     procedure miGoogleLoginUserClick(Sender: TObject);
-    procedure miGoogleCalendar1Click(Sender: TObject);
+    procedure miBookmarkClick(Sender: TObject);
     procedure miGoogleWebmasterToolsClick(Sender: TObject);
     procedure miEnterURLClick(Sender: TObject);
     procedure miLoginGooglePassClick(Sender: TObject);
@@ -60,16 +53,17 @@ type
     procedure miAboutClick(Sender: TObject);
     procedure TestVideo1Click(Sender: TObject);
     procedure FormResize(Sender: TObject);
-    procedure GooglePlus1Click(Sender: TObject);
+    procedure AutoFillIndividualField(Sender: TObject);
     procedure SlowPageTest1Click(Sender: TObject);
     procedure LargePageTest1Click(Sender: TObject);
-    procedure GoogleAdsense1Click(Sender: TObject);
     procedure GoogleMail1Click(Sender: TObject);
-    procedure AmazonAWS1Click(Sender: TObject);
-    procedure LogintoAWSemailandpass1Click(Sender: TObject);
+    procedure LoginInputPatternAll(Sender: TObject);
     procedure miPrintPdfClick(Sender: TObject);
   strict private
     procedure OnPDFPrintComplete(const path: ustring; ok: Boolean);
+  strict private
+    FCurrentWebSite: string;
+    FBookmarkList: TGoogleAsBookmarkList;
   strict private
     { Private declarations }
     FZoomWhenMaximized, FZoomWhenNormal: Double;
@@ -124,7 +118,6 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   TypInfo, Dialogs, DateUtils,
   uCode, ucDlgs, ZM_CodeSiteInterface, ucShell,
   GoogleAs_uCEF3_Init;
@@ -499,12 +492,12 @@ begin
   Self.Height := 768 + 120;
   Self.Width := 1024 + 120;
   Application.Title := 'Chromium Embedded Framework 3';
-  if (ParamCount >= 1) then
-    Self.Caption := ParamStr(1) // email address
+  if (ParamCount >= 2) then
+    Self.Caption := ParamStr(2) // email address or username, usually.
   else
     Self.Caption := 'GoogleAs';
   FActiveTitle := Application.Title;
-  FStartURL := 'https://plus.google.com';
+  //FStartURL := 'https://plus.google.com';
   FChromium1 := nil;
   CreateLabel;
   CSExitMethod(Self, cFn);
@@ -513,6 +506,8 @@ end;
 procedure TfmChromiumWrapper.FormDestroy(Sender: TObject);
 begin
   FreeAndNil(FChromium1);
+  if Assigned(FBookmarkList) then
+    FBookmarkList.Clear;
 end;
 
 procedure TfmChromiumWrapper.FormKeyDown(Sender: TObject; var Key: Word;
@@ -536,14 +531,6 @@ begin
   //CSExitMethod(Self, cFn);
 end;
 
-procedure TfmChromiumWrapper.GoogleAdsense1Click(Sender: TObject);
-const
-  cGoogleAdsense = 'http://www.google.com/adsense';
-begin
-  Self.Caption := cGoogleAdsense;
-  FChromium1.Load(cGoogleAdsense);
-end;
-
 procedure TfmChromiumWrapper.GoogleMail1Click(Sender: TObject);
 const
   cGoogle = 'http://mail.google.com/';
@@ -552,20 +539,81 @@ begin
   FChromium1.Load(cGoogle);
 end;
 
-procedure TfmChromiumWrapper.GooglePlus1Click(Sender: TObject);
+procedure TfmChromiumWrapper.AutoFillIndividualField(Sender: TObject);
 const
-  cGooglePlus = 'https://plus.google.com/';
+  cFn = 'AutoFillIndividualField';
+var
+  mi: TMenuItem;
+  mark: TGoogleAsBookmark;
+  temp: string;
+  I: Integer;
+  II: Integer;
+  bContinue: Boolean;
+  JSText: string;
 begin
-  Self.Caption := cGooglePlus;
-  FChromium1.Load(cGooglePlus);
+  CSEnterMethod(Self, cFn);
+  mi := TMenuItem(Sender);
+  bContinue := True;
+  for mark in FBookmarkList do
+  begin
+    if NOT bContinue then break;
+    for II := 0 to High(mark.htmlFields) do
+    begin
+      temp := 'mi' + mark.id + 'Field' + S(mark.htmlFields[II].guiNum);
+      CSSend(temp);
+      if temp = mi.Name then
+      begin
+        FCurrentWebSite := mark.id;
+        CSSend('mark.id', mark.id);
+        CSSend('tag', S(mi.Tag));
+
+        I := Tag;
+        CSSend( S(I), S(II));
+        if ParamCount >= I then
+        begin
+
+          CSSend(mark.htmlFields[I].htmlID, ParamStr(I+1));
+
+          JSText := Format('document.getElementById("%s").value = "%s";',
+            [mark.htmlFields[I].htmlID, ParamStr(I+1)]);
+          CSSend('JSText', JSText);
+          FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+        end;
+        bContinue := False;
+        break;
+      end;
+    end;
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
-procedure TfmChromiumWrapper.miGoogleCalendar1Click(Sender: TObject);
+procedure TfmChromiumWrapper.miBookmarkClick(Sender: TObject);
 const
-  cAddr = 'https://www.google.com/calendar/';
+  cFn = 'miBookmarkClick';
+var
+  mi: TMenuItem;
+  mark: TGoogleAsBookmark;
+  Addr: string; // = 'https://www.google.com/calendar/';
 begin
-  Self.Caption := cAddr;
-  FChromium1.Load(cAddr);
+  CSEnterMethod(Self, cFn);
+  Addr := '';
+
+  mi := TMenuItem(Sender);
+  for mark in FBookmarkList do
+  begin
+    if mi.Name = 'mi' + mark.id then
+    begin
+      Addr := mark.URL;
+      CSSend('mark.Caption_en has url', Addr);
+      FCurrentWebSite := mark.id;
+      break;
+    end;
+  end;
+  if Addr <> '' then
+    FChromium1.Load(Addr)
+  else
+    CSSendError('No URL found for ' + mark.Caption_en);
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmChromiumWrapper.miGoogleClick(Sender: TObject);
@@ -679,12 +727,54 @@ end;
 
 function TfmChromiumWrapper.Init(out ErrorText: string): Boolean;
 const cFn = 'Init';
+var
+  mi, mi2: TMenuItem;
+  ABookmark: TGoogleAsBookmark;
+  I: Integer;
 begin
   CSEnterMethod(Self, cFn);
   ErrorText := '';
 
   if NOT FFlagInitOnce then
   begin
+    FCurrentWebSite := 'https://www.google.com/';
+    FBookmarkList := Load_Bookmarks;
+    for ABookmark in FBookmarkList do
+    begin
+      CSSend('ABookmark.Caption_en',ABookmark.Caption_en);
+      mi := TMenuItem.Create(miBookmarks);
+      mi.Name := 'mi' + ABookmark.id;
+      mi.Caption := ABookmark.Caption_en;
+      mi.OnClick := miBookmarkClick;
+      miBookmarks.Add(mi);
+      if (ParamCount >= 1) and (ParamStr(1) = ABookmark.id) then
+      begin
+        FCurrentWebSite := ABookmark.Url;
+        FStartURL  := ABookmark.Url;
+        if ABookmark.InputPattern = lipAll then
+        begin
+          mi2 := TMenuItem.Create(mi);
+          mi2.Name := 'mi' + ABookmark.id + 'Login';
+          mi2.Caption := 'Login to ' + ABookmark.Caption_en;
+          mi2.OnClick := LoginInputPatternAll;
+          miBookmarks.Add(mi2);
+        end
+        else
+        begin
+          for I := 0 to High(ABookmark.HtmlFields) do
+          begin
+            mi2 := TMenuItem.Create(mi);
+            mi2.Name := 'mi' + ABookmark.id + 'Field' + S(I);
+            mi2.Caption := 'Auto-Fill ' + ABookmark.Caption_en + ' ' +
+              ABookmark.HtmlFields[I].guiPrompt_en;
+            mi2.Tag := ABookmark.HtmlFields[I].guiNum;
+            mi2.OnClick := AutoFillIndividualField;
+            miBookmarks.Add(mi2);
+          end;
+        end;
+      end;
+    end;
+
     FChromium1 := TChromium.Create(Self);
     FChromium1.Name := 'Chromium1';
 
@@ -741,34 +831,6 @@ begin
   FChromium1.Load(cSample);
 end;
 
-procedure TfmChromiumWrapper.LogintoAWSemailandpass1Click(Sender: TObject);
-const cFn = 'LogintoAWSemailandpass1Click';
-var
-  JSText: string;
-  email: string;
-  pass: string;
-begin
-  CSEnterMethod(Self, cFn);
-  if ParamCount = 2 then
-  begin
-    email := ParamStr(1);
-    pass := ParamStr(2);
-    JSText := 'document.getElementById("ap_email").value = "' + email + '";';
-    //CSSend('JSText', JSText);
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-
-    JSText := 'document.getElementById("ap_password").value = "' + pass + '";';
-    FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
-  end
-  else
-  begin
-    MsgErrorOk('2 command line parameters are required for ' +
-    'Quick Login at AWS: email and password');
-  end;
-
-  CSExitMethod(Self, cFn);
-end;
-
 (*
 procedure TfmChromiumWrapper.OnPressEvent(const AEvent: ICefDomEvent);
 const cFn = 'OnPressEvent';
@@ -816,12 +878,64 @@ begin
 end;
 *)
 
-procedure TfmChromiumWrapper.AmazonAWS1Click(Sender: TObject);
+procedure TfmChromiumWrapper.LoginInputPatternAll(Sender: TObject);
 const
-  cAWS = 'https://aws.amazon.com/console/';
+  cFn = 'LoginInputPatternAll';
+var
+  JSText: string;
+  values: array of string;
+  mi: TMenuItem;
+  mark: TGoogleAsBookmark;
+  I: Integer;
+  InfoMsg: string;
 begin
-  Self.Caption := cAWS;
-  FChromium1.Load(cAWS);
+  CSEnterMethod(Self, cFn);
+  if ParamCount > 1 then
+  begin
+
+    mi := TMenuItem(Sender);
+    for mark in FBookmarkList do
+    begin
+      CSSend('mark.id', mark.id);
+      CSSend('mi.Name', mi.Name);
+      if mi.Name = 'mi' + mark.id + 'Login' then
+      begin
+
+        FCurrentWebSite := mark.id;
+        if ParamCount >= Length(mark.htmlFields) + 1 then
+        begin
+
+          SetLength(values, Length(mark.htmlFields));
+          for I := 0 to High(mark.htmlFields) do
+          begin
+            values[I] := ParamStr(I+2); // email, password, etc.
+            CSSend(mark.htmlFields[I].htmlID, values[I]);
+
+            JSText := Format('document.getElementById("%s").value = "%s";',
+              [mark.htmlFields[I].htmlID, values[I]]);
+            CSSend('JSText', JSText);
+            FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+          end;
+        end
+        else
+        begin
+          CSSendError('insufficient params to login to ' + mark.id);
+          for I := 0 to High(mark.htmlFields) do
+            CSSendNote(mark.htmlFields[i].htmlID);
+        end;
+        break;
+      end;
+    end;
+
+  end
+  else
+  begin
+    InfoMsg := 'command line parameters are required for Quick Login';
+    CSSendError(InfoMsg);
+    MsgErrorOk(InfoMsg);
+  end;
+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TfmChromiumWrapper.Chromium1LoadEnd(Sender: TObject;
