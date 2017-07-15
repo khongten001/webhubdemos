@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CleanEntrance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <WebSites>
+    <WebSite id="GooglePlus">
+    	<Caption lingvo="en" value="GooglePlus"/>
+        <Url value="https://plus.google.com/"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+        </Fields>
+    </WebSite>
+    <WebSite id="AWS">
+    	<Caption lingvo="en" value="AWS Console"/>
+        <Url value="https://aws.amazon.com/console/"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email" htmlField="email"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="password"/>
+        </Fields>
+    </WebSite>
+  </WebSites>
+</CleanEntrance>
