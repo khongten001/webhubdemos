@@ -548,7 +548,6 @@ var
   mi: TMenuItem;
   mark: TGoogleAsBookmark;
   temp: string;
-  I: Integer;
   II: Integer;
   bContinue: Boolean;
   JSText: string;
@@ -571,27 +570,25 @@ begin
         CSSend('mark.id', mark.id);
         //CSSend('tag', S(mi.Tag));
 
-        I := Tag;
-        if I <> II then
+        if mi.Tag <> II then
         begin
-          CSSendWarning('I not II');
-          CSSend('guiNum', S(mark.htmlFields[II].guiNum));
-          CSSend('Tag', S(I));
+          CSSendWarning('guiNum=' + S(mark.htmlFields[II].guiNum));
+          CSSendWarning('Tag=' + S(mi.Tag));
         end;
         //CSSend('ParamCount', S(ParamCount));
 
-        if ParamCount >= I+2 then
+        if ParamCount >= II+2 then
         begin
 
-          CSSend(mark.htmlFields[II].htmlID, ParamStr(I+2));
+          CSSend(mark.htmlFields[II].htmlID, ParamStr(II+2));
 
           JSText := Format('document.getElementById("%s").value = "%s";',
-            [mark.htmlFields[II].htmlID, ParamStr(I+2)]);
+            [mark.htmlFields[II].htmlID, ParamStr(II+2)]);
           CSSend('JSText going to CEF library', JSText);
           FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
         end
         else
-          CSSendError('ParamCount should be at least ' + S(I+2));
+          CSSendError('ParamCount should be at least ' + S(II+2));
         bContinue := False;
         break;
       end;
@@ -680,6 +677,14 @@ var
   mi, mi2: TMenuItem;
   ABookmark: TGoogleAsBookmark;
   I: Integer;
+  bHot: Boolean;
+
+  procedure AddDividerLineToMenu;
+  begin
+    mi := TMenuItem.Create(Self);
+    mi.Caption := '-';
+    miBookmarks.Add(mi);
+  end;
 begin
   CSEnterMethod(Self, cFn);
   ErrorText := '';
@@ -691,12 +696,15 @@ begin
     for ABookmark in FBookmarkList do
     begin
       CSSend('ABookmark.Caption_en',ABookmark.Caption_en);
+      bHot := (ParamCount >= 1) and (ParamStr(1) = ABookmark.id);
+      if bHot then
+        AddDividerLineToMenu;
       mi := TMenuItem.Create(miBookmarks);
       mi.Name := 'mi' + ABookmark.id;
       mi.Caption := ABookmark.Caption_en;
       mi.OnClick := miBookmarkClick;
       miBookmarks.Add(mi);
-      if (ParamCount >= 1) and (ParamStr(1) = ABookmark.id) then
+      if bHot then
       begin
         FCurrentWebSite := ABookmark.Url;
         FStartURL  := ABookmark.Url;
@@ -722,6 +730,7 @@ begin
             miBookmarks.Add(mi2);
           end;
         end;
+        AddDividerLineToMenu;
       end;
     end;
 
