@@ -19,6 +19,15 @@
 	        <Field num="02" lingvo="en" prompt="password" htmlField="ap_password"/>
         </Fields>
     </WebSite>
+    <WebSite id="Blogger">
+    	<Caption lingvo="en" value="Blogger"/>
+        <Url value="https://blogger.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
+	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+        </Fields>
+    </WebSite>
     <WebSite id="GMail">
     	<Caption lingvo="en" value="GMail"/>
         <Url value="https://mail.google.com/"/>
