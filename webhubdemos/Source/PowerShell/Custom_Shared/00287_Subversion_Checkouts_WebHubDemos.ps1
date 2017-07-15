@@ -5,7 +5,7 @@ Invoke-Expression ($PSScriptRoot + '\..\WebHub_Appliance_PS\Initialize.ps1')  # 
 
 $InfoMsg = '/note "About to download files using a series of subversion checkouts"'
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
-echo $InfoMsg
+Write-Output $InfoMsg
 
 if ($Global:ZMGlobalContext -eq "DORIS") {
 	Set-Location 'C:\'  # parent folder
