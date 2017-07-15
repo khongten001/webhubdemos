@@ -355,7 +355,9 @@ begin
   begin
   for Filespec in TDirectory.GetFiles(CacheFolderRoot, '*.*') do
   begin
+    {$IFDEF DEBUG}
     CSSendWarning('Deleting ' + Filespec);
+    {$ENDIF}
     SysUtils.DeleteFile(Filespec);
   end;
   end;
