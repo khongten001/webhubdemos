@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CleanEntrance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <WebSites>
+    <WebSite id="GooglePlusGSuite">
+    	<Caption lingvo="en" value="GooglePlus"/>
+        <Url value="https://plus.google.com/"/>
+        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
     <WebSite id="GooglePlus">
     	<Caption lingvo="en" value="GooglePlus"/>
         <Url value="https://plus.google.com/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
         </Fields>
     </WebSite>
     <WebSite id="AWS">
@@ -15,17 +25,17 @@
         <Url value="https://console.aws.amazon.com/console/home"/>
         <InputPattern value="all"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email" htmlField="ap_email"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="ap_password"/>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="ap_email"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
         </Fields>
     </WebSite>
-    <WebSite id="Blogger">
+    <WebSite id="BloggerGSuite">
     	<Caption lingvo="en" value="Blogger"/>
         <Url value="https://blogger.com/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
         </Fields>
     </WebSite>
     <WebSite id="GMail">
@@ -33,8 +43,8 @@
         <Url value="https://mail.google.com/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
         </Fields>
     </WebSite>
     <WebSite id="GoogleAdSense">
@@ -42,8 +52,8 @@
         <Url value="https://www.google.com/adsense"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
         </Fields>
     </WebSite>
     <WebSite id="GoogleWebmaster">
@@ -51,8 +61,8 @@
         <Url value="https://www.google.com/webmasters/tools/"/>
         <InputPattern value="individual"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="email"    htmlField="identifierId"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="Passwd"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
         </Fields>
     </WebSite>
     <WebSite id="007">
@@ -60,8 +70,8 @@
         <Url value="https://www.007names.com/"/>
         <InputPattern value="all"/>
         <Fields>
-	        <Field num="01" lingvo="en" prompt="username" htmlField="j_idt45:usernameTop"/>
-	        <Field num="02" lingvo="en" prompt="password" htmlField="j_idt45:passwordTop"/>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="j_idt45:usernameTop"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt45:passwordTop"/>
         </Fields>
     </WebSite>
   </WebSites>

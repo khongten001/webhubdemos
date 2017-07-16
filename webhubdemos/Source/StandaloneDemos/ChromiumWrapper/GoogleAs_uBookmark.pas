@@ -40,9 +40,10 @@ type
   TLoginInputPattern = (lipAll, lipIndividual);
 type
   THtmlField = record
-    guiNum: integer;
     guiPrompt_en: string;
+    htmlAttr: string;
     htmlID: string;
+    parentElementID: string;
     end;
 type
   TGoogleAsBookmark = record
@@ -130,10 +131,21 @@ begin
 
           for J := 0 to Pred(FieldNodeList.Count) do
           begin
-            AHtmlField.guiNum :=
-              StrToIntDef(FieldNodeList[J].AttributeByName['num'], -1);
             AHtmlField.guiPrompt_en :=
               FieldNodeList[J].AttributeByName['prompt'];
+            AHtmlField.htmlAttr :=
+              FieldNodeList[J].AttributeByName['htmlAttr'];
+            if AHtmlField.htmlAttr = 'name' then
+            begin
+              // id of closest known parent div or other containing element.
+              AHtmlField.parentElementID :=
+                FieldNodeList[J].AttributeByName['parentElementID'];
+              if AHtmlField.parentElementID = '' then
+                CSSendError('config error.' +
+                'A parentElementID is required when htmlAttr = ''name''.');
+            end
+            else
+              AHtmlField.htmlAttr := 'id';  // default way to find a field
             AHtmlField.htmlID :=
               FieldNodeList[J].AttributeByName['htmlField'];
             //CSSend('AHtmlField.htmlID', AHtmlField.htmlID);
