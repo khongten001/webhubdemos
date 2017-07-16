@@ -71,6 +71,8 @@ type
   strict private
     FCurrentWebSite: string;
     FBookmarkList: TGoogleAsBookmarkList;
+    function JavaScript_AutoFill(const htmlAttr, key, value: string;
+      const parentElementID: string = ''): string;
     procedure miBookmarkClick(Sender: TObject);
     procedure LoginInputPatternAll(Sender: TObject);
     procedure AutoFillIndividualField(Sender: TObject);
@@ -562,29 +564,30 @@ begin
     if NOT bContinue then break;
     for II := 0 to High(mark.htmlFields) do
     begin
-      temp := 'mi' + mark.id + 'Field' + S(mark.htmlFields[II].guiNum);
-      CSSend(temp);
+      temp := 'mi' + mark.id + 'Field' + S(II);
+      //CSSend(temp);
       if temp = mi.Name then
       begin
         FCurrentWebSite := mark.id;
-        CSSend('mark.id', mark.id);
+        //CSSend('mark.id', mark.id);
         //CSSend('tag', S(mi.Tag));
 
-        if mi.Tag <> II then
+        {if mi.Tag <> II then
         begin
           CSSendWarning('guiNum=' + S(mark.htmlFields[II].guiNum));
           CSSendWarning('Tag=' + S(mi.Tag));
         end;
-        //CSSend('ParamCount', S(ParamCount));
+        //CSSend('ParamCount', S(ParamCount));}
 
         if ParamCount >= II+2 then
         begin
 
-          CSSend(mark.htmlFields[II].htmlID, ParamStr(II+2));
+          //CSSend(mark.htmlFields[II].htmlID, ParamStr(II+2));
 
-          JSText := Format('document.getElementById("%s").value = "%s";',
-            [mark.htmlFields[II].htmlID, ParamStr(II+2)]);
-          CSSend('JSText going to CEF library', JSText);
+          JSText := JavaScript_AutoFill(mark.htmlFields[II].htmlAttr,
+            mark.htmlFields[II].htmlID, ParamStr(II+2),
+            mark.htmlFields[II].parentElementID);
+          //CSSend('JSText going to CEF library', JSText);
           FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
         end
         else
@@ -722,7 +725,7 @@ begin
           for I := 0 to High(ABookmark.HtmlFields) do
           begin
             mi2 := TMenuItem.Create(mi);
-            mi2.Tag := ABookmark.HtmlFields[I].guiNum;
+            mi2.Tag := I;
             mi2.Name := 'mi' + ABookmark.id + 'Field' + S(mi2.Tag);
             mi2.Caption := 'Auto-Fill ' + ABookmark.Caption_en + ' ' +
               ABookmark.HtmlFields[I].guiPrompt_en;
@@ -780,6 +783,38 @@ function TfmChromiumWrapper.IsMain(const b: ICefBrowser;
 begin
   Result := (b <> nil) and (b.Identifier = FChromium1.BrowserId) and
     ((f = nil) or (f.IsMain));
+end;
+
+function TfmChromiumWrapper.JavaScript_AutoFill(const htmlAttr, key,
+  value: string; const parentElementID: string = ''): string;
+const cFn = 'JavaScript_AutoFill';
+begin
+  {$IFDEF DEBUG}
+  CSSend(csmLevel6, cFn + ': htmlAttr', htmlAttr);
+  CSSend(csmLevel6, cFn + ': key', key);
+  CSSend(csmLevel6, cFn + ': value', value);
+  {$ENDIF}
+  if htmlAttr = 'name' then
+  begin
+    Result :=
+      'var' + sLineBreak +
+      '  a;' + sLineBreak +
+      'a = document.getElementById("%s").getElementsByTagName("input");' +
+        sLineBreak +
+      ' for (i = 0; i < a.length; i++) {' + sLineBreak +
+      ' if ( a[i].name == "%s" ) {' + sLineBreak +
+      '  a[i].value = "%s";' + sLineBreak +
+      '  break;' + sLineBreak +
+      '  }' + sLineBreak +
+      '}';
+    Result := Format(Result, [parentElementID, key, value]);
+  end
+  else
+    Result := Format('document.getElementById("%s").value = "%s";',
+      [key, value]);
+  {$IFDEF DEBUG}
+  CSSend(csmLevel6, cFn + ': Result', Result);
+  {$ENDIF}
 end;
 
 procedure TfmChromiumWrapper.LargePageTest1Click(Sender: TObject);
@@ -868,11 +903,12 @@ begin
           for I := 0 to High(mark.htmlFields) do
           begin
             values[I] := ParamStr(I+2); // email, password, etc.
-            CSSend(mark.htmlFields[I].htmlID, values[I]);
+            //CSSend(mark.htmlFields[I].htmlID, values[I]);
 
-            JSText := Format('document.getElementById("%s").value = "%s";',
-              [mark.htmlFields[I].htmlID, values[I]]);
-            CSSend('JSText', JSText);
+            JSText := JavaScript_AutoFill(mark.htmlFields[I].htmlAttr,
+              mark.htmlFields[I].htmlID, values[I],
+              mark.htmlFields[I].parentElementID);
+
             FChromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
           end;
         end
