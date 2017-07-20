@@ -74,5 +74,25 @@
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt45:passwordTop"/>
         </Fields>
     </WebSite>
+
+    <WebSite id="BingWebmaster">
+    	<Caption lingvo="en" value="Bing Webmaster"/>
+        <Url value="https://www.bing.com/toolbox/webmaster/"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+        <Fields>
+	        <Field lingvo="en" prompt="username" />
+	        <Field lingvo="en" prompt="password" />
+        </Fields>
+    </WebSite>
+
+    <WebSite id="WordPress">
+    	<Caption lingvo="en" value="WordPress"/>
+        <Url value="https://wordpress.com/log-in/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="usernameOrEmail"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="password"/>
+        </Fields>
+    </WebSite>
   </WebSites>
 </CleanEntrance>
