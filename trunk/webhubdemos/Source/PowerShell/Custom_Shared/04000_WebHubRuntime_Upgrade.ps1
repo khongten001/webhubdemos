@@ -26,6 +26,12 @@ $InfoMsg = ('"Upgrade WebHubRuntime" ' + $Global:FlagInstallWebHubRuntime)
 Write-Output $InfoMsg
 Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
 
+# www.href.com no longer accepts TLS 1.0 connections; Invoke-RestMethod uses TLS 1.0 by default.
+$InfoMsg = '"Use TLS 1.2 as of July 2017"'
+Write-Output $InfoMsg
+Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow 
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
 if ($Global:FlagInstallWebHubRuntime) {
 	# prepare 
 	Set-Location ($Global:FolderInstallers + 'HREFTools')
@@ -53,7 +59,7 @@ if ($Global:FlagInstallWebHubRuntime) {
 		New-Variable -Name response -Value "" -Option private
 		New-Variable -Name postParams     -Value "" -Option private
 		New-Variable -Name source   -Value "" -Option private
-		$response = Invoke-RestMethod -Uri https://www.href.com/pub/relnotes/WebHub_Release_Status.json
+		$response = Invoke-RestMethod -Uri https://www.href.com/pub/relnotes/WebHub_Release_Status.json -ErrorAction Stop 
 		$webhub_version = $response.WebHubReleaseInfo.InHouse.v
 		Start-Process $Global:CSConsole -ArgumentList ('/note "InHouse v' + $webhub_version + '"') -NoNewWindow -Wait
 	}
