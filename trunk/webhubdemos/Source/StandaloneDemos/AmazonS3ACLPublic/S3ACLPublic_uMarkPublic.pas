@@ -311,10 +311,16 @@ begin
               if NOT StorageService.SetObjectACL(bucketName, OriginalObjName,
                 amzbaPublicRead, ResponseInfo) then
               begin
-                CSSendError('Failed to set amzbaPublicRead for ' + OriginalObjName);
-                Inc(ExitCode);
-              end;
-              Inc(ChangeCounter);
+                if (Copy(OriginalObjName, Length(OriginalObjName) - 9, 9) <>
+                  '_$folder$') then
+                begin
+                  CSSendError('Failed to set amzbaPublicRead for ' +
+                    OriginalObjName);
+                  Inc(ExitCode);
+                end;
+              end
+              else
+                Inc(ChangeCounter);
             end;
 
             if NOT bKeepLooping then
