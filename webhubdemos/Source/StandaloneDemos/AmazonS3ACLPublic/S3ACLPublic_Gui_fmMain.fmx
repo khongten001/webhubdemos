@@ -1,20 +1,24 @@
 object Form3: TForm3
   Left = 0
   Top = 0
-  Caption = 'Form3'
-  ClientHeight = 510
-  ClientWidth = 640
+  Caption = 'AWS S3 tag Public'
+  ClientHeight = 669
+  ClientWidth = 853
+  StyleLookup = 'panelstyle'
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
+  ShowFullScreenIcon = True
+  OnCreate = FormCreate
   DesignerMasterStyle = 0
   object GridPanelLayout1: TGridPanelLayout
-    Anchors = []
-    Padding.Top = 3.000000000000000000
-    Padding.Bottom = 3.000000000000000000
-    Position.Y = 21.229581832885740000
-    Size.Width = 640.000000000000000000
-    Size.Height = 325.000000000000000000
+    Align = Center
+    Padding.Top = 2.000000000000000000
+    Padding.Bottom = 2.000000000000000000
+    Scale.X = 1.399999976158142000
+    Scale.Y = 1.399999976158142000
+    Size.Width = 553.000000000000000000
+    Size.Height = 244.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
     ColumnCollection = <
@@ -137,49 +141,58 @@ object Form3: TForm3
       end>
     RowCollection = <
       item
-        SizeStyle = Auto
-        Value = 50.000000000000000000
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
-        Value = 100.000000000000000000
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 75.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 25.000000000000000000
       end
       item
-        SizeStyle = Auto
+        SizeStyle = Absolute
+        Value = 35.000000000000000000
       end
       item
         SizeStyle = Auto
       end>
     object Label1: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 3.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 6.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'AWS S3 Bucket Name'
       TabOrder = 7
@@ -189,18 +202,18 @@ object Form3: TForm3
       Anchors = []
       TabOrder = 8
       Text = 'delphitest.demos.href.com'
-      Position.X = 380.000000000000000000
+      Position.X = 314.750000000000000000
       Position.Y = 3.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 19.000000000000000000
       Size.PlatformDefault = False
     end
     object Label2: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 25.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 31.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'Region'
       TabOrder = 0
@@ -210,18 +223,18 @@ object Form3: TForm3
       Anchors = []
       TabOrder = 1
       Text = 'us-west-2'
-      Position.X = 380.000000000000000000
-      Position.Y = 25.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 29.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 17.000000000000000000
       Size.PlatformDefault = False
     end
     object Label3: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 47.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 56.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'Leading Path'
       TabOrder = 9
@@ -230,19 +243,19 @@ object Form3: TForm3
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = []
       TabOrder = 6
-      Position.X = 380.000000000000000000
-      Position.Y = 47.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 52.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TextPrompt = 'optional'
     end
     object Label4: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 69.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 81.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'Match This'
       TabOrder = 10
@@ -251,19 +264,19 @@ object Form3: TForm3
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = []
       TabOrder = 5
-      Position.X = 380.000000000000000000
-      Position.Y = 69.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 79.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 17.000000000000000000
       Size.PlatformDefault = False
       TextPrompt = 'optional'
     end
     object Label5: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 91.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 106.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'AWS Access Key'
       TabOrder = 11
@@ -272,19 +285,19 @@ object Form3: TForm3
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = []
       TabOrder = 4
-      Position.X = 380.000000000000000000
-      Position.Y = 91.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 102.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TextPrompt = 'AK...'
     end
     object Label6: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 113.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 131.500000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'AWS Secret'
       TabOrder = 12
@@ -293,19 +306,19 @@ object Form3: TForm3
       Touch.InteractiveGestures = [LongTap, DoubleTap]
       Anchors = []
       TabOrder = 3
-      Position.X = 380.000000000000000000
-      Position.Y = 113.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 127.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TextPrompt = '???'
     end
     object Label7: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 135.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 158.000000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 13.000000000000000000
+      Size.Height = 9.000000000000000000
       Size.PlatformDefault = False
       Text = 'Just Root Folder'
       TabOrder = 13
@@ -315,20 +328,20 @@ object Form3: TForm3
       Hint = 
         'True: only touch files in root of S3 bucket; False: include subf' +
         'olders'
-      Position.X = 448.000000000000000000
-      Position.Y = 135.000000000000000000
+      Position.X = 382.750000000000000000
+      Position.Y = 152.000000000000000000
       Size.Width = 64.000000000000000000
-      Size.Height = 13.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 14
       Text = 'True'
     end
     object Label8: TLabel
       Anchors = []
-      Position.X = 66.500000000000000000
-      Position.Y = 154.000000000000000000
+      Position.X = 44.750000000000000000
+      Position.Y = 181.500000000000000000
       Size.Width = 187.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 12.000000000000000000
       Size.PlatformDefault = False
       Text = 'Maxmum Number of Files to Touch'
       TabOrder = 15
@@ -338,26 +351,26 @@ object Form3: TForm3
       Anchors = []
       TabOrder = 2
       Text = '0'
-      Position.X = 380.000000000000000000
-      Position.Y = 154.000000000000000000
+      Position.X = 314.750000000000000000
+      Position.Y = 177.000000000000000000
       Size.Width = 200.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TextPrompt = '0 for unlimited or an integer'
     end
     object LabelScheme: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 198.500000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 229.000000000000000000
       Text = 'Scheme'
       TabOrder = 16
     end
     object GroupBox1: TGroupBox
-      Anchors = []
-      Position.X = 420.000000000000000000
-      Position.Y = 176.000000000000000000
-      Size.Width = 120.000000000000000000
-      Size.Height = 62.000000000000000000
+      Anchors = [akTop]
+      Position.X = 325.250000000000000000
+      Position.Y = 202.000000000000000000
+      Size.Width = 179.000000000000000000
+      Size.Height = 46.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 17
       object cbSchemeHttp: TRadioButton
@@ -376,10 +389,10 @@ object Form3: TForm3
     end
     object Label9: TLabel
       Anchors = []
-      Position.X = 100.000000000000000000
-      Position.Y = 244.000000000000000000
+      Position.X = 78.250000000000000000
+      Position.Y = 283.000000000000000000
       Size.Width = 120.000000000000000000
-      Size.Height = 13.000000000000000000
+      Size.Height = 9.000000000000000000
       Size.PlatformDefault = False
       Text = 'Action it'
       TabOrder = 18
@@ -387,10 +400,10 @@ object Form3: TForm3
     object cbActionIt: TCheckBox
       Anchors = []
       Hint = 'True: Action the changes; False: Dry Run without Changes'
-      Position.X = 437.000000000000000000
-      Position.Y = 244.000000000000000000
+      Position.X = 371.750000000000000000
+      Position.Y = 277.000000000000000000
       Size.Width = 86.000000000000000000
-      Size.Height = 13.000000000000000000
+      Size.Height = 21.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 19
       Text = 'True'
@@ -398,10 +411,10 @@ object Form3: TForm3
     object Button1: TButton
       Anchors = []
       Cancel = True
-      Position.X = 120.000000000000000000
-      Position.Y = 263.000000000000000000
+      Position.X = 98.250000000000000000
+      Position.Y = 307.500000000000000000
       Size.Width = 80.000000000000000000
-      Size.Height = 16.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 20
       Text = 'Cancel'
@@ -409,10 +422,10 @@ object Form3: TForm3
     end
     object ButtonGo: TButton
       Anchors = []
-      Position.X = 440.000000000000000000
-      Position.Y = 263.000000000000000000
-      Size.Width = 80.000000000000000000
-      Size.Height = 16.000000000000000000
+      Position.X = 361.750000000000000000
+      Position.Y = 307.500000000000000000
+      Size.Width = 106.000000000000000000
+      Size.Height = 20.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 21
       Text = 'Go'

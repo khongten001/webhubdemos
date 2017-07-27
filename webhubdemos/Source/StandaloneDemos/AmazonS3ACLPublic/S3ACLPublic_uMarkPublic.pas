@@ -57,6 +57,9 @@ function ReportSyntaxUsed: string;
 /// documented by Amazon.
 /// http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
 /// </param>
+/// <param name="ErrorText">Filled in if there is an exception or serious
+/// problem.
+/// </param>
 procedure TagPublic(const bActionIt: Boolean;
   const scheme: string;
   const bucketName, leadingPath: string;
@@ -64,7 +67,8 @@ procedure TagPublic(const bActionIt: Boolean;
   const awsKey, awsSecret: string;
   const JustRootFolder: Boolean;
   const MaxFilesToTouch: Integer;
-  const awsRegion: string);
+  const awsRegion: string;
+  out ErrorText: string);
 
 implementation
 
@@ -112,7 +116,8 @@ procedure TagPublic(const bActionIt: Boolean;
   const awsKey, awsSecret: string;
   const JustRootFolder: Boolean;
   const MaxFilesToTouch: Integer;
-  const awsRegion: string);
+  const awsRegion: string;
+  out ErrorText: string);
 const cFn = 'TagPublic';
 var
   AmazonConnectionInfo1: TAmazonConnectionInfo;
@@ -136,10 +141,11 @@ var
 begin
   {$IFDEF ZMLog}CSEnterMethod(nil, cFn);{$ENDIF}
 
+  ErrorText := '';
   AmazonConnectionInfo1 := nil;
   StorageService := nil;
+  BucketContents := nil;
   ResponseInfo := nil;
-  //DesiredHeaders := nil;
   ChangeCounter := 0;
   {$IF Defined(ZMLog)}
   GeneralCounter := 0;
@@ -149,6 +155,7 @@ begin
 
   {$IFDEF ZMLog}
   CSSend('bActionIt', S(bActionIt));
+  CSSend('scheme', scheme);
   CSSend(awsRegion, bucketName);
   CSSend('leadingPath', leadingPath);
   CSSend('JustRootFolder', S(JustRootFolder));
@@ -223,7 +230,12 @@ begin
           except
             on E: Exception do
             begin
-              {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
+              ErrorText := 'Exception in StorageService.GetBucket';
+              {$IFDEF CodeSite}
+              CodeSite.SendError(ErrorText);
+              CodeSite.SendException(E);
+              {$ENDIF}
+              ErrorText := ErrorText + ': ' + E.Message;
               bKeepLooping := False;
             end;
           end;
@@ -238,8 +250,12 @@ begin
           if NOT Assigned(BucketContents) then
           begin
             ExitCode := 45;
-            {$IFDEF CodeSite}CodeSite.SendError('BucketContents nil');{$ENDIF}
             bKeepLooping := False;
+            if ErrorText = '' then
+            begin
+              ErrorText := 'BucketContents nil';
+              {$IFDEF CodeSite}CodeSite.SendError(ErrorText);{$ENDIF}
+            end;
             Continue;
           end;
 

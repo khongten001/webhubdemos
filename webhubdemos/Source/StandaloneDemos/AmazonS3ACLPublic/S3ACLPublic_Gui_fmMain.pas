@@ -58,6 +58,7 @@ type
     ButtonGo: TButton;
     procedure Button1Click(Sender: TObject);
     procedure ButtonGoClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -84,26 +85,33 @@ var
   bActionIt: Boolean;
   bJustRootFolder: Boolean;
   Scheme: string;
+  ErrorText: string;
 begin
   bActionIt := cbActionIt.IsChecked;
   bJustRootFolder := cbJustRootFolder.IsChecked;
 
   if cbSchemeHttp.IsChecked then
-  begin
-    if cbSchemeHttps.IsChecked then
-    begin
-      ShowMessage('select either http or https!');
-      Exit;
-      scheme := 'http';
-    end
-    else
-      scheme := 'https';
-  end;
+    scheme := 'http'
+  else
+    scheme := 'https';
 
   TagPublic(bActionit, scheme, EditBucketName.Text, EditLeadingPath.Text,
     EditMatchThis.Text, EditAWSAccessKey.Text, EditAWSSecretKey.Text,
-    bJustRootFolder, StrToIntDef(EditMaxFilesToTouch.Text, 1), EditRegion.Text);
+    bJustRootFolder, StrToIntDef(EditMaxFilesToTouch.Text, 1), EditRegion.Text,
+    ErrorText);
 
+  if ErrorText = '' then
+    ShowMessage('Done.')
+  else
+    ShowMessage(ErrorText);
+end;
+
+procedure TForm3.FormCreate(Sender: TObject);
+begin
+  cbJustRootFolder.IsChecked := True;
+  cbActionIt.IsChecked := True;
+  EditAWSSecretKey.Text := '';
+  EditMaxFilesToTouch.Text := '10';
 end;
 
 end.
