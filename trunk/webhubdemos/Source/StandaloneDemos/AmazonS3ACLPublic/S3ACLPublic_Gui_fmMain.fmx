@@ -1,0 +1,422 @@
+object Form3: TForm3
+  Left = 0
+  Top = 0
+  Caption = 'Form3'
+  ClientHeight = 510
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object GridPanelLayout1: TGridPanelLayout
+    Anchors = []
+    Padding.Top = 3.000000000000000000
+    Padding.Bottom = 3.000000000000000000
+    Position.Y = 21.229581832885740000
+    Size.Width = 640.000000000000000000
+    Size.Height = 325.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = Label1
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = EditBucketName
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = Label2
+        Row = 1
+      end
+      item
+        Column = 1
+        Control = EditRegion
+        Row = 1
+      end
+      item
+        Column = 0
+        Control = Label3
+        Row = 2
+      end
+      item
+        Column = 1
+        Control = EditLeadingPath
+        Row = 2
+      end
+      item
+        Column = 0
+        Control = Label4
+        Row = 3
+      end
+      item
+        Column = 1
+        Control = EditMatchThis
+        Row = 3
+      end
+      item
+        Column = 0
+        Control = Label5
+        Row = 4
+      end
+      item
+        Column = 1
+        Control = EditAWSAccessKey
+        Row = 4
+      end
+      item
+        Column = 0
+        Control = Label6
+        Row = 5
+      end
+      item
+        Column = 1
+        Control = EditAWSSecretKey
+        Row = 5
+      end
+      item
+        Column = 0
+        Control = Label7
+        Row = 6
+      end
+      item
+        Column = 1
+        Control = cbJustRootFolder
+        Row = 6
+      end
+      item
+        Column = 0
+        Control = Label8
+        Row = 7
+      end
+      item
+        Column = 1
+        Control = EditMaxFilesToTouch
+        Row = 7
+      end
+      item
+        Column = 0
+        Control = LabelScheme
+        Row = 8
+      end
+      item
+        Column = 1
+        Control = GroupBox1
+        Row = 8
+      end
+      item
+        Column = 0
+        Control = Label9
+        Row = 9
+      end
+      item
+        Column = 1
+        Control = cbActionIt
+        Row = 9
+      end
+      item
+        Column = 0
+        Control = Button1
+        Row = 10
+      end
+      item
+        Column = 1
+        Control = ButtonGo
+        Row = 10
+      end>
+    RowCollection = <
+      item
+        SizeStyle = Auto
+        Value = 50.000000000000000000
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+        Value = 100.000000000000000000
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end
+      item
+        SizeStyle = Auto
+      end>
+    object Label1: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'AWS S3 Bucket Name'
+      TabOrder = 7
+    end
+    object EditBucketName: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 8
+      Text = 'delphitest.demos.href.com'
+      Position.X = 380.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label2: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 25.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Region'
+      TabOrder = 0
+    end
+    object EditRegion: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 1
+      Text = 'us-west-2'
+      Position.X = 380.000000000000000000
+      Position.Y = 25.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object Label3: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 47.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Leading Path'
+      TabOrder = 9
+    end
+    object EditLeadingPath: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 6
+      Position.X = 380.000000000000000000
+      Position.Y = 47.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'optional'
+    end
+    object Label4: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 69.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Match This'
+      TabOrder = 10
+    end
+    object EditMatchThis: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 5
+      Position.X = 380.000000000000000000
+      Position.Y = 69.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'optional'
+    end
+    object Label5: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 91.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'AWS Access Key'
+      TabOrder = 11
+    end
+    object EditAWSAccessKey: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 4
+      Position.X = 380.000000000000000000
+      Position.Y = 91.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = 'AK...'
+    end
+    object Label6: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 113.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'AWS Secret'
+      TabOrder = 12
+    end
+    object EditAWSSecretKey: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 3
+      Position.X = 380.000000000000000000
+      Position.Y = 113.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = '???'
+    end
+    object Label7: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 135.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 13.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Just Root Folder'
+      TabOrder = 13
+    end
+    object cbJustRootFolder: TCheckBox
+      Anchors = []
+      Hint = 
+        'True: only touch files in root of S3 bucket; False: include subf' +
+        'olders'
+      Position.X = 448.000000000000000000
+      Position.Y = 135.000000000000000000
+      Size.Width = 64.000000000000000000
+      Size.Height = 13.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+      Text = 'True'
+    end
+    object Label8: TLabel
+      Anchors = []
+      Position.X = 66.500000000000000000
+      Position.Y = 154.000000000000000000
+      Size.Width = 187.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Maxmum Number of Files to Touch'
+      TabOrder = 15
+    end
+    object EditMaxFilesToTouch: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Anchors = []
+      TabOrder = 2
+      Text = '0'
+      Position.X = 380.000000000000000000
+      Position.Y = 154.000000000000000000
+      Size.Width = 200.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TextPrompt = '0 for unlimited or an integer'
+    end
+    object LabelScheme: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 198.500000000000000000
+      Text = 'Scheme'
+      TabOrder = 16
+    end
+    object GroupBox1: TGroupBox
+      Anchors = []
+      Position.X = 420.000000000000000000
+      Position.Y = 176.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 62.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 17
+      object cbSchemeHttp: TRadioButton
+        IsChecked = True
+        Position.X = 8.000000000000000000
+        Position.Y = 16.000000000000000000
+        TabOrder = 0
+        Text = 'http'
+      end
+      object cbSchemeHttps: TRadioButton
+        Position.X = 8.000000000000000000
+        Position.Y = 40.000000000000000000
+        TabOrder = 1
+        Text = 'https'
+      end
+    end
+    object Label9: TLabel
+      Anchors = []
+      Position.X = 100.000000000000000000
+      Position.Y = 244.000000000000000000
+      Size.Width = 120.000000000000000000
+      Size.Height = 13.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Action it'
+      TabOrder = 18
+    end
+    object cbActionIt: TCheckBox
+      Anchors = []
+      Hint = 'True: Action the changes; False: Dry Run without Changes'
+      Position.X = 437.000000000000000000
+      Position.Y = 244.000000000000000000
+      Size.Width = 86.000000000000000000
+      Size.Height = 13.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 19
+      Text = 'True'
+    end
+    object Button1: TButton
+      Anchors = []
+      Cancel = True
+      Position.X = 120.000000000000000000
+      Position.Y = 263.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 20
+      Text = 'Cancel'
+      OnClick = Button1Click
+    end
+    object ButtonGo: TButton
+      Anchors = []
+      Position.X = 440.000000000000000000
+      Position.Y = 263.000000000000000000
+      Size.Width = 80.000000000000000000
+      Size.Height = 16.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 21
+      Text = 'Go'
+      OnClick = ButtonGoClick
+    end
+  end
+end
