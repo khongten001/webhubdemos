@@ -44,6 +44,7 @@ var
   awsRegion: string = 'us-east-1';
   KeyedDetail: TKeyedDetail;
   MaxFilesToTouch: Integer;
+  ErrorText: string;
 
 begin
 
@@ -84,7 +85,8 @@ begin
 
     try
       TagPublic(bActionIt, 'http', bucketName, leadingPath, matchThis,
-        awsKey, awsSecret, JustRootFolder, MaxFilesToTouch, awsRegion);
+        awsKey, awsSecret, JustRootFolder, MaxFilesToTouch, awsRegion,
+        ErrorText);
     except
       on E: Exception do
         Writeln(E.ClassName, ': ', E.Message);
