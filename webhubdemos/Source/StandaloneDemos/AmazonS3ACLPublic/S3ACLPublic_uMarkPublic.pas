@@ -27,22 +27,53 @@ interface
 function ReportSyntaxAvailable: string;
 function ReportSyntaxUsed: string;
 
+/// <summary> Tag files on an AWS S3 bucket public. </summary>
+/// <remarks> Can be called from non-gui console application.
+/// Compile with -DCodeSite if you have CodeSite logging available.
+/// </remarks>
+/// <param name="bActionIt">True: make changes.  False: dry run.
+/// </param>
+/// <param name="scheme">http or https
+/// </param>
+/// <param name="bucketName">Example: www.embarcadero.com
+/// </param>
+/// <param name="leadingPath">Optional leading path to select files within
+/// </param>
+/// <param name="matchThis">Optional: select files containing this within their
+/// name and/or their folder name
+/// </param>
+/// <param name="awsKey">Amazon Web Services Access Key for account with ability
+/// to take the action.
+/// </param>
+/// <param name="awsSecret">Confidential Secret corresponding to the Access Key.
+/// </param>
+/// <param name="JustRootFolder">True: only take action on files in the root of
+/// the bucket.
+/// </param>
+/// <param name="MaxFilesToTouch">0 for unlimited, else the maximum number of
+/// files to take action on.  Use a small number such as 10 for initial testing.
+/// </param>
+/// <param name="awsRegion">us-east-1 or other region. The official names are
+/// documented by Amazon.
+/// http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region
+/// </param>
 procedure TagPublic(const bActionIt: Boolean;
+  const scheme: string;
   const bucketName, leadingPath: string;
   const matchThis: string;
   const awsKey, awsSecret: string;
   const JustRootFolder: Boolean;
-  const MaxFilesToTouch: Integer = 0;
-  const awsRegion: string = 'us-east-1');
+  const MaxFilesToTouch: Integer;
+  const awsRegion: string);
 
 implementation
 
 uses
   System.SysUtils, System.Types, System.Classes,
   Data.Cloud.CloudAPI, Data.Cloud.AmazonAPI,
-  uAWS_S3,
-  ZM_CodeSiteInterface,
-  ucString;
+  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF} // incl with CodeSite Express
+  {$IFDEF ZMLog}ZM_CodeSiteInterface,{$ENDIF}  // on sf.net, ZaphodsMap project
+  uAWS_S3;
 
 function ReportSyntaxUsed: string;
 var
@@ -75,67 +106,73 @@ begin
 end;
 
 procedure TagPublic(const bActionIt: Boolean;
+  const scheme: string;
   const bucketName, leadingPath: string;
   const matchThis: string;
   const awsKey, awsSecret: string;
   const JustRootFolder: Boolean;
-  const MaxFilesToTouch: Integer = 0;
-  const awsRegion: string = 'us-east-1');
+  const MaxFilesToTouch: Integer;
+  const awsRegion: string);
 const cFn = 'TagPublic';
 var
   AmazonConnectionInfo1: TAmazonConnectionInfo;
 var
   ResponseInfo: TCloudResponseInfo;
   StorageService: TAmazonStorageService;
-  {$IFDEF DEBUG}
+  {$IF Defined(DEBUG) and Defined(ZMLog)}
   InfoMsg: string;
-  {$ENDIF}
+  {$IFEND}
+  {$IF Defined(ZMLog)}
+  GeneralCounter: Integer;
+  {$IFEND}
   BucketContents: TAmazonBucketResult;
   S3Object: TAmazonObjectResult;
-  //MetaDataOptionalParams: TAmazonGetObjectOptionals;
-  //MetaDataList: TStrings;
   OptionalParams: TStrings;
   OriginalObjName: string;
   bKeepLooping: Boolean;
-  ChangeCounter, GeneralCounter: Integer;
+  ChangeCounter: Integer;
   BucketMarker: string;
-  //DesiredHeaders: TStrings;
   bOk: Boolean;
 begin
-  CSEnterMethod(nil, cFn);
+  {$IFDEF ZMLog}CSEnterMethod(nil, cFn);{$ENDIF}
 
   AmazonConnectionInfo1 := nil;
   StorageService := nil;
   ResponseInfo := nil;
   //DesiredHeaders := nil;
   ChangeCounter := 0;
+  {$IF Defined(ZMLog)}
   GeneralCounter := 0;
+  {$ENDIF}
+
   bOk := True;
 
+  {$IFDEF ZMLog}
   CSSend('bActionIt', S(bActionIt));
   CSSend(awsRegion, bucketName);
   CSSend('leadingPath', leadingPath);
   CSSend('JustRootFolder', S(JustRootFolder));
   CSSend('MaxFilesToTouch', S(MaxFilesToTouch));
+  {$ENDIF}
 
   if (bucketName = '') then
   begin
     bOk := False;
-    CSSendError('bucket name required');
+    {$IFDEF CodeSite}CodeSite.SendError('bucket name required');{$ENDIF}
     ExitCode := 14;
   end;
 
   if (awsKey = '') or (Copy(awsKey, 1, 2) <> 'AK') then
   begin
     bOk := False;
-    CSSendError('AWS access key required');
+    {$IFDEF CodeSite}CodeSite.SendError('AWS access key required');{$ENDIF}
     ExitCode := 13;
   end;
 
   if (Length(awsSecret) < 10) then
   begin
     bOk := False;
-    CSSendError('valid AWS secret key required');
+    {$IFDEF CodeSite}CodeSite.SendError('valid AWS secret key required');{$ENDIF}
     ExitCode := 15;
   end;
 
@@ -152,12 +189,13 @@ begin
         Exception class ENetHTTPCertificateException with message
         'Server Certificate Invalid or not present'.
       }
-      AmazonConnectionInfo1.Protocol := 'http';
+      AmazonConnectionInfo1.Protocol := scheme; // 'http';
 
       {For buckets outside us-east-1, configure these 2 extra properties }
       AmazonConnectionInfo1.UseDefaultEndpoints := ('us-east-1' = awsRegion);
       AmazonConnectionInfo1.StorageEndpoint := StrToS3Endpoint(awsRegion);
-      CSSend('AmazonConnectionInfo1.StorageEndpoint', AmazonConnectionInfo1.StorageEndpoint);
+      {$IFDEF ZMLog}CSSend('AmazonConnectionInfo1.StorageEndpoint',
+        AmazonConnectionInfo1.StorageEndpoint);{$ENDIF}
 
       try
         StorageService := TAmazonStorageService.Create(AmazonConnectionInfo1);
@@ -178,35 +216,32 @@ begin
             TMSXMLDOMDocumentFactory.CreateDOMDocument can
             raise a DOMException about MSXML not being installed. This exception
             is never surfaced; it is only visible in DEBUG mode.
-            Adding Vcl.Forms to the DPR solves this exception. }
+            Adding Vcl.Forms or FMX.Forms to the DPR solves this exception. }
             BucketContents := StorageService.GetBucket(LowerCase(bucketName),
               OptionalParams, ResponseInfo,
               StrToRegion(awsRegion));
           except
             on E: Exception do
             begin
-              CSSendException(nil, cFn, E);
+              {$IFDEF CodeSite}CodeSite.SendException(E);{$ENDIF}
               bKeepLooping := False;
             end;
           end;
-          {$IFDEF DEBUG}
+          {$IF Defined(DEBUG) and Defined(ZMLog)}
           InfoMsg :=
             Format('Marker: %s, ResponseInfo: statuscode %d, message %s',
             [BucketMarker, ResponseInfo.StatusCode,
             ResponseInfo.StatusMessage]);
           CSSend(InfoMsg);
-          {$ENDIF}
+          {$IFEND}
 
           if NOT Assigned(BucketContents) then
           begin
             ExitCode := 45;
-            CSSendError('BucketContents nil');
+            {$IFDEF CodeSite}CodeSite.SendError('BucketContents nil');{$ENDIF}
             bKeepLooping := False;
             Continue;
           end;
-
-          //CSSend('BucketContents.Objects.Count=' +
-          //  S(BucketContents.Objects.Count));
 
           if BucketContents.Objects.Count <= 0 then
           begin
@@ -216,9 +251,9 @@ begin
 
           for S3Object in BucketContents.Objects do
           begin
+            {$IFDEF ZMLog}
             Inc(GeneralCounter);
-            //if GeneralCounter mod 25 = 0 then
-            //  CSSend('   ' + S(GeneralCounter));
+            {$ENDIF}
 
             OriginalObjName := S3Object.Name;
             BucketMarker := OriginalObjName; // use when response Truncated
@@ -233,31 +268,37 @@ begin
               if (leadingPath <> '') and (Pos(leadingPath, OriginalObjName) <> 1)
               then
               begin
-                {$IFDEF DEBUG}
+                {$IF Defined(DEBUG) and Defined(ZMLog)}
                 CSSend(csmLevel3, OriginalObjName, 'no start with ' + leadingPath);
-                {$ENDIF}
+                {$IFEND}
                 Continue;
               end;
 
               if (MatchThis <> '') and (Pos(MatchThis, OriginalObjName) = 0) then
               begin
-                {$IFDEF DEBUG}
+                {$IF Defined(DEBUG) and Defined(ZMLog)}
                 CSSend(csmLevel3, OriginalObjName, 'no match with ' + MatchThis);
-                {$ENDIF}
+                {$IFEND}
                 Continue;
               end;
             end;
 
             if (Copy(OriginalObjName, Length(OriginalObjName), 1) = '/') then
             begin
-              {$IFDEF DEBUG}
+              {$IF Defined(DEBUG) and Defined(ZMLog)}
               CSSend('directory .');
-              {$ENDIF}
+              {$IFEND}
               Continue;
             end;
 
-            if NOT SameText(ExtractFileExt(OriginalObjName), '.jpg') then
-              CSSend(csmLevel7, 'public', OriginalObjName);
+            {$IFDEF ZMLog}
+            if Pos(ExtractFileExt(OriginalObjName).ToLower, ',.jpg,.png,.css,')
+            >= 2 then
+            begin
+              // log the other files, which are more rare overall.
+              CSSend(OriginalObjName);
+            end;
+            {$ENDIF}
 
             if bActionIt then
             begin
@@ -300,7 +341,7 @@ begin
                 DesiredHeaders := TStringList.Create;
               DesiredHeaders.Clear;
 
-              DesiredHeaders.Add('X-Robots-Tag: noindex');
+              DesiredHeaders.Add('X-Robots-Tag: index');
               //bKeepLooping := SetObjectMetadataAndHeaders(StorageService, BucketName,
               //  OriginalObjName, MetaDataList, DesiredHeaders, amzbaPublicRead,
               //  ResponseInfo);
@@ -316,8 +357,10 @@ begin
                 begin
                   // Failed to set amzbaPublicRead for
                   // assets.http:--test.domain.info-2013-.plist
-                  CSSendWarning('Failed to set amzbaPublicRead for ' +
+                  {$IF Defined(CodeSite)}
+                  CodeSite.SendWarning('Failed to set amzbaPublicRead for ' +
                     OriginalObjName);  // DELPHI error, not AWS error.
+                  {$IFEND}
                   //Inc(ExitCode);
                 end;
               end
@@ -332,20 +375,22 @@ begin
             begin
               if ChangeCounter >= MaxFilesToTouch then
               begin
+                {$IF Defined(ZMLog)}
                 CSSend('Quit due to ChangeCounter', S(ChangeCounter));
+                {$IFEND}
                 bKeepLooping := False;
                 break; // out of For-Loop
               end;
             end;
 
-            {$IFDEF DEBUG}
+            {$IF Defined(DEBUG) and Defined(ZMLog)}
             if GeneralCounter > 9 then
             begin
                 CSSend('Quit due to GeneralCounter', S(GeneralCounter));
                 bKeepLooping := False;
                 break; // out of For-Loop
             end;
-            {$ENDIF}
+            {$IFEND}
           end;
 
           if NOT BucketContents.IsTruncated then
@@ -361,10 +406,11 @@ begin
     end;
   end;
 
+  {$IFDEF ZMLog}
   CSSend('ChangeCounter', S(ChangeCounter));
   CSSend('GeneralCounter', S(GeneralCounter));
-
   CSExitMethod(nil, cFn);
+  {$ENDIF}
 end;
 
 end.

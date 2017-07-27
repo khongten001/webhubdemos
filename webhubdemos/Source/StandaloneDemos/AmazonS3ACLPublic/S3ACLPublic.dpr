@@ -46,6 +46,9 @@ var
   MaxFilesToTouch: Integer;
 
 begin
+
+  // non-gui console application can be called from task manager, web pages...
+
   if (ParamCount = 0) or HaveParam('/?') or HaveParam('--help') then
   begin
     SetCodeSiteLoggingState([cslAll]);
@@ -80,7 +83,7 @@ begin
     MaxFilesToTouch := StrToIntDef(ParamString('MaxFiles'), 0);
 
     try
-      TagPublic(bActionIt, bucketName, leadingPath, matchThis,
+      TagPublic(bActionIt, 'http', bucketName, leadingPath, matchThis,
         awsKey, awsSecret, JustRootFolder, MaxFilesToTouch, awsRegion);
     except
       on E: Exception do
@@ -88,4 +91,5 @@ begin
     end;
 
   end;
+
 end.
