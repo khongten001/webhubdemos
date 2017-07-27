@@ -172,7 +172,7 @@ begin
           OptionalParams.Clear;
           if BucketMarker <> '' then
             OptionalParams.Add('marker=' + BucketMarker);
-          OptionalParams.Add('max-keys=500');
+          OptionalParams.Add('max-keys=3000');  // default is 1000
           try
             { in DEBUG mode, if the Forms unit has not been included,
             TMSXMLDOMDocumentFactory.CreateDOMDocument can
@@ -205,9 +205,8 @@ begin
             Continue;
           end;
 
-
-          CSSend('BucketContents.Objects.Count=' +
-            S(BucketContents.Objects.Count));
+          //CSSend('BucketContents.Objects.Count=' +
+          //  S(BucketContents.Objects.Count));
 
           if BucketContents.Objects.Count <= 0 then
           begin
@@ -218,8 +217,8 @@ begin
           for S3Object in BucketContents.Objects do
           begin
             Inc(GeneralCounter);
-            if GeneralCounter mod 25 = 0 then
-              CSSend('   ' + S(GeneralCounter));
+            //if GeneralCounter mod 25 = 0 then
+            //  CSSend('   ' + S(GeneralCounter));
 
             OriginalObjName := S3Object.Name;
             BucketMarker := OriginalObjName; // use when response Truncated
@@ -257,7 +256,8 @@ begin
               Continue;
             end;
 
-            CSSend(csmLevel7, 'OriginalObjName', OriginalObjName);
+            if NOT SameText(ExtractFileExt(OriginalObjName), '.jpg') then
+              CSSend(csmLevel7, 'public', OriginalObjName);
 
             if bActionIt then
             begin
@@ -314,9 +314,11 @@ begin
                 if (Copy(OriginalObjName, Length(OriginalObjName) - 9, 9) <>
                   '_$folder$') then
                 begin
-                  CSSendError('Failed to set amzbaPublicRead for ' +
-                    OriginalObjName);
-                  Inc(ExitCode);
+                  // Failed to set amzbaPublicRead for
+                  // assets.http:--test.domain.info-2013-.plist
+                  CSSendWarning('Failed to set amzbaPublicRead for ' +
+                    OriginalObjName);  // DELPHI error, not AWS error.
+                  //Inc(ExitCode);
                 end;
               end
               else
@@ -358,6 +360,9 @@ begin
       FreeAndNil(AmazonConnectionInfo1);
     end;
   end;
+
+  CSSend('ChangeCounter', S(ChangeCounter));
+  CSSend('GeneralCounter', S(GeneralCounter));
 
   CSExitMethod(nil, cFn);
 end;

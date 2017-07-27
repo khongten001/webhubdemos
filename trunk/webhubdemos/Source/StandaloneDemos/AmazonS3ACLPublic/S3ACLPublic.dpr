@@ -60,7 +60,7 @@ begin
     else
     begin
       SetCodeSiteLoggingState([cslAll]);
-      CSSendNote(ReportSyntaxUsed);
+      {$IFDEF DEBUG}CSSendNote(ReportSyntaxUsed);{$ENDIF} // reveals access key.
     end;
 
     bActionIt := NOT HaveParam('/-dryrun');
