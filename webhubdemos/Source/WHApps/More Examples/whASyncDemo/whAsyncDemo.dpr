@@ -39,6 +39,7 @@ uses
   whdemo_ViewSource in '..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDataModule},
   AsyncDm in 'AsyncDm.pas' {dmAsyncDemo: TDataModule},
   SimpleDm in 'SimpleDm.pas' {dmSimpleAsync},
+  ucPipe in '..\..\Externals\misc_free_from_tpack\ucPipe\ucPipe.pas',
   OtlCommon in '..\..\Externals\omnithreadlibrary-read-only\OtlCommon.pas',
   whdemo_DMProjMgr in '..\..\Common\whdemo_DMProjMgr.pas' {DMForWHDemo: TDataModule},
   whAsyncDemo_dmProjMgr in 'whAsyncDemo_dmProjMgr.pas' {DMForWHAsync: TDataModule};
