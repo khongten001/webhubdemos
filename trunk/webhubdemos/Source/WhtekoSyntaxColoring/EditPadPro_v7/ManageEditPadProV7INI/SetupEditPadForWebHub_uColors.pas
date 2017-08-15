@@ -8,7 +8,7 @@ implementation
 
 uses
   Classes, SysUtils, IniFiles,
-  ucLogFil, ZM_CodeSiteInterface,
+  ZM_CodeSiteInterface, uFileIO_Helper,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uPaths;
 
 function WriteHREFToolsColorsToEditPadINI: Boolean;
@@ -79,7 +79,7 @@ begin
     FreeAndNil(iniTrg);
     if Assigned(memo1) then
     begin
-      UTF8StringAppendToFile(IniTargetFilespec, UTF8String(memo1.ToString));
+      StringAppendToUTF8File(IniTargetFilespec, memo1.ToString);
       FreeAndNil(memo1);
       Result := True;
     end;
