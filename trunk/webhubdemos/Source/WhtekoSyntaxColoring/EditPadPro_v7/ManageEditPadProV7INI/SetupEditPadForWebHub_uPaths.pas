@@ -13,9 +13,9 @@ implementation
 
 uses
   Classes, SysUtils,
-  //Registry,
   Windows,
-  ZM_CodeSiteInterface, ucString, ucLogFil;
+  ZM_CodeSiteInterface,
+  ucString;
 
 function EditPadPlusDataRoot: string;
 const cFn = 'EditPadPlusDataRoot';
