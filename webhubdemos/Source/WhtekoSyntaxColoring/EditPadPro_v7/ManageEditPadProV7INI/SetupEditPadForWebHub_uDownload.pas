@@ -26,8 +26,9 @@ implementation
 uses
   Classes, SysUtils,
   Windows, IniFiles, Math,
-  ZM_CodeSiteInterface, ucPos, ucString, ucLogFil,
-  SetupEditPadForWebHub_uPaths;
+  ZM_CodeSiteInterface, ZM_UTF8StringUtils,
+  ucPos, ucString,
+  SetupEditPadForWebHub_uPaths, uFileIO_Helper;
 
 var
   SaveFileTypeID: string = '';
@@ -170,7 +171,7 @@ begin
         RenameFile(TargetFilespec, BakFilespec);
       end;
       LatestStr8 := GetUTF8Resource('Resource_Tools_Ini');
-      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8)); // Ansi
+      StringWriteToAnsiWinFile(TargetFilespec, string(LatestStr8)); // Ansi
     end;
 
     if FlagColor then
@@ -185,7 +186,7 @@ begin
         RenameFile(TargetFilespec, BakFilespec);
       end;
       LatestStr8 := GetUTF8Resource('Resource_Colors_Ini');
-      StringWriteToFile(TargetFilespec, AnsiString(LatestStr8)); // Ansi
+      StringWriteToAnsiWinFile(TargetFilespec, string(LatestStr8)); // Ansi
     end;
   end;
 
@@ -238,7 +239,7 @@ function InstallEditPadv7_Original_Ini: Boolean;
 const cFn = 'InstallEditPadv7_Original_Ini';
 var
   IniFilespec: string;
-  IniContent: AnsiString;
+  IniContent: string;
 begin
   CSEnterMethod(nil, cFn);
 
@@ -247,8 +248,8 @@ begin
   Result := FileExists(IniFilespec);
   if NOT Result then
   begin
-    IniContent := AnsiString(GetUTF8Resource('EditPadPro7_Original_INI'));
-    StringWriteToFile(IniFilespec, IniContent);
+    IniContent := string(GetUTF8Resource('EditPadPro7_Original_INI'));
+    StringWriteToAnsiWinFile(IniFilespec, IniContent);
     Result := FileExists(IniFilespec);
   end;
 
@@ -277,8 +278,8 @@ begin
   Result := FileExists(IniFilespec);
   if Result then
   begin
-    StringAppendToFile(IniFilespec,
-      AnsiString(sLineBreak + FileType33 + sLineBreak));
+    StringAppendToAnsiWinFile(IniFilespec, sLineBreak + FileType33 +
+      sLineBreak);
 
     try
       ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
@@ -311,7 +312,7 @@ begin
   ClipCommands := string(GetUTF8Resource('Resource_Clip_Commands'));
   AtcFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'WebHub_Commands_ClipCollection.atc';
-  StringWriteToFile(AtcFilespec, AnsiString(ClipCommands));
+  StringWriteToAnsiWinFile(AtcFilespec, ClipCommands);
 
   IniFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'EditPadPro7.ini';
@@ -331,7 +332,7 @@ begin
   ClipCommands := string(GetUTF8Resource('Resource_Clip_Objects'));
   AtcFilespec := IncludeTrailingPathDelimiter(EditPadPlusDataRoot) +
     'WebHub_Objects_ClipCollection.atc';
-  StringWriteToFile(AtcFilespec, AnsiString(ClipCommands));
+  StringWriteToAnsiWinFile(AtcFilespec, ClipCommands);
 
   CSExitMethod(nil, cFn);
 end;
@@ -416,8 +417,8 @@ begin
     end;
 
     if bContinue then
-      StringAppendToFile(IniFilespec,
-        AnsiString(sLineBreak + WHBridgeTools + sLineBreak))
+      StringAppendToAnsiWinFile(IniFilespec,
+        sLineBreak + WHBridgeTools + sLineBreak)
     else
       CSSendWarning('bContinue went False');
   end
