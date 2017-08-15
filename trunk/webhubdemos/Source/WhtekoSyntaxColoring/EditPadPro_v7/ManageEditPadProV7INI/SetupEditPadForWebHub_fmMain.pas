@@ -42,8 +42,10 @@ implementation
 
 uses
   //ZaphodsMap,
-  whutil_ZaphodsMap,
-  ucVers, ucShell, uCode,
+  //whutil_ZaphodsMap, // brings in lots of TPack GUI and WebHub units
+  ucVers,
+  ucShell,
+  uCode,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors;
 
 
@@ -155,7 +157,7 @@ begin
   cbFileNav.IsChecked := True;
   cbColor.IsChecked := True;
   cbTools.IsChecked := True;
-  WebHubBinPath := GetWebHubRuntimeInstallBinFolder;
+  WebHubBinPath := 'D:\Apps\HREFTools\WebHub\bin\'; // GetWebHubRuntimeInstallBinFolder;
   Edit1.Text := WebHubBinPath;
 end;
 
