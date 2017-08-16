@@ -1,11 +1,17 @@
 unit whdemo_ViewSource;        { Display .dfm and .pas files over the web for use on http://lite.demos.href.com }
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1998-2017 HREF Tools Corp.  All Rights Reserved Worldwide. * }
+{ * Copyright (c) 1998-2017 HREF Tools Corp.                                 * }
 { *                                                                          * }
-{ * This source code file is part of WebHub v3.1x.  Please obtain a WebHub   * }
-{ * development license from HREF Tools Corp. before using this file, and    * }
-{ * refer friends and colleagues to http://www.href.com/webhub. Thanks!      * }
+{ * This source code file is part of the WebHub Demos.                       * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
 { ---------------------------------------------------------------------------- }
 
 
