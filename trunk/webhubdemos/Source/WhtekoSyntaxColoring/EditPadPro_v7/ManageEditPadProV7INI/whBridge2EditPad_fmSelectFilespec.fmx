@@ -32,7 +32,7 @@ object Form4: TForm4
       Size.PlatformDefault = False
       TabOrder = 1
       Text = 'Ok - Select'
-      TextSettings.Font.Style = [fsBold]
+      TextSettings.Font.StyleExt = {00070000000000000004000000}
       OnClick = ButtonOkClick
     end
   end
@@ -46,7 +46,7 @@ object Form4: TForm4
       Align = Client
       Scale.X = 1.500000000000000000
       Scale.Y = 1.500000000000000000
-      Size.Width = 426.666687011718800000
+      Size.Width = 426.666687011718700000
       Size.Height = 256.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
@@ -54,6 +54,8 @@ object Form4: TForm4
       DefaultItemStyles.ItemStyle = ''
       DefaultItemStyles.GroupHeaderStyle = ''
       DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 422.700000000000000000
+      Viewport.Height = 252.000000000000000000
     end
     object Label1: TLabel
       Align = Client

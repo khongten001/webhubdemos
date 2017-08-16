@@ -1,11 +1,25 @@
- unit whBridge2EditPad_fmSelectFilespec;
+unit whBridge2EditPad_fmSelectFilespec;
+
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014-2017 HREF Tools Corp.                                 * }
+{ *                                                                          * }
+{ * This source code file is part of the WebHub plug-in for EditPad Pro.     * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
 
 interface
 
 uses
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.ListBox, FMX.StdCtrls;
+  FMX.ListBox, FMX.StdCtrls, FMX.Controls.Presentation;
 
 type
   TForm4 = class(TForm)
