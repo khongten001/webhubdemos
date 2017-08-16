@@ -6,7 +6,6 @@ const
   cHREFToolsColorsIniFilespec= 'HREFTools-Colors.ini';
   cHREFToolsEPPToolsIniFilespec= 'HREFTools-EPPTools.ini';
 
-//function EditPadPlusProgramInstallRoot: string;
 function EditPadPlusDataRoot: string;
 
 implementation
@@ -15,16 +14,28 @@ uses
   Classes, SysUtils,
   Windows,
   ZM_CodeSiteInterface,
-  ucString;
+  ucDlgs, ucDlgsGUI, ucString;
 
 function EditPadPlusDataRoot: string;
 const cFn = 'EditPadPlusDataRoot';
+var
+  InfoMsg: string;
 begin
-  CSEnterMethod(nil, cFn);
+  //CSEnterMethod(nil, cFn);
   Result := IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
     'JGsoft\EditPad Pro 7';
-  CSSend('Result', Result);
-  CSExitMethod(nil, cFn);
+  {$IFDEF DEBUG}
+  CSSend(cFn + ': Result', Result);
+  {$ENDIF}
+  if NOT DirectoryExists(Result) then
+  begin
+    InfoMsg := 'The EditPad Pro 7 ' +
+    'data directory should exist before using this utility.' + sLineBreak +
+    sLineBreak + Result;
+    CSSendError(InfoMsg);
+    MsgErrorOk(InfoMsg);
+  end;
+  //CSExitMethod(nil, cFn);
 end;
 
 (*

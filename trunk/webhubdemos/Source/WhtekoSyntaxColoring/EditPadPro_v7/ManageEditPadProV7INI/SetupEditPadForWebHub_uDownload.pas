@@ -32,15 +32,18 @@ uses
 
 var
   SaveFileTypeID: string = '';
+
 function FileTypeID: string;
 const cFn = 'FileTypeID';
 var
   IniFilespec: string;
   Ini: TMemIniFile;
   iFileID: Integer;
+  FileTypesStr: string;
 begin
-  CSEnterMethod(nil, cFn);
+  //CSEnterMethod(nil, cFn);
   Ini:= nil;
+  Result := '-1';
 
   if SaveFileTypeID = '' then
   begin
@@ -50,18 +53,32 @@ begin
     begin
       try
         Ini := TMemIniFile.Create(IniFilespec, TEncoding.UTF8);
-        iFileID := StrToIntDef(Ini.ReadString('Lite', 'FileTypes', ''), -1);
-        SaveFileTypeID := IntToStr(iFileID);  // default id -1 count 0
-        CSSend('SaveFileTypeID', SaveFileTypeID);
+        FileTypesStr := Ini.ReadString('Lite', 'FileTypes', '');
+        iFileID := StrToIntDef(FileTypesStr, -1);
+        if FileTypesStr = '' then
+        begin
+          CSSendError(cFn + ': FileTypesStr is not defined yet in ' +
+            IniFilespec);
+          // do not cache the answer because user might improve things.
+        end
+        else
+        begin
+          SaveFileTypeID := IntToStr(iFileID);  // default id -1 count 0
+          Result := SaveFileTypeID;
+        end;
+        {$IFDEF DEBUG}
+        CSSend(cFn + ': SaveFileTypeID', SaveFileTypeID);
+        {$ENDIF}
       finally
         FreeAndNil(Ini);
       end;
     end
     else
-      CSSendWarning('File does not exist: ' + IniFilespec);
-  end;
-  Result := SaveFileTypeID;
-  CSExitMethod(nil, cFn);
+      CSSendWarning(cFn + ': File does not exist: ' + IniFilespec);
+  end
+  else
+    Result := SaveFileTypeID;
+  //CSExitMethod(nil, cFn);
 end;
 
 
@@ -100,8 +117,31 @@ begin
 end;
 
 function WGetFileNavigation: UTF8String;
+const
+  cFn = 'WGetFileNavigation';
+  cResourceIdentifier = 'Resource_JGFNS';
+var
+  Result16: string;
+  Last2C: string;
+  X, Y: Integer;
 begin
-  Result := GetUTF8Resource('Resource_JGFNS');
+  CSEnterMethod(nil, cFn);
+  Result := GetUTF8Resource(cResourceIdentifier);
+  // make sure 2 CRLF pairs at end of file
+  Result16 := string(Result);
+  X := Length(Result16);
+  Y := 2 * Length(sLineBreak); // 4 on Windows, 2 on Linux: reminder.
+  Last2C := Copy(Result16, X-Y, Y);
+  LogToCodeSiteKeepCRLF('Last2C', Last2C);
+  if Last2C <> sLineBreak + sLineBreak then
+  begin
+    CSSendWarning(cResourceIdentifier + ' lost trailing sLineBreak');
+    Result := Result + sLineBreak;
+  end
+  else
+    CSSendNote('confirming: ' + cResourceIdentifier +
+      ' kept trailing sLineBreak');
+  CSExitMethod(nil, cFn);
 end;
 
 function InstallLatestWebHubFiles(const FlagSyntax, FlagFileNav, FlagTools,
@@ -249,7 +289,15 @@ begin
   if NOT Result then
   begin
     IniContent := string(GetUTF8Resource('EditPadPro7_Original_INI'));
-    StringWriteToAnsiWinFile(IniFilespec, IniContent);
+    try
+      StringWriteToAnsiWinFile(IniFilespec, IniContent);
+    except
+      on E: Exception do
+      begin
+        CSSendException(nil, cFn, E);  // e.g. directory does not exist.
+        //Raise;
+      end;
+    end;
     Result := FileExists(IniFilespec);
   end;
 

@@ -41,17 +41,18 @@ implementation
 {$R *.fmx}
 
 uses
-  //ZaphodsMap,
-  //whutil_ZaphodsMap, // brings in lots of TPack GUI and WebHub units
+  ZM_CodeSiteInterface,
   ucVers,
   ucShell,
   uCode,
+  ucDlgs,
   SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors;
 
 
 procedure TForm2.ButtonInstallNowClick(Sender: TObject);
 var
   bAllGood: Boolean;
+  InfoMsg: string;
 begin
   Label1.Text := '';
   bAllGood := False;
@@ -60,43 +61,65 @@ begin
   if (NOT DirectoryExists(Edit1.Text)) or (NOT FileExists(Edit1.Text +
     'WHBridge2EditPad.exe')) then
   begin
-    ShowMessage(Edit1.Text + ' must point to a directory containing ' +
-      'WHBridge2EditPad.exe, a utility published on ftp://webhub.com');
+    InfoMsg := Edit1.Text + ' must point to a directory containing ' +
+      'WHBridge2EditPad.exe, a utility published on ftp://webhub.com';
+    CSSendWarning(InfoMsg);
+    MsgInfoOk(InfoMsg);
     Label1.Text := 'Fix path to WHBridge2EditPad';
   end
   else
   begin
-    if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
-      cbTools.IsChecked, cbColor.IsChecked) then
+    if StrToIntDef(FileTypeID, 0) <= 0 then
     begin
-      if cbColor.IsChecked then
-      begin
-        if NOT WriteHREFToolsColorsToEditPadINI then
-          Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed'
-        else
-          bAllGood := True;
-      end
-      else
-        bAllGood := True;
-
-      if bAllGood and cbSyntax.IsChecked then
-      begin
-        if NOT IsWHTekoFileTypeInstalled then
-        begin
-          bAllGood := InstallWebHubFileType;
-        end;
-      end;
-
-      if bAllGood and cbTools.IsChecked then
-      begin
-        bAllGood := InstallWHBridgeTools(Edit1.Text);
-      end;
-
-      if bAllGood and cbClipCollections.IsChecked then
-        bAllGood := InstallWebHubClipCollections;
+      InfoMsg := 'The EditPad INI file is not ready for customization yet.' +
+      sLineBreak + sLineBreak +
+      'Please run EditPad, go to Options > Preferences ' +
+      'and change SOMETHING such as ' +
+      'Options > Preferences > Tabs, change font size from 9 to 10. ' +
+      'Apply the change, exit EditPad, and retry here.' + sLineBreak +
+      sLineBreak +
+      'This will cause EditPad to save ALL its default settings including ' +
+      'information about all the filetypes.  Then we can define a filetype ' +
+      'for WebHub *.whteko files.' + sLineBreak + sLineBreak +
+      'You may revert the tab size afterwards if you prefer 9pt.';
+      CSSendError(InfoMsg);
+      MsgErrorOk(InfoMsg);
     end
     else
-      Label1.Text := 'InstallLatestWebHubFiles failed';
+    begin
+
+      if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
+        cbTools.IsChecked, cbColor.IsChecked) then
+      begin
+        if cbColor.IsChecked then
+        begin
+          if NOT WriteHREFToolsColorsToEditPadINI then
+            Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed'
+          else
+            bAllGood := True;
+        end
+        else
+          bAllGood := True;
+
+        if bAllGood and cbSyntax.IsChecked then
+        begin
+          if NOT IsWHTekoFileTypeInstalled then
+          begin
+            bAllGood := InstallWebHubFileType;
+          end;
+        end;
+
+        if bAllGood and cbTools.IsChecked then
+        begin
+          bAllGood := InstallWHBridgeTools(Edit1.Text);
+        end;
+
+        if bAllGood and cbClipCollections.IsChecked then
+          bAllGood := InstallWebHubClipCollections;
+      end
+      else
+        Label1.Text := 'InstallLatestWebHubFiles failed';
+    end;
   end;
   if bAllGood then
   begin
@@ -157,7 +180,11 @@ begin
   cbFileNav.IsChecked := True;
   cbColor.IsChecked := True;
   cbTools.IsChecked := True;
-  WebHubBinPath := 'D:\Apps\HREFTools\WebHub\bin\'; // GetWebHubRuntimeInstallBinFolder;
+
+  //whutil_ZaphodsMap, // brings in lots of TPack GUI and WebHub units
+  // GetWebHubRuntimeInstallBinFolder;
+  WebHubBinPath := 'D:\Apps\HREFTools\WebHub\bin\';
+
   Edit1.Text := WebHubBinPath;
 end;
 
