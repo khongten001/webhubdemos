@@ -18,8 +18,6 @@ uses
 
 function EditPadPlusDataRoot: string;
 const cFn = 'EditPadPlusDataRoot';
-var
-  InfoMsg: string;
 begin
   //CSEnterMethod(nil, cFn);
   Result := IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
@@ -27,14 +25,6 @@ begin
   {$IFDEF DEBUG}
   CSSend(cFn + ': Result', Result);
   {$ENDIF}
-  if NOT DirectoryExists(Result) then
-  begin
-    InfoMsg := 'The EditPad Pro 7 ' +
-    'data directory should exist before using this utility.' + sLineBreak +
-    sLineBreak + Result;
-    CSSendError(InfoMsg);
-    MsgErrorOk(InfoMsg);
-  end;
   //CSExitMethod(nil, cFn);
 end;
 
