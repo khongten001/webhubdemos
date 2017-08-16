@@ -46,7 +46,8 @@ uses
   ucShell,
   uCode,
   ucDlgs,
-  SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors;
+  SetupEditPadForWebHub_uDownload, SetupEditPadForWebHub_uColors,
+  SetupEditPadForWebHub_uPaths;
 
 
 procedure TForm2.ButtonInstallNowClick(Sender: TObject);
@@ -54,6 +55,7 @@ var
   bAllGood: Boolean;
   InfoMsg: string;
 begin
+  ExitCode := 0;
   Label1.Text := '';
   bAllGood := False;
 
@@ -62,72 +64,92 @@ begin
     'WHBridge2EditPad.exe')) then
   begin
     InfoMsg := Edit1.Text + ' must point to a directory containing ' +
-      'WHBridge2EditPad.exe, a utility published on ftp://webhub.com';
-    CSSendWarning(InfoMsg);
-    MsgInfoOk(InfoMsg);
+      'WHBridge2EditPad.exe';
+    CSSendError(InfoMsg);
+    if NOT FIsSilentInstall then
+      MsgInfoOk(InfoMsg);
     Label1.Text := 'Fix path to WHBridge2EditPad';
+    ExitCode := 1;
   end
   else
   begin
-    if StrToIntDef(FileTypeID, 0) <= 0 then
+    if NOT DirectoryExists(EditPadPlusDataRoot) then
     begin
-      InfoMsg := 'The EditPad INI file is not ready for customization yet.' +
-      sLineBreak + sLineBreak +
-      'Please run EditPad, go to Options > Preferences ' +
-      'and change SOMETHING such as ' +
-      'Options > Preferences > Tabs, change font size from 9 to 10. ' +
-      'Apply the change, exit EditPad, and retry here.' + sLineBreak +
-      sLineBreak +
-      'This will cause EditPad to save ALL its default settings including ' +
-      'information about all the filetypes.  Then we can define a filetype ' +
-      'for WebHub *.whteko files.' + sLineBreak + sLineBreak +
-      'You may revert the tab size afterwards if you prefer 9pt.';
+      InfoMsg := 'The EditPad Pro 7 ' +
+      'data directory should exist before using this utility.' + sLineBreak +
+      sLineBreak + EditPadPlusDataRoot;
       CSSendError(InfoMsg);
-      MsgErrorOk(InfoMsg);
+      if NOT FIsSilentInstall then
+        MsgErrorOk(InfoMsg);
+      ExitCode := 3;
     end
     else
     begin
-
-      if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
-        cbTools.IsChecked, cbColor.IsChecked) then
+      if StrToIntDef(FileTypeID, 0) <= 0 then
       begin
-        if cbColor.IsChecked then
-        begin
-          if NOT WriteHREFToolsColorsToEditPadINI then
-            Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed'
-          else
-            bAllGood := True;
-        end
-        else
-          bAllGood := True;
-
-        if bAllGood and cbSyntax.IsChecked then
-        begin
-          if NOT IsWHTekoFileTypeInstalled then
-          begin
-            bAllGood := InstallWebHubFileType;
-          end;
-        end;
-
-        if bAllGood and cbTools.IsChecked then
-        begin
-          bAllGood := InstallWHBridgeTools(Edit1.Text);
-        end;
-
-        if bAllGood and cbClipCollections.IsChecked then
-          bAllGood := InstallWebHubClipCollections;
+        InfoMsg := 'The EditPad INI file is not ready for customization yet.' +
+        sLineBreak + sLineBreak +
+        'Please run EditPad, go to Options > Preferences ' +
+        'and change SOMETHING such as ' +
+        'Options > Preferences > Tabs, change font size from 9 to 10. ' +
+        'Apply the change, exit EditPad, and retry here.' + sLineBreak +
+        sLineBreak +
+        'This will cause EditPad to save ALL its default settings including ' +
+        'information about all the filetypes.  Then we can define a filetype ' +
+        'for WebHub *.whteko files.' + sLineBreak + sLineBreak +
+        'You may revert the tab size afterwards if you prefer 9pt.';
+        CSSendError(InfoMsg);
+        if NOT FIsSilentInstall then
+          MsgErrorOk(InfoMsg);
+        ExitCode := 1;
       end
       else
-        Label1.Text := 'InstallLatestWebHubFiles failed';
+      begin
+
+        if InstallLatestWebHubFiles(cbSyntax.IsChecked, cbFileNav.IsChecked,
+          cbTools.IsChecked, cbColor.IsChecked) then
+        begin
+          if cbColor.IsChecked then
+          begin
+            if NOT WriteHREFToolsColorsToEditPadINI then
+              Label1.Text := 'WriteHREFToolsColorsToEditPadINI failed'
+            else
+              bAllGood := True;
+          end
+          else
+            bAllGood := True;
+
+          if bAllGood and cbSyntax.IsChecked then
+          begin
+            if NOT IsWHTekoFileTypeInstalled then
+            begin
+              bAllGood := InstallWebHubFileType;
+            end;
+          end;
+
+          if bAllGood and cbTools.IsChecked then
+          begin
+            bAllGood := InstallWHBridgeTools(Edit1.Text);
+          end;
+
+          if bAllGood and cbClipCollections.IsChecked then
+            bAllGood := InstallWebHubClipCollections;
+        end
+        else
+          Label1.Text := 'InstallLatestWebHubFiles failed';
+      end;
     end;
   end;
   if bAllGood then
   begin
-    Label1.Text := FormatDateTime('dddd hh:nn', Now) + ': install complete.';
+    InfoMsg := FormatDateTime('dddd hh:nn', Now) + ': install complete.';
+    CSSend(InfoMsg);
+    Label1.Text := InfoMsg;
     if NOT FIsSilentInstall then
       ShowMessage('Done. You may exit this Setup now.');
-  end;
-
+  end
+  else
+    Inc(ExitCode);
 end;
 
 procedure TForm2.ButtonHelpClick(Sender: TObject);
