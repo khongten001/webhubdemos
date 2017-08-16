@@ -1,5 +1,19 @@
 unit WHBridge2EditPad_uIni;
 
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014-2017 HREF Tools Corp.                                 * }
+{ *                                                                          * }
+{ * This source code file is part of the WebHub plug-in for EditPad Pro.     * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
+
 interface
 
 function EPPExtractFileList(const InEditPadIniFilespec: string): string;

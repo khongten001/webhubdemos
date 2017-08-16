@@ -1,5 +1,19 @@
 unit WHBridge2EditPad_fmWHExprHelp;
 
+{ ---------------------------------------------------------------------------- }
+{ * Copyright (c) 2014-2017 HREF Tools Corp.                                 * }
+{ *                                                                          * }
+{ * This source code file is part of the WebHub plug-in for EditPad Pro.     * }
+{ *                                                                          * }
+{ * This file is licensed under a Creative Commons Attribution 2.5 License.  * }
+{ * http://creativecommons.org/licenses/by/2.5/                              * }
+{ * If you use this file, please keep this notice intact.                    * }
+{ *                                                                          * }
+{ * Author: Ann Lynnworth                                                    * }
+{ *                                                                          * }
+{ * Refer friends and colleagues to www.href.com/whvcl. Thanks!              * }
+{ ---------------------------------------------------------------------------- }
+
 interface
 
 {$I hrefdefines.inc}
@@ -11,7 +25,7 @@ uses
   WebHubDWSourceUtil_uGlobal, WebHubDWSourceUtil_uSyntaxRegex,
   WHBridge2EditPad_uExpressionReplacement, FMX.ListBox, FMX.Memo,
   {$IFDEF Delphi21UP}FMX.ComboEdit,{$ENDIF}
-  FMX.Controls.Presentation;
+  FMX.Controls.Presentation, FMX.ScrollBox;
 
 type
   TfmWebHubExpressionHelp = class(TForm)
