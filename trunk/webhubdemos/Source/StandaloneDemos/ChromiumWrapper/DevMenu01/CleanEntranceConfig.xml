@@ -20,12 +20,22 @@
 	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
         </Fields>
     </WebSite>
+    <WebSite id="GSuiteCalendar">
+    	<Caption lingvo="en" value="Google Calendar"/>
+        <Url value="https://calendar.google.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
     <WebSite id="AWS">
     	<Caption lingvo="en" value="AWS Console"/>
         <Url value="https://console.aws.amazon.com/console/home"/>
-        <InputPattern value="all"/>
+        <InputPattern value="individual"/>
         <Fields>
-	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="ap_email"/>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="resolving_input"/>
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
         </Fields>
     </WebSite>
@@ -82,6 +92,16 @@
         <Fields>
 	        <Field lingvo="en" prompt="username" />
 	        <Field lingvo="en" prompt="password" />
+        </Fields>
+    </WebSite>
+
+    <WebSite id="CrazyAU">
+    	<Caption lingvo="en" value="Crazy Domans Australia"/>
+        <Url value="https://www.crazydomains.com.au/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="dropdown_username"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="dropdown_password"/>
         </Fields>
     </WebSite>
 
