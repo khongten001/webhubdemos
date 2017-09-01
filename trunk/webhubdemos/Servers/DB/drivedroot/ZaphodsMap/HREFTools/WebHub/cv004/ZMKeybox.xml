@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <Variables begin="{" end="}">
@@ -7,13 +7,13 @@
     <Var name="AppConfigPath" value="d:\Apps\HREFTools\WebHub\config\"/>
     <Var name="RootForWHSwapFolders" value="C:\whSwap\"/>
   </Variables>
-<!-- the master copy this file is versioned here:
+  <!-- the master copy this file is versioned here:
      webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\WebHub\cv004\ZMKeybox.xml -->
   <KeyGroups>
     <KeyGroup name="WebHub">
       <Keys>
         <Key2File name="CentralInfo" filename="{DataPath}WHCentralInfo.xml"/>
-        <Key2File name="NetworkInfo" filename="{DataPath}WHNetworkInfo.xml" />
+        <Key2File name="NetworkInfo" filename="{DataPath}WHNetworkInfo.xml"/>
         <Key2File name="License" filename="{DataPath}WHLicense.xml"/>
         <Key2File name="ServiceControl" filename="{DataPath}WHServiceControl.xml"/>
         <Key2File name="AppRestorer" filename="{DataPath}WHAppRestorer.xml"/>
