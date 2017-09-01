@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<!--- master copy in 
+D:\Projects\webhubdemos\Servers\DB\drivedroot\ZaphodsMap\HREFTools\Install
+-->
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <KeyGroups>
     <KeyGroup name="WebHub">
       <Keys>
         <key2file name="Install" filename="D:\ZaphodsMap\HREFTools\Install\WebHubInstallationConfig.xml"/>
-        <Key2Value name="ipc" value="x64"/>
       </Keys>
     </KeyGroup>
   </KeyGroups>
