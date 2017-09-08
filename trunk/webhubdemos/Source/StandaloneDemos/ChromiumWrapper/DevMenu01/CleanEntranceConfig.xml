@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CleanEntrance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <WebSites>
+    <WebSite id="GoogleSearch">
+    	<Caption lingvo="en" value="Google Search"/>
+        <Url value="https://www.google.com/"/>
+    </WebSite>
     <WebSite id="GooglePlusGSuite">
     	<Caption lingvo="en" value="GooglePlus"/>
         <Url value="https://plus.google.com/"/>
@@ -73,6 +77,16 @@
         <Fields>
 	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
 	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
+        </Fields>
+    </WebSite>
+    <WebSite id="GoogleWebmasterGSuite">
+    	<Caption lingvo="en" value="Google Webmaster Tools"/>
+        <Url value="https://www.google.com/webmasters/tools/"/>
+        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
         </Fields>
     </WebSite>
     <WebSite id="007">
