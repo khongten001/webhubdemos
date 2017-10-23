@@ -385,11 +385,16 @@ end;
 procedure TDemoExtensions.waAWSCloudFrontSecurityProviderExecute(
   Sender: TObject);
 const cFn = 'waAWSCloudFrontSecurityProviderExecute';
+const
+  cCloudFrontCookie = 'CloudFrontCookie';
 var
   url: string;
   minutesToLiveStr: string;
   restrictByIPStr: string;
   protectedURL: string;
+  aHtmlParam: string;
+  aSecondKeyword: string;
+  aPolicy: string;
 var
   tempStr: string;
 begin
@@ -412,10 +417,38 @@ begin
 	tempStr := TwhWebAction(Sender).StringFromConfig('PrivateKeyPEM', '');
 	if tempStr = '' then
   		tempStr := StringLoadFromFile(FCFSP.DiskFolder +
-		'demos.cloudfront.pem');
+		'demos.cloudfront.pem')
+  else
+    tempStr := StringLoadFromFile(tempStr);
 	FCFSP.PrivateKeyPEM := tempStr;
 
-  if SplitThree(TwhWebAction(Sender).HtmlParam, ' | ', url, minutesToLiveStr,
+  aHtmlParam := TwhWebAction(Sender).HtmlParam;
+  if Copy(aHtmlParam, 1, Length(cCloudFrontCookie)) = cCloudFrontCookie then
+  begin
+    CSSend('FCFSP.KeyPairID', FCFSP.KeyPairID);
+    CSSend('FCFSP.PrivateKeyPEM', Copy(FCFSP.PrivateKeyPEM, 1, 80));
+    if SplitThree(aHtmlParam, '; ', TempStr, aSecondKeyword, aPolicy) then
+    begin
+      if aSecondKeyword = 'signature' then
+      begin
+        CSSend(cFn + ': aPolicy unexpanded', aPolicy);
+        aPolicy := pWebApp.Expand(aPolicy);
+        CSSend(cFn + ': Policy expanded', aPolicy);
+        FCFSP.Policy := aPolicy;
+        tempStr := FCFSP.Sign(FCFSP.Policy);
+        CSSend(cFn + ': ' + cCloudFrontCookie, tempStr);
+        pWebApp.SendStringImm(tempStr);
+      end
+      else
+        LogProgrammerErrorToCodeSite(cFn + ': unsupported second keyword: ' +
+          aSecondKeyword);
+    end
+    else
+      LogProgrammerErrorToCodeSite(cFn + ': invalid syntax for ' +
+        cCloudFrontCookie);
+  end
+  else
+  if SplitThree(aHtmlParam, ' | ', url, minutesToLiveStr,
     restrictByIPStr) then
   begin
     url := pWebApp.Expand(url);
