@@ -51,7 +51,6 @@ uses
   whdemo_ViewSource in '..\..\..\Common\whdemo_ViewSource.pas' {DemoViewSource: TDemoViewSource},
   whdemo_Extensions in '..\..\..\Common\whdemo_Extensions.pas' {DemoExtensions: TDataModule},
   whdemo_About in '..\..\..\Common\whdemo_About.pas' {fmAppAboutPanel},
-  whpanel_RemotePages in 'h:\whpanel_RemotePages.pas' {fmWhDreamweaver: TfmWhDreamweaver},
   whpanel_Mail in 'h:\whpanel_Mail.pas' {fmWebMail},
   dmWHApp in 'h:\dmWHApp.pas' {dmWebHubApp: TDataModule},
   whMain in 'h:\whMain.pas' {fmWebHubMainForm},
@@ -65,9 +64,9 @@ uses
   whcfg_App in 'k:\webhub\lib\whcfg_App.pas',
   ucAWS_Security in 'H:\ucAWS_Security.pas',
   ucAWS_S3_Upload in 'H:\ucAWS_S3_Upload.pas',
+  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas',
   uAutoDataModules in 'k:\webhub\lib\uAutoDataModules.pas',
-  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas',
-  ucAWS_CloudFront_PrivateURLs in 'H:\ucAWS_CloudFront_PrivateURLs.pas'
+  uAutoPanels in 'k:\webhub\lib\uAutoPanels.pas'
   ;
 
 (* only if you want to compile with Chilkat RSA for comparison,
