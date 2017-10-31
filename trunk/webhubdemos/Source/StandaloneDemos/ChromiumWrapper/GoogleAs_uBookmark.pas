@@ -31,8 +31,13 @@ uses
   ZaphodsMap;
 
 const
-  cGoogleAs_ZMBranch = 'HREFTools' + PathDelim + 'CleanEntrance' + PathDelim +
-    'cv001';
+  cGoogleAs_ProgramNickname = 'CleanEntrance';
+  cGoogleAs_ZMBranch = 'HREFTools' + PathDelim + cGoogleAs_ProgramNickname +
+    PathDelim + 'cv001';
+const
+  cDefaultConfigFilespec = 'D:\Projects\webhubdemos\Source\StandaloneDemos\' +
+    'ChromiumWrapper\' +
+    'DevMenu01\' + cGoogleAs_ProgramNickname + 'Config.xml';
 
 type
   /// <summary> lipAll means all fields entered at once on the same page.
@@ -89,10 +94,11 @@ begin
     ZM := TZaphodsMap.CreateForBranch(nil, cGoogleAs_ZMBranch);
     if ZM.BranchKeyboxExists then
     begin
-      ADoc := ZM.ActivateKeyDoc('CleanEntrance', 'main', cxOptional, usrNone,
-        'CleanEntrance',
-        'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\' +
-        'DevMenu01\CleanEntranceConfig.xml');
+      ADoc := ZM.ActivateKeyDoc(cGoogleAs_ProgramNickname, 'main', cxOptional,
+        usrNone,
+        cGoogleAs_ProgramNickname,
+        cDefaultConfigFilespec
+        );
 
       if ADoc <> nil then
       begin
