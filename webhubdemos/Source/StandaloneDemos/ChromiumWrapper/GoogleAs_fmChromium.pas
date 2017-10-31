@@ -507,7 +507,7 @@ begin
   if (ParamCount >= 2) then
     Self.Caption := ParamStr(2) // email address or username, usually.
   else
-    Self.Caption := 'GoogleAs';
+    Self.Caption := cGoogleAs_ProgramNickname;
   FActiveTitle := Application.Title;
   //FStartURL := 'https://plus.google.com';
   FChromium1 := nil;
@@ -664,7 +664,8 @@ begin
 
   OutputPDFFilespec := AppDataGoogleAs + 'pdf';
   ForceDirectories(OutputPDFFilespec);
-  OutputPDFFilespec := OutputPDFFilespec + PathDelim + 'GoogleAs_' +
+  OutputPDFFilespec := OutputPDFFilespec + PathDelim +
+    cGoogleAs_ProgramNickname + '_' +
     FormatDateTime('yyyy-mm-dd_hhnn', Now) + '.pdf';
   CSSend('OutputPDFFilespec', OutputPDFFilespec);
 

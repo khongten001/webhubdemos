@@ -32,17 +32,18 @@ uses
   ZM_CodeSiteInterface,
   ceflib;
 
-function AppDataGoogleAs: string;
-function CacheFolderRoot: string;
+function  AppDataGoogleAs: string;
+function  CacheFolderRoot: string;
 procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
-function IsPrimaryProcess: Boolean;
+function  IsPrimaryProcess: Boolean;
 
 var
   SharedFlag: TSharedStr = nil;
   SharedCache: TSharedStr = nil;
   SharedInstanceCount: TSharedInt = nil;
+  SharedPersistSessionCookies: TSharedInt = nil;
 
 implementation
 
@@ -54,8 +55,9 @@ uses
   System.Types,
   System.UITypes
   {$ENDIF}
+  , ZM_LoggingBase, ZaphodsMap
   , ucString, ucShellProcessCntrl, uCode, ucDlgs,
-  GoogleAs_fmChromium;
+  GoogleAs_uBookmark, GoogleAs_fmChromium;
 
 function IsPrimaryProcess: Boolean;
 const cFn = 'IsPrimaryProcess';
@@ -101,11 +103,45 @@ begin
 end;
 
 function AppDataGoogleAs: string;
+const cFn = 'AppDataGoogleAs';
+var
+  ZM: TZaphodsMap;
+  ADoc: TZaphodXmlDoc;
 begin
-  // for Windows: write end-user files to the data area (not program files)
-  Result :=
-    IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
-      'GoogleAs' + PathDelim;
+  ZM := nil;
+  Result := '';
+
+  try
+    ZM := TZaphodsMap.CreateForBranch(nil, cGoogleAs_ZMBranch);
+    if ZM.BranchKeyboxExists then
+    begin
+      ADoc := ZM.ActivateKeyDoc(cGoogleAs_ProgramNickname, 'main', cxOptional,
+        usrNone,
+        cGoogleAs_ProgramNickname,
+        cDefaultConfigFilespec
+        );
+
+      if ADoc <> nil then
+      begin
+        Result := ADoc.ZNodeAttr(nil,
+            ['Data', 'CacheFolderRoot'], cxOptional, '', 'value');
+      end;
+    end;
+  finally
+    ZM.DeactivateAllKeys;
+    FreeAndNil(ZM);
+  end;
+
+  if Result = '' then
+  begin
+    // for Windows: write end-user files to the data area (not program files)
+    Result :=
+      IncludeTrailingPathDelimiter(GetEnvironmentVariable('AppData')) +
+        cGoogleAs_ProgramNickname + PathDelim;
+  end
+  else
+    Result := IncludeTrailingPathDelimiter(Result);
+  CSSend(cFn + ': Result', Result);
 end;
 
 function CacheFolderRoot: string;
@@ -128,13 +164,14 @@ begin
     if ParamCount >= 1 then
     begin
 
-      Extra := Trim(ParamStr(1));
+      Extra := Trim(ParamStr(1)); // bookmark identifier
       if Extra <> '' then
       begin
         if Extra[1] = '-' then  // --type=gpu-process
           Extra := ''
         else
         begin
+          Extra := Extra + '_' + Trim(ParamStr(2)); // email address
           Extra := StringReplaceAll(Extra, '@', '_');
           Extra := StringReplaceAll(Extra, '.', '_');
           Extra := PathDelim + Extra;
@@ -200,14 +237,14 @@ begin
     CSSend('ParamStr(' + S(i) +')', ParamStr(i));
 
   SharedFlag := TSharedStr.CreateNamed(nil, 
-    'GoogleAsStartup', 
+    cGoogleAs_ProgramNickname + 'Startup',
     1024, 
     cReadWriteSharedMem,  // not readonly
     cLocalSharedMem);     // no need for global memory
   SharedFlag.Name := 'SharedFlag';
   SharedFlag.IgnoreOwnChanges := True;   // dual process !!
 
-  SharedInstanceCount := TSharedInt.CreateNamed(nil, 
+  SharedInstanceCount := TSharedInt.CreateNamed(nil,
     ExtractFilename(ParamStr(0)),
     cReadWriteSharedMem,  // not readonly
     cLocalSharedMem);     // no need for global memory
@@ -216,10 +253,15 @@ begin
   CSSend(SharedInstanceCount.GlobalName + '.GlobalInteger',
     S(SharedInstanceCount.GlobalInteger));
 
+  SharedPersistSessionCookies := TSharedInt.CreateNamed(nil,
+    'PersistSessionCookies',
+    cReadWriteSharedMem,  // not readonly
+    cLocalSharedMem);     // no need for global memory
+
   FlagIsPrimaryProcess := IsPrimaryProcess;
 
   CSSend('about to figure DivName');
-  DivName := 'GoogleAs_' + IntToStr(PrimaryProcessPID);
+  DivName := cGoogleAs_ProgramNickname + '_' + IntToStr(PrimaryProcessPID);
   CSSend('DivName', DivName);
 
   {NB: global UTF8 string is not available to additional processes unless the
@@ -290,12 +332,24 @@ begin
   RemoteDebuggingPort := 0;
   UncaughtExceptionStackSize := 0;
   ContextSafetyImplementation := 0;
-  PersistSessionCookies := False;
+  if (FlagIsPrimaryProcess) then
+  begin
+    if HaveParam('/NoEraseCache') then
+      SharedPersistSessionCookies.GlobalInteger := 1
+    else
+      SharedPersistSessionCookies.GlobalInteger := 0;
+  end;
+  PersistSessionCookies := (SharedPersistSessionCookies.GlobalInteger = 1);
+  CSSend(cFn + ': PersistSessionCookies', S(PersistSessionCookies));
   IgnoreCertificateErrors := False;
   NoSandbox := False;
   WindowsSandboxInfo := nil;
   WindowlessRenderingEnabled := True;
-  UserDataPath := ''; // use default
+  UserDataPath := StringReplace(Cache,
+    PathDelim + 'cache' + PathDelim,
+    PathDelim + 'UserDataPath' + PathDelim, []);
+  CSSend(cFn + ': UserDataPath', UserDataPath);
+  ForceDirectories(UserDataPath);
   AcceptLanguageList := ''; // use default
 
 (*
@@ -351,15 +405,21 @@ begin
     it deletes everything EXCEPT the 4 control files. Therefore
     counter-productive. The 4 control files are locked as long as the CEF
     library is in memory. }
-  if DirectoryExists(CacheFolderRoot) then
+
+  if NOT HaveParam('/NoEraseCache') then
   begin
-  for Filespec in TDirectory.GetFiles(CacheFolderRoot, '*.*') do
-  begin
-    {$IFDEF DEBUG}
-    CSSendWarning('Deleting ' + Filespec);
-    {$ENDIF}
-    SysUtils.DeleteFile(Filespec);
-  end;
+
+    if DirectoryExists(CacheFolderRoot) then
+    begin
+      for Filespec in TDirectory.GetFiles(CacheFolderRoot, '*.*') do
+      begin
+        //{$IFDEF DEBUG}
+        LogSendWarning('Deleting ' + Filespec);
+        //{$ENDIF}
+        SysUtils.DeleteFile(Filespec);
+      end;
+    end;
+
   end;
   CSExitMethod(nil, cFn);
 end;
@@ -392,11 +452,11 @@ end;
 initialization
   CoInitialize(nil);  // for WinShellOpen of PDF files
   {$IFDEF CodeSite}
-  {$IFDEF DEBUG}
+  {$IF Defined(DEBUG)}
   SetCodeSiteLoggingState([cslAll]); // Developer DEBUG mode
   {$ELSE}
   SetCodeSiteLoggingState([cslWarning, cslError, cslException]); // default, until configuration is loaded.
-  {$ENDIF}
+  {$IFEND}
   {$ENDIF}
 
 finalization
@@ -407,7 +467,7 @@ finalization
   except
     on E: Exception do
     begin
-      CSSendError('finalization of uCEF3_Init.pas');
+      CSSendError('detected Exception in finalization of uCEF3_Init.pas');
       CSSendException(E);
     end;
   end;
