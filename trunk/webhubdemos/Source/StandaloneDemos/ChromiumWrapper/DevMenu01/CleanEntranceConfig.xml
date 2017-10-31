@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CleanEntrance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Data>
+    <CacheFolderRoot value="c:\temp\CleanEntrance\"/>
+  </Data>
   <WebSites>
     <WebSite id="GoogleSearch">
     	<Caption lingvo="en" value="Google Search"/>
