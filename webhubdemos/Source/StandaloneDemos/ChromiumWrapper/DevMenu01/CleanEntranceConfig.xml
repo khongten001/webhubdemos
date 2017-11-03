@@ -4,6 +4,17 @@
     <CacheFolderRoot value="c:\temp\CleanEntrance\"/>
   </Data>
   <WebSites>
+
+    <WebSite id="BingWebmaster">
+    	<Caption lingvo="en" value="Bing Webmaster"/>
+        <Url value="https://www.bing.com/toolbox/webmaster/"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+        <Fields>
+	        <Field lingvo="en" prompt="username" />
+	        <Field lingvo="en" prompt="password" />
+        </Fields>
+    </WebSite>
+
     <WebSite id="GoogleSearch">
     	<Caption lingvo="en" value="Google Search"/>
         <Url value="https://www.google.com/"/>
@@ -102,13 +113,13 @@
         </Fields>
     </WebSite>
 
-    <WebSite id="BingWebmaster">
-    	<Caption lingvo="en" value="Bing Webmaster"/>
-        <Url value="https://www.bing.com/toolbox/webmaster/"/>
-        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+    <WebSite id="CoinBase">
+    	<Caption lingvo="en" value="CoinBase"/>
+        <Url value="https://www.coinbase.com/signin/"/>
+        <InputPattern value="all"/>
         <Fields>
-	        <Field lingvo="en" prompt="username" />
-	        <Field lingvo="en" prompt="password" />
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="email"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="password"/>
         </Fields>
     </WebSite>
 
@@ -122,6 +133,16 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="MailDotCom">
+    	<Caption lingvo="en" value="mail.com"/>
+        <Url value="https://www.mail.com/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="login-email"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="login-password"/>
+        </Fields>
+    </WebSite>
+
     <WebSite id="WordPress">
     	<Caption lingvo="en" value="WordPress"/>
         <Url value="https://wordpress.com/log-in/"/>
@@ -131,5 +152,6 @@
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="password"/>
         </Fields>
     </WebSite>
+
   </WebSites>
 </CleanEntrance>
