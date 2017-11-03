@@ -15,6 +15,12 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="GDAX">
+    	<Caption lingvo="en" value="GDAX"/>
+        <Url value="https://www.gdax.com/"/>
+        <!--- login with CoinBase -->
+    </WebSite>
+
     <WebSite id="GoogleSearch">
     	<Caption lingvo="en" value="Google Search"/>
         <Url value="https://www.google.com/"/>
