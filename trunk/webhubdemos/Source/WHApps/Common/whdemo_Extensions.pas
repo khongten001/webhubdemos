@@ -23,7 +23,7 @@ interface
 uses
   Windows, SysUtils, Classes, Controls,
   System.Actions, Vcl.ActnList,
-  MultiTypeApp, updateOk, tpAction, tpActionGUI, tpShareI,
+  MultiTypeApp, updateOk, tpAction, tpActionGUI, 
   ucAWS_CloudFront_PrivateURLs,
   whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
