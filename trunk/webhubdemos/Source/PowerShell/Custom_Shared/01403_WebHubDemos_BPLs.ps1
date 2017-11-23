@@ -14,6 +14,6 @@ elseif ($Global:ZMGlobalContext -eq 'DORIS') { $Global:FlagRedistWin32 = "0" }
 
 # The following script is available at riouxsvn.  Create an account there and ask HREF Tools Customer Support to 
 # add you to the team list for access.
-Invoke-Expression ($PSScriptRoot + "01403_D25_Redist_BPLs.ps1")
+Invoke-Expression ($PSScriptRoot + "\01403_D25_Redist_BPLs.ps1")
 
 
