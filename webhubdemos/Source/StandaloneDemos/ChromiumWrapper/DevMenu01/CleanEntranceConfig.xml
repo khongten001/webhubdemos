@@ -15,6 +15,14 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="FacebookDev">
+    	<Caption lingvo="en" value="Facebook Dev Apps"/>
+        <Url value="https://developers.facebook.com/apps"/>
+        <InputPattern value="individual"/>
+        <Fields>
+        </Fields>
+    </WebSite>
+
     <WebSite id="GDAX">
     	<Caption lingvo="en" value="GDAX"/>
         <Url value="https://www.gdax.com/"/>
@@ -52,6 +60,22 @@
 	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
 		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
+    <WebSite id="Janrain">
+    	<Caption lingvo="en" value="Janrain Single Sign-On"/>
+        <Url value="https://dashboard.janrain.com/signin?dest=http://janrain.com"/>
+        <InputPattern value="individual"/>
+        <Fields><!--- sign in with .... -->
+        </Fields>
+    </WebSite>
+    <WebSite id="Twitter">
+    	<Caption lingvo="en" value="Twitter Dev Apps"/>
+        <Url value="https://dev.twitter.com/apps"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="Phone or EMail or Username"    htmlAttr="name" htmlField="session[username_or_email]"/>
+	        <Field lingvo="en" prompt="Password" htmlAttr="name" htmlField="session[password]"/>
         </Fields>
     </WebSite>
     <WebSite id="AWS">
