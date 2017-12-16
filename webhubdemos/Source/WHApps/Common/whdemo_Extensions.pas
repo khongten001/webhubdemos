@@ -405,8 +405,10 @@ begin
     
 	tempStr := TwhWebAction(Sender).StringFromConfig('KeyPairID', '');
 	if tempStr = '' then
-		tempStr := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
-		FCFSP.KeyPairID := tempStr;
+		tempStr := 'APKAIGAY3EJC77HVGRFQ' // visible in URL
+  else
+    tempStr := pWebApp.MoreIfParentild(tempStr);  // can expand an AppSetting
+  FCFSP.KeyPairID := tempStr;
 	tempStr := TwhWebAction(Sender).StringFromConfig('DiskFolder', '');
 	if tempStr = '' then  // blank in XML for showcase demo.
 		tempStr := getWebHubDemoInstallRoot + 'Source\WHApps\' +
@@ -419,7 +421,10 @@ begin
   		tempStr := StringLoadFromFile(FCFSP.DiskFolder +
 		'demos.cloudfront.pem')
   else
+  begin
+    tempStr := pWebApp.MoreIfParentild(tempStr);  // allow parentils here.
     tempStr := StringLoadFromFile(tempStr);
+  end;
 	FCFSP.PrivateKeyPEM := tempStr;
 
   aHtmlParam := TwhWebAction(Sender).HtmlParam;
