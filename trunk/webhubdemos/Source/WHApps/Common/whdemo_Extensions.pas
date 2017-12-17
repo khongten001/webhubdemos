@@ -296,7 +296,16 @@ begin
   FCFSP.Policy := FCFSP.GetPolicyAsStr(url, expiresOnAt, restrictByIPStr);
   CSSend(csmLevel5, cFn + ': Policy', FCFSP.Policy);
 
-  Result := FCFSP.GetCustomUrl(url);
+  try
+    Result := FCFSP.GetCustomUrl(url);
+  except
+    on E: Exception do
+    begin
+      CSSendError(cFn + ' Failure. ' +
+        'Reminder: make sure the OpenSSL libraries are on the PATH.');
+      CSSendException(Self, cFn, E);
+    end;
+  end;
 
   CSExitMethod(Self, cFn);
 end;
