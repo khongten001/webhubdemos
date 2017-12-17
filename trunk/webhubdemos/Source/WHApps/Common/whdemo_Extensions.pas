@@ -387,6 +387,7 @@ procedure TDemoExtensions.waAWSCloudFrontSecurityProviderExecute(
 const cFn = 'waAWSCloudFrontSecurityProviderExecute';
 const
   cCloudFrontCookie = 'CloudFrontCookie';
+  cCloudFrontKeyPairID = 'CloudFrontKeyPairID';
 var
   url: string;
   minutesToLiveStr: string;
@@ -451,6 +452,12 @@ begin
     else
       LogProgrammerErrorToCodeSite(cFn + ': invalid syntax for ' +
         cCloudFrontCookie);
+  end
+  else
+  if aHtmlParam = cCloudFrontKeyPairID then
+  begin
+    CSSend(cFn + ': ' + cCloudFrontKeyPairID, FCFSP.KeyPairID);
+    pWebApp.SendStringImm(FCFSP.KeyPairID);
   end
   else
   if SplitThree(aHtmlParam, ' | ', url, minutesToLiveStr,
