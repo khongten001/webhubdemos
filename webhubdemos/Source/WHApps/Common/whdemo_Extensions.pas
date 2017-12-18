@@ -232,7 +232,10 @@ begin
   if FAdminIpNumber <> '' then
     {$IFNDEF LogSTime}CSSend(cFn + ': FAdminIpNumber', FAdminIpNumber){$ENDIF}
   else
-    LogSendError(cFn + ': File not found or empty: ' + AdminFilespec);
+  begin
+    if IsDemoRootKnown then
+      CSSend(csmLevel5, cFn + ': File not found or empty: ' + AdminFilespec);
+  end;
 
   {$IFNDEF LogSTime}
   CSSend('pWebApp.DynURL.CurrentServerProfile.Authority',
