@@ -2,10 +2,10 @@
 setlocal
 set dcc=D:\Apps\Embarcadero\RADStudio\7.0\bin\dcc32.exe
 
-set libsearchpath=h:\;h:\d14;h:\pkgd14;k:\Rubicon\source;k:\Rubicon\source\inc;D:\vcl\ibo\4.8.6;D:\vcl\EurekaLog6\Delphi14
+set libsearchpath=h:\;h:\d14;h:\pkgd14;K:\Rubicon_Rioux\rubicon\source;K:\Rubicon_Rioux\rubicon\source\inc;D:\vcl\ibo\4.8.6;D:\vcl\EurekaLog6\Delphi14
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set compilerflags=PREVENTSVCMGR
-set includepath=h:\;D:\vcl\ibo\4.8.6;k:\Rubicon\source;k:\Rubicon\source\inc;
+set includepath=h:\;D:\vcl\ibo\4.8.6;K:\Rubicon_Rioux\rubicon\source;K:\Rubicon_Rioux\rubicon\source\inc;
 
 
 cd /D D:\Projects\webhubdemos\Source\SeleniumTests\DelphiDriver\TestFileCleanup

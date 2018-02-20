@@ -20,11 +20,11 @@ call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv0
 
 set wbits=32
 call %~dp0set-raizepath.bat
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win32;k:\Rubicon\source;%droot%lib\win32\release;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win32;K:\Rubicon_Rioux\rubicon\source;%droot%lib\win32\release;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE;%compilerflagsplus%
-set includepath=h:\;k:\Rubicon\source\inc;
+set includepath=h:\;K:\Rubicon_Rioux\rubicon\source\inc;
 
 if NOT "%compilerflagsplus%"=="" %CSSend% "compilerflags" "%compilerflags%"  %CSLogPathParams%
 

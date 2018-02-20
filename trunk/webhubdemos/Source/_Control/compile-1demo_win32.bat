@@ -25,7 +25,7 @@ call %~dp0set-raizepath.bat
 set eurpath=D:\vcl\EurekaLog7\Lib\Win32\Release\Delphi%compilerdigits%
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
-set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;k:\webhub\lib\whplus\rubi;k:\Rubicon\source;%ibopath%;%droot%lib\win32\release;D:\vcl\NexusDB4;%eurpath%
+set libsearchpath=h:\;h:\dcu_d%compilerdigits%_win32;h:\pkg_d%compilerdigits%_win32;k:\webhub\lib\whplus\rubi;K:\Rubicon_Rioux\rubicon\source;%ibopath%;%droot%lib\win32\release;D:\vcl\NexusDB4;%eurpath%
 :: async requires OTL OmniThreadLibrary
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only
 set outputroot=%~dp0..\..\Live\WebHub\Apps
@@ -36,7 +36,7 @@ if "%compilerdigits%"=="24" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="23" set pkg=%pkg%;vcldbx
 if "%compilerdigits%"=="22" set pkg=%pkg%;vcldbx;bdertl
 set compilerflags=PREVENTSVCMGR;INHOUSE;use_IBO;USE_TIBODataset;
-set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
+set includepath=h:\;K:\Rubicon_Rioux\rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
 :: %CSSend% libsearchpath %libsearchpath% %CSLogPathParams%
 :: %CSSend% pkg %pkg% %CSLogPathParams%
