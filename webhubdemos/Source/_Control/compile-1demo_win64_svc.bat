@@ -43,7 +43,7 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 :LocalRepeat
 @echo on
 set ok1=yes
-"%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -UD:\vcl\NexusDB4;k:\Rubicon\source; -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -UD:\vcl\NexusDB4;K:\Rubicon_Rioux\rubicon\source; -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile" %CSLogPathParams%
 if "%ok1%"=="no" pause

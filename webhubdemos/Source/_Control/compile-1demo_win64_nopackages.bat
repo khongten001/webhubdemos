@@ -18,13 +18,13 @@ call "%ZaphodsMap%zmset.bat" cslibroot UsingKey2Folder "HREFTools\Production\cv0
 
 set wbits=64
 call %~dp0set-raizepath.bat
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;k:\Rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;K:\Rubicon_Rioux\rubicon\source;K:\Vendors\CPS\IBObjects\v5.x;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg=
 :: flags off: ;LogAppTick;LOGIPC;LogHELO
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\
+set includepath=h:\;K:\Rubicon_Rioux\rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\
 
 :: extra parameters for Delphi XE2
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows

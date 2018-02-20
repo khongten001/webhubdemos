@@ -21,7 +21,7 @@ set wbits=64
 call %~dp0set-raizepath.bat
 
 set ibopath=K:\Vendors\CPS\IBObjects\v5.x\source\common;K:\Vendors\CPS\IBObjects\v5.x\source\tdataset;K:\Vendors\CPS\IBObjects\v5.x\source\tools;K:\Vendors\CPS\IBObjects\v5.x\source\core;K:\Vendors\CPS\IBObjects\v5.x\source\access
-set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;k:\Rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
+set libsearchpath="h:\;h:\dcu_d%compilerdigits%_win64;h:\pkg_d%compilerdigits%_win64;K:\Rubicon_Rioux\rubicon\source;%ibopath%;%droot%lib\win64\release;D:\vcl\NexusDB4;"
 :: async requires OTL OmniThreadLibrary
 :: showcase: AWS file upload and file download requires Chilkat
 set libsearchpath=%libsearchpath%;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only\src;D:\Projects\webhubdemos\Source\WHApps\Externals\omnithreadlibrary-read-only;D:\Projects\webhubdemos\Source\WHApps\Externals\chilkat-9.5.0-delphi
@@ -30,7 +30,7 @@ set outputroot="d:\Projects\WebHubDemos\Live\WebHub\Apps"
 set pkg="dbrtl;inet;soaprtl;soapserver;vclactnband;vcldb;vclimg;vclsmp;vcl;vclx;vcldb;xmlrtl;ldiRegExLib;ZaphodsMapLib"
 set compilerflags=PREVENTSVCMGR;use_IBO;USE_TIBODataset;INHOUSE
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-set includepath=h:\;k:\Rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
+set includepath=h:\;K:\Rubicon_Rioux\rubicon\source\inc;K:\Vendors\CPS\IBObjects\v5.x\source\common;
 
 :: extra parameters for Delphi XE2
 set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collections;Generics.Defaults=System.Generics.Defaults;WinTypes=Windows;WinProcs=Windows
