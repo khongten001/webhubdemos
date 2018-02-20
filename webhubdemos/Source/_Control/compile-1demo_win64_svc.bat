@@ -28,7 +28,7 @@ set pkg="vcl;vclx;vcldb;soaprtl;xmlrtl;inet;"
 if     "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE
 if NOT "%raizepath%"=="" set compilerflags=USE_TIBODataset;INHOUSE;CodeSite;Log2CSL
 if "%1"=="whLite"  set compilerflags=%compilerflags%;AWSSUPPORT
-%CSSend% compilerflags %compilerflags% 
+%CSSend% compilerflags %compilerflags% %CSLogPathParams%
 %CSSend% CSLogPathParams %CSLogPathParams%
 set includepath=h:\;
 set dcu=d:\temp\DelphiTempDCU
@@ -43,7 +43,7 @@ set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasn
 :LocalRepeat
 @echo on
 set ok1=yes
-"%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
+"%dcc%" %1.dpr  -w -h -b -n%dcu% "-O%objpath%" -E%outputroot% -D%compilerflags% -LU%pkg% -u%libsearchpath% -UD:\vcl\NexusDB4;k:\Rubicon\source; -R%libsearchpath% -I%includepath% /$D- /$L- /$Y- /$Q- /$R %dccflags% %dccns%
 if errorlevel 1 set ok1=no
 if "%ok1%"=="no" %CSSend% /error "%1.dpr failed to compile" %CSLogPathParams%
 if "%ok1%"=="no" pause

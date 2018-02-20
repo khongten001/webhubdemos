@@ -72,6 +72,7 @@ del %droot%\..\TempBuild\res\ver_whDPrefix*
 if "%compiledpr%"=="no" goto Continue03
 cd %droot%\Third Party Examples\whDPrefix
 set compilerdigits=%ibocomp%
+%CSSend% "whDPrefix with %compilerdigits%" %CSLogPathParams%
 :: whDPrefix needs to compile as-service
 call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_svc.bat whDPrefix
 REM call d:\projects\webhubdemos\Source\_Control\compile-1demo_win64_nopackages.bat whDPrefix
