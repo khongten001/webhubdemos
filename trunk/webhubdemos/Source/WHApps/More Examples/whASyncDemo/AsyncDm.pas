@@ -89,6 +89,7 @@ uses
   {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
   Forms,
   TypInfo,
+  WideStrUtils,
   webApp, // for access to pWebApp
   htWebApp, // for subscribing to the AfterWebAppExecute event list.
   ZM_CodeSiteInterface,
@@ -397,7 +398,7 @@ begin
   DosCmd := workItem.Data.AsString; // nslookup
   //CSSend('DosCmd', DosCmd);
   aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
-  s1 := AnsiCodePageToUnicode(aa, 1252);
+  s1 := string(AnsiToUTF8Ex(aa, 1252));
   workItem.Result := s1;
   //CSSend('workItem.Result', workItem.Result);
   CSExitMethod(Self, cFn);
@@ -416,7 +417,7 @@ begin
   CSSend('DosCmd', DosCmd);
   aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
   //CSSend('aa', string(aa));
-  s1 := AnsiCodePageToUnicode(aa, 1252);
+  s1 := string(AnsiToUTF8Ex(aa, 1252));
   //CSSend('s1', s1);
   workItem.Result := s1;
   CSSend('workItem.Result', workItem.Result);
@@ -435,7 +436,7 @@ begin
   DosCmd := workItem.Data.AsString; // tracert
   CSSendNote(DosCmd);
   aa := GetDosOutputA(AnsiString(DosCmd), nil, ErrorCode);
-  s1 := AnsiCodePageToUnicode(aa, 1252);
+  s1 := string(AnsiToUTF8Ex(aa, 1252));
   if ErrorCode <> 0 then
     s1 := 'ErrorCode=' + IntToStr(ErrorCode) + sLineBreak + s1;
   CSSendNote(s1);
