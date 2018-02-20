@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CleanEntrance xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<!--- public master copy
+ webhubdemos\Source\StandaloneDemos\ChromiumWrapper\DevMenu01\CleanEntranceConfig.xml
+-->
   <Data>
     <CacheFolderRoot value="c:\temp\CleanEntrance\"/>
   </Data>
@@ -15,10 +18,33 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="Bitfinex">
+    	<Caption lingvo="en" value="Bitfinex"/>
+        <Url value="https://www.bitfinex.com/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="login"/>
+	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="auth-password"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="Bittrex">
+    	<Caption lingvo="en" value="Bittrex"/>
+        <Url value="https://bittrex.com/account/login/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="UserName"/>
+	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="Password"/>
+        </Fields>
+    </WebSite>
+
+
     <WebSite id="FacebookDev">
     	<Caption lingvo="en" value="Facebook Dev Apps"/>
         <Url value="https://developers.facebook.com/apps"/>
         <InputPattern value="individual"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="email"/>
+	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="password"/>
         <Fields>
         </Fields>
     </WebSite>
@@ -63,21 +89,52 @@
         </Fields>
     </WebSite>
     <WebSite id="Janrain">
-    	<Caption lingvo="en" value="Janrain Single Sign-On"/>
-        <Url value="https://dashboard.janrain.com/signin?dest=http://janrain.com"/>
+    	<Caption lingvo="en" value="Janrain Developer Dashboard"/>
+        <Url value="https://dashboard.janrain.com/signin"/>
         <InputPattern value="individual"/>
         <Fields><!--- sign in with .... -->
         </Fields>
     </WebSite>
-    <WebSite id="Twitter">
-    	<Caption lingvo="en" value="Twitter Dev Apps"/>
-        <Url value="https://dev.twitter.com/apps"/>
+
+    <WebSite id="MicrosoftDevApps">
+    	<Caption lingvo="en" value="Microsoft Developers Apps"/>
+        <Url value="https://account.live.com/developers/applications"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+    </WebSite>
+
+    <WebSite id="MicrosoftLive">
+    	<Caption lingvo="en" value="Microsoft Live"/>
+        <Url value="https://account.microsoft.com/account"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+    </WebSite>
+
+    <WebSite id="TwitterLogin">
+    	<Caption lingvo="en" value="Twitter Login Form"/>
+        <Url value="https://twitter.com/login?lang=en"/>
         <InputPattern value="all"/>
         <Fields>
-	        <Field lingvo="en" prompt="Phone or EMail or Username"    htmlAttr="name" htmlField="session[username_or_email]"/>
-	        <Field lingvo="en" prompt="Password" htmlAttr="name" htmlField="session[password]"/>
+	        <Field lingvo="en" prompt="Phone or EMail or Username"    htmlAttr="name" htmlField="session[username_or_email]" parentElementID="session"/>
+	        <Field lingvo="en" prompt="Password" htmlAttr="name" htmlField="session[password]" parentElementID="session"/>
         </Fields>
     </WebSite>
+
+    <WebSite id="TwitterDev">
+    	<Caption lingvo="en" value="Twitter Dev Apps"/>
+        <Url value="https://dev.twitter.com/apps"/>
+    </WebSite>
+
+
+
+    <WebSite id="Amazon_US">
+    	<Caption lingvo="en" value="Amazon_in_U.S."/>
+        <Url value="https://www.amazon.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="ap_email"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
+        </Fields>
+    </WebSite>
+
     <WebSite id="AWS">
     	<Caption lingvo="en" value="AWS Console"/>
         <Url value="https://console.aws.amazon.com/console/home"/>
@@ -182,6 +239,35 @@
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="password"/>
         </Fields>
     </WebSite>
+
+    <WebSite id="Yahoo">
+    	<Caption lingvo="en" value="Yahoo"/>
+        <Url value="https://login.yahoo.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="login-username"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="login-password"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="YahooDev">
+    	<Caption lingvo="en" value="Yahoo Developers"/>
+        <Url value="https://developers.yahoo.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="login-username"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="YahooDomains">
+    	<Caption lingvo="en" value="Yahoo Domain Verification"/>
+        <Url value="https://developer.apps.yahoo.com/manage/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="login-username"/>
+        </Fields>
+    </WebSite>
+
 
   </WebSites>
 </CleanEntrance>
