@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE whteko PUBLIC "http://static.webhub.com/dtd/0214/whteko.dtd">
+<!DOCTYPE whteko PUBLIC "https://static.webhub.com/dtd/0214/whteko.dtd">
 <whteko 
   defaultlingvo="eng"
-  designlingvo="eng"
-   
   designmode="code"
   showdoc="no"
   showsketch="no"
@@ -71,7 +69,7 @@ on <b>liParam</b>:</p>
 (~IFStr|bUseSelect|
   (~InputSelect|liParam,mcList~)
 ||
-  <ul>(~InputSelectRadio|liParam,mcList,<li>,</li>~)</ul>~)
+  <ul>(~InputSelectRadio|liParam,mcList,<li>,</li>~)</ul>
 ~)
 
 (~InputCheckBox|bUseSelect|OffOn~) select as dropdown..<br />
