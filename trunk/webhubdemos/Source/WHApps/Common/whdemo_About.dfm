@@ -139,7 +139,7 @@ inherited fmAppAboutPanel: TfmAppAboutPanel
           Height = 41
           Align = alClient
           AutoSize = False
-          Caption = 'Copyright (c) 1997-2011'
+          Caption = 'Copyright (c) 1997-2018'
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clTeal
           Font.Height = -11

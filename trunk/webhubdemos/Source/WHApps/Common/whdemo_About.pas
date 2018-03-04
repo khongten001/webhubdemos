@@ -1,7 +1,7 @@
 unit whdemo_About;  {panel to help self-document all WebHub demos}
 
 { ---------------------------------------------------------------------------- }
-{ * Copyright (c) 1996-2017 HREF Tools Corp.                                 * }
+{ * Copyright (c) 1996-2018 HREF Tools Corp.                                 * }
 { *                                                                          * }
 { * This source code file is part of the WebHub Demos.                       * }
 { *                                                                          * }
@@ -105,7 +105,7 @@ begin
     LabelCopyRight.Caption := LabelCopyright.Caption + '(c) 1997-' +
       FormatDateTime('yyyy', Now) + ' HREF Tools Corp.'
   else
-    LabelCopyRight.Caption := LabelCopyright.Caption + S;
+    LabelCopyRight.Caption := S;
 
   with pWebApp do
   begin
