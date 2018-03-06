@@ -48,7 +48,7 @@
         <RequestValidation value="true"/>
         <UploadFolder value="{RootForWHDataFolders}whUpload\"/>
         <ErrorLogFolder value="{LogFolder}"/>
-        <AdminAccess scheme="https" authority="more.demos.href.com:80"/>
+        <AdminAccess scheme="https" authority="more.demos.href.com:443"/>
         <AdvancedFlags value=""/>
       </Runner>
     </Runners>
