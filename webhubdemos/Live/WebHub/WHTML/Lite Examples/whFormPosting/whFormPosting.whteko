@@ -273,6 +273,12 @@ Um teilzunehmen, fllen Sie diese Form aus um Ihr reales oder eingebildetes Haust
 <h4>BoolVar Test</h4>
 <p>Loved: (~IFStr|inVeryLoved|Great that your pet is loved.||Odd that you say you do not love your pet.~)</p>
 
+<h4>JSON Test</h4>
+<p>Data could appear here if a stripe object were submitted as json to this page.</p>
+<div>id = (~waJsonData.Execute|id~)</div>
+<div>api_version = (~waJsonData.Execute|api_version~)</div>
+<div>data.object.object = (~waJsonData.Execute|data.object.object~)</div>
+
 </div>
 </div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
 (~drPageEnd~)
