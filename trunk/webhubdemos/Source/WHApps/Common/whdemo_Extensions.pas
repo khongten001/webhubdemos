@@ -48,6 +48,7 @@ type
     waAWSCloudFrontSecurityProvider: TwhWebAction;
     waEvaporateSign: TwhWebAction;
     waJQFileUpload: TwhWebAction;
+    waJsonData: TwhWebAction;
     procedure DataModuleCreate(Sender: TObject);
     procedure DataModuleDestroy(Sender: TObject);
     procedure waGetExenameExecute(Sender: TObject);
@@ -66,6 +67,7 @@ type
     procedure waAWSCloudFrontSecurityProviderExecute(Sender: TObject);
     procedure waEvaporateSignExecute(Sender: TObject);
     procedure waJQFileUploadExecute(Sender: TObject);
+    procedure waJsonDataExecute(Sender: TObject);
   strict private
     { Private declarations }
     FMonitorFilespec: string; // for use with WebHubGuardian
@@ -1298,6 +1300,53 @@ begin
     end;
   end;
   CSExitMethod(Self, cFn);
+end;
+
+procedure TDemoExtensions.waJsonDataExecute(Sender: TObject);
+const cFn = 'waJsonDataExecute';
+var
+  InputStr: string;
+  JV: Variant;
+  Expr: string;
+  ExtractedStr: string;
+begin
+
+  // this webaction is used in the FORM demo. 07 Mar 2018.
+
+  ExtractedStr := '';
+  InputStr := pWebApp.StringVar['jsondata'];  // from WebHub runner v3.271
+  if InputStr <> '' then
+  begin
+    Expr := TwhWebAction(Sender).HtmlParam;
+    if Expr <> '' then
+    begin
+      try
+        JV := VarJSONParse(InputStr);  // uses ucJSONWrapper
+        { some json object examples from stripe.com web hooks }
+        if Expr = 'id' then
+          ExtractedStr := JV.id
+        else
+        if Expr = 'api_version' then
+          ExtractedStr := JV.api_version
+        else
+        if Expr = 'data.object.object' then
+          ExtractedStr := JV.data.object.object;
+
+        if ExtractedStr <> '' then
+          pWebApp.SendStringImm(ExtractedStr);
+
+      except
+        on E: Exception do
+        begin
+          CSSendException(Self, cFn, E);
+          pWebApp.SendStringImm(E.Message);
+        end;
+
+      end;
+    end
+    else
+      pWebApp.SendStringImm(Self.Name + ': requires parameter');
+  end;
 end;
 
 end.
