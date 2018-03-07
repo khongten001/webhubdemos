@@ -116,4 +116,10 @@ object DemoExtensions: TDemoExtensions
     Left = 448
     Top = 304
   end
+  object waJsonData: TwhWebAction
+    ComponentOptions = [tpUpdateOnLoad]
+    OnExecute = waJsonDataExecute
+    Left = 448
+    Top = 376
+  end
 end
