@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE whteko PUBLIC "-//HREF//DTD whteko stage 2.14//Strict//EN//" "https://static.webhub.com/dtd/0214/whteko.dtd">
+<whteko designmode="code">
+
+<whpage pageid="pgStripeWebHook" desc="-Sample Interaction Called by a WebHook on Stripe.com">
+(~mcdoctypehtml~)
+<html>
+<head>
+</head>
+<body>
+
+<h4>Stripe WebHook</h4>
+<p>(~CentralInfo.WebTimeUTC~)</p>
+<p>Posted data could appear here if a stripe object were submitted as json to this page.</p>
+
+<div>id = (~waJsonData.Execute|id~)</div>
+<div>api_version = (~waJsonData.Execute|api_version~)</div>
+<div>data.object.object = (~waJsonData.Execute|data.object.object~)</div>
+
+</body></html>
+</whpage>
+
+<whpage pageid="pgShortcut" desc="Slight Shortcut">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
+Thank you for trying the shortcut button.
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+
+<whdoc for="pgDetour">
+With CGI, all that data is lost. With WebHub it can be kept throughout the surfer's visit to the site.
+</whdoc>
+<whpage pageid="pgDetour" desc="Detour">
+(~mcdoctypehtml~)
+<html>
+<head>
+(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
+(~chCGILiterals~)
+(~chWHLiterals~)
+<p>CGI can only retain the surfer's data for one page.<br />
+WebHub can retain the same data throughout the surfer's visit to the site!
+</p>
+Return to the (~GO|pgEnterFORM|Pet Form~)
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+<whdoc for="chCGILiterals">
+The built-in Delphi component "Request.FormData" is used to track the form StringVars used by CGI.
+If (for some reason) you do want to use CGI, WebHub provides support for that too!
+</whdoc>
+<whdroplet name="chCGILiterals">
+<span style="color:#666666;">Here is the form data that an everyday CGI app saves:</span>
+<br />
+<table width="50%" border="2" cellpadding="5" cellspacing="0">
+<tr><td>(~Request.FormData~)</td></tr>
+</table>
+</whdroplet>
+
+<whdoc for="chWHLiterals">
+Note that WebHub allows you to track checkboxes and text fields separate from the other StringVars.
+</whdoc>
+<whdroplet name="chWHLiterals">
+<span style="color:#666666;">Here is the form data that WebHub saves:</span><br />
+
+<table width="50%" border="2" cellpadding="5" cellspacing="0">
+<tr><td>
+<b>StringVars:</b><br />
+(~StringVars~)<br />
+<b>txtDescription:</b><br />
+(~INPUTDEFAULT|txtvar.txtDescription~)<br />
+<b>txtNotes:</b><br />
+(~INPUTDEFAULT|txtvar.txtNotes~)<br />
+<b>BoolVars:</b><br />
+(~BoolVars~)
+</td></tr>
+</table>
+</whdroplet>
+
+<whpage pageid="pgTestVars01">
+<whprep>
+</whprep>
+(~mcdoctypehtml~)
+<html>
+<head>
+	(~drHead~)
+</head>
+<body>
+(~drPageBegin~)
+<div class="row" data-equalizer="main">(~drMainContentLeftEdge~)<div id="whdemopagecontent" class="small-18 medium-12 columns" data-equalizer-watch="main">
+<h1>(~pagedesc~)</h1>
+
+(~waMakeBadVars.Execute|~)
+<p>(~stringvars~)</p>
+<h2>Retrieve 1 StringVar by Name</h2>
+<div style="border: 1px solid blue;">
+<form method="post" action="(~ACTIONR|pgTestVars01~)" accept-charset="UTF-8" >
+Enter StringVar Name: (~INPUTTEXT|inVarName~)
+<input type="submit" />
+</form>
+</div>
+
+</div><!--- /whdemopagecontent -->(~drMainContentRightEdge~)</div>
+(~drPageEnd~)
+
+</body></html>
+</whpage>
+
+</whteko>
