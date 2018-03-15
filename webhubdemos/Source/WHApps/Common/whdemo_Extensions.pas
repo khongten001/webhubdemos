@@ -23,7 +23,7 @@ interface
 uses
   Windows, SysUtils, Classes, Controls,
   System.Actions, Vcl.ActnList,
-  MultiTypeApp, updateOk, tpAction, tpActionGUI, 
+  MultiTypeApp, updateOk, tpAction, tpActionGUI,
   ucAWS_CloudFront_PrivateURLs,
   whcfg_App, webSend, webTypes, webLink, webCycle, webLogin, webCaptcha;
 
@@ -134,7 +134,7 @@ begin
   if NOT FlagBeenHere then
   begin
     FEATURE.SilentExecution := True; // requires WebHub v3.217+
-    
+
     AddAppUpdateHandler(DemoAppUpdate);
     // without this, changes to AppID will not refresh the mail panel.
     AddAppExecuteHandler(DemoAppExecute);
@@ -160,7 +160,7 @@ begin
     {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
     DemoAppUpdate(nil);   // do this once
-    
+
     FlagBeenHere := True;
   end;
 
@@ -396,9 +396,10 @@ begin
   CSExitMethod(Self, cFn);
 end;
 
-procedure TDemoExtensions.waAWSCloudFrontSecurityProviderExecute(
-  Sender: TObject);
-const cFn = 'waAWSCloudFrontSecurityProviderExecute';
+procedure TDemoExtensions.waAWSCloudFrontSecurityProviderExecute
+  (Sender: TObject);
+const
+  cFn = 'waAWSCloudFrontSecurityProviderExecute';
 const
   cCloudFrontCookie = 'CloudFrontCookie';
   cCloudFrontKeyPairID = 'CloudFrontKeyPairID';
@@ -412,87 +413,114 @@ var
   aPolicy: string;
 var
   tempStr: string;
+  dirStr: string;
 begin
   CSEnterMethod(Self, cFn);
 
-  if NOT Assigned(fcfsp) then
+  if NOT Assigned(FCFSP) then
     FCFSP := TCloudFrontSecurityProvider.Create;
-    
-	tempStr := TwhWebAction(Sender).StringFromConfig('KeyPairID', '');
-	if tempStr = '' then
-		tempStr := 'APKAIGAY3EJC77HVGRFQ' // visible in URL
-  else
-    tempStr := pWebApp.MoreIfParentild(tempStr);  // can expand an AppSetting
-  FCFSP.KeyPairID := tempStr;
-	tempStr := TwhWebAction(Sender).StringFromConfig('DiskFolder', '');
-	if tempStr = '' then  // blank in XML for showcase demo.
-		tempStr := getWebHubDemoInstallRoot + 'Source\WHApps\' +
-		'Lite Examples\AWS\';
-	FCFSP.DiskFolder := tempStr;
-	
-	// The PEM is issued by AWS. Secret. Not in version control.
-	tempStr := TwhWebAction(Sender).StringFromConfig('PrivateKeyPEM', '');
-	if tempStr = '' then
-  		tempStr := StringLoadFromFile(FCFSP.DiskFolder +
-		'demos.cloudfront.pem')
-  else
-  begin
-    tempStr := pWebApp.MoreIfParentild(tempStr);  // allow parentils here.
-    tempStr := StringLoadFromFile(tempStr);
-  end;
-	FCFSP.PrivateKeyPEM := tempStr;
 
-  aHtmlParam := TwhWebAction(Sender).HtmlParam;
-  if Copy(aHtmlParam, 1, Length(cCloudFrontCookie)) = cCloudFrontCookie then
+  tempStr := TwhWebAction(Sender).StringFromConfig('KeyPairID', '');
+  if tempStr = '' then
   begin
-    CSSend('FCFSP.KeyPairID', FCFSP.KeyPairID);
-    CSSend('FCFSP.PrivateKeyPEM', Copy(FCFSP.PrivateKeyPEM, 1, 80));
-    if SplitThree(aHtmlParam, '; ', TempStr, aSecondKeyword, aPolicy) then
+    tempStr := 'APKAIGAY3EJC77HVGRFQ'; // visible in URL
+    CSSendWarning('KeyPairID not in config. Using ' + tempStr);
+  end
+  else
+    tempStr := pWebApp.MoreIfParentild(tempStr); // can expand an AppSetting
+
+  FCFSP.KeyPairID := tempStr;
+  CSSend('FCFSP.KeyPairID', FCFSP.KeyPairID);
+
+  dirStr := TwhWebAction(Sender).StringFromConfig('DiskFolder', '');
+  if dirStr = '' then // blank in XML for showcase demo.
+    dirStr := getWebHubDemoInstallRoot + 'Source\WHApps\' +
+      'Lite Examples\AWS\';
+  FCFSP.DiskFolder := dirStr;
+  CSSend('FCFSP.DiskFolder', FCFSP.DiskFolder);
+
+  // The PEM is issued by AWS. Secret. Not in version control.
+  tempStr := TwhWebAction(Sender).StringFromConfig('PrivateKeyPEM', '');
+  if tempStr = '' then
+  begin
+    tempStr := StringLoadFromFile(FCFSP.DiskFolder + 'demos.cloudfront.pem');
+    LogToCodeSiteKeepCRLF('Loaded demos.cloudfront.pem', tempStr);
+  end
+  else
+  begin
+    tempStr := pWebApp.MoreIfParentild(tempStr); // allow parentils here.
+    CSSend('Will load from ', tempStr);
+    if dirStr <> '' then
     begin
-      if aSecondKeyword = 'signature' then
-      begin
-        CSSend(cFn + ': aPolicy unexpanded', aPolicy);
-        aPolicy := pWebApp.Expand(aPolicy);
-        CSSend(cFn + ': Policy expanded', aPolicy);
-        FCFSP.Policy := aPolicy;
-        tempStr := FCFSP.Sign(FCFSP.Policy);
-        CSSend(cFn + ': ' + cCloudFrontCookie, tempStr);
-        pWebApp.SendStringImm(tempStr);
-      end
-      else
-        LogProgrammerErrorToCodeSite(cFn + ': unsupported second keyword: ' +
-          aSecondKeyword);
+      tempStr := dirStr + tempStr;
+      CSSend('within directory!', tempStr);
+    end;
+    if FileExists(tempStr) then
+    begin
+      tempStr := StringLoadFromFile(tempStr);
+      LogToCodeSiteKeepCRLF('Final', tempStr);
     end
     else
-      LogProgrammerErrorToCodeSite(cFn + ': invalid syntax for ' +
-        cCloudFrontCookie);
-  end
-  else
-  if aHtmlParam = cCloudFrontKeyPairID then
+    begin
+      LogProgrammerErrorToCodeSite(cFn + ': PEM not found in ' + tempStr);
+      tempStr := '';
+    end;
+  end;
+
+  if tempStr <> '' then
   begin
-    CSSend(cFn + ': ' + cCloudFrontKeyPairID, FCFSP.KeyPairID);
-    pWebApp.SendStringImm(FCFSP.KeyPairID);
-  end
-  else
-  if SplitThree(aHtmlParam, ' | ', url, minutesToLiveStr,
-    restrictByIPStr) then
-  begin
-    url := pWebApp.Expand(url);
-    CSSend(cFn + ': url', url);
+    FCFSP.PrivateKeyPEM := tempStr;
 
-    minutesToLiveStr := pWebApp.MoreIfParentild(minutesToLiveStr);
+    aHtmlParam := TwhWebAction(Sender).HtmlParam;
+    if Copy(aHtmlParam, 1, Length(cCloudFrontCookie)) = cCloudFrontCookie then
+    begin
+      CSSend('FCFSP.KeyPairID', FCFSP.KeyPairID);
+      CSSend('FCFSP.PrivateKeyPEM', Copy(FCFSP.PrivateKeyPEM, 1, 80));
+      if SplitThree(aHtmlParam, '; ', tempStr, aSecondKeyword, aPolicy) then
+      begin
+        if aSecondKeyword = 'signature' then
+        begin
+          CSSend(cFn + ': aPolicy unexpanded', aPolicy);
+          aPolicy := pWebApp.Expand(aPolicy);
+          CSSend(cFn + ': Policy expanded', aPolicy);
+          FCFSP.Policy := aPolicy;
+          tempStr := FCFSP.Sign(FCFSP.Policy);
+          CSSend(cFn + ': ' + cCloudFrontCookie, tempStr);
+          pWebApp.SendStringImm(tempStr);
+        end
+        else
+          LogProgrammerErrorToCodeSite(cFn + ': unsupported second keyword: ' +
+            aSecondKeyword);
+      end
+      else
+        LogProgrammerErrorToCodeSite(cFn + ': invalid syntax for ' +
+          cCloudFrontCookie);
+    end
+    else if aHtmlParam = cCloudFrontKeyPairID then
+    begin
+      CSSend(cFn + ': ' + cCloudFrontKeyPairID, FCFSP.KeyPairID);
+      pWebApp.SendStringImm(FCFSP.KeyPairID);
+    end
+    else if SplitThree(aHtmlParam, ' | ', url, minutesToLiveStr, restrictByIPStr)
+    then
+    begin
+      url := pWebApp.Expand(url);
+      CSSend(cFn + ': url', url);
 
-    // use /32 on the CIDR to restrict to a single IP
-    restrictByIPStr := pWebApp.Expand(restrictByIPStr);
-    CSSend('restrictByIPStr', restrictByIPStr);
+      minutesToLiveStr := pWebApp.MoreIfParentild(minutesToLiveStr);
 
-    protectedURL := AWSCloudFrontSecurityURL(url, minutesToLiveStr,
-      restrictByIPStr);
+      // use /32 on the CIDR to restrict to a single IP
+      restrictByIPStr := pWebApp.Expand(restrictByIPStr);
+      CSSend('restrictByIPStr', restrictByIPStr);
 
-    pWebApp.SendStringImm(protectedURL);
-  end
-  else
-    pWebApp.SendStringImm(FCFSP.Policy);
+      protectedURL := AWSCloudFrontSecurityURL(url, minutesToLiveStr,
+        restrictByIPStr);
+
+      pWebApp.SendStringImm(protectedURL);
+    end
+    else
+      pWebApp.SendStringImm(FCFSP.Policy);
+  end;
 
   CSExitMethod(Self, cFn);
 end;
@@ -763,12 +791,12 @@ begin
           '', // success url
           urlPrefix, // key starts with
           incomingRec.ftype, // content type
-          
+
           //{$IF cWebHubVersion >= 3.263}
           // ["starts-with","$Content-Disposition","attachment"]
           'attachment',
           //{$IFEND}
-          
+
           400 * 1024 * 1024, // max file size bytes
           7 * 1440 * 60, // cache for 7 days
           0);
@@ -1148,7 +1176,7 @@ begin
       end;
 
       if bForceNewSession then
-        RejectSession(cUnitName + ', ' + cFn + '()', False);  
+        RejectSession(cUnitName + ', ' + cFn + '()', False);
     end;
   end;
   CSExitMethod(Self, cFn);
