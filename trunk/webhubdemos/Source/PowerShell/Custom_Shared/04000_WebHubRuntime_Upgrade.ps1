@@ -2,7 +2,7 @@
 # webhubdemos\Source\PowerShell\Custom_Shared\04000_WebHubRuntime_Upgrade.ps1
 
 # WebHubRuntime Upgrade
-# Copyright 2014-2016 HREF Tools Corp. 
+# Copyright 2014-2018 HREF Tools Corp. 
 # Creative Commons license - keep credits intact.
 
 <# Unlike the other powershell scripts, this one is meant to be used some 
@@ -46,6 +46,9 @@ if ($Global:FlagInstallWebHubRuntime) {
 		$use_cloudfront = 'Y'
 	}
 	if ($Global:ZMGlobalContext -eq 'NYX') { # delphi prefix registry 
+		$use_cloudfront = 'Y'
+	}
+	if ($Global:ZMGlobalContext -eq 'IMG') { # www.href.com
 		$use_cloudfront = 'Y'
 	}
 
