@@ -48,9 +48,8 @@ if ($Global:FlagInstallWebHubRuntime) {
 	if ($Global:ZMGlobalContext -eq 'NYX') { # delphi prefix registry 
 		$use_cloudfront = 'Y'
 	}
-	if ($Global:ZMGlobalContext -eq 'IMG') { # www.href.com
-		$use_cloudfront = 'Y'
-	}
+	# see 04001 for www.href.com and delphi prefix registry
+		
 
 
 	if ($use_cloudfront -eq 'N') {
