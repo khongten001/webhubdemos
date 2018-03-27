@@ -30,13 +30,13 @@ uses
   SysUtils,
   tpShareB,
   ZM_CodeSiteInterface,
-  ceflib;
+  uCEFLibFunctions;
 
 function  AppDataGoogleAs: string;
 function  CacheFolderRoot: string;
 procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
-procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
+(*procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);*)
 function  IsPrimaryProcess: Boolean;
 
 var
@@ -57,7 +57,8 @@ uses
   {$ENDIF}
   , ZM_LoggingBase, ZaphodsMap
   , ucString, ucShellProcessCntrl, uCode, ucDlgs,
-  GoogleAs_uBookmark, GoogleAs_fmChromium;
+  GoogleAs_uBookmark;
+  //GoogleAs_fmChromium;
 
 function IsPrimaryProcess: Boolean;
 const cFn = 'IsPrimaryProcess';
@@ -157,7 +158,7 @@ var
 
 begin
   CSEnterMethod(nil, cFn);
-  if IsPrimaryProcess then
+  if TRUE or IsPrimaryProcess then
   begin
 
     Extra := '';
@@ -208,13 +209,15 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
+(*
 procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);
 const cFn = 'InitCEF_GoogleAs';
 var
   ErrorText: string;
   DivName: string;
-  Cache, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
-  JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
+  Cache, UserAgent, ProductVersion, Locale, LogFile: string;
+  BrowserSubprocessPath: string;
+  JavaScriptFlags, ResourcesDirPath, LocalesDirPath: string;
   FlagSingleProcess, CommandLineArgsDisabled, PackLoadingDisabled: Boolean;
   RemoteDebuggingPort: Integer;
   //ReleaseDCheck: Boolean;
@@ -352,17 +355,7 @@ begin
   ForceDirectories(UserDataPath);
   AcceptLanguageList := ''; // use default
 
-(*
-CefLoadLib syntax as of 20-Jun-2016:
 
-function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale, LogFile, BrowserSubprocessPath: ustring;
-  LogSeverity: TCefLogSeverity; JavaScriptFlags, ResourcesDirPath, LocalesDirPath: ustring;
-  SingleProcess, NoSandbox, CommandLineArgsDisabled, PackLoadingDisabled: Boolean; RemoteDebuggingPort: Integer;
-  UncaughtExceptionStackSize: Integer; ContextSafetyImplementation: Integer;
-  PersistSessionCookies: Boolean; IgnoreCertificateErrors: Boolean; BackgroundColor: TCefColor;
-  const AcceptLanguageList: ustring; WindowsSandboxInfo: Pointer; WindowlessRenderingEnabled: Boolean): Boolean;
-*)
-  
   //  CSSend('about to call CefLoadLib');
   IsFirstInit := //IsPrimaryProcess and 
     CefLoadLib(cache, 
@@ -393,6 +386,7 @@ function CefLoadLib(const Cache, UserDataPath, UserAgent, ProductVersion, Locale
   
   CSExitMethod(nil, cFn);
 end;
+*)
 
 procedure EraseCacheFiles;
 const cFn = 'EraseCacheFiles';
@@ -437,7 +431,7 @@ begin
 
     CSSend(csmLevel5, 'Creating TfmChromiumWrapper');
     // must create Chromium wrapper form first -- MainForm
-    Application.CreateForm(TfmChromiumWrapper, fmChromiumWrapper);
+    ///////////Application.CreateForm(TfmChromiumWrapper, fmChromiumWrapper);
 
     CSSend(csmLevel5, 'About to call Application.Run');
     Application.Run;

@@ -28,10 +28,10 @@ uses
   ucShellProcessCntrl in 'k:\webhub\tpack\ucShellProcessCntrl.pas',
   uCode in 'k:\webhub\tpack\uCode.pas',
   System.UITypes,
-  ceflib in 'Externals\CEF3\src\ceflib.pas',
-  cefgui in 'Externals\CEF3\src\cefgui.pas',
-  ceferr in 'Externals\CEF3\src\ceferr.pas',
-  cefvcl in 'Externals\CEF3\src\cefvcl.pas',
+  uCEFLibFunctions in 'Externals\CEF4\source\uCEFLibFunctions.pas',
+  //cefgui in 'Externals\CEF4\source\cefgui.pas',
+  //ceferr in 'Externals\CEF4\source\ceferr.pas',
+  //cefvcl in 'Externals\CEF4\source\cefvcl.pas',
   GoogleAs_uCEF3_Init in 'GoogleAs_uCEF3_Init.pas',
   GoogleAs_uBookmark in 'GoogleAs_uBookmark.pas',
   GoogleAs_fmChromium in 'GoogleAs_fmChromium.pas' {fmChromiumWrapper};
@@ -40,6 +40,8 @@ uses
 
 var
   Flag: Boolean;
+
+  see https://www.briskbard.com/index.php?lang=en&pageid=cef
 
 begin
   InitCEF_GoogleAs(Flag);

@@ -27,7 +27,8 @@ interface
 uses
   Windows, Graphics, Controls, Menus, Forms, StdCtrls, ExtCtrls,
   SysUtils, Variants, Classes,
-  cefvcl, ceflib, cefgui, ceferr, GoogleAs_uBookmark;
+  uCEFLibFunctions, //cefvcl, cefgui, ceferr,
+  GoogleAs_uBookmark;
 
 type
   // https://groups.google.com/forum/#!topic/delphichromiumembedded/F5PnymYBLww
