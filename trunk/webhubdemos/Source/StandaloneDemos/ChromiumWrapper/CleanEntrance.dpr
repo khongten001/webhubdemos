@@ -45,14 +45,14 @@ uses
   Windows,
   SysUtils,
   uCEFApplication,
-  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
-  uCode in 'k:\webhub\tpack\uCode.pas',
-  ucDlgs,
+  ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas', // ZaphodsMap on sf.net
+  uCode,  // TPack
+  ucDlgs, // TPack
   GoogleAs_uCEF3_Init in 'GoogleAs_uCEF3_Init.pas',
   GoogleAs_uBookmark in 'GoogleAs_uBookmark.pas',
-  CleanEntrance_fmMiniBrowser in 'CleanEntrance_fmMiniBrowser.pas' {MiniBrowserFrm},
   uPreferences in 'Externals\CEF4\demos\MiniBrowser\uPreferences.pas' {PreferencesFrm},
   uSimpleTextViewer in 'Externals\CEF4\demos\MiniBrowser\uSimpleTextViewer.pas' {SimpleTextViewerFrm},
+  CleanEntrance_fmMiniBrowser in 'CleanEntrance_fmMiniBrowser.pas' {MiniBrowserFrm},
   CleanEntrance_dmMainMenu in 'CleanEntrance_dmMainMenu.pas' {DataModuleBrowserMenu: TDataModule};
 
 {$R *.res}
@@ -68,7 +68,11 @@ var
   bContinue: Boolean;
 
 begin
+  {$IFDEF DEBUG}
   SetCodeSiteLoggingState([cslAll]);
+  {$ELSE}
+  SetCodeSiteLoggingState([cslInfoType, cslWarning, cslError, cslException]);
+  {$ENDIF}
 
   CSSend(cDpr);
 
@@ -83,7 +87,6 @@ begin
   else
     bContinue := False;
 
-  //CSSend('ParamCount', S(ParamCount));
   //CSSend(csmLevel5, '--lang ?', ParamString('-lang') );
 
   if bContinue then
