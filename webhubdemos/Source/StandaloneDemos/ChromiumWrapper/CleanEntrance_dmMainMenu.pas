@@ -35,7 +35,7 @@ type
     procedure DataModuleDestroy(Sender: TObject);
   strict private
     FFlagInitOnce: Boolean;
-    FCurrentWebSite: string;
+    //FCurrentWebSite: string;
     FStartURL: string;
     FBookmarkList: TGoogleAsBookmarkList;
     procedure miBookmarkClick(Sender: TObject);
@@ -77,7 +77,7 @@ end;
 
 procedure TDataModuleBrowserMenu.AutoFillIndividualField(Sender: TObject);
 const
-  cFn = 'LoginInputPatternAll';
+  cFn = 'AutoFillIndividualField';
 var
   JSText: string;
   values: array of string;
@@ -87,18 +87,20 @@ var
   InfoMsg: string;
 begin
   CSEnterMethod(Self, cFn);
+  mi := TMenuItem(Sender);
+  CSSend('mi.Name', mi.Name); // Example: mi.Name = miBloggerGSuiteField0
+  CSSend('ParamCount', S(ParamCount));
+
   if ParamCount > 1 then
   begin
 
-    mi := TMenuItem(Sender);
     for mark in FBookmarkList do
     begin
-      CSSend('mark.id', mark.id);
-      CSSend('mi.Name', mi.Name);
-      if mi.Name = 'mi' + mark.id + 'Login' then
+      if Pos(('mi' + mark.id + 'Field'), mi.Name) = 1 then
       begin
 
-        FCurrentWebSite := mark.id;
+        CSSend(csmLevel4, 'match on mark.id', mark.id);
+        //FCurrentWebSite := mark.id;
         if ParamCount >= Length(mark.htmlFields) + 1 then
         begin
 
@@ -106,11 +108,12 @@ begin
           for I := 0 to High(mark.htmlFields) do
           begin
             values[I] := ParamStr(I+2); // email, password, etc.
-            //CSSend(mark.htmlFields[I].htmlID, values[I]);
+            CSSend(cFn + ': ' + mark.htmlFields[I].htmlID, values[I]);
 
             JSText := JavaScript_AutoFill(mark.htmlFields[I].htmlAttr,
               mark.htmlFields[I].htmlID, values[I],
               mark.htmlFields[I].parentElementID);
+            CSSend('JSText', JSText);
 
             MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
           end;
@@ -122,8 +125,12 @@ begin
             CSSendNote(mark.htmlFields[i].htmlID);
         end;
         break;
-      end;
-    end;
+      end
+      else
+        //CSSend('no match on mark.id', mark.id)
+        ;
+    end
+
 
   end
   else
@@ -139,7 +146,7 @@ end;
 procedure TDataModuleBrowserMenu.DataModuleCreate(Sender: TObject);
 begin
   FBookmarkList := nil;
-  FCurrentWebSite := '';
+  //FCurrentWebSite := '';
   FFlagInitOnce := False;
 end;
 
@@ -152,6 +159,7 @@ function TDataModuleBrowserMenu.JavaScript_AutoFill(const htmlAttr, key, value,
   parentElementID: string): string;
 const cFn = 'JavaScript_AutoFill';
 begin
+  CSEnterMethod(Self, cFn);
   {$IFDEF DEBUG}
   CSSend(csmLevel6, cFn + ': htmlAttr', htmlAttr);
   CSSend(csmLevel6, cFn + ': key', key);
@@ -178,6 +186,7 @@ begin
   {$IFDEF DEBUG}
   CSSend(csmLevel6, cFn + ': Result', Result);
   {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDataModuleBrowserMenu.LargePageTest1Click(Sender: TObject);
@@ -208,28 +217,31 @@ begin
 
   if NOT FFlagInitOnce then
   begin
-    FCurrentWebSite := 'https://www.google.com/';
+    //FCurrentWebSite := 'https://www.google.com/';
     FBookmarkList := Load_Bookmarks;
     for ABookmark in FBookmarkList do
     begin
-      CSSend('ABookmark.Caption_en',ABookmark.Caption_en);
+      //CSSend('ABookmark.Caption_en',ABookmark.Caption_en);
       bHot := (ParamCount >= 1) and (ParamStr(1) = ABookmark.id);
       if bHot then
         AddDividerLineToMenu;
       mi := TMenuItem.Create(miBookmarks);
       mi.Name := 'mi' + ABookmark.id;
+      CSSend('mi.Name', mi.Name);
       mi.Caption := ABookmark.Caption_en;
       mi.OnClick := miBookmarkClick;
       miBookmarks.Add(mi);
       if bHot then
       begin
-        FCurrentWebSite := ABookmark.Url;
+        //FCurrentWebSite := ABookmark.Url;
         FStartURL  := ABookmark.Url;
+        CSSend('FStartURL', FStartURL);
         MiniBrowserFrm.Caption := ParamStr(2) + ' on ' + ABookmark.Caption_en;
         if ABookmark.InputPattern = lipAll then
         begin
           mi2 := TMenuItem.Create(mi);
           mi2.Name := 'mi' + ABookmark.id + 'Login';
+          CSSend('mi2.Name', mi2.Name);
           mi2.Caption := 'Login to ' + ABookmark.Caption_en;
           mi2.OnClick := LoginInputPatternAll;
           miBookmarks.Add(mi2);
@@ -241,6 +253,7 @@ begin
             mi2 := TMenuItem.Create(mi);
             mi2.Tag := I;
             mi2.Name := 'mi' + ABookmark.id + 'Field' + S(mi2.Tag);
+            CSSend('mi2.Name', mi2.Name);
             mi2.Caption := 'Auto-Fill ' + ABookmark.Caption_en + ' ' +
               ABookmark.HtmlFields[I].guiPrompt_en;
             mi2.OnClick := AutoFillIndividualField;
@@ -253,6 +266,7 @@ begin
     FFlagInitOnce := True;
   end;
   Result := FFlagInitOnce;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDataModuleBrowserMenu.LoginInputPatternAll(Sender: TObject);
@@ -267,18 +281,21 @@ var
   InfoMsg: string;
 begin
   CSEnterMethod(Self, cFn);
+  CSSend('ParamCount', S(ParamCount));
+  
   if ParamCount > 1 then
   begin
 
     mi := TMenuItem(Sender);
+    CSSend('mi.Name', mi.Name);
+    
     for mark in FBookmarkList do
     begin
-      //CSSend('mark.id', mark.id);
-      //CSSend('mi.Name', mi.Name);
       if mi.Name = 'mi' + mark.id + 'Login' then
       begin
+        CSSend(csmLevel4, 'match on mark.id', mark.id);
 
-        FCurrentWebSite := mark.id;
+        //FCurrentWebSite := mark.id;
         if ParamCount >= Length(mark.htmlFields) + 1 then
         begin
 
@@ -291,6 +308,7 @@ begin
             JSText := JavaScript_AutoFill(mark.htmlFields[I].htmlAttr,
               mark.htmlFields[I].htmlID, values[I],
               mark.htmlFields[I].parentElementID);
+            CSSend('JSText', JSText);
 
             MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(JSText,
               '', 0);
@@ -303,7 +321,9 @@ begin
             CSSendNote(mark.htmlFields[i].htmlID);
         end;
         break;
-      end;
+      end
+      else
+        CSSend('not match on mark.id', mark.id);
     end;
 
   end
@@ -350,8 +370,8 @@ begin
     if mi.Name = 'mi' + mark.id then
     begin
       Addr := mark.URL;
-      CSSend('mark.Caption_en has url', Addr);
-      FCurrentWebSite := mark.id;
+      CSSend(cFn + ': mark.Caption_en has url', Addr);
+      //FCurrentWebSite := mark.id;
       break;
     end;
   end;
