@@ -336,7 +336,7 @@ begin
   if Assigned(downloadItem) then
     CSSend('downloadItem.IsValid', S(downloadItem.IsValid));
 
-  bContinue := (FChromium1.IsSameBrowser(browser)) and
+  bContinue := //(FChromium1.IsSameBrowser(browser)) and // could be pop-up window
      Assigned(downloadItem) and
      downloadItem.IsValid;
   CSSend('bContinue', S(bContinue));
