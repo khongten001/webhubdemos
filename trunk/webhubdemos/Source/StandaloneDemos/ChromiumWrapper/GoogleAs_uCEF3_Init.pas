@@ -28,23 +28,23 @@ interface
 
 uses
   SysUtils,
-  tpShareB,
+  //tpShareB,
   ZM_CodeSiteInterface,
   uCEFLibFunctions;
 
 function  AppDataGoogleAs: string;
 function  CacheFolderRoot: string;
-procedure ConditionalStartup(const Flag: Boolean);
+//procedure ConditionalStartup(const Flag: Boolean);
 procedure EraseCacheFiles;
 (*procedure InitCEF_GoogleAs(out IsFirstInit: Boolean);*)
-function  IsPrimaryProcess: Boolean;
+//function  IsPrimaryProcess: Boolean;
 
-var
+{var
   SharedFlag: TSharedStr = nil;
   SharedCache: TSharedStr = nil;
   SharedInstanceCount: TSharedInt = nil;
   SharedPersistSessionCookies: TSharedInt = nil;
-
+}
 implementation
 
 uses
@@ -60,7 +60,7 @@ uses
   GoogleAs_uBookmark;
   //GoogleAs_fmChromium;
 
-function IsPrimaryProcess: Boolean;
+(*function IsPrimaryProcess: Boolean;
 const cFn = 'IsPrimaryProcess';
 begin
   //CSEnterMethod(nil, cFn);
@@ -69,9 +69,9 @@ begin
     Result := Copy(ParamStr(1), 1, 6) <> '--type';
   //CSSend(cFn + ': Result', S(Result));
   //CSExitMethod(nil, cFn);
-end;
+end;*)
 
-function PrimaryProcessPID: Integer;
+(*function PrimaryProcessPID: Integer;
 const cFn = 'PrimaryProcessPID';
 var
   CEF3Channel: string;
@@ -92,16 +92,9 @@ begin
     else
       Result := 0;
   end;
-  (*if Assigned(SharedInstanceCount) then
-  begin
-    n := SharedInstanceCount.GlobalInteger - 1;
-    CSSend('n', S(n));
-    Result := (n Div 3) + 1;
-  end
-  else*)
   CSSend(cFn + ': Result', S(Result));
   CSExitMethod(nil, cFn);
-end;
+end;*)
 
 function AppDataGoogleAs: string;
 const cFn = 'AppDataGoogleAs';
@@ -158,51 +151,34 @@ var
 
 begin
   CSEnterMethod(nil, cFn);
-  if TRUE or IsPrimaryProcess then
+
+  Extra := '';
+  if ParamCount >= 1 then
   begin
 
-    Extra := '';
-    if ParamCount >= 1 then
+    Extra := Trim(ParamStr(1)); // bookmark identifier
+    if Extra <> '' then
     begin
-
-      Extra := Trim(ParamStr(1)); // bookmark identifier
-      if Extra <> '' then
+      if Extra[1] = '-' then  // --type=gpu-process
+        Extra := ''
+      else
       begin
-        if Extra[1] = '-' then  // --type=gpu-process
-          Extra := ''
-        else
-        begin
-          Extra := Extra + '_' + Trim(ParamStr(2)); // email address
-          Extra := StringReplaceAll(Extra, '@', '_');
-          Extra := StringReplaceAll(Extra, '.', '_');
-          Extra := PathDelim + Extra;
-        end;
+        Extra := Extra + '_' + Trim(ParamStr(2)); // email address
+        Extra := StringReplaceAll(Extra, '@', '_');
+        Extra := StringReplaceAll(Extra, '.', '_');
+        Extra := PathDelim + Extra;
       end;
     end;
-    Result := AppDataGoogleAsCache + Extra;
-    try
-      ForceDirectories(Result);
-    except
-      on E: Exception do
-      begin
-        CSSend(cFn, Result);
-        CSSendException(E);
-        MsgErrorOk(E.Message + sLineBreak + sLineBreak + Result);
-      end;
-    end;
-  end
-  else
-  begin
-    CSSendError(cFn + ': should not call this way');
-    if Assigned(SharedCache) then
+  end;
+  Result := AppDataGoogleAsCache + Extra;
+  try
+    ForceDirectories(Result);
+  except
+    on E: Exception do
     begin
-      CSSend('SharedCache exists');
-      Result := string(SharedCache.GlobalUTF8String);
-    end
-    else
-    begin
-      CSSendWarning('SharedCache does not exist');
-      Result := AppDataGoogleAsCache;
+      CSSend(cFn, Result);
+      CSSendException(E);
+      MsgErrorOk(E.Message + sLineBreak + sLineBreak + Result);
     end;
   end;
   CSSend(cFn + ': Result', Result);
@@ -422,7 +398,7 @@ begin
   CSExitMethod(nil, cFn);
 end;
 
-procedure ConditionalStartup(const Flag: Boolean);
+(*procedure ConditionalStartup(const Flag: Boolean);
 const cFn = 'ConditionalStartup';
 //var
 //  TempStr: string;
@@ -445,7 +421,7 @@ begin
     CSSendNote('FYI: nested process for CEF3 rendering and WebKit call-backs');
   end;
   CSExitMethod(nil, cFn);
-end;
+end;*)
 
 initialization
   CoInitialize(nil);  // for WinShellOpen of PDF files
@@ -453,15 +429,15 @@ initialization
   {$IF Defined(DEBUG)}
   SetCodeSiteLoggingState([cslAll]); // Developer DEBUG mode
   {$ELSE}
-  SetCodeSiteLoggingState([cslWarning, cslError, cslException]); // default, until configuration is loaded.
+  SetCodeSiteLoggingState([cslInfoType, cslWarning, cslError, cslException]); // default, until configuration is loaded.
   {$IFEND}
   {$ENDIF}
 
 finalization
   try
-    FreeAndNil(SharedFlag);
-    FreeAndNil(SharedInstanceCount);
-    FreeAndNil(SharedCache);
+    //FreeAndNil(SharedFlag);
+    //FreeAndNil(SharedInstanceCount);
+    //FreeAndNil(SharedCache);
   except
     on E: Exception do
     begin
