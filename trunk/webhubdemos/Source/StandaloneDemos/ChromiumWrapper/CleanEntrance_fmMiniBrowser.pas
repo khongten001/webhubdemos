@@ -37,6 +37,13 @@
 
 unit CleanEntrance_fmMiniBrowser;
 
+(* CleanEntrance_fmMiniBrowser inspired by
+   CEF4\demos\MiniBrowser\uMiniBrowser.pas
+
+   Features from the prior CEF3 "GoogleAs" demo in the WebHubDemos project on
+   sf.net were merged here, Mar-Apr 2018, by Ann Lynnworth @HREF Tools Corp.
+*)
+
 {$I cef.inc}
 
 interface
