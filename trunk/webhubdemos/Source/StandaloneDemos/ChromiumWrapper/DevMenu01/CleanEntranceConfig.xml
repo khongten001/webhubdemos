@@ -5,6 +5,9 @@
 -->
   <Data>
     <CacheFolderRoot value="c:\temp\CleanEntrance\"/>
+    <FrameworkDirPathWin32 value="D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win32"/>
+    <FrameworkDirPathWin64 value="D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win64"/>
+    <DownloadDirPath value="d:\Downloads"/>
   </Data>
   <WebSites>
 
