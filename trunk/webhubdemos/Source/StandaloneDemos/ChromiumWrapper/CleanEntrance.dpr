@@ -43,8 +43,10 @@ program CleanEntrance;
 uses
   Vcl.Forms,
   Windows,
+  SysUtils,
   uCEFApplication,
   ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
+  uCode in 'k:\webhub\tpack\uCode.pas',
   GoogleAs_uCEF3_Init in 'GoogleAs_uCEF3_Init.pas',
   GoogleAs_uBookmark in 'GoogleAs_uBookmark.pas',
   CleanEntrance_fmMiniBrowser in 'CleanEntrance_fmMiniBrowser.pas' {MiniBrowserFrm},
@@ -64,23 +66,29 @@ const
 begin
   SetCodeSiteLoggingState([cslAll]);
   CSSend(cDpr);
+  //CSSend('ParamCount', S(ParamCount));
+  //CSSend(csmLevel5, '--lang ?', ParamString('-lang') );
+
   GlobalCEFApp := TCefApplication.Create;
 
-  CSSend('GlobalCEFApp.StartMainProcess', S(GlobalCEFApp.StartMainProcess));
-  CSSend('GlobalCEFApp.Cache on process startup', GlobalCEFApp.Cache);
+  if ParamString('-lang') = '' then
+  begin
+    CSSend(csmLevel5, 'First invocation');
+    Init_Global_CEF;
+    EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
+  end;
 
   if GlobalCEFApp.StartMainProcess then
-    begin
-      Init_Global_CEF;
-      Application.Initialize;
-      EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
-      Application.MainFormOnTaskbar := True;
-      Application.CreateForm(TDataModuleBrowserMenu, DataModuleBrowserMenu);
-      Application.CreateForm(TMiniBrowserFrm, MiniBrowserFrm);
-      Application.CreateForm(TPreferencesFrm, PreferencesFrm);
-      Application.CreateForm(TSimpleTextViewerFrm, SimpleTextViewerFrm);
-      Application.Run;
-    end;
+  begin
+    Application.Initialize;
+    Application.MainFormOnTaskbar := True;
+    Application.CreateForm(TDataModuleBrowserMenu, DataModuleBrowserMenu);
+    Application.CreateForm(TMiniBrowserFrm, MiniBrowserFrm);
+    Application.CreateForm(TPreferencesFrm, PreferencesFrm);
+    Application.CreateForm(TSimpleTextViewerFrm, SimpleTextViewerFrm);
+    Application.Run;
+  end;
 
-  GlobalCEFApp.Free;
+  FreeAndNil(GlobalCEFApp);
+  CSSend('Done. GlobalCEFApp is nil now.');
 end.

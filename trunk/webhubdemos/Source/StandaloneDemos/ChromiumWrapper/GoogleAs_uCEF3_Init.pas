@@ -392,6 +392,7 @@ procedure EraseCacheFiles;
 const cFn = 'EraseCacheFiles';
 var
   Filespec: string;
+  bWishEraseCache: Boolean;
 begin
   CSEnterMethod(nil, cFn);
   { As long as the chromium DLLs have not yet loaded, this deletes all files
@@ -400,7 +401,10 @@ begin
     counter-productive. The 4 control files are locked as long as the CEF
     library is in memory. }
 
-  if NOT HaveParam('/NoEraseCache') then
+  bWishEraseCache := NOT HaveParam('/NoEraseCache');
+  CSSend('bWishEraseCache', S(bWishEraseCache));
+
+  if bWishEraseCache then
   begin
 
     if DirectoryExists(CacheFolderRoot) then

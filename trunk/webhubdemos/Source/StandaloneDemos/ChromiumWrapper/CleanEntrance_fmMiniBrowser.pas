@@ -342,27 +342,34 @@ procedure TMiniBrowserFrm.Chromium1BeforeDownload(Sender: TObject;
   const browser: ICefBrowser; const downloadItem: ICefDownloadItem;
   const suggestedName: ustring;
   const callback: ICefBeforeDownloadCallback);
+const cFn = 'Chromium1BeforeDownload';
 var
   TempMyDocuments, TempFullPath, TempName : string;
+  bContinue: Boolean;
 begin
-  if not(FChromium1.IsSameBrowser(browser)) or
+  CSEnterMethod(Self, cFn);
+  bContinue := not(FChromium1.IsSameBrowser(browser)) or
      (downloadItem = nil) or
-     not(downloadItem.IsValid) then
-    exit;
+     not(downloadItem.IsValid);
+  if bContinue then
+  begin
 
-  TempMyDocuments := PathToMyDocuments;
+    TempMyDocuments := PathToMyDocuments;
 
-  if (length(suggestedName) > 0) then
-    TempName := suggestedName
-   else
-    TempName := 'DownloadedFile';
+    if (length(suggestedName) > 0) then
+      TempName := suggestedName
+     else
+      TempName := 'DownloadedFile';
 
-  if (length(TempMyDocuments) > 0) then
-    TempFullPath := IncludeTrailingPathDelimiter(TempMyDocuments) + TempName
-   else
-    TempFullPath := TempName;
+    if (length(TempMyDocuments) > 0) then
+      TempFullPath := IncludeTrailingPathDelimiter(TempMyDocuments) + TempName
+     else
+      TempFullPath := TempName;
 
-  callback.cont(TempFullPath, False);
+    CSSend('TempFullPath', TempFullPath);
+    callback.cont(TempFullPath, False);
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TMiniBrowserFrm.Chromium1BeforeResourceLoad(Sender: TObject;
@@ -439,26 +446,33 @@ end;
 procedure TMiniBrowserFrm.Chromium1DownloadUpdated(Sender: TObject;
   const browser: ICefBrowser; const downloadItem: ICefDownloadItem;
   const callback: ICefDownloadItemCallback);
+const cFn = 'Chromium1DownloadUpdated';
 var
   TempString : string;
+  bContinue: Boolean;
 begin
-  if not(FChromium1.IsSameBrowser(browser)) then exit;
+  CSEnterMethod(Self, cFn);
+  bContinue := not(FChromium1.IsSameBrowser(browser));
+  if bContinue then
+  begin
 
-  if downloadItem.IsComplete then
-    ShowStatusText(downloadItem.FullPath + ' completed')
-   else
-    if downloadItem.IsCanceled then
-      ShowStatusText(downloadItem.FullPath + ' canceled')
+    if downloadItem.IsComplete then
+      ShowStatusText(downloadItem.FullPath + ' completed')
      else
-      if downloadItem.IsInProgress then
-        begin
-          if (downloadItem.PercentComplete >= 0) then
-            TempString := downloadItem.FullPath + ' : ' + inttostr(downloadItem.PercentComplete) + '%'
-           else
-            TempString := downloadItem.FullPath + ' : ' + inttostr(downloadItem.ReceivedBytes) + ' bytes received';
+      if downloadItem.IsCanceled then
+        ShowStatusText(downloadItem.FullPath + ' canceled')
+       else
+        if downloadItem.IsInProgress then
+          begin
+            if (downloadItem.PercentComplete >= 0) then
+              TempString := downloadItem.FullPath + ' : ' + inttostr(downloadItem.PercentComplete) + '%'
+             else
+              TempString := downloadItem.FullPath + ' : ' + inttostr(downloadItem.ReceivedBytes) + ' bytes received';
 
-          ShowStatusText(TempString);
-        end;
+            ShowStatusText(TempString);
+          end;
+  end;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TMiniBrowserFrm.Chromium1FullScreenModeChange(Sender: TObject;
@@ -784,6 +798,7 @@ begin
     if DataModuleBrowserMenu.Load_Menu(ErrorText) then
     begin
       Self.Menu := DataModuleBrowserMenu.MainMenu1;
+      //FChromium1.LoadURL(DataModuleBrowserMenu.StartURL); does not help.
     end
     else
       MsgErrorOk(ErrorText);
@@ -822,8 +837,17 @@ procedure TMiniBrowserFrm.BrowserCreatedMsg(var aMessage : TMessage);
 begin
   CEFWindowParent1.UpdateSize;
   NavControlPnl.Enabled := True;
-  AddURL(MINIBROWSER_HOMEPAGE);
-  FChromium1.LoadURL(MINIBROWSER_HOMEPAGE);
+  if Assigned(DataModuleBrowserMenu) and (DataModuleBrowserMenu.StartURL <> '')
+  then
+  begin
+    AddURL(DataModuleBrowserMenu.StartURL);
+    FChromium1.LoadURL(DataModuleBrowserMenu.StartURL);
+  end
+  else
+  begin
+    AddURL(MINIBROWSER_HOMEPAGE);
+    FChromium1.LoadURL(MINIBROWSER_HOMEPAGE);
+  end;
 end;
 
 procedure TMiniBrowserFrm.AddURL(const aURL : string);
