@@ -40,6 +40,9 @@ type
     FBookmarkList: TGoogleAsBookmarkList;
     procedure miBookmarkClick(Sender: TObject);
   strict private
+    FFrameworkDir: string;
+    FDownloadDir: string;
+  strict private
     procedure AutoFillIndividualField(Sender: TObject);
     function JavaScript_AutoFill(const htmlAttr, key, value: string;
       const parentElementID: string = ''): string;
@@ -47,7 +50,9 @@ type
   public
     { Public declarations }
     function Load_Menu(out ErrorText: string): Boolean;
-    property StartURL: string read FStartURL;
+    property StartURL: string read FStartURL write FStartURL;
+    property DownloadDir: string read FDownloadDir write FDownloadDir;
+    property FrameworkDir: string read FFrameworkDir write FFrameworkDir;
   end;
 
 var
@@ -204,6 +209,7 @@ var
   ABookmark: TGoogleAsBookmark;
   I: Integer;
   bHot: Boolean;
+  temp1, temp2: string;
 
   procedure AddDividerLineToMenu;
   begin
@@ -217,8 +223,12 @@ begin
 
   if NOT FFlagInitOnce then
   begin
-    //FCurrentWebSite := 'https://www.google.com/';
-    FBookmarkList := Load_Bookmarks;
+    FBookmarkList := Load_Bookmarks(temp1, temp2);
+    if temp1 <> '' then
+      Self.FFrameworkDir := temp1;
+    if temp2 <> '' then
+      Self.FDownloadDir := temp2;
+
     for ABookmark in FBookmarkList do
     begin
       //CSSend('ABookmark.Caption_en',ABookmark.Caption_en);
