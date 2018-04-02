@@ -321,30 +321,6 @@ begin
     model.AddItem(MINIBROWSER_CONTEXTMENU_SHOWDEVTOOLS, 'Show DevTools');
 end;
 
-function PathToMyDocuments : string;
-var
-  Allocator : IMalloc;
-  Path      : pchar;
-  idList    : PItemIDList;
-begin
-  Result   := '';
-  Path     := nil;
-  idList   := nil;
-
-  try
-    if (SHGetMalloc(Allocator) = S_OK) then
-      begin
-        GetMem(Path, MAX_PATH);
-        if (SHGetSpecialFolderLocation(0, CSIDL_PERSONAL, idList) = S_OK) and
-           SHGetPathFromIDList(idList, Path) then
-          Result := string(Path);
-      end;
-  finally
-    if (Path   <> nil) then FreeMem(Path);
-    if (idList <> nil) then Allocator.Free(idList);
-  end;
-end;
-
 procedure TMiniBrowserFrm.Chromium1BeforeDownload(Sender: TObject;
   const browser: ICefBrowser; const downloadItem: ICefDownloadItem;
   const suggestedName: ustring;
@@ -355,13 +331,23 @@ var
   bContinue: Boolean;
 begin
   CSEnterMethod(Self, cFn);
-  bContinue := not(FChromium1.IsSameBrowser(browser)) or
-     (downloadItem = nil) or
-     not(downloadItem.IsValid);
+  CSSend('FChromium1.IsSameBrowser(browser)', S(FChromium1.IsSameBrowser(browser)));
+  CSSend('downloadItem', S(Assigned(downloadItem)));
+  if Assigned(downloadItem) then
+    CSSend('downloadItem.IsValid', S(downloadItem.IsValid));
+
+  bContinue := (FChromium1.IsSameBrowser(browser)) and
+     Assigned(downloadItem) and
+     downloadItem.IsValid;
+  CSSend('bContinue', S(bContinue));
+  CSSend('DownloadDir', DataModuleBrowserMenu.DownloadDir);
+
+  CSSend('suggestedName', suggestedName);
+
   if bContinue then
   begin
 
-    TempMyDocuments := PathToMyDocuments;
+    TempMyDocuments := DataModuleBrowserMenu.DownloadDir;
 
     if (length(suggestedName) > 0) then
       TempName := suggestedName
@@ -737,22 +723,44 @@ begin
   clipboard.AsText := aText;
 end;
 
+function PathToMyDocuments : string;
+var
+  Allocator : IMalloc;
+  Path      : pchar;
+  idList    : PItemIDList;
+begin
+  Result   := '';
+  Path     := nil;
+  idList   := nil;
+
+  try
+    if (SHGetMalloc(Allocator) = S_OK) then
+      begin
+        GetMem(Path, MAX_PATH);
+        if (SHGetSpecialFolderLocation(0, CSIDL_PERSONAL, idList) = S_OK) and
+           SHGetPathFromIDList(idList, Path) then
+          Result := string(Path);
+      end;
+  finally
+    if (Path   <> nil) then FreeMem(Path);
+    if (idList <> nil) then Allocator.Free(idList);
+  end;
+end;
+
 procedure TMiniBrowserFrm.Chromium1TitleChange(Sender: TObject;
   const browser: ICefBrowser; const title: ustring);
 begin
   if not(FChromium1.IsSameBrowser(browser)) then exit;
 
   if (title <> '') then
-    caption := 'MiniBrowser - ' + title
+    caption := 'CleanEntrance - ' + title
    else
-    caption := 'MiniBrowser';
+    caption := 'CleanEntrance';
 end;
 
 procedure TMiniBrowserFrm.FormCreate(Sender: TObject);
-var
-  ErrorText: string;
 begin
-  ReloadBtn.Caption := #$2672; // Unicode symbol for Recycle
+  ReloadBtn.Caption := ' ' + #$2672 + ' '; // Unicode symbol for Recycle
   FResponse := TStringList.Create;
   FRequest  := TStringList.Create;
 
@@ -800,16 +808,20 @@ begin
   DevTools.TabOrder := 2;
   DevTools.Visible := False;
 
-  if Assigned(DataModuleBrowserMenu) then
+  Self.Menu := nil;
+
+  if Assigned(DataModuleBrowserMenu) and
+    Assigned(DataModuleBrowserMenu.MainMenu1) then
   begin
-    if DataModuleBrowserMenu.Load_Menu(ErrorText) then
+    CSSend('DataModuleBrowserMenu.MainMenu1.Items.Count',
+      S(DataModuleBrowserMenu.MainMenu1.Items.Count));
+    if (DataModuleBrowserMenu.MainMenu1.Items.Count > 3)
+    then
     begin
       Self.Menu := DataModuleBrowserMenu.MainMenu1;
-      //FChromium1.LoadURL(DataModuleBrowserMenu.StartURL); does not help.
-    end
-    else
-      MsgErrorOk(ErrorText);
+    end;
   end;
+
 end;
 
 procedure TMiniBrowserFrm.FormDestroy(Sender: TObject);
@@ -847,6 +859,7 @@ begin
   if Assigned(DataModuleBrowserMenu) and (DataModuleBrowserMenu.StartURL <> '')
   then
   begin
+    CSSend('opening', DataModuleBrowserMenu.StartURL);
     AddURL(DataModuleBrowserMenu.StartURL);
     FChromium1.LoadURL(DataModuleBrowserMenu.StartURL);
   end
@@ -885,13 +898,23 @@ end;
 
 function Init_Global_CEF: Boolean;
 const cFn = 'Init_Global_CEF';
+var
+  bWishEraseCache: Boolean;
 begin
   CSEnterMethod(nil, cFn);
   Result := True;
 
-  CSSend('GlobalCEFApp.Cache before adjustment', GlobalCEFApp.Cache);
+  // CSSend('GlobalCEFApp.Cache before adjustment', GlobalCEFApp.Cache); // always a blank string
+
+  CSSend('menu module available for use now?', S(DataModuleBrowserMenu <> nil));
 
   GlobalCEFApp.Cache := CacheFolderRoot;
+
+  bWishEraseCache := NOT HaveParam('/NoEraseCache');
+  CSSend('bWishEraseCache', S(bWishEraseCache));
+  GlobalCEFApp.DeleteCache := bWishEraseCache;
+  GlobalCEFApp.DeleteCookies := bWishEraseCache;
+
 
   try
     ForceDirectories(GlobalCEFApp.Cache);

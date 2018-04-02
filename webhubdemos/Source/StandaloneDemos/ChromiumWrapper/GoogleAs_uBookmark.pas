@@ -61,15 +61,40 @@ type
 type
   TGoogleAsBookmarkList = class(TList<TGoogleAsBookmark>);
 
-function Load_Bookmarks: TGoogleAsBookmarkList;
+function Load_Bookmarks(out AFrameworkDir, ADownloadDir: string): TGoogleAsBookmarkList;
 
 implementation
 
 uses
+  Windows, WinApi.ActiveX, WinApi.ShlObj,
   NativeXml,
   ZM_CodeSiteInterface;
 
-function Load_Bookmarks: TGoogleAsBookmarkList;
+function PathToMyDocuments : string;
+var
+  Allocator : IMalloc;
+  Path      : pchar;
+  idList    : PItemIDList;
+begin
+  Result   := '';
+  Path     := nil;
+  idList   := nil;
+
+  try
+    if (SHGetMalloc(Allocator) = S_OK) then
+      begin
+        GetMem(Path, MAX_PATH);
+        if (SHGetSpecialFolderLocation(0, CSIDL_PERSONAL, idList) = S_OK) and
+           SHGetPathFromIDList(idList, Path) then
+          Result := string(Path);
+      end;
+  finally
+    if (Path   <> nil) then FreeMem(Path);
+    if (idList <> nil) then Allocator.Free(idList);
+  end;
+end;
+
+function Load_Bookmarks(out AFrameworkDir, ADownloadDir: string): TGoogleAsBookmarkList;
 const cFn = 'Load_Bookmarks';
 var
   ZM: TZaphodsMap;
@@ -81,9 +106,13 @@ var
   AHtmlField: THtmlField;
   WebSiteNode: TXmlNode;
   InputPatternStr: string;
+  APlatform: string;
 begin
   CSEnterMethod(nil, cFn);
   CSSend('cGoogleAs_ZMBranch', cGoogleAs_ZMBranch);
+
+  AFrameworkDir := '';
+  ADownloadDir := '';
 
   Result := TGoogleAsBookmarkList.Create;
 
@@ -102,6 +131,19 @@ begin
 
       if ADoc <> nil then
       begin
+
+        {$IFDEF CPUX64}
+        APlatform := 'Win64';
+        {$ELSE}
+        APlatform := 'Win32';
+        {$ENDIF}
+
+        AFrameworkDir := ADoc.ZNodeAttr(nil,
+            // FrameworkDirPathWin64
+            ['Data', 'FrameworkDirPath' + APlatform], cxOptional,
+             ExtractFilePath(ParamStr(0)));
+        ADownloadDir := ADoc.ZNodeAttr(nil,
+            ['Data', 'DownloadDirPath'], cxOptional, PathToMyDocuments);
 
         WebNodeList := TXmlNodeList.Create;
         FieldNodeList := TXmlNodeList.Create;

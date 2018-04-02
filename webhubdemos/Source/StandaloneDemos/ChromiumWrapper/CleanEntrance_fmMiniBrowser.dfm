@@ -1,14 +1,14 @@
 object MiniBrowserFrm: TMiniBrowserFrm
   Left = 0
   Top = 0
-  Caption = 'MiniBrowser'
+  Caption = 'CleanEntrance'
   ClientHeight = 732
   ClientWidth = 1184
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
-  Font.Height = -11
-  Font.Name = 'Tahoma'
+  Font.Height = -13
+  Font.Name = 'Segoe UI'
   Font.Style = []
   OldCreateOrder = False
   Position = poScreenCenter
@@ -16,7 +16,7 @@ object MiniBrowserFrm: TMiniBrowserFrm
   OnDestroy = FormDestroy
   OnShow = FormShow
   PixelsPerInch = 96
-  TextHeight = 13
+  TextHeight = 17
   object Splitter1: TSplitter
     Left = 1179
     Top = 41
@@ -82,11 +82,11 @@ object MiniBrowserFrm: TMiniBrowserFrm
         Top = 8
         Width = 25
         Height = 25
-        Caption = 'q'
-        Font.Charset = SYMBOL_CHARSET
+        Caption = '@'
+        Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
-        Font.Name = 'Webdings'
+        Font.Name = 'Segoe UI'
         Font.Style = []
         ParentFont = False
         TabOrder = 2
@@ -123,7 +123,7 @@ object MiniBrowserFrm: TMiniBrowserFrm
         Left = 0
         Top = 9
         Width = 978
-        Height = 21
+        Height = 25
         Align = alClient
         ItemIndex = 0
         TabOrder = 0

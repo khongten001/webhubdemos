@@ -47,6 +47,7 @@ uses
   uCEFApplication,
   ZM_CodeSiteInterface in 'h:\ZM_CodeSiteInterface.pas',
   uCode in 'k:\webhub\tpack\uCode.pas',
+  ucDlgs,
   GoogleAs_uCEF3_Init in 'GoogleAs_uCEF3_Init.pas',
   GoogleAs_uBookmark in 'GoogleAs_uBookmark.pas',
   CleanEntrance_fmMiniBrowser in 'CleanEntrance_fmMiniBrowser.pas' {MiniBrowserFrm},
@@ -62,33 +63,68 @@ uses
 
 const
   cDpr = 'CleanEntrance';
+var
+  ErrorText: string;
+  bContinue: Boolean;
 
 begin
   SetCodeSiteLoggingState([cslAll]);
+
   CSSend(cDpr);
+
+  Application.CreateForm(TDataModuleBrowserMenu, DataModuleBrowserMenu);
+
+  if Assigned(DataModuleBrowserMenu) then
+  begin
+    bContinue := DataModuleBrowserMenu.Load_Menu(ErrorText);
+    if NOT bContinue then
+      MsgErrorOk(ErrorText);
+  end
+  else
+    bContinue := False;
+
   //CSSend('ParamCount', S(ParamCount));
   //CSSend(csmLevel5, '--lang ?', ParamString('-lang') );
 
-  GlobalCEFApp := TCefApplication.Create;
-
-  if ParamString('-lang') = '' then
+  if bContinue then
   begin
-    CSSend(csmLevel5, 'First invocation');
-    Init_Global_CEF;
-    EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
-  end;
+    GlobalCEFApp := TCefApplication.Create;
 
-  if GlobalCEFApp.StartMainProcess then
-  begin
-    Application.Initialize;
-    Application.MainFormOnTaskbar := True;
-    Application.CreateForm(TDataModuleBrowserMenu, DataModuleBrowserMenu);
-    Application.CreateForm(TMiniBrowserFrm, MiniBrowserFrm);
-    Application.CreateForm(TPreferencesFrm, PreferencesFrm);
-    Application.CreateForm(TSimpleTextViewerFrm, SimpleTextViewerFrm);
-    Application.Run;
-  end;
+    {$IFDEF CPUX64}
+    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win64\Release';
+    {$ELSE}
+    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win32\Release';
+    {$ENDIF}
 
-  FreeAndNil(GlobalCEFApp);
+    if DataModuleBrowserMenu.FrameworkDir <> '' then
+    begin
+      GlobalCEFApp.FrameworkDirPath := DataModuleBrowserMenu.FrameworkDir;
+      GlobalCEFApp.ResourcesDirPath := GlobalCEFApp.FrameworkDirPath; // did not work to keep this in a separate area
+      GlobalCEFApp.LocalesDirPath := GlobalCEFApp.FrameworkDirPath + PathDelim + 'locales';
+    end;
+
+    if ParamString('-lang') = '' then
+    begin
+      CSSend(csmLevel5, 'First invocation');
+      CSSend('GlobalCEFApp.FrameworkDirPath', GlobalCEFApp.FrameworkDirPath);
+      CSSend('GlobalCEFApp.ResourcesDirPath', GlobalCEFApp.ResourcesDirPath);
+      CSSend('GlobalCEFApp.LocalesDirPath', GlobalCEFApp.LocalesDirPath);
+      Init_Global_CEF;
+      //EraseCacheFiles;  // First CEF3 instance erase cache prior to loading DLLs
+    end;
+
+    if GlobalCEFApp.StartMainProcess then
+    begin
+      Application.Initialize;
+      Application.MainFormOnTaskbar := True;
+      Application.CreateForm(TMiniBrowserFrm, MiniBrowserFrm);
+      Application.CreateForm(TPreferencesFrm, PreferencesFrm);
+      Application.CreateForm(TSimpleTextViewerFrm, SimpleTextViewerFrm);
+      Application.Run;
+    end;
+
+    FreeAndNil(GlobalCEFApp);
+  end;
+  FreeAndNil(DataModuleBrowserMenu);
   CSSend('Done. GlobalCEFApp is nil now.');
 end.
