@@ -118,7 +118,7 @@ begin
             JSText := JavaScript_AutoFill(mark.htmlFields[I].htmlAttr,
               mark.htmlFields[I].htmlID, values[I],
               mark.htmlFields[I].parentElementID);
-            CSSend('JSText', JSText);
+            //CSSend('JSText', JSText);
 
             MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
           end;
@@ -318,7 +318,7 @@ begin
             JSText := JavaScript_AutoFill(mark.htmlFields[I].htmlAttr,
               mark.htmlFields[I].htmlID, values[I],
               mark.htmlFields[I].parentElementID);
-            CSSend('JSText', JSText);
+            //CSSend('JSText', JSText);
 
             MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(JSText,
               '', 0);
