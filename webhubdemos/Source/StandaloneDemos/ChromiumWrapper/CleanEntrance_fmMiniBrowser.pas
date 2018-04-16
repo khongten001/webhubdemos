@@ -360,6 +360,12 @@ begin
       TempFullPath := TempName;
 
     CSSend('TempFullPath', TempFullPath);
+
+    SaveDialog1.InitialDir := ExtractFilePath(TempFullPath);
+    SaveDialog1.FileName := ExtractFileName(TempFullPath);
+    if SaveDialog1.Execute then
+      TempFullPath := SaveDialog1.FileName;
+
     callback.cont(TempFullPath, False);
   end;
   CSExitMethod(Self, cFn);
