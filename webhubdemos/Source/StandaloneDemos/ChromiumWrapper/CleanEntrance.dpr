@@ -94,9 +94,9 @@ begin
     GlobalCEFApp := TCefApplication.Create;
 
     {$IFDEF CPUX64}
-    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win64\Release';
+    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win64';
     {$ELSE}
-    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win32\Release';
+    GlobalCEFApp.FrameworkDirPath := 'D:\Projects\webhubdemos\Source\StandaloneDemos\ChromiumWrapper\Externals\CEF_Binary\win32';
     {$ENDIF}
 
     if DataModuleBrowserMenu.FrameworkDir <> '' then
