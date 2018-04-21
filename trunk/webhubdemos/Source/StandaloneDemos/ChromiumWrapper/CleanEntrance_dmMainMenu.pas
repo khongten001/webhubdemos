@@ -93,7 +93,7 @@ var
 begin
   CSEnterMethod(Self, cFn);
   mi := TMenuItem(Sender);
-  CSSend('mi.Name', mi.Name); // Example: mi.Name = miBloggerGSuiteField0
+  //CSSend('mi.Name', mi.Name); // Example: mi.Name = miBloggerGSuiteField0
   CSSend('ParamCount', S(ParamCount));
 
   if ParamCount > 1 then
@@ -120,7 +120,8 @@ begin
               mark.htmlFields[I].parentElementID);
             //CSSend('JSText', JSText);
 
-            MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(JSText, '', 0);
+            MiniBrowserFrm.Chromium1.Browser.MainFrame.ExecuteJavaScript(
+              JSText, '', 0);
           end;
         end
         else
@@ -408,11 +409,11 @@ end;
 procedure TDataModuleBrowserMenu.miPrintPdfClick(Sender: TObject);
 const
   cFn = 'miPrintPdfClick';
-var
+//var
 //??  CefPdfPrintSettings: TCefPdfPrintSettings;
   // titleStr: TCefStringUtf16;
 //??  EmptyCefStringUtf16: TCefStringUtf16;
-  OutputPDFFilespec: string;
+//  OutputPDFFilespec: string;
 begin
   CSEnterMethod(Self, cFn);
 
