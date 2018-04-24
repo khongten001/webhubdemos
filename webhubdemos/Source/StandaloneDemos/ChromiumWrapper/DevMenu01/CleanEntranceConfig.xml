@@ -91,6 +91,17 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="CloudForge">
+    	<Caption lingvo="en" value="CloudForge_App_Users"/>
+        <Url value="https://app.cloudforge.com/users"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="domain" htmlAttr="id" htmlField="org"/>
+	        <Field lingvo="en" prompt="login" htmlAttr="id" htmlField="login"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="password"/>
+        </Fields>
+    </WebSite>
+
     <WebSite id="CrazyAU">
     	<Caption lingvo="en" value="Crazy Domans Australia"/>
         <Url value="https://www.crazydomains.com.au/"/>
