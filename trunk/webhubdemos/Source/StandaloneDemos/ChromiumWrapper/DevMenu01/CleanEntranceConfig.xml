@@ -11,6 +11,36 @@
   </Data>
   <WebSites>
 
+    <WebSite id="007">
+    	<Caption lingvo="en" value="007 Names"/>
+        <Url value="https://www.007names.com/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="j_idt45:usernameTop"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt45:passwordTop"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="Amazon_US">
+    	<Caption lingvo="en" value="Amazon_in_U.S."/>
+        <Url value="https://www.amazon.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="ap_email"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="AWS">
+    	<Caption lingvo="en" value="AWS Console"/>
+        <Url value="https://console.aws.amazon.com/console/home"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="resolving_input"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
+        </Fields>
+    </WebSite>
+
     <WebSite id="BingWebmaster">
     	<Caption lingvo="en" value="Bing Webmaster"/>
         <Url value="https://www.bing.com/toolbox/webmaster/"/>
@@ -41,112 +71,6 @@
         </Fields>
     </WebSite>
 
-
-    <WebSite id="FacebookDev">
-    	<Caption lingvo="en" value="Facebook Dev Apps"/>
-        <Url value="https://developers.facebook.com/apps"/>
-        <InputPattern value="individual"/>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="email"/>
-	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="password"/>
-        <Fields>
-        </Fields>
-    </WebSite>
-
-    <WebSite id="GDAX">
-    	<Caption lingvo="en" value="GDAX"/>
-        <Url value="https://www.gdax.com/"/>
-        <!--- login with CoinBase -->
-    </WebSite>
-
-    <WebSite id="GoogleSearch">
-    	<Caption lingvo="en" value="Google Search"/>
-        <Url value="https://www.google.com/"/>
-    </WebSite>
-    <WebSite id="GooglePlusGSuite">
-    	<Caption lingvo="en" value="GooglePlus"/>
-        <Url value="https://plus.google.com/"/>
-        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
-		<!--- for organization login, i.e. branded email with GSuite -->
-        </Fields>
-    </WebSite>
-    <WebSite id="GooglePlus">
-    	<Caption lingvo="en" value="GooglePlus"/>
-        <Url value="https://plus.google.com/"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
-        </Fields>
-    </WebSite>
-    <WebSite id="GSuiteCalendar">
-    	<Caption lingvo="en" value="Google Calendar"/>
-        <Url value="https://calendar.google.com/"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
-		<!--- for organization login, i.e. branded email with GSuite -->
-        </Fields>
-    </WebSite>
-    <WebSite id="Janrain">
-    	<Caption lingvo="en" value="Janrain Developer Dashboard"/>
-        <Url value="https://dashboard.janrain.com/signin"/>
-        <InputPattern value="individual"/>
-        <Fields><!--- sign in with .... -->
-        </Fields>
-    </WebSite>
-
-    <WebSite id="MicrosoftDevApps">
-    	<Caption lingvo="en" value="Microsoft Developers Apps"/>
-        <Url value="https://account.live.com/developers/applications"/>
-        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
-    </WebSite>
-
-    <WebSite id="MicrosoftLive">
-    	<Caption lingvo="en" value="Microsoft Live"/>
-        <Url value="https://account.microsoft.com/account"/>
-        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
-    </WebSite>
-
-    <WebSite id="TwitterLogin">
-    	<Caption lingvo="en" value="Twitter Login Form"/>
-        <Url value="https://twitter.com/login?lang=en"/>
-        <InputPattern value="all"/>
-        <Fields>
-	        <Field lingvo="en" prompt="Phone or EMail or Username"    htmlAttr="name" htmlField="session[username_or_email]" parentElementID="session"/>
-	        <Field lingvo="en" prompt="Password" htmlAttr="name" htmlField="session[password]" parentElementID="session"/>
-        </Fields>
-    </WebSite>
-
-    <WebSite id="TwitterDev">
-    	<Caption lingvo="en" value="Twitter Dev Apps"/>
-        <Url value="https://dev.twitter.com/apps"/>
-    </WebSite>
-
-
-
-    <WebSite id="Amazon_US">
-    	<Caption lingvo="en" value="Amazon_in_U.S."/>
-        <Url value="https://www.amazon.com/"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="ap_email"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
-        </Fields>
-    </WebSite>
-
-    <WebSite id="AWS">
-    	<Caption lingvo="en" value="AWS Console"/>
-        <Url value="https://console.aws.amazon.com/console/home"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="resolving_input"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="ap_password"/>
-        </Fields>
-    </WebSite>
     <WebSite id="BloggerGSuite">
     	<Caption lingvo="en" value="Blogger"/>
         <Url value="https://blogger.com/"/>
@@ -154,52 +78,6 @@
         <Fields>
 	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
-        </Fields>
-    </WebSite>
-    <WebSite id="GMail">
-    	<Caption lingvo="en" value="GMail"/>
-        <Url value="https://mail.google.com/"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
-        </Fields>
-    </WebSite>
-    <WebSite id="GoogleAdSense">
-    	<Caption lingvo="en" value="Google AdSense"/>
-        <Url value="https://www.google.com/adsense"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
-        </Fields>
-    </WebSite>
-    <WebSite id="GoogleWebmaster">
-    	<Caption lingvo="en" value="Google Webmaster Tools"/>
-        <Url value="https://www.google.com/webmasters/tools/"/>
-        <InputPattern value="individual"/>
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
-        </Fields>
-    </WebSite>
-    <WebSite id="GoogleWebmasterGSuite">
-    	<Caption lingvo="en" value="Google Webmaster Tools"/>
-        <Url value="https://www.google.com/webmasters/tools/"/>
-        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
-        <Fields>
-	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
-		<!--- for organization login, i.e. branded email with GSuite -->
-        </Fields>
-    </WebSite>
-    <WebSite id="007">
-    	<Caption lingvo="en" value="007 Names"/>
-        <Url value="https://www.007names.com/"/>
-        <InputPattern value="all"/>
-        <Fields>
-	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="j_idt45:usernameTop"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt45:passwordTop"/>
         </Fields>
     </WebSite>
 
@@ -223,6 +101,108 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="FacebookDev">
+    	<Caption lingvo="en" value="Facebook Dev Apps"/>
+        <Url value="https://developers.facebook.com/apps"/>
+        <InputPattern value="individual"/>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="email"/>
+	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="password"/>
+        <Fields>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GDAX">
+    	<Caption lingvo="en" value="GDAX"/>
+        <Url value="https://www.gdax.com/"/>
+        <!--- login with CoinBase -->
+    </WebSite>
+
+    <WebSite id="GMail">
+    	<Caption lingvo="en" value="GMail"/>
+        <Url value="https://mail.google.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GoogleAdSense">
+    	<Caption lingvo="en" value="Google AdSense"/>
+        <Url value="https://www.google.com/adsense"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GooglePlus">
+    	<Caption lingvo="en" value="GooglePlus"/>
+        <Url value="https://plus.google.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GooglePlusGSuite">
+    	<Caption lingvo="en" value="GooglePlus"/>
+        <Url value="https://plus.google.com/"/>
+        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GoogleSearch">
+    	<Caption lingvo="en" value="Google Search"/>
+        <Url value="https://www.google.com/"/>
+    </WebSite>
+
+    <WebSite id="GoogleWebmaster">
+    	<Caption lingvo="en" value="Google Webmaster Tools"/>
+        <Url value="https://www.google.com/webmasters/tools/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="name" htmlField="password" parentElementID="password"/><!-- non-branded gmail account -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GoogleWebmasterGSuite">
+    	<Caption lingvo="en" value="Google Webmaster Tools"/>
+        <Url value="https://www.google.com/webmasters/tools/"/>
+        <InputPattern value="individual"/><!-- google prompts for individual fields at a time -->
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="GSuiteCalendar">
+    	<Caption lingvo="en" value="Google Calendar"/>
+        <Url value="https://calendar.google.com/"/>
+        <InputPattern value="individual"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="identifierId"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Passwd"/>
+		<!--- for organization login, i.e. branded email with GSuite -->
+        </Fields>
+    </WebSite>
+
+    <WebSite id="Janrain">
+    	<Caption lingvo="en" value="Janrain Developer Dashboard"/>
+        <Url value="https://dashboard.janrain.com/signin"/>
+        <InputPattern value="individual"/>
+        <Fields><!--- sign in with .... -->
+        </Fields>
+    </WebSite>
+
     <WebSite id="MailDotCom">
     	<Caption lingvo="en" value="mail.com"/>
         <Url value="https://www.mail.com/"/>
@@ -231,6 +211,43 @@
 	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="login-email"/>
 	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="login-password"/>
         </Fields>
+    </WebSite>
+
+    <WebSite id="MicrosoftDevApps">
+    	<Caption lingvo="en" value="Microsoft Developers Apps"/>
+        <Url value="https://account.live.com/developers/applications"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+    </WebSite>
+
+    <WebSite id="MicrosoftLive">
+    	<Caption lingvo="en" value="Microsoft Live"/>
+        <Url value="https://account.microsoft.com/account"/>
+        <InputPattern value="clipboard"/><!--- Microsoft login allows paste but not field assignment -->
+    </WebSite>
+
+    <WebSite id="RiouxSvn">
+    	<Caption lingvo="en" value="RiouxSvn"/>
+        <Url value="https://riouxsvn.com/login"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email"    htmlAttr="id" htmlField="username_login"/>
+	        <Field lingvo="en" prompt="password"    htmlAttr="id" htmlField="pwd_login"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="TwitterLogin">
+    	<Caption lingvo="en" value="Twitter Login Form"/>
+        <Url value="https://twitter.com/login?lang=en"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="Phone or EMail or Username"    htmlAttr="name" htmlField="session[username_or_email]" parentElementID="session"/>
+	        <Field lingvo="en" prompt="Password" htmlAttr="name" htmlField="session[password]" parentElementID="session"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="TwitterDev">
+    	<Caption lingvo="en" value="Twitter Dev Apps"/>
+        <Url value="https://dev.twitter.com/apps"/>
     </WebSite>
 
     <WebSite id="WordPress">
