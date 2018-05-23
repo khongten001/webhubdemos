@@ -13,11 +13,11 @@
 
     <WebSite id="007">
     	<Caption lingvo="en" value="007 Names"/>
-        <Url value="https://www.007names.com/"/>
+        <Url value="https://www.007names.com/account/account-login.xhtml"/>
         <InputPattern value="all"/>
         <Fields>
-	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="j_idt45:usernameTop"/>
-	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt45:passwordTop"/>
+	        <Field lingvo="en" prompt="username" htmlAttr="id" htmlField="j_idt65:username"/>
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="j_idt65:password"/>
         </Fields>
     </WebSite>
 
