@@ -34,6 +34,7 @@ Start-Process $Global:CSConsole -ArgumentList $InfoMsg -NoNewWindow
 
 if ($Global:FlagInstallWebHubRuntime) {
 	# prepare 
+    if (!(Test-Path ($Global:FolderInstallers + 'HREFTools'))) { mkdir ($Global:FolderInstallers + 'HREFTools') }
 	Set-Location ($Global:FolderInstallers + 'HREFTools')
 
 	New-Variable -Name webhub_version  -Value '' -Option private
