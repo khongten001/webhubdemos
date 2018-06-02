@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
 <ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
   <Variables begin="{" end="}">
@@ -30,6 +30,12 @@
         <Key2Value name="demoslite" value="yes"/>
         <Key2Value name="demosmore" value="yes"/>
         <Key2Value name="demosdb" value="no"/>
+      </Keys>
+    </KeyGroup>
+    <KeyGroup name="EasyUpgrade">
+      <Keys>
+        <Key2Value name="UseCloudFront" value="yes"/>
+        <Key2Value name="AskCustomerService" value="FixedIP"/>
       </Keys>
     </KeyGroup>
   </KeyGroups>
