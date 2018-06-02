@@ -38,5 +38,11 @@
         <Key2Value name="demoshosted" value="no"/>
       </Keys>
     </KeyGroup>
+    <KeyGroup name="EasyUpgrade">
+      <Keys>
+        <Key2Value name="UseCloudFront" value="yes"/>
+        <Key2Value name="AskCustomerService" value="FixedIP"/>
+      </Keys>
+    </KeyGroup>
   </KeyGroups>
 </ZMKeybox>
