@@ -39,7 +39,7 @@ set dccflags=--no-config -M -Q -AGenerics.Collections=System.Generics.Collection
 set dccns=-NSSystem;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell
 
 :: -$R- means Range Check Off
-if "%1"=="whDPrefix"  set dccflags=%dccflags% -$R-
+:: if "%1"=="whDPrefix"  set dccflags=%dccflags% -$R-
 
 %CSSend% "1demo as-service d%compilerdigits%_win64 %1" %CSLogPathParams%
 
