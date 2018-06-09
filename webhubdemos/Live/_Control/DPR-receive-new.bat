@@ -18,10 +18,11 @@ cd ..\WebHub\Apps
 d:\Apps\Utilities\7Zip\7z.exe x Database-dpr.7z -aoa
 if errorlevel 1 pause
 
-:: No drive H on WESLEY server, July 2016
+:: No drive H on production server, June 2018
 if exist H:\NUL cd /d h:\
 if exist H:\NUL d:\Apps\Utilities\7Zip\7z.exe x d:\Projects\WebHubDemos\live\WebHub\Apps\DriveH-source.7z -aoa
 
-start d:\Projects\WebHubDemos\live\WebHub\Apps\whDPrefix.exe
+:: start d:\Projects\WebHubDemos\live\WebHub\Apps\whDPrefix.exe
+net start whDPrefix1
 
 endlocal
