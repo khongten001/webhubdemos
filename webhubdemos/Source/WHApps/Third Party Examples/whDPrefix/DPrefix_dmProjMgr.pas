@@ -1,7 +1,7 @@
 unit DPrefix_dmProjMgr;
 
 (*
-Copyright (c) 2008-2017 HREF Tools Corp.
+Copyright (c) 2008-2018 HREF Tools Corp.
 
 Permission is hereby granted, on 09-Aug-2008, free of charge, to any person
 obtaining a copy of this file (the "Software"), to deal in the Software
@@ -198,11 +198,14 @@ end;
 procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
+const cFn = 'ProjMgrGUICreate';
 var
   SplashMessage: string;
 begin
+  CSEnterMethod(Self, cFn);
 {$IFNDEF PREVENTGUI}
-  if ShouldEnableGUI then
+  CSSend('ShouldEnableGUI', S(ShouldEnableGUI));
+  if True or ShouldEnableGUI then
   begin
     SplashMessage := 'Creating Graphical User Interface';
     WebMessage(SplashMessage);
@@ -224,31 +227,42 @@ begin
     WebMessage('-' + SplashMessage);
   end;
 {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrGUIInit(Sender: TtpProject;
   const ShouldEnableGUI: Boolean; var ErrorText: String;
   var Continue: Boolean);
+const cFn = 'ProjMgrGUIInit';
 begin
+  CSEnterMethod(Self, cFn);
 {$IFNDEF PREVENTGUI}
-  if ShouldEnableGUI then
+  if True or ShouldEnableGUI then
   begin
     pWebApp.DoUpdateGUI;
 
     InitCoreWebHubDataModuleGUI;
     InitStandardWHModulesGUI;
 
-    if Assigned(fmAppOut) then
-      fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
+    if ShouldEnableGUI then
+    begin
+      if Assigned(fmAppOut) then
+        fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
+    end;
+
     WebMessage('0');         // required to close splash screen
   end;
 {$ENDIF}
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrStartupComplete(Sender: TtpProject);
+const cFn = 'ProjMgrStartupComplete';
 begin
+  CSEnterMethod(Self, cFn);
   UncoverAppOnStartup(pWebApp.AppID);
   pConnection.MarkReadyToWork; // v3.190+
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrStartupError(Sender: TtpProject;

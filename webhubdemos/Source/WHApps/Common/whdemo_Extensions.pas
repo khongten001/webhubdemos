@@ -219,7 +219,8 @@ var
 begin
   CSEnterMethod(Self, cFn);
 
-  pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
+  if Assigned(pWebApp.Debug) then
+    pWebApp.Debug.OnBeforeSendPageErrors := DemoAppPageErrors;
 
   // Note: the only likely reason these pointers would be nil
   // is when this unit is used within the WebHub Editor, which frees
