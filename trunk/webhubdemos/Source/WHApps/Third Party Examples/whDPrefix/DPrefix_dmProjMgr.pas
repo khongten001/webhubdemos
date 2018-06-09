@@ -203,30 +203,31 @@ var
   SplashMessage: string;
 begin
   CSEnterMethod(Self, cFn);
+
 {$IFNDEF PREVENTGUI}
   CSSend('ShouldEnableGUI', S(ShouldEnableGUI));
-  if True or ShouldEnableGUI then
-  begin
-    SplashMessage := 'Creating Graphical User Interface';
-    WebMessage(SplashMessage);
-    // create the main form which will hold the WebHub panels (GUI)
-    Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm); // MultiTypeApp
-    // after the main form, create GUI modules
-    Application.CreateForm(TfmAppAboutPanel, fmAppAboutPanel);
-    CreateStandardWHModulesGUI;
 
-    { Special Comment for Forms - do not delete!
+  SplashMessage := 'Creating Graphical User Interface';
+  WebMessage(SplashMessage);
+  // create the main form which will hold the WebHub panels (GUI)
+  Application.CreateForm(TfmWebHubMainForm, fmWebHubMainForm); // MultiTypeApp
+  // after the main form, create GUI modules
+  if ShouldEnableGUI then
+    Application.CreateForm(TfmAppAboutPanel, fmAppAboutPanel); // skip when as-service
+  CreateStandardWHModulesGUI;
 
-      This comment is used by the WebHub Wizard to position GUI CreateForm
-      statements for you, just above here. You may add your own CreateForm
-      statements as well, either above or below this comment, as you wish.
+  { Special Comment for Forms - do not delete!
 
-      Example: Application.CreateForm(TfmMyWHPanel, fmMyPanel);
-    }
-  {M}Application.CreateForm(TfmWhActions, fmWhActions);
-    WebMessage('-' + SplashMessage);
-  end;
+    This comment is used by the WebHub Wizard to position GUI CreateForm
+    statements for you, just above here. You may add your own CreateForm
+    statements as well, either above or below this comment, as you wish.
+
+    Example: Application.CreateForm(TfmMyWHPanel, fmMyPanel);
+  }
+{M}Application.CreateForm(TfmWhActions, fmWhActions);
+  WebMessage('-' + SplashMessage);
 {$ENDIF}
+
   CSExitMethod(Self, cFn);
 end;
 
@@ -237,22 +238,22 @@ const cFn = 'ProjMgrGUIInit';
 begin
   CSEnterMethod(Self, cFn);
 {$IFNDEF PREVENTGUI}
-  if True or ShouldEnableGUI then
+
+  pWebApp.DoUpdateGUI;
+
+  InitCoreWebHubDataModuleGUI;
+  InitStandardWHModulesGUI;
+
+  if ShouldEnableGUI then
   begin
-    pWebApp.DoUpdateGUI;
-
-    InitCoreWebHubDataModuleGUI;
-    InitStandardWHModulesGUI;
-
-    if ShouldEnableGUI then
-    begin
-      if Assigned(fmAppOut) then
-        fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
-    end;
-
-    WebMessage('0');         // required to close splash screen
+    // if running as-app
+    if Assigned(fmAppOut) then
+      fmAppOut.tbAppShowOut.Down := True;  // for w3 validation feature
   end;
+
+  WebMessage('0');         // required to close splash screen
 {$ENDIF}
+
   CSExitMethod(Self, cFn);
 end;
 
