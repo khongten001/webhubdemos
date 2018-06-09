@@ -51,7 +51,7 @@ implementation
 {$R *.dfm}
 
 uses
-  {$IFDEF CodeSite}CodeSiteLogging,{$ENDIF}
+  ZM_CodeSiteInterface,
   ucstring,
   webApp, webSend;
 
@@ -139,10 +139,13 @@ begin
 end;
 
 function TdmwhUIHelpers.Init(out ErrorText: string): Boolean;
+const cFn = 'Init';
 begin
+  CSEnterMethod(Self, cFn);
   RefreshWebActions(dmwhUIHelpers);
   ErrorText := '';
   Result := True;
+  CSExitMethod(Self, cFn);
 end;
 
 end.
