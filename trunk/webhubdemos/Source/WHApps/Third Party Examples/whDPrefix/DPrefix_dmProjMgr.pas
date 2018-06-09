@@ -148,9 +148,11 @@ end;
 
 procedure TDMDPrefixProjMgr.ProjMgrDataModulesInit(Sender: TtpProject;
   var ErrorText: String; var Continue: Boolean);
+const cFn = 'ProjMgrDataModulesInit';
 var
   AFilespec: string;
 begin
+  CSEnterMethod(Self, cFn);
   { This event handler, DataModulesInit, is reserved for calling the Init method
     on any datamodules which require one-time initialization. }
   InitCoreWebHubDataModule;
@@ -190,6 +192,7 @@ begin
   pWebApp.Response.OnClose := DMAdminDataEntry.WebAppOutputClose;
   pConnection.OnFrontDoorTriggered :=
     DMAdminDataEntry.WebCommandLineFrontDoorTriggered;
+  CSExitMethod(Self, cFn);
 end;
 
 procedure TDMDPrefixProjMgr.ProjMgrGUICreate(Sender: TtpProject;

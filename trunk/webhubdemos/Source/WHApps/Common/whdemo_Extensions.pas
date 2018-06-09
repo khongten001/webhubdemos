@@ -131,9 +131,12 @@ begin
   // when the app object updates.
   Assert(Assigned(pWebApp));
 
+  CSSend('FlagBeenHere', S(FlagBeenHere));
+
   if NOT FlagBeenHere then
   begin
     FEATURE.SilentExecution := True; // requires WebHub v3.217+
+    CSSend('FEATURE.SilentExecution', S(FEATURE.SilentExecution));
 
     AddAppUpdateHandler(DemoAppUpdate);
     // without this, changes to AppID will not refresh the mail panel.
@@ -148,6 +151,7 @@ begin
     ExtraConfigFilespec := pWebApp.AppPath + '..\Config\DomainIDList.ini';
     if FileExists(ExtraConfigFilespec) then
     begin
+      CSSend('using ExtraConfigFilespec', ExtraConfigFilespec);
       FDomainIDList := TStringList.Create;
       FDomainIDList.LoadFromFile(pWebApp.AppPath + '..\Config\DomainIDList.ini');
       FDomainIDList.Sorted := True;
@@ -156,12 +160,14 @@ begin
     pWebApp.OnBadBrowser := DemoAppBadBrowser;
     pWebApp.OnNewSession := DemoAppNewSession;
     pWebApp.OnPageComplete := DemoAppPageComplete;
+    CSSend('Demo Event handlers have been assigned');
 
     {$IFDEF Log2CSL}UseWebHubSharedLog;{$ENDIF}
 
     DemoAppUpdate(nil);   // do this once
 
     FlagBeenHere := True;
+    CSSend('FlagBeenHere', S(FlagBeenHere));
   end;
 
 
