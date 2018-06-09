@@ -4,7 +4,7 @@
         <MainSource>whDPrefix.dpr</MainSource>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <ProjectVersion>18.2</ProjectVersion>
+        <ProjectVersion>18.4</ProjectVersion>
         <Base>True</Base>
         <AppType>Application</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -299,14 +299,14 @@
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <Deployment Version="3">
-                <DeployFile LocalName="..\..\..\..\Live\WebHub\Apps\whDPrefix.exe" Configuration="Release" Class="ProjectOutput"/>
-                <DeployFile LocalName="H:\pkg_d21_Win64\whDPrefix.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="H:\pkg_d21_Win32\whDPrefix.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>whDPrefix.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
+                <DeployFile LocalName="H:\pkg_d21_Win64\whDPrefix.exe" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\Live\WebHub\Apps\whDPrefix.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>

@@ -78,7 +78,7 @@ begin
     end;
   end;
   Result := FlagInitDone;
-  CSSend('Result', S(Result));
+  CSSend(cFn + ': Result', S(Result));
   CSExitMethod(Self, cFn);
 end;
 
