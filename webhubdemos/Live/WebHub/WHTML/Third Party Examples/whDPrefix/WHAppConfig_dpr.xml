@@ -45,7 +45,7 @@
       <AppSetting name="DesignRefreshEnabled" value="True"/>
       <AppSetting name="DesignRefreshEnabled" value="False" context="NYX"/>
       <AppSetting name="GoogleSitemapFile" value="D:\Projects\webhubdemos\Live\WebRoot\delphiprefix.href.com\googlesitemap.xml"/>
-      <AppSetting name="GoogleDomainRoot" value="http://delphiprefix.href.com/"/>
+      <AppSetting name="GoogleDomainRoot" value="https://delphiprefix.href.com/"/>
       <AppSetting name="ShowSessionVars" value="False"/>
     </AppSettings>
     <PageGeneration>
