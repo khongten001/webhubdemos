@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="http://www.ZaphodsMap.com/zmdesign/css/ZaphodsMap.xsl"?>
+<ZMKeybox xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.ZaphodsMap.com/zmdesign/xsd/ZMKeybox200606.xsd">
+  <KeyGroups>
+    <KeyGroup name="CleanEntrance">
+      <Keys>
+        <Key2File name="main" filename="D:\Temp\CleanEntranceData\CleanEntranceConfig.xml"/>
+      </Keys>
+    </KeyGroup>
+  </KeyGroups>
+</ZMKeybox>
