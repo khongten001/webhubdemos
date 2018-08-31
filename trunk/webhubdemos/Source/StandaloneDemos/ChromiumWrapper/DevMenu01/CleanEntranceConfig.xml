@@ -246,6 +246,26 @@
         </Fields>
     </WebSite>
 
+    <WebSite id="ServiceBridge">
+    	<Caption lingvo="en" value="ServiceBridge"/>
+        <Url value="https://www.servicebridge.com/"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="Email" />
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="Password"/>
+        </Fields>
+    </WebSite>
+
+    <WebSite id="ServiceM8_AU">
+    	<Caption lingvo="en" value="ServiceM8 Australia"/>
+        <Url value="https://www.servicem8.com/au/login-page"/>
+        <InputPattern value="all"/>
+        <Fields>
+	        <Field lingvo="en" prompt="email" htmlAttr="id" htmlField="user_email" />
+	        <Field lingvo="en" prompt="password" htmlAttr="id" htmlField="user_password"/>
+        </Fields>
+    </WebSite>
+
     <WebSite id="TwitterLogin">
     	<Caption lingvo="en" value="Twitter Login Form"/>
         <Url value="https://twitter.com/login?lang=en"/>
