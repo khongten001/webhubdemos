@@ -393,12 +393,12 @@ begin
                   // Failed to set amzbaPublicRead for
                   // assets.http:--test.domain.info-2013-.plist
                   {$IF Defined(CodeSite)}
-                  CodeSite.SendWarning('Failed to set amzbaPublicRead for ' +
+                  CodeSite.SendError('Failed to set amzbaPublicRead for ' +
                     OriginalObjName);  // DELPHI error, not AWS error.
                   {$ELSE}
                   Report(
                     'ERROR. Failed to set amzbaPublicRead for OriginalObjName',
-                    OriginalObjName);  // DELPHI error, not AWS error.
+                    OriginalObjName);
                   {$IFEND}
                   //Inc(ExitCode);
                 end;
