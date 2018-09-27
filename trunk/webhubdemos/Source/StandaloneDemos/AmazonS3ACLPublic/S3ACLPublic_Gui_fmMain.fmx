@@ -2,7 +2,7 @@ object Form3: TForm3
   Left = 0
   Top = 0
   Caption = 'AWS S3 tag Public'
-  ClientHeight = 669
+  ClientHeight = 908
   ClientWidth = 853
   StyleLookup = 'panelstyle'
   FormFactor.Width = 320
@@ -431,5 +431,17 @@ object Form3: TForm3
       Text = 'Go'
       OnClick = ButtonGoClick
     end
+  end
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Position.X = 40.000000000000000000
+    Position.Y = 776.000000000000000000
+    Size.Width = 785.000000000000000000
+    Size.Height = 113.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    Viewport.Width = 781.000000000000000000
+    Viewport.Height = 109.000000000000000000
   end
 end

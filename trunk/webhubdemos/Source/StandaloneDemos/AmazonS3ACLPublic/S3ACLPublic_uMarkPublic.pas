@@ -24,6 +24,11 @@ Author: Ann Lynnworth at HREF Tools Corp.
 
 interface
 
+{$IFNDEF CodeSite}
+uses
+  Memo;  // helpful only during testing.
+{$ENDIF}
+
 function ReportSyntaxAvailable: string;
 function ReportSyntaxUsed: string;
 
@@ -68,7 +73,7 @@ procedure TagPublic(const bActionIt: Boolean;
   const JustRootFolder: Boolean;
   const MaxFilesToTouch: Integer;
   const awsRegion: string;
-  out ErrorText: string);
+  out ErrorText: string {$IFNDEF CodeSite}; AMemo: TMemo = nil{$ENDIF});
 
 implementation
 
@@ -117,7 +122,7 @@ procedure TagPublic(const bActionIt: Boolean;
   const JustRootFolder: Boolean;
   const MaxFilesToTouch: Integer;
   const awsRegion: string;
-  out ErrorText: string);
+  out ErrorText: string {$IFNDEF CodeSite}; AMemo: TMemo = nil{$ENDIF});
 const cFn = 'TagPublic';
 var
   AmazonConnectionInfo1: TAmazonConnectionInfo;
@@ -138,6 +143,17 @@ var
   ChangeCounter: Integer;
   BucketMarker: string;
   bOk: Boolean;
+
+  procedure Report(const S1, S2: string);
+  begin
+  {$IFDEF CodeSite}
+    CSSend(S1, S2);
+  {$ELSE}
+    if Assigned(AMemo) then
+      AMemo.Lines.Add(S1 + '=' + S2);
+  {$ENDIF}
+  end;
+
 begin
   {$IFDEF ZMLog}CSEnterMethod(nil, cFn);{$ENDIF}
 
@@ -259,6 +275,8 @@ begin
             Continue;
           end;
 
+          Report('BucketContents.Objects.Count', BucketContents.Objects.Count.ToString);
+
           if BucketContents.Objects.Count <= 0 then
           begin
             bKeepLooping := False;
@@ -273,6 +291,7 @@ begin
 
             OriginalObjName := S3Object.Name;
             BucketMarker := OriginalObjName; // use when response Truncated
+            Report('OriginalObjName', OriginalObjName);
 
             if JustRootFolder then
             begin
