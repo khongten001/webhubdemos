@@ -113,6 +113,7 @@ begin
   cbActionIt.IsChecked := True;
   EditAWSSecretKey.Text := '';
   EditMaxFilesToTouch.Text := '10';
+  Memo1.Font.Size := 12;
   //EditAWSAccessKey.Text := 'AKIAI';
   //EditAWSSecretKey.Text := 'XD';
 end;
