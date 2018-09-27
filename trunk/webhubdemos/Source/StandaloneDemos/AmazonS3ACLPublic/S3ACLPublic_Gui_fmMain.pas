@@ -99,7 +99,7 @@ begin
   TagPublic(bActionit, scheme, EditBucketName.Text, EditLeadingPath.Text,
     EditMatchThis.Text, EditAWSAccessKey.Text, EditAWSSecretKey.Text,
     bJustRootFolder, StrToIntDef(EditMaxFilesToTouch.Text, 1), EditRegion.Text,
-    ErrorText, Memo1);
+    ErrorText{$IFNDEF CodeSite}, Memo1{$ENDIF});
 
   if ErrorText = '' then
     ShowMessage('Done.')
@@ -114,6 +114,7 @@ begin
   EditAWSSecretKey.Text := '';
   EditMaxFilesToTouch.Text := '10';
   //EditAWSAccessKey.Text := 'AKIAI';
+  //EditAWSSecretKey.Text := 'XD';
 end;
 
 end.
