@@ -395,6 +395,10 @@ begin
                   {$IF Defined(CodeSite)}
                   CodeSite.SendWarning('Failed to set amzbaPublicRead for ' +
                     OriginalObjName);  // DELPHI error, not AWS error.
+                  {$ELSE}
+                  Report(
+                    'ERROR. Failed to set amzbaPublicRead for OriginalObjName',
+                    OriginalObjName);  // DELPHI error, not AWS error.
                   {$IFEND}
                   //Inc(ExitCode);
                 end;
