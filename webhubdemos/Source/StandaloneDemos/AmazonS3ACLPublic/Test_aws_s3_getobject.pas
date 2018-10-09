@@ -61,13 +61,16 @@ var
   BucketContents: TAmazonBucketResult;
   AStream: TStringStream;
 const
-  cTestFilenames: array[0..5] of string = (
+  cTestFilenames: array[0..7] of string = (
     '#sample_file.txt',  // starts with # and contains _
     'sample#file.txt',   // contains #
     'sample$file.txt',   // contains $
     'sample_file.txt',   // contains _
     'sample+file.txt',   // contains +
-    '#samplefile.txt');  // starts with #
+    '#samplefile.txt',  // starts with #
+    'path3/path3b/#samplefile.txt',
+    'path3/path3b/#FILDESC.txt'
+    );
 begin
 
   AmazonConnectionInfo1 := nil;
@@ -105,7 +108,7 @@ begin
             AStream.Size.ToString);
           if AStream.Size > 0 then
           begin
-            AMemo.Lines.Add(Copy(AStream.DataString, 1, 80));
+            //AMemo.Lines.Add(Copy(AStream.DataString, 1, 80));
             AMemo.Lines.Add(sLineBreak + '--' + sLineBreak);
           end;
         end
@@ -113,8 +116,8 @@ begin
         begin
           ErrorText := 'ERROR: Unable to GetObject ' + cTestFilenames[i];
           AMemo.Lines.Add(ErrorText);
-          AMemo.Lines.Add(ResponseInfo.Headers.Text);
-          AMemo.Lines.Add('');
+          //AMemo.Lines.Add(ResponseInfo.Headers.Text);
+          AMemo.Lines.Add(sLineBreak + '--' + sLineBreak);
           //break;
         end;
       end;
