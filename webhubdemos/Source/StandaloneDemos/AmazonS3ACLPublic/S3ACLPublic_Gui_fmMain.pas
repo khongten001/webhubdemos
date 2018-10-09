@@ -57,9 +57,11 @@ type
     Button1: TButton;
     ButtonGo: TButton;
     Memo1: TMemo;
+    Button2: TButton;
     procedure Button1Click(Sender: TObject);
     procedure ButtonGoClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -74,11 +76,29 @@ implementation
 {$R *.fmx}
 
 uses
-  S3ACLPublic_uMarkPublic;
+  S3ACLPublic_uMarkPublic, Test_aws_s3_getobject;
 
 procedure TForm3.Button1Click(Sender: TObject);
 begin
   Self.Close;  // close the form
+end;
+
+procedure TForm3.Button2Click(Sender: TObject);
+var
+  ErrorText: string;
+  scheme: string;
+begin
+  Memo1.Lines.Text := 'Testing TAmazonStorageService   GetObject';
+  Application.ProcessMessages;
+
+  if cbSchemeHttp.IsChecked then
+    scheme := 'http'
+  else
+    scheme := 'https';
+
+  Test_GetObject(
+    EditBucketName.Text, scheme, EditAWSAccessKey.Text,
+    EditAWSSecretKey.Text, EditRegion.Text, ErrorText, Memo1);
 end;
 
 procedure TForm3.ButtonGoClick(Sender: TObject);
@@ -114,8 +134,9 @@ begin
   EditAWSSecretKey.Text := '';
   EditMaxFilesToTouch.Text := '10';
   Memo1.Font.Size := 12;
-  //EditAWSAccessKey.Text := 'AKIAI';
-  //EditAWSSecretKey.Text := 'XD';
+  { https://quality.embarcadero.com/browse/RSP-18694   Comment #1 }
+  //EditAWSAccessKey.Text := 'AKIA';
+  //EditAWSSecretKey.Text := 'XDcv';
 end;
 
 end.
