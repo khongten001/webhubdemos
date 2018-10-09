@@ -27,7 +27,8 @@ uses
   FMX.Forms,
   uAWS_S3 in '..\AmazonS3Upload\uAWS_S3.pas',
   S3ACLPublic_Gui_fmMain in 'S3ACLPublic_Gui_fmMain.pas' {Form3},
-  S3ACLPublic_uMarkPublic in 'S3ACLPublic_uMarkPublic.pas';
+  S3ACLPublic_uMarkPublic in 'S3ACLPublic_uMarkPublic.pas',
+  Test_aws_s3_getobject in 'Test_aws_s3_getobject.pas';
 
 {$R *.res}
 

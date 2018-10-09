@@ -185,7 +185,7 @@ begin
     ExitCode := 14;
   end;
 
-  if (awsKey = '') or (Copy(awsKey, 1, 2) <> 'AK') then
+  if (awsKey = '') then
   begin
     bOk := False;
     {$IFDEF CodeSite}CodeSite.SendError('AWS access key required');{$ENDIF}
