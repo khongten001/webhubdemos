@@ -61,9 +61,13 @@ var
   BucketContents: TAmazonBucketResult;
   AStream: TStringStream;
 const
-  cTestFilenames: array[0..4] of string = ('#sample_file.txt',
-    'sample#file.txt',
-    'sample$file.txt', 'sample_file.txt', 'sample+file.txt');
+  cTestFilenames: array[0..5] of string = (
+    '#sample_file.txt',  // starts with # and contains _
+    'sample#file.txt',   // contains #
+    'sample$file.txt',   // contains $
+    'sample_file.txt',   // contains _
+    'sample+file.txt',   // contains +
+    '#samplefile.txt');  // starts with #
 begin
 
   AmazonConnectionInfo1 := nil;
