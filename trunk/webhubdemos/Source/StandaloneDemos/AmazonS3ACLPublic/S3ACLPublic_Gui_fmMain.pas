@@ -134,6 +134,9 @@ begin
   EditAWSSecretKey.Text := '';
   EditMaxFilesToTouch.Text := '10';
   Memo1.Font.Size := 12;
+  {$IFDEF VER330}
+  cbSchemeHttps.IsChecked := True;  // https works here.
+  {$ENDIF}
   { https://quality.embarcadero.com/browse/RSP-18694   Comment #1 }
   //EditAWSAccessKey.Text := 'AKIA';
   //EditAWSSecretKey.Text := 'XDcv';
