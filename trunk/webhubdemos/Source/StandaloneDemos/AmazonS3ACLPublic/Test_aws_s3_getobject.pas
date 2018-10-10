@@ -104,17 +104,22 @@ begin
         if StorageService.GetObject(bucketName, cTestFilenames[i],
           AStream, ResponseInfo) then
         begin
-          AMemo.Lines.Add(#9 + 'downloaded as size ' +
-            AStream.Size.ToString);
           if AStream.Size > 0 then
           begin
+          AMemo.Lines.Add(#9 + 'success; downloaded as size ' +
+            AStream.Size.ToString);
             //AMemo.Lines.Add(Copy(AStream.DataString, 1, 80));
+            AMemo.Lines.Add(sLineBreak + '--' + sLineBreak);
+          end
+          else
+          begin
+            AMemo.Lines.Add(#9 + 'ERROR: size is 0.');
             AMemo.Lines.Add(sLineBreak + '--' + sLineBreak);
           end;
         end
         else
         begin
-          ErrorText := 'ERROR: Unable to GetObject ' + cTestFilenames[i];
+          ErrorText := #9 + 'ERROR: Unable to GetObject ' + cTestFilenames[i];
           AMemo.Lines.Add(ErrorText);
           //AMemo.Lines.Add(ResponseInfo.Headers.Text);
           AMemo.Lines.Add(sLineBreak + '--' + sLineBreak);
@@ -125,7 +130,7 @@ begin
     except
       on E: Exception do
       begin
-        AMemo.Lines.Add('EXCEPTION: ' + E.Message);
+        AMemo.Lines.Add(#9 + 'EXCEPTION: ' + E.Message);
         Application.ProcessMessages;
         ErrorText := E.Message;
       end;
