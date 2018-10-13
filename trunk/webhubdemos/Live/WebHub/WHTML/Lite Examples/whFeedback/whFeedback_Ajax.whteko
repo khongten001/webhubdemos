@@ -58,7 +58,7 @@
 (~MATCH|(~Request.RequestMethod~)=OPTIONS|
  (~SET|_responseStatus=OPTIONS~)
 <whdroplet name="drAjaxTestResponse" show="yes">
- (~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: http://more.demos.href.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
+ (~FLUSH|~)(~HEADER|Access-Control-Allow-Origin: https://more.demos.href.com~)(~HEADER|Access-Control-Allow-Credentials: true~)(~HEADER|Access-Control-Allow-Headers: cache-control, content-type, x-http-method-override~)
  {"responseStatus": "(~_responseStatus~)", "errorMsg": "(~_ErrorMsg~)"}
  (~CLEAR|_bContentOk~)(~CLEAR|_ErrorMsg~)(~CLEAR|_responseStatus~)
  (~CLOSE|~)
